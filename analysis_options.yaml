@@ -1,0 +1,124 @@
+##################################################################################
+##                      모노레포 전역 분석/린트 설정                                 ##
+##                      -----------------------------                           ##
+## 각 패키지에 별도 `analysis_options.yaml`이 없어도 됩니다.                         ##
+## 분석기는 현재 경로에서 상위로 올라가며 설정 파일을 탐색합니다. 자세한 설명:        ##
+## https://dart.dev/guides/language/analysis-options#the-analysis-options-file  ##
+##################################################################################
+## Very Good Analysis 프리셋을 기본으로 확장합니다. 아래에서 필요한 항목만 보완/예외 처리합니다.
+include: package:very_good_analysis/analysis_options.9.0.0.yaml
+
+linter:
+  rules:
+    no_default_cases: true # switch의 default 사용 지양(누락된 case를 조기에 드러내기 위함)
+
+##
+# Analyzer 전역 설정
+# - 자동 생성/외부 제공 파일을 분석에서 제외하여 신호 대 잡음비를 높입니다.
+##
+analyzer:
+
+  # 자동 생성 및 외부 제공 파일을 Dart 분석에서 제외합니다.
+  exclude:
+    - "**/**.freezed.dart"
+    - "**/**.config.dart"
+    - "**/**.module.dart"
+    - "**/**.mock.dart"
+    - "**/**.gr.dart"
+    - "**/**.gm.dart"
+    - "**/**.freezed.dart"
+    - "**/**.g.dart"
+    - "**/**._test.dart"
+    - "**/injector.module.dart"
+    - "package/pdfrx/**"
+
+########################################################################
+##                           DCM(Dart Code Metrics) 설정               ##
+##                       -----------------------                      ##
+## 추가 메트릭과 규칙으로 코드 품질을 정량적으로 관리합니다.                        ##
+########################################################################
+
+dart_code_metrics:
+  extends:
+    - recommended                                    # 기본 권장 규칙
+    # - package:dart_code_metrics_presets/bloc.yaml    # BLoC 패턴 규칙
+    # - package:dart_code_metrics_presets/dart_all.yaml
+    # - package:dart_code_metrics_presets/flutter_all.yaml
+    # - package:dart_code_metrics_presets/flutter_hooks.yaml
+    # - package:dart_code_metrics_presets/get_it.yaml  # GetIt 의존성 주입 규칙
+    # - package:dart_code_metrics_presets/intl.yaml
+    # - package:dart_code_metrics_presets/provider.yaml
+    # - package:dart_code_metrics_presets/pub.yaml     # pubspec.yaml 검사
+  
+  # 메트릭 임계값 설정(프로젝트 권장값)
+  metrics:
+    cyclomatic-complexity: 10          # 함수/메서드의 분기 복잡도 상한
+    halstead-volume: 50                # 연산자/피연산자 기반 복잡도 지표 상한
+    lines-of-code: 10                  # 함수/메서드당 소스 라인 상한
+    maximum-nesting-level: 5           # 조건/반복의 중첩 깊이 상한
+    number-of-parameters: 4
+    source-lines-of-code: 50
+    maintainability-index: 50
+    number-of-methods: 10
+    weight-of-class: 0.33
+    
+  # DCM 분석에서 제외할 파일(코드 생성물 등)
+  exclude:
+    - "**/**.freezed.dart"
+    - "**/**.config.dart"
+    - "**/**.module.dart"
+    - "**/**.mock.dart"
+    - "**/**.gr.dart"
+    - "**/**.gm.dart"
+    - "**/**.freezed.dart"
+    - "**/**.g.dart"
+    - "**/**._test.dart"
+    - "package/pdfrx/**"
+    
+  # 프리셋을 보완하는 프로젝트 특화 규칙
+  rules:
+    - prefer-match-file-name: false
+    - member-ordering:
+        # Dart의 sort_constructors_first 규칙과 호환되도록 생성자를 첫 번째로 설정
+        order:
+          - constructors
+          - public-fields
+          - private-fields
+          - public-methods
+          - private-methods
+    - avoid-commented-out-code:
+        min-lines: 1
+    - prefer-single-widget-per-file:
+        ignore-private-widgets: true
+    - prefer-correct-identifier-length:
+        # exceptions: ['a', 'b', 'c', 't', 'u', 'i', 'e']
+        max-identifier-length: 30
+        min-identifier-length: 2
+        ignore-inline-functions: false
+        exceptions:
+          - p
+    - prefer-correct-type-name:
+        max-length: 40
+        min-length: 3
+    - avoid-nested-conditional-expressions:
+        acceptable-level: 2
+    - avoid-undisposed-instances:
+        # 프레임워크가 생명주기를 관리하는 컨트롤러는 예외로 허용합니다.
+        ignored-instances:
+          - AnimationController
+          - PageController
+          - ScrollController
+          - TextEditingController
+          - TabController
+          - VideoPlayerController
+        ignored-invocations:
+          - WithAutoDispose
+          - autoDispose
+    - arguments-ordering:
+        alphabetize: true
+        first:
+          - key
+          - super
+        last:
+          - child
+          - children

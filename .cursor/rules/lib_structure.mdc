@@ -1,0 +1,59 @@
+---
+alwaysApply: true
+---
+  child: Column(
+    children: [
+      CoButton.primary(
+        onPressed: () {},
+        child: Text('Primary Button'),
+      ),
+      CoBadge.primary(
+        child: Text('Primary Badge'),
+      ),
+    ],
+  ),
+)
+
+// 폼 컴포넌트 (DaisyUI form 스타일)
+CoForm(
+  child: Column(
+    children: [
+      CoInput(
+        placeholder: 'Enter your name',
+        leading: Icon(Icons.person),
+      ),
+      CoSelect(
+        placeholder: 'Choose option',
+        items: ['Option 1', 'Option 2'],
+      ),
+      CoButton.primary(
+        onPressed: () {},
+        child: Text('Submit'),
+      ),
+    ],
+  ),
+)
+
+// 커스텀 테마 (DaisyUI 테마 커스터마이징과 유사)
+CoApp.custom(
+  appBuilder: (context) => MaterialApp(
+    theme: ThemeData.from(
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+    ),
+    home: MyHomePage(),
+  ),
+)
+```
+
+## 📝 주의사항 (DaisyUI 호환성)
+
+1. **테마 일관성**: 모든 컴포넌트는 `CoTheme.of(context)`를 통해 테마에 접근
+2. **네이밍 규칙**: 모든 공개 클래스는 `Co` 접두사 사용, DaisyUI 클래스명과 유사하게 명명
+3. **컴포넌트 분류**: 컴포넌트는 용도에 따라 적절한 카테고리 폴더에 배치
+4. **DaisyUI 호환성**: 컬러 매핑과 컴포넌트 구조를 DaisyUI와 일치시켜 웹 개발자 친화적으로 설계
+5. **의존성 관리**: 외부 라이브러리는 `lib/coui_flutter.dart`에서만 export
+6. **성능 고려**: 무거운 연산은 `utils/`에서 처리
+7. **접근성**: 모든 인터랙티브 컴포넌트는 접근성 속성 포함 (DaisyUI 접근성 표준 준수)
+8. **변형 시스템**: DaisyUI의 variant 시스템과 유사한 구조로 컴포넌트 변형 지원
+9. **컬러 일관성**: DaisyUI 컬러 팔레트와 매핑하여 일관된 디자인 시스템 유지
+10. **반응형 디자인**: DaisyUI의 반응형 유틸리티와 유사한 breakpoint 시스템 활용

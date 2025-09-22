@@ -1,0 +1,362 @@
+import 'package:flutter/services.dart';
+import 'package:coui_flutter/coui_flutter.dart';
+
+/// Standard duration for switch state transitions and animations.
+const kSwitchDuration = Duration(milliseconds: 100);
+
+/// Theme configuration for [Switch] widget styling and visual appearance.
+///
+/// Defines the visual properties used by switch components including colors,
+/// spacing, and border styling for different switch states. All properties are
+/// optional and fall back to framework defaults when not specified.
+///
+/// Supports comprehensive customization of switch appearance including track
+/// colors, thumb colors, and layout properties to match application design.
+class SwitchTheme {
+  /// Creates a [SwitchTheme].
+  ///
+  /// All parameters are optional and will use framework defaults when null.
+  /// The theme can be applied to individual switches or globally through
+  /// the component theme system.
+  const SwitchTheme({
+    this.activeColor,
+    this.activeThumbColor,
+    this.borderRadius,
+    this.gap,
+    this.inactiveColor,
+    this.inactiveThumbColor,
+  });
+
+  /// Color of the switch track when in the active/on state.
+  ///
+  /// Applied as the background color of the switch track when toggled on.
+  /// When null, uses the theme's primary color for visual consistency.
+  final Color? activeColor;
+
+  /// Color of the switch track when in the inactive/off state.
+  ///
+  /// Applied as the background color of the switch track when toggled off.
+  /// When null, uses the theme's muted color for visual hierarchy.
+  final Color? inactiveColor;
+
+  /// Color of the switch thumb when in the active/on state.
+  ///
+  /// Applied to the circular thumb element when the switch is toggled on.
+  /// When null, uses the theme's primary foreground color for contrast.
+  final Color? activeThumbColor;
+
+  /// Color of the switch thumb when in the inactive/off state.
+  ///
+  /// Applied to the circular thumb element when the switch is toggled off.
+  /// When null, uses a contrasting color against the inactive track.
+  final Color? inactiveThumbColor;
+
+  /// Spacing between the switch and its leading/trailing widgets.
+  ///
+  /// Applied on both sides of the switch when leading or trailing widgets
+  /// are provided. When null, defaults to framework spacing standards.
+  final double? gap;
+
+  /// Border radius applied to the switch track corners.
+  ///
+  /// Creates rounded corners on the switch track container. When null,
+  /// uses a fully rounded appearance typical of toggle switches.
+  final BorderRadiusGeometry? borderRadius;
+
+  /// Returns a copy of this theme with the given fields replaced.
+  SwitchTheme copyWith({
+    ValueGetter<Color?>? activeColor,
+    ValueGetter<Color?>? activeThumbColor,
+    ValueGetter<BorderRadiusGeometry?>? borderRadius,
+    ValueGetter<double?>? gap,
+    ValueGetter<Color?>? inactiveColor,
+    ValueGetter<Color?>? inactiveThumbColor,
+  }) {
+    return SwitchTheme(
+      activeColor: activeColor == null ? this.activeColor : activeColor(),
+      activeThumbColor:
+          activeThumbColor == null ? this.activeThumbColor : activeThumbColor(),
+      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
+      gap: gap == null ? this.gap : gap(),
+      inactiveColor:
+          inactiveColor == null ? this.inactiveColor : inactiveColor(),
+      inactiveThumbColor: inactiveThumbColor == null
+          ? this.inactiveThumbColor
+          : inactiveThumbColor(),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is SwitchTheme &&
+        other.activeColor == activeColor &&
+        other.inactiveColor == inactiveColor &&
+        other.activeThumbColor == activeThumbColor &&
+        other.inactiveThumbColor == inactiveThumbColor &&
+        other.gap == gap &&
+        other.borderRadius == borderRadius;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+        activeColor,
+        inactiveColor,
+        activeThumbColor,
+        inactiveThumbColor,
+        gap,
+        borderRadius,
+      );
+}
+
+class SwitchController extends ValueNotifier<bool>
+    with ComponentController<bool> {
+  SwitchController([super.value = false]);
+
+  void toggle() {
+    value = !value;
+  }
+}
+
+class ControlledSwitch extends StatelessWidget with ControlledComponent<bool> {
+  const ControlledSwitch({
+    this.activeColor,
+    this.activeThumbColor,
+    this.borderRadius,
+    this.controller,
+    this.enabled = true,
+    this.gap,
+    this.inactiveColor,
+    this.inactiveThumbColor,
+    this.initialValue = false,
+    super.key,
+    this.leading,
+    this.onChanged,
+    this.trailing,
+  });
+
+  @override
+  final bool initialValue;
+  @override
+  final ValueChanged<bool>? onChanged;
+  @override
+  final bool enabled;
+
+  @override
+  final SwitchController? controller;
+  final Widget? leading;
+  final Widget? trailing;
+  final double? gap;
+  final Color? activeColor;
+  final Color? inactiveColor;
+  final Color? activeThumbColor;
+  final Color? inactiveThumbColor;
+
+  final BorderRadiusGeometry? borderRadius;
+
+  @override
+  Widget build(BuildContext context) {
+    return ControlledComponentAdapter(
+      builder: (context, data) {
+        return Switch(
+          activeColor: activeColor,
+          activeThumbColor: activeThumbColor,
+          borderRadius: borderRadius,
+          enabled: data.enabled,
+          gap: gap,
+          inactiveColor: inactiveColor,
+          inactiveThumbColor: inactiveThumbColor,
+          leading: leading,
+          onChanged: data.onChanged,
+          trailing: trailing,
+          value: data.value,
+        );
+      },
+      controller: controller,
+      enabled: enabled,
+      initialValue: initialValue,
+      onChanged: onChanged,
+    );
+  }
+}
+
+class Switch extends StatefulWidget {
+  const Switch({
+    this.activeColor,
+    this.activeThumbColor,
+    this.borderRadius,
+    this.enabled = true,
+    this.gap,
+    this.inactiveColor,
+    this.inactiveThumbColor,
+    super.key,
+    this.leading,
+    required this.onChanged,
+    this.trailing,
+    required this.value,
+  });
+
+  final bool value;
+  final ValueChanged<bool>? onChanged;
+  final Widget? leading;
+  final Widget? trailing;
+  final bool? enabled;
+  final double? gap;
+  final Color? activeColor;
+  final Color? inactiveColor;
+  final Color? activeThumbColor;
+  final Color? inactiveThumbColor;
+
+  final BorderRadiusGeometry? borderRadius;
+
+  @override
+  State<Switch> createState() => _SwitchState();
+}
+
+class _SwitchState extends State<Switch> with FormValueSupplier<bool, Switch> {
+  bool _focusing = false;
+
+  @override
+  void initState() {
+    super.initState();
+    formValue = widget.value;
+  }
+
+  bool get _enabled => widget.enabled ?? widget.onChanged != null;
+
+  @override
+  void didUpdateWidget(covariant Switch oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.value != oldWidget.value) {
+      formValue = widget.value;
+    }
+  }
+
+  @override
+  void didReplaceFormValue(bool value) {
+    widget.onChanged?.call(value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final scaling = theme.scaling;
+    final compTheme = ComponentTheme.maybeOf<SwitchTheme>(context);
+    final gap = styleValue(
+      defaultValue: scaling * 8,
+      themeValue: compTheme?.gap,
+      widgetValue: widget.gap,
+    );
+    final activeColor = styleValue(
+      defaultValue: theme.colorScheme.primary,
+      themeValue: compTheme?.activeColor,
+      widgetValue: widget.activeColor,
+    );
+    final inactiveColor = styleValue(
+      defaultValue: theme.colorScheme.input,
+      themeValue: compTheme?.inactiveColor,
+      widgetValue: widget.inactiveColor,
+    );
+    final activeThumbColor = styleValue(
+      defaultValue: theme.colorScheme.background,
+      themeValue: compTheme?.activeThumbColor,
+      widgetValue: widget.activeThumbColor,
+    );
+    final inactiveThumbColor = styleValue(
+      defaultValue: theme.colorScheme.foreground,
+      themeValue: compTheme?.inactiveThumbColor,
+      widgetValue: widget.inactiveThumbColor,
+    );
+    final borderRadius = styleValue<BorderRadiusGeometry>(
+      defaultValue: BorderRadius.circular(theme.radiusXl),
+      themeValue: compTheme?.borderRadius,
+      widgetValue: widget.borderRadius,
+    );
+
+    return FocusOutline(
+      borderRadius: optionallyResolveBorderRadius(context, borderRadius) ??
+          BorderRadius.circular(theme.radiusXl),
+      focused: _focusing && _enabled,
+      child: GestureDetector(
+        onTap: _enabled
+            ? () {
+                widget.onChanged?.call(!widget.value);
+              }
+            : null,
+        child: FocusableActionDetector(
+          actions: {
+            ActivateIntent: CallbackAction(
+              onInvoke: (Intent intent) {
+                widget.onChanged?.call(!widget.value);
+
+                return true;
+              },
+            ),
+          },
+          enabled: _enabled,
+          mouseCursor: _enabled
+              ? SystemMouseCursors.click
+              : SystemMouseCursors.forbidden,
+          onShowFocusHighlight: (value) {
+            setState(() {
+              _focusing = value;
+            });
+          },
+          shortcuts: const {
+            SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
+            SingleActivator(LogicalKeyboardKey.space): ActivateIntent(),
+          },
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (widget.leading != null) widget.leading!,
+              if (widget.leading != null) SizedBox(width: gap),
+              AnimatedContainer(
+                decoration: BoxDecoration(
+                    borderRadius:
+                        optionallyResolveBorderRadius(context, borderRadius) ??
+                            BorderRadius.circular(theme.radiusXl),
+                    color: _enabled
+                        ? widget.value
+                            ? activeColor
+                            : inactiveColor
+                        : theme.colorScheme.muted),
+                duration: kSwitchDuration,
+                height: (16 + 4) * scaling,
+                padding: EdgeInsets.all(scaling * 2),
+                width: (32 + 4) * scaling,
+                child: Stack(
+                  children: [
+                    AnimatedPositioned(
+                      bottom: 0,
+                      curve: Curves.easeInOut,
+                      duration: kSwitchDuration,
+                      left: widget.value ? scaling * 16 : 0,
+                      top: 0,
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(theme.radiusLg),
+                              color: _enabled
+                                  ? widget.value
+                                      ? activeThumbColor
+                                      : inactiveThumbColor
+                                  : theme.colorScheme.mutedForeground),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (widget.trailing != null) SizedBox(width: gap),
+              if (widget.trailing != null) widget.trailing!,
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

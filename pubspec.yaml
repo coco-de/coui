@@ -1,0 +1,395 @@
+name: coui_workspace
+description: A unified design system providing type-safe Dart implementations of modern UI components for both Flutter mobile apps and Jaspr web applications. Build beautiful, consistent interfaces across all platforms with a single codebase.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=3.9.0 <4.0.0"
+  flutter: ">=3.35.0"
+
+dev_dependencies:
+  build_runner: ^2.7.0
+  dart_code_metrics_presets: ^2.25.1
+  flutter_lints: ^6.0.0
+  melos: ^7.1.1
+  very_good_analysis: ^10.0.0
+
+workspace:
+  - packages/coui_flutter
+  - packages/coui_web
+
+melos:
+  command:
+    version:
+      updateGitTagRefs: true
+      workspaceChangelog: true  # CoUI 라이브러리는 통합 changelog가 유용
+      hooks:
+        preCommit: |
+          echo "🔄 Generating code and applying fixes..."
+          melos run generate
+          melos run fix:all
+          melos run format
+          git add .
+          echo "✅ Pre-commit hooks completed!"
+
+  scripts:
+    # =============================================================================
+    # 🔍 ANALYSIS SCRIPTS
+    # =============================================================================
+    
+    analyze:all:
+      description: "Run complete analysis on all packages"
+      run: |
+        echo "🔍 Running Dart analyzer..."
+        dart analyze .
+        echo "📊 Running DCM analysis..."
+        dcm analyze . --reporter=console
+      exec:
+        concurrency: 1
+      
+    analyze:dart:
+      description: "Run standard Dart analyzer"
+      run: dart analyze .
+      exec:
+        concurrency: 1
+        
+    analyze:dcm:
+      description: "Run DCM analysis on all packages"
+      run: dcm analyze lib --reporter=console --set-exit-on-violation-level=warning
+      exec:
+        concurrency: 1
+      packageFilters:
+        dirExists: lib
+        
+    analyze:metrics:
+      description: "Generate detailed metrics report"
+      run: dcm analyze lib --reporter=html --output-directory=./reports/metrics
+      exec:
+        concurrency: 1
+      packageFilters:
+        dirExists: lib
+
+    # =============================================================================
+    # 🔧 CODE FIXES & FORMATTING
+    # =============================================================================
+    
+    fix:all:
+      description: "Apply all fixes in correct order (Dart → DCM)"
+      run: |
+        echo "🔧 Step 1: Applying Dart SDK fixes..."
+        dart fix --apply
+        echo "🎯 Step 2: Applying DCM fixes..."  
+        dcm fix --apply
+        echo "📐 Step 3: Formatting code..."
+        dart format .
+        echo "✅ All fixes applied successfully!"
+      exec:
+        concurrency: 1
+        
+    fix:dart:
+      description: "Apply Dart SDK fixes only"
+      run: dart fix --apply
+      exec:
+        concurrency: 1
+        
+    fix:dcm:
+      description: "Apply DCM fixes only"
+      run: dcm fix --apply
+      exec:
+        concurrency: 1
+      packageFilters:
+        dirExists: lib
+        
+    format:
+      description: "Format all Dart code"
+      run: dart format .
+      exec:
+        concurrency: 1
+
+    # =============================================================================
+    # 🧪 TESTING SCRIPTS
+    # =============================================================================
+    
+    test:select:
+      description: "Run tests for selected packages"
+      run: |
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          echo "🧪 Running Flutter tests..."
+          flutter test --coverage
+        else
+          echo "🧪 Running Dart tests..."  
+          dart test --coverage=coverage
+        fi
+      exec:
+        failFast: true
+        concurrency: 3  # Flutter/Jaspr 패키지가 적으므로 동시성 조정
+      packageFilters:
+        dirExists: test
+
+    test:
+      description: "Run all tests in the project"
+      run: melos run test:select --no-select
+
+    test:flutter:
+      description: "Run tests for Flutter packages only"
+      run: flutter test --coverage
+      exec:
+        failFast: true
+        concurrency: 2
+      packageFilters:
+        flutter: true
+        dirExists: test
+        
+    test:dart:
+      description: "Run tests for Dart packages only"
+      run: dart test --coverage=coverage
+      exec:
+        failFast: true
+        concurrency: 3
+      packageFilters:
+        flutter: false
+        dirExists: test
+
+    # =============================================================================
+    # 📊 COVERAGE SCRIPTS  
+    # =============================================================================
+    
+    coverage:select:
+      description: "Generate coverage for selected packages"
+      run: |
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          flutter test --coverage
+          genhtml coverage/lcov.info -o coverage/html 2>/dev/null || echo "genhtml not available, raw lcov.info generated"
+        else
+          dart test --coverage=coverage
+          dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --report-on=lib
+        fi
+      exec:
+        failFast: true
+        concurrency: 2
+      packageFilters:
+        dirExists: test
+
+    coverage:
+      description: "Generate coverage for all packages"
+      run: melos run coverage:select --no-select
+
+    coverage:report:
+      description: "Generate unified coverage report"
+      run: |
+        echo "📊 Collecting coverage from all packages..."
+        find . -name "lcov.info" -path "*/coverage/*" -exec echo "Found: {}" \;
+        echo "📋 Coverage report generated in each package's coverage/ directory"
+
+    # =============================================================================
+    # ⚙️ CODE GENERATION SCRIPTS
+    # =============================================================================
+    
+    generate:select:
+      description: "Run code generation for selected packages"
+      run: |
+        echo "⚙️ Running build_runner for $(basename $(pwd))..."
+        dart run build_runner build --delete-conflicting-outputs
+        echo "✅ Code generation completed!"
+      exec:
+        concurrency: 1
+        failFast: true
+      packageFilters:
+        dependsOn:
+          - build_runner
+
+    generate:
+      description: "Run code generation for all packages"
+      run: melos run generate:select --no-select
+      
+    generate:clean:
+      description: "Clean and regenerate all generated code"
+      run: |
+        echo "🧹 Cleaning previous generated files..."
+        dart run build_runner clean
+        echo "⚙️ Regenerating all code..."
+        dart run build_runner build --delete-conflicting-outputs
+      exec:
+        concurrency: 1
+      packageFilters:
+        dependsOn:
+          - build_runner
+
+    # =============================================================================
+    # 📚 DOCUMENTATION SCRIPTS
+    # =============================================================================
+    
+    docs:generate:
+      description: "Generate API documentation"
+      run: |
+        echo "📚 Generating API documentation..."
+        dart doc --output docs/api
+      exec:
+        concurrency: 1
+      packageFilters:
+        dirExists: lib
+        
+    docs:serve:
+      description: "Serve documentation locally"
+      run: |
+        if command -v python3 &> /dev/null; then
+          echo "🌐 Serving docs at http://localhost:8000"
+          cd docs && python3 -m http.server 8000
+        else
+          echo "📋 Python3 not found. Install python3 to serve docs locally."
+        fi
+
+    # =============================================================================
+    # 🚀 BUILD & DEPLOYMENT SCRIPTS
+    # =============================================================================
+    
+    build:flutter:
+      description: "Build Flutter packages"
+      run: |
+        echo "🔨 Building Flutter package: $(basename $(pwd))"
+        flutter build appbundle --release || flutter build web --release
+      exec:
+        concurrency: 2
+      packageFilters:
+        flutter: true
+        dirExists: lib
+        
+    build:web:
+      description: "Build Jaspr web packages"
+      run: |
+        echo "🌐 Building Jaspr web package: $(basename $(pwd))"
+        dart run jaspr build
+      exec:
+        concurrency: 2
+      packageFilters:
+        dependsOn:
+          - jaspr
+        dirExists: lib
+
+    # =============================================================================
+    # 🔍 DEPENDENCY MANAGEMENT
+    # =============================================================================
+    
+    deps:get:
+      description: "Get dependencies for all packages"
+      run: |
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          flutter pub get
+        else
+          dart pub get
+        fi
+      exec:
+        concurrency: 4
+
+    deps:upgrade:
+      description: "Upgrade dependencies for all packages"
+      run: |
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          flutter pub upgrade
+        else
+          dart pub upgrade
+        fi
+      exec:
+        concurrency: 2
+
+    deps:outdated:
+      description: "Check for outdated dependencies"
+      run: |
+        echo "📋 Checking outdated dependencies for $(basename $(pwd)):"
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          flutter pub outdated
+        else
+          dart pub outdated
+        fi
+      exec:
+        concurrency: 1
+
+    # =============================================================================
+    # 🎯 CoUI SPECIFIC SCRIPTS
+    # =============================================================================
+    
+    coui:check:
+      description: "Run complete CoUI health check"
+      run: |
+        echo "🎯 Running CoUI complete health check..."
+        melos run fix:all
+        melos run generate  
+        melos run analyze:all
+        melos run test
+        echo "✅ CoUI health check completed!"
+
+    coui:component:new:
+      description: "Scaffold new CoUI component (Usage: melos run coui:component:new --component=Button)"
+      run: |
+        if [ -z "$COMPONENT" ]; then
+          echo "❌ Please specify component name: --component=ComponentName"
+          exit 1
+        fi
+        echo "🎨 Creating new CoUI component: $COMPONENT"
+        # TODO: 컴포넌트 스캐폴딩 스크립트 구현
+        echo "📁 Component structure created for $COMPONENT"
+
+    coui:release:prepare:
+      description: "Prepare CoUI for release"
+      run: |
+        echo "🚀 Preparing CoUI release..."
+        melos run coui:check
+        melos run docs:generate
+        melos run coverage
+        echo "📋 Release preparation completed!"
+        echo "📝 Next steps:"
+        echo "  1. Review CHANGELOG.md"
+        echo "  2. Update version numbers"
+        echo "  3. Run 'melos version'"
+        echo "  4. Publish to pub.dev"
+
+    # =============================================================================
+    # 🛠️ DEVELOPMENT WORKFLOW
+    # =============================================================================
+    
+    dev:setup:
+      description: "Setup development environment"
+      run: |
+        echo "🛠️ Setting up CoUI development environment..."
+        melos clean
+        melos bootstrap
+        melos run generate
+        melos run fix:all
+        echo "✅ Development environment ready!"
+
+    clean:deep:
+      description: "Deep clean all packages"
+      run: |
+        echo "🧹 Deep cleaning $(basename $(pwd))..."
+        rm -rf .dart_tool build coverage .packages pubspec.lock
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          flutter clean
+        fi
+      exec:
+        concurrency: 1
+
+    # =============================================================================
+    # 📊 METRICS & REPORTING  
+    # =============================================================================
+    
+    metrics:complexity:
+      description: "Generate complexity metrics report"
+      run: |
+        dcm analyze lib \
+          --reporter=json \
+          --output-directory=./reports/metrics \
+          --set-exit-on-violation-level=none
+      exec:
+        concurrency: 1
+      packageFilters:
+        dirExists: lib
+
+    metrics:summary:
+      description: "Generate project metrics summary"
+      run: |
+        echo "📊 CoUI Project Metrics Summary"
+        echo "================================"
+        echo "📦 Packages: $(find packages -name pubspec.yaml | wc -l)"
+        echo "📄 Dart files: $(find . -name "*.dart" -not -path "*/.*" -not -path "*/build/*" | wc -l)"
+        echo "🧪 Test files: $(find . -name "*_test.dart" -not -path "*/.*" -not -path "*/build/*" | wc -l)"
+        echo "⚙️ Generated files: $(find . -name "*.g.dart" -o -name "*.freezed.dart" | wc -l)"

@@ -1,0 +1,97 @@
+name: coui_flutter
+description: "Beautifully designed components from CoUI/UI is now available for Flutter"
+version: 0.0.44
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: ">=3.35.1"
+
+dependencies:
+  country_flags: ^4.0.1
+  cross_file: ^0.3.4+2
+  data_widget: ^0.0.2
+  email_validator: ^3.0.0
+  expressions: ^0.2.5+2
+  flutter:
+    sdk: flutter
+  gap: ^3.0.1
+  image: ^4.5.4
+  phonecodes: ^0.0.4
+  skeletonizer: ^2.1.0+1
+  syntax_highlight: ^0.5.0
+  web: ^1.1.1
+
+dev_dependencies:
+  archive: any
+  build_runner: ^2.4.13
+  dart_code_metrics_presets: ^2.25.1
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+  icon_font_generator: ^4.0.0
+  mocktail: ^1.0.4
+  very_good_analysis: ^9.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  uses-material-design: true
+  fonts:
+  - family: RadixIcons
+    fonts:
+    - asset: "lib/icons/RadixIcons.otf"
+  - family: BootstrapIcons
+    fonts:
+    - asset: "lib/icons/BootstrapIcons.otf"
+  - family: LucideIcons
+    fonts:
+    - asset: "lib/icons/LucideIcons.ttf"
+  - family: "GeistSans"
+    fonts:
+    - asset: "lib/fonts/Geist-Black.otf"
+      weight: 800
+    - asset: "lib/fonts/Geist-Bold.otf"
+      weight: 700
+    - asset: "lib/fonts/Geist-Light.otf"
+      weight: 300
+    - asset: "lib/fonts/Geist-Medium.otf"
+      weight: 500
+    - asset: "lib/fonts/Geist-SemiBold.otf"
+      weight: 600
+    - asset: "lib/fonts/Geist-Thin.otf"
+      weight: 100
+    - asset: "lib/fonts/Geist-UltraBlack.otf"
+      weight: 900
+    - asset: "lib/fonts/Geist-UltraLight.otf"
+      weight: 200
+    - asset: "lib/fonts/Geist-Regular.otf"
+      weight: 400
+  - family: "GeistMono"
+    fonts:
+    - asset: "lib/fonts/GeistMono-Black.otf"
+      weight: 800
+    - asset: "lib/fonts/GeistMono-Bold.otf"
+      weight: 700
+    - asset: "lib/fonts/GeistMono-Light.otf"
+      weight: 300
+    - asset: "lib/fonts/GeistMono-Medium.otf"
+      weight: 500
+    - asset: "lib/fonts/GeistMono-Regular.otf"
+      weight: 400
+    - asset: "lib/fonts/GeistMono-SemiBold.otf"
+      weight: 600
+    - asset: "lib/fonts/GeistMono-Thin.otf"
+      weight: 100
+    - asset: "lib/fonts/GeistMono-UltraBlack.otf"
+      weight: 900
+    - asset: "lib/fonts/GeistMono-UltraLight.otf"
+      weight: 200
+
+topics:
+- widgets
+- user-interface
+- design
+- components
+- coui-ui

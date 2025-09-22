@@ -1,0 +1,4252 @@
+import 'dart:async';
+import 'dart:ui' as ui;
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+
+import 'package:coui_flutter/coui_flutter.dart';
+
+/// Theme configuration for [ColorInput] widget styling and behavior.
+///
+/// Defines the visual properties and default behaviors for color input components
+/// including popover presentation, picker modes, and interaction features. Applied
+/// globally through [ComponentTheme] or per-instance for customization.
+///
+/// Supports comprehensive customization of color picker appearance, positioning,
+/// and functionality to match application design requirements.
+class ColorInputTheme {
+  /// Creates a [ColorInputTheme].
+  ///
+  /// All parameters are optional and fall back to framework defaults when null.
+  /// The theme can be applied globally or to specific color input instances.
+  const ColorInputTheme({
+    this.allowPickFromScreen,
+    this.mode,
+    this.pickerMode,
+    this.popoverAlignment,
+    this.popoverAnchorAlignment,
+    this.popoverPadding,
+    this.showAlpha,
+    this.showLabel,
+  });
+
+  /// Whether to display alpha (transparency) controls by default.
+  ///
+  /// When true, color pickers include alpha/opacity sliders and inputs.
+  /// When false, only RGB/HSV controls are shown. Individual components
+  /// can override this theme setting.
+  final bool? showAlpha;
+
+  /// Alignment point on the popover for anchor attachment.
+  ///
+  /// Determines where the color picker popover positions itself relative
+  /// to the anchor widget. When null, uses framework default alignment.
+  final AlignmentGeometry? popoverAlignment;
+
+  /// Alignment point on the anchor widget for popover positioning.
+  ///
+  /// Specifies which part of the trigger widget the popover should align to.
+  /// When null, uses framework default anchor alignment.
+  final AlignmentGeometry? popoverAnchorAlignment;
+
+  /// Internal padding applied to the color picker popover content.
+  ///
+  /// Controls spacing around the color picker interface within the popover
+  /// container. When null, uses framework default padding.
+  final EdgeInsetsGeometry? popoverPadding;
+
+  /// Default interaction mode for color input triggers.
+  ///
+  /// Determines whether color selection opens a popover or modal dialog.
+  /// When null, uses framework default prompt mode behavior.
+  final PromptMode? mode;
+
+  /// Default color picker interface type.
+  ///
+  /// Specifies whether to use HSV, HSL, or other color picker implementations.
+  /// When null, uses framework default picker mode.
+  final ColorPickerMode? pickerMode;
+
+  /// Whether to enable screen color sampling functionality.
+  ///
+  /// When true, color pickers include tools to sample colors directly from
+  /// the screen. Platform support varies. When null, uses framework default.
+  final bool? allowPickFromScreen;
+
+  /// Whether to display color value labels in picker interfaces.
+  ///
+  /// When true, shows numeric color values (hex, RGB, HSV, etc.) alongside
+  /// visual color pickers. When null, uses framework default label visibility.
+  final bool? showLabel;
+
+  /// Creates a copy of this theme with specified properties overridden.
+  ///
+  /// Each parameter function is called only if provided, allowing selective
+  /// overrides while preserving existing values for unspecified properties.
+  ColorInputTheme copyWith({
+    ValueGetter<bool?>? allowPickFromScreen,
+    ValueGetter<PromptMode?>? mode,
+    ValueGetter<ColorPickerMode?>? pickerMode,
+    ValueGetter<AlignmentGeometry?>? popoverAlignment,
+    ValueGetter<AlignmentGeometry?>? popoverAnchorAlignment,
+    ValueGetter<EdgeInsetsGeometry?>? popoverPadding,
+    ValueGetter<bool?>? showAlpha,
+    ValueGetter<bool?>? showLabel,
+  }) {
+    return ColorInputTheme(
+      allowPickFromScreen: allowPickFromScreen == null
+          ? this.allowPickFromScreen
+          : allowPickFromScreen(),
+      mode: mode == null ? this.mode : mode(),
+      pickerMode: pickerMode == null ? this.pickerMode : pickerMode(),
+      popoverAlignment:
+          popoverAlignment == null ? this.popoverAlignment : popoverAlignment(),
+      popoverAnchorAlignment: popoverAnchorAlignment == null
+          ? this.popoverAnchorAlignment
+          : popoverAnchorAlignment(),
+      popoverPadding:
+          popoverPadding == null ? this.popoverPadding : popoverPadding(),
+      showAlpha: showAlpha == null ? this.showAlpha : showAlpha(),
+      showLabel: showLabel == null ? this.showLabel : showLabel(),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is ColorInputTheme &&
+        other.showAlpha == showAlpha &&
+        other.popoverAlignment == popoverAlignment &&
+        other.popoverAnchorAlignment == popoverAnchorAlignment &&
+        other.popoverPadding == popoverPadding &&
+        other.mode == mode &&
+        other.pickerMode == pickerMode &&
+        other.allowPickFromScreen == allowPickFromScreen &&
+        other.showLabel == showLabel;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+        showAlpha,
+        popoverAlignment,
+        popoverAnchorAlignment,
+        popoverPadding,
+        mode,
+        pickerMode,
+        allowPickFromScreen,
+        showLabel,
+      );
+}
+
+/// Reactive controller for managing color input state with color operations.
+///
+/// Extends [ValueNotifier] to provide state management for color input widgets
+/// using [ColorDerivative] values that support multiple color space representations.
+/// Enables programmatic color changes while maintaining color space fidelity.
+///
+/// The controller manages [ColorDerivative] objects which preserve original
+/// color space information (HSV, HSL, RGB) for accurate color manipulations
+/// and prevents precision loss during color space conversions.
+///
+/// Example:
+/// ```dart
+/// final controller = ColorInputController(
+///   ColorDerivative.fromColor(Colors.blue),
+/// );
+///
+/// // React to changes
+/// controller.addListener(() {
+///   print('Color changed to: ${controller.value.color}');
+/// });
+///
+/// // Programmatic control
+/// controller.value = ColorDerivative.fromHSV(HSVColor.fromColor(Colors.red));
+/// ```
+class ColorInputController extends ValueNotifier<ColorDerivative>
+    with ComponentController<ColorDerivative> {
+  /// Creates a [ColorInputController] with the specified initial color.
+  ///
+  /// The [value] parameter provides the initial color as a [ColorDerivative].
+  /// The controller notifies listeners when the color changes through any
+  /// method calls or direct value assignment.
+  ///
+  /// Example:
+  /// ```dart
+  /// final controller = ColorInputController(
+  ///   ColorDerivative.fromColor(Colors.green),
+  /// );
+  /// ```
+  ColorInputController(super.value);
+
+  /// Sets the color to a new [Color] value.
+  ///
+  /// Converts the color to a [ColorDerivative] preserving RGB color space
+  /// information. Notifies listeners of the change.
+  void setColor(Color color) {
+    value = ColorDerivative.fromColor(color);
+  }
+
+  /// Sets the color to a new HSV color value.
+  ///
+  /// Uses [ColorDerivative.fromHSV] to preserve HSV color space information
+  /// for accurate hue, saturation, and value manipulations.
+  void setHSVColor(HSVColor hsvColor) {
+    value = ColorDerivative.fromHSV(hsvColor);
+  }
+
+  /// Sets the color to a new HSL color value.
+  ///
+  /// Uses [ColorDerivative.fromHSL] to preserve HSL color space information
+  /// for accurate hue, saturation, and lightness manipulations.
+  void setHSLColor(HSLColor hslColor) {
+    value = ColorDerivative.fromHSL(hslColor);
+  }
+
+  /// Gets the current color as a standard [Color] object.
+  Color get color => value.toColor();
+
+  /// Gets the current color as an HSV color representation.
+  HSVColor get hsvColor => value.toHSVColor();
+
+  /// Gets the current color as an HSL color representation.
+  HSLColor get hslColor => value.toHSLColor();
+}
+
+/// Reactive color input with automatic state management and controller support.
+///
+/// A high-level color picker widget that provides automatic state management through
+/// the controlled component pattern. Supports both controller-based and callback-based
+/// state management with comprehensive customization options for color picker presentation,
+/// interaction modes, and visual styling.
+///
+/// ## Features
+///
+/// - **Multiple picker modes**: HSV, HSL, and RGB color picker interfaces
+/// - **Alpha channel support**: Optional transparency/opacity controls
+/// - **Screen color sampling**: Pick colors directly from screen (platform dependent)
+/// - **Color history**: Automatic recent color tracking and storage
+/// - **Flexible presentation**: Popover or modal dialog interaction modes
+/// - **Accessibility support**: Full keyboard navigation and screen reader compatibility
+///
+/// ## Usage Patterns
+///
+/// **Controller-based (recommended for complex state):**
+/// ```dart
+/// final controller = ColorInputController(
+///   ColorDerivative.fromColor(Colors.blue),
+/// );
+///
+/// ControlledColorInput(
+///   controller: controller,
+///   showAlpha: true,
+///   allowPickFromScreen: true,
+///   pickerMode: ColorPickerMode.hsv,
+/// )
+/// ```
+///
+/// **Callback-based (simple state management):**
+/// ```dart
+/// ColorDerivative currentColor = ColorDerivative.fromColor(Colors.red);
+///
+/// ControlledColorInput(
+///   initialValue: currentColor,
+///   onChanged: (color) => setState(() => currentColor = color),
+///   mode: PromptMode.popover,
+/// )
+/// ```
+class ControlledColorInput extends StatelessWidget
+    with ControlledComponent<ColorDerivative> {
+  const ControlledColorInput({
+    this.allowPickFromScreen,
+    this.controller,
+    this.dialogTitle,
+    this.enabled = true,
+    this.initialValue =
+        const ColorDerivative.fromHSV(HSVColor.fromAHSV(0, 0, 0, 0)),
+    super.key,
+    this.mode,
+    this.onChanged,
+    this.pickerMode,
+    this.placeholder,
+    this.popoverAlignment,
+    this.popoverAnchorAlignment,
+    this.popoverPadding,
+    this.showAlpha,
+    this.showLabel,
+    this.storage,
+  });
+
+  @override
+  final ColorDerivative initialValue;
+
+  @override
+  final ValueChanged<ColorDerivative>? onChanged;
+
+  @override
+  final bool enabled;
+
+  @override
+  final ColorInputController? controller;
+  final bool? showAlpha;
+  final AlignmentGeometry? popoverAlignment;
+  final AlignmentGeometry? popoverAnchorAlignment;
+  final EdgeInsetsGeometry? popoverPadding;
+  final Widget? placeholder;
+  final PromptMode? mode;
+  final ColorPickerMode? pickerMode;
+  final Widget? dialogTitle;
+  final bool? allowPickFromScreen;
+  final bool? showLabel;
+
+  final ColorHistoryStorage? storage;
+
+  @override
+  Widget build(BuildContext context) {
+    return ControlledComponentAdapter<ColorDerivative>(
+      builder: (context, data) {
+        return ColorInput(
+          allowPickFromScreen: allowPickFromScreen,
+          color: data.value,
+          dialogTitle: dialogTitle,
+          mode: mode,
+          onChanged: data.onChanged,
+          pickerMode: pickerMode,
+          placeholder: placeholder,
+          popoverAlignment: popoverAlignment,
+          popoverAnchorAlignment: popoverAnchorAlignment,
+          popoverPadding: popoverPadding,
+          showAlpha: showAlpha,
+          showLabel: showLabel,
+          storage: storage,
+        );
+      },
+      controller: controller,
+      enabled: enabled,
+      initialValue: initialValue,
+      onChanged: onChanged,
+    );
+  }
+}
+
+String colorToHex(Color color, [bool showAlpha = true]) {
+  return showAlpha
+      ? '#${color.toARGB32().toRadixString(16)}'
+      : '#${color.toARGB32().toRadixString(16).substring(2)}';
+}
+
+class ColorHistoryGrid extends StatelessWidget {
+  const ColorHistoryGrid({
+    this.crossAxisCount = 10,
+    super.key,
+    this.onColorPicked,
+    this.selectedColor,
+    this.spacing,
+    required this.storage,
+  });
+
+  final ColorHistoryStorage storage;
+  final ValueChanged<Color>? onColorPicked;
+  final double? spacing;
+  final int crossAxisCount;
+
+  final Color? selectedColor;
+
+  Widget _buildGridTile(Color? color, BuildContext context, ThemeData theme) {
+    return color == null
+        ? const AspectRatio(
+            aspectRatio: 1,
+            child: Button(
+              style: ButtonStyle.outline(density: ButtonDensity.compact),
+              child: Icon(LucideIcons.x),
+            ),
+          )
+        : Container(
+            decoration: selectedColor != null && color == selectedColor
+                ? BoxDecoration(
+                    border: Border.all(
+                      color: theme.colorScheme.primary,
+                      width: theme.scaling * 2,
+                    ),
+                    borderRadius: BorderRadius.circular(theme.radiusMd),
+                  )
+                : null,
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: Button(
+                onPressed: () {
+                  onColorPicked?.call(color);
+                },
+                style:
+                    const ButtonStyle.outline(density: ButtonDensity.compact),
+                child: Container(color: color),
+              ),
+            ),
+          );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final spacing = this.spacing ?? (theme.scaling * 4);
+
+    return ListenableBuilder(
+      builder: (context, child) {
+        final rows = <Widget>[];
+        for (int i = 0; i < storage.capacity; i += crossAxisCount) {
+          final tiles = <Widget>[];
+          for (int j = 0; j < crossAxisCount; j += 1) {
+            final index = i + j;
+            final color = index < storage.recentColors.length
+                ? storage.recentColors[index]
+                : null;
+            if (index >= storage.capacity) {
+              tiles.add(
+                const Expanded(child: SizedBox()),
+              );
+            } else {
+              tiles.add(
+                Expanded(child: _buildGridTile(context, color, theme)),
+              );
+            }
+            if (j < crossAxisCount - 1) {
+              tiles.add(Gap(spacing));
+            }
+          }
+          rows.add(IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: tiles,
+            ),
+          ));
+          if (i < storage.capacity - crossAxisCount) {
+            rows.add(Gap(spacing));
+          }
+        }
+
+        return IntrinsicWidth(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: rows,
+          ),
+        );
+      },
+      listenable: storage,
+    ).constrained(minHeight: 100);
+  }
+}
+
+enum ColorPickerMode {
+  hsl,
+  hsv,
+  rgb,
+}
+
+abstract class ColorHistoryStorage implements Listenable {
+  void addHistory(Color color);
+
+  void setHistory(List<Color> colors);
+
+  void clear();
+  int get capacity;
+  List<Color> get recentColors;
+
+  static ColorHistoryStorage of(BuildContext context) {
+    return Data.of(context);
+  }
+}
+
+class RecentColorsScope extends StatefulWidget {
+  const RecentColorsScope({
+    required this.child,
+    this.initialRecentColors = const [],
+    super.key,
+    this.maxRecentColors = 50,
+    this.onRecentColorsChanged,
+  });
+
+  final List<Color> initialRecentColors;
+  final int maxRecentColors;
+  final ValueChanged<List<Color>>? onRecentColorsChanged;
+
+  final Widget child;
+
+  @override
+  State<RecentColorsScope> createState() => RecentColorsScopeState();
+}
+
+class _ColorListNotifier extends ChangeNotifier {
+  _ColorListNotifier(this._recentColors);
+
+  List<Color> _recentColors;
+
+  void _notify() {
+    notifyListeners();
+  }
+}
+
+class RecentColorsScopeState extends State<RecentColorsScope>
+    implements ColorHistoryStorage {
+  _ColorListNotifier _recentColors;
+
+  @override
+  int get capacity => widget.maxRecentColors;
+
+  @override
+  void initState() {
+    super.initState();
+    _recentColors = _ColorListNotifier(List.of(widget.initialRecentColors));
+  }
+
+  @override
+  List<Color> get recentColors =>
+      List.unmodifiable(_recentColors._recentColors);
+
+  @override
+  void addHistory(Color color) {
+    final recentColors = _recentColors._recentColors;
+    if (recentColors.contains(color)) {
+      recentColors.remove(color);
+    }
+    recentColors.insert(0, color);
+    if (recentColors.length > widget.maxRecentColors) {
+      recentColors.removeLast();
+    }
+    widget.onRecentColorsChanged?.call(recentColors);
+    _recentColors._notify();
+  }
+
+  @override
+  void dispose() {
+    _recentColors.dispose();
+    super.dispose();
+  }
+
+  @override
+  void clear() {
+    _recentColors._recentColors.clear();
+    widget.onRecentColorsChanged?.call(recentColors);
+    _recentColors._notify();
+  }
+
+  @override
+  void setHistory(List<Color> colors) {
+    _recentColors._recentColors = colors;
+    widget.onRecentColorsChanged?.call(recentColors);
+    _recentColors._notify();
+  }
+
+  @override
+  void addListener(VoidCallback listener) {
+    _recentColors.addListener(listener);
+  }
+
+  @override
+  void removeListener(VoidCallback listener) {
+    _recentColors.removeListener(listener);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Data<ColorHistoryStorage>.inherit(
+      data: this,
+      child: widget.child,
+    );
+  }
+}
+
+typedef PreviewLabelBuilder = Widget Function(
+    Color color, BuildContext context);
+
+class ColorPickingLayer extends StatefulWidget {
+  const ColorPickingLayer({
+    required this.child,
+    super.key,
+    this.previewAlignment,
+    this.previewLabelBuilder,
+    this.previewScale = 8,
+    this.previewSize,
+    this.showPreview = true,
+  });
+
+  final Widget child;
+  final AlignmentGeometry? previewAlignment;
+  final bool showPreview;
+  final Size? previewSize;
+  final double previewScale;
+
+  final PreviewLabelBuilder? previewLabelBuilder;
+
+  @override
+  State<ColorPickingLayer> createState() => _ColorPickingLayerState();
+}
+
+class _ScreenshotResult {
+  const _ScreenshotResult(this.colors, this.image, this.size);
+
+  final List<Color> colors;
+  final Size size;
+
+  final ImageProvider? image;
+
+  Color operator [](Offset position) {
+    final index =
+        (position.dy.floor() * size.width + position.dx.floor()).toInt();
+
+    return colors[index];
+  }
+}
+
+class _ScreenshotImage extends ImageProvider<_ScreenshotImage> {
+  const _ScreenshotImage(this.bytes, this.format, this.height, this.width);
+
+  final Uint8List bytes;
+  final int width;
+  final int height;
+  final ui.PixelFormat format;
+
+  @override
+  Future<_ScreenshotImage> obtainKey(ImageConfiguration configuration) {
+    return SynchronousFuture<_ScreenshotImage>(this);
+  }
+
+  @override
+  ImageStreamCompleter loadImage(
+      _ScreenshotImage key, ImageDecoderCallback decode) {
+    final completer = Completer<ui.Image>();
+    ui.decodeImageFromPixels(bytes, width, height, format, completer.complete);
+
+    return OneFrameImageStreamCompleter(
+      completer.future.then((ui.Image image) => ImageInfo(image: image)),
+    );
+  }
+}
+
+class _ColorPickingCompleter {
+  const _ColorPickingCompleter(this.completer, this.recentColorsScope);
+  final Completer<Color?> completer;
+
+  final Set<ColorHistoryStorage> recentColorsScope;
+}
+
+class _ColorPickingLayerState extends State<ColorPickingLayer>
+    implements ColorPickingLayerScope {
+  final _repaintKey = GlobalKey();
+  _ScreenshotResult? _currentPicking;
+  ColorPickingResult? _preview;
+  Offset? _currentPosition;
+  _ColorPickingCompleter? _session;
+
+  Widget _buildPreviewLabel(Color color, BuildContext context) {
+    return widget.previewLabelBuilder != null
+        ? widget.previewLabelBuilder!(context, color)
+        : Text(colorToHex(color, false)).small().muted();
+  }
+
+  Future<_ScreenshotResult?> _screenshotWidget() async {
+    final currentContext = _repaintKey.currentContext;
+    if (currentContext == null) return null;
+    final boundary =
+        currentContext.findRenderObject()! as RenderRepaintBoundary;
+    final image = await boundary.toImage();
+    final byteData = await image.toByteData();
+    if (byteData == null) return null;
+    final colors = <Color>[];
+    for (int i = 0; i < byteData.lengthInBytes; i += 4) {
+      final r = byteData.getUint8(i);
+      final g = byteData.getUint8(i + 1);
+      final b = byteData.getUint8(i + 2);
+      final a = byteData.getUint8(i + 3);
+      colors.add(Color.fromARGB(a, r, g, b));
+    }
+    final img = _ScreenshotImage(
+      byteData.buffer.asUint8List(),
+      image.width,
+      image.height,
+      ui.PixelFormat.rgba8888,
+    );
+
+    return _ScreenshotResult(
+      colors,
+      Size(image.width.toDouble(), image.height.toDouble()),
+      img,
+    );
+  }
+
+  ColorPickingResult? _getPreview(Offset globalPosition, Size size) {
+    final image = _currentPicking;
+    if (image == null) return null;
+    final colors = <Color>[];
+    for (int y = -size.height ~/ 2; y < size.height ~/ 2; y += 1) {
+      for (int x = -size.width ~/ 2; x < size.width ~/ 2; x += 1) {
+        final localPosition =
+            globalPosition.translate(x.toDouble(), y.toDouble());
+        if (localPosition.dx < 0 ||
+            localPosition.dy < 0 ||
+            localPosition.dx >= image.size.width ||
+            localPosition.dy >= image.size.height) {
+          colors.add(Colors.transparent);
+        } else {
+          colors.add(image[localPosition]);
+        }
+      }
+    }
+    final globalIndex = globalPosition.dy.floor() * image.size.width.floor() +
+        globalPosition.dx.floor();
+    final pickedColor = image.colors[globalIndex];
+
+    return ColorPickingResult(colors, size, pickedColor);
+  }
+
+  @override
+  Future<Color?> promptPickColor([ColorHistoryStorage? historyStorage]) async {
+    if (!mounted) {
+      return Future.value();
+    }
+    if (_session != null) {
+      return historyStorage != null &&
+              _session!.recentColorsScope.add(historyStorage)
+          ? _session!.completer.future.then((value) {
+              if (value != null) {
+                historyStorage.addHistory(value);
+              }
+
+              return value;
+            })
+          : _session!.completer.future;
+    }
+    final completer = Completer<Color?>();
+    final screenshot = await _screenshotWidget();
+    setState(() {
+      _session = _ColorPickingCompleter(
+          completer, historyStorage == null ? {} : {historyStorage});
+      _currentPicking = screenshot;
+    });
+    final result = await completer.future;
+    if (historyStorage != null && result != null) {
+      historyStorage.addHistory(result);
+    }
+
+    return result;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final previewSize =
+        widget.previewSize ?? const Size(100, 100) * theme.scaling;
+
+    return Data<ColorPickingLayerScope>.inherit(
+      data: this,
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTapDown: _preview != null && _session != null
+            ? (details) {
+                _session!.completer.complete(_preview!.pickedColor);
+                if (mounted) {
+                  setState(() {
+                    _session = null;
+                    _preview = null;
+                    _currentPicking = null;
+                    _currentPosition = null;
+                  });
+                }
+              }
+            : null,
+        child: MouseRegion(
+          hitTestBehavior: HitTestBehavior.translucent,
+          onHover: _session == null
+              ? null
+              : (details) {
+                  setState(() {
+                    _preview = _getPreview(
+                      details.localPosition,
+                      previewSize / widget.previewScale,
+                    );
+                    _currentPosition = details.localPosition;
+                  });
+                },
+          child: IgnorePointer(
+            ignoring: _session != null,
+            child: Stack(
+              fit: StackFit.passthrough,
+              children: [
+                RepaintBoundary(key: _repaintKey, child: widget.child),
+                if (_currentPicking != null)
+                  Positioned.fill(
+                    child: Image(
+                      fit: BoxFit.fill,
+                      image: _currentPicking!.image!,
+                    ),
+                  ),
+                if (widget.showPreview &&
+                    _preview != null &&
+                    widget.previewAlignment != null)
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    child: Padding(
+                      padding: EdgeInsets.all(theme.scaling * 32),
+                      child: Align(
+                        alignment: widget.previewAlignment!,
+                        child: Stack(
+                          alignment: Alignment.bottomCenter,
+                          clipBehavior: Clip.none,
+                          fit: StackFit.passthrough,
+                          children: [
+                            SizedBox(
+                              height: previewSize.height,
+                              width: previewSize.width,
+                              child: CustomPaint(
+                                painter: _ColorPreviewPainter(
+                                    _preview!.colors,
+                                    _preview!.size,
+                                    theme.colorScheme.border,
+                                    theme.scaling * 1,
+                                    theme.colorScheme.primary,
+                                    theme.scaling * 2),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: -18 * theme.scaling,
+                              child: _buildPreviewLabel(
+                                context,
+                                _preview!.pickedColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                if (widget.showPreview &&
+                    _preview != null &&
+                    widget.previewAlignment == null)
+                  Positioned(
+                    left: _currentPosition!.dx,
+                    top: _currentPosition!.dy,
+                    child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      clipBehavior: Clip.none,
+                      fit: StackFit.passthrough,
+                      children: [
+                        SizedBox(
+                          height: previewSize.height,
+                          width: previewSize.width,
+                          child: CustomPaint(
+                            painter: _ColorPreviewPainter(
+                                _preview!.colors,
+                                _preview!.size,
+                                theme.colorScheme.border,
+                                theme.scaling * 1,
+                                theme.colorScheme.primary,
+                                theme.scaling * 2),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: -18 * theme.scaling,
+                          child: _buildPreviewLabel(
+                            context,
+                            _preview!.pickedColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+Future<Color?> pickColorFromScreen(
+  BuildContext context, [
+  ColorHistoryStorage? storage,
+]) {
+  final scope = ColorPickingLayerScope.find(context);
+
+  return scope.promptPickColor(storage);
+}
+
+class _ColorPreviewPainter extends CustomPainter {
+  const _ColorPreviewPainter(
+    this.borderColor,
+    this.borderWidth,
+    this.colors,
+    this.selectedBorderColor,
+    this.selectedBorderWidth,
+    this.size,
+  );
+
+  final List<Color> colors;
+  final Size size;
+  final Color borderColor;
+  final double borderWidth;
+  final Color selectedBorderColor;
+
+  final double selectedBorderWidth;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // clip it to circle
+    final clipPath = Path()
+      ..addOval(Rect.fromLTWH(
+        0,
+        0,
+        size.width.floorToDouble(),
+        size.height.floorToDouble(),
+      ));
+    canvas.clipPath(clipPath);
+    final paint = Paint();
+    final cellSize = Size(
+      size.width.floor() / this.size.width.floor(),
+      size.height.floor() / this.size.height.floor(),
+    );
+    for (int y = 0; y < this.size.height.floor(); y += 1) {
+      for (int x = 0; x < this.size.width.floor(); x += 1) {
+        final color = colors[y * this.size.width.floor() + x];
+        paint.color = color;
+        paint.style = PaintingStyle.fill;
+        canvas.drawRect(
+          Rect.fromLTWH(
+            (x * cellSize.width).floorToDouble(),
+            (y * cellSize.height).floorToDouble(),
+            cellSize.width.floorToDouble(),
+            cellSize.height.floorToDouble(),
+          ),
+          paint,
+        );
+        paint.color = borderColor;
+        paint.style = PaintingStyle.stroke;
+        paint.strokeWidth = borderWidth;
+        // draw a border
+        canvas.drawRect(
+          Rect.fromLTWH(
+            (x * cellSize.width).floorToDouble(),
+            (y * cellSize.height).floorToDouble(),
+            cellSize.width.floorToDouble(),
+            cellSize.height.floorToDouble(),
+          ).inflate(paint.strokeWidth / 2),
+          paint,
+        );
+      }
+    }
+    // draw a rect for the selected color at center
+    paint.color = selectedBorderColor;
+    paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = selectedBorderWidth;
+    final centerX = size.width ~/ 2;
+    final centerY = size.height ~/ 2;
+    final cellX = centerX ~/ cellSize.width;
+    final cellY = centerY ~/ cellSize.height;
+    canvas.drawRect(
+      Rect.fromLTWH(
+        (cellX * cellSize.width).floorToDouble(),
+        (cellY * cellSize.height).floorToDouble(),
+        cellSize.width.floorToDouble(),
+        cellSize.height.floorToDouble(),
+      ),
+      paint,
+    );
+    // add circle border, and make sure it is not clipped
+    paint.color = borderColor;
+    paint.style = PaintingStyle.stroke;
+    paint.strokeWidth = borderWidth;
+    canvas.drawOval(
+      Rect.fromLTWH(
+        0,
+        0,
+        size.width.floorToDouble(),
+        size.height.floorToDouble(),
+      ),
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _ColorPreviewPainter oldDelegate) {
+    return !listEquals(oldDelegate.colors, colors) ||
+        oldDelegate.size != size ||
+        oldDelegate.borderColor != borderColor ||
+        oldDelegate.borderWidth != borderWidth ||
+        oldDelegate.selectedBorderColor != selectedBorderColor ||
+        oldDelegate.selectedBorderWidth != selectedBorderWidth;
+  }
+}
+
+abstract class ColorPickingLayerScope {
+  Future<Color?> promptPickColor([ColorHistoryStorage? historyStorage]);
+
+  static ColorPickingLayerScope findRoot(BuildContext context) {
+    return Data.findRoot(context);
+  }
+
+  static ColorPickingLayerScope find(BuildContext context) {
+    return Data.find(context);
+  }
+}
+
+class ColorPickingResult {
+  const ColorPickingResult(this.colors, this.pickedColor, this.size);
+
+  final Size size;
+  final List<Color> colors;
+
+  final Color pickedColor;
+
+  Color operator [](Offset position) {
+    final index =
+        (position.dy.floor() * size.width + position.dx.floor()).toInt();
+
+    return colors[index];
+  }
+}
+
+class ColorInputSet extends StatefulWidget {
+  const ColorInputSet({
+    required this.color,
+    super.key,
+    this.mode = ColorPickerMode.rgb,
+    this.onChanged,
+    this.onColorChangeEnd,
+    this.onModeChanged,
+    this.onPickFromScreen,
+    this.showAlpha = true,
+    this.storage,
+  });
+
+  final ColorDerivative color;
+  final ValueChanged<ColorDerivative>? onChanged;
+  final ValueChanged<ColorDerivative>? onColorChangeEnd;
+  final bool? showAlpha;
+  final ColorPickerMode mode;
+  final ValueChanged<ColorPickerMode>? onModeChanged;
+  final VoidCallback? onPickFromScreen;
+
+  final ColorHistoryStorage? storage;
+
+  @override
+  State<ColorInputSet> createState() => _ColorInputSetState();
+}
+
+class _ColorInputSetState extends State<ColorInputSet> {
+  int _tabIndex = 0;
+
+  Widget _buildContent(BuildContext context, ThemeData theme, double width) {
+    switch (_tabIndex) {
+      case 0:
+        return _buildColorTab(context, ColorPickerMode.rgb, width);
+
+      case 1:
+        return _buildColorTab(context, ColorPickerMode.hsl, width);
+
+      case 2:
+        return _buildColorTab(context, ColorPickerMode.hsv, width);
+
+      case 3:
+      default:
+        return _buildRecentTab(context);
+    }
+  }
+
+  Widget _buildRecentTab(BuildContext context) {
+    return widget.storage == null
+        ? const SizedBox()
+        : ColorHistoryGrid(
+            onColorPicked: (value) {
+              final derivative = ColorDerivative.fromColor(value);
+              widget.onChanged?.call(derivative);
+              widget.onColorChangeEnd?.call(derivative);
+            },
+            selectedColor: widget.color.toColor(),
+            storage: widget.storage!,
+          );
+  }
+
+  Widget _buildColorTab(
+    BuildContext context,
+    ColorPickerMode mode,
+    double width,
+  ) {
+    return width < 500
+        ? MiniColorPickerSet(
+            key: ValueKey(mode),
+            color: widget.color,
+            mode: mode,
+            onColorChangeEnd: (value) {
+              widget.onColorChangeEnd?.call(value);
+              if (widget.storage != null) {
+                widget.storage!.addHistory(value.toColor());
+              }
+            },
+            onColorChanged: widget.onChanged,
+            onPickFromScreen: widget.onPickFromScreen,
+            showAlpha: widget.showAlpha,
+          )
+        : ColorPickerSet(
+            key: ValueKey(mode),
+            color: widget.color,
+            mode: mode,
+            onColorChangeEnd: (value) {
+              widget.onColorChangeEnd?.call(value);
+              if (widget.storage != null) {
+                widget.storage!.addHistory(value.toColor());
+              }
+            },
+            onColorChanged: widget.onChanged,
+            onPickFromScreen: widget.onPickFromScreen,
+            showAlpha: widget.showAlpha,
+          );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final localizations = CoUILocalizations.of(context);
+    final theme = Theme.of(context);
+
+    return LayoutBuilder(builder: (context, constraints) {
+      return IntrinsicWidth(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Tabs(
+                index: _tabIndex,
+                onChanged: (value) {
+                  setState(() {
+                    _tabIndex = value;
+                  });
+                },
+                children: [
+                  // Text(localizations.colorPickerTabRGB),
+                  // Text(localizations.colorPickerTabHSL),
+                  // Text(localizations.colorPickerTabHSV),
+                  // if (widget.storage != null)
+                  //   Text(localizations.colorPickerTabRecent),
+                  TabItem(child: Text(localizations.colorPickerTabRGB)),
+                  TabItem(child: Text(localizations.colorPickerTabHSL)),
+                  TabItem(child: Text(localizations.colorPickerTabHSV)),
+                  if (widget.storage != null)
+                    TabItem(
+                      child: Text(localizations.colorPickerTabRecent),
+                    ),
+                ],
+              ),
+            ),
+            Gap(theme.scaling * 16),
+            _buildContent(context, theme, constraints.maxWidth),
+          ],
+        ),
+      );
+    });
+  }
+}
+
+class ColorPickerSet extends StatefulWidget {
+  const ColorPickerSet({
+    required this.color,
+    super.key,
+    this.mode = ColorPickerMode.rgb,
+    this.onColorChangeEnd,
+    this.onColorChanged,
+    this.onPickFromScreen,
+    this.showAlpha,
+  });
+
+  final ColorDerivative color;
+  final ValueChanged<ColorDerivative>? onColorChanged;
+  final ValueChanged<ColorDerivative>? onColorChangeEnd;
+  final bool? showAlpha;
+  final VoidCallback? onPickFromScreen;
+
+  final ColorPickerMode mode;
+
+  @override
+  State<ColorPickerSet> createState() => _ColorPickerSetState();
+}
+
+class _ColorPickerSetState extends State<ColorPickerSet> {
+  ColorDerivative get color => widget.color;
+  final _hexController = TextEditingController();
+
+  // Red or Hue
+  final _aController = TextEditingController();
+
+  // Green or Saturation
+  final _bController = TextEditingController();
+
+  // Blue or Value or Lightness
+  final _cController = TextEditingController();
+  final _alphaController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    final color = widget.color;
+    final rgbColor = color.toColor();
+    _hexController.text = widget.showAlpha ?? true
+        ? '#${rgbColor.value.toRadixString(16)}'
+        : '#${rgbColor.value.toRadixString(16).substring(2)}';
+    switch (widget.mode) {
+      case ColorPickerMode.rgb:
+        _aController.text = rgbColor.red.toString();
+        _bController.text = rgbColor.green.toString();
+        _cController.text = rgbColor.blue.toString();
+        _alphaController.text = (color.opacity * 255).toInt().toString();
+
+      case ColorPickerMode.hsl:
+        final hsl = color.toHSLColor();
+        _aController.text = hsl.hue.toInt().toString();
+        _bController.text = (hsl.saturation * 100).toInt().toString();
+        _cController.text = (hsl.lightness * 100).toInt().toString();
+        _alphaController.text = (color.opacity * 100).toInt().toString();
+
+      case ColorPickerMode.hsv:
+        final hsv = color.toHSVColor();
+        _aController.text = hsv.hue.toInt().toString();
+        _bController.text = (hsv.saturation * 100).toInt().toString();
+        _cController.text = (hsv.value * 100).toInt().toString();
+        _alphaController.text = (color.opacity * 100).toInt().toString();
+    }
+  }
+
+  void _onColorChange() {
+    final a = _aController.text;
+    final b = _bController.text;
+    final c = _cController.text;
+    final alpha = _alphaController.text;
+    if (a.isEmpty || b.isEmpty || c.isEmpty) {
+      return;
+    }
+    if ((widget.showAlpha ?? true) && alpha.isEmpty) {
+      return;
+    }
+    final aValue = double.tryParse(a) ?? 0;
+    final bValue = double.tryParse(b) ?? 0;
+    final cValue = double.tryParse(c) ?? 0;
+    final alphaValue = double.tryParse(alpha) ?? 0;
+    switch (widget.mode) {
+      case ColorPickerMode.rgb:
+        widget.onColorChanged?.call(widget.color.changeToColor(Color.fromARGB(
+          alphaValue.round().clamp(0, 255),
+          aValue.round().clamp(0, 255),
+          bValue.round().clamp(0, 255),
+          cValue.round().clamp(0, 255),
+        )));
+
+      case ColorPickerMode.hsl:
+        widget.onColorChanged?.call(widget.color.changeToHSL(
+          HSLColor.fromAHSL(
+            (alphaValue / 100).clamp(0, 1),
+            aValue.roundToDouble().clamp(0, 360),
+            (bValue / 100).clamp(0, 1),
+            (cValue / 100).clamp(0, 1),
+          ),
+        ));
+
+      case ColorPickerMode.hsv:
+        widget.onColorChanged?.call(widget.color.changeToHSV(
+          HSVColor.fromAHSV(
+            (alphaValue / 100).clamp(0, 1),
+            aValue.roundToDouble().clamp(0, 360),
+            (bValue / 100).clamp(0, 1),
+            (cValue / 100).clamp(0, 1),
+          ),
+        ));
+    }
+  }
+
+  Widget _wrapTextField({required Widget child}) {
+    final theme = Theme.of(context);
+
+    return SizedBox(width: theme.scaling * 54, child: child);
+  }
+
+  @override
+  void didUpdateWidget(covariant ColorPickerSet oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.color != widget.color || oldWidget.mode != widget.mode) {
+      final color = widget.color;
+      final rgbColor = color.toColor();
+      _hexController.text = widget.showAlpha ?? true
+          ? '#${rgbColor.value.toRadixString(16)}'
+          : '#${rgbColor.value.toRadixString(16).substring(2)}';
+      switch (widget.mode) {
+        case ColorPickerMode.rgb:
+          _aController.text = rgbColor.red.toString();
+          _bController.text = rgbColor.green.toString();
+          _cController.text = rgbColor.blue.toString();
+          _alphaController.text = (color.opacity * 255).toInt().toString();
+
+        case ColorPickerMode.hsl:
+          final hsl = color.toHSLColor();
+          _aController.text = hsl.hue.toInt().toString();
+          _bController.text = (hsl.saturation * 100).toInt().toString();
+          _cController.text = (hsl.lightness * 100).toInt().toString();
+          _alphaController.text = (color.opacity * 100).toInt().toString();
+
+        case ColorPickerMode.hsv:
+          final hsv = color.toHSVColor();
+          _aController.text = hsv.hue.toInt().toString();
+          _bController.text = (hsv.saturation * 100).toInt().toString();
+          _cController.text = (hsv.value * 100).toInt().toString();
+          _alphaController.text = (color.opacity * 100).toInt().toString();
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final localizations = CoUILocalizations.of(context);
+    String aLabel;
+    String bLabel;
+    String cLabel;
+    switch (widget.mode) {
+      case ColorPickerMode.rgb:
+        aLabel = localizations.colorRed;
+        bLabel = localizations.colorGreen;
+        cLabel = localizations.colorBlue;
+
+      case ColorPickerMode.hsl:
+        aLabel = localizations.colorHue;
+        bLabel = localizations.colorSaturation;
+        cLabel = localizations.colorLightness;
+
+      case ColorPickerMode.hsv:
+        aLabel = localizations.colorHue;
+        bLabel = localizations.colorSaturation;
+        cLabel = localizations.colorValue;
+    }
+
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IntrinsicWidth(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Container(
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: theme.colorScheme.border),
+                        borderRadius: BorderRadius.circular(theme.radiusLg),
+                      ),
+                      child: widget.mode == ColorPickerMode.hsl
+                          ? HSLColorPickerArea(
+                              color: color.toHSLColor(),
+                              onColorChanged: (value) {
+                                widget.onColorChanged?.call(widget.color
+                                    .changeToHSLSaturation(value.saturation)
+                                    .changeToHSLLightness(value.lightness));
+                              },
+                              onColorEnd: (value) {
+                                widget.onColorChangeEnd?.call(widget.color
+                                    .changeToHSLSaturation(value.saturation)
+                                    .changeToHSLLightness(value.lightness));
+                              },
+                              reverse: true,
+                              sliderType: HSLColorSliderType.satLum,
+                            )
+                          : HSVColorPickerArea(
+                              color: color.toHSVColor(),
+                              onColorChanged: (value) {
+                                widget.onColorChanged?.call(widget.color
+                                    .changeToHSVValue(value.value)
+                                    .changeToHSVSaturation(value.saturation));
+                              },
+                              onColorEnd: (value) {
+                                widget.onColorChangeEnd?.call(
+                                  widget.color
+                                      .changeToHSVValue(value.value)
+                                      .changeToHSVSaturation(value.saturation),
+                                );
+                              },
+                              reverse: true,
+                              sliderType: HSVColorSliderType.satVal,
+                            ),
+                    ),
+                  ),
+                ),
+                if (widget.onPickFromScreen != null) Gap(theme.scaling * 16),
+                if (widget.onPickFromScreen != null)
+                  IconButton.outline(
+                    icon: const Icon(LucideIcons.pipette),
+                    onPressed: widget.onPickFromScreen,
+                  ),
+              ],
+            ),
+          ),
+          Gap(theme.scaling * 16),
+          IntrinsicWidth(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: theme.scaling * 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: theme.colorScheme.border),
+                      borderRadius: BorderRadius.circular(theme.radiusLg),
+                    ),
+                    child: widget.mode == ColorPickerMode.hsl
+                        ? HSLColorPickerArea(
+                            color: HSLColor.fromAHSL(
+                              color.opacity,
+                              color.hslHue,
+                              1,
+                              0.5,
+                            ),
+                            onColorChanged: (value) {
+                              widget.onColorChanged?.call(
+                                widget.color.changeToHSLHue(value.hue),
+                              );
+                            },
+                            onColorEnd: (value) {
+                              widget.onColorChangeEnd?.call(
+                                widget.color.changeToHSLHue(value.hue),
+                              );
+                            },
+                            radius: Radius.circular(theme.radiusLg),
+                            reverse: true,
+                            sliderType: HSLColorSliderType.hue,
+                          )
+                        : HSVColorPickerArea(
+                            color: HSVColor.fromAHSV(
+                              color.opacity,
+                              color.hsvHue,
+                              color.hsvSat,
+                              color.hsvVal,
+                            ),
+                            onColorChanged: (value) {
+                              widget.onColorChanged?.call(
+                                widget.color.changeToHSVHue(value.hue),
+                              );
+                            },
+                            onColorEnd: (value) {
+                              widget.onColorChangeEnd?.call(
+                                widget.color.changeToHSVHue(value.hue),
+                              );
+                            },
+                            radius: Radius.circular(theme.radiusLg),
+                            reverse: true,
+                            sliderType: HSVColorSliderType.hue,
+                          ),
+                  ),
+                ),
+                if (widget.showAlpha ?? true) Gap(theme.scaling * 16),
+                // alpha
+                if (widget.showAlpha ?? true)
+                  SizedBox(
+                    height: theme.scaling * 32,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: theme.colorScheme.border),
+                        borderRadius: BorderRadius.circular(theme.radiusLg),
+                      ),
+                      child: widget.mode == ColorPickerMode.hsl
+                          ? HSLColorPickerArea(
+                              color: HSLColor.fromAHSL(
+                                color.opacity,
+                                color.hslHue,
+                                color.hslSat,
+                                color.hslVal,
+                              ),
+                              onColorChanged: (value) {
+                                widget.onColorChanged?.call(
+                                  widget.color.changeToAlpha(value.alpha),
+                                );
+                              },
+                              onColorEnd: (value) {
+                                widget.onColorChangeEnd?.call(
+                                  widget.color.changeToAlpha(value.alpha),
+                                );
+                              },
+                              radius: Radius.circular(theme.radiusLg),
+                              reverse: true,
+                              sliderType: HSLColorSliderType.alpha,
+                            )
+                          : HSVColorPickerArea(
+                              color: HSVColor.fromAHSV(
+                                color.opacity,
+                                color.hsvHue,
+                                color.hsvSat,
+                                color.hsvVal,
+                              ),
+                              onColorChanged: (value) {
+                                widget.onColorChanged?.call(
+                                  widget.color.changeToAlpha(value.alpha),
+                                );
+                              },
+                              onColorEnd: (value) {
+                                widget.onColorChangeEnd?.call(
+                                  widget.color.changeToAlpha(value.alpha),
+                                );
+                              },
+                              radius: Radius.circular(theme.radiusLg),
+                              reverse: true,
+                              sliderType: HSVColorSliderType.alpha,
+                            ),
+                    ),
+                  ),
+                Gap(theme.scaling * 16),
+                TextField(
+                  controller: _hexController,
+                  onEditingComplete: () {
+                    String hex = _hexController.text;
+                    if (hex.startsWith('#')) {
+                      hex = hex.substring(1);
+                    }
+                    Color color;
+                    if (hex.length == 6) {
+                      color = Color(int.parse('FF$hex', radix: 16));
+                    } else if (hex.length == 8) {
+                      color = Color(int.parse(hex, radix: 16));
+                    } else {
+                      color = widget.color.toColor();
+                      _hexController.text = widget.showAlpha ?? true
+                          ? '#${color.toARGB32().toRadixString(16)}'
+                          : '#${color.value.toRadixString(16).substring(2)}';
+                    }
+                    widget.onColorChanged
+                        ?.call(ColorDerivative.fromColor(color));
+                  },
+                ),
+                Gap(theme.scaling * 16),
+                SizedBox(
+                  child: Row(
+                    children: [
+                      _wrapTextField(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(aLabel).muted().small(),
+                            Gap(theme.scaling * 4),
+                            TextField(
+                              controller: _aController,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                              ],
+                              keyboardType: TextInputType.number,
+                              onEditingComplete: _onColorChange,
+                            ),
+                          ],
+                        ),
+                      ),
+                      _wrapTextField(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(bLabel).muted().small(),
+                            Gap(theme.scaling * 4),
+                            TextField(
+                              controller: _bController,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                              ],
+                              keyboardType: TextInputType.number,
+                              onEditingComplete: _onColorChange,
+                            ),
+                          ],
+                        ),
+                      ),
+                      _wrapTextField(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(cLabel).muted().small(),
+                            Gap(theme.scaling * 4),
+                            TextField(
+                              controller: _cController,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                              ],
+                              keyboardType: TextInputType.number,
+                              onEditingComplete: _onColorChange,
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (widget.showAlpha ?? true)
+                        _wrapTextField(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(localizations.colorAlpha).muted().small(),
+                              Gap(theme.scaling * 4),
+                              TextField(
+                                controller: _alphaController,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                                keyboardType: TextInputType.number,
+                                onEditingComplete: _onColorChange,
+                              ),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ).gap(theme.scaling * 16),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MiniColorPickerSet extends StatefulWidget {
+  const MiniColorPickerSet({
+    required this.color,
+    super.key,
+    this.mode = ColorPickerMode.rgb,
+    this.onColorChangeEnd,
+    this.onColorChanged,
+    this.onPickFromScreen,
+    this.showAlpha,
+  });
+
+  final ColorDerivative color;
+  final ValueChanged<ColorDerivative>? onColorChanged;
+  final ValueChanged<ColorDerivative>? onColorChangeEnd;
+  final bool? showAlpha;
+  final VoidCallback? onPickFromScreen;
+
+  final ColorPickerMode mode;
+
+  @override
+  State<MiniColorPickerSet> createState() => _MiniColorPickerSetState();
+}
+
+class _MiniColorPickerSetState extends State<MiniColorPickerSet> {
+  ColorDerivative get color => widget.color;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return IntrinsicWidth(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AspectRatio(
+            aspectRatio: 1,
+            child: Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                border: Border.all(color: theme.colorScheme.border),
+                borderRadius: BorderRadius.circular(theme.radiusLg),
+              ),
+              child: widget.mode == ColorPickerMode.hsl
+                  ? HSLColorPickerArea(
+                      color: color.toHSLColor(),
+                      onColorChanged: (value) {
+                        widget.onColorChanged?.call(widget.color
+                            .changeToHSLSaturation(value.saturation)
+                            .changeToHSLLightness(value.lightness));
+                      },
+                      onColorEnd: (value) {
+                        widget.onColorChangeEnd?.call(widget.color
+                            .changeToHSLSaturation(value.saturation)
+                            .changeToHSLLightness(value.lightness));
+                      },
+                      reverse: true,
+                      sliderType: HSLColorSliderType.satLum,
+                    )
+                  : HSVColorPickerArea(
+                      color: color.toHSVColor(),
+                      onColorChanged: (value) {
+                        widget.onColorChanged?.call(widget.color
+                            .changeToHSVValue(value.value)
+                            .changeToHSVSaturation(value.saturation));
+                      },
+                      onColorEnd: (value) {
+                        widget.onColorChangeEnd?.call(
+                          widget.color
+                              .changeToHSVValue(value.value)
+                              .changeToHSVSaturation(value.saturation),
+                        );
+                      },
+                      reverse: true,
+                      sliderType: HSVColorSliderType.satVal,
+                    ),
+            ),
+          ),
+          Gap(theme.scaling * 16),
+          SizedBox(
+            height: theme.scaling * 32,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: theme.colorScheme.border),
+                borderRadius: BorderRadius.circular(theme.radiusLg),
+              ),
+              child: widget.mode == ColorPickerMode.hsl
+                  ? HSLColorPickerArea(
+                      color: HSLColor.fromAHSL(
+                        color.opacity,
+                        color.hslHue,
+                        1,
+                        0.5,
+                      ),
+                      onColorChanged: (value) {
+                        widget.onColorChanged
+                            ?.call(widget.color.changeToHSLHue(value.hue));
+                      },
+                      onColorEnd: (value) {
+                        widget.onColorChangeEnd
+                            ?.call(widget.color.changeToHSLHue(value.hue));
+                      },
+                      radius: Radius.circular(theme.radiusLg),
+                      reverse: true,
+                      sliderType: HSLColorSliderType.hue,
+                    )
+                  : HSVColorPickerArea(
+                      color: HSVColor.fromAHSV(
+                        color.opacity,
+                        color.hsvHue,
+                        color.hsvSat,
+                        color.hsvVal,
+                      ),
+                      onColorChanged: (value) {
+                        widget.onColorChanged
+                            ?.call(widget.color.changeToHSVHue(value.hue));
+                      },
+                      onColorEnd: (value) {
+                        widget.onColorChangeEnd
+                            ?.call(widget.color.changeToHSVHue(value.hue));
+                      },
+                      radius: Radius.circular(theme.radiusLg),
+                      reverse: true,
+                      sliderType: HSVColorSliderType.hue,
+                    ),
+            ),
+          ),
+          if (widget.showAlpha ?? true) Gap(theme.scaling * 16),
+          // alpha
+          if (widget.showAlpha ?? true)
+            SizedBox(
+              height: theme.scaling * 32,
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: theme.colorScheme.border),
+                  borderRadius: BorderRadius.circular(theme.radiusLg),
+                ),
+                child: widget.mode == ColorPickerMode.hsl
+                    ? HSLColorPickerArea(
+                        color: HSLColor.fromAHSL(
+                          color.opacity,
+                          color.hslHue,
+                          1,
+                          0.5,
+                        ),
+                        onColorChanged: (value) {
+                          widget.onColorChanged
+                              ?.call(widget.color.changeToAlpha(value.alpha));
+                        },
+                        onColorEnd: (value) {
+                          widget.onColorChangeEnd
+                              ?.call(widget.color.changeToAlpha(value.alpha));
+                        },
+                        radius: Radius.circular(theme.radiusLg),
+                        reverse: true,
+                        sliderType: HSLColorSliderType.alpha,
+                      )
+                    : HSVColorPickerArea(
+                        color: HSVColor.fromAHSV(
+                          color.opacity,
+                          color.hsvHue,
+                          color.hsvSat,
+                          color.hsvVal,
+                        ),
+                        onColorChanged: (value) {
+                          widget.onColorChanged
+                              ?.call(widget.color.changeToAlpha(value.alpha));
+                        },
+                        onColorEnd: (value) {
+                          widget.onColorChangeEnd?.call(
+                            widget.color.changeToAlpha(value.alpha),
+                          );
+                        },
+                        radius: Radius.circular(theme.radiusLg),
+                        reverse: true,
+                        sliderType: HSVColorSliderType.alpha,
+                      ),
+              ),
+            ),
+          if (widget.onPickFromScreen != null) Gap(theme.scaling * 16),
+          if (widget.onPickFromScreen != null)
+            IconButton.outline(
+              icon: const Icon(LucideIcons.pipette),
+              onPressed: widget.onPickFromScreen,
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class ColorInput extends StatelessWidget {
+  const ColorInput({
+    this.allowPickFromScreen,
+    required this.color,
+    this.dialogTitle,
+    this.enabled,
+    super.key,
+    this.mode,
+    this.onChanged,
+    this.pickerMode,
+    this.placeholder,
+    this.popoverAlignment,
+    this.popoverAnchorAlignment,
+    this.popoverPadding,
+    this.showAlpha,
+    this.showLabel,
+    this.storage,
+  });
+
+  final ColorDerivative color;
+  final ValueChanged<ColorDerivative>? onChanged;
+  final bool? showAlpha;
+  final AlignmentGeometry? popoverAlignment;
+  final AlignmentGeometry? popoverAnchorAlignment;
+  final EdgeInsetsGeometry? popoverPadding;
+  final Widget? placeholder;
+  final PromptMode? mode;
+  final ColorPickerMode? pickerMode;
+  final Widget? dialogTitle;
+  final bool? allowPickFromScreen;
+  final bool? showLabel;
+  final ColorHistoryStorage? storage;
+  final bool? enabled;
+
+  @override
+  Widget build(BuildContext context) {
+    final localizations = CoUILocalizations.of(context);
+    final theme = Theme.of(context);
+    final compTheme = ComponentTheme.maybeOf<ColorInputTheme>(context);
+    final showAlpha = styleValue<bool>(
+      defaultValue: true,
+      themeValue: compTheme?.showAlpha,
+      widgetValue: this.showAlpha,
+    );
+    final popoverAlignment = styleValue<AlignmentGeometry>(
+      defaultValue: AlignmentDirectional.topStart,
+      themeValue: compTheme?.popoverAlignment,
+      widgetValue: this.popoverAlignment,
+    );
+    final popoverAnchorAlignment = styleValue<AlignmentGeometry>(
+      defaultValue: AlignmentDirectional.bottomStart,
+      themeValue: compTheme?.popoverAnchorAlignment,
+      widgetValue: this.popoverAnchorAlignment,
+    );
+    final popoverPadding = styleValue<EdgeInsetsGeometry>(
+      defaultValue: EdgeInsets.all(theme.scaling * 16),
+      themeValue: compTheme?.popoverPadding,
+      widgetValue: this.popoverPadding,
+    );
+    final mode = styleValue(
+      defaultValue: PromptMode.dialog,
+      themeValue: compTheme?.mode,
+      widgetValue: this.mode,
+    );
+    final pickerMode = styleValue(
+      defaultValue: ColorPickerMode.rgb,
+      themeValue: compTheme?.pickerMode,
+      widgetValue: this.pickerMode,
+    );
+    final allowPickFromScreen = styleValue<bool>(
+      defaultValue: true,
+      themeValue: compTheme?.allowPickFromScreen,
+      widgetValue: this.allowPickFromScreen,
+    );
+    final showLabel = styleValue<bool>(
+      defaultValue: false,
+      themeValue: compTheme?.showLabel,
+      widgetValue: this.showLabel,
+    );
+
+    return ObjectFormField(
+      builder: (context, value) {
+        return !showLabel
+            ? Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: theme.colorScheme.border),
+                  borderRadius: theme.borderRadiusSm,
+                  color: value.toColor(),
+                ),
+              )
+            : IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                        child: Text(colorToHex(value.toColor(), showAlpha))),
+                    Gap(theme.scaling * 8),
+                    AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: theme.colorScheme.border),
+                          borderRadius: theme.borderRadiusSm,
+                          color: value.toColor(),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+      },
+      density: showLabel ? ButtonDensity.normal : ButtonDensity.iconDense,
+      dialogActions: (innerContext, handler) {
+        return [
+          if (allowPickFromScreen)
+            IconButton.outline(
+              icon: Icon(LucideIcons.pipette, size: theme.scaling * 16),
+              onPressed: () async {
+                await handler.close();
+                if (!context.mounted) return;
+                final result = await pickColorFromScreen(context);
+                if (result != null) {
+                  storage?.addHistory(result);
+                }
+                handler.prompt(
+                  result == null ? null : ColorDerivative.fromColor(result),
+                );
+              },
+            ),
+        ];
+      },
+      dialogTitle: dialogTitle,
+      editorBuilder: (innerContext, handler) {
+        return ColorInputPopup(
+          color: handler.value ?? color,
+          initialMode: pickerMode,
+          onChanged: (value) {
+            handler.value = value;
+          },
+          onPickFromScreen: allowPickFromScreen && mode == PromptMode.popover
+              ? () async {
+                  await handler.close();
+                  if (!context.mounted) return;
+                  final result = await pickColorFromScreen(context);
+                  if (result != null) {
+                    storage?.addHistory(result);
+                    handler.value = ColorDerivative.fromColor(result);
+                  }
+                  handler.prompt();
+                }
+              : null,
+          showAlpha: showAlpha,
+          storage: storage,
+        );
+      },
+      enabled: enabled,
+      mode: mode,
+      onChanged: (value) {
+        if (value != null) {
+          onChanged?.call(value);
+        }
+      },
+      placeholder: placeholder ?? Text(localizations.placeholderColorPicker),
+      popoverAlignment: popoverAlignment,
+      popoverAnchorAlignment: popoverAnchorAlignment,
+      popoverPadding: popoverPadding,
+      value: color,
+    );
+  }
+}
+
+class ColorInputPopup extends StatefulWidget {
+  const ColorInputPopup({
+    required this.color,
+    this.initialMode = ColorPickerMode.rgb,
+    super.key,
+    this.onChanged,
+    this.onColorChangeEnd,
+    this.onPickFromScreen,
+    this.showAlpha = true,
+    this.storage,
+  });
+
+  final ColorDerivative color;
+  final ValueChanged<ColorDerivative>? onChanged;
+  final ValueChanged<ColorDerivative>? onColorChangeEnd;
+  final bool showAlpha;
+  final ColorPickerMode initialMode;
+  final VoidCallback? onPickFromScreen;
+
+  final ColorHistoryStorage? storage;
+
+  @override
+  State<ColorInputPopup> createState() => _ColorInputPopupState();
+}
+
+class _ColorInputPopupState extends State<ColorInputPopup> {
+  ColorPickerMode _mode;
+
+  @override
+  void initState() {
+    super.initState();
+    _mode = widget.initialMode;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ColorInputSet(
+      color: widget.color,
+      mode: _mode,
+      onChanged: widget.onChanged,
+      onColorChangeEnd: widget.onColorChangeEnd,
+      onModeChanged: (mode) {
+        setState(() {
+          _mode = mode;
+        });
+      },
+      onPickFromScreen: widget.onPickFromScreen,
+      showAlpha: widget.showAlpha,
+      storage: widget.storage,
+    );
+  }
+}
+
+enum HSVColorSliderType {
+  alpha,
+  hue,
+  hueAlpha,
+  hueSat,
+  hueVal,
+  sat,
+  satAlpha,
+  satVal,
+  val,
+  valAlpha;
+}
+
+enum HSLColorSliderType {
+  alpha,
+  hue,
+  hueAlpha,
+  hueLum,
+  hueSat,
+  lum,
+  lumAlpha,
+  sat,
+  satAlpha,
+  satLum;
+}
+
+Future<ColorDerivative> showColorPickerDialog({
+  bool allowPickFromScreen = true,
+  required ColorDerivative color,
+  required BuildContext context,
+  ColorHistoryStorage? historyStorage,
+  ColorPickerMode initialMode = ColorPickerMode.rgb,
+  ValueChanged<ColorDerivative>? onColorChanged,
+  bool showAlpha = true,
+  Widget? title,
+}) async {
+  final key = GlobalKey<_ColorPickerDialogState>();
+  while (true) {
+    if (!context.mounted) {
+      return color;
+    }
+    final result = await showDialog<_ColorPickerDialogResult>(
+      builder: (context) {
+        return _ColorPickerDialog(
+          key: key,
+          allowPickFromScreen: allowPickFromScreen,
+          color: color,
+          initialMode: initialMode,
+          onColorChanged: (color) {
+            onColorChanged?.call(color);
+            if (historyStorage != null) {
+              historyStorage.addHistory(color.toColor());
+            }
+          },
+          showAlpha: showAlpha,
+          title: title,
+        );
+      },
+      context: context,
+    );
+    if (result == null) {
+      return color;
+    }
+    if (result.pickedFromScreen) {
+      if (key.currentState != null) {
+        final modalRoute = ModalRoute.of(key.currentContext!);
+        if (modalRoute != null) {
+          await modalRoute.completed;
+        }
+      }
+      if (!context.mounted) {
+        return color;
+      }
+      final picked = await pickColorFromScreen(context);
+      if (picked != null) {
+        color = color.changeToColor(picked);
+      }
+      continue;
+    }
+
+    return result.color != null ? result.color! : color;
+  }
+}
+
+Future<ColorDerivative> showColorPicker({
+  AlignmentGeometry alignment = AlignmentDirectional.topStart,
+  bool allowPickFromScreen = true,
+  AlignmentGeometry anchorAlignment = AlignmentDirectional.bottomStart,
+  required ColorDerivative color,
+  required BuildContext context,
+  bool follow = true,
+  PopoverConstraint heightConstraint = PopoverConstraint.flexible,
+  ColorHistoryStorage? historyStorage,
+  ColorPickerMode initialMode = ColorPickerMode.rgb,
+  Offset? offset,
+  ValueChanged<ColorDerivative>? onColorChangeEnd,
+  ValueChanged<ColorDerivative>? onColorChanged,
+  bool showAlpha = true,
+  PopoverConstraint widthConstraint = PopoverConstraint.flexible,
+}) async {
+  while (true) {
+    if (!context.mounted) {
+      return color;
+    }
+    final completer = showPopover(
+      alignment: alignment,
+      anchorAlignment: anchorAlignment,
+      builder: (innerContext) {
+        return _ColorPickerPopup(
+          allowPickFromScreen: allowPickFromScreen,
+          color: color,
+          initialMode: initialMode,
+          onColorChangeEnd: (value) {
+            onColorChangeEnd?.call(value);
+            if (historyStorage != null) {
+              historyStorage.addHistory(value.toColor());
+            }
+          },
+          onColorChanged: onColorChanged,
+          showAlpha: showAlpha,
+        );
+      },
+      context: context,
+      heightConstraint: heightConstraint,
+      offset: offset,
+      widthConstraint: widthConstraint,
+    );
+    final result = await completer.future;
+    if (result == null) {
+      return color;
+    }
+    if (result.pickedFromScreen) {
+      await completer.animationFuture;
+      if (!context.mounted) {
+        return color;
+      }
+      final picked = await pickColorFromScreen(context);
+      if (picked != null) {
+        color = color.changeToColor(picked);
+        onColorChanged?.call(color);
+      }
+      continue;
+    }
+    if (result.barrierColor != null) {
+      return result.barrierColor!;
+    }
+  }
+}
+
+class _ColorPickerDialogResult {
+  const _ColorPickerDialogResult({
+    this.color,
+    this.pickedFromScreen = false,
+  });
+  final ColorDerivative? color;
+
+  final bool pickedFromScreen;
+}
+
+class _ColorPickerDialog extends StatefulWidget {
+  const _ColorPickerDialog({
+    this.allowPickFromScreen = true,
+    required this.color,
+    this.initialMode = ColorPickerMode.rgb,
+    super.key,
+    this.onColorChanged,
+    this.showAlpha = true,
+    this.title,
+  });
+
+  final ColorDerivative color;
+  final ValueChanged<ColorDerivative>? onColorChanged;
+  final bool showAlpha;
+  final ColorPickerMode initialMode;
+  final bool allowPickFromScreen;
+
+  final Widget? title;
+
+  @override
+  State<_ColorPickerDialog> createState() => _ColorPickerDialogState();
+}
+
+class _ColorPickerDialogState extends State<_ColorPickerDialog> {
+  ColorPickerMode _mode;
+  ColorDerivative _color;
+
+  @override
+  void initState() {
+    super.initState();
+    _mode = widget.initialMode;
+    _color = widget.color;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final localizations = CoUILocalizations.of(context);
+    final theme = Theme.of(context);
+
+    return AlertDialog(
+      actions: [
+        if (widget.allowPickFromScreen)
+          IconButton.outline(
+            icon: Icon(LucideIcons.pipette, size: theme.scaling * 16),
+            onPressed: () {
+              Navigator.of(context).pop(const _ColorPickerDialogResult(
+                pickedFromScreen: true,
+              ));
+            },
+          ),
+        SecondaryButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text(localizations.buttonCancel),
+        ),
+        PrimaryButton(
+          onPressed: () {
+            widget.onColorChanged?.call(_color);
+            Navigator.of(context).pop(_ColorPickerDialogResult(
+              color: _color,
+            ));
+          },
+          child: Text(localizations.buttonOk, textAlign: TextAlign.center),
+        ),
+      ],
+      content: ColorInputPopup(
+        color: _color,
+        initialMode: _mode,
+        onChanged: (value) {
+          setState(() {
+            _color = value;
+          });
+        },
+        showAlpha: widget.showAlpha,
+      ),
+      title: widget.title,
+    );
+  }
+}
+
+class _ColorPickerPopup extends StatefulWidget {
+  const _ColorPickerPopup({
+    this.allowPickFromScreen = true,
+    required this.color,
+    this.initialMode = ColorPickerMode.rgb,
+    this.onColorChangeEnd,
+    this.onColorChanged,
+    this.showAlpha = true,
+  });
+
+  final ColorDerivative color;
+  final ValueChanged<ColorDerivative>? onColorChanged;
+  final ValueChanged<ColorDerivative>? onColorChangeEnd;
+  final bool showAlpha;
+  final ColorPickerMode initialMode;
+
+  final bool allowPickFromScreen;
+
+  @override
+  State<_ColorPickerPopup> createState() => _ColorPickerPopupState();
+}
+
+class _ColorPickerPopupState extends State<_ColorPickerPopup> {
+  ColorPickerMode _mode;
+  ColorDerivative _color;
+
+  @override
+  void initState() {
+    super.initState();
+    _mode = widget.initialMode;
+    _color = widget.color;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ModalContainer(
+      child: ColorInputPopup(
+        color: _color,
+        initialMode: _mode,
+        onChanged: (value) {
+          setState(() {
+            _color = value;
+          });
+          widget.onColorChanged?.call(value);
+        },
+        onColorChangeEnd: widget.onColorChangeEnd,
+        onPickFromScreen: widget.allowPickFromScreen
+            ? () {
+                closeOverlay(
+                  context,
+                  const _ColorPickerDialogResult(pickedFromScreen: true),
+                );
+              }
+            : null,
+        showAlpha: widget.showAlpha,
+      ),
+    );
+  }
+}
+
+abstract base class ColorDerivative {
+  const ColorDerivative();
+  const factory ColorDerivative.fromHSV(HSVColor color) = _HSVColor;
+  const factory ColorDerivative.fromHSL(HSLColor color) = _HSLColor;
+
+  static ColorDerivative fromColor(Color color) {
+    return ColorDerivative.fromHSV(HSVColor.fromColor(color));
+  }
+
+  Color toColor();
+
+  HSVColor toHSVColor();
+
+  HSLColor toHSLColor();
+
+  ColorDerivative transform(ColorDerivative old);
+
+  ColorDerivative changeToAlpha(double alpha);
+
+  ColorDerivative changeToColor(Color color) {
+    final newColor = ColorDerivative.fromColor(color);
+
+    return newColor.transform(this);
+  }
+
+  ColorDerivative changeToHSV(HSVColor color) {
+    final newColor = ColorDerivative.fromHSV(color);
+
+    return newColor.transform(this);
+  }
+
+  ColorDerivative changeToHSL(HSLColor color) {
+    final newColor = ColorDerivative.fromHSL(color);
+
+    return newColor.transform(this);
+  }
+
+  ColorDerivative changeToColorRed(double red) {
+    return changeToColor(toColor().withRed(red.toInt()));
+  }
+
+  ColorDerivative changeToColorGreen(double green) {
+    return changeToColor(toColor().withGreen(green.toInt()));
+  }
+
+  ColorDerivative changeToColorBlue(double blue) {
+    return changeToColor(toColor().withBlue(blue.toInt()));
+  }
+
+  ColorDerivative changeToColorAlpha(double alpha) {
+    return changeToColor(toColor().withAlpha(alpha.toInt()));
+  }
+
+  ColorDerivative changeToHSVHue(double hue) {
+    return changeToHSV(toHSVColor().withHue(hue));
+  }
+
+  ColorDerivative changeToHSVSaturation(double saturation) {
+    return changeToHSV(toHSVColor().withSaturation(saturation));
+  }
+
+  ColorDerivative changeToHSVValue(double value) {
+    return changeToHSV(toHSVColor().withValue(value));
+  }
+
+  ColorDerivative changeToHSVAlpha(double alpha) {
+    return changeToHSV(toHSVColor().withAlpha(alpha));
+  }
+
+  ColorDerivative changeToHSLHue(double hue) {
+    return changeToHSL(toHSLColor().withHue(hue));
+  }
+
+  ColorDerivative changeToHSLSaturation(double saturation) {
+    return changeToHSL(toHSLColor().withSaturation(saturation));
+  }
+
+  ColorDerivative changeToHSLLightness(double lightness) {
+    return changeToHSL(toHSLColor().withLightness(lightness));
+  }
+
+  double get opacity;
+  double get hslHue;
+  double get hslSat;
+  double get hslVal;
+  double get hsvHue;
+  double get hsvSat;
+  double get hsvVal;
+  int get red;
+  int get green;
+  int get blue;
+}
+
+final class _HSVColor extends ColorDerivative {
+  const _HSVColor(this.color);
+
+  final HSVColor color;
+
+  @override
+  Color toColor() {
+    return color.toColor();
+  }
+
+  @override
+  HSVColor toHSVColor() {
+    return color;
+  }
+
+  @override
+  HSLColor toHSLColor() {
+    return color.toHSL();
+  }
+
+  @override
+  ColorDerivative changeToAlpha(double alpha) {
+    return _HSVColor(color.withAlpha(alpha));
+  }
+
+  @override
+  ColorDerivative transform(ColorDerivative old) {
+    if (old is _HSVColor) {
+      return _HSVColor(color);
+    } else if (old is _HSLColor) {
+      return ColorDerivative.fromHSL(color.toHSL());
+    }
+    throw FlutterError('Invalid color type');
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is _HSLColor
+        ? color == other.toHSVColor()
+        : other is _HSVColor && other.color == color;
+  }
+
+  @override
+  double get opacity => color.alpha;
+
+  @override
+  int get hashCode => toColor().hashCode;
+
+  @override
+  double get hslHue => color.toHSL().hue;
+
+  @override
+  double get hslSat => color.toHSL().saturation;
+
+  @override
+  double get hslVal => color.toHSL().lightness;
+
+  @override
+  double get hsvHue => color.hue;
+
+  @override
+  double get hsvSat => color.saturation;
+
+  @override
+  double get hsvVal => color.value;
+
+  @override
+  int get red => color.toColor().red;
+
+  @override
+  int get green => color.toColor().green;
+
+  @override
+  int get blue => color.toColor().blue;
+}
+
+final class _HSLColor extends ColorDerivative {
+  const _HSLColor(this.color);
+
+  final HSLColor color;
+
+  @override
+  Color toColor() {
+    return color.toColor();
+  }
+
+  @override
+  HSVColor toHSVColor() {
+    return color.toHSV();
+  }
+
+  @override
+  HSLColor toHSLColor() {
+    return color;
+  }
+
+  @override
+  ColorDerivative changeToAlpha(double alpha) {
+    return _HSLColor(color.withAlpha(alpha));
+  }
+
+  @override
+  ColorDerivative transform(ColorDerivative old) {
+    if (old is _HSVColor) {
+      return ColorDerivative.fromHSV(color.toHSV());
+    } else if (old is _HSLColor) {
+      return _HSLColor(color);
+    }
+    throw FlutterError('Invalid color type');
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is _HSVColor
+        ? color == other.toHSLColor()
+        : other is _HSLColor && other.color == color;
+  }
+
+  @override
+  double get opacity => color.alpha;
+
+  @override
+  int get hashCode => toColor().hashCode;
+
+  @override
+  double get hslHue => color.hue;
+
+  @override
+  double get hslSat => color.saturation;
+
+  @override
+  double get hslVal => color.lightness;
+
+  @override
+  double get hsvHue => color.toHSV().hue;
+
+  @override
+  double get hsvSat => color.toHSV().saturation;
+
+  @override
+  double get hsvVal => color.toHSV().value;
+
+  @override
+  int get red => color.toColor().red;
+
+  @override
+  int get green => color.toColor().green;
+
+  @override
+  int get blue => color.toColor().blue;
+}
+
+class HSVColorPickerArea extends StatefulWidget {
+  const HSVColorPickerArea({
+    required this.color,
+    super.key,
+    this.onColorChanged,
+    this.onColorEnd,
+    this.padding = const EdgeInsets.all(0),
+    this.radius = const Radius.circular(0),
+    this.reverse = false,
+    required this.sliderType,
+  });
+
+  final HSVColor color;
+  final ValueChanged<HSVColor>? onColorChanged;
+  final ValueChanged<HSVColor>? onColorEnd;
+  final HSVColorSliderType sliderType;
+  final bool reverse;
+  final Radius radius;
+
+  final EdgeInsets padding;
+
+  @override
+  State<HSVColorPickerArea> createState() => _HSVColorPickerAreaState();
+}
+
+class _HSVColorPickerAreaState extends State<HSVColorPickerArea> {
+  double _currentHorizontal;
+  double _currentVertical;
+  double _hue;
+  double _saturation;
+  double _value;
+  double _alpha;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentHorizontal = horizontal;
+    _currentVertical = vertical;
+    final hsv = widget.color;
+    _hue = hsv.hue;
+    _saturation = hsv.saturation;
+    _value = hsv.value;
+    _alpha = hsv.alpha;
+  }
+
+  void _updateColor(Offset localPosition, Size size) {
+    _currentHorizontal = ((localPosition.dx - widget.padding.left) /
+            (size.width - widget.padding.horizontal))
+        .clamp(0, 1);
+    _currentVertical = ((localPosition.dy - widget.padding.top) /
+            (size.height - widget.padding.vertical))
+        .clamp(0, 1);
+    if (widget.reverse) {
+      if (widget.sliderType == HSVColorSliderType.hueSat) {
+        _hue = _currentHorizontal * 360;
+        _saturation = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.hueVal) {
+        _hue = _currentHorizontal * 360;
+        _value = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.hueAlpha) {
+        _hue = _currentHorizontal * 360;
+        _alpha = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.satVal) {
+        _saturation = _currentHorizontal;
+        _value = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.satAlpha) {
+        _saturation = _currentHorizontal;
+        _alpha = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.valAlpha) {
+        _value = _currentHorizontal;
+        _alpha = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.hue) {
+        _hue = _currentHorizontal * 360;
+      } else if (widget.sliderType == HSVColorSliderType.sat) {
+        _saturation = _currentHorizontal;
+      } else if (widget.sliderType == HSVColorSliderType.val) {
+        _value = _currentHorizontal;
+      } else if (widget.sliderType == HSVColorSliderType.alpha) {
+        _alpha = _currentHorizontal;
+      }
+    } else {
+      if (widget.sliderType == HSVColorSliderType.hueSat) {
+        _hue = _currentVertical * 360;
+        _saturation = _currentHorizontal;
+      } else if (widget.sliderType == HSVColorSliderType.hueVal) {
+        _hue = _currentVertical * 360;
+        _value = _currentHorizontal;
+      } else if (widget.sliderType == HSVColorSliderType.hueAlpha) {
+        _hue = _currentVertical * 360;
+        _alpha = _currentHorizontal;
+      } else if (widget.sliderType == HSVColorSliderType.satVal) {
+        _saturation = _currentVertical;
+        _value = _currentHorizontal;
+      } else if (widget.sliderType == HSVColorSliderType.satAlpha) {
+        _saturation = _currentVertical;
+        _alpha = _currentHorizontal;
+      } else if (widget.sliderType == HSVColorSliderType.valAlpha) {
+        _value = _currentVertical;
+        _alpha = _currentHorizontal;
+      } else if (widget.sliderType == HSVColorSliderType.hue) {
+        _hue = _currentVertical * 360;
+      } else if (widget.sliderType == HSVColorSliderType.sat) {
+        _saturation = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.val) {
+        _value = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.alpha) {
+        _alpha = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.valAlpha) {
+        _value = _currentHorizontal;
+        _alpha = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.hue) {
+        _hue = _currentVertical * 360;
+      } else if (widget.sliderType == HSVColorSliderType.sat) {
+        _saturation = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.val) {
+        _value = _currentVertical;
+      } else if (widget.sliderType == HSVColorSliderType.alpha) {
+        _alpha = _currentVertical;
+      }
+    }
+    widget.onColorChanged?.call(HSVColor.fromAHSV(
+      _alpha.clamp(0, 1),
+      _hue.clamp(0, 360),
+      _saturation.clamp(0, 1),
+      _value.clamp(0, 1),
+    ));
+  }
+
+  @override
+  void didUpdateWidget(covariant HSVColorPickerArea oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.color != widget.color) {
+      final hsv = widget.color;
+      _hue = hsv.hue;
+      _saturation = hsv.saturation;
+      _value = hsv.value;
+      _alpha = hsv.alpha;
+      _currentHorizontal = horizontal;
+      _currentVertical = vertical;
+    }
+  }
+
+  bool get isSingleChannel {
+    return widget.sliderType == HSVColorSliderType.hue ||
+        widget.sliderType == HSVColorSliderType.sat ||
+        widget.sliderType == HSVColorSliderType.val ||
+        widget.sliderType == HSVColorSliderType.alpha;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final cursorRadius = theme.scaling * 16;
+    final radDiv = isSingleChannel ? 4 : 2;
+
+    return GestureDetector(
+      onPanEnd: (details) {
+        widget.onColorEnd?.call(HSVColor.fromAHSV(
+          _alpha.clamp(0, 1),
+          _hue.clamp(0, 360),
+          _saturation.clamp(0, 1),
+          _value.clamp(0, 1),
+        ));
+      },
+      onPanUpdate: (details) {
+        setState(() {
+          _updateColor(details.localPosition, context.size!);
+        });
+      },
+      onTapDown: (details) {
+        _updateColor(details.localPosition, context.size!);
+        widget.onColorEnd?.call(HSVColor.fromAHSV(
+          _alpha.clamp(0, 1),
+          _hue.clamp(0, 360),
+          _saturation.clamp(0, 1),
+          _value.clamp(0, 1),
+        ));
+      },
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned.fill(
+            child: RepaintBoundary(
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(widget.radius),
+                child: const CustomPaint(painter: CheckboardPainter()),
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: RepaintBoundary(
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(widget.radius),
+                child: CustomPaint(
+                  painter: HSVColorPickerPainter(
+                    color: HSVColor.fromAHSV(
+                      _alpha.clamp(0, 1),
+                      _hue.clamp(0, 360),
+                      _saturation.clamp(0, 1),
+                      _value.clamp(0, 1),
+                    ),
+                    reverse: widget.reverse,
+                    sliderType: widget.sliderType,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: -cursorRadius / radDiv,
+            left: -cursorRadius / radDiv,
+            right: -cursorRadius / radDiv,
+            top: -cursorRadius / radDiv,
+            child: isSingleChannel
+                ? (widget.reverse
+                    ? Padding(
+                        padding: EdgeInsets.only(
+                          left: widget.padding.left,
+                          right: widget.padding.right,
+                        ),
+                        child: Align(
+                          alignment: Alignment(
+                            (_currentHorizontal.clamp(0, 1) * 2) - 1,
+                            (_currentVertical.clamp(0, 1) * 2) - 1,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.white,
+                                width: theme.scaling * 2,
+                              ),
+                              borderRadius: BorderRadius.all(widget.radius),
+                              color: widget.color.toColor(),
+                            ),
+                            height: double.infinity,
+                            width: cursorRadius,
+                          ),
+                        ),
+                      )
+                    : Padding(
+                        padding: EdgeInsets.only(
+                          bottom: widget.padding.bottom,
+                          top: widget.padding.top,
+                        ),
+                        child: Align(
+                          alignment: Alignment(
+                            (_currentHorizontal.clamp(0, 1) * 2) - 1,
+                            (_currentVertical.clamp(0, 1) * 2) - 1,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.white,
+                                width: theme.scaling * 2,
+                              ),
+                              borderRadius: BorderRadius.all(widget.radius),
+                              color: widget.color.toColor(),
+                            ),
+                            height: cursorRadius,
+                            width: double.infinity,
+                          ),
+                        ),
+                      ))
+                : Padding(
+                    padding: widget.padding,
+                    child: Align(
+                      alignment: Alignment(
+                        (_currentHorizontal.clamp(0, 1) * 2) - 1,
+                        (_currentVertical.clamp(0, 1) * 2) - 1,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.white,
+                            width: theme.scaling * 2,
+                          ),
+                          color: widget.color.toColor(),
+                          shape: BoxShape.circle,
+                        ),
+                        height: cursorRadius,
+                        width: cursorRadius,
+                      ),
+                    ),
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  double get vertical {
+    final hsv = widget.color;
+    if (widget.reverse) {
+      if (widget.sliderType == HSVColorSliderType.hueSat) {
+        return hsv.saturation;
+      } else if (widget.sliderType == HSVColorSliderType.hueVal) {
+        return hsv.value;
+      } else if (widget.sliderType == HSVColorSliderType.hueAlpha) {
+        return hsv.alpha;
+      } else if (widget.sliderType == HSVColorSliderType.satVal) {
+        return hsv.value;
+      } else if (widget.sliderType == HSVColorSliderType.satAlpha) {
+        return hsv.alpha;
+      } else if (widget.sliderType == HSVColorSliderType.valAlpha) {
+        return hsv.alpha;
+      } else if (widget.sliderType == HSVColorSliderType.hue) {
+        return hsv.hue / 360;
+      } else if (widget.sliderType == HSVColorSliderType.sat) {
+        return hsv.saturation;
+      } else if (widget.sliderType == HSVColorSliderType.val) {
+        return hsv.value;
+      } else if (widget.sliderType == HSVColorSliderType.alpha) {
+        return hsv.alpha;
+      }
+    } else {
+      if (widget.sliderType == HSVColorSliderType.hueSat) {
+        return hsv.hue / 360;
+      } else if (widget.sliderType == HSVColorSliderType.hueVal) {
+        return hsv.hue / 360;
+      } else if (widget.sliderType == HSVColorSliderType.hueAlpha) {
+        return hsv.hue / 360;
+      } else if (widget.sliderType == HSVColorSliderType.satVal) {
+        return hsv.saturation;
+      } else if (widget.sliderType == HSVColorSliderType.satAlpha) {
+        return hsv.saturation;
+      } else if (widget.sliderType == HSVColorSliderType.valAlpha) {
+        return hsv.value;
+      } else if (widget.sliderType == HSVColorSliderType.hue) {
+        return hsv.hue / 360;
+      } else if (widget.sliderType == HSVColorSliderType.sat) {
+        return hsv.saturation;
+      } else if (widget.sliderType == HSVColorSliderType.val) {
+        return hsv.value;
+      } else if (widget.sliderType == HSVColorSliderType.alpha) {
+        return hsv.alpha;
+      }
+    }
+
+    return 0;
+  }
+
+  double get horizontal {
+    final hsv = widget.color;
+    if (widget.reverse) {
+      if (widget.sliderType == HSVColorSliderType.hueSat) {
+        return hsv.hue / 360;
+      } else if (widget.sliderType == HSVColorSliderType.hueVal) {
+        return hsv.hue / 360;
+      } else if (widget.sliderType == HSVColorSliderType.hueAlpha) {
+        return hsv.hue / 360;
+      } else if (widget.sliderType == HSVColorSliderType.satVal) {
+        return hsv.saturation;
+      } else if (widget.sliderType == HSVColorSliderType.satAlpha) {
+        return hsv.saturation;
+      } else if (widget.sliderType == HSVColorSliderType.valAlpha) {
+        return hsv.value;
+      } else if (widget.sliderType == HSVColorSliderType.hue) {
+        return hsv.hue / 360;
+      } else if (widget.sliderType == HSVColorSliderType.sat) {
+        return hsv.saturation;
+      } else if (widget.sliderType == HSVColorSliderType.val) {
+        return hsv.value;
+      } else if (widget.sliderType == HSVColorSliderType.alpha) {
+        return hsv.alpha;
+      }
+    } else {
+      if (widget.sliderType == HSVColorSliderType.hueSat) {
+        return hsv.saturation;
+      } else if (widget.sliderType == HSVColorSliderType.hueVal) {
+        return hsv.value;
+      } else if (widget.sliderType == HSVColorSliderType.hueAlpha) {
+        return hsv.alpha;
+      } else if (widget.sliderType == HSVColorSliderType.satVal) {
+        return hsv.value;
+      } else if (widget.sliderType == HSVColorSliderType.satAlpha) {
+        return hsv.alpha;
+      } else if (widget.sliderType == HSVColorSliderType.valAlpha) {
+        return hsv.alpha;
+      } else if (widget.sliderType == HSVColorSliderType.hue) {
+        return hsv.hue / 360;
+      } else if (widget.sliderType == HSVColorSliderType.sat) {
+        return hsv.saturation;
+      } else if (widget.sliderType == HSVColorSliderType.val) {
+        return hsv.value;
+      } else if (widget.sliderType == HSVColorSliderType.alpha) {
+        return hsv.alpha;
+      }
+    }
+
+    return 0;
+  }
+}
+
+class HSLColorPickerArea extends StatefulWidget {
+  const HSLColorPickerArea({
+    required this.color,
+    super.key,
+    this.onColorChanged,
+    this.onColorEnd,
+    this.padding = const EdgeInsets.all(0),
+    this.radius = const Radius.circular(0),
+    this.reverse = false,
+    required this.sliderType,
+  });
+
+  final HSLColor color;
+  final ValueChanged<HSLColor>? onColorChanged;
+  final ValueChanged<HSLColor>? onColorEnd;
+  final HSLColorSliderType sliderType;
+  final bool reverse;
+  final Radius radius;
+
+  final EdgeInsets padding;
+
+  @override
+  State<HSLColorPickerArea> createState() => _HSLColorPickerAreaState();
+}
+
+class _HSLColorPickerAreaState extends State<HSLColorPickerArea> {
+  double _currentHorizontal;
+  double _currentVertical;
+  double _hue;
+  double _saturation;
+  double _lightness;
+  double _alpha;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentHorizontal = horizontal;
+    _currentVertical = vertical;
+    final hsl = widget.color;
+    _hue = hsl.hue;
+    _saturation = hsl.saturation;
+    _lightness = hsl.lightness;
+    _alpha = hsl.alpha;
+  }
+
+  void _updateColor(Offset localPosition, Size size) {
+    _currentHorizontal = ((localPosition.dx - widget.padding.left) /
+            (size.width - widget.padding.horizontal))
+        .clamp(0, 1);
+    _currentVertical = ((localPosition.dy - widget.padding.top) /
+            (size.height - widget.padding.vertical))
+        .clamp(0, 1);
+    if (widget.reverse) {
+      if (widget.sliderType == HSLColorSliderType.hueSat) {
+        _hue = _currentHorizontal * 360;
+        _saturation = _currentVertical;
+      } else if (widget.sliderType == HSLColorSliderType.hueLum) {
+        _hue = _currentHorizontal * 360;
+        _lightness = _currentVertical;
+      } else if (widget.sliderType == HSLColorSliderType.hueAlpha) {
+        _hue = _currentHorizontal * 360;
+        _alpha = _currentVertical;
+      } else if (widget.sliderType == HSLColorSliderType.satLum) {
+        _saturation = _currentHorizontal;
+        _lightness = _currentVertical;
+      } else if (widget.sliderType == HSLColorSliderType.satAlpha) {
+        _saturation = _currentHorizontal;
+        _alpha = _currentVertical;
+      } else if (widget.sliderType == HSLColorSliderType.lumAlpha) {
+        _lightness = _currentHorizontal;
+        _alpha = _currentVertical;
+      } else if (widget.sliderType == HSLColorSliderType.hue) {
+        _hue = _currentHorizontal * 360;
+      } else if (widget.sliderType == HSLColorSliderType.sat) {
+        _saturation = _currentHorizontal;
+      } else if (widget.sliderType == HSLColorSliderType.lum) {
+        _lightness = _currentHorizontal;
+      } else if (widget.sliderType == HSLColorSliderType.alpha) {
+        _alpha = _currentHorizontal;
+      }
+    } else {
+      if (widget.sliderType == HSLColorSliderType.hueSat) {
+        _hue = _currentVertical * 360;
+        _saturation = _currentHorizontal;
+      } else if (widget.sliderType == HSLColorSliderType.hueLum) {
+        _hue = _currentVertical * 360;
+        _lightness = _currentHorizontal;
+      } else if (widget.sliderType == HSLColorSliderType.hueAlpha) {
+        _hue = _currentVertical * 360;
+        _alpha = _currentHorizontal;
+      } else if (widget.sliderType == HSLColorSliderType.satLum) {
+        _saturation = _currentVertical;
+        _lightness = _currentHorizontal;
+      } else if (widget.sliderType == HSLColorSliderType.satAlpha) {
+        _saturation = _currentVertical;
+        _alpha = _currentHorizontal;
+      } else if (widget.sliderType == HSLColorSliderType.lumAlpha) {
+        _lightness = _currentVertical;
+        _alpha = _currentHorizontal;
+      } else if (widget.sliderType == HSLColorSliderType.hue) {
+        _hue = _currentVertical * 360;
+      } else if (widget.sliderType == HSLColorSliderType.sat) {
+        _saturation = _currentVertical;
+      } else if (widget.sliderType == HSLColorSliderType.lum) {
+        _lightness = _currentVertical;
+      } else if (widget.sliderType == HSLColorSliderType.alpha) {
+        _alpha = _currentVertical;
+      }
+    }
+    widget.onColorChanged?.call(HSLColor.fromAHSL(
+      _alpha.clamp(0, 1),
+      _hue.clamp(0, 360),
+      _saturation.clamp(0, 1),
+      _lightness.clamp(0, 1),
+    ));
+  }
+
+  @override
+  void didUpdateWidget(covariant HSLColorPickerArea oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.color != widget.color) {
+      final hsl = widget.color;
+      _hue = hsl.hue;
+      _saturation = hsl.saturation;
+      _lightness = hsl.lightness;
+      _alpha = hsl.alpha;
+      _currentHorizontal = horizontal;
+      _currentVertical = vertical;
+    }
+  }
+
+  bool get isSingleChannel {
+    return widget.sliderType == HSLColorSliderType.hue ||
+        widget.sliderType == HSLColorSliderType.sat ||
+        widget.sliderType == HSLColorSliderType.lum ||
+        widget.sliderType == HSLColorSliderType.alpha;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final cursorRadius = theme.scaling * 16;
+    final radDiv = isSingleChannel ? 4 : 2;
+
+    return GestureDetector(
+      onPanEnd: (details) {
+        widget.onColorEnd?.call(HSLColor.fromAHSL(
+          _alpha.clamp(0, 1),
+          _hue.clamp(0, 360),
+          _saturation.clamp(0, 1),
+          _lightness.clamp(0, 1),
+        ));
+      },
+      onPanUpdate: (details) {
+        setState(() {
+          _updateColor(details.localPosition, context.size!);
+        });
+      },
+      onTapDown: (details) {
+        _updateColor(details.localPosition, context.size!);
+        widget.onColorEnd?.call(HSLColor.fromAHSL(
+          _alpha.clamp(0, 1),
+          _hue.clamp(0, 360),
+          _saturation.clamp(0, 1),
+          _lightness.clamp(0, 1),
+        ));
+      },
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned.fill(
+            child: RepaintBoundary(
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(widget.radius),
+                child: const CustomPaint(painter: CheckboardPainter()),
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: RepaintBoundary(
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(widget.radius),
+                child: CustomPaint(
+                  painter: HSLColorPickerPainter(
+                    color: HSLColor.fromAHSL(
+                      _alpha.clamp(0, 1),
+                      _hue.clamp(0, 360),
+                      _saturation.clamp(0, 1),
+                      _lightness.clamp(0, 1),
+                    ),
+                    reverse: widget.reverse,
+                    sliderType: widget.sliderType,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: -cursorRadius / radDiv,
+            left: -cursorRadius / radDiv,
+            right: -cursorRadius / radDiv,
+            top: -cursorRadius / radDiv,
+            child: isSingleChannel
+                ? (widget.reverse
+                    ? Padding(
+                        padding: EdgeInsets.only(
+                          left: widget.padding.left,
+                          right: widget.padding.right,
+                        ),
+                        child: Align(
+                          alignment: Alignment(
+                            (_currentHorizontal.clamp(0, 1) * 2) - 1,
+                            (_currentVertical.clamp(0, 1) * 2) - 1,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.white,
+                                width: theme.scaling * 2,
+                              ),
+                              borderRadius: BorderRadius.all(widget.radius),
+                              color: widget.color.toColor(),
+                            ),
+                            height: double.infinity,
+                            width: cursorRadius,
+                          ),
+                        ),
+                      )
+                    : Padding(
+                        padding: EdgeInsets.only(
+                          bottom: widget.padding.bottom,
+                          top: widget.padding.top,
+                        ),
+                        child: Align(
+                          alignment: Alignment(
+                            (_currentHorizontal.clamp(0, 1) * 2) - 1,
+                            (_currentVertical.clamp(0, 1) * 2) - 1,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.white,
+                                width: theme.scaling * 2,
+                              ),
+                              borderRadius: BorderRadius.all(widget.radius),
+                              color: widget.color.toColor(),
+                            ),
+                            height: cursorRadius,
+                            width: double.infinity,
+                          ),
+                        ),
+                      ))
+                : Padding(
+                    padding: widget.padding,
+                    child: Align(
+                      alignment: Alignment(
+                        (_currentHorizontal.clamp(0, 1) * 2) - 1,
+                        (_currentVertical.clamp(0, 1) * 2) - 1,
+                      ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.white,
+                            width: theme.scaling * 2,
+                          ),
+                          color: widget.color.toColor(),
+                          shape: BoxShape.circle,
+                        ),
+                        height: cursorRadius,
+                        width: cursorRadius,
+                      ),
+                    ),
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  double get vertical {
+    final hsl = widget.color;
+    if (widget.reverse) {
+      if (widget.sliderType == HSLColorSliderType.hueSat) {
+        return hsl.saturation;
+      } else if (widget.sliderType == HSLColorSliderType.hueLum) {
+        return hsl.lightness;
+      } else if (widget.sliderType == HSLColorSliderType.hueAlpha) {
+        return hsl.alpha;
+      } else if (widget.sliderType == HSLColorSliderType.satLum) {
+        return hsl.lightness;
+      } else if (widget.sliderType == HSLColorSliderType.satAlpha) {
+        return hsl.alpha;
+      } else if (widget.sliderType == HSLColorSliderType.lumAlpha) {
+        return hsl.alpha;
+      } else if (widget.sliderType == HSLColorSliderType.hue) {
+        return hsl.hue / 360;
+      } else if (widget.sliderType == HSLColorSliderType.sat) {
+        return hsl.saturation;
+      } else if (widget.sliderType == HSLColorSliderType.lum) {
+        return hsl.lightness;
+      } else if (widget.sliderType == HSLColorSliderType.alpha) {
+        return hsl.alpha;
+      }
+    } else {
+      if (widget.sliderType == HSLColorSliderType.hueSat) {
+        return hsl.hue / 360;
+      } else if (widget.sliderType == HSLColorSliderType.hueLum) {
+        return hsl.hue / 360;
+      } else if (widget.sliderType == HSLColorSliderType.hueAlpha) {
+        return hsl.hue / 360;
+      } else if (widget.sliderType == HSLColorSliderType.satLum) {
+        return hsl.saturation;
+      } else if (widget.sliderType == HSLColorSliderType.satAlpha) {
+        return hsl.saturation;
+      } else if (widget.sliderType == HSLColorSliderType.lumAlpha) {
+        return hsl.lightness;
+      } else if (widget.sliderType == HSLColorSliderType.hue) {
+        return hsl.hue / 360;
+      } else if (widget.sliderType == HSLColorSliderType.sat) {
+        return hsl.saturation;
+      } else if (widget.sliderType == HSLColorSliderType.lum) {
+        return hsl.lightness;
+      } else if (widget.sliderType == HSLColorSliderType.alpha) {
+        return hsl.alpha;
+      }
+    }
+
+    return 0;
+  }
+
+  double get horizontal {
+    final hsl = widget.color;
+    if (widget.reverse) {
+      if (widget.sliderType == HSLColorSliderType.hueSat) {
+        return hsl.hue / 360;
+      } else if (widget.sliderType == HSLColorSliderType.hueLum) {
+        return hsl.hue / 360;
+      } else if (widget.sliderType == HSLColorSliderType.hueAlpha) {
+        return hsl.hue / 360;
+      } else if (widget.sliderType == HSLColorSliderType.satLum) {
+        return hsl.saturation;
+      } else if (widget.sliderType == HSLColorSliderType.satAlpha) {
+        return hsl.saturation;
+      } else if (widget.sliderType == HSLColorSliderType.lumAlpha) {
+        return hsl.lightness;
+      } else if (widget.sliderType == HSLColorSliderType.hue) {
+        return hsl.hue / 360;
+      } else if (widget.sliderType == HSLColorSliderType.sat) {
+        return hsl.saturation;
+      } else if (widget.sliderType == HSLColorSliderType.lum) {
+        return hsl.lightness;
+      } else if (widget.sliderType == HSLColorSliderType.alpha) {
+        return hsl.alpha;
+      }
+    } else {
+      if (widget.sliderType == HSLColorSliderType.hueSat) {
+        return hsl.saturation;
+      } else if (widget.sliderType == HSLColorSliderType.hueLum) {
+        return hsl.lightness;
+      } else if (widget.sliderType == HSLColorSliderType.hueAlpha) {
+        return hsl.alpha;
+      } else if (widget.sliderType == HSLColorSliderType.satLum) {
+        return hsl.lightness;
+      } else if (widget.sliderType == HSLColorSliderType.satAlpha) {
+        return hsl.alpha;
+      } else if (widget.sliderType == HSLColorSliderType.lumAlpha) {
+        return hsl.alpha;
+      } else if (widget.sliderType == HSLColorSliderType.hue) {
+        return hsl.hue / 360;
+      } else if (widget.sliderType == HSLColorSliderType.sat) {
+        return hsl.saturation;
+      } else if (widget.sliderType == HSLColorSliderType.lum) {
+        return hsl.lightness;
+      } else if (widget.sliderType == HSLColorSliderType.alpha) {
+        return hsl.alpha;
+      }
+    }
+
+    return 0;
+  }
+}
+
+class HSVColorPickerPainter extends CustomPainter {
+  const HSVColorPickerPainter({
+    required this.color,
+    this.reverse = false,
+    required this.sliderType,
+  });
+
+  final HSVColorSliderType sliderType;
+  final HSVColor color;
+
+  final bool reverse;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // disable anti-aliasing
+    final pp = Paint();
+    pp.isAntiAlias = false;
+    pp.style = PaintingStyle.fill;
+    final canvasHeight = size.height;
+    final canvasWidth = size.width;
+    if (sliderType == HSVColorSliderType.hueSat) {
+      // if reverse, then its sat hue
+      if (reverse) {
+        final width = canvasWidth / 360;
+        final height = canvasHeight / 100;
+        // vertical for hue and horizontal for saturation
+        for (int i = 0; i < 360; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result =
+                HSVColor.fromAHSV(1, i.toDouble(), j / 100, color.value);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 360;
+        // horizontal for hue and vertical for saturation
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 360; j += 1) {
+            final result =
+                HSVColor.fromAHSV(1, j.toDouble(), i / 100, color.value);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSVColorSliderType.hueVal) {
+      // if reverse, then its val hue
+      if (reverse) {
+        final width = canvasWidth / 360;
+        final height = canvasHeight / 100;
+        // vertical for hue and horizontal for value
+        for (int i = 0; i < 360; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result =
+                HSVColor.fromAHSV(1, i.toDouble(), color.saturation, j / 100.0);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 360;
+        // horizontal for hue and vertical for value
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 360; j += 1) {
+            final result =
+                HSVColor.fromAHSV(1, j.toDouble(), color.saturation, i / 100);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSVColorSliderType.satVal) {
+      // if reverse, then its val sat
+      if (reverse) {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for saturation and vertical for value
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result = HSVColor.fromAHSV(1, color.hue, i / 100, j / 100);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for saturation and vertical for value
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result = HSVColor.fromAHSV(1, color.hue, j / 100, i / 100);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSVColorSliderType.hueAlpha) {
+      // if reverse, then its alpha hue
+      if (reverse) {
+        final width = canvasWidth / 360;
+        final height = canvasHeight / 100;
+        // vertical for hue and horizontal for alpha
+        for (int i = 0; i < 360; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result = HSVColor.fromAHSV(
+              j / 100.0,
+              i.toDouble(),
+              color.saturation,
+              color.value,
+            );
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 360;
+        // horizontal for hue and vertical for alpha
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 360; j += 1) {
+            final result = HSVColor.fromAHSV(
+              i / 100,
+              j.toDouble(),
+              color.saturation,
+              color.value,
+            );
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSVColorSliderType.satAlpha) {
+      // if reverse, then its alpha sat
+      if (reverse) {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for saturation and vertical for alpha
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result =
+                HSVColor.fromAHSV(j / 100, color.hue, i / 100, color.value);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for saturation and vertical for alpha
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result =
+                HSVColor.fromAHSV(i / 100, color.hue, j / 100, color.value);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSVColorSliderType.valAlpha) {
+      // if reverse, then its alpha val
+      if (reverse) {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for value and vertical for alpha
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result = HSVColor.fromAHSV(
+              j / 100,
+              color.hue,
+              color.saturation,
+              i / 100,
+            );
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for value and vertical for alpha
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result = HSVColor.fromAHSV(
+              i / 100,
+              color.hue,
+              color.saturation,
+              j / 100,
+            );
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSVColorSliderType.hue) {
+      if (reverse) {
+        final width = canvasWidth / 360;
+        for (int i = 0; i < 360; i += 1) {
+          final result = HSVColor.fromAHSV(
+            1,
+            i.toDouble(),
+            color.saturation,
+            color.value.clamp(0, 1),
+          );
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(i * width, 0, width, canvasHeight),
+            paint,
+          );
+        }
+      } else {
+        final height = canvasHeight / 360;
+        for (int i = 0; i < 360; i += 1) {
+          final result = HSVColor.fromAHSV(
+            1,
+            i.toDouble(),
+            color.saturation,
+            color.value.clamp(0, 1),
+          );
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(0, i * height, canvasWidth, height),
+            paint,
+          );
+        }
+      }
+    } else if (sliderType == HSVColorSliderType.sat) {
+      if (reverse) {
+        final width = canvasWidth / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result =
+              HSVColor.fromAHSV(1, color.hue, i / 100, color.value.clamp(0, 1));
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(i * width, 0, width, canvasHeight),
+            paint,
+          );
+        }
+      } else {
+        final height = canvasHeight / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result =
+              HSVColor.fromAHSV(1, color.hue, i / 100, color.value.clamp(0, 1));
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(0, i * height, canvasWidth, height),
+            paint,
+          );
+        }
+      }
+    } else if (sliderType == HSVColorSliderType.val) {
+      if (reverse) {
+        final width = canvasWidth / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result =
+              HSVColor.fromAHSV(1, color.hue, color.saturation, i / 100);
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(i * width, 0, width, canvasHeight),
+            paint,
+          );
+        }
+      } else {
+        final height = canvasHeight / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result =
+              HSVColor.fromAHSV(1, color.hue, color.saturation, i / 100);
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(0, i * height, canvasWidth, height),
+            paint,
+          );
+        }
+      }
+    } else if (sliderType == HSVColorSliderType.alpha) {
+      if (reverse) {
+        final width = canvasWidth / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result = HSVColor.fromAHSV(
+            i / 100,
+            color.hue,
+            color.saturation,
+            color.value.clamp(0, 1),
+          );
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(i * width, 0, width, canvasHeight),
+            paint,
+          );
+        }
+      } else {
+        final height = canvasHeight / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result = HSVColor.fromAHSV(
+            i / 100,
+            color.hue,
+            color.saturation,
+            color.value.clamp(0, 1),
+          );
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(0, i * height, canvasWidth, height),
+            paint,
+          );
+        }
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant HSVColorPickerPainter oldDelegate) {
+    if (oldDelegate.reverse != reverse ||
+        oldDelegate.sliderType != sliderType) {
+      return true;
+    }
+    if (sliderType == HSVColorSliderType.hueSat) {
+      return oldDelegate.color.value != color.value;
+    } else if (sliderType == HSVColorSliderType.hueVal) {
+      return oldDelegate.color.saturation != color.saturation;
+    } else if (sliderType == HSVColorSliderType.satVal) {
+      return oldDelegate.color.hue != color.hue;
+    } else if (sliderType == HSVColorSliderType.alpha) {
+      return oldDelegate.color.value != color.value ||
+          oldDelegate.color.saturation != color.saturation ||
+          oldDelegate.color.hue != color.hue;
+    } else if (sliderType == HSVColorSliderType.hue) {
+      return oldDelegate.color.saturation != color.saturation ||
+          oldDelegate.color.value != color.value;
+    } else if (sliderType == HSVColorSliderType.sat) {
+      return oldDelegate.color.hue != color.hue ||
+          oldDelegate.color.value != color.value;
+    } else if (sliderType == HSVColorSliderType.val) {
+      return oldDelegate.color.hue != color.hue ||
+          oldDelegate.color.saturation != color.saturation;
+    } else if (sliderType == HSVColorSliderType.hueAlpha) {
+      return oldDelegate.color.value != color.value;
+    } else if (sliderType == HSVColorSliderType.satAlpha) {
+      return oldDelegate.color.hue != color.hue;
+    } else if (sliderType == HSVColorSliderType.valAlpha) {
+      return oldDelegate.color.hue != color.hue;
+    }
+
+    return false;
+  }
+}
+
+class HSLColorPickerPainter extends CustomPainter {
+  const HSLColorPickerPainter({
+    required this.color,
+    this.reverse = false,
+    required this.sliderType,
+  });
+
+  final HSLColorSliderType sliderType;
+  final HSLColor color;
+
+  final bool reverse;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    // disable anti-aliasing
+    final pp = Paint();
+    pp.isAntiAlias = false;
+    pp.style = PaintingStyle.fill;
+    final canvasHeight = size.height;
+    final canvasWidth = size.width;
+    if (sliderType == HSLColorSliderType.hueSat) {
+      // if reverse, then its sat hue
+      if (reverse) {
+        final width = canvasWidth / 360;
+        final height = canvasHeight / 100;
+        // vertical for hue and horizontal for saturation
+        for (int i = 0; i < 360; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result =
+                HSLColor.fromAHSL(1, i.toDouble(), j / 100, color.lightness);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 360;
+        // horizontal for hue and vertical for saturation
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 360; j += 1) {
+            final result =
+                HSLColor.fromAHSL(1, j.toDouble(), i / 100, color.lightness);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSLColorSliderType.hueLum) {
+      // if reverse, then its lum hue
+      if (reverse) {
+        final width = canvasWidth / 360;
+        final height = canvasHeight / 100;
+        // vertical for hue and horizontal for lightness
+        for (int i = 0; i < 360; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result =
+                HSLColor.fromAHSL(1, i.toDouble(), color.saturation, j / 100.0);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 360;
+        // horizontal for hue and vertical for lightness
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 360; j += 1) {
+            final result =
+                HSLColor.fromAHSL(1, j.toDouble(), color.saturation, i / 100);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSLColorSliderType.satLum) {
+      // if reverse, then its lum sat
+      if (reverse) {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for saturation and vertical for lightness
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result = HSLColor.fromAHSL(1, color.hue, i / 100, j / 100);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for saturation and vertical for lightness
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result = HSLColor.fromAHSL(1, color.hue, j / 100, i / 100);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSLColorSliderType.hueAlpha) {
+      // if reverse, then its alpha hue
+      if (reverse) {
+        final width = canvasWidth / 360;
+        final height = canvasHeight / 100;
+        // vertical for hue and horizontal for alpha
+        for (int i = 0; i < 360; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result = HSLColor.fromAHSL(
+              j / 100.0,
+              i.toDouble(),
+              color.saturation,
+              color.lightness,
+            );
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 360;
+        // horizontal for hue and vertical for alpha
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 360; j += 1) {
+            final result = HSLColor.fromAHSL(
+              i / 100,
+              j.toDouble(),
+              color.saturation,
+              color.lightness,
+            );
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSLColorSliderType.satAlpha) {
+      // if reverse, then its alpha sat
+      if (reverse) {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for saturation and vertical for alpha
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result =
+                HSLColor.fromAHSL(j / 100, color.hue, i / 100, color.lightness);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for saturation and vertical for alpha
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result =
+                HSLColor.fromAHSL(i / 100, color.hue, j / 100, color.lightness);
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSLColorSliderType.lumAlpha) {
+      // if reverse, then its alpha lum
+      if (reverse) {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for lightness and vertical for alpha
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result = HSLColor.fromAHSL(
+              j / 100,
+              color.hue,
+              color.saturation,
+              i / 100,
+            );
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      } else {
+        final width = canvasWidth / 100;
+        final height = canvasHeight / 100;
+        // horizontal for lightness and vertical for alpha
+        for (int i = 0; i < 100; i += 1) {
+          for (int j = 0; j < 100; j += 1) {
+            final result = HSLColor.fromAHSL(
+              i / 100,
+              color.hue,
+              color.saturation,
+              j / 100,
+            );
+            final paint = pp
+              ..color = result.toColor()
+              ..style = PaintingStyle.fill;
+            canvas.drawRect(
+              Rect.fromLTWH(i * width, j * height, width, height),
+              paint,
+            );
+          }
+        }
+      }
+    } else if (sliderType == HSLColorSliderType.hue) {
+      if (reverse) {
+        final width = canvasWidth / 360;
+        for (int i = 0; i < 360; i += 1) {
+          final result = HSLColor.fromAHSL(
+            1,
+            i.toDouble(),
+            color.saturation,
+            color.lightness.clamp(0, 1),
+          );
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(i * width, 0, width, canvasHeight),
+            paint,
+          );
+        }
+      } else {
+        final height = canvasHeight / 360;
+        for (int i = 0; i < 360; i += 1) {
+          final result = HSLColor.fromAHSL(
+            1,
+            i.toDouble(),
+            color.saturation,
+            color.lightness.clamp(0, 1),
+          );
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(0, i * height, canvasWidth, height),
+            paint,
+          );
+        }
+      }
+    } else if (sliderType == HSLColorSliderType.sat) {
+      if (reverse) {
+        final width = canvasWidth / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result = HSLColor.fromAHSL(
+            1,
+            color.hue,
+            i / 100,
+            color.lightness.clamp(0, 1),
+          );
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(i * width, 0, width, canvasHeight),
+            paint,
+          );
+        }
+      } else {
+        final height = canvasHeight / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result = HSLColor.fromAHSL(
+            1,
+            color.hue,
+            i / 100,
+            color.lightness.clamp(0, 1),
+          );
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(0, i * height, canvasWidth, height),
+            paint,
+          );
+        }
+      }
+    } else if (sliderType == HSLColorSliderType.lum) {
+      if (reverse) {
+        final width = canvasWidth / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result =
+              HSLColor.fromAHSL(1, color.hue, color.saturation, i / 100);
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(i * width, 0, width, canvasHeight),
+            paint,
+          );
+        }
+      } else {
+        final height = canvasHeight / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result =
+              HSLColor.fromAHSL(1, color.hue, color.saturation, i / 100);
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(0, i * height, canvasWidth, height),
+            paint,
+          );
+        }
+      }
+    } else if (sliderType == HSLColorSliderType.alpha) {
+      if (reverse) {
+        final width = canvasWidth / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result = HSLColor.fromAHSL(
+            i / 100,
+            color.hue,
+            color.saturation,
+            color.lightness.clamp(0, 1),
+          );
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(i * width, 0, width, canvasHeight),
+            paint,
+          );
+        }
+      } else {
+        final height = canvasHeight / 100;
+        for (int i = 0; i < 100; i += 1) {
+          final result = HSLColor.fromAHSL(
+            i / 100,
+            color.hue,
+            color.saturation,
+            color.lightness.clamp(0, 1),
+          );
+          final paint = pp
+            ..color = result.toColor()
+            ..style = PaintingStyle.fill;
+          canvas.drawRect(
+            Rect.fromLTWH(0, i * height, canvasWidth, height),
+            paint,
+          );
+        }
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant HSLColorPickerPainter oldDelegate) {
+    if (oldDelegate.reverse != reverse ||
+        oldDelegate.sliderType != sliderType) {
+      return true;
+    }
+    if (sliderType == HSLColorSliderType.hueSat) {
+      return oldDelegate.color.lightness != color.lightness;
+    } else if (sliderType == HSLColorSliderType.hueLum) {
+      return oldDelegate.color.saturation != color.saturation;
+    } else if (sliderType == HSLColorSliderType.satLum) {
+      return oldDelegate.color.hue != color.hue;
+    } else if (sliderType == HSLColorSliderType.alpha) {
+      return oldDelegate.color.lightness != color.lightness ||
+          oldDelegate.color.saturation != color.saturation ||
+          oldDelegate.color.hue != color.hue;
+    } else if (sliderType == HSLColorSliderType.hue) {
+      return oldDelegate.color.lightness != color.lightness ||
+          oldDelegate.color.saturation != color.saturation;
+    } else if (sliderType == HSLColorSliderType.sat) {
+      return oldDelegate.color.hue != color.hue ||
+          oldDelegate.color.lightness != color.lightness;
+    } else if (sliderType == HSLColorSliderType.lum) {
+      return oldDelegate.color.hue != color.hue ||
+          oldDelegate.color.saturation != color.saturation;
+    } else if (sliderType == HSLColorSliderType.hueAlpha) {
+      return oldDelegate.color.lightness != color.lightness;
+    } else if (sliderType == HSLColorSliderType.satAlpha) {
+      return oldDelegate.color.hue != color.hue;
+    } else if (sliderType == HSLColorSliderType.lumAlpha) {
+      return oldDelegate.color.hue != color.hue;
+    }
+
+    return false;
+  }
+}
+
+class CheckboardPainter extends CustomPainter {
+  const CheckboardPainter();
+  static const checkboardPrimary = Color(0xFFE0E0E0);
+  static const checkboardSecondary = Color(0xFFB0B0B0);
+  static const checkboardSize = 8;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..style = PaintingStyle.fill
+      ..color = checkboardPrimary;
+    canvas.drawRect(Offset.zero & size, paint);
+    paint.color = checkboardSecondary;
+    for (double i = 0.0; i < size.width; i += checkboardSize) {
+      for (double j = 0.0; j < size.height; j += checkboardSize) {
+        if ((i / checkboardSize).floor() % 2 == 0) {
+          if ((j / checkboardSize).floor() % 2 == 0) {
+            canvas.drawRect(
+              Rect.fromLTWH(i, j, checkboardSize, checkboardSize),
+              paint,
+            );
+          }
+        } else {
+          if ((j / checkboardSize).floor() % 2 != 0) {
+            canvas.drawRect(
+              Rect.fromLTWH(i, j, checkboardSize, checkboardSize),
+              paint,
+            );
+          }
+        }
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CheckboardPainter oldDelegate) => false;
+}

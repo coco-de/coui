@@ -1,0 +1,333 @@
+---
+alwaysApply: true
+---
+
+# DCM 기반 Dart/Flutter 코드 규칙 (Complete Rules Guide)
+
+목적: 이 문서는 DCM(Dart Code Metrics) 권장 규칙을 기반으로 본 레포의 Dart/Flutter 코드 품질 기준을 정의합니다. 구현/리뷰/리팩토링 시 아래 체크리스트를 우선 적용하세요.
+
+참고: [DCM Rules 전체 목록](https://dcm.dev/docs/rules/)
+
+## 1. 주요 DCM 규칙 (Priority Rules)
+
+### 1.1 타입 안전성 (Type Safety)
+- **avoid-dynamic**: `dynamic` 타입 지양, `Object?`나 구체적 타입 사용
+- **avoid-type-casts**: `as` 캐스팅 대신 `is` 체크 후 스마트 캐스트 활용
+- **avoid-non-null-assertion**: `!` 연산자 대신 안전한 null 체크 패턴
+- **avoid-banned-types**: 금지된 타입들 사용 금지
+
+### 1.2 컬렉션 안전성 (Collection Safety)
+- **avoid-unsafe-collection-methods**: `elementAt`, `first`, `last` 대신 안전한 메서드 사용
+  ```dart
+  // Bad
+  final item = list[0];
+  final first = list.first;
+  
+  // Good
+  final item = list.elementAtOrNull(0);
+  final first = list.firstOrNull;
+  ```
+- **avoid-collection-equality-checks**: 컬렉션 직접 비교 대신 `listEquals` 등 사용
+
+### 1.3 메모리 관리 (Memory Management)
+- **avoid-undisposed-instances**: 생성된 리소스는 반드시 dispose
+  ```dart
+  // Bad
+  @override
+  Widget build(BuildContext context) {
+    final controller = AnimationController(...);
+    return Widget(controller: controller);
+  }
+  
+  // Good
+  late final AnimationController _controller;
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+  ```
+
+### 1.4 비동기 프로그래밍 (Async Programming)
+- **use-setstate-synchronously**: `await` 후 `setState` 전 `mounted` 체크 필수
+  ```dart
+  Future<void> loadData() async {
+    final data = await fetchData();
+    if (mounted) {
+      setState(() => _data = data);
+    }
+  }
+  ```
+
+## 2. 코딩 스타일 규칙 (Style Rules)
+
+### 2.1 식별자 명명 (Identifier Naming)
+- **prefer-correct-identifier-length**: 적절한 식별자 길이 유지 (2-30자)
+  ```dart
+  // Bad
+  (e) => e.id
+  final effectiveSelectedBackgroundColor = ...;
+  
+  // Good
+  (element) => element.id
+  final selectedBackgroundColor = ...;
+  ```
+
+### 2.2 파일 구조 (File Structure)
+- **prefer-single-declaration-per-file**: 파일당 하나의 공개 선언
+  ```dart
+  // Bad - 여러 공개 클래스
+  abstract class XxxStyling implements Styling {}
+  class XxxStyle implements XxxStyling {}
+  
+  // Good - private + typedef 패턴
+  abstract class _XxxStyling implements Styling {}
+  typedef XxxStyling = _XxxStyling;
+  class XxxStyle implements XxxStyling {}
+  ```
+
+- **prefer-single-widget-per-file**: 파일당 하나의 위젯 (Flutter)
+
+### 2.3 코드 포매팅 (Code Formatting)
+- **format-comment**: 주석은 적절한 구두점으로 종료
+- **prefer-trailing-comma**: 다중 라인 매개변수에 후행 쉼표 추가
+- **unnecessary-trailing-comma**: 단일 라인에서 불필요한 후행 쉼표 제거
+- **arguments-ordering**: 명명된 인수를 알파벳순으로 정렬
+
+### 2.4 상수 및 리터럴 (Constants & Literals)
+- **no-magic-string**: 매직 스트링 상수로 추출
+  ```dart
+  // Bad
+  element.setAttribute('role', 'button');
+  element.setAttribute('role', 'button');
+  
+  // Good
+  static const _roleAttribute = 'role';
+  static const _buttonRole = 'button';
+  element.setAttribute(_roleAttribute, _buttonRole);
+  ```
+
+- **prefer-prefixed-global-constants**: 전역 상수에 접두사 사용 (k 접두사)
+  ```dart
+  // Bad
+  const daysInMonth = [31, 28, 31, ...];
+  
+  // Good
+  const kDaysInMonth = [31, 28, 31, ...];
+  ```
+
+- **avoid-duplicate-constant-values**: 중복된 상수값 피하기
+
+## 3. 제어 흐름 규칙 (Control Flow Rules)
+
+### 3.1 조건문 최적화
+- **prefer-early-return**: 중첩 최소화를 위한 조기 반환 패턴
+  ```dart
+  // Bad
+  Widget build() {
+    if (condition) {
+      return Widget1();
+    } else {
+      return Widget2();
+    }
+  }
+  
+  // Good
+  Widget build() {
+    if (condition) return Widget1();
+    return Widget2();
+  }
+  ```
+
+### 3.2 연산자 우선순위
+- **prefer-parentheses-with-if-null**: `??` 연산자 사용 시 괄호로 우선순위 명시
+  ```dart
+  // Bad
+  final result = a + b ?? c;
+  
+  // Good
+  final result = (a + b) ?? c;
+  ```
+
+### 3.3 복잡도 관리
+- **avoid-high-cyclomatic-complexity**: 함수의 복잡도 제한
+- **avoid-long-parameter-list**: 긴 매개변수 목록 피하기
+
+## 4. 품질 보장 규칙 (Quality Rules)
+
+### 4.1 코드 정리
+- **avoid-unused-parameters**: 사용하지 않는 매개변수 제거 또는 `_`로 명명
+- **no-empty-block**: 빈 블록 피하기, 의도가 있다면 주석 추가
+- **avoid-commented-out-code**: 주석 처리된 코드 제거
+
+### 4.2 네이밍 규칙
+- **prefer-correct-callback-field-name**: 콜백 필드명 규칙 준수
+  ```dart
+  // Bad
+  final Function callback;
+  
+  // Good
+  final VoidCallback onPressed;
+  final WidgetBuilder builder;
+  ```
+
+### 4.3 중복 제거
+- **avoid-duplicate-expressions**: 중복된 표현식 제거
+- **avoid-shadowing**: 변수명 섀도잉 방지
+
+## 5. Flutter 특화 규칙 (Flutter-Specific Rules)
+
+### 5.1 위젯 관리
+- **prefer-single-widget-per-file**: 파일당 하나의 위젯
+- **avoid-expanded-as-spacer**: `Expanded`를 공간 채우기용으로만 사용 금지
+
+### 5.2 리소스 관리
+- **avoid-undisposed-instances**: 일회용 인스턴스는 적절히 해제
+- **dispose-fields**: 필드로 선언된 일회용 리소스는 dispose에서 해제
+
+## 6. Import/Export 규칙 (Import/Export Rules)
+
+### 6.1 Import 최적화
+- **avoid-importing-entrypoint-exports**: 엔트리포인트가 아닌 직접 소스에서 import
+  ```dart
+  // Bad
+  import 'package:coui_web/coui_web.dart';
+  
+  // Good
+  import 'package:coui_web/src/specific/file.dart';
+  ```
+
+- **prefer-library-prefixes**: 라이브러리 접두사 사용 권장
+
+## 7. 성능 관련 규칙 (Performance Rules)
+
+### 7.1 컬렉션 최적화
+- **prefer-null-aware-spread**: null-aware 스프레드 연산자 사용
+  ```dart
+  // Bad
+  final list = [...otherList!];
+  
+  // Good
+  final list = [...?otherList];
+  ```
+
+### 7.2 변수 선언 최적화
+- **move-variable-closer-to-its-usage**: 변수 선언을 사용 지점 근처로 이동
+
+## 8. 본 프로젝트 특화 규칙
+
+### 8.1 네이밍 규칙
+- 공개 클래스 접두사: `Co`
+- 파일명은 첫 선언 `Co*` 타입의 snake_case로 맞춤
+
+### 8.2 테마/스타일 규칙
+- 테마 우선순위: 테마 → 위젯 값 → 디폴트
+- 스타일 파일 패턴: private abstract class + typedef 사용
+
+## 9. 자동화 도구 사용법
+
+### 9.1 DCM 명령어
+```bash
+# 전체 분석
+dcm analyze packages/coui_web/lib/src/ packages/coui_flutterlib/src/
+
+# 자동 수정 (안전한 린트만)
+dcm fix --type lints
+
+# 특정 파일 분석
+dcm analyze path/to/file.dart
+```
+
+### 9.2 MCP를 통한 자동화 (Cursor IDE)
+- 루트 등록 후 DCM 분석/수정 실행
+- 멀티패키지 환경에서 패키지별 개별 처리
+- 자동수정 후 재분석으로 개선 상태 확인
+
+## 10. 리뷰 체크리스트 (PR 시)
+
+### 필수 확인사항
+- [ ] `dynamic` 제거 또는 범위 최소화
+- [ ] 리스너/컨트롤러 dispose 확인
+- [ ] 안전한 컬렉션 접근 함수 사용
+- [ ] `await` 이후 `mounted` 체크
+- [ ] 매직 스트링 상수 추출
+- [ ] 짧은/긴 식별자 수정
+- [ ] 단일 선언 파일 규칙 준수
+- [ ] 주석 처리된 코드/빈 블록 제거
+
+### 권장 확인사항
+- [ ] 연산자 우선순위 괄호 명시
+- [ ] 조기 반환 패턴 적용
+- [ ] 콜백 필드명 규칙 준수
+- [ ] 후행 쉼표 일관성
+- [ ] Import 직접성 확인
+
+## 11. 일반적인 수정 패턴
+
+### 11.1 스타일 파일 패턴
+```dart
+// 변경 전
+abstract class XxxStyling implements Styling {}
+class XxxStyle implements XxxStyling {}
+
+// 변경 후
+abstract class _XxxStyling implements Styling {}
+typedef XxxStyling = _XxxStyling;
+class XxxStyle implements XxxStyling {}
+```
+
+### 11.2 식별자 네이밍 패턴
+```dart
+// 짧은 식별자
+d → details
+e → element  
+i → index
+
+// 긴 식별자 단축
+effectiveSelectedBackgroundColor → selectedBackgroundColor
+
+// Lerp 함수 매개변수
+a → start
+b → end
+t → progress
+```
+
+### 11.3 안전한 접근 패턴
+```dart
+// 컬렉션 안전 접근
+list[index] → list.elementAtOrNull(index)
+list.first → list.firstOrNull
+list.last → list.lastOrNull
+
+// 타입 안전 캐스팅
+value as Type → if (value is Type) { final typedValue = value; }
+
+// 널 안전 접근
+nullable!.property → 
+final temp = nullable;
+if (temp != null) { temp.property; }
+```
+
+## 12. 우선순위 가이드
+
+### 높은 우선순위 (즉시 수정)
+1. 메모리 릭 관련: `avoid-undisposed-instances`
+2. 타입 안전성: `avoid-dynamic`, `avoid-non-null-assertion`
+3. 컬렉션 안전성: `avoid-unsafe-collection-methods`
+4. 비동기 안전성: `use-setstate-synchronously`
+
+### 중간 우선순위 (코드 리뷰 시)
+1. 매직 스트링: `no-magic-string`
+2. 식별자 길이: `prefer-correct-identifier-length`
+3. 파일 구조: `prefer-single-declaration-per-file`
+4. 조기 반환: `prefer-early-return`
+
+### 낮은 우선순위 (스타일 정리)
+1. 주석 포매팅: `format-comment`
+2. 후행 쉼표: `prefer-trailing-comma`
+3. 인수 순서: `arguments-ordering`
+4. Import 최적화: `avoid-importing-entrypoint-exports`
+
+---
+
+참고 문서: [DCM Rules Documentation](https://dcm.dev/docs/rules/)

@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "blaugold.melos-code",
+    "bradlc.vscode-tailwindcss",
+    "dart-code.dart-code",
+    "dart-code.flutter",
+    "dcmdev.dcm-vscode-extension",
+    "felixangelov.bloc",
+    "hashicorp.terraform",
+    "localizely.flutter-intl",
+    "miquelddg.dart-barrel-file-generator",
+    "nash.awesome-flutter-snippets",
+    "pflannery.vscode-versionlens",
+    "ryanluker.vscode-coverage-gutters",
+    "schultek.jaspr-code",
+    "Serverpod.serverpod",
+    "vivaxy.vscode-conventional-commits",
+    "vivaxy.vscode-conventional-commits"
+  ]
+}

@@ -1,0 +1,9 @@
+include: ../analysis_options.yaml
+
+# DCM extends는 상위 설정에서 일괄 관리됩니다.
+dart_code_metrics:
+  rules:
+    - avoid-long-files: false
+    - avoid-non-ascii-symbols: false
+    - no-magic-string: false
+    - prefer-moving-to-variable: false

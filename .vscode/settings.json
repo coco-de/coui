@@ -1,0 +1,43 @@
+{
+  "dart.flutterSdkPath": ".fvm/versions/3.35.3",
+  "dart.runPubGetOnPubspecChanges": "never",
+  "files.watcherExclude": {
+    "**/.fvm": true
+  },
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  "conventionalCommits.scopes": [
+    "app",
+    "feat",
+    "pkg",
+    "share",
+    "env",
+    "server",
+    "widgetbook"
+  ],
+  "editor.tokenColorCustomizations": {
+    "comments": "#00ee3c"
+  },
+  "dart.analysisExcludedFolders": [
+    ".github/workflows/deployment-gcp.yml",
+    ".github/workflows/main.yaml"
+  ],
+  "tailwindCSS.experimental.configFile": "tailwind.config.js",
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    "class:list",
+    "classes"
+  ],
+  "tailwindCSS.experimental.classRegex": ["\\W\\s*classes:\\s*'(.*)'"],
+  "tailwindCSS.includeLanguages": {
+    "dart": "html"
+  },
+  "java.configuration.updateBuildConfiguration": "disabled",
+  "makefile.configureOnOpen": false,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  }
+}

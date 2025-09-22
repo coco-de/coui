@@ -1,0 +1,61 @@
+name: Lint Analysis
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  lint:
+    name: Lint Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Dart/Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.35.3'
+        channel: 'stable'
+
+    - name: Install DCM
+      run: |
+        dart pub global activate dart_code_metrics
+        echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+
+    - name: Get dependencies - coui_web
+      working-directory: ./packages/coui_web
+      run: dart pub get
+
+    - name: Get dependencies - coui_flutter  
+      working-directory: ./packages/coui_flutter
+      run: flutter pub get
+
+    - name: Run dart analyze - coui_web
+      working-directory: ./packages/coui_web
+      run: dart analyze --fatal-infos .
+
+    - name: Run dart analyze - coui_flutter
+      working-directory: ./packages/coui_flutter
+      run: dart analyze --fatal-infos .
+
+    - name: Run DCM analyze - coui_web
+      run: dcm analyze packages/coui_web --reporter=github
+
+    - name: Run DCM analyze - coui_flutter
+      run: dcm analyze packages/coui_flutter --reporter=github
+
+    - name: Generate lint report
+      run: |
+        echo "## 📊 Lint Analysis Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Dart Analyze" >> $GITHUB_STEP_SUMMARY
+        echo "- coui_web: $(cd packages/coui_web && dart analyze --fatal-infos . 2>&1 | grep -c 'error\|warning\|info' || echo '0') issues"  >> $GITHUB_STEP_SUMMARY
+        echo "- coui_flutter: $(cd packages/coui_flutter && dart analyze --fatal-infos . 2>&1 | grep -c 'error\|warning\|info' || echo '0') issues" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### DCM Analyze" >> $GITHUB_STEP_SUMMARY
+        dcm analyze packages/coui_web --reporter=console | tail -3 >> $GITHUB_STEP_SUMMARY
+        dcm analyze packages/coui_flutter --reporter=console | tail -3 >> $GITHUB_STEP_SUMMARY
