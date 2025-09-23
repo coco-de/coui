@@ -6,24 +6,30 @@ import 'package:coui_flutter/src/util.dart';
 /// Used by [AnimatedValueBuilder] to construct the widget tree during animation.
 /// The [value] parameter contains the current interpolated value between start and end,
 /// while [child] is an optional widget that can be passed through for optimization.
-typedef AnimatedChildBuilder<T> = Widget Function(
-    BuildContext context, T value, Widget? child);
+typedef AnimatedChildBuilder<T> =
+    Widget Function(BuildContext context, T value, Widget? child);
 
 /// A callback that builds a widget based on an animation object.
 ///
 /// Used by [AnimatedValueBuilder.animation] to provide direct access to the
 /// underlying [Animation] for advanced use cases. This allows for more control
 /// over animation timing and value extraction.
-typedef AnimationBuilder<T> = Widget Function(
-    BuildContext context, Animation<T> animation);
+typedef AnimationBuilder<T> =
+    Widget Function(BuildContext context, Animation<T> animation);
 
 /// A callback that builds a widget with raw animation progress information.
 ///
 /// Used by [AnimatedValueBuilder.raw] to provide complete animation state including
 /// the old value, new value, and current progress [t] between them (0.0 to 1.0).
 /// This gives maximum control for custom interpolation and transition effects.
-typedef AnimatedChildValueBuilder<T> = Widget Function(
-    BuildContext context, T oldValue, T newValue, double t, Widget? child);
+typedef AnimatedChildValueBuilder<T> =
+    Widget Function(
+      BuildContext context,
+      T oldValue,
+      T newValue,
+      double t,
+      Widget? child,
+    );
 
 /// A versatile animated widget that smoothly transitions between values.
 ///
@@ -92,8 +98,8 @@ class AnimatedValueBuilder<T> extends StatefulWidget {
     this.curve = Curves.linear,
     this.lerp,
     this.child,
-  })  : animationBuilder = null,
-        rawBuilder = null;
+  }) : animationBuilder = null,
+       rawBuilder = null;
 
   /// Creates an [AnimatedValueBuilder] with direct Animation access.
   ///
@@ -134,10 +140,10 @@ class AnimatedValueBuilder<T> extends StatefulWidget {
     this.onEnd,
     this.curve = Curves.linear,
     this.lerp,
-  })  : builder = null,
-        animationBuilder = builder,
-        child = null,
-        rawBuilder = null;
+  }) : builder = null,
+       animationBuilder = builder,
+       child = null,
+       rawBuilder = null;
 
   /// Creates an [AnimatedValueBuilder] with raw interpolation control.
   ///
@@ -180,9 +186,9 @@ class AnimatedValueBuilder<T> extends StatefulWidget {
     this.curve = Curves.linear,
     this.child,
     this.lerp,
-  })  : animationBuilder = null,
-        rawBuilder = builder,
-        builder = null;
+  }) : animationBuilder = null,
+       rawBuilder = builder,
+       builder = null;
 
   /// The initial value to start animation from.
   ///
@@ -343,7 +349,12 @@ class AnimatedValueBuilderState<T> extends State<AnimatedValueBuilder<T>>
   Widget _builder(BuildContext context, Widget? child) {
     if (widget.rawBuilder != null) {
       return widget.rawBuilder!(
-          context, _currentValue, widget.value, _curvedAnimation.value, child);
+        context,
+        _currentValue,
+        widget.value,
+        _curvedAnimation.value,
+        child,
+      );
     }
     final newValue = _animation.value;
     return widget.builder!(context, newValue, child);
@@ -611,7 +622,7 @@ class RepeatedAnimationBuilder<T> extends StatefulWidget {
   /// Provides direct access to the underlying Animation object for advanced control.
   /// Used with [RepeatedAnimationBuilder.animation] constructor.
   final Widget Function(BuildContext context, Animation<T> animation)?
-      animationBuilder;
+  animationBuilder;
 
   /// Optional child widget passed to the builder.
   ///
@@ -928,9 +939,10 @@ class IntervalDuration extends Curve {
     } else {
       progressEndInterval = 1;
     }
-    final clampedProgress = ((t - progressStartInterval) /
-            (progressEndInterval - progressStartInterval))
-        .clamp(0, 1);
+    final clampedProgress =
+        ((t - progressStartInterval) /
+                (progressEndInterval - progressStartInterval))
+            .clamp(0, 1);
     if (curve != null) {
       return curve!.transform(clampedProgress);
     }
@@ -1005,8 +1017,12 @@ class CrossFadedTransition extends StatefulWidget {
   /// - [alignment] (AlignmentGeometry): How to align widgets during transition.
   ///
   /// Returns a [Stack] with both widgets positioned and faded appropriately.
-  static Widget lerpOpacity(Widget a, Widget b, double t,
-      {AlignmentGeometry alignment = Alignment.center}) {
+  static Widget lerpOpacity(
+    Widget a,
+    Widget b,
+    double t, {
+    AlignmentGeometry alignment = Alignment.center,
+  }) {
     if (t == 0) {
       return a;
     } else if (t == 1) {
@@ -1019,11 +1035,12 @@ class CrossFadedTransition extends StatefulWidget {
       children: [
         Positioned.fill(
           child: Opacity(
-              opacity: startOpacity,
-              child: Align(
-                alignment: alignment,
-                child: a,
-              )),
+            opacity: startOpacity,
+            child: Align(
+              alignment: alignment,
+              child: a,
+            ),
+          ),
         ),
         Opacity(
           opacity: endOpacity,
@@ -1047,8 +1064,12 @@ class CrossFadedTransition extends StatefulWidget {
   /// - [alignment] (AlignmentGeometry): How to align widgets (unused in step mode).
   ///
   /// Returns either individual widget at extremes or a [Stack] for intermediate values.
-  static Widget lerpStep(Widget a, Widget b, double t,
-      {AlignmentGeometry alignment = Alignment.center}) {
+  static Widget lerpStep(
+    Widget a,
+    Widget b,
+    double t, {
+    AlignmentGeometry alignment = Alignment.center,
+  }) {
     if (t == 0) {
       return a;
     } else if (t == 1) {
@@ -1086,8 +1107,13 @@ class CrossFadedTransition extends StatefulWidget {
   /// Called during transition with the outgoing widget [a], incoming widget [b],
   /// and progress value [t] (0.0 to 1.0). Must return a widget representing
   /// the intermediate state of the transition.
-  final Widget Function(Widget a, Widget b, double t,
-      {AlignmentGeometry alignment}) lerp;
+  final Widget Function(
+    Widget a,
+    Widget b,
+    double t, {
+    AlignmentGeometry alignment,
+  })
+  lerp;
 
   @override
   State<CrossFadedTransition> createState() => _CrossFadedTransitionState();
