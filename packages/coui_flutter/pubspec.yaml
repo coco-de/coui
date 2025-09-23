@@ -3,8 +3,10 @@ description: "Beautifully designed components from CoUI/UI is now available for 
 version: 0.0.44
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: '>=3.9.0 <4.0.0'
   flutter: ">=3.35.1"
+
+resolution: workspace
 
 dependencies:
   country_flags: ^4.0.1
@@ -25,12 +27,11 @@ dev_dependencies:
   archive: any
   build_runner: ^2.4.13
   dart_code_metrics_presets: ^2.25.1
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
-  icon_font_generator: ^4.0.0
   mocktail: ^1.0.4
-  very_good_analysis: ^9.0.0
+  very_good_analysis: ^10.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

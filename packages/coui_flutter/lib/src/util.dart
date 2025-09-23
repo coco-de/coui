@@ -400,13 +400,6 @@ extension WidgetExtension on Widget {
           );
   }
 
-  // Widget padding({EdgeInsetsGeometry padding = EdgeInsets.zero}) {
-  //   return Padding(
-  //     padding: padding,
-  //     child: this,
-  //   );
-  // }
-
   Widget withPadding({
     double? all,
     double? bottom,
