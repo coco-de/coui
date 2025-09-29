@@ -16,8 +16,8 @@ import 'package:coui_widgetbook/component/badge.dart'
     as _coui_widgetbook_component_badge;
 import 'package:coui_widgetbook/component/button.dart'
     as _coui_widgetbook_component_button;
-import 'package:coui_widgetbook/component/card/card.dart'
-    as _coui_widgetbook_component_card_card;
+import 'package:coui_widgetbook/component/checkbox.dart'
+    as _coui_widgetbook_component_checkbox;
 import 'package:coui_widgetbook/component/chip.dart'
     as _coui_widgetbook_component_chip;
 import 'package:coui_widgetbook/component/circular_progress_indicator.dart'
@@ -26,41 +26,25 @@ import 'package:coui_widgetbook/component/divider.dart'
     as _coui_widgetbook_component_divider;
 import 'package:coui_widgetbook/component/linear_progress_indicator.dart'
     as _coui_widgetbook_component_linear_progress_indicator;
+import 'package:coui_widgetbook/component/radio_group.dart'
+    as _coui_widgetbook_component_radio_group;
+import 'package:coui_widgetbook/component/select.dart'
+    as _coui_widgetbook_component_select;
+import 'package:coui_widgetbook/component/slider.dart'
+    as _coui_widgetbook_component_slider;
 import 'package:coui_widgetbook/component/switch.dart'
     as _coui_widgetbook_component_switch;
 import 'package:coui_widgetbook/component/text_field.dart'
     as _coui_widgetbook_component_text_field;
-import 'package:coui_widgetbook/foundation/surface.dart'
-    as _coui_widgetbook_foundation_surface;
+import 'package:coui_widgetbook/foundation/colors.dart'
+    as _coui_widgetbook_foundation_colors;
+import 'package:coui_widgetbook/foundation/misc.dart'
+    as _coui_widgetbook_foundation_misc;
 import 'package:coui_widgetbook/foundation/typography.dart'
     as _coui_widgetbook_foundation_typography;
 import 'package:widgetbook/widgetbook.dart' as _widgetbook;
 
 final directories = <_widgetbook.WidgetbookNode>[
-  _widgetbook.WidgetbookCategory(
-    name: 'Foundation',
-    children: [
-      _widgetbook.WidgetbookComponent(
-        name: 'ColorScheme',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'ColorScheme',
-            builder: _coui_widgetbook_foundation_surface.buildColorUseCase,
-          ),
-        ],
-      ),
-      _widgetbook.WidgetbookComponent(
-        name: 'TextStyle',
-        useCases: [
-          _widgetbook.WidgetbookUseCase(
-            name: 'Typography',
-            builder: _coui_widgetbook_foundation_typography
-                .buildTypographyThemeDataUseCase,
-          ),
-        ],
-      ),
-    ],
-  ),
   _widgetbook.WidgetbookFolder(
     name: 'components',
     children: [
@@ -268,6 +252,71 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'form',
         children: [
           _widgetbook.WidgetbookComponent(
+            name: 'Checkbox',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'default',
+                builder: _coui_widgetbook_component_checkbox
+                    .buildCheckboxDefaultUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'tristate',
+                builder: _coui_widgetbook_component_checkbox
+                    .buildCheckboxTristateUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'with label',
+                builder: _coui_widgetbook_component_checkbox
+                    .buildCheckboxWithLabelUseCase,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'RadioGroup',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'card',
+                builder: _coui_widgetbook_component_radio_group
+                    .buildRadioGroupCardUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'default',
+                builder: _coui_widgetbook_component_radio_group
+                    .buildRadioGroupDefaultUseCase,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'Select',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'default',
+                builder:
+                    _coui_widgetbook_component_select.buildSelectDefaultUseCase,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'Slider',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'ranged',
+                builder:
+                    _coui_widgetbook_component_slider.buildSliderRangedUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'single',
+                builder:
+                    _coui_widgetbook_component_slider.buildSliderSingleUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'with divisions',
+                builder: _coui_widgetbook_component_slider
+                    .buildSliderWithDivisionsUseCase,
+              ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
             name: 'Switch',
             useCases: [
               _widgetbook.WidgetbookUseCase(
@@ -314,33 +363,60 @@ final directories = <_widgetbook.WidgetbookNode>[
           ),
         ],
       ),
-      _widgetbook.WidgetbookFolder(
-        name: 'layout',
-        children: [
-          _widgetbook.WidgetbookComponent(
-            name: 'Card',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'default',
-                builder: _coui_widgetbook_component_card_card
-                    .buildCardDefaultUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'filled',
-                builder:
-                    _coui_widgetbook_component_card_card.buildCardFilledUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with border',
-                builder: _coui_widgetbook_component_card_card
-                    .buildCardWithBorderUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with shadow',
-                builder: _coui_widgetbook_component_card_card
-                    .buildCardWithShadowUseCase,
-              ),
-            ],
+    ],
+  ),
+  _widgetbook.WidgetbookFolder(
+    name: 'material',
+    children: [
+      _widgetbook.WidgetbookComponent(
+        name: 'ColorScheme',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'colors',
+            builder: _coui_widgetbook_foundation_colors.buildColorSchemeUseCase,
+          ),
+        ],
+      ),
+    ],
+  ),
+  _widgetbook.WidgetbookFolder(
+    name: 'painting',
+    children: [
+      _widgetbook.WidgetbookComponent(
+        name: 'BorderRadius',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'radius',
+            builder: _coui_widgetbook_foundation_misc.buildRadiusUseCase,
+          ),
+        ],
+      ),
+    ],
+  ),
+  _widgetbook.WidgetbookFolder(
+    name: 'theme',
+    children: [
+      _widgetbook.WidgetbookComponent(
+        name: 'Typography',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'typography',
+            builder:
+                _coui_widgetbook_foundation_typography.buildTypographyUseCase,
+          ),
+        ],
+      ),
+    ],
+  ),
+  _widgetbook.WidgetbookFolder(
+    name: 'widgets',
+    children: [
+      _widgetbook.WidgetbookComponent(
+        name: 'IconThemeData',
+        useCases: [
+          _widgetbook.WidgetbookUseCase(
+            name: 'icon sizes',
+            builder: _coui_widgetbook_foundation_misc.buildIconSizesUseCase,
           ),
         ],
       ),

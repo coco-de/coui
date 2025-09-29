@@ -39,8 +39,9 @@ class ScrollableClientTheme {
       dragStartBehavior: dragStartBehavior == null
           ? this.dragStartBehavior
           : dragStartBehavior(),
-      hitTestBehavior:
-          hitTestBehavior == null ? this.hitTestBehavior : hitTestBehavior(),
+      hitTestBehavior: hitTestBehavior == null
+          ? this.hitTestBehavior
+          : hitTestBehavior(),
       keyboardDismissBehavior: keyboardDismissBehavior == null
           ? this.keyboardDismissBehavior
           : keyboardDismissBehavior(),
@@ -64,17 +65,22 @@ class ScrollableClientTheme {
 
   @override
   int get hashCode => Object.hash(
-        diagonalDragBehavior,
-        dragStartBehavior,
-        keyboardDismissBehavior,
-        clipBehavior,
-        hitTestBehavior,
-        overscroll,
-      );
+    diagonalDragBehavior,
+    dragStartBehavior,
+    keyboardDismissBehavior,
+    clipBehavior,
+    hitTestBehavior,
+    overscroll,
+  );
 }
 
-typedef ScrollableBuilder = Widget Function(
-    Widget? child, BuildContext context, Offset offset, Size viewportSize);
+typedef ScrollableBuilder =
+    Widget Function(
+      BuildContext context,
+      Offset offset,
+      Size viewportSize,
+      Widget? child,
+    );
 
 class ScrollableClient extends StatelessWidget {
   const ScrollableClient({
@@ -146,19 +152,26 @@ class ScrollableClient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    assert(axisDirectionToAxis(verticalDetails.direction) == Axis.vertical,
-        'TwoDimensionalScrollView.verticalDetails are not Axis.vertical.');
-    assert(axisDirectionToAxis(horizontalDetails.direction) == Axis.horizontal,
-        'TwoDimensionalScrollView.horizontalDetails are not Axis.horizontal.');
+    assert(
+      axisDirectionToAxis(verticalDetails.direction) == Axis.vertical,
+      'TwoDimensionalScrollView.verticalDetails are not Axis.vertical.',
+    );
+    assert(
+      axisDirectionToAxis(horizontalDetails.direction) == Axis.horizontal,
+      'TwoDimensionalScrollView.horizontalDetails are not Axis.horizontal.',
+    );
 
     final compTheme = ComponentTheme.maybeOf<ScrollableClientTheme>(context);
-    final diag = diagonalDragBehavior ??
+    final diag =
+        diagonalDragBehavior ??
         compTheme?.diagonalDragBehavior ??
         DiagonalDragBehavior.none;
-    final dragStart = dragStartBehavior ??
+    final dragStart =
+        dragStartBehavior ??
         compTheme?.dragStartBehavior ??
         DragStartBehavior.start;
-    final keyboardDismiss = keyboardDismissBehavior ??
+    final keyboardDismiss =
+        keyboardDismissBehavior ??
         compTheme?.keyboardDismissBehavior ??
         ScrollViewKeyboardDismissBehavior.manual;
     final clip = clipBehavior ?? compTheme?.clipBehavior ?? Clip.hardEdge;
@@ -171,17 +184,19 @@ class ScrollableClient extends StatelessWidget {
       Axis.horizontal => horizontalDetails,
     };
 
-    final effectivePrimary = primary ??
+    final effectivePrimary =
+        primary ??
         mainAxisDetails.controller == null &&
             PrimaryScrollController.shouldInherit(context, mainAxis);
 
     if (effectivePrimary) {
       // Using PrimaryScrollController for mainAxis.
       assert(
-          mainAxisDetails.controller == null,
-          'TwoDimensionalScrollView.primary was explicitly set to true, but a '
-          'ScrollController was provided in the ScrollableDetails of the '
-          'TwoDimensionalScrollView.mainAxis.');
+        mainAxisDetails.controller == null,
+        'TwoDimensionalScrollView.primary was explicitly set to true, but a '
+        'ScrollController was provided in the ScrollableDetails of the '
+        'TwoDimensionalScrollView.mainAxis.',
+      );
       mainAxisDetails = mainAxisDetails.copyWith(
         controller: PrimaryScrollController.of(context),
       );
@@ -301,16 +316,20 @@ class RenderScrollableClientViewport extends RenderTwoDimensionalViewport {
       horizontalPixels = min(horizontalPixels, maxHorizontalPixels);
       verticalPixels = min(verticalPixels, maxVerticalPixels);
     }
-    parentDataOf(child).layoutOffset =
-        Offset(-horizontalPixels, -verticalPixels);
+    parentDataOf(child).layoutOffset = Offset(
+      -horizontalPixels,
+      -verticalPixels,
+    );
     horizontalOffset.applyContentDimensions(
       0,
       (child.size.width - viewportDimension.width).clamp(0.0, double.infinity),
     );
     verticalOffset.applyContentDimensions(
       0,
-      (child.size.height - viewportDimension.height)
-          .clamp(0.0, double.infinity),
+      (child.size.height - viewportDimension.height).clamp(
+        0.0,
+        double.infinity,
+      ),
     );
     horizontalOffset.applyViewportDimension(viewportDimension.width);
     verticalOffset.applyViewportDimension(viewportDimension.height);

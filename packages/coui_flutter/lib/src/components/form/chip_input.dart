@@ -7,7 +7,7 @@ import 'package:coui_flutter/coui_flutter.dart';
 /// Takes a [BuildContext] and chip data of type [T], returning a widget that
 /// represents the chip visually. Allows complete customization of chip appearance
 /// and behavior within chip input components.
-typedef ChipWidgetBuilder<T> = Widget Function(T chip, BuildContext context);
+typedef ChipWidgetBuilder<T> = Widget Function(BuildContext context, T chip);
 
 /// Theme configuration for [ChipInput] widget styling and behavior.
 ///
@@ -653,18 +653,24 @@ class ChipInputState<T> extends State<ChipInput<T>>
                               ), // Add spacing here
                             ],
                             Expanded(
-                              child: widget.suggestionBuilder
-                                      ?.call(context, _suggestions.value[i]) ??
-                                  Text(_suggestions.value[i].toString())
-                                      .normal()
-                                      .small(),
+                              child:
+                                  widget.suggestionBuilder?.call(
+                                    context,
+                                    _suggestions.value[i],
+                                  ) ??
+                                  Text(
+                                    _suggestions.value[i].toString(),
+                                  ).normal().small(),
                             ),
                             if (widget.suggestionTrailingBuilder != null) ...[
                               SizedBox(
                                 width: theme.scaling * 10,
                               ), // Add spacing here
-                              widget.suggestionTrailingBuilder!
-                                      (context, _suggestions.value[i])
+                              widget
+                                  .suggestionTrailingBuilder!(
+                                    context,
+                                    _suggestions.value[i],
+                                  )
                                   .normal()
                                   .small(),
                             ],

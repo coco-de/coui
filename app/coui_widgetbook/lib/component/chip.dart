@@ -9,7 +9,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 )
 Widget buildChipDefaultUseCase(BuildContext context) {
   return coui.Chip(
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Chip')),
+    child: Text(context.knobs.string(initialValue: 'Chip', label: 'text')),
   );
 }
 
@@ -20,7 +20,9 @@ Widget buildChipDefaultUseCase(BuildContext context) {
 Widget buildChipWithLeadingUseCase(BuildContext context) {
   return coui.Chip(
     leading: const Icon(Icons.star, size: 16),
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Chip with leading')),
+    child: Text(
+      context.knobs.string(initialValue: 'Chip with leading', label: 'text'),
+    ),
   );
 }
 
@@ -34,7 +36,9 @@ Widget buildChipWithTrailingUseCase(BuildContext context) {
       onPressed: () => print('Close button pressed'),
       child: const Icon(Icons.close, size: 16),
     ),
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Chip with trailing')),
+    child: Text(
+      context.knobs.string(initialValue: 'Chip with trailing', label: 'text'),
+    ),
   );
 }
 
@@ -45,6 +49,8 @@ Widget buildChipWithTrailingUseCase(BuildContext context) {
 Widget buildChipInteractiveUseCase(BuildContext context) {
   return coui.Chip(
     onPressed: () => print('Chip pressed'),
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Interactive Chip')),
+    child: Text(
+      context.knobs.string(initialValue: 'Interactive Chip', label: 'text'),
+    ),
   );
 }

@@ -59,8 +59,9 @@ class TabPaneTheme {
     ValueGetter<BorderRadiusGeometry?>? borderRadius,
   }) {
     return TabPaneTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
+      backgroundColor: backgroundColor == null
+          ? this.backgroundColor
+          : backgroundColor(),
       barHeight: barHeight == null ? this.barHeight : barHeight(),
       border: border == null ? this.border : border(),
       borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
@@ -115,8 +116,12 @@ class TabPaneData<T> extends SortableData<T> {
 /// - [index] (int): Zero-based index of this tab in the list
 ///
 /// Returns: A [TabChild] widget for the tab button
-typedef TabPaneItemBuilder<T> = TabChild Function(
-    BuildContext context, int index, TabPaneData<T> item);
+typedef TabPaneItemBuilder<T> =
+    TabChild Function(
+      BuildContext context,
+      TabPaneData<T> item,
+      int index,
+    );
 
 /// A comprehensive tab pane widget with sortable tabs and integrated content display.
 ///
@@ -318,7 +323,8 @@ class TabPaneState<T> extends State<TabPane<T>> {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<TabPaneTheme>(context);
     final isFocused = data.index == data.selected;
-    final backgroundColor = widget.backgroundColor ??
+    final backgroundColor =
+        widget.backgroundColor ??
         compTheme?.backgroundColor ??
         theme.colorScheme.card;
     final border = widget.border ?? compTheme?.border;
@@ -328,26 +334,29 @@ class TabPaneState<T> extends State<TabPane<T>> {
         (widget.borderRadius ?? compTheme?.borderRadius ?? theme.borderRadiusLg)
             .optionallyResolve(context);
 
-    return Builder(builder: (context) {
-      final tabGhost = Data.maybeOf<_TabGhostData>(context);
+    return Builder(
+      builder: (context) {
+        final tabGhost = Data.maybeOf<_TabGhostData>(context);
 
-      return SizedBox(
-        height: double.infinity,
-        child: CustomPaint(
-          painter: _TabItemPainter(
-            backgroundColor: backgroundColor,
-            borderColor: borderColor,
-            borderRadius: borderRadius,
-            borderWidth: borderWidth,
-            isFocused: isFocused || tabGhost != null,
+        return SizedBox(
+          height: double.infinity,
+          child: CustomPaint(
+            painter: _TabItemPainter(
+              backgroundColor: backgroundColor,
+              borderColor: borderColor,
+              borderRadius: borderRadius,
+              borderWidth: borderWidth,
+              isFocused: isFocused || tabGhost != null,
+            ),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8) * theme.scaling,
+              child: IntrinsicWidth(child: child),
+            ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8) * theme.scaling,
-            child: IntrinsicWidth(child: child),
-          ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 
   List<TabChild> _buildTabItems() {
@@ -366,7 +375,8 @@ class TabPaneState<T> extends State<TabPane<T>> {
     final borderRadius =
         widget.borderRadius ?? compTheme?.borderRadius ?? theme.borderRadiusLg;
     final resolvedBorderRadius = borderRadius.optionallyResolve(context);
-    final backgroundColor = widget.backgroundColor ??
+    final backgroundColor =
+        widget.backgroundColor ??
         compTheme?.backgroundColor ??
         theme.colorScheme.card;
     final border = widget.border ?? compTheme?.border;
@@ -374,8 +384,9 @@ class TabPaneState<T> extends State<TabPane<T>> {
         widget.barHeight ?? compTheme?.barHeight ?? (theme.scaling * 32);
 
     return ScrollConfiguration(
-      behavior: ScrollConfiguration.of(context)
-          .copyWith(overscroll: false, scrollbars: false),
+      behavior: ScrollConfiguration.of(
+        context,
+      ).copyWith(overscroll: false, scrollbars: false),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
@@ -491,7 +502,8 @@ class TabPaneState<T> extends State<TabPane<T>> {
                                         ? VerticalDivider(
                                             endIndent: theme.scaling * 8,
                                             indent: theme.scaling * 8,
-                                            width: theme.scaling * 8)
+                                            width: theme.scaling * 8,
+                                          )
                                         : SizedBox(width: theme.scaling * 8);
                                   },
                                 );

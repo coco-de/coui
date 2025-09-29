@@ -9,14 +9,14 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 )
 Widget buildLinearProgressIndicatorDefaultUseCase(BuildContext context) {
   return coui.LinearProgressIndicator(
-    minHeight: context.knobs.double.slider(
-      label: 'minHeight',
-      initialValue: 4,
-      min: 1,
-      max: 16,
-    ),
-    color: context.knobs.colorOrNull(label: 'color'),
     backgroundColor: context.knobs.colorOrNull(label: 'backgroundColor'),
+    color: context.knobs.colorOrNull(label: 'color'),
+    minHeight: context.knobs.double.slider(
+      initialValue: 4,
+      label: 'minHeight',
+      max: 16,
+      min: 1,
+    ),
   );
 }
 
@@ -26,20 +26,20 @@ Widget buildLinearProgressIndicatorDefaultUseCase(BuildContext context) {
 )
 Widget buildLinearProgressIndicatorDeterminateUseCase(BuildContext context) {
   return coui.LinearProgressIndicator(
-    value: context.knobs.double.slider(
-      label: 'value',
-      initialValue: 0.75,
-      min: 0,
-      max: 1,
-    ),
-    minHeight: context.knobs.double.slider(
-      label: 'minHeight',
-      initialValue: 4,
-      min: 1,
-      max: 16,
-    ),
-    color: context.knobs.colorOrNull(label: 'color'),
     backgroundColor: context.knobs.colorOrNull(label: 'backgroundColor'),
+    color: context.knobs.colorOrNull(label: 'color'),
+    minHeight: context.knobs.double.slider(
+      initialValue: 4,
+      label: 'minHeight',
+      max: 16,
+      min: 1,
+    ),
+    value: context.knobs.double.slider(
+      initialValue: 0.75,
+      label: 'value',
+      max: 1,
+      min: 0,
+    ),
   );
 }
 
@@ -49,20 +49,20 @@ Widget buildLinearProgressIndicatorDeterminateUseCase(BuildContext context) {
 )
 Widget buildLinearProgressIndicatorWithSparksUseCase(BuildContext context) {
   return coui.LinearProgressIndicator(
-    value: context.knobs.double.slider(
-      label: 'value',
-      initialValue: 0.75,
-      min: 0,
-      max: 1,
+    backgroundColor: context.knobs.colorOrNull(label: 'backgroundColor'),
+    color: context.knobs.colorOrNull(label: 'color'),
+    minHeight: context.knobs.double.slider(
+      initialValue: 8,
+      label: 'minHeight',
+      max: 16,
+      min: 1,
     ),
     showSparks: true,
-    minHeight: context.knobs.double.slider(
-      label: 'minHeight',
-      initialValue: 8,
-      min: 1,
-      max: 16,
+    value: context.knobs.double.slider(
+      initialValue: 0.75,
+      label: 'value',
+      max: 1,
+      min: 0,
     ),
-    color: context.knobs.colorOrNull(label: 'color'),
-    backgroundColor: context.knobs.colorOrNull(label: 'backgroundColor'),
   );
 }

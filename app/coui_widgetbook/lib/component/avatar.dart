@@ -9,19 +9,19 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 )
 Widget buildAvatarDefaultUseCase(BuildContext context) {
   return coui.Avatar(
-    initials: context.knobs.string(label: 'initials', initialValue: 'JD'),
-    size: context.knobs.double.slider(
-      label: 'size',
-      initialValue: 48,
-      min: 24,
-      max: 128,
-    ),
     backgroundColor: context.knobs.colorOrNull(label: 'backgroundColor'),
     borderRadius: context.knobs.double.slider(
-      label: 'borderRadius',
       initialValue: 24,
-      min: 0,
+      label: 'borderRadius',
       max: 64,
+      min: 0,
+    ),
+    initials: context.knobs.string(initialValue: 'JD', label: 'initials'),
+    size: context.knobs.double.slider(
+      initialValue: 48,
+      label: 'size',
+      max: 128,
+      min: 24,
     ),
   );
 }
@@ -32,16 +32,16 @@ Widget buildAvatarDefaultUseCase(BuildContext context) {
 )
 Widget buildAvatarWithImageUseCase(BuildContext context) {
   return coui.Avatar.network(
-    initials: context.knobs.string(label: 'initials', initialValue: 'JD'),
+    initials: context.knobs.string(initialValue: 'JD', label: 'initials'),
     photoUrl: context.knobs.string(
-      label: 'photoUrl',
       initialValue: 'https://i.pravatar.cc/150?u=a042581f4e29026704d',
+      label: 'photoUrl',
     ),
     size: context.knobs.double.slider(
-      label: 'size',
       initialValue: 72,
-      min: 24,
+      label: 'size',
       max: 128,
+      min: 24,
     ),
   );
 }
@@ -52,20 +52,24 @@ Widget buildAvatarWithImageUseCase(BuildContext context) {
 )
 Widget buildAvatarWithBadgeUseCase(BuildContext context) {
   return coui.Avatar(
-    initials: 'AB',
-    size: 72,
     badge: coui.AvatarBadge(
-      color: context.knobs.color(label: 'badgeColor', initialValue: Colors.green),
-      size: context.knobs.double.slider(
-        label: 'badgeSize',
-        initialValue: 16,
-        min: 8,
-        max: 32,
+      color: context.knobs.color(
+        initialValue: Colors.green,
+        label: 'badgeColor',
       ),
-      child: context.knobs.boolean(label: 'badge has child', initialValue: false)
+      size: context.knobs.double.slider(
+        initialValue: 16,
+        label: 'badgeSize',
+        max: 32,
+        min: 8,
+      ),
+      child:
+          context.knobs.boolean(initialValue: false, label: 'badge has child')
           ? const Icon(Icons.check, color: Colors.white, size: 10)
           : null,
     ),
+    initials: 'AB',
+    size: 72,
   );
 }
 
@@ -75,12 +79,17 @@ Widget buildAvatarWithBadgeUseCase(BuildContext context) {
 )
 Widget buildAvatarGroupUseCase(BuildContext context) {
   return coui.AvatarGroup.toRight(
-    gap: context.knobs.double.slider(label: 'gap', initialValue: 8, min: 0, max: 20),
-    offset: context.knobs.double.slider(
-      label: 'offset',
-      initialValue: 0.7,
+    gap: context.knobs.double.slider(
+      initialValue: 8,
+      label: 'gap',
+      max: 20,
       min: 0,
+    ),
+    offset: context.knobs.double.slider(
+      initialValue: 0.7,
+      label: 'offset',
       max: 1,
+      min: 0,
     ),
     children: const [
       coui.Avatar(initials: 'AB'),

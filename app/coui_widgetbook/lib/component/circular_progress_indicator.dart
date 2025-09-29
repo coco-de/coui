@@ -9,20 +9,20 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 )
 Widget buildCircularProgressIndicatorDefaultUseCase(BuildContext context) {
   return coui.CircularProgressIndicator(
+    backgroundColor: context.knobs.colorOrNull(label: 'backgroundColor'),
+    color: context.knobs.colorOrNull(label: 'color'),
     size: context.knobs.double.slider(
-      label: 'size',
       initialValue: 48,
-      min: 24,
+      label: 'size',
       max: 128,
+      min: 24,
     ),
     strokeWidth: context.knobs.double.slider(
-      label: 'strokeWidth',
       initialValue: 4,
-      min: 1,
+      label: 'strokeWidth',
       max: 16,
+      min: 1,
     ),
-    color: context.knobs.colorOrNull(label: 'color'),
-    backgroundColor: context.knobs.colorOrNull(label: 'backgroundColor'),
   );
 }
 
@@ -32,25 +32,25 @@ Widget buildCircularProgressIndicatorDefaultUseCase(BuildContext context) {
 )
 Widget buildCircularProgressIndicatorDeterminateUseCase(BuildContext context) {
   return coui.CircularProgressIndicator(
-    value: context.knobs.double.slider(
-      label: 'value',
-      initialValue: 0.75,
-      min: 0,
-      max: 1,
-    ),
+    backgroundColor: context.knobs.colorOrNull(label: 'backgroundColor'),
+    color: context.knobs.colorOrNull(label: 'color'),
     size: context.knobs.double.slider(
-      label: 'size',
       initialValue: 48,
-      min: 24,
+      label: 'size',
       max: 128,
+      min: 24,
     ),
     strokeWidth: context.knobs.double.slider(
-      label: 'strokeWidth',
       initialValue: 4,
-      min: 1,
+      label: 'strokeWidth',
       max: 16,
+      min: 1,
     ),
-    color: context.knobs.colorOrNull(label: 'color'),
-    backgroundColor: context.knobs.colorOrNull(label: 'backgroundColor'),
+    value: context.knobs.double.slider(
+      initialValue: 0.75,
+      label: 'value',
+      max: 1,
+      min: 0,
+    ),
   );
 }

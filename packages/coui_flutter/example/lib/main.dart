@@ -1,10 +1,11 @@
 import 'package:flutter/services.dart';
-import 'package:shadcn_flutter/shadcn_flutter.dart';
+import 'package:coui_flutter/coui_flutter.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(systemNavigationBarColor: Colors.transparent));
+    const SystemUiOverlayStyle(systemNavigationBarColor: Colors.transparent),
+  );
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   runApp(const MyApp());
 }

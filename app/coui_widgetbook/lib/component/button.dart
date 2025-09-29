@@ -9,15 +9,15 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 )
 Widget buildButtonPrimaryUseCase(BuildContext context) {
   return coui.Button.primary(
-    onPressed: () => print('Button pressed'),
-    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
-    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+    enabled: context.knobs.boolean(initialValue: true, label: 'enabled'),
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.add)
         : null,
-    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+    onPressed: () => print('Button pressed'),
+    trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Primary')),
+    child: Text(context.knobs.string(initialValue: 'Primary', label: 'text')),
   );
 }
 
@@ -27,15 +27,15 @@ Widget buildButtonPrimaryUseCase(BuildContext context) {
 )
 Widget buildButtonSecondaryUseCase(BuildContext context) {
   return coui.Button.secondary(
-    onPressed: () => print('Button pressed'),
-    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
-    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+    enabled: context.knobs.boolean(initialValue: true, label: 'enabled'),
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.add)
         : null,
-    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+    onPressed: () => print('Button pressed'),
+    trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Secondary')),
+    child: Text(context.knobs.string(initialValue: 'Secondary', label: 'text')),
   );
 }
 
@@ -45,15 +45,15 @@ Widget buildButtonSecondaryUseCase(BuildContext context) {
 )
 Widget buildButtonOutlineUseCase(BuildContext context) {
   return coui.Button.outline(
-    onPressed: () => print('Button pressed'),
-    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
-    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+    enabled: context.knobs.boolean(initialValue: true, label: 'enabled'),
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.add)
         : null,
-    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+    onPressed: () => print('Button pressed'),
+    trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Outline')),
+    child: Text(context.knobs.string(initialValue: 'Outline', label: 'text')),
   );
 }
 
@@ -63,15 +63,15 @@ Widget buildButtonOutlineUseCase(BuildContext context) {
 )
 Widget buildButtonGhostUseCase(BuildContext context) {
   return coui.Button.ghost(
-    onPressed: () => print('Button pressed'),
-    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
-    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+    enabled: context.knobs.boolean(initialValue: true, label: 'enabled'),
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.add)
         : null,
-    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+    onPressed: () => print('Button pressed'),
+    trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Ghost')),
+    child: Text(context.knobs.string(initialValue: 'Ghost', label: 'text')),
   );
 }
 
@@ -81,15 +81,15 @@ Widget buildButtonGhostUseCase(BuildContext context) {
 )
 Widget buildButtonLinkUseCase(BuildContext context) {
   return coui.Button.link(
-    onPressed: () => print('Button pressed'),
-    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
-    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+    enabled: context.knobs.boolean(initialValue: true, label: 'enabled'),
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.add)
         : null,
-    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+    onPressed: () => print('Button pressed'),
+    trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Link')),
+    child: Text(context.knobs.string(initialValue: 'Link', label: 'text')),
   );
 }
 
@@ -99,14 +99,16 @@ Widget buildButtonLinkUseCase(BuildContext context) {
 )
 Widget buildButtonDestructiveUseCase(BuildContext context) {
   return coui.Button.destructive(
-    onPressed: () => print('Button pressed'),
-    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
-    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+    enabled: context.knobs.boolean(initialValue: true, label: 'enabled'),
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.delete)
         : null,
-    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+    onPressed: () => print('Button pressed'),
+    trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Destructive')),
+    child: Text(
+      context.knobs.string(initialValue: 'Destructive', label: 'text'),
+    ),
   );
 }

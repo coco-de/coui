@@ -29,7 +29,7 @@ class SlangAddon extends WidgetbookAddon<Locale> {
   final List<Locale> locales;
 
   /// 로케일 델리게이트
-  final List<LocalizationsDelegate<dynamic>> localizationsDelegates;
+  final List<LocalizationsDelegate<Object>> localizationsDelegates;
 
   /// 디버용 디바운스
   final deb = Debouncing<void>(duration: const Duration(milliseconds: 400));
@@ -38,7 +38,7 @@ class SlangAddon extends WidgetbookAddon<Locale> {
   List<Field> get fields {
     return [
       ObjectDropdownField<Locale>(
-        initialValue: initialLocale ?? locales.first,
+        initialValue: initialLocale ?? locales.firstOrNull,
         labelBuilder: (locale) => locale.toLanguageTag(),
         name: 'name',
         values: locales,
@@ -49,9 +49,8 @@ class SlangAddon extends WidgetbookAddon<Locale> {
   @override
   Locale valueFromQueryGroup(Map<String, String> group) {
     final local =
-        valueOf<Locale>('name', group) ?? initialLocale ?? locales.first;
+        valueOf<Locale>('name', group) ?? initialLocale ?? locales.firstOrNull;
     deb.debounce(() {
-      Log.d('Locale changed to ${local.toLanguageTag()}');
       LocaleSettings.setLocaleRaw(local.toLanguageTag());
     });
 

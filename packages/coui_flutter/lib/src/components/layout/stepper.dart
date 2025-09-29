@@ -278,8 +278,10 @@ class _StepVariantCircle extends StepVariant {
             children: [
               properties[i]?.icon ?? const StepNumber(),
               Gap(scaling * 8),
-              properties.size
-                  .wrapper(context, properties[i]?.title ?? const SizedBox()),
+              properties.size.wrapper(
+                context,
+                properties[i]?.title ?? const SizedBox(),
+              ),
               if (i != properties.steps.length - 1) ...[
                 Gap(scaling * 8),
                 Expanded(
@@ -287,13 +289,15 @@ class _StepVariantCircle extends StepVariant {
                     animation: properties.state,
                     builder: (context, child) {
                       return Divider(
-                          color: properties.hasFailure &&
-                                  properties.state.value.currentStep <= i
-                              ? theme.colorScheme.destructive
-                              : properties.state.value.currentStep >= i
-                                  ? theme.colorScheme.primary
-                                  : theme.colorScheme.border,
-                          thickness: scaling * 2);
+                        color:
+                            properties.hasFailure &&
+                                properties.state.value.currentStep <= i
+                            ? theme.colorScheme.destructive
+                            : properties.state.value.currentStep >= i
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.border,
+                        thickness: scaling * 2,
+                      );
                     },
                   ),
                 ),
@@ -327,7 +331,9 @@ class _StepVariantCircle extends StepVariant {
               return Flexible(
                 child: IndexedStack(
                   index: current < 0 || current >= properties.steps.length
-                      ? properties.steps.length // will show the placeholder
+                      ? properties
+                            .steps
+                            .length // will show the placeholder
                       : current,
                   children: [
                     for (int i = 0; i < properties.steps.length; i += 1)
@@ -375,17 +381,20 @@ class _StepVariantCircle extends StepVariant {
                                 animation: properties.state,
                                 builder: (context, child) {
                                   return VerticalDivider(
-                                      color: properties.hasFailure &&
-                                              properties.state.value
-                                                      .currentStep <=
-                                                  i
-                                          ? theme.colorScheme.destructive
-                                          : properties.state.value
-                                                      .currentStep >=
-                                                  i
-                                              ? theme.colorScheme.primary
-                                              : theme.colorScheme.border,
-                                      thickness: scaling * 2);
+                                    color:
+                                        properties.hasFailure &&
+                                            properties
+                                                    .state
+                                                    .value
+                                                    .currentStep <=
+                                                i
+                                        ? theme.colorScheme.destructive
+                                        : properties.state.value.currentStep >=
+                                              i
+                                        ? theme.colorScheme.primary
+                                        : theme.colorScheme.border,
+                                    thickness: scaling * 2,
+                                  );
                                 },
                               ),
                       ),
@@ -396,8 +405,8 @@ class _StepVariantCircle extends StepVariant {
                         return AnimatedCrossFade(
                           crossFadeState:
                               properties.state.value.currentStep == i
-                                  ? CrossFadeState.showSecond
-                                  : CrossFadeState.showFirst,
+                              ? CrossFadeState.showSecond
+                              : CrossFadeState.showFirst,
                           duration: kDefaultDuration,
                           firstChild: Container(height: 0),
                           firstCurve: const Interval(
@@ -475,15 +484,17 @@ class _StepVariantCircleAlternative extends StepVariant {
                             animation: properties.state,
                             builder: (context, child) {
                               return Divider(
-                                  color: properties.hasFailure &&
-                                          properties.state.value.currentStep <=
-                                              i - 1
-                                      ? theme.colorScheme.destructive
-                                      : properties.state.value.currentStep >=
-                                              i - 1
-                                          ? theme.colorScheme.primary
-                                          : theme.colorScheme.border,
-                                  thickness: scaling * 2);
+                                color:
+                                    properties.hasFailure &&
+                                        properties.state.value.currentStep <=
+                                            i - 1
+                                    ? theme.colorScheme.destructive
+                                    : properties.state.value.currentStep >=
+                                          i - 1
+                                    ? theme.colorScheme.primary
+                                    : theme.colorScheme.border,
+                                thickness: scaling * 2,
+                              );
                             },
                           ),
                         ),
@@ -498,14 +509,15 @@ class _StepVariantCircleAlternative extends StepVariant {
                             animation: properties.state,
                             builder: (context, child) {
                               return Divider(
-                                  color: properties.hasFailure &&
-                                          properties.state.value.currentStep <=
-                                              i
-                                      ? theme.colorScheme.destructive
-                                      : properties.state.value.currentStep >= i
-                                          ? theme.colorScheme.primary
-                                          : theme.colorScheme.border,
-                                  thickness: scaling * 2);
+                                color:
+                                    properties.hasFailure &&
+                                        properties.state.value.currentStep <= i
+                                    ? theme.colorScheme.destructive
+                                    : properties.state.value.currentStep >= i
+                                    ? theme.colorScheme.primary
+                                    : theme.colorScheme.border,
+                                thickness: scaling * 2,
+                              );
                             },
                           ),
                         ),
@@ -546,7 +558,9 @@ class _StepVariantCircleAlternative extends StepVariant {
               return Flexible(
                 child: IndexedStack(
                   index: current < 0 || current >= properties.steps.length
-                      ? properties.steps.length // will show the placeholder
+                      ? properties
+                            .steps
+                            .length // will show the placeholder
                       : current,
                   children: [
                     for (int i = 0; i < properties.steps.length; i += 1)
@@ -594,17 +608,20 @@ class _StepVariantCircleAlternative extends StepVariant {
                                 animation: properties.state,
                                 builder: (context, child) {
                                   return VerticalDivider(
-                                      color: properties.hasFailure &&
-                                              properties.state.value
-                                                      .currentStep <=
-                                                  i
-                                          ? theme.colorScheme.destructive
-                                          : properties.state.value
-                                                      .currentStep >=
-                                                  i
-                                              ? theme.colorScheme.primary
-                                              : theme.colorScheme.border,
-                                      thickness: scaling * 2);
+                                    color:
+                                        properties.hasFailure &&
+                                            properties
+                                                    .state
+                                                    .value
+                                                    .currentStep <=
+                                                i
+                                        ? theme.colorScheme.destructive
+                                        : properties.state.value.currentStep >=
+                                              i
+                                        ? theme.colorScheme.primary
+                                        : theme.colorScheme.border,
+                                    thickness: scaling * 2,
+                                  );
                                 },
                               ),
                       ),
@@ -615,8 +632,8 @@ class _StepVariantCircleAlternative extends StepVariant {
                         return AnimatedCrossFade(
                           crossFadeState:
                               properties.state.value.currentStep == i
-                                  ? CrossFadeState.showSecond
-                                  : CrossFadeState.showFirst,
+                              ? CrossFadeState.showSecond
+                              : CrossFadeState.showFirst,
                           duration: kDefaultDuration,
                           firstChild: Container(height: 0),
                           firstCurve: const Interval(
@@ -688,13 +705,15 @@ class _StepVariantLine extends StepVariant {
                     animation: properties.state,
                     builder: (context, child) {
                       return Divider(
-                          color: properties.hasFailure &&
-                                  properties.state.value.currentStep <= i
-                              ? theme.colorScheme.destructive
-                              : properties.state.value.currentStep >= i
-                                  ? theme.colorScheme.primary
-                                  : theme.colorScheme.border,
-                          thickness: scaling * 3);
+                        color:
+                            properties.hasFailure &&
+                                properties.state.value.currentStep <= i
+                            ? theme.colorScheme.destructive
+                            : properties.state.value.currentStep >= i
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.border,
+                        thickness: scaling * 3,
+                      );
                     },
                   ),
                   Gap(scaling * 8),
@@ -724,7 +743,9 @@ class _StepVariantLine extends StepVariant {
               return Flexible(
                 child: IndexedStack(
                   index: current < 0 || current >= properties.steps.length
-                      ? properties.steps.length // will show the placeholder
+                      ? properties
+                            .steps
+                            .length // will show the placeholder
                       : current,
                   children: [
                     for (int i = 0; i < properties.steps.length; i += 1)
@@ -756,13 +777,15 @@ class _StepVariantLine extends StepVariant {
                       animation: properties.state,
                       builder: (context, child) {
                         return VerticalDivider(
-                            color: properties.hasFailure &&
-                                    properties.state.value.currentStep <= i
-                                ? theme.colorScheme.destructive
-                                : properties.state.value.currentStep >= i
-                                    ? theme.colorScheme.primary
-                                    : theme.colorScheme.border,
-                            thickness: scaling * 3);
+                          color:
+                              properties.hasFailure &&
+                                  properties.state.value.currentStep <= i
+                              ? theme.colorScheme.destructive
+                              : properties.state.value.currentStep >= i
+                              ? theme.colorScheme.primary
+                              : theme.colorScheme.border,
+                          thickness: scaling * 3,
+                        );
                       },
                     ),
                     Gap(scaling * 16),
@@ -783,11 +806,17 @@ class _StepVariantLine extends StepVariant {
                           : CrossFadeState.showFirst,
                       duration: kDefaultDuration,
                       firstChild: Container(height: 0),
-                      firstCurve:
-                          const Interval(0, 0.6, curve: Curves.fastOutSlowIn),
+                      firstCurve: const Interval(
+                        0,
+                        0.6,
+                        curve: Curves.fastOutSlowIn,
+                      ),
                       secondChild: Container(child: child),
-                      secondCurve:
-                          const Interval(0.4, 1, curve: Curves.fastOutSlowIn),
+                      secondCurve: const Interval(
+                        0.4,
+                        1,
+                        curve: Curves.fastOutSlowIn,
+                      ),
                       sizeCurve: Curves.fastOutSlowIn,
                     );
                   },
@@ -915,10 +944,12 @@ class StepperController extends ValueNotifier<StepperValue> {
   StepperController({
     int? currentStep,
     Map<int, StepState>? stepStates,
-  }) : super(StepperValue(
-          currentStep: currentStep ?? 0,
-          stepStates: stepStates ?? {},
-        ));
+  }) : super(
+         StepperValue(
+           currentStep: currentStep ?? 0,
+           stepStates: stepStates ?? {},
+         ),
+       );
 
   /// Advances to the next step.
   ///
@@ -970,7 +1001,7 @@ class StepperController extends ValueNotifier<StepperValue> {
   /// // Clear step state
   /// controller.setStatus(2, null);
   /// ```
-  void setStatus(StepState? state, int step) {
+  void setStatus(int step, StepState? state) {
     final newStates = Map<int, StepState>.of(value.stepStates);
     if (state == null) {
       newStates.remove(step);
@@ -1191,8 +1222,10 @@ class StepNumber extends StatelessWidget {
     final properties = Data.maybeOf<StepProperties>(context);
     final stepNumberData = Data.maybeOf<StepNumberData>(context);
     assert(properties != null, 'StepNumber must be a descendant of Stepper');
-    assert(stepNumberData != null,
-        'StepNumber must be a descendant of StepNumberData');
+    assert(
+      stepNumberData != null,
+      'StepNumber must be a descendant of StepNumberData',
+    );
     final stepIndex = stepNumberData!.stepIndex;
     final theme = Theme.of(context);
 
@@ -1203,19 +1236,21 @@ class StepNumber extends StatelessWidget {
           context,
           DefaultTextStyle.merge(
             style: TextStyle(
-              color: properties.state.value.stepStates[stepIndex] ==
+              color:
+                  properties.state.value.stepStates[stepIndex] ==
                       StepState.failed
                   ? theme.colorScheme.destructive
                   : theme.colorScheme.primary,
             ).merge(theme.typography.medium),
             child: IconTheme.merge(
               data: IconThemeData(
-                color: properties.state.value.stepStates[stepIndex] ==
+                color:
+                    properties.state.value.stepStates[stepIndex] ==
                         StepState.failed
                     ? theme.colorScheme.destructive
                     : properties.state.value.currentStep > stepIndex
-                        ? theme.colorScheme.background
-                        : theme.colorScheme.primary,
+                    ? theme.colorScheme.background
+                    : theme.colorScheme.primary,
               ),
               child: SizedBox.square(
                 dimension: properties.size.size * theme.scaling,
@@ -1223,44 +1258,49 @@ class StepNumber extends StatelessWidget {
                   decoration: WidgetStateProperty.resolveWith((states) {
                     return BoxDecoration(
                       border: Border.all(
-                          color: properties.state.value.stepStates[stepIndex] ==
-                                  StepState.failed
-                              ? theme.colorScheme.destructive
-                              : properties.state.value.currentStep >= stepIndex
-                                  ? theme.colorScheme.primary
-                                  : theme.colorScheme.border,
-                          width: theme.scaling * 2),
-                      color: properties.state.value.stepStates[stepIndex] ==
+                        color:
+                            properties.state.value.stepStates[stepIndex] ==
+                                StepState.failed
+                            ? theme.colorScheme.destructive
+                            : properties.state.value.currentStep >= stepIndex
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.border,
+                        width: theme.scaling * 2,
+                      ),
+                      color:
+                          properties.state.value.stepStates[stepIndex] ==
                               StepState.failed
                           ? theme.colorScheme.destructive
                           : properties.state.value.currentStep > stepIndex
-                              ? theme.colorScheme.primary
-                              : properties.state.value.currentStep ==
-                                          stepIndex ||
-                                      states.contains(WidgetState.hovered) ||
-                                      states.contains(WidgetState.focused)
-                                  ? theme.colorScheme.secondary
-                                  : theme.colorScheme.background,
+                          ? theme.colorScheme.primary
+                          : properties.state.value.currentStep == stepIndex ||
+                                states.contains(WidgetState.hovered) ||
+                                states.contains(WidgetState.focused)
+                          ? theme.colorScheme.secondary
+                          : theme.colorScheme.background,
                       shape: theme.radius == 0
                           ? BoxShape.rectangle
                           : BoxShape.circle,
                     );
                   }),
                   enabled: onPressed != null,
-                  mouseCursor: WidgetStatePropertyAll(onPressed == null
-                      ? SystemMouseCursors.basic
-                      : SystemMouseCursors.click),
+                  mouseCursor: WidgetStatePropertyAll(
+                    onPressed == null
+                        ? SystemMouseCursors.basic
+                        : SystemMouseCursors.click,
+                  ),
                   onPressed: onPressed,
                   child: Center(
-                    child: properties.state.value.stepStates[stepIndex] ==
+                    child:
+                        properties.state.value.stepStates[stepIndex] ==
                             StepState.failed
                         ? const Icon(Icons.close, color: Colors.white)
                         : properties.state.value.currentStep > stepIndex
-                            ? Icon(
-                                Icons.check,
-                                color: theme.colorScheme.background,
-                              )
-                            : icon ?? Text((stepIndex + 1).toString()),
+                        ? Icon(
+                            Icons.check,
+                            color: theme.colorScheme.background,
+                          )
+                        : icon ?? Text((stepIndex + 1).toString()),
                   ),
                 ),
               ),

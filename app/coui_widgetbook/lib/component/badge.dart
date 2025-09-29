@@ -9,16 +9,16 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 )
 Widget buildPrimaryBadgeUseCase(BuildContext context) {
   return coui.PrimaryBadge(
-    onPressed: context.knobs.boolean(label: 'interactive', initialValue: false)
-        ? () => print('Badge pressed')
-        : null,
-    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.star, size: 16)
         : null,
-    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+    onPressed: context.knobs.boolean(initialValue: false, label: 'interactive')
+        ? () => print('Badge pressed')
+        : null,
+    trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.notifications, size: 14)
         : null,
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Primary')),
+    child: Text(context.knobs.string(initialValue: 'Primary', label: 'text')),
   );
 }
 
@@ -28,16 +28,16 @@ Widget buildPrimaryBadgeUseCase(BuildContext context) {
 )
 Widget buildSecondaryBadgeUseCase(BuildContext context) {
   return coui.SecondaryBadge(
-    onPressed: context.knobs.boolean(label: 'interactive', initialValue: false)
-        ? () => print('Badge pressed')
-        : null,
-    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.info, size: 16)
         : null,
-    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+    onPressed: context.knobs.boolean(initialValue: false, label: 'interactive')
+        ? () => print('Badge pressed')
+        : null,
+    trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward, size: 14)
         : null,
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Secondary')),
+    child: Text(context.knobs.string(initialValue: 'Secondary', label: 'text')),
   );
 }
 
@@ -47,16 +47,16 @@ Widget buildSecondaryBadgeUseCase(BuildContext context) {
 )
 Widget buildOutlineBadgeUseCase(BuildContext context) {
   return coui.OutlineBadge(
-    onPressed: context.knobs.boolean(label: 'interactive', initialValue: false)
-        ? () => print('Badge pressed')
-        : null,
-    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.check_circle_outline, size: 16)
         : null,
-    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+    onPressed: context.knobs.boolean(initialValue: false, label: 'interactive')
+        ? () => print('Badge pressed')
+        : null,
+    trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward, size: 14)
         : null,
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Outline')),
+    child: Text(context.knobs.string(initialValue: 'Outline', label: 'text')),
   );
 }
 
@@ -66,15 +66,17 @@ Widget buildOutlineBadgeUseCase(BuildContext context) {
 )
 Widget buildDestructiveBadgeUseCase(BuildContext context) {
   return coui.DestructiveBadge(
-    onPressed: context.knobs.boolean(label: 'interactive', initialValue: false)
-        ? () => print('Badge pressed')
-        : null,
-    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.warning, size: 16)
         : null,
-    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+    onPressed: context.knobs.boolean(initialValue: false, label: 'interactive')
+        ? () => print('Badge pressed')
+        : null,
+    trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.delete, size: 14)
         : null,
-    child: Text(context.knobs.string(label: 'text', initialValue: 'Destructive')),
+    child: Text(
+      context.knobs.string(initialValue: 'Destructive', label: 'text'),
+    ),
   );
 }

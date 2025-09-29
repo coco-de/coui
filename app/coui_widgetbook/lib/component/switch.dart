@@ -9,26 +9,26 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 )
 Widget buildSwitchDefaultUseCase(BuildContext context) {
   return coui.Switch(
-    value: context.knobs.boolean(
-      label: 'value',
-      initialValue: false,
-    ),
-    onChanged: (value) => print('Switch value changed to: $value'),
-    enabled: context.knobs.boolean(
-      label: 'enabled',
-      initialValue: true,
-    ),
     activeColor: context.knobs.colorOrNull(
       label: 'activeColor',
-    ),
-    inactiveColor: context.knobs.colorOrNull(
-      label: 'inactiveColor',
     ),
     activeThumbColor: context.knobs.colorOrNull(
       label: 'activeThumbColor',
     ),
+    enabled: context.knobs.boolean(
+      initialValue: true,
+      label: 'enabled',
+    ),
+    inactiveColor: context.knobs.colorOrNull(
+      label: 'inactiveColor',
+    ),
     inactiveThumbColor: context.knobs.colorOrNull(
       label: 'inactiveThumbColor',
+    ),
+    onChanged: (value) => print('Switch value changed to: $value'),
+    value: context.knobs.boolean(
+      initialValue: false,
+      label: 'value',
     ),
   );
 }
@@ -39,24 +39,28 @@ Widget buildSwitchDefaultUseCase(BuildContext context) {
 )
 Widget buildSwitchWithLabelUseCase(BuildContext context) {
   return coui.Switch(
-    value: context.knobs.boolean(
-      label: 'value',
-      initialValue: true,
+    gap: context.knobs.double.slider(
+      initialValue: 8,
+      label: 'gap',
+      max: 32,
+      min: 0,
+    ),
+    leading: Text(
+      context.knobs.string(
+        initialValue: 'Leading',
+        label: 'leading text',
+      ),
     ),
     onChanged: (value) => print('Switch value changed to: $value'),
-    leading: Text(context.knobs.string(
-      label: 'leading text',
-      initialValue: 'Leading',
-    )),
-    trailing: Text(context.knobs.string(
-      label: 'trailing text',
-      initialValue: 'Trailing',
-    )),
-    gap: context.knobs.double.slider(
-      label: 'gap',
-      initialValue: 8,
-      min: 0,
-      max: 32,
+    trailing: Text(
+      context.knobs.string(
+        initialValue: 'Trailing',
+        label: 'trailing text',
+      ),
+    ),
+    value: context.knobs.boolean(
+      initialValue: true,
+      label: 'value',
     ),
   );
 }
@@ -67,8 +71,8 @@ Widget buildSwitchWithLabelUseCase(BuildContext context) {
 )
 Widget buildSwitchDisabledUseCase(BuildContext context) {
   return const coui.Switch(
-    value: false,
-    onChanged: null,
     enabled: false,
+    onChanged: null,
+    value: false,
   );
 }

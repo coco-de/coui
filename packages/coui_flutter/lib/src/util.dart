@@ -23,10 +23,11 @@ enum SortDirection {
   none,
 }
 
-typedef OnContextInvokeCallback<T extends Intent> = Object? Function(
-  T intent, [
-  BuildContext? context,
-]);
+typedef OnContextInvokeCallback<T extends Intent> =
+    Object? Function(
+      T intent, [
+      BuildContext? context,
+    ]);
 
 class CallbackContextAction<T extends Intent> extends ContextAction<T> {
   CallbackContextAction({required this.onInvoke});
@@ -132,7 +133,11 @@ double unlerpDouble(double max, double min, double value) {
 }
 
 void swapItemInLists<T>(
-    T element, List<List<T>> lists, int targetIndex, List<T> targetList) {
+  List<List<T>> lists,
+  T element,
+  List<T> targetList,
+  int targetIndex,
+) {
   for (final list in lists) {
     if (list != targetList) {
       list.remove(element);
@@ -208,8 +213,10 @@ extension EdgeInsetsExtension on EdgeInsetsGeometry {
 BorderRadius subtractByBorder(double borderWidth, BorderRadius radius) {
   return BorderRadius.only(
     bottomLeft: _subtractSafe(radius.bottomLeft, Radius.circular(borderWidth)),
-    bottomRight:
-        _subtractSafe(radius.bottomRight, Radius.circular(borderWidth)),
+    bottomRight: _subtractSafe(
+      radius.bottomRight,
+      Radius.circular(borderWidth),
+    ),
     topLeft: _subtractSafe(radius.topLeft, Radius.circular(borderWidth)),
     topRight: _subtractSafe(radius.topRight, Radius.circular(borderWidth)),
   );
@@ -337,21 +344,23 @@ extension IterableExtension<T> on Iterable<T> {
   }
 }
 
-typedef NeverWidgetBuilder = Widget Function([
-  dynamic,
-  dynamic,
-  dynamic,
-  dynamic,
-  dynamic,
-  dynamic,
-  dynamic,
-  dynamic,
-  dynamic,
-  dynamic,
-]);
+typedef NeverWidgetBuilder =
+    Widget Function([
+      dynamic,
+      dynamic,
+      dynamic,
+      dynamic,
+      dynamic,
+      dynamic,
+      dynamic,
+      dynamic,
+      dynamic,
+      dynamic,
+    ]);
 
 extension WidgetExtension on Widget {
-  NeverWidgetBuilder get asBuilder => ([a, b, c, d, e, f, g, h, i, j]) => this;
+  NeverWidgetBuilder get asBuilder =>
+      ([a, b, c, d, e, f, g, h, i, j]) => this;
 
   Widget sized({double? height, double? width}) {
     return this is SizedBox
@@ -374,16 +383,20 @@ extension WidgetExtension on Widget {
     return this is ConstrainedBox
         ? ConstrainedBox(
             constraints: BoxConstraints(
-              maxHeight: height ??
+              maxHeight:
+                  height ??
                   maxHeight ??
                   (this as ConstrainedBox).constraints.maxHeight,
-              maxWidth: width ??
+              maxWidth:
+                  width ??
                   maxWidth ??
                   (this as ConstrainedBox).constraints.maxWidth,
-              minHeight: height ??
+              minHeight:
+                  height ??
                   minHeight ??
                   (this as ConstrainedBox).constraints.minHeight,
-              minWidth: width ??
+              minWidth:
+                  width ??
                   minWidth ??
                   (this as ConstrainedBox).constraints.minWidth,
             ),
@@ -505,8 +518,13 @@ extension WidgetExtension on Widget {
     return Align(alignment: alignment, child: this);
   }
 
-  Widget positioned(
-      {double? bottom, Key? key, double? left, double? right, double? top}) {
+  Widget positioned({
+    double? bottom,
+    Key? key,
+    double? left,
+    double? right,
+    double? top,
+  }) {
     return Positioned(
       key: key,
       bottom: bottom,
@@ -689,9 +707,9 @@ class _SeparatedFlexState extends State<SeparatedFlex> {
 
 extension FlexExtension on Flex {
   Widget gap(double gap) {
-    return separator(direction == Axis.vertical
-        ? SizedBox(height: gap)
-        : SizedBox(width: gap));
+    return separator(
+      direction == Axis.vertical ? SizedBox(height: gap) : SizedBox(width: gap),
+    );
   }
 
   Widget separator(Widget separator) {
@@ -711,7 +729,7 @@ extension FlexExtension on Flex {
   }
 }
 
-Iterable<Widget> join(Widget separator, Iterable<Widget> widgets) {
+Iterable<Widget> join(Iterable<Widget> widgets, Widget separator) {
   return SeparatedIterable(widgets, separator);
 }
 
@@ -741,8 +759,10 @@ extension ColorExtension on Color {
 
   Color getContrastColor([double luminanceContrast = 1]) {
     // luminance contrast is between 0..1
-    assert(luminanceContrast >= 0 && luminanceContrast <= 1,
-        'luminanceContrast should be between 0 and 1');
+    assert(
+      luminanceContrast >= 0 && luminanceContrast <= 1,
+      'luminanceContrast should be between 0 and 1',
+    );
     final hsl = HSLColor.fromColor(this);
     final currentLuminance = hsl.lightness;
     double targetLuminance;
@@ -842,14 +862,14 @@ class TimeOfDay {
   });
 
   TimeOfDay.fromDateTime(DateTime dateTime)
-      : hour = dateTime.hour,
-        minute = dateTime.minute,
-        second = dateTime.second;
+    : hour = dateTime.hour,
+      minute = dateTime.minute,
+      second = dateTime.second;
 
   TimeOfDay.fromDuration(Duration duration)
-      : hour = duration.inHours,
-        minute = duration.inMinutes % 60,
-        second = duration.inSeconds % 60;
+    : hour = duration.inHours,
+      minute = duration.inMinutes % 60,
+      second = duration.inSeconds % 60;
 
   TimeOfDay.now() : this.fromDateTime(DateTime.now());
 
@@ -902,8 +922,9 @@ class TimeOfDay {
   if (context != null) {
     final action = Actions.maybeFind<Intent>(context, intent: intent);
     if (action != null) {
-      final (bool enabled, Object? invokeResult) =
-          Actions.of(context).invokeActionIfEnabled(action, intent);
+      final (bool enabled, Object? invokeResult) = Actions.of(
+        context,
+      ).invokeActionIfEnabled(action, intent);
 
       return (enabled, invokeResult);
     }
@@ -1008,8 +1029,9 @@ class _CachedValueWidgetState<T> extends State<CachedValueWidget<T>> {
   void didUpdateWidget(covariant CachedValueWidget<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (T is CachedValue) {
-      if ((widget.value as CachedValue)
-          .shouldRebuild(oldWidget.value as CachedValue)) {
+      if ((widget.value as CachedValue).shouldRebuild(
+        oldWidget.value as CachedValue,
+      )) {
         _cachedWidget = null;
       }
     } else {
@@ -1058,10 +1080,11 @@ class BiDirectionalConvert<A, B> {
 class ConvertedController<F, T> extends ChangeNotifier
     implements ComponentController<T> {
   ConvertedController(
-      BiDirectionalConvert<F, T> convert, ValueNotifier<F> other)
-      : _other = other,
-        _convert = convert,
-        _value = convert.convertA(other.value) {
+    BiDirectionalConvert<F, T> convert,
+    ValueNotifier<F> other,
+  ) : _other = other,
+      _convert = convert,
+      _value = convert.convertA(other.value) {
     _other.addListener(_onOtherValueChanged);
   }
   final ValueNotifier<F> _other;
@@ -1128,10 +1151,11 @@ extension TextEditingValueExtension on TextEditingValue {
   }
 }
 
-typedef OnContextedCallback<T extends Intent> = Object? Function(
-  T intent, [
-  BuildContext? context,
-]);
+typedef OnContextedCallback<T extends Intent> =
+    Object? Function(
+      T intent, [
+      BuildContext? context,
+    ]);
 
 class ContextCallbackAction<T extends Intent> extends ContextAction<T> {
   ContextCallbackAction({required this.onInvoke});

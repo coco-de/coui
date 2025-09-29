@@ -10,23 +10,23 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 Widget buildDividerDefaultUseCase(BuildContext context) {
   return coui.Divider(
     color: context.knobs.colorOrNull(label: 'color'),
-    thickness: context.knobs.double.slider(
-      label: 'thickness',
-      initialValue: 1,
-      min: 1,
-      max: 10,
+    endIndent: context.knobs.double.slider(
+      initialValue: 0,
+      label: 'endIndent',
+      max: 100,
+      min: 0,
     ),
     indent: context.knobs.double.slider(
+      initialValue: 0,
       label: 'indent',
-      initialValue: 0,
-      min: 0,
       max: 100,
+      min: 0,
     ),
-    endIndent: context.knobs.double.slider(
-      label: 'endIndent',
-      initialValue: 0,
-      min: 0,
-      max: 100,
+    thickness: context.knobs.double.slider(
+      initialValue: 1,
+      label: 'thickness',
+      max: 10,
+      min: 1,
     ),
   );
 }
@@ -38,25 +38,25 @@ Widget buildDividerDefaultUseCase(BuildContext context) {
 Widget buildDividerWithChildUseCase(BuildContext context) {
   return coui.Divider(
     color: context.knobs.colorOrNull(label: 'color'),
-    thickness: context.knobs.double.slider(
-      label: 'thickness',
-      initialValue: 1,
-      min: 1,
-      max: 10,
+    endIndent: context.knobs.double.slider(
+      initialValue: 20,
+      label: 'endIndent',
+      max: 100,
+      min: 0,
     ),
     indent: context.knobs.double.slider(
+      initialValue: 20,
       label: 'indent',
-      initialValue: 20,
-      min: 0,
       max: 100,
-    ),
-    endIndent: context.knobs.double.slider(
-      label: 'endIndent',
-      initialValue: 20,
       min: 0,
-      max: 100,
     ),
-    child: Text(context.knobs.string(label: 'child text', initialValue: 'OR')),
+    thickness: context.knobs.double.slider(
+      initialValue: 1,
+      label: 'thickness',
+      max: 10,
+      min: 1,
+    ),
+    child: Text(context.knobs.string(initialValue: 'OR', label: 'child text')),
   );
 }
 
@@ -69,23 +69,23 @@ Widget buildVerticalDividerDefaultUseCase(BuildContext context) {
     height: 100,
     child: coui.VerticalDivider(
       color: context.knobs.colorOrNull(label: 'color'),
-      thickness: context.knobs.double.slider(
-        label: 'thickness',
-        initialValue: 1,
-        min: 1,
-        max: 10,
+      endIndent: context.knobs.double.slider(
+        initialValue: 0,
+        label: 'endIndent',
+        max: 50,
+        min: 0,
       ),
       indent: context.knobs.double.slider(
+        initialValue: 0,
         label: 'indent',
-        initialValue: 0,
-        min: 0,
         max: 50,
+        min: 0,
       ),
-      endIndent: context.knobs.double.slider(
-        label: 'endIndent',
-        initialValue: 0,
-        min: 0,
-        max: 50,
+      thickness: context.knobs.double.slider(
+        initialValue: 1,
+        label: 'thickness',
+        max: 10,
+        min: 1,
       ),
     ),
   );

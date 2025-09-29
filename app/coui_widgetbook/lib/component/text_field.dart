@@ -9,10 +9,10 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 )
 Widget buildTextFieldDefaultUseCase(BuildContext context) {
   return coui.TextField(
-    onChanged: (value) => print('Text changed to: $value'),
+    enabled: context.knobs.boolean(initialValue: true, label: 'enabled'),
     hintText: context.knobs.stringOrNull(label: 'hintText'),
-    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
-    readOnly: context.knobs.boolean(label: 'readOnly', initialValue: false),
+    onChanged: (value) => print('Text changed to: $value'),
+    readOnly: context.knobs.boolean(initialValue: false, label: 'readOnly'),
   );
 }
 
@@ -23,10 +23,12 @@ Widget buildTextFieldDefaultUseCase(BuildContext context) {
 Widget buildTextFieldWithPlaceholderUseCase(BuildContext context) {
   return coui.TextField(
     onChanged: (value) => print('Text changed to: $value'),
-    placeholder: Text(context.knobs.string(
-      label: 'placeholder',
-      initialValue: 'Enter your text here...',
-    )),
+    placeholder: Text(
+      context.knobs.string(
+        initialValue: 'Enter your text here...',
+        label: 'placeholder',
+      ),
+    ),
   );
 }
 
@@ -36,10 +38,10 @@ Widget buildTextFieldWithPlaceholderUseCase(BuildContext context) {
 )
 Widget buildTextFieldPasswordUseCase(BuildContext context) {
   return coui.TextField(
-    onChanged: (value) => print('Text changed to: $value'),
-    obscureText: true,
-    hintText: 'Password',
     features: const [coui.InputFeature.passwordToggle()],
+    hintText: 'Password',
+    obscureText: true,
+    onChanged: (value) => print('Text changed to: $value'),
   );
 }
 
@@ -49,8 +51,6 @@ Widget buildTextFieldPasswordUseCase(BuildContext context) {
 )
 Widget buildTextFieldWithFeaturesUseCase(BuildContext context) {
   return coui.TextField(
-    onChanged: (value) => print('Text changed to: $value'),
-    hintText: 'Search...',
     features: [
       coui.InputFeature.leading(
         const Icon(Icons.search),
@@ -63,5 +63,7 @@ Widget buildTextFieldWithFeaturesUseCase(BuildContext context) {
         visibility: coui.InputFeatureVisibility.hasSelection,
       ),
     ],
+    hintText: 'Search...',
+    onChanged: (value) => print('Text changed to: $value'),
   );
 }
