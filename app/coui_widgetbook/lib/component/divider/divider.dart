@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// A default [coui.Divider] use case.
 @UseCase(
   name: 'default',
   type: coui.Divider,
@@ -31,6 +32,7 @@ Widget buildDividerDefaultUseCase(BuildContext context) {
   );
 }
 
+/// A [coui.Divider] use case with a child widget.
 @UseCase(
   name: 'with child',
   type: coui.Divider,
@@ -60,6 +62,7 @@ Widget buildDividerWithChildUseCase(BuildContext context) {
   );
 }
 
+/// A default [coui.VerticalDivider] use case.
 @UseCase(
   name: 'default',
   type: coui.VerticalDivider,

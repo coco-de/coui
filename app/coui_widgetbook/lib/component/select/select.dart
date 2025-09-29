@@ -10,13 +10,12 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 Widget buildSelectDefaultUseCase(BuildContext context) {
   final options = ['Apple', 'Banana', 'Orange', 'Mango', 'Pineapple'];
   return coui.Select<String>(
-    value: context.knobs.options(
-      label: 'selected',
-      options: options,
-    ),
     onChanged: (value) => print('Select value changed to: $value'),
     placeholder: const Text('Select a fruit'),
-    popup: coui.SelectPopup.noVirtualization(
+    itemBuilder: (context, value) {
+      return Text(value);
+    },
+    popup: (context) => coui.SelectPopup<String>.noVirtualization(
       items: coui.SelectItemList(
         children: options
             .map((e) => coui.SelectItemButton(
@@ -25,6 +24,10 @@ Widget buildSelectDefaultUseCase(BuildContext context) {
                 ))
             .toList(),
       ),
+    ),
+    value: context.knobs.object.dropdown(
+      label: 'selected',
+      options: options,
     ),
   );
 }

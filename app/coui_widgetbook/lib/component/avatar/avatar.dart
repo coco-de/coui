@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// A default [coui.Avatar] use case.
 @UseCase(
   name: 'default',
   type: coui.Avatar,
@@ -26,6 +27,7 @@ Widget buildAvatarDefaultUseCase(BuildContext context) {
   );
 }
 
+/// A [coui.Avatar] use case with an image.
 @UseCase(
   name: 'with image',
   type: coui.Avatar,
@@ -46,6 +48,7 @@ Widget buildAvatarWithImageUseCase(BuildContext context) {
   );
 }
 
+/// A [coui.Avatar] use case with a badge.
 @UseCase(
   name: 'with badge',
   type: coui.Avatar,
@@ -73,6 +76,7 @@ Widget buildAvatarWithBadgeUseCase(BuildContext context) {
   );
 }
 
+/// A [coui.AvatarGroup] use case.
 @UseCase(
   name: 'group',
   type: coui.AvatarGroup,

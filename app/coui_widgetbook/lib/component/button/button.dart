@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// A primary [coui.Button] use case.
 @UseCase(
   name: 'primary',
   type: coui.Button,
@@ -13,7 +14,7 @@ Widget buildButtonPrimaryUseCase(BuildContext context) {
     leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.add)
         : null,
-    onPressed: () => print('Button pressed'),
+    onPressed: () {},
     trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
@@ -21,6 +22,7 @@ Widget buildButtonPrimaryUseCase(BuildContext context) {
   );
 }
 
+/// A secondary [coui.Button] use case.
 @UseCase(
   name: 'secondary',
   type: coui.Button,
@@ -31,7 +33,7 @@ Widget buildButtonSecondaryUseCase(BuildContext context) {
     leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.add)
         : null,
-    onPressed: () => print('Button pressed'),
+    onPressed: () {},
     trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
@@ -39,6 +41,7 @@ Widget buildButtonSecondaryUseCase(BuildContext context) {
   );
 }
 
+/// An outline [coui.Button] use case.
 @UseCase(
   name: 'outline',
   type: coui.Button,
@@ -49,7 +52,7 @@ Widget buildButtonOutlineUseCase(BuildContext context) {
     leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.add)
         : null,
-    onPressed: () => print('Button pressed'),
+    onPressed: () {},
     trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
@@ -57,17 +60,13 @@ Widget buildButtonOutlineUseCase(BuildContext context) {
   );
 }
 
+/// A ghost [coui.Button] use case.
 @UseCase(
   name: 'ghost',
   type: coui.Button,
 )
 Widget buildButtonGhostUseCase(BuildContext context) {
-  return coui.Button.ghost(
-    enabled: context.knobs.boolean(initialValue: true, label: 'enabled'),
-    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
-        ? const Icon(Icons.add)
-        : null,
-    onPressed: () => print('Button pressed'),
+    onPressed: () {},
     trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
@@ -75,6 +74,7 @@ Widget buildButtonGhostUseCase(BuildContext context) {
   );
 }
 
+/// A link [coui.Button] use case.
 @UseCase(
   name: 'link',
   type: coui.Button,
@@ -85,7 +85,7 @@ Widget buildButtonLinkUseCase(BuildContext context) {
     leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.add)
         : null,
-    onPressed: () => print('Button pressed'),
+    onPressed: () {},
     trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,
@@ -93,6 +93,7 @@ Widget buildButtonLinkUseCase(BuildContext context) {
   );
 }
 
+/// A destructive [coui.Button] use case.
 @UseCase(
   name: 'destructive',
   type: coui.Button,
@@ -103,7 +104,7 @@ Widget buildButtonDestructiveUseCase(BuildContext context) {
     leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
         ? const Icon(Icons.delete)
         : null,
-    onPressed: () => print('Button pressed'),
+    onPressed: () {},
     trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)
         : null,

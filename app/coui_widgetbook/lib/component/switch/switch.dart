@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// A default [coui.Switch] use case.
 @UseCase(
   name: 'default',
   type: coui.Switch,
@@ -25,7 +26,7 @@ Widget buildSwitchDefaultUseCase(BuildContext context) {
     inactiveThumbColor: context.knobs.colorOrNull(
       label: 'inactiveThumbColor',
     ),
-    onChanged: (value) => print('Switch value changed to: $value'),
+    onChanged: (value) {},
     value: context.knobs.boolean(
       initialValue: false,
       label: 'value',
@@ -33,6 +34,7 @@ Widget buildSwitchDefaultUseCase(BuildContext context) {
   );
 }
 
+/// A [coui.Switch] use case with a label.
 @UseCase(
   name: 'with_label',
   type: coui.Switch,
@@ -51,7 +53,7 @@ Widget buildSwitchWithLabelUseCase(BuildContext context) {
         label: 'leading text',
       ),
     ),
-    onChanged: (value) => print('Switch value changed to: $value'),
+    onChanged: (value) {},
     trailing: Text(
       context.knobs.string(
         initialValue: 'Trailing',
@@ -65,6 +67,7 @@ Widget buildSwitchWithLabelUseCase(BuildContext context) {
   );
 }
 
+/// A disabled [coui.Switch] use case.
 @UseCase(
   name: 'disabled',
   type: coui.Switch,

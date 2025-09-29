@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// A single [coui.Slider] use case.
 @UseCase(
   name: 'single',
   type: coui.Slider,
@@ -10,9 +11,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 Widget buildSliderSingleUseCase(BuildContext context) {
   return coui.Slider(
     max: context.knobs.double.input(initialValue: 100, label: 'max'),
-    min: context.knobs.double.input(initialValue: 0, label: 'min'),
-    onChanged: (value) => print('Slider value changed to: $value'),
-    value: coui.SliderValue.single(
+    onChanged: (value) {},
       context.knobs.double.slider(
         initialValue: 50,
         label: 'value',
@@ -23,6 +22,7 @@ Widget buildSliderSingleUseCase(BuildContext context) {
   );
 }
 
+/// A ranged [coui.Slider] use case.
 @UseCase(
   name: 'ranged',
   type: coui.Slider,
@@ -30,8 +30,7 @@ Widget buildSliderSingleUseCase(BuildContext context) {
 Widget buildSliderRangedUseCase(BuildContext context) {
   return coui.Slider(
     max: context.knobs.double.input(initialValue: 100, label: 'max'),
-    min: context.knobs.double.input(initialValue: 0, label: 'min'),
-    onChanged: (value) => print('Slider value changed to: $value'),
+    onChanged: (value) {},
     value: coui.SliderValue.ranged(
       context.knobs.double.slider(
         initialValue: 20,
@@ -49,6 +48,7 @@ Widget buildSliderRangedUseCase(BuildContext context) {
   );
 }
 
+/// A [coui.Slider] use case with divisions.
 @UseCase(
   name: 'with divisions',
   type: coui.Slider,
@@ -63,7 +63,7 @@ Widget buildSliderWithDivisionsUseCase(BuildContext context) {
     ),
     max: 100,
     min: 0,
-    onChanged: (value) => print('Slider value changed to: $value'),
+    onChanged: (value) {},
     value: coui.SliderValue.single(
       context.knobs.double.slider(
         initialValue: 50,

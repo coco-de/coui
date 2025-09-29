@@ -11,7 +11,7 @@ Widget buildCheckboxDefaultUseCase(BuildContext context) {
   return coui.Checkbox(
     enabled: context.knobs.boolean(initialValue: true, label: 'enabled'),
     onChanged: (state) => print('Checkbox state changed to: $state'),
-    state: context.knobs.options(
+    state: context.knobs.object.dropdown(
       label: 'state',
       options: coui.CheckboxState.values,
     ),
@@ -25,7 +25,7 @@ Widget buildCheckboxDefaultUseCase(BuildContext context) {
 Widget buildCheckboxTristateUseCase(BuildContext context) {
   return coui.Checkbox(
     onChanged: (state) => print('Checkbox state changed to: $state'),
-    state: context.knobs.options(
+    state: context.knobs.object.dropdown(
       label: 'state',
       options: coui.CheckboxState.values,
     ),
@@ -40,7 +40,7 @@ Widget buildCheckboxTristateUseCase(BuildContext context) {
 Widget buildCheckboxWithLabelUseCase(BuildContext context) {
   return coui.Checkbox(
     onChanged: (state) => print('Checkbox state changed to: $state'),
-    state: context.knobs.options(
+    state: context.knobs.object.dropdown(
       label: 'state',
       options: coui.CheckboxState.values,
     ),

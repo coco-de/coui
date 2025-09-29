@@ -51,10 +51,10 @@ class SlangAddon extends WidgetbookAddon<Locale> {
     final local =
         valueOf<Locale>('name', group) ?? initialLocale ?? locales.firstOrNull;
     deb.debounce(() {
-      LocaleSettings.setLocaleRaw(local.toLanguageTag());
+      LocaleSettings.setLocaleRaw(local?.toLanguageTag() ?? '');
     });
 
-    return local;
+    return local!;
   }
 
   /// [valueFromQueryGroup]에서 얻은 애드온 [setting]에 따라 사용 사례를 사용자 정의 위젯으로 래핑합니다.

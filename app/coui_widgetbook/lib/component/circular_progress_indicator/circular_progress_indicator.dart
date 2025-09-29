@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// A default [coui.CircularProgressIndicator] use case.
 @UseCase(
   name: 'default',
   type: coui.CircularProgressIndicator,
@@ -26,6 +27,7 @@ Widget buildCircularProgressIndicatorDefaultUseCase(BuildContext context) {
   );
 }
 
+/// A determinate [coui.CircularProgressIndicator] use case.
 @UseCase(
   name: 'determinate',
   type: coui.CircularProgressIndicator,

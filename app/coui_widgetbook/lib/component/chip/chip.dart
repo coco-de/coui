@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// A default [coui.Chip] use case.
 @UseCase(
   name: 'default',
   type: coui.Chip,
@@ -13,6 +14,7 @@ Widget buildChipDefaultUseCase(BuildContext context) {
   );
 }
 
+/// A [coui.Chip] use case with a leading icon.
 @UseCase(
   name: 'with leading',
   type: coui.Chip,
@@ -26,6 +28,7 @@ Widget buildChipWithLeadingUseCase(BuildContext context) {
   );
 }
 
+/// A [coui.Chip] use case with a trailing button.
 @UseCase(
   name: 'with trailing',
   type: coui.Chip,
@@ -33,7 +36,7 @@ Widget buildChipWithLeadingUseCase(BuildContext context) {
 Widget buildChipWithTrailingUseCase(BuildContext context) {
   return coui.Chip(
     trailing: coui.ChipButton(
-      onPressed: () => print('Close button pressed'),
+      onPressed: () {},
       child: const Icon(Icons.close, size: 16),
     ),
     child: Text(
@@ -42,13 +45,14 @@ Widget buildChipWithTrailingUseCase(BuildContext context) {
   );
 }
 
+/// An interactive [coui.Chip] use case.
 @UseCase(
   name: 'interactive',
   type: coui.Chip,
 )
 Widget buildChipInteractiveUseCase(BuildContext context) {
   return coui.Chip(
-    onPressed: () => print('Chip pressed'),
+    onPressed: () {},
     child: Text(
       context.knobs.string(initialValue: 'Interactive Chip', label: 'text'),
     ),

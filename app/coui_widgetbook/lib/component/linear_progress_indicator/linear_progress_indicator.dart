@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// A default [coui.LinearProgressIndicator] use case.
 @UseCase(
   name: 'default',
   type: coui.LinearProgressIndicator,
@@ -20,6 +21,7 @@ Widget buildLinearProgressIndicatorDefaultUseCase(BuildContext context) {
   );
 }
 
+/// A determinate [coui.LinearProgressIndicator] use case.
 @UseCase(
   name: 'determinate',
   type: coui.LinearProgressIndicator,
@@ -43,6 +45,7 @@ Widget buildLinearProgressIndicatorDeterminateUseCase(BuildContext context) {
   );
 }
 
+/// A [coui.LinearProgressIndicator] use case with sparks.
 @UseCase(
   name: 'with sparks',
   type: coui.LinearProgressIndicator,
