@@ -1,0 +1,32 @@
+# dart run icons_launcher:create --flavor development
+
+icons_launcher:
+  platforms:
+    android:
+      enable: true
+      image_path: "assets/icons/ic_logo_radius_stg.png"
+      notification_image: "assets/icons/ic_foreground_stg.png"
+      # adaptive_background_color: '#ffffff'
+      adaptive_background_image: "assets/icons/ic_background.png"
+      adaptive_foreground_image: "assets/icons/ic_foreground_stg.png"
+      adaptive_round_image: "assets/icons/ic_logo_round_stg.png"
+      adaptive_monochrome_image: "assets/icons/ic_black_white_stg.png"
+    ios:
+      enable: true
+      image_path: "assets/icons/ic_logo_rectangle_light_stg.png"
+      # For iOS 18+ (support dark and tinted)
+      dark_path: "assets/icons/ic_logo_rectangle_dark_stg.png"
+      tinted_path: "assets/icons/ic_logo_rectangle_tinted_stg.png"
+    web:
+      enable: true
+      image_path: "assets/icons/splash_logo.png"
+      favicon_path: "assets/icons/splash_logo.png"
+    macos:
+      enable: true
+      image_path: "assets/icons/ic_logo_radius_stg.png"
+    windows:
+      enable: false
+      image_path: "assets/icons/ic_logo_radius_stg.png"
+    linux:
+      enable: false
+      image_path: "assets/icons/ic_logo_radius_stg.png"

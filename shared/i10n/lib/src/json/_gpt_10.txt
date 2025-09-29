@@ -1,0 +1,704 @@
+### Meta ###
+From: <ko> lib/src/json/ko.i18n.json
+To: <ko> lib/src/json/$default$_ko.i18n.json
+
+### Tokens ###
+Input: 1889
+Output: 2378
+Total: 4267
+
+### Conversation ###
+
+>> System:
+The user wants to internationalize the app. The user will provide you with a JSON file containing the Korean strings.
+You will translate it to Korean.
+Parameters are interpolated with {parameter}.
+Linked translations are denoted with the "@:path0.path1" syntax.
+
+Here is the app description. Respect this context when translating:
+"Coui" 는 당신의 모바일 소프트웨어 개발을 빠르고 안정적으로 제공합니다
+모바일 소프트웨어 제품을 원하는 기업에게 코코드는 최고의 선택이 될것 입니다.
+
+>> User:
+{"app_name":"Coui","app_description":"언제 어디서나 책을 만나는 디지털 도서관","common_error":{"email_format":"잘못된 이메일 형식입니다","empty_string":"{property}이(가) 비어 있습니다","invalid_password":"아이디 또는 비밀번호를 확인해주세요","max_characters":"허용 가능한 문자 수를 초과합니다","min_characters":"요구되는 문자 길이를 충족하지 않습니다","server_error":"오류 {code}: {error}","unexpected_error":"예기치 않은 오류가 발생했습니다","unsupported_device":"이 장치는 앱에서 지원되지 않습니다","no_internet_connection":"인터넷 연결이 없습니다","image_load_failed":"이미지 로드 실패"},"common_generic_error":"죄송합니다! 문제가 발생했습니다","common_community":"독서 커뮤니티","common_no":"아니요","common_yes":"예","dialog__message__exit_message":"'뒤로'버튼을 한번 더 누르시면 앱이 종료 됩니다.","common_dialog":{"min_update":{"title":"알림","message":"최신 업데이트가 준비되었어요\n더 좋아진 Coui eBook 앱을 경험해 보세요.","positive":"업데이트"},"latest_update":{"title":"알림","message":"최신 업데이트가 준비되었어요\n더 좋아진 Coui eBook 앱을 경험해 보세요.","negative":"건너뛰기","positive":"업데이트"},"no_internet_connection":{"title":"인터넷 연결 오류","message":"인터넷 연결이 끊겼습니다. 네트워크 설정을 확인하고 다시 시도해주세요.","positive":"확인"},"marketing":{"title":"도서 추천 알림을 받아보시겠어요?","message":"수신 동의 시 신간 도서, 맞춤 추천, 이벤트 등\n다양한 독서 정보 알림을 받아보실 수 있습니다.","positive":"네","negative":"나중에 받기"}},"sign_in_provider":{"email":"이메일로 시작하기","google":"구글로 시작하기","apple":"애플로 시작하기","kakao":"카카오로 시작하기","naver":"네이버로 시작하기","skip":"건너뛰기"},"sign_in_with_email":{"label_text__nickname":"닉네임","label_text__email":"이메일","label_text__password":"비밀번호","label_text__code":"인증번호","text_field_hint__nickname":"닉네임을 입력하세요","text_field_hint__email":"이메일 주소를 입력하세요","text_field_hint__password":"비밀번호를 입력하세요","text_field_hint__code":"인증번호 6자리","button_text__sign_in":{"sign_in":"로그인","create_account":"회원가입","confirm_email":"인증번호 확인","forgot_password":"비밀번호 찾기","confirm_password_reset":"비밀번호 재설정"},"page_state":{"sign_in":"로그인","create_account":"회원가입을\n시작합니다","confirm_email":"이메일로 받은\n인증번호를 입력해주세요.","forgot_password":"비밀번호 찾기","verify_email":"이메일로 받은\n인증번호를 입력해주세요.","confirm_password_reset":"인증번호가 일치해요!\n비밀번호를 재설정해주세요."}},"login":{"title":"로그인","tagline":"당신의 지식 여정을 위한 스마트한 동반자","console_login_title":"관리자 로그인","button_text_login":"로그인","label_text_email":"이메일","label_text_password":"비밀번호","label_text_find_email_password":"패스워드 찾기","text_field_hint_email":"이메일 주소를 입력하세요","text_field_hint_password":"비밀번호를 입력하세요","validation_required_email":"이메일을 입력해주세요","validation_email_format":"올바른 이메일 형식이 아닙니다","validation_required_password":"비밀번호를 입력해주세요","validation_password_min_length":"비밀번호는 최소 6자 이상이어야 합니다","account_find":"회원가입 / 비밀번호 찾기","inquiry":"문의하기","anonymous_login":"비회원 둘러보기","error_login_failed":"로그인에 실패했습니다","error_unexpected":"오류가 발생했습니다: {error}","error_server":"서버 오류가 발생했습니다: {error}","error_invalid_email":"이메일 형식이 올바르지 않습니다","error_invalid_password":"비밀번호 형식이 올바르지 않습니다","error_user_not_found":"해당 사용자를 찾을 수 없습니다"},"main":{"bottom_navigation__home":"홈","bottom_navigation__order":"도서검색","bottom_navigation__cart":"내서재","bottom_navigation__my_page":"MY","bottom_navigation__community":"독서모임","bottom_navigation__store":"스토어","bottom_navigation__my_library":"내 서재"},"home":{"text_field_hint__search":"책 제목, 작가, 출판사를 검색하세요."},"order":{"title":"도서검색"},"cart":{"title":"내서재"},"community":{"title":"독서모임"},"my_page":{"title":"마이페이지"},"store":{"title":"스토어","search_hint":"검색어를 입력해주세요","korean_language_education":"국어교육","social_welfare":"사회복지","international_politics":"국제정치","archaeology":"고고학","art_history":"미술사","new_book":"신간도서","monthly_recommendation":"이달의 추천도서","bestseller":"베스트셀러","thought_and_emotion_basics":"생각과 감정의 기초","more":"더보기"},"web_view":{"title__find_email_password":"비밀번호 찾기","title__sign_up":"회원가입","title__community":"독서모임"},"settings":{"title_settings":"설정","card_notification":{"title":"독서활동 알림","body":"독서기록, 댓글, 독서모임 활동에 대한 정보를 받아보실 수 있어요."},"card_event":{"title":"도서 소식 알림","body":"신간 도서, 맞춤 추천, 이벤트 등 다양한 독서 소식을 가장 먼저 보내드려요."},"dialog":{"marketing":{"title":"도서 알림 {agree} 안내","contents":"• 일시: {date}\n• 전송자: Coui eBook\n• 수신동의: 앱 알림","location":"마이페이지 > 설정에서 변경할 수 있어요.","positive":"확인"},"alert":{"title":"알림","contents":"신간 도서, 맞춤 추천, 이벤트 등 다양한 독서 소식을 받을 수 없어요. 그래도 알림을 해지하시겠습니까?","positive":"알림유지","negative":"알림해지"}}},"withdraw":{"title":"탈퇴하기","check_title":"아래 사항을 꼭 확인해 주세요.","check_list_01":"구독권 및 보유한 eBook 콘텐츠는 모두 소멸되어 복구할 수 없습니다.","check_list_02":"Coui eBook 독서모임 서비스 이용이 불가합니다.","check_list_03":"이미 작성하신 서평, 댓글은 계속 남아 있을 수 있습니다.","check_list_04":"본 계정으로 다시 로그인 할 수 없습니다.","agree":"안내 사항을 모두 확인하였으며, 이에 동의합니다","dialog":{"alert":{"title":"알림","contents":"탈퇴처리가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.","positive":"확인"}}},"console":{"navigation":{"my":"회원 관리","library":"도서 관리","campaign":"베너 관리","coupon":"캐시/쿠폰"},"bookList":{"header_title":"도서 관리","title":"도서 목록","text__visible":"노출","text__hidden":"숨김","pending":"미승인","approved":"승인","rejected":"거부","edit":"수정","delete":"삭제","category_name_default":"미분류","format":"판형","published_at":"출간일","created_at":"등록일","updated_at":"수정일","filter":"필터","add_book":"도서 추가","book_list":"도서 목록","search_hint":"검색어를 입력해주세요","role_admin":"최고 관리자","role_manager":"기능 관리자","role_admin_all":"전체 관리자","button":"버튼"}},"errors":{"something_wrong":{"title":"문제가 발생했습니다!","description":"안심하세요. 저희 팀이 문제를 조사하고 빠른 시일 내에 해결할 것입니다. 독서를 즐기실 수 있도록 최선을 다하겠습니다!"}}}
+
+>> Assistant:
+```json
+{
+  "app_name": "Coui",
+  "app_description": "언제 어디서나 책을 만나는 디지털 도서관",
+  "common_error": {
+    "email_format": "잘못된 이메일 형식입니다",
+    "empty_string": "{property}이(가) 비어 있습니다",
+    "invalid_password": "아이디 또는 비밀번호를 확인해주세요",
+    "max_characters": "허용 가능한 문자 수를 초과합니다",
+    "min_characters": "요구되는 문자 길이를 충족하지 않습니다",
+    "server_error": "오류 {code}: {error}",
+    "unexpected_error": "예기치 않은 오류가 발생했습니다",
+    "unsupported_device": "이 장치는 앱에서 지원되지 않습니다",
+    "no_internet_connection": "인터넷 연결이 없습니다",
+    "image_load_failed": "이미지 로드 실패"
+  },
+  "common_generic_error": "죄송합니다! 문제가 발생했습니다",
+  "common_community": "독서 커뮤니티",
+  "common_no": "아니요",
+  "common_yes": "예",
+  "dialog__message__exit_message": "'뒤로'버튼을 한번 더 누르시면 앱이 종료 됩니다.",
+  "common_dialog": {
+    "min_update": {
+      "title": "알림",
+      "message": "최신 업데이트가 준비되었어요\n더 좋아진 Coui eBook 앱을 경험해 보세요.",
+      "positive": "업데이트"
+    },
+    "latest_update": {
+      "title": "알림",
+      "message": "최신 업데이트가 준비되었어요\n더 좋아진 Coui eBook 앱을 경험해 보세요.",
+      "negative": "건너뛰기",
+      "positive": "업데이트"
+    },
+    "no_internet_connection": {
+      "title": "인터넷 연결 오류",
+      "message": "인터넷 연결이 끊겼습니다. 네트워크 설정을 확인하고 다시 시도해주세요.",
+      "positive": "확인"
+    },
+    "marketing": {
+      "title": "도서 추천 알림을 받아보시겠어요?",
+      "message": "수신 동의 시 신간 도서, 맞춤 추천, 이벤트 등\n다양한 독서 정보 알림을 받아보실 수 있습니다.",
+      "positive": "네",
+      "negative": "나중에 받기"
+    }
+  },
+  "sign_in_provider": {
+    "email": "이메일로 시작하기",
+    "google": "구글로 시작하기",
+    "apple": "애플로 시작하기",
+    "kakao": "카카오로 시작하기",
+    "naver": "네이버로 시작하기",
+    "skip": "건너뛰기"
+  },
+  "sign_in_with_email": {
+    "label_text__nickname": "닉네임",
+    "label_text__email": "이메일",
+    "label_text__password": "비밀번호",
+    "label_text__code": "인증번호",
+    "text_field_hint__nickname": "닉네임을 입력하세요",
+    "text_field_hint__email": "이메일 주소를 입력하세요",
+    "text_field_hint__password": "비밀번호를 입력하세요",
+    "text_field_hint__code": "인증번호 6자리",
+    "button_text__sign_in": {
+      "sign_in": "로그인",
+      "create_account": "회원가입",
+      "confirm_email": "인증번호 확인",
+      "forgot_password": "비밀번호 찾기",
+      "confirm_password_reset": "비밀번호 재설정"
+    },
+    "page_state": {
+      "sign_in": "로그인",
+      "create_account": "회원가입을\n시작합니다",
+      "confirm_email": "이메일로 받은\n인증번호를 입력해주세요.",
+      "forgot_password": "비밀번호 찾기",
+      "verify_email": "이메일로 받은\n인증번호를 입력해주세요.",
+      "confirm_password_reset": "인증번호가 일치해요!\n비밀번호를 재설정해주세요."
+    }
+  },
+  "login": {
+    "title": "로그인",
+    "tagline": "당신의 지식 여정을 위한 스마트한 동반자",
+    "console_login_title": "관리자 로그인",
+    "button_text_login": "로그인",
+    "label_text_email": "이메일",
+    "label_text_password": "비밀번호",
+    "label_text_find_email_password": "패스워드 찾기",
+    "text_field_hint_email": "이메일 주소를 입력하세요",
+    "text_field_hint_password": "비밀번호를 입력하세요",
+    "validation_required_email": "이메일을 입력해주세요",
+    "validation_email_format": "올바른 이메일 형식이 아닙니다",
+    "validation_required_password": "비밀번호를 입력해주세요",
+    "validation_password_min_length": "비밀번호는 최소 6자 이상이어야 합니다",
+    "account_find": "회원가입 / 비밀번호 찾기",
+    "inquiry": "문의하기",
+    "anonymous_login": "비회원 둘러보기",
+    "error_login_failed": "로그인에 실패했습니다",
+    "error_unexpected": "오류가 발생했습니다: {error}",
+    "error_server": "서버 오류가 발생했습니다: {error}",
+    "error_invalid_email": "이메일 형식이 올바르지 않습니다",
+    "error_invalid_password": "비밀번호 형식이 올바르지 않습니다",
+    "error_user_not_found": "해당 사용자를 찾을 수 없습니다"
+  },
+  "main": {
+    "bottom_navigation__home": "홈",
+    "bottom_navigation__order": "도서검색",
+    "bottom_navigation__cart": "내서재",
+    "bottom_navigation__my_page": "MY",
+    "bottom_navigation__community": "독서모임",
+    "bottom_navigation__store": "스토어",
+    "bottom_navigation__my_library": "내 서재"
+  },
+  "home": {
+    "text_field_hint__search": "책 제목, 작가, 출판사를 검색하세요."
+  },
+  "order": {
+    "title": "도서검색"
+  },
+  "cart": {
+    "title": "내서재"
+  },
+  "community": {
+    "title": "독서모임"
+  },
+  "my_page": {
+    "title": "마이페이지"
+  },
+  "store": {
+    "title": "스토어",
+    "search_hint": "검색어를 입력해주세요",
+    "korean_language_education": "국어교육",
+    "social_welfare": "사회복지",
+    "international_politics": "국제정치",
+    "archaeology": "고고학",
+    "art_history": "미술사",
+    "new_book": "신간도서",
+    "monthly_recommendation": "이달의 추천도서",
+    "bestseller": "베스트셀러",
+    "thought_and_emotion_basics": "생각과 감정의 기초",
+    "more": "더보기"
+  },
+  "web_view": {
+    "title__find_email_password": "비밀번호 찾기",
+    "title__sign_up": "회원가입",
+    "title__community": "독서모임"
+  },
+  "settings": {
+    "title_settings": "설정",
+    "card_notification": {
+      "title": "독서활동 알림",
+      "body": "독서기록, 댓글, 독서모임 활동에 대한 정보를 받아보실 수 있어요."
+    },
+    "card_event": {
+      "title": "도서 소식 알림",
+      "body": "신간 도서, 맞춤 추천, 이벤트 등 다양한 독서 소식을 가장 먼저 보내드려요."
+    },
+    "dialog": {
+      "marketing": {
+        "title": "도서 알림 {agree} 안내",
+        "contents": "• 일시: {date}\n• 전송자: Coui eBook\n• 수신동의: 앱 알림",
+        "location": "마이페이지 > 설정에서 변경할 수 있어요.",
+        "positive": "확인"
+      },
+      "alert": {
+        "title": "알림",
+        "contents": "신간 도서, 맞춤 추천, 이벤트 등 다양한 독서 소식을 받을 수 없어요. 그래도 알림을 해지하시겠습니까?",
+        "positive": "알림유지",
+        "negative": "알림해지"
+      }
+    }
+  },
+  "withdraw": {
+    "title": "탈퇴하기",
+    "check_title": "아래 사항을 꼭 확인해 주세요.",
+    "check_list_01": "구독권 및 보유한 eBook 콘텐츠는 모두 소멸되어 복구할 수 없습니다.",
+    "check_list_02": "Coui eBook 독서모임 서비스 이용이 불가합니다.",
+    "check_list_03": "이미 작성하신 서평, 댓글은 계속 남아 있을 수 있습니다.",
+    "check_list_04": "본 계정으로 다시 로그인 할 수 없습니다.",
+    "agree": "안내 사항을 모두 확인하였으며, 이에 동의합니다",
+    "dialog": {
+      "alert": {
+        "title": "알림",
+        "contents": "탈퇴처리가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.",
+        "positive": "확인"
+      }
+    }
+  },
+  "console": {
+    "navigation": {
+      "my": "회원 관리",
+      "library": "도서 관리",
+      "campaign": "베너 관리",
+      "coupon": "캐시/쿠폰"
+    },
+    "bookList": {
+      "header_title": "도서 관리",
+      "title": "도서 목록",
+      "text__visible": "노출",
+      "text__hidden": "숨김",
+      "pending": "미승인",
+      "approved": "승인",
+      "rejected": "거부",
+      "edit": "수정",
+      "delete": "삭제",
+      "category_name_default": "미분류",
+      "format": "판형",
+      "published_at": "출간일",
+      "created_at": "등록일",
+      "updated_at": "수정일",
+      "filter": "필터",
+      "add_book": "도서 추가",
+      "book_list": "도서 목록",
+      "search_hint": "검색어를 입력해주세요",
+      "role_admin": "최고 관리자",
+      "role_manager": "기능 관리자",
+      "role_admin_all": "전체 관리자",
+      "button": "버튼"
+    }
+  },
+  "errors": {
+    "something_wrong": {
+      "title": "문제가 발생했습니다!",
+      "description": "안심하세요. 저희 팀이 문제를 조사하고 빠른 시일 내에 해결할 것입니다. 독서를 즐기실 수 있도록 최선을 다하겠습니다!"
+    }
+  }
+}
+```
+
+### JSON ###
+Input:
+{
+  "app_name": "Coui",
+  "app_description": "언제 어디서나 책을 만나는 디지털 도서관",
+  "common_error": {
+    "email_format": "잘못된 이메일 형식입니다",
+    "empty_string": "{property}이(가) 비어 있습니다",
+    "invalid_password": "아이디 또는 비밀번호를 확인해주세요",
+    "max_characters": "허용 가능한 문자 수를 초과합니다",
+    "min_characters": "요구되는 문자 길이를 충족하지 않습니다",
+    "server_error": "오류 {code}: {error}",
+    "unexpected_error": "예기치 않은 오류가 발생했습니다",
+    "unsupported_device": "이 장치는 앱에서 지원되지 않습니다",
+    "no_internet_connection": "인터넷 연결이 없습니다",
+    "image_load_failed": "이미지 로드 실패"
+  },
+  "common_generic_error": "죄송합니다! 문제가 발생했습니다",
+  "common_community": "독서 커뮤니티",
+  "common_no": "아니요",
+  "common_yes": "예",
+  "dialog__message__exit_message": "'뒤로'버튼을 한번 더 누르시면 앱이 종료 됩니다.",
+  "common_dialog": {
+    "min_update": {
+      "title": "알림",
+      "message": "최신 업데이트가 준비되었어요\n더 좋아진 Coui eBook 앱을 경험해 보세요.",
+      "positive": "업데이트"
+    },
+    "latest_update": {
+      "title": "알림",
+      "message": "최신 업데이트가 준비되었어요\n더 좋아진 Coui eBook 앱을 경험해 보세요.",
+      "negative": "건너뛰기",
+      "positive": "업데이트"
+    },
+    "no_internet_connection": {
+      "title": "인터넷 연결 오류",
+      "message": "인터넷 연결이 끊겼습니다. 네트워크 설정을 확인하고 다시 시도해주세요.",
+      "positive": "확인"
+    },
+    "marketing": {
+      "title": "도서 추천 알림을 받아보시겠어요?",
+      "message": "수신 동의 시 신간 도서, 맞춤 추천, 이벤트 등\n다양한 독서 정보 알림을 받아보실 수 있습니다.",
+      "positive": "네",
+      "negative": "나중에 받기"
+    }
+  },
+  "sign_in_provider": {
+    "email": "이메일로 시작하기",
+    "google": "구글로 시작하기",
+    "apple": "애플로 시작하기",
+    "kakao": "카카오로 시작하기",
+    "naver": "네이버로 시작하기",
+    "skip": "건너뛰기"
+  },
+  "sign_in_with_email": {
+    "label_text__nickname": "닉네임",
+    "label_text__email": "이메일",
+    "label_text__password": "비밀번호",
+    "label_text__code": "인증번호",
+    "text_field_hint__nickname": "닉네임을 입력하세요",
+    "text_field_hint__email": "이메일 주소를 입력하세요",
+    "text_field_hint__password": "비밀번호를 입력하세요",
+    "text_field_hint__code": "인증번호 6자리",
+    "button_text__sign_in": {
+      "sign_in": "로그인",
+      "create_account": "회원가입",
+      "confirm_email": "인증번호 확인",
+      "forgot_password": "비밀번호 찾기",
+      "confirm_password_reset": "비밀번호 재설정"
+    },
+    "page_state": {
+      "sign_in": "로그인",
+      "create_account": "회원가입을\n시작합니다",
+      "confirm_email": "이메일로 받은\n인증번호를 입력해주세요.",
+      "forgot_password": "비밀번호 찾기",
+      "verify_email": "이메일로 받은\n인증번호를 입력해주세요.",
+      "confirm_password_reset": "인증번호가 일치해요!\n비밀번호를 재설정해주세요."
+    }
+  },
+  "login": {
+    "title": "로그인",
+    "tagline": "당신의 지식 여정을 위한 스마트한 동반자",
+    "console_login_title": "관리자 로그인",
+    "button_text_login": "로그인",
+    "label_text_email": "이메일",
+    "label_text_password": "비밀번호",
+    "label_text_find_email_password": "패스워드 찾기",
+    "text_field_hint_email": "이메일 주소를 입력하세요",
+    "text_field_hint_password": "비밀번호를 입력하세요",
+    "validation_required_email": "이메일을 입력해주세요",
+    "validation_email_format": "올바른 이메일 형식이 아닙니다",
+    "validation_required_password": "비밀번호를 입력해주세요",
+    "validation_password_min_length": "비밀번호는 최소 6자 이상이어야 합니다",
+    "account_find": "회원가입 / 비밀번호 찾기",
+    "inquiry": "문의하기",
+    "anonymous_login": "비회원 둘러보기",
+    "error_login_failed": "로그인에 실패했습니다",
+    "error_unexpected": "오류가 발생했습니다: {error}",
+    "error_server": "서버 오류가 발생했습니다: {error}",
+    "error_invalid_email": "이메일 형식이 올바르지 않습니다",
+    "error_invalid_password": "비밀번호 형식이 올바르지 않습니다",
+    "error_user_not_found": "해당 사용자를 찾을 수 없습니다"
+  },
+  "main": {
+    "bottom_navigation__home": "홈",
+    "bottom_navigation__order": "도서검색",
+    "bottom_navigation__cart": "내서재",
+    "bottom_navigation__my_page": "MY",
+    "bottom_navigation__community": "독서모임",
+    "bottom_navigation__store": "스토어",
+    "bottom_navigation__my_library": "내 서재"
+  },
+  "home": {
+    "text_field_hint__search": "책 제목, 작가, 출판사를 검색하세요."
+  },
+  "order": {
+    "title": "도서검색"
+  },
+  "cart": {
+    "title": "내서재"
+  },
+  "community": {
+    "title": "독서모임"
+  },
+  "my_page": {
+    "title": "마이페이지"
+  },
+  "store": {
+    "title": "스토어",
+    "search_hint": "검색어를 입력해주세요",
+    "korean_language_education": "국어교육",
+    "social_welfare": "사회복지",
+    "international_politics": "국제정치",
+    "archaeology": "고고학",
+    "art_history": "미술사",
+    "new_book": "신간도서",
+    "monthly_recommendation": "이달의 추천도서",
+    "bestseller": "베스트셀러",
+    "thought_and_emotion_basics": "생각과 감정의 기초",
+    "more": "더보기"
+  },
+  "web_view": {
+    "title__find_email_password": "비밀번호 찾기",
+    "title__sign_up": "회원가입",
+    "title__community": "독서모임"
+  },
+  "settings": {
+    "title_settings": "설정",
+    "card_notification": {
+      "title": "독서활동 알림",
+      "body": "독서기록, 댓글, 독서모임 활동에 대한 정보를 받아보실 수 있어요."
+    },
+    "card_event": {
+      "title": "도서 소식 알림",
+      "body": "신간 도서, 맞춤 추천, 이벤트 등 다양한 독서 소식을 가장 먼저 보내드려요."
+    },
+    "dialog": {
+      "marketing": {
+        "title": "도서 알림 {agree} 안내",
+        "contents": "• 일시: {date}\n• 전송자: Coui eBook\n• 수신동의: 앱 알림",
+        "location": "마이페이지 > 설정에서 변경할 수 있어요.",
+        "positive": "확인"
+      },
+      "alert": {
+        "title": "알림",
+        "contents": "신간 도서, 맞춤 추천, 이벤트 등 다양한 독서 소식을 받을 수 없어요. 그래도 알림을 해지하시겠습니까?",
+        "positive": "알림유지",
+        "negative": "알림해지"
+      }
+    }
+  },
+  "withdraw": {
+    "title": "탈퇴하기",
+    "check_title": "아래 사항을 꼭 확인해 주세요.",
+    "check_list_01": "구독권 및 보유한 eBook 콘텐츠는 모두 소멸되어 복구할 수 없습니다.",
+    "check_list_02": "Coui eBook 독서모임 서비스 이용이 불가합니다.",
+    "check_list_03": "이미 작성하신 서평, 댓글은 계속 남아 있을 수 있습니다.",
+    "check_list_04": "본 계정으로 다시 로그인 할 수 없습니다.",
+    "agree": "안내 사항을 모두 확인하였으며, 이에 동의합니다",
+    "dialog": {
+      "alert": {
+        "title": "알림",
+        "contents": "탈퇴처리가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.",
+        "positive": "확인"
+      }
+    }
+  },
+  "console": {
+    "navigation": {
+      "my": "회원 관리",
+      "library": "도서 관리",
+      "campaign": "베너 관리",
+      "coupon": "캐시/쿠폰"
+    },
+    "bookList": {
+      "header_title": "도서 관리",
+      "title": "도서 목록",
+      "text__visible": "노출",
+      "text__hidden": "숨김",
+      "pending": "미승인",
+      "approved": "승인",
+      "rejected": "거부",
+      "edit": "수정",
+      "delete": "삭제",
+      "category_name_default": "미분류",
+      "format": "판형",
+      "published_at": "출간일",
+      "created_at": "등록일",
+      "updated_at": "수정일",
+      "filter": "필터",
+      "add_book": "도서 추가",
+      "book_list": "도서 목록",
+      "search_hint": "검색어를 입력해주세요",
+      "role_admin": "최고 관리자",
+      "role_manager": "기능 관리자",
+      "role_admin_all": "전체 관리자",
+      "button": "버튼"
+    }
+  },
+  "errors": {
+    "something_wrong": {
+      "title": "문제가 발생했습니다!",
+      "description": "안심하세요. 저희 팀이 문제를 조사하고 빠른 시일 내에 해결할 것입니다. 독서를 즐기실 수 있도록 최선을 다하겠습니다!"
+    }
+  }
+}
+
+Output:
+{
+  "app_name": "Coui",
+  "app_description": "언제 어디서나 책을 만나는 디지털 도서관",
+  "common_error": {
+    "email_format": "잘못된 이메일 형식입니다",
+    "empty_string": "{property}이(가) 비어 있습니다",
+    "invalid_password": "아이디 또는 비밀번호를 확인해주세요",
+    "max_characters": "허용 가능한 문자 수를 초과합니다",
+    "min_characters": "요구되는 문자 길이를 충족하지 않습니다",
+    "server_error": "오류 {code}: {error}",
+    "unexpected_error": "예기치 않은 오류가 발생했습니다",
+    "unsupported_device": "이 장치는 앱에서 지원되지 않습니다",
+    "no_internet_connection": "인터넷 연결이 없습니다",
+    "image_load_failed": "이미지 로드 실패"
+  },
+  "common_generic_error": "죄송합니다! 문제가 발생했습니다",
+  "common_community": "독서 커뮤니티",
+  "common_no": "아니요",
+  "common_yes": "예",
+  "dialog__message__exit_message": "'뒤로'버튼을 한번 더 누르시면 앱이 종료 됩니다.",
+  "common_dialog": {
+    "min_update": {
+      "title": "알림",
+      "message": "최신 업데이트가 준비되었어요\n더 좋아진 Coui eBook 앱을 경험해 보세요.",
+      "positive": "업데이트"
+    },
+    "latest_update": {
+      "title": "알림",
+      "message": "최신 업데이트가 준비되었어요\n더 좋아진 Coui eBook 앱을 경험해 보세요.",
+      "negative": "건너뛰기",
+      "positive": "업데이트"
+    },
+    "no_internet_connection": {
+      "title": "인터넷 연결 오류",
+      "message": "인터넷 연결이 끊겼습니다. 네트워크 설정을 확인하고 다시 시도해주세요.",
+      "positive": "확인"
+    },
+    "marketing": {
+      "title": "도서 추천 알림을 받아보시겠어요?",
+      "message": "수신 동의 시 신간 도서, 맞춤 추천, 이벤트 등\n다양한 독서 정보 알림을 받아보실 수 있습니다.",
+      "positive": "네",
+      "negative": "나중에 받기"
+    }
+  },
+  "sign_in_provider": {
+    "email": "이메일로 시작하기",
+    "google": "구글로 시작하기",
+    "apple": "애플로 시작하기",
+    "kakao": "카카오로 시작하기",
+    "naver": "네이버로 시작하기",
+    "skip": "건너뛰기"
+  },
+  "sign_in_with_email": {
+    "label_text__nickname": "닉네임",
+    "label_text__email": "이메일",
+    "label_text__password": "비밀번호",
+    "label_text__code": "인증번호",
+    "text_field_hint__nickname": "닉네임을 입력하세요",
+    "text_field_hint__email": "이메일 주소를 입력하세요",
+    "text_field_hint__password": "비밀번호를 입력하세요",
+    "text_field_hint__code": "인증번호 6자리",
+    "button_text__sign_in": {
+      "sign_in": "로그인",
+      "create_account": "회원가입",
+      "confirm_email": "인증번호 확인",
+      "forgot_password": "비밀번호 찾기",
+      "confirm_password_reset": "비밀번호 재설정"
+    },
+    "page_state": {
+      "sign_in": "로그인",
+      "create_account": "회원가입을\n시작합니다",
+      "confirm_email": "이메일로 받은\n인증번호를 입력해주세요.",
+      "forgot_password": "비밀번호 찾기",
+      "verify_email": "이메일로 받은\n인증번호를 입력해주세요.",
+      "confirm_password_reset": "인증번호가 일치해요!\n비밀번호를 재설정해주세요."
+    }
+  },
+  "login": {
+    "title": "로그인",
+    "tagline": "당신의 지식 여정을 위한 스마트한 동반자",
+    "console_login_title": "관리자 로그인",
+    "button_text_login": "로그인",
+    "label_text_email": "이메일",
+    "label_text_password": "비밀번호",
+    "label_text_find_email_password": "패스워드 찾기",
+    "text_field_hint_email": "이메일 주소를 입력하세요",
+    "text_field_hint_password": "비밀번호를 입력하세요",
+    "validation_required_email": "이메일을 입력해주세요",
+    "validation_email_format": "올바른 이메일 형식이 아닙니다",
+    "validation_required_password": "비밀번호를 입력해주세요",
+    "validation_password_min_length": "비밀번호는 최소 6자 이상이어야 합니다",
+    "account_find": "회원가입 / 비밀번호 찾기",
+    "inquiry": "문의하기",
+    "anonymous_login": "비회원 둘러보기",
+    "error_login_failed": "로그인에 실패했습니다",
+    "error_unexpected": "오류가 발생했습니다: {error}",
+    "error_server": "서버 오류가 발생했습니다: {error}",
+    "error_invalid_email": "이메일 형식이 올바르지 않습니다",
+    "error_invalid_password": "비밀번호 형식이 올바르지 않습니다",
+    "error_user_not_found": "해당 사용자를 찾을 수 없습니다"
+  },
+  "main": {
+    "bottom_navigation__home": "홈",
+    "bottom_navigation__order": "도서검색",
+    "bottom_navigation__cart": "내서재",
+    "bottom_navigation__my_page": "MY",
+    "bottom_navigation__community": "독서모임",
+    "bottom_navigation__store": "스토어",
+    "bottom_navigation__my_library": "내 서재"
+  },
+  "home": {
+    "text_field_hint__search": "책 제목, 작가, 출판사를 검색하세요."
+  },
+  "order": {
+    "title": "도서검색"
+  },
+  "cart": {
+    "title": "내서재"
+  },
+  "community": {
+    "title": "독서모임"
+  },
+  "my_page": {
+    "title": "마이페이지"
+  },
+  "store": {
+    "title": "스토어",
+    "search_hint": "검색어를 입력해주세요",
+    "korean_language_education": "국어교육",
+    "social_welfare": "사회복지",
+    "international_politics": "국제정치",
+    "archaeology": "고고학",
+    "art_history": "미술사",
+    "new_book": "신간도서",
+    "monthly_recommendation": "이달의 추천도서",
+    "bestseller": "베스트셀러",
+    "thought_and_emotion_basics": "생각과 감정의 기초",
+    "more": "더보기"
+  },
+  "web_view": {
+    "title__find_email_password": "비밀번호 찾기",
+    "title__sign_up": "회원가입",
+    "title__community": "독서모임"
+  },
+  "settings": {
+    "title_settings": "설정",
+    "card_notification": {
+      "title": "독서활동 알림",
+      "body": "독서기록, 댓글, 독서모임 활동에 대한 정보를 받아보실 수 있어요."
+    },
+    "card_event": {
+      "title": "도서 소식 알림",
+      "body": "신간 도서, 맞춤 추천, 이벤트 등 다양한 독서 소식을 가장 먼저 보내드려요."
+    },
+    "dialog": {
+      "marketing": {
+        "title": "도서 알림 {agree} 안내",
+        "contents": "• 일시: {date}\n• 전송자: Coui eBook\n• 수신동의: 앱 알림",
+        "location": "마이페이지 > 설정에서 변경할 수 있어요.",
+        "positive": "확인"
+      },
+      "alert": {
+        "title": "알림",
+        "contents": "신간 도서, 맞춤 추천, 이벤트 등 다양한 독서 소식을 받을 수 없어요. 그래도 알림을 해지하시겠습니까?",
+        "positive": "알림유지",
+        "negative": "알림해지"
+      }
+    }
+  },
+  "withdraw": {
+    "title": "탈퇴하기",
+    "check_title": "아래 사항을 꼭 확인해 주세요.",
+    "check_list_01": "구독권 및 보유한 eBook 콘텐츠는 모두 소멸되어 복구할 수 없습니다.",
+    "check_list_02": "Coui eBook 독서모임 서비스 이용이 불가합니다.",
+    "check_list_03": "이미 작성하신 서평, 댓글은 계속 남아 있을 수 있습니다.",
+    "check_list_04": "본 계정으로 다시 로그인 할 수 없습니다.",
+    "agree": "안내 사항을 모두 확인하였으며, 이에 동의합니다",
+    "dialog": {
+      "alert": {
+        "title": "알림",
+        "contents": "탈퇴처리가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.",
+        "positive": "확인"
+      }
+    }
+  },
+  "console": {
+    "navigation": {
+      "my": "회원 관리",
+      "library": "도서 관리",
+      "campaign": "베너 관리",
+      "coupon": "캐시/쿠폰"
+    },
+    "bookList": {
+      "header_title": "도서 관리",
+      "title": "도서 목록",
+      "text__visible": "노출",
+      "text__hidden": "숨김",
+      "pending": "미승인",
+      "approved": "승인",
+      "rejected": "거부",
+      "edit": "수정",
+      "delete": "삭제",
+      "category_name_default": "미분류",
+      "format": "판형",
+      "published_at": "출간일",
+      "created_at": "등록일",
+      "updated_at": "수정일",
+      "filter": "필터",
+      "add_book": "도서 추가",
+      "book_list": "도서 목록",
+      "search_hint": "검색어를 입력해주세요",
+      "role_admin": "최고 관리자",
+      "role_manager": "기능 관리자",
+      "role_admin_all": "전체 관리자",
+      "button": "버튼"
+    }
+  },
+  "errors": {
+    "something_wrong": {
+      "title": "문제가 발생했습니다!",
+      "description": "안심하세요. 저희 팀이 문제를 조사하고 빠른 시일 내에 해결할 것입니다. 독서를 즐기실 수 있도록 최선을 다하겠습니다!"
+    }
+  }
+}

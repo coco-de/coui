@@ -1,0 +1,721 @@
+{
+  "app_name": "Coui",
+  "app_description": "مكتبة رقمية لملاقاة الكتب متى وأينما شئت",
+  "common_error": {
+    "email_format": "تنسيق البريد الإلكتروني غير صحيح",
+    "empty_string": "{property} فارغ",
+    "invalid_password": "يرجى التحقق من اسم المستخدم أو كلمة المرور",
+    "max_characters": "تجاوزت الحد الأقصى لعدد الأحرف المسموح به",
+    "min_characters": "لا يُلبي الطول المطلوب للحروف",
+    "server_error": "خطأ {code}: {error}",
+    "unexpected_error": "حدث خطأ غير متوقع",
+    "unsupported_device": "هذا الجهاز غير مدعوم من التطبيق",
+    "no_internet_connection": "لا يوجد اتصال بالإنترنت",
+    "image_load_failed": "فشل في تحميل الصورة"
+  },
+  "common_generic_error": "عذرًا، حدثت مشكلة",
+  "common_community": "مجتمع القراءة",
+  "common_no": "لا",
+  "common_yes": "نعم",
+  "dialog__message__exit_message": "اضغط على زر 'رجوع' مرة أخرى للخروج من التطبيق.",
+  "common_dialog": {
+    "min_update": {
+      "title": "تنبيه",
+      "message": "هناك تحديث جديد جاهز\nجرّب تطبيق Coui eBook المحسن.",
+      "positive": "تحديث"
+    },
+    "blocked": {
+      "title": "التطبيق غير متاح",
+      "message": "النسخة الحالية من التطبيق غير آمنة أو لم تعد مدعومة.\nللحفاظ على الأمان، يرجى التحديث إلى أحدث إصدار قبل الاستخدام.",
+      "positive": "إغلاق التطبيق"
+    },
+    "latest_update": {
+      "title": "تنبيه",
+      "message": "هناك تحديث جديد جاهز\nجرّب تطبيق Coui eBook المحسن.",
+      "negative": "تخطي",
+      "positive": "تحديث"
+    },
+    "no_internet_connection": {
+      "title": "خطأ في الاتصال بالإنترنت",
+      "message": "تم قطع الاتصال بالإنترنت. تحقق من إعدادات الشبكة وحاول مجددًا.",
+      "positive": "موافق"
+    },
+    "marketing": {
+      "title": "هل ترغب في تلقي إشعارات بتوصيات الكتب؟",
+      "message": "عند الموافقة على الاستلام، ستتمكن من تلقّي إشعارات متنوعة متعلقة بالكتب الجديدة، والتوصيات المخصصة، والأحداث وغيرها من المعلومات الخاصة بالقراءة.",
+      "positive": "نعم",
+      "negative": "تلقي لاحقًا"
+    }
+  },
+  "sign_in_provider": {
+    "email": "البدء بالبريد الإلكتروني",
+    "google": "البدء باستخدام جوجل",
+    "apple": "البدء باستخدام أبل",
+    "kakao": "البدء باستخدام كاكاو",
+    "naver": "البدء باستخدام نيفر",
+    "skip": "تخطي"
+  },
+  "sign_in_with_email": {
+    "label_text__nickname": "الاسم المستعار",
+    "label_text__email": "البريد الإلكتروني",
+    "label_text__password": "كلمة المرور",
+    "label_text__code": "رمز التحقق",
+    "text_field_hint__nickname": "أدخل اسمًا مستعارًا",
+    "text_field_hint__email": "أدخل عنوان بريدك الإلكتروني",
+    "text_field_hint__password": "أدخل كلمة مرور",
+    "text_field_hint__code": "رمز التحقق المكون من 6 أرقام",
+    "helper_text__password": "يجب أن تحتوي على حروف إنجليزية/أرقام/حروف خاصة من 12 إلى 128 حرفًا",
+    "helper_text__code": "رمز التحقق مكون من 8 أرقام. إذا لم يصلك البريد، تحقق من مجلد البريد العشوائي.",
+    "button_text__sign_in": {
+      "sign_in": "تسجيل الدخول",
+      "create_account": "تسجيل حساب جديد",
+      "confirm_email": "تأكيد رمز التحقق",
+      "forgot_password": "استعادة كلمة المرور",
+      "confirm_password_reset": "إعادة تعيين كلمة المرور"
+    },
+    "button_text__resend_code": "إعادة إرسال رمز التحقق",
+    "page_state": {
+      "sign_in": "تسجيل الدخول",
+      "create_account": "بدء عملية التسجيل",
+      "confirm_email": "أدخل رمز التحقق الذي وصل في بريدك الإلكتروني",
+      "forgot_password": "استعادة كلمة المرور",
+      "verify_email": "أدخل رمز التحقق الذي وصل في بريدك الإلكتروني",
+      "confirm_password_reset": "الرمز متطابق! يرجى إعادة تعيين كلمة المرور"
+    },
+    "validation": {
+      "required_email": "يرجى إدخال البريد الإلكتروني",
+      "invalid_email": "هذا ليس عنوان بريد إلكتروني صالحًا",
+      "required_password": "يرجى إدخال كلمة المرور",
+      "invalid_password": "تنسيق كلمة المرور غير صحيح",
+      "required_nickname": "يرجى إدخال اللقب",
+      "invalid_nickname": "تنسيق اللقب غير صحيح",
+      "required_code": "يرجى إدخال رمز التحقق",
+      "invalid_code_length": "رمز التحقق مكون من 8 أرقام"
+    },
+    "guide_text": {
+      "error_guide__sign_in": "يرجى التحقق من البريد الإلكتروني/كلمة المرور المدخلة مرة أخرى. إذا استمرت المشكلة، يمكنك استخدام إعادة تعيين كلمة المرور.",
+      "error_guide__create_account": "إذا لم يصلك بريد التحقق، تحقق من المجلد العشوائي وحاول مرة أخرى بعد قليل.",
+      "error_guide__confirm_email": "إذا لم يصلك الرمز، تحقق من المجلد العشوائي وجرب إعادة إرسال رمز التحقق باستخدام الزر أدناه.",
+      "error_guide__forgot_password": "إذا لم يصلك بريد التحقق، تحقق من المجلد العشوائي. إذا استمرت المشكلة، حاول مرة أخرى بعد قليل.",
+      "error_guide__confirm_password_reset": "إذا لم يصلك الرمز، تحقق من المجلد العشوائي وجرب إعادة إرسال رمز التحقق باستخدام الزر أدناه."
+    }
+  },
+  "login": {
+    "title": "تسجيل الدخول",
+    "tagline": "رفيقك الذكي لرحلة المعرفة",
+    "console_login_title": "تسجيل دخول المشرف",
+    "button_text_login": "تسجيل الدخول",
+    "label_text_email": "البريد الإلكتروني",
+    "label_text_password": "كلمة المرور",
+    "label_text_find_email_password": "استعادة كلمة المرور",
+    "text_field_hint_email": "أدخل عنوان بريدك الإلكتروني",
+    "text_field_hint_password": "أدخل كلمة المرور",
+    "validation_required_email": "يرجى إدخال البريد الإلكتروني",
+    "validation_email_format": "تنسيق البريد الإلكتروني غير صحيح",
+    "validation_required_password": "يرجى إدخال كلمة المرور",
+    "validation_password_min_length": "يجب أن تكون كلمة المرور 6 حروف على الأقل",
+    "account_find": "تسجيل حساب جديد / استعادة كلمة المرور",
+    "inquiry": "استفسار",
+    "anonymous_login": "تصفح بدون تسجيل",
+    "error_login_failed": "فشل في تسجيل الدخول",
+    "error_unexpected": "حدث خطأ: {error}",
+    "error_server": "حدث خطأ في الخادم: {error}",
+    "error_invalid_email": "تنسيق البريد الإلكتروني غير صالح",
+    "error_invalid_password": "تنسيق كلمة المرور غير صالح",
+    "error_user_not_found": "لم يتم العثور على المستخدم المحدد"
+  },
+  "main": {
+    "bottom_navigation__home": "الرئيسية",
+    "bottom_navigation__order": "بحث الكتب",
+    "bottom_navigation__cart": "مكتبتي",
+    "bottom_navigation__my_page": "صفحتي",
+    "bottom_navigation__community": "مجتمع القراءة",
+    "bottom_navigation__store": "المتجر",
+    "bottom_navigation__my_library": "مكتبتي"
+  },
+  "home": {
+    "text_field_hint__search": "ابحث عن عنوان، مؤلف، أو دار نشر"
+  },
+  "order": {
+    "title": "بحث الكتب"
+  },
+  "cart": {
+    "title": "مكتبتي"
+  },
+  "community": {
+    "title": "مجتمع القراءة"
+  },
+  "my_page": {
+    "title": "صفحتي",
+    "nickname": "{nickname}",
+    "purchase_book_count": "عدد الكتب المشتراة {count} كتاب",
+    "wish_book_count": "عدد الكتب المضافة للرغبات {count} كتاب",
+    "coin": "{coin} وون",
+    "charge_history_count": "عدد سجلات الشحن {count} سجل",
+    "purchase_history_count": "عدد سجلات الشراء {count} سجل",
+    "recent_week": "الأسبوع الأخير",
+    "more": "المزيد",
+    "charge_history_empty": "لا يوجد سجلات شحن",
+    "purchase_history_empty": "لا يوجد سجلات شراء",
+    "purchase_book_empty": "لا توجد كتب مشتراة",
+    "notice": "الإشعارات",
+    "notification_settings": "إعدادات الإشعار",
+    "logout": "تسجيل الخروج",
+    "withdraw": "الانسحاب من العضوية",
+    "inquiry": "استفسار",
+    "balance": "الرصيد المتوفر",
+    "charge": "شحن الرصيد",
+    "usage_guide": "دليل الاستخدام",
+    "charge_validity": "الرصيد المشحون صالح لمدة 5 سنوات من تاريخ الشحن.",
+    "charge_price": "سعر الرصيد لا يشمل ضريبة القيمة المضافة.",
+    "charge_error": "في حال لم يتم شحن الرصيد بشكل صحيح، يرجى إعادة تشغيل التطبيق أو الاتصال بخدمة العملاء.",
+    "purchase": "الشراء",
+    "cancel": "إلغاء",
+    "login_required": "مطلوب تسجيل الدخول",
+    "login": "تسجيل الدخول",
+    "charge_history": "تاريخ شحن النقد",
+    "purchase_history": "تاريخ الشراء"
+  },
+  "sample_book_request": {
+    "title": "تفاصيل طلب نسخة العينة",
+    "guide_title": "إرشادات طلب نسخة العينة",
+    "guide_1": "يمكن تقديم طلب نسخة العينة من خلال النقر على الزر 'طلب نسخة العينة' في أسفل صفحة معلومات الكتاب في المتجر.",
+    "guide_2": "ستكون الكتب المطلوبة متاحة في شكل E-BOOK بعد موافقة الناشر.",
+    "guide_3": "توفر الكتب النموذجية كمرجع لإعداد الدروس.",
+    "empty": "لا توجد تفاصيل طلب",
+    "view_reason": "عرض السبب",
+    "rejection_reason_title": "سبب رفض الموافقة على عينة الكتاب",
+    "status_pending": "قيد المراجعة",
+    "status_approved": "تمت الموافقة",
+    "status_rejected": "تم الرفض"
+  },
+  "search": {
+    "empty_result": "لا توجد نتائج",
+    "error_occurred": "حدث خطأ أثناء تحميل المحتوى",
+    "search_hint": "أدخل كلمة البحث",
+    "recent_search": "البحث الأخير",
+    "category": "فئة",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "loading": "جار التحميل",
+    "all_category": "جميع الفئات",
+    "total_count": "إجمالي {count} عنصر",
+    "newest": "الأحدث",
+    "format": "تنسيق",
+    "page_count": "عدد الصفحات",
+    "kdc": "تصنيف كوري",
+    "price": "وون"
+  },
+  "store": {
+    "title": "المتجر",
+    "search_hint": "يرجى إدخال كلمة البحث",
+    "korean_language_education": "اللغة الكورية",
+    "social_welfare": "الرفاهية الاجتماعية",
+    "international_politics": "السياسة الدولية",
+    "archaeology": "علم الآثار",
+    "art_history": "تاريخ الفن",
+    "new_book": "كتب جديدة",
+    "monthly_recommendation": "اقتراحات الكتب لهذا الشهر",
+    "bestseller": "الأكثر مبيعًا",
+    "thought_and_emotion_basics": "أساسيات الفكر والمشاعر",
+    "more": "المزيد",
+    "empty_banner": "لا يوجد بانر",
+    "retry": "حاول مرة أخرى"
+  },
+  "chat": {
+    "instructor_chat_room": {
+      "app_bar": {
+        "create_title": "إنشاء غرفة دردشة الصف",
+        "edit_title": "تعديل غرفة دردشة الصف"
+      },
+      "representative_image": {
+        "remove_button": "إزالة الصورة",
+        "file_too_large": "يجب أن يكون حجم الملف أقل من 10 ميغابايت.",
+        "pick_error": "حدث خطأ أثناء اختيار الصورة."
+      },
+      "image_status": {
+        "default_text": "يرجى إرفاق صورة رمزية لغرفة الدردشة. (اختياري/حد أقصى 1 صورة)",
+        "uploading": "جاري تحميل الصورة...",
+        "upload_complete": "اكتمل تحميل الصورة! انقر لتغيير الصورة.",
+        "existing_image": "تم تعيين صورة ممثل حالية. انقر لتغيير الصورة.",
+        "default": "يرجى إرفاق صورة ممثل لغرفة الدردشة. (اختياري/بحد أقصى 1 صورة)"
+      },
+      "form": {
+        "chat_room_name_label": "اسم غرفة الدردشة",
+        "chat_room_name_hint": "يرجى إدخال اسم غرفة الدردشة",
+        "class_name_label": "اسم الصف",
+        "class_name_hint": "يرجى إدخال اسم الصف",
+        "required_mark": "*"
+      },
+      "validity_period": {
+        "title": "مدة الصلاحية",
+        "description": "(في حالة عدم إدخال مدة الصلاحية، سيتم التطبيق بلا حدود.)",
+        "start_date_hint": "تاريخ بدء غرفة الدردشة",
+        "end_date_hint": "اختر تاريخ الانتهاء",
+        "date_separator": "~"
+      },
+      "invite_link": {
+        "title": "رابط الدعوة",
+        "description": "(يمكن للمستخدمين الذين يتلقون رابط الدعوة طلب الانضمام إلى غرفة دردشة الصف عبر الرابط.)",
+        "button_text": "نسخ الرابط",
+        "success_message": "تم نسخ رابط الدعوة إلى الحافظة!",
+        "create_mode_message": "يمكن النسخ بعد إنشاء غرفة الدردشة",
+        "error_book_not_found": "لم يتم العثور على معلومات الكتاب.",
+        "error_copy_failed": "فشل في نسخ رابط الدعوة."
+      },
+      "bottom_button": {
+        "create_text": "إتمام الإنشاء",
+        "edit_text": "إتمام التعديل",
+        "default_professor_name": "المدرس",
+        "default_university_name": "الجامعة",
+        "default_professor_email": "instructor@example.com",
+        "error_book_not_found": "لم يتم العثور على معلومات الكتاب.",
+        "error_chat_room_not_found": "لم يتم العثور على معلومات غرفة الدردشة."
+      },
+      "page": {
+        "create_success": "تم إنشاء غرفة دردشة الصف بنجاح!",
+        "update_success": "تم تعديل غرفة دردشة الصف بنجاح!"
+      }
+    }
+  },
+  "web_view": {
+    "title__find_email_password": "استعادة كلمة المرور",
+    "title__sign_up": "تسجيل جديد",
+    "title__community": "مجتمع القراءة"
+  },
+  "settings": {
+    "title_settings": "الإعدادات",
+    "card_notification": {
+      "title": "إشعارات أنشطة القراءة",
+      "body": "يمكنك تلقي معلومات حول سجل القراءة، التعليقات، وفعاليات مجتمع القراءة."
+    },
+    "card_event": {
+      "title": "إشعارات أخبار الكتب",
+      "body": "سنرسل لك أخبار الكتب الجديدة، التوصيات المخصصة، الأحداث، وغيرها من أخبار القراءة المتنوعة."
+    },
+    "dialog": {
+      "marketing": {
+        "title": "تنبيه {agree} لمحتوى الكتاب",
+        "contents": "• التاريخ: {date}\n• المرسل: Coui eBook\n• الموافقة على الاستلام: إشعارات التطبيق",
+        "location": "يمكنك تغييرها من صفحتي > الإعدادات.",
+        "positive": "موافق"
+      },
+      "alert": {
+        "title": "تنبيه",
+        "contents": "لن تتمكن من تلقي الأخبار المتنوعة عن الكتب الجديدة، التوصيات المخصصة، الأحداث وغيرها. هل تريد إلغاء الإشعارات؟",
+        "positive": "الإبقاء على الإشعارات",
+        "negative": "إلغاء الإشعارات"
+      }
+    }
+  },
+  "withdraw": {
+    "title": "إلغاء الحساب",
+    "check_title": "يرجى التأكد من النقاط التالية.",
+    "check_list_01": "جميع اشتراكاتك ومحتويات كتب eBook المملوكة سيتم حذفها ولا يمكن استعادتها.",
+    "check_list_02": "لا يمكنك استخدام خدمات مجتمع القراءة Coui eBook.",
+    "check_list_03": "قد تبقى مراجعات الكتب والتعليقات التي قد قمت بكتابتها ظاهرة.",
+    "check_list_04": "لا يمكنك تسجيل الدخول مرة أخرى باستخدام هذا الحساب.",
+    "agree": "لقد اطلعت على جميع تفاصيل التعليمات وأوافق عليها",
+    "dialog": {
+      "alert": {
+        "title": "تنبيه",
+        "contents": "تم إلغاء حسابك. نشكرك على استخدامك لخدماتنا خلال الفترة الماضية.",
+        "positive": "موافق"
+      }
+    }
+  },
+  "console": {
+    "navigation": {
+      "my": "إدارة الأعضاء",
+      "library": "إدارة الكتب",
+      "campaign": "إدارة البانر",
+      "coupon": "النقد/القسائم",
+      "classChat": "دردشة الصف",
+      "aiChatLog": "سجل دردشة الذكاء الاصطناعي",
+      "admin": "إعدادات المسؤول",
+      "book_list": "قائمة الكتب",
+      "sales_status": "حالة المبيعات",
+      "review_management": "إدارة المراجعات"
+    },
+    "bookList": {
+      "kdc": "KDC",
+      "ISBN": "ISBN",
+      "action": "عمل",
+      "no": "رقم",
+      "book_title": "عنوان الكتاب",
+      "category": "مجال الدراسة",
+      "publish_date": "تاريخ النشر",
+      "header_title": "إدارة الكتب",
+      "title": "قائمة الكتب",
+      "text__visible": "ظاهر",
+      "text__hidden": "مخفي",
+      "pending": "بانتظار الموافقة",
+      "approved": "موافَق عليه",
+      "rejected": "مرفوض",
+      "cancel": "إلغاء",
+      "selected": "كتاب محدد",
+      "edit": "تحرير",
+      "delete": "حذف",
+      "category_name_default": "غير مصنف",
+      "format": "صيغة الكتاب",
+      "published_at": "تاريخ النشر",
+      "created_at": "تاريخ التسجيل",
+      "updated_at": "تاريخ التحديث",
+      "filter": "تصفية",
+      "add_book": "إضافة كتاب جديد",
+      "book_list": "قائمة الكتب",
+      "search_hint": "يرجى إدخال كلمة البحث",
+      "role_admin": "مدير أعلى",
+      "role_manager": "مدير محدد الوظائف",
+      "role_admin_all": "مدير شامل",
+      "button": "زر",
+      "academic_field": "مجال الدراسة",
+      "academic_field_hint": "يرجى اختيار مجال الدراسة",
+      "visibility": "حالة الظهور",
+      "visibility_hint": "يرجى اختيار حالة الظهور",
+      "publish_date_range": "نطاق تاريخ النشر",
+      "publish_date_range_hint": "يرجى الاختيار",
+      "filter_apply_button_text": "تطبيق المرشح",
+      "filter_reset_button_text": "إعادة تعيين",
+      "filter_reset_message": "تم إعادة تعيين القائمة",
+      "book_list_empty": "لا توجد كتب مسجلة.",
+      "no_results": "لا توجد نتائج",
+      "filter_applied": "تم تطبيق الفلتر",
+      "delete_failed": "فشل في حذف الكتاب",
+      "delete_confirmation_title": "حذف الكتاب",
+      "delete_confirmation_single_message": "هل تريد حذف {title}؟\nالكتاب المحذوف لا يمكن استعادته.",
+      "delete_confirmation_multiple_message": "هل تريد حذف {count} من الكتب المحددة؟\nالكتب المحذوفة لا يمكن استعادتها.",
+      "delete_confirm": "حذف",
+      "delete_cancel": "إلغاء",
+      "delete_success_single": "تم حذف {title}.",
+      "delete_success_multiple": "تم حذف {count} من الكتب.",
+      "delete_success_single_completed": "تم حذف الكتاب بنجاح.",
+      "delete_success_multiple_completed": "تم حذف الكتب المحددة بنجاح.",
+      "delete_error": "فشل في حذف الكتاب: {error}",
+      "error_generic": "رسالة خطأ",
+      "refresh": "تحديث",
+      "error_message": "حدث خطأ أثناء تحميل المحتوى.",
+      "delete_in_progress_single": "جارٍ حذف {title}.",
+      "delete_in_progress_multiple": "جارٍ حذف {count} من الكتب."
+    },
+    "book_registration": {
+      "page_title_edit": "تعديل الكتاب",
+      "page_title_add": "تسجيل الكتاب",
+      "file_upload_section": "رفع الملف",
+      "basic_info_section": "معلومات أساسية",
+      "author": "المؤلف",
+      "author_input_guide": "(يمكن إدخال عدة مؤلفين باستخدام الفاصلة “, ”)",
+      "actions": {
+        "list": "قائمة",
+        "save": "حفظ"
+      },
+      "file": {
+        "ebook_title": "رفع ملف الكتاب الإلكتروني",
+        "ebook_format_guide": "يمكن تسجيل بصيغة PDF، EPUB",
+        "ebook_upload_button": "رفع ملف الكتاب الإلكتروني",
+        "cover_image_title": "صورة غلاف الكتاب",
+        "cover_image_format_guide": "يمكن تسجيل بصيغة PNG,JPG | الدقة الموصى بها: 336 x 502",
+        "cover_image_upload_button": "رفع صورة الغلاف",
+        "capacity_guide": "إرشادات السعة",
+        "attach_file": "إرفاق ملف"
+      },
+      "image": {
+        "section_title": "تسجيل صور الصفحة التفصيلية",
+        "optional_label": "(اختياري)",
+        "button_text": "إرفاق ملف",
+        "guideline_text": "الدقة الموصى بها: 1200x630 / الدقة الدنيا: 200x200 / بصيغة JPG، PNG / حتى 5 ملفات، بحد أقصى 10 ميغابايت"
+      },
+      "category": {
+        "academic_field": "مجال الدراسة:",
+        "curation": "تنسيق:",
+        "class_name": "اسم الصف:",
+        "dropdown_hint": "يرجى الاختيار",
+        "class_name_dropdown_item_1": "تعليم اللغة الكورية",
+        "class_name_dropdown_item_2": "الرعاية الاجتماعية",
+        "class_name_dropdown_item_3": "السياسة الدولية",
+        "class_name_dropdown_item_4": "علم الآثار",
+        "class_name_dropdown_item_5": "تاريخ الفن",
+        "class_name_dropdown_item_6": "العلوم",
+        "academic_field_hint": "مجال الدراسة",
+        "curation_hint": "تنسيق",
+        "class_name_hint": "اسم الفصل"
+      },
+      "isbn": {
+        "hint_text": "يرجى إدخال ISBN",
+        "label_text": "أدخل رقم ISBN",
+        "validation_message": "يرجى إدخال رقم ISBN مكون من 10 أرقام أو 13 رقماً."
+      },
+      "price": {
+        "lifetime_ownership": "امتلاك مدى الحياة:",
+        "twelve_month_rental": "سعر الإيجار لمدة 12 شهرًا:",
+        "six_month_rental": "سعر الإيجار لمدة ستة أشهر:",
+        "hint_text": "إدخال السعر",
+        "default_price": "0",
+        "currency_unit": "وون",
+        "one_month_rental": "سعر الإيجار لمدة شهر واحد:"
+      },
+      "toggle": {
+        "drm_label": "DRM",
+        "status_off": "غير مطبق",
+        "status_on": "مطبق",
+        "drm_notice": "* يتم تطبيق DRM على ملفات EPUB فقط."
+      },
+      "dropdown": {
+        "default_text": "يرجى الاختيار",
+        "publisher_hint": "يرجى اختيار دار النشر",
+        "kdc_hint": "يرجى اختيار KDC",
+        "selector": "يرجى الاختيار"
+      },
+      "labels": {
+        "detail_image": "تسجيل صور الصفحة التفصيلية",
+        "detail_image_with_line_break": "تسجيل صور الصفحة\nالتفصيلية"
+      },
+      "required_indicator": "*",
+      "validation": {
+        "price_invalid": "يرجى إدخال سعر صالح (أكبر من 0)",
+        "isbn_invalid": "تنسيق ISBN غير صحيح.",
+        "file_required": "يرجى تحميل الملف المطلوب",
+        "input_required": "يرجى التحقق من معلومات الإدخال",
+        "title_required": "يرجى إدخال عنوان الكتاب",
+        "author_required": "يرجى إدخال اسم المؤلف",
+        "publisher_required": "يرجى إدخال اسم الناشر",
+        "publication_date_required": "يرجى اختيار تاريخ النشر",
+        "language_required": "يرجى اختيار اللغة",
+        "country_required": "يرجى اختيار الدولة",
+        "kdc_classification_required": "يرجى اختيار تصنيف KDC"
+      },
+      "file_upload": {
+        "uploading": "جارِ التحميل...",
+        "image_upload": "تحميل الصورة",
+        "max_size_1gb": "يمكنك تحميل ملفات حتى 1 جيجابايت كحد أقصى",
+        "max_size_10mb": "يمكنك تحميل ملفات حتى 10 ميجابايت كحد أقصى",
+        "max_files_limit": "يمكنك اختيار {count} ملفات كحد أقصى فقط.",
+        "image_size_exceeded": "حجم الصورة يتجاوز {maxSize} ميجابايت. (الحالي: {currentSize} ميجابايت)",
+        "capacity_exceeded": "تجاوزت السعة.|الحد الأقصى للتحميل هو {maxSize} ميجابايت.",
+        "picker_already_running": "محدد الصور قيد التشغيل بالفعل. يرجى المحاولة لاحقاً.",
+        "gallery_permission_required": "يجب منح الإذن للوصول إلى المعرض. يرجى السماح من الإعدادات.",
+        "image_selection_error": "حدث خطأ أثناء اختيار الصورة: {error}",
+        "file_data_missing": "بيانات الملف غير موجودة.",
+        "upload_failed": "فشل تحميل الملف.",
+        "upload_info_unavailable": "لا يمكن استرجاع معلومات الملف المحمل.",
+        "upload_timeout": "انتهت مهلة تحميل الملف. قد يكون حجم الملف كبيراً جداً أو الشبكة غير مستقرة.",
+        "multi_upload_failed": "فشل تحميل الملفات المتعددة.",
+        "multi_upload_timeout": "انتهت مهلة تحميل الصور المتعددة. قد يكون حجم الملف كبيراً جداً أو الشبكة غير مستقرة."
+      },
+      "dialog": {
+        "save_complete": "تم الحفظ بنجاح.",
+        "confirm_exit": "هل تريد العودة إلى القائمة؟",
+        "exit_message": "لن يتم حفظ محتوى الإدخال الخاص بك.",
+        "go_back": "خروج",
+        "cancel": "إلغاء",
+        "input_validation": "التأكد من صحة الإدخال مطلوب",
+        "confirm": "تأكيد",
+        "success": "نجاح",
+        "error_occurred": "حدث خطأ",
+        "image_upload_failed": "فشل تحميل الصورة",
+        "image_upload_failed_message": "لا يمكن تحميل الصورة المحددة.\nيرجى التحقق من حجم الصورة أو صيغتها."
+      },
+      "form_labels": {
+        "book_title": "عنوان الكتاب",
+        "book_title_hint": "أدخل عنوان الكتاب",
+        "author": "المؤلف",
+        "author_hint": "ادخل المؤلف (يمكن فصلهم بفاصلة \", \")",
+        "publisher": "الناشر",
+        "publisher_hint": "أدخل اسم الناشر",
+        "publish_date": "تاريخ النشر",
+        "publish_date_hint": "تحديد التاريخ",
+        "format": "التنسيق",
+        "format_hint": "ادخل التنسيق",
+        "price": "السعر",
+        "category": "الفئة",
+        "detail_page_image": "تسجيل صورة الصفحة التفصيلية",
+        "date_selection": "اختيار التاريخ",
+        "apply": "تطبيق",
+        "default_dropdown_text": "يرجى الاختيار"
+      },
+      "image_states": {
+        "load_failed": "فشل التحميل",
+        "no_image": "لا توجد صورة",
+        "remove": "إزالة"
+      },
+      "title": "عنوان الكتاب",
+      "title_hint": "يرجى إدخال عنوان الكتاب",
+      "publisher": "الناشر",
+      "publisher_hint": "يرجى إدخال اسم الناشر",
+      "publication_date": "تاريخ النشر",
+      "publication_date_hint": "يرجى اختيار تاريخ النشر",
+      "language": "اللغة",
+      "language_hint": "يرجى اختيار اللغة",
+      "country": "الدولة",
+      "country_hint": "يرجى اختيار الدولة",
+      "kdc_classification": "تصنيف KDC",
+      "kdc_classification_hint": "يرجى اختيار تصنيف KDC",
+      "description": "وصف الكتاب",
+      "description_hint": "يرجى إدخال وصف الكتاب"
+    },
+    "category": {
+      "title": "إدارة الفئات",
+      "add_category": "إضافة فئة",
+      "edit_category": "تعديل الفئة",
+      "category_name": "اسم الفئة",
+      "sub_category": "الفئة الفرعية",
+      "category_name_hint": "يرجى إدخال اسم الفئة.",
+      "cancel": "إلغاء",
+      "save": "حفظ",
+      "content_input_guide": "يرجى إدخال المحتوى.",
+      "search_hint": "يرجى إدخال كلمات البحث.",
+      "no_results": "لا توجد نتائج.",
+      "back_to_list": "العودة إلى القائمة",
+      "system_settings": "إعدادات النظام",
+      "required_indicator": "*"
+    }
+  },
+  "table": {
+    "common": {
+      "number": "رقم",
+      "action": "إجراء",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "approve": "موافقة",
+      "reject": "رفض",
+      "cancel": "إلغاء",
+      "no_data": "لا توجد بيانات",
+      "loading": "جار التحميل...",
+      "retry": "إعادة المحاولة",
+      "refresh": "تحديث"
+    },
+    "book": {
+      "title": "اسم الكتاب",
+      "author": "المؤلف",
+      "publisher": "الناشر",
+      "price": "السعر",
+      "lifetime_price": "سعر الاقتناء",
+      "six_month_price": "رسوم 6 أشهر",
+      "twelve_month_price": "رسوم 12 شهراً",
+      "category": "الفئة",
+      "isbn": "ISBN",
+      "publish_date": "تاريخ النشر",
+      "status": "الحالة",
+      "no_author": "لا توجد معلومات عن المؤلف",
+      "no_publisher": "لا توجد معلومات عن الناشر",
+      "no_price": "لا توجد معلومات عن السعر",
+      "no_category": "لا توجد فئة",
+      "no_isbn": "لا يوجد ISBN",
+      "no_publish_date": "لا يوجد تاريخ نشر"
+    },
+    "user": {
+      "name": "اسم المستخدم",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "university": "الجامعة",
+      "department": "القسم",
+      "user_type": "نوع العضو",
+      "status": "الحالة",
+      "joined_date": "تاريخ الانضمام",
+      "last_access": "آخر دخول",
+      "books_count": "عدد الكتب المشتراة",
+      "wallet_balance": "الرصيد المتوفر",
+      "class_count": "عدد الصفوف النشطة",
+      "premium": "مميز",
+      "regular": "عادي",
+      "active": "نشط",
+      "inactive": "غير نشط",
+      "no_name": "لا يوجد اسم",
+      "no_email": "لا يوجد بريد إلكتروني",
+      "no_phone": "لا يوجد رقم هاتف",
+      "no_university": "لا توجد معلومات عن الجامعة",
+      "no_department": "لا توجد معلومات عن القسم"
+    },
+    "instructor": {
+      "name_email": "اسم المستخدم/البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "university_dept": "الجامعة/القسم",
+      "subject": "المادة الدراسية",
+      "type": "النوع",
+      "request_date": "تاريخ الطلب",
+      "approval_status": "حالة الموافقة",
+      "approved_date": "تاريخ الموافقة",
+      "class_count": "عدد الدروس",
+      "sample_request_count": "عدد الطلبات التجريبية",
+      "no_name": "لا يوجد اسم",
+      "no_email": "لا يوجد بريد إلكتروني",
+      "no_phone": "لا يوجد رقم هاتف",
+      "no_university": "لا توجد معلومات عن الجامعة",
+      "no_department": "لا توجد معلومات عن القسم",
+      "no_subject": "لا توجد مادة دراسية",
+      "no_type": "لا توجد معلومات عن النوع"
+    },
+    "publisher": {
+      "name": "اسم الناشر",
+      "description": "الوصف",
+      "website": "الموقع الإلكتروني",
+      "contact": "جهة الاتصال",
+      "status": "الحالة",
+      "created_date": "تاريخ الإنشاء",
+      "updated_date": "تاريخ التعديل",
+      "no_description": "لا يوجد وصف",
+      "no_website": "لا يوجد موقع إلكتروني",
+      "no_contact": "لا توجد جهة اتصال"
+    },
+    "sales": {
+      "date": "التاريخ",
+      "book_title": "اسم الكتاب",
+      "quantity": "الكمية",
+      "amount": "المبلغ",
+      "total": "الإجمالي",
+      "no_sales_data": "لا توجد بيانات مبيعات"
+    }
+  },
+  "errors": {
+    "something_wrong": {
+      "title": "حدثت مشكلة!",
+      "description": "لا تقلق، يعمل فريقنا على حل المشكلة في أسرع وقت ممكن. سنبذل قصارى جهدنا لتستمتع بقراءة الكتب!"
+    }
+  },
+  "extra_info": {
+    "title": "إدخال معلومات إضافية",
+    "form": {
+      "name": {
+        "label": "الاسم",
+        "hint": "يرجى إدخال الاسم",
+        "validation": "يرجى إدخال الاسم"
+      },
+      "phone_number": {
+        "label": "رقم الهاتف",
+        "hint": "يرجى إدخال رقم الهاتف",
+        "validation": "يرجى إدخال رقم الهاتف",
+        "format_validation": "يرجى إدخال تنسيق رقم الهاتف بشكل صحيح"
+      },
+      "email": {
+        "label": "البريد الإلكتروني",
+        "hint": "يرجى إدخال البريد الإلكتروني",
+        "validation": "يرجى إدخال البريد الإلكتروني",
+        "format_validation": "يرجى إدخال تنسيق البريد الإلكتروني بشكل صحيح"
+      },
+      "university": {
+        "label": "الجامعة",
+        "hint": "يرجى إدخال الجامعة",
+        "validation": "يرجى إدخال الجامعة"
+      },
+      "department": {
+        "label": "القسم",
+        "hint": "يرجى إدخال القسم",
+        "validation": "يرجى إدخال القسم"
+      },
+      "course_name": {
+        "label": "اسم الدورة",
+        "hint": "يرجى إدخال اسم الدورة",
+        "validation": "يرجى إدخال اسم الدورة"
+      }
+    },
+    "button": {
+      "save": "حفظ",
+      "update": "تعديل",
+      "delete": "حذف"
+    },
+    "message": {
+      "required_info": "مطلوب إدخال معلومات إضافية",
+      "redirect_info": "سيتم تحويلك إلى صفحة إدخال المعلومات الإضافية"
+    }
+  }
+}

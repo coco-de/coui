@@ -1,0 +1,49 @@
+### Meta ###
+From: <ko> lib/src/json/ko.i18n.json
+To: <ru> lib/src/json/ru.i18n.json
+
+### Tokens ###
+Input: 154
+Output: 39
+Total: 193
+
+### Conversation ###
+
+>> System:
+The user wants to internationalize the app. The user will provide you with a JSON file containing the Korean strings.
+You will translate it to Russian.
+Parameters are interpolated with {parameter}.
+Linked translations are denoted with the "@:path0.path1" syntax.
+
+Here is the app description. Respect this context when translating:
+"Coui" 는 당신의 모바일 소프트웨어 개발을 빠르고 안정적으로 제공합니다
+모바일 소프트웨어 제품을 원하는 기업에게 코코드는 최고의 선택이 될것 입니다.
+
+>> User:
+{"chat":{"instructor_chat_room":{"image_status":{"default_text":"채팅방 대표 사진을 첨부해주세요. (선택/최대 1장)"}}}}
+
+>> Assistant:
+{"chat":{"instructor_chat_room":{"image_status":{"default_text":"Пожалуйста, прикрепите изображение для чата. (по желанию/до 1 изображения)"}}}}
+
+### JSON ###
+Input:
+{
+  "chat": {
+    "instructor_chat_room": {
+      "image_status": {
+        "default_text": "채팅방 대표 사진을 첨부해주세요. (선택/최대 1장)"
+      }
+    }
+  }
+}
+
+Output:
+{
+  "chat": {
+    "instructor_chat_room": {
+      "image_status": {
+        "default_text": "Пожалуйста, прикрепите изображение для чата. (по желанию/до 1 изображения)"
+      }
+    }
+  }
+}

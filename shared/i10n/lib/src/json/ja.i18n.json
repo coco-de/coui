@@ -1,0 +1,721 @@
+{
+  "app_name": "Coui",
+  "app_description": "いつでもどこでも本に出会えるデジタルライブラリー",
+  "common_error": {
+    "email_format": "無効なメール形式です",
+    "empty_string": "{property}が空です",
+    "invalid_password": "IDまたはパスワードを確認してください",
+    "max_characters": "許容可能な文字数を超えています",
+    "min_characters": "要求される文字長を満たしていません",
+    "server_error": "エラー {code}: {error}",
+    "unexpected_error": "予期しないエラーが発生しました",
+    "unsupported_device": "このデバイスはアプリでサポートされていません",
+    "no_internet_connection": "インターネットに接続されていません",
+    "image_load_failed": "画像の読み込みに失敗しました"
+  },
+  "common_generic_error": "申し訳ありません！問題が発生しました",
+  "common_community": "読書コミュニティ",
+  "common_no": "いいえ",
+  "common_yes": "はい",
+  "dialog__message__exit_message": "‘戻る’ボタンをもう一度押すとアプリが終了します。",
+  "common_dialog": {
+    "min_update": {
+      "title": "お知らせ",
+      "message": "最新のアップデートが準備されています\nより良いCoui eBookアプリを体験してください。",
+      "positive": "アップデート"
+    },
+    "blocked": {
+      "title": "アプリ使用不可",
+      "message": "現在使用中のアプリバージョンは安全ではないか、サポートが中止されています。\nセキュリティのため、最新バージョンにアップデートしてご利用ください。",
+      "positive": "アプリ終了"
+    },
+    "latest_update": {
+      "title": "お知らせ",
+      "message": "最新のアップデートが準備されています\nより良いCoui eBookアプリを体験してください。",
+      "negative": "スキップ",
+      "positive": "アップデート"
+    },
+    "no_internet_connection": {
+      "title": "インターネット接続エラー",
+      "message": "インターネット接続が切れました。ネットワーク設定を確認して再試行してください。",
+      "positive": "確認"
+    },
+    "marketing": {
+      "title": "本のおすすめ通知を受け取りますか？",
+      "message": "受信に同意すると、新刊本、カスタマイズされたおすすめ、イベントなど\nさまざまな読書情報を通知します。",
+      "positive": "はい",
+      "negative": "後で受け取る"
+    }
+  },
+  "sign_in_provider": {
+    "email": "メールで始める",
+    "google": "グーグルで始める",
+    "apple": "アップルで始める",
+    "kakao": "カカオで始める",
+    "naver": "ネイバーで始める",
+    "skip": "スキップ"
+  },
+  "sign_in_with_email": {
+    "label_text__nickname": "ニックネーム",
+    "label_text__email": "メール",
+    "label_text__password": "パスワード",
+    "label_text__code": "認証番号",
+    "text_field_hint__nickname": "ニックネームを入力してください",
+    "text_field_hint__email": "メールアドレスを入力してください",
+    "text_field_hint__password": "パスワードを入力してください",
+    "text_field_hint__code": "認証番号6桁",
+    "helper_text__password": "英数字/記号を含む12〜128文字",
+    "helper_text__code": "認証コードは8桁です。メールが届かない場合は迷惑メールフォルダを確認してください。",
+    "button_text__sign_in": {
+      "sign_in": "ログイン",
+      "create_account": "アカウント作成",
+      "confirm_email": "認証番号確認",
+      "forgot_password": "パスワードを忘れました",
+      "confirm_password_reset": "パスワード再設定"
+    },
+    "button_text__resend_code": "認証コード再送信",
+    "page_state": {
+      "sign_in": "ログイン",
+      "create_account": "アカウント作成を\n開始します",
+      "confirm_email": "メールで受け取った\n認証番号を入力してください。",
+      "forgot_password": "パスワードを忘れました",
+      "verify_email": "メールで受け取った\n認証番号を入力してください。",
+      "confirm_password_reset": "認証番号が一致しました！\nパスワードを再設定してください。"
+    },
+    "validation": {
+      "required_email": "メールを入力してください",
+      "invalid_email": "有効なメールアドレスではありません",
+      "required_password": "パスワードを入力してください",
+      "invalid_password": "パスワードの形式が正しくありません",
+      "required_nickname": "ニックネームを入力してください",
+      "invalid_nickname": "ニックネームの形式が正しくありません",
+      "required_code": "認証コードを入力してください",
+      "invalid_code_length": "認証コードは8桁です"
+    },
+    "guide_text": {
+      "error_guide__sign_in": "入力したメール/パスワードを再確認してください。問題が続く場合は、パスワードのリセットを利用してください。",
+      "error_guide__create_account": "認証メールが届かない場合は、迷惑メールフォルダを確認し、しばらくしてから再試行してください。",
+      "error_guide__confirm_email": "コードが届かない場合は迷惑メールフォルダを確認し、下のボタンで認証コードを再送信してください。",
+      "error_guide__forgot_password": "認証メールが届かない場合は迷惑メールフォルダを確認してください。続けて失敗する場合は、しばらくしてから再試行してください。",
+      "error_guide__confirm_password_reset": "コードが届かない場合は迷惑メールフォルダを確認し、下のボタンで認証コードを再送信してください。"
+    }
+  },
+  "login": {
+    "title": "ログイン",
+    "tagline": "あなたの知識の旅のスマートな伴侶",
+    "console_login_title": "管理者ログイン",
+    "button_text_login": "ログイン",
+    "label_text_email": "メール",
+    "label_text_password": "パスワード",
+    "label_text_find_email_password": "パスワードをお忘れですか",
+    "text_field_hint_email": "メールアドレスを入力してください",
+    "text_field_hint_password": "パスワードを入力してください",
+    "validation_required_email": "メールを入力してください",
+    "validation_email_format": "正しいメール形式ではありません",
+    "validation_required_password": "パスワードを入力してください",
+    "validation_password_min_length": "パスワードは最低6文字以上でなければなりません",
+    "account_find": "アカウント作成 / パスワードを忘れました",
+    "inquiry": "問い合わせ",
+    "anonymous_login": "ゲストとして閲覧",
+    "error_login_failed": "ログインに失敗しました",
+    "error_unexpected": "エラーが発生しました: {error}",
+    "error_server": "サーバーエラーが発生しました: {error}",
+    "error_invalid_email": "メール形式が正しくありません",
+    "error_invalid_password": "パスワード形式が正しくありません",
+    "error_user_not_found": "該当ユーザーが見つかりません"
+  },
+  "main": {
+    "bottom_navigation__home": "ホーム",
+    "bottom_navigation__order": "書籍検索",
+    "bottom_navigation__cart": "私の本棚",
+    "bottom_navigation__my_page": "私",
+    "bottom_navigation__community": "読書会",
+    "bottom_navigation__store": "ストア",
+    "bottom_navigation__my_library": "私の本棚"
+  },
+  "home": {
+    "text_field_hint__search": "本のタイトル、作家、出版社を検索してください。"
+  },
+  "order": {
+    "title": "書籍検索"
+  },
+  "cart": {
+    "title": "私の本棚"
+  },
+  "community": {
+    "title": "読書会"
+  },
+  "my_page": {
+    "title": "マイページ",
+    "nickname": "{nickname}さん",
+    "purchase_book_count": "購入した本 {count}冊",
+    "wish_book_count": "ほしい本 {count}冊",
+    "coin": "{coin}円",
+    "charge_history_count": "チャージ履歴 {count}件",
+    "purchase_history_count": "購入履歴 {count}件",
+    "recent_week": "最近1週間",
+    "more": "もっと見る",
+    "charge_history_empty": "チャージ履歴がありません",
+    "purchase_history_empty": "購入履歴がありません",
+    "purchase_book_empty": "購入した本がありません",
+    "notice": "お知らせ",
+    "notification_settings": "通知設定",
+    "logout": "ログアウト",
+    "withdraw": "退会する",
+    "inquiry": "お問い合わせ",
+    "balance": "保有キャッシュ",
+    "charge": "キャッシュをチャージする",
+    "usage_guide": "利用案内",
+    "charge_validity": "チャージされたキャッシュはチャージ日から5年間有効です。",
+    "charge_price": "キャッシュ金額は付加価値税が含まれていない価格です。",
+    "charge_error": "キャッシュが正常にチャージされない場合、アプリを再起動するか、カスタマーセンターにお問い合わせください。",
+    "purchase": "購入する",
+    "cancel": "取り消す",
+    "login_required": "ログインが必要です",
+    "login": "ログイン",
+    "charge_history": "キャッシュチャージ履歴",
+    "purchase_history": "購入履歴"
+  },
+  "sample_book_request": {
+    "title": "サンプル書籍申請履歴",
+    "guide_title": "サンプル書籍申請案内",
+    "guide_1": "サンプル書籍の申請は、ストア > 書籍情報ページの下部にある『サンプル書籍を申請する』ボタンから可能です。",
+    "guide_2": "申請された書籍は出版社の承認後、E-BOOK形式で提供されます。",
+    "guide_3": "サンプル書籍は授業準備の参考用に提供されます。",
+    "empty": "申請履歴はありません",
+    "view_reason": "理由を見る",
+    "rejection_reason_title": "サンプル書籍承認却下理由",
+    "status_pending": "審査中",
+    "status_approved": "承認済み",
+    "status_rejected": "却下されました"
+  },
+  "search": {
+    "empty_result": "結果がありません",
+    "error_occurred": "コンテンツの読み込み中にエラーが発生しました",
+    "search_hint": "検索キーワードを入力してください",
+    "recent_search": "最近の検索",
+    "category": "カテゴリー",
+    "cancel": "キャンセル",
+    "save": "保存する",
+    "loading": "ロード中",
+    "all_category": "全体",
+    "total_count": "合計 {count}件",
+    "newest": "最新順",
+    "format": "判型",
+    "page_count": "ページ数",
+    "kdc": "KDC",
+    "price": "円"
+  },
+  "store": {
+    "title": "ストア",
+    "search_hint": "検索語を入力してください",
+    "korean_language_education": "国語教育",
+    "social_welfare": "社会福祉",
+    "international_politics": "国際政治",
+    "archaeology": "考古学",
+    "art_history": "美術史",
+    "new_book": "新刊書籍",
+    "monthly_recommendation": "今月のおすすめ書籍",
+    "bestseller": "ベストセラー",
+    "thought_and_emotion_basics": "思考と感情の基礎",
+    "more": "もっと見る",
+    "empty_banner": "バナーがありません",
+    "retry": "再試行"
+  },
+  "chat": {
+    "instructor_chat_room": {
+      "app_bar": {
+        "create_title": "クラスチャットルームの開設",
+        "edit_title": "クラスチャットルームの編集"
+      },
+      "representative_image": {
+        "remove_button": "画像を削除",
+        "file_too_large": "ファイルサイズは10MB以下でなければなりません。",
+        "pick_error": "画像選択中にエラーが発生しました。"
+      },
+      "image_status": {
+        "default_text": "チャットルームのプロフィール写真を添付してください。（オプション/最大1枚）",
+        "uploading": "画像をアップロード中...",
+        "upload_complete": "画像アップロード完了！ 別の画像に変更する場合はクリックしてください。",
+        "existing_image": "既存の代表画像が設定されています。変更するにはクリックしてください。",
+        "default": "チャットルームの代表写真を添付してください。（選択/最大1枚）"
+      },
+      "form": {
+        "chat_room_name_label": "チャットルーム名",
+        "chat_room_name_hint": "チャットルーム名を入力してください",
+        "class_name_label": "クラス名",
+        "class_name_hint": "クラス名を入力してください",
+        "required_mark": "*"
+      },
+      "validity_period": {
+        "title": "有効期間",
+        "description": "（有効期間を入力しない場合、制限なく適用されます。）",
+        "start_date_hint": "チャットルーム開始日",
+        "end_date_hint": "有効期限の選択",
+        "date_separator": "〜"
+      },
+      "invite_link": {
+        "title": "招待リンク",
+        "description": "（招待リンクを受け取ったユーザーは、そのリンクを通じてクラスチャットルームへの参加をリクエストできます。）",
+        "button_text": "リンクをコピー",
+        "success_message": "招待リンクがクリップボードにコピーされました！",
+        "create_mode_message": "チャットルームを生成後にコピーできます",
+        "error_book_not_found": "書籍情報が見つかりません。",
+        "error_copy_failed": "招待リンクのコピーに失敗しました。"
+      },
+      "bottom_button": {
+        "create_text": "生成完了",
+        "edit_text": "編集完了",
+        "default_professor_name": "教授",
+        "default_university_name": "大学",
+        "default_professor_email": "instructor@example.com",
+        "error_book_not_found": "書籍情報が見つかりません。",
+        "error_chat_room_not_found": "チャットルーム情報が見つかりません。"
+      },
+      "page": {
+        "create_success": "クラスチャットルームが正常に開設されました！",
+        "update_success": "クラスチャットルームが正常に修正されました！"
+      }
+    }
+  },
+  "web_view": {
+    "title__find_email_password": "パスワードを忘れました",
+    "title__sign_up": "アカウント作成",
+    "title__community": "読書会"
+  },
+  "settings": {
+    "title_settings": "設定",
+    "card_notification": {
+      "title": "読書活動通知",
+      "body": "読書記録、コメント、読書会活動に関する情報を受け取ることができます。"
+    },
+    "card_event": {
+      "title": "書籍ニュース通知",
+      "body": "新刊書籍、カスタマイズされたおすすめ、イベントなど多様な読書ニュースをいち早くお届けします。"
+    },
+    "dialog": {
+      "marketing": {
+        "title": "本のお知らせ {agree} 案内",
+        "contents": "• 日時: {date}\n• 送信者: Coui eBook\n• 受信同意: アプリ通知",
+        "location": "マイページ > 設定で変更できます。",
+        "positive": "確認"
+      },
+      "alert": {
+        "title": "お知らせ",
+        "contents": "新刊書籍、カスタマイズされたおすすめ、イベントなど多様な読書ニュースを受け取ることはできません。それでも通知を解除しますか？",
+        "positive": "通知維持",
+        "negative": "通知解除"
+      }
+    }
+  },
+  "withdraw": {
+    "title": "退会する",
+    "check_title": "以下の事項を必ず確認してください。",
+    "check_list_01": "購読権及び保持している電子書籍コンテンツはすべて消滅し復元できません。",
+    "check_list_02": "Coui eBook読書会サービスの利用ができません。",
+    "check_list_03": "すでに作成した書評、コメントはそのまま残る可能性があります。",
+    "check_list_04": "このアカウントで再ログインすることはできません。",
+    "agree": "注意事項をすべて確認し、これに同意します",
+    "dialog": {
+      "alert": {
+        "title": "お知らせ",
+        "contents": "退会処理が完了しました。ご利用ありがとうございました。",
+        "positive": "確認"
+      }
+    }
+  },
+  "console": {
+    "navigation": {
+      "my": "会員管理",
+      "library": "書籍管理",
+      "campaign": "バナー管理",
+      "coupon": "キャッシュ/クーポン",
+      "classChat": "クラスチャット",
+      "aiChatLog": "AIチャットログ",
+      "admin": "管理者設定",
+      "book_list": "書籍一覧",
+      "sales_status": "販売状況",
+      "review_management": "レビュー管理"
+    },
+    "bookList": {
+      "kdc": "KDC",
+      "ISBN": "ISBN",
+      "action": "アクション",
+      "no": "NO.",
+      "book_title": "書名",
+      "category": "学問分野",
+      "publish_date": "出版日",
+      "header_title": "書籍管理",
+      "title": "書籍一覧",
+      "text__visible": "表示",
+      "text__hidden": "非表示",
+      "pending": "未承認",
+      "approved": "承認",
+      "rejected": "拒否",
+      "cancel": "キャンセル",
+      "selected": "選択中の項目",
+      "edit": "編集",
+      "delete": "削除",
+      "category_name_default": "未分類",
+      "format": "版型",
+      "published_at": "出版日",
+      "created_at": "登録日",
+      "updated_at": "修正日",
+      "filter": "フィルタ",
+      "add_book": "書籍を追加",
+      "book_list": "書籍一覧",
+      "search_hint": "検索語を入力してください",
+      "role_admin": "スーパーマネージャー",
+      "role_manager": "機能マネージャー",
+      "role_admin_all": "全体マネージャー",
+      "button": "ボタン",
+      "academic_field": "学問分野",
+      "academic_field_hint": "学問分野を選択してください",
+      "visibility": "表示の有無",
+      "visibility_hint": "表示の有無を選択してください",
+      "publish_date_range": "出版日範囲",
+      "publish_date_range_hint": "選択してください",
+      "filter_apply_button_text": "フィルターを適用",
+      "filter_reset_button_text": "リセット",
+      "filter_reset_message": "リストをリセットしました",
+      "book_list_empty": "登録された書籍がありません。",
+      "no_results": "結果がありません",
+      "filter_applied": "フィルターが適用されました",
+      "delete_failed": "本の削除に失敗しました",
+      "delete_confirmation_title": "本の削除",
+      "delete_confirmation_single_message": "{title}を削除しますか？\n削除された本は復元できません。",
+      "delete_confirmation_multiple_message": "選択した{count}冊の本を削除しますか？\n削除された本は復元できません。",
+      "delete_confirm": "削除",
+      "delete_cancel": "キャンセル",
+      "delete_success_single": "{title}が削除されました。",
+      "delete_success_multiple": "{count}冊の本が削除されました。",
+      "delete_success_single_completed": "本が正常に削除されました。",
+      "delete_success_multiple_completed": "選択された本が正常に削除されました。",
+      "delete_error": "本の削除に失敗しました: {error}",
+      "error_generic": "エラーメッセージ",
+      "refresh": "再読み込み",
+      "error_message": "コンテンツの読み込み中にエラーが発生しました。",
+      "delete_in_progress_single": "{title}を削除しています。",
+      "delete_in_progress_multiple": "{count}冊の本を削除しています。"
+    },
+    "book_registration": {
+      "page_title_edit": "本の修正",
+      "page_title_add": "本の登録",
+      "file_upload_section": "ファイルアップロード",
+      "basic_info_section": "基本情報",
+      "author": "著者",
+      "author_input_guide": "（“,” コンマで複数入力可能）",
+      "actions": {
+        "list": "リスト",
+        "save": "保存"
+      },
+      "file": {
+        "ebook_title": "Ebookファイルアップロード",
+        "ebook_format_guide": "PDF、EPUB形式で登録可能",
+        "ebook_upload_button": "Ebookファイルアップロード",
+        "cover_image_title": "書籍の表紙画像",
+        "cover_image_format_guide": "PNG、JPG形式で登録可能 | 推奨解像度: 336 x 502",
+        "cover_image_upload_button": "表紙画像アップロード",
+        "capacity_guide": "容量に関する案内",
+        "attach_file": "ファイル添付"
+      },
+      "image": {
+        "section_title": "詳細ページ画像登録",
+        "optional_label": "(任意)",
+        "button_text": "ファイル添付",
+        "guideline_text": "推奨解像度: 1200x630 / 最小解像度: 200x200 / JPG、PNG形式 / 最大5個、10MB以下"
+      },
+      "category": {
+        "academic_field": "学問分野:",
+        "curation": "キュレーション:",
+        "class_name": "授業名:",
+        "dropdown_hint": "選択してください",
+        "class_name_dropdown_item_1": "国語教育",
+        "class_name_dropdown_item_2": "社会福祉学",
+        "class_name_dropdown_item_3": "国際政治",
+        "class_name_dropdown_item_4": "考古学",
+        "class_name_dropdown_item_5": "美術史",
+        "class_name_dropdown_item_6": "科学",
+        "academic_field_hint": "学問分野",
+        "curation_hint": "キュレーション",
+        "class_name_hint": "授業名"
+      },
+      "isbn": {
+        "hint_text": "ISBNを入力してください",
+        "label_text": "ISBNを入力",
+        "validation_message": "10桁または13桁のISBNを入力してください。"
+      },
+      "price": {
+        "lifetime_ownership": "永久所蔵:",
+        "twelve_month_rental": "12ヶ月レンタル価格:",
+        "six_month_rental": "6ヶ月レンタル料:",
+        "hint_text": "価格入力",
+        "default_price": "0",
+        "currency_unit": "円",
+        "one_month_rental": "1ヶ月レンタル料:"
+      },
+      "toggle": {
+        "drm_label": "DRM",
+        "status_off": "未適用",
+        "status_on": "適用",
+        "drm_notice": "* DRMはEPUBファイルのみに適用されます。"
+      },
+      "dropdown": {
+        "default_text": "選択してください",
+        "publisher_hint": "出版社を選択してください",
+        "kdc_hint": "KDCを選択してください",
+        "selector": "選択してください"
+      },
+      "labels": {
+        "detail_image": "詳細ページ画像登録",
+        "detail_image_with_line_break": "詳細ページ\n画像登録"
+      },
+      "required_indicator": "*",
+      "validation": {
+        "price_invalid": "正しい価格を入力してください (0円より大きい値)",
+        "isbn_invalid": "無効なISBN形式です。",
+        "file_required": "必須ファイルをアップロードしてください",
+        "input_required": "入力情報を確認してください",
+        "title_required": "書名を入力してください",
+        "author_required": "著者を入力してください",
+        "publisher_required": "出版社を入力してください",
+        "publication_date_required": "出版日を選択してください",
+        "language_required": "言語を選択してください",
+        "country_required": "国を選択してください",
+        "kdc_classification_required": "KDC 分類を選択してください"
+      },
+      "file_upload": {
+        "uploading": "アップロード中...",
+        "image_upload": "画像アップロード",
+        "max_size_1gb": "最大1GBまでアップロード可能",
+        "max_size_10mb": "最大10MBまでアップロード可能",
+        "max_files_limit": "最大{count}個まで選択可能です。",
+        "image_size_exceeded": "画像サイズが{maxSize}MBを超えています。（現在: {currentSize}）",
+        "capacity_exceeded": "容量を超えました。|最大アップロード可能容量は{maxSize}MBです。",
+        "picker_already_running": "画像セレクタはすでに実行中です。しばらくしてから再試行してください。",
+        "gallery_permission_required": "ギャラリーアクセス権限が必要です。設定で権限を許可してください。",
+        "image_selection_error": "画像選択中にエラーが発生しました: {error}",
+        "file_data_missing": "ファイルデータがありません。",
+        "upload_failed": "ファイルのアップロードに失敗しました。",
+        "upload_info_unavailable": "アップロードされたファイル情報を取得できません。",
+        "upload_timeout": "ファイルアップロードのタイムアウトです。ファイルサイズが大きすぎるか、ネットワーク接続が不安定な可能性があります。",
+        "multi_upload_failed": "マルチファイルのアップロードに失敗しました。",
+        "multi_upload_timeout": "マルチ画像アップロードのタイムアウトです。ファイルサイズが大きすぎるか、ネットワーク接続が不安定な可能性があります。"
+      },
+      "dialog": {
+        "save_complete": "保存が完了しました。",
+        "confirm_exit": "リストに戻りますか？",
+        "exit_message": "入力した内容は保存されません。",
+        "go_back": "戻る",
+        "cancel": "キャンセル",
+        "input_validation": "入力確認が必要です",
+        "confirm": "確認",
+        "success": "成功",
+        "error_occurred": "エラーが発生しました",
+        "image_upload_failed": "画像のアップロードに失敗しました",
+        "image_upload_failed_message": "選択した画像をアップロードできません。\n画像サイズや形式を確認してください。"
+      },
+      "form_labels": {
+        "book_title": "書名",
+        "book_title_hint": "書名を入力",
+        "author": "著者",
+        "author_hint": "著者を入力（複数の場合は「,」で区切って入力）",
+        "publisher": "出版社",
+        "publisher_hint": "出版社名を入力",
+        "publish_date": "出版日",
+        "publish_date_hint": "日付を設定",
+        "format": "版型",
+        "format_hint": "版型を入力",
+        "price": "価格",
+        "category": "カテゴリー",
+        "detail_page_image": "詳細ページ画像登録",
+        "date_selection": "日付選択",
+        "apply": "適用",
+        "default_dropdown_text": "選択してください"
+      },
+      "image_states": {
+        "load_failed": "ロード失敗",
+        "no_image": "画像なし",
+        "remove": "削除"
+      },
+      "title": "書名",
+      "title_hint": "書名を入力してください",
+      "publisher": "出版社",
+      "publisher_hint": "出版社を入力してください",
+      "publication_date": "出版日",
+      "publication_date_hint": "出版日を選択してください",
+      "language": "言語",
+      "language_hint": "言語を選択してください",
+      "country": "国",
+      "country_hint": "国を選択してください",
+      "kdc_classification": "KDC 分類",
+      "kdc_classification_hint": "KDC 分類を選択してください",
+      "description": "書籍説明",
+      "description_hint": "書籍説明を入力してください"
+    },
+    "category": {
+      "title": "カテゴリー管理",
+      "add_category": "カテゴリー追加",
+      "edit_category": "カテゴリー編集",
+      "category_name": "カテゴリー名",
+      "sub_category": "サブカテゴリー",
+      "category_name_hint": "カテゴリー名を入力してください。",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "content_input_guide": "内容を入力してください。",
+      "search_hint": "検索キーワードを入力してください。",
+      "no_results": "結果がありません。",
+      "back_to_list": "リストに戻る",
+      "system_settings": "システム設定",
+      "required_indicator": "＊"
+    }
+  },
+  "table": {
+    "common": {
+      "number": "番号",
+      "action": "アクション",
+      "edit": "編集",
+      "delete": "削除",
+      "approve": "承認",
+      "reject": "拒否",
+      "cancel": "キャンセル",
+      "no_data": "データがありません",
+      "loading": "読み込み中...",
+      "retry": "再試行",
+      "refresh": "再読み込み"
+    },
+    "book": {
+      "title": "書名",
+      "author": "著者",
+      "publisher": "出版社",
+      "price": "価格",
+      "lifetime_price": "所有価格",
+      "six_month_price": "6カ月料金",
+      "twelve_month_price": "12カ月料金",
+      "category": "カテゴリー",
+      "isbn": "ISBN",
+      "publish_date": "出版日",
+      "status": "状態",
+      "no_author": "著者情報なし",
+      "no_publisher": "出版社情報なし",
+      "no_price": "価格情報なし",
+      "no_category": "カテゴリーなし",
+      "no_isbn": "ISBNなし",
+      "no_publish_date": "出版日なし"
+    },
+    "user": {
+      "name": "ユーザー名",
+      "email": "メール",
+      "phone": "電話番号",
+      "university": "大学",
+      "department": "学科",
+      "user_type": "会員タイプ",
+      "status": "状態",
+      "joined_date": "加入日",
+      "last_access": "最終アクセス",
+      "books_count": "購入した書籍数",
+      "wallet_balance": "保有キャッシュ",
+      "class_count": "活動クラス数",
+      "premium": "プレミアム",
+      "regular": "一般",
+      "active": "アクティブ",
+      "inactive": "非アクティブ",
+      "no_name": "名前なし",
+      "no_email": "メールなし",
+      "no_phone": "電話番号なし",
+      "no_university": "大学情報なし",
+      "no_department": "学科情報なし"
+    },
+    "instructor": {
+      "name_email": "ユーザー名/メール",
+      "phone": "電話番号",
+      "university_dept": "所属大学/学科",
+      "subject": "担当講義",
+      "type": "タイプ",
+      "request_date": "申請日",
+      "approval_status": "承認状態",
+      "approved_date": "承認日",
+      "class_count": "講義数",
+      "sample_request_count": "サンプル申請数",
+      "no_name": "名前なし",
+      "no_email": "メールなし",
+      "no_phone": "電話番号なし",
+      "no_university": "大学情報なし",
+      "no_department": "学科情報なし",
+      "no_subject": "担当講義なし",
+      "no_type": "タイプ情報なし"
+    },
+    "publisher": {
+      "name": "出版社名",
+      "description": "説明",
+      "website": "ウェブサイト",
+      "contact": "連絡先",
+      "status": "状態",
+      "created_date": "作成日",
+      "updated_date": "更新日",
+      "no_description": "説明なし",
+      "no_website": "ウェブサイトなし",
+      "no_contact": "連絡先なし"
+    },
+    "sales": {
+      "date": "日付",
+      "book_title": "書名",
+      "quantity": "数量",
+      "amount": "金額",
+      "total": "合計",
+      "no_sales_data": "販売データなし"
+    }
+  },
+  "errors": {
+    "something_wrong": {
+      "title": "問題が発生しました！",
+      "description": "ご安心ください。私たちのチームが問題を調査し、できるだけ早く解決します。読書をお楽しみいただけるよう最善を尽くします！"
+    }
+  },
+  "extra_info": {
+    "title": "追加情報入力",
+    "form": {
+      "name": {
+        "label": "名前",
+        "hint": "名前を入力してください",
+        "validation": "名前を入力してください"
+      },
+      "phone_number": {
+        "label": "電話番号",
+        "hint": "電話番号を入力してください",
+        "validation": "電話番号を入力してください",
+        "format_validation": "正しい電話番号の形式を入力してください"
+      },
+      "email": {
+        "label": "メールアドレス",
+        "hint": "メールアドレスを入力してください",
+        "validation": "メールアドレスを入力してください",
+        "format_validation": "正しいメールアドレスの形式を入力してください"
+      },
+      "university": {
+        "label": "大学",
+        "hint": "大学を入力してください",
+        "validation": "大学を入力してください"
+      },
+      "department": {
+        "label": "学科",
+        "hint": "学科を入力してください",
+        "validation": "学科を入力してください"
+      },
+      "course_name": {
+        "label": "授業科目名",
+        "hint": "授業科目名を入力してください",
+        "validation": "授業科目名を入力してください"
+      }
+    },
+    "button": {
+      "save": "保存",
+      "update": "更新",
+      "delete": "削除"
+    },
+    "message": {
+      "required_info": "追加情報の入力が必要です",
+      "redirect_info": "追加情報入力ページに移動します"
+    }
+  }
+}

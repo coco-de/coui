@@ -1,0 +1,721 @@
+{
+  "app_name": "Coui",
+  "app_description": "Biblioteca digital para encontrar livros a qualquer hora e lugar",
+  "common_error": {
+    "email_format": "Formato de email inválido",
+    "empty_string": "{property} está vazio",
+    "invalid_password": "Por favor, verifique seu email ou senha",
+    "max_characters": "Excede o número permitido de caracteres",
+    "min_characters": "Não atende ao comprimento de caracteres necessário",
+    "server_error": "Erro {code}: {error}",
+    "unexpected_error": "Ocorreu um erro inesperado",
+    "unsupported_device": "Este dispositivo não é suportado pelo aplicativo",
+    "no_internet_connection": "Sem conexão com a internet",
+    "image_load_failed": "Falha ao carregar imagem"
+  },
+  "common_generic_error": "Desculpe! Ocorreu um problema",
+  "common_community": "Comunidade de Leitura",
+  "common_no": "Não",
+  "common_yes": "Sim",
+  "dialog__message__exit_message": "Pressione o botão 'Voltar' novamente para sair do aplicativo.",
+  "common_dialog": {
+    "min_update": {
+      "title": "Notificação",
+      "message": "Uma nova atualização está disponível.\nExperimente um aplicativo Coui eBook melhor.",
+      "positive": "Atualizar"
+    },
+    "blocked": {
+      "title": "Uso do aplicativo bloqueado",
+      "message": "A versão do aplicativo atualmente em uso não é segura ou não é mais suportada.\nPara sua segurança, por favor, atualize para a versão mais recente antes de continuar.",
+      "positive": "Fechar aplicativo"
+    },
+    "latest_update": {
+      "title": "Notificação",
+      "message": "Uma nova atualização está disponível.\nExperimente um aplicativo Coui eBook melhor.",
+      "negative": "Pular",
+      "positive": "Atualizar"
+    },
+    "no_internet_connection": {
+      "title": "Erro de Conexão com a Internet",
+      "message": "A conexão com a internet foi interrompida. Verifique suas configurações de rede e tente novamente.",
+      "positive": "OK"
+    },
+    "marketing": {
+      "title": "Gostaria de receber notificações de recomendações de livros?",
+      "message": "Ao concordar com o recebimento de comunicações, você receberá notificações sobre novos livros, recomendações personalizadas, eventos, e muito mais.",
+      "positive": "Sim",
+      "negative": "Receber depois"
+    }
+  },
+  "sign_in_provider": {
+    "email": "Iniciar com Email",
+    "google": "Iniciar com Google",
+    "apple": "Iniciar com Apple",
+    "kakao": "Iniciar com Kakao",
+    "naver": "Iniciar com Naver",
+    "skip": "Pular"
+  },
+  "sign_in_with_email": {
+    "label_text__nickname": "Apelido",
+    "label_text__email": "Email",
+    "label_text__password": "Senha",
+    "label_text__code": "Código de Verificação",
+    "text_field_hint__nickname": "Digite seu apelido",
+    "text_field_hint__email": "Digite seu endereço de email",
+    "text_field_hint__password": "Digite sua senha",
+    "text_field_hint__code": "Código de verificação de 6 dígitos",
+    "helper_text__password": "Inclua letras/números/caracteres especiais, 12~128 caracteres",
+    "helper_text__code": "O código de verificação tem 8 dígitos. Se não encontrar o e-mail, verifique a caixa de spam.",
+    "button_text__sign_in": {
+      "sign_in": "Entrar",
+      "create_account": "Criar Conta",
+      "confirm_email": "Confirmar Código de Verificação",
+      "forgot_password": "Esqueci a Senha",
+      "confirm_password_reset": "Redefinir Senha"
+    },
+    "button_text__resend_code": "Reenviar Código de Verificação",
+    "page_state": {
+      "sign_in": "Entrar",
+      "create_account": "Iniciar\nCadastro",
+      "confirm_email": "Digite o código de verificação\nenviado para seu email.",
+      "forgot_password": "Esqueci a senha",
+      "verify_email": "Digite o código de verificação\nenviado para seu email.",
+      "confirm_password_reset": "Código de verificação correto!\nRedefina sua senha."
+    },
+    "validation": {
+      "required_email": "Por favor, insira o e-mail",
+      "invalid_email": "Esse não é um endereço de e-mail válido",
+      "required_password": "Por favor, insira a senha",
+      "invalid_password": "O formato da senha está incorreto",
+      "required_nickname": "Por favor, insira o apelido",
+      "invalid_nickname": "O formato do apelido está incorreto",
+      "required_code": "Por favor, insira o código de verificação",
+      "invalid_code_length": "O código de verificação tem 8 dígitos"
+    },
+    "guide_text": {
+      "error_guide__sign_in": "Por favor, verifique novamente o e-mail/senha inseridos. Se o problema persistir, utilize a opção de redefinição de senha.",
+      "error_guide__create_account": "Se o e-mail de verificação não chegou, verifique a caixa de spam e tente novamente mais tarde.",
+      "error_guide__confirm_email": "Se o código não chegou, verifique a caixa de spam e tente reenviar o código de verificação abaixo.",
+      "error_guide__forgot_password": "Se o e-mail de verificação não chegou, verifique a caixa de spam. Se o problema persistir, tente novamente mais tarde.",
+      "error_guide__confirm_password_reset": "Se o código não chegou, verifique a caixa de spam e tente reenviar o código de verificação abaixo."
+    }
+  },
+  "login": {
+    "title": "Entrar",
+    "tagline": "Seu parceiro inteligente para a jornada do conhecimento",
+    "console_login_title": "Login do Administrador",
+    "button_text_login": "Entrar",
+    "label_text_email": "Email",
+    "label_text_password": "Senha",
+    "label_text_find_email_password": "Procurar Senha",
+    "text_field_hint_email": "Digite seu endereço de email",
+    "text_field_hint_password": "Digite sua senha",
+    "validation_required_email": "Por favor, digite seu email",
+    "validation_email_format": "Formato de email inválido",
+    "validation_required_password": "Por favor, digite sua senha",
+    "validation_password_min_length": "A senha deve ter pelo menos 6 caracteres",
+    "account_find": "Registrar / Recuperar Senha",
+    "inquiry": "Contatar",
+    "anonymous_login": "Navegar anonimamente",
+    "error_login_failed": "Falha ao fazer login",
+    "error_unexpected": "Ocorreu um erro: {error}",
+    "error_server": "Erro do servidor: {error}",
+    "error_invalid_email": "Formato de email inválido",
+    "error_invalid_password": "Formato de senha inválido",
+    "error_user_not_found": "Usuário não encontrado"
+  },
+  "main": {
+    "bottom_navigation__home": "Início",
+    "bottom_navigation__order": "Pesquisar Livros",
+    "bottom_navigation__cart": "Minha Biblioteca",
+    "bottom_navigation__my_page": "MINHA",
+    "bottom_navigation__community": "GrupodeLeitura",
+    "bottom_navigation__store": "Loja",
+    "bottom_navigation__my_library": "Minha Biblioteca"
+  },
+  "home": {
+    "text_field_hint__search": "Pesquise por título, autor, editora."
+  },
+  "order": {
+    "title": "Pesquisar Livros"
+  },
+  "cart": {
+    "title": "Minha Biblioteca"
+  },
+  "community": {
+    "title": "GrupodeLeitura"
+  },
+  "my_page": {
+    "title": "Minha Página",
+    "nickname": "{nickname}",
+    "purchase_book_count": "Livros comprados {count} volumes",
+    "wish_book_count": "Livros desejados {count} volumes",
+    "coin": "{coin}₩",
+    "charge_history_count": "Histórico de recargas {count} registros",
+    "purchase_history_count": "Histórico de compras {count} registros",
+    "recent_week": "Última semana",
+    "more": "Ver mais",
+    "charge_history_empty": "Não há histórico de recargas",
+    "purchase_history_empty": "Não há histórico de compras",
+    "purchase_book_empty": "Não há livros comprados",
+    "notice": "Avisos",
+    "notification_settings": "Configurações de notificações",
+    "logout": "Sair",
+    "withdraw": "Cancelar inscrição",
+    "inquiry": "Contato",
+    "balance": "Saldo de dinheiro virtual",
+    "charge": "Recarga de dinheiro virtual",
+    "usage_guide": "Guia de uso",
+    "charge_validity": "O dinheiro virtual recarregado é válido por 5 anos a partir da data de recarga.",
+    "charge_price": "O valor do dinheiro virtual não inclui impostos.",
+    "charge_error": "Se o dinheiro virtual não for recarregado corretamente, reinicie o app ou entre em contato com o atendimento ao cliente.",
+    "purchase": "Comprar",
+    "cancel": "Cancelar",
+    "login_required": "É necessário fazer login",
+    "login": "Login",
+    "charge_history": "Histórico de recarga de dinheiro",
+    "purchase_history": "Histórico de compra"
+  },
+  "sample_book_request": {
+    "title": "Detalhes da Solicitação de Livro Amostra",
+    "guide_title": "Guia para Solicitação de Livro Amostra",
+    "guide_1": "A solicitação de livro amostra pode ser feita na página de informações do livro na loja, através do botão 'Solicitar Livro Amostra' no final da página.",
+    "guide_2": "Os livros solicitados serão disponibilizados em formato E-BOOK após a aprovação da editora.",
+    "guide_3": "Os livros amostra são fornecidos como referência para a preparação de aulas.",
+    "empty": "Nenhum pedido registrado",
+    "view_reason": "Ver motivo",
+    "rejection_reason_title": "Motivo de Rejeição do Pedido de Livro de Amostra",
+    "status_pending": "Em análise",
+    "status_approved": "Aprovado",
+    "status_rejected": "Rejeitado"
+  },
+  "search": {
+    "empty_result": "Nenhum resultado encontrado",
+    "error_occurred": "Ocorreu um erro ao carregar o conteúdo",
+    "search_hint": "Digite o termo de pesquisa",
+    "recent_search": "Pesquisas recentes",
+    "category": "Categoria",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "loading": "Carregando",
+    "all_category": "Tudo",
+    "total_count": "Total de {count} itens",
+    "newest": "Mais recentes",
+    "format": "Formato",
+    "page_count": "Número de páginas",
+    "kdc": "KDC",
+    "price": "₩"
+  },
+  "store": {
+    "title": "Loja",
+    "search_hint": "Digite sua busca",
+    "korean_language_education": "Educação em Língua Coreana",
+    "social_welfare": "Assistência Social",
+    "international_politics": "Política Internacional",
+    "archaeology": "Arqueologia",
+    "art_history": "História da Arte",
+    "new_book": "Novo Livro",
+    "monthly_recommendation": "Recomendação do Mês",
+    "bestseller": "Bestseller",
+    "thought_and_emotion_basics": "Fundamentos do Pensamento e Emoção",
+    "more": "Mais",
+    "empty_banner": "Nenhum banner disponível",
+    "retry": "Tentar novamente"
+  },
+  "chat": {
+    "instructor_chat_room": {
+      "app_bar": {
+        "create_title": "Criar Sala de Bate-papo da Turma",
+        "edit_title": "Editar Sala de Bate-papo da Turma"
+      },
+      "representative_image": {
+        "remove_button": "Remover Imagem",
+        "file_too_large": "O tamanho do arquivo deve ser inferior a 10MB.",
+        "pick_error": "Ocorreu um erro ao selecionar a imagem."
+      },
+      "image_status": {
+        "default_text": "Por favor, anexe a foto de perfil da sala de chat. (Opcional/Máximo 1 imagem)",
+        "uploading": "Carregando imagem...",
+        "upload_complete": "Upload da imagem concluído! Clique para alterar a imagem.",
+        "existing_image": "Uma imagem representativa existente está definida. Clique para alterá-la.",
+        "default": "Por favor, anexe uma foto representativa da sala de bate-papo. (Opcional/Máximo 1 imagem)"
+      },
+      "form": {
+        "chat_room_name_label": "Nome da Sala de Bate-papo",
+        "chat_room_name_hint": "Por favor, insira o nome da sala de bate-papo",
+        "class_name_label": "Nome da Turma",
+        "class_name_hint": "Por favor, insira o nome da turma",
+        "required_mark": "*"
+      },
+      "validity_period": {
+        "title": "Período de Validade",
+        "description": "(Se não inserir um período de validade, será aplicado sem restrições.)",
+        "start_date_hint": "Data de início da sala de bate-papo",
+        "end_date_hint": "Selecionar data de expiração",
+        "date_separator": "~"
+      },
+      "invite_link": {
+        "title": "Link de Convite",
+        "description": "(Os usuários que receberem o link de convite podem solicitar a participação na sala de bate-papo da turma através dele.)",
+        "button_text": "Copiar Link",
+        "success_message": "Link de convite copiado para a área de transferência!",
+        "create_mode_message": "Pode ser copiado após a criação da sala de bate-papo",
+        "error_book_not_found": "Informações do livro não encontradas.",
+        "error_copy_failed": "Falha ao copiar o link de convite."
+      },
+      "bottom_button": {
+        "create_text": "Criação Concluída",
+        "edit_text": "Edição Concluída",
+        "default_professor_name": "Professor",
+        "default_university_name": "Universidade",
+        "default_professor_email": "instructor@example.com",
+        "error_book_not_found": "Informações do livro não encontradas.",
+        "error_chat_room_not_found": "Informações da sala de bate-papo não encontradas."
+      },
+      "page": {
+        "create_success": "Sala de bate-papo da turma criada com sucesso!",
+        "update_success": "Sala de bate-papo da turma atualizada com sucesso!"
+      }
+    }
+  },
+  "web_view": {
+    "title__find_email_password": "Recuperar Senha",
+    "title__sign_up": "Registrar",
+    "title__community": "GrupodeLeitura"
+  },
+  "settings": {
+    "title_settings": "Configurações",
+    "card_notification": {
+      "title": "Notificações de Atividades de Leitura",
+      "body": "Receba informações sobre registros de leitura, comentários, atividades de grupos de leitura."
+    },
+    "card_event": {
+      "title": "Notificações de Livros",
+      "body": "Enviamos novidades sobre novos livros, recomendações personalizadas, eventos de leitura, e mais."
+    },
+    "dialog": {
+      "marketing": {
+        "title": "Aviso de Notificação de Livro {agree}",
+        "contents": "• Data: {date}\n• Remetente: Coui eBook\n• Consentimento de Recebimento: Notificação do App",
+        "location": "Você pode alterar isso em Minha Página > Configurações.",
+        "positive": "Entendido"
+      },
+      "alert": {
+        "title": "Aviso",
+        "contents": "Você não poderá receber notícias de livros, recomendações personalizadas, eventos, e mais.\nDeseja desativar as notificações mesmo assim?",
+        "positive": "Manter Notificações",
+        "negative": "Desativar Notificações"
+      }
+    }
+  },
+  "withdraw": {
+    "title": "Cancelar Conta",
+    "check_title": "Por favor, verifique os seguintes pontos cuidadosamente.",
+    "check_list_01": "Todos os direitos de assinatura e conteúdos de eBook adquiridos serão perdidos permanentemente.",
+    "check_list_02": "Os serviços de grupo de leitura do Coui eBook não estarão disponíveis.",
+    "check_list_03": "Resenhas e comentários que você já escreveu podem permanecer.",
+    "check_list_04": "Você não poderá fazer login novamente com esta conta.",
+    "agree": "Verifiquei todas as informações e concordo com elas",
+    "dialog": {
+      "alert": {
+        "title": "Aviso",
+        "contents": "Cancelamento concluído. Obrigado por usar nossos serviços.",
+        "positive": "Entendido"
+      }
+    }
+  },
+  "console": {
+    "navigation": {
+      "my": "Gestão de Usuários",
+      "library": "Gestão de Livros",
+      "campaign": "Gestão de Banner",
+      "coupon": "Gerenciar Cash/Cupom",
+      "classChat": "Chat de Classe",
+      "aiChatLog": "Registro de Chat de IA",
+      "admin": "Configuração do Administrador",
+      "book_list": "Lista de Livros",
+      "sales_status": "Status de Vendas",
+      "review_management": "Gerenciamento de Avaliações"
+    },
+    "bookList": {
+      "kdc": "KDC",
+      "ISBN": "ISBN",
+      "action": "Ação",
+      "no": "Nº",
+      "book_title": "Título do Livro",
+      "category": "Área Acadêmica",
+      "publish_date": "Data de Publicação",
+      "header_title": "Gestão de Livros",
+      "title": "Lista de Livros",
+      "text__visible": "Visível",
+      "text__hidden": "Oculto",
+      "pending": "Pendente",
+      "approved": "Aprovado",
+      "rejected": "Rejeitado",
+      "cancel": "Cancelar",
+      "selected": "cão selecionado",
+      "edit": "Editar",
+      "delete": "Excluir",
+      "category_name_default": "Sem Categoria",
+      "format": "Formato",
+      "published_at": "Data de Publicação",
+      "created_at": "Data de Registro",
+      "updated_at": "Data de Alteração",
+      "filter": "Filtro",
+      "add_book": "Adicionar Livro",
+      "book_list": "Lista de Livros",
+      "search_hint": "Digite sua busca",
+      "role_admin": "Administrador Principal",
+      "role_manager": "Gestor de Funções",
+      "role_admin_all": "Administrador Geral",
+      "button": "Botão",
+      "academic_field": "Campo acadêmico",
+      "academic_field_hint": "Selecione o campo acadêmico",
+      "visibility": "Visibilidade",
+      "visibility_hint": "Selecione a visibilidade",
+      "publish_date_range": "Intervalo de data de publicação",
+      "publish_date_range_hint": "Selecione",
+      "filter_apply_button_text": "Aplicar filtro",
+      "filter_reset_button_text": "Redefinir",
+      "filter_reset_message": "A lista foi reiniciada",
+      "book_list_empty": "Não há livros registrados.",
+      "no_results": "Nenhum resultado encontrado",
+      "filter_applied": "O filtro foi aplicado",
+      "delete_failed": "Falha ao excluir o livro.",
+      "delete_confirmation_title": "Excluir Livro",
+      "delete_confirmation_single_message": "Deseja excluir {title}?\nOs livros excluídos não podem ser recuperados.",
+      "delete_confirmation_multiple_message": "Deseja excluir os {count} livros selecionados?\nOs livros excluídos não podem ser recuperados.",
+      "delete_confirm": "Excluir",
+      "delete_cancel": "Cancelar",
+      "delete_success_single": "{title} foi excluído.",
+      "delete_success_multiple": "{count} livros foram excluídos.",
+      "delete_success_single_completed": "O livro foi excluído com sucesso.",
+      "delete_success_multiple_completed": "Os livros selecionados foram excluídos com sucesso.",
+      "delete_error": "Falha ao excluir o livro: {error}",
+      "error_generic": "Mensagem de erro",
+      "refresh": "Atualizar",
+      "error_message": "Ocorreu um erro ao carregar o conteúdo.",
+      "delete_in_progress_single": "Excluindo {title}.",
+      "delete_in_progress_multiple": "Excluindo {count} livros."
+    },
+    "book_registration": {
+      "page_title_edit": "Editar livro",
+      "page_title_add": "Registrar livro",
+      "file_upload_section": "Envio de arquivo",
+      "basic_info_section": "Informações básicas",
+      "author": "Autor",
+      "author_input_guide": "(É possível inserir vários, separados por uma vírgula “,”)",
+      "actions": {
+        "list": "Lista",
+        "save": "Salvar"
+      },
+      "file": {
+        "ebook_title": "Envio de arquivo Ebook",
+        "ebook_format_guide": "Formatos PDF, EPUB são permitidos",
+        "ebook_upload_button": "Enviar arquivo Ebook",
+        "cover_image_title": "Imagem da capa do livro",
+        "cover_image_format_guide": "Formatos PNG, JPG são permitidos | Resolução recomendada: 336 x 502",
+        "cover_image_upload_button": "Enviar imagem da capa",
+        "capacity_guide": "Guia de capacidade",
+        "attach_file": "Anexar arquivo"
+      },
+      "image": {
+        "section_title": "Cadastro de imagens da página de detalhes",
+        "optional_label": "(Opcional)",
+        "button_text": "Anexar arquivo",
+        "guideline_text": "Resolução recomendada: 1200x630 / Resolução mínima: 200x200 / Formatos JPG, PNG / Máximo de 5 arquivos, até 10MB"
+      },
+      "category": {
+        "academic_field": "Área acadêmica:",
+        "curation": "Curação:",
+        "class_name": "Nome da aula:",
+        "dropdown_hint": "Por favor, selecione",
+        "class_name_dropdown_item_1": "Educação Coreana",
+        "class_name_dropdown_item_2": "Assistência Social",
+        "class_name_dropdown_item_3": "Política Internacional",
+        "class_name_dropdown_item_4": "Arqueologia",
+        "class_name_dropdown_item_5": "História da Arte",
+        "class_name_dropdown_item_6": "Ciência",
+        "academic_field_hint": "Campo de estudo",
+        "curation_hint": "Curadoria",
+        "class_name_hint": "Nome da aula"
+      },
+      "isbn": {
+        "hint_text": "Por favor, insira o ISBN",
+        "label_text": "Digite o ISBN",
+        "validation_message": "Por favor, insira um ISBN de 10 ou 13 dígitos."
+      },
+      "price": {
+        "lifetime_ownership": "Propriedade vitalícia:",
+        "twelve_month_rental": "Aluguel de 12 meses:",
+        "six_month_rental": "Aluguel por 6 meses:",
+        "hint_text": "Insira o preço",
+        "default_price": "0",
+        "currency_unit": "₩",
+        "one_month_rental": "Aluguel por 1 mês:"
+      },
+      "toggle": {
+        "drm_label": "DRM",
+        "status_off": "Não aplicado",
+        "status_on": "Aplicado",
+        "drm_notice": "* DRM é aplicável apenas para arquivos EPUB."
+      },
+      "dropdown": {
+        "default_text": "Por favor, selecione",
+        "publisher_hint": "Selecione a editora",
+        "kdc_hint": "Selecione o KDC",
+        "selector": "Por favor, selecione"
+      },
+      "labels": {
+        "detail_image": "Cadastro de imagens da página de detalhes",
+        "detail_image_with_line_break": "Cadastro de imagens\nda página de detalhes"
+      },
+      "required_indicator": "*",
+      "validation": {
+        "price_invalid": "Insira um preço válido (maior que 0)",
+        "isbn_invalid": "Formato de ISBN inválido.",
+        "file_required": "Faça o upload do arquivo obrigatório",
+        "input_required": "Verifique as informações inseridas",
+        "title_required": "Por favor, insira o título do livro",
+        "author_required": "Por favor, insira o autor",
+        "publisher_required": "Por favor, insira a editora",
+        "publication_date_required": "Por favor, selecione a data de publicação",
+        "language_required": "Por favor, selecione o idioma",
+        "country_required": "Por favor, selecione o país",
+        "kdc_classification_required": "Por favor, selecione a classificação KDC"
+      },
+      "file_upload": {
+        "uploading": "Carregando...",
+        "image_upload": "Upload de imagem",
+        "max_size_1gb": "Máximo de 1GB pode ser carregado",
+        "max_size_10mb": "Máximo de 10MB pode ser carregado",
+        "max_files_limit": "Você pode selecionar até {count} arquivos.",
+        "image_size_exceeded": "O tamanho da imagem excede {maxSize}MB. (Atual: {currentSize})",
+        "capacity_exceeded": "Capacidade excedida.|A capacidade máxima de upload é de {maxSize}MB.",
+        "picker_already_running": "O seletor de imagens já está em execução. Tente novamente em breve.",
+        "gallery_permission_required": "Permissão de acesso à galeria necessária. Autorize o acesso nas configurações.",
+        "image_selection_error": "Erro ao selecionar a imagem: {error}",
+        "file_data_missing": "Dados de arquivo ausentes.",
+        "upload_failed": "Falha no upload do arquivo.",
+        "upload_info_unavailable": "Não foi possível obter informações sobre o arquivo carregado.",
+        "upload_timeout": "O tempo de upload do arquivo expirou. O tamanho do arquivo pode ser muito grande ou a conexão de rede instável.",
+        "multi_upload_failed": "Falha ao tentar upload de múltiplos arquivos.",
+        "multi_upload_timeout": "Tempo de upload de múltiplas imagens expirado. O tamanho do arquivo pode ser muito grande ou a conexão de rede instável."
+      },
+      "dialog": {
+        "save_complete": "Salvo com sucesso.",
+        "confirm_exit": "Deseja voltar à lista?",
+        "exit_message": "Suas alterações não foram salvas.",
+        "go_back": "Sair",
+        "cancel": "Cancelar",
+        "input_validation": "Verificação de entrada necessária",
+        "confirm": "Confirmar",
+        "success": "Sucesso",
+        "error_occurred": "Ocorreu um erro",
+        "image_upload_failed": "Falha no upload de imagem",
+        "image_upload_failed_message": "Não foi possível fazer upload da imagem selecionada.\nVerifique o tamanho ou o formato da imagem."
+      },
+      "form_labels": {
+        "book_title": "Título do Livro",
+        "book_title_hint": "Digite o título do livro",
+        "author": "Autor",
+        "author_hint": "Digite o autor (pode inserir vários separados por \", \")",
+        "publisher": "Editora",
+        "publisher_hint": "Digite o nome da editora",
+        "publish_date": "Data de Publicação",
+        "publish_date_hint": "Definir data",
+        "format": "Formato",
+        "format_hint": "Insira o formato",
+        "price": "Preço",
+        "category": "Categoria",
+        "detail_page_image": "Registro de imagem da página detalhada",
+        "date_selection": "Seleção de Data",
+        "apply": "Aplicar",
+        "default_dropdown_text": "Por favor selecione"
+      },
+      "image_states": {
+        "load_failed": "Falha no carregamento",
+        "no_image": "Sem imagem",
+        "remove": "Remover"
+      },
+      "title": "Título do Livro",
+      "title_hint": "Por favor, insira o título do livro",
+      "publisher": "Editora",
+      "publisher_hint": "Por favor, insira a editora",
+      "publication_date": "Data de Publicação",
+      "publication_date_hint": "Por favor, selecione a data de publicação",
+      "language": "Idioma",
+      "language_hint": "Por favor, selecione o idioma",
+      "country": "País",
+      "country_hint": "Por favor, selecione o país",
+      "kdc_classification": "Classificação KDC",
+      "kdc_classification_hint": "Por favor, selecione a classificação KDC",
+      "description": "Descrição do Livro",
+      "description_hint": "Por favor, insira a descrição do livro"
+    },
+    "category": {
+      "title": "Gerenciar Categoria",
+      "add_category": "Adicionar Categoria",
+      "edit_category": "Editar Categoria",
+      "category_name": "Nome da Categoria",
+      "sub_category": "Subcategoria",
+      "category_name_hint": "Por favor, insira o nome da categoria.",
+      "cancel": "Cancelar",
+      "save": "Salvar",
+      "content_input_guide": "Por favor, insira o conteúdo.",
+      "search_hint": "Por favor, insira o termo de pesquisa.",
+      "no_results": "Nenhum resultado encontrado.",
+      "back_to_list": "Voltar para a lista",
+      "system_settings": "Configurações do Sistema",
+      "required_indicator": "*"
+    }
+  },
+  "table": {
+    "common": {
+      "number": "Número",
+      "action": "Ação",
+      "edit": "Editar",
+      "delete": "Excluir",
+      "approve": "Aprovar",
+      "reject": "Rejeitar",
+      "cancel": "Cancelar",
+      "no_data": "Sem dados",
+      "loading": "Carregando...",
+      "retry": "Tentar novamente",
+      "refresh": "Atualizar"
+    },
+    "book": {
+      "title": "Título do Livro",
+      "author": "Autor",
+      "publisher": "Editora",
+      "price": "Preço",
+      "lifetime_price": "Preço Vitalício",
+      "six_month_price": "Preço de 6 Meses",
+      "twelve_month_price": "Preço de 12 Meses",
+      "category": "Categoria",
+      "isbn": "ISBN",
+      "publish_date": "Data de Publicação",
+      "status": "Status",
+      "no_author": "Sem informação do autor",
+      "no_publisher": "Sem informação da editora",
+      "no_price": "Sem informação de preço",
+      "no_category": "Sem categoria",
+      "no_isbn": "Sem ISBN",
+      "no_publish_date": "Sem data de publicação"
+    },
+    "user": {
+      "name": "Nome do Usuário",
+      "email": "Email",
+      "phone": "Número de Telefone",
+      "university": "Universidade",
+      "department": "Departamento",
+      "user_type": "Tipo de Membro",
+      "status": "Status",
+      "joined_date": "Data de Cadastro",
+      "last_access": "Último Acesso",
+      "books_count": "Número de Livros Comprados",
+      "wallet_balance": "Saldo na Carteira",
+      "class_count": "Número de Classes Ativas",
+      "premium": "Premium",
+      "regular": "Regular",
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "no_name": "Sem Nome",
+      "no_email": "Sem Email",
+      "no_phone": "Sem Número de Telefone",
+      "no_university": "Sem informação da Universidade",
+      "no_department": "Sem informação do Departamento"
+    },
+    "instructor": {
+      "name_email": "Nome do Usuário/Email",
+      "phone": "Número de Telefone",
+      "university_dept": "Universidade/Departamento",
+      "subject": "Disciplina",
+      "type": "Tipo",
+      "request_date": "Data do Pedido",
+      "approval_status": "Status de Aprovação",
+      "approved_date": "Data de Aprovação",
+      "class_count": "Número de Aulas",
+      "sample_request_count": "Número de Pedidos de Amostra",
+      "no_name": "Sem Nome",
+      "no_email": "Sem Email",
+      "no_phone": "Sem Número de Telefone",
+      "no_university": "Sem informação da Universidade",
+      "no_department": "Sem informação do Departamento",
+      "no_subject": "Sem Disciplina",
+      "no_type": "Sem informação do Tipo"
+    },
+    "publisher": {
+      "name": "Nome da Editora",
+      "description": "Descrição",
+      "website": "Website",
+      "contact": "Contato",
+      "status": "Status",
+      "created_date": "Data de Criação",
+      "updated_date": "Data de Atualização",
+      "no_description": "Sem Descrição",
+      "no_website": "Sem Website",
+      "no_contact": "Sem Contato"
+    },
+    "sales": {
+      "date": "Data",
+      "book_title": "Título do Livro",
+      "quantity": "Quantidade",
+      "amount": "Valor",
+      "total": "Total",
+      "no_sales_data": "Sem dados de vendas"
+    }
+  },
+  "errors": {
+    "something_wrong": {
+      "title": "Algo deu errado!",
+      "description": "Fique tranquilo. Nossa equipe está investigando o problema e o resolverá o mais rápido possível. Estamos comprometidos em garantir a melhor experiência de leitura para você!"
+    }
+  },
+  "extra_info": {
+    "title": "Insira informações adicionais",
+    "form": {
+      "name": {
+        "label": "Nome",
+        "hint": "Por favor, insira seu nome",
+        "validation": "Por favor, insira seu nome"
+      },
+      "phone_number": {
+        "label": "Número de telefone",
+        "hint": "Por favor, insira seu número de telefone",
+        "validation": "Por favor, insira seu número de telefone",
+        "format_validation": "Por favor, insira um formato de número de telefone válido"
+      },
+      "email": {
+        "label": "Email",
+        "hint": "Por favor, insira seu email",
+        "validation": "Por favor, insira seu email",
+        "format_validation": "Por favor, insira um formato de email válido"
+      },
+      "university": {
+        "label": "Universidade",
+        "hint": "Por favor, insira sua universidade",
+        "validation": "Por favor, insira sua universidade"
+      },
+      "department": {
+        "label": "Departamento",
+        "hint": "Por favor, insira seu departamento",
+        "validation": "Por favor, insira seu departamento"
+      },
+      "course_name": {
+        "label": "Nome do Curso",
+        "hint": "Por favor, insira o nome do curso",
+        "validation": "Por favor, insira o nome do curso"
+      }
+    },
+    "button": {
+      "save": "Salvar",
+      "update": "Atualizar",
+      "delete": "Excluir"
+    },
+    "message": {
+      "required_info": "Informações adicionais são necessárias",
+      "redirect_info": "Redirecionando para a página de inserção de informações adicionais"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "default": "im-cocode-coui-dev",
+    "prod": "im-cocode-coui",
+    "stg": "im-cocode-coui-stg",
+    "dev": "im-cocode-coui-dev"
+  },
+  "targets": {},
+  "etags": {}
+}

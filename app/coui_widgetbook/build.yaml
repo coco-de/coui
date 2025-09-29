@@ -1,0 +1,12 @@
+targets:
+  $default:
+    sources:
+      include:
+        - "pubspec.yaml"
+        - $package$
+        - lib/$lib$
+        - lib/**.dart
+    builders:
+      mockito|mockBuilder:
+        generate_for:
+          - lib/**.dart

@@ -15,8 +15,10 @@ dev_dependencies:
   very_good_analysis: ^10.0.0
 
 workspace:
+  - app/coui_widgetbook
   - packages/coui_flutter
   - packages/coui_web
+  - shared/i10n
 
 melos:
   bootstrap:
@@ -227,6 +229,14 @@ melos:
       packageFilters:
         dependsOn:
           - build_runner
+
+    generate:locale:
+      run: melos exec -- "dart run slang"
+      description: "JSON 파일로부터 번역을 생성합니다."
+      packageFilters:
+        dependsOn:
+          - "slang"
+          - "slang_flutter"
 
     # =============================================================================
     # 📚 DOCUMENTATION SCRIPTS

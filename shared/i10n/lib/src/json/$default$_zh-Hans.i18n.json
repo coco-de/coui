@@ -1,0 +1,227 @@
+{
+  "app_name": "Coui",
+  "app_description": "随时随地阅读的数字图书馆",
+  "common_error": {
+    "email_format": "无效的电子邮件格式",
+    "empty_string": "{property}不能为空",
+    "invalid_password": "请检查您的用户名或密码",
+    "max_characters": "超过允许的字符数",
+    "min_characters": "未达到所需的字符长度",
+    "server_error": "错误 {code}: {error}",
+    "unexpected_error": "发生了意外错误",
+    "unsupported_device": "此设备不受应用支持",
+    "no_internet_connection": "没有网络连接",
+    "image_load_failed": "图片加载失败"
+  },
+  "common_generic_error": "抱歉！出现了问题",
+  "common_community": "读书社区",
+  "common_no": "否",
+  "common_yes": "是",
+  "dialog__message__exit_message": "再按一次“返回”按钮退出应用。",
+  "common_dialog": {
+    "min_update": {
+      "title": "通知",
+      "message": "新的更新已准备好\n体验更好的 Coui eBook 应用。",
+      "positive": "更新"
+    },
+    "latest_update": {
+      "title": "通知",
+      "message": "最新的更新已准备好\n体验更好的 Coui eBook 应用。",
+      "negative": "跳过",
+      "positive": "更新"
+    },
+    "no_internet_connection": {
+      "title": "网络连接错误",
+      "message": "网络连接中断。请检查网络设置后重试。",
+      "positive": "确认"
+    },
+    "marketing": {
+      "title": "是否接收图书推荐通知？",
+      "message": "如同意接收，您可以获取新书信息、个性化推荐及活动等多样的阅读信息通知。",
+      "positive": "是",
+      "negative": "稍后接收"
+    }
+  },
+  "sign_in_provider": {
+    "email": "用邮箱登录",
+    "google": "用谷歌登录",
+    "apple": "用苹果登录",
+    "kakao": "用Kakao登录",
+    "naver": "用Naver登录",
+    "skip": "跳过"
+  },
+  "sign_in_with_email": {
+    "label_text__nickname": "昵称",
+    "label_text__email": "邮箱",
+    "label_text__password": "密码",
+    "label_text__code": "验证码",
+    "text_field_hint__nickname": "请输入您的昵称",
+    "text_field_hint__email": "请输入邮箱地址",
+    "text_field_hint__password": "请输入密码",
+    "text_field_hint__code": "6位验证码",
+    "button_text__sign_in": {
+      "sign_in": "登录",
+      "create_account": "注册",
+      "confirm_email": "确认验证码",
+      "forgot_password": "找回密码",
+      "confirm_password_reset": "重置密码"
+    },
+    "page_state": {
+      "sign_in": "登录",
+      "create_account": "开始\n注册",
+      "confirm_email": "请输入邮箱收到的\n验证码。",
+      "forgot_password": "找回密码",
+      "verify_email": "请输入邮箱收到的\n验证码。",
+      "confirm_password_reset": "验证码正确！\n请重置密码。"
+    }
+  },
+  "login": {
+    "title": "登录",
+    "tagline": "您的智能知识伴侣",
+    "console_login_title": "管理员登录",
+    "button_text_login": "登录",
+    "label_text_email": "邮箱",
+    "label_text_password": "密码",
+    "label_text_find_email_password": "找回密码",
+    "text_field_hint_email": "请输入邮箱地址",
+    "text_field_hint_password": "请输入密码",
+    "validation_required_email": "请输入邮箱",
+    "validation_email_format": "邮箱格式不正确",
+    "validation_required_password": "请输入密码",
+    "validation_password_min_length": "密码至少6个字符",
+    "account_find": "注册 / 找回密码",
+    "inquiry": "联系我们",
+    "anonymous_login": "以游客身份浏览",
+    "error_login_failed": "登录失败",
+    "error_unexpected": "发生错误: {error}",
+    "error_server": "服务器发生错误: {error}",
+    "error_invalid_email": "邮箱格式不正确",
+    "error_invalid_password": "密码格式不正确",
+    "error_user_not_found": "找不到该用户"
+  },
+  "main": {
+    "bottom_navigation__home": "首页",
+    "bottom_navigation__order": "搜索图书",
+    "bottom_navigation__cart": "我的书架",
+    "bottom_navigation__my_page": "我的页面",
+    "bottom_navigation__community": "读书会",
+    "bottom_navigation__store": "书店",
+    "bottom_navigation__my_library": "我的书架"
+  },
+  "home": {
+    "text_field_hint__search": "搜索书名, 作者, 出版社。"
+  },
+  "order": {
+    "title": "搜索图书"
+  },
+  "cart": {
+    "title": "我的书架"
+  },
+  "community": {
+    "title": "读书会"
+  },
+  "my_page": {
+    "title": "我的页面"
+  },
+  "store": {
+    "title": "书店",
+    "search_hint": "请输入搜索词",
+    "korean_language_education": "韩语教育",
+    "social_welfare": "社会福利",
+    "international_politics": "国际政治",
+    "archaeology": "考古学",
+    "art_history": "艺术史",
+    "new_book": "新书",
+    "monthly_recommendation": "本月推荐书籍",
+    "bestseller": "畅销书",
+    "thought_and_emotion_basics": "思维与情感基础",
+    "more": "更多"
+  },
+  "web_view": {
+    "title__find_email_password": "找回密码",
+    "title__sign_up": "注册",
+    "title__community": "读书会"
+  },
+  "settings": {
+    "title_settings": "设置",
+    "card_notification": {
+      "title": "读书活动通知",
+      "body": "接收关于阅读记录、评论和读书会活动的信息。"
+    },
+    "card_event": {
+      "title": "图书消息通知",
+      "body": "我们会第一时间发送新书、个性化推荐、活动等多样的阅读消息。"
+    },
+    "dialog": {
+      "marketing": {
+        "title": "图书通知 {agree} 指南",
+        "contents": "• 时间: {date}\n• 发送者: Coui eBook\n• 接收同意: 应用通知",
+        "location": "您可以在 我的页面 > 设置 中修改。",
+        "positive": "确认"
+      },
+      "alert": {
+        "title": "通知",
+        "contents": "您将无法接收新书、个性化推荐、活动等多样的阅读信息。您仍旧要关闭通知吗？",
+        "positive": "保持通知",
+        "negative": "关闭通知"
+      }
+    }
+  },
+  "withdraw": {
+    "title": "注销",
+    "check_title": "请务必确认以下事项。",
+    "check_list_01": "订阅和拥有的电子书内容将全部消失且无法恢复。",
+    "check_list_02": "无法使用 Coui eBook 阅读会服务。",
+    "check_list_03": "已发布的书评和评论可能仍然存在。",
+    "check_list_04": "无法再使用此账户登录。",
+    "agree": "已确认所有注意事项，并同意此类规定。",
+    "dialog": {
+      "alert": {
+        "title": "通知",
+        "contents": "已成功注销。感谢您一直以来的使用。",
+        "positive": "确认"
+      }
+    }
+  },
+  "console": {
+    "navigation": {
+      "my": "会员管理",
+      "library": "图书管理",
+      "campaign": "横幅管理",
+      "coupon": "现金/优惠券",
+      "classChat": "班级聊天",
+      "aiChatLog": "AI 聊天记录",
+      "admin": "管理员设置"
+    },
+    "bookList": {
+      "header_title": "图书管理",
+      "title": "图书列表",
+      "text__visible": "显示",
+      "text__hidden": "隐藏",
+      "pending": "未批准",
+      "approved": "已批准",
+      "rejected": "拒绝",
+      "edit": "编辑",
+      "delete": "删除",
+      "category_name_default": "未分类",
+      "format": "格式",
+      "published_at": "出版日期",
+      "created_at": "创建日期",
+      "updated_at": "修改日期",
+      "filter": "过滤器",
+      "add_book": "添加图书",
+      "book_list": "图书列表",
+      "search_hint": "请输入搜索词",
+      "role_admin": "超级管理员",
+      "role_manager": "功能管理员",
+      "role_admin_all": "全体管理员",
+      "button": "按钮"
+    }
+  },
+  "errors": {
+    "something_wrong": {
+      "title": "出现问题了！",
+      "description": "请放心。我们的团队正在调查问题并会尽快解决。我们将努力让您享受阅读！"
+    }
+  }
+}

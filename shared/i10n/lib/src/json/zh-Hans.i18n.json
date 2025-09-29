@@ -1,0 +1,721 @@
+{
+  "app_name": "Coui",
+  "app_description": "随时随地遇见书籍的数字图书馆",
+  "common_error": {
+    "email_format": "电子邮箱格式不正确",
+    "empty_string": "{property}不能为空",
+    "invalid_password": "请检查您的账号或密码",
+    "max_characters": "超过允许的字符数",
+    "min_characters": "不满足所需的字符长度",
+    "server_error": "错误 {code}: {error}",
+    "unexpected_error": "发生了意料之外的错误",
+    "unsupported_device": "此设备不支持此应用",
+    "no_internet_connection": "没有互联网连接",
+    "image_load_failed": "图片加载失败"
+  },
+  "common_generic_error": "抱歉！出现了问题",
+  "common_community": "阅读社区",
+  "common_no": "否",
+  "common_yes": "是",
+  "dialog__message__exit_message": "再次按'返回'按钮将退出应用。",
+  "common_dialog": {
+    "min_update": {
+      "title": "通知",
+      "message": "准备了最新更新\n体验更优秀的Coui eBook应用。",
+      "positive": "更新"
+    },
+    "blocked": {
+      "title": "应用不可用",
+      "message": "当前使用的应用版本不安全或已停止支持。\n为了安全，请更新至最新版本后使用。",
+      "positive": "退出应用"
+    },
+    "latest_update": {
+      "title": "通知",
+      "message": "准备了最新更新\n体验更优秀的Coui eBook应用。",
+      "negative": "跳过",
+      "positive": "更新"
+    },
+    "no_internet_connection": {
+      "title": "互联网连接错误",
+      "message": "互联网连接已断开。请检查网络设置并重试。",
+      "positive": "确认"
+    },
+    "marketing": {
+      "title": "您想接收书籍推荐通知吗？",
+      "message": "同意接收时，您可以收到新品书籍、个性化推荐、活动等多种阅读信息通知。",
+      "positive": "是",
+      "negative": "稍后再说"
+    }
+  },
+  "sign_in_provider": {
+    "email": "用电子邮件开始",
+    "google": "用谷歌开始",
+    "apple": "用苹果开始",
+    "kakao": "用Kakao开始",
+    "naver": "用Naver开始",
+    "skip": "跳过"
+  },
+  "sign_in_with_email": {
+    "label_text__nickname": "昵称",
+    "label_text__email": "电子邮件",
+    "label_text__password": "密码",
+    "label_text__code": "验证码",
+    "text_field_hint__nickname": "请输入昵称",
+    "text_field_hint__email": "请输入电子邮件地址",
+    "text_field_hint__password": "请输入密码",
+    "text_field_hint__code": "6位验证码",
+    "helper_text__password": "包含字母/数字/特殊字符，共12~128个字符",
+    "helper_text__code": "验证码是8位数。如果未收到邮件，请检查垃圾箱。",
+    "button_text__sign_in": {
+      "sign_in": "登录",
+      "create_account": "注册",
+      "confirm_email": "确认验证码",
+      "forgot_password": "找回密码",
+      "confirm_password_reset": "重置密码"
+    },
+    "button_text__resend_code": "重新发送验证码",
+    "page_state": {
+      "sign_in": "登录",
+      "create_account": "开始\n注册",
+      "confirm_email": "请输入\n收到的验证码",
+      "forgot_password": "找回密码",
+      "verify_email": "请输入\n收到的验证码",
+      "confirm_password_reset": "验证码匹配成功！\n请重置密码。"
+    },
+    "validation": {
+      "required_email": "请输入电子邮件",
+      "invalid_email": "不是有效的电子邮件地址",
+      "required_password": "请输入密码",
+      "invalid_password": "密码格式不正确",
+      "required_nickname": "请输入昵称",
+      "invalid_nickname": "昵称格式不正确",
+      "required_code": "请输入验证码",
+      "invalid_code_length": "验证码是8位数"
+    },
+    "guide_text": {
+      "error_guide__sign_in": "请重新检查输入的电子邮件/密码。如问题持续，请使用密码重置。",
+      "error_guide__create_account": "如果未收到验证邮件，请检查垃圾箱，并稍后重试。",
+      "error_guide__confirm_email": "如果未收到代码，请检查垃圾箱，并通过下方按钮重新发送验证码。",
+      "error_guide__forgot_password": "如果未收到验证邮件，请检查垃圾箱。如持续失败，请稍后重试。",
+      "error_guide__confirm_password_reset": "如果未收到代码，请检查垃圾箱，并通过下方按钮重新发送验证码。"
+    }
+  },
+  "login": {
+    "title": "登录",
+    "tagline": "为您的知识旅程提供智能伴侣",
+    "console_login_title": "管理者登录",
+    "button_text_login": "登录",
+    "label_text_email": "电子邮件",
+    "label_text_password": "密码",
+    "label_text_find_email_password": "找回密码",
+    "text_field_hint_email": "请输入电子邮件地址",
+    "text_field_hint_password": "请输入密码",
+    "validation_required_email": "请输入电子邮件",
+    "validation_email_format": "电子邮件格式不正确",
+    "validation_required_password": "请输入密码",
+    "validation_password_min_length": "密码至少需要6个字符",
+    "account_find": "注册 / 找回密码",
+    "inquiry": "咨询",
+    "anonymous_login": "匿名浏览",
+    "error_login_failed": "登录失败",
+    "error_unexpected": "发生错误: {error}",
+    "error_server": "发生服务器错误: {error}",
+    "error_invalid_email": "电子邮件格式不正确",
+    "error_invalid_password": "密码格式不正确",
+    "error_user_not_found": "找不到该用户"
+  },
+  "main": {
+    "bottom_navigation__home": "首页",
+    "bottom_navigation__order": "书籍搜索",
+    "bottom_navigation__cart": "我的书库",
+    "bottom_navigation__my_page": "我的",
+    "bottom_navigation__community": "阅读小组",
+    "bottom_navigation__store": "商店",
+    "bottom_navigation__my_library": "我的书库"
+  },
+  "home": {
+    "text_field_hint__search": "搜索书名、作者、出版社。"
+  },
+  "order": {
+    "title": "书籍搜索"
+  },
+  "cart": {
+    "title": "我的书库"
+  },
+  "community": {
+    "title": "阅读小组"
+  },
+  "my_page": {
+    "title": "我的页面",
+    "nickname": "{nickname}",
+    "purchase_book_count": "购买的书籍 {count}本",
+    "wish_book_count": "愿望书籍 {count}本",
+    "coin": "{coin}元",
+    "charge_history_count": "充值记录 {count}条",
+    "purchase_history_count": "购买记录 {count}条",
+    "recent_week": "最近一周",
+    "more": "查看更多",
+    "charge_history_empty": "没有充值记录",
+    "purchase_history_empty": "没有购买记录",
+    "purchase_book_empty": "没有已购买的书",
+    "notice": "公告事项",
+    "notification_settings": "通知设置",
+    "logout": "退出登录",
+    "withdraw": "会员退出",
+    "inquiry": "咨询",
+    "balance": "余额现金",
+    "charge": "充值现金",
+    "usage_guide": "使用指南",
+    "charge_validity": "充值后的现金自充值日起有效期为5年。",
+    "charge_price": "现金金额不含增值税。",
+    "charge_error": "如果现金未正常充值，请重新启动应用或联系客服。",
+    "purchase": "购买",
+    "cancel": "取消",
+    "login_required": "需要登录",
+    "login": "登录",
+    "charge_history": "现金充值记录",
+    "purchase_history": "购买记录"
+  },
+  "sample_book_request": {
+    "title": "样本书籍申请记录",
+    "guide_title": "样本书籍申请指南",
+    "guide_1": "样本书籍申请可通过商店 > 书籍信息页面底部的“申请样本书籍”按钮进行。",
+    "guide_2": "申请的书籍将在出版社批准后以电子书(E-BOOK)形式提供。",
+    "guide_3": "样本书籍仅作为课程准备的参考材料提供。",
+    "empty": "没有申请记录",
+    "view_reason": "查看原因",
+    "rejection_reason_title": "样本书批准被拒原因",
+    "status_pending": "审核中",
+    "status_approved": "已批准",
+    "status_rejected": "已拒绝"
+  },
+  "search": {
+    "empty_result": "没有结果",
+    "error_occurred": "加载内容时出错",
+    "search_hint": "请输入搜索词",
+    "recent_search": "最近搜索",
+    "category": "类别",
+    "cancel": "取消",
+    "save": "保存",
+    "loading": "加载中",
+    "all_category": "全部",
+    "total_count": "总共 {count} 条",
+    "newest": "最新",
+    "format": "版型",
+    "page_count": "页数",
+    "kdc": "KDC",
+    "price": "元"
+  },
+  "store": {
+    "title": "商店",
+    "search_hint": "请输入搜索词",
+    "korean_language_education": "韩国语言教育",
+    "social_welfare": "社会福利",
+    "international_politics": "国际政治",
+    "archaeology": "考古学",
+    "art_history": "艺术史",
+    "new_book": "新品图书",
+    "monthly_recommendation": "本月推荐书籍",
+    "bestseller": "畅销书",
+    "thought_and_emotion_basics": "思维与情感基础",
+    "more": "更多",
+    "empty_banner": "没有横幅",
+    "retry": "重试"
+  },
+  "chat": {
+    "instructor_chat_room": {
+      "app_bar": {
+        "create_title": "创建班级聊天室",
+        "edit_title": "编辑班级聊天室"
+      },
+      "representative_image": {
+        "remove_button": "移除图片",
+        "file_too_large": "文件大小不能超过10MB。",
+        "pick_error": "选择图片时发生错误。"
+      },
+      "image_status": {
+        "default_text": "请附上聊天室代表照片。（可选/最多1张）",
+        "uploading": "图片上传中...",
+        "upload_complete": "图片上传完成！如需更换，请点击。",
+        "existing_image": "已有代表图片设置。若要更改，请点击。",
+        "default": "请附上聊天室的代表照片。（可选/最多1张）"
+      },
+      "form": {
+        "chat_room_name_label": "聊天室名称",
+        "chat_room_name_hint": "请输入聊天室名称",
+        "class_name_label": "课程名称",
+        "class_name_hint": "请输入课程名称",
+        "required_mark": "*"
+      },
+      "validity_period": {
+        "title": "有效期",
+        "description": "（如果不输入有效期，将不限期适用。）",
+        "start_date_hint": "聊天室开始日期",
+        "end_date_hint": "选择到期日期",
+        "date_separator": "~"
+      },
+      "invite_link": {
+        "title": "邀请链接",
+        "description": "（收到邀请链接的用户可以通过该链接请求加入班级聊天室。）",
+        "button_text": "复制链接",
+        "success_message": "邀请链接已复制到剪贴板！",
+        "create_mode_message": "聊天室创建后可复制",
+        "error_book_not_found": "找不到书籍信息。",
+        "error_copy_failed": "邀请链接复制失败。"
+      },
+      "bottom_button": {
+        "create_text": "创建完成",
+        "edit_text": "编辑完成",
+        "default_professor_name": "讲师",
+        "default_university_name": "大学",
+        "default_professor_email": "instructor@example.com",
+        "error_book_not_found": "找不到书籍信息。",
+        "error_chat_room_not_found": "找不到聊天室信息。"
+      },
+      "page": {
+        "create_success": "班级聊天室已成功创建！",
+        "update_success": "班级聊天室已成功修改！"
+      }
+    }
+  },
+  "web_view": {
+    "title__find_email_password": "找回密码",
+    "title__sign_up": "注册",
+    "title__community": "阅读小组"
+  },
+  "settings": {
+    "title_settings": "设置",
+    "card_notification": {
+      "title": "阅读活动通知",
+      "body": "您可以收到阅读记录、评论、阅读小组活动的信息。"
+    },
+    "card_event": {
+      "title": "书籍消息通知",
+      "body": "新品图书、个性化推荐、活动等各种阅读消息会优先发送给您。"
+    },
+    "dialog": {
+      "marketing": {
+        "title": "书籍通知 {agree} 向导",
+        "contents": "• 日期: {date}\n• 发件人: Coui eBook\n• 接收同意: 应用通知",
+        "location": "可以在我的页面 > 设置中更改。",
+        "positive": "确认"
+      },
+      "alert": {
+        "title": "通知",
+        "contents": "您将无法收到新品图书、个性化推荐、活动等各种阅读消息。您仍然要禁用通知吗？",
+        "positive": "保持通知",
+        "negative": "禁用通知"
+      }
+    }
+  },
+  "withdraw": {
+    "title": "退出",
+    "check_title": "请务必确认以下事项。",
+    "check_list_01": "订阅权限与持有的eBook内容将全部消失且无法恢复。",
+    "check_list_02": "无法使用Coui eBook阅读小组服务。",
+    "check_list_03": "您已撰写的书评、评论可能会继续保留。",
+    "check_list_04": "无法重新使用该账户登录。",
+    "agree": "已确认所有信息并同意。",
+    "dialog": {
+      "alert": {
+        "title": "通知",
+        "contents": "已完成注销。感谢您一直以来的使用。",
+        "positive": "确认"
+      }
+    }
+  },
+  "console": {
+    "navigation": {
+      "my": "会员管理",
+      "library": "书籍管理",
+      "campaign": "横幅管理",
+      "coupon": "现金/优惠券",
+      "classChat": "班级聊天",
+      "aiChatLog": "AI聊天记录",
+      "admin": "管理员设置",
+      "book_list": "图书目录",
+      "sales_status": "销售状态",
+      "review_management": "评论管理"
+    },
+    "bookList": {
+      "kdc": "KDC",
+      "ISBN": "ISBN",
+      "action": "动作",
+      "no": "编号",
+      "book_title": "书名",
+      "category": "学科领域",
+      "publish_date": "出版日期",
+      "header_title": "书籍管理",
+      "title": "书籍列表",
+      "text__visible": "显示",
+      "text__hidden": "隐藏",
+      "pending": "未批准",
+      "approved": "批准",
+      "rejected": "拒绝",
+      "cancel": "取消",
+      "selected": "项选择中",
+      "edit": "编辑",
+      "delete": "删除",
+      "category_name_default": "未分类",
+      "format": "版式",
+      "published_at": "出版日期",
+      "created_at": "注册日期",
+      "updated_at": "修改日期",
+      "filter": "过滤",
+      "add_book": "添加书籍",
+      "book_list": "书籍列表",
+      "search_hint": "请输入搜索词",
+      "role_admin": "超级管理员",
+      "role_manager": "功能管理者",
+      "role_admin_all": "全权管理者",
+      "button": "按钮",
+      "academic_field": "学术领域",
+      "academic_field_hint": "请选择学术领域",
+      "visibility": "可见性",
+      "visibility_hint": "请选择可见性",
+      "publish_date_range": "出版日期范围",
+      "publish_date_range_hint": "请选择",
+      "filter_apply_button_text": "应用过滤器",
+      "filter_reset_button_text": "重置",
+      "filter_reset_message": "列表已重置",
+      "book_list_empty": "没有已注册的书籍。",
+      "no_results": "没有结果",
+      "filter_applied": "已应用过滤器",
+      "delete_failed": "删除图书失败",
+      "delete_confirmation_title": "删除图书",
+      "delete_confirmation_single_message": "您确定要删除 {title} 吗？\n删除的图书无法恢复。",
+      "delete_confirmation_multiple_message": "您确定要删除所选的 {count} 本图书吗？\n删除的图书无法恢复。",
+      "delete_confirm": "删除",
+      "delete_cancel": "取消",
+      "delete_success_single": "{title} 已被删除。",
+      "delete_success_multiple": "{count} 本图书已被删除。",
+      "delete_success_single_completed": "书籍已成功删除。",
+      "delete_success_multiple_completed": "所选书籍已成功删除。",
+      "delete_error": "删除图书失败: {error}",
+      "error_generic": "错误信息",
+      "refresh": "刷新",
+      "error_message": "加载内容时出错。",
+      "delete_in_progress_single": "正在删除{title}。",
+      "delete_in_progress_multiple": "正在删除{count}本书。"
+    },
+    "book_registration": {
+      "page_title_edit": "编辑书籍",
+      "page_title_add": "注册书籍",
+      "file_upload_section": "文件上传",
+      "basic_info_section": "基本信息",
+      "author": "作者",
+      "author_input_guide": "可以用“,”逗号输入多个",
+      "actions": {
+        "list": "列表",
+        "save": "保存"
+      },
+      "file": {
+        "ebook_title": "Ebook 文件上传",
+        "ebook_format_guide": "支持 PDF，EPUB 格式",
+        "ebook_upload_button": "上传 Ebook 文件",
+        "cover_image_title": "书籍封面图片",
+        "cover_image_format_guide": "支持 PNG, JPG 格式 | 推荐分辨率：336 x 502",
+        "cover_image_upload_button": "上传封面图片",
+        "capacity_guide": "容量相关指南",
+        "attach_file": "附加文件"
+      },
+      "image": {
+        "section_title": "详细页面图像注册",
+        "optional_label": "(可选)",
+        "button_text": "附加文件",
+        "guideline_text": "推荐分辨率：1200x630 / 最小分辨率：200x200 / JPG, PNG 格式 / 最多 5 个，10MB 以下"
+      },
+      "category": {
+        "academic_field": "学术领域：",
+        "curation": "策展：",
+        "class_name": "课程名称：",
+        "dropdown_hint": "请选择",
+        "class_name_dropdown_item_1": "国语教育",
+        "class_name_dropdown_item_2": "社会福利学",
+        "class_name_dropdown_item_3": "国际政治",
+        "class_name_dropdown_item_4": "考古学",
+        "class_name_dropdown_item_5": "艺术史",
+        "class_name_dropdown_item_6": "科学",
+        "academic_field_hint": "学术领域",
+        "curation_hint": "策展",
+        "class_name_hint": "课程名称"
+      },
+      "isbn": {
+        "hint_text": "请输入 ISBN",
+        "label_text": "请输入ISBN",
+        "validation_message": "请输入 10 位或 13 位的 ISBN。"
+      },
+      "price": {
+        "lifetime_ownership": "终身拥有：",
+        "twelve_month_rental": "12个月租金:",
+        "six_month_rental": "6 个月租赁价：",
+        "hint_text": "输入价格",
+        "default_price": "0",
+        "currency_unit": "元",
+        "one_month_rental": "1 个月租赁价："
+      },
+      "toggle": {
+        "drm_label": "DRM",
+        "status_off": "未应用",
+        "status_on": "应用",
+        "drm_notice": "* DRM 仅适用于 EPUB 文件。"
+      },
+      "dropdown": {
+        "default_text": "请选择",
+        "publisher_hint": "请选择出版社",
+        "kdc_hint": "请选择KDC",
+        "selector": "请选择"
+      },
+      "labels": {
+        "detail_image": "详细页面图像注册",
+        "detail_image_with_line_break": "详细页面\n图像注册"
+      },
+      "required_indicator": "*",
+      "validation": {
+        "price_invalid": "请输入正确的价格（大于 0 元）",
+        "isbn_invalid": "ISBN 格式不正确。",
+        "file_required": "请上传必需的文件",
+        "input_required": "请确认输入信息",
+        "title_required": "请输入书名",
+        "author_required": "请输入作者",
+        "publisher_required": "请输入出版社",
+        "publication_date_required": "请选择出版日期",
+        "language_required": "请选择语言",
+        "country_required": "请选择国家",
+        "kdc_classification_required": "请选择 KDC 分类"
+      },
+      "file_upload": {
+        "uploading": "上传中...",
+        "image_upload": "图像上传",
+        "max_size_1gb": "最大可上传 1GB",
+        "max_size_10mb": "最大可上传 10MB",
+        "max_files_limit": "您最多只能选择 {count} 个。",
+        "image_size_exceeded": "图片大小超过 {maxSize}MB。（当前：{currentSize}MB）",
+        "capacity_exceeded": "容量已超出。|最大上传容量为 {maxSize}MB。",
+        "picker_already_running": "图片选择器已在运行中。请稍后再试。",
+        "gallery_permission_required": "需要图库访问权限。请在设置中允许权限。",
+        "image_selection_error": "选择图片时发生错误：{error}",
+        "file_data_missing": "没有文件数据。",
+        "upload_failed": "文件上传失败。",
+        "upload_info_unavailable": "无法获取已上传文件的信息。",
+        "upload_timeout": "文件上传超时。文件可能太大或网络连接不稳定。",
+        "multi_upload_failed": "多文件上传失败。",
+        "multi_upload_timeout": "多图片上传超时。文件可能太大或网络连接不稳定。"
+      },
+      "dialog": {
+        "save_complete": "保存完成。",
+        "confirm_exit": "您要返回列表吗？",
+        "exit_message": "您输入的内容不会被保存。",
+        "go_back": "退出",
+        "cancel": "取消",
+        "input_validation": "需要输入确认",
+        "confirm": "确认",
+        "success": "成功",
+        "error_occurred": "发生错误",
+        "image_upload_failed": "图片上传失败",
+        "image_upload_failed_message": "无法上传所选图片。\n请检查图片大小或格式。"
+      },
+      "form_labels": {
+        "book_title": "书名",
+        "book_title_hint": "请输入书名",
+        "author": "作者",
+        "author_hint": "输入作者 (多个作者请用 \", \" 分隔)",
+        "publisher": "出版社",
+        "publisher_hint": "输入出版社名称",
+        "publish_date": "出版日期",
+        "publish_date_hint": "设置日期",
+        "format": "版式",
+        "format_hint": "输入版式",
+        "price": "价格",
+        "category": "类别",
+        "detail_page_image": "登记详细页面图片",
+        "date_selection": "选择日期",
+        "apply": "应用",
+        "default_dropdown_text": "请选择"
+      },
+      "image_states": {
+        "load_failed": "加载失败",
+        "no_image": "无图片",
+        "remove": "移除"
+      },
+      "title": "书名",
+      "title_hint": "请输入书名",
+      "publisher": "出版社",
+      "publisher_hint": "请输入出版社",
+      "publication_date": "出版日期",
+      "publication_date_hint": "请选择出版日期",
+      "language": "语言",
+      "language_hint": "请选择语言",
+      "country": "国家",
+      "country_hint": "请选择国家",
+      "kdc_classification": "KDC 分类",
+      "kdc_classification_hint": "请选择 KDC 分类",
+      "description": "书籍描述",
+      "description_hint": "请输入书籍描述"
+    },
+    "category": {
+      "title": "类别管理",
+      "add_category": "添加类别",
+      "edit_category": "编辑类别",
+      "category_name": "类别名称",
+      "sub_category": "子类别",
+      "category_name_hint": "请输入类别名称。",
+      "cancel": "取消",
+      "save": "保存",
+      "content_input_guide": "请输入内容。",
+      "search_hint": "请输入搜索词。",
+      "no_results": "没有结果。",
+      "back_to_list": "返回列表",
+      "system_settings": "系统设置",
+      "required_indicator": "*"
+    }
+  },
+  "table": {
+    "common": {
+      "number": "编号",
+      "action": "操作",
+      "edit": "编辑",
+      "delete": "删除",
+      "approve": "批准",
+      "reject": "拒绝",
+      "cancel": "取消",
+      "no_data": "没有数据",
+      "loading": "加载中...",
+      "retry": "重试",
+      "refresh": "刷新"
+    },
+    "book": {
+      "title": "书名",
+      "author": "作者",
+      "publisher": "出版社",
+      "price": "价格",
+      "lifetime_price": "购买价格",
+      "six_month_price": "6个月费用",
+      "twelve_month_price": "12个月费用",
+      "category": "分类",
+      "isbn": "ISBN",
+      "publish_date": "出版日期",
+      "status": "状态",
+      "no_author": "没有作者信息",
+      "no_publisher": "没有出版社信息",
+      "no_price": "没有价格信息",
+      "no_category": "没有分类",
+      "no_isbn": "没有ISBN",
+      "no_publish_date": "没有出版日期"
+    },
+    "user": {
+      "name": "用户名",
+      "email": "电子邮件",
+      "phone": "电话",
+      "university": "大学",
+      "department": "系",
+      "user_type": "会员类型",
+      "status": "状态",
+      "joined_date": "加入日期",
+      "last_access": "最近访问",
+      "books_count": "购买书籍数量",
+      "wallet_balance": "钱包余额",
+      "class_count": "活动课程数量",
+      "premium": "高级",
+      "regular": "普通",
+      "active": "活跃",
+      "inactive": "不活跃",
+      "no_name": "没有名字",
+      "no_email": "没有电子邮件",
+      "no_phone": "没有电话号码",
+      "no_university": "没有大学信息",
+      "no_department": "没有系信息"
+    },
+    "instructor": {
+      "name_email": "用户名/电子邮件",
+      "phone": "电话",
+      "university_dept": "所属大学/系",
+      "subject": "负责课程",
+      "type": "类型",
+      "request_date": "申请日期",
+      "approval_status": "批准状态",
+      "approved_date": "批准日期",
+      "class_count": "课程数量",
+      "sample_request_count": "样本请求数量",
+      "no_name": "没有名字",
+      "no_email": "没有电子邮件",
+      "no_phone": "没有电话号码",
+      "no_university": "没有大学信息",
+      "no_department": "没有系信息",
+      "no_subject": "没有负责课程",
+      "no_type": "没有类型信息"
+    },
+    "publisher": {
+      "name": "出版社名称",
+      "description": "描述",
+      "website": "网站",
+      "contact": "联系人",
+      "status": "状态",
+      "created_date": "创建日期",
+      "updated_date": "更新日期",
+      "no_description": "没有描述",
+      "no_website": "没有网站",
+      "no_contact": "没有联系人"
+    },
+    "sales": {
+      "date": "日期",
+      "book_title": "书名",
+      "quantity": "数量",
+      "amount": "金额",
+      "total": "总计",
+      "no_sales_data": "没有销售数据"
+    }
+  },
+  "errors": {
+    "something_wrong": {
+      "title": "出现了问题！",
+      "description": "请放心，我们的团队正在调查问题并将尽快解决。我们将尽力确保您能享受阅读！"
+    }
+  },
+  "extra_info": {
+    "title": "输入附加信息",
+    "form": {
+      "name": {
+        "label": "姓名",
+        "hint": "请输入姓名",
+        "validation": "请输入姓名"
+      },
+      "phone_number": {
+        "label": "电话号码",
+        "hint": "请输入电话号码",
+        "validation": "请输入电话号码",
+        "format_validation": "请输入正确的电话号码格式"
+      },
+      "email": {
+        "label": "电子邮件",
+        "hint": "请输入电子邮件",
+        "validation": "请输入电子邮件",
+        "format_validation": "请输入正确的电子邮件格式"
+      },
+      "university": {
+        "label": "大学",
+        "hint": "请输入大学",
+        "validation": "请输入大学"
+      },
+      "department": {
+        "label": "院系",
+        "hint": "请输入院系",
+        "validation": "请输入院系"
+      },
+      "course_name": {
+        "label": "课程名称",
+        "hint": "请输入课程名称",
+        "validation": "请输入课程名称"
+      }
+    },
+    "button": {
+      "save": "保存",
+      "update": "修改",
+      "delete": "删除"
+    },
+    "message": {
+      "required_info": "需要输入附加信息",
+      "redirect_info": "跳转到输入附加信息页面"
+    }
+  }
+}

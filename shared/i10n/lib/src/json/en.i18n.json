@@ -1,0 +1,531 @@
+{
+  "app_name": "Coui",
+  "app_description": "A digital library where you meet books anytime, anywhere",
+  "common_error": {
+    "email_format": "Invalid email format",
+    "empty_string": "{property} is empty",
+    "invalid_password": "Please check your ID or password",
+    "max_characters": "Exceeded the allowable number of characters",
+    "min_characters": "Doesn't meet the required character length",
+    "server_error": "Error {code}: {error}",
+    "unexpected_error": "An unexpected error has occurred",
+    "unsupported_device": "This device is not supported by the app",
+    "no_internet_connection": "No internet connection",
+    "image_load_failed": "Image load failed"
+  },
+  "common_generic_error": "Sorry! An issue occurred",
+  "common_community": "Reading Community",
+  "common_no": "No",
+  "common_yes": "Yes",
+  "dialog__message__exit_message": "Press 'Back' button once more to exit the app.",
+  "common_dialog": {
+    "min_update": {
+      "title": "Notice",
+      "message": "The latest update is ready.\nExperience the improved Coui eBook app.",
+      "positive": "Update"
+    },
+    "blocked": {
+      "title": "App Unavailable",
+      "message": "The current version of the app is either unsafe or no longer supported.\nFor your security, please update to the latest version.",
+      "positive": "Close App"
+    },
+    "latest_update": {
+      "title": "Notice",
+      "message": "The latest update is ready.\nExperience the improved Coui eBook app.",
+      "negative": "Skip",
+      "positive": "Update"
+    },
+    "no_internet_connection": {
+      "title": "Internet Connection Error",
+      "message": "The internet connection is lost. Please check your network settings and try again.",
+      "positive": "OK"
+    },
+    "marketing": {
+      "title": "Would you like to receive book recommendation notifications?",
+      "message": "By opting in, you can receive notifications about new books, personalized recommendations, events, and various reading information.",
+      "positive": "Yes",
+      "negative": "Remind me later"
+    }
+  },
+  "sign_in_provider": {
+    "email": "Start with Email",
+    "google": "Start with Google",
+    "apple": "Start with Apple",
+    "kakao": "Start with Kakao",
+    "naver": "Start with Naver",
+    "skip": "Skip"
+  },
+  "sign_in_with_email": {
+    "label_text__nickname": "Nickname",
+    "label_text__email": "Email",
+    "label_text__password": "Password",
+    "label_text__code": "Verification Code",
+    "text_field_hint__nickname": "Enter your nickname",
+    "text_field_hint__email": "Enter your email address",
+    "text_field_hint__password": "Enter your password",
+    "text_field_hint__code": "6-digit verification code",
+    "button_text__sign_in": {
+      "sign_in": "Sign In",
+      "create_account": "Create Account",
+      "confirm_email": "Verify Code",
+      "forgot_password": "Forgot Password",
+      "confirm_password_reset": "Reset Password"
+    },
+    "page_state": {
+      "sign_in": "Sign In",
+      "create_account": "Start Creating\nYour Account",
+      "confirm_email": "Please enter the verification code\nreceived by email.",
+      "forgot_password": "Find Password",
+      "verify_email": "Please enter the verification code\nreceived by email.",
+      "confirm_password_reset": "The code matches!\nPlease reset your password."
+    }
+  },
+  "login": {
+    "title": "Sign In",
+    "tagline": "Your smart companion on the knowledge journey",
+    "console_login_title": "Admin Login",
+    "button_text_login": "Sign In",
+    "label_text_email": "Email",
+    "label_text_password": "Password",
+    "label_text_find_email_password": "Find Password",
+    "text_field_hint_email": "Enter your email address",
+    "text_field_hint_password": "Enter your password",
+    "validation_required_email": "Please enter your email",
+    "validation_email_format": "Invalid email format",
+    "validation_required_password": "Please enter your password",
+    "validation_password_min_length": "Password must be at least 6 characters",
+    "account_find": "Sign Up / Find Password",
+    "inquiry": "Inquire",
+    "anonymous_login": "Browse as Guest",
+    "error_login_failed": "Failed to log in",
+    "error_unexpected": "An error occurred: {error}",
+    "error_server": "Server error occurred: {error}",
+    "error_invalid_email": "Email format is incorrect",
+    "error_invalid_password": "Password format is incorrect",
+    "error_user_not_found": "User not found"
+  },
+  "main": {
+    "bottom_navigation__home": "Home",
+    "bottom_navigation__order": "Search Books",
+    "bottom_navigation__cart": "My Library",
+    "bottom_navigation__my_page": "My Page",
+    "bottom_navigation__community": "Reading Clubs",
+    "bottom_navigation__store": "Store",
+    "bottom_navigation__my_library": "My Library"
+  },
+  "home": {
+    "text_field_hint__search": "Search by book title, author, or publisher."
+  },
+  "order": {
+    "title": "Search Books"
+  },
+  "cart": {
+    "title": "My Library"
+  },
+  "community": {
+    "title": "Reading Clubs"
+  },
+  "my_page": {
+    "title": "MY",
+    "nickname": "{nickname}",
+    "purchase_book_count": "{count} purchased books",
+    "wish_book_count": "{count} wishlist books",
+    "coin": "{coin} Won",
+    "charge_history_count": "{count} charge history",
+    "purchase_history_count": "{count} purchase history",
+    "recent_week": "Recent week",
+    "more": "View more",
+    "charge_history_empty": "No charge history",
+    "purchase_history_empty": "No purchase history",
+    "purchase_book_empty": "No purchased books",
+    "notice": "Notice",
+    "notification_settings": "Notification Settings",
+    "logout": "Logout",
+    "withdraw": "Withdraw",
+    "inquiry": "Inquiry",
+    "balance": "Cash Balance",
+    "charge": "Charge Cash",
+    "usage_guide": "Usage Guide",
+    "charge_validity": "Charged cash is valid for 5 years from the date of charge.",
+    "charge_price": "Cash amount is the price excluding VAT.",
+    "charge_error": "If cash is not charged properly, please restart the app or contact customer service",
+    "purchase": "Purchase",
+    "cancel": "Cancel",
+    "login_required": "Login required",
+    "login": "Login",
+    "charge_history": "Cash Recharge History",
+    "purchase_history": "Purchase History"
+  },
+  "sample_book_request": {
+    "title": "Sample Book Request History",
+    "guide_title": "Sample Book Request Guide",
+    "guide_1": "You can apply for a sample book by clicking the 'Request Sample Book' button at the bottom of the book information page in the store.",
+    "guide_2": "The requested book will be provided in E-BOOK format after approval by the publisher.",
+    "guide_3": "Sample books are provided as a reference for class preparation.",
+    "empty": "No request history",
+    "view_reason": "View Reason",
+    "rejection_reason_title": "Reason for Sample Book Request Rejection",
+    "status_pending": "Under Review",
+    "status_approved": "Approved",
+    "status_rejected": "Rejected"
+  },
+  "search": {
+    "empty_result": "No results",
+    "error_occurred": "An error occurred while loading the content",
+    "search_hint": "Please enter a search term",
+    "recent_search": "Recent Search",
+    "category": "Category",
+    "cancel": "Cancel",
+    "save": "Save",
+    "loading": "Loading",
+    "all_category": "All",
+    "total_count": "Total {count} items",
+    "newest": "Newest",
+    "format": "Format",
+    "page_count": "Page Count",
+    "kdc": "KDC",
+    "price": "USD"
+  },
+  "store": {
+    "title": "Store",
+    "search_hint": "Please enter a search term",
+    "korean_language_education": "Korean Language Education",
+    "social_welfare": "Social Welfare",
+    "international_politics": "International Politics",
+    "archaeology": "Archaeology",
+    "art_history": "Art History",
+    "new_book": "New Book",
+    "monthly_recommendation": "Monthly Recommendation",
+    "bestseller": "Bestseller",
+    "thought_and_emotion_basics": "Basics of Thought and Emotion",
+    "more": "See More",
+    "empty_banner": "No banner",
+    "retry": "Retry"
+  },
+  "chat": {
+    "instructor_chat_room": {
+      "app_bar": {
+        "create_title": "Create Class Chat Room",
+        "edit_title": "Edit Class Chat Room"
+      },
+      "representative_image": {
+        "remove_button": "Remove Image",
+        "file_too_large": "File size must be 10MB or less.",
+        "pick_error": "An error occurred while selecting image."
+      },
+      "image_status": {
+        "default_text": "Please attach a representative photo for the chat room. (Optional/Maximum 1 file)",
+        "uploading": "Uploading image...",
+        "upload_complete": "Image upload complete! Click to change to a different image.",
+        "existing_image": "An existing representative image is set. Click to change."
+      },
+      "form": {
+        "chat_room_name_label": "Chat Room Name",
+        "chat_room_name_hint": "Please enter the chat room name",
+        "class_name_label": "Class Name",
+        "class_name_hint": "Please enter the class name",
+        "required_mark": "*"
+      },
+      "validity_period": {
+        "title": "Validity Period",
+        "description": "(If no validity period is entered, it will be applied without restrictions.)",
+        "start_date_hint": "Chat room start date",
+        "end_date_hint": "Select expiration date",
+        "date_separator": "~"
+      },
+      "invite_link": {
+        "title": "Invite Link",
+        "description": "(Users who receive the invite link can request to join the class chat room through that link.)",
+        "button_text": "Copy Link",
+        "success_message": "Invite link has been copied to clipboard!",
+        "create_mode_message": "Can be copied after creating the chat room",
+        "error_book_not_found": "Book information not found.",
+        "error_copy_failed": "Failed to copy invite link."
+      },
+      "bottom_button": {
+        "create_text": "Create Complete",
+        "edit_text": "Edit Complete",
+        "default_professor_name": "Instructor",
+        "default_university_name": "University",
+        "default_professor_email": "instructor@example.com",
+        "error_book_not_found": "Book information not found.",
+        "error_chat_room_not_found": "Chat room information not found."
+      },
+      "page": {
+        "create_success": "Class chat room has been successfully created!",
+        "update_success": "Class chat room has been successfully updated!"
+      }
+    }
+  },
+  "web_view": {
+    "title__find_email_password": "Find Password",
+    "title__sign_up": "Sign Up",
+    "title__community": "Reading Clubs"
+  },
+  "settings": {
+    "title_settings": "Settings",
+    "card_notification": {
+      "title": "Reading Activity Notifications",
+      "body": "You can receive information about reading records, comments, and reading club activities."
+    },
+    "card_event": {
+      "title": "Book News Notifications",
+      "body": "Be the first to receive various reading news like new books, personalized recommendations, and events."
+    },
+    "dialog": {
+      "marketing": {
+        "title": "Book Notification {agree} Guide",
+        "contents": "• Date: {date}\n• Sender: Coui eBook\n• Consent: App notifications",
+        "location": "You can change it in My Page > Settings.",
+        "positive": "OK"
+      },
+      "alert": {
+        "title": "Notice",
+        "contents": "You will not receive various reading news like new books, personalized recommendations, and events. Do you still want to disable notifications?",
+        "positive": "Keep Notifications",
+        "negative": "Disable Notifications"
+      }
+    }
+  },
+  "withdraw": {
+    "title": "Withdraw",
+    "check_title": "Please make sure to check the following.",
+    "check_list_01": "All subscriptions and owned eBook content will be deleted and cannot be recovered.",
+    "check_list_02": "You cannot use the Coui eBook Reading Clubs service.",
+    "check_list_03": "Reviews and comments you've written may still remain.",
+    "check_list_04": "You cannot log in with this account again.",
+    "agree": "I have reviewed all the information provided and agree to it.",
+    "dialog": {
+      "alert": {
+        "title": "Notice",
+        "contents": "The withdrawal has been completed. Thank you for using our service.",
+        "positive": "OK"
+      }
+    }
+  },
+  "console": {
+    "navigation": {
+      "my": "Member Management",
+      "library": "Book Management",
+      "campaign": "Banner Management",
+      "coupon": "Cash/Coupon",
+      "classChat": "Class Chat",
+      "aiChatLog": "AI Chat Log",
+      "admin": "Admin Settings",
+      "book_list": "Book List",
+      "sales_status": "Sales Status",
+      "review_management": "Review Management"
+    },
+    "bookList": {
+      "kdc": "KDC",
+      "ISBN": "ISBN",
+      "action": "Action",
+      "no": "NO.",
+      "book_title": "Book Title",
+      "category": "Category",
+      "publish_date": "Publication Date",
+      "header_title": "Book Management",
+      "title": "Book List",
+      "text__visible": "Visible",
+      "text__hidden": "Hidden",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "cancel": "Cancel",
+      "selected": " selected",
+      "edit": "Edit",
+      "delete": "Delete",
+      "category_name_default": "Uncategorized",
+      "format": "Format",
+      "published_at": "Publication Date",
+      "created_at": "Registration Date",
+      "updated_at": "Modification Date",
+      "filter": "Filter",
+      "add_book": "Add Book",
+      "book_list": "Book List",
+      "search_hint": "Please enter a search term",
+      "role_admin": "Super Admin",
+      "role_manager": "Feature Manager",
+      "role_admin_all": "Full Admin",
+      "button": "Button",
+      "academic_field": "Academic Field",
+      "academic_field_hint": "Please select the academic field",
+      "visibility": "Visibility",
+      "visibility_hint": "Please select the visibility",
+      "publish_date_range": "Publication Date Range",
+      "publish_date_range_hint": "Please select",
+      "filter_apply_button_text": "Apply Filter",
+      "filter_reset_button_text": "Reset",
+      "filter_reset_message": "The list has been reset.",
+      "book_list_empty": "No books registered",
+      "no_results": "No results",
+      "filter_applied": "Filter applied",
+      "delete_failed": "Book deletion failed",
+      "delete_confirmation_title": "Delete Book",
+      "delete_confirmation_single_message": "Are you sure you want to delete {title}?\nDeleted books cannot be recovered.",
+      "delete_confirmation_multiple_message": "Are you sure you want to delete {count} books?\nDeleted books cannot be recovered.",
+      "delete_confirm": "Delete",
+      "delete_cancel": "Cancel",
+      "delete_success_single": "{title} has been deleted.",
+      "delete_success_multiple": "{count} books have been deleted.",
+      "delete_success_single_completed": "Book has been successfully deleted.",
+      "delete_success_multiple_completed": "Selected books have been successfully deleted.",
+      "delete_error": "Book deletion failed: {error}",
+      "error_generic": "Error message",
+      "refresh": "Refresh",
+      "error_message": "An error occurred while loading the content"
+    },
+    "book_registration": {
+      "page_title_edit": "Edit Book",
+      "page_title_add": "Add Book",
+      "file_upload_section": "File Upload",
+      "basic_info_section": "Basic Information",
+      "author": "Author",
+      "author_input_guide": "(“,” comma for multiple inputs)",
+      "actions": {
+        "list": "List",
+        "save": "Save"
+      },
+      "file": {
+        "ebook_title": "Ebook File Upload",
+        "ebook_format_guide": "PDF, EPUB formats available",
+        "ebook_upload_button": "Upload Ebook File",
+        "cover_image_title": "Book Cover Image",
+        "cover_image_format_guide": "PNG, JPG formats available | Recommended resolution: 336 x 502",
+        "cover_image_upload_button": "Upload Cover Image",
+        "capacity_guide": "File Size Guidelines",
+        "attach_file": "PNG File Upload"
+      },
+      "image": {
+        "section_title": "Detail Page Image Registration",
+        "optional_label": "(Optional)",
+        "button_text": "Attach File",
+        "guideline_text": "Recommended resolution: 1200x630 / PNG format / Maximum 5 files"
+      },
+      "category": {
+        "academic_field": "Academic Field:",
+        "curation": "Curation:",
+        "class_name": "Class Name:",
+        "dropdown_hint": "Please select",
+        "class_name_dropdown_item_1": "Korean Language Education",
+        "class_name_dropdown_item_2": "Social Welfare",
+        "class_name_dropdown_item_3": "International Politics",
+        "class_name_dropdown_item_4": "Archaeology",
+        "class_name_dropdown_item_5": "Art History",
+        "class_name_dropdown_item_6": "Science"
+      },
+      "isbn": {
+        "hint_text": "Please enter ISBN",
+        "label_text": "ISBN input",
+        "validation_message": "Please enter a 10-digit or 13-digit ISBN."
+      },
+      "price": {
+        "lifetime_ownership": "Lifetime Ownership:",
+        "twelve_month_rental": "12-Month Rental:",
+        "six_month_rental": "6-Month Rental:",
+        "hint_text": "Enter price",
+        "default_price": "0",
+        "currency_unit": "USD"
+      },
+      "toggle": {
+        "drm_label": "DRM",
+        "status_off": "Not Applied",
+        "status_on": "Applied",
+        "drm_notice": "* DRM is only applied to EPUB files."
+      },
+      "dropdown": {
+        "default_text": "Please select",
+        "publisher_hint": "Please select the publisher",
+        "kdc_hint": "Please select the KDC",
+        "selector": "Please select"
+      },
+      "labels": {
+        "detail_image": "Detail Page Image Registration",
+        "detail_image_with_line_break": "Detail Page\nImage Registration"
+      },
+      "required_indicator": "*",
+      "validation": {
+        "price_invalid": "Please enter a valid price (greater than 0)",
+        "isbn_invalid": "Invalid ISBN format",
+        "file_required": "Please upload the required file",
+        "input_required": "Please check the input information"
+      },
+      "file_upload": {
+        "uploading": "Uploading...",
+        "image_upload": "Image Upload",
+        "max_size_1gb": "Maximum 1GB upload",
+        "max_size_10mb": "Maximum 10MB upload",
+        "max_files_limit": "Maximum {count} files can be selected.",
+        "image_size_exceeded": "Image size exceeds {maxSize}MB (current: {currentSize})",
+        "capacity_exceeded": "Capacity exceeded. The maximum uploadable capacity is {maxSize}MB.",
+        "picker_already_running": "Image picker is already running. Please try again later.",
+        "gallery_permission_required": "Gallery access permission is required. Please allow permission in settings.",
+        "image_selection_error": "An error occurred while selecting an image: {error}",
+        "file_data_missing": "File data is missing.",
+        "upload_failed": "File upload failed.",
+        "upload_info_unavailable": "Uploaded file information is not available.",
+        "upload_timeout": "File upload timed out. The file size may be too large or the network connection may be unstable.",
+        "multi_upload_failed": "Multiple file upload failed.",
+        "multi_upload_timeout": "Multiple image upload timed out. The file size may be too large or the network connection may be unstable."
+      },
+      "dialog": {
+        "save_complete": "Save completed.",
+        "confirm_exit": "Return to the list?",
+        "exit_message": "The input will not be saved.",
+        "go_back": "Go back",
+        "cancel": "Cancel",
+        "input_validation": "Input validation required",
+        "confirm": "Confirm",
+        "success": "Success",
+        "error_occurred": "An error occurred",
+        "image_upload_failed": "Image upload failed",
+        "image_upload_failed_message": "The selected image cannot be uploaded.\nPlease check the image size or format."
+      },
+      "form_labels": {
+        "book_title": "Book Title",
+        "book_title_hint": "Enter book title",
+        "author": "Author",
+        "author_hint": "Enter author (comma for multiple inputs)",
+        "publisher": "Publisher",
+        "publisher_hint": "Enter publisher name",
+        "publish_date": "Publication Date",
+        "publish_date_hint": "Set date",
+        "format": "Format",
+        "format_hint": "Enter format",
+        "price": "Price",
+        "category": "Category",
+        "detail_page_image": "Detail Page Image Registration",
+        "date_selection": "Date Selection",
+        "apply": "Apply",
+        "default_dropdown_text": "Select"
+      },
+      "image_states": {
+        "load_failed": "Load failed",
+        "no_image": "No image",
+        "remove": "Remove"
+      }
+    },
+    "category": {
+      "title": "Category Management",
+      "add_category": "Add Category",
+      "edit_category": "Edit Category",
+      "category_name": "Category Name",
+      "sub_category": "Sub Category",
+      "category_name_hint": "Please enter the category name.",
+      "cancel": "Cancel",
+      "save": "Save",
+      "content_input_guide": "Please enter the content.",
+      "search_hint": "Please enter the search term.",
+      "no_results": "No results",
+      "back_to_list": "Back to list",
+      "system_settings": "System Settings",
+      "required_indicator": "*"
+    }
+  },
+  "errors": {
+    "something_wrong": {
+      "title": "Something went wrong!",
+      "description": "Rest assured, our team is investigating the issue and will resolve it as soon as possible. We are doing our best to ensure you can enjoy your reading!"
+    }
+  }
+}

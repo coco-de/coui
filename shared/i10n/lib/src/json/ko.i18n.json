@@ -1,0 +1,694 @@
+{
+  "app_name": "Coui",
+  "app_description": "언제 어디서나 책을 만나는 디지털 도서관",
+  "common_error": {
+    "email_format": "잘못된 이메일 형식입니다",
+    "empty_string": "{property}이(가) 비어 있습니다",
+    "invalid_password": "아이디 또는 비밀번호를 확인해주세요",
+    "max_characters": "허용 가능한 문자 수를 초과합니다",
+    "min_characters": "요구되는 문자 길이를 충족하지 않습니다",
+    "server_error": "오류 {code}: {error}",
+    "unexpected_error": "예기치 않은 오류가 발생했습니다",
+    "unsupported_device": "이 장치는 앱에서 지원되지 않습니다",
+    "no_internet_connection": "인터넷 연결이 없습니다",
+    "image_load_failed": "이미지 로드 실패"
+  },
+  "common_generic_error": "죄송합니다! 문제가 발생했습니다",
+  "common_community": "독서 커뮤니티",
+  "common_no": "아니요",
+  "common_yes": "예",
+  "dialog__message__exit_message": "'뒤로'버튼을 한번 더 누르시면 앱이 종료 됩니다.",
+  "common_dialog": {
+    "min_update": {
+      "title": "알림",
+      "message": "최신 업데이트가 준비되었어요\n더 좋아진 Coui eBook 앱을 경험해 보세요.",
+      "positive": "업데이트"
+    },
+    "blocked": {
+      "title": "앱 사용 불가",
+      "message": "현재 사용 중인 앱 버전은 안전하지 않거나 지원이 중단되었습니다.\n보안을 위해 최신 버전으로 업데이트 후 이용해 주세요.",
+      "positive": "앱 종료"
+    },
+    "latest_update": {
+      "title": "알림",
+      "message": "최신 업데이트가 준비되었어요\n더 좋아진 Coui eBook 앱을 경험해 보세요.",
+      "negative": "건너뛰기",
+      "positive": "업데이트"
+    },
+    "no_internet_connection": {
+      "title": "인터넷 연결 오류",
+      "message": "인터넷 연결이 끊겼습니다. 네트워크 설정을 확인하고 다시 시도해주세요.",
+      "positive": "확인"
+    },
+    "marketing": {
+      "title": "도서 추천 알림을 받아보시겠어요?",
+      "message": "수신 동의 시 신간 도서, 맞춤 추천, 이벤트 등\n다양한 독서 정보 알림을 받아보실 수 있습니다.",
+      "positive": "네",
+      "negative": "나중에 받기"
+    }
+  },
+  "sign_in_provider": {
+    "email": "이메일로 시작하기",
+    "google": "구글로 시작하기",
+    "apple": "애플로 시작하기",
+    "kakao": "카카오로 시작하기",
+    "naver": "네이버로 시작하기",
+    "skip": "건너뛰기"
+  },
+  "sign_in_with_email": {
+    "label_text__nickname": "닉네임",
+    "label_text__email": "이메일",
+    "label_text__password": "비밀번호",
+    "label_text__code": "인증번호",
+    "text_field_hint__nickname": "닉네임을 입력하세요",
+    "text_field_hint__email": "이메일 주소를 입력하세요",
+    "text_field_hint__password": "비밀번호를 입력하세요",
+    "text_field_hint__code": "인증번호 6자리",
+    "helper_text__password": "영문 대소문자/숫자/특수문자 포함 12~128자",
+    "helper_text__code": "인증코드는 8자리입니다. 메일이 없다면 스팸함을 확인해 주세요.",
+    "button_text__sign_in": {
+      "sign_in": "로그인",
+      "create_account": "회원가입",
+      "confirm_email": "인증번호 확인",
+      "forgot_password": "비밀번호 찾기",
+      "confirm_password_reset": "비밀번호 재설정"
+    },
+    "button_text__resend_code": "인증 코드 재전송",
+    "page_state": {
+      "sign_in": "로그인",
+      "create_account": "회원가입을\n시작합니다",
+      "confirm_email": "이메일로 받은\n인증번호를 입력해주세요.",
+      "forgot_password": "비밀번호 찾기",
+      "verify_email": "이메일로 받은\n인증번호를 입력해주세요.",
+      "confirm_password_reset": "인증번호가 일치해요!\n비밀번호를 재설정해주세요."
+    },
+    "validation": {
+      "required_email": "이메일을 입력해 주세요",
+      "invalid_email": "유효한 이메일 주소가 아닙니다",
+      "required_password": "비밀번호를 입력해 주세요",
+      "invalid_password": "비밀번호 형식이 올바르지 않습니다",
+      "required_nickname": "닉네임을 입력해 주세요",
+      "invalid_nickname": "닉네임 형식이 올바르지 않습니다",
+      "required_code": "인증 코드를 입력해 주세요",
+      "invalid_code_length": "인증 코드는 8자리입니다"
+    },
+    "guide_text": {
+      "error_guide__sign_in": "입력하신 이메일/비밀번호를 다시 확인해 주세요. 지속될 경우 비밀번호 재설정을 이용해 주세요.",
+      "error_guide__create_account": "인증 메일이 오지 않았다면 스팸함을 확인하시고, 잠시 후 다시 시도해 주세요.",
+      "error_guide__confirm_email": "코드가 오지 않았다면 스팸함을 확인하고, 아래 버튼으로 인증 코드를 재전송해 보세요.",
+      "error_guide__forgot_password": "인증 메일이 오지 않았다면 스팸함을 확인해 주세요. 계속 실패하면 잠시 후 다시 시도해 주세요.",
+      "error_guide__confirm_password_reset": "코드가 오지 않았다면 스팸함을 확인하고, 아래 버튼으로 인증 코드를 재전송해 보세요."
+    }
+  },
+  "login": {
+    "title": "로그인",
+    "tagline": "당신의 지식 여정을 위한 스마트한 동반자",
+    "console_login_title": "관리자 로그인",
+    "button_text_login": "로그인",
+    "label_text_email": "이메일",
+    "label_text_password": "비밀번호",
+    "label_text_find_email_password": "패스워드 찾기",
+    "text_field_hint_email": "이메일 주소를 입력하세요",
+    "text_field_hint_password": "비밀번호를 입력하세요",
+    "validation_required_email": "이메일을 입력해주세요",
+    "validation_email_format": "올바른 이메일 형식이 아닙니다",
+    "validation_required_password": "비밀번호를 입력해주세요",
+    "validation_password_min_length": "비밀번호는 최소 6자 이상이어야 합니다",
+    "account_find": "회원가입 / 비밀번호 찾기",
+    "inquiry": "문의하기",
+    "anonymous_login": "비회원 둘러보기",
+    "error_login_failed": "로그인에 실패했습니다",
+    "error_unexpected": "오류가 발생했습니다: {error}",
+    "error_server": "서버 오류가 발생했습니다: {error}",
+    "error_invalid_email": "이메일 형식이 올바르지 않습니다",
+    "error_invalid_password": "비밀번호 형식이 올바르지 않습니다",
+    "error_user_not_found": "해당 사용자를 찾을 수 없습니다"
+  },
+  "main": {
+    "bottom_navigation__home": "홈",
+    "bottom_navigation__order": "도서검색",
+    "bottom_navigation__cart": "내 서재",
+    "bottom_navigation__my_page": "MY",
+    "bottom_navigation__community": "독서모임",
+    "bottom_navigation__store": "스토어",
+    "bottom_navigation__my_library": "내 서재"
+  },
+  "home": {
+    "text_field_hint__search": "책 제목, 작가, 출판사를 검색하세요."
+  },
+  "order": {
+    "title": "도서검색"
+  },
+  "cart": {
+    "title": "내서재"
+  },
+  "community": {
+    "title": "독서모임"
+  },
+  "my_page": {
+    "title": "MY",
+    "nickname": "{nickname}님",
+    "purchase_book_count": "구매한 책 {count}권",
+    "wish_book_count": "찜한 책 {count}권",
+    "coin": "{coin}원",
+    "charge_history_count": "충전 내역 {count}건",
+    "purchase_history_count": "구매 내역 {count}건",
+    "recent_week": "최근 일주일",
+    "more": "더보기",
+    "charge_history_empty": "충전 내역이 없습니다",
+    "purchase_history_empty": "구매 내역이 없습니다",
+    "purchase_book_empty": "구매한 책이 없습니다",
+    "notice": "공지사항",
+    "notification_settings": "알림설정",
+    "logout": "로그아웃",
+    "withdraw": "회원탈퇴",
+    "inquiry": "문의하기",
+    "balance": "나의 캐시",
+    "charge": "충전하기",
+    "usage_guide": "이용안내",
+    "charge_validity": "충전된 캐시는 충전일로부터 5년간 유효합니다.",
+    "charge_price": "캐시금액은 부가가치세가 포함되지 않은 가격입니다.",
+    "charge_error": "캐시가 정상적으로 충전되지 않을 경우, 앱을 다시 실행하거나 고객센터로 문의해주세요",
+    "purchase": "구매하기",
+    "cancel": "취소하기",
+    "login_required": "로그인이 필요합니다",
+    "login": "로그인",
+    "charge_history": "캐쉬 충전 내역",
+    "purchase_history": "구매 내역"
+  },
+  "sample_book_request": {
+    "title": "견본 도서 신청 내역",
+    "guide_title": "견본 도서 신청 안내",
+    "guide_1": "견본 도서 신청은 스토어 > 책 정보 페이지 하단 '견본 도서 신청하기' 버튼을 통해 신청 가능합니다.",
+    "guide_2": "신청한 도서는 출판사의 승인 후 E-BOOK 형태로 제공됩니다.",
+    "guide_3": "견본 도서는 수업 준비를 위한 참고용으로 제공됩니다.",
+    "empty": "신청 내역이 없습니다",
+    "view_reason": "사유보기",
+    "rejection_reason_title": "견본 도서 승인 반려 사유",
+    "status_pending": "심사중",
+    "status_approved": "승인됨",
+    "status_rejected": "거절됨"
+  },
+  "search": {
+    "empty_result": "결과가 없습니다",
+    "error_occurred": "콘텐츠를 불러오는중 오류가 발생했습니다",
+    "search_hint": "검색어를 입력하세요",
+    "recent_search": "최근 검색",
+    "category": "카테고리",
+    "cancel": "취소하기",
+    "save": "저장하기",
+    "loading": "로딩 중",
+    "all_category": "전체",
+    "total_count": "총 {count}건",
+    "newest": "최신순",
+    "format": "판형",
+    "page_count": "쪽수",
+    "kdc": "KDC",
+    "price": "원"
+  },
+  "store": {
+    "title": "스토어",
+    "search_hint": "검색어를 입력해주세요",
+    "korean_language_education": "국어교육",
+    "social_welfare": "사회복지",
+    "international_politics": "국제정치",
+    "archaeology": "고고학",
+    "art_history": "미술사",
+    "new_book": "신간도서",
+    "monthly_recommendation": "이달의 추천도서",
+    "bestseller": "베스트셀러",
+    "thought_and_emotion_basics": "생각과 감정의 기초",
+    "more": "더보기",
+    "empty_banner": "배너가 없습니다",
+    "retry": "다시 시도"
+  },
+  "chat": {
+    "instructor_chat_room": {
+      "app_bar": {
+        "create_title": "클래스 채팅방 개설",
+        "edit_title": "클래스 채팅방 수정"
+      },
+      "representative_image": {
+        "remove_button": "이미지 제거",
+        "file_too_large": "파일 크기는 10MB 이하여야 합니다.",
+        "pick_error": "이미지 선택 중 오류가 발생했습니다."
+      },
+      "image_status": {
+        "default_text": "채팅방 대표 사진을 첨부해주세요. (선택/최대 1장)",
+        "uploading": "이미지 업로드 중...",
+        "upload_complete": "이미지 업로드 완료! 다른 이미지로 변경하려면 클릭하세요.",
+        "existing_image": "기존 대표 이미지가 설정되어 있습니다. 변경하려면 클릭하세요."
+      },
+      "form": {
+        "chat_room_name_label": "채팅방 이름",
+        "chat_room_name_hint": "채팅방 이름을 입력해주세요",
+        "class_name_label": "수업명",
+        "class_name_hint": "수업명을 입력해주세요",
+        "required_mark": "*"
+      },
+      "validity_period": {
+        "title": "유효 기간",
+        "description": "(유효 기간을 입력하지 않을 경우 제한 없이 적용됩니다.)",
+        "start_date_hint": "채팅방 시작일",
+        "end_date_hint": "만료일 선택",
+        "date_separator": "~"
+      },
+      "invite_link": {
+        "title": "초대 링크",
+        "description": "(초대 링크를 받은 사용자는 해당 링크를 통해 클래스 채팅방 참여 요청을 할 수 있습니다.)",
+        "button_text": "링크 복사하기",
+        "success_message": "초대 링크가 클립보드에 복사되었습니다!",
+        "create_mode_message": "채팅방 생성 후 복사 가능합니다",
+        "error_book_not_found": "도서 정보를 찾을 수 없습니다.",
+        "error_copy_failed": "초대 링크 복사에 실패했습니다."
+      },
+      "bottom_button": {
+        "create_text": "생성 완료",
+        "edit_text": "수정 완료",
+        "default_professor_name": "교강사",
+        "default_university_name": "대학교",
+        "default_professor_email": "instructor@example.com",
+        "error_book_not_found": "도서 정보를 찾을 수 없습니다.",
+        "error_chat_room_not_found": "채팅방 정보를 찾을 수 없습니다."
+      },
+      "page": {
+        "create_success": "클래스 채팅방이 성공적으로 개설되었습니다!",
+        "update_success": "클래스 채팅방이 성공적으로 수정되었습니다!"
+      }
+    }
+  },
+  "web_view": {
+    "title__find_email_password": "비밀번호 찾기",
+    "title__sign_up": "회원가입",
+    "title__community": "독서모임"
+  },
+  "settings": {
+    "title_settings": "설정",
+    "card_notification": {
+      "title": "독서활동 알림",
+      "body": "독서기록, 댓글, 독서모임 활동에 대한 정보를 받아보실 수 있어요."
+    },
+    "card_event": {
+      "title": "도서 소식 알림",
+      "body": "신간 도서, 맞춤 추천, 이벤트 등 다양한 독서 소식을 가장 먼저 보내드려요."
+    },
+    "dialog": {
+      "marketing": {
+        "title": "도서 알림 {agree} 안내",
+        "contents": "• 일시: {date}\n• 전송자: Coui eBook\n• 수신동의: 앱 알림",
+        "location": "마이페이지 > 설정에서 변경할 수 있어요.",
+        "positive": "확인"
+      },
+      "alert": {
+        "title": "알림",
+        "contents": "신간 도서, 맞춤 추천, 이벤트 등 다양한 독서 소식을 받을 수 없어요. 그래도 알림을 해지하시겠습니까?",
+        "positive": "알림유지",
+        "negative": "알림해지"
+      }
+    }
+  },
+  "withdraw": {
+    "title": "탈퇴하기",
+    "check_title": "아래 사항을 꼭 확인해 주세요.",
+    "check_list_01": "구독권 및 보유한 eBook 콘텐츠는 모두 소멸되어 복구할 수 없습니다.",
+    "check_list_02": "Coui eBook 독서모임 서비스 이용이 불가합니다.",
+    "check_list_03": "이미 작성하신 서평, 댓글은 계속 남아 있을 수 있습니다.",
+    "check_list_04": "본 계정으로 다시 로그인 할 수 없습니다.",
+    "agree": "안내 사항을 모두 확인하였으며, 이에 동의합니다",
+    "dialog": {
+      "alert": {
+        "title": "알림",
+        "contents": "탈퇴처리가 완료되었습니다. 그동안 이용해 주셔서 감사합니다.",
+        "positive": "확인"
+      }
+    }
+  },
+  "console": {
+    "navigation": {
+      "my": "회원 관리",
+      "library": "도서 관리",
+      "campaign": "배너 관리",
+      "coupon": "캐시/쿠폰",
+      "classChat": "클래스 채팅",
+      "aiChatLog": "AI 채팅 로그",
+      "admin": "운영자 설정",
+      "book_list": "도서 목록",
+      "sales_status": "판매 현황",
+      "review_management": "리뷰 관리"
+    },
+
+    "bookList": {
+      "kdc": "KDC",
+      "ISBN": "ISBN",
+      "action": "액션",
+      "no": "NO.",
+      "book_title": "도서명",
+      "category": "학문분야",
+      "publish_date": "출간일",
+      "header_title": "도서 관리",
+      "title": "도서 목록",
+      "text__visible": "노출",
+      "text__hidden": "숨김",
+      "pending": "미승인",
+      "approved": "승인",
+      "rejected": "거부",
+      "cancel": "취소",
+      "selected": "개 선택중",
+      "edit": "수정",
+      "delete": "삭제",
+      "category_name_default": "미분류",
+      "format": "판형",
+      "published_at": "출간일",
+      "created_at": "등록일",
+      "updated_at": "수정일",
+      "filter": "필터",
+      "add_book": "도서 추가",
+      "book_list": "도서 목록",
+      "search_hint": "검색어를 입력해주세요",
+      "role_admin": "최고 관리자",
+      "role_manager": "기능 관리자",
+      "role_admin_all": "전체 관리자",
+      "button": "버튼",
+      "academic_field": "학문분야",
+      "academic_field_hint": "학문분야를 선택하세요",
+      "visibility": "노출 여부",
+      "visibility_hint": "노출 여부를 선택하세요",
+      "publish_date_range": "출간일 범위",
+      "publish_date_range_hint": "선택하세요",
+      "filter_apply_button_text": "필터 적용하기",
+      "filter_reset_button_text": "초기화",
+      "filter_reset_message": "목록을 초기화했습니다",
+      "book_list_empty": "등록된 도서가 없습니다.",
+      "no_results": "결과가 없습니다",
+      "filter_applied": "필터가 적용되었습니다",
+      "delete_failed": "도서 삭제에 실패했습니다",
+      "delete_confirmation_title": "도서 삭제",
+      "delete_confirmation_single_message": "{title}을(를) 삭제하시겠습니까?\n삭제된 도서는 복구할 수 없습니다.",
+      "delete_confirmation_multiple_message": "선택한 {count}개의 도서를 삭제하시겠습니까?\n삭제된 도서는 복구할 수 없습니다.",
+      "delete_confirm": "삭제",
+      "delete_cancel": "취소",
+      "delete_success_single": "{title}이(가) 삭제되었습니다.",
+      "delete_success_multiple": "{count}개의 도서가 삭제되었습니다.",
+      "delete_success_single_completed": "도서가 성공적으로 삭제되었습니다.",
+      "delete_success_multiple_completed": "선택된 도서들이 성공적으로 삭제되었습니다.",
+      "delete_error": "도서 삭제에 실패했습니다: {error}",
+      "error_generic": "에러 메시지",
+      "refresh": "새로 고침",
+      "error_message": "콘텐츠를 불러오는 중 오류가 발생했습니다."
+    },
+    "book_registration": {
+      "page_title_edit": "도서 수정",
+      "page_title_add": "도서 등록",
+      "file_upload_section": "파일 업로드",
+      "basic_info_section": "기본 정보",
+      "author": "저자",
+      "author_input_guide": "(“,” 쉼표로 다수 입력 가능)",
+      "actions": {
+        "list": "목록",
+        "save": "저장"
+      },
+      "file": {
+        "ebook_title": "Ebook 파일 업로드",
+        "ebook_format_guide": "PDF, EPUB형식 등록 가능",
+        "ebook_upload_button": "Ebook 파일 업로드",
+        "cover_image_title": "도서 표지 이미지",
+        "cover_image_format_guide": "PNG,JPG 형식 등록 가능 | 권장해상도: 336 x 502",
+        "cover_image_upload_button": "표지 이미지 업로드",
+        "capacity_guide": "용량 관련 안내",
+        "attach_file": "PNG 파일 업로드"
+      },
+      "image": {
+        "section_title": "상세페이지 이미지 등록",
+        "optional_label": "(선택)",
+        "button_text": "파일 첨부",
+        "guideline_text": "권장 해상도: 1200x630 / PNG 형식 / 최대 5개"
+      },
+      "category": {
+        "academic_field": "학문 분야:",
+        "curation": "큐레이션:",
+        "class_name": "수업명:",
+        "dropdown_hint": "선택해주세요",
+        "class_name_dropdown_item_1": "국어교육",
+        "class_name_dropdown_item_2": "사회복지학",
+        "class_name_dropdown_item_3": "국제정치",
+        "class_name_dropdown_item_4": "고고학",
+        "class_name_dropdown_item_5": "미술사",
+        "class_name_dropdown_item_6": "과학"
+      },
+      "isbn": {
+        "hint_text": "ISBN을 입력해주세요",
+        "label_text": "ISBN 입력",
+        "validation_message": "10자리 또는 13자리 ISBN을 입력해주세요."
+      },
+      "price": {
+        "lifetime_ownership": "평생 소장:",
+        "twelve_month_rental": "12개월 대여가:",
+        "six_month_rental": "6개월 대여가:",
+        "hint_text": "가격 입력",
+        "default_price": "0",
+        "currency_unit": "원"
+      },
+      "toggle": {
+        "drm_label": "DRM",
+        "status_off": "미적용",
+        "status_on": "적용",
+        "drm_notice": "* DRM은 EPUB 파일에만 적용됩니다."
+      },
+      "dropdown": {
+        "default_text": "KDC 선택",
+        "publisher_hint": "출판사를 선택하세요",
+        "kdc_hint": "KDC를 선택하세요",
+        "selector": "선택해주세요"
+      },
+      "labels": {
+        "detail_image": "상세페이지 이미지 등록",
+        "detail_image_with_line_break": "상세페이지\n이미지 등록"
+      },
+      "required_indicator": "*",
+      "validation": {
+        "price_invalid": "올바른 가격을 입력해주세요 (0원보다 큰 값)",
+        "isbn_invalid": "잘못된 ISBN 형식입니다.",
+        "file_required": "필수 파일을 업로드해주세요",
+        "input_required": "입력 정보를 확인해주세요"
+      },
+      "file_upload": {
+        "uploading": "업로드 중...",
+        "image_upload": "이미지 업로드",
+        "max_size_1gb": "최대 1GB까지 업로드 가능",
+        "max_size_10mb": "최대 10MB까지 업로드 가능",
+        "max_files_limit": "최대 {count}개까지만 선택할 수 있습니다.",
+        "image_size_exceeded": "이미지 크기가 {maxSize}MB를 초과합니다. (현재: {currentSize})",
+        "capacity_exceeded": "용량이 초과되었습니다.|최대 업로드 가능 용량은 {maxSize}MB입니다.",
+        "picker_already_running": "이미지 선택기가 이미 실행 중입니다. 잠시 후 다시 시도해주세요.",
+        "gallery_permission_required": "갤러리 접근 권한이 필요합니다. 설정에서 권한을 허용해주세요.",
+        "image_selection_error": "이미지 선택 중 오류가 발생했습니다: {error}",
+        "file_data_missing": "파일 데이터가 없습니다.",
+        "upload_failed": "파일 업로드에 실패했습니다.",
+        "upload_info_unavailable": "업로드된 파일 정보를 가져올 수 없습니다.",
+        "upload_timeout": "파일 업로드 시간이 초과되었습니다. 파일 크기가 너무 크거나 네트워크 연결이 불안정할 수 있습니다.",
+        "multi_upload_failed": "다중 파일 업로드에 실패했습니다.",
+        "multi_upload_timeout": "다중 이미지 업로드 시간이 초과되었습니다. 파일 크기가 너무 크거나 네트워크 연결이 불안정할 수 있습니다."
+      },
+      "dialog": {
+        "save_complete": "저장이 완료되었습니다.",
+        "confirm_exit": "목록으로 돌아가시겠습니까?",
+        "exit_message": "입력하신 내용은 저장되지 않습니다.",
+        "go_back": "나가기",
+        "cancel": "취소하기",
+        "input_validation": "입력 확인 필요",
+        "confirm": "확인",
+        "success": "성공",
+        "error_occurred": "오류가 발생했습니다",
+        "image_upload_failed": "이미지 업로드 실패",
+        "image_upload_failed_message": "선택한 이미지를 업로드할 수 없습니다.\n이미지 크기나 형식을 확인해주세요."
+      },
+      "form_labels": {
+        "book_title": "도서명",
+        "book_title_hint": "도서명 입력",
+        "author": "저자",
+        "author_hint": "저자 입력  (\", \" 쉼표로 여러개 입력 가능)",
+        "publisher": "출판사",
+        "publisher_hint": "출판사명 입력",
+        "publish_date": "출간일",
+        "publish_date_hint": "날짜 설정",
+        "format": "판형",
+        "format_hint": "판형 입력",
+        "price": "가격",
+        "category": "카테고리",
+        "detail_page_image": "상세페이지 이미지 등록",
+        "date_selection": "날짜 선택",
+        "apply": "적용하기",
+        "default_dropdown_text": "선택해주세요"
+      },
+      "image_states": {
+        "load_failed": "로드 실패",
+        "no_image": "이미지 없음",
+        "remove": "제거"
+      }
+    },
+    "category": {
+      "title": "카테고리 관리",
+      "add_category": "카테고리 추가",
+      "edit_category": "카테고리 수정",
+      "category_name": "카테고리 명",
+      "sub_category": "하위 카테고리",
+      "category_name_hint": "카테고리 명을 입력해주세요.",
+      "cancel": "취소",
+      "save": "저장",
+      "content_input_guide": "내용을 입력해주세요.",
+      "search_hint": "검색어를 입력해주세요.",
+      "no_results": "결과가 없습니다.",
+      "back_to_list": "목록으로 돌아가기",
+      "system_settings": "시스템 설정",
+      "required_indicator": "*"
+    }
+  },
+  "table": {
+    "common": {
+      "number": "번호",
+      "action": "액션",
+      "edit": "수정",
+      "delete": "삭제",
+      "approve": "승인",
+      "reject": "거절",
+      "cancel": "취소",
+      "no_data": "데이터가 없습니다",
+      "loading": "로딩 중...",
+      "retry": "다시 시도",
+      "refresh": "새로고침"
+    },
+    "book": {
+      "title": "도서명",
+      "author": "저자",
+      "publisher": "출판사",
+      "price": "가격",
+      "lifetime_price": "소장가격",
+      "six_month_price": "6개월요금",
+      "twelve_month_price": "12개월요금",
+      "category": "카테고리",
+      "isbn": "ISBN",
+      "publish_date": "출간일",
+      "status": "상태",
+      "no_author": "저자 정보 없음",
+      "no_publisher": "출판사 정보 없음",
+      "no_price": "가격 정보 없음",
+      "no_category": "카테고리 없음",
+      "no_isbn": "ISBN 없음",
+      "no_publish_date": "출간일 없음"
+    },
+    "user": {
+      "name": "사용자 이름",
+      "email": "이메일",
+      "phone": "전화번호",
+      "university": "대학교",
+      "department": "학과",
+      "user_type": "회원 유형",
+      "status": "상태",
+      "joined_date": "가입일",
+      "last_access": "최근 접속",
+      "books_count": "구매 도서 수",
+      "wallet_balance": "보유 캐시",
+      "class_count": "활동 클래스 수",
+      "premium": "프리미엄",
+      "regular": "일반",
+      "active": "활성",
+      "inactive": "비활성",
+      "no_name": "이름 없음",
+      "no_email": "이메일 없음",
+      "no_phone": "전화번호 없음",
+      "no_university": "대학교 정보 없음",
+      "no_department": "학과 정보 없음"
+    },
+    "instructor": {
+      "name_email": "사용자 이름/Email",
+      "phone": "전화번호",
+      "university_dept": "소속 대학/학과",
+      "subject": "담당 강의",
+      "type": "타입",
+      "request_date": "신청일",
+      "approval_status": "승인 상태",
+      "approved_date": "승인일",
+      "class_count": "강의 수",
+      "sample_request_count": "샘플 요청 수",
+      "no_name": "이름 없음",
+      "no_email": "이메일 없음",
+      "no_phone": "전화번호 없음",
+      "no_university": "대학교 정보 없음",
+      "no_department": "학과 정보 없음",
+      "no_subject": "담당 강의 없음",
+      "no_type": "타입 정보 없음"
+    },
+    "publisher": {
+      "name": "출판사명",
+      "description": "설명",
+      "website": "웹사이트",
+      "contact": "연락처",
+      "status": "상태",
+      "created_date": "생성일",
+      "updated_date": "수정일",
+      "no_description": "설명 없음",
+      "no_website": "웹사이트 없음",
+      "no_contact": "연락처 없음"
+    },
+    "sales": {
+      "date": "날짜",
+      "book_title": "도서명",
+      "quantity": "수량",
+      "amount": "금액",
+      "total": "합계",
+      "no_sales_data": "판매 데이터 없음"
+    }
+  },
+  "errors": {
+    "something_wrong": {
+      "title": "문제가 발생했습니다!",
+      "description": "안심하세요. 저희 팀이 문제를 조사하고 빠른 시일 내에 해결할 것입니다. 독서를 즐기실 수 있도록 최선을 다하겠습니다!"
+    }
+  },
+  "extra_info": {
+    "title": "추가 정보 입력",
+    "form": {
+      "name": {
+        "label": "이름",
+        "hint": "이름을 입력해주세요",
+        "validation": "이름을 입력해주세요"
+      },
+      "phone_number": {
+        "label": "전화번호",
+        "hint": "전화번호를 입력해주세요",
+        "validation": "전화번호를 입력해주세요",
+        "format_validation": "올바른 전화번호 형식을 입력해주세요"
+      },
+      "email": {
+        "label": "이메일",
+        "hint": "이메일을 입력해주세요",
+        "validation": "이메일을 입력해주세요",
+        "format_validation": "올바른 이메일 형식을 입력해주세요"
+      },
+      "university": {
+        "label": "대학교",
+        "hint": "대학교를 입력해주세요",
+        "validation": "대학교를 입력해주세요"
+      },
+      "department": {
+        "label": "학과",
+        "hint": "학과를 입력해주세요",
+        "validation": "학과를 입력해주세요"
+      },
+      "course_name": {
+        "label": "수강 과목명",
+        "hint": "수강 과목명을 입력해주세요",
+        "validation": "수강 과목명을 입력해주세요"
+      }
+    },
+    "button": {
+      "save": "저장",
+      "update": "수정",
+      "delete": "삭제"
+    },
+    "message": {
+      "required_info": "추가 정보 입력이 필요합니다",
+      "redirect_info": "추가 정보 입력 페이지로 이동합니다"
+    }
+  }
+}
