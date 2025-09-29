@@ -1,95 +1,80 @@
-import 'package:core/core.dart' hide UseCase;
+import 'package:coui_flutter/coui_flutter.dart' as coui;
 import 'package:flutter/material.dart';
-import 'package:coui_widgetbook/foundation/group.dart';
-import 'package:ui_kit/ui_kit.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@UseCase(name: 'KBBadge', type: KBBadge, path: '[Component]')
-/// KBBadge 유즈케이스
-Widget buildWidgetbookKBBadgeUseCase(BuildContext context) {
-  final text = context.knobs.string(
-    initialValue: getIt<Faker>().lorem.word(length: 6),
-    label: 'Text',
-  );
-  final styleKey = context.knobs.object.dropdown<String>(
-    initialOption: 'info',
-    label: 'Style',
-    labelBuilder: (v) => v,
-    options: <String>[
-      'positive',
-      'negative',
-      'inactive',
-      'info',
-      'expired',
-      'active',
-    ],
-  );
-  final withIcon = context.knobs.boolean(initialValue: true, label: 'Icon');
-
-  BadgeStyle resolveStyle() {
-    switch (styleKey) {
-      case 'positive':
-        return BadgeStyle.positive(context);
-      case 'negative':
-        return BadgeStyle.negative(context);
-      case 'inactive':
-        return BadgeStyle.inactive(context);
-      case 'info':
-        return BadgeStyle.info(context);
-      case 'expired':
-        return BadgeStyle.expired(context);
-      case 'active':
-        return BadgeStyle.active(context);
-      default:
-        return BadgeStyle.info(context);
-    }
-  }
-
-  return WidgetbookGroup(
-    label: 'Badge',
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(Insets.xxSmall),
-        child: KBBadge(
-          icon: withIcon ? const Icon(Icons.verified) : null,
-          style: resolveStyle(),
-          text: text,
-        ),
-      ),
-    ],
+@UseCase(
+  name: 'primary',
+  type: coui.PrimaryBadge,
+)
+Widget buildPrimaryBadgeUseCase(BuildContext context) {
+  return coui.PrimaryBadge(
+    onPressed: context.knobs.boolean(label: 'interactive', initialValue: false)
+        ? () => print('Badge pressed')
+        : null,
+    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+        ? const Icon(Icons.star, size: 16)
+        : null,
+    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+        ? const Icon(Icons.notifications, size: 14)
+        : null,
+    child: Text(context.knobs.string(label: 'text', initialValue: 'Primary')),
   );
 }
 
-@UseCase(name: 'BadgeRole', type: BadgeRole, path: '[Component]')
-/// BadgeRole 유즈케이스
-Widget buildWidgetbookBadgeRoleUseCase(BuildContext context) {
-  final type = context.knobs.object.dropdown<BadgeRoleType>(
-    initialOption: BadgeRoleType.globalAdmin,
-    label: 'Type',
-    labelBuilder: BadgeRoleType.name,
-    options: <BadgeRoleType>[
-      BadgeRoleType.globalAdmin,
-      BadgeRoleType.superAdmin,
-      BadgeRoleType.featureAdmin,
-      BadgeRoleType.readonly,
-      BadgeRoleType.permissionDenied,
-      BadgeRoleType.permissionBook,
-      BadgeRoleType.permissionUser,
-      BadgeRoleType.permissionAd,
-      BadgeRoleType.permissionCoupon,
-      BadgeRoleType.permissionClassChat,
-      BadgeRoleType.permissionAiLog,
-    ],
+@UseCase(
+  name: 'secondary',
+  type: coui.SecondaryBadge,
+)
+Widget buildSecondaryBadgeUseCase(BuildContext context) {
+  return coui.SecondaryBadge(
+    onPressed: context.knobs.boolean(label: 'interactive', initialValue: false)
+        ? () => print('Badge pressed')
+        : null,
+    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+        ? const Icon(Icons.info, size: 16)
+        : null,
+    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+        ? const Icon(Icons.arrow_forward, size: 14)
+        : null,
+    child: Text(context.knobs.string(label: 'text', initialValue: 'Secondary')),
   );
+}
 
-  return WidgetbookGroup(
-    label: 'BadgeRole',
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(Insets.xxSmall),
-        child: BadgeRole(type: type),
-      ),
-    ],
+@UseCase(
+  name: 'outline',
+  type: coui.OutlineBadge,
+)
+Widget buildOutlineBadgeUseCase(BuildContext context) {
+  return coui.OutlineBadge(
+    onPressed: context.knobs.boolean(label: 'interactive', initialValue: false)
+        ? () => print('Badge pressed')
+        : null,
+    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+        ? const Icon(Icons.check_circle_outline, size: 16)
+        : null,
+    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+        ? const Icon(Icons.arrow_forward, size: 14)
+        : null,
+    child: Text(context.knobs.string(label: 'text', initialValue: 'Outline')),
+  );
+}
+
+@UseCase(
+  name: 'destructive',
+  type: coui.DestructiveBadge,
+)
+Widget buildDestructiveBadgeUseCase(BuildContext context) {
+  return coui.DestructiveBadge(
+    onPressed: context.knobs.boolean(label: 'interactive', initialValue: false)
+        ? () => print('Badge pressed')
+        : null,
+    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+        ? const Icon(Icons.warning, size: 16)
+        : null,
+    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+        ? const Icon(Icons.delete, size: 14)
+        : null,
+    child: Text(context.knobs.string(label: 'text', initialValue: 'Destructive')),
   );
 }

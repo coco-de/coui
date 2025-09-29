@@ -1,114 +1,112 @@
-import 'package:core/core.dart' hide UseCase;
+import 'package:coui_flutter/coui_flutter.dart' as coui;
 import 'package:flutter/material.dart';
-import 'package:icons_launcher/cli_commands.dart';
-import 'package:coui_widgetbook/foundation/group.dart';
-import 'package:ui_kit/ui_kit.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@UseCase(name: 'Button', type: KBButton, path: '[Component]')
-/// KBButton 유즈케이스
-Widget buildWidgetbookButtonUseCase(BuildContext context) {
-  final text = getIt<Faker>().lorem.word(length: 10).capitalize();
-
-  return WidgetbookGroup(
-    label: 'Coui Button',
-    children: [
-      WidgetbookButton(
-        button: KBButton(
-          onPressed: () {},
-          text: context.knobs.string(initialValue: text, label: 'Text'),
-        ),
-        label: 'Elevated Button',
-      ),
-      WidgetbookButton(
-        button: KBButton(
-          buttonType: ButtonType.filled,
-          onPressed: () {},
-          text: context.knobs.string(initialValue: text, label: 'Text'),
-        ),
-        label: 'Filled Button',
-      ),
-      WidgetbookButton(
-        button: KBButton(
-          buttonType: ButtonType.outlined,
-          onPressed: () {},
-          text: context.knobs.string(initialValue: text, label: 'Text'),
-        ),
-        label: 'Outlined Button',
-      ),
-      WidgetbookButton(
-        button: KBButton(
-          buttonType: ButtonType.text,
-          onPressed: () {},
-          text: context.knobs.string(initialValue: text, label: 'Text'),
-        ),
-        label: 'Text Button',
-      ),
-      WidgetbookButton(
-        button: KBButton(
-          buttonType: ButtonType.tonal,
-          onPressed: () {},
-          text: context.knobs.string(initialValue: text, label: 'Text'),
-        ),
-        label: 'Tonal Button',
-      ),
-      WidgetbookButton(
-        button: KBButton(
-          buttonType: ButtonType.filled,
-          isEnabled: false,
-          onPressed: () {},
-          text: context.knobs.string(initialValue: text, label: 'Text'),
-        ),
-        label: 'Disabled (Filled)',
-      ),
-      WidgetbookButton(
-        button: KBButton(
-          icon: const Icon(Icons.add),
-          onPressed: () {},
-          text: context.knobs.string(initialValue: text, label: 'Text'),
-        ),
-        label: 'With Icon (Elevated)',
-      ),
-      WidgetbookButton(
-        button: KBButton(
-          buttonType: ButtonType.outlined,
-          isExpanded: true,
-          onPressed: () {},
-          text: context.knobs.string(initialValue: text, label: 'Text'),
-        ),
-        label: 'Expanded (Outlined)',
-      ),
-    ],
+@UseCase(
+  name: 'primary',
+  type: coui.Button,
+)
+Widget buildButtonPrimaryUseCase(BuildContext context) {
+  return coui.Button.primary(
+    onPressed: () => print('Button pressed'),
+    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
+    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+        ? const Icon(Icons.add)
+        : null,
+    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+        ? const Icon(Icons.arrow_forward)
+        : null,
+    child: Text(context.knobs.string(label: 'text', initialValue: 'Primary')),
   );
 }
 
-/// BookButton 위젯
-class WidgetbookButton extends StatelessWidget {
-  /// WidgetbookButton 생성자
-  const WidgetbookButton({
-    required this.label,
-    required this.button,
-    super.key,
-  });
+@UseCase(
+  name: 'secondary',
+  type: coui.Button,
+)
+Widget buildButtonSecondaryUseCase(BuildContext context) {
+  return coui.Button.secondary(
+    onPressed: () => print('Button pressed'),
+    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
+    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+        ? const Icon(Icons.add)
+        : null,
+    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+        ? const Icon(Icons.arrow_forward)
+        : null,
+    child: Text(context.knobs.string(label: 'text', initialValue: 'Secondary')),
+  );
+}
 
-  /// 라벨
-  final String label;
+@UseCase(
+  name: 'outline',
+  type: coui.Button,
+)
+Widget buildButtonOutlineUseCase(BuildContext context) {
+  return coui.Button.outline(
+    onPressed: () => print('Button pressed'),
+    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
+    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+        ? const Icon(Icons.add)
+        : null,
+    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+        ? const Icon(Icons.arrow_forward)
+        : null,
+    child: Text(context.knobs.string(label: 'text', initialValue: 'Outline')),
+  );
+}
 
-  /// 버튼
-  final KBButton button;
+@UseCase(
+  name: 'ghost',
+  type: coui.Button,
+)
+Widget buildButtonGhostUseCase(BuildContext context) {
+  return coui.Button.ghost(
+    onPressed: () => print('Button pressed'),
+    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
+    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+        ? const Icon(Icons.add)
+        : null,
+    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+        ? const Icon(Icons.arrow_forward)
+        : null,
+    child: Text(context.knobs.string(label: 'text', initialValue: 'Ghost')),
+  );
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(Insets.xxSmall),
-      child: Column(
-        children: [
-          Text(label, style: context.textTheme.titleMedium),
-          Gap.xxSmall(),
-          button,
-        ],
-      ),
-    );
-  }
+@UseCase(
+  name: 'link',
+  type: coui.Button,
+)
+Widget buildButtonLinkUseCase(BuildContext context) {
+  return coui.Button.link(
+    onPressed: () => print('Button pressed'),
+    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
+    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+        ? const Icon(Icons.add)
+        : null,
+    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+        ? const Icon(Icons.arrow_forward)
+        : null,
+    child: Text(context.knobs.string(label: 'text', initialValue: 'Link')),
+  );
+}
+
+@UseCase(
+  name: 'destructive',
+  type: coui.Button,
+)
+Widget buildButtonDestructiveUseCase(BuildContext context) {
+  return coui.Button.destructive(
+    onPressed: () => print('Button pressed'),
+    enabled: context.knobs.boolean(label: 'enabled', initialValue: true),
+    leading: context.knobs.boolean(label: 'leading icon', initialValue: false)
+        ? const Icon(Icons.delete)
+        : null,
+    trailing: context.knobs.boolean(label: 'trailing icon', initialValue: false)
+        ? const Icon(Icons.arrow_forward)
+        : null,
+    child: Text(context.knobs.string(label: 'text', initialValue: 'Destructive')),
+  );
 }
