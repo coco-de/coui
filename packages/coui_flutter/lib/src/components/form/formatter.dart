@@ -12,26 +12,6 @@ TextSelection contraintToNewText(String newText, TextEditingValue newValue) {
 
 abstract final class TextInputFormatters {
   const TextInputFormatters._();
-  static const toUpperCase = _ToUpperCaseTextFormatter();
-  static const toLowerCase = _ToLowerCaseTextFormatter();
-
-  static TextInputFormatter time({required int length}) {
-    return _TimeFormatter(length: length);
-  }
-
-  static TextInputFormatter integerOnly({int? max, int? min}) {
-    return _IntegerOnlyFormatter(max: max, min: min);
-  }
-
-  static TextInputFormatter digitsOnly(
-      {int? decimalDigits, double? max, double? min}) {
-    return _DoubleOnlyFormatter(
-      decimalDigits: decimalDigits,
-      max: max,
-      min: min,
-    );
-  }
-
   static TextInputFormatter mathExpression({Map<String, dynamic>? context}) {
     return _MathExpressionFormatter(context: context);
   }
@@ -43,7 +23,9 @@ class _TimeFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue newValue, TextEditingValue oldValue) {
+    TextEditingValue newValue,
+    TextEditingValue oldValue,
+  ) {
     String newText = newValue.text;
     int substringCount = 0;
     if (newText.length > length) {
@@ -62,10 +44,14 @@ class _TimeFormatter extends TextInputFormatter {
     return newValue.copyWith(
       composing: newValue.composing.isValid
           ? TextRange(
-              end: newValue.composing.end
-                  .clamp(0, min(length, newValue.text.length)),
-              start: newValue.composing.start
-                  .clamp(0, min(length, newValue.text.length)),
+              end: newValue.composing.end.clamp(
+                0,
+                min(length, newValue.text.length),
+              ),
+              start: newValue.composing.start.clamp(
+                0,
+                min(length, newValue.text.length),
+              ),
             )
           : newValue.composing,
       selection: TextSelection(

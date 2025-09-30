@@ -16,24 +16,6 @@ class HoverTheme {
 
   final Duration? showDuration;
 
-  HoverTheme copyWith({
-    ValueGetter<Duration?>? debounceDuration,
-    ValueGetter<HitTestBehavior?>? hitTestBehavior,
-    ValueGetter<Duration?>? minDuration,
-    ValueGetter<Duration?>? showDuration,
-    ValueGetter<Duration?>? waitDuration,
-  }) {
-    return HoverTheme(
-      debounceDuration:
-          debounceDuration == null ? this.debounceDuration : debounceDuration(),
-      hitTestBehavior:
-          hitTestBehavior == null ? this.hitTestBehavior : hitTestBehavior(),
-      minDuration: minDuration == null ? this.minDuration : minDuration(),
-      showDuration: showDuration == null ? this.showDuration : showDuration(),
-      waitDuration: waitDuration == null ? this.waitDuration : waitDuration(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     return other is HoverTheme &&
@@ -46,12 +28,12 @@ class HoverTheme {
 
   @override
   int get hashCode => Object.hash(
-        debounceDuration,
-        hitTestBehavior,
-        waitDuration,
-        minDuration,
-        showDuration,
-      );
+    debounceDuration,
+    hitTestBehavior,
+    waitDuration,
+    minDuration,
+    showDuration,
+  );
 }
 
 /// A widget that tracks the hover state of the mouse cursor
@@ -154,7 +136,7 @@ class Hover extends StatefulWidget {
   final void Function(bool hovered) onHover;
   final Duration? waitDuration;
   final Duration?
-      minDuration; // The minimum duration to show the hover, if the cursor is quickly moved over the widget.
+  minDuration; // The minimum duration to show the hover, if the cursor is quickly moved over the widget.
   final Duration? showDuration; // The duration to show the hover
 
   final HitTestBehavior? hitTestBehavior;
@@ -238,7 +220,8 @@ class _HoverState extends State<Hover> with SingleTickerProviderStateMixin {
       widgetValue: widget.hitTestBehavior,
     );
     _controller.duration = _waitDur;
-    final enableLongPress = platform == TargetPlatform.iOS ||
+    final enableLongPress =
+        platform == TargetPlatform.iOS ||
         platform == TargetPlatform.android ||
         platform == TargetPlatform.fuchsia;
 

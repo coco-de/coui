@@ -50,22 +50,6 @@ class TabListTheme {
   /// The indicator appears at the bottom of the active tab.
   final double? indicatorHeight;
 
-  TabListTheme copyWith({
-    ValueGetter<Color?>? borderColor,
-    ValueGetter<double?>? borderWidth,
-    ValueGetter<Color?>? indicatorColor,
-    ValueGetter<double?>? indicatorHeight,
-  }) {
-    return TabListTheme(
-      borderColor: borderColor == null ? this.borderColor : borderColor(),
-      borderWidth: borderWidth == null ? this.borderWidth : borderWidth(),
-      indicatorColor:
-          indicatorColor == null ? this.indicatorColor : indicatorColor(),
-      indicatorHeight:
-          indicatorHeight == null ? this.indicatorHeight : indicatorHeight(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

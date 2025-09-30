@@ -338,14 +338,16 @@ abstract class InputFeature {
 abstract class InputFeatureState<T extends InputFeature> {
   _AttachedInputFeature? _attached;
   TextFieldState?
-      _inputState; // used to control whether the feature should be mounted or not
+  _inputState; // used to control whether the feature should be mounted or not
   // with AnimationController, we are able to determine when to
   // not mount the widget
   late AnimationController _visibilityController;
 
   T get feature {
     assert(
-        _attached != null && _attached!.feature is T, 'Feature not attached');
+      _attached != null && _attached!.feature is T,
+      'Feature not attached',
+    );
 
     return _attached!.feature as T;
   }
@@ -392,8 +394,9 @@ abstract class InputFeatureState<T extends InputFeature> {
       duration: kDefaultDuration,
       vsync: tickerProvider,
     );
-    _visibilityController.value =
-        feature.visibility.canShow(_inputState!) ? 1 : 0;
+    _visibilityController.value = feature.visibility.canShow(_inputState!)
+        ? 1
+        : 0;
     _visibilityController.addListener(_updateAnimation);
     for (final dependency in feature.visibility.getDependencies(_inputState!)) {
       dependency.addListener(_updateVisibility);
@@ -411,12 +414,14 @@ abstract class InputFeatureState<T extends InputFeature> {
 
   void didFeatureUpdate(InputFeature oldFeature) {
     if (oldFeature.visibility != feature.visibility) {
-      for (final oldDependency
-          in oldFeature.visibility.getDependencies(_inputState!)) {
+      for (final oldDependency in oldFeature.visibility.getDependencies(
+        _inputState!,
+      )) {
         oldDependency.removeListener(_updateVisibility);
       }
-      for (final newDependency
-          in feature.visibility.getDependencies(_inputState!)) {
+      for (final newDependency in feature.visibility.getDependencies(
+        _inputState!,
+      )) {
         newDependency.addListener(_updateVisibility);
       }
     }
@@ -488,8 +493,8 @@ abstract class InputFeatureState<T extends InputFeature> {
 class _TextFieldSelectionGestureDetectorBuilder
     extends TextSelectionGestureDetectorBuilder {
   _TextFieldSelectionGestureDetectorBuilder({required TextFieldState state})
-      : _state = state,
-        super(delegate: state);
+    : _state = state,
+      super(delegate: state);
 
   final TextFieldState _state;
 
@@ -500,8 +505,9 @@ class _TextFieldSelectionGestureDetectorBuilder
     // this handler. If the clear button widget recognizes the up event,
     // then do not handle it.
     if (_state._clearGlobalKey.currentContext != null) {
-      final renderBox = _state._clearGlobalKey.currentContext!
-          .findRenderObject()! as RenderBox;
+      final renderBox =
+          _state._clearGlobalKey.currentContext!.findRenderObject()!
+              as RenderBox;
       final localOffset = renderBox.globalToLocal(details.globalPosition);
       if (renderBox.hitTest(BoxHitTestResult(), position: localOffset)) {
         return;
@@ -718,35 +724,40 @@ class TextField extends StatefulWidget with TextInput {
     this.textInputAction,
     @Deprecated('Use InputFeature.trailing instead') this.trailing,
     this.undoController,
-  })  : assert(obscuringCharacter.length == 1),
-        smartDashesType = smartDashesType ??
-            (obscureText ? SmartDashesType.disabled : SmartDashesType.enabled),
-        smartQuotesType = smartQuotesType ??
-            (obscureText ? SmartQuotesType.disabled : SmartQuotesType.enabled),
-        assert(maxLines == null || maxLines > 0),
-        assert(minLines == null || minLines > 0),
-        assert(
-          (maxLines == null) || (minLines == null) || (maxLines >= minLines),
-          "minLines can't be greater than maxLines",
-        ),
-        assert(
-          !expands || (maxLines == null && minLines == null),
-          'minLines and maxLines must be null when expands is true.',
-        ),
-        assert(!obscureText || maxLines == 1,
-            'Obscured fields cannot be multiline.'),
-        assert(maxLength == null || maxLength > 0),
-        // Assert the following instead of setting it directly to avoid surprising the user by silently changing the value they set.
-        assert(
-          !identical(textInputAction, TextInputAction.newline) ||
-              maxLines == 1 ||
-              !identical(keyboardType, TextInputType.text),
-          'Use keyboardType TextInputType.multiline when using TextInputAction.newline on a multiline TextField.',
-        ),
-        keyboardType = keyboardType ??
-            (maxLines == 1 ? TextInputType.text : TextInputType.multiline),
-        enableInteractiveSelection =
-            enableInteractiveSelection ?? (!readOnly || !obscureText);
+  }) : assert(obscuringCharacter.length == 1),
+       smartDashesType =
+           smartDashesType ??
+           (obscureText ? SmartDashesType.disabled : SmartDashesType.enabled),
+       smartQuotesType =
+           smartQuotesType ??
+           (obscureText ? SmartQuotesType.disabled : SmartQuotesType.enabled),
+       assert(maxLines == null || maxLines > 0),
+       assert(minLines == null || minLines > 0),
+       assert(
+         (maxLines == null) || (minLines == null) || (maxLines >= minLines),
+         "minLines can't be greater than maxLines",
+       ),
+       assert(
+         !expands || (maxLines == null && minLines == null),
+         'minLines and maxLines must be null when expands is true.',
+       ),
+       assert(
+         !obscureText || maxLines == 1,
+         'Obscured fields cannot be multiline.',
+       ),
+       assert(maxLength == null || maxLength > 0),
+       // Assert the following instead of setting it directly to avoid surprising the user by silently changing the value they set.
+       assert(
+         !identical(textInputAction, TextInputAction.newline) ||
+             maxLines == 1 ||
+             !identical(keyboardType, TextInputType.text),
+         'Use keyboardType TextInputType.multiline when using TextInputAction.newline on a multiline TextField.',
+       ),
+       keyboardType =
+           keyboardType ??
+           (maxLines == 1 ? TextInputType.text : TextInputType.multiline),
+       enableInteractiveSelection =
+           enableInteractiveSelection ?? (!readOnly || !obscureText);
 
   static EditableTextContextMenuBuilder nativeContextMenuBuilder() {
     return (context, editableTextState) {
@@ -805,7 +816,9 @@ class TextField extends StatefulWidget with TextInput {
   }
 
   static String _getMaterialButtonLabel(
-      ContextMenuButtonItem buttonItem, BuildContext context) {
+    ContextMenuButtonItem buttonItem,
+    BuildContext context,
+  ) {
     final localizations = material.MaterialLocalizations.of(context);
 
     return switch (buttonItem.type) {
@@ -1033,8 +1046,7 @@ class TextField extends StatefulWidget with TextInput {
   final String? initialValue;
 
   @override
-  final String?
-      hintText; // used for autofill hints (use placeholder for decoration)
+  final String? hintText; // used for autofill hints (use placeholder for decoration)
 
   @override
   final Border? border;
@@ -1075,18 +1087,21 @@ class TextField extends StatefulWidget with TextInput {
         controller,
       ),
     );
-    properties.add(DiagnosticsProperty<FocusNode>(
-      'focusNode',
-      focusNode,
-    ));
+    properties.add(
+      DiagnosticsProperty<FocusNode>(
+        'focusNode',
+        focusNode,
+      ),
+    );
     properties.add(
       DiagnosticsProperty<UndoHistoryController>(
         'undoController',
         undoController,
       ),
     );
-    properties
-        .add(DiagnosticsProperty<BoxDecoration>('decoration', decoration));
+    properties.add(
+      DiagnosticsProperty<BoxDecoration>('decoration', decoration),
+    );
     properties.add(DiagnosticsProperty<EdgeInsetsGeometry>('padding', padding));
     properties.add(
       DiagnosticsProperty<String>(
@@ -1117,30 +1132,36 @@ class TextField extends StatefulWidget with TextInput {
         defaultValue: '•',
       ),
     );
-    properties.add(DiagnosticsProperty<bool>(
-      'obscureText',
-      obscureText,
-      defaultValue: false,
-    ));
-    properties.add(DiagnosticsProperty<bool>(
-      'autocorrect',
-      autocorrect,
-      defaultValue: true,
-    ));
+    properties.add(
+      DiagnosticsProperty<bool>(
+        'obscureText',
+        obscureText,
+        defaultValue: false,
+      ),
+    );
+    properties.add(
+      DiagnosticsProperty<bool>(
+        'autocorrect',
+        autocorrect,
+        defaultValue: true,
+      ),
+    );
     properties.add(
       EnumProperty<SmartDashesType>(
         'smartDashesType',
         smartDashesType,
-        defaultValue:
-            obscureText ? SmartDashesType.disabled : SmartDashesType.enabled,
+        defaultValue: obscureText
+            ? SmartDashesType.disabled
+            : SmartDashesType.enabled,
       ),
     );
     properties.add(
       EnumProperty<SmartQuotesType>(
         'smartQuotesType',
         smartQuotesType,
-        defaultValue:
-            obscureText ? SmartQuotesType.disabled : SmartQuotesType.enabled,
+        defaultValue: obscureText
+            ? SmartQuotesType.disabled
+            : SmartQuotesType.enabled,
       ),
     );
     properties.add(
@@ -1151,33 +1172,42 @@ class TextField extends StatefulWidget with TextInput {
       ),
     );
     properties.add(IntProperty('maxLines', maxLines, defaultValue: 1));
-    properties.add(IntProperty(
-      'minLines',
-      minLines,
-    ));
+    properties.add(
+      IntProperty(
+        'minLines',
+        minLines,
+      ),
+    );
     properties.add(
       DiagnosticsProperty<bool>('expands', expands, defaultValue: false),
     );
-    properties.add(IntProperty(
-      'maxLength',
-      maxLength,
-    ));
+    properties.add(
+      IntProperty(
+        'maxLength',
+        maxLength,
+      ),
+    );
     properties.add(
       EnumProperty<MaxLengthEnforcement>(
         'maxLengthEnforcement',
         maxLengthEnforcement,
       ),
     );
-    properties
-        .add(DoubleProperty('cursorWidth', cursorWidth, defaultValue: 2.0));
-    properties.add(DoubleProperty(
-      'cursorHeight',
-      cursorHeight,
-    ));
-    properties.add(DiagnosticsProperty<Radius>(
-      'cursorRadius',
-      cursorRadius,
-    ));
+    properties.add(
+      DoubleProperty('cursorWidth', cursorWidth, defaultValue: 2.0),
+    );
+    properties.add(
+      DoubleProperty(
+        'cursorHeight',
+        cursorHeight,
+      ),
+    );
+    properties.add(
+      DiagnosticsProperty<Radius>(
+        'cursorRadius',
+        cursorRadius,
+      ),
+    );
     properties.add(
       DiagnosticsProperty<bool>(
         'cursorOpacityAnimates',
@@ -1212,21 +1242,25 @@ class TextField extends StatefulWidget with TextInput {
         scrollPhysics,
       ),
     );
-    properties.add(EnumProperty<TextAlign>(
-      'textAlign',
-      textAlign,
-      defaultValue: TextAlign.start,
-    ));
+    properties.add(
+      EnumProperty<TextAlign>(
+        'textAlign',
+        textAlign,
+        defaultValue: TextAlign.start,
+      ),
+    );
     properties.add(
       DiagnosticsProperty<TextAlignVertical>(
         'textAlignVertical',
         textAlignVertical,
       ),
     );
-    properties.add(EnumProperty<TextDirection>(
-      'textDirection',
-      textDirection,
-    ));
+    properties.add(
+      EnumProperty<TextDirection>(
+        'textDirection',
+        textDirection,
+      ),
+    );
     properties.add(
       DiagnosticsProperty<Clip>(
         'clipBehavior',
@@ -1343,8 +1377,9 @@ class TextField extends StatefulWidget with TextInput {
     return TextField(
       key: key == null ? this.key : key(),
       autocorrect: autocorrect == null ? this.autocorrect : autocorrect(),
-      autofillHints:
-          autofillHints == null ? this.autofillHints : autofillHints(),
+      autofillHints: autofillHints == null
+          ? this.autofillHints
+          : autofillHints(),
       autofocus: autofocus == null ? this.autofocus : autofocus(),
       border: border == null ? this.border : border(),
       borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
@@ -1386,8 +1421,9 @@ class TextField extends StatefulWidget with TextInput {
       focusNode: focusNode == null ? this.focusNode : focusNode(),
       hintText: hintText == null ? this.hintText : hintText(),
       initialValue: initialValue == null ? this.initialValue : initialValue(),
-      inputFormatters:
-          inputFormatters == null ? this.inputFormatters : inputFormatters(),
+      inputFormatters: inputFormatters == null
+          ? this.inputFormatters
+          : inputFormatters(),
       keyboardAppearance: keyboardAppearance == null
           ? this.keyboardAppearance
           : keyboardAppearance(),
@@ -1413,19 +1449,24 @@ class TextField extends StatefulWidget with TextInput {
       onSubmitted: onSubmitted == null ? this.onSubmitted : onSubmitted(),
       onTap: onTap == null ? this.onTap : onTap(),
       onTapOutside: onTapOutside == null ? this.onTapOutside : onTapOutside(),
-      onTapUpOutside:
-          onTapUpOutside == null ? this.onTapUpOutside : onTapUpOutside(),
+      onTapUpOutside: onTapUpOutside == null
+          ? this.onTapUpOutside
+          : onTapUpOutside(),
       padding: padding == null ? this.padding : padding(),
       placeholder: placeholder == null ? this.placeholder : placeholder(),
       readOnly: readOnly == null ? this.readOnly : readOnly(),
-      restorationId:
-          restorationId == null ? this.restorationId : restorationId(),
-      scrollController:
-          scrollController == null ? this.scrollController : scrollController(),
-      scrollPadding:
-          scrollPadding == null ? this.scrollPadding : scrollPadding(),
-      scrollPhysics:
-          scrollPhysics == null ? this.scrollPhysics : scrollPhysics(),
+      restorationId: restorationId == null
+          ? this.restorationId
+          : restorationId(),
+      scrollController: scrollController == null
+          ? this.scrollController
+          : scrollController(),
+      scrollPadding: scrollPadding == null
+          ? this.scrollPadding
+          : scrollPadding(),
+      scrollPhysics: scrollPhysics == null
+          ? this.scrollPhysics
+          : scrollPhysics(),
       selectionControls: selectionControls == null
           ? this.selectionControls
           : selectionControls(),
@@ -1439,22 +1480,26 @@ class TextField extends StatefulWidget with TextInput {
       skipInputFeatureFocusTraversal: skipInputFeatureFocusTraversal == null
           ? this.skipInputFeatureFocusTraversal
           : skipInputFeatureFocusTraversal(),
-      smartDashesType:
-          smartDashesType == null ? this.smartDashesType : smartDashesType(),
-      smartQuotesType:
-          smartQuotesType == null ? this.smartQuotesType : smartQuotesType(),
+      smartDashesType: smartDashesType == null
+          ? this.smartDashesType
+          : smartDashesType(),
+      smartQuotesType: smartQuotesType == null
+          ? this.smartQuotesType
+          : smartQuotesType(),
       spellCheckConfiguration: spellCheckConfiguration == null
           ? this.spellCheckConfiguration
           : spellCheckConfiguration(),
-      statesController:
-          statesController == null ? this.statesController : statesController(),
+      statesController: statesController == null
+          ? this.statesController
+          : statesController(),
       strutStyle: strutStyle == null ? this.strutStyle : strutStyle(),
       style: style == null ? this.style : style(),
       stylusHandwritingEnabled: stylusHandwritingEnabled == null
           ? this.stylusHandwritingEnabled
           : stylusHandwritingEnabled(),
-      submitFormatters:
-          submitFormatters == null ? this.submitFormatters : submitFormatters(),
+      submitFormatters: submitFormatters == null
+          ? this.submitFormatters
+          : submitFormatters(),
       textAlign: textAlign == null ? this.textAlign : textAlign(),
       textAlignVertical: textAlignVertical == null
           ? this.textAlignVertical
@@ -1462,13 +1507,16 @@ class TextField extends StatefulWidget with TextInput {
       textCapitalization: textCapitalization == null
           ? this.textCapitalization
           : textCapitalization(),
-      textDirection:
-          textDirection == null ? this.textDirection : textDirection(),
-      textInputAction:
-          textInputAction == null ? this.textInputAction : textInputAction(),
+      textDirection: textDirection == null
+          ? this.textDirection
+          : textDirection(),
+      textInputAction: textInputAction == null
+          ? this.textInputAction
+          : textInputAction(),
       trailing: trailing == null ? this.trailing : trailing(),
-      undoController:
-          undoController == null ? this.undoController : undoController(),
+      undoController: undoController == null
+          ? this.undoController
+          : undoController(),
     );
   }
 }
@@ -1487,8 +1535,9 @@ class TextFieldState extends State<TextField>
         TickerProviderStateMixin
     implements TextSelectionGestureDetectorBuilderDelegate, AutofillClient {
   final _effectiveText = ValueNotifier<String>('');
-  final _effectiveSelection =
-      ValueNotifier<TextSelection>(const TextSelection.collapsed(offset: -1));
+  final _effectiveSelection = ValueNotifier<TextSelection>(
+    const TextSelection.collapsed(offset: -1),
+  );
   final _clearGlobalKey = GlobalKey();
 
   final _attachedFeatures = <_AttachedInputFeature>[];
@@ -1522,9 +1571,11 @@ class TextFieldState extends State<TextField>
     _selectionGestureDetectorBuilder =
         _TextFieldSelectionGestureDetectorBuilder(state: this);
     if (widget.controller == null) {
-      _createLocalController(widget.initialValue == null
-          ? null
-          : TextEditingValue(text: widget.initialValue!));
+      _createLocalController(
+        widget.initialValue == null
+            ? null
+            : TextEditingValue(text: widget.initialValue!),
+      );
     } else {
       widget.controller!.addListener(_handleControllerChanged);
     }
@@ -1556,8 +1607,9 @@ class TextFieldState extends State<TextField>
   void _handleControllerChanged() {
     _effectiveText.value = effectiveController.text;
     _effectiveSelection.value = effectiveController.selection;
-    formValue =
-        effectiveController.text.isEmpty ? null : effectiveController.text;
+    formValue = effectiveController.text.isEmpty
+        ? null
+        : effectiveController.text;
   }
 
   void _createLocalController([TextEditingValue? value]) {
@@ -1680,8 +1732,7 @@ class TextFieldState extends State<TextField>
     return !_hasDecoration
         ? editableText
         : ValueListenableBuilder<TextEditingValue>(
-            builder:
-                (BuildContext context, TextEditingValue text, Widget? child) {
+            builder: (BuildContext context, TextEditingValue text, Widget? child) {
               final hasText = text.text.isNotEmpty;
               final placeholder = widget.placeholder == null
                   ? null
@@ -1699,7 +1750,8 @@ class TextFieldState extends State<TextField>
                               .merge(theme.typography.small)
                               .merge(theme.typography.normal)
                               .copyWith(
-                                  color: theme.colorScheme.mutedForeground),
+                                color: theme.colorScheme.mutedForeground,
+                              ),
                           textAlign: widget.textAlign,
                           child: widget.placeholder!,
                         ),
@@ -1709,24 +1761,24 @@ class TextFieldState extends State<TextField>
               final leadingChildren = <Widget>[];
               final trailingChildren = <Widget>[];
               for (final attached in _attachedFeatures) {
-                leadingChildren
-                    .addAll(attached.state._internalBuildLeading().map(
-                          (e) => Focus(
-                            skipTraversal:
-                                widget.skipInputFeatureFocusTraversal,
-                            child: e,
-                          ),
-                        ));
+                leadingChildren.addAll(
+                  attached.state._internalBuildLeading().map(
+                    (e) => Focus(
+                      skipTraversal: widget.skipInputFeatureFocusTraversal,
+                      child: e,
+                    ),
+                  ),
+                );
               }
               for (final attached in _attachedFeatures) {
-                trailingChildren
-                    .addAll(attached.state._internalBuildTrailing().map(
-                          (e) => Focus(
-                            skipTraversal:
-                                widget.skipInputFeatureFocusTraversal,
-                            child: e,
-                          ),
-                        ));
+                trailingChildren.addAll(
+                  attached.state._internalBuildTrailing().map(
+                    (e) => Focus(
+                      skipTraversal: widget.skipInputFeatureFocusTraversal,
+                      child: e,
+                    ),
+                  ),
+                );
               }
 
               final Widget? leadingWidget = leadingChildren.isNotEmpty
@@ -1762,7 +1814,7 @@ class TextFieldState extends State<TextField>
                       textDirection: widget.textDirection,
                       children: [
                         if (placeholder != null) placeholder,
-                        editableText
+                        editableText,
                       ],
                     ),
                   ),
@@ -1832,25 +1884,25 @@ class TextFieldState extends State<TextField>
         ),
         TextFieldReplaceCurrentWordIntent:
             CallbackAction<TextFieldReplaceCurrentWordIntent>(
-          onInvoke: (intent) {
-            final replacement = intent.text;
-            final value = effectiveController.value;
-            final text = value.text;
-            final selection = value.selection;
-            if (selection.isCollapsed) {
-              final start = selection.start;
-              final newText = replaceWordAtCaret(text, start, replacement);
-              effectiveController.value = TextEditingValue(
-                selection: TextSelection.collapsed(
-                  offset: newText.$1 + replacement.length,
-                ),
-                text: newText.$2,
-              );
-            }
+              onInvoke: (intent) {
+                final replacement = intent.text;
+                final value = effectiveController.value;
+                final text = value.text;
+                final selection = value.selection;
+                if (selection.isCollapsed) {
+                  final start = selection.start;
+                  final newText = replaceWordAtCaret(text, start, replacement);
+                  effectiveController.value = TextEditingValue(
+                    selection: TextSelection.collapsed(
+                      offset: newText.$1 + replacement.length,
+                    ),
+                    text: newText.$2,
+                  );
+                }
 
-            return null;
-          },
-        ),
+                return null;
+              },
+            ),
         TextFieldSetTextIntent: CallbackAction<TextFieldSetTextIntent>(
           onInvoke: (intent) {
             effectiveController.value = TextEditingValue(
@@ -1863,27 +1915,27 @@ class TextFieldState extends State<TextField>
         ),
         TextFieldSetSelectionIntent:
             CallbackAction<TextFieldSetSelectionIntent>(
-          onInvoke: (intent) {
-            effectiveController.selection = intent.selection;
+              onInvoke: (intent) {
+                effectiveController.selection = intent.selection;
 
-            return null;
-          },
-        ),
+                return null;
+              },
+            ),
         TextFieldSelectAllAndCopyIntent:
             CallbackAction<TextFieldSelectAllAndCopyIntent>(
-          onInvoke: (intent) {
-            effectiveController.selection = TextSelection(
-              baseOffset: 0,
-              extentOffset: effectiveController.text.length,
-            );
-            final text = effectiveController.text;
-            if (text.isNotEmpty) {
-              Clipboard.setData(ClipboardData(text: text));
-            }
+              onInvoke: (intent) {
+                effectiveController.selection = TextSelection(
+                  baseOffset: 0,
+                  extentOffset: effectiveController.text.length,
+                );
+                final text = effectiveController.text;
+                if (text.isNotEmpty) {
+                  Clipboard.setData(ClipboardData(text: text));
+                }
 
-            return null;
-          },
-        ),
+                return null;
+              },
+            ),
         ...featureActions,
       },
       child: Shortcuts(shortcuts: featureShortcuts, child: child),
@@ -1930,9 +1982,11 @@ class TextFieldState extends State<TextField>
     }
     _effectiveFocusNode.canRequestFocus = widget.enabled;
 
-    for (int i = 0;
-        i < max(oldWidget.features.length, widget.features.length);
-        i += 1) {
+    for (
+      int i = 0;
+      i < max(oldWidget.features.length, widget.features.length);
+      i += 1
+    ) {
       if (i >= oldWidget.features.length) {
         final newFeature = widget.features[i];
         final newState = newFeature.createState();
@@ -2098,19 +2152,18 @@ class TextFieldState extends State<TextField>
 
     TextStyle defaultTextStyle;
     defaultTextStyle = widget.style == null
-        ? DefaultTextStyle.of(context)
-            .style
-            .merge(theme.typography.small)
-            .merge(theme.typography.normal)
-            .copyWith(color: theme.colorScheme.foreground)
-            .merge(widget.style)
-        : DefaultTextStyle.of(context)
-            .style
-            .merge(theme.typography.small)
-            .merge(theme.typography.normal)
-            .copyWith(color: theme.colorScheme.foreground);
+        ? DefaultTextStyle.of(context).style
+              .merge(theme.typography.small)
+              .merge(theme.typography.normal)
+              .copyWith(color: theme.colorScheme.foreground)
+              .merge(widget.style)
+        : DefaultTextStyle.of(context).style
+              .merge(theme.typography.small)
+              .merge(theme.typography.normal)
+              .copyWith(color: theme.colorScheme.foreground);
     final keyboardAppearance = widget.keyboardAppearance ?? theme.brightness;
-    final cursorColor = widget.cursorColor ??
+    final cursorColor =
+        widget.cursorColor ??
         DefaultSelectionStyle.of(context).cursorColor ??
         theme.colorScheme.primary;
 
@@ -2120,10 +2173,12 @@ class TextFieldState extends State<TextField>
       themeValue: compTheme?.border,
       widgetValue: widget.border,
     );
-    final effectiveDecoration = widget.decoration ??
+    final effectiveDecoration =
+        widget.decoration ??
         BoxDecoration(
           border: effectiveBorder,
-          borderRadius: optionallyResolveBorderRadius(
+          borderRadius:
+              optionallyResolveBorderRadius(
                 context,
                 widget.borderRadius ?? compTheme?.borderRadius,
               ) ??
@@ -2133,13 +2188,15 @@ class TextFieldState extends State<TextField>
               : theme.colorScheme.input.scaleAlpha(0.3),
         );
 
-    final selectionColor = DefaultSelectionStyle.of(context).selectionColor ??
+    final selectionColor =
+        DefaultSelectionStyle.of(context).selectionColor ??
         theme.colorScheme.primary.withValues(alpha: 0.2);
 
     // Set configuration as disabled if not otherwise specified. If specified,
     // ensure that configuration uses Cupertino text style for misspelled words
     // unless a custom style is specified.
-    final spellCheckConfiguration = widget.spellCheckConfiguration ??
+    final spellCheckConfiguration =
+        widget.spellCheckConfiguration ??
         const SpellCheckConfiguration.disabled();
 
     final scaling = theme.scaling;
@@ -2173,7 +2230,8 @@ class TextFieldState extends State<TextField>
           inputFormatters: formatters,
           keyboardAppearance: keyboardAppearance,
           keyboardType: widget.keyboardType,
-          magnifierConfiguration: widget.magnifierConfiguration ??
+          magnifierConfiguration:
+              widget.magnifierConfiguration ??
               const TextMagnifierConfiguration(),
           maxLines: widget.maxLines,
           minLines: widget.minLines,
@@ -2199,8 +2257,9 @@ class TextFieldState extends State<TextField>
           scrollPhysics: widget.scrollPhysics,
           // Only show the selection highlight when the text field is focused.
           selectionColor: _effectiveFocusNode.hasFocus ? selectionColor : null,
-          selectionControls:
-              widget.selectionEnabled ? textSelectionControls : null,
+          selectionControls: widget.selectionEnabled
+              ? textSelectionControls
+              : null,
           selectionHeightStyle: widget.selectionHeightStyle,
           selectionWidthStyle: widget.selectionWidthStyle,
           showCursor: widget.showCursor,
@@ -2283,27 +2342,29 @@ class TextFieldState extends State<TextField>
                     ignoring: !enabled,
                     child: Container(
                       decoration: effectiveDecoration,
-                      child:
-                          _selectionGestureDetectorBuilder.buildGestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        child: Align(
-                          alignment: Alignment(-1, _textAlignVertical.y),
-                          heightFactor: 1,
-                          widthFactor: 1,
-                          child: Padding(
-                            padding: widget.padding ??
-                                compTheme?.padding ??
-                                EdgeInsets.symmetric(
-                                    horizontal: scaling * 12,
-                                    vertical: scaling * 8),
-                            child: _addTextDependentAttachments(
-                              editable,
-                              defaultTextStyle,
-                              theme,
+                      child: _selectionGestureDetectorBuilder
+                          .buildGestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            child: Align(
+                              alignment: Alignment(-1, _textAlignVertical.y),
+                              heightFactor: 1,
+                              widthFactor: 1,
+                              child: Padding(
+                                padding:
+                                    widget.padding ??
+                                    compTheme?.padding ??
+                                    EdgeInsets.symmetric(
+                                      horizontal: scaling * 12,
+                                      vertical: scaling * 8,
+                                    ),
+                                child: _addTextDependentAttachments(
+                                  editable,
+                                  defaultTextStyle,
+                                  theme,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
                     ),
                   ),
                 ),

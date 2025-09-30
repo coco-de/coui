@@ -60,26 +60,6 @@ class TreeTheme {
   /// recursively affect all descendant nodes.
   final bool? recursiveSelection;
 
-  TreeTheme copyWith({
-    ValueGetter<bool?>? allowMultiSelect,
-    ValueGetter<BranchLine?>? branchLine,
-    ValueGetter<bool?>? expandIcon,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<bool?>? recursiveSelection,
-  }) {
-    return TreeTheme(
-      allowMultiSelect: allowMultiSelect == null
-          ? this.allowMultiSelect
-          : allowMultiSelect(),
-      branchLine: branchLine == null ? this.branchLine : branchLine(),
-      expandIcon: expandIcon == null ? this.expandIcon : expandIcon(),
-      padding: padding == null ? this.padding : padding(),
-      recursiveSelection: recursiveSelection == null
-          ? this.recursiveSelection
-          : recursiveSelection(),
-    );
-  }
-
   @override
   bool operator ==(Object other) =>
       other is TreeTheme &&
@@ -477,18 +457,6 @@ typedef TreeNodeUnaryOperatorWithParent<K> =
     TreeNode<K>? Function(TreeNode<K> node, TreeNode<K>? parent);
 
 extension TreeNodeListExtension<K> on List<TreeNode<K>> {
-  List<TreeNode<K>> replaceNodes(TreeNodeUnaryOperator<K> operator) {
-    return TreeView.replaceNodes(this, operator);
-  }
-
-  List<TreeNode<K>> replaceNode(TreeNode<K> newNode, TreeNode<K> oldNode) {
-    return TreeView.replaceNode(this, oldNode, newNode);
-  }
-
-  List<TreeNode<K>> replaceItem(TreeNode<K> newItem, K oldItem) {
-    return TreeView.replaceItem(this, oldItem, newItem);
-  }
-
   List<TreeNode<K>> expandAll() {
     return TreeView.expandAll(this);
   }
@@ -501,98 +469,20 @@ extension TreeNodeListExtension<K> on List<TreeNode<K>> {
     return TreeView.expandNode(this, target);
   }
 
-  List<TreeNode<K>> expandItem(K target) {
-    return TreeView.expandItem(this, target);
-  }
-
   List<TreeNode<K>> collapseNode(TreeNode<K> target) {
     return TreeView.collapseNode(this, target);
-  }
-
-  List<TreeNode<K>> collapseItem(K target) {
-    return TreeView.collapseItem(this, target);
-  }
-
-  List<TreeNode<K>> get selectedNodes {
-    return TreeView.getSelectedNodes(this);
-  }
-
-  List<K> get selectedItems {
-    return TreeView.getSelectedItems(this);
-  }
-
-  List<TreeNode<K>> selectNode(TreeNode<K> target) {
-    return TreeView.selectNode(this, target);
-  }
-
-  List<TreeNode<K>> selectItem(K target) {
-    return TreeView.selectItem(this, target);
-  }
-
-  List<TreeNode<K>> deselectNode(TreeNode<K> target) {
-    return TreeView.deselectNode(this, target);
-  }
-
-  List<TreeNode<K>> deselectItem(K target) {
-    return TreeView.deselectItem(this, target);
-  }
-
-  List<TreeNode<K>> toggleSelectNode(TreeNode<K> target) {
-    return TreeView.toggleSelectNode(this, target);
-  }
-
-  List<TreeNode<K>> toggleSelectNodes(Iterable<TreeNode<K>> targets) {
-    return TreeView.toggleSelectNodes(this, targets);
-  }
-
-  List<TreeNode<K>> toggleSelectItem(K target) {
-    return TreeView.toggleSelectItem(this, target);
-  }
-
-  List<TreeNode<K>> toggleSelectItems(Iterable<K> targets) {
-    return TreeView.toggleSelectItems(this, targets);
-  }
-
-  List<TreeNode<K>> selectAll() {
-    return TreeView.selectAll(this);
-  }
-
-  List<TreeNode<K>> deselectAll() {
-    return TreeView.deselectAll(this);
-  }
-
-  List<TreeNode<K>> toggleSelectAll() {
-    return TreeView.toggleSelectAll(this);
   }
 
   List<TreeNode<K>> selectNodes(Iterable<TreeNode<K>> nodes) {
     return TreeView.selectNodes(this, nodes);
   }
 
-  List<TreeNode<K>> selectItems(Iterable<K> items) {
-    return TreeView.selectItems(this, items);
-  }
-
   List<TreeNode<K>> deselectNodes(Iterable<TreeNode<K>> nodes) {
     return TreeView.deselectNodes(this, nodes);
   }
 
-  List<TreeNode<K>> deselectItems(Iterable<K> items) {
-    return TreeView.deselectItems(this, items);
-  }
-
   List<TreeNode<K>> setSelectedNodes(Iterable<TreeNode<K>> nodes) {
     return TreeView.setSelectedNodes(this, nodes);
-  }
-
-  List<TreeNode<K>> setSelectedItems(Iterable<K> items) {
-    return TreeView.setSelectedItems(this, items);
-  }
-
-  List<TreeNode<K>> replaceNodesWithParent(
-    TreeNodeUnaryOperatorWithParent<K> operator,
-  ) {
-    return TreeView.replaceNodesWithParent(this, operator);
   }
 
   List<TreeNode<K>> updateRecursiveSelection() {
@@ -1525,9 +1415,6 @@ class _TreeViewState<T> extends State<TreeView<T>> {
 /// }
 /// ```
 abstract class BranchLine {
-  /// Predefined branch line style with no visual connections.
-  static const none = IndentGuideNone();
-
   /// Predefined branch line style with simple vertical lines.
   static const line = IndentGuideLine();
 

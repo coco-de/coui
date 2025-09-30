@@ -1,7 +1,11 @@
 import 'package:coui_flutter/coui_flutter.dart';
 
-typedef ValidatedBuilder = Widget Function(
-    Widget? child, BuildContext context, ValidationResult? error);
+typedef ValidatedBuilder =
+    Widget Function(
+      Widget? child,
+      BuildContext context,
+      ValidationResult? error,
+    );
 
 class Validated<T> extends StatefulWidget {
   const Validated({

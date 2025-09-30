@@ -16,17 +16,6 @@ class PaginationTheme {
   /// Whether to show the previous/next labels.
   final bool? showLabel;
 
-  /// Returns a copy of this theme with the given fields replaced.
-  PaginationTheme copyWith({
-    ValueGetter<double?>? gap,
-    ValueGetter<bool?>? showLabel,
-  }) {
-    return PaginationTheme(
-      gap: gap == null ? this.gap : gap(),
-      showLabel: showLabel == null ? this.showLabel : showLabel(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

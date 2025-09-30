@@ -24,19 +24,6 @@ class ScrollbarTheme {
   /// Radius of the scrollbar thumb.
   final Radius? radius;
 
-  /// Creates a copy of this theme with the given values replaced.
-  ScrollbarTheme copyWith({
-    ValueGetter<Color?>? color,
-    ValueGetter<Radius?>? radius,
-    ValueGetter<double?>? thickness,
-  }) {
-    return ScrollbarTheme(
-      color: color == null ? this.color : color(),
-      radius: radius == null ? this.radius : radius(),
-      thickness: thickness == null ? this.thickness : thickness(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -113,12 +100,12 @@ class _CoUIScrollbar extends RawScrollbar {
     super.thumbVisibility,
     super.trackVisibility,
   }) : super(
-          fadeDuration: _kScrollbarFadeDuration,
-          timeToFade: _kScrollbarTimeToFade,
-          pressDuration: Duration.zero,
-          notificationPredicate:
-              notificationPredicate ?? defaultScrollNotificationPredicate,
-        );
+         fadeDuration: _kScrollbarFadeDuration,
+         timeToFade: _kScrollbarTimeToFade,
+         pressDuration: Duration.zero,
+         notificationPredicate:
+             notificationPredicate ?? defaultScrollNotificationPredicate,
+       );
 
   final Color? color;
 

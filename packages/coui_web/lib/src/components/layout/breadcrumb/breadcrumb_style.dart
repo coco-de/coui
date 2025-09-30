@@ -11,15 +11,3 @@ abstract class BreadcrumbStyling {
   /// The type of style this represents.
   StyleType get type;
 }
-
-/// Concrete implementation of breadcrumb styles.
-class BreadcrumbStyle implements BreadcrumbStyling {
-  /// Creates a [BreadcrumbStyle].
-  const BreadcrumbStyle(this.cssClass, {required this.type});
-
-  @override
-  final String cssClass;
-
-  @override
-  final StyleType type;
-}

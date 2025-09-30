@@ -11,7 +11,9 @@ class ChipExample1 extends StatelessWidget {
       children: [
         Chip(
           trailing: ChipButton(
-            onPressed: () {},
+            onPressed: () {
+              // TODOS: will be implemented later.
+            },
             child: const Icon(Icons.close),
           ),
           child: const Text('Apple'),
@@ -19,7 +21,9 @@ class ChipExample1 extends StatelessWidget {
         Chip(
           style: const ButtonStyle.primary(),
           trailing: ChipButton(
-            onPressed: () {},
+            onPressed: () {
+              // TODOS: will be implemented later.
+            },
             child: const Icon(Icons.close),
           ),
           child: const Text('Banana'),
@@ -27,7 +31,9 @@ class ChipExample1 extends StatelessWidget {
         Chip(
           style: const ButtonStyle.outline(),
           trailing: ChipButton(
-            onPressed: () {},
+            onPressed: () {
+              // TODOS: will be implemented later.
+            },
             child: const Icon(Icons.close),
           ),
           child: const Text('Cherry'),
@@ -35,7 +41,9 @@ class ChipExample1 extends StatelessWidget {
         Chip(
           style: const ButtonStyle.ghost(),
           trailing: ChipButton(
-            onPressed: () {},
+            onPressed: () {
+              // TODOS: will be implemented later.
+            },
             child: const Icon(Icons.close),
           ),
           child: const Text('Durian'),
@@ -43,7 +51,9 @@ class ChipExample1 extends StatelessWidget {
         Chip(
           style: const ButtonStyle.destructive(),
           trailing: ChipButton(
-            onPressed: () {},
+            onPressed: () {
+              // TODOS: will be implemented later.
+            },
             child: const Icon(Icons.close),
           ),
           child: const Text('Elderberry'),

@@ -77,20 +77,13 @@ class DateInput extends StatefulWidget with ControlledComponent<DateTime?> {
   const DateInput({
     this.controller,
     this.datePartsOrder,
-    this.dialogTitle,
     this.enabled = true,
     this.initialValue,
     this.initialView,
     this.initialViewType,
     super.key,
-    this.mode = PromptMode.dialog,
     this.onChanged,
-    this.placeholder,
     this.placeholders,
-    this.popoverAlignment,
-    this.popoverAnchorAlignment,
-    this.popoverPadding,
-    this.separator,
     this.stateBuilder,
   });
 
@@ -103,18 +96,10 @@ class DateInput extends StatefulWidget with ControlledComponent<DateTime?> {
 
   @override
   final DatePickerController? controller;
-  final Widget? placeholder;
-  final PromptMode mode;
   final CalendarView? initialView;
-  final AlignmentGeometry? popoverAlignment;
-  final AlignmentGeometry? popoverAnchorAlignment;
-  final EdgeInsetsGeometry? popoverPadding;
-  final Widget? dialogTitle;
   final CalendarViewType? initialViewType;
   final DateStateBuilder? stateBuilder;
   final List<DatePart>? datePartsOrder;
-  final InputPart? separator;
-
   final Map<DatePart, Widget>? placeholders;
 
   @override
@@ -141,39 +126,6 @@ class NullableDate {
         other.year == year &&
         other.month == month &&
         other.day == day;
-  }
-
-  NullableDate copyWith({
-    ValueGetter<int?>? day,
-    ValueGetter<int?>? month,
-    ValueGetter<int?>? year,
-  }) {
-    return NullableDate(
-      day: day == null ? this.day : day(),
-      month: month == null ? this.month : month(),
-      year: year == null ? this.year : year(),
-    );
-  }
-
-  int? operator [](DatePart part) {
-    switch (part) {
-      case DatePart.year:
-        return year;
-
-      case DatePart.month:
-        return month;
-
-      case DatePart.day:
-        return day;
-    }
-  }
-
-  Map<DatePart, int> toMap() {
-    return {
-      if (year != null) DatePart.year: year!,
-      if (month != null) DatePart.month: month!,
-      if (day != null) DatePart.day: day!,
-    };
   }
 
   @override
@@ -223,8 +175,9 @@ class _DateInputState extends State<DateInput> {
     final month = monthString == null || monthString.isEmpty
         ? null
         : int.tryParse(monthString);
-    final day =
-        dayString == null || dayString.isEmpty ? null : int.tryParse(dayString);
+    final day = dayString == null || dayString.isEmpty
+        ? null
+        : int.tryParse(dayString);
 
     return NullableDate(day: day, month: month, year: year);
   }
@@ -313,8 +266,9 @@ class _DateInputState extends State<DateInput> {
       converter: BiDirectionalConvert(_convertFromDateTime, _convertToDateTime),
       initialValue: _convertToNullableDate(widget.initialValue),
       onChanged: (value) {
-        widget.onChanged
-            ?.call(value == null ? null : _convertFromNullableDate(value));
+        widget.onChanged?.call(
+          value == null ? null : _convertFromNullableDate(value),
+        );
       },
       parts: datePartsOrder
           .map((part) {
@@ -374,49 +328,6 @@ class NullableTimeOfDay {
         other.hour == hour &&
         other.minute == minute &&
         other.second == second;
-  }
-
-  NullableTimeOfDay copyWith({
-    ValueGetter<int?>? hour,
-    ValueGetter<int?>? minute,
-    ValueGetter<int?>? second,
-  }) {
-    return NullableTimeOfDay(
-      hour: hour == null ? this.hour : hour(),
-      minute: minute == null ? this.minute : minute(),
-      second: second == null ? this.second : second(),
-    );
-  }
-
-  static NullableTimeOfDay? fromTimeOfDay(TimeOfDay? timeOfDay) {
-    return timeOfDay == null
-        ? null
-        : NullableTimeOfDay(
-            hour: timeOfDay.hour,
-            minute: timeOfDay.minute,
-            second: timeOfDay.second,
-          );
-  }
-
-  int? operator [](TimePart part) {
-    switch (part) {
-      case TimePart.hour:
-        return hour;
-
-      case TimePart.minute:
-        return minute;
-
-      case TimePart.second:
-        return second;
-    }
-  }
-
-  Map<TimePart, int> toMap() {
-    return {
-      if (hour != null) TimePart.hour: hour!,
-      if (minute != null) TimePart.minute: minute!,
-      if (second != null) TimePart.second: second!,
-    };
   }
 
   @override
@@ -504,7 +415,6 @@ class TimeInput extends StatefulWidget with ControlledComponent<TimeOfDay?> {
     this.initialValue,
     super.key,
     this.onChanged,
-    this.placeholder,
     this.placeholders,
     this.separator,
     this.showSeconds = false,
@@ -519,7 +429,6 @@ class TimeInput extends StatefulWidget with ControlledComponent<TimeOfDay?> {
 
   @override
   final ComponentController<TimeOfDay?>? controller;
-  final Widget? placeholder;
   final bool showSeconds;
   final InputPart? separator;
 
@@ -557,8 +466,8 @@ class _TimeInputState extends State<TimeInput> {
         : int.tryParse(values[1]!);
     final second = widget.showSeconds && values.length > 2
         ? (values[2] == null || values[2]!.isEmpty
-            ? null
-            : int.tryParse(values[2]!))
+              ? null
+              : int.tryParse(values[2]!))
         : null;
 
     return NullableTimeOfDay(hour: hour, minute: minute, second: second);
@@ -614,24 +523,29 @@ class _TimeInputState extends State<TimeInput> {
   Widget build(BuildContext context) {
     return FormattedObjectInput<NullableTimeOfDay>(
       controller: _controller,
-      converter:
-          BiDirectionalConvert(_convertFromTimeOfDay, _convertToTimeOfDay),
+      converter: BiDirectionalConvert(
+        _convertFromTimeOfDay,
+        _convertToTimeOfDay,
+      ),
       initialValue: _convertToNullableTimeOfDay(widget.initialValue),
       onChanged: (value) {
-        widget.onChanged
-            ?.call(value == null ? null : _convertFromNullableTimeOfDay(value));
+        widget.onChanged?.call(
+          value == null ? null : _convertFromNullableTimeOfDay(value),
+        );
       },
       parts: [
         InputPart.editable(
           length: _getLength(TimePart.hour),
-          placeholder: widget.placeholders?[TimePart.hour] ??
+          placeholder:
+              widget.placeholders?[TimePart.hour] ??
               _getPlaceholder(TimePart.hour),
           width: _getWidth(TimePart.hour),
         ),
         widget.separator ?? const InputPart.static(':'),
         InputPart.editable(
           length: _getLength(TimePart.minute),
-          placeholder: widget.placeholders?[TimePart.minute] ??
+          placeholder:
+              widget.placeholders?[TimePart.minute] ??
               _getPlaceholder(TimePart.minute),
           width: _getWidth(TimePart.minute),
         ),
@@ -639,7 +553,8 @@ class _TimeInputState extends State<TimeInput> {
           widget.separator ?? const InputPart.static(':'),
           InputPart.editable(
             length: _getLength(TimePart.second),
-            placeholder: widget.placeholders?[TimePart.second] ??
+            placeholder:
+                widget.placeholders?[TimePart.second] ??
                 _getPlaceholder(TimePart.second),
             width: _getWidth(TimePart.second),
           ),
@@ -725,7 +640,6 @@ class DurationInput extends StatefulWidget with ControlledComponent<Duration?> {
     this.initialValue,
     super.key,
     this.onChanged,
-    this.placeholder,
     this.placeholders,
     this.separator,
     this.showSeconds = false,
@@ -740,7 +654,6 @@ class DurationInput extends StatefulWidget with ControlledComponent<Duration?> {
 
   @override
   final ComponentController<Duration?>? controller;
-  final Widget? placeholder;
   final bool showSeconds;
   final InputPart? separator;
 
@@ -778,8 +691,8 @@ class _DurationInputState extends State<DurationInput> {
         : int.tryParse(values[1]!);
     final seconds = widget.showSeconds && values.length > 2
         ? (values[2] == null || values[2]!.isEmpty
-            ? null
-            : int.tryParse(values[2]!))
+              ? null
+              : int.tryParse(values[2]!))
         : null;
 
     return NullableTimeOfDay(hour: hours, minute: minutes, second: seconds);
@@ -846,20 +759,23 @@ class _DurationInputState extends State<DurationInput> {
       converter: BiDirectionalConvert(_convertFromDuration, _convertToDuration),
       initialValue: _convertToNullableTimeOfDay(widget.initialValue),
       onChanged: (value) {
-        widget.onChanged
-            ?.call(value == null ? null : _convertFromNullableTimeOfDay(value));
+        widget.onChanged?.call(
+          value == null ? null : _convertFromNullableTimeOfDay(value),
+        );
       },
       parts: [
         InputPart.editable(
           length: _getLength(TimePart.hour),
-          placeholder: widget.placeholders?[TimePart.hour] ??
+          placeholder:
+              widget.placeholders?[TimePart.hour] ??
               _getPlaceholder(TimePart.hour),
           width: _getWidth(TimePart.hour),
         ),
         widget.separator ?? const InputPart.static(':'),
         InputPart.editable(
           length: _getLength(TimePart.minute),
-          placeholder: widget.placeholders?[TimePart.minute] ??
+          placeholder:
+              widget.placeholders?[TimePart.minute] ??
               _getPlaceholder(TimePart.minute),
           width: _getWidth(TimePart.minute),
         ),
@@ -867,7 +783,8 @@ class _DurationInputState extends State<DurationInput> {
           widget.separator ?? const InputPart.static(':'),
           InputPart.editable(
             length: _getLength(TimePart.second),
-            placeholder: widget.placeholders?[TimePart.second] ??
+            placeholder:
+                widget.placeholders?[TimePart.second] ??
                 _getPlaceholder(TimePart.second),
             width: _getWidth(TimePart.second),
           ),

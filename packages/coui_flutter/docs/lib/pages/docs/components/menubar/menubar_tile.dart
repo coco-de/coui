@@ -32,12 +32,16 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Button(
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODOS: will be implemented later.
+                        },
                         style: const ButtonStyle.menubar(),
                         child: const Text('File'),
                       ),
                       Button(
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODOS: will be implemented later.
+                        },
                         style: const ButtonStyle.menubar().copyWith(
                           decoration: (context, states, value) {
                             return (value as BoxDecoration).copyWith(
@@ -51,12 +55,16 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
                         child: const Text('Edit'),
                       ),
                       Button(
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODOS: will be implemented later.
+                        },
                         style: const ButtonStyle.menubar(),
                         child: const Text('View'),
                       ),
                       Button(
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODOS: will be implemented later.
+                        },
                         style: const ButtonStyle.menubar(),
                         child: const Text('Help'),
                       ),
@@ -73,7 +81,9 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
                 children: [
                   Button(
                     style: const ButtonStyle.menu(),
-                    onPressed: () {},
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     trailing: const MenuShortcut(
                       activator: SingleActivator(
                         LogicalKeyboardKey.keyZ,
@@ -91,7 +101,9 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
                         );
                       },
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     trailing: const MenuShortcut(
                       activator: SingleActivator(
                         LogicalKeyboardKey.keyY,
@@ -103,7 +115,9 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
                   const MenuDivider(),
                   Button(
                     style: const ButtonStyle.menu(),
-                    onPressed: () {},
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     trailing: const MenuShortcut(
                       activator: SingleActivator(
                         LogicalKeyboardKey.keyX,
@@ -114,7 +128,9 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
                   ),
                   Button(
                     style: const ButtonStyle.menu(),
-                    onPressed: () {},
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     trailing: const MenuShortcut(
                       activator: SingleActivator(
                         LogicalKeyboardKey.keyC,
@@ -125,7 +141,9 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
                   ),
                   Button(
                     style: const ButtonStyle.menu(),
-                    onPressed: () {},
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     trailing: const MenuShortcut(
                       activator: SingleActivator(
                         LogicalKeyboardKey.keyV,

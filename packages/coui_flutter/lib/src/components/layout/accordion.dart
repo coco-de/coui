@@ -104,8 +104,9 @@ class AccordionState extends State<Accordion> {
             ...join(
               widget.items,
               Container(
-                  color: theme.colorScheme.muted,
-                  height: accTheme?.dividerHeight ?? scaling * 1),
+                color: theme.colorScheme.muted,
+                height: accTheme?.dividerHeight ?? scaling * 1,
+              ),
             ),
             const Divider(),
           ],
@@ -217,44 +218,6 @@ class AccordionTheme {
   /// If null, uses the muted foreground color from the theme color scheme.
   final Color? arrowIconColor;
 
-  /// Creates a copy of this theme with the given values replaced.
-  ///
-  /// Uses [ValueGetter] functions to allow conditional updates where
-  /// null getters preserve the original value.
-  ///
-  /// Example:
-  /// ```dart
-  /// final newTheme = originalTheme.copyWith(
-  ///   duration: () => Duration(milliseconds: 400),
-  ///   curve: () => Curves.bounceOut,
-  /// );
-  /// ```
-  AccordionTheme copyWith({
-    ValueGetter<IconData?>? arrowIcon,
-    ValueGetter<Color?>? arrowIconColor,
-    ValueGetter<Curve?>? curve,
-    ValueGetter<Color?>? dividerColor,
-    ValueGetter<double?>? dividerHeight,
-    ValueGetter<Duration?>? duration,
-    ValueGetter<double?>? iconGap,
-    ValueGetter<double?>? padding,
-    ValueGetter<Curve?>? reverseCurve,
-  }) {
-    return AccordionTheme(
-      arrowIcon: arrowIcon == null ? this.arrowIcon : arrowIcon(),
-      arrowIconColor:
-          arrowIconColor == null ? this.arrowIconColor : arrowIconColor(),
-      curve: curve == null ? this.curve : curve(),
-      dividerColor: dividerColor == null ? this.dividerColor : dividerColor(),
-      dividerHeight:
-          dividerHeight == null ? this.dividerHeight : dividerHeight(),
-      duration: duration == null ? this.duration : duration(),
-      iconGap: iconGap == null ? this.iconGap : iconGap(),
-      padding: padding == null ? this.padding : padding(),
-      reverseCurve: reverseCurve == null ? this.reverseCurve : reverseCurve(),
-    );
-  }
-
   @override
   bool operator ==(Object other) =>
       other is AccordionTheme &&
@@ -275,16 +238,16 @@ class AccordionTheme {
 
   @override
   int get hashCode => Object.hash(
-        duration,
-        curve,
-        reverseCurve,
-        padding,
-        iconGap,
-        dividerHeight,
-        dividerColor,
-        arrowIcon,
-        arrowIconColor,
-      );
+    duration,
+    curve,
+    reverseCurve,
+    padding,
+    iconGap,
+    dividerHeight,
+    dividerColor,
+    arrowIcon,
+    arrowIconColor,
+  );
 }
 
 /// An individual item within an [Accordion] that can be expanded or collapsed.
@@ -475,8 +438,9 @@ class _AccordionItemState extends State<AccordionItem>
               axisAlignment: -1,
               sizeFactor: _easeInAnimation,
               child: Padding(
-                padding:
-                    EdgeInsets.only(bottom: _theme?.padding ?? scaling * 16),
+                padding: EdgeInsets.only(
+                  bottom: _theme?.padding ?? scaling * 16,
+                ),
                 child: widget.content,
               ).small().normal(),
             ),
@@ -635,7 +599,8 @@ class _AccordionTriggerState extends State<AccordionTrigger> {
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(
-                vertical: accTheme?.padding ?? scaling * 16),
+              vertical: accTheme?.padding ?? scaling * 16,
+            ),
             child: Row(
               children: [
                 Expanded(
@@ -658,12 +623,13 @@ class _AccordionTriggerState extends State<AccordionTrigger> {
                       angle: value * pi,
                       child: IconTheme(
                         data: IconThemeData(
-                          color: accTheme?.arrowIconColor ??
+                          color:
+                              accTheme?.arrowIconColor ??
                               theme.colorScheme.mutedForeground,
                         ),
-                        child:
-                            Icon(accTheme?.arrowIcon ?? Icons.keyboard_arrow_up)
-                                .iconMedium(),
+                        child: Icon(
+                          accTheme?.arrowIcon ?? Icons.keyboard_arrow_up,
+                        ).iconMedium(),
                       ),
                     );
                   },

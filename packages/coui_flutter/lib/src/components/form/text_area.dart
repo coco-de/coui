@@ -49,20 +49,6 @@ class TextAreaTheme {
   /// If null, uses the default border radius from the current theme.
   final BorderRadiusGeometry? borderRadius;
 
-  TextAreaTheme copyWith({
-    ValueGetter<Border?>? border,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<bool?>? filled,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-  }) {
-    return TextAreaTheme(
-      border: border == null ? this.border : border(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      filled: filled == null ? this.filled : filled(),
-      padding: padding == null ? this.padding : padding(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

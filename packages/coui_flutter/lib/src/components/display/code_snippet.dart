@@ -83,39 +83,6 @@ class CodeSnippetTheme {
   /// If null, uses default padding appropriate for code display.
   final EdgeInsetsGeometry? padding;
 
-  /// Creates a copy of this theme with the given values replaced.
-  ///
-  /// Returns a new [CodeSnippetTheme] instance with the same values as this
-  /// theme, except for any parameters that are explicitly provided. Use
-  /// [ValueGetter] functions to specify new values.
-  ///
-  /// Parameters are [ValueGetter] functions that return the new value when called.
-  /// This allows for conditional value setting and proper null handling.
-  ///
-  /// Example:
-  /// ```dart
-  /// final newTheme = originalTheme.copyWith(
-  ///   backgroundColor: () => Colors.blue.shade50,
-  ///   padding: () => EdgeInsets.all(12.0),
-  /// );
-  /// ```
-  CodeSnippetTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<Color?>? borderColor,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<double?>? borderWidth,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-  }) {
-    return CodeSnippetTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      borderColor: borderColor == null ? this.borderColor : borderColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      borderWidth: borderWidth == null ? this.borderWidth : borderWidth(),
-      padding: padding == null ? this.padding : padding(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -130,12 +97,12 @@ class CodeSnippetTheme {
 
   @override
   int get hashCode => Object.hash(
-        backgroundColor,
-        borderColor,
-        borderWidth,
-        borderRadius,
-        padding,
-      );
+    backgroundColor,
+    borderColor,
+    borderWidth,
+    borderRadius,
+    padding,
+  );
 }
 
 /// A syntax-highlighted code display widget with copy functionality.
@@ -379,9 +346,9 @@ class _CodeSnippetState extends State<CodeSnippet> {
                       scrollDirection: Axis.horizontal,
                       child: data == null
                           ? SelectableText(widget.code).muted().mono().small()
-                          : SelectableText.rich(data.highlight(widget.code))
-                              .mono()
-                              .small(),
+                          : SelectableText.rich(
+                              data.highlight(widget.code),
+                            ).mono().small(),
                     ),
                   ),
                 );
@@ -397,17 +364,20 @@ class _CodeSnippetState extends State<CodeSnippet> {
                   GhostButton(
                     density: ButtonDensity.icon,
                     onPressed: () {
-                      Clipboard.setData(ClipboardData(text: widget.code))
-                          .then((value) {
+                      Clipboard.setData(ClipboardData(text: widget.code)).then((
+                        value,
+                      ) {
                         if (context.mounted) {
                           showToast(
                             builder: (context, overlay) {
-                              final localizations =
-                                  CoUILocalizations.of(context);
+                              final localizations = CoUILocalizations.of(
+                                context,
+                              );
 
                               return Alert(
-                                leading: const Icon(LucideIcons.copyCheck)
-                                    .iconSmall(),
+                                leading: const Icon(
+                                  LucideIcons.copyCheck,
+                                ).iconSmall(),
                                 title: Text(localizations.toastSnippetCopied),
                               );
                             },

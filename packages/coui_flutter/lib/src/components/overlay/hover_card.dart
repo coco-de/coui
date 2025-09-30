@@ -66,27 +66,6 @@ class HoverCardTheme {
   /// Hit test behavior for mouse interactions.
   final HitTestBehavior? behavior;
 
-  HoverCardTheme copyWith({
-    ValueGetter<AlignmentGeometry?>? anchorAlignment,
-    ValueGetter<HitTestBehavior?>? behavior,
-    ValueGetter<Duration?>? debounce,
-    ValueGetter<AlignmentGeometry?>? popoverAlignment,
-    ValueGetter<Offset?>? popoverOffset,
-    ValueGetter<Duration?>? wait,
-  }) {
-    return HoverCardTheme(
-      anchorAlignment:
-          anchorAlignment == null ? this.anchorAlignment : anchorAlignment(),
-      behavior: behavior == null ? this.behavior : behavior(),
-      debounce: debounce == null ? this.debounce : debounce(),
-      popoverAlignment:
-          popoverAlignment == null ? this.popoverAlignment : popoverAlignment(),
-      popoverOffset:
-          popoverOffset == null ? this.popoverOffset : popoverOffset(),
-      wait: wait == null ? this.wait : wait(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     return other is HoverCardTheme &&
@@ -100,13 +79,13 @@ class HoverCardTheme {
 
   @override
   int get hashCode => Object.hash(
-        debounce,
-        wait,
-        popoverAlignment,
-        anchorAlignment,
-        popoverOffset,
-        behavior,
-      );
+    debounce,
+    wait,
+    popoverAlignment,
+    anchorAlignment,
+    popoverOffset,
+    behavior,
+  );
 }
 
 /// A widget that displays a popover when hovered or long-pressed.
@@ -232,8 +211,9 @@ class _HoverCardState extends State<HoverCard> {
     OverlayHandler? handler = widget.handler;
     if (handler == null) {
       final overlayManager = OverlayManager.of(context);
-      handler =
-          OverlayManagerAsTooltipOverlayHandler(overlayManager: overlayManager);
+      handler = OverlayManagerAsTooltipOverlayHandler(
+        overlayManager: overlayManager,
+      );
     }
     _controller.show(
       alignment: alignment,

@@ -3,11 +3,12 @@ import 'package:flutter/rendering.dart';
 import 'package:coui_flutter/coui_flutter.dart';
 
 typedef SortableItemBuilder<T> = T Function(BuildContext context, int index);
-typedef SortableWidgetBuilder<T> = Widget Function(
-  BuildContext context,
-  int index,
-  T item,
-);
+typedef SortableWidgetBuilder<T> =
+    Widget Function(
+      BuildContext context,
+      int index,
+      T item,
+    );
 
 class ListChanges<T> {
   const ListChanges(this.changes);

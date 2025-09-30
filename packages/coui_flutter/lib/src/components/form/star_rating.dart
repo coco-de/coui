@@ -37,8 +37,9 @@ class StarRatingTheme {
   }) {
     return StarRatingTheme(
       activeColor: activeColor == null ? this.activeColor : activeColor(),
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
+      backgroundColor: backgroundColor == null
+          ? this.backgroundColor
+          : backgroundColor(),
       starSize: starSize == null ? this.starSize : starSize(),
       starSpacing: starSpacing == null ? this.starSpacing : starSpacing(),
     );
@@ -57,11 +58,11 @@ class StarRatingTheme {
 
   @override
   int get hashCode => Object.hash(
-        activeColor,
-        backgroundColor,
-        starSize,
-        starSpacing,
-      );
+    activeColor,
+    backgroundColor,
+    starSize,
+    starSpacing,
+  );
 }
 
 /// A controller for managing [StarRating] widget values programmatically.
@@ -355,7 +356,8 @@ class _StarRatingState extends State<StarRating>
     final starSquash = widget.starSquash ?? 0.0;
     final starInnerRadiusRatio = widget.starInnerRadiusRatio ?? 0.4;
     final starRotation = widget.starRotation ?? 0.0;
-    final starSize = styleValue(
+    final starSize =
+        styleValue(
           defaultValue: 24,
           themeValue: compTheme?.starSize,
           widgetValue: widget.starSize,
@@ -374,7 +376,8 @@ class _StarRatingState extends State<StarRating>
               ? BorderSide(
                   color: theme.colorScheme.ring,
                   strokeAlign: BorderSide.strokeAlignOutside,
-                  width: scaling * 2.0)
+                  width: scaling * 2.0,
+                )
               : BorderSide.none,
           squash: starSquash,
           valleyRounding: starValleyRounding * theme.radius,
@@ -475,10 +478,12 @@ class _StarRatingState extends State<StarRating>
             }
           },
           shortcuts: {
-            LogicalKeySet(LogicalKeyboardKey.arrowRight):
-                IncreaseStarIntent(widget.step),
-            LogicalKeySet(LogicalKeyboardKey.arrowLeft):
-                DecreaseStarIntent(widget.step),
+            LogicalKeySet(LogicalKeyboardKey.arrowRight): IncreaseStarIntent(
+              widget.step,
+            ),
+            LogicalKeySet(LogicalKeyboardKey.arrowLeft): DecreaseStarIntent(
+              widget.step,
+            ),
           },
           child: MouseRegion(
             onHover: (event) {
@@ -515,8 +520,8 @@ class _StarRatingState extends State<StarRating>
                 final totalStars = widget.max.ceil();
                 final totalStarSize =
                     starSize * totalStars + (starSpacing * (totalStars - 1));
-                final progress =
-                    (details.localPosition.dx / totalStarSize).clamp(0.0, 1.0);
+                final progress = (details.localPosition.dx / totalStarSize)
+                    .clamp(0.0, 1.0);
                 final newValue = (progress * widget.max).clamp(0.0, widget.max);
                 setState(() {
                   _changingValue = newValue;
@@ -532,8 +537,8 @@ class _StarRatingState extends State<StarRating>
                 if (widget.onChanged == null) return;
                 final totalStarSize =
                     starSize + (starSpacing * (widget.max.ceil() - 1));
-                final progress =
-                    (details.localPosition.dx / totalStarSize).clamp(0.0, 1.0);
+                final progress = (details.localPosition.dx / totalStarSize)
+                    .clamp(0.0, 1.0);
                 final newValue = (progress * widget.max).clamp(0.0, widget.max);
                 widget.onChanged!(newValue);
               },

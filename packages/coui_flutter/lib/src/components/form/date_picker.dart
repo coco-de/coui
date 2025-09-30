@@ -69,16 +69,19 @@ class DatePickerTheme {
   }) {
     return DatePickerTheme(
       initialView: initialView == null ? this.initialView : initialView(),
-      initialViewType:
-          initialViewType == null ? this.initialViewType : initialViewType(),
+      initialViewType: initialViewType == null
+          ? this.initialViewType
+          : initialViewType(),
       mode: mode == null ? this.mode : mode(),
-      popoverAlignment:
-          popoverAlignment == null ? this.popoverAlignment : popoverAlignment(),
+      popoverAlignment: popoverAlignment == null
+          ? this.popoverAlignment
+          : popoverAlignment(),
       popoverAnchorAlignment: popoverAnchorAlignment == null
           ? this.popoverAnchorAlignment
           : popoverAnchorAlignment(),
-      popoverPadding:
-          popoverPadding == null ? this.popoverPadding : popoverPadding(),
+      popoverPadding: popoverPadding == null
+          ? this.popoverPadding
+          : popoverPadding(),
     );
   }
 
@@ -95,13 +98,13 @@ class DatePickerTheme {
 
   @override
   int get hashCode => Object.hash(
-        mode,
-        initialView,
-        initialViewType,
-        popoverAlignment,
-        popoverAnchorAlignment,
-        popoverPadding,
-      );
+    mode,
+    initialView,
+    initialViewType,
+    popoverAlignment,
+    popoverAnchorAlignment,
+    popoverPadding,
+  );
 }
 
 class DatePickerController extends ValueNotifier<DateTime?>
@@ -254,8 +257,9 @@ class DatePicker extends StatelessWidget {
           initialView: resolvedInitialView,
           initialViewType: resolvedInitialViewType,
           onChanged: (value) {
-            handler.value =
-                value == null ? null : (value as SingleCalendarValue).date;
+            handler.value = value == null
+                ? null
+                : (value as SingleCalendarValue).date;
           },
           selectionMode: CalendarSelectionMode.single,
           stateBuilder: stateBuilder,

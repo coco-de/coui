@@ -5,6 +5,10 @@ class ButtonExample6 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LinkButton(onPressed: () {}, child: const Text('Link'));
+    return LinkButton(
+        onPressed: () {
+          // TODOS: will be implemented later.
+        },
+        child: const Text('Link'));
   }
 }

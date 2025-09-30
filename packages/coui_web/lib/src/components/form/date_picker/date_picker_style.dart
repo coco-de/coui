@@ -11,15 +11,3 @@ abstract class DatePickerStyling {
   /// The type of style this represents.
   StyleType get type;
 }
-
-/// Concrete implementation of date picker styles.
-class DatePickerStyle implements DatePickerStyling {
-  /// Creates a [DatePickerStyle].
-  const DatePickerStyle(this.cssClass, {required this.type});
-
-  @override
-  final String cssClass;
-
-  @override
-  final StyleType type;
-}

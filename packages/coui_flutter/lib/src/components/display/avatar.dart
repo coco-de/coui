@@ -79,38 +79,6 @@ class AvatarTheme {
   /// If null, uses bold foreground color from theme.
   final TextStyle? textStyle;
 
-  /// Creates a copy of this theme with the given values replaced.
-  ///
-  /// Uses [ValueGetter] functions to allow conditional updates where
-  /// null getters preserve the original value.
-  ///
-  /// Example:
-  /// ```dart
-  /// final newTheme = originalTheme.copyWith(
-  ///   size: () => 60.0,
-  ///   backgroundColor: () => Colors.blue.shade100,
-  /// );
-  /// ```
-  AvatarTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<AlignmentGeometry?>? badgeAlignment,
-    ValueGetter<double?>? badgeGap,
-    ValueGetter<double?>? borderRadius,
-    ValueGetter<double?>? size,
-    ValueGetter<TextStyle?>? textStyle,
-  }) {
-    return AvatarTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      badgeAlignment:
-          badgeAlignment == null ? this.badgeAlignment : badgeAlignment(),
-      badgeGap: badgeGap == null ? this.badgeGap : badgeGap(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      size: size == null ? this.size : size(),
-      textStyle: textStyle == null ? this.textStyle : textStyle(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -126,13 +94,13 @@ class AvatarTheme {
 
   @override
   int get hashCode => Object.hash(
-        size,
-        borderRadius,
-        backgroundColor,
-        badgeAlignment,
-        badgeGap,
-        textStyle,
-      );
+    size,
+    borderRadius,
+    backgroundColor,
+    badgeAlignment,
+    badgeGap,
+    textStyle,
+  );
 }
 
 /// Abstract base class for avatar-related widgets.
@@ -277,10 +245,10 @@ class Avatar extends StatefulWidget implements AvatarWidget {
     required String photoUrl,
     this.size,
   }) : provider = ResizeImage.resizeIfNeeded(
-          cacheWidth,
-          cacheHeight,
-          NetworkImage(photoUrl),
-        );
+         cacheWidth,
+         cacheHeight,
+         NetworkImage(photoUrl),
+       );
 
   /// Generates initials from a user's full name.
   ///
@@ -594,8 +562,9 @@ class AvatarBadge extends StatelessWidget implements AvatarWidget {
 
     return Container(
       decoration: BoxDecoration(
-        borderRadius:
-            BorderRadius.circular(borderRadius ?? theme.radius * size),
+        borderRadius: BorderRadius.circular(
+          borderRadius ?? theme.radius * size,
+        ),
         color: color ?? Theme.of(context).colorScheme.primary,
       ),
       height: size,
@@ -747,66 +716,6 @@ class AvatarGroup extends StatelessWidget {
     return AvatarGroup(
       key: key,
       alignment: Alignment(-offset, 0),
-      gap: gap,
-      children: children,
-    );
-  }
-
-  /// Creates an [AvatarGroup] with start-to-end overlapping.
-  ///
-  /// Locale-aware version of [toLeft]. In LTR locales, behaves like [toLeft].
-  /// In RTL locales, behaves like [toRight].
-  ///
-  /// Parameters:
-  /// - [children] (List<AvatarWidget>, required): Avatars to arrange
-  /// - [gap] (double?, optional): Spacing between overlapping edges
-  /// - [offset] (double, default: 0.5): Amount of overlap (0.0 to 1.0)
-  ///
-  /// Example:
-  /// ```dart
-  /// AvatarGroup.toStart(
-  ///   children: [Avatar(initials: 'A'), Avatar(initials: 'B')],
-  /// );
-  /// ```
-  factory AvatarGroup.toStart({
-    required List<AvatarWidget> children,
-    double? gap,
-    Key? key,
-    double offset = 0.5,
-  }) {
-    return AvatarGroup(
-      key: key,
-      alignment: AlignmentDirectional(offset, 0),
-      gap: gap,
-      children: children,
-    );
-  }
-
-  /// Creates an [AvatarGroup] with end-to-start overlapping.
-  ///
-  /// Locale-aware version of [toRight]. In LTR locales, behaves like [toRight].
-  /// In RTL locales, behaves like [toLeft].
-  ///
-  /// Parameters:
-  /// - [children] (List<AvatarWidget>, required): Avatars to arrange
-  /// - [gap] (double?, optional): Spacing between overlapping edges
-  /// - [offset] (double, default: 0.5): Amount of overlap (0.0 to 1.0)
-  ///
-  /// Example:
-  /// ```dart
-  /// AvatarGroup.toEnd(
-  ///   children: [Avatar(initials: 'A'), Avatar(initials: 'B')],
-  /// );
-  /// ```
-  factory AvatarGroup.toEnd({
-    required List<AvatarWidget> children,
-    double? gap,
-    Key? key,
-    double offset = 0.5,
-  }) {
-    return AvatarGroup(
-      key: key,
-      alignment: AlignmentDirectional(-offset, 0),
       gap: gap,
       children: children,
     );

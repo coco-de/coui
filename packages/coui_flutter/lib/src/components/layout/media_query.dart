@@ -11,17 +11,6 @@ class MediaQueryVisibilityTheme {
   /// Maximum width at which the child is shown.
   final double? maxWidth;
 
-  /// Creates a copy of this theme but with the given fields replaced.
-  MediaQueryVisibilityTheme copyWith({
-    ValueGetter<double?>? maxWidth,
-    ValueGetter<double?>? minWidth,
-  }) {
-    return MediaQueryVisibilityTheme(
-      maxWidth: maxWidth == null ? this.maxWidth : maxWidth(),
-      minWidth: minWidth == null ? this.minWidth : minWidth(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -53,8 +42,9 @@ class MediaQueryVisibility extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final compTheme =
-        ComponentTheme.maybeOf<MediaQueryVisibilityTheme>(context);
+    final compTheme = ComponentTheme.maybeOf<MediaQueryVisibilityTheme>(
+      context,
+    );
     final size = mediaQuery.size.width;
     final minWidth = styleValue(
       defaultValue: null,

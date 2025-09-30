@@ -209,31 +209,6 @@ class TrackerTheme {
   /// If null, defaults to 32 logical pixels.
   final double? itemHeight;
 
-  /// Creates a copy of this theme with the given values replaced.
-  ///
-  /// Returns a new [TrackerTheme] instance with the same values as this
-  /// theme, except for any parameters that are explicitly provided. Use
-  /// [ValueGetter] functions to specify new values.
-  ///
-  /// Example:
-  /// ```dart
-  /// final newTheme = originalTheme.copyWith(
-  ///   radius: () => 16.0,
-  ///   itemHeight: () => 56.0,
-  /// );
-  /// ```
-  TrackerTheme copyWith({
-    ValueGetter<double?>? gap,
-    ValueGetter<double?>? itemHeight,
-    ValueGetter<double?>? radius,
-  }) {
-    return TrackerTheme(
-      gap: gap == null ? this.gap : gap(),
-      itemHeight: itemHeight == null ? this.itemHeight : itemHeight(),
-      radius: radius == null ? this.radius : radius(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -341,8 +316,9 @@ class Tracker extends StatelessWidget {
     final trackerTheme = ComponentTheme.maybeOf<TrackerTheme>(context);
 
     return ClipRRect(
-      borderRadius:
-          BorderRadius.circular(trackerTheme?.radius ?? theme.radiusMd),
+      borderRadius: BorderRadius.circular(
+        trackerTheme?.radius ?? theme.radiusMd,
+      ),
       child: Row(
         children: [
           for (final data in this.data)

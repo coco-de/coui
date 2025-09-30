@@ -79,18 +79,6 @@ class DropdownMenuTheme {
   /// Surface blur for the popup container.
   final double? surfaceBlur;
 
-  /// Returns a copy of this theme with the given fields replaced.
-  DropdownMenuTheme copyWith({
-    ValueGetter<double?>? surfaceBlur,
-    ValueGetter<double?>? surfaceOpacity,
-  }) {
-    return DropdownMenuTheme(
-      surfaceBlur: surfaceBlur == null ? this.surfaceBlur : surfaceBlur(),
-      surfaceOpacity:
-          surfaceOpacity == null ? this.surfaceOpacity : surfaceOpacity(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

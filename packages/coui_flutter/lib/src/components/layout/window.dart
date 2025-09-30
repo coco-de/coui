@@ -25,18 +25,6 @@ class WindowTheme {
 
   final double? resizeThickness;
 
-  WindowTheme copyWith({
-    ValueGetter<double?>? resizeThickness,
-    ValueGetter<double?>? titleBarHeight,
-  }) {
-    return WindowTheme(
-      resizeThickness:
-          resizeThickness == null ? this.resizeThickness : resizeThickness(),
-      titleBarHeight:
-          titleBarHeight == null ? this.titleBarHeight : titleBarHeight(),
-    );
-  }
-
   @override
   bool operator ==(Object other) =>
       other is WindowTheme &&
@@ -184,8 +172,9 @@ class WindowState {
       closable: closable == null ? this.closable : closable(),
       constraints: constraints == null ? this.constraints : constraints(),
       draggable: draggable == null ? this.draggable : draggable(),
-      enableSnapping:
-          enableSnapping == null ? this.enableSnapping : enableSnapping(),
+      enableSnapping: enableSnapping == null
+          ? this.enableSnapping
+          : enableSnapping(),
       maximizable: maximizable == null ? this.maximizable : maximizable(),
       minimizable: minimizable == null ? this.minimizable : minimizable(),
       minimized: minimized == null ? this.minimized : minimized(),
@@ -195,18 +184,18 @@ class WindowState {
 
   @override
   int get hashCode => Object.hash(
-        bounds,
-        maximized,
-        minimized,
-        alwaysOnTop,
-        closable,
-        resizable,
-        draggable,
-        maximizable,
-        minimizable,
-        enableSnapping,
-        constraints,
-      );
+    bounds,
+    maximized,
+    minimized,
+    alwaysOnTop,
+    closable,
+    resizable,
+    draggable,
+    maximizable,
+    minimizable,
+    enableSnapping,
+    constraints,
+  );
 }
 
 /// Reactive controller for managing window state and operations.
@@ -260,29 +249,25 @@ class WindowController extends ValueNotifier<WindowState> {
     bool minimizable = true,
     bool minimized = false,
     bool resizable = true,
-  }) : super(WindowState(
-          alwaysOnTop: focused,
-          bounds: bounds,
-          closable: closable,
-          constraints: constraints,
-          draggable: draggable,
-          enableSnapping: enableSnapping,
-          maximizable: maximizable,
-          maximized: maximized,
-          minimizable: minimizable,
-          minimized: minimized,
-          resizable: resizable,
-        ));
+  }) : super(
+         WindowState(
+           alwaysOnTop: focused,
+           bounds: bounds,
+           closable: closable,
+           constraints: constraints,
+           draggable: draggable,
+           enableSnapping: enableSnapping,
+           maximizable: maximizable,
+           maximized: maximized,
+           minimizable: minimizable,
+           minimized: minimized,
+           resizable: resizable,
+         ),
+       );
 
   WindowHandle? _attachedState;
 
   bool get mounted => _attachedState != null;
-
-  WindowHandle get attachedState {
-    assert(mounted, 'Window is not attached');
-
-    return _attachedState!;
-  }
 
   Rect get bounds => value.bounds;
   set bounds(Rect value) {
@@ -352,44 +337,6 @@ class WindowController extends ValueNotifier<WindowState> {
 }
 
 class WindowWidget extends StatefulWidget {
-  const WindowWidget({
-    this.actions,
-    required Rect this.bounds,
-    bool this.closable = true,
-    BoxConstraints this.constraints = kDefaultWindowConstraints,
-    this.content,
-    bool this.draggable = true,
-    bool this.enableSnapping = true,
-    super.key,
-    bool this.maximizable = true,
-    this.maximized,
-    bool this.minimizable = true,
-    bool this.minimized = false,
-    bool this.resizable = true,
-    this.resizeThickness,
-    this.title,
-    this.titleBarHeight,
-  }) : controller = null;
-
-  const WindowWidget.controlled({
-    this.actions,
-    this.content,
-    required WindowController this.controller,
-    super.key,
-    this.resizeThickness,
-    this.title,
-    this.titleBarHeight,
-  })  : bounds = null,
-        maximized = null,
-        minimized = null,
-        resizable = null,
-        draggable = null,
-        closable = null,
-        maximizable = null,
-        minimizable = null,
-        enableSnapping = null,
-        constraints = null;
-
   const WindowWidget._raw({
     this.actions,
     this.bounds,
@@ -527,8 +474,10 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
           deltaXAdjustment *= adjustmentX;
           deltaYAdjustment *= adjustmentY;
           if (deltaXAdjustment != 0 || deltaYAdjustment != 0) {
-            newBounds =
-                onResize(newBounds, Offset(deltaXAdjustment, deltaYAdjustment));
+            newBounds = onResize(
+              newBounds,
+              Offset(deltaXAdjustment, deltaYAdjustment),
+            );
           }
           bounds = newBounds;
         },
@@ -581,7 +530,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
               widget.resizeThickness ?? compTheme?.resizeThickness ?? 8;
           final titleBarHeight =
               (widget.titleBarHeight ?? compTheme?.titleBarHeight ?? 32) *
-                  theme.scaling;
+              theme.scaling;
 
           Widget windowClient = Card(
             borderRadius: state.maximized == null
@@ -634,8 +583,11 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                             max.height * size.height,
                           );
                         }
-                        final alignX =
-                            lerpDouble(-1, 1, localPosition.dx / bounds.width)!;
+                        final alignX = lerpDouble(
+                          -1,
+                          1,
+                          localPosition.dx / bounds.width,
+                        )!;
                         final alignY = lerpDouble(
                           -1,
                           1,
@@ -650,14 +602,18 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                         }
                         if (state.maximized != null) {
                           maximized = null;
-                          final layerRenderBox = _viewport
-                              ?.navigator._state.context
-                              .findRenderObject() as RenderBox?;
+                          final layerRenderBox =
+                              _viewport?.navigator._state.context
+                                      .findRenderObject()
+                                  as RenderBox?;
                           if (layerRenderBox != null) {
-                            final layerLocal = layerRenderBox
-                                .globalToLocal(details.globalPosition);
-                            final titleSize =
-                                Size(this.bounds.width, titleBarHeight);
+                            final layerLocal = layerRenderBox.globalToLocal(
+                              details.globalPosition,
+                            );
+                            final titleSize = Size(
+                              this.bounds.width,
+                              titleBarHeight,
+                            );
                             this.bounds = Rect.fromLTWH(
                               layerLocal.dx - titleSize.width / 2,
                               layerLocal.dy - titleSize.height / 2,
@@ -687,11 +643,12 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                             Expanded(
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: theme.scaling * 8),
+                                  horizontal: theme.scaling * 8,
+                                ),
                                 child: (_viewport?.focused ?? true)
                                     ? (widget.title ?? const SizedBox())
                                     : (widget.title ?? const SizedBox())
-                                        .muted(),
+                                          .muted(),
                               ),
                             ),
                             if (widget.actions != null) widget.actions!,
@@ -1132,23 +1089,6 @@ class Window {
     bool this.resizable = true,
     this.title,
   }) : controller = null;
-  Window.controlled({
-    this.actions = const WindowActions(),
-    this.content,
-    required this.controller,
-    this.title,
-  })  : bounds = null,
-        maximized = null,
-        minimized = null,
-        alwaysOnTop = null,
-        resizable = null,
-        draggable = null,
-        maximizable = null,
-        minimizable = null,
-        enableSnapping = null,
-        closable = null,
-        constraints = null;
-
   final Widget? title;
   final Widget? actions;
   final Widget? content;
@@ -1255,10 +1195,8 @@ const kDefaultWindowConstraints = BoxConstraints(
 );
 
 class _DraggingWindow {
-  const _DraggingWindow(this.cursorPosition, this.window);
+  const _DraggingWindow(this.window);
   final Window window;
-
-  final Offset cursorPosition;
 }
 
 class _WindowLayerGroup extends StatelessWidget {
@@ -1289,7 +1227,8 @@ class _WindowLayerGroup extends StatelessWidget {
             windows[i]._build(
               alwaysOnTop: false,
               focused: i == 0,
-              minifyDragging: handle._snappingStrategy.value != null &&
+              minifyDragging:
+                  handle._snappingStrategy.value != null &&
                   handle._snappingStrategy.value!.shouldMinifyWindow &&
                   handle._draggingWindow.value != null &&
                   handle._draggingWindow.value!.window == windows[i],
@@ -1345,8 +1284,11 @@ class _WindowLayerGroup extends StatelessWidget {
                               height: 100,
                               padding: const EdgeInsets.all(8) * theme.scaling,
                               child: Opacity(
-                                opacity:
-                                    unlerpDouble(value, -0.85, 0).clamp(0, 1),
+                                opacity: unlerpDouble(
+                                  value,
+                                  -0.85,
+                                  0,
+                                ).clamp(0, 1),
                                 child: Row(
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
@@ -1355,7 +1297,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                   children: [
                                     // 0.5 | 0.5
                                     AspectRatio(
-                                      aspectRatio: constraints.biggest.width /
+                                      aspectRatio:
+                                          constraints.biggest.width /
                                           constraints.biggest.height,
                                       child: LayoutBuilder(
                                         builder: (context, constraints) {
@@ -1398,7 +1341,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                     ),
                                     // 0.7 | 0.3
                                     AspectRatio(
-                                      aspectRatio: constraints.biggest.width /
+                                      aspectRatio:
+                                          constraints.biggest.width /
                                           constraints.biggest.height,
                                       child: LayoutBuilder(
                                         builder: (context, constraints) {
@@ -1442,7 +1386,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                     // (0.5, 1) | (0.5, 0.5)
                                     //          | (0.5, 0.5)
                                     AspectRatio(
-                                      aspectRatio: constraints.biggest.width /
+                                      aspectRatio:
+                                          constraints.biggest.width /
                                           constraints.biggest.height,
                                       child: LayoutBuilder(
                                         builder: (context, constraints) {
@@ -1502,7 +1447,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                     // (0.5, 0.5) | (0.5, 0.5)
                                     // (0.5, 0.5) | (0.5, 0.5)
                                     AspectRatio(
-                                      aspectRatio: constraints.biggest.width /
+                                      aspectRatio:
+                                          constraints.biggest.width /
                                           constraints.biggest.height,
                                       child: LayoutBuilder(
                                         builder: (context, constraints) {
@@ -1577,7 +1523,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                     ),
                                     // 1/3 | 1/3 | 1/3
                                     AspectRatio(
-                                      aspectRatio: constraints.biggest.width /
+                                      aspectRatio:
+                                          constraints.biggest.width /
                                           constraints.biggest.height,
                                       child: LayoutBuilder(
                                         builder: (context, constraints) {
@@ -1634,7 +1581,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                     ),
                                     // 2/7 | 3/7 | 2/7
                                     AspectRatio(
-                                      aspectRatio: constraints.biggest.width /
+                                      aspectRatio:
+                                          constraints.biggest.width /
                                           constraints.biggest.height,
                                       child: LayoutBuilder(
                                         builder: (context, constraints) {
@@ -1700,14 +1648,18 @@ class _WindowLayerGroup extends StatelessWidget {
                       duration: handle._hoveringTopSnapper.value
                           ? const Duration(milliseconds: 300)
                           : kDefaultDuration,
-                      value: handle._draggingWindow.value == null ||
-                              handle._draggingWindow.value!.window
+                      value:
+                          handle._draggingWindow.value == null ||
+                              handle
+                                      ._draggingWindow
+                                      .value!
+                                      .window
                                       .alwaysOnTop !=
                                   alwaysOnTop
                           ? -1.0
                           : handle._hoveringTopSnapper.value
-                              ? 0.0
-                              : -0.85,
+                          ? 0.0
+                          : -0.85,
                     ),
                   ),
                 ),
@@ -1718,13 +1670,20 @@ class _WindowLayerGroup extends StatelessWidget {
         if (handle._draggingWindow.value != null &&
             handle._draggingWindow.value!.window.alwaysOnTop == alwaysOnTop)
           handle._draggingWindow.value!.window._build(
-            alwaysOnTop: handle._draggingWindow.value!.window.alwaysOnTop ??
-                handle._draggingWindow.value!.window.controller?.value
+            alwaysOnTop:
+                handle._draggingWindow.value!.window.alwaysOnTop ??
+                handle
+                    ._draggingWindow
+                    .value!
+                    .window
+                    .controller
+                    ?.value
                     .alwaysOnTop ??
                 false,
             focused: true,
             ignorePointer: true,
-            minifyDragging: handle._snappingStrategy.value != null &&
+            minifyDragging:
+                handle._snappingStrategy.value != null &&
                 handle._snappingStrategy.value!.shouldMinifyWindow,
             navigator: handle,
             size: constraints.biggest,
@@ -1760,7 +1719,7 @@ class _WindowNavigatorState extends State<WindowNavigator>
 
   void _startDraggingWindow(Offset cursorPosition, Window draggingWindow) {
     if (_draggingWindow.value != null) return;
-    _draggingWindow.value = _DraggingWindow(draggingWindow, cursorPosition);
+    _draggingWindow.value = _DraggingWindow(cursorPosition);
   }
 
   void _updateDraggingWindow(Offset cursorPosition, Window handle) {
@@ -1768,8 +1727,7 @@ class _WindowNavigatorState extends State<WindowNavigator>
         _draggingWindow.value!.window != handle) {
       return;
     }
-    _draggingWindow.value =
-        _DraggingWindow(_draggingWindow.value!.window, cursorPosition);
+    _draggingWindow.value = _DraggingWindow(cursorPosition);
   }
 
   void _stopDraggingWindow(Window handle) {
@@ -1963,74 +1921,82 @@ class _WindowNavigatorState extends State<WindowNavigator>
     final compTheme = ComponentTheme.maybeOf<WindowTheme>(context);
     final titleBarHeight = (compTheme?.titleBarHeight ?? 32) * theme.scaling;
 
-    return LayoutBuilder(builder: (context, constraints) {
-      return ListenableBuilder(
-        builder: (context, child) {
-          return ClipRect(
-            child: GroupWidget(
-              children: [
-                Listener(
-                  behavior: HitTestBehavior.translucent,
-                  onPointerDown: (_) {
-                    if (_focusLayer != 0) {
-                      setState(() {
-                        _focusLayer = 0;
-                      });
-                    }
-                  },
-                  child: widget.child,
-                ),
-                _WindowLayerGroup(
-                  alwaysOnTop: false,
-                  constraints: constraints,
-                  handle: this,
-                  showTopSnapBar: widget.showTopSnapBar,
-                  windows: _windows,
-                ),
-                _WindowLayerGroup(
-                  alwaysOnTop: true,
-                  constraints: constraints,
-                  handle: this,
-                  showTopSnapBar: widget.showTopSnapBar,
-                  windows: _topWindows,
-                ),
-                GroupPositioned(
-                  height: titleBarHeight,
-                  left: 0,
-                  right: 0,
-                  top: 0,
-                  child: _createBorderSnapStrategy(const WindowSnapStrategy(
-                    relativeBounds: Rect.fromLTWH(0, 0, 1, 1),
-                    shouldMinifyWindow: false,
-                  )),
-                ),
-                GroupPositioned(
-                  bottom: 0,
-                  left: 0,
-                  top: titleBarHeight,
-                  width: titleBarHeight,
-                  child: _createBorderSnapStrategy(const WindowSnapStrategy(
-                    relativeBounds: Rect.fromLTWH(0, 0, 0.5, 1),
-                    shouldMinifyWindow: false,
-                  )),
-                ),
-                GroupPositioned(
-                  bottom: 0,
-                  right: 0,
-                  top: titleBarHeight,
-                  width: titleBarHeight,
-                  child: _createBorderSnapStrategy(const WindowSnapStrategy(
-                    relativeBounds: Rect.fromLTWH(0.5, 0, 0.5, 1),
-                    shouldMinifyWindow: false,
-                  )),
-                ),
-              ],
-            ),
-          );
-        },
-        listenable: Listenable.merge([_draggingWindow, _snappingStrategy]),
-      );
-    });
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return ListenableBuilder(
+          builder: (context, child) {
+            return ClipRect(
+              child: GroupWidget(
+                children: [
+                  Listener(
+                    behavior: HitTestBehavior.translucent,
+                    onPointerDown: (_) {
+                      if (_focusLayer != 0) {
+                        setState(() {
+                          _focusLayer = 0;
+                        });
+                      }
+                    },
+                    child: widget.child,
+                  ),
+                  _WindowLayerGroup(
+                    alwaysOnTop: false,
+                    constraints: constraints,
+                    handle: this,
+                    showTopSnapBar: widget.showTopSnapBar,
+                    windows: _windows,
+                  ),
+                  _WindowLayerGroup(
+                    alwaysOnTop: true,
+                    constraints: constraints,
+                    handle: this,
+                    showTopSnapBar: widget.showTopSnapBar,
+                    windows: _topWindows,
+                  ),
+                  GroupPositioned(
+                    height: titleBarHeight,
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    child: _createBorderSnapStrategy(
+                      const WindowSnapStrategy(
+                        relativeBounds: Rect.fromLTWH(0, 0, 1, 1),
+                        shouldMinifyWindow: false,
+                      ),
+                    ),
+                  ),
+                  GroupPositioned(
+                    bottom: 0,
+                    left: 0,
+                    top: titleBarHeight,
+                    width: titleBarHeight,
+                    child: _createBorderSnapStrategy(
+                      const WindowSnapStrategy(
+                        relativeBounds: Rect.fromLTWH(0, 0, 0.5, 1),
+                        shouldMinifyWindow: false,
+                      ),
+                    ),
+                  ),
+                  GroupPositioned(
+                    bottom: 0,
+                    right: 0,
+                    top: titleBarHeight,
+                    width: titleBarHeight,
+                    child: _createBorderSnapStrategy(
+                      const WindowSnapStrategy(
+                        relativeBounds: Rect.fromLTWH(0.5, 0, 0.5, 1),
+                        shouldMinifyWindow: false,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+          listenable: Listenable.merge([_draggingWindow, _snappingStrategy]),
+        );
+      },
+    );
   }
 }
 
@@ -2084,18 +2050,22 @@ class _SnapHoverState extends State<_SnapHover> {
         decoration: BoxDecoration(
           border: Border.all(color: theme.colorScheme.border),
           borderRadius: BorderRadius.only(
-            bottomLeft:
-                widget.bottomLeft ? theme.radiusSmRadius : theme.radiusLgRadius,
+            bottomLeft: widget.bottomLeft
+                ? theme.radiusSmRadius
+                : theme.radiusLgRadius,
             bottomRight: widget.bottomRight
                 ? theme.radiusSmRadius
                 : theme.radiusLgRadius,
-            topLeft:
-                widget.topLeft ? theme.radiusSmRadius : theme.radiusLgRadius,
-            topRight:
-                widget.topRight ? theme.radiusSmRadius : theme.radiusLgRadius,
+            topLeft: widget.topLeft
+                ? theme.radiusSmRadius
+                : theme.radiusLgRadius,
+            topRight: widget.topRight
+                ? theme.radiusSmRadius
+                : theme.radiusLgRadius,
           ),
-          color:
-              _hovering ? theme.colorScheme.secondary : theme.colorScheme.card,
+          color: _hovering
+              ? theme.colorScheme.secondary
+              : theme.colorScheme.card,
         ),
       ),
     );
@@ -2165,9 +2135,13 @@ class WindowActions extends StatelessWidget {
               if (handle != null) {
                 handle.maximized = handle.maximized == null
                     ? null
-                    : viewport?.navigator._state._snappingStrategy.value
-                            ?.relativeBounds ??
-                        const Rect.fromLTWH(0, 0, 1, 1);
+                    : viewport
+                              ?.navigator
+                              ._state
+                              ._snappingStrategy
+                              .value
+                              ?.relativeBounds ??
+                          const Rect.fromLTWH(0, 0, 1, 1);
               }
             },
             size: ButtonSize.small,

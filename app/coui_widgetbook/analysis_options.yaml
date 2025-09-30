@@ -9,3 +9,13 @@ analyzer:
     - "**/*.g.dart"
     - "**/*.gr.dart"
     - "**/*.mocks.dart"
+dart_code_metrics:
+  extends:
+    - package:dart_code_metrics_presets/all.yaml
+
+  rules:
+    - parameters-ordering: false
+    - no-empty-block: false
+    - avoid-returning-widgets: false
+    - prefer-static-class: false
+    - no-magic-string: false

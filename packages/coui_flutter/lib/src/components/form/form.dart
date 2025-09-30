@@ -5,9 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart' as widgets;
 import 'package:coui_flutter/coui_flutter.dart';
 
-
-
-
 /// Abstract base class for implementing form field validation logic.
 ///
 /// Validators are responsible for checking the validity of form field values
@@ -45,7 +42,10 @@ abstract class Validator<T> {
   /// Returns a [FutureOr<ValidationResult?>] that is null for valid values
   /// or contains error information for invalid values.
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode lifecycle, T? value);
+    BuildContext context,
+    FormValidationMode lifecycle,
+    T? value,
+  );
 
   /// Combines this validator with another validator using AND logic.
   ///
@@ -201,7 +201,10 @@ class ValidationMode<T> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode lifecycle, T? value) {
+    BuildContext context,
+    FormValidationMode lifecycle,
+    T? value,
+  ) {
     return mode.contains(lifecycle)
         ? validator.validate(context, value, lifecycle)
         : null;
@@ -313,7 +316,10 @@ class ConditionalValidator<T> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode lifecycle, T? value) {
+    BuildContext context,
+    FormValidationMode lifecycle,
+    T? value,
+  ) {
     final result = predicate(value);
     if (result is Future<bool>) {
       return result.then((value) {
@@ -342,9 +348,10 @@ class ConditionalValidator<T> extends Validator<T> {
   int get hashCode => Object.hash(predicate, message);
 }
 
-typedef ValidatorBuilderFunction<T> = FutureOr<ValidationResult?> Function(
-  T? value,
-);
+typedef ValidatorBuilderFunction<T> =
+    FutureOr<ValidationResult?> Function(
+      T? value,
+    );
 
 class ValidatorBuilder<T> extends Validator<T> {
   const ValidatorBuilder(this.builder, {this.dependencies = const []});
@@ -355,7 +362,10 @@ class ValidatorBuilder<T> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode lifecycle, T? value) {
+    BuildContext context,
+    FormValidationMode lifecycle,
+    T? value,
+  ) {
     return builder(value);
   }
 
@@ -382,7 +392,10 @@ class NotValidator<T> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, T? value) {
+    BuildContext context,
+    FormValidationMode state,
+    T? value,
+  ) {
     final localizations = Localizations.of(context, CoUILocalizations);
     final result = validator.validate(context, value, state);
     if (result is Future<ValidationResult?>) {
@@ -419,7 +432,10 @@ class OrValidator<T> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, T? value) {
+    BuildContext context,
+    FormValidationMode state,
+    T? value,
+  ) {
     return _chainedValidation(context, value, state, 0);
   }
 
@@ -445,7 +461,11 @@ class OrValidator<T> extends Validator<T> {
   }
 
   FutureOr<ValidationResult?> _chainedValidation(
-      BuildContext context, int index, FormValidationMode state, T? value) {
+    BuildContext context,
+    int index,
+    FormValidationMode state,
+    T? value,
+  ) {
     if (index >= validators.length) {
       return null;
     }
@@ -481,7 +501,10 @@ class NonNullValidator<T> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, T? value) {
+    BuildContext context,
+    FormValidationMode state,
+    T? value,
+  ) {
     if (value == null) {
       final localizations = Localizations.of(context, CoUILocalizations);
 
@@ -505,7 +528,10 @@ class NotEmptyValidator extends NonNullValidator<String> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, String? value) {
+    BuildContext context,
+    FormValidationMode state,
+    String? value,
+  ) {
     if (value == null || value.isEmpty) {
       final localizations = Localizations.of(context, CoUILocalizations);
 
@@ -534,19 +560,26 @@ class LengthValidator extends Validator<String> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, String? value) {
+    BuildContext context,
+    FormValidationMode state,
+    String? value,
+  ) {
     if (value == null) {
       return min != null
           ? InvalidResult(
               message ??
-                  Localizations.of(context, CoUILocalizations)
-                      .formLengthLessThan(min!),
+                  Localizations.of(
+                    context,
+                    CoUILocalizations,
+                  ).formLengthLessThan(min!),
               state: state,
             )
           : null;
     }
-    final CoUILocalizations localizations =
-        Localizations.of(context, CoUILocalizations);
+    final CoUILocalizations localizations = Localizations.of(
+      context,
+      CoUILocalizations,
+    );
     if (min != null && value.length < min!) {
       return InvalidResult(
         message ?? localizations.formLengthLessThan(min!),
@@ -580,12 +613,12 @@ class CompareWith<T extends Comparable<T>> extends Validator<T> {
   const CompareWith(this.key, this.type, {this.message});
   const CompareWith.equal(this.key, {this.message}) : type = CompareType.equal;
   const CompareWith.greater(this.key, {this.message})
-      : type = CompareType.greater;
+    : type = CompareType.greater;
   const CompareWith.greaterOrEqual(this.key, {this.message})
-      : type = CompareType.greaterOrEqual;
+    : type = CompareType.greaterOrEqual;
   const CompareWith.less(this.key, {this.message}) : type = CompareType.less;
   const CompareWith.lessOrEqual(this.key, {this.message})
-      : type = CompareType.lessOrEqual;
+    : type = CompareType.lessOrEqual;
 
   final FormKey<T> key;
   final CompareType type;
@@ -593,7 +626,10 @@ class CompareWith<T extends Comparable<T>> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, T? value) {
+    BuildContext context,
+    FormValidationMode state,
+    T? value,
+  ) {
     final localizations = Localizations.of(context, CoUILocalizations);
     final otherValue = context.getFormValue(key);
     if (otherValue == null) {
@@ -691,7 +727,10 @@ class SafePasswordValidator extends Validator<String> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, String? value) {
+    BuildContext context,
+    FormValidationMode state,
+    String? value,
+  ) {
     if (value == null) {
       return null;
     }
@@ -720,8 +759,10 @@ class SafePasswordValidator extends Validator<String> {
     return requireSpecialChar && !RegExp(r'[\W_]').hasMatch(value)
         ? InvalidResult(
             message ??
-                Localizations.of(context, CoUILocalizations)
-                    .formPasswordSpecial,
+                Localizations.of(
+                  context,
+                  CoUILocalizations,
+                ).formPasswordSpecial,
             state: state,
           )
         : null;
@@ -739,12 +780,12 @@ class SafePasswordValidator extends Validator<String> {
 
   @override
   int get hashCode => Object.hash(
-        requireDigit,
-        requireLowercase,
-        requireUppercase,
-        requireSpecialChar,
-        message,
-      );
+    requireDigit,
+    requireLowercase,
+    requireUppercase,
+    requireSpecialChar,
+    message,
+  );
 }
 
 class MinValidator<T extends num> extends Validator<T> {
@@ -757,7 +798,10 @@ class MinValidator<T extends num> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, T? value) {
+    BuildContext context,
+    FormValidationMode state,
+    T? value,
+  ) {
     if (value == null) {
       return null;
     }
@@ -765,8 +809,10 @@ class MinValidator<T extends num> extends Validator<T> {
       if (value < min) {
         return InvalidResult(
           message ??
-              Localizations.of(context, CoUILocalizations)
-                  .formGreaterThanOrEqualTo(min),
+              Localizations.of(
+                context,
+                CoUILocalizations,
+              ).formGreaterThanOrEqualTo(min),
           state: state,
         );
       }
@@ -805,7 +851,10 @@ class MaxValidator<T extends num> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, T? value) {
+    BuildContext context,
+    FormValidationMode state,
+    T? value,
+  ) {
     if (value == null) {
       return null;
     }
@@ -813,8 +862,10 @@ class MaxValidator<T extends num> extends Validator<T> {
       if (value > max) {
         return InvalidResult(
           message ??
-              Localizations.of(context, CoUILocalizations)
-                  .formLessThanOrEqualTo(max),
+              Localizations.of(
+                context,
+                CoUILocalizations,
+              ).formLessThanOrEqualTo(max),
           state: state,
         );
       }
@@ -859,7 +910,10 @@ class RangeValidator<T extends num> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, T? value) {
+    BuildContext context,
+    FormValidationMode state,
+    T? value,
+  ) {
     if (value == null) {
       return null;
     }
@@ -867,8 +921,10 @@ class RangeValidator<T extends num> extends Validator<T> {
       if (value < min || value > max) {
         return InvalidResult(
           message ??
-              Localizations.of(context, CoUILocalizations)
-                  .formBetweenInclusively(min, max),
+              Localizations.of(
+                context,
+                CoUILocalizations,
+              ).formBetweenInclusively(min, max),
           state: state,
         );
       }
@@ -876,8 +932,10 @@ class RangeValidator<T extends num> extends Validator<T> {
       if (value <= min || value >= max) {
         return InvalidResult(
           message ??
-              Localizations.of(context, CoUILocalizations)
-                  .formBetweenExclusively(min, max),
+              Localizations.of(
+                context,
+                CoUILocalizations,
+              ).formBetweenExclusively(min, max),
           state: state,
         );
       }
@@ -905,7 +963,10 @@ class RegexValidator extends Validator<String> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, String? value) {
+    BuildContext context,
+    FormValidationMode state,
+    String? value,
+  ) {
     if (value == null) {
       return null;
     }
@@ -938,7 +999,10 @@ class EmailValidator extends Validator<String> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, String? value) {
+    BuildContext context,
+    FormValidationMode state,
+    String? value,
+  ) {
     if (value == null) {
       return null;
     }
@@ -968,7 +1032,10 @@ class URLValidator extends Validator<String> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, String? value) {
+    BuildContext context,
+    FormValidationMode state,
+    String? value,
+  ) {
     if (value == null) {
       return null;
     }
@@ -997,12 +1064,12 @@ class CompareTo<T extends Comparable<T>> extends Validator<T> {
   const CompareTo(this.type, this.value, {this.message});
   const CompareTo.equal(this.value, {this.message}) : type = CompareType.equal;
   const CompareTo.greater(this.value, {this.message})
-      : type = CompareType.greater;
+    : type = CompareType.greater;
   const CompareTo.greaterOrEqual(this.value, {this.message})
-      : type = CompareType.greaterOrEqual;
+    : type = CompareType.greaterOrEqual;
   const CompareTo.less(this.value, {this.message}) : type = CompareType.less;
   const CompareTo.lessOrEqual(this.value, {this.message})
-      : type = CompareType.lessOrEqual;
+    : type = CompareType.lessOrEqual;
 
   final T? value;
   final CompareType type;
@@ -1010,7 +1077,10 @@ class CompareTo<T extends Comparable<T>> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, T? value) {
+    BuildContext context,
+    FormValidationMode state,
+    T? value,
+  ) {
     final localizations = Localizations.of(context, CoUILocalizations);
     final compare = _compare(value, this.value);
     switch (type) {
@@ -1088,7 +1158,10 @@ class CompositeValidator<T> extends Validator<T> {
 
   @override
   FutureOr<ValidationResult?> validate(
-      BuildContext context, FormValidationMode state, T? value) {
+    BuildContext context,
+    FormValidationMode state,
+    T? value,
+  ) {
     return _chainValidation(context, value, state, 0);
   }
 
@@ -1115,7 +1188,11 @@ class CompositeValidator<T> extends Validator<T> {
   }
 
   FutureOr<ValidationResult?> _chainValidation(
-      BuildContext context, int index, FormValidationMode state, T? value) {
+    BuildContext context,
+    int index,
+    FormValidationMode state,
+    T? value,
+  ) {
     if (index >= validators.length) {
       return null;
     }
@@ -1268,8 +1345,11 @@ typedef TimeInputKey = FormKey<TimeOfDay>;
 typedef ToggleKey = FormKey<bool>;
 
 class FormEntry<T> extends StatefulWidget {
-  const FormEntry(
-      {required this.child, required FormKey<T> super.key, this.validator});
+  const FormEntry({
+    required this.child,
+    required FormKey<T> super.key,
+    this.validator,
+  });
 
   final Widget child;
 
@@ -1503,10 +1583,11 @@ class FormValueState<T> {
 
 typedef FormMapValues = Map<FormKey, dynamic>;
 
-typedef FormSubmitCallback = void Function(
-  BuildContext context,
-  FormMapValues values,
-);
+typedef FormSubmitCallback =
+    void Function(
+      BuildContext context,
+      FormMapValues values,
+    );
 
 extension FormMapValuesExtension on FormMapValues {
   T? getValue<T>(FormKey<T> key) {
@@ -1514,8 +1595,10 @@ extension FormMapValuesExtension on FormMapValues {
     if (value == null) {
       return null;
     }
-    assert(key.isInstanceOf(value),
-        'The value for key $key is not of type ${key.type}');
+    assert(
+      key.isInstanceOf(value),
+      'The value for key $key is not of type ${key.type}',
+    );
 
     return value as T?;
   }
@@ -1727,8 +1810,10 @@ class FormController extends ChangeNotifier {
     for (final entry in _validity.entries) {
       final result = entry.value.result;
       if (result is Future<ValidationResult?>) {
-        errors[entry.key] =
-            WaitingResult.attached(key: entry.key, state: entry.value.state);
+        errors[entry.key] = WaitingResult.attached(
+          key: entry.key,
+          state: entry.value.state,
+        );
       } else if (result != null) {
         errors[entry.key] = result;
       }
@@ -1790,8 +1875,10 @@ class FormController extends ChangeNotifier {
             _validity[key] = _ValidatorResultStash(future, state);
             future.then((value) {
               if (_validity[key]?.result == future) {
-                _validity[key] =
-                    _ValidatorResultStash(value?.attach(key), state);
+                _validity[key] = _ValidatorResultStash(
+                  value?.attach(key),
+                  state,
+                );
                 WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                   if (_disposed) {
                     return;
@@ -1862,8 +1949,11 @@ class FormController extends ChangeNotifier {
         continue;
       }
       if (value.validator != null && value.validator!.shouldRevalidate(key)) {
-        final revalidateResult =
-            value.validator!.validate(context, value.value, lifecycle);
+        final revalidateResult = value.validator!.validate(
+          context,
+          value.value,
+          lifecycle,
+        );
         revalidate[k] = revalidateResult;
       }
     }
@@ -1944,11 +2034,19 @@ class FormState extends State<Form> {
 }
 
 class FormEntryErrorBuilder extends StatelessWidget {
-  const FormEntryErrorBuilder(
-      {required this.builder, super.key, this.child, this.modes});
+  const FormEntryErrorBuilder({
+    required this.builder,
+    super.key,
+    this.child,
+    this.modes,
+  });
 
   final Widget Function(
-      BuildContext context, ValidationResult? error, Widget? child) builder;
+    BuildContext context,
+    ValidationResult? error,
+    Widget? child,
+  )
+  builder;
   final Widget? child;
 
   final Set<FormValidationMode>? modes;
@@ -1980,7 +2078,7 @@ class FormEntryErrorBuilder extends StatelessWidget {
 
 class WaitingResult extends ValidationResult {
   const WaitingResult.attached({required FormKey key, required super.state})
-      : _key = key;
+    : _key = key;
 
   final FormKey? _key;
 
@@ -2006,7 +2104,8 @@ class FormErrorBuilder extends StatelessWidget {
     BuildContext context,
     Map<FormKey, ValidationResult> errors,
     Widget? child,
-  ) builder;
+  )
+  builder;
 
   @override
   Widget build(BuildContext context) {
@@ -2022,11 +2121,12 @@ class FormErrorBuilder extends StatelessWidget {
   }
 }
 
-typedef FormPendingWidgetBuilder = Widget Function(
-  BuildContext context,
-  Map<FormKey, Future<ValidationResult?>> errors,
-  Widget? child,
-);
+typedef FormPendingWidgetBuilder =
+    Widget Function(
+      BuildContext context,
+      Map<FormKey, Future<ValidationResult?>> errors,
+      Widget? child,
+    );
 
 class FormPendingBuilder extends StatelessWidget {
   const FormPendingBuilder({required this.builder, super.key, this.child});
@@ -2105,9 +2205,10 @@ extension FormExtension on BuildContext {
   }
 
   FutureOr<SubmissionResult> _chainedSubmitForm(
-      Map<FormKey, Object?> values,
-      Map<FormKey, ValidationResult> errors,
-      Iterator<MapEntry<FormKey, _ValidatorResultStash>> iterator) {
+    Map<FormKey, Object?> values,
+    Map<FormKey, ValidationResult> errors,
+    Iterator<MapEntry<FormKey, _ValidatorResultStash>> iterator,
+  ) {
     if (!iterator.moveNext()) {
       return SubmissionResult(values, errors);
     }
@@ -2243,17 +2344,19 @@ class FormField<T> extends StatelessWidget {
         builder: (context, error, child) {
           return ComponentTheme(
             data: FocusOutlineTheme(
-                border: error == null
-                    ? null
-                    : Border.all(
-                        color: theme.colorScheme.destructive.scaleAlpha(0.2),
-                        width: 3,
-                      )),
+              border: error == null
+                  ? null
+                  : Border.all(
+                      color: theme.colorScheme.destructive.scaleAlpha(0.2),
+                      width: 3,
+                    ),
+            ),
             child: ComponentTheme(
               data: TextFieldTheme(
-                  border: error == null
-                      ? null
-                      : Border.all(color: theme.colorScheme.destructive)),
+                border: error == null
+                    ? null
+                    : Border.all(color: theme.colorScheme.destructive),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -2399,8 +2502,7 @@ class FormTableLayout extends StatelessWidget {
           for (int i = 0; i < rows.length; i += 1)
             widgets.TableRow(
               children: [
-                rows[i]
-                    .label
+                rows[i].label
                     .textSmall()
                     .withAlign(AlignmentDirectional.centerEnd)
                     .withMargin(right: scaling * 16)
@@ -2416,20 +2518,22 @@ class FormTableLayout extends StatelessWidget {
                     builder: (context, error, child) {
                       return ComponentTheme(
                         data: FocusOutlineTheme(
+                          border: error == null
+                              ? null
+                              : Border.all(
+                                  color: theme.colorScheme.destructive
+                                      .scaleAlpha(0.2),
+                                  width: 3,
+                                ),
+                        ),
+                        child: ComponentTheme(
+                          data: TextFieldTheme(
                             border: error == null
                                 ? null
                                 : Border.all(
-                                    color: theme.colorScheme.destructive
-                                        .scaleAlpha(0.2),
-                                    width: 3,
-                                  )),
-                        child: ComponentTheme(
-                          data: TextFieldTheme(
-                              border: error == null
-                                  ? null
-                                  : Border.all(
-                                      color: theme.colorScheme.destructive,
-                                    )),
+                                    color: theme.colorScheme.destructive,
+                                  ),
+                          ),
                           child: IntrinsicWidth(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -2443,12 +2547,13 @@ class FormTableLayout extends StatelessWidget {
                                   Gap(scaling * 8),
                                   DefaultTextStyle.merge(
                                     style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .destructive,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.destructive,
                                     ),
-                                    child:
-                                        Text(error.message).xSmall().medium(),
+                                    child: Text(
+                                      error.message,
+                                    ).xSmall().medium(),
                                   ),
                                 ],
                               ],

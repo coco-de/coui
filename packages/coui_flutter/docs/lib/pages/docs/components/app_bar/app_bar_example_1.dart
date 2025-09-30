@@ -14,19 +14,25 @@ class AppBarExample1 extends StatelessWidget {
         leading: [
           OutlineButton(
             density: ButtonDensity.icon,
-            onPressed: () {},
+            onPressed: () {
+              // TODOS: will be implemented later.
+            },
             child: const Icon(Icons.arrow_back),
           ),
         ],
         trailing: [
           OutlineButton(
             density: ButtonDensity.icon,
-            onPressed: () {},
+            onPressed: () {
+              // TODOS: will be implemented later.
+            },
             child: const Icon(Icons.search),
           ),
           OutlineButton(
             density: ButtonDensity.icon,
-            onPressed: () {},
+            onPressed: () {
+              // TODOS: will be implemented later.
+            },
             child: const Icon(Icons.more_vert),
           ),
         ],

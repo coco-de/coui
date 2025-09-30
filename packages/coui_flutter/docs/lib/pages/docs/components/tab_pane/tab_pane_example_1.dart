@@ -89,7 +89,9 @@ class _TabPaneExample1State extends State<TabPaneExample1> {
           icon: const Icon(Icons.arrow_drop_down),
           size: ButtonSize.small,
           density: ButtonDensity.iconDense,
-          onPressed: () {},
+          onPressed: () {
+            // TODOS: will be implemented later.
+          },
         ),
       ],
       trailing: [

@@ -1,5 +1,4 @@
 include: ../../analysis_options.yaml
-
 analyzer:
   errors:
     argument_type_not_assignable: ignore
@@ -38,6 +37,7 @@ dart_code_metrics:
     - package:dart_code_metrics_presets/all.yaml
 
   rules:
+    - parameters-ordering: false
     - format-comment:
         only-doc-comments: true
     - avoid-dynamic: false
@@ -56,3 +56,7 @@ dart_code_metrics:
     - prefer-correct-callback-field-name: false
     - prefer-correct-identifier-length: false
     - prefer-single-widget-per-file: false
+    - avoid-returning-widgets: false
+    - prefer-static-class: false
+    - no-magic-string: false
+

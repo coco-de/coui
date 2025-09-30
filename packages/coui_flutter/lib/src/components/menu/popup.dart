@@ -30,27 +30,6 @@ class MenuPopupTheme {
   /// The border radius of the popup.
   final BorderRadiusGeometry? borderRadius;
 
-  /// Returns a copy of this theme with the given fields replaced.
-  MenuPopupTheme copyWith({
-    ValueGetter<Color?>? borderColor,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<Color?>? fillColor,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<double?>? surfaceBlur,
-    ValueGetter<double?>? surfaceOpacity,
-  }) {
-    return MenuPopupTheme(
-      borderColor: borderColor == null ? this.borderColor : borderColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      fillColor: fillColor == null ? this.fillColor : fillColor(),
-      padding: padding == null ? this.padding : padding(),
-      surfaceBlur: surfaceBlur == null ? this.surfaceBlur : surfaceBlur(),
-      surfaceOpacity: surfaceOpacity == null
-          ? this.surfaceOpacity
-          : surfaceOpacity(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

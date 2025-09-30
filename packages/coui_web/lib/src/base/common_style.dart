@@ -32,19 +32,3 @@ abstract class CommonStyle<T extends CommonStyle<T>> extends BaseStyle<T>
 
   // Subclasses must still implement `create(List<PrefixModifier> modifiers)`.
 }
-
-// Colors and backgrounds
-class Colors extends CommonStyle<Colors> {
-  const Colors(super.cssClass, {super.modifiers})
-    : super(type: StyleType.style);
-
-  static const bgPrimary = Colors('bg-primary');
-  static const textPrimary = Colors('text-primary');
-  static const borderPrimary = Colors('border-primary');
-
-  @override
-  Colors create(List<PrefixModifier> modifiers) {
-    // Create a new instance with the original cssClass and new modifiers
-    return Colors(cssClass, modifiers: modifiers);
-  }
-}

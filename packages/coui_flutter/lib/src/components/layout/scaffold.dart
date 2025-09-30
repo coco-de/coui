@@ -33,31 +33,6 @@ class ScaffoldTheme {
   /// Whether the scaffold should resize for the onscreen keyboard.
   final bool? resizeToAvoidBottomInset;
 
-  ScaffoldTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<Color?>? footerBackgroundColor,
-    ValueGetter<Color?>? headerBackgroundColor,
-    ValueGetter<bool?>? resizeToAvoidBottomInset,
-    ValueGetter<bool?>? showLoadingSparks,
-  }) {
-    return ScaffoldTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      footerBackgroundColor: footerBackgroundColor == null
-          ? this.footerBackgroundColor
-          : footerBackgroundColor(),
-      headerBackgroundColor: headerBackgroundColor == null
-          ? this.headerBackgroundColor
-          : headerBackgroundColor(),
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset == null
-          ? this.resizeToAvoidBottomInset
-          : resizeToAvoidBottomInset(),
-      showLoadingSparks: showLoadingSparks == null
-          ? this.showLoadingSparks
-          : showLoadingSparks(),
-    );
-  }
-
   @override
   bool operator ==(Object other) =>
       other is ScaffoldTheme &&
@@ -73,12 +48,12 @@ class ScaffoldTheme {
 
   @override
   int get hashCode => Object.hash(
-        backgroundColor,
-        headerBackgroundColor,
-        footerBackgroundColor,
-        showLoadingSparks,
-        resizeToAvoidBottomInset,
-      );
+    backgroundColor,
+    headerBackgroundColor,
+    footerBackgroundColor,
+    showLoadingSparks,
+    resizeToAvoidBottomInset,
+  );
 }
 
 /// A fundamental layout widget that provides the basic structure for screen layouts.
@@ -157,7 +132,7 @@ class Scaffold extends StatefulWidget {
   final double? loadingProgress;
   final bool loadingProgressIndeterminate;
   final bool
-      floatingHeader; // when header floats, it takes no space in the layout, and positioned on top of the content
+  floatingHeader; // when header floats, it takes no space in the layout, and positioned on top of the content
   final bool floatingFooter;
   final Color? headerBackgroundColor;
   final Color? footerBackgroundColor;
@@ -300,7 +275,8 @@ class ScaffoldState extends State<Scaffold> {
 
     return DrawerOverlay(
       child: ColoredBox(
-        color: widget.backgroundColor ??
+        color:
+            widget.backgroundColor ??
             compTheme?.backgroundColor ??
             theme.colorScheme.background,
         child: _ScaffoldFlex(
@@ -308,38 +284,43 @@ class ScaffoldState extends State<Scaffold> {
           floatingHeader: widget.floatingHeader,
           children: [
             buildHeader(context),
-            LayoutBuilder(builder: (context, constraints) {
-              Widget child = (widget.resizeToAvoidBottomInset ??
-                      compTheme?.resizeToAvoidBottomInset ??
-                      true)
-                  ? Padding(
-                      padding: EdgeInsets.only(bottom: viewInsets.bottom),
-                      child: MediaQuery(
-                        data: MediaQuery.of(context).copyWith(
-                          viewInsets: viewInsets.copyWith(bottom: 0),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                Widget child =
+                    (widget.resizeToAvoidBottomInset ??
+                        compTheme?.resizeToAvoidBottomInset ??
+                        true)
+                    ? Padding(
+                        padding: EdgeInsets.only(bottom: viewInsets.bottom),
+                        child: MediaQuery(
+                          data: MediaQuery.of(context).copyWith(
+                            viewInsets: viewInsets.copyWith(bottom: 0),
+                          ),
+                          child: ToastLayer(child: widget.child),
                         ),
-                        child: ToastLayer(child: widget.child),
-                      ),
-                    )
-                  : ToastLayer(child: widget.child);
-              if (constraints is ScaffoldBoxConstraints &&
-                  (widget.floatingHeader || widget.floatingFooter)) {
-                final currentMediaQuery = MediaQuery.of(context);
-                EdgeInsets padding = currentMediaQuery.padding;
-                if (widget.floatingHeader) {
-                  padding += EdgeInsets.only(top: constraints.headerHeight);
+                      )
+                    : ToastLayer(child: widget.child);
+                if (constraints is ScaffoldBoxConstraints &&
+                    (widget.floatingHeader || widget.floatingFooter)) {
+                  final currentMediaQuery = MediaQuery.of(context);
+                  EdgeInsets padding = currentMediaQuery.padding;
+                  if (widget.floatingHeader) {
+                    padding += EdgeInsets.only(top: constraints.headerHeight);
+                  }
+                  if (widget.floatingFooter) {
+                    padding += EdgeInsets.only(
+                      bottom: constraints.footerHeight,
+                    );
+                  }
+                  child = MediaQuery(
+                    data: currentMediaQuery.copyWith(padding: padding),
+                    child: RepaintBoundary(child: child),
+                  );
                 }
-                if (widget.floatingFooter) {
-                  padding += EdgeInsets.only(bottom: constraints.footerHeight);
-                }
-                child = MediaQuery(
-                  data: currentMediaQuery.copyWith(padding: padding),
-                  child: RepaintBoundary(child: child),
-                );
-              }
 
-              return child;
-            }),
+                return child;
+              },
+            ),
             buildFooter(context, viewInsets),
           ],
         ),
@@ -355,20 +336,6 @@ class ScaffoldState extends State<Scaffold> {
       ],
     );
   }
-}
-
-class ScaffoldPaddingStorage {
-  ScaffoldPaddingStorage({
-    required this.bottom,
-    required this.left,
-    required this.right,
-    required this.top,
-  });
-  double top;
-  double left;
-  double right;
-
-  double bottom;
 }
 
 class ScaffoldBoxConstraints extends BoxConstraints {
@@ -534,9 +501,9 @@ class AppBar extends StatefulWidget {
     this.trailingGap,
     this.useSafeArea = true,
   }) : assert(
-          child == null || title == null,
-          'Cannot provide both child and title',
-        );
+         child == null || title == null,
+         'Cannot provide both child and title',
+       );
 
   /// List of widgets to display in the trailing (right) area of the app bar.
   ///
@@ -658,18 +625,22 @@ class _AppBarState extends State<AppBar> {
           ),
           child: Container(
             alignment: widget.alignment,
-            color: widget.backgroundColor ??
+            color:
+                widget.backgroundColor ??
                 theme.colorScheme.card.scaleAlpha(surfaceOpacity ?? 1),
-            padding: widget.padding ??
+            padding:
+                widget.padding ??
                 (const EdgeInsets.symmetric(horizontal: 18, vertical: 12) *
                     scaling),
             child: SafeArea(
-              bottom: widget.useSafeArea &&
+              bottom:
+                  widget.useSafeArea &&
                   barData?.isHeader == false &&
                   barData?.childIndex == (barData?.childrenCount ?? 0) - 1,
               left: widget.useSafeArea,
               right: widget.useSafeArea,
-              top: widget.useSafeArea && barData?.isHeader ??
+              top:
+                  widget.useSafeArea && barData?.isHeader ??
                   false && barData?.childIndex == 0,
               child: SizedBox(
                 height: widget.height,
@@ -678,13 +649,15 @@ class _AppBarState extends State<AppBar> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       if (widget.leading.isNotEmpty)
-                        Row(children: widget.leading)
-                            .gap(widget.leadingGap ?? (scaling * 4)),
+                        Row(
+                          children: widget.leading,
+                        ).gap(widget.leadingGap ?? (scaling * 4)),
                       Flexible(
                         fit: widget.trailingExpanded
                             ? FlexFit.loose
                             : FlexFit.tight,
-                        child: widget.child ??
+                        child:
+                            widget.child ??
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -709,12 +682,14 @@ class _AppBarState extends State<AppBar> {
                       ),
                       if (widget.trailing.isNotEmpty)
                         if (!widget.trailingExpanded)
-                          Row(children: widget.trailing)
-                              .gap(widget.trailingGap ?? (scaling * 4))
+                          Row(
+                            children: widget.trailing,
+                          ).gap(widget.trailingGap ?? (scaling * 4))
                         else
                           Expanded(
-                            child: Row(children: widget.trailing)
-                                .gap(widget.trailingGap ?? (scaling * 4)),
+                            child: Row(
+                              children: widget.trailing,
+                            ).gap(widget.trailingGap ?? (scaling * 4)),
                           ),
                     ],
                   ).gap(scaling * 18),
@@ -773,8 +748,8 @@ class _ScaffoldRenderFlex extends RenderBox
   _ScaffoldRenderFlex({
     required bool floatingFooter,
     required bool floatingHeader,
-  })  : _floatingHeader = floatingHeader,
-        _floatingFooter = floatingFooter;
+  }) : _floatingHeader = floatingHeader,
+       _floatingFooter = floatingFooter;
 
   bool _floatingHeader = false;
   bool _floatingFooter = false;
@@ -868,11 +843,13 @@ class _ScaffoldRenderFlex extends RenderBox
         );
         contentOffset = Offset(0, headerSize);
     }
-    content.layout(ScaffoldBoxConstraints.fromBoxConstraints(
-      constraints: contentConstraints,
-      footerHeight: footerSize,
-      headerHeight: headerSize,
-    ));
+    content.layout(
+      ScaffoldBoxConstraints.fromBoxConstraints(
+        constraints: contentConstraints,
+        footerHeight: footerSize,
+        headerHeight: headerSize,
+      ),
+    );
     size = constraints.biggest;
     (content.parentData! as BoxParentData).offset = contentOffset;
     (footer.parentData! as BoxParentData).offset = Offset(
@@ -886,7 +863,10 @@ class _ScaffoldRenderFlex extends RenderBox
   }
 
   static bool _hitTestBox(
-      RenderBox child, Offset position, BoxHitTestResult result) {
+    RenderBox child,
+    Offset position,
+    BoxHitTestResult result,
+  ) {
     final childParentData = child.parentData! as BoxParentData;
 
     return result.addWithPaintOffset(
@@ -898,24 +878,6 @@ class _ScaffoldRenderFlex extends RenderBox
       offset: childParentData.offset,
       position: position,
     );
-  }
-}
-
-class ScaffoldHeaderPadding extends SingleChildRenderObjectWidget {
-  const ScaffoldHeaderPadding({super.child, super.key});
-
-  @override
-  RenderObject createRenderObject(BuildContext context) {
-    return _RenderScaffoldPadding();
-  }
-}
-
-class ScaffoldFooterPadding extends SingleChildRenderObjectWidget {
-  const ScaffoldFooterPadding({super.child, super.key});
-
-  @override
-  RenderObject createRenderObject(BuildContext context) {
-    return _RenderScaffoldPadding(paddingType: _ScaffoldPaddingType.footer);
   }
 }
 
@@ -973,16 +935,16 @@ class _RenderScaffoldPadding extends RenderBox
     switch (_paddingType) {
       case _ScaffoldPaddingType.header:
         constraints = this.constraints.copyWith(
-              maxHeight: parentData._headerSize.value,
-              // ignore: dead_code
-              minHeight: parentData._headerSize.value,
-            );
+          maxHeight: parentData._headerSize.value,
+          // ignore: dead_code
+          minHeight: parentData._headerSize.value,
+        );
 
       case _ScaffoldPaddingType.footer:
         constraints = this.constraints.copyWith(
-              maxHeight: parentData._footerSize.value,
-              minHeight: parentData._footerSize.value,
-            );
+          maxHeight: parentData._footerSize.value,
+          minHeight: parentData._footerSize.value,
+        );
     }
     final child = firstChild;
     if (child == null) {

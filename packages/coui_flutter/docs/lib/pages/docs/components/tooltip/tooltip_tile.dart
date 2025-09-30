@@ -56,7 +56,9 @@ class TooltipTile extends StatelessWidget implements IComponentPage {
               DestructiveButton(
                 leading: const Icon(material.Icons.delete),
                 child: const Text('Delete'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               const Gap(4),
               const TooltipContainer(child: Text('Click to delete this item')),

@@ -55,7 +55,7 @@ class ConstantBreakpoint implements StageBreakpoint {
 class StagedBreakpoint implements StageBreakpoint {
   const StagedBreakpoint(this.breakpoints) : assert(breakpoints.length > 1);
   const StagedBreakpoint.defaultBreakpoints()
-      : breakpoints = _defaultBreakpoints;
+    : breakpoints = _defaultBreakpoints;
 
   final List<double> breakpoints;
   static const List<double> _defaultBreakpoints = [576, 768, 992, 1200, 1400];

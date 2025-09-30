@@ -76,33 +76,6 @@ class PhoneInputTheme {
   /// The shape of the flag.
   final Shape? flagShape;
 
-  /// Creates a copy of this [PhoneInputTheme] with the given values overridden.
-  PhoneInputTheme copyWith({
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<double?>? countryGap,
-    ValueGetter<double?>? flagGap,
-    ValueGetter<double?>? flagHeight,
-    ValueGetter<Shape?>? flagShape,
-    ValueGetter<double?>? flagWidth,
-    ValueGetter<double?>? maxWidth,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<BoxConstraints?>? popupConstraints,
-  }) {
-    return PhoneInputTheme(
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      countryGap: countryGap == null ? this.countryGap : countryGap(),
-      flagGap: flagGap == null ? this.flagGap : flagGap(),
-      flagHeight: flagHeight == null ? this.flagHeight : flagHeight(),
-      flagShape: flagShape == null ? this.flagShape : flagShape(),
-      flagWidth: flagWidth == null ? this.flagWidth : flagWidth(),
-      maxWidth: maxWidth == null ? this.maxWidth : maxWidth(),
-      padding: padding == null ? this.padding : padding(),
-      popupConstraints: popupConstraints == null
-          ? this.popupConstraints
-          : popupConstraints(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -199,7 +172,6 @@ class PhoneInput extends StatefulWidget {
     super.key,
     this.onChanged,
     this.onlyNumber = true,
-    this.searchPlaceholder,
   });
 
   /// The default country to display when no initial value is provided.
@@ -258,12 +230,6 @@ class PhoneInput extends StatefulWidget {
   /// When provided, only these countries will be available for selection
   /// in the country picker popup. If null, all supported countries are available.
   final List<Country>? countries;
-
-  /// Widget displayed as placeholder in the country search field.
-  ///
-  /// Appears in the search input at the top of the country selector popup
-  /// to guide users on how to search for countries.
-  final Widget? searchPlaceholder;
 
   @override
   State<PhoneInput> createState() => _PhoneInputState();

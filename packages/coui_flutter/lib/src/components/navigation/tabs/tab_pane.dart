@@ -52,22 +52,6 @@ class TabPaneTheme {
   /// This determines the vertical space allocated for the tab buttons.
   final double? barHeight;
 
-  TabPaneTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<double?>? barHeight,
-    ValueGetter<BorderSide?>? border,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-  }) {
-    return TabPaneTheme(
-      backgroundColor: backgroundColor == null
-          ? this.backgroundColor
-          : backgroundColor(),
-      barHeight: barHeight == null ? this.barHeight : barHeight(),
-      border: border == null ? this.border : border(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -312,7 +296,6 @@ class _TabGhostData {
 }
 
 class TabPaneState<T> extends State<TabPane<T>> {
-  static const kTabDrag = #tabDrag;
   final _scrollController = ScrollController();
 
   Widget _childBuilder(

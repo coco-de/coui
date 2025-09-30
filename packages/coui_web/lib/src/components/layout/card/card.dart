@@ -35,10 +35,10 @@ class Card extends UiComponent {
     List<CardStyling>? style,
     super.tag = 'div',
   }) : super(
-          // Convert Flutter-style onPressed to web onClick event
-          onClick: onPressed != null ? (_) => onPressed() : null,
-          style: style,
-        );
+         // Convert Flutter-style onPressed to web onClick event
+         onClick: onPressed != null ? (_) => onPressed() : null,
+         style: style,
+       );
 
   final String? ariaLabel;
 

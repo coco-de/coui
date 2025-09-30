@@ -11,14 +11,6 @@ class CalendarTheme {
   /// Color of navigation arrow icons.
   final Color? arrowIconColor;
 
-  CalendarTheme copyWith({ValueGetter<Color?>? arrowIconColor}) {
-    return CalendarTheme(
-      arrowIconColor: arrowIconColor == null
-          ? this.arrowIconColor
-          : arrowIconColor(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -526,7 +518,6 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
           });
         },
         stateBuilder: widget.stateBuilder,
-        value: view.year,
         yearSelectStart: yearSelectStart,
       );
     }
@@ -950,10 +941,6 @@ extension CalendarDateTime on DateTime {
   CalendarView toCalendarView() {
     return CalendarView.fromDateTime(this);
   }
-
-  CalendarValue toCalendarValue() {
-    return CalendarValue.single(this);
-  }
 }
 
 /// A highly customizable calendar widget supporting multiple selection modes.
@@ -1023,7 +1010,6 @@ class Calendar extends StatefulWidget {
   /// )
   /// ```
   const Calendar({
-    this.isDateEnabled,
     super.key,
     this.now,
     this.onChanged,
@@ -1038,8 +1024,6 @@ class Calendar extends StatefulWidget {
   final CalendarView view;
   final CalendarSelectionMode selectionMode;
   final ValueChanged<CalendarValue?>? onChanged;
-  final bool Function(DateTime date)? isDateEnabled;
-
   final DateStateBuilder? stateBuilder;
 
   @override
@@ -1292,12 +1276,10 @@ class YearCalendar extends StatelessWidget {
     this.now,
     required this.onChanged,
     this.stateBuilder,
-    required this.value,
     required this.yearSelectStart,
   });
 
   final int yearSelectStart;
-  final int value;
   final ValueChanged<int> onChanged;
   final DateTime? now;
   final CalendarValue? calendarValue;
@@ -1811,14 +1793,6 @@ class CalendarGridItem {
   final int rowIndex;
 
   final bool fromAnotherMonth;
-
-  bool get isToday {
-    final now = DateTime.now();
-
-    return date.year == now.year &&
-        date.month == now.month &&
-        date.day == now.day;
-  }
 
   @override
   bool operator ==(Object other) {

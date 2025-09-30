@@ -74,12 +74,14 @@ class ToggleTheme {
   }) {
     return ToggleTheme(
       activeColor: activeColor == null ? this.activeColor : activeColor(),
-      activeThumbColor:
-          activeThumbColor == null ? this.activeThumbColor : activeThumbColor(),
+      activeThumbColor: activeThumbColor == null
+          ? this.activeThumbColor
+          : activeThumbColor(),
       borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
       gap: gap == null ? this.gap : gap(),
-      inactiveColor:
-          inactiveColor == null ? this.inactiveColor : inactiveColor(),
+      inactiveColor: inactiveColor == null
+          ? this.inactiveColor
+          : inactiveColor(),
       inactiveThumbColor: inactiveThumbColor == null
           ? this.inactiveThumbColor
           : inactiveThumbColor(),
@@ -101,13 +103,13 @@ class ToggleTheme {
 
   @override
   int get hashCode => Object.hash(
-        activeColor,
-        inactiveColor,
-        activeThumbColor,
-        inactiveThumbColor,
-        gap,
-        borderRadius,
-      );
+    activeColor,
+    inactiveColor,
+    activeThumbColor,
+    inactiveThumbColor,
+    gap,
+    borderRadius,
+  );
 }
 
 class ToggleController extends ValueNotifier<bool>
@@ -275,7 +277,8 @@ class _ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
     );
 
     return FocusOutline(
-      borderRadius: optionallyResolveBorderRadius(context, borderRadius) ??
+      borderRadius:
+          optionallyResolveBorderRadius(context, borderRadius) ??
           BorderRadius.circular(theme.radiusXl),
       focused: _focusing && _enabled,
       child: GestureDetector(
@@ -314,14 +317,15 @@ class _ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
               if (widget.leading != null) SizedBox(width: gap),
               AnimatedContainer(
                 decoration: BoxDecoration(
-                    borderRadius:
-                        optionallyResolveBorderRadius(context, borderRadius) ??
-                            BorderRadius.circular(theme.radiusXl),
-                    color: _enabled
-                        ? widget.value
+                  borderRadius:
+                      optionallyResolveBorderRadius(context, borderRadius) ??
+                      BorderRadius.circular(theme.radiusXl),
+                  color: _enabled
+                      ? widget.value
                             ? activeColor
                             : inactiveColor
-                        : theme.colorScheme.muted),
+                      : theme.colorScheme.muted,
+                ),
                 duration: kToggleDuration,
                 height: (16 + 4) * scaling,
                 padding: EdgeInsets.all(scaling * 2),
@@ -338,13 +342,13 @@ class _ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
                         aspectRatio: 1,
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(theme.radiusLg),
-                              color: _enabled
-                                  ? widget.value
+                            borderRadius: BorderRadius.circular(theme.radiusLg),
+                            color: _enabled
+                                ? widget.value
                                       ? activeThumbColor
                                       : inactiveThumbColor
-                                  : theme.colorScheme.mutedForeground),
+                                : theme.colorScheme.mutedForeground,
+                          ),
                         ),
                       ),
                     ),

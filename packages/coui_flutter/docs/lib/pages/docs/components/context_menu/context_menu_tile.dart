@@ -60,7 +60,9 @@ class ContextMenuTile extends StatelessWidget implements IComponentPage {
               children: [
                 Button(
                   style: const ButtonStyle.menu(),
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   trailing: const MenuShortcut(
                     activator: SingleActivator(
                       LogicalKeyboardKey.keyX,
@@ -71,7 +73,9 @@ class ContextMenuTile extends StatelessWidget implements IComponentPage {
                 ),
                 Button(
                   style: const ButtonStyle.menu(),
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   trailing: const MenuShortcut(
                     activator: SingleActivator(
                       LogicalKeyboardKey.keyC,
@@ -82,7 +86,9 @@ class ContextMenuTile extends StatelessWidget implements IComponentPage {
                 ),
                 Button(
                   style: const ButtonStyle.menu(),
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   trailing: const MenuShortcut(
                     activator: SingleActivator(
                       LogicalKeyboardKey.keyV,
@@ -94,7 +100,9 @@ class ContextMenuTile extends StatelessWidget implements IComponentPage {
                 const MenuDivider(),
                 Button(
                   style: const ButtonStyle.menu(),
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   trailing: const MenuShortcut(
                     activator: SingleActivator(LogicalKeyboardKey.delete),
                   ),
@@ -102,7 +110,9 @@ class ContextMenuTile extends StatelessWidget implements IComponentPage {
                 ),
                 Button(
                   style: const ButtonStyle.menu(),
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   trailing: const MenuShortcut(
                     activator: SingleActivator(
                       LogicalKeyboardKey.keyA,

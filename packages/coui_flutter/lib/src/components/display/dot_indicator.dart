@@ -1,7 +1,7 @@
 import 'package:coui_flutter/coui_flutter.dart';
 
-typedef DotBuilder = Widget Function(
-    bool active, BuildContext context, int index);
+typedef DotBuilder =
+    Widget Function(bool active, BuildContext context, int index);
 
 /// Theme configuration for [DotIndicator] and its dot items.
 class DotIndicatorTheme {
@@ -45,36 +45,6 @@ class DotIndicatorTheme {
   /// Border width of the inactive dot.
   final double? inactiveBorderWidth;
 
-  /// Creates a copy of this theme but with the given fields replaced.
-  DotIndicatorTheme copyWith({
-    ValueGetter<Color?>? activeColor,
-    ValueGetter<double?>? borderRadius,
-    ValueGetter<DotBuilder?>? dotBuilder,
-    ValueGetter<Color?>? inactiveBorderColor,
-    ValueGetter<double?>? inactiveBorderWidth,
-    ValueGetter<Color?>? inactiveColor,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<double?>? size,
-    ValueGetter<double?>? spacing,
-  }) {
-    return DotIndicatorTheme(
-      activeColor: activeColor == null ? this.activeColor : activeColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      dotBuilder: dotBuilder == null ? this.dotBuilder : dotBuilder(),
-      inactiveBorderColor: inactiveBorderColor == null
-          ? this.inactiveBorderColor
-          : inactiveBorderColor(),
-      inactiveBorderWidth: inactiveBorderWidth == null
-          ? this.inactiveBorderWidth
-          : inactiveBorderWidth(),
-      inactiveColor:
-          inactiveColor == null ? this.inactiveColor : inactiveColor(),
-      padding: padding == null ? this.padding : padding(),
-      size: size == null ? this.size : size(),
-      spacing: spacing == null ? this.spacing : spacing(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -93,16 +63,16 @@ class DotIndicatorTheme {
 
   @override
   int get hashCode => Object.hash(
-        spacing,
-        padding,
-        dotBuilder,
-        size,
-        borderRadius,
-        activeColor,
-        inactiveColor,
-        inactiveBorderColor,
-        inactiveBorderWidth,
-      );
+    spacing,
+    padding,
+    dotBuilder,
+    size,
+    borderRadius,
+    activeColor,
+    inactiveColor,
+    inactiveBorderColor,
+    inactiveBorderWidth,
+  );
 }
 
 /// Navigation indicator with customizable dots showing current position in a sequence.
@@ -204,7 +174,8 @@ class DotIndicator extends StatelessWidget {
       themeValue: compTheme?.spacing,
       widgetValue: this.spacing,
     );
-    final padding = styleValue(
+    final padding =
+        styleValue(
           defaultValue: const EdgeInsets.all(8),
           themeValue: compTheme?.padding,
           widgetValue: this.padding,
@@ -224,16 +195,18 @@ class DotIndicator extends StatelessWidget {
         right: rightPadding,
         top: topPadding,
       );
-      children.add(Flexible(
-        child: Clickable(
-          mouseCursor: const WidgetStatePropertyAll(SystemMouseCursors.click),
-          onPressed: onChanged == null ? null : () => onChanged!(i),
-          child: Padding(
-            padding: itemPadding,
-            child: dotBuilder(context, i, i == index),
+      children.add(
+        Flexible(
+          child: Clickable(
+            mouseCursor: const WidgetStatePropertyAll(SystemMouseCursors.click),
+            onPressed: onChanged == null ? null : () => onChanged!(i),
+            child: Padding(
+              padding: itemPadding,
+              child: dotBuilder(context, i, i == index),
+            ),
           ),
         ),
-      ));
+      );
     }
 
     return IntrinsicHeight(
@@ -243,41 +216,6 @@ class DotIndicator extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: children,
       ),
-    );
-  }
-}
-
-class DotItem extends StatelessWidget {
-  const DotItem({
-    this.borderColor,
-    this.borderRadius,
-    this.borderWidth,
-    this.color,
-    super.key,
-    this.size,
-  });
-
-  final double? size;
-  final Color? color;
-  final double? borderRadius;
-  final Color? borderColor;
-
-  final double? borderWidth;
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      decoration: BoxDecoration(
-        border: borderColor != null && borderWidth != null
-            ? Border.all(color: borderColor!, width: borderWidth!)
-            : null,
-        borderRadius:
-            borderRadius == null ? null : BorderRadius.circular(borderRadius!),
-        color: color,
-      ),
-      duration: kDefaultDuration,
-      height: size,
-      width: size,
     );
   }
 }
@@ -368,7 +306,8 @@ class InactiveDotItem extends StatelessWidget {
       themeValue: compTheme?.borderRadius,
       widgetValue: this.borderRadius,
     );
-    final borderColor = this.borderColor ??
+    final borderColor =
+        this.borderColor ??
         compTheme?.inactiveBorderColor ??
         theme.colorScheme.secondary;
     final borderWidth =

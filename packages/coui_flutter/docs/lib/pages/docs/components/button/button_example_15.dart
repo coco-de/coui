@@ -16,7 +16,9 @@ class ButtonExample15 extends StatelessWidget {
         },
         child: Icon(Icons.add_a_photo_outlined),
       ),
-      onPressed: () {},
+      onPressed: () {
+        // TODOS: will be implemented later.
+      },
       child: const StatedWidget(
         focused: Text('Focused'),
         hovered: Text('Hovered'),

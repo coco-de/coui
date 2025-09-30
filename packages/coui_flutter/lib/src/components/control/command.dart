@@ -1,16 +1,18 @@
 import 'package:flutter/services.dart';
 import 'package:coui_flutter/coui_flutter.dart';
 
-typedef CommandBuilder = Stream<List<Widget>> Function(
-  BuildContext context,
-  String? query,
-);
+typedef CommandBuilder =
+    Stream<List<Widget>> Function(
+      BuildContext context,
+      String? query,
+    );
 
-typedef ErrorWidgetBuilder = Widget Function(
-  BuildContext context,
-  Object error,
-  StackTrace? stackTrace,
-);
+typedef ErrorWidgetBuilder =
+    Widget Function(
+      BuildContext context,
+      Object error,
+      StackTrace? stackTrace,
+    );
 
 class CommandEmpty extends StatelessWidget {
   const CommandEmpty({super.key});
@@ -45,7 +47,8 @@ Future<T?> showCommandDialog<T>({
       surfaceBlur ??= theme.surfaceBlur;
 
       return ConstrainedBox(
-        constraints: constraints ??
+        constraints:
+            constraints ??
             const BoxConstraints.tightFor(height: 349, width: 510) * scaling,
         child: ModalBackdrop(
           borderRadius: subtractByBorder(theme.borderRadiusXxl, scaling * 1),
@@ -153,7 +156,7 @@ class Command extends StatefulWidget {
   final bool autofocus;
   final CommandBuilder builder;
   final Duration
-      debounceDuration; // debounce is used to prevent too many requests
+  debounceDuration; // debounce is used to prevent too many requests
   final WidgetBuilder? emptyBuilder;
   final ErrorWidgetBuilder? errorBuilder;
   final WidgetBuilder? loadingBuilder;
@@ -188,8 +191,10 @@ class _CommandState extends State<Command> {
       if (newQuery.isEmpty) newQuery = null;
       if (newQuery != _currentRequest.query) {
         setState(() {
-          _currentRequest =
-              _Query(query: newQuery, stream: _request(context, newQuery));
+          _currentRequest = _Query(
+            query: newQuery,
+            stream: _request(context, newQuery),
+          );
         });
       }
     });
@@ -215,156 +220,168 @@ class _CommandState extends State<Command> {
     final canPop = Navigator.of(context).canPop();
     final localization = CoUILocalizations.of(context);
 
-    return SubFocusScope(builder: (context, state) {
-      return Actions(
-        actions: {
-          NextItemIntent: CallbackAction<NextItemIntent>(
-            onInvoke: (intent) {
-              state.nextFocus();
+    return SubFocusScope(
+      builder: (context, state) {
+        return Actions(
+          actions: {
+            NextItemIntent: CallbackAction<NextItemIntent>(
+              onInvoke: (intent) {
+                state.nextFocus();
 
-              return null;
-            },
-          ),
-          PreviousItemIntent: CallbackAction<PreviousItemIntent>(
-            onInvoke: (intent) {
-              state.nextFocus(TraversalDirection.up);
+                return null;
+              },
+            ),
+            PreviousItemIntent: CallbackAction<PreviousItemIntent>(
+              onInvoke: (intent) {
+                state.nextFocus(TraversalDirection.up);
 
-              return null;
-            },
-          ),
-          ActivateIntent: CallbackAction<ActivateIntent>(
-            onInvoke: (intent) {
-              state.invokeActionOnFocused(intent);
+                return null;
+              },
+            ),
+            ActivateIntent: CallbackAction<ActivateIntent>(
+              onInvoke: (intent) {
+                state.invokeActionOnFocused(intent);
 
-              return null;
-            },
-          ),
-        },
-        child: Shortcuts(
-          shortcuts: {
-            LogicalKeySet(LogicalKeyboardKey.arrowUp):
-                const PreviousItemIntent(),
-            LogicalKeySet(LogicalKeyboardKey.arrowDown): const NextItemIntent(),
-            LogicalKeySet(LogicalKeyboardKey.enter): const ActivateIntent(),
+                return null;
+              },
+            ),
           },
-          child: IntrinsicWidth(
-            child: OutlinedContainer(
-              clipBehavior: Clip.hardEdge,
-              surfaceBlur: widget.surfaceBlur ?? theme.surfaceBlur,
-              surfaceOpacity: widget.surfaceOpacity ?? theme.surfaceOpacity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ComponentTheme(
-                    data: const FocusOutlineTheme(
-                      border: Border.fromBorderSide(BorderSide.none),
-                    ),
-                    child: TextField(
-                      autofocus: widget.autofocus,
-                      border: const Border.fromBorderSide(BorderSide.none),
-                      borderRadius: BorderRadius.zero,
-                      controller: _controller,
-                      features: [
-                        InputFeature.leading(const Icon(LucideIcons.search)
-                            .iconSmall()
-                            .iconMutedForeground()),
-                        if (canPop)
-                          InputFeature.trailing(GhostButton(
-                            density: ButtonDensity.iconDense,
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Icon(LucideIcons.x).iconSmall(),
-                          )),
-                      ],
-                      placeholder: widget.searchPlaceholder ??
-                          Text(CoUILocalizations.of(context).commandSearch),
-                    ),
-                  ),
-                  const Divider(),
-                  Expanded(
-                    child: StreamBuilder(
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          final items = List<Widget>.of(snapshot.data!);
-                          if (snapshot.connectionState ==
-                              ConnectionState.active) {
-                            items.add(IconTheme.merge(
-                              data: IconThemeData(
-                                color: theme.colorScheme.mutedForeground,
+          child: Shortcuts(
+            shortcuts: {
+              LogicalKeySet(LogicalKeyboardKey.arrowUp):
+                  const PreviousItemIntent(),
+              LogicalKeySet(LogicalKeyboardKey.arrowDown):
+                  const NextItemIntent(),
+              LogicalKeySet(LogicalKeyboardKey.enter): const ActivateIntent(),
+            },
+            child: IntrinsicWidth(
+              child: OutlinedContainer(
+                clipBehavior: Clip.hardEdge,
+                surfaceBlur: widget.surfaceBlur ?? theme.surfaceBlur,
+                surfaceOpacity: widget.surfaceOpacity ?? theme.surfaceOpacity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ComponentTheme(
+                      data: const FocusOutlineTheme(
+                        border: Border.fromBorderSide(BorderSide.none),
+                      ),
+                      child: TextField(
+                        autofocus: widget.autofocus,
+                        border: const Border.fromBorderSide(BorderSide.none),
+                        borderRadius: BorderRadius.zero,
+                        controller: _controller,
+                        features: [
+                          InputFeature.leading(
+                            const Icon(
+                              LucideIcons.search,
+                            ).iconSmall().iconMutedForeground(),
+                          ),
+                          if (canPop)
+                            InputFeature.trailing(
+                              GhostButton(
+                                density: ButtonDensity.iconDense,
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Icon(LucideIcons.x).iconSmall(),
                               ),
-                              child: const Center(
-                                child: CircularProgressIndicator(),
-                              ).withPadding(vertical: theme.scaling * 24),
-                            ));
-                          } else if (items.isEmpty) {
-                            return widget.emptyBuilder?.call(context) ??
-                                const CommandEmpty();
-                          }
-
-                          return ListView.separated(
-                            itemBuilder: (context, index) {
-                              return items[index];
-                            },
-                            itemCount: items.length,
-                            padding: EdgeInsets.symmetric(
-                              vertical: theme.scaling * 2,
                             ),
-                            separatorBuilder: (context, index) =>
-                                const Divider(),
-                            shrinkWrap: true,
-                          );
-                        }
-
-                        return widget.loadingBuilder?.call(context) ??
-                            const Center(child: CircularProgressIndicator())
-                                .withPadding(vertical: theme.scaling * 24);
-                      },
-                      stream: _currentRequest.stream,
-                    ),
-                  ),
-                  const Divider(),
-                  Container(
-                    color: theme.colorScheme.card,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: theme.scaling * 12,
-                      vertical: theme.scaling * 6,
-                    ),
-                    child: IntrinsicHeight(
-                      child: Row(
-                        spacing: theme.scaling * 8,
-                        children: [
-                          const KeyboardDisplay.fromActivator(
-                            activator: SingleActivator(
-                              LogicalKeyboardKey.arrowUp,
-                            ),
-                          ).xSmall,
-                          Text(localization.commandMoveUp).muted.small,
-                          const VerticalDivider(),
-                          const KeyboardDisplay.fromActivator(
-                            activator: SingleActivator(
-                              LogicalKeyboardKey.arrowDown,
-                            ),
-                          ).xSmall,
-                          Text(localization.commandMoveDown).muted.small,
-                          const VerticalDivider(),
-                          const KeyboardDisplay.fromActivator(
-                            activator:
-                                SingleActivator(LogicalKeyboardKey.enter),
-                          ).xSmall,
-                          Text(localization.commandActivate).muted.small,
                         ],
+                        placeholder:
+                            widget.searchPlaceholder ??
+                            Text(CoUILocalizations.of(context).commandSearch),
                       ),
                     ),
-                  ),
-                ],
+                    const Divider(),
+                    Expanded(
+                      child: StreamBuilder(
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            final items = List<Widget>.of(snapshot.data!);
+                            if (snapshot.connectionState ==
+                                ConnectionState.active) {
+                              items.add(
+                                IconTheme.merge(
+                                  data: IconThemeData(
+                                    color: theme.colorScheme.mutedForeground,
+                                  ),
+                                  child: const Center(
+                                    child: CircularProgressIndicator(),
+                                  ).withPadding(vertical: theme.scaling * 24),
+                                ),
+                              );
+                            } else if (items.isEmpty) {
+                              return widget.emptyBuilder?.call(context) ??
+                                  const CommandEmpty();
+                            }
+
+                            return ListView.separated(
+                              itemBuilder: (context, index) {
+                                return items[index];
+                              },
+                              itemCount: items.length,
+                              padding: EdgeInsets.symmetric(
+                                vertical: theme.scaling * 2,
+                              ),
+                              separatorBuilder: (context, index) =>
+                                  const Divider(),
+                              shrinkWrap: true,
+                            );
+                          }
+
+                          return widget.loadingBuilder?.call(context) ??
+                              const Center(
+                                child: CircularProgressIndicator(),
+                              ).withPadding(vertical: theme.scaling * 24);
+                        },
+                        stream: _currentRequest.stream,
+                      ),
+                    ),
+                    const Divider(),
+                    Container(
+                      color: theme.colorScheme.card,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: theme.scaling * 12,
+                        vertical: theme.scaling * 6,
+                      ),
+                      child: IntrinsicHeight(
+                        child: Row(
+                          spacing: theme.scaling * 8,
+                          children: [
+                            const KeyboardDisplay.fromActivator(
+                              activator: SingleActivator(
+                                LogicalKeyboardKey.arrowUp,
+                              ),
+                            ).xSmall,
+                            Text(localization.commandMoveUp).muted.small,
+                            const VerticalDivider(),
+                            const KeyboardDisplay.fromActivator(
+                              activator: SingleActivator(
+                                LogicalKeyboardKey.arrowDown,
+                              ),
+                            ).xSmall,
+                            Text(localization.commandMoveDown).muted.small,
+                            const VerticalDivider(),
+                            const KeyboardDisplay.fromActivator(
+                              activator: SingleActivator(
+                                LogicalKeyboardKey.enter,
+                              ),
+                            ).xSmall,
+                            Text(localization.commandActivate).muted.small,
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
 
@@ -457,15 +474,16 @@ class _CommandItemState extends State<CommandItem> {
               ),
               child: IconTheme(
                 data: themeData.iconTheme.small.copyWith(
-                    color: widget.onTap == null
-                        ? themeData.colorScheme.accentForeground.scaleAlpha(0.5)
-                        : themeData.colorScheme.accentForeground),
+                  color: widget.onTap == null
+                      ? themeData.colorScheme.accentForeground.scaleAlpha(0.5)
+                      : themeData.colorScheme.accentForeground,
+                ),
                 child: DefaultTextStyle(
                   style: TextStyle(
-                      color: widget.onTap == null
-                          ? themeData.colorScheme.accentForeground
-                              .scaleAlpha(0.5)
-                          : themeData.colorScheme.accentForeground),
+                    color: widget.onTap == null
+                        ? themeData.colorScheme.accentForeground.scaleAlpha(0.5)
+                        : themeData.colorScheme.accentForeground,
+                  ),
                   child: Row(
                     children: [
                       if (widget.leading != null) widget.leading!,

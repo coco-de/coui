@@ -11,16 +11,6 @@ class FormattedInputTheme {
 
   final EdgeInsetsGeometry? padding;
 
-  FormattedInputTheme copyWith({
-    ValueGetter<double?>? height,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-  }) {
-    return FormattedInputTheme(
-      height: height == null ? this.height : height(),
-      padding: padding == null ? this.padding : padding(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -44,8 +34,6 @@ abstract class InputPart implements FormattedValuePart {
     Widget? placeholder,
     required double width,
   }) = EditablePart;
-  const factory InputPart.widget(Widget widget) = WidgetPart;
-
   Widget build(BuildContext context, FormattedInputData data);
   Object? get partKey;
 
@@ -554,7 +542,6 @@ class FormattedInput extends StatefulWidget
     super.key,
     this.leading,
     this.onChanged,
-    this.style,
     this.trailing,
   });
 
@@ -567,13 +554,6 @@ class FormattedInput extends StatefulWidget
 
   @override
   final FormattedInputController? controller;
-
-  /// Text style applied to all input segments.
-  ///
-  /// This style affects both static text and editable input fields within
-  /// the formatted input. Using a monospace font family is recommended
-  /// for consistent character spacing across segments.
-  final TextStyle? style;
 
   /// Widget displayed at the beginning of the input.
   ///

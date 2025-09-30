@@ -27,23 +27,6 @@ class BadgeTheme {
   /// Style for [DestructiveBadge].
   final AbstractButtonStyle? destructiveStyle;
 
-  /// Returns a copy of this theme with the given fields replaced.
-  BadgeTheme copyWith({
-    ValueGetter<AbstractButtonStyle?>? destructiveStyle,
-    ValueGetter<AbstractButtonStyle?>? outlineStyle,
-    ValueGetter<AbstractButtonStyle?>? primaryStyle,
-    ValueGetter<AbstractButtonStyle?>? secondaryStyle,
-  }) {
-    return BadgeTheme(
-      destructiveStyle:
-          destructiveStyle == null ? this.destructiveStyle : destructiveStyle(),
-      outlineStyle: outlineStyle == null ? this.outlineStyle : outlineStyle(),
-      primaryStyle: primaryStyle == null ? this.primaryStyle : primaryStyle(),
-      secondaryStyle:
-          secondaryStyle == null ? this.secondaryStyle : secondaryStyle(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -120,7 +103,8 @@ class PrimaryBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<BadgeTheme>(context);
-    final baseStyle = style ??
+    final baseStyle =
+        style ??
         compTheme?.primaryStyle ??
         const ButtonStyle.primary(
           density: ButtonDensity.dense,
@@ -164,7 +148,8 @@ class SecondaryBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<BadgeTheme>(context);
-    final baseStyle = style ??
+    final baseStyle =
+        style ??
         compTheme?.secondaryStyle ??
         const ButtonStyle.secondary(
           density: ButtonDensity.dense,
@@ -208,7 +193,8 @@ class OutlineBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<BadgeTheme>(context);
-    final baseStyle = style ??
+    final baseStyle =
+        style ??
         compTheme?.outlineStyle ??
         const ButtonStyle.outline(
           density: ButtonDensity.dense,
@@ -252,7 +238,8 @@ class DestructiveBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<BadgeTheme>(context);
-    final baseStyle = style ??
+    final baseStyle =
+        style ??
         compTheme?.destructiveStyle ??
         const ButtonStyle.destructive(
           density: ButtonDensity.dense,

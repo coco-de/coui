@@ -72,32 +72,6 @@ class OutlinedContainerTheme {
 
   final double? surfaceBlur;
 
-  OutlinedContainerTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<Color?>? borderColor,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<BorderStyle?>? borderStyle,
-    ValueGetter<double?>? borderWidth,
-    ValueGetter<List<BoxShadow>?>? boxShadow,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<double?>? surfaceBlur,
-    ValueGetter<double?>? surfaceOpacity,
-  }) {
-    return OutlinedContainerTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      borderColor: borderColor == null ? this.borderColor : borderColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      borderStyle: borderStyle == null ? this.borderStyle : borderStyle(),
-      borderWidth: borderWidth == null ? this.borderWidth : borderWidth(),
-      boxShadow: boxShadow == null ? this.boxShadow : boxShadow(),
-      padding: padding == null ? this.padding : padding(),
-      surfaceBlur: surfaceBlur == null ? this.surfaceBlur : surfaceBlur(),
-      surfaceOpacity:
-          surfaceOpacity == null ? this.surfaceOpacity : surfaceOpacity(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -116,16 +90,16 @@ class OutlinedContainerTheme {
 
   @override
   int get hashCode => Object.hash(
-        backgroundColor,
-        borderColor,
-        borderRadius,
-        borderStyle,
-        borderWidth,
-        boxShadow,
-        padding,
-        surfaceOpacity,
-        surfaceBlur,
-      );
+    backgroundColor,
+    borderColor,
+    borderRadius,
+    borderStyle,
+    borderWidth,
+    boxShadow,
+    padding,
+    surfaceOpacity,
+    surfaceBlur,
+  );
 }
 
 class OutlinedContainer extends StatefulWidget {
@@ -283,49 +257,6 @@ class DashedLineProperties {
       gap: lerpDouble(a.gap, b.gap, t)!,
       thickness: lerpDouble(a.thickness, b.thickness, t)!,
       width: lerpDouble(a.width, b.width, t)!,
-    );
-  }
-}
-
-class DashedLine extends StatelessWidget {
-  const DashedLine({
-    this.color,
-    this.gap,
-    super.key,
-    this.thickness,
-    this.width,
-  });
-
-  final double? width;
-  final double? gap;
-  final double? thickness;
-
-  final Color? color;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final scaling = theme.scaling;
-
-    return AnimatedValueBuilder(
-      builder: (context, value, child) {
-        return CustomPaint(
-          painter: DashedLinePainter(
-            color: value.color,
-            gap: value.gap,
-            thickness: value.thickness,
-            width: value.width,
-          ),
-        );
-      },
-      duration: kDefaultDuration,
-      lerp: DashedLineProperties.lerp,
-      value: DashedLineProperties(
-        color: color ?? theme.colorScheme.border,
-        gap: gap ?? (scaling * 5),
-        thickness: thickness ?? (scaling * 1),
-        width: width ?? (scaling * 8),
-      ),
     );
   }
 }

@@ -14,7 +14,9 @@ class ToastTile extends StatelessWidget implements IComponentPage {
         subtitle: const Text('Sunday, July 07, 2024 at 12:00 PM'),
         trailing: PrimaryButton(
           size: ButtonSize.small,
-          onPressed: () {},
+          onPressed: () {
+            // TODOS: will be implemented later.
+          },
           child: const Text('Undo'),
         ),
         trailingAlignment: Alignment.center,

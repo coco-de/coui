@@ -27,17 +27,23 @@ class AutocompleteTile extends StatelessWidget implements IComponentPage {
                 children: [
                   Button(
                     style: const ButtonStyle.ghost(),
-                    onPressed: () {},
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     child: const Text('Apple'),
                   ),
                   Button(
                     style: const ButtonStyle.ghost(),
-                    onPressed: () {},
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     child: const Text('Banana'),
                   ),
                   Button(
                     style: const ButtonStyle.ghost(),
-                    onPressed: () {},
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     child: const Text('Cherry'),
                   ),
                 ],

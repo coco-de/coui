@@ -56,25 +56,6 @@ class OverflowMarqueeTheme {
   /// Animation curve of the scroll.
   final Curve? curve;
 
-  OverflowMarqueeTheme copyWith({
-    ValueGetter<Curve?>? curve,
-    ValueGetter<Duration?>? delayDuration,
-    ValueGetter<Axis?>? direction,
-    ValueGetter<Duration?>? duration,
-    ValueGetter<double?>? fadePortion,
-    ValueGetter<double?>? step,
-  }) {
-    return OverflowMarqueeTheme(
-      curve: curve == null ? this.curve : curve(),
-      delayDuration:
-          delayDuration == null ? this.delayDuration : delayDuration(),
-      direction: direction == null ? this.direction : direction(),
-      duration: duration == null ? this.duration : duration(),
-      fadePortion: fadePortion == null ? this.fadePortion : fadePortion(),
-      step: step == null ? this.step : step(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -157,7 +138,6 @@ class OverflowMarquee extends StatefulWidget {
   /// ```
   const OverflowMarquee({
     required this.child,
-    this.curve,
     this.delayDuration,
     this.direction,
     this.duration,
@@ -172,8 +152,6 @@ class OverflowMarquee extends StatefulWidget {
   final double? step;
   final Duration? delayDuration;
   final double? fadePortion;
-
-  final Curve? curve;
 
   @override
   State<OverflowMarquee> createState() => _OverflowMarqueeState();
@@ -232,7 +210,6 @@ class _OverflowMarqueeState extends State<OverflowMarquee>
       themeValue: compTheme?.step,
       widgetValue: widget.step,
     );
-
 
     return ClipRect(
       child: _OverflowMarqueeLayout(
@@ -482,7 +459,8 @@ class _RenderOverflowMarqueeLayout extends RenderShiftedBox
     final delayDurationInMicros = delayDuration.inMicroseconds;
     double elapsedInMicros = elapsed.inMicroseconds.toDouble();
     // includes the reverse
-    final overalCycleDuration = delayDurationInMicros +
+    final overalCycleDuration =
+        delayDurationInMicros +
         durationInMicros +
         delayDurationInMicros +
         durationInMicros;
@@ -534,7 +512,11 @@ class _RenderOverflowMarqueeLayout extends RenderShiftedBox
   }
 
   Shader _createAlphaShader(
-      Rect bounds, bool fadeEnd, double fadePortion, bool fadeStart) {
+    Rect bounds,
+    bool fadeEnd,
+    double fadePortion,
+    bool fadeStart,
+  ) {
     double portionSize;
     portionSize = direction == Axis.horizontal
         ? fadePortion / bounds.width

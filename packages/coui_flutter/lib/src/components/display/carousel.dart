@@ -21,7 +21,7 @@ abstract class CarouselSizeConstraint {
 class CarouselFixedConstraint extends CarouselSizeConstraint {
   /// Creates a fixed carousel size constraint.
   const CarouselFixedConstraint(this.size)
-      : assert(size > 0, 'size must be greater than 0');
+    : assert(size > 0, 'size must be greater than 0');
 
   /// The size of the constraint.
   final double size;
@@ -31,7 +31,7 @@ class CarouselFixedConstraint extends CarouselSizeConstraint {
 class CarouselFractionalConstraint extends CarouselSizeConstraint {
   /// Creates a fractional carousel size constraint.
   const CarouselFractionalConstraint(this.fraction)
-      : assert(fraction > 0, 'fraction must be greater than 0');
+    : assert(fraction > 0, 'fraction must be greater than 0');
 
   /// The fraction of the constraint.
   final double fraction;
@@ -147,7 +147,8 @@ class SlidingCarouselTransition extends CarouselTransition {
             for (final item in items)
               Positioned(
                 height: constraints.maxHeight,
-                left: snapOffsetAlignment +
+                left:
+                    snapOffsetAlignment +
                     (item.position - currentIndex) * size +
                     (gap * item.relativeIndex),
                 width: size,
@@ -158,7 +159,8 @@ class SlidingCarouselTransition extends CarouselTransition {
             for (final item in items)
               Positioned(
                 height: size,
-                top: snapOffsetAlignment +
+                top:
+                    snapOffsetAlignment +
                     (item.position - currentIndex) * size +
                     (gap * item.relativeIndex),
                 width: constraints.maxWidth,
@@ -232,8 +234,10 @@ class FadingCarouselTransition extends CarouselTransition {
                 left: snapOffsetAlignment,
                 width: size,
                 child: Opacity(
-                  opacity:
-                      (1 - (progress - item.position).abs()).clamp(0.0, 1.0),
+                  opacity: (1 - (progress - item.position).abs()).clamp(
+                    0.0,
+                    1.0,
+                  ),
                   child: item.child,
                 ),
               ),
@@ -245,8 +249,10 @@ class FadingCarouselTransition extends CarouselTransition {
                 top: snapOffsetAlignment,
                 width: constraints.maxWidth,
                 child: Opacity(
-                  opacity:
-                      (1 - (progress - item.position).abs()).clamp(0.0, 1.0),
+                  opacity: (1 - (progress - item.position).abs()).clamp(
+                    0.0,
+                    1.0,
+                  ),
                   child: item.child,
                 ),
               ),
@@ -267,16 +273,6 @@ class CarouselController extends Listenable {
 
   /// The current value of the controller.
   double get value => _controller.value;
-
-  /// Jumps to the next item.
-  void next() {
-    _controller.value = (_controller.value + 1).roundToDouble();
-  }
-
-  /// Jumps to the previous item.
-  void previous() {
-    _controller.value = (_controller.value - 1).roundToDouble();
-  }
 
   /// Animates to the next item.
   void animateNext(Duration duration, [Curve curve = Curves.easeInOut]) {
@@ -300,11 +296,6 @@ class CarouselController extends Listenable {
       ),
       false,
     );
-  }
-
-  /// Snaps the current value to the nearest integer.
-  void snap() {
-    _controller.value = _controller.value.roundToDouble();
   }
 
   /// Animates the current value to the nearest integer.
@@ -349,11 +340,6 @@ class CarouselController extends Listenable {
   void removeListener(VoidCallback listener) {
     _controller.removeListener(listener);
   }
-
-  /// Disposes the controller.
-  void dispose() {
-    _controller.dispose();
-  }
 }
 
 /// CarouselAlignment is used to align the carousel items.
@@ -396,29 +382,6 @@ class CarouselTheme {
 
   final Curve? curve;
 
-  CarouselTheme copyWith({
-    ValueGetter<CarouselAlignment?>? alignment,
-    ValueGetter<Duration?>? autoplaySpeed,
-    ValueGetter<Curve?>? curve,
-    ValueGetter<Axis?>? direction,
-    ValueGetter<bool?>? draggable,
-    ValueGetter<bool?>? pauseOnHover,
-    ValueGetter<Duration?>? speed,
-    ValueGetter<bool?>? wrap,
-  }) {
-    return CarouselTheme(
-      alignment: alignment == null ? this.alignment : alignment(),
-      autoplaySpeed:
-          autoplaySpeed == null ? this.autoplaySpeed : autoplaySpeed(),
-      curve: curve == null ? this.curve : curve(),
-      direction: direction == null ? this.direction : direction(),
-      draggable: draggable == null ? this.draggable : draggable(),
-      pauseOnHover: pauseOnHover == null ? this.pauseOnHover : pauseOnHover(),
-      speed: speed == null ? this.speed : speed(),
-      wrap: wrap == null ? this.wrap : wrap(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     return other is CarouselTheme &&
@@ -434,15 +397,15 @@ class CarouselTheme {
 
   @override
   int get hashCode => Object.hash(
-        alignment,
-        direction,
-        wrap,
-        pauseOnHover,
-        autoplaySpeed,
-        draggable,
-        speed,
-        curve,
-      );
+    alignment,
+    direction,
+    wrap,
+    pauseOnHover,
+    autoplaySpeed,
+    draggable,
+    speed,
+    curve,
+  );
 }
 
 /// Interactive carousel widget with automatic transitions and customizable layouts.
@@ -511,9 +474,9 @@ class Carousel extends StatefulWidget {
     this.waitOnStart = false,
     this.wrap = true,
   }) : assert(
-          wrap || itemCount != null,
-          'itemCount must be provided if wrap is false',
-        );
+         wrap || itemCount != null,
+         'itemCount must be provided if wrap is false',
+       );
 
   /// The carousel transition.
   final CarouselTransition transition;
@@ -751,51 +714,51 @@ class _CarouselState extends State<Carousel>
   }
 
   CarouselAlignment get _alignment => styleValue(
-        defaultValue: CarouselAlignment.center,
-        themeValue: _theme?.alignment,
-        widgetValue: widget.alignment,
-      );
+    defaultValue: CarouselAlignment.center,
+    themeValue: _theme?.alignment,
+    widgetValue: widget.alignment,
+  );
 
   Axis get _direction => styleValue(
-        defaultValue: Axis.horizontal,
-        themeValue: _theme?.direction,
-        widgetValue: widget.direction,
-      );
+    defaultValue: Axis.horizontal,
+    themeValue: _theme?.direction,
+    widgetValue: widget.direction,
+  );
 
   bool get _wrap => styleValue(
-        defaultValue: true,
-        themeValue: _theme?.wrap,
-        widgetValue: widget.wrap,
-      );
+    defaultValue: true,
+    themeValue: _theme?.wrap,
+    widgetValue: widget.wrap,
+  );
 
   bool get _pauseOnHover => styleValue(
-        defaultValue: true,
-        themeValue: _theme?.pauseOnHover,
-        widgetValue: widget.pauseOnHover,
-      );
+    defaultValue: true,
+    themeValue: _theme?.pauseOnHover,
+    widgetValue: widget.pauseOnHover,
+  );
 
   Duration? get _autoplaySpeed => styleValue(
-        defaultValue: null,
-        themeValue: _theme?.autoplaySpeed,
-        widgetValue: widget.autoplaySpeed,
-      );
+    defaultValue: null,
+    themeValue: _theme?.autoplaySpeed,
+    widgetValue: widget.autoplaySpeed,
+  );
   bool get _draggable => styleValue(
-        defaultValue: true,
-        themeValue: _theme?.draggable,
-        widgetValue: widget.draggable,
-      );
+    defaultValue: true,
+    themeValue: _theme?.draggable,
+    widgetValue: widget.draggable,
+  );
 
   Duration get _speed => styleValue(
-        defaultValue: const Duration(milliseconds: 200),
-        themeValue: _theme?.speed,
-        widgetValue: widget.speed,
-      );
+    defaultValue: const Duration(milliseconds: 200),
+    themeValue: _theme?.speed,
+    widgetValue: widget.speed,
+  );
 
   Curve get _curve => styleValue(
-        defaultValue: Curves.easeInOut,
-        themeValue: _theme?.curve,
-        widgetValue: widget.curve,
-      );
+    defaultValue: Curves.easeInOut,
+    themeValue: _theme?.curve,
+    widgetValue: widget.curve,
+  );
 
   Duration? get _currentSlideDuration {
     final currentIndex = _controller.getCurrentIndex(widget.itemCount);
@@ -853,7 +816,8 @@ class _CarouselState extends State<Carousel>
     if (widget.sizeConstraint is CarouselFixedConstraint) {
       size = (widget.sizeConstraint as CarouselFixedConstraint).size;
     } else if (widget.sizeConstraint is CarouselFractionalConstraint) {
-      size = constraints.maxHeight *
+      size =
+          constraints.maxHeight *
           (widget.sizeConstraint as CarouselFractionalConstraint).fraction;
     } else {
       size = constraints.maxHeight;
@@ -895,7 +859,8 @@ class _CarouselState extends State<Carousel>
     if (widget.sizeConstraint is CarouselFixedConstraint) {
       size = (widget.sizeConstraint as CarouselFixedConstraint).size;
     } else if (widget.sizeConstraint is CarouselFractionalConstraint) {
-      size = constraints.maxWidth *
+      size =
+          constraints.maxWidth *
           (widget.sizeConstraint as CarouselFractionalConstraint).fraction;
     } else {
       size = constraints.maxWidth;

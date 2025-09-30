@@ -24,40 +24,6 @@ class BasicTheme {
 
   final EdgeInsetsGeometry? padding;
 
-  BasicTheme copyWith({
-    ValueGetter<AlignmentGeometry?>? contentAlignment,
-    ValueGetter<double?>? contentSpacing,
-    ValueGetter<AlignmentGeometry?>? leadingAlignment,
-    ValueGetter<MainAxisAlignment?>? mainAxisAlignment,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<AlignmentGeometry?>? subtitleAlignment,
-    ValueGetter<AlignmentGeometry?>? titleAlignment,
-    ValueGetter<double?>? titleSpacing,
-    ValueGetter<AlignmentGeometry?>? trailingAlignment,
-  }) {
-    return BasicTheme(
-      contentAlignment:
-          contentAlignment == null ? this.contentAlignment : contentAlignment(),
-      contentSpacing:
-          contentSpacing == null ? this.contentSpacing : contentSpacing(),
-      leadingAlignment:
-          leadingAlignment == null ? this.leadingAlignment : leadingAlignment(),
-      mainAxisAlignment: mainAxisAlignment == null
-          ? this.mainAxisAlignment
-          : mainAxisAlignment(),
-      padding: padding == null ? this.padding : padding(),
-      subtitleAlignment: subtitleAlignment == null
-          ? this.subtitleAlignment
-          : subtitleAlignment(),
-      titleAlignment:
-          titleAlignment == null ? this.titleAlignment : titleAlignment(),
-      titleSpacing: titleSpacing == null ? this.titleSpacing : titleSpacing(),
-      trailingAlignment: trailingAlignment == null
-          ? this.trailingAlignment
-          : trailingAlignment(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     return other is BasicTheme &&
@@ -74,16 +40,16 @@ class BasicTheme {
 
   @override
   int get hashCode => Object.hash(
-        leadingAlignment,
-        trailingAlignment,
-        titleAlignment,
-        subtitleAlignment,
-        contentAlignment,
-        contentSpacing,
-        titleSpacing,
-        mainAxisAlignment,
-        padding,
-      );
+    leadingAlignment,
+    trailingAlignment,
+    titleAlignment,
+    subtitleAlignment,
+    contentAlignment,
+    contentSpacing,
+    titleSpacing,
+    mainAxisAlignment,
+    padding,
+  );
 }
 
 class Basic extends StatelessWidget {
@@ -193,21 +159,25 @@ class Basic extends StatelessWidget {
                     mainAxisAlignment: mainAxisAlignment,
                     children: [
                       if (title != null)
-                        Align(alignment: titleAlignment, child: title)
-                            .small()
-                            .medium(),
+                        Align(
+                          alignment: titleAlignment,
+                          child: title,
+                        ).small().medium(),
                       if (title != null && subtitle != null)
                         SizedBox(height: scaling * 2),
                       if (subtitle != null)
-                        Align(alignment: subtitleAlignment, child: subtitle)
-                            .xSmall()
-                            .muted(),
+                        Align(
+                          alignment: subtitleAlignment,
+                          child: subtitle,
+                        ).xSmall().muted(),
                       if ((title != null || subtitle != null) &&
                           content != null)
                         SizedBox(height: titleSpacing),
                       if (content != null)
-                        Align(alignment: contentAlignment, child: content)
-                            .small(),
+                        Align(
+                          alignment: contentAlignment,
+                          child: content,
+                        ).small(),
                     ],
                   ),
                 ),
@@ -231,7 +201,6 @@ class Basic extends StatelessWidget {
 /// Same as basic, but without forcing the text style
 class BasicLayout extends StatelessWidget {
   const BasicLayout({
-    this.constraints,
     this.content,
     this.contentAlignment,
     this.contentSpacing,
@@ -259,8 +228,6 @@ class BasicLayout extends StatelessWidget {
   final AlignmentGeometry? contentAlignment;
   final double? contentSpacing;
   final double? titleSpacing;
-
-  final BoxConstraints? constraints;
 
   @override
   Widget build(BuildContext context) {

@@ -115,7 +115,6 @@ class PopoverOverlayHandler extends OverlayHandler {
                       anchorSize: anchorSize,
                       animation: animation,
                       builder: builder,
-                      consumeOutsideTaps: consumeOutsideTaps,
                       data: data,
                       follow: follow,
                       heightConstraint: heightConstraint,
@@ -154,8 +153,9 @@ class PopoverOverlayHandler extends OverlayHandler {
                       widthConstraint: widthConstraint,
                     );
                   },
-                  curve:
-                      isClosed.value ? const Interval(0, 2 / 3) : Curves.linear,
+                  curve: isClosed.value
+                      ? const Interval(0, 2 / 3)
+                      : Curves.linear,
                   duration: isClosed.value
                       ? (showDuration ?? kDefaultDuration)
                       : (dismissDuration ?? const Duration(milliseconds: 100)),
@@ -195,7 +195,6 @@ class PopoverOverlayWidget extends StatefulWidget {
     this.anchorSize,
     required this.animation,
     required this.builder,
-    this.consumeOutsideTaps = true,
     this.data,
     this.follow = true,
     this.heightConstraint = PopoverConstraint.flexible,
@@ -236,7 +235,6 @@ class PopoverOverlayWidget extends StatefulWidget {
   final EdgeInsetsGeometry? margin;
   final bool follow;
   final BuildContext anchorContext;
-  final bool consumeOutsideTaps;
   final ValueChanged<PopoverOverlayWidgetState>? onTickFollow;
   final bool allowInvertHorizontal;
   final bool allowInvertVertical;
@@ -416,22 +414,8 @@ class PopoverOverlayWidgetState extends State<PopoverOverlayWidget>
     return widget.onCloseWithResult?.call(value) ?? Future.value();
   }
 
-  Size? get anchorSize => _anchorSize;
-  AlignmentGeometry get anchorAlignment => _anchorAlignment;
-  Offset? get position => _position;
-  AlignmentGeometry get alignment => _alignment;
-  PopoverConstraint get widthConstraint => _widthConstraint;
-  PopoverConstraint get heightConstraint => _heightConstraint;
-  Offset? get offset => _offset;
   EdgeInsetsGeometry? get margin => _margin;
-  bool get follow => _follow;
   BuildContext get anchorContext => _anchorContext;
-
-  bool get allowInvertHorizontal => _allowInvertHorizontal;
-
-  bool get allowInvertVertical => _allowInvertVertical;
-
-  LayerLink? get layerLink => _layerLink;
 
   set layerLink(LayerLink? value) {
     if (_layerLink != value) {
@@ -573,7 +557,8 @@ class PopoverOverlayWidgetState extends State<PopoverOverlayWidget>
                 anchorAlignment: _anchorAlignment.optionallyResolve(context),
                 anchorSize: _anchorSize,
                 heightConstraint: _heightConstraint,
-                margin: _margin?.optionallyResolve(context) ??
+                margin:
+                    _margin?.optionallyResolve(context) ??
                     (const EdgeInsets.all(8) * scaling),
                 offset: _offset,
                 position: _position,
@@ -586,9 +571,11 @@ class PopoverOverlayWidgetState extends State<PopoverOverlayWidget>
             },
             child: FadeTransition(
               opacity: widget.animation,
-              child: Builder(builder: (context) {
-                return widget.builder(context);
-              }),
+              child: Builder(
+                builder: (context) {
+                  return widget.builder(context);
+                },
+              ),
             ),
           ),
         ),
@@ -603,11 +590,6 @@ class PopoverOverlayWidgetState extends State<PopoverOverlayWidget>
 
     return childWidget;
   }
-}
-
-@Deprecated('Use closeOverlay instead')
-Future<void> closePopover<T>(BuildContext context, [T? result]) {
-  return closeOverlay(context, result);
 }
 
 class OverlayPopoverEntry<T> implements OverlayCompleter<T> {
@@ -810,15 +792,6 @@ class Popover {
     }
   }
 
-  /// Immediately removes this popover from the overlay without animations.
-  ///
-  /// This method bypasses all closing animations and state management,
-  /// directly removing the popover from the overlay stack. Use with caution
-  /// as it may interrupt ongoing operations.
-  void remove() {
-    entry.remove();
-  }
-
   /// Gets the current overlay handler state if the popover is mounted.
   ///
   /// Returns null if the popover has been disposed or is not currently
@@ -877,12 +850,6 @@ class PopoverController extends ChangeNotifier {
   bool get hasOpenPopover =>
       _openPopovers.isNotEmpty &&
       _openPopovers.any((element) => !element.entry.isCompleted);
-
-  bool get hasMountedPopover =>
-      _openPopovers.isNotEmpty &&
-      _openPopovers.any((element) => !element.entry.isAnimationCompleted);
-
-  Iterable<Popover> get openPopovers => List.unmodifiable(_openPopovers);
 
   Future<T?> show<T>({
     required AlignmentGeometry alignment,
@@ -955,14 +922,6 @@ class PopoverController extends ChangeNotifier {
   void close([bool immediate = false]) {
     for (final key in _openPopovers) {
       key.close(immediate);
-    }
-    _openPopovers.clear();
-    notifyListeners();
-  }
-
-  void closeLater() {
-    for (final key in _openPopovers) {
-      key.closeLater();
     }
     _openPopovers.clear();
     notifyListeners();
@@ -1175,20 +1134,20 @@ class PopoverLayoutRender extends RenderShiftedBox {
     required double scale,
     required Alignment scaleAlignment,
     required PopoverConstraint widthConstraint,
-  })  : _alignment = alignment,
-        _position = position,
-        _anchorAlignment = anchorAlignment,
-        _widthConstraint = widthConstraint,
-        _heightConstraint = heightConstraint,
-        _anchorSize = anchorSize,
-        _offset = offset,
-        _margin = margin,
-        _scale = scale,
-        _scaleAlignment = scaleAlignment,
-        _filterQuality = filterQuality,
-        _allowInvertHorizontal = allowInvertHorizontal,
-        _allowInvertVertical = allowInvertVertical,
-        super(child);
+  }) : _alignment = alignment,
+       _position = position,
+       _anchorAlignment = anchorAlignment,
+       _widthConstraint = widthConstraint,
+       _heightConstraint = heightConstraint,
+       _anchorSize = anchorSize,
+       _offset = offset,
+       _margin = margin,
+       _scale = scale,
+       _scaleAlignment = scaleAlignment,
+       _filterQuality = filterQuality,
+       _allowInvertHorizontal = allowInvertHorizontal,
+       _allowInvertVertical = allowInvertVertical,
+       super(child);
 
   Alignment _alignment;
   Alignment _anchorAlignment;
@@ -1343,10 +1302,12 @@ class PopoverLayoutRender extends RenderShiftedBox {
       size.width / 2 + size.width / 2 * _anchorAlignment.x,
       size.height / 2 + size.height / 2 * _anchorAlignment.y,
     );
-    double x = position.dx -
+    double x =
+        position.dx -
         childSize.width / 2 -
         (childSize.width / 2 * _alignment.x);
-    double y = position.dy -
+    double y =
+        position.dy -
         childSize.height / 2 -
         (childSize.height / 2 * _alignment.y);
     double left = x - _margin.left;
@@ -1354,7 +1315,8 @@ class PopoverLayoutRender extends RenderShiftedBox {
     double right = x + childSize.width + _margin.right;
     double bottom = y + childSize.height + _margin.bottom;
     if ((left < 0 || right > size.width) && _allowInvertHorizontal) {
-      x = position.dx -
+      x =
+          position.dx -
           childSize.width / 2 -
           (childSize.width / 2 * -_alignment.x);
       if (_anchorSize != null) {
@@ -1368,7 +1330,8 @@ class PopoverLayoutRender extends RenderShiftedBox {
       _invertX = false;
     }
     if ((top < 0 || bottom > size.height) && _allowInvertVertical) {
-      y = position.dy -
+      y =
+          position.dy -
           childSize.height / 2 -
           (childSize.height / 2 * -_alignment.y);
       if (_anchorSize != null) {
@@ -1384,13 +1347,13 @@ class PopoverLayoutRender extends RenderShiftedBox {
     final dx = left < 0
         ? -left
         : right > size.width
-            ? size.width - right
-            : 0;
+        ? size.width - right
+        : 0;
     final dy = top < 0
         ? -top
         : bottom > size.height
-            ? size.height - bottom
-            : 0;
+        ? size.height - bottom
+        : 0;
     final result = Offset(x + dx + offsetX, y + dy + offsetY);
     final childParentData = child!.parentData! as BoxParentData;
     childParentData.offset = result;

@@ -20,19 +20,6 @@ class FadeScrollTheme {
   /// The gradient colors used for the fade.
   final List<Color>? gradient;
 
-  /// Creates a copy of this theme but with the given fields replaced.
-  FadeScrollTheme copyWith({
-    ValueGetter<double?>? endOffset,
-    ValueGetter<List<Color>?>? gradient,
-    ValueGetter<double?>? startOffset,
-  }) {
-    return FadeScrollTheme(
-      endOffset: endOffset == null ? this.endOffset : endOffset(),
-      gradient: gradient == null ? this.gradient : gradient(),
-      startOffset: startOffset == null ? this.startOffset : startOffset(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -51,18 +38,14 @@ class FadeScroll extends StatelessWidget {
   const FadeScroll({
     required this.child,
     required this.controller,
-    this.endCrossOffset = 0,
     this.endOffset,
     this.gradient,
     super.key,
-    this.startCrossOffset = 0,
     this.startOffset,
   });
 
   final double? startOffset;
   final double? endOffset;
-  final double startCrossOffset;
-  final double endCrossOffset;
   final Widget child;
   final ScrollController controller;
 
@@ -123,19 +106,19 @@ class FadeScroll extends StatelessWidget {
                                 (i / gradient.length) * (1 - relativeEnd),
                         ]
                       : shouldFadeStart
-                          ? [
-                              for (int i = 0; i < gradient.length; i += 1)
-                                (i / gradient.length) * relativeStart,
-                              relativeStart,
-                              1,
-                            ]
-                          : [
-                              0,
-                              relativeEnd,
-                              for (int i = 1; i < gradient.length + 1; i += 1)
-                                relativeEnd +
-                                    (i / gradient.length) * (1 - relativeEnd),
-                            ];
+                      ? [
+                          for (int i = 0; i < gradient.length; i += 1)
+                            (i / gradient.length) * relativeStart,
+                          relativeStart,
+                          1,
+                        ]
+                      : [
+                          0,
+                          relativeEnd,
+                          for (int i = 1; i < gradient.length + 1; i += 1)
+                            relativeEnd +
+                                (i / gradient.length) * (1 - relativeEnd),
+                        ];
 
                   return LinearGradient(
                     begin: start,

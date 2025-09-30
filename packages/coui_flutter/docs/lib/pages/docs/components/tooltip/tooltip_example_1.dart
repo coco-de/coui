@@ -8,7 +8,9 @@ class TooltipExample1 extends StatelessWidget {
     return Tooltip(
       tooltip: const TooltipContainer(child: Text('This is a tooltip.')),
       child: PrimaryButton(
-        onPressed: () {},
+        onPressed: () {
+          // TODOS: will be implemented later.
+        },
         child: const Text('Hover over me'),
       ),
     );

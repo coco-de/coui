@@ -44,12 +44,12 @@ class Input extends UiComponent {
     this.type = _defaultInputType,
     this.value,
   }) : super(
-          null,
-          // Convert Flutter-style callbacks to web event handlers
-          onChange: onChange,
-          onInput: onInput,
-          style: style,
-        );
+         null,
+         // Convert Flutter-style callbacks to web event handlers
+         onChange: onChange,
+         onInput: onInput,
+         style: style,
+       );
 
   // Input elements have no children.
 
@@ -74,13 +74,6 @@ class Input extends UiComponent {
     type: StyleType.border,
   );
 
-  /// Ghost style (transparent background). `input-ghost`.
-  static const ghost = InputStyle('input-ghost', type: StyleType.style);
-
-  // Colors
-  /// Neutral color. `input-neutral`.
-  static const neutral = InputStyle('input-neutral', type: StyleType.style);
-
   /// Primary color. `input-primary`.
   static const primary = InputStyle('input-primary', type: StyleType.style);
 
@@ -90,39 +83,6 @@ class Input extends UiComponent {
     type: StyleType.style,
   );
 
-  /// Accent color. `input-accent`.
-  static const accent = InputStyle('input-accent', type: StyleType.style);
-
-  /// Info color. `input-info`.
-  static const info = InputStyle('input-info', type: StyleType.style);
-
-  /// Success color. `input-success`.
-  static const success = InputStyle('input-success', type: StyleType.style);
-
-  /// Warning color. `input-warning`.
-  static const warning = InputStyle('input-warning', type: StyleType.style);
-
-  /// Error color. `input-error`.
-  static const error = InputStyle('input-error', type: StyleType.style);
-
-  // Sizes
-  /// Extra-small size. `input-xs`.
-  static const xs = InputStyle('input-xs', type: StyleType.sizing);
-
-  /// Small size. `input-sm`.
-  static const sm = InputStyle('input-sm', type: StyleType.sizing);
-
-  /// Medium size (default). `input-md`.
-  static const md = InputStyle('input-md', type: StyleType.sizing);
-
-  /// Large size. `input-lg`.
-  static const lg = InputStyle('input-lg', type: StyleType.sizing);
-
-  /// Extra-large size. `input-xl`.
-  static const xl = InputStyle(
-    'input-xl',
-    type: StyleType.sizing,
-  ); // HTML attribute constants
   static const _typeAttribute = 'type';
   static const _placeholderAttribute = 'placeholder';
   static const _valueAttribute = 'value';
@@ -269,11 +229,7 @@ class Input extends UiComponent {
   }
 
   List<InputStyling>? _resolveStyle(List<InputStyling>? style) {
-    if (style != null) return style;
-
-    final currentStyle = this.style;
-
-    return currentStyle is List<InputStyling>? ? currentStyle : null;
+    return style ?? this.style;
   }
 
   void _configureStringAttributes(UiComponentAttributes attributes) {

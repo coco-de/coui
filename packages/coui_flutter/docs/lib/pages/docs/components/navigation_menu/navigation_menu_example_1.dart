@@ -17,21 +17,27 @@ class NavigationMenuExample1 extends StatelessWidget {
                 content: const Text(
                   'Component library for Flutter based on Shadcn/UI design.',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               NavigationMenuContent(
                 title: const Text('Installation'),
                 content: const Text(
                   'How to install this package in your Flutter project.',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               NavigationMenuContent(
                 title: const Text('Typography'),
                 content: const Text(
                   'Styles and usage of typography in this package.',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               Clickable(
                 mouseCursor: const WidgetStatePropertyAll(
@@ -65,32 +71,44 @@ class NavigationMenuExample1 extends StatelessWidget {
               NavigationMenuContent(
                 title: const Text('Accordion'),
                 content: const Text('Accordion component for Flutter.'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               NavigationMenuContent(
                 title: const Text('Alert'),
                 content: const Text('Alert component for Flutter.'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               NavigationMenuContent(
                 title: const Text('Alert Dialog'),
                 content: const Text('Alert Dialog component for Flutter.'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               NavigationMenuContent(
                 title: const Text('Animation'),
                 content: const Text('Animation component for Flutter.'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               NavigationMenuContent(
                 title: const Text('Avatar'),
                 content: const Text('Avatar component for Flutter.'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               NavigationMenuContent(
                 title: const Text('Badge'),
                 content: const Text('Badge component for Flutter.'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
             ],
           ),
@@ -104,24 +122,32 @@ class NavigationMenuExample1 extends StatelessWidget {
               NavigationMenuContent(
                 title: const Text('Latest news'),
                 content: const Text('Stay updated with the latest news.'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               NavigationMenuContent(
                 title: const Text('Change log'),
                 content: const Text('View the change log of this package.'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
               NavigationMenuContent(
                 title: const Text('Contributors'),
                 content: const Text('List of contributors to this package.'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
             ],
           ),
           child: const Text('Blog'),
         ),
         NavigationMenuItem(
-          onPressed: () {},
+          onPressed: () {
+            // TODOS: will be implemented later.
+          },
           child: const Text('Documentation'),
         ),
       ],

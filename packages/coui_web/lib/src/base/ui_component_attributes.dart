@@ -28,12 +28,6 @@ class UiComponentAttributes {
 
   final Map<String, String> _attributes;
 
-  /// Returns `true` if no attributes have been added.
-  bool get isEmpty => _attributes.isEmpty;
-
-  /// Returns `true` if at least one attribute has been added.
-  bool get isNotEmpty => _attributes.isNotEmpty;
-
   /// Adds a standard HTML attribute.
   ///
   /// If an attribute with the same [name] already exists, its value will be
@@ -43,26 +37,6 @@ class UiComponentAttributes {
   /// [value]: The value of the attribute.
   void add(String name, String value) {
     _attributes[name] = value;
-  }
-
-  /// Adds a standard HTML attribute only if the [condition] is true.
-  ///
-  /// If an attribute with the same [name] already exists and the condition
-  /// is true,
-  /// its value will be overwritten.
-  ///
-  /// [condition]: The boolean condition that determines if the attribute is
-  /// added.
-  /// [name]: The name of the attribute.
-  /// [value]: The value of the attribute.
-  void addIf({
-    required bool condition,
-    required String name,
-    required String value,
-  }) {
-    if (condition) {
-      _attributes[name] = value;
-    }
   }
 
   /// Adds an ARIA (Accessible Rich Internet Applications) attribute.
@@ -78,21 +52,6 @@ class UiComponentAttributes {
   /// [value]: The value of the ARIA attribute.
   void addAria(String name, String value) {
     _attributes['aria-$name'] = value;
-  }
-
-  /// Adds a custom data attribute.
-  /// The 'data-' prefix will be automatically prepended to the [name].
-  ///
-  /// Example: `addData('testid', 'user-profile')` results in
-  /// `data-testid="user-profile"`.
-  /// If an attribute with the same 'data-[name]' already exists, its value
-  /// will be overwritten.
-  ///
-  /// [name]: The data attribute name without the 'data-' prefix (e.g.,
-  /// "testid", "custom-value").
-  /// [value]: The value of the data attribute.
-  void addData(String name, String value) {
-    _attributes['data-$name'] = value;
   }
 
   /// Adds or updates the 'role' ARIA attribute.

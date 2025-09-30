@@ -23,32 +23,6 @@ class ScrollableClientTheme {
 
   final bool? overscroll;
 
-  ScrollableClientTheme copyWith({
-    ValueGetter<Clip?>? clipBehavior,
-    ValueGetter<DiagonalDragBehavior?>? diagonalDragBehavior,
-    ValueGetter<DragStartBehavior?>? dragStartBehavior,
-    ValueGetter<HitTestBehavior?>? hitTestBehavior,
-    ValueGetter<ScrollViewKeyboardDismissBehavior?>? keyboardDismissBehavior,
-    ValueGetter<bool?>? overscroll,
-  }) {
-    return ScrollableClientTheme(
-      clipBehavior: clipBehavior == null ? this.clipBehavior : clipBehavior(),
-      diagonalDragBehavior: diagonalDragBehavior == null
-          ? this.diagonalDragBehavior
-          : diagonalDragBehavior(),
-      dragStartBehavior: dragStartBehavior == null
-          ? this.dragStartBehavior
-          : dragStartBehavior(),
-      hitTestBehavior: hitTestBehavior == null
-          ? this.hitTestBehavior
-          : hitTestBehavior(),
-      keyboardDismissBehavior: keyboardDismissBehavior == null
-          ? this.keyboardDismissBehavior
-          : keyboardDismissBehavior(),
-      overscroll: overscroll == null ? this.overscroll : overscroll(),
-    );
-  }
-
   @override
   bool operator ==(Object other) =>
       other is ScrollableClientTheme &&

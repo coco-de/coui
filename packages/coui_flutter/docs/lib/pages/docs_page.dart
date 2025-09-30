@@ -329,7 +329,6 @@ class DocsPageState extends State<DocsPage> {
     'Display',
     'Utility',
   ];
-  bool toggle = false;
   List<OnThisPage> currentlyVisible = [];
   final ScrollController scrollController = ScrollController();
 
@@ -476,21 +475,20 @@ class DocsPageState extends State<DocsPage> {
               },
             );
           },
-          style:
-              const ButtonStyle.primary(
-                density: ButtonDensity.dense,
-                size: ButtonSize.small,
-              ).copyWith(
-                decoration: (context, states, value) {
-                  return (value as BoxDecoration).copyWith(color: color);
-                },
-                textStyle: (context, states, value) {
-                  return value.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                  );
-                },
-              ),
+          style: const ButtonStyle.primary(
+            density: ButtonDensity.dense,
+            size: ButtonSize.small,
+          ).copyWith(
+            decoration: (context, states, value) {
+              return (value as BoxDecoration).copyWith(color: color);
+            },
+            textStyle: (context, states, value) {
+              return value.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              );
+            },
+          ),
           child: Text(text),
         );
       },
@@ -569,8 +567,7 @@ class DocsPageState extends State<DocsPage> {
                                       child: FaIcon(
                                         FontAwesomeIcons.github,
                                         color: theme
-                                            .colorScheme
-                                            .secondaryForeground,
+                                            .colorScheme.secondaryForeground,
                                       ).iconLarge(),
                                     ),
                                   ),
@@ -655,8 +652,7 @@ class DocsPageState extends State<DocsPage> {
                           child: FocusTraversalGroup(
                             child: SingleChildScrollView(
                               key: const PageStorageKey('sidebar'),
-                              padding:
-                                  EdgeInsets.only(
+                              padding: EdgeInsets.only(
                                     top: 32,
                                     left: 24 + padding.left,
                                     bottom: 32,
@@ -680,20 +676,19 @@ class DocsPageState extends State<DocsPage> {
                                         clipBehavior: Clip.none,
                                         padding: !hasOnThisPage
                                             ? const EdgeInsets.symmetric(
-                                                        horizontal: 40,
-                                                        vertical: 32,
-                                                      ).copyWith(
-                                                        right:
-                                                            padding.right + 32,
-                                                      ) *
-                                                      theme.scaling +
-                                                  mq.padding
+                                                      horizontal: 40,
+                                                      vertical: 32,
+                                                    ).copyWith(
+                                                      right: padding.right + 32,
+                                                    ) *
+                                                    theme.scaling +
+                                                mq.padding
                                             : const EdgeInsets.symmetric(
-                                                        horizontal: 40,
-                                                        vertical: 32,
-                                                      ).copyWith(right: 24) *
-                                                      theme.scaling +
-                                                  mq.padding,
+                                                      horizontal: 40,
+                                                      vertical: 32,
+                                                    ).copyWith(right: 24) *
+                                                    theme.scaling +
+                                                mq.padding,
                                         child: MediaQuery(
                                           data: mq.copyWith(
                                             padding: EdgeInsets.zero,
@@ -734,18 +729,18 @@ class DocsPageState extends State<DocsPage> {
                                     clipBehavior: Clip.none,
                                     padding: !hasOnThisPage
                                         ? const EdgeInsets.symmetric(
-                                                horizontal: 40,
-                                                vertical: 32,
-                                              ).copyWith(
-                                                right: padding.right + 32,
-                                                bottom: 0,
-                                              ) *
-                                              theme.scaling
+                                              horizontal: 40,
+                                              vertical: 32,
+                                            ).copyWith(
+                                              right: padding.right + 32,
+                                              bottom: 0,
+                                            ) *
+                                            theme.scaling
                                         : const EdgeInsets.symmetric(
-                                                horizontal: 40,
-                                                vertical: 32,
-                                              ).copyWith(right: 24, bottom: 0) *
-                                              theme.scaling,
+                                              horizontal: 40,
+                                              vertical: 32,
+                                            ).copyWith(right: 24, bottom: 0) *
+                                            theme.scaling,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
@@ -913,7 +908,7 @@ class DocsPageState extends State<DocsPage> {
                   child: SingleChildScrollView(
                     padding:
                         const EdgeInsets.only(left: 32, right: 32, bottom: 48) *
-                        scaling,
+                            scaling,
                     key: const PageStorageKey('sidebar'),
                     child: SidebarNav(
                       children: [
@@ -1066,7 +1061,7 @@ class _DocsSecondarySidebarState extends State<_DocsSecondarySidebar> {
         child: SingleChildScrollView(
           padding:
               const EdgeInsets.only(top: 32, right: 24, bottom: 32, left: 24) *
-              theme.scaling,
+                  theme.scaling,
           child: SidebarNav(children: _sideChildren),
         ),
       ),

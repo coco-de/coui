@@ -39,19 +39,6 @@ class StepperTheme {
   /// Visual variant for step presentation.
   final StepVariant? variant;
 
-  /// Creates a copy of this theme with optionally overridden properties.
-  StepperTheme copyWith({
-    ValueGetter<Axis?>? direction,
-    ValueGetter<StepSize?>? size,
-    ValueGetter<StepVariant?>? variant,
-  }) {
-    return StepperTheme(
-      direction: direction == null ? this.direction : direction(),
-      size: size == null ? this.size : size(),
-      variant: variant == null ? this.variant : variant(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

@@ -77,41 +77,6 @@ class CollapsibleTheme {
   /// If null, defaults to 16 logical pixels scaled by theme.
   final double? iconGap;
 
-  /// Creates a copy of this theme with the given fields replaced.
-  ///
-  /// Uses [ValueGetter] functions to allow conditional updates where
-  /// null getters preserve the original value.
-  ///
-  /// Example:
-  /// ```dart
-  /// final newTheme = originalTheme.copyWith(
-  ///   padding: () => 20.0,
-  ///   iconGap: () => 12.0,
-  /// );
-  /// ```
-  CollapsibleTheme copyWith({
-    ValueGetter<CrossAxisAlignment?>? crossAxisAlignment,
-    ValueGetter<IconData?>? iconCollapsed,
-    ValueGetter<IconData?>? iconExpanded,
-    ValueGetter<double?>? iconGap,
-    ValueGetter<MainAxisAlignment?>? mainAxisAlignment,
-    ValueGetter<double?>? padding,
-  }) {
-    return CollapsibleTheme(
-      crossAxisAlignment: crossAxisAlignment == null
-          ? this.crossAxisAlignment
-          : crossAxisAlignment(),
-      iconCollapsed:
-          iconCollapsed == null ? this.iconCollapsed : iconCollapsed(),
-      iconExpanded: iconExpanded == null ? this.iconExpanded : iconExpanded(),
-      iconGap: iconGap == null ? this.iconGap : iconGap(),
-      mainAxisAlignment: mainAxisAlignment == null
-          ? this.mainAxisAlignment
-          : mainAxisAlignment(),
-      padding: padding == null ? this.padding : padding(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -287,8 +252,10 @@ class CollapsibleState extends State<Collapsible> {
     final compTheme = ComponentTheme.maybeOf<CollapsibleTheme>(context);
 
     return Data.inherit(
-      data:
-          CollapsibleStateData(handleTap: _handleTap, isExpanded: _isExpanded),
+      data: CollapsibleStateData(
+        handleTap: _handleTap,
+        isExpanded: _isExpanded,
+      ),
       child: IntrinsicWidth(
         child: Column(
           crossAxisAlignment:
@@ -395,18 +362,21 @@ class CollapsibleTrigger extends StatelessWidget {
 
     final compTheme = ComponentTheme.maybeOf<CollapsibleTheme>(context);
 
-    return Row(mainAxisSize: MainAxisSize.min, children: [
-      Expanded(child: child.small().semiBold()),
-      Gap(compTheme?.iconGap ?? scaling * 16),
-      GhostButton(
-        onPressed: state.handleTap,
-        child: Icon(
-          state.isExpanded
-              ? compTheme?.iconExpanded ?? Icons.unfold_less
-              : compTheme?.iconCollapsed ?? Icons.unfold_more,
-        ).iconXSmall(),
-      ),
-    ]).withPadding(horizontal: compTheme?.padding ?? scaling * 16);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Expanded(child: child.small().semiBold()),
+        Gap(compTheme?.iconGap ?? scaling * 16),
+        GhostButton(
+          onPressed: state.handleTap,
+          child: Icon(
+            state.isExpanded
+                ? compTheme?.iconExpanded ?? Icons.unfold_less
+                : compTheme?.iconCollapsed ?? Icons.unfold_more,
+          ).iconXSmall(),
+        ),
+      ],
+    ).withPadding(horizontal: compTheme?.padding ?? scaling * 16);
   }
 }
 

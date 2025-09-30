@@ -71,39 +71,6 @@ class CardImageTheme {
   /// Gap between image and text content.
   final double? gap;
 
-  /// Creates a copy of this theme with optionally overridden properties.
-  ///
-  /// Uses [ValueGetter] functions to allow nullable overrides.
-  ///
-  /// Example:
-  /// ```dart
-  /// final newTheme = existingTheme.copyWith(
-  ///   hoverScale: () => 1.2,
-  ///   backgroundColor: () => Colors.blue.shade50,
-  /// );
-  /// ```
-  CardImageTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<Color?>? borderColor,
-    ValueGetter<Axis?>? direction,
-    ValueGetter<double?>? gap,
-    ValueGetter<double?>? hoverScale,
-    ValueGetter<double?>? normalScale,
-    ValueGetter<AbstractButtonStyle?>? style,
-  }) {
-    return CardImageTheme(
-      backgroundColor: backgroundColor == null
-          ? this.backgroundColor
-          : backgroundColor(),
-      borderColor: borderColor == null ? this.borderColor : borderColor(),
-      direction: direction == null ? this.direction : direction(),
-      gap: gap == null ? this.gap : gap(),
-      hoverScale: hoverScale == null ? this.hoverScale : hoverScale(),
-      normalScale: normalScale == null ? this.normalScale : normalScale(),
-      style: style == null ? this.style : style(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     return other is CardImageTheme &&

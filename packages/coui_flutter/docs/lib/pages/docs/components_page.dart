@@ -342,7 +342,9 @@ class ComponentCard extends StatefulWidget implements IComponentPage {
   State<ComponentCard> createState() => _ComponentCardState();
 }
 
-enum ComponentsMode { normal, capture }
+enum ComponentsMode {
+  normal,
+}
 
 class _ComponentCardState extends State<ComponentCard> {
   bool _hovering = false;
@@ -356,9 +358,8 @@ class _ComponentCardState extends State<ComponentCard> {
       onTap: componentsMode == ComponentsMode.normal
           ? null
           : () {
-              final render =
-                  repaintKey.currentContext!.findRenderObject()
-                      as RenderRepaintBoundary;
+              final render = repaintKey.currentContext!.findRenderObject()
+                  as RenderRepaintBoundary;
               render.toImage().then((value) async {
                 var byteData = (await value.toByteData(
                   format: ImageByteFormat.png,
@@ -438,45 +439,53 @@ class _ComponentCardState extends State<ComponentCard> {
                                             ),
                                           )
                                         : widget.center
-                                        ? Center(
-                                            child: Transform.scale(
-                                              scale: widget.scale,
-                                              child: SingleChildScrollView(
-                                                clipBehavior: Clip.none,
-                                                child: widget.example,
-                                              ),
-                                            ),
-                                          ).withPadding(all: 24)
-                                        : Stack(
-                                            children: [
-                                              Positioned(
-                                                top: !widget.reverseVertical
-                                                    ? widget.verticalOffset
-                                                    : null,
-                                                right: widget.reverse
-                                                    ? widget.horizontalOffset
-                                                    : null,
-                                                bottom: widget.reverseVertical
-                                                    ? widget.verticalOffset
-                                                    : null,
-                                                left: !widget.reverse
-                                                    ? widget.horizontalOffset
-                                                    : null,
+                                            ? Center(
                                                 child: Transform.scale(
                                                   scale: widget.scale,
-                                                  alignment: widget.reverse
-                                                      ? widget.reverseVertical
-                                                            ? Alignment
-                                                                  .bottomRight
-                                                            : Alignment.topRight
-                                                      : widget.reverseVertical
-                                                      ? Alignment.bottomLeft
-                                                      : Alignment.topLeft,
-                                                  child: widget.example,
+                                                  child: SingleChildScrollView(
+                                                    clipBehavior: Clip.none,
+                                                    child: widget.example,
+                                                  ),
                                                 ),
+                                              ).withPadding(all: 24)
+                                            : Stack(
+                                                children: [
+                                                  Positioned(
+                                                    top: !widget.reverseVertical
+                                                        ? widget.verticalOffset
+                                                        : null,
+                                                    right: widget.reverse
+                                                        ? widget
+                                                            .horizontalOffset
+                                                        : null,
+                                                    bottom: widget
+                                                            .reverseVertical
+                                                        ? widget.verticalOffset
+                                                        : null,
+                                                    left: !widget.reverse
+                                                        ? widget
+                                                            .horizontalOffset
+                                                        : null,
+                                                    child: Transform.scale(
+                                                      scale: widget.scale,
+                                                      alignment: widget.reverse
+                                                          ? widget
+                                                                  .reverseVertical
+                                                              ? Alignment
+                                                                  .bottomRight
+                                                              : Alignment
+                                                                  .topRight
+                                                          : widget
+                                                                  .reverseVertical
+                                                              ? Alignment
+                                                                  .bottomLeft
+                                                              : Alignment
+                                                                  .topLeft,
+                                                      child: widget.example,
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
                                   ),
                                 ),
                               ),
@@ -497,39 +506,5 @@ class _ComponentCardState extends State<ComponentCard> {
         ),
       ),
     );
-  }
-}
-
-// paint a cursor
-class CursorPainter extends CustomPainter {
-  // <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  // <path d="M4 0l16 12.279-6.951 1.17 4.325 8.817-3.596 1.734-4.35-8.879-5.428 4.702z"/></svg>
-  const CursorPainter();
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white
-      ..style = PaintingStyle.fill;
-    final path = Path()
-      ..moveTo(4, 0)
-      ..lineTo(20, 12.279)
-      ..lineTo(13.049, 13.449)
-      ..lineTo(17.374, 22.266)
-      ..lineTo(13.778, 24)
-      ..lineTo(9.428, 15.121)
-      ..lineTo(4, 19.823)
-      ..close();
-    canvas.drawPath(path, paint);
-    paint
-      ..color = Colors.black
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.5;
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
   }
 }

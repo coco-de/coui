@@ -60,27 +60,6 @@ class RefreshTriggerTheme {
   /// Duration for the completion animation.
   final Duration? completeDuration;
 
-  /// Creates a copy of this theme but with the given fields replaced.
-  RefreshTriggerTheme copyWith({
-    ValueGetter<Duration?>? completeDuration,
-    ValueGetter<Curve?>? curve,
-    ValueGetter<RefreshIndicatorBuilder?>? indicatorBuilder,
-    ValueGetter<double?>? maxExtent,
-    ValueGetter<double?>? minExtent,
-  }) {
-    return RefreshTriggerTheme(
-      completeDuration: completeDuration == null
-          ? this.completeDuration
-          : completeDuration(),
-      curve: curve == null ? this.curve : curve(),
-      indicatorBuilder: indicatorBuilder == null
-          ? this.indicatorBuilder
-          : indicatorBuilder(),
-      maxExtent: maxExtent == null ? this.maxExtent : maxExtent(),
-      minExtent: minExtent == null ? this.minExtent : minExtent(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -658,7 +637,6 @@ class RefreshTriggerState extends State<RefreshTrigger>
                   RefreshTriggerStage(
                     _stage,
                     tween.animate(animation),
-                    widget.direction,
                     widget.reverse,
                   ),
                 ),
@@ -689,7 +667,6 @@ class RefreshTriggerStage {
   const RefreshTriggerStage(
     this.direction,
     this.extent,
-    this.reverse,
     this.stage,
   );
 
@@ -697,11 +674,5 @@ class RefreshTriggerStage {
   final Animation<double> extent;
   final Axis direction;
 
-  final bool reverse;
-
   double get extentValue => extent.value;
-}
-
-class RefreshTriggerPhysics extends ScrollPhysics {
-  const RefreshTriggerPhysics();
 }

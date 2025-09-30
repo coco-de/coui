@@ -94,7 +94,9 @@ class _TreeExample1State extends State<TreeExample1> {
               }),
               builder: (context, node) {
                 return TreeItemView(
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   trailing: node.leaf
                       ? Container(
                           width: 16,

@@ -24,50 +24,32 @@ class CoUILocalizationsDelegate
   bool shouldReload(CoUILocalizationsDelegate old) => false;
 }
 
-const _fileByteUnits =
-    SizeUnitLocale(1024, ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']);
+const _fileByteUnits = SizeUnitLocale(1024, [
+  'B',
+  'KB',
+  'MB',
+  'GB',
+  'TB',
+  'PB',
+  'EB',
+  'ZB',
+  'YB',
+]);
 const _fileBitUnits = SizeUnitLocale(
   1024,
   ['Bi', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'],
 );
 
 class SizeUnitLocale {
-  const SizeUnitLocale(this.base, this.units, {this.separator = ','});
+  const SizeUnitLocale(this.base, this.units);
 
   final int base;
 
   final List<String> units; // separator for digit grouping, e.g. 1,000,000
-  final String separator;
-
-  static const fileBytes = _fileByteUnits;
-  static const fileBits = _fileBitUnits;
-
-  String getUnit(int value) {
-    if (value <= 0) return '0 ${units.first}';
-    final log10 = _log10(value);
-    final digitGroups = (log10 / _log10(base)).floor();
-    final unitIndex = min(digitGroups, units.length - 1);
-
-    return units[unitIndex];
-  }
 }
 
 double _log10(num x) {
   return log(x) / ln10;
-}
-
-String formatFileSize(int bytes, SizeUnitLocale unit) {
-  if (bytes <= 0) return '0 ${unit.units.first}';
-  final base = unit.base;
-  final units = unit.units;
-  final digitGroups = (_log10(bytes) / _log10(base)).floor();
-  // return '${NumberFormat('#,##0.#').format(bytes / pow(base, digitGroups))} ${units[digitGroups]}';
-  // do it without NumberFormat, but format to #,##0.# format
-  final value = bytes / pow(base, digitGroups);
-  final formattedValue =
-      value.toStringAsFixed(value.truncateToDouble() == value ? 0 : 1);
-
-  return '$formattedValue ${units[digitGroups]}';
 }
 
 int _getYear(DateTime dateTime) => dateTime.year;
@@ -92,15 +74,11 @@ int _getDay(DateTime dateTime) => dateTime.day;
 }
 
 enum DatePart {
-  day(_computeDayValueRange, _getDay),
-  month(_computeMonthValueRange, _getMonth),
-  year(_computeYearValueRange, _getYear, length: 4);
+  day(),
+  month(),
+  year();
 
-  final int Function(DateTime dateTime) getter;
-  final int length;
-  final (int?, int?) Function(Map<DatePart, int> values) computeValueRange;
-
-  const DatePart(this.computeValueRange, this.getter, {this.length = 2});
+  const DatePart();
 }
 
 abstract class CoUILocalizations {
@@ -157,19 +135,6 @@ abstract class CoUILocalizations {
   });
 
   String dataTableSelectedRows(int count, int total);
-
-  String getColorPickerMode(ColorPickerMode mode) {
-    switch (mode) {
-      case ColorPickerMode.rgb:
-        return colorPickerTabRGB;
-
-      case ColorPickerMode.hsv:
-        return colorPickerTabHSV;
-
-      case ColorPickerMode.hsl:
-        return colorPickerTabHSL;
-    }
-  }
 
   String getAbbreviatedWeekday(int weekday) {
     switch (weekday) {
@@ -292,22 +257,6 @@ abstract class CoUILocalizations {
     bool showMinutes = true,
     bool showSeconds = true,
   });
-
-  String getDurationPartAbbreviation(DurationPart part) {
-    switch (part) {
-      case DurationPart.day:
-        return timeDaysAbbreviation;
-
-      case DurationPart.hour:
-        return timeHoursAbbreviation;
-
-      case DurationPart.minute:
-        return timeMinutesAbbreviation;
-
-      case DurationPart.second:
-        return timeSecondsAbbreviation;
-    }
-  }
 
   String getTimePartAbbreviation(TimePart part) {
     switch (part) {
@@ -659,15 +608,15 @@ class DefaultCoUILocalizations extends CoUILocalizations {
         hour -= 12;
         showSeconds
             ? result +=
-                '${hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')} PM'
+                  '${hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')} PM'
             : result +=
-                '${hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')} PM';
+                  '${hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')} PM';
       } else {
         showSeconds
             ? result +=
-                '${hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')} AM'
+                  '${hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')} AM'
             : result +=
-                '${hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')} AM';
+                  '${hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')} AM';
       }
     }
 
@@ -971,11 +920,11 @@ class DefaultCoUILocalizations extends CoUILocalizations {
 
   @override
   List<DatePart> get datePartsOrder => const [
-        // MM/DD/YYYY
-        DatePart.month,
-        DatePart.day,
-        DatePart.year,
-      ];
+    // MM/DD/YYYY
+    DatePart.month,
+    DatePart.day,
+    DatePart.year,
+  ];
 
   @override
   String get durationDay => 'Day';

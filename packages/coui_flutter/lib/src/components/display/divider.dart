@@ -65,26 +65,6 @@ class DividerTheme {
   /// Padding around the [Divider.child].
   final EdgeInsetsGeometry? padding;
 
-  /// Creates a copy of this theme but with the given fields replaced by the
-  /// new values.
-  DividerTheme copyWith({
-    ValueGetter<Color?>? color,
-    ValueGetter<double?>? endIndent,
-    ValueGetter<double?>? height,
-    ValueGetter<double?>? indent,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<double?>? thickness,
-  }) {
-    return DividerTheme(
-      color: color == null ? this.color : color(),
-      endIndent: endIndent == null ? this.endIndent : endIndent(),
-      height: height == null ? this.height : height(),
-      indent: indent == null ? this.indent : indent(),
-      padding: padding == null ? this.padding : padding(),
-      thickness: thickness == null ? this.thickness : thickness(),
-    );
-  }
-
   @override
   bool operator ==(Object other) =>
       other is DividerTheme &&

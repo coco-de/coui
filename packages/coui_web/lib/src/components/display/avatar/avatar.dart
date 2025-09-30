@@ -72,12 +72,12 @@ class Avatar extends UiComponent {
     this.size,
     List<AvatarStyling>? style,
     super.tag = _defaultTag,
-  })  : _style = style,
-        super(
-          null,
-          child: null,
-          style: style,
-        );
+  }) : _style = style,
+       super(
+         null,
+         child: null,
+         style: style,
+       );
 
   /// URL of the avatar image.
   final String? imageUrl;
@@ -160,7 +160,8 @@ class Avatar extends UiComponent {
 
     return Component.element(
       attributes: componentAttributes,
-      classes: '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : ''}${sizeClass.isNotEmpty ? ' $sizeClass' : ''}${shapeClass.isNotEmpty ? ' $shapeClass' : ''}',
+      classes:
+          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : ''}${sizeClass.isNotEmpty ? ' $sizeClass' : ''}${shapeClass.isNotEmpty ? ' $shapeClass' : ''}',
       id: id,
       styles: css,
       tag: tag,
@@ -325,15 +326,13 @@ abstract final class AvatarHelper {
     Key? key,
   }) {
     final maxAvatars = config?.max;
-    final displayAvatars =
-        maxAvatars != null && avatars.length > maxAvatars
-            ? avatars.sublist(0, maxAvatars)
-            : avatars;
+    final displayAvatars = maxAvatars != null && avatars.length > maxAvatars
+        ? avatars.sublist(0, maxAvatars)
+        : avatars;
 
-    final remainingCount =
-        maxAvatars != null && avatars.length > maxAvatars
-            ? avatars.length - maxAvatars
-            : 0;
+    final remainingCount = maxAvatars != null && avatars.length > maxAvatars
+        ? avatars.length - maxAvatars
+        : 0;
 
     return Component.element(
       classes: 'avatar-group',

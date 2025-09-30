@@ -519,57 +519,6 @@ class RepeatedAnimationBuilder<T> extends StatefulWidget {
     this.reverseDuration,
   }) : animationBuilder = null;
 
-  /// Creates a [RepeatedAnimationBuilder] with direct Animation access.
-  ///
-  /// This constructor provides the underlying [Animation] object directly,
-  /// allowing for advanced animation control and the ability to drive multiple
-  /// animated properties from a single repeated animation.
-  ///
-  /// Parameters:
-  /// - [start] (T, required): Starting value of the animation range.
-  /// - [end] (T, required): Ending value of the animation range.
-  /// - [duration] (Duration, required): Duration for primary animation direction.
-  /// - [curve] (Curve, default: Curves.linear): Easing curve for animation.
-  /// - [reverseCurve] (Curve?, optional): Curve for reverse direction in ping-pong modes.
-  /// - [mode] (RepeatMode, default: RepeatMode.repeat): Animation repeat behavior.
-  /// - [animationBuilder] (Function, required): Builds widget from Animation object.
-  /// - [child] (Widget?, optional): Optional child passed to builder.
-  /// - [lerp] (Function?, optional): Custom interpolation for complex types.
-  /// - [play] (bool, default: true): Whether animation should be playing.
-  /// - [reverseDuration] (Duration?, optional): Duration for reverse direction.
-  ///
-  /// Example:
-  /// ```dart
-  /// RepeatedAnimationBuilder<Color>.animation(
-  ///   start: Colors.red,
-  ///   end: Colors.blue,
-  ///   duration: Duration(seconds: 3),
-  ///   mode: RepeatMode.pingPong,
-  ///   animationBuilder: (context, animation) => Container(
-  ///     width: 100,
-  ///     height: 100,
-  ///     decoration: BoxDecoration(
-  ///       color: animation.value,
-  ///       borderRadius: BorderRadius.circular(8),
-  ///     ),
-  ///   ),
-  /// );
-  /// ```
-  const RepeatedAnimationBuilder.animation({
-    required this.start,
-    required this.end,
-    required this.duration,
-    required this.animationBuilder,
-    super.key,
-    this.curve = Curves.linear,
-    this.reverseCurve,
-    this.mode = RepeatMode.repeat,
-    this.child,
-    this.lerp,
-    this.play = true,
-    this.reverseDuration,
-  }) : builder = null;
-
   /// The starting value for the animation.
   ///
   /// This is the value the animation begins with in forward mode or ends with
@@ -862,45 +811,6 @@ class IntervalDuration extends Curve {
     this.curve,
   });
 
-  /// Creates an [IntervalDuration] with delay-based timing.
-  ///
-  /// This factory constructor makes it easier to specify delays from the start
-  /// and end of the animation rather than absolute timing positions.
-  ///
-  /// Parameters:
-  /// - [startDelay] (Duration?, optional): Delay before animation starts.
-  /// - [endDelay] (Duration?, optional): How much earlier animation should end.
-  /// - [duration] (Duration, required): Base animation duration.
-  ///
-  /// The total timeline duration becomes [duration] + [startDelay] + [endDelay].
-  ///
-  /// Example:
-  /// ```dart
-  /// // Animation with 200ms start delay and ending 100ms early
-  /// IntervalDuration.delayed(
-  ///   startDelay: Duration(milliseconds: 200),
-  ///   endDelay: Duration(milliseconds: 100),
-  ///   duration: Duration(seconds: 1),
-  /// );
-  /// ```
-  factory IntervalDuration.delayed({
-    required Duration duration,
-    Duration? startDelay,
-    Duration? endDelay,
-  }) {
-    if (startDelay != null) {
-      duration += startDelay;
-    }
-    if (endDelay != null) {
-      duration += endDelay;
-    }
-    return IntervalDuration(
-      duration: duration,
-      end: endDelay == null ? null : duration - endDelay,
-      start: startDelay,
-    );
-  }
-
   /// The duration after which the animation should start.
   ///
   /// If null, animation starts immediately. When specified, the animation
@@ -1046,40 +956,6 @@ class CrossFadedTransition extends StatefulWidget {
           opacity: endOpacity,
           child: b,
         ),
-      ],
-    );
-  }
-
-  /// Creates an instant transition between two widgets without animation.
-  ///
-  /// This lerp function provides a step-wise transition where both widgets
-  /// are shown simultaneously without any fade effect. At t=0.0, widget [a]
-  /// is returned; at t=1.0, widget [b] is returned; for intermediate values,
-  /// both widgets are stacked.
-  ///
-  /// Parameters:
-  /// - [a] (Widget): The first widget in the transition.
-  /// - [b] (Widget): The second widget in the transition.
-  /// - [t] (double): Animation progress from 0.0 to 1.0.
-  /// - [alignment] (AlignmentGeometry): How to align widgets (unused in step mode).
-  ///
-  /// Returns either individual widget at extremes or a [Stack] for intermediate values.
-  static Widget lerpStep(
-    Widget a,
-    Widget b,
-    double t, {
-    AlignmentGeometry alignment = Alignment.center,
-  }) {
-    if (t == 0) {
-      return a;
-    } else if (t == 1) {
-      return b;
-    }
-    return Stack(
-      fit: StackFit.passthrough,
-      children: [
-        a,
-        b,
       ],
     );
   }

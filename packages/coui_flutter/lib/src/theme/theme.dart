@@ -5,11 +5,11 @@ import 'package:coui_flutter/coui_flutter.dart';
 
 class AdaptiveScaling {
   const AdaptiveScaling([double scaling = 1])
-      : this.only(
-          radiusScaling: scaling,
-          sizeScaling: scaling,
-          textScaling: scaling,
-        );
+    : this.only(
+        radiusScaling: scaling,
+        sizeScaling: scaling,
+        textScaling: scaling,
+      );
 
   const AdaptiveScaling.only({
     this.radiusScaling = 1,
@@ -27,12 +27,14 @@ class AdaptiveScaling {
 
   ThemeData scale(ThemeData theme) {
     return theme.copyWith(
-      iconTheme:
-          textScaling == 1 ? null : () => theme.iconTheme.scale(textScaling),
+      iconTheme: textScaling == 1
+          ? null
+          : () => theme.iconTheme.scale(textScaling),
       radius: radiusScaling == 1 ? null : () => theme.radius * radiusScaling,
       scaling: sizeScaling == 1 ? null : () => theme.scaling * sizeScaling,
-      typography:
-          textScaling == 1 ? null : () => theme.typography.scale(textScaling),
+      typography: textScaling == 1
+          ? null
+          : () => theme.typography.scale(textScaling),
     );
   }
 
@@ -173,8 +175,9 @@ class ThemeData {
       radius: radius == null ? this.radius : radius(),
       scaling: scaling == null ? this.scaling : scaling(),
       surfaceBlur: surfaceBlur == null ? this.surfaceBlur : surfaceBlur(),
-      surfaceOpacity:
-          surfaceOpacity == null ? this.surfaceOpacity : surfaceOpacity(),
+      surfaceOpacity: surfaceOpacity == null
+          ? this.surfaceOpacity
+          : surfaceOpacity(),
       typography: typography == null ? this.typography : typography(),
     );
   }
@@ -289,11 +292,14 @@ class _AnimatedThemeState extends AnimatedWidgetBaseState<AnimatedTheme> {
 
   @override
   void forEachTween(TweenVisitor<dynamic> visitor) {
-    _data = visitor(
-      _data,
-      widget.data,
-      (dynamic value) => ThemeDataTween(begin: value as ThemeData, end: null),
-    ) as ThemeDataTween?;
+    _data =
+        visitor(
+              _data,
+              widget.data,
+              (dynamic value) =>
+                  ThemeDataTween(begin: value as ThemeData, end: null),
+            )
+            as ThemeDataTween?;
   }
 
   @override
@@ -474,8 +480,8 @@ class ComponentTheme<T> extends InheritedTheme {
   }
 
   static T? maybeOf<T>(BuildContext context) {
-    final widget =
-        context.dependOnInheritedWidgetOfExactType<ComponentTheme<T>>();
+    final widget = context
+        .dependOnInheritedWidgetOfExactType<ComponentTheme<T>>();
 
     return widget == null ? null : widget.data;
   }
@@ -484,8 +490,8 @@ class ComponentTheme<T> extends InheritedTheme {
 
   @override
   Widget wrap(BuildContext context, Widget child) {
-    final ancestorTheme =
-        context.findAncestorWidgetOfExactType<ComponentTheme<T>>();
+    final ancestorTheme = context
+        .findAncestorWidgetOfExactType<ComponentTheme<T>>();
 
     return identical(this, ancestorTheme)
         ? child

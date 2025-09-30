@@ -22,7 +22,9 @@ class NavigationMenuTile extends StatelessWidget implements IComponentPage {
             NavigationMenu(
               children: [
                 Button(
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   style: const ButtonStyle.ghost().copyWith(
                     decoration: (context, states, value) {
                       return (value as BoxDecoration).copyWith(
@@ -59,7 +61,9 @@ class NavigationMenuTile extends StatelessWidget implements IComponentPage {
                           );
                         },
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        // TODOS: will be implemented later.
+                      },
                       alignment: Alignment.topLeft,
                       child: Basic(
                         title: const Text('Installation').medium(),

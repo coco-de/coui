@@ -72,8 +72,9 @@ class AutoCompleteTheme {
   }) {
     return AutoCompleteTheme(
       mode: mode == null ? this.mode : mode(),
-      popoverAlignment:
-          popoverAlignment == null ? this.popoverAlignment : popoverAlignment(),
+      popoverAlignment: popoverAlignment == null
+          ? this.popoverAlignment
+          : popoverAlignment(),
       popoverAnchorAlignment: popoverAnchorAlignment == null
           ? this.popoverAnchorAlignment
           : popoverAnchorAlignment(),
@@ -100,12 +101,12 @@ class AutoCompleteTheme {
 
   @override
   int get hashCode => Object.hash(
-        popoverConstraints,
-        popoverWidthConstraint,
-        popoverAnchorAlignment,
-        popoverAlignment,
-        mode,
-      );
+    popoverConstraints,
+    popoverWidthConstraint,
+    popoverAnchorAlignment,
+    popoverAlignment,
+    mode,
+  );
 }
 
 /// Intelligent autocomplete functionality with customizable suggestion handling.
@@ -437,30 +438,30 @@ class _AutoCompleteState extends State<AutoComplete> {
               ? {
                   NavigateSuggestionIntent:
                       CallbackAction<NavigateSuggestionIntent>(
-                    onInvoke: (intent) {
-                      final direction = intent.direction;
-                      final selectedIndex = _selectedIndex.value;
-                      final suggestions = _suggestions.value;
-                      if (suggestions.isEmpty) {
-                        return;
-                      }
-                      final newSelectedIndex =
-                          (selectedIndex + direction) % suggestions.length;
-                      _selectedIndex.value = newSelectedIndex < 0
-                          ? suggestions.length - 1
-                          : newSelectedIndex;
+                        onInvoke: (intent) {
+                          final direction = intent.direction;
+                          final selectedIndex = _selectedIndex.value;
+                          final suggestions = _suggestions.value;
+                          if (suggestions.isEmpty) {
+                            return;
+                          }
+                          final newSelectedIndex =
+                              (selectedIndex + direction) % suggestions.length;
+                          _selectedIndex.value = newSelectedIndex < 0
+                              ? suggestions.length - 1
+                              : newSelectedIndex;
 
-                      return null;
-                    },
-                  ),
+                          return null;
+                        },
+                      ),
                   AcceptSuggestionIntent:
                       CallbackAction<AcceptSuggestionIntent>(
-                    onInvoke: (intent) {
-                      _handleProceed();
+                        onInvoke: (intent) {
+                          _handleProceed();
 
-                      return null;
-                    },
-                  ),
+                          return null;
+                        },
+                      ),
                 }
               : null,
           onFocusChange: _onFocusChanged,

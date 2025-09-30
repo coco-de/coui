@@ -1,23 +1,9 @@
 import 'package:coui_flutter/coui_flutter.dart';
 
 extension IconExtension on Widget {
-  Widget iconX4Small() {
-    return WrappedIcon(
-      data: (context, theme) => theme.iconTheme.x4Small,
-      child: this,
-    );
-  }
-
   Widget iconX3Small() {
     return WrappedIcon(
       data: (context, theme) => theme.iconTheme.x3Small,
-      child: this,
-    );
-  }
-
-  Widget iconX2Small() {
-    return WrappedIcon(
-      data: (context, theme) => theme.iconTheme.x2Small,
       child: this,
     );
   }
@@ -57,27 +43,6 @@ extension IconExtension on Widget {
     );
   }
 
-  Widget iconX2Large() {
-    return WrappedIcon(
-      data: (context, theme) => theme.iconTheme.x2Large,
-      child: this,
-    );
-  }
-
-  Widget iconX3Large() {
-    return WrappedIcon(
-      data: (context, theme) => theme.iconTheme.x3Large,
-      child: this,
-    );
-  }
-
-  Widget iconX4Large() {
-    return WrappedIcon(
-      data: (context, theme) => theme.iconTheme.x4Large,
-      child: this,
-    );
-  }
-
   Widget iconMutedForeground() {
     return WrappedIcon(
       data: (context, theme) =>
@@ -85,51 +50,13 @@ extension IconExtension on Widget {
       child: this,
     );
   }
-
-  Widget iconDestructiveForeground() {
-    return WrappedIcon(
-      data: (context, theme) =>
-          IconThemeData(color: theme.colorScheme.destructiveForeground),
-      child: this,
-    );
-  }
-
-  Widget iconPrimaryForeground() {
-    return WrappedIcon(
-      data: (context, theme) =>
-          IconThemeData(color: theme.colorScheme.primaryForeground),
-      child: this,
-    );
-  }
-
-  Widget iconPrimary() {
-    return WrappedIcon(
-      data: (context, theme) => IconThemeData(color: theme.colorScheme.primary),
-      child: this,
-    );
-  }
-
-  Widget iconSecondary() {
-    return WrappedIcon(
-      data: (context, theme) =>
-          IconThemeData(color: theme.colorScheme.secondary),
-      child: this,
-    );
-  }
-
-  Widget iconSecondaryForeground() {
-    return WrappedIcon(
-      data: (context, theme) =>
-          IconThemeData(color: theme.colorScheme.secondaryForeground),
-      child: this,
-    );
-  }
 }
 
-typedef WrappedIconDataBuilder<T> = T Function(
-  BuildContext context,
-  ThemeData theme,
-);
+typedef WrappedIconDataBuilder<T> =
+    T Function(
+      BuildContext context,
+      ThemeData theme,
+    );
 
 class WrappedIcon extends StatelessWidget {
   const WrappedIcon({required this.child, required this.data, super.key});
@@ -144,15 +71,5 @@ class WrappedIcon extends StatelessWidget {
     final iconTheme = data(context, theme);
 
     return IconTheme.merge(data: iconTheme, child: child);
-  }
-
-  WrappedIcon copyWith({WrappedIconDataBuilder<IconThemeData>? data}) {
-    return WrappedIcon(
-      data: (context, theme) {
-        return data?.call(context, theme).merge(this.data(context, theme)) ??
-            this.data(context, theme);
-      },
-      child: child,
-    );
   }
 }

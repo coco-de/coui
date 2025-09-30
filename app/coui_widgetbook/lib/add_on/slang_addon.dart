@@ -5,11 +5,11 @@ import 'package:widgetbook/widgetbook.dart';
 
 /// A [SlangAddon] for changing the active [Locale] via [Localizations].
 class SlangAddon extends WidgetbookAddon<Locale> {
-  /// SlangAddon 생성자
+  /// SlangAddon 생성자.
   SlangAddon({
+    this.initialLocale,
     required this.locales,
     required this.localizationsDelegates,
-    this.initialLocale,
   }) : assert(
          locales.isNotEmpty,
          'locales cannot be empty',
@@ -18,20 +18,18 @@ class SlangAddon extends WidgetbookAddon<Locale> {
          initialLocale == null || locales.contains(initialLocale),
          'initialLocale must be in locales',
        ),
-       super(
-         name: 'Locale',
-       );
+       super(name: 'Locale');
 
-  /// 초기 로케일
+  /// 초기 로케일.
   final Locale? initialLocale;
 
-  /// 지원하는 로케일
+  /// 지원하는 로케일.
   final List<Locale> locales;
 
-  /// 로케일 델리게이트
+  /// 로케일 델리게이트.
   final List<LocalizationsDelegate<Object>> localizationsDelegates;
 
-  /// 디버용 디바운스
+  /// 디버용 디바운스.
   final deb = Debouncing<void>(duration: const Duration(milliseconds: 400));
 
   @override
@@ -59,11 +57,7 @@ class SlangAddon extends WidgetbookAddon<Locale> {
 
   /// [valueFromQueryGroup]에서 얻은 애드온 [setting]에 따라 사용 사례를 사용자 정의 위젯으로 래핑합니다.
   @override
-  Widget buildUseCase(
-    BuildContext context,
-    Widget child,
-    Locale setting,
-  ) {
+  Widget buildUseCase(BuildContext context, Widget child, Locale setting) {
     return Localizations(
       delegates: localizationsDelegates,
       locale: setting,

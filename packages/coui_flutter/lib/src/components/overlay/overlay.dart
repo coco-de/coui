@@ -1,8 +1,9 @@
 import 'package:coui_flutter/coui_flutter.dart';
 
 Future<void> closeOverlay<T>(BuildContext context, [T? value]) {
-  return Data.maybeFind<OverlayHandlerStateMixin>(context)
-          ?.closeWithResult(value) ??
+  return Data.maybeFind<OverlayHandlerStateMixin>(
+        context,
+      )?.closeWithResult(value) ??
       Future.value();
 }
 
@@ -36,10 +37,6 @@ abstract class OverlayCompleter<T> {
 
 abstract class OverlayHandler {
   const OverlayHandler();
-  static const popover = PopoverOverlayHandler();
-  static const sheet = SheetOverlayHandler();
-  static const dialog = DialogOverlayHandler();
-
   OverlayCompleter<T?> show<T>({
     required AlignmentGeometry alignment,
     bool allowInvertHorizontal = true,

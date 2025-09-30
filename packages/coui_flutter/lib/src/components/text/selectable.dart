@@ -29,32 +29,6 @@ class SelectableTextTheme {
 
   final bool? enableInteractiveSelection;
 
-  SelectableTextTheme copyWith({
-    ValueGetter<Color?>? cursorColor,
-    ValueGetter<double?>? cursorHeight,
-    ValueGetter<Radius?>? cursorRadius,
-    ValueGetter<double?>? cursorWidth,
-    ValueGetter<bool?>? enableInteractiveSelection,
-    ValueGetter<ui.BoxHeightStyle?>? selectionHeightStyle,
-    ValueGetter<ui.BoxWidthStyle?>? selectionWidthStyle,
-  }) {
-    return SelectableTextTheme(
-      cursorColor: cursorColor == null ? this.cursorColor : cursorColor(),
-      cursorHeight: cursorHeight == null ? this.cursorHeight : cursorHeight(),
-      cursorRadius: cursorRadius == null ? this.cursorRadius : cursorRadius(),
-      cursorWidth: cursorWidth == null ? this.cursorWidth : cursorWidth(),
-      enableInteractiveSelection: enableInteractiveSelection == null
-          ? this.enableInteractiveSelection
-          : enableInteractiveSelection(),
-      selectionHeightStyle: selectionHeightStyle == null
-          ? this.selectionHeightStyle
-          : selectionHeightStyle(),
-      selectionWidthStyle: selectionWidthStyle == null
-          ? this.selectionWidthStyle
-          : selectionWidthStyle(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -76,14 +50,14 @@ class SelectableTextTheme {
 
   @override
   int get hashCode => Object.hash(
-        cursorWidth,
-        cursorHeight,
-        cursorRadius,
-        cursorColor,
-        selectionHeightStyle,
-        selectionWidthStyle,
-        enableInteractiveSelection,
-      );
+    cursorWidth,
+    cursorHeight,
+    cursorRadius,
+    cursorColor,
+    selectionHeightStyle,
+    selectionWidthStyle,
+    enableInteractiveSelection,
+  );
 }
 
 class SelectableText extends StatelessWidget {
@@ -118,13 +92,13 @@ class SelectableText extends StatelessWidget {
     this.textScaler,
     this.textWidthBasis,
     this.useNativeContextMenu = false,
-  })  : assert(maxLines == null || maxLines > 0),
-        assert(minLines == null || minLines > 0),
-        assert(
-          (maxLines == null) || (minLines == null) || (maxLines >= minLines),
-          "minLines can't be greater than maxLines",
-        ),
-        textSpan = null;
+  }) : assert(maxLines == null || maxLines > 0),
+       assert(minLines == null || minLines > 0),
+       assert(
+         (maxLines == null) || (minLines == null) || (maxLines >= minLines),
+         "minLines can't be greater than maxLines",
+       ),
+       textSpan = null;
 
   const SelectableText.rich(
     TextSpan this.textSpan, {
@@ -157,13 +131,13 @@ class SelectableText extends StatelessWidget {
     this.textScaler,
     this.textWidthBasis,
     this.useNativeContextMenu = false,
-  })  : assert(maxLines == null || maxLines > 0),
-        assert(minLines == null || minLines > 0),
-        assert(
-          (maxLines == null) || (minLines == null) || (maxLines >= minLines),
-          "minLines can't be greater than maxLines",
-        ),
-        data = null;
+  }) : assert(maxLines == null || maxLines > 0),
+       assert(minLines == null || minLines > 0),
+       assert(
+         (maxLines == null) || (minLines == null) || (maxLines >= minLines),
+         "minLines can't be greater than maxLines",
+       ),
+       data = null;
 
   static Widget _defaultContextMenuBuilder(
     BuildContext context,
@@ -270,9 +244,6 @@ class SelectableText extends StatelessWidget {
   ///
   /// {@macro flutter.widgets.magnifier.intro}
   final TextMagnifierConfiguration? magnifierConfiguration;
-
-  /// {@macro flutter.widgets.editableText.selectionEnabled}
-  bool get selectionEnabled => enableInteractiveSelection;
 
   @override
   Widget build(BuildContext context) {

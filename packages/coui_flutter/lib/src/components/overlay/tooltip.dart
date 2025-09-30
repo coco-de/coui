@@ -32,25 +32,6 @@ class TooltipTheme {
   /// Border radius of the tooltip container.
   final BorderRadiusGeometry? borderRadius;
 
-  /// Creates a copy of this theme but with the given fields replaced.
-  TooltipTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<double?>? surfaceBlur,
-    ValueGetter<double?>? surfaceOpacity,
-  }) {
-    return TooltipTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      padding: padding == null ? this.padding : padding(),
-      surfaceBlur: surfaceBlur == null ? this.surfaceBlur : surfaceBlur(),
-      surfaceOpacity:
-          surfaceOpacity == null ? this.surfaceOpacity : surfaceOpacity(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -65,12 +46,12 @@ class TooltipTheme {
 
   @override
   int get hashCode => Object.hash(
-        surfaceOpacity,
-        surfaceBlur,
-        padding,
-        backgroundColor,
-        borderRadius,
-      );
+    surfaceOpacity,
+    surfaceBlur,
+    padding,
+    backgroundColor,
+    borderRadius,
+  );
 }
 
 class TooltipContainer extends StatelessWidget {
@@ -111,7 +92,8 @@ class TooltipContainer extends StatelessWidget {
     if (surfaceOpacity != null) {
       backgroundColor = backgroundColor.scaleAlpha(surfaceOpacity);
     }
-    final padding = styleValue(
+    final padding =
+        styleValue(
           defaultValue: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           themeValue: compTheme?.padding,
           widgetValue: this.padding,
@@ -483,8 +465,9 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       widthConstraint: widthConstraint,
                     );
                   },
-                  curve:
-                      isClosed.value ? const Interval(0, 2 / 3) : Curves.linear,
+                  curve: isClosed.value
+                      ? const Interval(0, 2 / 3)
+                      : Curves.linear,
                   duration: isClosed.value
                       ? (showDuration ?? kDefaultDuration)
                       : (dismissDuration ?? const Duration(milliseconds: 100)),

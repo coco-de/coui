@@ -264,9 +264,6 @@ class DropdownMenuItem {
 
 /// Position of the dropdown menu relative to trigger.
 enum DropdownPosition {
-  /// Dropdown appears above the trigger.
-  top,
-
   /// Dropdown appears below the trigger.
   bottom,
 
@@ -275,4 +272,7 @@ enum DropdownPosition {
 
   /// Dropdown appears to the right of the trigger.
   right,
+
+  /// Dropdown appears above the trigger.
+  top,
 }

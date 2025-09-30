@@ -72,46 +72,6 @@ abstract final class Transformers {
         ? null
         : Offset(typeDouble(a.dx, b.dx, t)!, typeDouble(a.dy, b.dy, t)!);
   }
-
-  static Size? typeSize(Size? a, Size? b, double t) {
-    return a == null || b == null
-        ? null
-        : Size(
-            typeDouble(a.width, b.width, t)!,
-            typeDouble(a.height, b.height, t)!,
-          );
-  }
-}
-
-mixin AnimatedMixin on TickerProviderStateMixin {
-  final _animatedProperties = <AnimatedProperty<dynamic>>[];
-
-  AnimatedProperty<T> createAnimatedProperty<T>(PropertyLerp<T> lerp, T value) {
-    final property = AnimatedProperty._(this, value, lerp, setState);
-    _animatedProperties.add(property);
-
-    return property;
-  }
-
-  @override
-  void dispose() {
-    for (final property in _animatedProperties) {
-      property._controller.dispose();
-    }
-    super.dispose();
-  }
-
-  AnimatedProperty<int> createAnimatedInt(int value) {
-    return createAnimatedProperty(value, Transformers.typeInt);
-  }
-
-  AnimatedProperty<double> createAnimatedDouble(double value) {
-    return createAnimatedProperty(value, Transformers.typeDouble);
-  }
-
-  AnimatedProperty<Color> createAnimatedColor(Color value) {
-    return createAnimatedProperty(value, Transformers.typeColor);
-  }
 }
 
 class AnimatedProperty<T> {
@@ -140,10 +100,6 @@ class AnimatedProperty<T> {
   late AnimationController _controller;
 
   static void _empty() {}
-
-  T get value {
-    return _hasTarget ? _lerp(_value, _target, _controller.value)! : _value;
-  }
 
   set value(T value) {
     if (_hasTarget) {
@@ -209,7 +165,8 @@ class AnimationQueueController extends ChangeNotifier {
     final runner = _runner;
     if (runner != null) {
       runner._progress += delta.inMilliseconds / runner.duration.inMilliseconds;
-      _value = runner.from +
+      _value =
+          runner.from +
           (runner.to - runner.from) *
               runner.curve.transform(runner._progress.clamp(0, 1));
       if (runner._progress >= 1.0) {
@@ -266,8 +223,11 @@ class RelativeKeyframe<T> implements Keyframe<T> {
       // act as still keyframe when there is no previous keyframe
       return target;
     }
-    final previous =
-        timeline.keyframes[index - 1].compute(timeline, index - 1, 1);
+    final previous = timeline.keyframes[index - 1].compute(
+      timeline,
+      index - 1,
+      1,
+    );
 
     return timeline.lerp(previous, target, t)!;
   }
@@ -286,7 +246,9 @@ class StillKeyframe<T> implements Keyframe<T> {
     T? value = this.value;
     if (value == null) {
       assert(
-          index > 0, 'Relative still keyframe must have a previous keyframe');
+        index > 0,
+        'Relative still keyframe must have a previous keyframe',
+      );
       value = timeline.keyframes[index - 1].compute(timeline, index - 1, 1);
     }
 
@@ -352,10 +314,6 @@ class TimelineAnimation<T> extends Animatable<T> {
     return drive(controller).transform(controller.value);
   }
 
-  TimelineAnimatable<T> withTotalDuration(Duration duration) {
-    return TimelineAnimatable(duration, this);
-  }
-
   @override
   T transform(double t) {
     assert(t >= 0 && t <= 1, 'Invalid time $t');
@@ -366,7 +324,8 @@ class TimelineAnimation<T> extends Animatable<T> {
       final keyframe = keyframes[i];
       final next = current + keyframe.duration;
       if (duration < next) {
-        final localT = (duration - current).inMilliseconds /
+        final localT =
+            (duration - current).inMilliseconds /
             keyframe.duration.inMilliseconds;
 
         return keyframe.compute(this, i, localT);
@@ -386,10 +345,6 @@ class TimelineAnimation<T> extends Animatable<T> {
 
 Duration maxDuration(Duration a, Duration b) {
   return a > b ? a : b;
-}
-
-Duration minDuration(Duration a, Duration b) {
-  return a < b ? a : b;
 }
 
 Duration timelineMaxDuration(Iterable<TimelineAnimation<dynamic>> timelines) {

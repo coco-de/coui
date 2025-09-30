@@ -39,18 +39,6 @@ abstract class BaseStyle<T extends BaseStyle<T>>
   /// type `T`.
   T create(List<PrefixModifier> newModifiers);
 
-  /// Applies a list of [PrefixModifier]s to this utility class.
-  ///
-  /// Returns a new instance of `T` with the combined prefixes.
-  /// If this utility already has prefixes, the new ones are appended.
-  T on(List<PrefixModifier> newModifiers) {
-    // Ensure existing modifiers are preserved and new ones are added.
-    // Handle null or empty existing modifiers.
-    final current = modifiers ?? [];
-
-    return create([...current, ...newModifiers]);
-  }
-
   /// Applies a single responsive breakpoint [PrefixModifier] to this
   /// utility class.
   ///

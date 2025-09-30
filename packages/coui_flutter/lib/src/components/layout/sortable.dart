@@ -241,14 +241,12 @@ class _SortableDraggingSession<T> {
     required this.data,
     required this.ghost,
     required this.layer,
-    required this.layerRenderBox,
     required this.lock,
     required this.maxOffset,
     required this.minOffset,
     required Offset offset,
     required this.placeholder,
     required this.size,
-    required this.target,
     required this.transform,
   }) : offset = ValueNotifier(offset);
   final key = GlobalKey();
@@ -259,12 +257,9 @@ class _SortableDraggingSession<T> {
   final SortableData<T> data;
   final ValueNotifier<Offset> offset;
   final _SortableLayerState layer;
-  final RenderBox layerRenderBox;
   final Offset minOffset;
   final Offset maxOffset;
   final bool lock;
-
-  final _SortableState<T> target;
 }
 
 enum _SortableDropLocation {
@@ -438,11 +433,9 @@ class _DropTransform {
   _DropTransform({
     required this.child,
     required this.from,
-    required this.layer,
     required this.state,
     required this.to,
   });
-  final _SortableLayerState layer;
   final Matrix4 from;
   final Matrix4 to;
   final Widget child;
@@ -1307,25 +1300,6 @@ class SortableLayer extends StatefulWidget {
     layer.ensureAndDismissDrop(data);
   }
 
-  /// Dismisses any pending drop operations.
-  ///
-  /// Finds the sortable layer in the widget tree and dismisses any currently
-  /// pending drop operations. This clears any visual feedback or animations
-  /// related to incomplete drops.
-  ///
-  /// Parameters:
-  /// - [context] (BuildContext): The build context to find the layer from
-  ///
-  /// Example:
-  /// ```dart
-  /// // Clear any pending drops when navigating away
-  /// SortableLayer.dismissDrop(context);
-  /// ```
-  static void dismissDrop(BuildContext context) {
-    final layer = Data.of<_SortableLayerState>(context);
-    layer.dismissDrop();
-  }
-
   /// The child widget tree containing sortable widgets.
   ///
   /// Type: `Widget`. All sortable widgets must be descendants of this child
@@ -1417,7 +1391,6 @@ class _SortableLayerState extends State<SortableLayer>
       final itemRenderBox = item.context.findRenderObject()! as RenderBox;
       final dropTransform = _DropTransform(
         from: _pendingDrop.value!.from,
-        layer: this,
         state: item,
         to: itemRenderBox.getTransformTo(layerRenderBox),
         child: _pendingDrop.value!.child,
@@ -1670,7 +1643,6 @@ class ScrollableSortableLayer extends StatefulWidget {
     required this.child,
     required this.controller,
     super.key,
-    this.overscroll = false,
     this.scrollThreshold = 50,
   });
 
@@ -1693,12 +1665,6 @@ class ScrollableSortableLayer extends StatefulWidget {
   /// distance of the top or bottom edge (for vertical scrolling), automatic
   /// scrolling begins. Larger values provide earlier scroll activation.
   final double scrollThreshold;
-
-  /// Whether to allow scrolling beyond the normal scroll bounds.
-  ///
-  /// Type: `bool`, default: `false`. When true, drag operations can trigger
-  /// scrolling past the normal scroll limits, similar to overscroll behavior.
-  final bool overscroll;
 
   @override
   State<ScrollableSortableLayer> createState() =>

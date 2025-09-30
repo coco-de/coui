@@ -220,7 +220,8 @@ class ContextMenu extends UiComponent {
       key: key ?? this.key,
       onChanged: onChanged ?? this.onChanged,
       open: open ?? this.open,
-      style: style ??
+      style:
+          style ??
           () {
             final currentStyle = this.style;
             return currentStyle is List<ContextMenuStyling>?

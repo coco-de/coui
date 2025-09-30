@@ -21,24 +21,6 @@ class StepsTheme {
   /// Thickness of the connector line.
   final double? connectorThickness;
 
-  StepsTheme copyWith({
-    ValueGetter<double?>? connectorThickness,
-    ValueGetter<Color?>? indicatorColor,
-    ValueGetter<double?>? indicatorSize,
-    ValueGetter<double?>? spacing,
-  }) {
-    return StepsTheme(
-      connectorThickness: connectorThickness == null
-          ? this.connectorThickness
-          : connectorThickness(),
-      indicatorColor:
-          indicatorColor == null ? this.indicatorColor : indicatorColor(),
-      indicatorSize:
-          indicatorSize == null ? this.indicatorSize : indicatorSize(),
-      spacing: spacing == null ? this.spacing : spacing(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -135,39 +117,41 @@ class Steps extends StatelessWidget {
     final connectorThickness = compTheme?.connectorThickness ?? scaling * 1;
     final mapped = <Widget>[];
     for (int i = 0; i < children.length; i += 1) {
-      mapped.add(IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: indicatorColor,
-                    shape: BoxShape.circle,
+      mapped.add(
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: indicatorColor,
+                      shape: BoxShape.circle,
+                    ),
+                    height: indicatorSize,
+                    width: indicatorSize,
+                    child: Center(
+                      child: Text((i + 1).toString()).mono().bold(),
+                    ),
                   ),
-                  height: indicatorSize,
-                  width: indicatorSize,
-                  child: Center(
-                    child: Text((i + 1).toString()).mono().bold(),
+                  Gap(scaling * 4),
+                  Expanded(
+                    child: VerticalDivider(
+                      color: indicatorColor,
+                      thickness: connectorThickness,
+                    ),
                   ),
-                ),
-                Gap(scaling * 4),
-                Expanded(
-                  child: VerticalDivider(
-                    color: indicatorColor,
-                    thickness: connectorThickness,
-                  ),
-                ),
-                Gap(scaling * 4),
-              ],
-            ),
-            Gap(spacing),
-            Expanded(child: children[i].withPadding(bottom: scaling * 32)),
-          ],
+                  Gap(scaling * 4),
+                ],
+              ),
+              Gap(spacing),
+              Expanded(child: children[i].withPadding(bottom: scaling * 32)),
+            ],
+          ),
         ),
-      ));
+      );
     }
 
     return IntrinsicWidth(

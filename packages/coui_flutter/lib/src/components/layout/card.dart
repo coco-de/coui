@@ -58,36 +58,6 @@ class CardTheme {
   /// Animation duration for transitions.
   final Duration? duration;
 
-  /// Creates a copy of this theme with the given values replaced.
-  CardTheme copyWith({
-    ValueGetter<Color?>? borderColor,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<double?>? borderWidth,
-    ValueGetter<List<BoxShadow>?>? boxShadow,
-    ValueGetter<Clip?>? clipBehavior,
-    ValueGetter<Duration?>? duration,
-    ValueGetter<Color?>? fillColor,
-    ValueGetter<bool?>? filled,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<double?>? surfaceBlur,
-    ValueGetter<double?>? surfaceOpacity,
-  }) {
-    return CardTheme(
-      borderColor: borderColor == null ? this.borderColor : borderColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      borderWidth: borderWidth == null ? this.borderWidth : borderWidth(),
-      boxShadow: boxShadow == null ? this.boxShadow : boxShadow(),
-      clipBehavior: clipBehavior == null ? this.clipBehavior : clipBehavior(),
-      duration: duration == null ? this.duration : duration(),
-      fillColor: fillColor == null ? this.fillColor : fillColor(),
-      filled: filled == null ? this.filled : filled(),
-      padding: padding == null ? this.padding : padding(),
-      surfaceBlur: surfaceBlur == null ? this.surfaceBlur : surfaceBlur(),
-      surfaceOpacity:
-          surfaceOpacity == null ? this.surfaceOpacity : surfaceOpacity(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -108,18 +78,18 @@ class CardTheme {
 
   @override
   int get hashCode => Object.hash(
-        padding,
-        filled,
-        fillColor,
-        borderRadius,
-        borderColor,
-        borderWidth,
-        clipBehavior,
-        boxShadow,
-        surfaceOpacity,
-        surfaceBlur,
-        duration,
-      );
+    padding,
+    filled,
+    fillColor,
+    borderRadius,
+    borderColor,
+    borderWidth,
+    clipBehavior,
+    boxShadow,
+    surfaceOpacity,
+    surfaceBlur,
+    duration,
+  );
 }
 
 /// A versatile container widget that provides a card-like appearance with comprehensive styling options.

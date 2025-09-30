@@ -26,19 +26,25 @@ class _ScaffoldExample1State extends State<ScaffoldExample1> {
           subtitle: const Text('A simple counter app'),
           leading: [
             OutlineButton(
-              onPressed: () {},
+              onPressed: () {
+                // TODOS: will be implemented later.
+              },
               density: ButtonDensity.icon,
               child: const Icon(Icons.menu),
             ),
           ],
           trailing: [
             OutlineButton(
-              onPressed: () {},
+              onPressed: () {
+                // TODOS: will be implemented later.
+              },
               density: ButtonDensity.icon,
               child: const Icon(Icons.search),
             ),
             OutlineButton(
-              onPressed: () {},
+              onPressed: () {
+                // TODOS: will be implemented later.
+              },
               density: ButtonDensity.icon,
               child: const Icon(Icons.add),
             ),

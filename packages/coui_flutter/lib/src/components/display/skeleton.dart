@@ -55,23 +55,6 @@ class SkeletonTheme {
   /// fade transitions when toggling skeleton visibility on/off.
   final bool? enableSwitchAnimation;
 
-  /// Returns a copy of this theme with the given fields replaced.
-  SkeletonTheme copyWith({
-    ValueGetter<Duration?>? duration,
-    ValueGetter<bool?>? enableSwitchAnimation,
-    ValueGetter<Color?>? fromColor,
-    ValueGetter<Color?>? toColor,
-  }) {
-    return SkeletonTheme(
-      duration: duration == null ? this.duration : duration(),
-      enableSwitchAnimation: enableSwitchAnimation == null
-          ? this.enableSwitchAnimation
-          : enableSwitchAnimation(),
-      fromColor: fromColor == null ? this.fromColor : fromColor(),
-      toColor: toColor == null ? this.toColor : toColor(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -232,30 +215,6 @@ class CoUISkeletonizerConfigLayer extends StatelessWidget {
 /// Methods automatically detect certain widget types (Avatar, Image) and apply
 /// appropriate skeleton handling to avoid common rendering issues.
 extension SkeletonExtension on Widget {
-  /// Converts the widget to a skeleton suitable for sliver layouts.
-  ///
-  /// Creates a [Skeletonizer] wrapper that works within [CustomScrollView]
-  /// and other sliver-based layouts. The [ignoreContainers] parameter is
-  /// set to false for consistent skeleton appearance in scroll contexts.
-  ///
-  /// Parameters:
-  /// - [enabled] (bool, default: true): Whether skeleton effect is active
-  ///
-  /// Returns:
-  /// A [Skeletonizer] widget configured for sliver layout compatibility.
-  ///
-  /// Example:
-  /// ```dart
-  /// ListView.builder(
-  ///   itemBuilder: (context, index) => ListTile(
-  ///     title: Text('Item $index'),
-  ///   ).asSkeletonSliver(enabled: isLoading),
-  /// );
-  /// ```
-  Widget asSkeletonSliver({bool enabled = true}) {
-    return Skeletonizer(enabled: enabled, ignoreContainers: false, child: this);
-  }
-
   /// Converts the widget to a skeleton with advanced configuration options.
   ///
   /// Provides comprehensive skeleton transformation with multiple modes and
@@ -310,51 +269,5 @@ extension SkeletonExtension on Widget {
     return leaf
         ? Skeleton.leaf(enabled: enabled, child: this)
         : Skeletonizer(enabled: enabled, child: this);
-  }
-
-  /// Excludes the widget from skeleton effects in its parent skeleton context.
-  ///
-  /// Wraps the widget with [Skeleton.ignore] to prevent skeleton transformation
-  /// even when placed within a skeleton-enabled parent. Useful for preserving
-  /// interactive elements or dynamic content within skeleton layouts.
-  ///
-  /// Returns:
-  /// A [Skeleton.ignore] wrapper that prevents skeleton effects on this widget.
-  ///
-  /// Example:
-  /// ```dart
-  /// Column(children: [
-  ///   Text('Loading content...'),
-  ///   Button(
-  ///     onPressed: () {},
-  ///     child: Text('Cancel'),
-  ///   ).ignoreSkeleton(), // Button remains interactive
-  /// ]).asSkeleton();
-  /// ```
-  Widget ignoreSkeleton() {
-    return Skeleton.ignore(child: this);
-  }
-
-  /// Controls whether the widget should be preserved in skeleton mode.
-  ///
-  /// Wraps the widget with [Skeleton.keep] to conditionally preserve the
-  /// original widget appearance when skeleton effects are active. When [exclude]
-  /// is true, the widget maintains its normal appearance instead of being skeletonized.
-  ///
-  /// Parameters:
-  /// - [exclude] (bool, default: true): Whether to exclude from skeleton effects
-  ///
-  /// Returns:
-  /// A [Skeleton.keep] wrapper that conditionally preserves the widget's appearance.
-  ///
-  /// Example:
-  /// ```dart
-  /// Row(children: [
-  ///   Text('Data: $value'),
-  ///   Icon(Icons.star).excludeSkeleton(exclude: isImportant),
-  /// ]).asSkeleton();
-  /// ```
-  Widget excludeSkeleton({bool exclude = true}) {
-    return Skeleton.keep(keep: exclude, child: this);
   }
 }

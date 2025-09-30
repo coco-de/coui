@@ -3,13 +3,19 @@ import 'package:coui_flutter/coui_flutter.dart';
 void _assertNotThemeModeSystem(String label, ThemeMode mode) {
   if (mode == ThemeMode.system) {
     final diagnosticList = <DiagnosticsNode>[];
-    diagnosticList.add(ErrorSummary(
-      'ColorSchemes.${label.toLowerCase()}(ThemeMode mode) can only be used with ThemeMode.light or ThemeMode.dark.',
-    ));
-    diagnosticList.add(ErrorDescription(
-      'This method is only intended as a helper method to get either ColorSchemes.light$label() or ColorSchemes.dark$label().',
-    ));
-    diagnosticList.add(ErrorHint('To use system theme mode, do this:\n'
+    diagnosticList.add(
+      ErrorSummary(
+        'ColorSchemes.${label.toLowerCase()}(ThemeMode mode) can only be used with ThemeMode.light or ThemeMode.dark.',
+      ),
+    );
+    diagnosticList.add(
+      ErrorDescription(
+        'This method is only intended as a helper method to get either ColorSchemes.light$label() or ColorSchemes.dark$label().',
+      ),
+    );
+    diagnosticList.add(
+      ErrorHint(
+        'To use system theme mode, do this:\n'
         'CoUIApp(\n'
         '  theme: ThemeData(colorScheme: ColorSchemes.${label.toLowerCase()}(ThemeMode.light)),\n'
         '  darkTheme: ThemeData(colorScheme: ColorSchemes.${label.toLowerCase()}(ThemeMode.dark)),\n'
@@ -23,7 +29,9 @@ void _assertNotThemeModeSystem(String label, ThemeMode mode) {
         'instead of:\n'
         'CoUIApp(\n'
         '  theme: ThemeData(colorScheme: ColorSchemes.${label.toLowerCase()}(ThemeMode.system)),\n'
-        ')'));
+        ')',
+      ),
+    );
     throw FlutterError.fromParts(diagnosticList);
   }
 }
@@ -589,84 +597,4 @@ abstract final class ColorSchemes {
     sidebarPrimaryForeground: Color(0xFF733E0A),
     sidebarRing: Color(0xFFA65F00),
   );
-
-  static ColorScheme blue(ThemeMode mode) {
-    assert(() {
-      _assertNotThemeModeSystem(mode, 'Blue');
-
-      return true;
-    }());
-
-    return mode == ThemeMode.light ? lightBlue : darkBlue;
-  }
-
-  static ColorScheme defaultcolor(ThemeMode mode) {
-    assert(() {
-      _assertNotThemeModeSystem(mode, 'DefaultColor');
-
-      return true;
-    }());
-
-    return mode == ThemeMode.light ? lightDefaultColor : darkDefaultColor;
-  }
-
-  static ColorScheme green(ThemeMode mode) {
-    assert(() {
-      _assertNotThemeModeSystem(mode, 'Green');
-
-      return true;
-    }());
-
-    return mode == ThemeMode.light ? lightGreen : darkGreen;
-  }
-
-  static ColorScheme orange(ThemeMode mode) {
-    assert(() {
-      _assertNotThemeModeSystem(mode, 'Orange');
-
-      return true;
-    }());
-
-    return mode == ThemeMode.light ? lightOrange : darkOrange;
-  }
-
-  static ColorScheme red(ThemeMode mode) {
-    assert(() {
-      _assertNotThemeModeSystem(mode, 'Red');
-
-      return true;
-    }());
-
-    return mode == ThemeMode.light ? lightRed : darkRed;
-  }
-
-  static ColorScheme rose(ThemeMode mode) {
-    assert(() {
-      _assertNotThemeModeSystem(mode, 'Rose');
-
-      return true;
-    }());
-
-    return mode == ThemeMode.light ? lightRose : darkRose;
-  }
-
-  static ColorScheme violet(ThemeMode mode) {
-    assert(() {
-      _assertNotThemeModeSystem(mode, 'Violet');
-
-      return true;
-    }());
-
-    return mode == ThemeMode.light ? lightViolet : darkViolet;
-  }
-
-  static ColorScheme yellow(ThemeMode mode) {
-    assert(() {
-      _assertNotThemeModeSystem(mode, 'Yellow');
-
-      return true;
-    }());
-
-    return mode == ThemeMode.light ? lightYellow : darkYellow;
-  }
 }

@@ -13,17 +13,6 @@ class BreadcrumbTheme {
   /// Padding around the breadcrumb row.
   final EdgeInsetsGeometry? padding;
 
-  /// Returns a copy of this theme with the given fields replaced.
-  BreadcrumbTheme copyWith({
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<Widget?>? separator,
-  }) {
-    return BreadcrumbTheme(
-      padding: padding == null ? this.padding : padding(),
-      separator: separator == null ? this.separator : separator(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -150,8 +139,9 @@ class Breadcrumb extends StatelessWidget {
     );
 
     return ScrollConfiguration(
-      behavior: ScrollConfiguration.of(context)
-          .copyWith(dragDevices: {PointerDeviceKind.touch}, scrollbars: false),
+      behavior: ScrollConfiguration.of(
+        context,
+      ).copyWith(dragDevices: {PointerDeviceKind.touch}, scrollbars: false),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Padding(

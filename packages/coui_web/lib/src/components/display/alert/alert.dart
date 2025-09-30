@@ -43,18 +43,6 @@ class Alert extends UiComponent {
     super.tag = 'div',
   }) : super(style: style);
 
-  // --- Static Style Modifiers ---.
-
-  // Styles.
-  /// Outline style. `alert-outline`.
-  static const outline = AlertStyle('alert-outline', type: StyleType.border);
-
-  /// Dash outline style. `alert-dash`.
-  static const dash = AlertStyle('alert-dash', type: StyleType.border);
-
-  /// Soft style with a light background color. `alert-soft`.
-  static const soft = AlertStyle('alert-soft', type: StyleType.style);
-
   // Colors.
   /// Info color, for neutral informative messages. `alert-info`.
   static const info = AlertStyle('alert-info', type: StyleType.style);
@@ -68,25 +56,13 @@ class Alert extends UiComponent {
   /// Error color, for failed actions or errors. `alert-error`.
   static const error = AlertStyle('alert-error', type: StyleType.style);
 
-  // Direction
-  /// Vertical layout, stacking items top-to-bottom. Good for mobile. `alert-vertical`.
-  static const vertical = AlertStyle(
-    'alert-vertical',
-    type: StyleType.layout,
-  );
-
-  /// Horizontal layout, placing items side-by-side. Good for desktop. `alert-horizontal`.
-  static const horizontal = AlertStyle(
-    'alert-horizontal',
-    type: StyleType.layout,
-  );
-
   // HTML attribute constants
   static const _roleAttribute = 'role';
   static const _alertRole = 'alert';
+  static const _alertClass = 'alert';
 
   @override
-  String get baseClass => 'alert';
+  String get baseClass => _alertClass;
 
   @override
   void configureAttributes(UiComponentAttributes attributes) {
@@ -109,6 +85,8 @@ class Alert extends UiComponent {
     List<AlertStyling>? style,
     String? tag,
   }) {
+    final styleValue = style ?? this.style;
+
     return Alert(
       children,
       key: key ?? this.key,
@@ -116,11 +94,7 @@ class Alert extends UiComponent {
       classes: mergeClasses(this.classes, classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      style: style ?? () {
-        final currentStyle = this.style;
-        
-        return currentStyle is List<AlertStyling>? ? currentStyle : null;
-      }(),
+      style: styleValue,
       tag: tag ?? this.tag,
       child: child ?? this.child,
     );

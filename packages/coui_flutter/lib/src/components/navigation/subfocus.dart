@@ -4,10 +4,11 @@ import 'package:coui_flutter/coui_flutter.dart';
 ///
 /// Receives the build context and the scope state for managing focus
 /// within the scope's widget tree.
-typedef SubFocusScopeBuilder = Widget Function(
-  BuildContext context,
-  SubFocusScopeState state,
-);
+typedef SubFocusScopeBuilder =
+    Widget Function(
+      BuildContext context,
+      SubFocusScopeState state,
+    );
 
 /// Hierarchical focus management system for complex widget trees.
 ///
@@ -71,10 +72,6 @@ mixin SubFocusScopeState {
 
   bool nextFocus([TraversalDirection direction = TraversalDirection.down]);
 
-  static SubFocusScopeState? maybeOf(BuildContext context) {
-    return Data.maybeOf(context);
-  }
-
   void detach(SubFocusState child);
 
   bool attach(SubFocusState child);
@@ -103,8 +100,8 @@ class _SubFocusScopeState extends State<SubFocusScope> with SubFocusScopeState {
       alignmentPolicy: forward == null
           ? ScrollPositionAlignmentPolicy.explicit
           : forward
-              ? ScrollPositionAlignmentPolicy.keepVisibleAtEnd
-              : ScrollPositionAlignmentPolicy.keepVisibleAtStart,
+          ? ScrollPositionAlignmentPolicy.keepVisibleAtEnd
+          : ScrollPositionAlignmentPolicy.keepVisibleAtStart,
     );
     _currentState = item;
   }
@@ -170,8 +167,10 @@ class _SubFocusScopeState extends State<SubFocusScope> with SubFocusScopeState {
       if (currentBox == null || parentBox == null) {
         return false;
       }
-      final currentOffset =
-          currentBox.localToGlobal(Offset.zero, ancestor: parentBox);
+      final currentOffset = currentBox.localToGlobal(
+        Offset.zero,
+        ancestor: parentBox,
+      );
 
       final bool horizontal;
       final bool forward;
@@ -201,11 +200,11 @@ class _SubFocusScopeState extends State<SubFocusScope> with SubFocusScopeState {
         final offset = box.localToGlobal(Offset.zero, ancestor: parentBox);
         final delta = horizontal
             ? (forward
-                ? (offset.dx - currentOffset.dx)
-                : (currentOffset.dx - offset.dx))
+                  ? (offset.dx - currentOffset.dx)
+                  : (currentOffset.dx - offset.dx))
             : (forward
-                ? (offset.dy - currentOffset.dy)
-                : (currentOffset.dy - offset.dy));
+                  ? (offset.dy - currentOffset.dy)
+                  : (currentOffset.dy - offset.dy));
         if (delta <= 0) continue;
         if (nearestNextItem == null || delta < nearestNextItem.$2) {
           nearestNextItem = (attached, delta);
@@ -290,10 +289,11 @@ class _SubFocusScopeState extends State<SubFocusScope> with SubFocusScopeState {
 ///
 /// Receives the build context and focus state for creating widgets that
 /// respond to focus changes and user interactions.
-typedef SubFocusBuilder = Widget Function(
-  BuildContext context,
-  SubFocusState state,
-);
+typedef SubFocusBuilder =
+    Widget Function(
+      BuildContext context,
+      SubFocusState state,
+    );
 
 /// Individual focusable widget within a SubFocusScope hierarchy.
 ///

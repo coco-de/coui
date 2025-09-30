@@ -108,62 +108,6 @@ class ToastTheme {
   /// by theme. Defines the maximum/minimum dimensions for toast content.
   final BoxConstraints? toastConstraints;
 
-  /// Type definition for toast content builder functions.
-  ///
-  /// Takes a [BuildContext] and [ToastOverlay] instance, returning the widget
-  /// that represents the toast's visual content. The overlay parameter provides
-  /// control methods for dismissing or manipulating the toast notification.
-  ///
-  /// Example:
-  /// ```dart
-  /// ToastBuilder builder = (context, overlay) => Card(
-  ///   child: ListTile(
-  ///     title: Text('Notification'),
-  ///     trailing: IconButton(
-  ///       icon: Icon(Icons.close),
-  ///       onPressed: overlay.close,
-  ///     ),
-  ///   ),
-  /// );
-  /// ```
-
-  ToastTheme copyWith({
-    ValueGetter<Offset?>? collapsedOffset,
-    ValueGetter<double?>? collapsedOpacity,
-    ValueGetter<double?>? collapsedScale,
-    ValueGetter<double?>? entryOpacity,
-    ValueGetter<ExpandMode?>? expandMode,
-    ValueGetter<Curve?>? expandingCurve,
-    ValueGetter<Duration?>? expandingDuration,
-    ValueGetter<int?>? maxStackedEntries,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<double?>? spacing,
-    ValueGetter<BoxConstraints?>? toastConstraints,
-  }) {
-    return ToastTheme(
-      collapsedOffset:
-          collapsedOffset == null ? this.collapsedOffset : collapsedOffset(),
-      collapsedOpacity:
-          collapsedOpacity == null ? this.collapsedOpacity : collapsedOpacity(),
-      collapsedScale:
-          collapsedScale == null ? this.collapsedScale : collapsedScale(),
-      entryOpacity: entryOpacity == null ? this.entryOpacity : entryOpacity(),
-      expandMode: expandMode == null ? this.expandMode : expandMode(),
-      expandingCurve:
-          expandingCurve == null ? this.expandingCurve : expandingCurve(),
-      expandingDuration: expandingDuration == null
-          ? this.expandingDuration
-          : expandingDuration(),
-      maxStackedEntries: maxStackedEntries == null
-          ? this.maxStackedEntries
-          : maxStackedEntries(),
-      padding: padding == null ? this.padding : padding(),
-      spacing: spacing == null ? this.spacing : spacing(),
-      toastConstraints:
-          toastConstraints == null ? this.toastConstraints : toastConstraints(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -189,24 +133,25 @@ class ToastTheme {
 
   @override
   int get hashCode => Object.hash(
-        maxStackedEntries,
-        padding,
-        expandMode,
-        collapsedOffset,
-        collapsedScale,
-        expandingCurve,
-        expandingDuration,
-        collapsedOpacity,
-        entryOpacity,
-        spacing,
-        toastConstraints,
-      );
+    maxStackedEntries,
+    padding,
+    expandMode,
+    collapsedOffset,
+    collapsedScale,
+    expandingCurve,
+    expandingDuration,
+    collapsedOpacity,
+    entryOpacity,
+    spacing,
+    toastConstraints,
+  );
 }
 
-typedef ToastBuilder = Widget Function(
-  BuildContext context,
-  ToastOverlay overlay,
-);
+typedef ToastBuilder =
+    Widget Function(
+      BuildContext context,
+      ToastOverlay overlay,
+    );
 
 /// Displays a toast notification with sophisticated positioning and animation.
 ///
@@ -384,23 +329,11 @@ enum ExpandMode {
   /// Provides maximum information density but requires more screen space.
   alwaysExpanded,
 
-  /// Toast expansion is completely disabled.
-  ///
-  /// Only the topmost toast is ever visible, with background toasts remaining
-  /// collapsed. Provides minimal screen footprint at the cost of stack visibility.
-  disabled,
-
   /// Toast stack expands when mouse cursor hovers over the notification area.
   ///
   /// Default behavior that provides on-demand access to stacked notifications
   /// through hover interaction. Collapses automatically after hover ends.
   expandOnHover,
-
-  /// Toast stack expands when user taps or clicks on the notification area.
-  ///
-  /// Provides touch-friendly interaction for mobile devices and touch screens.
-  /// Requires explicit user action to reveal stacked notifications.
-  expandOnTap,
 }
 
 /// A sophisticated layer widget that provides toast notification infrastructure.
@@ -594,8 +527,7 @@ class _ToastLayerState extends State<ToastLayer> {
   }
 
   void removeEntry(ToastEntry entry) {
-    final last = entries[entry.location]!
-        .entries
+    final last = entries[entry.location]!.entries
         .where((e) => e.entry == entry)
         .lastOrNull;
     if (last != null) {
@@ -613,15 +545,18 @@ class _ToastLayerState extends State<ToastLayer> {
     final maxStackedEntries =
         compTheme?.maxStackedEntries ?? widget.maxStackedEntries;
     final expandMode = compTheme?.expandMode ?? widget.expandMode;
-    final collapsedOffset = (compTheme?.collapsedOffset ??
+    final collapsedOffset =
+        (compTheme?.collapsedOffset ??
             widget.collapsedOffset ??
             const Offset(0, 12)) *
         scaling;
-    final padding = (compTheme?.padding?.optionallyResolve(context) ??
+    final padding =
+        (compTheme?.padding?.optionallyResolve(context) ??
             widget.padding?.optionallyResolve(context) ??
             const EdgeInsets.all(24)) *
         scaling;
-    final toastConstraints = compTheme?.toastConstraints ??
+    final toastConstraints =
+        compTheme?.toastConstraints ??
         widget.toastConstraints ??
         BoxConstraints.tightFor(width: scaling * 320);
     final collapsedScale = compTheme?.collapsedScale ?? widget.collapsedScale;
@@ -650,7 +585,6 @@ class _ToastLayerState extends State<ToastLayer> {
           0,
           ToastEntryLayout(
             key: entry.key,
-            actualIndex: entries.length - i - 1,
             closing: entry._isClosing,
             collapsedOffset: collapsedOffset,
             collapsedOpacity: collapsedOpacity,
@@ -844,7 +778,6 @@ class ToastEntry {
 
 class ToastEntryLayout extends StatefulWidget {
   const ToastEntryLayout({
-    required this.actualIndex,
     required this.child,
     required this.closing,
     required this.collapsedOffset,
@@ -893,8 +826,6 @@ class ToastEntryLayout extends StatefulWidget {
   final AlignmentGeometry entryAlignment;
   final double spacing;
   final int index;
-  final int actualIndex;
-
   final VoidCallback? onClosing;
 
   @override
@@ -904,7 +835,6 @@ class ToastEntryLayout extends StatefulWidget {
 class _ToastEntryLayoutState extends State<ToastEntryLayout> {
   bool _dismissing = false;
   double _dismissOffset = 0;
-  int index;
   double? _closeDismissing;
   Timer? _closingTimer;
 
@@ -1010,8 +940,9 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
                               widget.onClosed();
                             }
                           },
-                          value:
-                              widget.closing.value && !_dismissing ? 0.0 : 1.0,
+                          value: widget.closing.value && !_dismissing
+                              ? 0.0
+                              : 1.0,
                         );
                       },
                       curve: widget.curve,
@@ -1059,9 +990,11 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
     Offset offset = widget.entryOffset * (1.0 - showingProgress);
 
     // when its behind another toast, shift it up based on index
-    final previousAlignment =
-        widget.previousAlignment.optionallyResolve(context);
-    offset += Offset(
+    final previousAlignment = widget.previousAlignment.optionallyResolve(
+      context,
+    );
+    offset +=
+        Offset(
           (widget.collapsedOffset.dx * previousAlignment.x) *
               nonCollapsingProgress,
           (widget.collapsedOffset.dy * previousAlignment.y) *
@@ -1079,7 +1012,8 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
     offset += expandingShift;
 
     // and then add the spacing when its in expanded mode
-    offset += Offset(
+    offset +=
+        Offset(
           (widget.spacing * previousAlignment.x) * expandProgress,
           (widget.spacing * previousAlignment.y) * expandProgress,
         ) *
@@ -1094,7 +1028,8 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
     fractionalOffset += Offset(closeDismissingProgress + dismissProgress, 0);
 
     // when its behind another toast AND is expanded, shift it up based on index and the size of self
-    fractionalOffset += Offset(
+    fractionalOffset +=
+        Offset(
           expandProgress * previousAlignment.x,
           expandProgress * previousAlignment.y,
         ) *
@@ -1107,8 +1042,10 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
     );
 
     // fade out the toast behind
-    opacity *=
-        pow(widget.collapsedOpacity, indexProgress * nonCollapsingProgress);
+    opacity *= pow(
+      widget.collapsedOpacity,
+      indexProgress * nonCollapsingProgress,
+    );
 
     opacity *= 1 - (closeDismissingProgress + dismissProgress).abs();
 

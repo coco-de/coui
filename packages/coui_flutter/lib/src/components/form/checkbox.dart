@@ -96,12 +96,12 @@ class CheckboxTheme {
 
   @override
   int get hashCode => Object.hash(
-        activeColor,
-        borderColor,
-        size,
-        gap,
-        borderRadius,
-      );
+    activeColor,
+    borderColor,
+    size,
+    gap,
+    borderRadius,
+  );
 }
 
 /// Reactive controller for managing checkbox state with convenient methods.
@@ -176,8 +176,8 @@ class CheckboxController extends ValueNotifier<CheckboxState>
     value = value == CheckboxState.checked
         ? CheckboxState.unchecked
         : value == CheckboxState.unchecked
-            ? CheckboxState.indeterminate
-            : CheckboxState.checked;
+        ? CheckboxState.indeterminate
+        : CheckboxState.checked;
   }
 
   /// Returns true if the checkbox is currently checked.
@@ -663,14 +663,14 @@ class _CheckboxState extends State<Checkbox>
               border: Border.all(
                 color: enabled
                     ? widget.state == CheckboxState.checked
-                        ? activeColor
-                        : borderColor
+                          ? activeColor
+                          : borderColor
                     : theme.colorScheme.muted,
                 width: (_focusing ? 2 : 1) * scaling,
               ),
               borderRadius:
                   optionallyResolveBorderRadius(context, borderRadius) ??
-                      BorderRadius.circular(theme.radiusSm),
+                  BorderRadius.circular(theme.radiusSm),
               color: widget.state == CheckboxState.checked
                   ? activeColor
                   : theme.colorScheme.input.scaleAlpha(0.3),
@@ -810,15 +810,21 @@ class AnimatedCheckPainter extends CustomPainter {
 
     final firstStrokeProgress =
         progress.clamp(0.0, normalizedFirstStrokeLength) /
-            normalizedFirstStrokeLength;
-    final secondStrokeProgress = (progress - normalizedFirstStrokeLength)
-            .clamp(0.0, normalizedSecondStrokeLength) /
+        normalizedFirstStrokeLength;
+    final secondStrokeProgress =
+        (progress - normalizedFirstStrokeLength).clamp(
+          0.0,
+          normalizedSecondStrokeLength,
+        ) /
         normalizedSecondStrokeLength;
     if (firstStrokeProgress <= 0) {
       return;
     }
-    final currentPoint =
-        Offset.lerp(firstStrokeStart, firstStrokeEnd, firstStrokeProgress)!;
+    final currentPoint = Offset.lerp(
+      firstStrokeStart,
+      firstStrokeEnd,
+      firstStrokeProgress,
+    )!;
     path.moveTo(firstStrokeStart.dx, firstStrokeStart.dy);
     path.lineTo(currentPoint.dx, currentPoint.dy);
     if (secondStrokeProgress <= 0) {

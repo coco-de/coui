@@ -13,27 +13,37 @@ class ButtonExample10 extends StatelessWidget {
       children: [
         PrimaryButton(
           size: ButtonSize.xSmall,
-          onPressed: () {},
+          onPressed: () {
+            // TODOS: will be implemented later.
+          },
           child: const Text('Extra Small'),
         ),
         PrimaryButton(
-          onPressed: () {},
+          onPressed: () {
+            // TODOS: will be implemented later.
+          },
           size: ButtonSize.small,
           child: const Text('Small'),
         ),
         PrimaryButton(
           size: ButtonSize.normal,
-          onPressed: () {},
+          onPressed: () {
+            // TODOS: will be implemented later.
+          },
           child: const Text('Normal'),
         ),
         PrimaryButton(
           size: ButtonSize.large,
-          onPressed: () {},
+          onPressed: () {
+            // TODOS: will be implemented later.
+          },
           child: const Text('Large'),
         ),
         PrimaryButton(
           size: ButtonSize.xLarge,
-          onPressed: () {},
+          onPressed: () {
+            // TODOS: will be implemented later.
+          },
           child: const Text('Extra Large'),
         ),
       ],

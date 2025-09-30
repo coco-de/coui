@@ -11,17 +11,6 @@ class ChipTheme {
   /// The default [Button] style of the chip.
   final AbstractButtonStyle? style;
 
-  /// Creates a copy of this theme with the given values replaced.
-  ChipTheme copyWith({
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<AbstractButtonStyle?>? style,
-  }) {
-    return ChipTheme(
-      padding: padding == null ? this.padding : padding(),
-      style: style == null ? this.style : style(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -63,7 +52,8 @@ class ChipButton extends StatelessWidget {
       defaultValue: EdgeInsets.zero,
       themeValue: compTheme?.padding,
     );
-    final style = compTheme?.style ??
+    final style =
+        compTheme?.style ??
         ButtonVariance(
           decoration: (context, states) {
             return const BoxDecoration();

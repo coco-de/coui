@@ -10,7 +10,9 @@ class ButtonExample17 extends StatelessWidget {
           .withBackgroundColor(color: Colors.red, hoverColor: Colors.purple)
           .withForegroundColor(color: Colors.white)
           .withBorderRadius(hoverBorderRadius: BorderRadius.circular(16)),
-      onPressed: () {},
+      onPressed: () {
+        // TODOS: will be implemented later.
+      },
       leading: const Icon(Icons.sunny),
       child: const Text('Custom Button'),
     );

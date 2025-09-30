@@ -77,6 +77,29 @@ dart_code_metrics:
     
   # 프리셋을 보완하는 프로젝트 특화 규칙
   rules:
+    - parameters-ordering: false
+    - avoid-flexible-outside-flex: false
+    - format-comment:
+        only-doc-comments: true
+    - avoid-dynamic: false
+    - avoid-empty-setstate: false
+    - avoid-long-files: false
+    - avoid-missed-calls: false
+    - avoid-nullable-interpolation: false
+    - avoid-shadowing: false
+    - avoid-throw-in-catch-block: false
+    - avoid-unsafe-collection-methods: false
+    - avoid-unused-parameters: false
+    - dispose-fields: false
+    - move-variable-closer-to-its-usage: false
+    - no-empty-block: false
+    - prefer-boolean-prefixes: false
+    - prefer-correct-callback-field-name: false
+    - prefer-correct-identifier-length: false
+    - prefer-single-widget-per-file: false
+    - avoid-returning-widgets: false
+    - prefer-static-class: false
+    - no-magic-string: false
     - prefer-match-file-name: false
     - member-ordering:
         # Dart의 sort_constructors_first 규칙과 호환되도록 생성자를 첫 번째로 설정
@@ -88,15 +111,6 @@ dart_code_metrics:
           - private-methods
     - avoid-commented-out-code:
         min-lines: 1
-    - prefer-single-widget-per-file:
-        ignore-private-widgets: true
-    - prefer-correct-identifier-length:
-        # exceptions: ['a', 'b', 'c', 't', 'u', 'i', 'e']
-        max-identifier-length: 30
-        min-identifier-length: 2
-        ignore-inline-functions: false
-        exceptions:
-          - p
     - prefer-correct-type-name:
         max-length: 40
         min-length: 3

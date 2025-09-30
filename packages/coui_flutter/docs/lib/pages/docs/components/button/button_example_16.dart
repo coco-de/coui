@@ -6,7 +6,9 @@ class ButtonExample16 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardButton(
-      onPressed: () {},
+      onPressed: () {
+        // TODOS: will be implemented later.
+      },
       child: const Basic(
         title: Text('Project #1'),
         subtitle: Text('Project description'),

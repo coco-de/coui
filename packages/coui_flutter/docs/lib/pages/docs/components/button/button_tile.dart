@@ -20,13 +20,31 @@ class ButtonTile extends StatelessWidget implements IComponentPage {
             spacing: 16,
             runSpacing: 16,
             children: [
-              PrimaryButton(onPressed: () {}, child: const Text('Primary')),
-              SecondaryButton(onPressed: () {}, child: const Text('Secondary')),
-              OutlineButton(onPressed: () {}, child: const Text('Outline')),
-              GhostButton(onPressed: () {}, child: const Text('Ghost')),
+              PrimaryButton(
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
+                  child: const Text('Primary')),
+              SecondaryButton(
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
+                  child: const Text('Secondary')),
+              OutlineButton(
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
+                  child: const Text('Outline')),
+              GhostButton(
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
+                  child: const Text('Ghost')),
               DestructiveButton(
                 child: const Text('Destructive'),
-                onPressed: () {},
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
               ),
             ],
           ),

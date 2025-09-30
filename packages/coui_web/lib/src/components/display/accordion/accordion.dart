@@ -131,7 +131,9 @@ class Accordion extends UiComponent {
 
   Component _buildAccordionItem(AccordionItem item, int index) {
     final itemId = 'accordion-item-$index';
-    final iconClass = icon == AccordionIcon.plus ? 'collapse-plus' : 'collapse-arrow';
+    final iconClass = icon == AccordionIcon.plus
+        ? 'collapse-plus'
+        : 'collapse-arrow';
 
     final itemClasses = [
       'collapse',
@@ -214,7 +216,8 @@ class Accordion extends UiComponent {
       key: key ?? this.key,
       mode: mode ?? this.mode,
       onChanged: onChanged ?? this.onChanged,
-      style: style ??
+      style:
+          style ??
           () {
             final currentStyle = this.style;
             return currentStyle is List<AccordionStyling>?

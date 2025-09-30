@@ -12,8 +12,9 @@ class MultipleChoiceTheme {
   /// non-null parameters.
   MultipleChoiceTheme copyWith({ValueGetter<bool?>? allowUnselect}) {
     return MultipleChoiceTheme(
-      allowUnselect:
-          allowUnselect == null ? this.allowUnselect : allowUnselect(),
+      allowUnselect: allowUnselect == null
+          ? this.allowUnselect
+          : allowUnselect(),
     );
   }
 

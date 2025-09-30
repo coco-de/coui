@@ -73,27 +73,6 @@ class LinearProgressIndicatorTheme {
   /// instantly without transitions for performance optimization.
   final bool? disableAnimation;
 
-  /// Returns a copy of this theme with the given fields replaced.
-  LinearProgressIndicatorTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<Color?>? color,
-    ValueGetter<bool?>? disableAnimation,
-    ValueGetter<double?>? minHeight,
-    ValueGetter<bool?>? showSparks,
-  }) {
-    return LinearProgressIndicatorTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      color: color == null ? this.color : color(),
-      disableAnimation:
-          disableAnimation == null ? this.disableAnimation : disableAnimation(),
-      minHeight: minHeight == null ? this.minHeight : minHeight(),
-      showSparks: showSparks == null ? this.showSparks : showSparks(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -109,13 +88,13 @@ class LinearProgressIndicatorTheme {
 
   @override
   int get hashCode => Object.hash(
-        color,
-        backgroundColor,
-        minHeight,
-        borderRadius,
-        showSparks,
-        disableAnimation,
-      );
+    color,
+    backgroundColor,
+    minHeight,
+    borderRadius,
+    showSparks,
+    disableAnimation,
+  );
 }
 
 /// Duration constant for indeterminate linear progress animation cycle.
@@ -329,7 +308,6 @@ class LinearProgressIndicator extends StatelessWidget {
               showSparks: showSparksValue,
               sparksColor: colorValue,
               sparksRadius: theme.scaling * 16,
-              start: 0,
               textDirection: directionality,
             ),
           )
@@ -368,14 +346,14 @@ class LinearProgressIndicator extends StatelessWidget {
                   showSparks: showSparksValue,
                   sparksColor: colorValue,
                   sparksRadius: theme.scaling * 16,
-                  start: start,
                   start2: start2,
                   textDirection: directionality,
                 ),
               );
             },
-            duration:
-                const Duration(milliseconds: _kIndeterminateLinearDuration),
+            duration: const Duration(
+              milliseconds: _kIndeterminateLinearDuration,
+            ),
             end: 1,
             start: 0,
           );
@@ -398,12 +376,10 @@ class _LinearProgressIndicatorProperties {
     required this.showSparks,
     required this.sparksColor,
     required this.sparksRadius,
-    required this.start,
     this.start2,
     required this.textDirection,
   });
 
-  final double start;
   final double end;
   final double? start2;
   final double? end2;
@@ -428,7 +404,6 @@ class _LinearProgressIndicatorProperties {
       showSparks: b.showSparks,
       sparksColor: Color.lerp(a.sparksColor, b.sparksColor, t)!,
       sparksRadius: _lerpDouble(a.sparksRadius, b.sparksRadius, t)!,
-      start: _lerpDouble(a.start, b.start, t)!,
       start2: _lerpDouble(a.start2, b.start2, t),
       textDirection: b.textDirection,
     );
@@ -457,8 +432,11 @@ class _LinearProgressIndicatorPainter extends CustomPainter {
     this.textDirection = TextDirection.ltr,
   });
 
-  static final gradientTransform =
-      Matrix4.diagonal3Values(1.0, 0.5, 1.0).storage;
+  static final gradientTransform = Matrix4.diagonal3Values(
+    1.0,
+    0.5,
+    1.0,
+  ).storage;
   final double start;
   final double end;
   final double? start2; // for indeterminate

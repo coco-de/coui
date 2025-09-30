@@ -5,9 +5,6 @@ import 'package:coui_flutter/coui_flutter.dart';
 
 extension WidgetStateExtension on Set<WidgetState> {
   bool get disabled => contains(WidgetState.disabled);
-  bool get error => contains(WidgetState.error);
-  bool get selected => contains(WidgetState.selected);
-  bool get pressed => contains(WidgetState.pressed);
   bool get hovered => contains(WidgetState.hovered);
   bool get focused => contains(WidgetState.focused);
 }

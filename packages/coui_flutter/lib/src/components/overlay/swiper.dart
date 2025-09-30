@@ -93,46 +93,6 @@ class SwiperTheme {
   /// Hit test behavior for gesture detection.
   final HitTestBehavior? behavior;
 
-  SwiperTheme copyWith({
-    ValueGetter<WidgetBuilder?>? backdropBuilder,
-    ValueGetter<Color?>? barrierColor,
-    ValueGetter<bool?>? barrierDismissible,
-    ValueGetter<HitTestBehavior?>? behavior,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<Size?>? dragHandleSize,
-    ValueGetter<bool?>? draggable,
-    ValueGetter<bool?>? expands,
-    ValueGetter<bool?>? showDragHandle,
-    ValueGetter<double?>? surfaceBlur,
-    ValueGetter<double?>? surfaceOpacity,
-    ValueGetter<bool?>? transformBackdrop,
-    ValueGetter<bool?>? useSafeArea,
-  }) {
-    return SwiperTheme(
-      backdropBuilder:
-          backdropBuilder == null ? this.backdropBuilder : backdropBuilder(),
-      barrierColor: barrierColor == null ? this.barrierColor : barrierColor(),
-      barrierDismissible: barrierDismissible == null
-          ? this.barrierDismissible
-          : barrierDismissible(),
-      behavior: behavior == null ? this.behavior : behavior(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      dragHandleSize:
-          dragHandleSize == null ? this.dragHandleSize : dragHandleSize(),
-      draggable: draggable == null ? this.draggable : draggable(),
-      expands: expands == null ? this.expands : expands(),
-      showDragHandle:
-          showDragHandle == null ? this.showDragHandle : showDragHandle(),
-      surfaceBlur: surfaceBlur == null ? this.surfaceBlur : surfaceBlur(),
-      surfaceOpacity:
-          surfaceOpacity == null ? this.surfaceOpacity : surfaceOpacity(),
-      transformBackdrop: transformBackdrop == null
-          ? this.transformBackdrop
-          : transformBackdrop(),
-      useSafeArea: useSafeArea == null ? this.useSafeArea : useSafeArea(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -160,20 +120,20 @@ class SwiperTheme {
 
   @override
   int get hashCode => Object.hash(
-        expands,
-        draggable,
-        barrierDismissible,
-        backdropBuilder,
-        useSafeArea,
-        showDragHandle,
-        borderRadius,
-        dragHandleSize,
-        transformBackdrop,
-        surfaceOpacity,
-        surfaceBlur,
-        barrierColor,
-        behavior,
-      );
+    expands,
+    draggable,
+    barrierDismissible,
+    backdropBuilder,
+    useSafeArea,
+    showDragHandle,
+    borderRadius,
+    dragHandleSize,
+    transformBackdrop,
+    surfaceOpacity,
+    surfaceBlur,
+    barrierColor,
+    behavior,
+  );
 }
 
 /// Abstract handler interface for swiper overlay implementations.
@@ -526,7 +486,8 @@ class _SwiperState extends State<Swiper> {
         return;
       }
       double axisSize;
-      axisSize = resolvedPosition == OverlayPosition.top ||
+      axisSize =
+          resolvedPosition == OverlayPosition.top ||
               resolvedPosition == OverlayPosition.bottom
           ? size.height
           : size.width;

@@ -54,22 +54,6 @@ class ProgressTheme {
   /// Ensures adequate visual presence while maintaining proportional sizing.
   final double? minHeight;
 
-  /// Creates a copy of this theme but with the given fields replaced with the new values.
-  ProgressTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<Color?>? color,
-    ValueGetter<double?>? minHeight,
-  }) {
-    return ProgressTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      color: color == null ? this.color : color(),
-      minHeight: minHeight == null ? this.minHeight : minHeight(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -83,11 +67,11 @@ class ProgressTheme {
 
   @override
   int get hashCode => Object.hash(
-        color,
-        backgroundColor,
-        borderRadius,
-        minHeight,
-      );
+    color,
+    backgroundColor,
+    borderRadius,
+    minHeight,
+  );
 }
 
 /// A linear progress indicator that visually represents task completion.
@@ -152,8 +136,10 @@ class Progress extends StatelessWidget {
     this.max = 1.0,
     this.min = 0.0,
     this.progress,
-  }) : assert(progress == null || progress >= min && progress <= max,
-            'Progress must be between min and max');
+  }) : assert(
+         progress == null || progress >= min && progress <= max,
+         'Progress must be between min and max',
+       );
 
   /// The current progress value within the specified range.
   ///

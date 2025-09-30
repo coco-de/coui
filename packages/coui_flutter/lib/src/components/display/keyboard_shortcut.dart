@@ -2,10 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:coui_flutter/coui_flutter.dart';
 
-typedef KeyboardShortcutDisplayBuilder = Widget Function(
-  BuildContext context,
-  LogicalKeyboardKey key,
-);
+typedef KeyboardShortcutDisplayBuilder =
+    Widget Function(
+      BuildContext context,
+      LogicalKeyboardKey key,
+    );
 
 /// Theme for keyboard shortcut displays.
 class KeyboardShortcutTheme {
@@ -24,19 +25,6 @@ class KeyboardShortcutTheme {
 
   /// Shadow applied to key displays.
   final List<BoxShadow>? keyShadow;
-
-  /// Creates a copy with the given values replaced.
-  KeyboardShortcutTheme copyWith({
-    ValueGetter<EdgeInsetsGeometry?>? keyPadding,
-    ValueGetter<List<BoxShadow>?>? keyShadow,
-    ValueGetter<double?>? spacing,
-  }) {
-    return KeyboardShortcutTheme(
-      keyPadding: keyPadding == null ? this.keyPadding : keyPadding(),
-      keyShadow: keyShadow == null ? this.keyShadow : keyShadow(),
-      spacing: spacing == null ? this.spacing : spacing(),
-    );
-  }
 
   @override
   bool operator ==(Object other) {
@@ -192,8 +180,8 @@ class KeyboardDisplay extends StatelessWidget {
     super.key,
     required List<LogicalKeyboardKey> keys,
     this.spacing,
-  })  : _keys = keys,
-        _activator = null;
+  }) : _keys = keys,
+       _activator = null;
 
   /// Creates a [KeyboardDisplay] from a shortcut activator.
   ///
@@ -216,8 +204,8 @@ class KeyboardDisplay extends StatelessWidget {
     required ShortcutActivator activator,
     super.key,
     this.spacing,
-  })  : _keys = null,
-        _activator = activator;
+  }) : _keys = null,
+       _activator = activator;
 
   /// List of keyboard keys to display when using direct key specification.
   final List<LogicalKeyboardKey>? _keys;
@@ -244,8 +232,9 @@ class KeyboardDisplay extends StatelessWidget {
 
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children:
-          keys.map((key) => KeyboardKeyDisplay(keyboardKey: key)).toList(),
+      children: keys
+          .map((key) => KeyboardKeyDisplay(keyboardKey: key))
+          .toList(),
     ).gap(spacing);
   }
 }
@@ -287,7 +276,6 @@ class KeyboardKeyDisplay extends StatelessWidget {
   /// )
   /// ```
   const KeyboardKeyDisplay({
-    this.boxShadow,
     super.key,
     required this.keyboardKey,
     this.padding,
@@ -305,19 +293,14 @@ class KeyboardKeyDisplay extends StatelessWidget {
   /// uses theme-appropriate default padding for key displays.
   final EdgeInsetsGeometry? padding;
 
-  /// Box shadows applied to the key display for depth effect.
-  ///
-  /// Creates visual depth to simulate the appearance of physical
-  /// keyboard keys. When null, uses theme default shadows.
-  final List<BoxShadow>? boxShadow;
-
   @override
   Widget build(BuildContext context) {
     final displayMapper = Data.of<KeyboardShortcutDisplayHandle>(context);
     final theme = Theme.of(context);
     final directionality = Directionality.of(context);
     final compTheme = ComponentTheme.maybeOf<KeyboardShortcutTheme>(context);
-    final padding = styleValue(
+    final padding =
+        styleValue(
           defaultValue: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
           themeValue: compTheme?.keyPadding,
           widgetValue: this.padding,

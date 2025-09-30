@@ -31,28 +31,6 @@ class HiddenTheme {
   /// Whether to keep main axis size when hidden.
   final bool? keepMainAxisSize;
 
-  /// Returns a copy of this theme with the given fields replaced.
-  HiddenTheme copyWith({
-    ValueGetter<Curve?>? curve,
-    ValueGetter<Axis?>? direction,
-    ValueGetter<Duration?>? duration,
-    ValueGetter<bool?>? keepCrossAxisSize,
-    ValueGetter<bool?>? keepMainAxisSize,
-    ValueGetter<bool?>? reverse,
-  }) {
-    return HiddenTheme(
-      curve: curve == null ? this.curve : curve(),
-      direction: direction == null ? this.direction : direction(),
-      duration: duration == null ? this.duration : duration(),
-      keepCrossAxisSize: keepCrossAxisSize == null
-          ? this.keepCrossAxisSize
-          : keepCrossAxisSize(),
-      keepMainAxisSize:
-          keepMainAxisSize == null ? this.keepMainAxisSize : keepMainAxisSize(),
-      reverse: reverse == null ? this.reverse : reverse(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -68,13 +46,13 @@ class HiddenTheme {
 
   @override
   int get hashCode => Object.hash(
-        direction,
-        duration,
-        curve,
-        reverse,
-        keepCrossAxisSize,
-        keepMainAxisSize,
-      );
+    direction,
+    duration,
+    curve,
+    reverse,
+    keepCrossAxisSize,
+    keepMainAxisSize,
+  );
 }
 
 class Hidden extends StatelessWidget {

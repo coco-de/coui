@@ -5,6 +5,10 @@ class ButtonExample12 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(onPressed: () {}, child: const Text('Text Button'));
+    return TextButton(
+        onPressed: () {
+          // TODOS: will be implemented later.
+        },
+        child: const Text('Text Button'));
   }
 }

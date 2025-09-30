@@ -62,37 +62,6 @@ class ModalBackdropTheme {
   /// Whether to clip the surface for visual effects.
   final bool? surfaceClip;
 
-  /// Creates a copy of this theme with the given fields replaced.
-  ///
-  /// Uses [ValueGetter] functions to allow null value assignments.
-  /// Any parameter set to null will use the current value.
-  ///
-  /// Returns:
-  /// A new [ModalBackdropTheme] with updated values.
-  ///
-  /// Example:
-  /// ```dart
-  /// final newTheme = theme.copyWith(
-  ///   barrierColor: () => Colors.red.withOpacity(0.3),
-  ///   modal: () => false,
-  /// );
-  /// ```
-  ModalBackdropTheme copyWith({
-    ValueGetter<Color?>? barrierColor,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<bool?>? modal,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<bool?>? surfaceClip,
-  }) {
-    return ModalBackdropTheme(
-      barrierColor: barrierColor == null ? this.barrierColor : barrierColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      modal: modal == null ? this.modal : modal(),
-      padding: padding == null ? this.padding : padding(),
-      surfaceClip: surfaceClip == null ? this.surfaceClip : surfaceClip(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     return other is ModalBackdropTheme &&
@@ -105,12 +74,12 @@ class ModalBackdropTheme {
 
   @override
   int get hashCode => Object.hash(
-        borderRadius,
-        padding,
-        barrierColor,
-        modal,
-        surfaceClip,
-      );
+    borderRadius,
+    padding,
+    barrierColor,
+    modal,
+    surfaceClip,
+  );
 }
 
 /// A visual backdrop widget that creates modal-style overlays.
@@ -341,14 +310,6 @@ class ModalContainer extends StatelessWidget {
   /// Model key used to identify full-screen modal mode.
   static const kFullScreenMode = #modal_surface_card_fullscreen;
 
-  /// Checks if the current context is in full-screen modal mode.
-  ///
-  /// Returns `true` if the modal should display in full-screen mode,
-  /// which affects styling such as border radius and shadows.
-  static bool isFullScreenMode(BuildContext context) {
-    return Model.maybeOf(context, kFullScreenMode) ?? false;
-  }
-
   /// The child widget to display inside the modal container.
   final Widget child;
 
@@ -485,13 +446,15 @@ class SurfaceBarrierPainter extends CustomPainter {
       rect = _padRect(rect);
       final path = Path()
         ..addRect(bigOffset & bigScreen)
-        ..addRRect(RRect.fromRectAndCorners(
-          rect,
-          bottomLeft: borderRadius.bottomLeft,
-          bottomRight: borderRadius.bottomRight,
-          topLeft: borderRadius.topLeft,
-          topRight: borderRadius.topRight,
-        ));
+        ..addRRect(
+          RRect.fromRectAndCorners(
+            rect,
+            bottomLeft: borderRadius.bottomLeft,
+            bottomRight: borderRadius.bottomRight,
+            topLeft: borderRadius.topLeft,
+            topRight: borderRadius.topRight,
+          ),
+        );
       path.fillType = PathFillType.evenOdd;
       canvas.clipPath(path);
     }
@@ -539,7 +502,6 @@ class SurfaceBarrierPainter extends CustomPainter {
 /// This class is typically not used directly - use [showDialog] instead.
 class DialogRoute<T> extends RawDialogRoute<T> {
   DialogRoute({
-    required this.alignment,
     super.anchorPoint,
     super.barrierColor = const Color.fromRGBO(0, 0, 0, 0),
     super.barrierDismissible,
@@ -553,43 +515,41 @@ class DialogRoute<T> extends RawDialogRoute<T> {
     super.traversalEdgeBehavior,
     bool useSafeArea = true,
   }) : super(
-          pageBuilder: (
-            BuildContext buildContext,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) {
-            final pageChild = Builder(
-              builder: (context) {
-                final theme = Theme.of(context);
-                final scaling = theme.scaling;
+         pageBuilder:
+             (
+               BuildContext buildContext,
+               Animation<double> animation,
+               Animation<double> secondaryAnimation,
+             ) {
+               final pageChild = Builder(
+                 builder: (context) {
+                   final theme = Theme.of(context);
+                   final scaling = theme.scaling;
 
-                return Padding(
-                  padding: fullScreen
-                      ? EdgeInsets.zero
-                      : const EdgeInsets.all(16) * scaling,
-                  child: builder(context),
-                );
-              },
-            );
-            Widget dialog = themes?.wrap(pageChild) ?? pageChild;
-            if (data != null) {
-              dialog = data.wrap(dialog);
-            }
-            if (useSafeArea) {
-              dialog = SafeArea(child: dialog);
-            }
+                   return Padding(
+                     padding: fullScreen
+                         ? EdgeInsets.zero
+                         : const EdgeInsets.all(16) * scaling,
+                     child: builder(context),
+                   );
+                 },
+               );
+               Widget dialog = themes?.wrap(pageChild) ?? pageChild;
+               if (data != null) {
+                 dialog = data.wrap(dialog);
+               }
+               if (useSafeArea) {
+                 dialog = SafeArea(child: dialog);
+               }
 
-            return dialog;
-          },
-          barrierLabel: barrierLabel ?? 'Dismiss',
-          transitionDuration: const Duration(milliseconds: 150),
-        );
+               return dialog;
+             },
+         barrierLabel: barrierLabel ?? 'Dismiss',
+         transitionDuration: const Duration(milliseconds: 150),
+       );
 
   /// Captured data from the launching context.
   final CapturedData? data;
-
-  /// Alignment for positioning the dialog.
-  final AlignmentGeometry alignment;
 
   /// Whether the dialog should display in full-screen mode.
   final bool fullScreen;
@@ -695,8 +655,10 @@ Future<T?> showDialog<T>({
     context,
     rootNavigator: useRootNavigator,
   );
-  final themes =
-      InheritedTheme.capture(from: context, to: navigatorState.context);
+  final themes = InheritedTheme.capture(
+    from: context,
+    to: navigatorState.context,
+  );
   final data = Data.capture(from: context, to: navigatorState.context);
   final dialogRoute = DialogRoute<T>(
     alignment: alignment ?? Alignment.center,
@@ -707,9 +669,11 @@ Future<T?> showDialog<T>({
     builder: (context) {
       return _DialogOverlayWrapper(
         route: ModalRoute.of(context)! as DialogRoute<T>,
-        child: Builder(builder: (context) {
-          return builder(context);
-        }),
+        child: Builder(
+          builder: (context) {
+            return builder(context);
+          },
+        ),
       );
     },
     context: context,
@@ -864,8 +828,10 @@ class DialogOverlayHandler extends OverlayHandler {
     PopoverConstraint widthConstraint = PopoverConstraint.flexible,
   }) {
     final navigatorState = Navigator.of(context, rootNavigator: rootOverlay);
-    final themes =
-        InheritedTheme.capture(from: context, to: navigatorState.context);
+    final themes = InheritedTheme.capture(
+      from: context,
+      to: navigatorState.context,
+    );
     final data = Data.capture(from: context, to: navigatorState.context);
     final dialogRoute = DialogRoute<T>(
       alignment: Alignment.center,
@@ -879,16 +845,19 @@ class DialogOverlayHandler extends OverlayHandler {
         final surfaceOpacity = theme.surfaceOpacity;
         final child = _DialogOverlayWrapper(
           route: ModalRoute.of(context)! as DialogRoute<T>,
-          child: Builder(builder: (context) {
-            return builder(context);
-          }),
+          child: Builder(
+            builder: (context) {
+              return builder(context);
+            },
+          ),
         );
 
         return overlayBarrier != null
             ? MultiModel(
                 data: const [Model(#coui_flutter_dialog_overlay, true)],
                 child: ModalBackdrop(
-                  barrierColor: overlayBarrier.barrierColor ??
+                  barrierColor:
+                      overlayBarrier.barrierColor ??
                       const Color.fromRGBO(0, 0, 0, 0.8),
                   borderRadius: overlayBarrier.borderRadius,
                   modal: modal,
@@ -913,135 +882,6 @@ class DialogOverlayHandler extends OverlayHandler {
           animation,
           secondaryAnimation,
           false,
-          child,
-        );
-      },
-      traversalEdgeBehavior: TraversalEdgeBehavior.closedLoop,
-    );
-    navigatorState.push(dialogRoute);
-
-    return DialogOverlayCompleter(dialogRoute);
-  }
-}
-
-/// Full-screen variant of the dialog overlay handler.
-///
-/// Similar to [DialogOverlayHandler] but specifically designed for full-screen
-/// modal presentations. Removes padding and adjusts styling to fill the entire
-/// screen while maintaining proper overlay management and animation behavior.
-///
-/// Features:
-/// - Full-screen modal presentation
-/// - Edge-to-edge content display
-/// - Maintained overlay architecture
-/// - Proper animation handling
-/// - Theme inheritance
-///
-/// Example:
-/// ```dart
-/// const FullScreenDialogOverlayHandler().show<bool>(
-///   context: context,
-///   alignment: Alignment.center,
-///   builder: (context) => FullScreenForm(),
-/// );
-/// ```
-class FullScreenDialogOverlayHandler extends OverlayHandler {
-  /// Creates a [FullScreenDialogOverlayHandler].
-  ///
-  /// Example:
-  /// ```dart
-  /// const FullScreenDialogOverlayHandler()
-  /// ```
-  const FullScreenDialogOverlayHandler();
-
-  /// Checks if the current context is within a dialog overlay.
-  ///
-  /// Returns `true` if the context is inside a dialog managed by
-  /// this overlay handler.
-  static bool isDialogOverlay(BuildContext context) {
-    return Model.maybeOf(context, #coui_flutter_dialog_overlay) ?? false;
-  }
-
-  @override
-  OverlayCompleter<T> show<T>({
-    required AlignmentGeometry alignment,
-    bool allowInvertHorizontal = true,
-    bool allowInvertVertical = true,
-    AlignmentGeometry? anchorAlignment,
-    bool barrierDismissable = true,
-    required WidgetBuilder builder,
-    Clip clipBehavior = Clip.none,
-    bool consumeOutsideTaps = true,
-    required BuildContext context,
-    bool dismissBackdropFocus = true,
-    Duration? dismissDuration,
-    bool follow = true,
-    PopoverConstraint heightConstraint = PopoverConstraint.flexible,
-    Key? key,
-    LayerLink? layerLink,
-    EdgeInsetsGeometry? margin,
-    bool modal = true,
-    Offset? offset,
-    ValueChanged<PopoverOverlayWidgetState>? onTickFollow,
-    OverlayBarrier? overlayBarrier,
-    Offset? position,
-    Object? regionGroupId,
-    bool rootOverlay = true,
-    Duration? showDuration,
-    AlignmentGeometry? transitionAlignment,
-    PopoverConstraint widthConstraint = PopoverConstraint.flexible,
-  }) {
-    final navigatorState = Navigator.of(context, rootNavigator: rootOverlay);
-    final themes =
-        InheritedTheme.capture(from: context, to: navigatorState.context);
-    final data = Data.capture(from: context, to: navigatorState.context);
-    final dialogRoute = DialogRoute<T>(
-      alignment: Alignment.center,
-      barrierColor: overlayBarrier == null
-          ? const Color.fromRGBO(0, 0, 0, 0.8)
-          : Colors.transparent,
-      barrierDismissible: barrierDismissable,
-      barrierLabel: 'Dismiss',
-      builder: (context) {
-        final theme = Theme.of(context);
-        final surfaceOpacity = theme.surfaceOpacity;
-        final child = _DialogOverlayWrapper(
-          route: ModalRoute.of(context)! as DialogRoute<T>,
-          child: Builder(builder: (context) {
-            return builder(context);
-          }),
-        );
-
-        return overlayBarrier != null
-            ? MultiModel(
-                data: const [Model(#coui_flutter_dialog_overlay, true)],
-                child: ModalBackdrop(
-                  barrierColor: overlayBarrier.barrierColor ??
-                      const Color.fromRGBO(0, 0, 0, 0.8),
-                  borderRadius: overlayBarrier.borderRadius,
-                  modal: modal,
-                  padding: overlayBarrier.padding,
-                  surfaceClip: ModalBackdrop.shouldClipSurface(surfaceOpacity),
-                  child: child,
-                ),
-              )
-            : MultiModel(
-                data: const [Model(#coui_flutter_dialog_overlay, true)],
-                child: child,
-              );
-      },
-      context: context,
-      data: data,
-      fullScreen: true,
-      themes: themes,
-      transitionBuilder: (context, animation, secondaryAnimation, child) {
-        return _buildCoUIDialogTransitions(
-          context,
-          BorderRadius.zero,
-          Alignment.center,
-          animation,
-          secondaryAnimation,
-          true,
           child,
         );
       },
@@ -1105,10 +945,10 @@ class DialogOverlayCompleter<T> extends OverlayCompleter<T> {
 
   @override
   Future<T> get future => route.popped.then((value) {
-        assert(value is T, 'Dialog route was closed without returning a value');
+    assert(value is T, 'Dialog route was closed without returning a value');
 
-        return value as T;
-      });
+    return value as T;
+  });
 
   @override
   bool get isAnimationCompleted => route.animation?.isCompleted ?? true;

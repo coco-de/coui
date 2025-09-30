@@ -36,7 +36,7 @@ class ObjectFormField<T> extends StatefulWidget {
   final Widget? trailing;
   final PromptMode mode;
   final Widget Function(BuildContext context, ObjectFormHandler<T> handler)
-      editorBuilder;
+  editorBuilder;
   final AlignmentGeometry? popoverAlignment;
   final AlignmentGeometry? popoverAnchorAlignment;
   final EdgeInsetsGeometry? popoverPadding;
@@ -47,7 +47,8 @@ class ObjectFormField<T> extends StatefulWidget {
   final List<Widget> Function(
     BuildContext context,
     ObjectFormHandler<T> handler,
-  )? dialogActions;
+  )?
+  dialogActions;
   final bool? enabled;
 
   final bool decorate;
@@ -63,14 +64,6 @@ abstract class ObjectFormHandler<T> {
   void prompt([T? value]);
 
   Future<void> close();
-
-  static ObjectFormHandler<T> of<T>(BuildContext context) {
-    return Data.of(context);
-  }
-
-  static ObjectFormHandler<T> find<T>(BuildContext context) {
-    return Data.find(context);
-  }
 }
 
 class ObjectFormFieldState<T> extends State<ObjectFormField<T>>
@@ -203,12 +196,13 @@ class _ObjectFormFieldDialog<T> extends StatefulWidget {
 
   final T? value;
   final Widget Function(BuildContext context, ObjectFormHandler<T> handler)
-      editorBuilder;
+  editorBuilder;
   final Widget? dialogTitle;
   final List<Widget> Function(
     BuildContext context,
     ObjectFormHandler<T> handler,
-  )? dialogActions;
+  )?
+  dialogActions;
   final ValueChanged<T?> prompt;
 
   final bool decorate;
@@ -310,7 +304,7 @@ class _ObjectFormFieldPopup<T> extends StatefulWidget {
 
   final T? value;
   final Widget Function(BuildContext context, ObjectFormHandler<T> handler)
-      editorBuilder;
+  editorBuilder;
   final EdgeInsetsGeometry? popoverPadding;
   final ValueChanged<T?>? onChanged;
   final ValueChanged<T?> prompt;

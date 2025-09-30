@@ -44,6 +44,7 @@ linter:
 
 dart_code_metrics:
   rules:
+    - parameters-ordering: false
     - avoid-flexible-outside-flex: false
     - format-comment:
         only-doc-comments: true
@@ -63,3 +64,6 @@ dart_code_metrics:
     - prefer-correct-callback-field-name: false
     - prefer-correct-identifier-length: false
     - prefer-single-widget-per-file: false
+    - avoid-returning-widgets: false
+    - prefer-static-class: false
+    - no-magic-string: false

@@ -56,21 +56,6 @@ class CircularProgressIndicatorTheme {
   /// Controls the thickness of both the progress arc and background track.
   final double? strokeWidth;
 
-  CircularProgressIndicatorTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<Color?>? color,
-    ValueGetter<double?>? size,
-    ValueGetter<double?>? strokeWidth,
-  }) {
-    return CircularProgressIndicatorTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      color: color == null ? this.color : color(),
-      size: size == null ? this.size : size(),
-      strokeWidth: strokeWidth == null ? this.strokeWidth : strokeWidth(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -207,8 +192,9 @@ class CircularProgressIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final iconThemeData = IconTheme.of(context);
     final theme = Theme.of(context);
-    final compTheme =
-        ComponentTheme.maybeOf<CircularProgressIndicatorTheme>(context);
+    final compTheme = ComponentTheme.maybeOf<CircularProgressIndicatorTheme>(
+      context,
+    );
 
     final effectiveSize = styleValue(
       defaultValue:
@@ -218,8 +204,9 @@ class CircularProgressIndicator extends StatelessWidget {
     );
 
     final effectiveColor = styleValue(
-      defaultValue:
-          onSurface ? theme.colorScheme.background : theme.colorScheme.primary,
+      defaultValue: onSurface
+          ? theme.colorScheme.background
+          : theme.colorScheme.primary,
       themeValue: compTheme?.color,
       widgetValue: color,
     );

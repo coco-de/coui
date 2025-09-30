@@ -20,22 +20,6 @@ class TabsTheme {
 
   final BorderRadiusGeometry? borderRadius;
 
-  TabsTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<EdgeInsetsGeometry?>? containerPadding,
-    ValueGetter<EdgeInsetsGeometry?>? tabPadding,
-  }) {
-    return TabsTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      containerPadding:
-          containerPadding == null ? this.containerPadding : containerPadding(),
-      tabPadding: tabPadding == null ? this.tabPadding : tabPadding(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

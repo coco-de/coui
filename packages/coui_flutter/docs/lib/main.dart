@@ -879,9 +879,3 @@ class MyAppState extends State<MyApp> {
 }
 
 final PageStorageBucket docsBucket = PageStorageBucket();
-
-extension Keyed on Widget {
-  KeyedSubtree keyed(Key key) {
-    return KeyedSubtree(key: key, child: this);
-  }
-}

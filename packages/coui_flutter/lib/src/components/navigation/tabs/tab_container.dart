@@ -13,17 +13,6 @@ class TabContainerTheme {
   /// Default builder for wrapping each tab child.
   final TabChildBuilder? childBuilder;
 
-  /// Creates a copy of this theme with the given fields replaced.
-  TabContainerTheme copyWith({
-    ValueGetter<TabBuilder?>? builder,
-    ValueGetter<TabChildBuilder?>? childBuilder,
-  }) {
-    return TabContainerTheme(
-      builder: builder == null ? this.builder : builder(),
-      childBuilder: childBuilder == null ? this.childBuilder : childBuilder(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -103,20 +92,6 @@ class TabChildWidget extends StatelessWidget with TabChild {
   }
 }
 
-class KeyedTabChildWidget<T> extends TabChildWidget with KeyedTabChild<T> {
-  KeyedTabChildWidget({
-    required super.child,
-    super.indexed,
-    required T key,
-  }) : super(key: ValueKey(key));
-
-  @override
-  ValueKey<T> get key => super.key! as ValueKey<T>;
-
-  @override
-  T get tabKey => key.value;
-}
-
 class TabItem extends StatelessWidget with TabChild {
   const TabItem({required this.child, super.key});
 
@@ -133,23 +108,10 @@ class TabItem extends StatelessWidget with TabChild {
   }
 }
 
-class KeyedTabItem<T> extends TabItem with KeyedTabChild<T> {
-  KeyedTabItem({
-    required super.child,
-    required T key,
-  }) : super(key: ValueKey(key));
-
-  @override
-  ValueKey<T> get key => super.key! as ValueKey<T>;
-
-  @override
-  T get tabKey => key.value;
-}
-
-typedef TabBuilder = Widget Function(
-    BuildContext context, List<Widget> children);
-typedef TabChildBuilder = Widget Function(
-    BuildContext context, TabContainerData data, Widget child);
+typedef TabBuilder =
+    Widget Function(BuildContext context, List<Widget> children);
+typedef TabChildBuilder =
+    Widget Function(BuildContext context, TabContainerData data, Widget child);
 
 class TabContainer extends StatelessWidget {
   const TabContainer({
@@ -171,7 +133,8 @@ class TabContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<TabContainerTheme>(context);
-    final tabBuilder = builder ??
+    final tabBuilder =
+        builder ??
         compTheme?.builder ??
         (context, children) => Column(children: children);
     final tabChildBuilder =

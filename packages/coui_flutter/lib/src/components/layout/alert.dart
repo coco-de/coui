@@ -41,33 +41,6 @@ class AlertTheme {
   /// Defines the visual boundary around the alert.
   final Color? borderColor;
 
-  /// Creates a copy of this theme with the given values replaced.
-  ///
-  /// Uses [ValueGetter] functions to allow conditional replacement of values.
-  /// If a getter function is null, the original value is preserved.
-  ///
-  /// Returns:
-  /// A new [AlertTheme] instance with updated values.
-  ///
-  /// Example:
-  /// ```dart
-  /// final newTheme = theme.copyWith(
-  ///   backgroundColor: () => Colors.red,
-  /// );
-  /// ```
-  AlertTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<Color?>? borderColor,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-  }) {
-    return AlertTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      borderColor: borderColor == null ? this.borderColor : borderColor(),
-      padding: padding == null ? this.padding : padding(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

@@ -32,13 +32,15 @@ class _InputHintFeatureState extends InputFeatureState<InputHintFeature> {
   @override
   Iterable<Widget> buildTrailing() sync* {
     if (feature.position == InputFeaturePosition.trailing) {
-      yield Builder(builder: (context) {
-        return IconButton.text(
-          density: ButtonDensity.compact,
-          icon: feature.icon ?? const Icon(LucideIcons.info),
-          onPressed: () => _showPopup(context),
-        );
-      });
+      yield Builder(
+        builder: (context) {
+          return IconButton.text(
+            density: ButtonDensity.compact,
+            icon: feature.icon ?? const Icon(LucideIcons.info),
+            onPressed: () => _showPopup(context),
+          );
+        },
+      );
     }
   }
 
@@ -374,8 +376,9 @@ class _AutoCompleteFeatureState
                 popoverAnchorAlignment: feature.popoverAnchorAlignment,
                 popoverConstraints: feature.popoverConstraints,
                 popoverWidthConstraint: feature.popoverWidthConstraint,
-                suggestions:
-                    suggestions == null ? const [] : suggestions.toList(),
+                suggestions: suggestions == null
+                    ? const []
+                    : suggestions.toList(),
                 child: child!,
               );
       },
@@ -473,38 +476,40 @@ class _InputSpinnerFeatureState extends InputFeatureState<InputSpinnerFeature> {
   }
 
   Widget _buildButtons() {
-    return Builder(builder: (context) {
-      final theme = Theme.of(context);
+    return Builder(
+      builder: (context) {
+        final theme = Theme.of(context);
 
-      return Column(
-        children: [
-          IconButton.text(
-            density: ButtonDensity.compact,
-            icon: Transform.translate(
-              offset: Offset(0, -1 * theme.scaling),
-              child: Transform.scale(
-                scale: 1.5,
-                child: const Icon(LucideIcons.chevronUp),
+        return Column(
+          children: [
+            IconButton.text(
+              density: ButtonDensity.compact,
+              icon: Transform.translate(
+                offset: Offset(0, -1 * theme.scaling),
+                child: Transform.scale(
+                  scale: 1.5,
+                  child: const Icon(LucideIcons.chevronUp),
+                ),
               ),
+              onPressed: _increase,
+              size: ButtonSize.xSmall,
             ),
-            onPressed: _increase,
-            size: ButtonSize.xSmall,
-          ),
-          IconButton.text(
-            density: ButtonDensity.compact,
-            icon: Transform.translate(
-              offset: Offset(0, theme.scaling * 1),
-              child: Transform.scale(
-                scale: 1.5,
-                child: const Icon(LucideIcons.chevronDown),
+            IconButton.text(
+              density: ButtonDensity.compact,
+              icon: Transform.translate(
+                offset: Offset(0, theme.scaling * 1),
+                child: Transform.scale(
+                  scale: 1.5,
+                  child: const Icon(LucideIcons.chevronDown),
+                ),
               ),
+              onPressed: _decrease,
+              size: ButtonSize.xSmall,
             ),
-            onPressed: _decrease,
-            size: ButtonSize.xSmall,
-          ),
-        ],
-      );
-    });
+          ],
+        );
+      },
+    );
   }
 }
 

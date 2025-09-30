@@ -54,8 +54,10 @@ class ColorShades implements Color, ColorSwatch {
   const ColorShades.raw(this._colors);
 
   factory ColorShades.sorted(List<Color> colors) {
-    assert(colors.length == shadeValues.length,
-        'ColorShades.sorted: Invalid number of colors');
+    assert(
+      colors.length == shadeValues.length,
+      'ColorShades.sorted: Invalid number of colors',
+    );
     final slate = ColorShades._();
     for (int i = 0; i < shadeValues.length; i += 1) {
       slate._colors[shadeValues[i]] = colors[i];
@@ -73,8 +75,10 @@ class ColorShades implements Color, ColorSwatch {
     int saturationStepDown = 0,
     int saturationStepUp = 0,
   }) {
-    assert(shadeValues.contains(base),
-        'ColorShades.fromAccent: Invalid base value');
+    assert(
+      shadeValues.contains(base),
+      'ColorShades.fromAccent: Invalid base value',
+    );
     final hsl = HSLColor.fromColor(accent);
 
     return ColorShades.fromAccentHSL(
@@ -97,16 +101,20 @@ class ColorShades implements Color, ColorSwatch {
     int saturationStepDown = 0,
     int saturationStepUp = 0,
   }) {
-    assert(shadeValues.contains(base),
-        'ColorShades.fromAccent: Invalid base value');
+    assert(
+      shadeValues.contains(base),
+      'ColorShades.fromAccent: Invalid base value',
+    );
     final slate = ColorShades._();
     for (final key in shadeValues) {
       final delta = (key - base) / _step;
       final hueDelta = delta * (hueShift / 10);
-      final saturationDelta =
-          delta > 0 ? delta * saturationStepUp : delta * saturationStepDown;
-      final lightnessDelta =
-          delta > 0 ? delta * lightnessStepUp : delta * lightnessStepDown;
+      final saturationDelta = delta > 0
+          ? delta * saturationStepUp
+          : delta * saturationStepDown;
+      final lightnessDelta = delta > 0
+          ? delta * lightnessStepUp
+          : delta * lightnessStepDown;
       final h = (accent.hue + hueDelta) % 360;
       final s = (accent.saturation * 100 - saturationDelta).clamp(0, 100) / 100;
       final l = (accent.lightness * 100 - lightnessDelta).clamp(0, 100) / 100;
@@ -120,8 +128,10 @@ class ColorShades implements Color, ColorSwatch {
   factory ColorShades.fromMap(Map<int, Color> colors) {
     final slate = ColorShades._();
     for (final key in shadeValues) {
-      assert(colors.containsKey(key),
-          'ColorShades.fromMap: Missing value for $key');
+      assert(
+        colors.containsKey(key),
+        'ColorShades.fromMap: Missing value for $key',
+      );
       slate._colors[key] = colors[key]!;
     }
 
@@ -158,14 +168,18 @@ class ColorShades implements Color, ColorSwatch {
     int saturationStepDown = 0,
     int saturationStepUp = 0,
   }) {
-    assert(shadeValues.contains(base),
-        'ColorShades.fromAccent: Invalid base value');
+    assert(
+      shadeValues.contains(base),
+      'ColorShades.fromAccent: Invalid base value',
+    );
     final delta = (targetBase - base) / _step;
     final hueDelta = delta * (hueShift / 10);
-    final saturationDelta =
-        delta > 0 ? delta * saturationStepUp : delta * saturationStepDown;
-    final lightnessDelta =
-        delta > 0 ? delta * lightnessStepUp : delta * lightnessStepDown;
+    final saturationDelta = delta > 0
+        ? delta * saturationStepUp
+        : delta * saturationStepDown;
+    final lightnessDelta = delta > 0
+        ? delta * lightnessStepUp
+        : delta * lightnessStepDown;
     final h = (hsv.hue + hueDelta) % 360;
     final s = (hsv.saturation * 100 - saturationDelta).clamp(0, 100) / 100;
     final l = (hsv.lightness * 100 - lightnessDelta).clamp(0, 100) / 100;
@@ -381,81 +395,82 @@ class ColorScheme implements ChartColorScheme {
   });
 
   ColorScheme.fromMap(Map<String, dynamic> map)
-      : background = map._col('background'),
-        foreground = map._col('foreground'),
-        card = map._col('card'),
-        cardForeground = map._col('cardForeground'),
-        popover = map._col('popover'),
-        popoverForeground = map._col('popoverForeground'),
-        primary = map._col('primary'),
-        primaryForeground = map._col('primaryForeground'),
-        secondary = map._col('secondary'),
-        secondaryForeground = map._col('secondaryForeground'),
-        muted = map._col('muted'),
-        mutedForeground = map._col('mutedForeground'),
-        accent = map._col('accent'),
-        accentForeground = map._col('accentForeground'),
-        destructive = map._col('destructive'),
-        destructiveForeground = map._col('destructiveForeground'),
-        border = map._col('border'),
-        input = map._col('input'),
-        ring = map._col('ring'),
-        chart1 = map._col('chart1'),
-        chart2 = map._col('chart2'),
-        chart3 = map._col('chart3'),
-        chart4 = map._col('chart4'),
-        chart5 = map._col('chart5'),
-        sidebar = map._col('sidebar'),
-        sidebarForeground = map._col('sidebarForeground'),
-        sidebarPrimary = map._col('sidebarPrimary'),
-        sidebarPrimaryForeground = map._col('sidebarPrimaryForeground'),
-        sidebarAccent = map._col('sidebarAccent'),
-        sidebarAccentForeground = map._col('sidebarAccentForeground'),
-        sidebarBorder = map._col('sidebarBorder'),
-        sidebarRing = map._col('sidebarRing'),
-        brightness = Brightness.values
-                .where((element) => element.name == map['brightness'])
-                .firstOrNull ??
-            Brightness.light;
+    : background = map._col('background'),
+      foreground = map._col('foreground'),
+      card = map._col('card'),
+      cardForeground = map._col('cardForeground'),
+      popover = map._col('popover'),
+      popoverForeground = map._col('popoverForeground'),
+      primary = map._col('primary'),
+      primaryForeground = map._col('primaryForeground'),
+      secondary = map._col('secondary'),
+      secondaryForeground = map._col('secondaryForeground'),
+      muted = map._col('muted'),
+      mutedForeground = map._col('mutedForeground'),
+      accent = map._col('accent'),
+      accentForeground = map._col('accentForeground'),
+      destructive = map._col('destructive'),
+      destructiveForeground = map._col('destructiveForeground'),
+      border = map._col('border'),
+      input = map._col('input'),
+      ring = map._col('ring'),
+      chart1 = map._col('chart1'),
+      chart2 = map._col('chart2'),
+      chart3 = map._col('chart3'),
+      chart4 = map._col('chart4'),
+      chart5 = map._col('chart5'),
+      sidebar = map._col('sidebar'),
+      sidebarForeground = map._col('sidebarForeground'),
+      sidebarPrimary = map._col('sidebarPrimary'),
+      sidebarPrimaryForeground = map._col('sidebarPrimaryForeground'),
+      sidebarAccent = map._col('sidebarAccent'),
+      sidebarAccentForeground = map._col('sidebarAccentForeground'),
+      sidebarBorder = map._col('sidebarBorder'),
+      sidebarRing = map._col('sidebarRing'),
+      brightness =
+          Brightness.values
+              .where((element) => element.name == map['brightness'])
+              .firstOrNull ??
+          Brightness.light;
 
   ColorScheme.fromColors({
     required Brightness brightness,
     required Map<String, Color> colors,
   }) : this(
-          accent: colors._col('accent'),
-          accentForeground: colors._col('accentForeground'),
-          background: colors._col('background'),
-          border: colors._col('border'),
-          brightness: brightness,
-          card: colors._col('card'),
-          cardForeground: colors._col('cardForeground'),
-          chart1: colors._col('chart1'),
-          chart2: colors._col('chart2'),
-          chart3: colors._col('chart3'),
-          chart4: colors._col('chart4'),
-          chart5: colors._col('chart5'),
-          destructive: colors._col('destructive'),
-          destructiveForeground: colors._col('destructiveForeground'),
-          foreground: colors._col('foreground'),
-          input: colors._col('input'),
-          muted: colors._col('muted'),
-          mutedForeground: colors._col('mutedForeground'),
-          popover: colors._col('popover'),
-          popoverForeground: colors._col('popoverForeground'),
-          primary: colors._col('primary'),
-          primaryForeground: colors._col('primaryForeground'),
-          ring: colors._col('ring'),
-          secondary: colors._col('secondary'),
-          secondaryForeground: colors._col('secondaryForeground'),
-          sidebar: colors._col('sidebar'),
-          sidebarAccent: colors._col('sidebarAccent'),
-          sidebarAccentForeground: colors._col('sidebarAccentForeground'),
-          sidebarBorder: colors._col('sidebarBorder'),
-          sidebarForeground: colors._col('sidebarForeground'),
-          sidebarPrimary: colors._col('sidebarPrimary'),
-          sidebarPrimaryForeground: colors._col('sidebarPrimaryForeground'),
-          sidebarRing: colors._col('sidebarRing'),
-        );
+         accent: colors._col('accent'),
+         accentForeground: colors._col('accentForeground'),
+         background: colors._col('background'),
+         border: colors._col('border'),
+         brightness: brightness,
+         card: colors._col('card'),
+         cardForeground: colors._col('cardForeground'),
+         chart1: colors._col('chart1'),
+         chart2: colors._col('chart2'),
+         chart3: colors._col('chart3'),
+         chart4: colors._col('chart4'),
+         chart5: colors._col('chart5'),
+         destructive: colors._col('destructive'),
+         destructiveForeground: colors._col('destructiveForeground'),
+         foreground: colors._col('foreground'),
+         input: colors._col('input'),
+         muted: colors._col('muted'),
+         mutedForeground: colors._col('mutedForeground'),
+         popover: colors._col('popover'),
+         popoverForeground: colors._col('popoverForeground'),
+         primary: colors._col('primary'),
+         primaryForeground: colors._col('primaryForeground'),
+         ring: colors._col('ring'),
+         secondary: colors._col('secondary'),
+         secondaryForeground: colors._col('secondaryForeground'),
+         sidebar: colors._col('sidebar'),
+         sidebarAccent: colors._col('sidebarAccent'),
+         sidebarAccentForeground: colors._col('sidebarAccentForeground'),
+         sidebarBorder: colors._col('sidebarBorder'),
+         sidebarForeground: colors._col('sidebarForeground'),
+         sidebarPrimary: colors._col('sidebarPrimary'),
+         sidebarPrimaryForeground: colors._col('sidebarPrimaryForeground'),
+         sidebarRing: colors._col('sidebarRing'),
+       );
 
   static const colorKeys = {
     'background',
@@ -638,14 +653,16 @@ class ColorScheme implements ChartColorScheme {
   }) {
     return ColorScheme(
       accent: accent == null ? this.accent : accent(),
-      accentForeground:
-          accentForeground == null ? this.accentForeground : accentForeground(),
+      accentForeground: accentForeground == null
+          ? this.accentForeground
+          : accentForeground(),
       background: background == null ? this.background : background(),
       border: border == null ? this.border : border(),
       brightness: brightness == null ? this.brightness : brightness(),
       card: card == null ? this.card : card(),
-      cardForeground:
-          cardForeground == null ? this.cardForeground : cardForeground(),
+      cardForeground: cardForeground == null
+          ? this.cardForeground
+          : cardForeground(),
       chart1: chart1 == null ? this.chart1 : chart1(),
       chart2: chart2 == null ? this.chart2 : chart2(),
       chart3: chart3 == null ? this.chart3 : chart3(),
@@ -658,8 +675,9 @@ class ColorScheme implements ChartColorScheme {
       foreground: foreground == null ? this.foreground : foreground(),
       input: input == null ? this.input : input(),
       muted: muted == null ? this.muted : muted(),
-      mutedForeground:
-          mutedForeground == null ? this.mutedForeground : mutedForeground(),
+      mutedForeground: mutedForeground == null
+          ? this.mutedForeground
+          : mutedForeground(),
       popover: popover == null ? this.popover : popover(),
       popoverForeground: popoverForeground == null
           ? this.popoverForeground
@@ -674,18 +692,21 @@ class ColorScheme implements ChartColorScheme {
           ? this.secondaryForeground
           : secondaryForeground(),
       sidebar: sidebar == null ? this.sidebar : sidebar(),
-      sidebarAccent:
-          sidebarAccent == null ? this.sidebarAccent : sidebarAccent(),
+      sidebarAccent: sidebarAccent == null
+          ? this.sidebarAccent
+          : sidebarAccent(),
       sidebarAccentForeground: sidebarAccentForeground == null
           ? this.sidebarAccentForeground
           : sidebarAccentForeground(),
-      sidebarBorder:
-          sidebarBorder == null ? this.sidebarBorder : sidebarBorder(),
+      sidebarBorder: sidebarBorder == null
+          ? this.sidebarBorder
+          : sidebarBorder(),
       sidebarForeground: sidebarForeground == null
           ? this.sidebarForeground
           : sidebarForeground(),
-      sidebarPrimary:
-          sidebarPrimary == null ? this.sidebarPrimary : sidebarPrimary(),
+      sidebarPrimary: sidebarPrimary == null
+          ? this.sidebarPrimary
+          : sidebarPrimary(),
       sidebarPrimaryForeground: sidebarPrimaryForeground == null
           ? this.sidebarPrimaryForeground
           : sidebarPrimaryForeground(),
@@ -708,29 +729,47 @@ class ColorScheme implements ChartColorScheme {
       chart4: Color.lerp(a.chart4, b.chart4, t)!,
       chart5: Color.lerp(a.chart5, b.chart5, t)!,
       destructive: Color.lerp(a.destructive, b.destructive, t)!,
-      destructiveForeground:
-          Color.lerp(a.destructiveForeground, b.destructiveForeground, t)!,
+      destructiveForeground: Color.lerp(
+        a.destructiveForeground,
+        b.destructiveForeground,
+        t,
+      )!,
       foreground: Color.lerp(a.foreground, b.foreground, t)!,
       input: Color.lerp(a.input, b.input, t)!,
       muted: Color.lerp(a.muted, b.muted, t)!,
       mutedForeground: Color.lerp(a.mutedForeground, b.mutedForeground, t)!,
       popover: Color.lerp(a.popover, b.popover, t)!,
-      popoverForeground:
-          Color.lerp(a.popoverForeground, b.popoverForeground, t)!,
+      popoverForeground: Color.lerp(
+        a.popoverForeground,
+        b.popoverForeground,
+        t,
+      )!,
       primary: Color.lerp(a.primary, b.primary, t)!,
-      primaryForeground:
-          Color.lerp(a.primaryForeground, b.primaryForeground, t)!,
+      primaryForeground: Color.lerp(
+        a.primaryForeground,
+        b.primaryForeground,
+        t,
+      )!,
       ring: Color.lerp(a.ring, b.ring, t)!,
       secondary: Color.lerp(a.secondary, b.secondary, t)!,
-      secondaryForeground:
-          Color.lerp(a.secondaryForeground, b.secondaryForeground, t)!,
+      secondaryForeground: Color.lerp(
+        a.secondaryForeground,
+        b.secondaryForeground,
+        t,
+      )!,
       sidebar: Color.lerp(a.sidebar, b.sidebar, t)!,
       sidebarAccent: Color.lerp(a.sidebarAccent, b.sidebarAccent, t)!,
-      sidebarAccentForeground:
-          Color.lerp(a.sidebarAccentForeground, b.sidebarAccentForeground, t)!,
+      sidebarAccentForeground: Color.lerp(
+        a.sidebarAccentForeground,
+        b.sidebarAccentForeground,
+        t,
+      )!,
       sidebarBorder: Color.lerp(a.sidebarBorder, b.sidebarBorder, t)!,
-      sidebarForeground:
-          Color.lerp(a.sidebarForeground, b.sidebarForeground, t)!,
+      sidebarForeground: Color.lerp(
+        a.sidebarForeground,
+        b.sidebarForeground,
+        t,
+      )!,
       sidebarPrimary: Color.lerp(a.sidebarPrimary, b.sidebarPrimary, t)!,
       sidebarPrimaryForeground: Color.lerp(
         a.sidebarPrimaryForeground,
@@ -790,44 +829,44 @@ class ColorScheme implements ChartColorScheme {
 
   @override
   int get hashCode => Object.hash(
-        Object.hash(
-          brightness,
-          background,
-          foreground,
-          card,
-          cardForeground,
-          popover,
-          popoverForeground,
-          primary,
-          primaryForeground,
-          secondary,
-          secondaryForeground,
-          muted,
-          mutedForeground,
-          accent,
-          accentForeground,
-          destructive,
-          destructiveForeground,
-          border,
-          input,
-          ring,
-        ),
-        Object.hash(
-          chart1,
-          chart2,
-          chart3,
-          chart4,
-          chart5,
-          sidebar,
-          sidebarForeground,
-          sidebarPrimary,
-          sidebarPrimaryForeground,
-          sidebarAccent,
-          sidebarAccentForeground,
-          sidebarBorder,
-          sidebarRing,
-        ),
-      );
+    Object.hash(
+      brightness,
+      background,
+      foreground,
+      card,
+      cardForeground,
+      popover,
+      popoverForeground,
+      primary,
+      primaryForeground,
+      secondary,
+      secondaryForeground,
+      muted,
+      mutedForeground,
+      accent,
+      accentForeground,
+      destructive,
+      destructiveForeground,
+      border,
+      input,
+      ring,
+    ),
+    Object.hash(
+      chart1,
+      chart2,
+      chart3,
+      chart4,
+      chart5,
+      sidebar,
+      sidebarForeground,
+      sidebarPrimary,
+      sidebarPrimaryForeground,
+      sidebarAccent,
+      sidebarAccentForeground,
+      sidebarBorder,
+      sidebarRing,
+    ),
+  );
 }
 
 extension _MapColorGetter on Map<String, Color> {

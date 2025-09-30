@@ -42,8 +42,6 @@ class CoUIShowcase extends StatelessComponent {
 
             // Alert Examples
             _buildSection(
-              title: 'Alert Components',
-              description: 'User notifications and feedback messages',
               content: [
                 Alert(
                   [text('🎉 Welcome to CoUI! This is a success message.')],
@@ -62,45 +60,45 @@ class CoUIShowcase extends StatelessComponent {
                   style: const [Alert.info],
                 ),
               ],
+              description: 'User notifications and feedback messages',
+              title: 'Alert Components',
             ),
 
             // Button Examples
             _buildSection(
-              title: 'Button Components',
-              description: 'Interactive elements with various styles',
               content: [
                 div(
                   [
                     Button(
-                      child: text('Primary'),
                       style: const [Button.primaryStyle],
+                      child: text('Primary'),
                     ),
                     Button(
-                      child: text('Secondary'),
                       style: const [Button.secondaryStyle],
+                      child: text('Secondary'),
                     ),
                     Button(
-                      child: text('Accent'),
                       style: const [Button.accentStyle],
+                      child: text('Accent'),
                     ),
                     Button(
-                      child: text('Outline'),
                       style: const [Button.outlineStyle],
+                      child: text('Outline'),
                     ),
                     Button(
-                      child: text('Ghost'),
                       style: const [Button.ghostStyle],
+                      child: text('Ghost'),
                     ),
                   ],
                   classes: 'flex flex-wrap gap-2',
                 ),
               ],
+              description: 'Interactive elements with various styles',
+              title: 'Button Components',
             ),
 
             // Input Examples
             _buildSection(
-              title: 'Input Components',
-              description: 'Form inputs with validation',
               content: [
                 div(
                   [
@@ -118,12 +116,12 @@ class CoUIShowcase extends StatelessComponent {
                   classes: 'space-y-4',
                 ),
               ],
+              description: 'Form inputs with validation',
+              title: 'Input Components',
             ),
 
             // Badge Examples
             _buildSection(
-              title: 'Badge Components',
-              description: 'Status indicators and labels',
               content: [
                 div(
                   [
@@ -136,6 +134,8 @@ class CoUIShowcase extends StatelessComponent {
                   classes: 'flex flex-wrap gap-2',
                 ),
               ],
+              description: 'Status indicators and labels',
+              title: 'Badge Components',
             ),
 
             // Footer
@@ -164,9 +164,9 @@ class CoUIShowcase extends StatelessComponent {
   }
 
   static Component _buildSection({
-    required String title,
-    required String description,
     required List<Component> content,
+    required String description,
+    required String title,
   }) {
     return div(
       [

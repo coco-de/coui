@@ -49,22 +49,6 @@ class NavigationMenuTheme {
   /// Offset for the popover relative to the trigger.
   final Offset? offset;
 
-  /// Returns a copy of this theme with the given fields replaced.
-  NavigationMenuTheme copyWith({
-    ValueGetter<EdgeInsetsGeometry?>? margin,
-    ValueGetter<Offset?>? offset,
-    ValueGetter<double?>? surfaceBlur,
-    ValueGetter<double?>? surfaceOpacity,
-  }) {
-    return NavigationMenuTheme(
-      margin: margin == null ? this.margin : margin(),
-      offset: offset == null ? this.offset : offset(),
-      surfaceBlur: surfaceBlur == null ? this.surfaceBlur : surfaceBlur(),
-      surfaceOpacity:
-          surfaceOpacity == null ? this.surfaceOpacity : surfaceOpacity(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -124,8 +108,12 @@ class NavigationMenuItem extends StatefulWidget {
   ///   ),
   /// )
   /// ```
-  const NavigationMenuItem(
-      {required this.child, this.content, super.key, this.onPressed});
+  const NavigationMenuItem({
+    required this.child,
+    this.content,
+    super.key,
+    this.onPressed,
+  });
 
   /// Callback invoked when this menu item is pressed.
   ///
@@ -160,8 +148,10 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final newMenuState = Data.maybeOf<NavigationMenuState>(context);
-    assert(newMenuState != null,
-        'NavigationItem must be a descendant of NavigationMenu');
+    assert(
+      newMenuState != null,
+      'NavigationItem must be a descendant of NavigationMenu',
+    );
     if (_menuState != newMenuState) {
       _menuState = newMenuState;
       if (widget.content != null) {
@@ -446,24 +436,28 @@ class NavigationMenuContentList extends StatelessWidget {
     for (final child in children) {
       columns.add(Expanded(child: child));
       if (columns.length == crossAxisCount) {
-        rows.add(IntrinsicWidth(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisSize: MainAxisSize.min,
-            children: columns.joinSeparator(SizedBox(height: spacing)),
+        rows.add(
+          IntrinsicWidth(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: columns.joinSeparator(SizedBox(height: spacing)),
+            ),
           ),
-        ));
+        );
         columns = [];
       }
     }
     if (columns.isNotEmpty) {
-      rows.add(IntrinsicWidth(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: columns.joinSeparator(SizedBox(height: runSpacing)),
+      rows.add(
+        IntrinsicWidth(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: columns.joinSeparator(SizedBox(height: runSpacing)),
+          ),
         ),
-      ));
+      );
     }
 
     return IntrinsicWidth(
@@ -471,8 +465,9 @@ class NavigationMenuContentList extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
-          children: (reverse ? rows.reversed.toList() : rows)
-              .joinSeparator(SizedBox(width: spacing)),
+          children: (reverse ? rows.reversed.toList() : rows).joinSeparator(
+            SizedBox(width: spacing),
+          ),
         ),
       ),
     );
@@ -583,7 +578,9 @@ class NavigationMenuState extends State<NavigationMenu> {
   int _hoverCount = 0;
 
   void _attachContentBuilder(
-      WidgetBuilder builder, NavigationMenuItemState key) {
+    WidgetBuilder builder,
+    NavigationMenuItemState key,
+  ) {
     _contentBuilders[key] = builder;
   }
 
@@ -602,13 +599,15 @@ class NavigationMenuState extends State<NavigationMenu> {
       allowInvertVertical: false,
       builder: buildPopover,
       context: context,
-      margin: requestMargin() ??
+      margin:
+          requestMargin() ??
           compTheme?.margin ??
           (const EdgeInsets.all(8) * scaling),
       modal: false,
       offset: compTheme?.offset ?? const Offset(0, 4) * scaling,
       onTickFollow: (value) {
-        value.margin = requestMargin() ??
+        value.margin =
+            requestMargin() ??
             compTheme?.margin ??
             (const EdgeInsets.all(8) * scaling);
       },
@@ -667,7 +666,8 @@ class NavigationMenuState extends State<NavigationMenu> {
   Widget buildPopover(BuildContext context) {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<NavigationMenuTheme>(context);
-    final surfaceOpacity = widget.surfaceOpacity ??
+    final surfaceOpacity =
+        widget.surfaceOpacity ??
         compTheme?.surfaceOpacity ??
         theme.surfaceOpacity;
     final surfaceBlur =

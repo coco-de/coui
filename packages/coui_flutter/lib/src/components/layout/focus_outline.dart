@@ -8,18 +8,6 @@ class FocusOutlineTheme {
 
   final Border? border;
 
-  FocusOutlineTheme copyWith({
-    ValueGetter<double?>? align,
-    ValueGetter<Border?>? border,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-  }) {
-    return FocusOutlineTheme(
-      align: align == null ? this.align : align(),
-      border: border == null ? this.border : border(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

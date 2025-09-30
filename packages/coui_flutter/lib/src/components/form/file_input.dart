@@ -43,40 +43,6 @@ Widget _buildFileIcon(String extension) {
 
 typedef FileIconBuilder = Widget Function(String extension);
 
-class FileIconProvider extends StatelessWidget {
-  const FileIconProvider({
-    required this.child,
-    required this.icons,
-    super.key,
-  }) : builder = null;
-
-  const FileIconProvider.builder({
-    FileIconBuilder this.builder = _buildFileIcon,
-    required this.child,
-    super.key,
-  }) : icons = null;
-
-  static Widget buildIcon(BuildContext context, String extension) {
-    final data = Data.of<FileIconProviderData>(context);
-
-    return data.buildIcon(extension);
-  }
-
-  final FileIconBuilder? builder;
-
-  final Map<String, Widget>? icons;
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Data.inherit(
-      data: FileIconProviderData._(builder: builder, icons: icons),
-      child: child,
-    );
-  }
-}
-
 class FileIconProviderData {
   const FileIconProviderData._({this.builder, this.icons});
 

@@ -72,27 +72,6 @@ class MenubarTheme {
   /// radius. Only visible when [border] is true.
   final BorderRadiusGeometry? borderRadius;
 
-  /// Returns a copy of this theme with the given fields replaced.
-  MenubarTheme copyWith({
-    ValueGetter<Color?>? backgroundColor,
-    ValueGetter<bool?>? border,
-    ValueGetter<Color?>? borderColor,
-    ValueGetter<BorderRadiusGeometry?>? borderRadius,
-    ValueGetter<EdgeInsetsGeometry?>? padding,
-    ValueGetter<Offset?>? subMenuOffset,
-  }) {
-    return MenubarTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
-      border: border == null ? this.border : border(),
-      borderColor: borderColor == null ? this.borderColor : borderColor(),
-      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-      padding: padding == null ? this.padding : padding(),
-      subMenuOffset:
-          subMenuOffset == null ? this.subMenuOffset : subMenuOffset(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -108,13 +87,13 @@ class MenubarTheme {
 
   @override
   int get hashCode => Object.hash(
-        border,
-        subMenuOffset,
-        padding,
-        borderColor,
-        backgroundColor,
-        borderRadius,
-      );
+    border,
+    subMenuOffset,
+    padding,
+    borderColor,
+    backgroundColor,
+    borderRadius,
+  );
 }
 
 /// A horizontal menubar widget for displaying application menus and menu items.
@@ -287,7 +266,8 @@ class MenubarState extends State<Menubar> {
     ThemeData theme,
   ) {
     final scaling = theme.scaling;
-    final offset = subMenuOffset ??
+    final offset =
+        subMenuOffset ??
         ((border ? const Offset(-4, 8) : const Offset(0, 4)) * scaling);
 
     return Data.inherit(

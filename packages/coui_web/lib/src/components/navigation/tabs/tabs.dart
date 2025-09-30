@@ -212,7 +212,8 @@ class Tabs extends UiComponent {
       key: key ?? this.key,
       onChanged: onChanged ?? this.onChanged,
       selectedIndex: selectedIndex ?? this.selectedIndex,
-      style: style ??
+      style:
+          style ??
           () {
             final currentStyle = this.style;
             return currentStyle is List<TabsStyling>? ? currentStyle : null;

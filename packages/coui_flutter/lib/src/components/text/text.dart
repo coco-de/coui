@@ -34,349 +34,291 @@ abstract class TextModifier extends Widget {
 
 extension TextExtension on Widget {
   TextModifier get sans => WrappedText(
-        style: (context, theme) => theme.typography.sans,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.sans,
+    child: this,
+  );
 
   TextModifier get mono => WrappedText(
-        style: (context, theme) => theme.typography.mono,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.mono,
+    child: this,
+  );
 
   TextModifier get xSmall => WrappedText(
-        style: (context, theme) => theme.typography.xSmall,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.xSmall,
+    child: this,
+  );
 
   TextModifier get small => WrappedText(
-        style: (context, theme) => theme.typography.small,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.small,
+    child: this,
+  );
 
   TextModifier get base => WrappedText(
-        style: (context, theme) => theme.typography.base,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.base,
+    child: this,
+  );
 
   TextModifier get large => WrappedText(
-        style: (context, theme) => theme.typography.large,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.large,
+    child: this,
+  );
 
   TextModifier get xLarge => WrappedText(
-        style: (context, theme) => theme.typography.xLarge,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.xLarge,
+    child: this,
+  );
 
   TextModifier get x2Large => WrappedText(
-        style: (context, theme) => theme.typography.x2Large,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.x2Large,
+    child: this,
+  );
 
   TextModifier get x3Large => WrappedText(
-        style: (context, theme) => theme.typography.x3Large,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.x3Large,
+    child: this,
+  );
 
   TextModifier get x4Large => WrappedText(
-        style: (context, theme) => theme.typography.x4Large,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.x4Large,
+    child: this,
+  );
 
   TextModifier get x5Large => WrappedText(
-        style: (context, theme) => theme.typography.x5Large,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.x5Large,
+    child: this,
+  );
 
   TextModifier get x6Large => WrappedText(
-        style: (context, theme) => theme.typography.x6Large,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.x6Large,
+    child: this,
+  );
 
   TextModifier get x7Large => WrappedText(
-        style: (context, theme) => theme.typography.x7Large,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.x7Large,
+    child: this,
+  );
 
   TextModifier get x8Large => WrappedText(
-        style: (context, theme) => theme.typography.x8Large,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.x8Large,
+    child: this,
+  );
 
   TextModifier get x9Large => WrappedText(
-        style: (context, theme) => theme.typography.x9Large,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.x9Large,
+    child: this,
+  );
 
   TextModifier get thin => WrappedText(
-        style: (context, theme) => theme.typography.thin,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.thin,
+    child: this,
+  );
 
   TextModifier get extraLight => WrappedText(
-        style: (context, theme) => theme.typography.extraLight,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.extraLight,
+    child: this,
+  );
 
   TextModifier get light => WrappedText(
-        style: (context, theme) => theme.typography.light,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.light,
+    child: this,
+  );
 
   TextModifier get normal => WrappedText(
-        style: (context, theme) => theme.typography.normal,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.normal,
+    child: this,
+  );
 
   TextModifier get medium => WrappedText(
-        style: (context, theme) => theme.typography.medium,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.medium,
+    child: this,
+  );
 
   TextModifier get semiBold => WrappedText(
-        style: (context, theme) => theme.typography.semiBold,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.semiBold,
+    child: this,
+  );
 
   TextModifier get bold => WrappedText(
-        style: (context, theme) => theme.typography.bold,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.bold,
+    child: this,
+  );
 
   TextModifier get extraBold => WrappedText(
-        style: (context, theme) => theme.typography.extraBold,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.extraBold,
+    child: this,
+  );
 
   TextModifier get black => WrappedText(
-        style: (context, theme) => theme.typography.black,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.black,
+    child: this,
+  );
 
   TextModifier get italic => WrappedText(
-        style: (context, theme) => theme.typography.italic,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.italic,
+    child: this,
+  );
 
   TextModifier get underline => WrappedText(
-        style: (context, theme) => const TextStyle(
-          decoration: TextDecoration.underline,
-        ),
-        child: this,
-      );
+    style: (context, theme) => const TextStyle(
+      decoration: TextDecoration.underline,
+    ),
+    child: this,
+  );
 
   TextModifier get muted => WrappedText(
-        style: (context, theme) => TextStyle(
-          color: theme.colorScheme.mutedForeground,
-        ),
-        child: this,
-      );
+    style: (context, theme) => TextStyle(
+      color: theme.colorScheme.mutedForeground,
+    ),
+    child: this,
+  );
 
   TextModifier get primaryForeground => WrappedText(
-        style: (context, theme) => TextStyle(
-          color: theme.colorScheme.primaryForeground,
-        ),
-        child: this,
-      );
+    style: (context, theme) => TextStyle(
+      color: theme.colorScheme.primaryForeground,
+    ),
+    child: this,
+  );
 
   TextModifier get secondaryForeground => WrappedText(
-        style: (context, theme) => TextStyle(
-          color: theme.colorScheme.secondaryForeground,
-        ),
-        child: this,
-      );
+    style: (context, theme) => TextStyle(
+      color: theme.colorScheme.secondaryForeground,
+    ),
+    child: this,
+  );
 
   TextModifier get h1 => WrappedText(
-        style: (context, theme) => theme.typography.h1,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.h1,
+    child: this,
+  );
 
   TextModifier get h2 => WrappedText(
-        style: (context, theme) => theme.typography.h2,
-        wrapper: (context, child) => Container(
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: Theme.of(context).colorScheme.border,
-              ),
-            ),
+    style: (context, theme) => theme.typography.h2,
+    wrapper: (context, child) => Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Theme.of(context).colorScheme.border,
           ),
-          margin: const EdgeInsets.only(top: 40),
-          padding: const EdgeInsets.only(bottom: 8),
-          child: child,
         ),
-        child: this,
-      );
+      ),
+      margin: const EdgeInsets.only(top: 40),
+      padding: const EdgeInsets.only(bottom: 8),
+      child: child,
+    ),
+    child: this,
+  );
 
   TextModifier get h3 => WrappedText(
-        style: (context, theme) => theme.typography.h3,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.h3,
+    child: this,
+  );
 
   TextModifier get h4 => WrappedText(
-        style: (context, theme) => theme.typography.h4,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.h4,
+    child: this,
+  );
 
   TextModifier get p => WrappedText(
-        style: (context, theme) => theme.typography.p,
-        wrapper: (context, child) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 24),
-            child: child,
-          );
-        },
-        child: this,
+    style: (context, theme) => theme.typography.p,
+    wrapper: (context, child) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 24),
+        child: child,
       );
-
-  TextModifier get firstP => WrappedText(
-        style: (context, theme) => theme.typography.p,
-        child: this,
-      );
+    },
+    child: this,
+  );
 
   TextModifier get blockQuote => WrappedText(
-        style: (context, theme) => theme.typography.blockQuote,
-        wrapper: (context, child) => Container(
-          decoration: BoxDecoration(
-            border: Border(
-              left: BorderSide(
-                color: Theme.of(context).colorScheme.border,
-                width: 2,
-              ),
-            ),
+    style: (context, theme) => theme.typography.blockQuote,
+    wrapper: (context, child) => Container(
+      decoration: BoxDecoration(
+        border: Border(
+          left: BorderSide(
+            color: Theme.of(context).colorScheme.border,
+            width: 2,
           ),
-          padding: const EdgeInsets.only(left: 16),
-          child: child,
         ),
-        child: this,
-      );
+      ),
+      padding: const EdgeInsets.only(left: 16),
+      child: child,
+    ),
+    child: this,
+  );
 
   TextModifier get li => WrappedText(
-        wrapper: (context, child) {
-          final data = Data.maybeOf(context);
-          final depth = data?.depth ?? 0;
-          final style = DefaultTextStyle.of(context).style;
-          final size = (style.fontSize ?? 12) / 16 * 6;
+    wrapper: (context, child) {
+      final data = Data.maybeOf(context);
+      final depth = data?.depth ?? 0;
+      final style = DefaultTextStyle.of(context).style;
+      final size = (style.fontSize ?? 12) / 16 * 6;
 
-          return IntrinsicWidth(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: ((style.fontSize ?? 12) * (style.height ?? 1)) * 1.2,
-                  child: getBullet(context, depth, size),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Data.inherit(
-                    data: UnorderedListData(depth: depth + 1),
-                    child: child,
-                  ),
-                ),
-              ],
+      return IntrinsicWidth(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: ((style.fontSize ?? 12) * (style.height ?? 1)) * 1.2,
+              child: getBullet(context, depth, size),
             ),
-          );
-        },
-        child: this,
+            const SizedBox(width: 8),
+            Expanded(
+              child: Data.inherit(
+                data: UnorderedListData(),
+                child: child,
+              ),
+            ),
+          ],
+        ),
       );
+    },
+    child: this,
+  );
 
   TextModifier get inlineCode => WrappedText(
-        style: (context, theme) => theme.typography.inlineCode,
-        wrapper: (context, child) {
-          final style = DefaultTextStyle.of(context).style;
-          final paddingVertical = style.fontSize! * 0.2;
-          final paddingHorizontal = style.fontSize! * 0.3;
-          final themeData = Theme.of(context);
+    style: (context, theme) => theme.typography.inlineCode,
+    wrapper: (context, child) {
+      final style = DefaultTextStyle.of(context).style;
+      final paddingVertical = style.fontSize! * 0.2;
+      final paddingHorizontal = style.fontSize! * 0.3;
+      final themeData = Theme.of(context);
 
-          return Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(themeData.radiusSm),
-              color: Theme.of(context).colorScheme.muted,
-            ),
-            padding: EdgeInsets.symmetric(
-              horizontal: paddingHorizontal,
-              vertical: paddingVertical,
-            ),
-            child: child,
-          );
-        },
-        child: this,
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(themeData.radiusSm),
+          color: Theme.of(context).colorScheme.muted,
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: paddingHorizontal,
+          vertical: paddingVertical,
+        ),
+        child: child,
       );
+    },
+    child: this,
+  );
 
   TextModifier get lead => WrappedText(
-        style: (context, theme) => theme.typography.lead,
-        child: this,
-      ).muted;
+    style: (context, theme) => theme.typography.lead,
+    child: this,
+  ).muted;
 
   TextModifier get textLarge => WrappedText(
-        style: (context, theme) => theme.typography.textLarge,
-        child: this,
-      );
+    style: (context, theme) => theme.typography.textLarge,
+    child: this,
+  );
 
   TextModifier get textSmall => WrappedText(
-        style: (context, theme) => theme.typography.textSmall,
-        child: this,
-      );
-
-  TextModifier get textMuted => WrappedText(
-        style: (context, theme) => theme.typography.textMuted,
-        child: this,
-      ).muted;
-
-  TextModifier get singleLine => WrappedText(
-        maxLines: (context, theme) => 1,
-        softWrap: (context, theme) => false,
-        child: this,
-      );
-
-  TextModifier get ellipsis => WrappedText(
-        overflow: (context, theme) => TextOverflow.ellipsis,
-        child: this,
-      );
-
-  TextModifier get textCenter => WrappedText(
-        textAlign: (context, theme) => TextAlign.center,
-        child: this,
-      );
-
-  TextModifier get textRight => WrappedText(
-        textAlign: (context, theme) => TextAlign.right,
-        child: this,
-      );
-
-  TextModifier get textLeft => WrappedText(
-        textAlign: (context, theme) => TextAlign.left,
-        child: this,
-      );
-
-  TextModifier get textJustify => WrappedText(
-        textAlign: (context, theme) => TextAlign.justify,
-        child: this,
-      );
-
-  TextModifier get textStart => WrappedText(
-        textAlign: (context, theme) => TextAlign.start,
-        child: this,
-      );
-
-  TextModifier get textEnd => WrappedText(
-        textAlign: (context, theme) => TextAlign.end,
-        child: this,
-      );
-
-  TextModifier get modify => WrappedText(
-        style: (context, theme) => TextStyle(
-          color: theme.colorScheme.primaryForeground,
-        ),
-        child: this,
-      );
+    style: (context, theme) => theme.typography.textSmall,
+    child: this,
+  );
 
   TextModifier get foreground => WrappedText(
-        style: (context, theme) => TextStyle(
-          color: theme.colorScheme.foreground,
-        ),
-        child: this,
-      );
+    style: (context, theme) => TextStyle(
+      color: theme.colorScheme.foreground,
+    ),
+    child: this,
+  );
 
   Widget then(InlineSpan span) {
     if (this is RichText) {
@@ -442,32 +384,34 @@ extension TextExtension on Widget {
     return then(
       WidgetSpan(
         alignment: PlaceholderAlignment.middle,
-        child: Builder(builder: (context) {
-          final defaultTextStyle = DefaultTextStyle.of(context);
+        child: Builder(
+          builder: (context) {
+            final defaultTextStyle = DefaultTextStyle.of(context);
 
-          return Button(
-            onPressed: onPressed,
-            style: const ButtonStyle.link(density: ButtonDensity.compact),
-            child: Builder(
-              builder: (context) {
-                final buttonTextStyle = DefaultTextStyle.of(context);
+            return Button(
+              onPressed: onPressed,
+              style: const ButtonStyle.link(density: ButtonDensity.compact),
+              child: Builder(
+                builder: (context) {
+                  final buttonTextStyle = DefaultTextStyle.of(context);
 
-                return DefaultTextStyle(
-                  maxLines: defaultTextStyle.maxLines,
-                  overflow: defaultTextStyle.overflow,
-                  softWrap: defaultTextStyle.softWrap,
-                  style: defaultTextStyle.style.copyWith(
-                    decoration: buttonTextStyle.style.decoration,
-                  ),
-                  textAlign: defaultTextStyle.textAlign,
-                  textHeightBehavior: defaultTextStyle.textHeightBehavior,
-                  textWidthBasis: defaultTextStyle.textWidthBasis,
-                  child: child,
-                );
-              },
-            ),
-          );
-        }),
+                  return DefaultTextStyle(
+                    maxLines: defaultTextStyle.maxLines,
+                    overflow: defaultTextStyle.overflow,
+                    softWrap: defaultTextStyle.softWrap,
+                    style: defaultTextStyle.style.copyWith(
+                      decoration: buttonTextStyle.style.decoration,
+                    ),
+                    textAlign: defaultTextStyle.textAlign,
+                    textHeightBehavior: defaultTextStyle.textHeightBehavior,
+                    textWidthBasis: defaultTextStyle.textWidthBasis,
+                    child: child,
+                  );
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -488,17 +432,20 @@ class _TextThenWidget extends StatelessWidget {
       effectiveTextStyle = defaultTextStyle.style.merge(text.style);
     }
     if (MediaQuery.boldTextOf(context)) {
-      effectiveTextStyle = effectiveTextStyle!
-          .merge(const TextStyle(fontWeight: FontWeight.bold));
+      effectiveTextStyle = effectiveTextStyle!.merge(
+        const TextStyle(fontWeight: FontWeight.bold),
+      );
     }
     final registrar = SelectionContainer.maybeOf(context);
     Widget result = RichText(
       locale: text.locale,
       maxLines: text.maxLines ?? defaultTextStyle.maxLines,
-      overflow: text.overflow ??
+      overflow:
+          text.overflow ??
           effectiveTextStyle?.overflow ??
           defaultTextStyle.overflow,
-      selectionColor: text.selectionColor ??
+      selectionColor:
+          text.selectionColor ??
           DefaultSelectionStyle.of(context).selectionColor ??
           DefaultSelectionStyle.defaultColor,
       selectionRegistrar: registrar,
@@ -514,7 +461,8 @@ class _TextThenWidget extends StatelessWidget {
       textAlign:
           text.textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start,
       textDirection: text.textDirection,
-      textHeightBehavior: text.textHeightBehavior ??
+      textHeightBehavior:
+          text.textHeightBehavior ??
           defaultTextStyle.textHeightBehavior ??
           DefaultTextHeightBehavior.maybeOf(context),
       textScaler: text.textScaler ?? TextScaler.noScaling,
@@ -522,7 +470,8 @@ class _TextThenWidget extends StatelessWidget {
     );
     if (registrar != null) {
       result = MouseRegion(
-        cursor: DefaultSelectionStyle.of(context).mouseCursor ??
+        cursor:
+            DefaultSelectionStyle.of(context).mouseCursor ??
             SystemMouseCursors.text,
         child: result,
       );
@@ -653,14 +602,14 @@ Widget getBullet(BuildContext context, int depth, double size) {
 }
 
 class UnorderedListData {
-  const UnorderedListData({this.depth = 0});
-  final int depth;
+  const UnorderedListData();
 }
 
-typedef WrappedTextDataBuilder<T> = T Function(
-  BuildContext context,
-  ThemeData theme,
-);
+typedef WrappedTextDataBuilder<T> =
+    T Function(
+      BuildContext context,
+      ThemeData theme,
+    );
 typedef WidgetTextWrapper = Widget Function(Widget child, BuildContext context);
 
 class WrappedText extends StatelessWidget implements TextModifier {
@@ -757,29 +706,6 @@ class WrappedText extends StatelessWidget implements TextModifier {
       textAlign: textAlign?.call(context, theme),
       textWidthBasis: textWidthBasis?.call(context, theme),
       child: wrapper?.call(context, child) ?? child,
-    );
-  }
-
-  WrappedText copyWith({
-    ValueGetter<Widget>? child,
-    ValueGetter<WrappedTextDataBuilder<int>?>? maxLines,
-    ValueGetter<WrappedTextDataBuilder<TextOverflow>?>? overflow,
-    ValueGetter<WrappedTextDataBuilder<bool>?>? softWrap,
-    ValueGetter<WrappedTextDataBuilder<TextStyle>?>? style,
-    ValueGetter<WrappedTextDataBuilder<TextAlign>?>? textAlign,
-    ValueGetter<WrappedTextDataBuilder<TextWidthBasis>?>? textWidthBasis,
-    ValueGetter<WidgetTextWrapper?>? wrapper,
-  }) {
-    return WrappedText(
-      maxLines: maxLines == null ? this.maxLines : maxLines(),
-      overflow: overflow == null ? this.overflow : overflow(),
-      softWrap: softWrap == null ? this.softWrap : softWrap(),
-      style: style == null ? this.style : style(),
-      textAlign: textAlign == null ? this.textAlign : textAlign(),
-      textWidthBasis:
-          textWidthBasis == null ? this.textWidthBasis : textWidthBasis(),
-      wrapper: wrapper == null ? this.wrapper : wrapper(),
-      child: child == null ? this.child : child(),
     );
   }
 

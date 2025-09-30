@@ -150,26 +150,16 @@ class GroupPositioned extends ParentDataWidget<GroupParentData> {
     this.width,
   });
 
-  const GroupPositioned.fill({
-    this.bottom = 0,
-    required super.child,
-    this.height,
-    super.key,
-    this.left = 0,
-    this.right = 0,
-    this.top = 0,
-    this.width,
-  });
   GroupPositioned.fromRect({
     required super.child,
     super.key,
     required Rect rect,
-  })  : left = rect.left,
-        top = rect.top,
-        width = rect.width,
-        height = rect.height,
-        right = null,
-        bottom = null;
+  }) : left = rect.left,
+       top = rect.top,
+       width = rect.width,
+       height = rect.height,
+       right = null,
+       bottom = null;
   final double? top;
   final double? left;
   final double? right;

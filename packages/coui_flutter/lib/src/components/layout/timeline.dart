@@ -79,39 +79,6 @@ class TimelineTheme {
   /// If null, defaults to 16 logical pixels scaled by theme scaling factor.
   final double? rowGap;
 
-  /// Creates a copy of this theme with the given values replaced.
-  ///
-  /// Uses [ValueGetter] functions to allow conditional updates where
-  /// null getters preserve the original value.
-  ///
-  /// Example:
-  /// ```dart
-  /// final newTheme = originalTheme.copyWith(
-  ///   spacing: () => 24.0,
-  ///   color: () => Colors.green,
-  /// );
-  /// ```
-  TimelineTheme copyWith({
-    ValueGetter<Color?>? color,
-    ValueGetter<double?>? connectorThickness,
-    ValueGetter<double?>? dotSize,
-    ValueGetter<double?>? rowGap,
-    ValueGetter<double?>? spacing,
-    ValueGetter<BoxConstraints?>? timeConstraints,
-  }) {
-    return TimelineTheme(
-      color: color == null ? this.color : color(),
-      connectorThickness: connectorThickness == null
-          ? this.connectorThickness
-          : connectorThickness(),
-      dotSize: dotSize == null ? this.dotSize : dotSize(),
-      rowGap: rowGap == null ? this.rowGap : rowGap(),
-      spacing: spacing == null ? this.spacing : spacing(),
-      timeConstraints:
-          timeConstraints == null ? this.timeConstraints : timeConstraints(),
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -127,13 +94,13 @@ class TimelineTheme {
 
   @override
   int get hashCode => Object.hash(
-        timeConstraints,
-        spacing,
-        dotSize,
-        connectorThickness,
-        color,
-        rowGap,
-      );
+    timeConstraints,
+    spacing,
+    dotSize,
+    connectorThickness,
+    color,
+    rowGap,
+  );
 }
 
 /// Data model for individual timeline entries.
@@ -299,7 +266,8 @@ class Timeline extends StatelessWidget {
     final theme = Theme.of(context);
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<TimelineTheme>(context);
-    final timeConstraints = this.timeConstraints ??
+    final timeConstraints =
+        this.timeConstraints ??
         compTheme?.timeConstraints ??
         BoxConstraints(maxWidth: scaling * 120, minWidth: scaling * 120);
     final spacing = compTheme?.spacing ?? scaling * 16;
@@ -310,62 +278,64 @@ class Timeline extends StatelessWidget {
     final rows = <Widget>[];
     for (int i = 0; i < data.length; i += 1) {
       final data = this.data[i];
-      rows.add(IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ConstrainedBox(
-              constraints: timeConstraints,
-              child: Align(
-                alignment: Alignment.topRight,
-                child: data.time.medium().small(),
-              ),
-            ),
-            Gap(spacing),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: data.color ?? defaultColor,
-                    shape: theme.radius == 0
-                        ? BoxShape.rectangle
-                        : BoxShape.circle,
-                  ),
-                  height: dotSize,
-                  margin: EdgeInsets.only(top: scaling * 4),
-                  width: dotSize,
+      rows.add(
+        IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ConstrainedBox(
+                constraints: timeConstraints,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: data.time.medium().small(),
                 ),
-                if (i != this.data.length - 1)
-                  Expanded(
-                    child: VerticalDivider(
-                      color: data.color ?? defaultColor,
-                      endIndent: (-4 - spacing) * scaling,
-                      thickness: connectorThickness,
-                    ),
-                  ),
-              ],
-            ),
-            Gap(spacing),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+              ),
+              Gap(spacing),
+              Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  data.title
-                      .semiBold()
-                      .secondaryForeground()
-                      .base()
-                      .withPadding(left: scaling * 4),
-                  if (data.content != null) Gap(scaling * 8),
-                  if (data.content != null)
-                    Expanded(child: data.content!.muted().small()),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: data.color ?? defaultColor,
+                      shape: theme.radius == 0
+                          ? BoxShape.rectangle
+                          : BoxShape.circle,
+                    ),
+                    height: dotSize,
+                    margin: EdgeInsets.only(top: scaling * 4),
+                    width: dotSize,
+                  ),
+                  if (i != this.data.length - 1)
+                    Expanded(
+                      child: VerticalDivider(
+                        color: data.color ?? defaultColor,
+                        endIndent: (-4 - spacing) * scaling,
+                        thickness: connectorThickness,
+                      ),
+                    ),
                 ],
               ),
-            ),
-          ],
+              Gap(spacing),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    data.title
+                        .semiBold()
+                        .secondaryForeground()
+                        .base()
+                        .withPadding(left: scaling * 4),
+                    if (data.content != null) Gap(scaling * 8),
+                    if (data.content != null)
+                      Expanded(child: data.content!.muted().small()),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ));
+      );
     }
 
     return Column(children: rows).gap(rowGap);

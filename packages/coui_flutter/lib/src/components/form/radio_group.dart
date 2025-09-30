@@ -11,8 +11,12 @@ import 'package:coui_flutter/coui_flutter.dart';
 /// selected and unselected states, including border, background,
 /// and active indicator colors.
 class RadioTheme {
-  const RadioTheme(
-      {this.activeColor, this.backgroundColor, this.borderColor, this.size});
+  const RadioTheme({
+    this.activeColor,
+    this.backgroundColor,
+    this.borderColor,
+    this.size,
+  });
 
   final Color? activeColor;
   final Color? borderColor;
@@ -28,8 +32,9 @@ class RadioTheme {
   }) {
     return RadioTheme(
       activeColor: activeColor == null ? this.activeColor : activeColor(),
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
+      backgroundColor: backgroundColor == null
+          ? this.backgroundColor
+          : backgroundColor(),
       borderColor: borderColor == null ? this.borderColor : borderColor(),
       size: size == null ? this.size : size(),
     );
@@ -252,8 +257,10 @@ class _RadioItemState<T> extends State<RadioItem<T>> {
     final theme = Theme.of(context);
     final groupData = Data.maybeOf<RadioGroupData<T>>(context);
     final group = Data.maybeOf<RadioGroupState<T>>(context);
-    assert(groupData != null,
-        'RadioItem<$T> must be a descendant of RadioGroup<$T>');
+    assert(
+      groupData != null,
+      'RadioItem<$T> must be a descendant of RadioGroup<$T>',
+    );
 
     return GestureDetector(
       onTap: widget.enabled && groupData.enabled
@@ -408,22 +415,25 @@ class RadioCardTheme {
     ValueGetter<double?>? selectedBorderWidth,
   }) {
     return RadioCardTheme(
-        borderColor: borderColor == null ? this.borderColor : borderColor(),
-        borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-        borderWidth: borderWidth == null ? this.borderWidth : borderWidth(),
-        color: color == null ? this.color : color(),
-        disabledCursor:
-            disabledCursor == null ? this.disabledCursor : disabledCursor(),
-        enabledCursor:
-            enabledCursor == null ? this.enabledCursor : enabledCursor(),
-        hoverColor: hoverColor == null ? this.hoverColor : hoverColor(),
-        padding: padding == null ? this.padding : padding(),
-        selectedBorderColor: selectedBorderColor == null
-            ? this.selectedBorderColor
-            : selectedBorderColor(),
-        selectedBorderWidth: selectedBorderWidth == null
-            ? this.selectedBorderWidth
-            : selectedBorderWidth());
+      borderColor: borderColor == null ? this.borderColor : borderColor(),
+      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
+      borderWidth: borderWidth == null ? this.borderWidth : borderWidth(),
+      color: color == null ? this.color : color(),
+      disabledCursor: disabledCursor == null
+          ? this.disabledCursor
+          : disabledCursor(),
+      enabledCursor: enabledCursor == null
+          ? this.enabledCursor
+          : enabledCursor(),
+      hoverColor: hoverColor == null ? this.hoverColor : hoverColor(),
+      padding: padding == null ? this.padding : padding(),
+      selectedBorderColor: selectedBorderColor == null
+          ? this.selectedBorderColor
+          : selectedBorderColor(),
+      selectedBorderWidth: selectedBorderWidth == null
+          ? this.selectedBorderWidth
+          : selectedBorderWidth(),
+    );
   }
 
   @override
@@ -445,17 +455,17 @@ class RadioCardTheme {
 
   @override
   int get hashCode => Object.hash(
-        enabledCursor,
-        disabledCursor,
-        hoverColor,
-        color,
-        borderWidth,
-        selectedBorderWidth,
-        borderRadius,
-        padding,
-        borderColor,
-        selectedBorderColor,
-      );
+    enabledCursor,
+    disabledCursor,
+    hoverColor,
+    color,
+    borderWidth,
+    selectedBorderWidth,
+    borderRadius,
+    padding,
+    borderColor,
+    selectedBorderColor,
+  );
 }
 
 class _RadioCardState<T> extends State<RadioCard<T>> {
@@ -484,8 +494,10 @@ class _RadioCardState<T> extends State<RadioCard<T>> {
     final componentTheme = ComponentTheme.maybeOf<RadioCardTheme>(context);
     final groupData = Data.maybeOf<RadioGroupData<T>>(context);
     final group = Data.maybeOf<RadioGroupState<T>>(context);
-    assert(groupData != null,
-        'RadioCard<$T> must be a descendant of RadioGroup<$T>');
+    assert(
+      groupData != null,
+      'RadioCard<$T> must be a descendant of RadioGroup<$T>',
+    );
 
     return GestureDetector(
       onTap: widget.enabled && groupData?.enabled ?? false
@@ -590,11 +602,13 @@ class _RadioCardState<T> extends State<RadioCard<T>> {
                           defaultValue: EdgeInsets.zero,
                           themeValue: componentTheme?.borderWidth == null
                               ? null
-                              : EdgeInsets.all(componentTheme!.borderWidth!))
+                              : EdgeInsets.all(componentTheme!.borderWidth!),
+                        )
                       // to compensate for the border width
                       : styleValue(
                           defaultValue: EdgeInsets.all(theme.scaling * 1),
-                          themeValue: componentTheme?.borderWidth != null &&
+                          themeValue:
+                              componentTheme?.borderWidth != null &&
                                   componentTheme?.selectedBorderWidth != null
                               ? EdgeInsets.all(
                                   componentTheme!.borderWidth! -
