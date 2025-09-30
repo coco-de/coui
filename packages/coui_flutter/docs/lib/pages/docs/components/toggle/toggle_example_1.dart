@@ -19,7 +19,7 @@ class _ToggleExample1State extends State<ToggleExample1> {
           value = v;
         });
       },
-      child: const Text('Toggle'),
+      trailing: const Text('Toggle'),
     );
   }
 }

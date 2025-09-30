@@ -92,7 +92,7 @@ class _SwiperExample1State extends State<SwiperExample1> {
                           _typeDrawer = value;
                         });
                       },
-                      child: const Text('Drawer'),
+                      trailing: const Text('Drawer'),
                     ),
                     Toggle(
                       value: !_typeDrawer,
@@ -101,7 +101,7 @@ class _SwiperExample1State extends State<SwiperExample1> {
                           _typeDrawer = !value;
                         });
                       },
-                      child: const Text('Sheet'),
+                      trailing: const Text('Sheet'),
                     ),
                   ],
                 ),

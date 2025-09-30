@@ -46,7 +46,7 @@ class _StepperExample6State extends State<StepperExample6> {
                   });
                 }
               },
-              child: const Text('Horizontal'),
+              trailing: const Text('Horizontal'),
             ),
             Toggle(
               value: direction == Axis.vertical,
@@ -61,7 +61,7 @@ class _StepperExample6State extends State<StepperExample6> {
                   });
                 }
               },
-              child: const Text('Vertical'),
+              trailing: const Text('Vertical'),
             ),
             const VerticalDivider().sized(height: 16),
             for (var i = 0; i < _variants.length; i++)
@@ -72,7 +72,7 @@ class _StepperExample6State extends State<StepperExample6> {
                     _currentVariant = i;
                   });
                 },
-                child: Text(_variantNames[i]),
+                trailing: Text(_variantNames[i]),
               ),
             const VerticalDivider().sized(height: 16),
             for (var i = 0; i < _stepSize.length; i++)
@@ -83,7 +83,7 @@ class _StepperExample6State extends State<StepperExample6> {
                     _currentStepSize = i;
                   });
                 },
-                child: Text(_stepSizeNames[i]),
+                trailing: Text(_stepSizeNames[i]),
               ),
             const VerticalDivider().sized(height: 16),
             AnimatedBuilder(
@@ -98,7 +98,7 @@ class _StepperExample6State extends State<StepperExample6> {
                       controller.setStatus(1, null);
                     }
                   },
-                  child: const Text('Toggle Error'),
+                  trailing: const Text('Toggle Error'),
                 );
               },
             ),

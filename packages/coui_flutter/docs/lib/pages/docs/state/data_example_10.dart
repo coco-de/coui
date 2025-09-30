@@ -37,7 +37,7 @@ class DataExample10State extends State<DataExample10> {
                   onChanged: (value) {
                     toggle.value = value;
                   },
-                  child: const Text('Toggle'),
+                  trailing: const Text('Toggle'),
                 );
               },
             ),
