@@ -1,6 +1,6 @@
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
-import 'package:coui_web/src/components/avatar/avatar_style.dart';
+import 'package:coui_web/src/components/display/avatar/avatar_style.dart';
 import 'package:jaspr/jaspr.dart';
 
 /// Avatar size variants matching coui_flutter API.

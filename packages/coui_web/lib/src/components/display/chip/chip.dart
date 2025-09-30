@@ -1,6 +1,6 @@
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
-import 'package:coui_web/src/components/chip/chip_style.dart';
+import 'package:coui_web/src/components/display/chip/chip_style.dart';
 import 'package:jaspr/jaspr.dart';
 
 /// Chip size variants.
@@ -45,17 +45,18 @@ class Chip extends UiComponent {
     super.key,
     required this.label,
     this.onDelete,
-    this.onClick,
+    void Function()? onClick,
     this.outlined = false,
     this.size,
     List<ChipStyling>? style,
     super.tag = _defaultTag,
-  })  : _style = style,
-        super(
-          null,
-          child: null,
-          style: style,
-        );
+  }) : _onClickCallback = onClick,
+       _style = style,
+       super(
+         null,
+         child: null,
+         style: style,
+       );
 
   /// Creates a primary chip.
   factory Chip.primary({
@@ -163,7 +164,7 @@ class Chip extends UiComponent {
   final String label;
 
   /// Callback when chip is clicked (Flutter-compatible API).
-  final void Function()? onClick;
+  final void Function()? _onClickCallback;
 
   /// Callback when delete button is clicked (Flutter-compatible API).
   final void Function()? onDelete;
@@ -178,10 +179,19 @@ class Chip extends UiComponent {
   final List<ChipStyling>? _style;
 
   // Static chip style modifiers
-  static const _primaryStyle = ChipStyle('badge-primary', type: StyleType.style);
-  static const _secondaryStyle = ChipStyle('badge-secondary', type: StyleType.style);
+  static const _primaryStyle = ChipStyle(
+    'badge-primary',
+    type: StyleType.style,
+  );
+  static const _secondaryStyle = ChipStyle(
+    'badge-secondary',
+    type: StyleType.style,
+  );
   static const _accentStyle = ChipStyle('badge-accent', type: StyleType.style);
-  static const _outlineStyle = ChipStyle('badge-outline', type: StyleType.style);
+  static const _outlineStyle = ChipStyle(
+    'badge-outline',
+    type: StyleType.style,
+  );
 
   static const _defaultTag = 'div';
   static const _chipBaseClass = 'badge';
@@ -211,7 +221,7 @@ class Chip extends UiComponent {
       );
     }
 
-    final eventHandlers = onClick != null ? {'click': (_) => onClick!()} : null;
+    final eventHandlers = _onClickCallback != null ? {'click': (_) => _onClickCallback!()} : null;
 
     return Component.element(
       attributes: componentAttributes,
@@ -279,7 +289,7 @@ class Chip extends UiComponent {
       key: key ?? this.key,
       label: label ?? this.label,
       onDelete: onDelete ?? this.onDelete,
-      onClick: onClick ?? this.onClick,
+      onClick: onClick ?? _onClickCallback,
       outlined: outlined ?? this.outlined,
       size: size ?? this.size,
       style: style ?? _style,

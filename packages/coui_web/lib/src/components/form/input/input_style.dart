@@ -2,7 +2,7 @@ import 'package:coui_web/src/base/component_style.dart';
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
-import 'package:coui_web/src/components/input/input.dart';
+import 'package:coui_web/src/components/form/input/input.dart';
 
 /// A marker interface for any utility that can be passed to an [Input]'s `style` list.
 ///

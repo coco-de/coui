@@ -1,7 +1,7 @@
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/components/input/input_style.dart';
+import 'package:coui_web/src/components/form/input/input_style.dart';
 import 'package:jaspr/jaspr.dart' show Key, Styles;
 
 /// A component for user text input, rendering an HTML `<input>` element.

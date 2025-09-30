@@ -3,7 +3,7 @@ import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
 import 'package:coui_web/src/base/utilities/alignment.dart';
-import 'package:coui_web/src/components/card/card_style.dart';
+import 'package:coui_web/src/components/layout/card/card_style.dart';
 import 'package:coui_web/src/elements/figure.dart';
 import 'package:jaspr/jaspr.dart';
 

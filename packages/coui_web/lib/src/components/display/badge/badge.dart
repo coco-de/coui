@@ -1,7 +1,7 @@
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/components/badge/badge_style.dart';
+import 'package:coui_web/src/components/display/badge/badge_style.dart';
 import 'package:jaspr/jaspr.dart';
 
 /// A small visual indicator or label, often used for counts, statuses, or categories.

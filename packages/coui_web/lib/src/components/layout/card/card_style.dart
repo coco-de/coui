@@ -1,7 +1,7 @@
 import 'package:coui_web/src/base/component_style.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
-import 'package:coui_web/src/components/card/card.dart';
+import 'package:coui_web/src/components/layout/card/card.dart';
 
 /// Marker interface for any utility that can be passed to a [Card]'s `modifiers` list.
 abstract class _CardStyling implements Styling {}

@@ -1,7 +1,7 @@
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/components/select/select_style.dart';
+import 'package:coui_web/src/components/form/select/select_style.dart';
 import 'package:jaspr/jaspr.dart' show Key, Styles;
 
 /// A dropdown select component, rendering an HTML `<select>` element.

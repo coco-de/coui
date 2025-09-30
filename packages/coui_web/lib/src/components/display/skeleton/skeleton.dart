@@ -1,6 +1,6 @@
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
-import 'package:coui_web/src/components/skeleton/skeleton_style.dart';
+import 'package:coui_web/src/components/display/skeleton/skeleton_style.dart';
 import 'package:jaspr/jaspr.dart';
 
 /// Skeleton shape variants.
@@ -43,12 +43,12 @@ class Skeleton extends UiComponent {
     List<SkeletonStyling>? style,
     super.tag = _defaultTag,
     this.width,
-  })  : _style = style,
-        super(
-          null,
-          child: null,
-          style: style,
-        );
+  }) : _style = style,
+       super(
+         null,
+         child: null,
+         style: style,
+       );
 
   /// Creates a circle skeleton.
   factory Skeleton.circle({

@@ -3,7 +3,7 @@ import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart'
     show Breakpoints, PrefixModifier;
-import 'package:coui_web/src/components/badge/badge.dart';
+import 'package:coui_web/src/components/display/badge/badge.dart';
 
 /// Marker interface for any utility that can be passed to a [Badge]'s `styles` list.
 abstract class _BadgeStyling implements Styling {}

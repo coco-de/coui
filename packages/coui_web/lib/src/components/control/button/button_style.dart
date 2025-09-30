@@ -2,7 +2,7 @@ import 'package:coui_web/src/base/component_style.dart';
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
-import 'package:coui_web/src/components/button/button.dart';
+import 'package:coui_web/src/components/control/button/button.dart';
 
 /// Marker interface for any utility that can be passed to a [Button]'s `modifiers` list.
 abstract class _ButtonStyling implements Styling {}

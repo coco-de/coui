@@ -2,7 +2,7 @@ import 'package:coui_web/src/base/component_style.dart';
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
-import 'package:coui_web/src/components/progress/progress.dart';
+import 'package:coui_web/src/components/display/progress/progress.dart';
 
 /// A marker interface for any utility that can be passed to a [Progress]'s `style` list.
 ///
