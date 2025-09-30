@@ -89,17 +89,18 @@ class PhoneInputTheme {
     ValueGetter<BoxConstraints?>? popupConstraints,
   }) {
     return PhoneInputTheme(
-        borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
-        countryGap: countryGap == null ? this.countryGap : countryGap(),
-        flagGap: flagGap == null ? this.flagGap : flagGap(),
-        flagHeight: flagHeight == null ? this.flagHeight : flagHeight(),
-        flagShape: flagShape == null ? this.flagShape : flagShape(),
-        flagWidth: flagWidth == null ? this.flagWidth : flagWidth(),
-        maxWidth: maxWidth == null ? this.maxWidth : maxWidth(),
-        padding: padding == null ? this.padding : padding(),
-        popupConstraints: popupConstraints == null
-            ? this.popupConstraints
-            : popupConstraints());
+      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
+      countryGap: countryGap == null ? this.countryGap : countryGap(),
+      flagGap: flagGap == null ? this.flagGap : flagGap(),
+      flagHeight: flagHeight == null ? this.flagHeight : flagHeight(),
+      flagShape: flagShape == null ? this.flagShape : flagShape(),
+      flagWidth: flagWidth == null ? this.flagWidth : flagWidth(),
+      maxWidth: maxWidth == null ? this.maxWidth : maxWidth(),
+      padding: padding == null ? this.padding : padding(),
+      popupConstraints: popupConstraints == null
+          ? this.popupConstraints
+          : popupConstraints(),
+    );
   }
 
   @override
@@ -125,16 +126,16 @@ class PhoneInputTheme {
 
   @override
   int get hashCode => Object.hash(
-        padding,
-        borderRadius,
-        popupConstraints,
-        maxWidth,
-        flagHeight,
-        flagWidth,
-        flagGap,
-        countryGap,
-        flagShape,
-      );
+    padding,
+    borderRadius,
+    popupConstraints,
+    maxWidth,
+    flagHeight,
+    flagWidth,
+    flagGap,
+    countryGap,
+    flagShape,
+  );
 }
 
 /// A specialized input widget for entering international phone numbers.
@@ -273,13 +274,21 @@ class _PhoneInputState extends State<PhoneInput>
   Country _country;
   TextEditingController _controller;
 
+  static bool _filterCountryCode(Country country, String text) {
+    return country.name.toLowerCase().contains(text) ||
+        country.dialCode.contains(text) ||
+        country.code.toLowerCase().contains(text);
+  }
+
   @override
   void initState() {
     super.initState();
-    _country = widget.initialCountry ??
+    _country =
+        widget.initialCountry ??
         widget.initialValue?.country ??
         Country.unitedStates;
-    _controller = widget.controller ??
+    _controller =
+        widget.controller ??
         TextEditingController(text: widget.initialValue?.number);
     formValue = value;
     _controller.addListener(_dispatchChanged);
@@ -288,12 +297,6 @@ class _PhoneInputState extends State<PhoneInput>
   void _dispatchChanged() {
     widget.onChanged?.call(value);
     formValue = value;
-  }
-
-  static bool _filterCountryCode(Country country, String text) {
-    return country.name.toLowerCase().contains(text) ||
-        country.dialCode.contains(text) ||
-        country.code.toLowerCase().contains(text);
   }
 
   @override
@@ -395,55 +398,58 @@ class _PhoneInputState extends State<PhoneInput>
             popoverAnchorAlignment: Alignment.bottomLeft,
             popup: SelectPopup.builder(
               builder: (context, searchQuery) {
-                return SelectItemList(children: [
-                  for (final country in widget.countries ?? Country.values)
-                    if (searchQuery == null ||
-                        _filterCountryCode(country, searchQuery))
-                      SelectItemButton(
-                        value: country,
-                        child: Row(
-                          children: [
-                            CountryFlag.fromCountryCode(
-                              country.code,
-                              height: styleValue(
-                                defaultValue: theme.scaling * 18,
-                                themeValue: componentTheme?.flagHeight,
-                              ),
-                              shape: styleValue(
-                                defaultValue: RoundedRectangle(
-                                  theme.radiusSm,
+                return SelectItemList(
+                  children: [
+                    for (final country in widget.countries ?? Country.values)
+                      if (searchQuery == null ||
+                          _filterCountryCode(country, searchQuery))
+                        SelectItemButton(
+                          value: country,
+                          child: Row(
+                            children: [
+                              CountryFlag.fromCountryCode(
+                                country.code,
+                                height: styleValue(
+                                  defaultValue: theme.scaling * 18,
+                                  themeValue: componentTheme?.flagHeight,
                                 ),
-                                themeValue: componentTheme?.flagShape,
+                                shape: styleValue(
+                                  defaultValue: RoundedRectangle(
+                                    theme.radiusSm,
+                                  ),
+                                  themeValue: componentTheme?.flagShape,
+                                ),
+                                width: styleValue(
+                                  defaultValue: theme.scaling * 24,
+                                  themeValue: componentTheme?.flagWidth,
+                                ),
                               ),
-                              width: styleValue(
-                                defaultValue: theme.scaling * 24,
-                                themeValue: componentTheme?.flagWidth,
+                              Gap(
+                                styleValue(
+                                  defaultValue: theme.scaling * 8,
+                                  themeValue: componentTheme?.flagGap,
+                                ),
                               ),
-                            ),
-                            Gap(
-                              styleValue(
-                                defaultValue: theme.scaling * 8,
-                                themeValue: componentTheme?.flagGap,
+                              Expanded(child: Text(country.name)),
+                              Gap(
+                                styleValue(
+                                  defaultValue: theme.scaling * 16,
+                                  themeValue: componentTheme?.countryGap,
+                                ),
                               ),
-                            ),
-                            Expanded(child: Text(country.name)),
-                            Gap(
-                              styleValue(
-                                defaultValue: theme.scaling * 16,
-                                themeValue: componentTheme?.countryGap,
-                              ),
-                            ),
-                            Text(country.dialCode).muted(),
-                          ],
+                              Text(country.dialCode).muted(),
+                            ],
+                          ),
                         ),
-                      ),
-                ]);
+                  ],
+                );
               },
             ).asBuilder,
             popupConstraints: styleValue(
               defaultValue: BoxConstraints(
-                  maxHeight: theme.scaling * 300,
-                  maxWidth: theme.scaling * 250),
+                maxHeight: theme.scaling * 300,
+                maxWidth: theme.scaling * 250,
+              ),
               themeValue: componentTheme?.popupConstraints,
             ),
             popupWidthConstraint: PopoverConstraint.flexible,

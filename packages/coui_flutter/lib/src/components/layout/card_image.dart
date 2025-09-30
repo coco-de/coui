@@ -92,8 +92,9 @@ class CardImageTheme {
     ValueGetter<AbstractButtonStyle?>? style,
   }) {
     return CardImageTheme(
-      backgroundColor:
-          backgroundColor == null ? this.backgroundColor : backgroundColor(),
+      backgroundColor: backgroundColor == null
+          ? this.backgroundColor
+          : backgroundColor(),
       borderColor: borderColor == null ? this.borderColor : borderColor(),
       direction: direction == null ? this.direction : direction(),
       gap: gap == null ? this.gap : gap(),
@@ -117,14 +118,14 @@ class CardImageTheme {
 
   @override
   int get hashCode => Object.hash(
-        style,
-        direction,
-        hoverScale,
-        normalScale,
-        backgroundColor,
-        borderColor,
-        gap,
-      );
+    style,
+    direction,
+    hoverScale,
+    normalScale,
+    backgroundColor,
+    borderColor,
+    gap,
+  );
 }
 
 /// Interactive card component with an image and optional text content.
@@ -247,14 +248,14 @@ class CardImage extends StatefulWidget {
 }
 
 class _CardImageState extends State<CardImage> {
-  final _statesController = WidgetStatesController();
-
   /// Wraps child widget with appropriate intrinsic sizing based on direction.
   static Widget _wrapIntrinsic(Widget child, Axis direction) {
     return direction == Axis.horizontal
         ? IntrinsicHeight(child: child)
         : IntrinsicWidth(child: child);
   }
+
+  final _statesController = WidgetStatesController();
 
   @override
   Widget build(BuildContext context) {
@@ -318,8 +319,8 @@ class _CardImageState extends State<CardImage> {
                       duration: kDefaultDuration,
                       scale:
                           _statesController.value.contains(WidgetState.hovered)
-                              ? hoverScale
-                              : normalScale,
+                          ? hoverScale
+                          : normalScale,
                       child: widget.image,
                     );
                   },

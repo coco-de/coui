@@ -10,6 +10,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 Widget buildRadioGroupDefaultUseCase(BuildContext context) {
   final options = ['Apple', 'Banana', 'Orange'];
   return coui.RadioGroup<String>(
+    onChanged: (value) => print('Radio group value changed to: $value'),
+    value: context.knobs.object.dropdown(
+      label: 'selected',
+      options: options,
+    ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: options
@@ -21,11 +26,6 @@ Widget buildRadioGroupDefaultUseCase(BuildContext context) {
           )
           .toList(),
     ),
-    onChanged: (value) => print('Radio group value changed to: $value'),
-    value: context.knobs.object.dropdown(
-      label: 'selected',
-      options: options,
-    ),
   );
 }
 
@@ -36,22 +36,22 @@ Widget buildRadioGroupDefaultUseCase(BuildContext context) {
 Widget buildRadioGroupCardUseCase(BuildContext context) {
   final options = ['Small', 'Medium', 'Large'];
   return coui.RadioGroup<String>(
+    onChanged: (value) => print('Radio group value changed to: $value'),
+    value: context.knobs.object.dropdown(
+      label: 'selected',
+      options: options,
+    ),
     child: Row(
       children: options
           .map(
             (option) => Flexible(
               child: coui.RadioCard(
-                child: Center(child: Text(option)),
                 value: option,
+                child: Center(child: Text(option)),
               ),
             ),
           )
           .toList(),
-    ),
-    onChanged: (value) => print('Radio group value changed to: $value'),
-    value: context.knobs.object.dropdown(
-      label: 'selected',
-      options: options,
     ),
   );
 }

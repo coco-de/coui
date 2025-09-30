@@ -456,14 +456,30 @@ class _DropTransform {
 
 class _SortableState<T> extends State<Sortable<T>>
     with AutomaticKeepAliveClientMixin {
+  static Widget _buildAnimatedSize({
+    AlignmentGeometry alignment = Alignment.center,
+    Widget? child,
+    required Duration duration,
+    bool hasCandidate = false,
+  }) {
+    return !hasCandidate
+        ? child!
+        : AnimatedSize(
+            alignment: alignment,
+            duration: duration,
+            child: child,
+          );
+  }
+
   final topCandidate = ValueNotifier<_SortableDraggingSession<T>?>(null);
   final leftCandidate = ValueNotifier<_SortableDraggingSession<T>?>(null);
   final rightCandidate = ValueNotifier<_SortableDraggingSession<T>?>(null);
-  final bottomCandidate = ValueNotifier<_SortableDraggingSession<T>?>(null);
 
+  final bottomCandidate = ValueNotifier<_SortableDraggingSession<T>?>(null);
   final _currentTarget = ValueNotifier<_DroppingTarget<T>?>(null);
   final _currentFallback = ValueNotifier<_SortableDropFallbackState<T>?>(null);
   final _hasClaimedDrop = ValueNotifier<bool>(false);
+
   final _hasDraggedOff = ValueNotifier<bool>(false);
 
   final _key = GlobalKey();
@@ -488,7 +504,9 @@ class _SortableState<T> extends State<Sortable<T>>
   }
 
   (_SortableState<T>, Offset)? _findState(
-      Offset globalPosition, _SortableLayerState target) {
+    Offset globalPosition,
+    _SortableLayerState target,
+  ) {
     final result = BoxHitTestResult();
     final renderBox = target.context.findRenderObject()! as RenderBox;
     renderBox.hitTest(result, position: globalPosition);
@@ -509,7 +527,9 @@ class _SortableState<T> extends State<Sortable<T>>
   }
 
   _SortableDropFallbackState<T>? _findFallbackState(
-      Offset globalPosition, _SortableLayerState target) {
+    Offset globalPosition,
+    _SortableLayerState target,
+  ) {
     final result = BoxHitTestResult();
     final renderBox = target.context.findRenderObject()! as RenderBox;
     renderBox.hitTest(result, position: globalPosition);
@@ -616,7 +636,8 @@ class _SortableState<T> extends State<Sortable<T>>
       } else {
         _session!.offset.value += delta;
       }
-      final globalPosition = _session!.offset.value +
+      final globalPosition =
+          _session!.offset.value +
           minOffset +
           Offset(
             (maxOffset.dx - minOffset.dx) / 2,
@@ -764,21 +785,6 @@ class _SortableState<T> extends State<Sortable<T>>
     _scrollableLayer?._endDrag(this);
   }
 
-  static Widget _buildAnimatedSize({
-    AlignmentGeometry alignment = Alignment.center,
-    Widget? child,
-    required Duration duration,
-    bool hasCandidate = false,
-  }) {
-    return !hasCandidate
-        ? child!
-        : AnimatedSize(
-            alignment: alignment,
-            duration: duration,
-            child: child,
-          );
-  }
-
   bool _dragging = false;
 
   bool _claimUnchanged = false;
@@ -893,34 +899,34 @@ class _SortableState<T> extends State<Sortable<T>>
                         Flexible(
                           child: _dragging
                               ? widget.fallback ??
-                                  ListenableBuilder(
-                                    builder: (context, child) {
-                                      return (_hasDraggedOff.value
-                                          ? AbsorbPointer(
-                                              child: Visibility(
-                                                maintainState: true,
-                                                visible: false,
-                                                child: KeyedSubtree(
-                                                  key: _key,
-                                                  child: widget.child,
+                                    ListenableBuilder(
+                                      builder: (context, child) {
+                                        return (_hasDraggedOff.value
+                                            ? AbsorbPointer(
+                                                child: Visibility(
+                                                  maintainState: true,
+                                                  visible: false,
+                                                  child: KeyedSubtree(
+                                                    key: _key,
+                                                    child: widget.child,
+                                                  ),
                                                 ),
-                                              ),
-                                            )
-                                          : AbsorbPointer(
-                                              child: Visibility(
-                                                maintainAnimation: true,
-                                                maintainSize: true,
-                                                maintainState: true,
-                                                visible: false,
-                                                child: KeyedSubtree(
-                                                  key: _key,
-                                                  child: widget.child,
+                                              )
+                                            : AbsorbPointer(
+                                                child: Visibility(
+                                                  maintainAnimation: true,
+                                                  maintainSize: true,
+                                                  maintainState: true,
+                                                  visible: false,
+                                                  child: KeyedSubtree(
+                                                    key: _key,
+                                                    child: widget.child,
+                                                  ),
                                                 ),
-                                              ),
-                                            ));
-                                    },
-                                    listenable: _hasDraggedOff,
-                                  )
+                                              ));
+                                      },
+                                      listenable: _hasDraggedOff,
+                                    )
                               : ListenableBuilder(
                                   builder: (context, child) {
                                     return IgnorePointer(
@@ -1141,8 +1147,9 @@ class _SortableDragHandleState extends State<SortableDragHandle>
                 _state!._onDragStart(details);
               }
             : null,
-        onPanUpdate:
-            widget.enabled && _state != null ? _state!._onDragUpdate : null,
+        onPanUpdate: widget.enabled && _state != null
+            ? _state!._onDragUpdate
+            : null,
         child: widget.child,
       ),
     );
@@ -1367,7 +1374,12 @@ class _PendingDropTransform {
 
 class _SortableLayerState extends State<SortableLayer>
     with SingleTickerProviderStateMixin {
+  static Matrix4 _tweenMatrix(Matrix4 from, double progress, Matrix4 to) {
+    return Matrix4Tween(begin: from, end: to).transform(progress);
+  }
+
   final _sessions = MutableNotifier<List<_SortableDraggingSession>>([]);
+
   final _activeDrops = MutableNotifier<List<_DropTransform>>([]);
 
   final _pendingDrop = ValueNotifier<_PendingDropTransform?>(null);
@@ -1429,9 +1441,10 @@ class _SortableLayerState extends State<SortableLayer>
     final toRemove = <_DropTransform>[];
     for (final drop in _activeDrops.value) {
       drop.start ??= elapsed;
-      num progress = ((elapsed - drop.start!).inMilliseconds /
-              (widget.dropDuration ?? kDefaultDuration).inMilliseconds)
-          .clamp(0, 1);
+      num progress =
+          ((elapsed - drop.start!).inMilliseconds /
+                  (widget.dropDuration ?? kDefaultDuration).inMilliseconds)
+              .clamp(0, 1);
       progress = (widget.dropCurve ?? Curves.easeInOut).transform(progress);
       if (progress >= 1 || !drop.state.mounted) {
         drop.state._hasClaimedDrop.value = false;
@@ -1446,10 +1459,6 @@ class _SortableLayerState extends State<SortableLayer>
     if (_activeDrops.value.isEmpty) {
       _ticker.stop();
     }
-  }
-
-  static Matrix4 _tweenMatrix(Matrix4 from, double progress, Matrix4 to) {
-    return Matrix4Tween(begin: from, end: to).transform(progress);
   }
 
   @override
@@ -1718,8 +1727,8 @@ class _ScrollableSortableLayerState extends State<ScrollableSortableLayer>
           : position.dx;
       final size =
           widget.controller.position.axisDirection == AxisDirection.down
-              ? renderBox.size.height
-              : renderBox.size.width;
+          ? renderBox.size.height
+          : renderBox.size.width;
       if (pos < widget.scrollThreshold) {
         scrollDelta = -delta / 10000;
       } else if (pos > size - widget.scrollThreshold) {

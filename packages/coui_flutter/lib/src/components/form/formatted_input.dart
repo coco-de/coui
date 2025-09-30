@@ -152,8 +152,11 @@ class EditablePart extends InputPart {
 }
 
 class _EditablePartController extends TextEditingController {
-  _EditablePartController(
-      {required this.hasPlaceholder, required this.maxLength, super.text});
+  _EditablePartController({
+    required this.hasPlaceholder,
+    required this.maxLength,
+    super.text,
+  });
 
   final int maxLength;
   final bool hasPlaceholder;
@@ -165,9 +168,9 @@ class _EditablePartController extends TextEditingController {
     required bool withComposing,
   }) {
     final theme = Theme.of(context);
-    assert(!value.composing.isValid ||
-        !withComposing ||
-        value.isComposingRangeValid);
+    assert(
+      !value.composing.isValid || !withComposing || value.isComposingRangeValid,
+    );
     final composingRegionOutOfRange =
         !value.isComposingRangeValid || !withComposing;
 
@@ -178,18 +181,20 @@ class _EditablePartController extends TextEditingController {
       }
       final padding = '_' * max(0, maxLength - text.length);
 
-      return TextSpan(children: [
-        TextSpan(style: style, text: text),
-        TextSpan(
-          style: style?.copyWith(color: theme.colorScheme.mutedForeground),
-          text: padding,
-        ),
-      ]);
+      return TextSpan(
+        children: [
+          TextSpan(style: style, text: text),
+          TextSpan(
+            style: style?.copyWith(color: theme.colorScheme.mutedForeground),
+            text: padding,
+          ),
+        ],
+      );
     }
 
     final composingStyle =
         style?.merge(const TextStyle(decoration: TextDecoration.underline)) ??
-            const TextStyle(decoration: TextDecoration.underline);
+        const TextStyle(decoration: TextDecoration.underline);
     final textBefore = value.composing.textBefore(value.text);
     final textInside = value.composing.textInside(value.text);
     final textAfter = value.composing.textAfter(value.text);
@@ -335,8 +340,9 @@ class _EditablePartWidgetState extends State<_EditablePartWidget> {
     }
     if (oldWidget.data.controller != widget.data.controller) {
       if (oldWidget.data.controller != null) {
-        oldWidget.data.controller!
-            .removeListener(_onFormattedInputControllerChange);
+        oldWidget.data.controller!.removeListener(
+          _onFormattedInputControllerChange,
+        );
       }
       if (widget.data.controller != null) {
         widget.data.controller!.addListener(_onFormattedInputControllerChange);
@@ -380,9 +386,9 @@ class _EditablePartWidgetState extends State<_EditablePartWidget> {
               onChanged: _onChanged,
               padding: EdgeInsets.symmetric(horizontal: theme.scaling * 6),
               placeholder: widget.placeholder,
-              style: DefaultTextStyle.of(context)
-                  .style
-                  .merge(theme.typography.mono),
+              style: DefaultTextStyle.of(
+                context,
+              ).style.merge(theme.typography.mono),
               textAlign: TextAlign.center,
             ),
           ),
@@ -586,27 +592,6 @@ class FormattedInput extends StatefulWidget
 }
 
 class _FormattedInputState extends State<FormattedInput> {
-  final _controller = FormController();
-  bool _hasFocus = false;
-  FormattedValue? _value;
-  List<FocusNode> _focusNodes;
-
-  @override
-  void initState() {
-    super.initState();
-    _value = widget.initialValue ?? widget.controller?.value;
-    _controller.addListener(_notifyChanged);
-    int partIndex = 0;
-    if (_value != null) {
-      for (final part in _value!.parts) {
-        if (part.part.canHaveValue) {
-          partIndex += 1;
-        }
-      }
-    }
-    _focusNodes = _allocateFocusNodes(partIndex);
-  }
-
   static List<FocusNode> _allocateFocusNodes(
     int newLength, [
     List<FocusNode>? oldNodes,
@@ -631,6 +616,28 @@ class _FormattedInputState extends State<FormattedInput> {
     ];
   }
 
+  final _controller = FormController();
+  bool _hasFocus = false;
+  FormattedValue? _value;
+
+  List<FocusNode> _focusNodes;
+
+  @override
+  void initState() {
+    super.initState();
+    _value = widget.initialValue ?? widget.controller?.value;
+    _controller.addListener(_notifyChanged);
+    int partIndex = 0;
+    if (_value != null) {
+      for (final part in _value!.parts) {
+        if (part.part.canHaveValue) {
+          partIndex += 1;
+        }
+      }
+    }
+    _focusNodes = _allocateFocusNodes(partIndex);
+  }
+
   Widget _buildPart(int index, InputPart part) {
     final formattedInputData = FormattedInputData(
       controller: widget.controller,
@@ -643,8 +650,6 @@ class _FormattedInputState extends State<FormattedInput> {
 
     return part.build(context, formattedInputData);
   }
-
-  bool _updating = false;
 
   void _notifyChanged() {
     if (_updating) {
@@ -679,6 +684,8 @@ class _FormattedInputState extends State<FormattedInput> {
       _updating = false;
     }
   }
+
+  bool _updating = false;
 
   @override
   void dispose() {
@@ -722,7 +729,8 @@ class _FormattedInputState extends State<FormattedInput> {
               backgroundColor: theme.colorScheme.input.scaleAlpha(0.3),
               borderColor: theme.colorScheme.border,
               borderRadius: theme.borderRadiusMd,
-              padding: compTheme?.padding ??
+              padding:
+                  compTheme?.padding ??
                   EdgeInsets.symmetric(horizontal: theme.scaling * 6),
               child: Form(
                 controller: _controller,
@@ -781,19 +789,20 @@ class FormattedInputData {
 
   @override
   int get hashCode => Object.hash(
-        partIndex,
-        initialValue,
-        enabled,
-        controller,
-        focusNode,
-        focusNodes,
-      );
+    partIndex,
+    initialValue,
+    enabled,
+    controller,
+    focusNode,
+    focusNodes,
+  );
 }
 
-typedef FormattedInputPopupBuilder<T> = Widget Function(
-  BuildContext context,
-  ComponentController<T?> controller,
-);
+typedef FormattedInputPopupBuilder<T> =
+    Widget Function(
+      BuildContext context,
+      ComponentController<T?> controller,
+    );
 
 class FormattedObjectInput<T> extends StatefulWidget
     with ControlledComponent<T?> {
@@ -853,8 +862,9 @@ class _FormattedObjectInputState<T> extends State<FormattedObjectInput<T>> {
   void initState() {
     super.initState();
     _controller = widget.controller ?? _FormattedObjectController<T>();
-    final values = widget.converter
-        .convertA(widget.initialValue ?? widget.controller?.value);
+    final values = widget.converter.convertA(
+      widget.initialValue ?? widget.controller?.value,
+    );
     final valueParts = <FormattedValuePart>[];
     int partIndex = 0;
     for (int i = 0; i < widget.parts.length; i += 1) {
@@ -883,9 +893,11 @@ class _FormattedObjectInputState<T> extends State<FormattedObjectInput<T>> {
     _updating = true;
     try {
       final value = _formattedController.value;
-      final newValue = widget.converter.convertB(value.values.map((part) {
-        return part.value ?? '';
-      }).toList());
+      final newValue = widget.converter.convertB(
+        value.values.map((part) {
+          return part.value ?? '';
+        }).toList(),
+      );
       _controller.value = newValue;
       widget.onChanged?.call(newValue);
     } finally {
@@ -906,8 +918,9 @@ class _FormattedObjectInputState<T> extends State<FormattedObjectInput<T>> {
         if (part.canHaveValue) {
           final value = values[partIndex];
           if (value == null) {
-            final oldValue =
-                partIndex < oldValues.length ? oldValues[partIndex] : null;
+            final oldValue = partIndex < oldValues.length
+                ? oldValues[partIndex]
+                : null;
             if (oldValue == null) {
               valueParts.add(FormattedValuePart(part));
             } else {
@@ -959,8 +972,9 @@ class _FormattedObjectInputState<T> extends State<FormattedObjectInput<T>> {
         if (part.canHaveValue) {
           final value = values[partIndex];
           if (value == null) {
-            final oldValue =
-                partIndex < oldValues.length ? oldValues[partIndex] : null;
+            final oldValue = partIndex < oldValues.length
+                ? oldValues[partIndex]
+                : null;
             if (oldValue == null) {
               valueParts.add(FormattedValuePart(part));
             } else {

@@ -36,7 +36,10 @@ Widget buildChipWithLeadingUseCase(BuildContext context) {
 Widget buildChipWithTrailingUseCase(BuildContext context) {
   return coui.Chip(
     trailing: coui.ChipButton(
-      onPressed: () {},
+      onPressed: () {
+        // ignore: avoid_print
+        print('Chip trailing button pressed');
+      },
       child: const Icon(Icons.close, size: 16),
     ),
     child: Text(
@@ -52,7 +55,10 @@ Widget buildChipWithTrailingUseCase(BuildContext context) {
 )
 Widget buildChipInteractiveUseCase(BuildContext context) {
   return coui.Chip(
-    onPressed: () {},
+    onPressed: () {
+      // ignore: avoid_print
+      print('Chip pressed');
+    },
     child: Text(
       context.knobs.string(initialValue: 'Interactive Chip', label: 'text'),
     ),

@@ -45,8 +45,9 @@ class MenuPopupTheme {
       fillColor: fillColor == null ? this.fillColor : fillColor(),
       padding: padding == null ? this.padding : padding(),
       surfaceBlur: surfaceBlur == null ? this.surfaceBlur : surfaceBlur(),
-      surfaceOpacity:
-          surfaceOpacity == null ? this.surfaceOpacity : surfaceOpacity(),
+      surfaceOpacity: surfaceOpacity == null
+          ? this.surfaceOpacity
+          : surfaceOpacity(),
     );
   }
 
@@ -65,13 +66,13 @@ class MenuPopupTheme {
 
   @override
   int get hashCode => Object.hash(
-        surfaceOpacity,
-        surfaceBlur,
-        padding,
-        fillColor,
-        borderColor,
-        borderRadius,
-      );
+    surfaceOpacity,
+    surfaceBlur,
+    padding,
+    fillColor,
+    borderColor,
+    borderRadius,
+  );
 }
 
 class MenuPopup extends StatelessWidget {
@@ -86,17 +87,11 @@ class MenuPopup extends StatelessWidget {
     this.surfaceOpacity,
   });
 
-  final double? surfaceOpacity;
-  final double? surfaceBlur;
-  final EdgeInsetsGeometry? padding;
-  final Color? fillColor;
-  final Color? borderColor;
-  final BorderRadiusGeometry? borderRadius;
-
-  final List<Widget> children;
-
   static Widget _buildIntrinsicContainer(
-      Widget child, Axis direction, bool wrap) {
+    Widget child,
+    Axis direction,
+    bool wrap,
+  ) {
     if (!wrap) {
       return child;
     }
@@ -105,6 +100,16 @@ class MenuPopup extends StatelessWidget {
         ? IntrinsicWidth(child: child)
         : IntrinsicHeight(child: child);
   }
+
+  final double? surfaceOpacity;
+  final double? surfaceBlur;
+  final EdgeInsetsGeometry? padding;
+  final Color? fillColor;
+  final Color? borderColor;
+
+  final BorderRadiusGeometry? borderRadius;
+
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +121,7 @@ class MenuPopup extends StatelessWidget {
     final pad = styleValue(
       defaultValue: isSheetOverlay
           ? const EdgeInsets.symmetric(horizontal: 4, vertical: 12) *
-              theme.scaling
+                theme.scaling
           : const EdgeInsets.all(4) * theme.scaling,
       themeValue: compTheme?.padding,
       widgetValue: padding,

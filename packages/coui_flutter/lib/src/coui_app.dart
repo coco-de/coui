@@ -56,11 +56,11 @@ class CoUIApp extends StatefulWidget {
     this.themeMode = ThemeMode.system,
     this.title = '',
     this.tooltipHandler,
-  })  : routeInformationProvider = null,
-        routeInformationParser = null,
-        routerDelegate = null,
-        backButtonDispatcher = null,
-        routerConfig = null;
+  }) : routeInformationProvider = null,
+       routeInformationParser = null,
+       routerDelegate = null,
+       backButtonDispatcher = null,
+       routerConfig = null;
 
   const CoUIApp.router({
     this.actions,
@@ -104,15 +104,15 @@ class CoUIApp extends StatefulWidget {
     this.themeMode = ThemeMode.system,
     this.title = '',
     this.tooltipHandler,
-  })  : assert(routerDelegate != null || routerConfig != null),
-        navigatorObservers = null,
-        navigatorKey = null,
-        onGenerateRoute = null,
-        home = null,
-        onGenerateInitialRoutes = null,
-        onUnknownRoute = null,
-        routes = null,
-        initialRoute = null;
+  }) : assert(routerDelegate != null || routerConfig != null),
+       navigatorObservers = null,
+       navigatorKey = null,
+       onGenerateRoute = null,
+       home = null,
+       onGenerateInitialRoutes = null,
+       onUnknownRoute = null,
+       routes = null,
+       initialRoute = null;
 
   final GlobalKey<NavigatorState>? navigatorKey;
 
@@ -131,7 +131,7 @@ class CoUIApp extends StatefulWidget {
   final RouteFactory? onUnknownRoute;
 
   final NotificationListenerCallback<NavigationNotification>?
-      onNavigationNotification;
+  onNavigationNotification;
 
   final List<NavigatorObserver>? navigatorObservers;
 
@@ -197,7 +197,10 @@ class CoUIScrollBehavior extends ScrollBehavior {
 
   @override
   Widget buildScrollbar(
-      BuildContext context, Widget child, ScrollableDetails details) {
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
     // When modifying this function, consider modifying the implementation in
     // the base class ScrollBehavior as well.
     switch (axisDirectionToAxis(details.direction)) {
@@ -221,7 +224,10 @@ class CoUIScrollBehavior extends ScrollBehavior {
 
   @override
   Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details) {
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
     // When modifying this function, consider modifying the implementation in
     // the base class ScrollBehavior as well.
     switch (getPlatform(context)) {
@@ -257,13 +263,11 @@ class _CoUIAppState extends State<CoUIApp> {
   void initState() {
     super.initState();
     CoUIFlutterPlatformImplementations.onThemeChanged(widget.theme);
-    // _heroController = CoUIApp.createMaterialHeroController();
     _heroController = HeroController(
       createRectTween: (begin, end) {
         return CoUIRectArcTween(begin: begin, end: end);
       },
     );
-    // Future.delayed(const Duration(milliseconds: 10), _dispatchAppInitialized);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _dispatchAppInitialized();
     });
@@ -351,8 +355,11 @@ class _CoUIAppState extends State<CoUIApp> {
             onUnknownRoute: widget.onUnknownRoute,
             pageRouteBuilder:
                 <T>(RouteSettings settings, WidgetBuilder builder) {
-              return MaterialPageRoute<T>(builder: builder, settings: settings);
-            },
+                  return MaterialPageRoute<T>(
+                    builder: builder,
+                    settings: settings,
+                  );
+                },
             restorationScopeId: widget.restorationScopeId,
             routes: widget.routes!,
             shortcuts: widget.shortcuts,
@@ -420,7 +427,8 @@ class _CoUIAppState extends State<CoUIApp> {
     }());
 
     return m.Theme(
-      data: widget.materialTheme ??
+      data:
+          widget.materialTheme ??
           m.ThemeData.from(
             colorScheme: m.ColorScheme.fromSeed(
               brightness: widget.theme.brightness,
@@ -432,7 +440,8 @@ class _CoUIAppState extends State<CoUIApp> {
             ),
           ),
       child: c.CupertinoTheme(
-        data: widget.cupertinoTheme ??
+        data:
+            widget.cupertinoTheme ??
             c.CupertinoThemeData(
               applyThemeToAll: true,
               barBackgroundColor: widget.theme.colorScheme.accent,
@@ -499,67 +508,74 @@ class CoUILayer extends StatelessWidget {
     final appScaling = scaling ?? AdaptiveScaler.defaultScaling(theme);
     final platformBrightness = MediaQuery.platformBrightnessOf(context);
     final mobileMode = isMobile(theme.platform);
-    final scaledTheme = themeMode == ThemeMode.dark ||
+    final scaledTheme =
+        themeMode == ThemeMode.dark ||
             (themeMode == ThemeMode.system &&
                 platformBrightness == Brightness.dark)
         ? appScaling.scale(darkTheme ?? theme)
         : appScaling.scale(theme);
 
     return OverlayManagerLayer(
-      menuHandler: menuHandler ??
+      menuHandler:
+          menuHandler ??
           (mobileMode
               ? const SheetOverlayHandler()
               : const PopoverOverlayHandler()),
-      popoverHandler: popoverHandler ??
+      popoverHandler:
+          popoverHandler ??
           (mobileMode
               ? const SheetOverlayHandler()
               : const PopoverOverlayHandler()),
-      tooltipHandler: tooltipHandler ??
+      tooltipHandler:
+          tooltipHandler ??
           (mobileMode
               ? const FixedTooltipOverlayHandler()
               : const PopoverOverlayHandler()),
       child: CoUIAnimatedTheme(
         data: scaledTheme,
         duration: kDefaultDuration,
-        child: Builder(builder: (context) {
-          final theme = Theme.of(context);
+        child: Builder(
+          builder: (context) {
+            final theme = Theme.of(context);
 
-          return DataMessengerRoot(
-            child: ScrollViewInterceptor(
-              enabled: enableScrollInterception,
-              child: CoUISkeletonizerConfigLayer(
-                theme: theme,
-                child: DefaultTextStyle.merge(
-                  style: theme.typography.base.copyWith(
-                    color: theme.colorScheme.foreground,
-                  ),
-                  child: IconTheme.merge(
-                    data: theme.iconTheme.medium.copyWith(
+            return DataMessengerRoot(
+              child: ScrollViewInterceptor(
+                enabled: enableScrollInterception,
+                child: CoUISkeletonizerConfigLayer(
+                  theme: theme,
+                  child: DefaultTextStyle.merge(
+                    style: theme.typography.base.copyWith(
                       color: theme.colorScheme.foreground,
                     ),
-                    child: RecentColorsScope(
-                      initialRecentColors: initialRecentColors,
-                      maxRecentColors: maxRecentColors,
-                      onRecentColorsChanged: onRecentColorsChanged,
-                      child: ColorPickingLayer(
-                        child: KeyboardShortcutDisplayMapper(
-                          child: ToastLayer(
+                    child: IconTheme.merge(
+                      data: theme.iconTheme.medium.copyWith(
+                        color: theme.colorScheme.foreground,
+                      ),
+                      child: RecentColorsScope(
+                        initialRecentColors: initialRecentColors,
+                        maxRecentColors: maxRecentColors,
+                        onRecentColorsChanged: onRecentColorsChanged,
+                        child: ColorPickingLayer(
+                          child: KeyboardShortcutDisplayMapper(
+                            child: ToastLayer(
                               child: builder == null
                                   ? child ?? const SizedBox.shrink()
                                   : Builder(
                                       builder: (BuildContext context) {
                                         return builder!(context, child);
                                       },
-                                    )),
+                                    ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          );
-        }),
+            );
+          },
+        ),
       ),
     );
   }
@@ -638,7 +654,8 @@ class CoUIRectArcTween extends RectTween {
   }
 
   double _diagonalSupport(Offset centersVector, _BorderRadiusCorner diagonal) {
-    final delta = _cornerFor(begin!, diagonal.endId) -
+    final delta =
+        _cornerFor(begin!, diagonal.endId) -
         _cornerFor(begin!, diagonal.beginId);
     final length = delta.distance;
 
@@ -795,8 +812,10 @@ class CoUIPointArcTween extends Tween<Offset> {
       } else {
         _radius =
             distanceFromAtoB * distanceFromAtoB / (c - end).distance / 2.0;
-        _center =
-            Offset(begin.dx, begin.dy + (end.dy - begin.dy).sign * _radius!);
+        _center = Offset(
+          begin.dx,
+          begin.dy + (end.dy - begin.dy).sign * _radius!,
+        );
         if (begin.dy < end.dy) {
           _beginAngle = -pi / 2.0;
           _endAngle = _beginAngle! + sweepAngle() * (end.dx - begin.dx).sign;
@@ -888,7 +907,8 @@ class CoUIUI extends StatelessWidget {
 
     return AnimatedDefaultTextStyle(
       duration: kDefaultDuration,
-      style: textStyle ??
+      style:
+          textStyle ??
           theme.typography.sans.copyWith(
             color: theme.colorScheme.foreground,
           ),

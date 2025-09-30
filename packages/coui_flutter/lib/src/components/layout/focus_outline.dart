@@ -45,13 +45,6 @@ class FocusOutline extends StatelessWidget {
     this.shape,
   });
 
-  final Widget child;
-  final bool focused;
-  final BorderRadiusGeometry? borderRadius;
-  final double? align;
-  final Border? border;
-  final BoxShape? shape;
-
   static BorderRadius _getAdjustedBorderRadius(
     double align,
     BorderRadiusGeometry? borderRadius,
@@ -68,6 +61,14 @@ class FocusOutline extends StatelessWidget {
       topRight: resolved.topRight + Radius.circular(align),
     );
   }
+
+  final Widget child;
+  final bool focused;
+  final BorderRadiusGeometry? borderRadius;
+  final double? align;
+  final Border? border;
+
+  final BoxShape? shape;
 
   @override
   Widget build(BuildContext context) {
@@ -102,8 +103,9 @@ class FocusOutline extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: styleValue(
                       defaultValue: Border.all(
-                        color:
-                            Theme.of(context).colorScheme.ring.scaleAlpha(0.5),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.ring.scaleAlpha(0.5),
                         width: 3,
                       ),
                       themeValue: compTheme?.border,

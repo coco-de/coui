@@ -10,18 +10,23 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 Widget buildSelectDefaultUseCase(BuildContext context) {
   final options = ['Apple', 'Banana', 'Orange', 'Mango', 'Pineapple'];
   return coui.Select<String>(
-    onChanged: (value) => print('Select value changed to: $value'),
-    placeholder: const Text('Select a fruit'),
     itemBuilder: (context, value) {
       return Text(value);
     },
+    onChanged: (value) {
+      // ignore: avoid_print
+      print('Select value changed to: ${value ?? 'null'}');
+    },
+    placeholder: const Text('Select a fruit'),
     popup: (context) => coui.SelectPopup<String>.noVirtualization(
       items: coui.SelectItemList(
         children: options
-            .map((e) => coui.SelectItemButton(
-                  value: e,
-                  child: Text(e),
-                ))
+            .map(
+              (option) => coui.SelectItemButton(
+                value: option,
+                child: Text(option),
+              ),
+            )
             .toList(),
       ),
     ),

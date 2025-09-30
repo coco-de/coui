@@ -187,8 +187,10 @@ class ControlledComponentAdapter<T> extends StatefulWidget
     this.initialValue,
     super.key,
     this.onChanged,
-  }) : assert(controller != null || initialValue is T,
-            'Either controller or initialValue must be provided');
+  }) : assert(
+         controller != null || initialValue is T,
+         'Either controller or initialValue must be provided',
+       );
 
   @override
   final T? initialValue;
@@ -207,7 +209,7 @@ class ControlledComponentAdapter<T> extends StatefulWidget
   /// should create a widget that displays the current value and calls the
   /// onChanged callback when user interaction occurs.
   final Widget Function(BuildContext context, ControlledComponentData<T> data)
-      builder;
+  builder;
 
   @override
   _ControlledComponentAdapterState<T> createState() =>
@@ -252,6 +254,12 @@ class _ControlledComponentAdapterState<T>
       oldWidget.controller?.removeListener(_onControllerChanged);
       widget.controller?.addListener(_onControllerChanged);
     }
+  }
+
+  @override
+  void dispose() {
+    widget.controller?.removeListener(_onControllerChanged);
+    super.dispose();
   }
 
   @override

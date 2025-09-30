@@ -49,11 +49,10 @@ Widget buildAutoCompleteReplaceWordUseCase(BuildContext context) {
   controller.addListener(onTextChanged);
 
   return ValueListenableBuilder<List<String>>(
-    valueListenable: suggestions,
     builder: (context, suggestionList, child) {
       return coui.AutoComplete(
-        suggestions: suggestionList,
         mode: coui.AutoCompleteMode.replaceWord,
+        suggestions: suggestionList,
         child: TextField(
           controller: controller,
           decoration: const InputDecoration(
@@ -63,6 +62,7 @@ Widget buildAutoCompleteReplaceWordUseCase(BuildContext context) {
         ),
       );
     },
+    valueListenable: suggestions,
   );
 }
 
@@ -92,7 +92,7 @@ Widget buildAutoCompleteAppendUseCase(BuildContext context) {
   void onTextChanged() {
     final text = controller.text.toLowerCase();
     final lastWord = text.split(' ').last;
-    
+
     if (lastWord.isEmpty || !lastWord.startsWith('#')) {
       suggestions.value = [];
     } else {
@@ -105,12 +105,11 @@ Widget buildAutoCompleteAppendUseCase(BuildContext context) {
   controller.addListener(onTextChanged);
 
   return ValueListenableBuilder<List<String>>(
-    valueListenable: suggestions,
     builder: (context, suggestionList, child) {
       return coui.AutoComplete(
-        suggestions: suggestionList,
-        mode: coui.AutoCompleteMode.append,
         completer: (text) => '$text ',
+        mode: coui.AutoCompleteMode.append,
+        suggestions: suggestionList,
         child: TextField(
           controller: controller,
           decoration: const InputDecoration(
@@ -121,6 +120,7 @@ Widget buildAutoCompleteAppendUseCase(BuildContext context) {
         ),
       );
     },
+    valueListenable: suggestions,
   );
 }
 
@@ -160,11 +160,10 @@ Widget buildAutoCompleteReplaceAllUseCase(BuildContext context) {
   controller.addListener(onTextChanged);
 
   return ValueListenableBuilder<List<String>>(
-    valueListenable: suggestions,
     builder: (context, suggestionList, child) {
       return coui.AutoComplete(
-        suggestions: suggestionList,
         mode: coui.AutoCompleteMode.replaceAll,
+        suggestions: suggestionList,
         child: TextField(
           controller: controller,
           decoration: const InputDecoration(
@@ -175,5 +174,6 @@ Widget buildAutoCompleteReplaceAllUseCase(BuildContext context) {
         ),
       );
     },
+    valueListenable: suggestions,
   );
 }

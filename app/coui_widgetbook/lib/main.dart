@@ -22,7 +22,9 @@ class WidgetbookApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Widgetbook.material(
       addons: [
-        DeviceFrameAddon(devices: Devices.all),
+        ViewportAddon([
+          ...Viewports.all,
+        ]),
         InspectorAddon(),
         SlangAddon(
           initialLocale: TranslationProvider.of(context).flutterLocale,

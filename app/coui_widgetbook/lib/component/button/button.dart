@@ -66,6 +66,11 @@ Widget buildButtonOutlineUseCase(BuildContext context) {
   type: coui.Button,
 )
 Widget buildButtonGhostUseCase(BuildContext context) {
+  return coui.Button.ghost(
+    enabled: context.knobs.boolean(initialValue: true, label: 'enabled'),
+    leading: context.knobs.boolean(initialValue: false, label: 'leading icon')
+        ? const Icon(Icons.add)
+        : null,
     onPressed: () {},
     trailing: context.knobs.boolean(initialValue: false, label: 'trailing icon')
         ? const Icon(Icons.arrow_forward)

@@ -520,16 +520,17 @@ class _TextAreaState extends State<TextArea> {
               controller: widget.controller,
               enabled: widget.enabled,
               expands: true,
+              features: [
+                if (widget.leading != null)
+                  InputFeature.leading(widget.leading!),
+                if (widget.trailing != null)
+                  InputFeature.trailing(widget.trailing!),
+              ],
               filled: filled,
               focusNode: widget.focusNode,
               initialValue: widget.initialValue,
               inputFormatters: widget.inputFormatters,
               keyboardType: widget.keyboardType,
-              features: [
-                if (widget.leading != null) InputFeature.leading(widget.leading!),
-                if (widget.trailing != null)
-                  InputFeature.trailing(widget.trailing!),
-              ],
               maxLength: widget.maxLength,
               maxLengthEnforcement: widget.maxLengthEnforcement,
               maxLines: null,
@@ -558,11 +559,11 @@ class _TextAreaState extends State<TextArea> {
             child: MouseRegion(
               cursor: widget.expandableWidth
                   ? widget.expandableHeight
-                      ? SystemMouseCursors.resizeDownRight
-                      : SystemMouseCursors.resizeLeftRight
+                        ? SystemMouseCursors.resizeDownRight
+                        : SystemMouseCursors.resizeLeftRight
                   : widget.expandableHeight
-                      ? SystemMouseCursors.resizeUpDown
-                      : SystemMouseCursors.basic,
+                  ? SystemMouseCursors.resizeUpDown
+                  : SystemMouseCursors.basic,
               hitTestBehavior: HitTestBehavior.translucent,
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
@@ -570,8 +571,10 @@ class _TextAreaState extends State<TextArea> {
                   if (widget.expandableHeight && _height.isFinite) {
                     setState(() {
                       _height += details.delta.dy;
-                      _height =
-                          _height.clamp(widget.minHeight, widget.maxHeight);
+                      _height = _height.clamp(
+                        widget.minHeight,
+                        widget.maxHeight,
+                      );
                       widget.onHeightChanged?.call(_height);
                     });
                   }

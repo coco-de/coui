@@ -147,7 +147,7 @@ abstract class StatedWidget extends StatelessWidget {
   /// ```
   const factory StatedWidget.builder({
     required Widget Function(BuildContext context, Set<WidgetState> states)
-        builder,
+    builder,
     Key? key,
   }) = _BuilderStatedWidget;
 
@@ -242,10 +242,10 @@ class WidgetStatesProvider extends StatelessWidget {
   }) : boundary = false;
 
   const WidgetStatesProvider.boundary({required this.child, super.key})
-      : boundary = true,
-        controller = null,
-        states = null,
-        inherit = false;
+    : boundary = true,
+      controller = null,
+      states = null,
+      inherit = false;
 
   final WidgetStatesController? controller;
   final Set<WidgetState>? states;
@@ -471,6 +471,18 @@ class _ClickableState extends State<Clickable> {
         : Future.value();
   }
 
+  static Matrix4? lerpMatrix4(Matrix4? a, Matrix4? b, double t) {
+    if (a == null && b == null) {
+      return null;
+    }
+    final tween = Matrix4Tween(
+      begin: a ?? Matrix4.identity(),
+      end: b ?? Matrix4.identity(),
+    );
+
+    return tween.transform(t);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -481,8 +493,9 @@ class _ClickableState extends State<Clickable> {
 
   void _onPressed() {
     if (!widget.enabled) return;
-    final deltaTap =
-        _lastTap == null ? null : DateTime.now().difference(_lastTap!);
+    final deltaTap = _lastTap == null
+        ? null
+        : DateTime.now().difference(_lastTap!);
     _lastTap = DateTime.now();
     if (deltaTap != null && deltaTap < kDoubleTapMinTime) {
       _tapCount += 1;
@@ -518,7 +531,8 @@ class _ClickableState extends State<Clickable> {
 
     return FocusOutline(
       borderRadius: borderRadius,
-      focused: widget.focusOutline &&
+      focused:
+          widget.focusOutline &&
           widgetStates.contains(WidgetState.focused) &&
           !widget.disableFocusOutline,
       child: GestureDetector(
@@ -631,7 +645,8 @@ class _ClickableState extends State<Clickable> {
           child: DefaultTextStyle.merge(
             style: widget.textStyle?.resolve(widgetStates),
             child: IconTheme.merge(
-              data: widget.iconTheme?.resolve(widgetStates) ??
+              data:
+                  widget.iconTheme?.resolve(widgetStates) ??
                   const IconThemeData(),
               child: AnimatedBuilder(
                 animation: _controller,
@@ -726,17 +741,5 @@ class _ClickableState extends State<Clickable> {
       states: {if (!enabled) WidgetState.disabled},
       child: ListenableBuilder(builder: _builder, listenable: _controller),
     );
-  }
-
-  static Matrix4? lerpMatrix4(Matrix4? a, Matrix4? b, double t) {
-    if (a == null && b == null) {
-      return null;
-    }
-    final tween = Matrix4Tween(
-      begin: a ?? Matrix4.identity(),
-      end: b ?? Matrix4.identity(),
-    );
-
-    return tween.transform(t);
   }
 }

@@ -63,14 +63,13 @@ abstract class InputOTPChild {
     CodepointPredicate? predicate,
     bool readOnly = false,
     CodepointUnaryOperator? transform,
-  }) =>
-      CharacterInputOTPChild(
-        keyboardType: keyboardType,
-        obscured: obscured,
-        predicate: predicate,
-        readOnly: readOnly,
-        transform: transform,
-      );
+  }) => CharacterInputOTPChild(
+    keyboardType: keyboardType,
+    obscured: obscured,
+    predicate: predicate,
+    readOnly: readOnly,
+    transform: transform,
+  );
   factory InputOTPChild.character({
     bool allowDigit = false,
     bool allowLowercaseAlphabet = false,
@@ -81,9 +80,12 @@ abstract class InputOTPChild {
     bool onlyUppercaseAlphabet = false,
     bool readOnly = false,
   }) {
-    assert(!(onlyUppercaseAlphabet && onlyLowercaseAlphabet),
-        'onlyUppercaseAlphabet and onlyLowercaseAlphabet cannot be true at the same time');
-    keyboardType ??= allowDigit &&
+    assert(
+      !(onlyUppercaseAlphabet && onlyLowercaseAlphabet),
+      'onlyUppercaseAlphabet and onlyLowercaseAlphabet cannot be true at the same time',
+    );
+    keyboardType ??=
+        allowDigit &&
             !allowLowercaseAlphabet &&
             !allowUppercaseAlphabet &&
             !onlyUppercaseAlphabet &&
@@ -107,7 +109,7 @@ abstract class InputOTPChild {
         return allowDigit && CharacterInputOTPChild.isDigit(codepoint)
             ? true
             : (allowDigit && CharacterInputOTPChild.isDigit(codepoint)) &&
-                (true);
+                  (true);
       },
       readOnly: readOnly,
       transform: (codepoint) {
@@ -210,7 +212,28 @@ class _OTPCharacterInput extends StatefulWidget {
 }
 
 class _OTPCharacterInputState extends State<_OTPCharacterInput> {
+  static BorderRadius getBorderRadiusByRelativeIndex(
+    int groupLength,
+    int relativeIndex,
+    ThemeData theme,
+  ) {
+    if (relativeIndex == 0) {
+      return BorderRadius.only(
+        bottomLeft: Radius.circular(theme.radiusMd),
+        topLeft: Radius.circular(theme.radiusMd),
+      );
+    } else if (relativeIndex == groupLength - 1) {
+      return BorderRadius.only(
+        bottomRight: Radius.circular(theme.radiusMd),
+        topRight: Radius.circular(theme.radiusMd),
+      );
+    }
+
+    return BorderRadius.zero;
+  }
+
   final _controller = TextEditingController();
+
   final _focusScopeNode = FocusScopeNode();
 
   final _key = GlobalKey();
@@ -265,23 +288,6 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
     }
   }
 
-  static BorderRadius getBorderRadiusByRelativeIndex(
-      int groupLength, int relativeIndex, ThemeData theme) {
-    if (relativeIndex == 0) {
-      return BorderRadius.only(
-        bottomLeft: Radius.circular(theme.radiusMd),
-        topLeft: Radius.circular(theme.radiusMd),
-      );
-    } else if (relativeIndex == groupLength - 1) {
-      return BorderRadius.only(
-        bottomRight: Radius.circular(theme.radiusMd),
-        topRight: Radius.circular(theme.radiusMd),
-      );
-    }
-
-    return BorderRadius.zero;
-  }
-
   Widget getValueWidget(ThemeData theme) {
     if (_value == null) {
       return const SizedBox();
@@ -294,7 +300,8 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
               shape: BoxShape.circle,
             ),
             height: theme.scaling * 8,
-            width: theme.scaling * 8)
+            width: theme.scaling * 8,
+          )
         : Text(String.fromCharCode(_value!)).small().foreground();
   }
 
@@ -439,11 +446,9 @@ class OTPSeparator extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return const Text('-')
-        .bold()
-        .withPadding(horizontal: theme.scaling * 4)
-        .base()
-        .foreground();
+    return const Text(
+      '-',
+    ).bold().withPadding(horizontal: theme.scaling * 4).base().foreground();
   }
 }
 
@@ -488,13 +493,13 @@ class _InputOTPChild {
   }) : key = GlobalKey<_OTPCharacterInputState>();
 
   _InputOTPChild.withNewChild(InputOTPChild newChild, _InputOTPChild old)
-      : focusNode = old.focusNode,
-        value = old.value,
-        groupIndex = old.groupIndex,
-        relativeIndex = old.relativeIndex,
-        child = newChild,
-        groupLength = old.groupLength,
-        key = old.key;
+    : focusNode = old.focusNode,
+      value = old.value,
+      groupIndex = old.groupIndex,
+      relativeIndex = old.relativeIndex,
+      child = newChild,
+      groupLength = old.groupLength,
+      key = old.key;
   int? value;
   final FocusNode focusNode;
   final int groupIndex;
@@ -596,13 +601,15 @@ class _InputOTPState extends State<InputOTP>
     for (final child in widget.children) {
       if (child.hasValue) {
         final value = getInitialValue(index);
-        _children.add(_InputOTPChild(
-          focusNode: FocusNode(),
-          groupIndex: groupIndex,
-          relativeIndex: relativeIndex,
-          value: value,
-          child: child,
-        ));
+        _children.add(
+          _InputOTPChild(
+            focusNode: FocusNode(),
+            groupIndex: groupIndex,
+            relativeIndex: relativeIndex,
+            value: value,
+            child: child,
+          ),
+        );
         index += 1;
         relativeIndex += 1;
       } else {
@@ -654,13 +661,15 @@ class _InputOTPState extends State<InputOTP>
               child,
             );
           } else {
-            _children.add(_InputOTPChild(
-              focusNode: FocusNode(),
-              groupIndex: groupIndex,
-              relativeIndex: relativeIndex,
-              value: getInitialValue(index),
-              child: child,
-            ));
+            _children.add(
+              _InputOTPChild(
+                focusNode: FocusNode(),
+                groupIndex: groupIndex,
+                relativeIndex: relativeIndex,
+                value: getInitialValue(index),
+                child: child,
+              ),
+            );
           }
           index += 1;
           relativeIndex += 1;
@@ -692,36 +701,41 @@ class _InputOTPState extends State<InputOTP>
     int i = 0;
     for (final child in widget.children) {
       if (child.hasValue) {
-        children.add(child.build(
-          context,
-          InputOTPChildData._(
-            this,
-            _children[i].key,
-            focusNode: _children[i].focusNode,
-            groupIndex: _children[i].groupIndex,
-            groupLength: _children[i].groupLength,
-            index: i,
-            nextFocusNode:
-                i == _children.length - 1 ? null : _children[i + 1].focusNode,
-            previousFocusNode: i == 0 ? null : _children[i - 1].focusNode,
-            relativeIndex: _children[i].relativeIndex,
-            value: _children[i].value,
+        children.add(
+          child.build(
+            context,
+            InputOTPChildData._(
+              this,
+              _children[i].key,
+              focusNode: _children[i].focusNode,
+              groupIndex: _children[i].groupIndex,
+              groupLength: _children[i].groupLength,
+              index: i,
+              nextFocusNode: i == _children.length - 1
+                  ? null
+                  : _children[i + 1].focusNode,
+              previousFocusNode: i == 0 ? null : _children[i - 1].focusNode,
+              relativeIndex: _children[i].relativeIndex,
+              value: _children[i].value,
+            ),
           ),
-        ));
+        );
         i += 1;
       } else {
-        children.add(child.build(
-          context,
-          InputOTPChildData._(
-            this,
-            null,
-            focusNode: null,
-            groupIndex: -1,
-            groupLength: -1,
-            index: -1,
-            relativeIndex: -1,
+        children.add(
+          child.build(
+            context,
+            InputOTPChildData._(
+              this,
+              null,
+              focusNode: null,
+              groupIndex: -1,
+              groupLength: -1,
+              index: -1,
+              relativeIndex: -1,
+            ),
           ),
-        ));
+        );
       }
     }
     final compTheme = ComponentTheme.maybeOf<InputOTPTheme>(context);
