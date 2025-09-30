@@ -2,7 +2,6 @@ import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/base/ui_events.dart' show UiMouseEventHandler;
 import 'package:coui_web/src/base/utilities/alignment.dart';
 import 'package:coui_web/src/components/card/card_style.dart';
 import 'package:coui_web/src/elements/figure.dart';
@@ -12,15 +11,17 @@ import 'package:jaspr/jaspr.dart';
 /// It typically renders as an HTML `<div>` element with the 'card' base class.
 /// The `modifiers` list accepts instances of [CardStyling] (the interface),
 /// which includes specific card styles and general utility classes.
+/// Compatible with coui_flutter API.
 class Card extends UiComponent {
   /// Creates a Card component.
   ///
   /// - [children] or [child]: The content, typically [CardBody], [Figure], [CardActions].
   /// - [tag]: The HTML tag, defaults to 'div'.
   /// - [style]: A list of [CardStyling] (the interface) instances.
+  /// - [onPressed]: Callback when card is clicked (Flutter-compatible API).
   /// - [ariaLabel], [ariaLabelledBy]: For accessibility.
   /// - Other parameters from [UiComponent].
-  const Card(
+  Card(
     super.children, {
     this.ariaLabel,
     this.ariaLabelledBy,
@@ -30,10 +31,14 @@ class Card extends UiComponent {
     super.css,
     super.id,
     super.key,
-    super.onClick,
+    void Function()? onPressed,
     List<CardStyling>? style,
     super.tag = 'div',
-  }) : super(style: style);
+  }) : super(
+          // Convert Flutter-style onPressed to web onClick event
+          onClick: onPressed != null ? (_) => onPressed() : null,
+          style: style,
+        );
 
   final String? ariaLabel;
 
@@ -106,20 +111,21 @@ class Card extends UiComponent {
     Styles? css,
     String? id,
     Key? key,
-    UiMouseEventHandler? onClick,
+    void Function()? onPressed,
     List<CardStyling>? style,
     String? tag,
   }) {
     return Card(
       children,
-      key: key ?? this.key,
       ariaLabel: ariaLabel ?? this.ariaLabel,
       ariaLabelledBy: ariaLabelledBy ?? this.ariaLabelledBy,
       attributes: attributes ?? userProvidedAttributes,
+      child: child ?? this.child,
       classes: mergeClasses(this.classes, classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      onClick: onClick ?? this.onClick,
+      key: key ?? this.key,
+      onPressed: onPressed,
       style:
           style ??
           () {
@@ -128,7 +134,6 @@ class Card extends UiComponent {
             return currentStyle is List<CardStyling>? ? currentStyle : null;
           }(),
       tag: tag ?? this.tag,
-      child: child ?? this.child,
     );
   }
 

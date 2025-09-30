@@ -1,7 +1,6 @@
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/base/ui_events.dart';
 import 'package:coui_web/src/components/input/input_style.dart';
 import 'package:jaspr/jaspr.dart' show Key, Styles;
 
@@ -9,6 +8,7 @@ import 'package:jaspr/jaspr.dart' show Key, Styles;
 ///
 /// It supports various styles, sizes, and colors through its `style` property,
 /// and common input attributes can be passed directly to the constructor.
+/// Compatible with coui_flutter API.
 class Input extends UiComponent {
   /// Creates an Input component.
   ///
@@ -17,10 +17,11 @@ class Input extends UiComponent {
   /// - [value]: The initial value of the input field.
   /// - [name]: The name of the input, used for form submission.
   /// - [disabled]: If true, the input will be disabled.
+  /// - [onInput]: Callback when input value changes (Flutter-compatible API).
+  /// - [onChange]: Callback when input value changes on blur (Flutter-compatible API).
   /// - [style]: A list of [InputStyling] instances for styling.
-  /// - Event handlers like [onInput] and [onChange] from [UiComponent] are available.
   /// - Other parameters are inherited from [UiComponent].
-  const Input({
+  Input({
     super.attributes,
     super.classes,
     super.css,
@@ -32,8 +33,8 @@ class Input extends UiComponent {
     this.min,
     this.minLength,
     this.name,
-    super.onChange,
-    super.onInput,
+    void Function(String)? onChange,
+    void Function(String)? onInput,
     this.pattern,
     this.placeholder,
     this.required = false,
@@ -42,7 +43,13 @@ class Input extends UiComponent {
     this.title,
     this.type = _defaultInputType,
     this.value,
-  }) : super(null, style: style);
+  }) : super(
+          null,
+          // Convert Flutter-style callbacks to web event handlers
+          onChange: onChange,
+          onInput: onInput,
+          style: style,
+        );
 
   // Input elements have no children.
 
@@ -175,8 +182,8 @@ class Input extends UiComponent {
     num? min,
     int? minLength,
     String? name,
-    UiInputEventHandler? onChange,
-    UiInputEventHandler? onInput,
+    void Function(String)? onChange,
+    void Function(String)? onInput,
     String? pattern,
     String? placeholder,
     bool? required,
@@ -229,8 +236,8 @@ class Input extends UiComponent {
     String? newTitle,
     String? newType,
     String? newValue,
-    UiInputEventHandler? onChange,
-    UiInputEventHandler? onInput,
+    void Function(String)? onChange,
+    void Function(String)? onInput,
     List<InputStyling>? style,
     String? tag,
   }) {

@@ -1,67 +1,17 @@
-import 'package:coui_flutter/coui_flutter.dart';
+// @deprecated Use loading.dart instead. This file is kept for backward compatibility.
+// ignore_for_file: deprecated_member_use_from_same_package
 
-/// Theme configuration for spinner widgets.
-class SpinnerTheme {
-  const SpinnerTheme({this.color, this.size});
+import 'loading.dart';
 
-  /// Color of the spinner elements.
-  final Color? color;
+// Legacy type aliases for backward compatibility
+@Deprecated('Use Loading from loading.dart instead')
+typedef Spinner = Loading;
 
-  /// Size of the spinner widget.
-  final double? size;
+@Deprecated('Use LoadingTheme from loading.dart instead')
+typedef SpinnerTheme = LoadingTheme;
 
-  SpinnerTheme copyWith({
-    ValueGetter<Color?>? color,
-    ValueGetter<double?>? size,
-  }) {
-    return SpinnerTheme(
-      color: color == null ? this.color : color(),
-      size: size == null ? this.size : size(),
-    );
-  }
+@Deprecated('Use LoadingTransform from loading.dart instead')
+typedef SpinnerTransform = LoadingTransform;
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is SpinnerTheme && other.color == color && other.size == size;
-  }
-
-  @override
-  int get hashCode => Object.hash(color, size);
-}
-
-abstract class SpinnerTransform {}
-
-abstract class SpinnerElement {
-  void paint(Canvas canvas, Size size, Matrix4 transform);
-}
-
-abstract class Spinner extends StatelessWidget {
-  const Spinner({this.color, super.key, this.size});
-
-  final Color? color;
-  final double? size;
-
-  /// Resolve spinner color considering theme overrides.
-  Color? resolveColor(BuildContext context) {
-    final compTheme = ComponentTheme.maybeOf<SpinnerTheme>(context);
-
-    return styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.color,
-      widgetValue: color,
-    );
-  }
-
-  /// Resolve spinner size considering theme overrides and a default value.
-  double resolveSize(BuildContext context, double defaultValue) {
-    final compTheme = ComponentTheme.maybeOf<SpinnerTheme>(context);
-
-    return styleValue(
-      defaultValue: defaultValue,
-      themeValue: compTheme?.size,
-      widgetValue: size,
-    );
-  }
-}
+@Deprecated('Use LoadingElement from loading.dart instead')
+typedef SpinnerElement = LoadingElement;

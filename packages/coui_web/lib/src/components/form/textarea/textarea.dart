@@ -1,7 +1,6 @@
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/base/ui_events.dart';
 import 'package:coui_web/src/components/textarea/textarea_style.dart';
 import 'package:jaspr/jaspr.dart' show Key, Styles, text;
 
@@ -9,6 +8,7 @@ import 'package:jaspr/jaspr.dart' show Key, Styles, text;
 ///
 /// It supports various styles, sizes, and colors through its `style` property,
 /// and common textarea attributes can be passed directly to the constructor.
+/// Compatible with coui_flutter API.
 class Textarea extends UiComponent {
   /// Creates a Textarea component.
   ///
@@ -17,8 +17,8 @@ class Textarea extends UiComponent {
   /// - [name]: The name of the textarea, used for form submission.
   /// - [disabled]: If true, the textarea will be disabled.
   /// - [rows]: The visible number of lines in a text area.
+  /// - [onChanged]: Callback when textarea value changes (Flutter-compatible API).
   /// - [style]: A list of [TextareaStyling] instances for styling.
-  /// - Event handlers like [onInput] and [onChange] from [UiComponent] are available.
   /// - Other parameters are inherited from [UiComponent].
   Textarea({
     super.attributes,
@@ -28,15 +28,20 @@ class Textarea extends UiComponent {
     super.id,
     super.key,
     this.name,
-    super.onChange,
-    super.onInput,
+    void Function(String)? onChanged,
     this.placeholder,
     this.rows,
     List<TextareaStyling>? style,
     super.tag = 'textarea',
     String? value,
   }) : _value = value,
-       super(value == null ? null : [text(value)], style: style);
+       super(
+         value == null ? null : [text(value)],
+         // Convert Flutter-style onChanged to web event handlers
+         onChange: onChanged,
+         onInput: onChanged,
+         style: style,
+       );
 
   /// The placeholder text displayed when the textarea is empty.
   final String? placeholder;
@@ -174,8 +179,7 @@ class Textarea extends UiComponent {
     String? id,
     Key? key,
     String? name,
-    UiInputEventHandler? onChange,
-    UiInputEventHandler? onInput,
+    void Function(String)? onChanged,
     String? placeholder,
     int? rows,
     List<TextareaStyling>? style,
@@ -183,15 +187,14 @@ class Textarea extends UiComponent {
     String? value,
   }) {
     return Textarea(
-      key: key ?? this.key,
       attributes: attributes ?? userProvidedAttributes,
       classes: mergeClasses(this.classes, classes),
       css: css ?? this.css,
       disabled: disabled ?? this.disabled,
       id: id ?? this.id,
+      key: key ?? this.key,
       name: name ?? this.name,
-      onChange: onChange ?? this.onChange,
-      onInput: onInput ?? this.onInput,
+      onChanged: onChanged,
       placeholder: placeholder ?? this.placeholder,
       rows: rows ?? this.rows,
       style:

@@ -36,7 +36,7 @@ export 'src/collection.dart';
 export 'src/components/animation.dart';
 export 'src/components/async.dart';
 export 'src/components/chart/tracker.dart';
-export 'src/components/control/button.dart';
+export 'src/components/control/button.dart' hide Toggle, ToggleController, ControlledToggle;
 export 'src/components/control/clickable.dart';
 export 'src/components/control/command.dart';
 export 'src/components/control/scrollbar.dart';
@@ -55,6 +55,9 @@ export 'src/components/display/linear_progress_indicator.dart';
 export 'src/components/display/number_ticker.dart';
 export 'src/components/display/progress.dart';
 export 'src/components/display/skeleton.dart';
+export 'src/components/display/loading.dart';
+// @deprecated Use loading.dart instead
+export 'src/components/display/spinner.dart';
 export 'src/components/form/autocomplete.dart';
 export 'src/components/form/checkbox.dart';
 export 'src/components/form/chip_input.dart';
@@ -78,6 +81,8 @@ export 'src/components/form/select.dart';
 export 'src/components/form/slider.dart';
 export 'src/components/form/sortable.dart';
 export 'src/components/form/star_rating.dart';
+export 'src/components/form/toggle.dart';
+// @deprecated Use toggle.dart instead
 export 'src/components/form/switch.dart';
 export 'src/components/form/text_area.dart';
 export 'src/components/form/text_field.dart';

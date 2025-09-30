@@ -3,7 +3,7 @@ import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
 import 'package:coui_web/src/base/ui_events.dart';
 import 'package:coui_web/src/components/button/button_style.dart';
-import 'package:jaspr/jaspr.dart' show Component, Key, Styles;
+import 'package:jaspr/jaspr.dart' show Component, Key, Styles, span;
 
 /// Defines the valid HTML `type` attributes for a button element.
 enum ButtonHtmlType {
@@ -24,28 +24,49 @@ enum ButtonHtmlType {
   String toString() => value;
 }
 
-/// Button size variants matching coui_flutter API
+/// Button size variants matching coui_flutter API.
 enum ButtonSize {
-  xs,
-  sm,
-  md,
+  /// Large button size.
   lg,
+
+  /// Medium button size.
+  md,
+
+  /// Small button size.
+  sm,
+
+  /// Extra large button size.
   xl,
+
+  /// Extra small button size.
+  xs,
 }
 
-/// Button shape variants matching coui_flutter API
+/// Button shape variants matching coui_flutter API.
 enum ButtonShape {
-  rectangle,
-  square,
+  /// Circle button shape.
   circle,
+
+  /// Rectangle button shape.
+  rectangle,
+
+  /// Square button shape.
+  square,
 }
 
-/// Button density variants matching coui_flutter API
+/// Button density variants matching coui_flutter API.
 enum ButtonDensity {
-  normal,
+  /// Comfortable button density.
   comfortable,
-  dense,
+
+  /// Compact button density.
   compact,
+
+  /// Dense button density.
+  dense,
+
+  /// Normal button density.
+  normal,
 }
 
 /// A clickable button component with coui_flutter-compatible API.
@@ -70,10 +91,10 @@ class Button extends UiComponent {
   /// - [onFocus]: Focus state change callback (focus/blur)
   /// - [wide]: Whether button should be wide
   /// - [block]: Whether button should be full width
-  const Button({
+  Button({
     required this.child,
     super.key,
-    this.onPressed,
+    this.onPressed,  // void Function()?
     this.enabled = true,
     this.leading,
     this.trailing,
@@ -96,14 +117,14 @@ class Button extends UiComponent {
   })  : _style = style,
         super(
           children: null,
-          onClick: enabled ? onPressed : null,
+          onClick: onPressed != null ? (_) => onPressed() : null,
           onMouseEnter: onHover != null ? (e) => onHover(true) : null,
           onMouseLeave: onHover != null ? (e) => onHover(false) : null,
           style: style,
         );
 
   /// Creates a primary button with prominent styling for main actions.
-  const Button.primary({
+  Button.primary({
     required this.child,
     super.key,
     this.onPressed,
@@ -128,14 +149,14 @@ class Button extends UiComponent {
   })  : _style = const [Button.primaryStyle],
         super(
           children: null,
-          onClick: enabled ? onPressed : null,
+          onClick: onPressed != null ? (_) => onPressed() : null,
           onMouseEnter: onHover != null ? (e) => onHover(true) : null,
           onMouseLeave: onHover != null ? (e) => onHover(false) : null,
           style: const [Button.primaryStyle],
         );
 
   /// Creates a secondary button with subtle styling.
-  const Button.secondary({
+  Button.secondary({
     required this.child,
     super.key,
     this.onPressed,
@@ -160,14 +181,14 @@ class Button extends UiComponent {
   })  : _style = const [Button.secondaryStyle],
         super(
           children: null,
-          onClick: enabled ? onPressed : null,
+          onClick: onPressed != null ? (_) => onPressed() : null,
           onMouseEnter: onHover != null ? (e) => onHover(true) : null,
           onMouseLeave: onHover != null ? (e) => onHover(false) : null,
           style: const [Button.secondaryStyle],
         );
 
   /// Creates an outline button with bordered styling.
-  const Button.outline({
+  Button.outline({
     required this.child,
     super.key,
     this.onPressed,
@@ -192,14 +213,14 @@ class Button extends UiComponent {
   })  : _style = const [Button.outlineStyle],
         super(
           children: null,
-          onClick: enabled ? onPressed : null,
+          onClick: onPressed != null ? (_) => onPressed() : null,
           onMouseEnter: onHover != null ? (e) => onHover(true) : null,
           onMouseLeave: onHover != null ? (e) => onHover(false) : null,
           style: const [Button.outlineStyle],
         );
 
   /// Creates a ghost button with transparent background.
-  const Button.ghost({
+  Button.ghost({
     required this.child,
     super.key,
     this.onPressed,
@@ -224,14 +245,14 @@ class Button extends UiComponent {
   })  : _style = const [Button.ghostStyle],
         super(
           children: null,
-          onClick: enabled ? onPressed : null,
+          onClick: onPressed != null ? (_) => onPressed() : null,
           onMouseEnter: onHover != null ? (e) => onHover(true) : null,
           onMouseLeave: onHover != null ? (e) => onHover(false) : null,
           style: const [Button.ghostStyle],
         );
 
   /// Creates a link button that looks like a hyperlink.
-  const Button.link({
+  Button.link({
     required this.child,
     super.key,
     this.onPressed,
@@ -256,14 +277,14 @@ class Button extends UiComponent {
   })  : _style = const [Button.linkStyle],
         super(
           children: null,
-          onClick: enabled ? onPressed : null,
+          onClick: onPressed != null ? (_) => onPressed() : null,
           onMouseEnter: onHover != null ? (e) => onHover(true) : null,
           onMouseLeave: onHover != null ? (e) => onHover(false) : null,
           style: const [Button.linkStyle],
         );
 
   /// Creates a text button with minimal styling.
-  const Button.text({
+  Button.text({
     required this.child,
     super.key,
     this.onPressed,
@@ -285,17 +306,17 @@ class Button extends UiComponent {
     super.css,
     super.id,
     super.tag = _buttonValue,
-  })  : _style = const [Button.ghostStyle], // DaisyUI doesn't have text variant, use ghost
+  })  : _style = const [Button.ghostStyle], // DaisyUI doesn't have text variant, use ghost.
         super(
           children: null,
-          onClick: enabled ? onPressed : null,
+          onClick: onPressed != null ? (_) => onPressed() : null,
           onMouseEnter: onHover != null ? (e) => onHover(true) : null,
           onMouseLeave: onHover != null ? (e) => onHover(false) : null,
           style: const [Button.ghostStyle],
         );
 
   /// Creates a destructive button for dangerous actions.
-  const Button.destructive({
+  Button.destructive({
     required this.child,
     super.key,
     this.onPressed,
@@ -320,7 +341,7 @@ class Button extends UiComponent {
   })  : _style = const [Button.errorStyle],
         super(
           children: null,
-          onClick: enabled ? onPressed : null,
+          onClick: onPressed != null ? (_) => onPressed() : null,
           onMouseEnter: onHover != null ? (e) => onHover(true) : null,
           onMouseLeave: onHover != null ? (e) => onHover(false) : null,
           style: const [Button.errorStyle],
@@ -329,8 +350,8 @@ class Button extends UiComponent {
   /// Main content of the button
   final Component child;
 
-  /// Primary action callback
-  final UiMouseEventHandler? onPressed;
+  /// Primary action callback (Flutter-compatible API)
+  final void Function()? onPressed;
 
   /// Whether button responds to interactions
   final bool enabled;

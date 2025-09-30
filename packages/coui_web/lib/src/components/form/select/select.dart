@@ -1,13 +1,13 @@
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/base/ui_events.dart';
 import 'package:coui_web/src/components/select/select_style.dart';
 import 'package:jaspr/jaspr.dart' show Key, Styles;
 
 /// A dropdown select component, rendering an HTML `<select>` element.
 ///
 /// Its children should be a list of Jaspr `option()` components.
+/// Compatible with coui_flutter API.
 class Select extends UiComponent {
   /// Creates a Select component.
   ///
@@ -15,9 +15,9 @@ class Select extends UiComponent {
   /// - name: The name of the select element, used for form submission.
   /// - disabled: If true, the select dropdown will be disabled.
   /// - style: A list of [SelectStyling] instances for styling.
-  /// - onChange: Event handler for when the selected value changes.
+  /// - onChanged: Callback when the selected value changes (Flutter-compatible API).
   /// - Other parameters are inherited from [UiComponent].
-  const Select(
+  Select(
     super.children, {
     super.attributes,
     super.classes,
@@ -26,10 +26,14 @@ class Select extends UiComponent {
     this.isDisabled = false,
     super.key,
     this.name,
-    super.onChange,
+    void Function(String)? onChanged,
     List<SelectStyling>? style,
     super.tag = 'select',
-  }) : super(style: style);
+  }) : super(
+          // Convert Flutter-style onChanged to web onChange event
+          onChange: onChanged,
+          style: style,
+        );
 
   final String? name;
 
@@ -118,7 +122,7 @@ class Select extends UiComponent {
     bool? isDisabled,
     Key? key,
     String? name,
-    UiInputEventHandler? onChange,
+    void Function(String)? onChanged,
     List<SelectStyling>? style,
     String? tag,
   }) {
@@ -129,14 +133,14 @@ class Select extends UiComponent {
 
     return Select(
       children,
-      key: key ?? this.key,
       attributes: attributes ?? userProvidedAttributes,
       classes: mergeClasses(this.classes, classes),
       css: css ?? this.css,
       id: id ?? this.id,
       isDisabled: isDisabled ?? this.isDisabled,
+      key: key ?? this.key,
       name: name ?? this.name,
-      onChange: onChange ?? this.onChange,
+      onChanged: onChanged,
       style: style ?? typedStyle,
       tag: tag ?? this.tag,
     );

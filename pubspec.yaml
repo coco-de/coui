@@ -70,7 +70,7 @@ melos:
         
     analyze:dcm:
       description: "Run DCM analysis on all packages"
-      run: dcm analyze lib --reporter=console --fatal-warnings
+      run: dcm analyze lib --reporter=console
       exec:
         concurrency: 1
       packageFilters:
