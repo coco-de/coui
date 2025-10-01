@@ -1216,7 +1216,7 @@ class _TreeViewState<T> extends State<TreeView<T>> {
     return Shortcuts(
       shortcuts: {
         if (allowMultiSelect) ...{
-          // range select
+          /// Range select.
           LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.arrowUp):
               const DirectionalSelectTreeNodeIntent(false),
           LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.arrowDown):
@@ -1246,7 +1246,7 @@ class _TreeViewState<T> extends State<TreeView<T>> {
             true,
           ),
 
-          // multi select
+          /// Multi select.
           LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.space):
               const SelectTreeNodeIntent(),
           LogicalKeySet(

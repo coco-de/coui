@@ -571,12 +571,12 @@ class ChipInputState<T> extends State<ChipInput<T>>
   }
 
   void _handleSubmitted(String text) {
+    /// A suggestion is selected, use it.
     if (_selectedSuggestions.value >= 0 &&
         _selectedSuggestions.value < _suggestions.value.length) {
-      // A suggestion is selected, use it
       widget.onSuggestionChoosen?.call(_selectedSuggestions.value);
     } else if (text.isNotEmpty) {
-      // No suggestion selected, use the entered text
+      /// No suggestion selected, use the entered text.
       widget.onSubmitted?.call(text);
     }
     _focusNode.requestFocus();

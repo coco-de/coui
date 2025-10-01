@@ -549,7 +549,7 @@ class _ClickableState extends State<Clickable> {
             ? widget.onTapCancel
             : () {
                 if (widget.enableFeedback) {
-                  // also dispatch hover
+                  /// Also dispatch hover.
                   _controller.update(WidgetState.hovered, false);
                 }
                 _controller.update(WidgetState.pressed, false);
@@ -559,7 +559,7 @@ class _ClickableState extends State<Clickable> {
             ? widget.onTapDown
             : (details) {
                 if (widget.enableFeedback) {
-                  // also dispatch hover
+                  /// Also dispatch hover.
                   _controller.update(WidgetState.hovered, true);
                 }
                 _controller.update(WidgetState.pressed, true);

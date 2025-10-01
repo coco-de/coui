@@ -250,8 +250,7 @@ class _HoverCardState extends State<HoverCard> {
 
   @override
   void dispose() {
-    // use this instead of dispose()
-    // because controlled might not be ours
+    /// Use this instead of dispose() because controlled might not be ours.
     _controller.disposePopovers();
     super.dispose();
   }
@@ -318,7 +317,7 @@ class _HoverCardState extends State<HoverCard> {
       },
       child: GestureDetector(
         onLongPress: () {
-          // open popover on long press
+          /// Open popover on long press.
           _showPopover(
             context,
             alignment: popoverAlignment,

@@ -23,7 +23,7 @@ class _SelectExample1State extends State<SelectExample1> {
       },
       value: selectedValue,
       placeholder: const Text('Select a fruit'),
-      popup: const SelectPopup(
+      popup: (context) => const SelectPopup(
         items: SelectItemList(
           children: [
             SelectItemButton(value: 'Apple', child: Text('Apple')),

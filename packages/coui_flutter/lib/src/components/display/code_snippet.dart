@@ -214,7 +214,7 @@ class _CodeSnippetState extends State<CodeSnippet> {
   };
   static const _languageAlias = {
     'javascript': 'dart',
-    // since its similar to dart, temporarily use dart as fallback to js and ts
+    /// Since its similar to dart, temporarily use dart as fallback to js and ts.
     'js': 'dart',
     'ts': 'dart',
     'yml': 'yaml',
@@ -222,7 +222,7 @@ class _CodeSnippetState extends State<CodeSnippet> {
   };
 
   static Future<String?> _initializeLanguage(String mode) {
-    // check for alias
+    /// Check for alias.
     if (_languageAlias.containsKey(mode)) {
       mode = _languageAlias[mode]!;
     }

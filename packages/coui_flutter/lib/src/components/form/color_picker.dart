@@ -910,7 +910,7 @@ class _ColorPreviewPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // clip it to circle
+    /// Clip it to circle.
     final clipPath = Path()
       ..addOval(
         Rect.fromLTWH(
@@ -943,7 +943,7 @@ class _ColorPreviewPainter extends CustomPainter {
         paint.color = borderColor;
         paint.style = PaintingStyle.stroke;
         paint.strokeWidth = borderWidth;
-        // draw a border
+        /// Draw a border.
         canvas.drawRect(
           Rect.fromLTWH(
             (x * cellSize.width).floorToDouble(),
@@ -955,7 +955,7 @@ class _ColorPreviewPainter extends CustomPainter {
         );
       }
     }
-    // draw a rect for the selected color at center
+    /// Draw a rect for the selected color at center.
     paint.color = selectedBorderColor;
     paint.style = PaintingStyle.stroke;
     paint.strokeWidth = selectedBorderWidth;
@@ -972,7 +972,7 @@ class _ColorPreviewPainter extends CustomPainter {
       ),
       paint,
     );
-    // add circle border, and make sure it is not clipped
+    /// Add circle border, and make sure it is not clipped.
     paint.color = borderColor;
     paint.style = PaintingStyle.stroke;
     paint.strokeWidth = borderWidth;
@@ -1197,13 +1197,13 @@ class _ColorPickerSetState extends State<ColorPickerSet> {
   ColorDerivative get color => widget.color;
   final _hexController = TextEditingController();
 
-  // Red or Hue
+  /// Red or Hue.
   final _aController = TextEditingController();
 
-  // Green or Saturation
+  /// Green or Saturation.
   final _bController = TextEditingController();
 
-  // Blue or Value or Lightness
+  /// Blue or Value or Lightness.
   final _cController = TextEditingController();
   final _alphaController = TextEditingController();
 
@@ -1484,7 +1484,7 @@ class _ColorPickerSetState extends State<ColorPickerSet> {
                   ),
                 ),
                 if (widget.showAlpha ?? true) Gap(theme.scaling * 16),
-                // alpha
+                /// Alpha.
                 if (widget.showAlpha ?? true)
                   SizedBox(
                     height: theme.scaling * 32,
@@ -1789,7 +1789,7 @@ class _MiniColorPickerSetState extends State<MiniColorPickerSet> {
             ),
           ),
           if (widget.showAlpha ?? true) Gap(theme.scaling * 16),
-          // alpha
+          /// Alpha.
           if (widget.showAlpha ?? true)
             SizedBox(
               height: theme.scaling * 32,
@@ -3439,18 +3439,18 @@ class HSVColorPickerPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // disable anti-aliasing
+    /// Disable anti-aliasing.
     final pp = Paint();
     pp.isAntiAlias = false;
     pp.style = PaintingStyle.fill;
     final canvasHeight = size.height;
     final canvasWidth = size.width;
+    /// If reverse, then its sat hue.
     if (sliderType == HSVColorSliderType.hueSat) {
-      // if reverse, then its sat hue
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
-        // vertical for hue and horizontal for saturation
+        /// Vertical for hue and horizontal for saturation.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSVColor.fromAHSV(
@@ -3471,7 +3471,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
-        // horizontal for hue and vertical for saturation
+        /// Horizontal for hue and vertical for saturation.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
             final result = HSVColor.fromAHSV(
@@ -3491,11 +3491,11 @@ class HSVColorPickerPainter extends CustomPainter {
         }
       }
     } else if (sliderType == HSVColorSliderType.hueVal) {
-      // if reverse, then its val hue
+      /// If reverse, then its val hue.
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
-        // vertical for hue and horizontal for value
+        /// Vertical for hue and horizontal for value.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSVColor.fromAHSV(
@@ -3516,7 +3516,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
-        // horizontal for hue and vertical for value
+        /// Horizontal for hue and vertical for value.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
             final result = HSVColor.fromAHSV(
@@ -3536,11 +3536,11 @@ class HSVColorPickerPainter extends CustomPainter {
         }
       }
     } else if (sliderType == HSVColorSliderType.satVal) {
-      // if reverse, then its val sat
+      /// If reverse, then its val sat.
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for saturation and vertical for value
+        /// Horizontal for saturation and vertical for value.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSVColor.fromAHSV(1, color.hue, i / 100, j / 100);
@@ -3556,7 +3556,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for saturation and vertical for value
+        /// Horizontal for saturation and vertical for value.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSVColor.fromAHSV(1, color.hue, j / 100, i / 100);
@@ -3571,11 +3571,11 @@ class HSVColorPickerPainter extends CustomPainter {
         }
       }
     } else if (sliderType == HSVColorSliderType.hueAlpha) {
-      // if reverse, then its alpha hue
+      /// If reverse, then its alpha hue.
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
-        // vertical for hue and horizontal for alpha
+        /// Vertical for hue and horizontal for alpha.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSVColor.fromAHSV(
@@ -3596,7 +3596,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
-        // horizontal for hue and vertical for alpha
+        /// Horizontal for hue and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
             final result = HSVColor.fromAHSV(
@@ -3616,11 +3616,11 @@ class HSVColorPickerPainter extends CustomPainter {
         }
       }
     } else if (sliderType == HSVColorSliderType.satAlpha) {
-      // if reverse, then its alpha sat
+      /// If reverse, then its alpha sat.
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for saturation and vertical for alpha
+        /// Horizontal for saturation and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSVColor.fromAHSV(
@@ -3641,7 +3641,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for saturation and vertical for alpha
+        /// Horizontal for saturation and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSVColor.fromAHSV(
@@ -3661,11 +3661,11 @@ class HSVColorPickerPainter extends CustomPainter {
         }
       }
     } else if (sliderType == HSVColorSliderType.valAlpha) {
-      // if reverse, then its alpha val
+      /// If reverse, then its alpha val.
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for value and vertical for alpha
+        /// Horizontal for value and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSVColor.fromAHSV(
@@ -3686,7 +3686,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for value and vertical for alpha
+        /// Horizontal for value and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSVColor.fromAHSV(
@@ -3903,18 +3903,18 @@ class HSLColorPickerPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // disable anti-aliasing
+    /// Disable anti-aliasing.
     final pp = Paint();
     pp.isAntiAlias = false;
     pp.style = PaintingStyle.fill;
     final canvasHeight = size.height;
     final canvasWidth = size.width;
     if (sliderType == HSLColorSliderType.hueSat) {
-      // if reverse, then its sat hue
+      /// If reverse, then its sat hue.
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
-        // vertical for hue and horizontal for saturation
+        /// Vertical for hue and horizontal for saturation.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSLColor.fromAHSL(
@@ -3935,7 +3935,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
-        // horizontal for hue and vertical for saturation
+        /// Horizontal for hue and vertical for saturation.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
             final result = HSLColor.fromAHSL(
@@ -3955,11 +3955,11 @@ class HSLColorPickerPainter extends CustomPainter {
         }
       }
     } else if (sliderType == HSLColorSliderType.hueLum) {
-      // if reverse, then its lum hue
+      /// If reverse, then its lum hue.
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
-        // vertical for hue and horizontal for lightness
+        /// Vertical for hue and horizontal for lightness.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSLColor.fromAHSL(
@@ -3980,7 +3980,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
-        // horizontal for hue and vertical for lightness
+        /// Horizontal for hue and vertical for lightness.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
             final result = HSLColor.fromAHSL(
@@ -4000,11 +4000,11 @@ class HSLColorPickerPainter extends CustomPainter {
         }
       }
     } else if (sliderType == HSLColorSliderType.satLum) {
-      // if reverse, then its lum sat
+      /// If reverse, then its lum sat.
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for saturation and vertical for lightness
+        /// Horizontal for saturation and vertical for lightness.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSLColor.fromAHSL(1, color.hue, i / 100, j / 100);
@@ -4020,7 +4020,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for saturation and vertical for lightness
+        /// Horizontal for saturation and vertical for lightness.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSLColor.fromAHSL(1, color.hue, j / 100, i / 100);
@@ -4035,11 +4035,11 @@ class HSLColorPickerPainter extends CustomPainter {
         }
       }
     } else if (sliderType == HSLColorSliderType.hueAlpha) {
-      // if reverse, then its alpha hue
+      /// If reverse, then its alpha hue.
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
-        // vertical for hue and horizontal for alpha
+        /// Vertical for hue and horizontal for alpha.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSLColor.fromAHSL(
@@ -4060,7 +4060,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
-        // horizontal for hue and vertical for alpha
+        /// Horizontal for hue and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
             final result = HSLColor.fromAHSL(
@@ -4080,11 +4080,11 @@ class HSLColorPickerPainter extends CustomPainter {
         }
       }
     } else if (sliderType == HSLColorSliderType.satAlpha) {
-      // if reverse, then its alpha sat
+      /// If reverse, then its alpha sat.
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for saturation and vertical for alpha
+        /// Horizontal for saturation and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSLColor.fromAHSL(
@@ -4105,7 +4105,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for saturation and vertical for alpha
+        /// Horizontal for saturation and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSLColor.fromAHSL(
@@ -4125,11 +4125,11 @@ class HSLColorPickerPainter extends CustomPainter {
         }
       }
     } else if (sliderType == HSLColorSliderType.lumAlpha) {
-      // if reverse, then its alpha lum
+      /// If reverse, then its alpha lum.
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for lightness and vertical for alpha
+        /// Horizontal for lightness and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSLColor.fromAHSL(
@@ -4150,7 +4150,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
-        // horizontal for lightness and vertical for alpha
+        /// Horizontal for lightness and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
             final result = HSLColor.fromAHSL(

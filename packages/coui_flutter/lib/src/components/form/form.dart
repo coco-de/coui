@@ -474,7 +474,7 @@ class OrValidator<T> extends Validator<T> {
     if (result is Future<ValidationResult?>) {
       return result.then((nextValue) {
         if (nextValue == null) {
-          // means one of the validators passed and we don't need to check the rest
+          /// Means one of the validators passed and we don't need to check the rest.
           return null;
         }
 
@@ -483,7 +483,7 @@ class OrValidator<T> extends Validator<T> {
             : _chainedValidation(context, value, state, index + 1);
       });
     } else if (result == null) {
-      // means one of the validators passed and we don't need to check the rest
+      /// Means one of the validators passed and we don't need to check the rest.
       return null;
     }
 
@@ -991,11 +991,12 @@ class RegexValidator extends Validator<String> {
   int get hashCode => Object.hash(pattern, message);
 }
 
-// email validator using email_validator package
+/// Email validator using email_validator package.
 class EmailValidator extends Validator<String> {
   const EmailValidator({this.message});
 
-  final String? message; // if null, use default message from CoUILocalizations
+  /// If null, use default message from CoUILocalizations.
+  final String? message;
 
   @override
   FutureOr<ValidationResult?> validate(

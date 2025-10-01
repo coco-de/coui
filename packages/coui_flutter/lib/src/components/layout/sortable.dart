@@ -746,8 +746,7 @@ class _SortableState<T> extends State<Sortable<T>>
           _session!.layer._claimDrop(this, _session!.data, true);
         }
       } else {
-        // basically the same as drag cancel, because the drag has not been
-        // dragged off of itself
+        /// Basically the same as drag cancel, because the drag has not been dragged off of itself.
         _session!.layer.removeDraggingSession(_session!);
         widget.onDropFailed?.call();
         _session!.layer._claimDrop(this, _session!.data, true);
@@ -833,7 +832,7 @@ class _SortableState<T> extends State<Sortable<T>>
     return MetaData(
       behavior: HitTestBehavior.translucent,
       metaData: this,
-      // must define the generic type to avoid type inference _SortableState<T>
+      /// Must define the generic type to avoid type inference _SortableState<T>.
       child: Data<_SortableState>.inherit(
         data: this,
         child: ListenableBuilder(

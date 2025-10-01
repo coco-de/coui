@@ -255,7 +255,7 @@ class Toggle extends StatefulWidget {
   ToggleState createState() => ToggleState();
 }
 
-// toggle button is just ghost button
+/// Toggle button is just ghost button.
 class ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
   final WidgetStatesController statesController = WidgetStatesController();
 
@@ -392,7 +392,7 @@ class SelectedButton extends StatefulWidget {
   SelectedButtonState createState() => SelectedButtonState();
 }
 
-// toggle button is just ghost button
+/// Toggle button is just ghost button.
 class SelectedButtonState extends State<SelectedButton> {
   late WidgetStatesController statesController;
   @override
@@ -1233,7 +1233,7 @@ class ButtonState<T extends Button> extends State<T> {
       transform: enableFeedback
           ? WidgetStateProperty.resolveWith((states) {
               if (states.contains(WidgetState.pressed)) {
-                // scale down to 95% with alignment at center
+                /// Scale down to 95% with alignment at center.
                 return Matrix4.diagonal3Values(0.95, 0.95, 0.95);
               }
               return null;

@@ -60,7 +60,7 @@ class MediaQueryVisibility extends StatelessWidget {
       return SizedBox(child: alternateChild);
     }
 
-    // to prevent widget tree from changing
+    /// To prevent widget tree from changing.
     return maxWidth != null && size > maxWidth
         ? SizedBox(child: alternateChild)
         : SizedBox(child: child);

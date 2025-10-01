@@ -661,7 +661,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
               ],
             ),
           );
-          // add transition
+          /// Add transition.
           windowClient = AnimatedValueBuilder(
             builder: (context, value, child) {
               return Transform.scale(
@@ -706,7 +706,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                 if (resizable &&
                     maximized == null &&
                     _dragAlignment == null) ...[
-                  // top left
+                  /// Top left.
                   GroupPositioned(
                     height: resizeThickness * theme.scaling,
                     left: 0,
@@ -724,7 +724,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
-                  // top right
+                  /// Top right.
                   GroupPositioned(
                     height: resizeThickness * theme.scaling,
                     right: 0,
@@ -742,7 +742,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
-                  // bottom left
+                  /// Bottom left.
                   GroupPositioned(
                     bottom: 0,
                     height: resizeThickness * theme.scaling,
@@ -760,7 +760,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
-                  // bottom right
+                  /// Bottom right.
                   GroupPositioned(
                     bottom: 0,
                     height: resizeThickness * theme.scaling,
@@ -778,7 +778,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
-                  // top
+                  /// Top.
                   GroupPositioned(
                     height: resizeThickness * theme.scaling,
                     left: resizeThickness * theme.scaling,
@@ -796,7 +796,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
-                  // bottom
+                  /// Bottom.
                   GroupPositioned(
                     bottom: 0,
                     height: resizeThickness * theme.scaling,
@@ -814,7 +814,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
-                  // left
+                  /// Left.
                   GroupPositioned(
                     bottom: resizeThickness * theme.scaling,
                     left: 0,
@@ -832,7 +832,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
-                  // right
+                  /// Right.
                   GroupPositioned(
                     bottom: resizeThickness * theme.scaling,
                     right: 0,

@@ -187,10 +187,10 @@ class SliderValue {
   const SliderValue.single(double value) : _start = null, _end = value;
   const SliderValue.ranged(this._end, double this._start);
 
-  final double?
-  _start; // if start is null, it means its not ranged slider, its a single value slider
-  // if its a single value slider, then the trackbar is clickable and the thumb can be dragged
-  // if its a ranged slider, then the trackbar is not clickable and the thumb can be dragged
+  /// If start is null, it means its not ranged slider, its a single value slider.
+  /// If its a single value slider, then the trackbar is clickable and the thumb can be dragged.
+  /// If its a ranged slider, then the trackbar is not clickable and the thumb can be dragged.
+  final double? _start;
   final double _end;
 
   static SliderValue? lerp(SliderValue? a, SliderValue? b, double t) {
@@ -382,8 +382,9 @@ class Slider extends StatefulWidget {
 
 class _SliderState extends State<Slider>
     with FormValueSupplier<SliderValue, Slider> {
-  SliderValue _currentValue; // used for the thumb position (not the trackbar)
-  // trackbar position uses the widget.value
+  /// Used for the thumb position (not the trackbar).
+  /// Trackbar position uses the widget.value.
+  SliderValue _currentValue;
   bool _dragging = false;
   bool _moveStart = false;
 
@@ -509,7 +510,7 @@ class _SliderState extends State<Slider>
                   ? (details) {
                       _dragging = true;
                       if (_currentValue.isRanged) {
-                        // change _moveStart to true if the tap is closer to the start thumb
+                        /// Change _moveStart to true if the tap is closer to the start thumb.
                         final offset = details.localPosition.dx;
                         final newValue = offset / constraints.maxWidth;
                         double start = _currentValue.start;
@@ -552,8 +553,8 @@ class _SliderState extends State<Slider>
               onHorizontalDragUpdate: enabled
                   ? widget.value.isRanged
                         ? (details) {
-                            // drag the closest thumb to the drag position
-                            // but use delta to calculate the new value
+                            /// Drag the closest thumb to the drag position
+                            /// but use delta to calculate the new value.
                             final delta =
                                 details.primaryDelta! / constraints.maxWidth;
                             if (_moveStart) {
@@ -660,7 +661,7 @@ class _SliderState extends State<Slider>
               onTapDown: enabled
                   ? widget.value.isRanged
                         ? (details) {
-                            // _moveStart to true if the tap is closer to the start thumb
+                            /// Set _moveStart to true if the tap is closer to the start thumb.
                             final offset = details.localPosition.dx;
                             double newValue = offset / constraints.maxWidth;
                             double start = _currentValue.start;
@@ -676,7 +677,7 @@ class _SliderState extends State<Slider>
                             _moveStart =
                                 (start - newValue).abs() <
                                 (end - newValue).abs();
-                            // find the closest thumb and move it to the tap position
+                            /// Find the closest thumb and move it to the tap position.
                             if (_moveStart) {
                               if (widget.divisions != null) {
                                 final deltaValue = newValue - start;
@@ -796,8 +797,8 @@ class _SliderState extends State<Slider>
               _focusing = focusing;
             });
           },
-          // on increase uses increaseStep or divisions or 1
-          // and so decrease
+          /// On increase uses increaseStep or divisions or 1.
+          /// And so decrease.
           () {
             double value = _currentValue.value;
             if (widget.divisions != null) {

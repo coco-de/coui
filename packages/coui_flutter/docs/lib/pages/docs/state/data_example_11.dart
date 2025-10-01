@@ -16,7 +16,7 @@ class _DataExample11State extends State<DataExample11> {
     buildCount++;
     return MultiModel(
       data: [
-        // Model is type-strict, so you must specify the type of the model
+        /// Model is type-strict, so you must specify the type of the model.
         Model<int>(#firstCounter, firstCounter),
         Model<int>(#secondCounter, secondCounter),
       ],
@@ -61,7 +61,7 @@ class _InnerWidgetState extends State<InnerWidget> {
   int rebuildCount = 0;
   @override
   Widget build(BuildContext context) {
-    // if you're using var, you must specify the type of the model
+    /// If you're using var, you must specify the type of the model.
     var firstCounter = Model.of<int>(context, #firstCounter);
     rebuildCount++;
     return Card(

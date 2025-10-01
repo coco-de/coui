@@ -41,7 +41,7 @@ class _MultiSelectExample2State extends State<MultiSelectExample2> {
       itemBuilder: (context, item) {
         return MultiSelectChip(value: item, child: Text(item));
       },
-      popup: SelectPopup.builder(
+      popup: (context) => SelectPopup.builder(
         searchPlaceholder: const Text('Search fruit'),
         builder: (context, searchQuery) {
           final filteredFruits = searchQuery == null

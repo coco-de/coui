@@ -124,7 +124,7 @@ class Tabs extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         hitTestBehavior: HitTestBehavior.translucent,
         child: AnimatedContainer(
-          // slightly faster than kDefaultDuration
+          /// Slightly faster than kDefaultDuration.
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(theme.radiusMd),

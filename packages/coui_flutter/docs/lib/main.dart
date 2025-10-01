@@ -124,7 +124,7 @@ String getReleaseTagName() {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Interactive docs now serves as Widget Catalog
+  /// Interactive docs now serves as Widget Catalog.
   // if (kIsWeb) {
   //   SemanticsBinding.instance.ensureSemantics();
   // }
@@ -802,8 +802,8 @@ class MyAppState extends State<MyApp> {
       ],
     );
   }
-  // This widget is the root of your application.
 
+  /// This widget is the root of your application.
   void changeColorScheme(ColorScheme colorScheme) {
     setState(() {
       this.colorScheme = colorScheme;

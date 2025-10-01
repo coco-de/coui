@@ -604,7 +604,7 @@ class _RadioCardState<T> extends State<RadioCard<T>> {
                               ? null
                               : EdgeInsets.all(componentTheme!.borderWidth!),
                         )
-                      // to compensate for the border width
+                      /// To compensate for the border width.
                       : styleValue(
                           defaultValue: EdgeInsets.all(theme.scaling * 1),
                           themeValue:

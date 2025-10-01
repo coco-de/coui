@@ -251,8 +251,8 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
     final text = _controller.text;
     if (text.isNotEmpty) {
       int codepoint = text.codeUnitAt(0);
+      /// Forward to the next input.
       if (text.length > 1) {
-        // forward to the next input
         final currentIndex = widget.data.index;
         final inputs = widget.data._state._children;
         if (currentIndex + 1 < inputs.length) {
@@ -280,7 +280,7 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
       _value = codepoint;
       widget.data.changeValue(codepoint);
       _controller.clear();
-      // next focus
+      /// Next focus.
       if (widget.data.nextFocusNode != null) {
         widget.data.nextFocusNode!.requestFocus();
       }
@@ -327,7 +327,7 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
 
             return KeyEventResult.handled;
           }
-          // backspace
+          /// Backspace.
           if (event.logicalKey == LogicalKeyboardKey.backspace) {
             if (_value == null) {
               if (widget.data.previousFocusNode != null) {
@@ -341,7 +341,7 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
 
             return KeyEventResult.handled;
           }
-          // enter
+          /// Enter.
           if (event.logicalKey == LogicalKeyboardKey.enter) {
             if (_controller.text.isNotEmpty) {
               _onControllerChanged();
@@ -613,7 +613,7 @@ class _InputOTPState extends State<InputOTP>
         index += 1;
         relativeIndex += 1;
       } else {
-        // update previous group length
+        /// Update previous group length.
         for (int i = 0; i < index; i += 1) {
           _children[i].groupLength = relativeIndex;
         }
@@ -674,7 +674,7 @@ class _InputOTPState extends State<InputOTP>
           index += 1;
           relativeIndex += 1;
         } else {
-          // update previous group length
+          /// Update previous group length.
           for (int i = index - relativeIndex; i < index; i += 1) {
             _children[i].groupLength = relativeIndex;
           }

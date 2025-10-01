@@ -24,7 +24,7 @@ class _SelectExample4State extends State<SelectExample4> {
       value: selectedValue,
       placeholder: const Text('Select a fruit'),
       popupWidthConstraint: PopoverConstraint.intrinsic,
-      popup: const SelectPopup.noVirtualization(
+      popup: (context) => const SelectPopup.noVirtualization(
         items: SelectItemList(
           children: [
             SelectItemButton(value: 'Apple', child: Text('Apple')),

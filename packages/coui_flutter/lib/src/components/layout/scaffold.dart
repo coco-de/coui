@@ -173,8 +173,8 @@ class ScaffoldState extends State<Scaffold> {
               children: [
                 if (widget.loadingProgress != null ||
                     widget.loadingProgressIndeterminate)
+                  /// To make it float.
                   SizedBox(
-                    // to make it float
                     height: 0,
                     child: Stack(
                       clipBehavior: Clip.none,
@@ -213,8 +213,8 @@ class ScaffoldState extends State<Scaffold> {
                 (widget.showLoadingSparks ??
                     compTheme?.showLoadingSparks ??
                     false))
+              /// To make it float.
               SizedBox(
-                // to make it float
                 height: 0,
                 child: Stack(
                   clipBehavior: Clip.none,
@@ -769,11 +769,11 @@ class _ScaffoldRenderFlex extends RenderBox
     // There is gonna be only 3 children
     // 1. header
     // 2. content
-    // 3. footer
-    // By default, the paint order is 1, 2, 3
-    // but with this custom implementation, we can change the order to 2, 1, 3
-    // which means the header will be painted after the content
-    // and the footer will be painted after the header
+    /// 3. footer
+    /// By default, the paint order is 1, 2, 3.
+    /// But with this custom implementation, we can change the order to 2, 1, 3.
+    /// Which means the header will be painted after the content.
+    /// And the footer will be painted after the header.
     final header = firstChild!;
     final content = (header.parentData! as _ScaffoldParentData).nextSibling!;
     final footer = (content.parentData! as _ScaffoldParentData).nextSibling!;

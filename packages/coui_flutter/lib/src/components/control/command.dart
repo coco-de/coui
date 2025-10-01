@@ -208,7 +208,7 @@ class _CommandState extends State<Command> {
     final resultItems = <Widget>[];
     await for (final items in widget.builder(context, query)) {
       if (currentRequest != requestCount) continue;
-      // append items
+      /// Append items.
       resultItems.addAll(items);
       yield resultItems;
     }

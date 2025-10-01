@@ -250,7 +250,7 @@ class _SubFocusScopeState extends State<SubFocusScope> with SubFocusScopeState {
       }
     }
     if (mostItem == null) {
-      // find very first focus based on top left or top right (based on directionality)
+      /// Find very first focus based on top left or top right (based on directionality).
       (SubFocusState, double)? nearestItem;
       final direction = Directionality.of(context);
       final parentBox = findRenderObject();

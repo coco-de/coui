@@ -42,11 +42,11 @@ class WidgetbookApp extends StatelessWidget {
         // This is a temporary solution to apply the coui theme.
         // A custom theme addon would be a better approach for theme switching.
         final isDark = context.knobs.boolean(
-          initialValue: false,
-          label: 'Dark Mode',
+          label: 'Dark Mode'
         );
+
         return coui.Theme(
-          data: isDark ? coui.ThemeData.dark() : coui.ThemeData(),
+          data: isDark ? const coui.ThemeData.dark() : const coui.ThemeData(),
           child: child,
         );
       },

@@ -1143,8 +1143,8 @@ class NavigationItem extends AbstractNavigationButton {
 
   @override
   bool get selectable {
-    // if index is not null, then the child itself handles the selection
-    // if index is null, then the parent handles the selection
+    /// If index is not null, then the child itself handles the selection.
+    /// If index is null, then the parent handles the selection.
     return index == null;
   }
 

@@ -15,7 +15,7 @@ class _MultiSelectExample1State extends State<MultiSelectExample1> {
       itemBuilder: (context, item) {
         return MultiSelectChip(value: item, child: Text(item));
       },
-      popup: const SelectPopup(
+      popup: (context) => const SelectPopup(
         items: SelectItemList(
           children: [
             SelectItemButton(value: 'Apple', child: Text('Apple')),

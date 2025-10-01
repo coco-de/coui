@@ -41,7 +41,7 @@ class _SelectExample2State extends State<SelectExample2> {
       itemBuilder: (context, item) {
         return Text(item);
       },
-      popup: SelectPopup.builder(
+      popup: (context) => SelectPopup.builder(
         searchPlaceholder: const Text('Search fruit'),
         builder: (context, searchQuery) {
           final filteredFruits = searchQuery == null

@@ -13,7 +13,7 @@ class IconsPage extends StatefulWidget {
 }
 
 class _IconsPageState extends State<IconsPage> {
-  // this separates "separateByCamelCase" to "separate By Camel Case"
+  /// Separates "separateByCamelCase" to "separate By Camel Case".
   List<String> _separateByCamelCase(String text) {
     List<String> result = [];
     String current = '';
@@ -30,7 +30,7 @@ class _IconsPageState extends State<IconsPage> {
   }
 
   List<String> capitalizeWords(List<String> word) {
-    // make sure to check the word length
+    /// Make sure to check the word length.
     return word.map((e) {
       if (e.isEmpty) return e;
       if (e.length == 1) return e.toUpperCase();

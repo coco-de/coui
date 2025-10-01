@@ -122,8 +122,8 @@ class _DropdownMenuState extends State<DropdownMenu> {
         builder: (context, children) {
           return MenuPopup(
             surfaceBlur: widget.surfaceBlur ?? compTheme?.surfaceBlur,
-            // does not need to check for theme.surfaceOpacity and theme.surfaceBlur
-            // MenuPopup already has default values for these properties
+            /// Does not need to check for theme.surfaceOpacity and theme.surfaceBlur.
+            /// MenuPopup already has default values for these properties.
             surfaceOpacity: widget.surfaceOpacity ?? compTheme?.surfaceOpacity,
             children: children,
           );

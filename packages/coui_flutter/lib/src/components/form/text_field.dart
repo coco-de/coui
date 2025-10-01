@@ -1,5 +1,5 @@
-// This file contains mostly patches from another package/sdk
-// due to changes that need to be made but cannot be done normally
+/// This file contains mostly patches from another package/sdk
+/// due to changes that need to be made but cannot be done normally
 import 'dart:math';
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
@@ -337,10 +337,10 @@ abstract class InputFeature {
 
 abstract class InputFeatureState<T extends InputFeature> {
   _AttachedInputFeature? _attached;
-  TextFieldState?
-  _inputState; // used to control whether the feature should be mounted or not
-  // with AnimationController, we are able to determine when to
-  // not mount the widget
+  /// Used to control whether the feature should be mounted or not.
+  /// With AnimationController, we are able to determine when to
+  /// not mount the widget.
+  TextFieldState? _inputState;
   late AnimationController _visibilityController;
 
   T get feature {
@@ -500,10 +500,10 @@ class _TextFieldSelectionGestureDetectorBuilder
 
   @override
   void onSingleTapUp(TapDragUpDetails details) {
-    // Because TextSelectionGestureDetector listens to taps that happen on
-    // widgets in front of it, tapping the clear button will also trigger
-    // this handler. If the clear button widget recognizes the up event,
-    // then do not handle it.
+    /// Because TextSelectionGestureDetector listens to taps that happen on
+    /// widgets in front of it, tapping the clear button will also trigger
+    /// this handler. If the clear button widget recognizes the up event,
+    /// then do not handle it.
     if (_state._clearGlobalKey.currentContext != null) {
       final renderBox =
           _state._clearGlobalKey.currentContext!.findRenderObject()!
@@ -746,7 +746,8 @@ class TextField extends StatefulWidget with TextInput {
          'Obscured fields cannot be multiline.',
        ),
        assert(maxLength == null || maxLength > 0),
-       // Assert the following instead of setting it directly to avoid surprising the user by silently changing the value they set.
+       /// Assert the following instead of setting it directly to avoid
+       /// surprising the user by silently changing the value they set.
        assert(
          !identical(textInputAction, TextInputAction.newline) ||
              maxLines == 1 ||
@@ -1563,7 +1564,7 @@ class TextFieldState extends State<TextField>
 
   _TextFieldSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder;
 
-  // End of API for TextSelectionGestureDetectorBuilderDelegate.
+  /// End of API for TextSelectionGestureDetectorBuilderDelegate.
 
   @override
   void initState() {
@@ -1632,8 +1633,8 @@ class TextFieldState extends State<TextField>
 
   void _handleFocusChanged() {
     setState(() {
-      // Rebuild the widget on focus change to show/hide the text selection
-      // highlight.
+      /// Rebuild the widget on focus change to show/hide the text selection
+      /// highlight.
     });
     _statesController.update(WidgetState.focused, _effectiveFocusNode.hasFocus);
     if (!_effectiveFocusNode.hasFocus) {
@@ -1655,13 +1656,13 @@ class TextFieldState extends State<TextField>
   }
 
   bool _shouldShowSelectionHandles(SelectionChangedCause? cause) {
-    // When the text field is activated by something that doesn't trigger the
-    // selection overlay, we shouldn't show the handles either.
+    /// When the text field is activated by something that doesn't trigger the
+    /// selection overlay, we shouldn't show the handles either.
     if (!_selectionGestureDetectorBuilder.shouldShowSelectionToolbar) {
       return false;
     }
 
-    // On iOS, we don't show handles when the selection is collapsed.
+    /// On iOS, we don't show handles when the selection is collapsed.
     if (effectiveController.selection.isCollapsed) {
       return false;
     }
@@ -1728,7 +1729,7 @@ class TextFieldState extends State<TextField>
     ThemeData theme,
   ) {
     final widget = this.widget;
-    // Otherwise, listen to the current state of the text entry.
+    /// Otherwise, listen to the current state of the text entry.
     return !_hasDecoration
         ? editableText
         : ValueListenableBuilder<TextEditingValue>(
@@ -1736,7 +1737,7 @@ class TextFieldState extends State<TextField>
               final hasText = text.text.isNotEmpty;
               final placeholder = widget.placeholder == null
                   ? null
-                  // Make the placeholder invisible when hasText is true.
+                  /// Make the placeholder invisible when hasText is true.
                   : Visibility(
                       maintainAnimation: true,
                       maintainSize: true,
@@ -1799,17 +1800,17 @@ class TextFieldState extends State<TextField>
                 crossAxisAlignment: widget.crossAxisAlignment,
                 spacing: theme.scaling * 8.0,
                 children: [
-                  // Insert a prefix at the front if the prefix visibility mode matches
-                  // the current text state.
+                  /// Insert a prefix at the front if the prefix visibility mode matches
+                  /// the current text state.
                   if (leadingWidget != null) leadingWidget,
-                  // In the middle part, stack the placeholder on top of the main EditableText
-                  // if needed.
+                  /// In the middle part, stack the placeholder on top of the main EditableText
+                  /// if needed.
                   Expanded(
                     child: Stack(
-                      // Ideally this should be baseline aligned. However that comes at
-                      // the cost of the ability to compute the intrinsic dimensions of
-                      // this widget.
-                      // See also https://github.com/flutter/flutter/issues/13715.
+                      /// Ideally this should be baseline aligned. However that comes at
+                      /// the cost of the ability to compute the intrinsic dimensions of
+                      /// this widget.
+                      /// See also https://github.com/flutter/flutter/issues/13715.
                       alignment: AlignmentDirectional.center,
                       textDirection: widget.textDirection,
                       children: [

@@ -34,8 +34,8 @@ class DataExample1State extends State<DataExample1> {
         ),
         const Gap(24),
 
-        // From here, InnerWidget and MostInnerWidget will be able to access the
-        // "counter" variable without causing unnecessary rebuilds.
+        /// From here, InnerWidget and MostInnerWidget will be able to access the
+        /// "counter" variable without causing unnecessary rebuilds.
         Data.inherit(
           data: counter,
           child: const InnerWidget(child: MostInnerWidget()),

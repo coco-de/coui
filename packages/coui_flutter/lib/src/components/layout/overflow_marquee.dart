@@ -286,7 +286,7 @@ class _OverflowMarqueeLayout extends SingleChildRenderObjectWidget {
       renderObject.delayDuration = delayDuration;
       hasChanged = true;
     }
-    // most likely this will never change
+    /// Most likely this will never change.
     if (renderObject.ticker != ticker) {
       renderObject.ticker = ticker;
       hasChanged = true;
@@ -458,7 +458,7 @@ class _RenderOverflowMarqueeLayout extends RenderShiftedBox
     final durationInMicros = duration.inMicroseconds * ((sizeDiff ?? 0) / step);
     final delayDurationInMicros = delayDuration.inMicroseconds;
     double elapsedInMicros = elapsed.inMicroseconds.toDouble();
-    // includes the reverse
+    /// Includes the reverse.
     final overalCycleDuration =
         delayDurationInMicros +
         durationInMicros +

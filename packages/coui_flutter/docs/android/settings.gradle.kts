@@ -1,3 +1,5 @@
+rootProject.name = "coui_flutter_docs"
+
 pluginManagement {
     val flutterSdkPath = run {
         val properties = java.util.Properties()

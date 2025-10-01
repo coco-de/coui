@@ -757,7 +757,7 @@ class _MenuGroupState extends State<MenuGroup> {
 
         return oldData;
       });
-      // dispose unused data
+      /// Dispose unused data.
       for (final data in oldKeyedData.values) {
         if (!_data.contains(data)) {
           data.popoverController.dispose();

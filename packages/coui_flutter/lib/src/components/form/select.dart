@@ -773,8 +773,8 @@ class SelectState<T> extends State<Select<T>>
             onPressed: widget.onChanged == null
                 ? null
                 : () {
-                    // to prevent entire ListView from rebuilding
-                    // while the Data<SelectData> is being updated
+                    /// To prevent entire ListView from rebuilding
+                    /// while the Data<SelectData> is being updated.
                     final popupKey = GlobalKey();
                     _popoverController
                         .show(
@@ -1218,7 +1218,7 @@ class _SelectPopupState<T> extends State<SelectPopup<T>>
     _searchController = widget.searchController ?? TextEditingController();
     _scrollController = widget.scrollController ?? ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      // because the controller did not get notified when a scroll position is attached
+      /// Because the controller did not get notified when a scroll position is attached.
       if (!mounted) return;
       setState(() {});
     });

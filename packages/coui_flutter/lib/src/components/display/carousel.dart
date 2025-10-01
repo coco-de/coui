@@ -132,7 +132,7 @@ class SlidingCarouselTransition extends CarouselTransition {
       final itemIndex = reverse ? (-index).toInt() : index.toInt();
       final item = itemBuilder(context, itemIndex);
       final position = i.toDouble();
-      // offset the gap
+      /// Offset the gap.
       items.add(
         _PlacedCarouselItem._(
           position: position,
@@ -216,7 +216,7 @@ class FadingCarouselTransition extends CarouselTransition {
       final itemIndex = reverse ? (-index).toInt() : index.toInt();
       final item = itemBuilder(context, itemIndex);
       final position = i.toDouble();
-      // offset the gap
+      /// Offset the gap.
       items.add(
         _PlacedCarouselItem._(
           position: position,
@@ -602,7 +602,7 @@ class _CarouselState extends State<Carousel>
     final delta = _lastTime == null ? Duration.zero : elapsed - _lastTime!;
     _lastTime = elapsed;
     final deltaMillis = delta.inMilliseconds;
-    // animate the index progress
+    /// Animate the index progress.
     _controller.tick(delta);
     bool shouldAutoPlay = false;
     if (_currentSlideDuration != null) {

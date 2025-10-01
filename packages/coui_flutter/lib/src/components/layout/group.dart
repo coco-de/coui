@@ -53,7 +53,7 @@ class RenderGroup extends RenderBox
       final width = childParentData.width;
       final height = childParentData.height;
 
-      // do positioned layouting
+      /// Do positioned layouting.
       double offsetX = 0;
       double offsetY = 0;
       double childWidth = 0;
@@ -62,7 +62,7 @@ class RenderGroup extends RenderBox
         offsetY = top;
         childHeight = constraints.maxHeight - (top + bottom);
       } else {
-        // either top or bottom is null
+        /// Either top or bottom is null.
         if (top != null) {
           offsetY = top;
         } else if (bottom != null) {
@@ -74,7 +74,7 @@ class RenderGroup extends RenderBox
         offsetX = left;
         childWidth = constraints.maxWidth - (left + right);
       } else {
-        // either left or right is null
+        /// Either left or right is null.
         if (left != null) {
           offsetX = left;
         } else if (right != null) {

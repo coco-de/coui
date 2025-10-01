@@ -41,7 +41,7 @@ class _SelectExample3State extends State<SelectExample3> {
       itemBuilder: (context, item) {
         return Text(item);
       },
-      popup: SelectPopup.builder(
+      popup: (context) => SelectPopup.builder(
         searchPlaceholder: const Text('Search fruit'),
         emptyBuilder: (context) {
           return const Center(child: Text('No fruit found'));
@@ -53,8 +53,8 @@ class _SelectExample3State extends State<SelectExample3> {
           final filteredFruits = searchQuery == null
               ? fruits.entries.toList()
               : _filteredFruits(searchQuery).toList();
-          // Simulate a delay for loading
-          // In a real-world scenario, you would fetch data from an API or database
+          /// Simulate a delay for loading.
+          /// In a real-world scenario, you would fetch data from an API or database.
           await Future.delayed(const Duration(milliseconds: 500));
           return SelectItemBuilder(
             childCount: filteredFruits.isEmpty ? 0 : null,

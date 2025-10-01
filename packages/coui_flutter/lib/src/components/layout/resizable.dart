@@ -1147,11 +1147,11 @@ class _ResizerState extends State<_Resizer> {
 }
 
 class _ResizableLayoutParentData extends ContainerBoxParentData<RenderBox> {
-  // if index is null, then its an overlay that handle the resize dragger (on the border/edge)
+  /// If index is null, then its an overlay that handle the resize dragger (on the border/edge).
   int? index;
-  // if isDragger is true, then its a dragger that should be placed above "index" panel right border
+  /// If isDragger is true, then its a dragger that should be placed above "index" panel right border.
   bool? isDragger;
-  // there are total "totalPanes" - 1 of dragger
+  /// There are total "totalPanes" - 1 of dragger.
   bool? isDivider;
 
   double? size;
@@ -1314,7 +1314,7 @@ class _RenderResizableLayout extends RenderBox
           : constraints.maxWidth;
     }
 
-    // lay out the dividers
+    /// Lay out the dividers.
     double flexCount = 0;
     final dividerSizes = <double>[];
     RenderBox? child = firstChild;
@@ -1351,7 +1351,7 @@ class _RenderResizableLayout extends RenderBox
     }
     final totalDividerSize = mainOffset;
     mainOffset = 0;
-    // lay out the panes
+    /// Lay out the panes.
     child = firstChild;
     final sizes = <double>[];
     final parentSize = direction == Axis.horizontal
@@ -1397,12 +1397,12 @@ class _RenderResizableLayout extends RenderBox
       child = childParentData.nextSibling;
     }
 
-    // layout the rest
+    /// Layout the rest.
     child = firstChild;
     while (child != null) {
       final childParentData = child.parentData! as _ResizableLayoutParentData;
+      /// Total offset = sum of sizes from 0 to index.
       if (childParentData.isDragger ?? false || childParentData.index != null) {
-        // total offset = sum of sizes from 0 to index
         double minExtent = 0;
         if (childParentData.index != null) {
           minExtent = dividerSizes[childParentData.index!];
@@ -1426,7 +1426,7 @@ class _RenderResizableLayout extends RenderBox
               );
         child.layout(draggerConstraints, parentUsesSize: true);
         final draggerSize = child.size;
-        // align at center
+        /// Align at center.
         final sizeExtent = _getSizeExtent(draggerSize);
         childParentData.offset = _createOffset(
           dividerOffsets[childParentData.index!] - sizeExtent / 2,

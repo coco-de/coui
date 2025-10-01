@@ -1210,8 +1210,7 @@ class MonthCalendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    // same as Calendar, but instead of showing date
-    // it shows month in a 4x3 grid
+    /// Same as Calendar, but instead of showing date it shows month in a 4x3 grid.
     final localizations = CoUILocalizations.of(context);
     final rows = <Widget>[];
     final months = <Widget>[];
@@ -1289,8 +1288,7 @@ class YearCalendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    // same as Calendar, but instead of showing date
-    // it shows year in a 4x4 grid
+    /// Same as Calendar, but instead of showing date it shows year in a 4x4 grid.
     final rows = <Widget>[];
     final years = <Widget>[];
     for (int i = yearSelectStart; i < yearSelectStart + 16; i += 1) {
@@ -1360,8 +1358,9 @@ class YearCalendar extends StatelessWidget {
 /// - [startRangeSelectedShort]/[endRangeSelectedShort]: Boundaries in short ranges
 /// - [inRangeSelectedShort]: Middle dates in short ranges (typically 2-day ranges)
 enum CalendarItemType {
-  // same as startRangeSelected, but used for other months
-  endRange, // same as endRangeSelected, but used for other months
+  /// Same as startRangeSelected, but used for other months.
+  /// Same as endRangeSelected, but used for other months.
+  endRange,
   endRangeSelected,
   endRangeSelectedShort, // usually when the range are just 2 days
   // when its the date in the range

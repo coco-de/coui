@@ -51,7 +51,7 @@ class _InnerWidgetState extends State<InnerWidget> {
           const Gap(12),
           PrimaryButton(
             onPressed: () {
-              // Use "find" instead of "of" to avoid unnecessary rebuilds
+              /// Use "find" instead of "of" to avoid unnecessary rebuilds.
               final data = Data.find<DataExample7State>(context);
               data.incrementCounter();
             },

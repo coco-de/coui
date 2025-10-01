@@ -329,7 +329,7 @@ class LinearProgressIndicator extends StatelessWidget {
                       showSparks: prop.showSparks,
                       sparksColor: prop.sparksColor,
                       sparksRadius: prop.sparksRadius,
-                      // do not animate start and end value
+                      /// Do not animate start and end value.
                       start: start,
                       start2: start2,
                       textDirection: prop.textDirection,
@@ -511,8 +511,7 @@ class _LinearProgressIndicatorPainter extends CustomPainter {
     }
 
     if (showSparks) {
-      // use RadialGradient to create sparks
-
+      /// Use RadialGradient to create sparks.
       final gradient = ui.Gradient.radial(
         // colors: [sparksColor, Colors.transparent],
         // stops: const [0.0, 1.0],

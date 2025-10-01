@@ -1,3 +1,5 @@
+rootProject.name = "coui_widgetbook"
+
 pluginManagement {
   val flutterSdkPath: String by lazy {
     val properties = java.util.Properties()

@@ -683,7 +683,7 @@ class _CellResizerState extends State<_CellResizer> {
 
     return Stack(
       children: [
-        // top
+        /// Top.
         if (row > 0 && heightMode != TableCellResizeMode.none)
           Positioned(
             height: thickness,
@@ -743,7 +743,7 @@ class _CellResizerState extends State<_CellResizer> {
               ),
             ),
           ),
-        // bottom
+        /// Bottom.
         if ((row + rowSpan <= tableData.maxRow ||
                 heightMode == TableCellResizeMode.expand) &&
             heightMode != TableCellResizeMode.none)
@@ -804,7 +804,7 @@ class _CellResizerState extends State<_CellResizer> {
               ),
             ),
           ),
-        // left
+        /// Left.
         if (column > 0 && widthMode != TableCellResizeMode.none)
           Positioned(
             bottom: 0,
@@ -863,7 +863,7 @@ class _CellResizerState extends State<_CellResizer> {
               ),
             ),
           ),
-        // right
+        /// Right.
         if ((column + columnSpan <= tableData.maxColumn ||
                 widthMode == TableCellResizeMode.expand) &&
             widthMode != TableCellResizeMode.none)
@@ -952,7 +952,7 @@ List<T> _reorganizeCells<T extends _TableCellData>(List<T> cells) {
 
   final cellMap = <int, Map<int, _TableCellData>>{}; // column -> row -> cell
 
-  // find the maximum row and column
+  /// Find the maximum row and column.
   for (final cell in cells) {
     maxColumn = max(maxColumn, cell.column + cell.columnSpan - 1);
     maxRow = max(maxRow, cell.row + cell.rowSpan - 1);
@@ -960,26 +960,26 @@ List<T> _reorganizeCells<T extends _TableCellData>(List<T> cells) {
     cellMap[cell.column]![cell.row] = cell;
   }
 
-  // shift from bottom right to top left
+  /// Shift from bottom right to top left.
   for (int c = maxColumn; c >= 0; c -= 1) {
     for (int r = maxRow; r >= 0; r -= 1) {
       final cell = cellMap[c]?[r];
       if (cell != null) {
-        // column span
-        // shift to the right from end column to the current column + 1 (reverse)
+        /// Column span.
+        /// Shift to the right from end column to the current column + 1 (reverse).
         for (int i = maxColumn; i >= cell.column; i -= 1) {
           final rightCell = cellMap[i]?[r];
           if (rightCell != null) {
-            // repeat by rowSpan
+            /// Repeat by rowSpan.
             for (int row = r; row < r + cell.rowSpan; row += 1) {
               if (i == cell.column && row == r) {
                 continue;
               }
               final rightCell = cellMap[i]?[row];
               if (rightCell != null) {
-                // remove the cell from the map
+                /// Remove the cell from the map.
                 cellMap[i]!.remove(row);
-                // shift the cell to the right (+ columnSpan)
+                /// Shift the cell to the right (+ columnSpan).
                 if (row == r) {
                   cellMap.putIfAbsent(i + cell.columnSpan - 1, () => {});
                   cellMap[i + cell.columnSpan - 1]![row] = rightCell.shift(
@@ -1939,8 +1939,8 @@ class RenderTableLayout extends RenderBox
 
   @override
   void paint(PaintingContext context, Offset offset) {
-    // reverse paint traversal so that the first child is painted last
-    // important for column and row spans
+    /// Reverse paint traversal so that the first child is painted last.
+    /// Important for column and row spans.
     // (ASSUMPTION: children are already sorted in the correct order)
     if (_clipBehavior != Clip.none) {
       context.pushClipRect(
@@ -2094,7 +2094,7 @@ class RenderTableLayout extends RenderBox
             verticalOffset = min(verticalOffset, maxVerticalOffset);
           }
           final offsetInViewport = offsetY - verticalOffset;
-          // make sure its visible on the viewport
+          /// Make sure its visible on the viewport.
           double minViewport = 0;
           final maxViewport = constraints.minHeight;
           for (int i = 0; i < row; i += 1) {
@@ -2118,7 +2118,7 @@ class RenderTableLayout extends RenderBox
             horizontalOffset = min(horizontalOffset, maxHorizontalOffset);
           }
           final offsetInViewport = offsetX - horizontalOffset;
-          // make sure its visible on the viewport
+          /// Make sure its visible on the viewport.
           double minViewport = 0;
           final maxViewport = constraints.minWidth;
           for (int i = 0; i < column; i += 1) {
@@ -2181,7 +2181,7 @@ class RenderTableLayout extends RenderBox
     bool hasFlexWidth = false;
     bool hasFlexHeight = false;
 
-    // row
+    /// Row.
     for (int r = 0; r <= maxRow; r += 1) {
       final heightConstraint = _height(r);
       if (heightConstraint is FlexTableSize &&
@@ -2197,7 +2197,7 @@ class RenderTableLayout extends RenderBox
         rowHeights[r] = max(rowHeights[r] ?? 0, heightConstraint.value);
       }
     }
-    // column
+    /// Column.
     for (int c = 0; c <= maxColumn; c += 1) {
       final widthConstraint = _width(c);
       if (widthConstraint is FlexTableSize && constraints.hasBoundedWidth) {

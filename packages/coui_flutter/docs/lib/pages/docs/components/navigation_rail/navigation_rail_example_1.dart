@@ -16,7 +16,7 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
   bool customButtonStyle = false;
   bool expanded = true;
 
-  NavigationItem buildButton(String label, IconData icon) {
+  NavigationItem _buildButton(String label, IconData icon) {
     return NavigationItem(
       style: customButtonStyle
           ? const ButtonStyle.muted(density: ButtonDensity.icon)
@@ -47,13 +47,13 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
               });
             },
             children: [
-              buildButton('Home', BootstrapIcons.house),
-              buildButton('Explore', BootstrapIcons.compass),
-              buildButton('Library', BootstrapIcons.musicNoteList),
+              _buildButton('Home', BootstrapIcons.house),
+              _buildButton('Explore', BootstrapIcons.compass),
+              _buildButton('Library', BootstrapIcons.musicNoteList),
               const NavigationDivider(),
               const NavigationLabel(child: Text('Settings')),
-              buildButton('Profile', BootstrapIcons.person),
-              buildButton('App', BootstrapIcons.appIndicator),
+              _buildButton('Profile', BootstrapIcons.person),
+              _buildButton('App', BootstrapIcons.appIndicator),
               const NavigationDivider(),
               const NavigationGap(12),
               const NavigationWidget(child: FlutterLogo()),
@@ -86,7 +86,7 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
                           });
                         }
                       },
-                      popup: SelectPopup(
+                      popup: (context) => SelectPopup(
                         items: SelectItemList(
                           children: [
                             for (var value in NavigationRailAlignment.values)
@@ -114,7 +114,7 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
                           });
                         }
                       },
-                      popup: SelectPopup(
+                      popup: (context) => SelectPopup(
                         items: SelectItemList(
                           children: [
                             for (var value in NavigationLabelType.values)
@@ -139,7 +139,7 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
                           });
                         }
                       },
-                      popup: SelectPopup(
+                      popup: (context) => SelectPopup(
                         items: SelectItemList(
                           children: [
                             for (var value in NavigationLabelPosition.values)

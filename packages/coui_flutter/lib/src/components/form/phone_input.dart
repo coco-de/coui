@@ -288,9 +288,9 @@ class _PhoneInputState extends State<PhoneInput>
       text = text.substring(1);
     } else if (widget.filterZeroCode && text.startsWith('0')) {
       text = text.substring(1);
+    /// E.g. 628123456788 (indonesia) would be 8123456788.
     } else if (widget.filterCountryCode &&
         text.startsWith(_country.dialCode.substring(1))) {
-      // e.g. 628123456788 (indonesia) would be 8123456788
       text = text.substring(_country.dialCode.length - 1);
     }
 

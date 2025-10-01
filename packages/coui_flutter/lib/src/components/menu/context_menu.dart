@@ -100,7 +100,7 @@ class DesktopEditableTextContextMenu extends StatelessWidget {
     final selectAllButtonWidget = MenuButton(
       enabled: selectAllButton != null,
       onPressed: (context) {
-        // somehow, we lost focus upon context menu open
+        /// Somehow, we lost focus upon context menu open.
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
           selectAllButton?.onPressed?.call();
         });
@@ -216,7 +216,7 @@ class DesktopEditableTextContextMenu extends StatelessWidget {
   }
 }
 
-// mostly same as desktop, but direction is horizontal, and shows no menu shortcuts
+/// Mostly same as desktop, but direction is horizontal, and shows no menu shortcuts.
 class MobileEditableTextContextMenu extends StatelessWidget {
   const MobileEditableTextContextMenu({
     required this.anchorContext,

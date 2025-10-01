@@ -57,7 +57,7 @@ class _MultiSelectExample3State extends State<MultiSelectExample3> {
           child: Text(item),
         );
       },
-      popup: SelectPopup.builder(
+      popup: (context) => SelectPopup.builder(
         searchPlaceholder: const Text('Search fruit'),
         emptyBuilder: (context) {
           return const Center(child: Text('No fruit found'));

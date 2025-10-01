@@ -272,7 +272,7 @@ class Avatar extends StatefulWidget implements AvatarWidget {
   static String getInitials(String name) {
     final parts = name.split(r'\s+');
     if (parts.isEmpty) {
-      // get the first 2 characters (title cased)
+      /// Get the first 2 characters (title cased).
       final first = name.substring(0, 1).toUpperCase();
       if (name.length > 1) {
         final second = name.substring(1, 2).toUpperCase();
@@ -282,14 +282,14 @@ class Avatar extends StatefulWidget implements AvatarWidget {
 
       return first;
     }
-    // get the first two characters
+    /// Get the first two characters.
     final first = parts.first.substring(0, 1).toUpperCase();
     if (parts.length > 1) {
       final second = parts[1].substring(0, 1).toUpperCase();
 
       return first + second;
     }
-    // append with the 2nd character of the first part
+    /// Append with the 2nd character of the first part.
     if (parts.first.length > 1) {
       final second = parts.first.substring(1, 2).toUpperCase();
 

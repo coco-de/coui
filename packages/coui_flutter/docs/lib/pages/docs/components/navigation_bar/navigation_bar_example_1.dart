@@ -16,7 +16,7 @@ class _NavigationBarExample1State extends State<NavigationBarExample1> {
   bool customButtonStyle = true;
   bool expanded = true;
 
-  NavigationItem buildButton(String label, IconData icon) {
+  NavigationItem _buildButton(String label, IconData icon) {
     return NavigationItem(
       style: customButtonStyle
           ? const ButtonStyle.muted(density: ButtonDensity.icon)
@@ -49,11 +49,11 @@ class _NavigationBarExample1State extends State<NavigationBarExample1> {
             },
             index: selected,
             children: [
-              buildButton('Home', BootstrapIcons.house),
-              buildButton('Explore', BootstrapIcons.compass),
-              buildButton('Library', BootstrapIcons.musicNoteList),
-              buildButton('Profile', BootstrapIcons.person),
-              buildButton('App', BootstrapIcons.appIndicator),
+              _buildButton('Home', BootstrapIcons.house),
+              _buildButton('Explore', BootstrapIcons.compass),
+              _buildButton('Library', BootstrapIcons.musicNoteList),
+              _buildButton('Profile', BootstrapIcons.person),
+              _buildButton('App', BootstrapIcons.appIndicator),
             ],
           ),
         ],
@@ -82,7 +82,7 @@ class _NavigationBarExample1State extends State<NavigationBarExample1> {
                       });
                     }
                   },
-                  popup: SelectPopup(
+                  popup: (context) => SelectPopup(
                     items: SelectItemList(
                       children: [
                         for (var value in NavigationBarAlignment.values)
@@ -108,7 +108,7 @@ class _NavigationBarExample1State extends State<NavigationBarExample1> {
                       });
                     }
                   },
-                  popup: SelectPopup(
+                  popup: (context) => SelectPopup(
                     items: SelectItemList(
                       children: [
                         for (var value in NavigationLabelType.values)
