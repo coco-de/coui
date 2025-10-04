@@ -1,4 +1,3 @@
-// ignore_for_file: format-comment, no-magic-string
 // TODO(dongwoo): Add remaining layout utilities
 import 'package:coui_web/src/base/common_style.dart';
 import 'package:coui_web/src/base/style_type.dart';

@@ -4,6 +4,9 @@ import 'package:coui_web/src/base/ui_component_attributes.dart';
 import 'package:coui_web/src/components/form/input/input_style.dart';
 import 'package:jaspr/jaspr.dart' show Key, Styles;
 
+/// Callback signature for input value change events.
+typedef InputValueCallback = void Function(String value);
+
 /// A component for user text input, rendering an HTML `<input>` element.
 ///
 /// It supports various styles, sizes, and colors through its `style` property,
@@ -33,8 +36,8 @@ class Input extends UiComponent {
     this.min,
     this.minLength,
     this.name,
-    void Function(String)? onChange,
-    void Function(String)? onInput,
+    InputValueCallback? onChange,
+    InputValueCallback? onInput,
     this.pattern,
     this.placeholder,
     this.required = false,
@@ -142,8 +145,8 @@ class Input extends UiComponent {
     num? min,
     int? minLength,
     String? name,
-    void Function(String)? onChange,
-    void Function(String)? onInput,
+    InputValueCallback? onChange,
+    InputValueCallback? onInput,
     String? pattern,
     String? placeholder,
     bool? required,
@@ -196,8 +199,8 @@ class Input extends UiComponent {
     String? newTitle,
     String? newType,
     String? newValue,
-    void Function(String)? onChange,
-    void Function(String)? onInput,
+    InputValueCallback? onChange,
+    InputValueCallback? onInput,
     List<InputStyling>? style,
     String? tag,
   }) {

@@ -37,26 +37,54 @@ dart_code_metrics:
     - package:dart_code_metrics_presets/all.yaml
 
   rules:
-    - parameters-ordering: false
-    - format-comment:
-        only-doc-comments: true
+    # 프로젝트 스타일 - 비활성화
+    - arguments-ordering: false
+    - avoid-collection-mutating-methods: false
     - avoid-dynamic: false
     - avoid-empty-setstate: false
     - avoid-long-files: false
     - avoid-missed-calls: false
     - avoid-nullable-interpolation: false
+    - avoid-returning-widgets: false
     - avoid-shadowing: false
     - avoid-throw-in-catch-block: false
+    - avoid-type-casts: false  # DOM 이벤트 처리 필수
     - avoid-unsafe-collection-methods: false
     - avoid-unused-parameters: false
     - dispose-fields: false
+    - format-comment: false  # 잘못된 판단 많음
     - move-variable-closer-to-its-usage: false
     - no-empty-block: false
+    - no-magic-string: false  # 컴포넌트 라이브러리 특성상 많은 문자열 사용
+    - parameters-ordering: false
     - prefer-boolean-prefixes: false
+    - prefer-class-destructuring: false  # Dart 타입 시스템과 충돌
     - prefer-correct-callback-field-name: false
     - prefer-correct-identifier-length: false
+    - prefer-explicit-parameter-names: false
+    - prefer-match-file-name: false
+    - prefer-named-boolean-parameters: false
+    - prefer-named-parameters: false
+    - prefer-single-declaration-per-file: false  # 헬퍼 클래스 허용
     - prefer-single-widget-per-file: false
-    - avoid-returning-widgets: false
     - prefer-static-class: false
-    - no-magic-string: false
+    - prefer-typedefs-for-callbacks: false
+    - unnecessary-trailing-comma: false  # Dart formatter와 충돌
+
+    # 프로젝트 컨벤션 우선
+    - enum-constants-ordering: false  # 의미 있는 순서 유지
+    - map-keys-ordering: false  # 시맨틱 순서가 알파벳보다 중요
+
+    # 의도적인 패턴
+    - avoid-duplicate-constant-values: false  # 디자인 시스템 스펙
+    - no-empty-string: false  # 빈 문자열 상수 의도적 사용
+    - no-equal-arguments: false  # Material Design 3 스펙
+
+    # 복잡도 완화
+    - avoid-high-cyclomatic-complexity:
+        max-complexity: 30
+    - avoid-long-functions:
+        max-length: 100
+    - avoid-long-parameter-list:
+        max-parameters: 10
 

@@ -1,0 +1,137 @@
+{
+  "date": "2025-10-04 12:41:29.520299Z",
+  "version": "1.31.4",
+  "sensitivity": "exact",
+  "commands": {
+    "analyze": {
+      "lib/add_on/slang_addon.dart": {
+        "prefer-extracting-function-callbacks": [
+          "68998d736cda65d2817bd4a974a50ce6"
+        ],
+        "avoid-async-call-in-sync-function": [
+          "c7f96522442c422bac20ae389f04863c",
+          "8cace270156a3b54f85dfb250f3006ad"
+        ],
+        "avoid-ignoring-return-values": [
+          "05a66d18b3546cd2b76588feee04af7d"
+        ],
+        "no-empty-string": [
+          "e6fda0f0d3e0adfff69e334462d1ef6a"
+        ],
+        "avoid-non-null-assertion": [
+          "bc36f52642b998f1c7da9ec8f88d40da"
+        ]
+      },
+      "lib/foundation/colors.dart": {
+        "no-empty-string": [
+          "e6fda0f0d3e0adfff69e334462d1ef6a"
+        ],
+        "no-magic-number": [
+          "1ff1de774005f8da13f42943881c655f",
+          "1ff1de774005f8da13f42943881c655f"
+        ],
+        "avoid-similar-names": [
+          "36f30c192268eaf5dc39aeea66bcf3fe"
+        ],
+        "prefer-class-destructuring": [
+          "5419eda61532ae600fd66ebbdaccae17",
+          "d74ab1b0ba9af1581c8c47afb858fcdb",
+          "03b5323ef40434021de223c9b16949f8",
+          "37ff9366b0193fa9a5ef70826bb3aec0",
+          "8a5ab56a255040ccc6956aea7b414b34",
+          "1ee28ad7469ff511674c49e8619f32a7",
+          "540c8ed8b8d3e2ec6ac73a303fadfb1e",
+          "efd74d8d0cbde0ed8cd8f3917702c337",
+          "2f11a80be1445c7438f5406d41c8c1fe",
+          "0af187652508303fd60cfc749212d03e",
+          "c34b3f724a537b9645b913a95556c15a",
+          "e23df073b532b241d96ba5258c580c6a",
+          "0ac2d6fa7b823c783fa5fb0faa97e49f",
+          "17af6e9465df7d760ce3e35ed699031e",
+          "4cf978aea4e05161bdafcb7d1c5ee56e",
+          "b06ee7c9127cc5895c5727baa09b06fb",
+          "e837f10d4d47adbbb19015f9e7988352",
+          "e96258941c8351582032420f494acf58",
+          "e07618d100343992c47406639317bed7",
+          "af2ec9a8535a58421e7fa028edf86d43",
+          "0340f5e2c0baf26f318b1e6b2ea2fe29"
+        ]
+      },
+      "lib/foundation/misc.dart": {
+        "no-empty-string": [
+          "e6fda0f0d3e0adfff69e334462d1ef6a",
+          "e6fda0f0d3e0adfff69e334462d1ef6a"
+        ],
+        "no-magic-number": [
+          "642e92efb79421734881b53e1e1b18b6",
+          "642e92efb79421734881b53e1e1b18b6"
+        ],
+        "prefer-class-destructuring": [
+          "34e4650fba29d2291bff55e9127ded0c",
+          "6894893f7bfb6b493b5667fd64b18857",
+          "6952b5df5d4eef6799f2a588aefbd74f",
+          "57b8f42bf5a2cc0bb0dc893672015445",
+          "e0a38ba2a4be4f64349b5002dd953017",
+          "a7f2c1e1c574ab7e8843038a4d94c287",
+          "b81101792a5fd73d34787d0e752f4272",
+          "c48530989663ba0d6785ec2ae0f8e5cc",
+          "4fa5193f300185243f28039d2801c99b",
+          "c6d1f9fd4e9617eb3c2ea454cbd12b22",
+          "02b5fe04719d616b81defe55494fcb61",
+          "4e4c43c82e280d5c86e390aa45d2622f",
+          "8545537e19382f61bda243a377e7973f",
+          "2338d255d583bdb5e719c155d575ece9",
+          "670ae3a4992efc4d404785663f6a7ec8",
+          "5626069373fbc0c552d4985edb18080f",
+          "023df6350900a2d920958468d0b883b7",
+          "5625483f00c1e16f59b64f591f775a62",
+          "9a1f8199bd64d6e0e40018c20b80791e",
+          "02a52b48b418de14267e8f3afa7a1c01",
+          "3cf93ee4942e0e651f932f8c5831f885",
+          "39e01497baffdf1779b8eaedf1b26d96",
+          "60775480d4042ec9230aa0edd4fc8dae",
+          "d1e9ed8885294bd7b6d179b006f3641d"
+        ],
+        "avoid-similar-names": [
+          "26d27c56f2a1c3113bd3355146f979b4"
+        ]
+      },
+      "lib/foundation/typography.dart": {
+        "no-empty-string": [
+          "e6fda0f0d3e0adfff69e334462d1ef6a"
+        ],
+        "avoid-similar-names": [
+          "0876479056bd9f35ed09a567a5c2ce2c"
+        ],
+        "prefer-class-destructuring": [
+          "7c855d0acb85ca43c13b90f848967aa3",
+          "2d8d1529b7bf29bc3586b1d2f05d3331",
+          "d01ac570f983affa612d1dbc915698e7",
+          "3b51b871724c81248ff976c2f382463e",
+          "82e18cd60f781e53335893ccc7b63761",
+          "324fd79575aa35366587275efd05b04f",
+          "ec19c1589b66b51ead623919e848d224",
+          "e510543399a93eec7beb6964f657466a",
+          "de64dc0c7572caec169bae08e39b9001",
+          "f3035a962c4dec346baa0de2187937d2",
+          "9e631779b490bc70bbe0b39f5d1a2ff1",
+          "023993f64fed461f1469b056022addf8",
+          "e514a0aa3bfbdb3d9142e05989534551",
+          "61e408bc5815be77845c9eae84b20b92"
+        ]
+      },
+      "lib/main.dart": {
+        "avoid-ignoring-return-values": [
+          "db4712d12917213fe4bc6370e5b80e0c",
+          "32a6349b2789c41d4f1282efa9572473"
+        ],
+        "avoid-async-call-in-sync-function": [
+          "b53e4bbf69a618b1b26c73f4b06807a2"
+        ],
+        "unnecessary-trailing-comma": [
+          "9c545229c25072cf5a4776b33f380e43"
+        ]
+      }
+    }
+  }
+}

@@ -194,11 +194,6 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
       ),
       builder: (context, child) {
         return Button(
-          onHover: (hovered) {
-            if (hovered) {
-              _menuState!._activate(this);
-            }
-          },
           onPressed: widget.onPressed != null || widget.content != null
               ? () {
                   if (widget.onPressed != null) {
@@ -209,6 +204,11 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
                   }
                 }
               : null,
+          onHover: (hovered) {
+            if (hovered) {
+              _menuState!._activate(this);
+            }
+          },
           style: const ButtonStyle.ghost().copyWith(
             decoration: (context, states, value) {
               return _menuState!.isActive(this)
@@ -322,8 +322,8 @@ class NavigationMenuContent extends StatelessWidget {
     final scaling = theme.scaling;
 
     return Button(
-      alignment: Alignment.topLeft,
       onPressed: onPressed,
+      alignment: Alignment.topLeft,
       style: ButtonVariance.ghost.copyWith(
         padding: (context, states, value) {
           return const EdgeInsets.all(12) * scaling;
@@ -569,8 +569,6 @@ class NavigationMenu extends StatefulWidget {
 class NavigationMenuState extends State<NavigationMenu> {
   static const kDebounceDuration = Duration(milliseconds: 200);
 
-  // final GlobalKey<PopoverAnchorState> _popoverKey = GlobalKey();
-  // final ValueNotifier<bool> _visible = ValueNotifier(false);
   final _popoverController = PopoverController();
   final _activeIndex = ValueNotifier<int>(0);
   final _contentBuilders = <NavigationMenuItemState, WidgetBuilder>{};

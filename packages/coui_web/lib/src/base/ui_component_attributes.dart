@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_collection_mutating_methods, avoid_missing_interpolation
+
 /// A builder class for creating a map of HTML attributes.
 ///
 /// This utility helps in constructing the `Map<String, String>` of attributes
@@ -36,7 +38,7 @@ class UiComponentAttributes {
   /// [name]: The name of the attribute (e.g., "href", "target").
   /// [value]: The value of the attribute.
   void add(String name, String value) {
-    _attributes[name] = value;
+    _attributes[name] = value; // ignore: avoid-collection-mutating-methods - Builder pattern requires mutation
   }
 
   /// Adds an ARIA (Accessible Rich Internet Applications) attribute.
@@ -51,7 +53,7 @@ class UiComponentAttributes {
   /// "label", "hidden").
   /// [value]: The value of the ARIA attribute.
   void addAria(String name, String value) {
-    _attributes['aria-$name'] = value;
+    _attributes['aria-$name'] = value; // ignore: avoid-collection-mutating-methods - Builder pattern requires mutation
   }
 
   /// Adds or updates the 'role' ARIA attribute.
@@ -71,7 +73,7 @@ class UiComponentAttributes {
   /// If [other] is null, no changes are made.
   void merge(Map<String, String>? other) {
     if (other != null) {
-      _attributes.addAll(other);
+      _attributes.addAll(other); // ignore: avoid-collection-mutating-methods - Builder pattern requires mutation
     }
   }
 
@@ -80,7 +82,7 @@ class UiComponentAttributes {
   ///
   /// This prevents accidental modification of the attribute map after it has
   /// been built.
-  Map<String, String> build() {
+  Map<String, String> get build {
     return Map.unmodifiable(_attributes);
   }
 }

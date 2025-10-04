@@ -266,8 +266,8 @@ class _CardImageState extends State<CardImage> {
     );
 
     return Button(
-      enabled: widget.enabled,
       onPressed: widget.onPressed,
+      enabled: widget.enabled,
       statesController: _statesController,
       style: style,
       child: _wrapIntrinsic(

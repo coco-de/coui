@@ -705,10 +705,9 @@ class _CarouselState extends State<Carousel>
   @override
   void dispose() {
     _controller.removeListener(_onControllerChange);
-    // DO NOT DISPOSE CONTROLLER
-    // CONTROLLER might not belong to this state
-    // Removing our  listener from the controller is enough
-    // _controller.dispose();
+    // DO NOT DISPOSE CONTROLLER.
+    // Controller might not belong to this state.
+    // Removing our listener from the controller is enough.
     _ticker.dispose();
     super.dispose();
   }

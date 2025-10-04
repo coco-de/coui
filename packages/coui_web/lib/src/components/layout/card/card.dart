@@ -31,12 +31,12 @@ class Card extends UiComponent {
     super.css,
     super.id,
     super.key,
-    void Function()? onPressed,
+    VoidCallback? onPressed,
     List<CardStyling>? style,
     super.tag = 'div',
   }) : super(
-         // Convert Flutter-style onPressed to web onClick event
-         onClick: onPressed != null ? (_) => onPressed() : null,
+         // Convert Flutter-style onPressed to web onClick event.
+         onClick: onPressed == null ? null : (_) => onPressed(),
          style: style,
        );
 
@@ -111,7 +111,7 @@ class Card extends UiComponent {
     Styles? css,
     String? id,
     Key? key,
-    void Function()? onPressed,
+    VoidCallback? onPressed,
     List<CardStyling>? style,
     String? tag,
   }) {
@@ -329,7 +329,6 @@ abstract final class CardHelper {
 
   /// Creates a basic card with title, content, and optional actions.
   static Card createBasicCard(BasicCardConfig config) {
-    // Extract config properties for better readability
     final actions = config.actions;
     final cardClasses = config.cardClasses;
     final cardId = config.cardId;
@@ -338,13 +337,14 @@ abstract final class CardHelper {
     final titleText = config.titleText;
     final titleId = config.titleId;
     final key = config.key;
+    final imageUrl = config.imageUrl;
+    final imageAlt = config.imageAlt;
+    final figureStyles = config.figureStyles;
+
     final cardChildren = <Component>[];
 
     // Handle optional image
-    final imageUrl = config.imageUrl;
     if (imageUrl != null) {
-      final imageAlt = config.imageAlt;
-      final figureStyles = config.figureStyles;
 
       cardChildren.add(
         Figure(
@@ -363,7 +363,7 @@ abstract final class CardHelper {
         CardActions(
           actions,
           style: const [Alignment.justifyEnd],
-        ), // Default to justify-end for actions
+        ), // Default to justify-end for actions.
       );
     }
     cardChildren.add(CardBody(bodyChildren));

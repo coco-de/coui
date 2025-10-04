@@ -285,12 +285,12 @@ class ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
   @override
   Widget build(BuildContext context) {
     return Button(
-      enabled: widget.enabled,
       onPressed: widget.onChanged != null
           ? () {
               widget.onChanged!(!widget.value);
             }
           : null,
+      enabled: widget.enabled,
       statesController: statesController,
       style: widget.value
           ? ButtonStyle.secondary(
@@ -417,6 +417,14 @@ class SelectedButtonState extends State<SelectedButton> {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: () {
+        if (widget.onChanged != null) {
+          widget.onChanged!(!widget.value);
+        }
+        if (widget.onPressed != null) {
+          widget.onPressed!();
+        }
+      },
       alignment: widget.alignment,
       disableHoverEffect: widget.disableHoverEffect,
       disableTransition: widget.disableTransition,
@@ -429,14 +437,6 @@ class SelectedButtonState extends State<SelectedButton> {
       onLongPressMoveUpdate: widget.onLongPressMoveUpdate,
       onLongPressStart: widget.onLongPressStart,
       onLongPressUp: widget.onLongPressUp,
-      onPressed: () {
-        if (widget.onChanged != null) {
-          widget.onChanged!(!widget.value);
-        }
-        if (widget.onPressed != null) {
-          widget.onPressed!();
-        }
-      },
       onSecondaryLongPress: widget.onSecondaryLongPress,
       onSecondaryTapCancel: widget.onSecondaryTapCancel,
       onSecondaryTapDown: widget.onSecondaryTapDown,
@@ -1198,6 +1198,7 @@ class ButtonState<T extends Button> extends State<T> {
     final scaling = theme.scaling;
     final enableFeedback = widget.enableFeedback ?? _shouldEnableFeedback;
     return Clickable(
+      onPressed: widget.onPressed,
       decoration: WidgetStateProperty.resolveWith(_resolveDecoration),
       disableFocusOutline: widget.disableFocusOutline,
       disableHoverEffect: widget.disableHoverEffect,
@@ -1215,7 +1216,6 @@ class ButtonState<T extends Button> extends State<T> {
       onLongPressMoveUpdate: widget.onLongPressMoveUpdate,
       onLongPressStart: widget.onLongPressStart,
       onLongPressUp: widget.onLongPressUp,
-      onPressed: widget.onPressed,
       onSecondaryLongPress: widget.onSecondaryLongPress,
       onSecondaryTapCancel: widget.onSecondaryTapCancel,
       onSecondaryTapDown: widget.onSecondaryTapDown,
@@ -3281,6 +3281,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: onPressed,
       alignment: alignment,
       disableTransition: disableTransition,
       enableFeedback: enableFeedback,
@@ -3293,7 +3294,6 @@ class PrimaryButton extends StatelessWidget {
       onLongPressMoveUpdate: onLongPressMoveUpdate,
       onLongPressStart: onLongPressStart,
       onLongPressUp: onLongPressUp,
-      onPressed: onPressed,
       onSecondaryLongPress: onSecondaryLongPress,
       onSecondaryTapCancel: onSecondaryTapCancel,
       onSecondaryTapDown: onSecondaryTapDown,
@@ -3381,6 +3381,7 @@ class SecondaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: onPressed,
       alignment: alignment,
       disableTransition: disableTransition,
       enableFeedback: enableFeedback,
@@ -3393,7 +3394,6 @@ class SecondaryButton extends StatelessWidget {
       onLongPressMoveUpdate: onLongPressMoveUpdate,
       onLongPressStart: onLongPressStart,
       onLongPressUp: onLongPressUp,
-      onPressed: onPressed,
       onSecondaryLongPress: onSecondaryLongPress,
       onSecondaryTapCancel: onSecondaryTapCancel,
       onSecondaryTapDown: onSecondaryTapDown,
@@ -3481,6 +3481,7 @@ class OutlineButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: onPressed,
       alignment: alignment,
       disableTransition: disableTransition,
       enableFeedback: enableFeedback,
@@ -3493,7 +3494,6 @@ class OutlineButton extends StatelessWidget {
       onLongPressMoveUpdate: onLongPressMoveUpdate,
       onLongPressStart: onLongPressStart,
       onLongPressUp: onLongPressUp,
-      onPressed: onPressed,
       onSecondaryLongPress: onSecondaryLongPress,
       onSecondaryTapCancel: onSecondaryTapCancel,
       onSecondaryTapDown: onSecondaryTapDown,
@@ -3581,6 +3581,7 @@ class GhostButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: onPressed,
       alignment: alignment,
       disableTransition: disableTransition,
       enableFeedback: enableFeedback,
@@ -3593,7 +3594,6 @@ class GhostButton extends StatelessWidget {
       onLongPressMoveUpdate: onLongPressMoveUpdate,
       onLongPressStart: onLongPressStart,
       onLongPressUp: onLongPressUp,
-      onPressed: onPressed,
       onSecondaryLongPress: onSecondaryLongPress,
       onSecondaryTapCancel: onSecondaryTapCancel,
       onSecondaryTapDown: onSecondaryTapDown,
@@ -3681,6 +3681,7 @@ class LinkButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: onPressed,
       alignment: alignment,
       disableTransition: disableTransition,
       enableFeedback: enableFeedback,
@@ -3693,7 +3694,6 @@ class LinkButton extends StatelessWidget {
       onLongPressMoveUpdate: onLongPressMoveUpdate,
       onLongPressStart: onLongPressStart,
       onLongPressUp: onLongPressUp,
-      onPressed: onPressed,
       onSecondaryLongPress: onSecondaryLongPress,
       onSecondaryTapCancel: onSecondaryTapCancel,
       onSecondaryTapDown: onSecondaryTapDown,
@@ -3780,12 +3780,12 @@ class TextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: onPressed,
       alignment: alignment,
       disableTransition: disableTransition,
       enabled: enabled,
       focusNode: focusNode,
       leading: leading,
-      onPressed: onPressed,
       style: ButtonStyle.text(density: density, shape: shape, size: size),
       trailing: trailing,
       child: child,
@@ -3862,6 +3862,7 @@ class DestructiveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: onPressed,
       alignment: alignment,
       disableTransition: disableTransition,
       enableFeedback: enableFeedback,
@@ -3874,7 +3875,6 @@ class DestructiveButton extends StatelessWidget {
       onLongPressMoveUpdate: onLongPressMoveUpdate,
       onLongPressStart: onLongPressStart,
       onLongPressUp: onLongPressUp,
-      onPressed: onPressed,
       onSecondaryLongPress: onSecondaryLongPress,
       onSecondaryTapCancel: onSecondaryTapCancel,
       onSecondaryTapDown: onSecondaryTapDown,
@@ -3966,6 +3966,7 @@ class TabButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: onPressed,
       alignment: alignment,
       disableTransition: disableTransition,
       enableFeedback: enableFeedback,
@@ -3978,7 +3979,6 @@ class TabButton extends StatelessWidget {
       onLongPressMoveUpdate: onLongPressMoveUpdate,
       onLongPressStart: onLongPressStart,
       onLongPressUp: onLongPressUp,
-      onPressed: onPressed,
       onSecondaryLongPress: onSecondaryLongPress,
       onSecondaryTapCancel: onSecondaryTapCancel,
       onSecondaryTapDown: onSecondaryTapDown,
@@ -4189,6 +4189,7 @@ class CardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: onPressed,
       alignment: alignment,
       disableTransition: disableTransition,
       enableFeedback: enableFeedback,
@@ -4201,7 +4202,6 @@ class CardButton extends StatelessWidget {
       onLongPressMoveUpdate: onLongPressMoveUpdate,
       onLongPressStart: onLongPressStart,
       onLongPressUp: onLongPressUp,
-      onPressed: onPressed,
       onSecondaryLongPress: onSecondaryLongPress,
       onSecondaryTapCancel: onSecondaryTapCancel,
       onSecondaryTapDown: onSecondaryTapDown,
@@ -4535,6 +4535,7 @@ class IconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Button(
+      onPressed: onPressed,
       alignment: alignment,
       disableTransition: disableTransition,
       enableFeedback: enableFeedback,
@@ -4547,7 +4548,6 @@ class IconButton extends StatelessWidget {
       onLongPressMoveUpdate: onLongPressMoveUpdate,
       onLongPressStart: onLongPressStart,
       onLongPressUp: onLongPressUp,
-      onPressed: onPressed,
       onSecondaryLongPress: onSecondaryLongPress,
       onSecondaryTapCancel: onSecondaryTapCancel,
       onSecondaryTapDown: onSecondaryTapDown,

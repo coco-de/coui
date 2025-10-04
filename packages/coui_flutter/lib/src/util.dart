@@ -891,7 +891,7 @@ class TimeOfDay {
     );
   }
 
-  /// For backward compatibility
+  /// For backward compatibility.
   TimeOfDay replacing({int? hour, int? minute, int? second}) {
     return TimeOfDay(
       hour: hour ?? this.hour,

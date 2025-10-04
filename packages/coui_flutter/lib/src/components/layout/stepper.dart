@@ -1242,6 +1242,7 @@ class StepNumber extends StatelessWidget {
               child: SizedBox.square(
                 dimension: properties.size.size * theme.scaling,
                 child: Clickable(
+                  onPressed: onPressed,
                   decoration: WidgetStateProperty.resolveWith((states) {
                     return BoxDecoration(
                       border: Border.all(
@@ -1276,7 +1277,6 @@ class StepNumber extends StatelessWidget {
                         ? SystemMouseCursors.basic
                         : SystemMouseCursors.click,
                   ),
-                  onPressed: onPressed,
                   child: Center(
                     child:
                         properties.state.value.stepStates[stepIndex] ==
@@ -1360,10 +1360,10 @@ class StepTitle extends StatelessWidget {
     final scaling = theme.scaling;
 
     return Clickable(
+      onPressed: onPressed,
       mouseCursor: WidgetStatePropertyAll(
         onPressed == null ? MouseCursor.defer : SystemMouseCursors.click,
       ),
-      onPressed: onPressed,
       child: IntrinsicWidth(
         child: Column(
           crossAxisAlignment: crossAxisAlignment,

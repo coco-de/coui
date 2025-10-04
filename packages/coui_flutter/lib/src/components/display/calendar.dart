@@ -196,7 +196,6 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           OutlineButton(
-                            density: ButtonDensity.icon,
                             onPressed: () {
                               setState(() {
                                 switch (_viewType) {
@@ -212,6 +211,7 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                                 }
                               });
                             },
+                            density: ButtonDensity.icon,
                             child: Icon(
                               LucideIcons.arrowLeft,
                               color: arrowColor,
@@ -220,7 +220,6 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                           SizedBox(width: theme.scaling * 16),
                           Expanded(
                             child: GhostButton(
-                              enabled: _viewType != CalendarViewType.year,
                               onPressed: () {
                                 _alternate = false;
                                 switch (_viewType) {
@@ -238,6 +237,7 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                                     break;
                                 }
                               },
+                              enabled: _viewType != CalendarViewType.year,
                               child: Text(
                                 getHeaderText(
                                   localizations,
@@ -254,7 +254,6 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                           if (_viewType != CalendarViewType.date ||
                               viewMode != CalendarSelectionMode.range)
                             OutlineButton(
-                              density: ButtonDensity.icon,
                               onPressed: () {
                                 setState(() {
                                   switch (_viewType) {
@@ -269,6 +268,7 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                                   }
                                 });
                               },
+                              density: ButtonDensity.icon,
                               child: Icon(
                                 LucideIcons.arrowRight,
                                 color: arrowColor,
@@ -317,7 +317,6 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                             ),
                             SizedBox(width: theme.scaling * 16),
                             OutlineButton(
-                              density: ButtonDensity.icon,
                               onPressed: () {
                                 setState(() {
                                   switch (_viewType) {
@@ -333,6 +332,7 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                                   }
                                 });
                               },
+                              density: ButtonDensity.icon,
                               child: Icon(
                                 LucideIcons.arrowRight,
                                 color: arrowColor,
@@ -404,7 +404,6 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                 Row(
                   children: [
                     OutlineButton(
-                      density: ButtonDensity.icon,
                       onPressed: () {
                         setState(() {
                           switch (_viewType) {
@@ -419,6 +418,7 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                           }
                         });
                       },
+                      density: ButtonDensity.icon,
                       child: Icon(
                         LucideIcons.arrowLeft,
                         color: arrowColor,
@@ -427,7 +427,6 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                     SizedBox(width: theme.scaling * 16),
                     Expanded(
                       child: GhostButton(
-                        enabled: _viewType != CalendarViewType.year,
                         onPressed: () {
                           switch (_viewType) {
                             case CalendarViewType.date:
@@ -444,6 +443,7 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                               break;
                           }
                         },
+                        enabled: _viewType != CalendarViewType.year,
                         child: Text(
                           getHeaderText(localizations, _view, _viewType),
                         ).foreground().small().medium().center(),
@@ -451,7 +451,6 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                     ),
                     SizedBox(width: theme.scaling * 16),
                     OutlineButton(
-                      density: ButtonDensity.icon,
                       onPressed: () {
                         setState(() {
                           switch (_viewType) {
@@ -466,6 +465,7 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                           }
                         });
                       },
+                      density: ButtonDensity.icon,
                       child: Icon(
                         LucideIcons.arrowRight,
                         color: arrowColor,
@@ -1210,6 +1210,7 @@ class MonthCalendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     /// Same as Calendar, but instead of showing date it shows month in a 4x3 grid.
     final localizations = CoUILocalizations.of(context);
     final rows = <Widget>[];
@@ -1288,6 +1289,7 @@ class YearCalendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     /// Same as Calendar, but instead of showing date it shows year in a 4x4 grid.
     final rows = <Widget>[];
     final years = <Widget>[];
@@ -1442,10 +1444,10 @@ class CalendarItem extends StatelessWidget {
           height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
           child: GhostButton(
+            onPressed: onTap,
             alignment: Alignment.center,
             density: ButtonDensity.compact,
             enabled: state == DateState.enabled,
-            onPressed: onTap,
             child: child,
           ),
         );
@@ -1455,10 +1457,10 @@ class CalendarItem extends StatelessWidget {
           height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
           child: SecondaryButton(
+            onPressed: onTap,
             alignment: Alignment.center,
             density: ButtonDensity.compact,
             enabled: state == DateState.enabled,
-            onPressed: onTap,
             child: child,
           ),
         );
@@ -1468,10 +1470,10 @@ class CalendarItem extends StatelessWidget {
           height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
           child: PrimaryButton(
+            onPressed: onTap,
             alignment: Alignment.center,
             density: ButtonDensity.compact,
             enabled: state == DateState.enabled,
-            onPressed: onTap,
             child: child,
           ),
         );
@@ -1481,9 +1483,9 @@ class CalendarItem extends StatelessWidget {
           height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
           child: Button(
+            onPressed: onTap,
             alignment: Alignment.center,
             enabled: state == DateState.enabled,
-            onPressed: onTap,
             style:
                 const ButtonStyle(
                   density: ButtonDensity.compact,
@@ -1514,9 +1516,9 @@ class CalendarItem extends StatelessWidget {
           height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
           child: Button(
+            onPressed: onTap,
             alignment: Alignment.center,
             enabled: state == DateState.enabled,
-            onPressed: onTap,
             style:
                 const ButtonStyle(
                   density: ButtonDensity.compact,
@@ -1540,9 +1542,9 @@ class CalendarItem extends StatelessWidget {
           height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
           child: Button(
+            onPressed: onTap,
             alignment: Alignment.center,
             enabled: state == DateState.enabled,
-            onPressed: onTap,
             style:
                 const ButtonStyle(
                   density: ButtonDensity.compact,
@@ -1580,10 +1582,10 @@ class CalendarItem extends StatelessWidget {
                 width: width ?? theme.scaling * 32,
               ),
               PrimaryButton(
+                onPressed: onTap,
                 alignment: Alignment.center,
                 density: ButtonDensity.compact,
                 enabled: state == DateState.enabled,
-                onPressed: onTap,
                 child: child,
               ),
             ],
@@ -1609,10 +1611,10 @@ class CalendarItem extends StatelessWidget {
                 width: width ?? theme.scaling * 32,
               ),
               PrimaryButton(
+                onPressed: onTap,
                 alignment: Alignment.center,
                 density: ButtonDensity.compact,
                 enabled: state == DateState.enabled,
-                onPressed: onTap,
                 child: child,
               ),
             ],
@@ -1624,9 +1626,9 @@ class CalendarItem extends StatelessWidget {
           height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
           child: Button(
+            onPressed: onTap,
             alignment: Alignment.center,
             enabled: state == DateState.enabled,
-            onPressed: onTap,
             style:
                 const ButtonStyle(
                   density: ButtonDensity.compact,
@@ -1650,9 +1652,9 @@ class CalendarItem extends StatelessWidget {
           height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
           child: Button(
+            onPressed: onTap,
             alignment: Alignment.center,
             enabled: state == DateState.enabled,
-            onPressed: onTap,
             style:
                 const ButtonStyle(
                   density: ButtonDensity.compact,
@@ -1676,9 +1678,9 @@ class CalendarItem extends StatelessWidget {
           height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
           child: Button(
+            onPressed: onTap,
             alignment: Alignment.center,
             enabled: state == DateState.enabled,
-            onPressed: onTap,
             style:
                 const ButtonStyle(
                   density: ButtonDensity.compact,
@@ -1823,23 +1825,7 @@ class CalendarGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final localizations = CoUILocalizations.of(context);
-    // return GridView.builder(
-    //   shrinkWrap: true,
-    //   itemCount: data.items.length,
-    //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //     crossAxisCount: 7,
-    //     mainAxisSpacing: 0,
-    //     crossAxisSpacing: 8 * theme.scaling,
-    //   ),
-    //   itemBuilder: (context, index) {
-    //     return SizedBox(
-    //       width: theme.scaling * 32,
-    //       height: theme.scaling * 32,
-    //       child: itemBuilder(data.items[index]),
-    //     );
-    //   },
-    // );
-    // do not use GridView because it doesn't support IntrinsicWidth
+    // Do not use GridView because it doesn't support IntrinsicWidth.
     final rows = <Widget>[];
     final weekDays = <Widget>[];
     for (int i = 0; i < 7; i += 1) {

@@ -56,7 +56,7 @@ abstract class BaseStyle<T extends BaseStyle<T>>
     // It might be more robust to throw an error or log a warning if a
     // non-breakpoint modifier is passed to `at()`, but returning `this` is
     // also an option. For now, let's assume `at` is strictly for breakpoints.
-    return this as T;
+    return this as T; // ignore: avoid-type-casts - Safe cast, this is already of type T
   }
 
   /// Returns the string representation of this utility class, including

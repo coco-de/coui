@@ -214,6 +214,7 @@ class _CodeSnippetState extends State<CodeSnippet> {
   };
   static const _languageAlias = {
     'javascript': 'dart',
+
     /// Since its similar to dart, temporarily use dart as fallback to js and ts.
     'js': 'dart',
     'ts': 'dart',
@@ -362,7 +363,6 @@ class _CodeSnippetState extends State<CodeSnippet> {
                 children: [
                   ...widget.actions,
                   GhostButton(
-                    density: ButtonDensity.icon,
                     onPressed: () {
                       Clipboard.setData(ClipboardData(text: widget.code)).then((
                         value,
@@ -387,6 +387,7 @@ class _CodeSnippetState extends State<CodeSnippet> {
                         }
                       });
                     },
+                    density: ButtonDensity.icon,
                     child: const Icon(LucideIcons.copy).iconSmall(),
                   ),
                 ],

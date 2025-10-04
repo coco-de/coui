@@ -9,6 +9,7 @@ class Alignment extends CommonStyle<Alignment> {
   const Alignment(super.cssClass, {super.modifiers})
     : super(type: StyleType.layout);
   static const justifyEnd = Alignment('justify-end'); // flex-end
+
   @override
   Alignment create(List<PrefixModifier> modifiers) {
     return Alignment(cssClass, modifiers: modifiers);

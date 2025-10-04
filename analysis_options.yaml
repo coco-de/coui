@@ -77,10 +77,12 @@ dart_code_metrics:
     
   # 프리셋을 보완하는 프로젝트 특화 규칙
   rules:
+    - prefer-single-declaration-per-file: false
     - parameters-ordering: false
     - avoid-flexible-outside-flex: false
     - format-comment:
         only-doc-comments: true
+    - arguments-ordering: false
     - avoid-dynamic: false
     - avoid-empty-setstate: false
     - avoid-long-files: false
@@ -133,6 +135,8 @@ dart_code_metrics:
         first:
           - key
           - super
+          - onPressed
+          - onClick
         last:
           - child
           - children

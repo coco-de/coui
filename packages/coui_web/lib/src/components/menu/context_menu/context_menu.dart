@@ -1,3 +1,4 @@
+import 'package:coui_web/src/base/types.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
 import 'package:coui_web/src/components/menu/context_menu/context_menu_style.dart';
@@ -72,9 +73,9 @@ class ContextMenu extends UiComponent {
 
   /// Callback when context menu state changes.
   ///
-  /// Flutter-compatible void Function(bool) callback.
+  /// Flutter-compatible callback.
   /// Receives true when menu opens, false when it closes.
-  final void Function(bool)? onChanged;
+  final BoolStateCallback? onChanged;
 
   @override
   String get baseClass => 'relative';
@@ -100,28 +101,29 @@ class ContextMenu extends UiComponent {
     }
 
     // Build context menu with absolute positioning
+    const emptyString = '';
+    const hiddenClass = 'hidden';
     final contextMenuElement = Component.element(
       classes:
-          'menu bg-base-100 rounded-box shadow-lg absolute z-50 w-52 ${open ? '' : 'hidden'}',
+          'menu bg-base-100 rounded-box shadow-lg absolute z-50 w-52 ${open ? emptyString : hiddenClass}',
       tag: 'div',
       children: [
-        Component.element(
-          tag: 'ul',
-          children: menuItems,
-        ),
+        Component.element(tag: 'ul', children: menuItems),
       ],
     );
 
     // Target area with contextmenu event
+    final changed = onChanged;
     final targetArea = Component.element(
-      events: onChanged != null
-          ? {
+      events: changed == null
+          ? null
+          : {
               'contextmenu': (event) {
-                (event as dynamic).preventDefault();
-                onChanged!(true);
+                // ignore: avoid-dynamic-calls, avoid-type-casts - DOM event handling requires dynamic access
+                final _ = (event as dynamic).preventDefault();
+                changed(state: true);
               },
-            }
-          : null,
+            },
       tag: 'div',
       children: [targetChild],
     );
@@ -130,11 +132,9 @@ class ContextMenu extends UiComponent {
     final overlay = open
         ? Component.element(
             classes: 'fixed inset-0 z-40',
-            events: onChanged != null
-                ? {
-                    'click': (_) => onChanged!(false),
-                  }
-                : null,
+            events: changed == null
+                ? null
+                : {'click': (_) => changed(state: false)},
             tag: 'div',
           )
         : null;
@@ -142,56 +142,15 @@ class ContextMenu extends UiComponent {
     return Component.element(
       attributes: componentAttributes,
       classes:
-          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : ''}',
-      css: css,
+          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : emptyString}',
+      css: this.css,
       id: id,
       tag: tag,
       children: [
-        if (overlay != null) overlay,
+        ?overlay,
         targetArea,
         contextMenuElement,
       ],
-    );
-  }
-
-  List<String> _buildStyleClasses() {
-    final stylesList = <String>[];
-
-    // Add custom styles
-    if (style != null) {
-      for (final s in style!) {
-        if (s is ContextMenuStyling) {
-          stylesList.add(s.cssClass);
-        }
-      }
-    }
-
-    return stylesList;
-  }
-
-  Component _buildMenuItem(ContextMenuItem item) {
-    final itemClasses = item.disabled ? 'disabled' : '';
-
-    final itemContent = Component.element(
-      classes: itemClasses,
-      events: !item.disabled && item.onPressed != null
-          ? {
-              'click': (_) {
-                item.onPressed!();
-                // Close menu after selection
-                if (onChanged != null) {
-                  onChanged!(false);
-                }
-              },
-            }
-          : null,
-      tag: 'a',
-      children: [Component.text(item.label)],
-    );
-
-    return Component.element(
-      tag: 'li',
-      children: [itemContent],
     );
   }
 
@@ -204,7 +163,7 @@ class ContextMenu extends UiComponent {
     String? id,
     List<ContextMenuItem>? items,
     Key? key,
-    void Function(bool)? onChanged,
+    BoolStateCallback? onChanged,
     bool? open,
     List<ContextMenuStyling>? style,
     String? tag,
@@ -220,17 +179,52 @@ class ContextMenu extends UiComponent {
       key: key ?? this.key,
       onChanged: onChanged ?? this.onChanged,
       open: open ?? this.open,
-      style:
-          style ??
-          () {
-            final currentStyle = this.style;
-            return currentStyle is List<ContextMenuStyling>?
-                ? currentStyle
-                : null;
-          }(),
+      style: style,
       tag: tag ?? this.tag,
       targetChild: targetChild ?? this.targetChild,
     );
+  }
+
+  List<String> _buildStyleClasses() {
+    final stylesList = <String>[];
+
+    // Add custom styles
+    final currentStyle = style;
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
+        stylesList.add(s.cssClass);
+      }
+    }
+
+    return stylesList;
+  }
+
+  Component _buildMenuItem(ContextMenuItem item) {
+    const emptyString = '';
+    final disabled = item.disabled;
+    final onPressed = item.onPressed;
+    final label = item.label;
+    final itemClasses = disabled ? 'disabled' : emptyString;
+    final changed = onChanged;
+
+    final itemContent = Component.element(
+      classes: itemClasses,
+      events: !disabled && onPressed != null
+          ? {
+              'click': (_) {
+                final _ = onPressed();
+                // Close menu after selection
+                if (changed != null) {
+                  changed(state: false);
+                }
+              },
+            }
+          : null,
+      tag: 'a',
+      children: [Component.text(label)],
+    );
+
+    return Component.element(tag: 'li', children: [itemContent]);
   }
 }
 
@@ -253,7 +247,7 @@ class ContextMenuItem {
   /// Callback when item is selected.
   ///
   /// Flutter-compatible void Function() callback.
-  final void Function()? onPressed;
+  final VoidCallback? onPressed;
 
   /// Whether the item is disabled.
   final bool disabled;

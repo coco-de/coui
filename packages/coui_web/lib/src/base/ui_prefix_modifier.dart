@@ -1,5 +1,3 @@
-// ignore_for_file: format-comment, prefer-single-declaration-per-file
-// ignore_for_file: prefer-named-parameters
 // Pseudo-class styling based on parent state
 // Styling based on sibling state (peer-{modifier})
 // https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state

@@ -35,9 +35,9 @@ class _InputHintFeatureState extends InputFeatureState<InputHintFeature> {
       yield Builder(
         builder: (context) {
           return IconButton.text(
+            onPressed: () => _showPopup(context),
             density: ButtonDensity.compact,
             icon: feature.icon ?? const Icon(LucideIcons.info),
-            onPressed: () => _showPopup(context),
           );
         },
       );
@@ -48,9 +48,9 @@ class _InputHintFeatureState extends InputFeatureState<InputHintFeature> {
   Iterable<Widget> buildLeading() sync* {
     if (feature.position == InputFeaturePosition.leading) {
       yield IconButton.text(
+        onPressed: () => _showPopup(context),
         density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.info),
-        onPressed: () => _showPopup(context),
       );
     }
   }
@@ -178,9 +178,9 @@ class _InputPasswordToggleFeatureState
             },
           )
         : IconButton.text(
+            onPressed: _toggleObscureText,
             density: ButtonDensity.compact,
             icon: _buildIcon(),
-            onPressed: _toggleObscureText,
           );
   }
 }
@@ -204,9 +204,9 @@ class _InputClearFeatureState extends InputFeatureState<InputClearFeature> {
   Iterable<Widget> buildTrailing() sync* {
     if (feature.position == InputFeaturePosition.trailing) {
       yield IconButton.text(
+        onPressed: _clear,
         density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.x),
-        onPressed: _clear,
       );
     }
   }
@@ -215,9 +215,9 @@ class _InputClearFeatureState extends InputFeatureState<InputClearFeature> {
   Iterable<Widget> buildLeading() sync* {
     if (feature.position == InputFeaturePosition.leading) {
       yield IconButton.text(
+        onPressed: _clear,
         density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.x),
-        onPressed: _clear,
       );
     }
   }
@@ -269,9 +269,9 @@ class _InputRevalidateFeatureState
       builder: (context, futures, _) {
         if (futures.isEmpty) {
           return IconButton.text(
+            onPressed: _revalidate,
             density: ButtonDensity.compact,
             icon: feature.icon ?? const Icon(LucideIcons.refreshCw),
-            onPressed: _revalidate,
           );
         }
 
@@ -296,9 +296,9 @@ class _InputRevalidateFeatureState
                     ),
                   )
                 : IconButton.text(
+                    onPressed: _revalidate,
                     density: ButtonDensity.compact,
                     icon: feature.icon ?? const Icon(LucideIcons.refreshCw),
-                    onPressed: _revalidate,
                   );
           },
           future: futureAll,
@@ -483,6 +483,7 @@ class _InputSpinnerFeatureState extends InputFeatureState<InputSpinnerFeature> {
         return Column(
           children: [
             IconButton.text(
+              onPressed: _increase,
               density: ButtonDensity.compact,
               icon: Transform.translate(
                 offset: Offset(0, -1 * theme.scaling),
@@ -491,10 +492,10 @@ class _InputSpinnerFeatureState extends InputFeatureState<InputSpinnerFeature> {
                   child: const Icon(LucideIcons.chevronUp),
                 ),
               ),
-              onPressed: _increase,
               size: ButtonSize.xSmall,
             ),
             IconButton.text(
+              onPressed: _decrease,
               density: ButtonDensity.compact,
               icon: Transform.translate(
                 offset: Offset(0, theme.scaling * 1),
@@ -503,7 +504,6 @@ class _InputSpinnerFeatureState extends InputFeatureState<InputSpinnerFeature> {
                   child: const Icon(LucideIcons.chevronDown),
                 ),
               ),
-              onPressed: _decrease,
               size: ButtonSize.xSmall,
             ),
           ],
@@ -532,9 +532,9 @@ class _InputCopyFeatureState extends InputFeatureState<InputCopyFeature> {
   Iterable<Widget> buildTrailing() sync* {
     if (feature.position == InputFeaturePosition.trailing) {
       yield IconButton.text(
+        onPressed: _copy,
         density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.copy),
-        onPressed: _copy,
       );
     }
   }
@@ -543,9 +543,9 @@ class _InputCopyFeatureState extends InputFeatureState<InputCopyFeature> {
   Iterable<Widget> buildLeading() sync* {
     if (feature.position == InputFeaturePosition.leading) {
       yield IconButton.text(
+        onPressed: _copy,
         density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.copy),
-        onPressed: _copy,
       );
     }
   }
@@ -607,9 +607,9 @@ class _InputPasteFeatureState extends InputFeatureState<InputPasteFeature> {
   Iterable<Widget> buildTrailing() sync* {
     if (feature.position == InputFeaturePosition.trailing) {
       yield IconButton.text(
+        onPressed: _paste,
         density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.clipboard),
-        onPressed: _paste,
       );
     }
   }
@@ -618,9 +618,9 @@ class _InputPasteFeatureState extends InputFeatureState<InputPasteFeature> {
   Iterable<Widget> buildLeading() sync* {
     if (feature.position == InputFeaturePosition.leading) {
       yield IconButton.text(
+        onPressed: _paste,
         density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.clipboard),
-        onPressed: _paste,
       );
     }
   }

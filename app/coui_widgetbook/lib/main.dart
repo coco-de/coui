@@ -22,9 +22,7 @@ class WidgetbookApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Widgetbook.material(
       addons: [
-        ViewportAddon([
-          ...Viewports.all,
-        ]),
+        ViewportAddon([...Viewports.all]),
         InspectorAddon(),
         SlangAddon(
           initialLocale: TranslationProvider.of(context).flutterLocale,
@@ -42,7 +40,7 @@ class WidgetbookApp extends StatelessWidget {
         // This is a temporary solution to apply the coui theme.
         // A custom theme addon would be a better approach for theme switching.
         final isDark = context.knobs.boolean(
-          label: 'Dark Mode'
+          label: 'Dark Mode',
         );
 
         return coui.Theme(

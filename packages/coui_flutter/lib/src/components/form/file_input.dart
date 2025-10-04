@@ -58,24 +58,3 @@ class FileIconProviderData {
     return _buildFileIcon(extension);
   }
 }
-
-//
-// class SingleFileInput extends StatelessWidget {
-//   final XFile? file;
-//   final ValueChanged<XFile?>? onChanged;
-//   final bool acceptDrop;
-//   final bool enabled;
-//
-//   const SingleFileInput({
-//     super.key,
-//     this.file,
-//     this.onChanged,
-//     this.acceptDrop = false,
-//     this.enabled = true,
-//   });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     throw UnimplementedError();
-//   }
-// }

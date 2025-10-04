@@ -419,26 +419,6 @@ class _PhoneInputState extends State<PhoneInput>
               themeValue: componentTheme?.popupConstraints,
             ),
             popupWidthConstraint: PopoverConstraint.flexible,
-            // searchPlaceholder: widget.searchPlaceholder ??
-            //     Text(localization.searchPlaceholderCountry),
-            // searchFilter: (item, query) {
-            //   query = query.toLowerCase();
-            //   var searchScore = item.name.toLowerCase().contains(query) ||
-            //           item.dialCode.contains(query) ||
-            //           item.code.toLowerCase().contains(query)
-            //       ? 1
-            //       : 0;
-            //   return searchScore;
-            // },
-            // emptyBuilder: (context) {
-            //   return Container(
-            //     padding: EdgeInsets.all(theme.scaling * 16),
-            //     child: Text(
-            //       localization.emptyCountryList,
-            //       textAlign: TextAlign.center,
-            //     ).small().muted(),
-            //   );
-            // },
             value: _country,
           ),
           LimitedBox(

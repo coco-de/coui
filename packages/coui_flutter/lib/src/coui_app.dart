@@ -325,8 +325,6 @@ class _CoUIAppState extends State<CoUIApp> {
             routerDelegate: widget.routerDelegate,
             shortcuts: widget.shortcuts,
             showPerformanceOverlay: widget.showPerformanceOverlay,
-            // checkerboardRasterCacheImages: widget.checkerboardRasterCacheImages,
-            // checkerboardOffscreenLayers: widget.checkerboardOffscreenLayers,
             showSemanticsDebugger: widget.showSemanticsDebugger,
             supportedLocales: widget.supportedLocales,
             textStyle: widget.theme.typography.sans.copyWith(

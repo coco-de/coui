@@ -1820,6 +1820,13 @@ class _TreeItemViewState extends State<TreeItemView> {
           duration: kDefaultDuration,
           firstChild: IntrinsicHeight(
             child: Clickable(
+              onPressed: () {
+                if (widget.onPressed != null) {
+                  widget.onPressed!();
+                }
+                _focusNode.requestFocus();
+                _data!.onFocusChanged?.call(FocusChangeReason.userInteraction);
+              },
               actions: {
                 ActivateIntent: CallbackAction(
                   onInvoke: (e) {
@@ -1898,13 +1905,6 @@ class _TreeItemViewState extends State<TreeItemView> {
                   widget.onExpand!(!data.node.expanded);
                 }
                 _focusNode.requestFocus();
-              },
-              onPressed: () {
-                if (widget.onPressed != null) {
-                  widget.onPressed!();
-                }
-                _focusNode.requestFocus();
-                _data!.onFocusChanged?.call(FocusChangeReason.userInteraction);
               },
               shortcuts: {
                 if (widget.onExpand != null &&

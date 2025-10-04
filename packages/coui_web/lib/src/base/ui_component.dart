@@ -117,6 +117,8 @@ abstract class UiComponent extends StatelessComponent {
   /// with these taking precedence in case of conflicts.
   final Map<String, String>? _userProvidedAttributes;
 
+  static const _emptyString = '';
+
   /// Creates a copy of this component with the given fields replaced with
   /// new values.
   ///
@@ -234,12 +236,13 @@ abstract class UiComponent extends StatelessComponent {
     // Convert each modifier in the list to its string representation
     // (which includes prefixes)
     final utilityClasses =
-        style?.map((Styling styling) => styling.toString()).join(' ') ?? '';
+        style?.map((Styling styling) => styling.toString()).join(' ') ??
+            _emptyString;
 
     return <String>[
       baseClass,
       utilityClasses,
-      classes ?? '',
+      classes ?? _emptyString
     ].where((String className) => className.isNotEmpty).join(' ');
   }
 
@@ -334,6 +337,6 @@ abstract class UiComponent extends StatelessComponent {
       builder.merge(_userProvidedAttributes);
     }
 
-    return builder.build();
+    return builder.build;
   }
 }

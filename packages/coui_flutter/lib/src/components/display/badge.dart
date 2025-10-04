@@ -117,9 +117,9 @@ class PrimaryBadge extends StatelessWidget {
 
     return ExcludeFocus(
       child: Button(
+        onPressed: onPressed,
         enabled: true,
         leading: leading,
-        onPressed: onPressed,
         style: baseStyle,
         trailing: trailing,
         child: child,
@@ -162,9 +162,9 @@ class SecondaryBadge extends StatelessWidget {
 
     return ExcludeFocus(
       child: Button(
+        onPressed: onPressed,
         enabled: true,
         leading: leading,
-        onPressed: onPressed,
         style: baseStyle,
         trailing: trailing,
         child: child,
@@ -207,9 +207,9 @@ class OutlineBadge extends StatelessWidget {
 
     return ExcludeFocus(
       child: Button(
+        onPressed: onPressed,
         enabled: true,
         leading: leading,
-        onPressed: onPressed,
         style: baseStyle,
         trailing: trailing,
         child: child,
@@ -252,9 +252,9 @@ class DestructiveBadge extends StatelessWidget {
 
     return ExcludeFocus(
       child: Button(
+        onPressed: onPressed,
         enabled: true,
         leading: leading,
-        onPressed: onPressed,
         style: baseStyle,
         trailing: trailing,
         child: child,

@@ -1,4 +1,5 @@
 import 'package:coui_web/src/base/style_type.dart';
+import 'package:coui_web/src/base/types.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
 import 'package:coui_web/src/base/ui_events.dart';
@@ -116,10 +117,9 @@ class Button extends UiComponent {
     super.tag = _buttonValue,
   }) : _style = style,
        super(
-         children: null,
-         onClick: onPressed != null ? (_) => onPressed() : null,
-         onMouseEnter: onHover != null ? (e) => onHover(true) : null,
-         onMouseLeave: onHover != null ? (e) => onHover(false) : null,
+         onClick: onPressed == null ? null : (_) => onPressed(),
+         onMouseEnter: onHover == null ? null : (e) => onHover(true),
+         onMouseLeave: onHover == null ? null : (e) => onHover(false),
          style: style,
        );
 
@@ -148,10 +148,9 @@ class Button extends UiComponent {
     super.tag = _buttonValue,
   }) : _style = const [Button.primaryStyle],
        super(
-         children: null,
-         onClick: onPressed != null ? (_) => onPressed() : null,
-         onMouseEnter: onHover != null ? (e) => onHover(true) : null,
-         onMouseLeave: onHover != null ? (e) => onHover(false) : null,
+         onClick: onPressed == null ? null : (_) => onPressed(),
+         onMouseEnter: onHover == null ? null : (e) => onHover(true),
+         onMouseLeave: onHover == null ? null : (e) => onHover(false),
          style: const [Button.primaryStyle],
        );
 
@@ -180,10 +179,9 @@ class Button extends UiComponent {
     super.tag = _buttonValue,
   }) : _style = const [Button.secondaryStyle],
        super(
-         children: null,
-         onClick: onPressed != null ? (_) => onPressed() : null,
-         onMouseEnter: onHover != null ? (e) => onHover(true) : null,
-         onMouseLeave: onHover != null ? (e) => onHover(false) : null,
+         onClick: onPressed == null ? null : (_) => onPressed(),
+         onMouseEnter: onHover == null ? null : (e) => onHover(true),
+         onMouseLeave: onHover == null ? null : (e) => onHover(false),
          style: const [Button.secondaryStyle],
        );
 
@@ -212,10 +210,9 @@ class Button extends UiComponent {
     super.tag = _buttonValue,
   }) : _style = const [Button.outlineStyle],
        super(
-         children: null,
-         onClick: onPressed != null ? (_) => onPressed() : null,
-         onMouseEnter: onHover != null ? (e) => onHover(true) : null,
-         onMouseLeave: onHover != null ? (e) => onHover(false) : null,
+         onClick: onPressed == null ? null : (_) => onPressed(),
+         onMouseEnter: onHover == null ? null : (e) => onHover(true),
+         onMouseLeave: onHover == null ? null : (e) => onHover(false),
          style: const [Button.outlineStyle],
        );
 
@@ -244,10 +241,9 @@ class Button extends UiComponent {
     super.tag = _buttonValue,
   }) : _style = const [Button.ghostStyle],
        super(
-         children: null,
-         onClick: onPressed != null ? (_) => onPressed() : null,
-         onMouseEnter: onHover != null ? (e) => onHover(true) : null,
-         onMouseLeave: onHover != null ? (e) => onHover(false) : null,
+         onClick: onPressed == null ? null : (_) => onPressed(),
+         onMouseEnter: onHover == null ? null : (e) => onHover(true),
+         onMouseLeave: onHover == null ? null : (e) => onHover(false),
          style: const [Button.ghostStyle],
        );
 
@@ -276,10 +272,9 @@ class Button extends UiComponent {
     super.tag = _buttonValue,
   }) : _style = const [Button.linkStyle],
        super(
-         children: null,
-         onClick: onPressed != null ? (_) => onPressed() : null,
-         onMouseEnter: onHover != null ? (e) => onHover(true) : null,
-         onMouseLeave: onHover != null ? (e) => onHover(false) : null,
+         onClick: onPressed == null ? null : (_) => onPressed(),
+         onMouseEnter: onHover == null ? null : (e) => onHover(true),
+         onMouseLeave: onHover == null ? null : (e) => onHover(false),
          style: const [Button.linkStyle],
        );
 
@@ -310,10 +305,9 @@ class Button extends UiComponent {
          Button.ghostStyle,
        ], // DaisyUI doesn't have text variant, use ghost.
        super(
-         children: null,
-         onClick: onPressed != null ? (_) => onPressed() : null,
-         onMouseEnter: onHover != null ? (e) => onHover(true) : null,
-         onMouseLeave: onHover != null ? (e) => onHover(false) : null,
+         onClick: onPressed == null ? null : (_) => onPressed(),
+         onMouseEnter: onHover == null ? null : (e) => onHover(true),
+         onMouseLeave: onHover == null ? null : (e) => onHover(false),
          style: const [Button.ghostStyle],
        );
 
@@ -342,60 +336,56 @@ class Button extends UiComponent {
     super.tag = _buttonValue,
   }) : _style = const [Button.errorStyle],
        super(
-         children: null,
-         onClick: onPressed != null ? (_) => onPressed() : null,
-         onMouseEnter: onHover != null ? (e) => onHover(true) : null,
-         onMouseLeave: onHover != null ? (e) => onHover(false) : null,
+         onClick: onPressed == null ? null : (_) => onPressed(),
+         onMouseEnter: onHover == null ? null : (e) => onHover(true),
+         onMouseLeave: onHover == null ? null : (e) => onHover(false),
          style: const [Button.errorStyle],
        );
 
-  /// Main content of the button
+  /// Main content of the button.
   final Component child;
 
-  /// Primary action callback (Flutter-compatible API)
-  final void Function()? onPressed;
+  /// Primary action callback (Flutter-compatible API).
+  final VoidCallback? onPressed;
 
-  /// Whether button responds to interactions
+  /// Whether button responds to interactions.
   final bool enabled;
 
-  /// Widget displayed before the main content
+  /// Widget displayed before the main content.
   final Component? leading;
 
-  /// Widget displayed after the main content
+  /// Widget displayed after the main content.
   final Component? trailing;
 
-  /// Button size
+  /// Button size.
   final ButtonSize? size;
 
-  /// Button shape
+  /// Button shape.
   final ButtonShape? shape;
 
-  /// Button density
+  /// Button density.
   final ButtonDensity? density;
 
-  /// The HTML 'type' attribute for the button
+  /// The HTML 'type' attribute for the button.
   final ButtonHtmlType? htmlType;
 
-  /// The ARIA role for the component
+  /// The ARIA role for the component.
   final String? role;
 
-  /// Whether to disable state animations
+  /// Whether to disable state animations.
   final bool disableTransition;
 
-  /// Hover state change callback
+  /// Hover state change callback.
   final void Function(bool)? onHover;
 
-  /// Focus state change callback
+  /// Focus state change callback.
   final void Function(bool)? onFocus;
 
-  /// Whether button should be wide
+  /// Whether button should be wide.
   final bool wide;
 
-  /// Whether button should be full width
+  /// Whether button should be full width.
   final bool block;
-
-  /// Internal style list
-  final List<ButtonStyling>? _style;
 
   // --- Static Button Style Modifiers ---.
 
@@ -482,6 +472,9 @@ class Button extends UiComponent {
   /// Circle button shape. `btn-circle`.
   static const circleStyle = ButtonStyle('btn-circle', type: StyleType.form);
 
+  /// Internal style list.
+  final List<ButtonStyling>? _style;
+
   static const _buttonValue = 'button';
   static const _typeAttribute = 'type';
   static const _disabledValue = 'disabled';
@@ -495,59 +488,6 @@ class Button extends UiComponent {
   @override
   String get baseClass => _buttonBaseClass;
 
-  List<ButtonStyling> _buildStyles() {
-    final styles = <ButtonStyling>[
-      if (_style != null) ..._style!,
-      if (!enabled) disabledStyle,
-      if (size != null) _getSizeStyle(size!),
-      if (shape != null) _getShapeStyle(shape!),
-      if (wide) wideStyle,
-      if (block) blockStyle,
-    ];
-    return styles;
-  }
-
-  ButtonStyle _getSizeStyle(ButtonSize size) {
-    switch (size) {
-      case ButtonSize.xs:
-        return xsStyle;
-      case ButtonSize.sm:
-        return smStyle;
-      case ButtonSize.md:
-        return mdStyle;
-      case ButtonSize.lg:
-        return lgStyle;
-      case ButtonSize.xl:
-        return xlStyle;
-    }
-  }
-
-  ButtonStyle _getShapeStyle(ButtonShape shape) {
-    switch (shape) {
-      case ButtonShape.rectangle:
-        return mdStyle; // Default shape, no specific class
-      case ButtonShape.square:
-        return squareStyle;
-      case ButtonShape.circle:
-        return circleStyle;
-    }
-  }
-
-  Component _buildChild() {
-    if (leading == null && trailing == null) {
-      return child;
-    }
-
-    // Build content with leading and trailing
-    final content = <Component>[
-      if (leading != null) leading!,
-      child,
-      if (trailing != null) trailing!,
-    ];
-
-    return span(children: content);
-  }
-
   @override
   void configureAttributes(UiComponentAttributes attributes) {
     super.configureAttributes(attributes);
@@ -558,8 +498,9 @@ class Button extends UiComponent {
     }
 
     // Set the ARIA 'role' attribute
-    if (role != null) {
-      attributes.addRole(role!);
+    final currentRole = role;
+    if (currentRole != null) {
+      attributes.addRole(currentRole);
     } else if (tag != _buttonValue) {
       attributes.addRole(_buttonValue);
     }
@@ -623,5 +564,53 @@ class Button extends UiComponent {
       id: id ?? this.id,
       tag: tag ?? this.tag,
     );
+  }
+
+  List<ButtonStyling> get _buildStyles {
+    final currentStyle = _style;
+    final currentSize = size;
+    final currentShape = shape;
+
+    return [
+      ...?currentStyle,
+      if (!enabled) disabledStyle,
+      if (currentSize != null) _getSizeStyle(currentSize),
+      if (currentShape != null) _getShapeStyle(currentShape),
+      if (wide) wideStyle,
+      if (block) blockStyle,
+    ];
+  }
+
+  static ButtonStyle _getSizeStyle(ButtonSize size) => switch (size) {
+        ButtonSize.xs => xsStyle,
+        ButtonSize.sm => smStyle,
+        ButtonSize.md => mdStyle,
+        ButtonSize.lg => lgStyle,
+        ButtonSize.xl => xlStyle,
+      };
+
+  static ButtonStyle _getShapeStyle(ButtonShape shape) => switch (shape) {
+        ButtonShape.rectangle => mdStyle, // Default shape, no specific class
+        ButtonShape.square => squareStyle,
+        ButtonShape.circle => circleStyle,
+      };
+
+  Component get _contentWithLeadingTrailing {
+    final currentLeading = leading;
+    final currentTrailing = trailing;
+
+    if (currentLeading == null && currentTrailing == null) {
+      // ignore: match-getter-setter-field-names - Returns child when no leading/trailing
+      return child;
+    }
+
+    // Build content with leading and trailing
+    final content = [
+      ?currentLeading,
+      child,
+      ?currentTrailing,
+    ];
+
+    return span(children: content);
   }
 }

@@ -219,7 +219,10 @@ abstract class ItemPickerLayout {
   static const grid = GridItemPickerLayout();
 
   Widget build(
-      ItemPickerBuilder builder, BuildContext context, ItemChildDelegate items);
+    ItemPickerBuilder builder,
+    BuildContext context,
+    ItemChildDelegate items,
+  );
 }
 
 class ListItemPickerLayout extends ItemPickerLayout {
@@ -278,9 +281,10 @@ class GridItemPickerLayout extends ItemPickerLayout {
       removeTop: true,
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: theme.scaling * 4.0,
-            mainAxisSpacing: theme.scaling * 4.0),
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: theme.scaling * 4.0,
+          mainAxisSpacing: theme.scaling * 4.0,
+        ),
         itemBuilder: (context, index) {
           final item = items[index];
 
@@ -361,22 +365,26 @@ class _InternalItemPicker<T> extends StatelessWidget {
       children: [
         if (title != null)
           Padding(
-            padding: EdgeInsets.all(theme.scaling * 16.0) +
+            padding:
+                EdgeInsets.all(theme.scaling * 16.0) +
                 EdgeInsets.only(top: padding.top),
             child: title?.large.semiBold,
           ),
         ConstrainedBox(
-          constraints: constraints ??
+          constraints:
+              constraints ??
               BoxConstraints(
-                  maxHeight: theme.scaling * 320,
-                  maxWidth: theme.scaling * 320),
+                maxHeight: theme.scaling * 320,
+                maxWidth: theme.scaling * 320,
+              ),
           child: MediaQuery(
             data: MediaQuery.of(context).copyWith(
-                padding: title == null
-                    ? padding + const EdgeInsets.all(8) * theme.scaling
-                    : padding.copyWith(top: 0) +
+              padding: title == null
+                  ? padding + const EdgeInsets.all(8) * theme.scaling
+                  : padding.copyWith(top: 0) +
                         const EdgeInsets.only(bottom: 8, left: 8, right: 8) *
-                            theme.scaling),
+                            theme.scaling,
+            ),
             child: ItemPickerDialog<T>(
               builder: builder,
               items: items,
@@ -541,17 +549,19 @@ class ItemPickerOption<T> extends StatelessWidget {
     if (data.layout is ListItemPickerLayout) {
       return label == null
           ? Button(
-              onPressed:
-                  data.onChanged == null ? null : () => data.onChanged!(value),
+              onPressed: data.onChanged == null
+                  ? null
+                  : () => data.onChanged!(value),
               style: data.value == value
                   ? (selectedStyle ?? ButtonVariance.primary)
                   : (style ?? ButtonVariance.ghost),
               child: child,
             )
           : Button(
+              onPressed: data.onChanged == null
+                  ? null
+                  : () => data.onChanged!(value),
               leading: child,
-              onPressed:
-                  data.onChanged == null ? null : () => data.onChanged!(value),
               style: data.value == value
                   ? (selectedStyle ?? ButtonVariance.primary)
                   : (style ?? ButtonVariance.ghost),
@@ -560,6 +570,7 @@ class ItemPickerOption<T> extends StatelessWidget {
     }
 
     return IconButton(
+      onPressed: data.onChanged == null ? null : () => data.onChanged!(value),
       icon: Stack(
         fit: StackFit.passthrough,
         children: [
@@ -574,7 +585,6 @@ class ItemPickerOption<T> extends StatelessWidget {
             ),
         ],
       ),
-      onPressed: data.onChanged == null ? null : () => data.onChanged!(value),
       variance: data.value == value
           ? (selectedStyle ?? ButtonVariance.primary)
           : (style ?? ButtonVariance.ghost),

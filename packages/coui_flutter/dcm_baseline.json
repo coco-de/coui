@@ -1,0 +1,1898 @@
+{
+  "date": "2025-10-04 12:41:29.520545Z",
+  "version": "1.31.4",
+  "sensitivity": "exact",
+  "commands": {
+    "analyze": {
+      "lib/src/animation.dart": {
+        "match-getter-setter-field-names": [
+          "49f47eca02c4a9394c422e855c998189",
+          "6af9544b3d6872ca272eea317cbfb920",
+          "f2eb808b792f1e9aaf1f2a7b9e911652",
+          "c194e262967cd439e325812bcff5502e"
+        ]
+      },
+      "lib/src/components/animation.dart": {
+        "prefer-switch-with-enums": [
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3"
+        ]
+      },
+      "lib/src/components/chart/tracker.dart": {
+        "format-comment": [
+          "5163c06502b0390bd90bc8adde8c9c46",
+          "338a9f9a29d08660be8e72e04e5490ff",
+          "f9df81012891e071f632d294664c0307",
+          "7f6f6c9adef2860a41bf3f1c969bf82a"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "270085d04af5c34d89c67d9589e80de3"
+        ]
+      },
+      "lib/src/components/control/button.dart": {
+        "prefer-parentheses-with-if-null": [
+          "cc2ce7ab6cb9b40a41e9ae39c86f6075",
+          "594343512d26fa850b35c88287ea8c26",
+          "8f25b734735e0da9af1ac2f3ca33d5b8",
+          "bb1331a4c37203af146ca80289386f17",
+          "fd3edfba5896f4f62845e8c1a8c342b4",
+          "34f659c07d8b1397735452077efea595",
+          "9922242d62f0acd03c97aaa47345b6fc",
+          "1d2abb287c9ff02b61f19ff7d729aa37",
+          "a53ad3e3f160090cc47de82d2aa93763",
+          "7bedc5bf725ce6c2f2fcf5d445dc9c82",
+          "1d73205c9f26fea8d6f29f474d36bdb7",
+          "3f919f7000a1b95d9e2c013fddf79b97",
+          "d7d00765ed49eb88528a4c2a2fafc04f",
+          "d58bb2b612208a46164a28cb1ecc486b",
+          "6504cceeffdb26e65c7705f1bd2682e0",
+          "7a1da88297867de64718a894c9d7f0ea",
+          "47161c66bab055ddfe50b2571c0a2254",
+          "4cc97425c47ec819bebfcda2de26e0fc",
+          "852876f02525f607ceef4b12a09be3d0"
+        ],
+        "avoid-nested-conditional-expressions": [
+          "f3c8c557b261961250df8b21dd5600a8",
+          "e1119c6bed9625d513166f29c8641f18",
+          "e75d39471b461ac6b90159295412e581",
+          "317ec7cc691d6351b7c3308e8d480920",
+          "4e7316c50785e85cf565387c1e37e1de",
+          "191d3e7d674b97478b7bc85386e155ad"
+        ],
+        "avoid-unnecessary-reassignment": [
+          "bc2c1e0e921904a0e0bf9997cd10f6fb",
+          "61a25a5a280e882bcfa6d0e6d2e8de43"
+        ]
+      },
+      "lib/src/components/control/clickable.dart": {
+        "prefer-switch-with-enums": [
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3"
+        ],
+        "avoid-wildcard-cases-with-enums": [
+          "c21f969b5f03d33d43e04f8f136e7682"
+        ],
+        "avoid-constant-assert-conditions": [
+          "68934a3e9455fa72420237eb05902327"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "7dbe7a2d9765ede5cc3b22c2d50331be"
+        ],
+        "function-always-returns-null": [
+          "5c5bfc1bf9a2ce022e80b68b7dc5d6f4",
+          "47636b6cef5ad6ff5bb39f316aee0e42"
+        ]
+      },
+      "lib/src/components/control/command.dart": {
+        "prefer-parentheses-with-if-null": [
+          "b6388baa74260d9f8b0838794df03a0e"
+        ],
+        "function-always-returns-null": [
+          "53384fd27d4bc0269fb7873fa8500aa5",
+          "80f50160e7807dc07ebb5411c468617e",
+          "5b730c7ae47c0a79fe2dc442c5756bc0",
+          "a5fc06ecb1c641802772e620d090e4a0"
+        ],
+        "always-remove-listener": [
+          "0768f72b0e615f432efddc7b2a41559b"
+        ]
+      },
+      "lib/src/components/control/hover.dart": {
+        "prefer-switch-with-enums": [
+          "39c8942e1038872a822c0dc75eedbde3"
+        ]
+      },
+      "lib/src/components/control/scrollview.dart": {
+        "avoid-passing-self-as-argument": [
+          "d6fe1d0be6347b8ef2427fa629c04485"
+        ]
+      },
+      "lib/src/components/display/avatar.dart": {
+        "avoid-missing-image-alt": [
+          "be53a0541a6d36f6ecb879fa2c584b08"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "d565f7da7c474ba1cb607fac5381368e",
+          "d565f7da7c474ba1cb607fac5381368e",
+          "d565f7da7c474ba1cb607fac5381368e",
+          "2b33cebcfa0f188dc43becd6000985b3",
+          "560e4cc135c27995013cc7f5ec065058",
+          "6920ef7bf0f746412ac4fcfd2b2a81ff",
+          "baa55160c7775326222f521b0f7e5312",
+          "2b33cebcfa0f188dc43becd6000985b3"
+        ],
+        "avoid-unnecessary-stateful-widgets": [
+          "1516f034907c07334b4a5b7f44d2c325"
+        ],
+        "format-comment": [
+          "3adb2d81eb13190c7532224560842a4e"
+        ],
+        "avoid-duplicate-initializers": [
+          "b435e227d5dd201e1768b2bcb2e0aa81"
+        ]
+      },
+      "lib/src/components/display/calendar.dart": {
+        "format-comment": [
+          "a10e5c5f0508a2ffe3ac33ab8ba8338d",
+          "26f65b6c0b70c09372fca21f270798f4",
+          "b29c1372ff9434ab4f561441349030a2",
+          "450481771689d97be5658a6b6df14a8b",
+          "ad0fd770d3ff3ff533bb87e4b01d399c"
+        ],
+        "avoid-wildcard-cases-with-enums": [
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4",
+          "3b444da9ea4901fb9fb2dfe6c4c4afe4"
+        ]
+      },
+      "lib/src/components/display/carousel.dart": {
+        "format-comment": [
+          "f1a5f9026ecd6ee507eae2d017aef534"
+        ],
+        "always-remove-listener": [
+          "28a5281953e7cf1ae3cb9f66d7fda560"
+        ]
+      },
+      "lib/src/components/display/circular_progress_indicator.dart": {
+        "prefer-parentheses-with-if-null": [
+          "a7fa66def871b5147016446e8f9e74f9"
+        ]
+      },
+      "lib/src/components/display/fade_scroll.dart": {
+        "avoid-unnecessary-nullable-return-type": [
+          "05375cf7707bab34ca73a279865fe0b4"
+        ]
+      },
+      "lib/src/components/display/progress.dart": {
+        "format-comment": [
+          "cfb61198d41f90b1e70f3b3fa2ab2003"
+        ]
+      },
+      "lib/src/components/form/autocomplete.dart": {
+        "function-always-returns-null": [
+          "1b642463159dbd2dac22bcb3d755664d"
+        ],
+        "always-remove-listener": [
+          "67a45783ae20b8ed452f515dcf2a41e3"
+        ]
+      },
+      "lib/src/components/form/checkbox.dart": {
+        "format-comment": [
+          "9489192aa12e74e3cacdf0f3899fd760"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "928ea0ab4122082d271fbc7f813f6139"
+        ]
+      },
+      "lib/src/components/form/chip_input.dart": {
+        "format-comment": [
+          "4dcf912a74f3e9ffc8b6afcf7f4c7a60"
+        ],
+        "function-always-returns-null": [
+          "2e079fe91e0861a755eb04cd55753325",
+          "ecbc49694acc1b44b11fa197803dfd0a",
+          "c5b5d86486a9aec564e358117d4947ea"
+        ],
+        "always-remove-listener": [
+          "67a45783ae20b8ed452f515dcf2a41e3",
+          "6bfad20491ab0240ab3158494e2d5c6a"
+        ]
+      },
+      "lib/src/components/form/color_picker.dart": {
+        "format-comment": [
+          "a7691db1adaf60a84ceab83d741ce606"
+        ],
+        "use-setstate-synchronously": [
+          "075363380323b4799196ff5108cc951d"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "db906baa1e4dbfb1ace51c666938c48b",
+          "06ce825de221f034fc46af8caf5e4a9e",
+          "06ce825de221f034fc46af8caf5e4a9e",
+          "06ce825de221f034fc46af8caf5e4a9e"
+        ],
+        "avoid-missing-image-alt": [
+          "be53a0541a6d36f6ecb879fa2c584b08"
+        ],
+        "avoid-unnecessary-stateful-widgets": [
+          "b5d75e693b668df1b674b65bc26905ca"
+        ],
+        "avoid-passing-async-when-sync-expected": [
+          "803ae6ec4627300c3a39c587bf106438",
+          "e77368e2d28785e2ff79cfb6a6724bb9"
+        ],
+        "use-closest-build-context": [
+          "5c18ef72771564b7f43c497dc507aeab",
+          "5c18ef72771564b7f43c497dc507aeab",
+          "5c18ef72771564b7f43c497dc507aeab",
+          "5c18ef72771564b7f43c497dc507aeab"
+        ],
+        "prefer-switch-with-enums": [
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3"
+        ],
+        "no-equal-conditions": [
+          "f5443280352ae4253745f939fe248f2d",
+          "23851bfa9cbb1e547fd259a9dc5bf47a",
+          "c63f61f6af111cd656ebfeacd26e3c41",
+          "1308ebe1bf2c23082335a6ab4b99e153",
+          "f02eda9d62344b0459143651b4bec89d"
+        ]
+      },
+      "lib/src/components/form/control.dart": {
+        "format-comment": [
+          "c80c5ca6409c8f9b2f95492c8f05763e"
+        ]
+      },
+      "lib/src/components/form/form.dart": {
+        "prefer-switch-with-enums": [
+          "130ced157f14e6e5e9269ee1c8638fb4"
+        ],
+        "avoid-collection-equality-checks": [
+          "26715c748b3389c8fe2db9470683b768"
+        ],
+        "avoid-unnecessary-nullable-return-type": [
+          "d3f45512a9fc65f231f109a15eb83a41"
+        ],
+        "always-remove-listener": [
+          "6b6f37887dca8bfc2864304cf7552a5d"
+        ],
+        "match-getter-setter-field-names": [
+          "c737b21a1285e527d6fa265aab1c7124"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "683992ba91ef0279b4877a2d72182bbc",
+          "683992ba91ef0279b4877a2d72182bbc",
+          "d37cd3fc9602fa2a3a9691c98dac14b5"
+        ]
+      },
+      "lib/src/components/form/form_field.dart": {
+        "prefer-parentheses-with-if-null": [
+          "928ea0ab4122082d271fbc7f813f6139"
+        ]
+      },
+      "lib/src/components/form/formatted_input.dart": {
+        "match-getter-setter-field-names": [
+          "1cb251ec0d568de6a929b520c4aed8d1"
+        ],
+        "avoid-unnecessary-stateful-widgets": [
+          "6a73cbb3d7a7524e4ad8cb6020d41d41"
+        ],
+        "format-comment": [
+          "9e628f6fab8a7bbb9dc7e15f3b0baa45"
+        ],
+        "avoid-undisposed-instances": [
+          "a132441f1e7665b3eda1b99f234e1849",
+          "a132441f1e7665b3eda1b99f234e1849"
+        ],
+        "avoid-collection-equality-checks": [
+          "4ff57ebf4937e3f20189c12eae3a8e39"
+        ],
+        "always-remove-listener": [
+          "c2824c6705922e093562ac07ace0f97b"
+        ]
+      },
+      "lib/src/components/form/input.dart": {
+        "prefer-parentheses-with-if-null": [
+          "6cf99aaff73d41f09633f5452db26446",
+          "86c0eba9edfe7808f4ae1d249f041b5b",
+          "3028e7577ce0562433b343fc31a2f092"
+        ],
+        "avoid-conditions-with-boolean-literals": [
+          "68934a3e9455fa72420237eb05902327"
+        ]
+      },
+      "lib/src/components/form/input_otp.dart": {
+        "prefer-parentheses-with-if-null": [
+          "683992ba91ef0279b4877a2d72182bbc",
+          "7737f133afcb9c2bf31aa3c506c985c3"
+        ],
+        "always-remove-listener": [
+          "6b6f37887dca8bfc2864304cf7552a5d"
+        ],
+        "avoid-undisposed-instances": [
+          "a132441f1e7665b3eda1b99f234e1849",
+          "a132441f1e7665b3eda1b99f234e1849"
+        ]
+      },
+      "lib/src/components/form/item_picker.dart": {
+        "avoid-unnecessary-stateful-widgets": [
+          "8559194351de2322b17d8ca8434d01a2"
+        ]
+      },
+      "lib/src/components/form/multiple_choice.dart": {
+        "format-comment": [
+          "ac0fa4eae877282b3190108b3016d011",
+          "9da2d5a60cad104634805a36250940f1"
+        ]
+      },
+      "lib/src/components/form/object_input.dart": {
+        "format-comment": [
+          "fc020a2c43f05c88eb446f9e60b7c421",
+          "e7eb9d93d0468410d4c05da5d036f4a2",
+          "18cfd50b8cbcc0dae23530f090493a9b"
+        ],
+        "no-equal-switch-case": [
+          "00c0c2480704b9e2a99ecc8d9230df30",
+          "efb7709de6c85ac5bf5d95bbad39f17c"
+        ]
+      },
+      "lib/src/components/form/phone_input.dart": {
+        "always-remove-listener": [
+          "461bbc06eb468fd250c621029f2796e3"
+        ]
+      },
+      "lib/src/components/form/radio_group.dart": {
+        "function-always-returns-null": [
+          "54f0a2c767a4cbb6ca7743a89e9e4fd9",
+          "54f0a2c767a4cbb6ca7743a89e9e4fd9",
+          "54f0a2c767a4cbb6ca7743a89e9e4fd9",
+          "54f0a2c767a4cbb6ca7743a89e9e4fd9"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "1457a9264071cccb46f6ebcacc6ed71b",
+          "1457a9264071cccb46f6ebcacc6ed71b",
+          "928ea0ab4122082d271fbc7f813f6139"
+        ],
+        "format-comment": [
+          "469fcb70cc18467b0430fe18ee171383",
+          "4bf354b2e848d0fef0553896e16719a3"
+        ]
+      },
+      "lib/src/components/form/select.dart": {
+        "format-comment": [
+          "1207e86ba4aac2fd8e31587fa8b9cda6",
+          "ad96e3a9f0c90ad7c7a18e51215fb2de"
+        ],
+        "function-always-returns-null": [
+          "a55961092a48a9292d91b45aab6cb584",
+          "13971f3f54ac08fbe11c5f5399ccb39a",
+          "8a3fab3599a10dec12052cfb05a97e0e",
+          "c73dec259573c70c5950da66ba0d534b",
+          "7eff568bf2165361ca8a21571cd51eb3"
+        ],
+        "prefer-null-aware-spread": [
+          "643dc08676e4e7894b435ed21f23f559",
+          "8184c431102c6c9714580a251cceaf53"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "928ea0ab4122082d271fbc7f813f6139",
+          "928ea0ab4122082d271fbc7f813f6139"
+        ],
+        "match-getter-setter-field-names": [
+          "0d4cb8507c04858b67da3ea31641fd3b"
+        ]
+      },
+      "lib/src/components/form/slider.dart": {
+        "format-comment": [
+          "2e9cb53cd58ebda2744696a6c400f1b0"
+        ],
+        "match-getter-setter-field-names": [
+          "5adcc130362394d82279fe2aaba135f0"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "928ea0ab4122082d271fbc7f813f6139",
+          "6f694f711fae1afcb127e86b07ca9792",
+          "6f694f711fae1afcb127e86b07ca9792",
+          "6f694f711fae1afcb127e86b07ca9792",
+          "6f694f711fae1afcb127e86b07ca9792",
+          "6f694f711fae1afcb127e86b07ca9792",
+          "6f694f711fae1afcb127e86b07ca9792"
+        ]
+      },
+      "lib/src/components/form/star_rating.dart": {
+        "format-comment": [
+          "ab595672322e42fd10a862799d6b8548",
+          "179027393f5306329cd176755ebd4865"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "928ea0ab4122082d271fbc7f813f6139"
+        ],
+        "function-always-returns-null": [
+          "59bb7a6d5da48396db1429351bad3710",
+          "610a80914743b534dcb7bc06d3f0437e"
+        ]
+      },
+      "lib/src/components/form/text_area.dart": {
+        "format-comment": [
+          "14d8a615e55e8506cb0c6950f7795885"
+        ]
+      },
+      "lib/src/components/form/text_field.dart": {
+        "dispose-class-fields": [
+          "4d78207f7e4742db5062eb8b73ff612f"
+        ],
+        "match-getter-setter-field-names": [
+          "3212e037bb3750c1dc7ba268e0993a4e"
+        ],
+        "avoid-incomplete-copy-with": [
+          "46d0d243272ad9ea4e076055472c897e"
+        ],
+        "avoid-conditions-with-boolean-literals": [
+          "b326b5062b2f0e69046810717534cb09"
+        ],
+        "function-always-returns-null": [
+          "f56eeb1da7116536aa2e12d480efb9a5",
+          "e26d8be19118fea49a269284a8902410",
+          "3bda28ea10a94cc27ae39ecf7376fcdd",
+          "36ecd1c53613498ddca79944d702997e",
+          "2022c73967e16ccf9db5932f89482819",
+          "c6553a1fe0b74b1bf0e5981b84f6766d"
+        ]
+      },
+      "lib/src/components/form/time_picker.dart": {
+        "format-comment": [
+          "22d3169625954ed763fa195f06f2309a"
+        ],
+        "prefer-dedicated-media-query-methods": [
+          "8bf8854bebe108183caeb845c7676ae4"
+        ]
+      },
+      "lib/src/components/form/toggle.dart": {
+        "prefer-parentheses-with-if-null": [
+          "928ea0ab4122082d271fbc7f813f6139"
+        ]
+      },
+      "lib/src/components/icon/triple_dots.dart": {
+        "prefer-parentheses-with-if-null": [
+          "b957432503d4a04e822cab9219a6e19c"
+        ]
+      },
+      "lib/src/components/layout/accordion.dart": {
+        "prefer-parentheses-with-if-null": [
+          "89cb5dabb7b00ff3ea10297b06b95e0b",
+          "d37cd3fc9602fa2a3a9691c98dac14b5",
+          "d37cd3fc9602fa2a3a9691c98dac14b5",
+          "c6202f274ab06d32b27fc0947d2fa547"
+        ],
+        "avoid-unnecessary-gesture-detector": [
+          "58732ecf2983b270acf42ab4174eba0d"
+        ],
+        "always-remove-listener": [
+          "e0782dc8d41aa47d6eb5f3c623042b4d",
+          "e0782dc8d41aa47d6eb5f3c623042b4d"
+        ]
+      },
+      "lib/src/components/layout/basic.dart": {
+        "format-comment": [
+          "aa8e9c492b6a93df6a05cd02a4f48b60"
+        ]
+      },
+      "lib/src/components/layout/card.dart": {
+        "avoid-collection-equality-checks": [
+          "3ec067dfe4895570eb84ddbf0d5a29ac"
+        ]
+      },
+      "lib/src/components/layout/collapsible.dart": {
+        "prefer-parentheses-with-if-null": [
+          "d37cd3fc9602fa2a3a9691c98dac14b5",
+          "d973107390cbfa6f6a163cad1721cfe4",
+          "e2670e8a84b60ed518e3714ed9e4df9d",
+          "d37cd3fc9602fa2a3a9691c98dac14b5"
+        ]
+      },
+      "lib/src/components/layout/dialog/alert_dialog.dart": {
+        "avoid-unnecessary-stateful-widgets": [
+          "5aba7cbe4fe7a5668e308cfb5be81afb"
+        ]
+      },
+      "lib/src/components/layout/outlined_container.dart": {
+        "avoid-collection-equality-checks": [
+          "3ec067dfe4895570eb84ddbf0d5a29ac"
+        ]
+      },
+      "lib/src/components/layout/overflow_marquee.dart": {
+        "avoid-unnecessary-collections": [
+          "c5593b057cc9d050026879bb6a94e12d",
+          "07b77f720764bf45af42f9e07b5f7aaf",
+          "c5593b057cc9d050026879bb6a94e12d",
+          "84b7e6bf8e3cd674011866c606a8011d"
+        ]
+      },
+      "lib/src/components/layout/resizable.dart": {
+        "match-getter-setter-field-names": [
+          "a9128640bf5e7e358083dbfb4b7e6ce3",
+          "e9d4d7ab37f8a13cd1d85e7efaf18647"
+        ],
+        "avoid-unnecessary-nullable-return-type": [
+          "485342acd04c7660634bdf09d2db7b68"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "8fb398996f479232e675471f95f67ecd",
+          "472533d331a48c804f21f7b71dfc3c2f"
+        ],
+        "avoid-conditions-with-boolean-literals": [
+          "68934a3e9455fa72420237eb05902327"
+        ],
+        "avoid-unnecessary-reassignment": [
+          "7028802ad4718cb7a814f36cf255a16c",
+          "aaadf53786d3b2c4d3a98f127e794763"
+        ],
+        "format-comment": [
+          "c75cfae5119c7f1d7e040e18eb33f7ac"
+        ]
+      },
+      "lib/src/components/layout/scaffold.dart": {
+        "avoid-undisposed-instances": [
+          "ca69f942c3b2b3165defc1a5ba9d01b6"
+        ],
+        "avoid-unnecessary-stateful-widgets": [
+          "a50ad07b3ea9bb4c451d3429dffe4fa1",
+          "ccca267327bd1be6c7027f6a1ee92bba"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "2044f9d71446dd6ace3a38bb5eeb9e5e"
+        ],
+        "avoid-conditions-with-boolean-literals": [
+          "68934a3e9455fa72420237eb05902327",
+          "b326b5062b2f0e69046810717534cb09"
+        ],
+        "consistent-update-render-object": [
+          "d01b15ff4ade36308e3024af85708464"
+        ]
+      },
+      "lib/src/components/layout/scrollable_client.dart": {
+        "avoid-undisposed-instances": [
+          "ab8b82a9290af95c78ccef84607fc915"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "4652d9086deb4a69b2bf8552318b9cbb"
+        ],
+        "avoid-unrelated-type-casts": [
+          "3463a54e7f7634cde673fc1ce5e64ae5"
+        ],
+        "consistent-update-render-object": [
+          "fda860d144ff62c8f9d09dc5ab2d70cb"
+        ],
+        "prefer-overriding-parent-equality": [
+          "258f1e8d82be84cffb82664e7a40f0d7",
+          "258f1e8d82be84cffb82664e7a40f0d7"
+        ]
+      },
+      "lib/src/components/layout/sortable.dart": {
+        "avoid-unnecessary-stateful-widgets": [
+          "82f28c2cb54d6f7575d3fcd251183f1c"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "9fcf8be20f9099256b9eeffb6c758b5f",
+          "f6854a5177cdbce5651c8d6d17624399"
+        ],
+        "match-getter-setter-field-names": [
+          "45eb92c82b3df6bb0ee7266dba068279",
+          "45eb92c82b3df6bb0ee7266dba068279"
+        ],
+        "avoid-unnecessary-setstate": [
+          "a85acde290cd9a2d4cda7657a1df2c1f"
+        ]
+      },
+      "lib/src/components/layout/stepper.dart": {
+        "format-comment": [
+          "828567b1665bc83abe788dfb9a0f0b2c",
+          "238f8adc0acc6c4f0d6db7dc02defacd"
+        ],
+        "avoid-nested-conditional-expressions": [
+          "84ad960ac077afbd245614f9c08bc092"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "89e5d8a207c8756a20cd6b775cf18fb7"
+        ],
+        "avoid-unnecessary-stateful-widgets": [
+          "242d01c5f27b63923fa269a817ff4f5a"
+        ]
+      },
+      "lib/src/components/layout/steps.dart": {
+        "prefer-parentheses-with-if-null": [
+          "ffb7954bce22af00e431c4b9e885f652",
+          "c6202f274ab06d32b27fc0947d2fa547",
+          "89cb5dabb7b00ff3ea10297b06b95e0b"
+        ]
+      },
+      "lib/src/components/layout/table.dart": {
+        "format-comment": [
+          "7d74da18b2f7a7c96b2b52bfb28fb9f0",
+          "f9bb2fc856da8cc2fd15f7c824b2047e",
+          "bbb12ef38d8b617ec9284567ffa39e5f"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "14ee32e1a7ba0d231da32304cfd11c7b",
+          "14ee32e1a7ba0d231da32304cfd11c7b",
+          "14ee32e1a7ba0d231da32304cfd11c7b",
+          "14ee32e1a7ba0d231da32304cfd11c7b",
+          "f86d209ea7107978e9a0220e70f9c71d",
+          "4e9889171a6a0c7ff6f5f09f2c5a4e44"
+        ],
+        "no-equal-nested-conditions": [
+          "3e9d38a0b0b762c0f0351eaf3f26c79a"
+        ],
+        "consistent-update-render-object": [
+          "d01b15ff4ade36308e3024af85708464"
+        ],
+        "avoid-unused-assignment": [
+          "d701ad746c264fc8fb1b551c98759174",
+          "bdac93802659441d307ef18d5c1d6c4d"
+        ]
+      },
+      "lib/src/components/layout/timeline.dart": {
+        "prefer-parentheses-with-if-null": [
+          "d37cd3fc9602fa2a3a9691c98dac14b5",
+          "0b69a0aeea3d52dd7b17325dd894692f",
+          "220767db29cf4bb4a3a245e30b62561c",
+          "d37cd3fc9602fa2a3a9691c98dac14b5"
+        ]
+      },
+      "lib/src/components/layout/tree.dart": {
+        "prefer-switch-with-enums": [
+          "39c8942e1038872a822c0dc75eedbde3"
+        ],
+        "function-always-returns-null": [
+          "a38815e9bdde903f2dd82f173ae304d7",
+          "66afca5005c3c9893d4d74ff7bf0db57",
+          "7418a65bc89fef37b33a38b22f20e815",
+          "608775fb826c46984bbcd4a38a0c88cf",
+          "4dfc00f24862ad48cbefef799e73b966"
+        ],
+        "prefer-simpler-boolean-expressions": [
+          "94798e1854bccea2279216574ee6fb5d",
+          "a38a7647209241a4658a518163292278"
+        ],
+        "format-comment": [
+          "2cfcc8356ce8740453f66198e2895b59"
+        ],
+        "always-remove-listener": [
+          "6bfad20491ab0240ab3158494e2d5c6a"
+        ]
+      },
+      "lib/src/components/layout/window.dart": {
+        "avoid-incomplete-copy-with": [
+          "37891b8ac27bc0e9c1f894c463a28fc5"
+        ],
+        "always-remove-listener": [
+          "d6009594a7bb8fd403f0a5d898e16891"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "f5e285ba5c2482e8e7df6192c59a26b5"
+        ]
+      },
+      "lib/src/components/locale/coui_localizations.dart": {
+        "prefer-prefixed-global-constants": [
+          "09d97fcab56d83c2b9148e67f09185a6",
+          "e5f27305d848ec67eaef7b8a4f4181f3"
+        ]
+      },
+      "lib/src/components/menu/dropdown_menu.dart": {
+        "avoid-unnecessary-stateful-widgets": [
+          "edf8e263e94949658f29904b29d4de7a"
+        ]
+      },
+      "lib/src/components/menu/menu.dart": {
+        "avoid-duplicate-initializers": [
+          "0ad29dfafe3dc8ad331b9397912e3d4d"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "b8a12dbf96c3d80c2d1fee229812e029"
+        ],
+        "function-always-returns-null": [
+          "3cccfc5a6023a96f9b4577e48a83613a",
+          "70b3370f84d1133a0747c0a0b5a463f0",
+          "10523efeb78b5c93be79fcc8c903a3fb",
+          "a0afc4e2cc0a8ad2d7c3f21f53225295"
+        ],
+        "prefer-switch-with-enums": [
+          "39c8942e1038872a822c0dc75eedbde3"
+        ]
+      },
+      "lib/src/components/menu/menubar.dart": {
+        "prefer-parentheses-with-if-null": [
+          "7f9ce111f4db6aa42b9e6adea9d74df2"
+        ],
+        "avoid-unnecessary-stateful-widgets": [
+          "cd63734abce024f37311faa5ae6920de"
+        ]
+      },
+      "lib/src/components/menu/navigation_menu.dart": {
+        "prefer-spacing": [
+          "1976d7f704de389d9fe064e08ea35b2d",
+          "1976d7f704de389d9fe064e08ea35b2d",
+          "a70367aa7cb74e510f4f9413ccf059d3"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "dc0110600634de9de90eff14c6252d95"
+        ]
+      },
+      "lib/src/components/navigation/navigation_bar.dart": {
+        "prefer-switch-with-enums": [
+          "39c8942e1038872a822c0dc75eedbde3",
+          "c95fa2f261f093ce22d07b00cd1fbb84",
+          "1add28dd5e513080125a644bae5213d8"
+        ],
+        "no-equal-switch-case": [
+          "601b53f0ccafe2ea2d696610ee7ad88e"
+        ],
+        "avoid-unnecessary-type-casts": [
+          "0a8e4acd1cb5e220703ceaefc0f56097"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "fa98b342eff3f9b5c7462e6a29c91ada"
+        ]
+      },
+      "lib/src/components/navigation/pagination.dart": {
+        "match-getter-setter-field-names": [
+          "cfa17b45b133b7b29f0c332836669fec"
+        ]
+      },
+      "lib/src/components/navigation/tabs/tab_pane.dart": {
+        "format-comment": [
+          "4cea1cbe077afa392eadc47711e5a7d0",
+          "82dc5df13d57a67536d9dde5d0bde4dc"
+        ],
+        "avoid-passing-self-as-argument": [
+          "5db8dca30c2d7f0c2bc225ae852c5053"
+        ]
+      },
+      "lib/src/components/overlay/dialog.dart": {
+        "prefer-parentheses-with-if-null": [
+          "bb48353295187f5cb328508f0454e6eb",
+          "bb48353295187f5cb328508f0454e6eb",
+          "bb48353295187f5cb328508f0454e6eb"
+        ],
+        "avoid-passing-self-as-argument": [
+          "189c47c6f47dc2fcb715dcd7f43046c8",
+          "189c47c6f47dc2fcb715dcd7f43046c8",
+          "189c47c6f47dc2fcb715dcd7f43046c8",
+          "9c46408a3bc655c68505c57a11d6c4ee"
+        ]
+      },
+      "lib/src/components/overlay/drawer.dart": {
+        "format-comment": [
+          "5032efdfdefebee3e1fedc005f873a59"
+        ],
+        "avoid-wildcard-cases-with-enums": [
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682",
+          "c21f969b5f03d33d43e04f8f136e7682"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "63a5fc836cccf3f6dab7836dafda17a0",
+          "a7267c8c8e9acee17c8e02cc36b9958f",
+          "a7267c8c8e9acee17c8e02cc36b9958f",
+          "63a5fc836cccf3f6dab7836dafda17a0",
+          "2b8ff019997096c876f808652fae1122",
+          "e1bef61db92732cf0dc8e633c2a3224f",
+          "d565f7da7c474ba1cb607fac5381368e",
+          "0a6946a7eef22afc42d3a19bc240d4f7",
+          "0a6946a7eef22afc42d3a19bc240d4f7",
+          "d565f7da7c474ba1cb607fac5381368e",
+          "d565f7da7c474ba1cb607fac5381368e",
+          "0a6946a7eef22afc42d3a19bc240d4f7"
+        ],
+        "prefer-switch-with-enums": [
+          "39c8942e1038872a822c0dc75eedbde3"
+        ],
+        "avoid-passing-async-when-sync-expected": [
+          "1ed90e6e395f6d50516a756a3214e187"
+        ]
+      },
+      "lib/src/components/overlay/popover.dart": {
+        "dispose-class-fields": [
+          "78fdbca54e32b05b3737221420e8ddac"
+        ],
+        "consistent-update-render-object": [
+          "d01b15ff4ade36308e3024af85708464"
+        ],
+        "prefer-switch-with-enums": [
+          "39c8942e1038872a822c0dc75eedbde3",
+          "39c8942e1038872a822c0dc75eedbde3"
+        ]
+      },
+      "lib/src/components/overlay/refresh_trigger.dart": {
+        "avoid-unnecessary-stateful-widgets": [
+          "70de40f02713178a3135570156c59fa5"
+        ],
+        "prefer-switch-with-enums": [
+          "39c8942e1038872a822c0dc75eedbde3",
+          "74cc7a76b489f5f4c94798c6ee4b6983"
+        ],
+        "prefer-simpler-boolean-expressions": [
+          "e1ee58cfa1504f77c19ea6c617f7077f"
+        ],
+        "function-always-returns-same-value": [
+          "5d36cb438900e413c5f26c3bea03ce95"
+        ],
+        "avoid-undisposed-instances": [
+          "efb4777327e6f704fb1519c1882f93ec"
+        ]
+      },
+      "lib/src/components/overlay/swiper.dart": {
+        "avoid-wildcard-cases-with-enums": [
+          "c21f969b5f03d33d43e04f8f136e7682"
+        ],
+        "prefer-switch-with-enums": [
+          "d0ae603282e7c6b97cc483a189d8d233",
+          "d492ac611a4dbcaf6dacbfbff63bdfcc"
+        ],
+        "avoid-unused-assignment": [
+          "b2ffcaaeb0744be82c176d5c1ff83a7b",
+          "4d021d4b37464dc961ccbb7a61f3c95b"
+        ]
+      },
+      "lib/src/components/overlay/toast.dart": {
+        "format-comment": [
+          "5ba46e1587a43cbce5253078c9f893c3"
+        ],
+        "dispose-class-fields": [
+          "ced228d1aef8e0ef0d592040c54e29d8",
+          "fdc25fd650dd71a499fde5ccf823fed9"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "0201c76c42ea087ded3cd60c26669852"
+        ]
+      },
+      "lib/src/coui_app.dart": {
+        "prefer-null-aware-spread": [
+          "7f135385e202170798849eb0a62029ca"
+        ],
+        "prefer-parentheses-with-if-null": [
+          "804bcc42598dd5785fdf6e1f801a3bc6"
+        ],
+        "match-getter-setter-field-names": [
+          "ec16c9e64d821f46658a6ac7b783c520",
+          "ec16c9e64d821f46658a6ac7b783c520",
+          "c7e588106a96dc6f4dcf49c367a3f634",
+          "ec16c9e64d821f46658a6ac7b783c520",
+          "ec16c9e64d821f46658a6ac7b783c520"
+        ],
+        "prefer-prefixed-global-constants": [
+          "2ad0489f9a1223a11443a036d2a40e67"
+        ]
+      },
+      "lib/src/theme/color_scheme.dart": {
+        "match-getter-setter-field-names": [
+          "70dda5dfb8053dc6d1c492574bce9bfd",
+          "70dda5dfb8053dc6d1c492574bce9bfd",
+          "70dda5dfb8053dc6d1c492574bce9bfd",
+          "70dda5dfb8053dc6d1c492574bce9bfd",
+          "70dda5dfb8053dc6d1c492574bce9bfd"
+        ],
+        "avoid-collection-methods-with-unrelated-types": [
+          "41438da85ca8cba91db48e01856dea44"
+        ]
+      },
+      "lib/src/theme/theme.dart": {
+        "avoid-wildcard-cases-with-enums": [
+          "c21f969b5f03d33d43e04f8f136e7682"
+        ]
+      },
+      "lib/src/util.dart": {
+        "avoid-collection-equality-checks": [
+          "4d19db1d0f503b7a78586a8b3f971541"
+        ],
+        "avoid-unrelated-type-assertions": [
+          "8389546438e499e7988f5b784a69d221"
+        ]
+      }
+    },
+    "unused-code": {
+      "lib/src/animation.dart": {
+        "unused-code-issue": [
+          "03def6fa895a0cb80892acc55bdae326",
+          "318a9072b2591f73e976367908c7af41",
+          "c0d36a735be6a4262b3e2a3191d52f0f",
+          "49d938cea322d4b7f71c43f61db85193",
+          "1f4aaab543fee2496b8694e7567027c3"
+        ]
+      },
+      "lib/src/components/chart/tracker.dart": {
+        "unused-code-issue": [
+          "6bbbf9eac2364fce62f6e9375412f210"
+        ]
+      },
+      "lib/src/components/control/button.dart": {
+        "unused-code-issue": [
+          "3693e1ba7db8f15170d485ddcd8ec9a3",
+          "bfbfbcefe23862faf33c75e228d50c96",
+          "f4bb5065157f3283deddd54ea520a3ae",
+          "45937e29e5c36e3231be542ec39ec462",
+          "adc699abd29cfd69c130bea5c4882231",
+          "9cb54c562db1915b5c34598f4ca87c6c",
+          "a2fd394161b8cbe24cea63a138726f5b",
+          "97353bfbd488bf4d00355238a40f27e1",
+          "ce4b4d99fde77e2d932d22e5498c383c",
+          "386644e945bcb2a6e2d45592ad56427b",
+          "d031202824e94df8e61fb581aeb0ddd2",
+          "ff43d01f5adff59730d92dc251e2d43f",
+          "f1f8f6bb0b67163420bca636a165e1a1",
+          "8914cf4e73e85dba1e736aaf98533786",
+          "d9243c3d3543e957feed905cdf12eb85",
+          "41556b3345d9d341d9fa343366094fec",
+          "6a045366f0c472925fd5be77d9f59b5f",
+          "d15b50cc271225ae732789e8f9eb761c",
+          "5183638c4b89cf77987119b404da3c93",
+          "a78d55bc103b929fd7dc069b8485422e",
+          "dd9987a6f172e3f32494416e0eb8719c",
+          "afae682723d4445be6b757867330ae87",
+          "64606a4026735ef62778b34eaefef1e5",
+          "a7d7ec8313253f0ca100a934f5d8e626",
+          "bb4c3caff0c78e2c276f0b13adce3b05",
+          "b32f9e77114b5668a23e5d43638964f4",
+          "297e8e933d876cd51183848120f4a24a",
+          "3b7728888b6948998cc05ca0dd053d9d",
+          "27cc3166c98daab119bad850e2222401",
+          "7caba24b28027080cac5fee75176fa76",
+          "f1f47e345f3508dcd31510ba7d885e78",
+          "c0662600c16107359c2cf00a62157ce1",
+          "fbe58fe01efc7ef9aa694eb88c987908",
+          "15013c6a13065a77fa0458cb6ea4d613",
+          "5dae26ae8032158d8eb2da856ac9f222",
+          "95f4c584e269ff70491395d36f5e8a30",
+          "1aa042c110410bd674b8b83d79219920",
+          "b41af3a458c5ab6af0d69751e9e3e25b",
+          "7f7e44b7b1d4a3616b5a72e0f2a10421",
+          "7205cbab921b02f18ed0c468319b6d3e",
+          "a803709792f731f8765f8e7233b389be",
+          "5f5b09d96ad81e2fc833014a89f3f446",
+          "49fc015ee9e674e6f26904fa14ef25f8",
+          "1e4000d2d45aee1861d638b6ae6bfbd1",
+          "ee00d9251aa396556b2995501281ab48",
+          "f8c6e516387ad46b78b0baf922ba2b30",
+          "bdf264c5e6d20c3a0d7fb711ec0d484f",
+          "3e75708230ae5085e2d900a71b3c8327",
+          "2648140ed7b1b5400b291fb6b6a7bd48",
+          "fa157ec3de3c7d181f2ceefe2e8515ee",
+          "1c1030b529471167e6d7d73a5487fe47",
+          "aaa1a52c046b6ba193835f0a81d551f7",
+          "c24db2d5ab0da8463b368eb3977b7510",
+          "5f12e069fdddb08b92b9d664033f19ab",
+          "cefb1e1066cb9aa54bb46cd78be1960e",
+          "b96be8cf86a975800fb3f5ad5257824b",
+          "c3c21d4ba79acf10605010884a435323"
+        ]
+      },
+      "lib/src/components/control/command.dart": {
+        "unused-code-issue": [
+          "60eece2728df249465fea4cc2f2ad418"
+        ]
+      },
+      "lib/src/components/control/hover.dart": {
+        "unused-code-issue": [
+          "5f2eca71bc2afb5e0f946445a1f24ba0"
+        ]
+      },
+      "lib/src/components/control/scrollbar.dart": {
+        "unused-code-issue": [
+          "2a2032c65a46af4e319f0f2d77b2bb68"
+        ]
+      },
+      "lib/src/components/debug.dart": {
+        "unused-code-issue": [
+          "a4bcf95bc3ce91f35cc076f29515c836",
+          "355ab695e3020f7d4aa35805fdd4b270"
+        ]
+      },
+      "lib/src/components/display/avatar.dart": {
+        "unused-code-issue": [
+          "1e77f7ec39719e6fa796093b77e07053",
+          "59374ffb6c7d51361bd67f4f16dab456"
+        ]
+      },
+      "lib/src/components/display/badge.dart": {
+        "unused-code-issue": [
+          "d067f4ec14c40d3b8a42740f12f4fdb5"
+        ]
+      },
+      "lib/src/components/display/calendar.dart": {
+        "unused-code-issue": [
+          "aabb4a94b11af20af9f0a3bf5fd18da3"
+        ]
+      },
+      "lib/src/components/display/carousel.dart": {
+        "unused-code-issue": [
+          "9e76fc9597a239d41952fdadd6dc4f9c",
+          "45bd684028b3da25e8497e8610cfad79",
+          "15ba604a85e4747d8c7b03168e2ca4c1",
+          "233c0173eaff2470870c2c3e8a38e77d"
+        ]
+      },
+      "lib/src/components/display/chip.dart": {
+        "unused-code-issue": [
+          "559b4eec6d91627752d56733b110506c"
+        ]
+      },
+      "lib/src/components/display/circular_progress_indicator.dart": {
+        "unused-code-issue": [
+          "f6cfb06032e3cbe99bbf1757db3c67ed"
+        ]
+      },
+      "lib/src/components/display/code_snippet.dart": {
+        "unused-code-issue": [
+          "4d780ab10eff168109db14115ea0537d"
+        ]
+      },
+      "lib/src/components/display/divider.dart": {
+        "unused-code-issue": [
+          "cabfb31eae7a1ea4cfe914cca00f5848"
+        ]
+      },
+      "lib/src/components/display/dot_indicator.dart": {
+        "unused-code-issue": [
+          "8df9d6570e4253c5f464854417eeb592"
+        ]
+      },
+      "lib/src/components/display/fade_scroll.dart": {
+        "unused-code-issue": [
+          "f24599f302d90f1a703a70a663c676a5"
+        ]
+      },
+      "lib/src/components/display/keyboard_shortcut.dart": {
+        "unused-code-issue": [
+          "fdc1680d5450208ac581e53df4458eaa"
+        ]
+      },
+      "lib/src/components/display/linear_progress_indicator.dart": {
+        "unused-code-issue": [
+          "60ab3c1bcaff632f79568767769047b7"
+        ]
+      },
+      "lib/src/components/display/loading.dart": {
+        "unused-code-issue": [
+          "c225ea0ef8d9a07fd78b5238795f75bb",
+          "97649d33884d918a0521125129722af1",
+          "5bdc374136200a9870818f7d319b254d",
+          "6c9f39706d2ab388ae46f8fc2cbf0867",
+          "4a8ce2183e8c90215c66c5444623953b",
+          "5f41e27d2728bf8f20ff41f5aab74f2b",
+          "3ba38b75976aad3adfe32546b93a4169",
+          "679fc53f6cc6e60b21064ba07abf90c6"
+        ]
+      },
+      "lib/src/components/display/number_ticker.dart": {
+        "unused-code-issue": [
+          "297c975d6332831a80f3612a4c078744"
+        ]
+      },
+      "lib/src/components/display/progress.dart": {
+        "unused-code-issue": [
+          "ee11f30bbd6cc56242de037a8c3ad541"
+        ]
+      },
+      "lib/src/components/display/skeleton.dart": {
+        "unused-code-issue": [
+          "447a90ad553fc1f3e3dd52193849b74f"
+        ]
+      },
+      "lib/src/components/form/autocomplete.dart": {
+        "unused-code-issue": [
+          "376d0a58957ffb4be63fcbb2280efc0d"
+        ]
+      },
+      "lib/src/components/form/checkbox.dart": {
+        "unused-code-issue": [
+          "f21debc14c0d57621e9b10aa8615ca06",
+          "668fd9869b91a96eae5ea9977b1f5396",
+          "c24aab36cef58ddc9568634917e725d5",
+          "fd4b7d75b3bd87f73d2c2ca4890e3391",
+          "3ae287982d1ce67e5987f66e331b95ab",
+          "12fbc3017f64374bebeb8bcd63f2b4a5",
+          "e1fd97c0f01e33b155dbb53ff8366c53",
+          "dcfe5039988e82779e052c469e9afaaa",
+          "2ae3d0a4c6fed84ad121ea2dadbfb551",
+          "e450d77e4eb24e324e2431f91bf7cad9",
+          "21de3e559e0b3465197ae9618466afde",
+          "bce1dd994b298b8c9fcbf4028b85bfbb"
+        ]
+      },
+      "lib/src/components/form/chip_input.dart": {
+        "unused-code-issue": [
+          "7cb0bdd356517a3d9f0301a002959f1c",
+          "79e41f057fb72cb2acd031376adfa6f9",
+          "cb9020671b7794f99a4c76d74a763438",
+          "d0b00f89d6038242e18bf839b0faaa60",
+          "86333e160532215faa3e5c4d31761997",
+          "9bbe255d49fdc39aedbfac32fa2d59f4",
+          "2202e59a75f61ef0f828577a95d1eac7",
+          "a14534ad3111181dde144a878f3798b5",
+          "d92139d5048163fbcf7e1b84e2b29efe",
+          "39aecec4d2a50f6b62ae8f3b6caf84e5",
+          "1b6ffd55c1ac44525c34d56f43fdf125",
+          "5dd710bf5515c2a36d831fbe2a024c5d",
+          "7fe5b2d09cfc4cbaea23082f1e4a936e"
+        ]
+      },
+      "lib/src/components/form/color_picker.dart": {
+        "unused-code-issue": [
+          "df4592fe52a28f6314c2f5f6a3cf8334",
+          "0d704d282b0a1860890bc1f16539ee1c",
+          "ec74968c726e12eae216c0c49184a6d7",
+          "70458b96d1163aad8d3286a32711f45e",
+          "5d3afd5cda2a881d0540fb0bc8d30337",
+          "7e0ee8a1385129df9049e75ac6d9f4ae",
+          "470a35f533f9af6b0883274cf78fa74e",
+          "7eca18d53d72f1b14731cc246caf7d69",
+          "b5902f2f7a0709dc7993bbe34e30c67d",
+          "a56ba61d500a540db3a5b2bbc00927b1",
+          "82f29d572673cc1519f30089d3c6f168",
+          "fc2434c388abd90ea92e9f6def6e3980",
+          "cbf63e05af465119e8b5e9aff3a07c1e",
+          "08065c4dceb0deb4ad5f9bb158df0aae",
+          "16c7d522f255c1270349891648dab5d7",
+          "11aff0debeeadc15b42284394ee55e75",
+          "d9dab68628b09f8eba54fd17da5ff41a",
+          "5799777ddec37ea989b52a2a1f64bcf8",
+          "48ea92bd5a524a9b80b4630d66064b6a"
+        ]
+      },
+      "lib/src/components/form/date_picker.dart": {
+        "unused-code-issue": [
+          "60fa2d2ab98fcbf6a4d8d9ab872de8e1",
+          "2045d93269e15b628f158b7baa0495ae",
+          "bb98043f808a0a90b6c2c5f8dafbaacd",
+          "c43c558d4683c8b547068a12baf45c6f",
+          "cad3cd63fc9b2ca3758de876d1e5b420"
+        ]
+      },
+      "lib/src/components/form/file_input.dart": {
+        "unused-code-issue": [
+          "7927346ad8d039b33e771758fcc2dadf",
+          "3d9061eca635f643178b24a3176c6cdb"
+        ]
+      },
+      "lib/src/components/form/form.dart": {
+        "unused-code-issue": [
+          "e805e903d2be5441103d838c2b00fac8",
+          "4db50d85aaacb153950342325b7c27df",
+          "7a8ea6f71c8409263480350f5a461775",
+          "b7118f9b1cd849ac390dbed4d00624c3",
+          "8f4765a96f08f8e5ba9ab3aa6eaadae2",
+          "60f598e708beb260f813c29cc7a3add5",
+          "bf6d4d5d093d14980ff32ccc9bb0c8cd",
+          "9535de988ae9c8e1c315a7e080f403b4",
+          "c6d9e49ef77dcad485268897b25513b0",
+          "5baa4650aa5435a74544ff57e0954d56",
+          "752cce1103e972e463e46a26d3cdab08",
+          "cd9f0aef5d55ccb8d96da39f4c4622d5",
+          "4577c569fa0d1778853053e8a7dd96c6",
+          "8d4bc9988d54e24479c874968422cbe9",
+          "7cecd8e67e168f29c4266dcdbc6a0f2c",
+          "9d5b699692d770afe65edfd20635ff77",
+          "c13e6fcea9d3c04a9aee7eae7704f5be",
+          "e6ef6e0a156e9d10bdddf9b5e13a0056",
+          "5036ffd7ddedd07c44f6cdfa999ccc35",
+          "b187baec1e7c348de51c961c4b6bb0b6",
+          "c69a1d57d1917ea50f363c19f6ac915a",
+          "0f77ddfef668fcbb0467e5d332201813",
+          "67cd344a9f55610e389b6f598e08dd4e",
+          "2f0067a9be57e761798298da129e17a1",
+          "c1f5938c8cfac92a01d83267393e92b6",
+          "e3f83f4e3924762d7b1090bb128e2e4c",
+          "3165e7e242b38949addeec89daaf0c97",
+          "65548401e45d82a195b2d9897d45c161",
+          "c188d6f8da54586362ff8e85ab235f34",
+          "d5a72c2a80e3876cb2c0db9b5a0beb6c",
+          "2af6b4137fe35092edfc80976c87c1b3",
+          "25d9dc12f5516fc49ba11ec006d7ccee",
+          "82e8065682c0aab22148cd423c65fc1b",
+          "81dc664c67020511d29945f5caab6508",
+          "b0b5d9ec94bf333fc6ca2c14d633f88c",
+          "e18dfd52e1b251275d48aaf6b22d2463",
+          "acc9ffcd95f4600f9186b4439281674c",
+          "8e02e660aea01545cdccee77aeb0e797",
+          "2ba410ef65746711bd1ed3c9e5f6b4fb",
+          "10453be022d8a0bb2e02c57d98841e14",
+          "21a82bd6650139b00b58262f9a091cd5",
+          "f3d93007f0a5beb302ed53f8de206411",
+          "bfd26b72f4572e5130f3c7490cf1363c",
+          "832bf9ad022298fd7d537839794612cc",
+          "2ae7e731ba9ea5791189949bcc4eac88",
+          "70f8584eaf19e03db7dc186eab4efebb",
+          "eb9cf101787eff4c346cee95fb01ff92",
+          "f5b522ea687a695eb419d6711b42936f",
+          "32c13c9df3b9eed7ca035007f5ea7767",
+          "0a0ad6e5853e2d9293327f9cb089d067",
+          "d0cba431ed47f54e78654cd5d68374eb",
+          "5ff8ffbd6edaf87d89ebe0d7e5bfe2b9",
+          "d35241ae5f7baabbc83ced3de51d44dc",
+          "c1da589b130b58a2e4fe456ad520a650",
+          "766f3bc283b2b7e6d8cd4b1525d3bfc2",
+          "c17672bc84a8f24040c9105934e86a55",
+          "bc91ee5082373e715d0b47b609677531",
+          "93e24196b05096e04b9a228ed930e691",
+          "f77146ca8e1533a45ca8fc1c4bbb8507",
+          "767d90537cedfba1ef8784d4364ad2d0",
+          "fb797182b8332736adcb9f701fa843ee"
+        ]
+      },
+      "lib/src/components/form/formatted_input.dart": {
+        "unused-code-issue": [
+          "af86fc9b8a574c8fc5b827506fe5f822",
+          "2ed65f4f81dbc7060bc9ab50e3ca5d2e",
+          "a98402e5b4d3e5881fe1994d69c3f9aa"
+        ]
+      },
+      "lib/src/components/form/formatter.dart": {
+        "unused-code-issue": [
+          "5db1cc0fa9c98f7a2b28c6a559c8fa20",
+          "1a9c9afbe574156ca3ccae29c968d696",
+          "6559353c814a49a8d17e7a8d7ca0c0fc",
+          "b66cb0c4ba9ee8de50923c93636dea78",
+          "5bad864091719166ef87f897d17cb5c0",
+          "9104094e35cb60fa09cdc129ccfa8ea5",
+          "c842782a2d62757ddc1a0d3317406b75",
+          "d7bf99f3830c77a4f2bc1f9150dab28a",
+          "59df01a0a23b581a8c0bac7d3feb6346",
+          "7d9e674dbbd8a53f0460ed6a0f6f2540"
+        ]
+      },
+      "lib/src/components/form/image.dart": {
+        "unused-code-issue": [
+          "ead97e311093536dd34c04a9619b6537",
+          "83a436c1da1a17deaf803457e2c52a0e",
+          "a1915901e6014c8af4ac48aa4cb65e17",
+          "f873e3f8c382ce99941209f7b5f7961e",
+          "83e612ef4dccb05dc79709dd0fcba5e7",
+          "59b259a43629da96d91ba241a17c43d1",
+          "3fda62cdb2e5bede1f32d58a0d3668ab",
+          "72302a9222b38bb53d6580bb631af5ca",
+          "8a67b5e120dabe183c04220f85dee32f",
+          "ee20af7b966f6a9e3cb3c1e4b49a6b4f",
+          "021527bb4cbfc0ad5ef8e8b5cd85718d"
+        ]
+      },
+      "lib/src/components/form/input.dart": {
+        "unused-code-issue": [
+          "78ad23b895b0b432c29de65e9a940462"
+        ]
+      },
+      "lib/src/components/form/input_otp.dart": {
+        "unused-code-issue": [
+          "d1e401a34254826420497c75310cbd81",
+          "9640c2711fad47d67e54294c850ca6d8",
+          "4c72ed831a73764f5a7241893d0794dc",
+          "8a6a94cc69ca36819e80967132a99c7e",
+          "1f854ba31410ebfc706ef4f50e4503f2",
+          "285204a382f937364b3ddc174d16d4ad"
+        ]
+      },
+      "lib/src/components/form/item_picker.dart": {
+        "unused-code-issue": [
+          "f5c9317bdeb4bf0283a5af96c9870aed"
+        ]
+      },
+      "lib/src/components/form/multiple_choice.dart": {
+        "unused-code-issue": [
+          "7b22e141c5e92dccef3952a18a732adf",
+          "14100641de3f03e56a9f236f6eeb6e57",
+          "e5783ad9faa5e0584db18bfff03cf6f1",
+          "6c744504033c63d016b3ab8e9e4cfd34",
+          "9b6bf6c35ea9571fe36ff75ce4cbe918",
+          "e68ab3db8e41c5167c15cf098e881f79",
+          "6bd8af8987ab554c77252e432d1f719d",
+          "6c50f6ed8561f2e86d0eba3db6fecb53",
+          "1b5b676c579210456472d2178c83a9f2"
+        ]
+      },
+      "lib/src/components/form/phone_input.dart": {
+        "unused-code-issue": [
+          "80ef6aa0ec87c335785f6b00ea6c2b74"
+        ]
+      },
+      "lib/src/components/form/radio_group.dart": {
+        "unused-code-issue": [
+          "37a30134ee0407b2b27685e5757626d5",
+          "6d7ec7c0e2bbcf7f1eb603e048145a0a",
+          "953e0c9f00eecd83a0053fb96bd2ec9e",
+          "977d5079933b601ec0a58e449de3db56",
+          "4c06cbc72a53609619411681c782b6a5"
+        ]
+      },
+      "lib/src/components/form/select.dart": {
+        "unused-code-issue": [
+          "c2e1ee2a55caec72c25fd97dc7cb6cb3",
+          "5e258351f0922bbf47cc025fcc3c93cc",
+          "344e5dab931cbf0e8800cab487f84246",
+          "db53c395743478bbaa04bfd22a1a7f62"
+        ]
+      },
+      "lib/src/components/form/slider.dart": {
+        "unused-code-issue": [
+          "0edd00a274b385a4ca7406672f0ecf43",
+          "6df39c36350633f273cd28fea27debb0",
+          "1698dc099dec2d38620ae7ca43ff31bc",
+          "405e344ab2633f9fd018b66870f34c5c",
+          "2d601c6505f952f56d004625ab72a4cc",
+          "f1beca9c4139f32f4b27d5b3998f5b58",
+          "cc373fe651ac061b6e273300381d3d7d",
+          "10798d7f12bdc2baddf37a25aaed571a",
+          "989244ac808bb2c44e9c662f5c76be2d",
+          "8530a5dfcf7f830ae1768d4aced596d8",
+          "86e2d0d42e7ba86bed374059f20c2cc8"
+        ]
+      },
+      "lib/src/components/form/sortable.dart": {
+        "unused-code-issue": [
+          "44eedb8c9c78cb9bd4625f94785080df",
+          "a4aa7a0aaed2485175285075faceacb8",
+          "3894a7e56f856d843b69753289ed243b",
+          "4f26358c3b70f7e5c3e866825f5bc4ae",
+          "b49a65cacf119b8e1415deb4dcc9a391",
+          "6ff251430f81674f55473a7d4ff8f6ad",
+          "c9dbc531f5994379e87904411056fedd",
+          "5b75b740410bffa8fc9fe2f8132186d3",
+          "9257df1b5b876013b2e7603b8f7a23eb",
+          "183f7d53d27e0ce30fe9bf1b05e0d47b",
+          "472670cc44dd1772e017c706e566acbd",
+          "50dd72e7f42be1a7f12f98d6530f0563",
+          "6432551e57c98286610a0ffa318dd1a1",
+          "ab4779b28626069e63efd6bf9dd396fe",
+          "9f50f44e98c3beef6435d774a4ebdf16",
+          "03e991390b11b9309169fa7f421f6b73",
+          "ecb5570d8c9accd1e51a8e873f178056",
+          "d53113ea977385cc2a00707185ba43c8",
+          "80652846be408582c12242be1cfe8158",
+          "472670cc44dd1772e017c706e566acbd",
+          "c31f9b648f27ead060555f2b04c9816c",
+          "802b1cdf3e1cf260e4746463931bae9c",
+          "909900167a90eacfb602373d04fa4a73"
+        ]
+      },
+      "lib/src/components/form/star_rating.dart": {
+        "unused-code-issue": [
+          "d1de2dfa3ddcbb267876b99d46b5793a",
+          "8ed25b548a0e877cb9789d835b12d170",
+          "03b87a939857951dc1817da48b2b8670",
+          "38429cdada5923faa0ad37f2a413caa1"
+        ]
+      },
+      "lib/src/components/form/text_area.dart": {
+        "unused-code-issue": [
+          "5771dd5c9d19645f86b2dc77a8975094"
+        ]
+      },
+      "lib/src/components/form/text_field.dart": {
+        "unused-code-issue": [
+          "4ffe3a65b120f6ffa322ec7a3d897212",
+          "3cf49e549b8c42fb78c1ea373c00e4d0",
+          "775662ee05de4142a080796124a115c7",
+          "97b56a4f36684cbe64f1865319df62aa",
+          "1d89dc87eb7c28240d8ab01c651c3cb6",
+          "238fcc479de53b877cf9d2e09f35611d",
+          "3787c98507e4192b02d3b9281a5b6136",
+          "87a26cc80340c80ca44a17be79a1947a",
+          "5f67b7231ad8efdddcead1e264305844",
+          "5d3977f4269bf02618f2915be05ed7fc"
+        ]
+      },
+      "lib/src/components/form/time_picker.dart": {
+        "unused-code-issue": [
+          "37588c2e59d8bffccc72155b0f5ecdec",
+          "d8d93944af9c18ba1281126c81934905",
+          "6512cc9fc1a191f852283ad5c9c9bc0f",
+          "bcbaba15204a9dd3935615355bb74adb",
+          "9b6451a56b8eed9a6c11a634be2e0a05",
+          "70d9f7b457d9a8354e9531287d4c6186",
+          "81031b2b75cc27b0bd08736afa3e26b0",
+          "cdfc6323c2378dc1dc7a1b6d7d1948a0",
+          "29d7c4ba179a1d43b3f6ac68b8f68cf3",
+          "219c0b8a0257ec0c87b03a271257c7bb",
+          "411620bc7722f1ff29f3473848271e28",
+          "69967b2fe6f8bb304046923591d1581d",
+          "d5e6cd73f2886ca221aa91ad76297511",
+          "542ce7f422a3672c93f3fb68f0e7437e",
+          "c2bc47671b209ad1a81c99a5fcbeee8f",
+          "feb2eae144ddb2be249583a86a694424",
+          "3da68f29f5635c7a95ba4394f587cc3e",
+          "0933f69d5e42f082a641651819292d33"
+        ]
+      },
+      "lib/src/components/form/toggle.dart": {
+        "unused-code-issue": [
+          "0a5badb41a5261346d325ae39394dfef",
+          "c3f7e67e050fa536646408c7d677769a",
+          "8ccd62e548ac92de346d0b2ead96f2f1",
+          "7c4433529667b65a0db8e7efa79b36af",
+          "2cfa07547f0c034d1e34c6ec2c024813"
+        ]
+      },
+      "lib/src/components/form/validated.dart": {
+        "unused-code-issue": [
+          "2d82437fb460b24cde745138a4950208",
+          "793ffb8510d514f3d2329639882fa372"
+        ]
+      },
+      "lib/src/components/layout/accordion.dart": {
+        "unused-code-issue": [
+          "32ee7df7a21810dcdf1eb30dcef703c0"
+        ]
+      },
+      "lib/src/components/layout/alert.dart": {
+        "unused-code-issue": [
+          "50df43a5387941da715610840aef4e2b"
+        ]
+      },
+      "lib/src/components/layout/basic.dart": {
+        "unused-code-issue": [
+          "d48a305d9f8c7d6ccd801b1ee6c11817"
+        ]
+      },
+      "lib/src/components/layout/breadcrumb.dart": {
+        "unused-code-issue": [
+          "94ce1886e6eb084563adda6b1c0af5ed",
+          "3367dfee71d519aaceba8114775e60c7"
+        ]
+      },
+      "lib/src/components/layout/card.dart": {
+        "unused-code-issue": [
+          "f69ab34fde61709cf99de1bc50f806f8"
+        ]
+      },
+      "lib/src/components/layout/card_image.dart": {
+        "unused-code-issue": [
+          "fbc3f2a9d3dbbd76ae1c369f30d8bb77"
+        ]
+      },
+      "lib/src/components/layout/collapsible.dart": {
+        "unused-code-issue": [
+          "53edc0b289d36114188e5c4d368dd5c1"
+        ]
+      },
+      "lib/src/components/layout/hidden.dart": {
+        "unused-code-issue": [
+          "9e58af3102e815ed6f74c3efe0d61429"
+        ]
+      },
+      "lib/src/components/layout/media_query.dart": {
+        "unused-code-issue": [
+          "d5fc5dae65bf8bc8f8df25f486c6fdf2"
+        ]
+      },
+      "lib/src/components/layout/outlined_container.dart": {
+        "unused-code-issue": [
+          "92511def93881ee65df5d9cdcb9481ec",
+          "68995bde221334bc4f00df480e6cf717",
+          "54d4db2adb16e4a5f7b9009a88d4c257",
+          "baa4e0c131f9fe7f2b45ce57694a6539",
+          "7c4c6b0139b92f8ca7a1ac85f44ec148",
+          "40032eff8997902a6e1abb10e5647d8b",
+          "8120e9a84e9313e07a156f6c1a9a5034",
+          "a9ffc100300604eec40a909550e8edc9",
+          "efee864a96f463f2a7495056034c1c10"
+        ]
+      },
+      "lib/src/components/layout/overflow_marquee.dart": {
+        "unused-code-issue": [
+          "e7c63934b24748f8ba37636cc0fe1388"
+        ]
+      },
+      "lib/src/components/layout/resizable.dart": {
+        "unused-code-issue": [
+          "90fe9217c603de924f9ceed363715e9d",
+          "dd7d93932697f0e6373d5d2586498db4",
+          "72d2c03024fed8a941ecc6e56b4b61fa"
+        ]
+      },
+      "lib/src/components/layout/scaffold.dart": {
+        "unused-code-issue": [
+          "f64836c20e493fe1fb6ae1bff41757d3",
+          "e1adc06342febffc3cf4c6e67ba625ce",
+          "7055c85c5ea5e05eefc43b987ad89597"
+        ]
+      },
+      "lib/src/components/layout/scrollable_client.dart": {
+        "unused-code-issue": [
+          "30f7aa11a9e0bea026de824d0b306488"
+        ]
+      },
+      "lib/src/components/layout/sortable.dart": {
+        "unused-code-issue": [
+          "07b786fe519a89e40655e0cf805608ad"
+        ]
+      },
+      "lib/src/components/layout/stage_container.dart": {
+        "unused-code-issue": [
+          "e1c4ed4c418132d635ef2f38baed27df",
+          "83364ff0e8500d79830414b6d3c59e71",
+          "ab00a5c63808d5c88608380f64420422",
+          "9a4c8db26e4345783abf4c1a0597d61b"
+        ]
+      },
+      "lib/src/components/layout/stepper.dart": {
+        "unused-code-issue": [
+          "b4bdee6a69e21572ad5c2160c0ec57f4"
+        ]
+      },
+      "lib/src/components/layout/steps.dart": {
+        "unused-code-issue": [
+          "a6e1ee9e4943ad6f48414386b4dcb7a7"
+        ]
+      },
+      "lib/src/components/layout/table.dart": {
+        "unused-code-issue": [
+          "b71924794e6acb33502953346fbebd60",
+          "9167ea23410d76bb907f2acd9be32980",
+          "6bbe6659140ab2ed1a86308f2d5ce318",
+          "d7d9da769d525a7b8715084f5f598480",
+          "0ddb838dcf113e569096cbb0a4494380",
+          "abb4a9997c829c4320455f6eaffa0eb6",
+          "a3951ef682cf7b2a5def7223c76b3828",
+          "9342c15cd2321b12a0cdd07fd1c0f5d0",
+          "f997bf3f9f37c5a986307c066270f85f",
+          "fe59d87bde760b3c9831ce601f24d783"
+        ]
+      },
+      "lib/src/components/layout/timeline.dart": {
+        "unused-code-issue": [
+          "9f36c9d7c1db4a024c7aa093a2eac73b"
+        ]
+      },
+      "lib/src/components/layout/tree.dart": {
+        "unused-code-issue": [
+          "9c72afbcc9c285462a26f5c7c29826d7",
+          "cad030240b40b0a67820fcbe1f8de590",
+          "129cd2618079a9227a5a767b61ffc01b",
+          "f6b55fd9f3732c5b17017b1121f2306f",
+          "2602d32f48bac1e85fa8da13747aa4c9",
+          "9fc9cd02a8fd1e0aa49dce80de16beab",
+          "15473f4933d638e6f14f1f8ba3f89a21",
+          "fb506afc555a5218acd3a3575e571b2b",
+          "983d22415c22c5962be6e9039739d60d",
+          "5442cf775dd4ac69358b9f4d5c3a81ab",
+          "1e8ee85f500d177bf34b50ec5299b1c9",
+          "f16a6da2e26b7bb36448d181d19f96a6",
+          "8a47ed773246539cf604204bf77a07d6",
+          "24d344ec96f355baefe1963525be0e4b",
+          "1ea4a1fdfba2b8a44da17286389ab381",
+          "831747ae8d403360d74aa9c1ddfa25ab",
+          "b604ffd8772b5301fbd47ed509f7f653",
+          "2232013ab09fa6db2abe4a4cf896decf",
+          "796c62f6dfad04994a25e16b023e8bd4",
+          "8b91e529d0ebbc68e06e69afa1b29970",
+          "db58b137aa5531d63fe863116835b0ac",
+          "15eb2b85c96199382d9560763b42591b",
+          "42b96005517d6dea3e6e35821c757ff7"
+        ]
+      },
+      "lib/src/components/layout/window.dart": {
+        "unused-code-issue": [
+          "113df27cf7c2975fa874a2ae678c83e8",
+          "ebc0d96f166a14684659728eba4f470e"
+        ]
+      },
+      "lib/src/components/locale/coui_localizations.dart": {
+        "unused-code-issue": [
+          "309c9f955c7c0ca480dbe24c388c3a13",
+          "566e4edf10eb2a6bd49005ad6970d6ed",
+          "7d8f164e27ed0a0ba5668724f37a0906",
+          "f5bc35db83c2196b487c2312dd15588f",
+          "2643fcbeb6bfc3eefbf610034a4b3246",
+          "964c9aea185cd015c30793d31acc7a2c",
+          "a540f6e3ba43e7b5a6fb6f53eb0a3126",
+          "a312d2c8e69a523813dc47a83575e146",
+          "97c19611a0ada0b646586279702b9c66",
+          "3b3d7d7d0a9c86cbfca51a3c5c58e7e4",
+          "a0e6cdd6bf1362d39b296634cabd0d5b"
+        ]
+      },
+      "lib/src/components/menu/context_menu.dart": {
+        "unused-code-issue": [
+          "3cf66d556ecb253480f4286207d63d13"
+        ]
+      },
+      "lib/src/components/menu/dropdown_menu.dart": {
+        "unused-code-issue": [
+          "892bfa66f1fae8f916de40763cc2aef0"
+        ]
+      },
+      "lib/src/components/menu/menu.dart": {
+        "unused-code-issue": [
+          "40107d75756eb7df529e68bc991b88f0",
+          "0c1f58186bf67ce0dae1c994c7c5de69",
+          "85e8719c3cbef4d08f17dd5d29798956",
+          "c13f98104f361c228f3a5bf43daf49f1"
+        ]
+      },
+      "lib/src/components/menu/menubar.dart": {
+        "unused-code-issue": [
+          "4d26eb04e3a25a2a88b31480921f1346"
+        ]
+      },
+      "lib/src/components/menu/navigation_menu.dart": {
+        "unused-code-issue": [
+          "b1bc80029e371b2a7381589b242feadf"
+        ]
+      },
+      "lib/src/components/menu/popup.dart": {
+        "unused-code-issue": [
+          "78fdf7d762cea2bd1c5e94bd4dca7ce8"
+        ]
+      },
+      "lib/src/components/navigation/navigation_bar.dart": {
+        "unused-code-issue": [
+          "d55f00ef7eabcfb4755dfe3c19e980ee"
+        ]
+      },
+      "lib/src/components/navigation/pagination.dart": {
+        "unused-code-issue": [
+          "3214babbcae76ba6b553e4da51e985ab"
+        ]
+      },
+      "lib/src/components/navigation/tabs/tab_container.dart": {
+        "unused-code-issue": [
+          "0fecc88d5b2f6db482fe6e8ef11fb563",
+          "05af0d786c3a17fb6e3973d4b9c4428f",
+          "07e064f9c0893a78dc56cda721a41027",
+          "3f7f3c4addda3113fafea8697fdb7bcf",
+          "380bfca38f9e0cbaa0475d11bb996fcb"
+        ]
+      },
+      "lib/src/components/navigation/tabs/tab_list.dart": {
+        "unused-code-issue": [
+          "fd175523a5af94c4c54adec918d52cbd"
+        ]
+      },
+      "lib/src/components/navigation/tabs/tab_pane.dart": {
+        "unused-code-issue": [
+          "e684db28062ab6d743b8328df518e0bf"
+        ]
+      },
+      "lib/src/components/navigation/tabs/tabs.dart": {
+        "unused-code-issue": [
+          "6e954b2e931a71339b8612713065a4a0"
+        ]
+      },
+      "lib/src/components/overlay/dialog.dart": {
+        "unused-code-issue": [
+          "1f636700a591cc0677837a0ea976e6da",
+          "ce2448715b1ad9d27f0b3c09edaf4595"
+        ]
+      },
+      "lib/src/components/overlay/drawer.dart": {
+        "unused-code-issue": [
+          "ab60f435484a82291cc80a3de92ae400",
+          "994be204f17cb94f7ad30e43dc95f272"
+        ]
+      },
+      "lib/src/components/overlay/hover_card.dart": {
+        "unused-code-issue": [
+          "96fd070662f34dcdbb6ca08388596008"
+        ]
+      },
+      "lib/src/components/overlay/refresh_trigger.dart": {
+        "unused-code-issue": [
+          "18f781d7dad5d9d2c3c0b6fd859ea046"
+        ]
+      },
+      "lib/src/components/overlay/swiper.dart": {
+        "unused-code-issue": [
+          "b335af5424892745eadc5c9a41e17ba3"
+        ]
+      },
+      "lib/src/components/overlay/toast.dart": {
+        "unused-code-issue": [
+          "91159a5ce56fa8f30a4600d92eac09c5"
+        ]
+      },
+      "lib/src/components/overlay/tooltip.dart": {
+        "unused-code-issue": [
+          "a801af70440defa89358c39ba0df37f7"
+        ]
+      },
+      "lib/src/components/text/selectable.dart": {
+        "unused-code-issue": [
+          "21463b805eb726307c8a963f52ab8a96"
+        ]
+      },
+      "lib/src/components/wrapper.dart": {
+        "unused-code-issue": [
+          "d8c450115215143c0481831b64ca1045",
+          "f40e59b8b2098be21c914530d2e0cb93"
+        ]
+      },
+      "lib/src/coui_app.dart": {
+        "unused-code-issue": [
+          "ee1b15f8f728d0e4f84201412e3ff8b9",
+          "bf229454694cea0d96c3d610f0f2ec8b",
+          "0f96b2a425141f63eb714835ba56245b",
+          "65e210046cec498ddf3172310bf77fc3",
+          "1e2f277fb2bde94fd57abb3ad1a6fd2c",
+          "ae0ac67e1c5a753f8577fc37d1ac857c",
+          "0a1e5de5421d140d56167fc8c5e9e3f0",
+          "9bc6c9094e8fb88c8eb10869e42192f3",
+          "52a648e0f919fadc4e648be41832925c",
+          "922c12b7aa626c9257d8c73c01b06254",
+          "c4979d4eba31941db266b67b681f099a",
+          "538209ca28e1e78ed2832b65ba92484a"
+        ]
+      },
+      "lib/src/platform/platform_implementations_web.dart": {
+        "unused-code-issue": [
+          "40de28dfb5e1c42bff20b1c4133f2c0e"
+        ]
+      },
+      "lib/src/theme/color_scheme.dart": {
+        "unused-code-issue": [
+          "f39dda364bda2ea355737b43aec99d71",
+          "ef6e000d661a3058b35730a0c2be888f",
+          "f14b12853aaf4771b4f63c4dc083b98e",
+          "eb117167dd12ecb55f6eb9af08fe7532",
+          "046a89df43fe0b464334d28fb74e453e",
+          "036884208ee660c9255ccb4601c07065",
+          "ad497419704970078b15435f619a81e9",
+          "bc07825d06816b2dcb2823de55137db6",
+          "5f7e883ef50baef2d96b76b8ec2bbbc1",
+          "1180ccf0d2719f7873d0f6a0ea44ee35",
+          "7c645becda37d5750b69f7f7648101a7",
+          "737757529ec70b1ddac6fb8434642032",
+          "d76db14757454cb2a5d501ca7b28a009",
+          "5f2507accd4216441297add2162499be",
+          "d9f73a5cd8accd2488279052ff6f1662",
+          "7d7deb1e11127b7f4eeb681bf5b9a4e9",
+          "e2f342423669de5ad42621b686c57aef",
+          "943b1b71b1c417ea2d49d20b0e561f17"
+        ]
+      },
+      "lib/src/theme/generated_themes.dart": {
+        "unused-code-issue": [
+          "75c5f4f2abd011bcfe944191ed90c294"
+        ]
+      },
+      "lib/src/theme/legacy_generated_themes.dart": {
+        "unused-code-issue": [
+          "f1a5a9636b3787890db609f3862b2f8f",
+          "3a4e4dd62d7d83b376332cfe719d1777",
+          "17d653705413060e3cb63520c099ab61",
+          "94d2aed74065f011c3a75bcddd1b41f5",
+          "97f51e8f8495883b9d3ed8a2aae14bb0",
+          "ca9731812e7b8e0f463985b25b844df2",
+          "4d89589ab907ad6b996b32a9f1382b22",
+          "198fdaabc338d0762a86a2f9d82d1dd7",
+          "5855c6ded4f268f2832ee13c234bb2a8",
+          "a779402e5ee389cbee6290d893047b28",
+          "33a8db7a3fa242fd50e5a8803ded1083",
+          "782e19c479ed076b716c5c0951a4c565",
+          "51734175dd086aa782fc852b062f949f",
+          "4c2e9a8446c84fc9c2e31023f30f9ff4",
+          "f3d73cb693fbf7a513accb1eb537145a",
+          "e079198477b6e8cb0253a97958a7a3d3",
+          "baab5247cd4f9ce0ee4ea94b074f5845",
+          "94cd3eb79b1c03804eb66f8d36bd5d03",
+          "c6e595c75e2546c9829d03c4054f7205",
+          "fc503bb88bf62c28888ab27d106db069",
+          "7e3f7788a6fd75292bc65a86ec4f18f0",
+          "0d2bf098307cb2775d2aefd3db63e83d",
+          "8c24244b98ad9cc6bf33060d159a6b3a",
+          "b3e1bd78de82532d4b1b93f57ba5754a"
+        ]
+      },
+      "lib/src/theme/theme.dart": {
+        "unused-code-issue": [
+          "aa6b7ba9101c4ce0056db9b09e3f5e42",
+          "f4a3b9bf6e28ae362db544646bf2252b",
+          "f044f1eb15f50f85b2b2feb1ba2fd500",
+          "53bd3b120181ffa975115edcf471fcbe",
+          "bc2a7525d9cc88099201a441fc41fd58",
+          "aa5a96881514a4cd6d0fcf4e7d815d53",
+          "86fa197b079f59be4251ba5a6819be8a",
+          "af31ef202aae6bb04a1aee1fa6ae382e",
+          "753f8e82d91dbf12ee7da6358ba8f75d"
+        ]
+      },
+      "lib/src/util.dart": {
+        "unused-code-issue": [
+          "2bcf7d6cb3ad0e9e354aabaa505b0e67",
+          "b46b3e704e5d465c34d5d9839deec8bf",
+          "2eb7a7bf22e3e5853411a1952a64f57f",
+          "97259d9c0bea8569d7f370d3b8af9a89",
+          "b8758a7356f31d6f7c32793fd5877eca",
+          "a6b4c6748e4758308eb2cf234145155e",
+          "fc41785a859650250f7fdbb2e5782427",
+          "f84186d169b78139124883e7d11e604e",
+          "8e71f9115656da311d3959e051696efe",
+          "2893045d569c93ad4d46cd708596ed05",
+          "9ea9ebbfec1ecb6cc979cf2d6af3b374",
+          "b53d3191a9c04047be12044b55717dec",
+          "87b169e77ee39aec0c59ab5bb4550942",
+          "d5408004581283f68eae2bb5121a264b",
+          "b23c7d67f73d3fde9d7112a5e3c12a9e",
+          "284f026b36ce2898ae5faff03e6ec4b6",
+          "271f467b83752c19b7e7a473454e73ac",
+          "4efe13e86d4ff5b3be2ac1532312b875",
+          "123c9be2ccd20fa1e365dd749ca805f3",
+          "d29df910348844bdc13d25eb8f457eeb",
+          "8945ba5f9447bf12e5e5fa918ad76a93",
+          "8f03803b876a55ce18beab67966194af",
+          "a38af3e62910b9961bd7396c94bc9794",
+          "b093bec93d7d4cbdc9a6912a06c5e38d",
+          "0c81e907cd34314cf4c6e26a008b65a6",
+          "c42eca3ac97da7b4528cde8ff53d7db8",
+          "25d72ef5b9a2ea48dcfc97f1cf3b8f49",
+          "1af8a5f0210223a1cdfafa279f251e71",
+          "c4dc0ac9fe452c692f87de9378c567d1",
+          "77b9a83fe5f02026f4afc1e59be8dacd",
+          "a4a00e6575f3f92a72c901a0467851dc",
+          "b0665ef60fe340237dd16a82088c79ce",
+          "28a28c90801d0c68b85c1740c9e02ffe",
+          "8df631224fbc64cd7d86fae42c4ceb4b",
+          "65d90586480262561950e5faa7ff9761",
+          "e29cb60434d1026089ff868e1cc7642b",
+          "aaf53144aea8527b7affb770495f2ea4",
+          "8429bf925c1c49c7847569121f2112e1",
+          "3cdd73418e44c92fc9ad1bb7c5421d3f",
+          "69e31d49128f92fadc565db309d1323c",
+          "48e8837e606cc7501648037bef74509a"
+        ]
+      }
+    }
+  }
+}

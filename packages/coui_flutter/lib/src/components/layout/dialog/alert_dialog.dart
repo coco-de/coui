@@ -188,7 +188,6 @@ class _AlertDialogState extends State<AlertDialog> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
-                // children: widget.actions!,
                 children: join(widget.actions!, SizedBox(width: scaling * 8))
                     .toList(),
               ),

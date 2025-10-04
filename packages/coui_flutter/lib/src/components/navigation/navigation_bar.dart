@@ -344,11 +344,6 @@ class _NavigationBarState extends State<NavigationBar>
           child: Container(
             color: backgroundColor,
             padding: resolvedPadding,
-            // child: Flex(
-            //   direction: direction,
-            //   mainAxisAlignment: alignment.mainAxisAlignment,
-            //   children: children,
-            // ),
             child: _wrapIntrinsic(
               Flex(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -1298,6 +1293,7 @@ class _NavigationButtonState
 
     return NavigationPadding(
       child: Button(
+        onPressed: widget.onPressed,
         alignment:
             widget.alignment ??
             (data?.containerType == NavigationContainerType.sidebar &&
@@ -1308,7 +1304,6 @@ class _NavigationButtonState
                 : null),
         enabled: widget.enabled,
         marginAlignment: widget.marginAlignment,
-        onPressed: widget.onPressed,
         style: style,
         child: _NavigationLabeled(
           direction: direction,

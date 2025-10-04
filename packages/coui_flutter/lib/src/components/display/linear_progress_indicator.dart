@@ -513,8 +513,6 @@ class _LinearProgressIndicatorPainter extends CustomPainter {
     if (showSparks) {
       /// Use RadialGradient to create sparks.
       final gradient = ui.Gradient.radial(
-        // colors: [sparksColor, Colors.transparent],
-        // stops: const [0.0, 1.0],
         Offset(size.width * (end - start), size.height / 2),
         sparksRadius,
         [sparksColor, sparksColor.withAlpha(0)],

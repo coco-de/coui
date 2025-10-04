@@ -36,6 +36,7 @@ extension type const _CoUIAppTheme._(JSObject _) implements JSObject {
 }
 
 class CoUIFlutterPlatformImplementations {
+  const CoUIFlutterPlatformImplementations();
   bool get _isPreloaderAvailable {
     return _window.globalThis.CoUIApp != null;
   }

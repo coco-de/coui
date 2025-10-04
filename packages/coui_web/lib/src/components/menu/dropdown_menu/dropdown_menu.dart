@@ -1,4 +1,5 @@
 import 'package:coui_web/src/base/style_type.dart';
+import 'package:coui_web/src/base/types.dart';
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/base/ui_component_attributes.dart';
 import 'package:coui_web/src/components/menu/dropdown_menu/dropdown_menu_style.dart';
@@ -74,9 +75,9 @@ class DropdownMenu extends UiComponent {
 
   /// Callback when dropdown state changes.
   ///
-  /// Flutter-compatible void Function(bool) callback.
+  /// Flutter-compatible callback.
   /// Receives true when dropdown opens, false when it closes.
-  final void Function(bool)? onChanged;
+  final BoolStateCallback? onChanged;
 
   /// Position of dropdown relative to trigger.
   final DropdownPosition position;
@@ -84,12 +85,16 @@ class DropdownMenu extends UiComponent {
   // --- Static Style Modifiers ---
 
   /// Hover trigger. `dropdown-hover`.
-  static const hover =
-      DropdownMenuStyle('dropdown-hover', type: StyleType.state);
+  static const hover = DropdownMenuStyle(
+    'dropdown-hover',
+    type: StyleType.state,
+  );
 
   /// Open state. `dropdown-open`.
-  static const openState =
-      DropdownMenuStyle('dropdown-open', type: StyleType.state);
+  static const openState = DropdownMenuStyle(
+    'dropdown-open',
+    type: StyleType.state,
+  );
 
   @override
   String get baseClass => 'dropdown';
@@ -120,80 +125,20 @@ class DropdownMenu extends UiComponent {
           'dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52',
       tag: 'div',
       children: [
-        Component.element(
-          tag: 'ul',
-          children: menuItems,
-        ),
+        Component.element(tag: 'ul', children: menuItems),
       ],
     );
+
+    const emptyString = '';
 
     return Component.element(
       attributes: componentAttributes,
       classes:
-          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : ''}',
-      css: css,
+          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : emptyString}',
+      css: this.css,
       id: id,
       tag: tag,
-      children: [
-        trigger,
-        dropdownContent,
-      ],
-    );
-  }
-
-  List<String> _buildStyleClasses() {
-    final stylesList = <String>[];
-
-    // Add position class
-    stylesList.add(_getPositionClass());
-
-    // Add open state
-    if (open) {
-      stylesList.add(openState.cssClass);
-    }
-
-    // Add custom styles
-    if (style != null) {
-      for (final s in style!) {
-        if (s is DropdownMenuStyling) {
-          stylesList.add(s.cssClass);
-        }
-      }
-    }
-
-    return stylesList;
-  }
-
-  String _getPositionClass() {
-    switch (position) {
-      case DropdownPosition.top:
-        return 'dropdown-top';
-      case DropdownPosition.bottom:
-        return 'dropdown-bottom';
-      case DropdownPosition.left:
-        return 'dropdown-left';
-      case DropdownPosition.right:
-        return 'dropdown-right';
-    }
-  }
-
-  Component _buildMenuItem(DropdownMenuItem item) {
-    final itemClasses = item.disabled ? 'disabled' : '';
-
-    final itemContent = Component.element(
-      classes: itemClasses,
-      events: !item.disabled && item.onPressed != null
-          ? {
-              'click': (_) => item.onPressed!(),
-            }
-          : null,
-      tag: 'a',
-      children: [Component.text(item.label)],
-    );
-
-    return Component.element(
-      tag: 'li',
-      children: [itemContent],
+      children: [trigger, dropdownContent],
     );
   }
 
@@ -206,7 +151,7 @@ class DropdownMenu extends UiComponent {
     String? id,
     List<DropdownMenuItem>? items,
     Key? key,
-    void Function(bool)? onChanged,
+    BoolStateCallback? onChanged,
     bool? open,
     DropdownPosition? position,
     List<DropdownMenuStyling>? style,
@@ -224,16 +169,58 @@ class DropdownMenu extends UiComponent {
       onChanged: onChanged ?? this.onChanged,
       open: open ?? this.open,
       position: position ?? this.position,
-      style: style ??
-          () {
-            final currentStyle = this.style;
-            return currentStyle is List<DropdownMenuStyling>?
-                ? currentStyle
-                : null;
-          }(),
+      style: style,
       tag: tag ?? this.tag,
       trigger: trigger ?? this.trigger,
     );
+  }
+
+  List<String> _buildStyleClasses() {
+    final stylesList = <String>[];
+
+    // Add position class
+    stylesList.add(_positionClass);
+
+    // Add open state
+    if (open) {
+      stylesList.add(openState.cssClass);
+    }
+
+    // Add custom styles
+    final currentStyle = style;
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
+        stylesList.add(s.cssClass);
+      }
+    }
+
+    return stylesList;
+  }
+
+  String get _positionClass => switch (position) {
+        DropdownPosition.top => 'dropdown-top',
+        DropdownPosition.bottom => 'dropdown-bottom',
+        DropdownPosition.left => 'dropdown-left',
+        DropdownPosition.right => 'dropdown-right',
+      };
+
+  static Component _buildMenuItem(DropdownMenuItem item) {
+    const emptyString = '';
+    final disabled = item.disabled;
+    final onPressed = item.onPressed;
+    final label = item.label;
+    final itemClasses = disabled ? 'disabled' : emptyString;
+
+    final itemContent = Component.element(
+      classes: itemClasses,
+      events: !disabled && onPressed != null
+          ? {'click': (_) => onPressed()}
+          : null,
+      tag: 'a',
+      children: [Component.text(label)],
+    );
+
+    return Component.element(tag: 'li', children: [itemContent]);
   }
 }
 
@@ -256,7 +243,7 @@ class DropdownMenuItem {
   /// Callback when item is selected.
   ///
   /// Flutter-compatible void Function() callback.
-  final void Function()? onPressed;
+  final VoidCallback? onPressed;
 
   /// Whether the item is disabled.
   final bool disabled;

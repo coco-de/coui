@@ -1,29 +1,3 @@
-// import '../coui_flutter.dart';
-
-// main() {
-//   List<ResizableItem> items = [
-//     ResizableItem(value: 80),
-//     ResizableItem(value: 80),
-//     ResizableItem(value: 120),
-//     ResizableItem(value: 80),
-//     ResizableItem(value: 80),
-//   ];
-//   double total = items.fold(0, (prev, item) => prev + item.value);
-//   final state = Resizer(items);
-//   double result = state.resize(1, 2, 200);
-//   print('Applied Delta: $result');
-//   for (int i = 0; i < items.length; i++) {
-//     print('Item $i: ${items[i].newValue}');
-//   }
-//   print('Total: ${items.fold(0.0, (prev, item) => prev + item.newValue)}');
-//   // double result = state.resize(1, 2, 78.66668701171875);
-//   // print('Applied Delta: $result');
-//   // for (int i = 0; i < items.length; i++) {
-//   //   print('Item $i: ${items[i].newValue}');
-//   // }
-//   // print('Total: ${items.fold(0.0, (prev, item) => prev + item.newValue)}');
-// }
-
 class ResizableItem {
   ResizableItem({
     this.collapsed = false,

@@ -70,74 +70,22 @@ class Breadcrumb extends UiComponent {
 
     // Build breadcrumb list
     final listItems = <Component>[];
-    for (var i = 0; i < items.length; i++) {
-      final item = items[i];
+    for (final item in items) {
       listItems.add(_buildBreadcrumbItem(item));
     }
+
+    const emptyString = '';
 
     return Component.element(
       attributes: componentAttributes,
       classes:
-          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : ''}',
-      css: css,
+          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : emptyString}',
+      css: this.css,
       id: id,
       tag: tag,
       children: [
-        Component.element(
-          tag: 'ul',
-          children: listItems,
-        ),
+        Component.element(tag: 'ul', children: listItems),
       ],
-    );
-  }
-
-  List<String> _buildStyleClasses() {
-    final stylesList = <String>[];
-
-    if (style != null) {
-      for (final s in style!) {
-        if (s is BreadcrumbStyling) {
-          stylesList.add(s.cssClass);
-        }
-      }
-    }
-
-    return stylesList;
-  }
-
-  Component _buildBreadcrumbItem(BreadcrumbItem item) {
-    // Build item content
-    Component itemContent;
-
-    if (item.active) {
-      // Active item - just text, no link
-      itemContent = Component.text(item.label);
-    } else if (item.href != null) {
-      // Link item
-      itemContent = Component.element(
-        tag: 'a',
-        attributes: {
-          'href': item.href!,
-        },
-        children: [Component.text(item.label)],
-      );
-    } else if (item.onPressed != null) {
-      // Button item (for SPA navigation)
-      itemContent = Component.element(
-        tag: 'a',
-        events: {
-          'click': (_) => item.onPressed!(),
-        },
-        children: [Component.text(item.label)],
-      );
-    } else {
-      // Plain text
-      itemContent = Component.text(item.label);
-    }
-
-    return Component.element(
-      tag: 'li',
-      children: [itemContent],
     );
   }
 
@@ -163,13 +111,49 @@ class Breadcrumb extends UiComponent {
       items: items ?? this.items,
       key: key ?? this.key,
       separator: separator ?? this.separator,
-      style: style ??
-          () {
-            final currentStyle = this.style;
-            return currentStyle is List<BreadcrumbStyling>? ? currentStyle : null;
-          }(),
+      style: style,
       tag: tag ?? this.tag,
     );
+  }
+
+  List<String> _buildStyleClasses() {
+    final stylesList = <String>[];
+    final currentStyle = style;
+
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
+        stylesList.add(s.cssClass);
+      }
+    }
+
+    return stylesList;
+  }
+
+  static Component _buildBreadcrumbItem(BreadcrumbItem item) {
+    final label = item.label;
+    final href = item.href;
+    final onPressed = item.onPressed;
+    final active = item.active;
+
+    // Build item content using pattern matching
+    final itemContent = switch ((active, href, onPressed)) {
+      // Link item
+      (false, final String h, _) => Component.element(
+          tag: 'a',
+          attributes: {'href': h},
+          children: [Component.text(label)],
+        ),
+      // Button item (for SPA navigation)
+      (false, null, final VoidCallback cb) => Component.element(
+          tag: 'a',
+          events: {'click': (_) => cb()},
+          children: [Component.text(label)],
+        ),
+      // Active item or plain text
+      _ => Component.text(label),
+    };
+
+    return Component.element(tag: 'li', children: [itemContent]);
   }
 }
 
@@ -199,7 +183,7 @@ class BreadcrumbItem {
   /// Callback for button navigation (SPA).
   ///
   /// Flutter-compatible void Function() callback.
-  final void Function()? onPressed;
+  final VoidCallback? onPressed;
 
   /// Whether this item represents the current page.
   final bool active;

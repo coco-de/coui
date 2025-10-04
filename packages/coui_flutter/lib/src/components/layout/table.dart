@@ -632,10 +632,8 @@ class _CellResizerState extends State<_CellResizer> {
   }
 
   void _onDragUpdate(DragUpdateDetails details, int end, int start) {
-    // _resizer!.resize(start, end, _delta!);
     _resizer!.dragDivider(end, details.primaryDelta!);
     for (int i = 0; i < _resizer!.items.length; i += 1) {
-      // widget.controller.resizeRow(i, _resizer!.items[i].newValue);
       if (_resizeRow!) {
         widget.controller.resizeRow(i, _resizer!.items[i].newValue);
       } else {
@@ -646,7 +644,6 @@ class _CellResizerState extends State<_CellResizer> {
 
   void _onDragEnd(DragEndDetails details) {
     widget.onDrag(false, -1, Axis.horizontal);
-    // _delta = null;
     _resizer = null;
     _resizeRow = null;
   }
@@ -734,7 +731,6 @@ class _CellResizerState extends State<_CellResizer> {
                           : null,
                     );
                   },
-                  // valueListenable: widget.hoverNotifier,
                   listenable: Listenable.merge([
                     widget.hoverNotifier,
                     widget.dragNotifier,
@@ -1141,7 +1137,6 @@ class TableCell {
                   ),
                 );
               },
-              // valueListenable: flattenedData.hoveredCellNotifier,
               listenable: Listenable.merge([
                 flattenedData.hoveredCellNotifier,
                 flattenedData.dragNotifier,
@@ -2338,9 +2333,7 @@ class RenderTableLayout extends RenderBox
     columnWidths.forEach((key, value) {
       columnWidthsList[key] = value;
     });
-    final rowHeightsList =
-        // List.filled(rowHeights.keys.reduce(max) + 1, 0);
-        List<double>.generate(maxRow + 1, (index) {
+    final rowHeightsList = List<double>.generate(maxRow + 1, (index) {
           return rowHeights[index] ?? 0;
         });
     rowHeights.forEach((key, value) {

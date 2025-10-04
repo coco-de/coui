@@ -169,10 +169,10 @@ class ObjectFormFieldState<T> extends State<ObjectFormField<T>>
     final shape = widget.shape ?? ButtonShape.rectangle;
 
     return OutlineButton(
+      onPressed: widget.onChanged == null ? null : prompt,
       density: density,
       enabled: enabled,
       leading: widget.leading?.iconMutedForeground().iconSmall(),
-      onPressed: widget.onChanged == null ? null : prompt,
       shape: shape,
       size: size,
       trailing: widget.trailing?.iconMutedForeground().iconSmall(),

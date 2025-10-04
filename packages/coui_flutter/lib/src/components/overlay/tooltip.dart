@@ -422,7 +422,6 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       alignment: resolvedAlignment,
                       allowInvertHorizontal: allowInvertHorizontal,
                       allowInvertVertical: allowInvertVertical,
-                      // anchorAlignment: anchorAlignment ?? alignment * -1,
                       anchorAlignment: resolvedAnchorAlignment,
                       anchorContext: context,
                       animation: animation,

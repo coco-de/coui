@@ -647,12 +647,12 @@ class _CheckboxState extends State<Checkbox>
     );
 
     return Clickable(
+      onPressed: enabled ? _tap : null,
       enableFeedback: enabled,
       enabled: widget.onChanged != null,
       mouseCursor: enabled
           ? const WidgetStatePropertyAll(SystemMouseCursors.click)
           : const WidgetStatePropertyAll(SystemMouseCursors.forbidden),
-      onPressed: enabled ? _tap : null,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

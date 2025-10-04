@@ -109,7 +109,6 @@ class PopoverOverlayHandler extends OverlayHandler {
                       alignment: resolvedAlignment,
                       allowInvertHorizontal: allowInvertHorizontal,
                       allowInvertVertical: allowInvertVertical,
-                      // anchorAlignment: anchorAlignment ?? alignment * -1,
                       anchorAlignment: resolvedAnchorAlignment,
                       anchorContext: context,
                       anchorSize: anchorSize,
@@ -205,7 +204,6 @@ class PopoverOverlayWidget extends StatefulWidget {
     this.onClose,
     this.onCloseWithResult,
     this.onImmediateClose,
-    // this.route,
     this.onTapOutside,
     this.onTickFollow,
     this.position,
@@ -225,7 +223,6 @@ class PopoverOverlayWidget extends StatefulWidget {
   final Animation<double> animation;
   final PopoverConstraint widthConstraint;
   final PopoverConstraint heightConstraint;
-  // final PopoverRoute? route;
   final FutureVoidCallback? onClose;
   final VoidCallback? onImmediateClose;
   final VoidCallback? onTapOutside;
@@ -532,7 +529,6 @@ class PopoverOverlayWidgetState extends State<PopoverOverlayWidget>
       data: this,
       child: TapRegion(
         groupId: widget.regionGroupId,
-        // enabled: widget.consumeOutsideTaps,
         onTapOutside: widget.onTapOutside == null
             ? null
             : (event) {

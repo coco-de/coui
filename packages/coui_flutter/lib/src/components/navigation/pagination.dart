@@ -154,8 +154,8 @@ class Pagination extends StatelessWidget {
   Widget _buildPreviousLabel(CoUILocalizations localizations, bool showLabel) {
     return showLabel
         ? GhostButton(
-            leading: const Icon(RadixIcons.chevronLeft).iconXSmall(),
             onPressed: hasPrevious ? () => onPageChanged(page - 1) : null,
+            leading: const Icon(RadixIcons.chevronLeft).iconXSmall(),
             child: Text(localizations.buttonPrevious),
           )
         : GhostButton(

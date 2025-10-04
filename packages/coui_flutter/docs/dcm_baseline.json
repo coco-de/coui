@@ -1,0 +1,22 @@
+{
+  "date": "2025-10-04 12:41:29.521365Z",
+  "version": "1.31.4",
+  "sensitivity": "exact",
+  "commands": {
+    "unused-code": {
+      "lib/pages/docs/components/choices/choices_example_1.dart": {
+        "unused-code-issue": [
+          "baab11de0fbfc506034e610f3d9cf6f4",
+          "0f8840c4a3e57247ca35550cf7355541"
+        ]
+      },
+      "lib/pages/docs/components/file_picker/file_picker_example_1.dart": {
+        "unused-code-issue": [
+          "9cbef8f3a90a79ce951d3a0d622d8744",
+          "52867411323fd9030d24155f244f7df2",
+          "465a8c60da2d3dafd902204ed7a701bc"
+        ]
+      }
+    }
+  }
+}

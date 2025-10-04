@@ -661,6 +661,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
               ],
             ),
           );
+
           /// Add transition.
           windowClient = AnimatedValueBuilder(
             builder: (context, value, child) {
@@ -724,6 +725,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
+
                   /// Top right.
                   GroupPositioned(
                     height: resizeThickness * theme.scaling,
@@ -742,6 +744,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
+
                   /// Bottom left.
                   GroupPositioned(
                     bottom: 0,
@@ -760,6 +763,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
+
                   /// Bottom right.
                   GroupPositioned(
                     bottom: 0,
@@ -778,6 +782,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
+
                   /// Top.
                   GroupPositioned(
                     height: resizeThickness * theme.scaling,
@@ -796,6 +801,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
+
                   /// Bottom.
                   GroupPositioned(
                     bottom: 0,
@@ -814,6 +820,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
+
                   /// Left.
                   GroupPositioned(
                     bottom: resizeThickness * theme.scaling,
@@ -832,6 +839,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                       },
                     ),
                   ),
+
                   /// Right.
                   GroupPositioned(
                     bottom: resizeThickness * theme.scaling,
@@ -2122,15 +2130,14 @@ class WindowActions extends StatelessWidget {
       children: [
         if (handle?.minimizable ?? true)
           IconButton.ghost(
-            icon: const Icon(Icons.minimize),
             onPressed: () {
               handle?.minimized = !handle.minimized;
             },
+            icon: const Icon(Icons.minimize),
             size: ButtonSize.small,
           ),
         if (handle?.maximizable ?? true)
           IconButton.ghost(
-            icon: const Icon(Icons.crop_square),
             onPressed: () {
               if (handle != null) {
                 handle.maximized = handle.maximized == null
@@ -2144,14 +2151,15 @@ class WindowActions extends StatelessWidget {
                           const Rect.fromLTWH(0, 0, 1, 1);
               }
             },
+            icon: const Icon(Icons.crop_square),
             size: ButtonSize.small,
           ),
         if (handle?.closable ?? true)
           IconButton.ghost(
-            icon: const Icon(Icons.close),
             onPressed: () {
               handle?.close();
             },
+            icon: const Icon(Icons.close),
             size: ButtonSize.small,
           ),
       ],

@@ -1417,7 +1417,6 @@ class FormEntryState extends State<FormEntry> with FormFieldHandle {
     final newController = Data.maybeOf<FormController>(context);
     if (oldController != newController) {
       oldController?.removeListener(_onControllerChanged);
-      // oldController?.detach(this);
       _controller = newController;
       _onControllerChanged();
       newController?.addListener(_onControllerChanged);
@@ -1435,7 +1434,6 @@ class FormEntryState extends State<FormEntry> with FormFieldHandle {
   @override
   void dispose() {
     _controller?.removeListener(_onControllerChanged);
-    // _controller?.detach(this);
     super.dispose();
   }
 
@@ -1993,19 +1991,6 @@ class FormController extends ChangeNotifier {
 
     return _validity[key]?.result;
   }
-
-  // void detach(FormFieldHandle key) {
-  //   if (_attachedInputs.containsKey(key)) {
-  //     final oldValue = _attachedInputs.remove(key);
-  //     _validity.remove(key);
-  //     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-  //       if (_disposed) {
-  //         return;
-  //       }
-  //       notifyListeners();
-  //     });
-  //   }
-  // }
 }
 
 class FormState extends State<Form> {
@@ -2653,6 +2638,9 @@ class SubmitButton extends StatelessWidget {
                 child: error ?? child!,
               )
             : Button(
+                onPressed: () {
+                  context.submitForm();
+                },
                 alignment: alignment,
                 disableHoverEffect: disableHoverEffect,
                 disableTransition: disableTransition,
@@ -2660,9 +2648,6 @@ class SubmitButton extends StatelessWidget {
                 enabled: enabled ?? true,
                 focusNode: focusNode,
                 leading: leading,
-                onPressed: () {
-                  context.submitForm();
-                },
                 style: style ?? const ButtonStyle.primary(),
                 trailing: trailing,
                 child: child!,

@@ -697,7 +697,6 @@ class _RepeatedAnimationBuilderState<T>
             end: widget.start,
             lerp: lerpedValue,
             start: widget.end,
-            // curve: widget.reverseCurve ?? widget.curve,
           ),
         );
       } else {
@@ -714,7 +713,6 @@ class _RepeatedAnimationBuilderState<T>
             end: widget.end,
             lerp: lerpedValue,
             start: widget.start,
-            // curve: widget.curve,
           ),
         );
       }

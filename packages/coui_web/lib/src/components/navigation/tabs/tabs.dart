@@ -4,6 +4,9 @@ import 'package:coui_web/src/base/ui_component_attributes.dart';
 import 'package:coui_web/src/components/navigation/tabs/tabs_style.dart';
 import 'package:jaspr/jaspr.dart';
 
+/// Callback signature for tab selection change events.
+typedef TabSelectionCallback = void Function(int index);
+
 /// A tab navigation component for organizing content into multiple panels.
 ///
 /// The Tabs component provides a tabbed interface where users can switch
@@ -59,9 +62,9 @@ class Tabs extends UiComponent {
 
   /// Callback when tab selection changes.
   ///
-  /// Flutter-compatible void Function(int) callback.
+  /// Flutter-compatible callback.
   /// Receives the index of the newly selected tab.
-  final void Function(int)? onChanged;
+  final TabSelectionCallback? onChanged;
 
   // --- Static Style Modifiers ---
 
@@ -109,14 +112,15 @@ class Tabs extends UiComponent {
 
     // Build tab buttons
     final tabButtons = <Component>[];
-    for (var i = 0; i < tabs.length; i++) {
-      final tab = tabs[i];
-      final isActive = i == selectedIndex;
-      tabButtons.add(_buildTabButton(tab, i, isActive));
+    for (final (index, tab) in tabs.indexed) {
+      final isActive = index == selectedIndex;
+      tabButtons.add(_buildTabButton(tab, index, isActive));
     }
 
     // Build tab content
-    final tabContent = _buildTabContent();
+    final tabContent = _tabContent;
+
+    const emptyString = '';
 
     return Component.element(
       tag: 'div',
@@ -126,67 +130,16 @@ class Tabs extends UiComponent {
         Component.element(
           attributes: componentAttributes,
           classes:
-              '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : ''}',
-          css: css,
+              '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : emptyString}',
+          css: this.css,
           id: id,
           tag: tag,
           children: tabButtons,
         ),
         // Tab content container
-        if (tabContent != null) tabContent,
+        ?tabContent,
       ],
     );
-  }
-
-  List<String> _buildStyleClasses() {
-    final stylesList = <String>[];
-
-    if (style != null) {
-      for (final s in style!) {
-        if (s is TabsStyling) {
-          stylesList.add(s.cssClass);
-        }
-      }
-    }
-
-    return stylesList;
-  }
-
-  Component _buildTabButton(Tab tab, int index, bool isActive) {
-    final classNames = isActive ? 'tab tab-active' : 'tab';
-
-    return Component.element(
-      attributes: {
-        'role': 'tab',
-        'aria-selected': isActive ? 'true' : 'false',
-        'tabindex': isActive ? '0' : '-1',
-      },
-      classes: classNames,
-      events: onChanged != null
-          ? {
-              'click': (_) => onChanged!(index),
-            }
-          : null,
-      tag: 'a',
-      children: [Component.text(tab.label)],
-    );
-  }
-
-  Component? _buildTabContent() {
-    if (selectedIndex >= 0 && selectedIndex < tabs.length) {
-      final tab = tabs[selectedIndex];
-      if (tab.content.isNotEmpty) {
-        return Component.element(
-          attributes: {
-            'role': 'tabpanel',
-          },
-          classes: 'p-4',
-          tag: 'div',
-          children: tab.content,
-        );
-      }
-    }
-    return null;
   }
 
   @override
@@ -197,7 +150,7 @@ class Tabs extends UiComponent {
     Styles? css,
     String? id,
     Key? key,
-    void Function(int)? onChanged,
+    TabSelectionCallback? onChanged,
     int? selectedIndex,
     List<TabsStyling>? style,
     String? tag,
@@ -212,15 +165,56 @@ class Tabs extends UiComponent {
       key: key ?? this.key,
       onChanged: onChanged ?? this.onChanged,
       selectedIndex: selectedIndex ?? this.selectedIndex,
-      style:
-          style ??
-          () {
-            final currentStyle = this.style;
-            return currentStyle is List<TabsStyling>? ? currentStyle : null;
-          }(),
+      style: style,
       tag: tag ?? this.tag,
       tabs: tabs ?? this.tabs,
     );
+  }
+
+  List<String> _buildStyleClasses() {
+    final stylesList = <String>[];
+    final currentStyle = style;
+
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
+        stylesList.add(s.cssClass);
+      }
+    }
+
+    return stylesList;
+  }
+
+  Component _buildTabButton(Tab tab, int index, bool isActive) {
+    final classNames = isActive ? 'tab tab-active' : 'tab';
+    final changed = onChanged;
+
+    return Component.element(
+      attributes: {
+        'aria-selected': isActive ? 'true' : 'false',
+        'role': 'tab',
+        'tabindex': isActive ? '0' : '-1',
+      },
+      classes: classNames,
+      events: changed == null ? null : {'click': (_) => changed(index)},
+      tag: 'a',
+      children: [Component.text(tab.label)],
+    );
+  }
+
+  Component? get _tabContent {
+    if (selectedIndex >= 0 && selectedIndex < tabs.length) {
+      final tab = tabs[selectedIndex];
+      if (tab.content.isNotEmpty) {
+        return Component.element(
+          attributes: {'role': 'tabpanel'},
+          classes: 'p-4',
+          tag: 'div',
+          children: tab.content,
+        );
+      }
+    }
+
+    return null;
   }
 }
 
@@ -232,10 +226,7 @@ class Tab {
   ///
   /// - [label]: Text label displayed on the tab button.
   /// - [content]: Content components displayed when tab is active.
-  const Tab({
-    required this.label,
-    this.content = const [],
-  });
+  const Tab({required this.label, this.content = const []});
 
   /// Text label for the tab button.
   final String label;

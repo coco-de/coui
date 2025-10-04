@@ -3,18 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@UseCase(
-  name: 'radius',
-  type: BorderRadius,
-)
+@UseCase(name: 'radius', type: BorderRadius)
 Widget buildRadiusUseCase(BuildContext context) {
   final theme = coui.Theme.of(context);
   final radii = {
-    'xs': theme.borderRadiusXs,
-    'sm': theme.borderRadiusSm,
-    'md': theme.borderRadiusMd,
     'lg': theme.borderRadiusLg,
+    'md': theme.borderRadiusMd,
+    'sm': theme.borderRadiusSm,
     'xl': theme.borderRadiusXl,
+    'xs': theme.borderRadiusXs,
     'xxl': theme.borderRadiusXxl,
   };
 
@@ -22,6 +19,7 @@ Widget buildRadiusUseCase(BuildContext context) {
     itemBuilder: (context, index) {
       final name = radii.keys.elementAtOrNull(index) ?? '';
       final radius = radii.values.elementAtOrNull(index) ?? BorderRadius.zero;
+
       return ListTile(
         leading: Container(
           decoration: BoxDecoration(
@@ -39,30 +37,28 @@ Widget buildRadiusUseCase(BuildContext context) {
   );
 }
 
-@UseCase(
-  name: 'icon sizes',
-  type: IconThemeData,
-)
+@UseCase(name: 'icon sizes', type: IconThemeData)
 Widget buildIconSizesUseCase(BuildContext context) {
   final iconTheme = coui.Theme.of(context).iconTheme;
   final sizes = {
-    'x4Small': iconTheme.x4Small.size,
-    'x3Small': iconTheme.x3Small.size,
-    'x2Small': iconTheme.x2Small.size,
-    'xSmall': iconTheme.xSmall.size,
-    'small': iconTheme.small.size,
-    'medium': iconTheme.medium.size,
     'large': iconTheme.large.size,
-    'xLarge': iconTheme.xLarge.size,
+    'medium': iconTheme.medium.size,
+    'small': iconTheme.small.size,
     'x2Large': iconTheme.x2Large.size,
+    'x2Small': iconTheme.x2Small.size,
     'x3Large': iconTheme.x3Large.size,
+    'x3Small': iconTheme.x3Small.size,
     'x4Large': iconTheme.x4Large.size,
+    'x4Small': iconTheme.x4Small.size,
+    'xLarge': iconTheme.xLarge.size,
+    'xSmall': iconTheme.xSmall.size,
   };
 
   return ListView.builder(
     itemBuilder: (context, index) {
       final name = sizes.keys.elementAtOrNull(index) ?? '';
       final size = sizes.values.elementAtOrNull(index);
+
       return ListTile(
         leading: Icon(Icons.star, size: size),
         subtitle: Text('${size ?? 0}px'),

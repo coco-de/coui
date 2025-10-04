@@ -58,11 +58,10 @@ class Alert extends UiComponent {
 
   // HTML attribute constants
   static const _roleAttribute = 'role';
-  static const _alertRole = 'alert';
-  static const _alertClass = 'alert';
+  static const _alertValue = 'alert';
 
   @override
-  String get baseClass => _alertClass;
+  String get baseClass => _alertValue;
 
   @override
   void configureAttributes(UiComponentAttributes attributes) {
@@ -70,7 +69,7 @@ class Alert extends UiComponent {
     // The 'alert' role is crucial for accessibility, making screen readers
     // announce the message dynamically.
     if (!userProvidedAttributes.containsKey(_roleAttribute)) {
-      attributes.addRole(_alertRole);
+      attributes.addRole(_alertValue);
     }
   }
 

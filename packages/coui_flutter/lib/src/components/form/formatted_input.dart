@@ -1010,9 +1010,9 @@ class _FormattedObjectInputState<T> extends State<FormattedObjectInput<T>> {
               },
               listenable: _popoverController,
               child: IconButton.text(
+                onPressed: _openPopover,
                 density: ButtonDensity.compact,
                 icon: popoverIcon,
-                onPressed: _openPopover,
               ),
             ),
     );

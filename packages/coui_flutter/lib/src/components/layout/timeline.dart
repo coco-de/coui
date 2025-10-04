@@ -240,10 +240,6 @@ class Timeline extends StatelessWidget {
   const Timeline({
     required this.data,
     super.key,
-    // this.timeConstraints = const BoxConstraints(
-    //   minWidth: 120,
-    //   maxWidth: 120,
-    // ),
     this.timeConstraints,
   });
 

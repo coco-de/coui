@@ -337,12 +337,12 @@ class SelectItemButton<T> extends StatelessWidget {
           return WidgetStatesProvider(
             states: {if (subFocusState.isFocused) WidgetState.hovered},
             child: Button(
-              alignment: AlignmentDirectional.centerStart,
-              disableTransition: true,
-              enabled: enabled,
               onPressed: () {
                 data?.selectItem(value, !isSelected);
               },
+              alignment: AlignmentDirectional.centerStart,
+              disableTransition: true,
+              enabled: enabled,
               style: style.copyWith(
                 mouseCursor: (context, states, value) {
                   return SystemMouseCursors.basic;
@@ -767,9 +767,6 @@ class SelectState<T> extends State<Select<T>>
             _focusNode.unfocus();
           },
           child: Button(
-            disableHoverEffect: _disableHoverEffect,
-            enabled: enabled,
-            focusNode: _focusNode,
             onPressed: widget.onChanged == null
                 ? null
                 : () {
@@ -826,6 +823,9 @@ class SelectState<T> extends State<Select<T>>
                           _focusNode.requestFocus();
                         });
                   },
+            disableHoverEffect: _disableHoverEffect,
+            enabled: enabled,
+            focusNode: _focusNode,
             style:
                 (widget.filled
                         ? ButtonVariance.secondary

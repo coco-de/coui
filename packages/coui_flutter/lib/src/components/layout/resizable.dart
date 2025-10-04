@@ -850,7 +850,6 @@ class _ResizablePanelState extends State<ResizablePanel> {
           _ResizableLayoutChild(
             index: i,
             isDragger: true,
-            // child: widget.draggerBuilder!(context) ?? const SizedBox(),
             child: widget.optionalDivider
                 ? AnimatedOpacity(
                     duration: kDefaultDuration,
@@ -1432,9 +1431,6 @@ class _RenderResizableLayout extends RenderBox
           dividerOffsets[childParentData.index!] - sizeExtent / 2,
           0,
         );
-        // childParentData.offset =
-        //     _createOffset(draggerOffset - sizeExtent / 2 + dividerOffset, 0);
-        // dividerOffset += sizeExtent;
       }
       child = childParentData.nextSibling;
     }

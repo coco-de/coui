@@ -74,9 +74,9 @@ int _getDay(DateTime dateTime) => dateTime.day;
 }
 
 enum DatePart {
-  day(),
-  month(),
-  year();
+  day,
+  month,
+  year;
 
   const DatePart();
 }
@@ -269,7 +269,7 @@ abstract class CoUILocalizations {
       case TimePart.second:
         return timeSecondsAbbreviation;
     }
-  } // String formatFileSize(int bytes);
+  }
 
   String get formNotEmpty;
   String get invalidValue;

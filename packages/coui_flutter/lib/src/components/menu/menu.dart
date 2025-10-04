@@ -149,6 +149,9 @@ class MenuRadio<T> extends StatelessWidget {
 
     return Data<MenuRadioGroup<T>>.boundary(
       child: MenuButton(
+        onPressed: (context) {
+          radioGroup.onChanged?.call(context, value);
+        },
         autoClose: autoClose,
         enabled: enabled,
         focusNode: focusNode,
@@ -158,9 +161,6 @@ class MenuRadio<T> extends StatelessWidget {
                 child: const Icon(RadixIcons.dotFilled).iconSmall(),
               )
             : SizedBox(width: scaling * 16),
-        onPressed: (context) {
-          radioGroup.onChanged?.call(context, value);
-        },
         trailing: trailing,
         child: child,
       ),
@@ -341,6 +341,9 @@ class MenuCheckbox extends StatelessWidget implements MenuItem {
     final scaling = theme.scaling;
 
     return MenuButton(
+      onPressed: (context) {
+        onChanged?.call(context, !value);
+      },
       autoClose: autoClose,
       enabled: enabled,
       leading: value
@@ -349,9 +352,6 @@ class MenuCheckbox extends StatelessWidget implements MenuItem {
               child: const Icon(RadixIcons.check).iconSmall(),
             )
           : SizedBox(width: scaling * 16),
-      onPressed: (context) {
-        onChanged?.call(context, !value);
-      },
       trailing: trailing,
       child: child,
     );
@@ -487,6 +487,19 @@ class _MenuButtonState extends State<MenuButton> {
                   animation: menuData!.popoverController,
                   builder: (context, child) {
                     return Button(
+                      onPressed: () {
+                        widget.onPressed?.call(context);
+                        if (widget.subMenu != null &&
+                            widget.subMenu!.isNotEmpty) {
+                          if (!menuData.popoverController.hasOpenPopover) {
+                            openSubMenu(context, false);
+                          }
+                        } else {
+                          if (widget.autoClose) {
+                            menuGroupData.closeAll();
+                          }
+                        }
+                      },
                       alignment: menuGroupData.direction == Axis.vertical
                           ? AlignmentDirectional.centerStart
                           : Alignment.center,
@@ -521,19 +534,6 @@ class _MenuButtonState extends State<MenuButton> {
                           }
                         } else {
                           subFocusState.unfocus();
-                        }
-                      },
-                      onPressed: () {
-                        widget.onPressed?.call(context);
-                        if (widget.subMenu != null &&
-                            widget.subMenu!.isNotEmpty) {
-                          if (!menuData.popoverController.hasOpenPopover) {
-                            openSubMenu(context, false);
-                          }
-                        } else {
-                          if (widget.autoClose) {
-                            menuGroupData.closeAll();
-                          }
                         }
                       },
                       style:
@@ -757,6 +757,7 @@ class _MenuGroupState extends State<MenuGroup> {
 
         return oldData;
       });
+
       /// Dispose unused data.
       for (final data in oldKeyedData.values) {
         if (!_data.contains(data)) {

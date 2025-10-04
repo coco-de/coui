@@ -73,11 +73,7 @@ class Avatar extends UiComponent {
     List<AvatarStyling>? style,
     super.tag = _defaultTag,
   }) : _style = style,
-       super(
-         null,
-         child: null,
-         style: style,
-       );
+       super(null, style: style);
 
   /// URL of the avatar image.
   final String? imageUrl;
@@ -99,9 +95,6 @@ class Avatar extends UiComponent {
 
   /// Whether to show offline status indicator.
   final bool offline;
-
-  /// Internal style list.
-  final List<AvatarStyling>? _style;
 
   // --- Static Avatar Style Modifiers ---
 
@@ -132,10 +125,12 @@ class Avatar extends UiComponent {
   /// Square shape style. `rounded-none`.
   static const squareStyle = AvatarStyle('rounded-none', type: StyleType.form);
 
+  /// Internal style list.
+  final List<AvatarStyling>? _style;
+
   static const _defaultTag = 'div';
   static const _avatarBaseClass = 'avatar';
   static const _imgTag = 'img';
-  static const _divTag = 'div';
   static const _spanTag = 'span';
   static const _srcAttribute = 'src';
   static const _altAttribute = 'alt';
@@ -152,117 +147,22 @@ class Avatar extends UiComponent {
   @override
   Component build(BuildContext context) {
     final styles = _buildStyles();
-    final sizeClass = _getSizeClass();
-    final shapeClass = _getShapeClass();
+    final sizeClass = _sizeClass;
+    final shapeClass = _shapeClass;
 
     // Build inner content
-    final content = _buildContent();
+    final content = _content;
+
+    const emptyString = '';
 
     return Component.element(
       attributes: componentAttributes,
       classes:
-          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : ''}${sizeClass.isNotEmpty ? ' $sizeClass' : ''}${shapeClass.isNotEmpty ? ' $shapeClass' : ''}',
+          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : emptyString}${sizeClass.isNotEmpty ? ' $sizeClass' : emptyString}${shapeClass.isNotEmpty ? ' $shapeClass' : emptyString}',
       id: id,
-      styles: css,
+      styles: this.css,
       tag: tag,
       children: [content],
-    );
-  }
-
-  List<String> _buildStyles() {
-    final stylesList = <String>[];
-
-    if (_style != null) {
-      for (final style in _style!) {
-        stylesList.add(style.cssClass);
-      }
-    }
-
-    if (online) {
-      stylesList.add(onlineStyle.cssClass);
-    }
-
-    if (offline) {
-      stylesList.add(offlineStyle.cssClass);
-    }
-
-    if (imageUrl == null && initials == null && placeholder == null) {
-      stylesList.add(placeholderStyle.cssClass);
-    }
-
-    return stylesList;
-  }
-
-  String _getSizeClass() {
-    if (size == null) return '';
-
-    switch (size!) {
-      case AvatarSize.xs:
-        return _sizeXs;
-
-      case AvatarSize.sm:
-        return _sizeSm;
-
-      case AvatarSize.md:
-        return _sizeMd;
-
-      case AvatarSize.lg:
-        return _sizeLg;
-
-      case AvatarSize.xl:
-        return _sizeXl;
-    }
-  }
-
-  String _getShapeClass() {
-    if (shape == null) return '';
-
-    switch (shape!) {
-      case AvatarShape.circle:
-        return roundedStyle.cssClass;
-
-      case AvatarShape.rounded:
-        return 'rounded-lg';
-
-      case AvatarShape.square:
-        return squareStyle.cssClass;
-    }
-  }
-
-  Component _buildContent() {
-    // If image URL is provided, show image
-    if (imageUrl != null && imageUrl!.isNotEmpty) {
-      return Component.element(
-        attributes: {
-          _srcAttribute: imageUrl!,
-          _altAttribute: initials ?? _avatarInitials,
-        },
-        tag: _imgTag,
-      );
-    }
-
-    // If initials are provided, show initials
-    if (initials != null && initials!.isNotEmpty) {
-      return Component.element(
-        tag: _divTag,
-        children: [
-          Component.element(
-            tag: _spanTag,
-            children: [Component.text(initials!)],
-          ),
-        ],
-      );
-    }
-
-    // If placeholder is provided, show placeholder
-    if (placeholder != null) {
-      return placeholder!;
-    }
-
-    // Default empty placeholder
-    return Component.element(
-      tag: _divTag,
-      children: const [],
     );
   }
 
@@ -300,15 +200,98 @@ class Avatar extends UiComponent {
       tag: tag ?? this.tag,
     );
   }
+
+  List<String> _buildStyles() {
+    final stylesList = <String>[];
+    final currentStyle = _style;
+
+    if (currentStyle != null) {
+      for (final style in currentStyle) {
+        stylesList.add(style.cssClass);
+      }
+    }
+
+    if (online) {
+      stylesList.add(onlineStyle.cssClass);
+    }
+
+    if (offline) {
+      stylesList.add(offlineStyle.cssClass);
+    }
+
+    if (imageUrl == null && initials == null && placeholder == null) {
+      stylesList.add(placeholderStyle.cssClass);
+    }
+
+    return stylesList;
+  }
+
+  String get _sizeClass {
+    const emptyString = '';
+    final currentSize = size;
+    if (currentSize == null) return emptyString;
+
+    return switch (currentSize) {
+      AvatarSize.xs => _sizeXs,
+      AvatarSize.sm => _sizeSm,
+      AvatarSize.md => _sizeMd,
+      AvatarSize.lg => _sizeLg,
+      AvatarSize.xl => _sizeXl,
+    };
+  }
+
+  String get _shapeClass {
+    const emptyString = '';
+    final currentShape = shape;
+    if (currentShape == null) return emptyString;
+
+    return switch (currentShape) {
+      AvatarShape.circle => roundedStyle.cssClass,
+      AvatarShape.rounded => 'rounded-lg',
+      AvatarShape.square => squareStyle.cssClass,
+    };
+  }
+
+  Component get _content {
+    // If image URL is provided, show image
+    final currentImageUrl = imageUrl;
+    if (currentImageUrl != null && currentImageUrl.isNotEmpty) {
+      return Component.element(
+        attributes: {
+          _altAttribute: initials ?? _avatarInitials,
+          _srcAttribute: currentImageUrl,
+        },
+        tag: _imgTag,
+      );
+    }
+
+    // If initials are provided, show initials
+    final currentInitials = initials;
+    if (currentInitials != null && currentInitials.isNotEmpty) {
+      return Component.element(
+        tag: _defaultTag,
+        children: [
+          Component.element(
+            tag: _spanTag,
+            children: [Component.text(currentInitials)],
+          ),
+        ],
+      );
+    }
+
+    // Default empty placeholder
+    final currentPlaceholder = placeholder;
+
+    return currentPlaceholder == null
+        ? Component.element(tag: _defaultTag, children: const [])
+        : currentPlaceholder;
+  }
 }
 
 /// Configuration for creating avatar groups.
 class AvatarGroupConfig {
   /// Creates an [AvatarGroupConfig].
-  const AvatarGroupConfig({
-    this.max,
-    this.spacing,
-  });
+  const AvatarGroupConfig({this.max, this.spacing});
 
   /// Maximum number of avatars to display before showing "+N" indicator.
   final int? max;

@@ -1,5 +1,5 @@
-/// This file contains mostly patches from another package/sdk
-/// due to changes that need to be made but cannot be done normally
+/// This file contains mostly patches from another package/SDK.
+/// Due to changes that need to be made but cannot be done normally.
 import 'dart:math';
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
@@ -337,6 +337,7 @@ abstract class InputFeature {
 
 abstract class InputFeatureState<T extends InputFeature> {
   _AttachedInputFeature? _attached;
+
   /// Used to control whether the feature should be mounted or not.
   /// With AnimationController, we are able to determine when to
   /// not mount the widget.
@@ -746,6 +747,7 @@ class TextField extends StatefulWidget with TextInput {
          'Obscured fields cannot be multiline.',
        ),
        assert(maxLength == null || maxLength > 0),
+
        /// Assert the following instead of setting it directly to avoid
        /// surprising the user by silently changing the value they set.
        assert(
@@ -802,8 +804,8 @@ class TextField extends StatefulWidget with TextInput {
       final buttonItem = buttonItems[i];
       buttons.add(
         material.TextSelectionToolbarTextButton(
-          alignment: AlignmentDirectional.centerStart,
           onPressed: buttonItem.onPressed,
+          alignment: AlignmentDirectional.centerStart,
           padding: material.TextSelectionToolbarTextButton.getPadding(
             i,
             buttonItems.length,
@@ -1729,6 +1731,7 @@ class TextFieldState extends State<TextField>
     ThemeData theme,
   ) {
     final widget = this.widget;
+
     /// Otherwise, listen to the current state of the text entry.
     return !_hasDecoration
         ? editableText
@@ -1803,6 +1806,7 @@ class TextFieldState extends State<TextField>
                   /// Insert a prefix at the front if the prefix visibility mode matches
                   /// the current text state.
                   if (leadingWidget != null) leadingWidget,
+
                   /// In the middle part, stack the placeholder on top of the main EditableText
                   /// if needed.
                   Expanded(

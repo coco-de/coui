@@ -943,6 +943,7 @@ class _ColorPreviewPainter extends CustomPainter {
         paint.color = borderColor;
         paint.style = PaintingStyle.stroke;
         paint.strokeWidth = borderWidth;
+
         /// Draw a border.
         canvas.drawRect(
           Rect.fromLTWH(
@@ -955,6 +956,7 @@ class _ColorPreviewPainter extends CustomPainter {
         );
       }
     }
+
     /// Draw a rect for the selected color at center.
     paint.color = selectedBorderColor;
     paint.style = PaintingStyle.stroke;
@@ -972,6 +974,7 @@ class _ColorPreviewPainter extends CustomPainter {
       ),
       paint,
     );
+
     /// Add circle border, and make sure it is not clipped.
     paint.color = borderColor;
     paint.style = PaintingStyle.stroke;
@@ -1145,11 +1148,6 @@ class _ColorInputSetState extends State<ColorInputSet> {
                     });
                   },
                   children: [
-                    // Text(localizations.colorPickerTabRGB),
-                    // Text(localizations.colorPickerTabHSL),
-                    // Text(localizations.colorPickerTabHSV),
-                    // if (widget.storage != null)
-                    //   Text(localizations.colorPickerTabRecent),
                     TabItem(child: Text(localizations.colorPickerTabRGB)),
                     TabItem(child: Text(localizations.colorPickerTabHSL)),
                     TabItem(child: Text(localizations.colorPickerTabHSV)),
@@ -1419,8 +1417,8 @@ class _ColorPickerSetState extends State<ColorPickerSet> {
                 if (widget.onPickFromScreen != null) Gap(theme.scaling * 16),
                 if (widget.onPickFromScreen != null)
                   IconButton.outline(
-                    icon: const Icon(LucideIcons.pipette),
                     onPressed: widget.onPickFromScreen,
+                    icon: const Icon(LucideIcons.pipette),
                   ),
               ],
             ),
@@ -1484,6 +1482,7 @@ class _ColorPickerSetState extends State<ColorPickerSet> {
                   ),
                 ),
                 if (widget.showAlpha ?? true) Gap(theme.scaling * 16),
+
                 /// Alpha.
                 if (widget.showAlpha ?? true)
                   SizedBox(
@@ -1789,6 +1788,7 @@ class _MiniColorPickerSetState extends State<MiniColorPickerSet> {
             ),
           ),
           if (widget.showAlpha ?? true) Gap(theme.scaling * 16),
+
           /// Alpha.
           if (widget.showAlpha ?? true)
             SizedBox(
@@ -1846,8 +1846,8 @@ class _MiniColorPickerSetState extends State<MiniColorPickerSet> {
           if (widget.onPickFromScreen != null) Gap(theme.scaling * 16),
           if (widget.onPickFromScreen != null)
             IconButton.outline(
-              icon: const Icon(LucideIcons.pipette),
               onPressed: widget.onPickFromScreen,
+              icon: const Icon(LucideIcons.pipette),
             ),
         ],
       ),
@@ -1973,7 +1973,6 @@ class ColorInput extends StatelessWidget {
         return [
           if (allowPickFromScreen)
             IconButton.outline(
-              icon: Icon(LucideIcons.pipette, size: theme.scaling * 16),
               onPressed: () async {
                 await handler.close();
                 if (!context.mounted) return;
@@ -1985,6 +1984,7 @@ class ColorInput extends StatelessWidget {
                   result == null ? null : ColorDerivative.fromColor(result),
                 );
               },
+              icon: Icon(LucideIcons.pipette, size: theme.scaling * 16),
             ),
         ];
       },
@@ -2283,7 +2283,6 @@ class _ColorPickerDialogState extends State<_ColorPickerDialog> {
       actions: [
         if (widget.allowPickFromScreen)
           IconButton.outline(
-            icon: Icon(LucideIcons.pipette, size: theme.scaling * 16),
             onPressed: () {
               Navigator.of(context).pop(
                 const _ColorPickerDialogResult(
@@ -2291,6 +2290,7 @@ class _ColorPickerDialogState extends State<_ColorPickerDialog> {
                 ),
               );
             },
+            icon: Icon(LucideIcons.pipette, size: theme.scaling * 16),
           ),
         SecondaryButton(
           onPressed: () {
@@ -3445,11 +3445,13 @@ class HSVColorPickerPainter extends CustomPainter {
     pp.style = PaintingStyle.fill;
     final canvasHeight = size.height;
     final canvasWidth = size.width;
+
     /// If reverse, then its sat hue.
     if (sliderType == HSVColorSliderType.hueSat) {
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
+
         /// Vertical for hue and horizontal for saturation.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3471,6 +3473,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
+
         /// Horizontal for hue and vertical for saturation.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
@@ -3495,6 +3498,7 @@ class HSVColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
+
         /// Vertical for hue and horizontal for value.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3516,6 +3520,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
+
         /// Horizontal for hue and vertical for value.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
@@ -3540,6 +3545,7 @@ class HSVColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for saturation and vertical for value.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3556,6 +3562,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for saturation and vertical for value.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3575,6 +3582,7 @@ class HSVColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
+
         /// Vertical for hue and horizontal for alpha.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3596,6 +3604,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
+
         /// Horizontal for hue and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
@@ -3620,6 +3629,7 @@ class HSVColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for saturation and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3641,6 +3651,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for saturation and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3665,6 +3676,7 @@ class HSVColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for value and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3686,6 +3698,7 @@ class HSVColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for value and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3914,6 +3927,7 @@ class HSLColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
+
         /// Vertical for hue and horizontal for saturation.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3935,6 +3949,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
+
         /// Horizontal for hue and vertical for saturation.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
@@ -3959,6 +3974,7 @@ class HSLColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
+
         /// Vertical for hue and horizontal for lightness.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -3980,6 +3996,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
+
         /// Horizontal for hue and vertical for lightness.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
@@ -4004,6 +4021,7 @@ class HSLColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for saturation and vertical for lightness.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -4020,6 +4038,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for saturation and vertical for lightness.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -4039,6 +4058,7 @@ class HSLColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 360;
         final height = canvasHeight / 100;
+
         /// Vertical for hue and horizontal for alpha.
         for (int i = 0; i < 360; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -4060,6 +4080,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 360;
+
         /// Horizontal for hue and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 360; j += 1) {
@@ -4084,6 +4105,7 @@ class HSLColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for saturation and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -4105,6 +4127,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for saturation and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -4129,6 +4152,7 @@ class HSLColorPickerPainter extends CustomPainter {
       if (reverse) {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for lightness and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {
@@ -4150,6 +4174,7 @@ class HSLColorPickerPainter extends CustomPainter {
       } else {
         final width = canvasWidth / 100;
         final height = canvasHeight / 100;
+
         /// Horizontal for lightness and vertical for alpha.
         for (int i = 0; i < 100; i += 1) {
           for (int j = 0; j < 100; j += 1) {

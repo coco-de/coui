@@ -208,6 +208,7 @@ class _CommandState extends State<Command> {
     final resultItems = <Widget>[];
     await for (final items in widget.builder(context, query)) {
       if (currentRequest != requestCount) continue;
+
       /// Append items.
       resultItems.addAll(items);
       yield resultItems;
@@ -281,10 +282,10 @@ class _CommandState extends State<Command> {
                           if (canPop)
                             InputFeature.trailing(
                               GhostButton(
-                                density: ButtonDensity.iconDense,
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
+                                density: ButtonDensity.iconDense,
                                 child: const Icon(LucideIcons.x).iconSmall(),
                               ),
                             ),
@@ -452,6 +453,7 @@ class _CommandItemState extends State<CommandItem> {
       child: SubFocus(
         builder: (context, state) {
           return Clickable(
+            onPressed: widget.onTap,
             onHover: (hovered) {
               setState(() {
                 if (hovered) {
@@ -459,7 +461,6 @@ class _CommandItemState extends State<CommandItem> {
                 }
               });
             },
-            onPressed: widget.onTap,
             child: AnimatedContainer(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(themeData.radiusSm),

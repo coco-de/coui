@@ -161,8 +161,8 @@ class Chip extends StatelessWidget {
     final baseStyle = style ?? compTheme?.style ?? ButtonVariance.secondary;
 
     return Button(
-      leading: leading,
       onPressed: onPressed ?? () {},
+      leading: leading,
       style: baseStyle.copyWith(
         mouseCursor: (context, states, value) {
           return onPressed == null

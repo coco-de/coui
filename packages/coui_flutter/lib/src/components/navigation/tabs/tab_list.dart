@@ -170,10 +170,10 @@ class TabList extends StatelessWidget {
       themeValue: compTheme?.indicatorHeight,
     );
     child = TabButton(
-      enabled: data.onSelect != null,
       onPressed: () {
         data.onSelect?.call(data.index);
       },
+      enabled: data.onSelect != null,
       child: child,
     );
 

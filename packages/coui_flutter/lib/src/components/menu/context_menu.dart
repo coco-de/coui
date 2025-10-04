@@ -68,43 +68,43 @@ class DesktopEditableTextContextMenu extends StatelessWidget {
     final searchWebButton = take(ContextMenuButtonType.searchWeb);
     final liveTextInput = take(ContextMenuButtonType.liveTextInput);
     final cutButtonWidget = MenuButton(
-      enabled: cutButton != null,
       onPressed: (context) {
         cutButton?.onPressed?.call();
       },
+      enabled: cutButton != null,
       trailing: const MenuShortcut(
         activator: SingleActivator(LogicalKeyboardKey.keyX, control: true),
       ),
       child: Text(localizations.menuCut),
     );
     final copyButtonWidget = MenuButton(
-      enabled: copyButton != null,
       onPressed: (context) {
         copyButton?.onPressed?.call();
       },
+      enabled: copyButton != null,
       trailing: const MenuShortcut(
         activator: SingleActivator(LogicalKeyboardKey.keyC, control: true),
       ),
       child: Text(localizations.menuCopy),
     );
     final pasteButtonWidget = MenuButton(
-      enabled: pasteButton != null,
       onPressed: (context) {
         pasteButton?.onPressed?.call();
       },
+      enabled: pasteButton != null,
       trailing: const MenuShortcut(
         activator: SingleActivator(LogicalKeyboardKey.keyV, control: true),
       ),
       child: Text(localizations.menuPaste),
     );
     final selectAllButtonWidget = MenuButton(
-      enabled: selectAllButton != null,
       onPressed: (context) {
         /// Somehow, we lost focus upon context menu open.
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
           selectAllButton?.onPressed?.call();
         });
       },
+      enabled: selectAllButton != null,
       trailing: const MenuShortcut(
         activator: SingleActivator(LogicalKeyboardKey.keyA, control: true),
       ),
@@ -174,10 +174,10 @@ class DesktopEditableTextContextMenu extends StatelessWidget {
                         const Offset(8, -8) * scaling,
                     children: [
                       MenuButton(
-                        enabled: undoHistoryController.value.canUndo,
                         onPressed: (context) {
                           undoHistoryController.undo();
                         },
+                        enabled: undoHistoryController.value.canUndo,
                         trailing: const MenuShortcut(
                           activator: SingleActivator(
                             LogicalKeyboardKey.keyZ,
@@ -187,10 +187,10 @@ class DesktopEditableTextContextMenu extends StatelessWidget {
                         child: const Text('Undo'),
                       ),
                       MenuButton(
-                        enabled: undoHistoryController.value.canRedo,
                         onPressed: (context) {
                           undoHistoryController.redo();
                         },
+                        enabled: undoHistoryController.value.canRedo,
                         trailing: const MenuShortcut(
                           activator: SingleActivator(
                             LogicalKeyboardKey.keyZ,
@@ -382,10 +382,10 @@ class MobileEditableTextContextMenu extends StatelessWidget {
             if (undoHistoryController.value.canUndo) {
               historyCategory.add(
                 MenuButton(
-                  enabled: undoHistoryController.value.canUndo,
                   onPressed: (context) {
                     undoHistoryController.undo();
                   },
+                  enabled: undoHistoryController.value.canUndo,
                   child: Text(localizations.menuUndo),
                 ),
               );
@@ -393,10 +393,10 @@ class MobileEditableTextContextMenu extends StatelessWidget {
             if (undoHistoryController.value.canRedo) {
               historyCategory.add(
                 MenuButton(
-                  enabled: undoHistoryController.value.canRedo,
                   onPressed: (context) {
                     undoHistoryController.redo();
                   },
+                  enabled: undoHistoryController.value.canRedo,
                   child: Text(localizations.menuRedo),
                 ),
               );
