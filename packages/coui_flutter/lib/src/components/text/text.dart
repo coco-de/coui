@@ -196,9 +196,7 @@ extension TextExtension on Widget {
     wrapper: (context, child) => Container(
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(
-            color: Theme.of(context).colorScheme.border,
-          ),
+          bottom: BorderSide(color: Theme.of(context).colorScheme.border),
         ),
       ),
       margin: const EdgeInsets.only(top: 40),
@@ -221,10 +219,7 @@ extension TextExtension on Widget {
   TextModifier get p => WrappedText(
     style: (context, theme) => theme.typography.p,
     wrapper: (context, child) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 24),
-        child: child,
-      );
+      return Padding(padding: const EdgeInsets.only(top: 24), child: child);
     },
     child: this,
   );
@@ -263,10 +258,7 @@ extension TextExtension on Widget {
             ),
             const SizedBox(width: 8),
             Expanded(
-              child: Data.inherit(
-                data: UnorderedListData(),
-                child: child,
-              ),
+              child: Data.inherit(data: UnorderedListData(), child: child),
             ),
           ],
         ),
@@ -359,9 +351,7 @@ extension TextExtension on Widget {
     }
     final currentSpan = WidgetSpan(child: this);
 
-    return RichText(
-      text: TextSpan(children: [currentSpan, span]),
-    );
+    return RichText(text: TextSpan(children: [currentSpan, span]));
   }
 
   Widget thenText(String text) {
@@ -505,9 +495,7 @@ class _RichTextThenWidget extends StatelessWidget {
       selectionRegistrar: text.selectionRegistrar,
       softWrap: text.softWrap,
       strutStyle: text.strutStyle,
-      text: TextSpan(
-        children: [text.text, ...then],
-      ),
+      text: TextSpan(children: [text.text, ...then]),
       textAlign: text.textAlign,
       textDirection: text.textDirection,
       textHeightBehavior: text.textHeightBehavior,
@@ -606,10 +594,7 @@ class UnorderedListData {
 }
 
 typedef WrappedTextDataBuilder<T> =
-    T Function(
-      BuildContext context,
-      ThemeData theme,
-    );
+    T Function(BuildContext context, ThemeData theme);
 typedef WidgetTextWrapper = Widget Function(Widget child, BuildContext context);
 
 class WrappedText extends StatelessWidget implements TextModifier {

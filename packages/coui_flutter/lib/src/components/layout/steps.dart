@@ -165,11 +165,7 @@ class Steps extends StatelessWidget {
 }
 
 class StepItem extends StatelessWidget {
-  const StepItem({
-    required this.content,
-    super.key,
-    required this.title,
-  });
+  const StepItem({required this.content, super.key, required this.title});
 
   final Widget title;
 

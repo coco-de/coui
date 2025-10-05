@@ -24,10 +24,7 @@ enum SortDirection {
 }
 
 typedef OnContextInvokeCallback<T extends Intent> =
-    Object? Function(
-      T intent, [
-      BuildContext? context,
-    ]);
+    Object? Function(T intent, [BuildContext? context]);
 
 class CallbackContextAction<T extends Intent> extends ContextAction<T> {
   CallbackContextAction({required this.onInvoke});
@@ -1152,10 +1149,7 @@ extension TextEditingValueExtension on TextEditingValue {
 }
 
 typedef OnContextedCallback<T extends Intent> =
-    Object? Function(
-      T intent, [
-      BuildContext? context,
-    ]);
+    Object? Function(T intent, [BuildContext? context]);
 
 class ContextCallbackAction<T extends Intent> extends ContextAction<T> {
   ContextCallbackAction({required this.onInvoke});

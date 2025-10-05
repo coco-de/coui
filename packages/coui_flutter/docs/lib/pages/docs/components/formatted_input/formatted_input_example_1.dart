@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'package:coui_flutter/coui_flutter.dart';
 
 class FormattedInputExample1 extends StatelessWidget {

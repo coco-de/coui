@@ -251,6 +251,7 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
     final text = _controller.text;
     if (text.isNotEmpty) {
       int codepoint = text.codeUnitAt(0);
+
       /// Forward to the next input.
       if (text.length > 1) {
         final currentIndex = widget.data.index;
@@ -280,6 +281,7 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
       _value = codepoint;
       widget.data.changeValue(codepoint);
       _controller.clear();
+
       /// Next focus.
       if (widget.data.nextFocusNode != null) {
         widget.data.nextFocusNode!.requestFocus();
@@ -327,6 +329,7 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
 
             return KeyEventResult.handled;
           }
+
           /// Backspace.
           if (event.logicalKey == LogicalKeyboardKey.backspace) {
             if (_value == null) {
@@ -341,6 +344,7 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
 
             return KeyEventResult.handled;
           }
+
           /// Enter.
           if (event.logicalKey == LogicalKeyboardKey.enter) {
             if (_controller.text.isNotEmpty) {

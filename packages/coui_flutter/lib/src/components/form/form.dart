@@ -349,9 +349,7 @@ class ConditionalValidator<T> extends Validator<T> {
 }
 
 typedef ValidatorBuilderFunction<T> =
-    FutureOr<ValidationResult?> Function(
-      T? value,
-    );
+    FutureOr<ValidationResult?> Function(T? value);
 
 class ValidatorBuilder<T> extends Validator<T> {
   const ValidatorBuilder(this.builder, {this.dependencies = const []});
@@ -1583,10 +1581,7 @@ class FormValueState<T> {
 typedef FormMapValues = Map<FormKey, dynamic>;
 
 typedef FormSubmitCallback =
-    void Function(
-      BuildContext context,
-      FormMapValues values,
-    );
+    void Function(BuildContext context, FormMapValues values);
 
 extension FormMapValuesExtension on FormMapValues {
   T? getValue<T>(FormKey<T> key) {

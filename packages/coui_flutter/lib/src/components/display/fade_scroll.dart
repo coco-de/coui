@@ -5,11 +5,7 @@ import 'package:coui_flutter/coui_flutter.dart';
 /// Theme configuration for [FadeScroll].
 class FadeScrollTheme {
   /// Creates a [FadeScrollTheme].
-  const FadeScrollTheme({
-    this.endOffset,
-    this.gradient,
-    this.startOffset,
-  });
+  const FadeScrollTheme({this.endOffset, this.gradient, this.startOffset});
 
   /// The distance from the start before fading begins.
   final double? startOffset;

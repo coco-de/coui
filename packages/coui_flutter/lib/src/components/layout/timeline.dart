@@ -237,11 +237,7 @@ class Timeline extends StatelessWidget {
   ///   ],
   /// );
   /// ```
-  const Timeline({
-    required this.data,
-    super.key,
-    this.timeConstraints,
-  });
+  const Timeline({required this.data, super.key, this.timeConstraints});
 
   /// List of timeline entries to display.
   ///

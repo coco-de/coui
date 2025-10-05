@@ -7,9 +7,9 @@ import 'package:widgetbook/widgetbook.dart';
 class SlangAddon extends WidgetbookAddon<Locale> {
   /// SlangAddon 생성자.
   SlangAddon({
-    this.initialLocale,
     required this.locales,
     required this.localizationsDelegates,
+    this.initialLocale,
   }) : assert(
          locales.isNotEmpty,
          'locales cannot be empty',

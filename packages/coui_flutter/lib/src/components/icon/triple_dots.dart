@@ -26,19 +26,23 @@ class MoreDots extends StatelessWidget {
     final size = this.size ?? (style.fontSize ?? 12) * 0.2;
     final children = <Widget>[];
     for (int i = 0; i < count; i += 1) {
-      children.add(Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(size / 2),
-          color: color,
+      children.add(
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(size / 2),
+            color: color,
+          ),
+          height: size,
+          width: size,
         ),
-        height: size,
-        width: size,
-      ));
+      );
       if (i < count - 1) {
-        children.add(SizedBox(
-          height: direction == Axis.vertical ? spacing : null,
-          width: direction == Axis.horizontal ? spacing : null,
-        ));
+        children.add(
+          SizedBox(
+            height: direction == Axis.vertical ? spacing : null,
+            width: direction == Axis.horizontal ? spacing : null,
+          ),
+        );
       }
     }
 

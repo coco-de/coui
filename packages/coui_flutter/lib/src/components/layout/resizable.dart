@@ -1148,8 +1148,10 @@ class _ResizerState extends State<_Resizer> {
 class _ResizableLayoutParentData extends ContainerBoxParentData<RenderBox> {
   /// If index is null, then its an overlay that handle the resize dragger (on the border/edge).
   int? index;
+
   /// If isDragger is true, then its a dragger that should be placed above "index" panel right border.
   bool? isDragger;
+
   /// There are total "totalPanes" - 1 of dragger.
   bool? isDivider;
 
@@ -1350,6 +1352,7 @@ class _RenderResizableLayout extends RenderBox
     }
     final totalDividerSize = mainOffset;
     mainOffset = 0;
+
     /// Lay out the panes.
     child = firstChild;
     final sizes = <double>[];
@@ -1400,6 +1403,7 @@ class _RenderResizableLayout extends RenderBox
     child = firstChild;
     while (child != null) {
       final childParentData = child.parentData! as _ResizableLayoutParentData;
+
       /// Total offset = sum of sizes from 0 to index.
       if (childParentData.isDragger ?? false || childParentData.index != null) {
         double minExtent = 0;
@@ -1425,6 +1429,7 @@ class _RenderResizableLayout extends RenderBox
               );
         child.layout(draggerConstraints, parentUsesSize: true);
         final draggerSize = child.size;
+
         /// Align at center.
         final sizeExtent = _getSizeExtent(draggerSize);
         childParentData.offset = _createOffset(

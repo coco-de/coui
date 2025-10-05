@@ -77,6 +77,10 @@ dart_code_metrics:
     
   # 프리셋을 보완하는 프로젝트 특화 규칙
   rules:
+    - unnecessary-trailing-comma: false  # Dart formatter와 충돌하므로 비활성화
+    - avoid-unnecessary-stateful-widgets: false  # 향후 확장성을 위해 StatefulWidget 허용
+    - prefer-extracting-callbacks: false
+    - prefer-extracting-function-callbacks: false
     - prefer-single-declaration-per-file: false
     - parameters-ordering: false
     - avoid-flexible-outside-flex: false

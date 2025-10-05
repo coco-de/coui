@@ -1,7 +1,7 @@
 import 'package:coui_flutter/coui_flutter.dart' as coui;
+import 'package:coui_widgetbook/add_on/slang_addon.dart';
 import 'package:flutter/material.dart';
 import 'package:i10n/i10n.dart';
-import 'package:coui_widgetbook/add_on/slang_addon.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
@@ -33,7 +33,7 @@ class WidgetbookApp extends StatelessWidget {
             GlobalMaterialLocalizations.delegate,
           ],
         ),
-        AlignmentAddon(initialAlignment: Alignment.center),
+        AlignmentAddon(),
         TextScaleAddon(initialScale: 1),
       ],
       appBuilder: (context, child) {

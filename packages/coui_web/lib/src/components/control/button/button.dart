@@ -482,6 +482,7 @@ class Button extends UiComponent {
   static const _emptyValue = '';
   static const _tabindexDisabled = '-1';
   static const _trueValue = 'true';
+  // ignore: unused_field - Used for aria attributes in future implementations
   static const _falseValue = 'false';
   static const _buttonBaseClass = 'btn';
 
@@ -566,6 +567,7 @@ class Button extends UiComponent {
     );
   }
 
+  // ignore: unused_element - Reserved for dynamic styling system
   List<ButtonStyling> get _buildStyles {
     final currentStyle = _style;
     final currentSize = size;
@@ -595,6 +597,7 @@ class Button extends UiComponent {
         ButtonShape.circle => circleStyle,
       };
 
+  // ignore: unused_element - Reserved for icon button layout system
   Component get _contentWithLeadingTrailing {
     final currentLeading = leading;
     final currentTrailing = trailing;

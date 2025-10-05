@@ -36,7 +36,8 @@ export 'src/collection.dart';
 export 'src/components/animation.dart';
 export 'src/components/async.dart';
 export 'src/components/chart/tracker.dart';
-export 'src/components/control/button.dart' hide Toggle, ToggleController, ControlledToggle;
+export 'src/components/control/button.dart'
+    hide Toggle, ToggleController, ControlledToggle;
 export 'src/components/control/clickable.dart';
 export 'src/components/control/command.dart';
 export 'src/components/control/scrollbar.dart';

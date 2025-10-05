@@ -1652,10 +1652,7 @@ class EmptySelectItem extends SelectItemDelegate {
 }
 
 typedef SelectItemWidgetBuilder =
-    Widget Function(
-      BuildContext context,
-      int index,
-    );
+    Widget Function(BuildContext context, int index);
 
 class SelectItemBuilder extends SelectItemDelegate {
   const SelectItemBuilder({required this.builder, this.childCount});

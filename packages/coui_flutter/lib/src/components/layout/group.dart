@@ -2,10 +2,7 @@ import 'package:flutter/rendering.dart';
 import 'package:coui_flutter/coui_flutter.dart';
 
 class GroupWidget extends MultiChildRenderObjectWidget {
-  const GroupWidget({
-    super.children,
-    super.key,
-  });
+  const GroupWidget({super.children, super.key});
 
   @override
   RenderObject createRenderObject(BuildContext context) {

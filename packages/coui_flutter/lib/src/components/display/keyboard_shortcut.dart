@@ -3,10 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:coui_flutter/coui_flutter.dart';
 
 typedef KeyboardShortcutDisplayBuilder =
-    Widget Function(
-      BuildContext context,
-      LogicalKeyboardKey key,
-    );
+    Widget Function(BuildContext context, LogicalKeyboardKey key);
 
 /// Theme for keyboard shortcut displays.
 class KeyboardShortcutTheme {

@@ -127,10 +127,7 @@ class TrackerData {
   ///   level: TrackerLevel.fine,
   /// );
   /// ```
-  const TrackerData({
-    required this.level,
-    required this.tooltip,
-  });
+  const TrackerData({required this.level, required this.tooltip});
 
   /// The tooltip content displayed on hover.
   ///
@@ -185,11 +182,7 @@ class TrackerTheme {
   ///   itemHeight: 48.0,
   /// );
   /// ```
-  const TrackerTheme({
-    this.gap,
-    this.itemHeight,
-    this.radius,
-  });
+  const TrackerTheme({this.gap, this.itemHeight, this.radius});
 
   /// Corner radius for the tracker container in logical pixels.
   ///

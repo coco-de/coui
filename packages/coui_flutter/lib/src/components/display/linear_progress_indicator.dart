@@ -329,6 +329,7 @@ class LinearProgressIndicator extends StatelessWidget {
                       showSparks: prop.showSparks,
                       sparksColor: prop.sparksColor,
                       sparksRadius: prop.sparksRadius,
+
                       /// Do not animate start and end value.
                       start: start,
                       start2: start2,

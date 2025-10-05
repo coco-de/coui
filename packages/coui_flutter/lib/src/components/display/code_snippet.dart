@@ -206,12 +206,7 @@ class CodeSnippet extends StatefulWidget {
 }
 
 class _CodeSnippetState extends State<CodeSnippet> {
-  static const _supportedLanguages = {
-    'json',
-    'yaml',
-    'dart',
-    'sql',
-  };
+  static const _supportedLanguages = {'json', 'yaml', 'dart', 'sql'};
   static const _languageAlias = {
     'javascript': 'dart',
 

@@ -242,6 +242,7 @@ class _HoverState extends State<Hover> with SingleTickerProviderStateMixin {
                   _onExit(true);
                 }
               : null,
+
           /// For mobile platforms, hover is triggered by a long press.
           onLongPressDown: enableLongPress
               ? (details) {

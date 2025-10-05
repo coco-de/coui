@@ -1751,10 +1751,7 @@ class _NavigationLabelBackgroundPainter extends CustomPainter {
 }
 
 typedef NavigationWidgetBuilder =
-    Widget Function(
-      BuildContext context,
-      bool selected,
-    );
+    Widget Function(BuildContext context, bool selected);
 
 class NavigationWidget extends StatelessWidget implements NavigationBarItem {
   const NavigationWidget({required Widget this.child, this.index, super.key})

@@ -1,3 +1,4 @@
+// ignore_for_file: empty_catches
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

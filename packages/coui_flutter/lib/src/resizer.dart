@@ -105,8 +105,12 @@ class Resizer {
     } else if (direction == 0) {
       final halfDelta = delta / 2;
       final borrowedLeft = _borrowSize(index - 1, -halfDelta, 0, -1);
-      final borrowedRight =
-          _borrowSize(index + 1, -halfDelta, items.length - 1, 1);
+      final borrowedRight = _borrowSize(
+        index + 1,
+        -halfDelta,
+        items.length - 1,
+        1,
+      );
       if (borrowedLeft.givenSize != -halfDelta ||
           borrowedRight.givenSize != -halfDelta) {
         reset();
@@ -161,8 +165,12 @@ class Resizer {
       final delta = item.newValue - collapsedSize;
       final halfDelta = delta / 2;
       final borrowedLeft = _borrowSize(index - 1, halfDelta, 0, -1);
-      final borrowedRight =
-          _borrowSize(index + 1, halfDelta, items.length - 1, 1);
+      final borrowedRight = _borrowSize(
+        index + 1,
+        halfDelta,
+        items.length - 1,
+        1,
+      );
       if (borrowedLeft.givenSize != halfDelta ||
           borrowedRight.givenSize != halfDelta) {
         reset();
@@ -210,8 +218,12 @@ class Resizer {
     } else if (direction == 0) {
       final halfDelta = delta / 2;
       final borrowedLeft = _borrowSize(index - 1, halfDelta, 0, -1);
-      final borrowedRight =
-          _borrowSize(index + 1, halfDelta, items.length - 1, 1);
+      final borrowedRight = _borrowSize(
+        index + 1,
+        halfDelta,
+        items.length - 1,
+        1,
+      );
       if (borrowedLeft.givenSize != halfDelta ||
           borrowedRight.givenSize != halfDelta) {
         reset();
@@ -247,12 +259,18 @@ class Resizer {
     double givenBackRight = 0;
 
     if (couldNotBorrowLeft != -couldNotBorrowRight) {
-      givenBackLeft =
-          _borrowSize(borrowedRight.from, -couldNotBorrowLeft, index, -1)
-              .givenSize;
-      givenBackRight =
-          _borrowSize(borrowedLeft.from, -couldNotBorrowRight, index - 1, 1)
-              .givenSize;
+      givenBackLeft = _borrowSize(
+        borrowedRight.from,
+        -couldNotBorrowLeft,
+        index,
+        -1,
+      ).givenSize;
+      givenBackRight = _borrowSize(
+        borrowedLeft.from,
+        -couldNotBorrowRight,
+        index - 1,
+        1,
+      ).givenSize;
     }
 
     if (givenBackLeft != -couldNotBorrowLeft ||
@@ -266,8 +284,12 @@ class Resizer {
     final payOffRight = _payOffLoanSize(index, -delta, 1);
 
     final payingBackLeft = _borrowSize(index - 1, -payOffLeft, 0, -1).givenSize;
-    final payingBackRight =
-        _borrowSize(index, -payOffRight, items.length - 1, 1).givenSize;
+    final payingBackRight = _borrowSize(
+      index,
+      -payOffRight,
+      items.length - 1,
+      1,
+    ).givenSize;
 
     if (payingBackLeft != -payOffLeft || payingBackRight != -payOffRight) {
       reset();
@@ -398,8 +420,12 @@ class Resizer {
     if (newSize < minSize) {
       final overflow = newSize - minSize;
       final given = delta - overflow;
-      final borrowSize =
-          _borrowSize(index + direction, overflow, until, direction);
+      final borrowSize = _borrowSize(
+        index + direction,
+        overflow,
+        until,
+        direction,
+      );
       item._newValue = minSize;
 
       return _BorrowInfo(borrowSize.givenSize + given, borrowSize.from);
@@ -409,8 +435,12 @@ class Resizer {
       final maxOverflow = newSize - maxSize;
       final given = delta - maxOverflow;
 
-      final borrowSize =
-          _borrowSize(index + direction, maxOverflow, until, direction);
+      final borrowSize = _borrowSize(
+        index + direction,
+        maxOverflow,
+        until,
+        direction,
+      );
       item._newValue = maxSize;
 
       return _BorrowInfo(borrowSize.givenSize + given, borrowSize.from);
@@ -486,8 +516,12 @@ class Resizer {
           final threshold = (minSize - collapsibleSize) * expandRatio;
           if (_couldNotBorrow >= threshold) {
             final toBorrow = collapsibleSize - minSize;
-            final borrowed =
-                _borrowSize(toCheck + 1, toBorrow, items.length, 1);
+            final borrowed = _borrowSize(
+              toCheck + 1,
+              toBorrow,
+              items.length,
+              1,
+            );
             final borrowedSize = borrowed.givenSize;
             if (borrowedSize > toBorrow) {
               reset();

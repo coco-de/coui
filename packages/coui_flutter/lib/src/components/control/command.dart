@@ -2,10 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:coui_flutter/coui_flutter.dart';
 
 typedef CommandBuilder =
-    Stream<List<Widget>> Function(
-      BuildContext context,
-      String? query,
-    );
+    Stream<List<Widget>> Function(BuildContext context, String? query);
 
 typedef ErrorWidgetBuilder =
     Widget Function(

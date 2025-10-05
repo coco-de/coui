@@ -282,6 +282,7 @@ class Avatar extends StatefulWidget implements AvatarWidget {
 
       return first;
     }
+
     /// Get the first two characters.
     final first = parts.first.substring(0, 1).toUpperCase();
     if (parts.length > 1) {
@@ -289,6 +290,7 @@ class Avatar extends StatefulWidget implements AvatarWidget {
 
       return first + second;
     }
+
     /// Append with the 2nd character of the first part.
     if (parts.first.length > 1) {
       final second = parts.first.substring(1, 2).toUpperCase();
@@ -414,9 +416,7 @@ class _AvatarState extends State<Avatar> {
               ),
               themeValue: compTheme?.textStyle,
             ),
-            child: Center(
-              child: Text(widget.initials),
-            ),
+            child: Center(child: Text(widget.initials)),
           ),
         ),
       ),
@@ -575,11 +575,7 @@ class AvatarBadge extends StatelessWidget implements AvatarWidget {
 }
 
 class _AvatarWidget extends StatelessWidget implements AvatarWidget {
-  const _AvatarWidget({
-    this.borderRadius,
-    required this.child,
-    this.size,
-  });
+  const _AvatarWidget({this.borderRadius, required this.child, this.size});
 
   @override
   final double? size;

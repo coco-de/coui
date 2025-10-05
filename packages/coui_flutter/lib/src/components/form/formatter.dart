@@ -17,6 +17,7 @@ abstract final class TextInputFormatters {
   }
 }
 
+// ignore: unused_element
 class _TimeFormatter extends TextInputFormatter {
   const _TimeFormatter({required this.length});
   final int length;
@@ -63,8 +64,9 @@ class _TimeFormatter extends TextInputFormatter {
   }
 }
 
+// ignore: unused_element
 class _IntegerOnlyFormatter extends TextInputFormatter {
-  const _IntegerOnlyFormatter({this.max, this.min});
+  const _IntegerOnlyFormatter();
 
   final int? min;
 
@@ -110,8 +112,9 @@ class _IntegerOnlyFormatter extends TextInputFormatter {
   }
 }
 
+// ignore: unused_element
 class _DoubleOnlyFormatter extends TextInputFormatter {
-  const _DoubleOnlyFormatter({this.decimalDigits, this.max, this.min});
+  const _DoubleOnlyFormatter();
 
   final double? min;
   final double? max;
@@ -215,6 +218,7 @@ class _MathExpressionFormatter extends TextInputFormatter {
   }
 }
 
+// ignore: unused_element
 class _ToUpperCaseTextFormatter extends TextInputFormatter {
   const _ToUpperCaseTextFormatter();
 
@@ -230,6 +234,7 @@ class _ToUpperCaseTextFormatter extends TextInputFormatter {
   }
 }
 
+// ignore: unused_element
 class _ToLowerCaseTextFormatter extends TextInputFormatter {
   const _ToLowerCaseTextFormatter();
 

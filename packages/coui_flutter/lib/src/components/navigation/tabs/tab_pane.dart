@@ -101,11 +101,7 @@ class TabPaneData<T> extends SortableData<T> {
 ///
 /// Returns: A [TabChild] widget for the tab button
 typedef TabPaneItemBuilder<T> =
-    TabChild Function(
-      BuildContext context,
-      TabPaneData<T> item,
-      int index,
-    );
+    TabChild Function(BuildContext context, TabPaneData<T> item, int index);
 
 /// A comprehensive tab pane widget with sortable tabs and integrated content display.
 ///

@@ -1,4 +1,5 @@
 import 'package:docs/main.dart';
+// ignore_for_file: deprecated_member_use
 import 'package:coui_flutter/coui_flutter.dart';
 
 import '../docs_page.dart';

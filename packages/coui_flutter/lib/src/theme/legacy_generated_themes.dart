@@ -1,5 +1,6 @@
 import 'package:coui_flutter/coui_flutter.dart';
 
+// ignore: unused_element
 void _assertNotThemeModeSystem(String label, ThemeMode mode) {
   if (mode == ThemeMode.system) {
     final diagnosticList = <DiagnosticsNode>[];

@@ -44,7 +44,7 @@ Widget _buildFileIcon(String extension) {
 typedef FileIconBuilder = Widget Function(String extension);
 
 class FileIconProviderData {
-  const FileIconProviderData._({this.builder, this.icons});
+  const FileIconProviderData._();
 
   final FileIconBuilder? builder;
 

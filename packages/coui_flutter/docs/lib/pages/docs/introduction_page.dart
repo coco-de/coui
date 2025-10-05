@@ -1,3 +1,4 @@
+// ignore_for_file: library_private_types_in_public_api
 import 'package:docs/pages/docs_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:coui_flutter/coui_flutter.dart';

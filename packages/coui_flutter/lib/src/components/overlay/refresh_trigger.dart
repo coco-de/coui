@@ -5,10 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:coui_flutter/coui_flutter.dart';
 
 typedef RefreshIndicatorBuilder =
-    Widget Function(
-      BuildContext context,
-      RefreshTriggerStage stage,
-    );
+    Widget Function(BuildContext context, RefreshTriggerStage stage);
 
 typedef FutureVoidCallback = Future<void> Function();
 
@@ -664,11 +661,7 @@ enum TriggerStage {
 }
 
 class RefreshTriggerStage {
-  const RefreshTriggerStage(
-    this.direction,
-    this.extent,
-    this.stage,
-  );
+  const RefreshTriggerStage(this.direction, this.extent, this.stage);
 
   final TriggerStage stage;
   final Animation<double> extent;

@@ -1606,9 +1606,7 @@ class ButtonStyle implements AbstractButtonStyle {
     }
     return variance
         .textStyle(context, states)
-        .copyWith(
-          fontSize: fontSize * size.scale,
-        );
+        .copyWith(fontSize: fontSize * size.scale);
   }
 
   IconThemeData _resolveIconTheme(
@@ -1619,9 +1617,7 @@ class ButtonStyle implements AbstractButtonStyle {
     iconSize ??= IconTheme.of(context).size ?? 24;
     return variance
         .iconTheme(context, states)
-        .copyWith(
-          size: iconSize * size.scale,
-        );
+        .copyWith(size: iconSize * size.scale);
   }
 
   @override
@@ -2748,9 +2744,7 @@ IconThemeData _buttonCardIconTheme(
   Set<WidgetState> states,
 ) {
   final themeData = Theme.of(context);
-  return IconThemeData(
-    color: themeData.colorScheme.cardForeground,
-  );
+  return IconThemeData(color: themeData.colorScheme.cardForeground);
 }
 
 Decoration _buttonCardDecoration(
@@ -2760,9 +2754,7 @@ Decoration _buttonCardDecoration(
   final themeData = Theme.of(context);
   if (states.contains(WidgetState.disabled)) {
     return BoxDecoration(
-      border: Border.all(
-        color: themeData.colorScheme.border,
-      ),
+      border: Border.all(color: themeData.colorScheme.border),
       borderRadius: BorderRadius.circular(themeData.radiusXl),
       color: themeData.colorScheme.muted,
     );
@@ -2770,17 +2762,13 @@ Decoration _buttonCardDecoration(
   if (states.contains(WidgetState.hovered) ||
       states.contains(WidgetState.selected)) {
     return BoxDecoration(
-      border: Border.all(
-        color: themeData.colorScheme.border,
-      ),
+      border: Border.all(color: themeData.colorScheme.border),
       borderRadius: BorderRadius.circular(themeData.radiusXl),
       color: themeData.colorScheme.border,
     );
   }
   return BoxDecoration(
-    border: Border.all(
-      color: themeData.colorScheme.border,
-    ),
+    border: Border.all(color: themeData.colorScheme.border),
     borderRadius: BorderRadius.circular(themeData.radiusXl),
     color: themeData.colorScheme.card,
   );
@@ -2847,9 +2835,7 @@ IconThemeData _buttonMenuIconTheme(
   Set<WidgetState> states,
 ) {
   final themeData = Theme.of(context);
-  return IconThemeData(
-    color: themeData.colorScheme.accentForeground,
-  );
+  return IconThemeData(color: themeData.colorScheme.accentForeground);
 }
 
 // PRIMARY
@@ -2883,9 +2869,7 @@ TextStyle _buttonPrimaryTextStyle(
   final themeData = Theme.of(context);
   return themeData.typography.small
       .merge(themeData.typography.medium)
-      .copyWith(
-        color: themeData.colorScheme.primaryForeground,
-      );
+      .copyWith(color: themeData.colorScheme.primaryForeground);
 }
 
 IconThemeData _buttonPrimaryIconTheme(
@@ -2893,9 +2877,7 @@ IconThemeData _buttonPrimaryIconTheme(
   Set<WidgetState> states,
 ) {
   final themeData = Theme.of(context);
-  return IconThemeData(
-    color: themeData.colorScheme.primaryForeground,
-  );
+  return IconThemeData(color: themeData.colorScheme.primaryForeground);
 }
 
 // SECONDARY
@@ -2955,28 +2937,20 @@ Decoration _buttonOutlineDecoration(
   final themeData = Theme.of(context);
   if (states.contains(WidgetState.disabled)) {
     return BoxDecoration(
-      border: Border.all(
-        color: themeData.colorScheme.border,
-      ),
+      border: Border.all(color: themeData.colorScheme.border),
       borderRadius: BorderRadius.circular(themeData.radiusMd),
-      color: themeData.colorScheme.border.withValues(
-        alpha: 0,
-      ),
+      color: themeData.colorScheme.border.withValues(alpha: 0),
     );
   }
   if (states.contains(WidgetState.hovered)) {
     return BoxDecoration(
-      border: Border.all(
-        color: themeData.colorScheme.input,
-      ),
+      border: Border.all(color: themeData.colorScheme.input),
       borderRadius: BorderRadius.circular(themeData.radiusMd),
       color: themeData.colorScheme.input.scaleAlpha(0.5),
     );
   }
   return BoxDecoration(
-    border: Border.all(
-      color: themeData.colorScheme.input,
-    ),
+    border: Border.all(color: themeData.colorScheme.input),
     borderRadius: BorderRadius.circular(themeData.radiusMd),
     color: themeData.colorScheme.input.scaleAlpha(0.3),
   );
@@ -3058,9 +3032,7 @@ TextStyle _buttonMutedTextStyle(BuildContext context, Set<WidgetState> states) {
   final themeData = Theme.of(context);
   return themeData.typography.small
       .merge(themeData.typography.medium)
-      .copyWith(
-        color: themeData.colorScheme.mutedForeground,
-      );
+      .copyWith(color: themeData.colorScheme.mutedForeground);
 }
 
 IconThemeData _buttonMutedIconTheme(
@@ -3068,9 +3040,7 @@ IconThemeData _buttonMutedIconTheme(
   Set<WidgetState> states,
 ) {
   final themeData = Theme.of(context);
-  return IconThemeData(
-    color: themeData.colorScheme.mutedForeground,
-  );
+  return IconThemeData(color: themeData.colorScheme.mutedForeground);
 }
 
 Decoration _buttonLinkDecoration(
@@ -3200,9 +3170,7 @@ TextStyle _buttonStaticTextStyle(
   final theme = Theme.of(context);
   return theme.typography.small
       .merge(theme.typography.medium)
-      .copyWith(
-        color: theme.colorScheme.foreground,
-      );
+      .copyWith(color: theme.colorScheme.foreground);
 }
 
 IconThemeData _buttonStaticIconTheme(

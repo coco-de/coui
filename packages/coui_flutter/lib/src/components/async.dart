@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:coui_flutter/coui_flutter.dart';
 
-typedef FutureOrWidgetBuilder<T> = Widget Function(
-  BuildContext context,
-  AsyncSnapshot<T> snapshot,
-);
+typedef FutureOrWidgetBuilder<T> =
+    Widget Function(
+      BuildContext context,
+      AsyncSnapshot<T> snapshot,
+    );
 
 class FutureOrBuilder<T> extends StatelessWidget {
   const FutureOrBuilder({

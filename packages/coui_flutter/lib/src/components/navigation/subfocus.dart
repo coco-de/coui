@@ -5,10 +5,7 @@ import 'package:coui_flutter/coui_flutter.dart';
 /// Receives the build context and the scope state for managing focus
 /// within the scope's widget tree.
 typedef SubFocusScopeBuilder =
-    Widget Function(
-      BuildContext context,
-      SubFocusScopeState state,
-    );
+    Widget Function(BuildContext context, SubFocusScopeState state);
 
 /// Hierarchical focus management system for complex widget trees.
 ///
@@ -290,10 +287,7 @@ class _SubFocusScopeState extends State<SubFocusScope> with SubFocusScopeState {
 /// Receives the build context and focus state for creating widgets that
 /// respond to focus changes and user interactions.
 typedef SubFocusBuilder =
-    Widget Function(
-      BuildContext context,
-      SubFocusState state,
-    );
+    Widget Function(BuildContext context, SubFocusState state);
 
 /// Individual focusable widget within a SubFocusScope hierarchy.
 ///

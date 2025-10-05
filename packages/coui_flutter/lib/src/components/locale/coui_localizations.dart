@@ -24,6 +24,7 @@ class CoUILocalizationsDelegate
   bool shouldReload(CoUILocalizationsDelegate old) => false;
 }
 
+// ignore: unused_element
 const _fileByteUnits = SizeUnitLocale(1024, [
   'B',
   'KB',
@@ -35,6 +36,7 @@ const _fileByteUnits = SizeUnitLocale(1024, [
   'ZB',
   'YB',
 ]);
+// ignore: unused_element
 const _fileBitUnits = SizeUnitLocale(
   1024,
   ['Bi', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'],
@@ -48,22 +50,29 @@ class SizeUnitLocale {
   final List<String> units; // separator for digit grouping, e.g. 1,000,000
 }
 
+// ignore: unused_element
 double _log10(num x) {
   return log(x) / ln10;
 }
 
+// ignore: unused_element
 int _getYear(DateTime dateTime) => dateTime.year;
+// ignore: unused_element
 int _getMonth(DateTime dateTime) => dateTime.month;
+// ignore: unused_element
 int _getDay(DateTime dateTime) => dateTime.day;
 
+// ignore: unused_element
 (int?, int?) _computeYearValueRange(Map<DatePart, int> values) {
   return (null, null);
 }
 
+// ignore: unused_element
 (int?, int?) _computeMonthValueRange(Map<DatePart, int> values) {
   return (1, 12);
 }
 
+// ignore: unused_element
 (int?, int?) _computeDayValueRange(Map<DatePart, int> values) {
   final year = values[DatePart.year];
   final month = values[DatePart.month];

@@ -81,10 +81,7 @@ class StepperValue {
   /// Parameters:
   /// - [stepStates] (Map<int, StepState>, required): step states by index
   /// - [currentStep] (int, required): currently active step index
-  const StepperValue({
-    required this.currentStep,
-    required this.stepStates,
-  });
+  const StepperValue({required this.currentStep, required this.stepStates});
 
   /// Map of step indices to their special states.
   final Map<int, StepState> stepStates;
@@ -144,11 +141,7 @@ class Step {
   ///   contentBuilder: (context) => AccountSetupForm(),
   /// );
   /// ```
-  const Step({
-    this.contentBuilder,
-    this.icon,
-    required this.title,
-  });
+  const Step({this.contentBuilder, this.icon, required this.title});
 
   /// The title widget displayed for this step.
   final Widget title;
@@ -928,15 +921,13 @@ class StepperController extends ValueNotifier<StepperValue> {
   ///   stepStates: {0: StepState.failed},
   /// );
   /// ```
-  StepperController({
-    int? currentStep,
-    Map<int, StepState>? stepStates,
-  }) : super(
-         StepperValue(
-           currentStep: currentStep ?? 0,
-           stepStates: stepStates ?? {},
-         ),
-       );
+  StepperController({int? currentStep, Map<int, StepState>? stepStates})
+    : super(
+        StepperValue(
+          currentStep: currentStep ?? 0,
+          stepStates: stepStates ?? {},
+        ),
+      );
 
   /// Advances to the next step.
   ///

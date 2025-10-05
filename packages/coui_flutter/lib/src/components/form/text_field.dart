@@ -1085,17 +1085,9 @@ class TextField extends StatefulWidget with TextInput {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties.add(
-      DiagnosticsProperty<TextEditingController>(
-        'controller',
-        controller,
-      ),
+      DiagnosticsProperty<TextEditingController>('controller', controller),
     );
-    properties.add(
-      DiagnosticsProperty<FocusNode>(
-        'focusNode',
-        focusNode,
-      ),
-    );
+    properties.add(DiagnosticsProperty<FocusNode>('focusNode', focusNode));
     properties.add(
       DiagnosticsProperty<UndoHistoryController>(
         'undoController',
@@ -1119,12 +1111,7 @@ class TextField extends StatefulWidget with TextInput {
         defaultValue: TextInputType.text,
       ),
     );
-    properties.add(
-      DiagnosticsProperty<TextStyle>(
-        'style',
-        style,
-      ),
-    );
+    properties.add(DiagnosticsProperty<TextStyle>('style', style));
     properties.add(
       DiagnosticsProperty<bool>('autofocus', autofocus, defaultValue: false),
     );
@@ -1175,21 +1162,11 @@ class TextField extends StatefulWidget with TextInput {
       ),
     );
     properties.add(IntProperty('maxLines', maxLines, defaultValue: 1));
-    properties.add(
-      IntProperty(
-        'minLines',
-        minLines,
-      ),
-    );
+    properties.add(IntProperty('minLines', minLines));
     properties.add(
       DiagnosticsProperty<bool>('expands', expands, defaultValue: false),
     );
-    properties.add(
-      IntProperty(
-        'maxLength',
-        maxLength,
-      ),
-    );
+    properties.add(IntProperty('maxLength', maxLength));
     properties.add(
       EnumProperty<MaxLengthEnforcement>(
         'maxLengthEnforcement',
@@ -1199,17 +1176,9 @@ class TextField extends StatefulWidget with TextInput {
     properties.add(
       DoubleProperty('cursorWidth', cursorWidth, defaultValue: 2.0),
     );
+    properties.add(DoubleProperty('cursorHeight', cursorHeight));
     properties.add(
-      DoubleProperty(
-        'cursorHeight',
-        cursorHeight,
-      ),
-    );
-    properties.add(
-      DiagnosticsProperty<Radius>(
-        'cursorRadius',
-        cursorRadius,
-      ),
+      DiagnosticsProperty<Radius>('cursorRadius', cursorRadius),
     );
     properties.add(
       DiagnosticsProperty<bool>(
@@ -1240,10 +1209,7 @@ class TextField extends StatefulWidget with TextInput {
       ),
     );
     properties.add(
-      DiagnosticsProperty<ScrollPhysics>(
-        'scrollPhysics',
-        scrollPhysics,
-      ),
+      DiagnosticsProperty<ScrollPhysics>('scrollPhysics', scrollPhysics),
     );
     properties.add(
       EnumProperty<TextAlign>(
@@ -1259,10 +1225,7 @@ class TextField extends StatefulWidget with TextInput {
       ),
     );
     properties.add(
-      EnumProperty<TextDirection>(
-        'textDirection',
-        textDirection,
-      ),
+      EnumProperty<TextDirection>('textDirection', textDirection),
     );
     properties.add(
       DiagnosticsProperty<Clip>(

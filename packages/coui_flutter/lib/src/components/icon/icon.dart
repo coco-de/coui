@@ -53,10 +53,7 @@ extension IconExtension on Widget {
 }
 
 typedef WrappedIconDataBuilder<T> =
-    T Function(
-      BuildContext context,
-      ThemeData theme,
-    );
+    T Function(BuildContext context, ThemeData theme);
 
 class WrappedIcon extends StatelessWidget {
   const WrappedIcon({required this.child, required this.data, super.key});

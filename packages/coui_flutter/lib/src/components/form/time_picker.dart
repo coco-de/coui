@@ -749,12 +749,7 @@ class _DurationPickerDialogState extends State<DurationPickerDialog> {
     second = second.clamp(0, 59);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       widget.onChanged?.call(
-        Duration(
-          days: day,
-          hours: hour,
-          minutes: minute,
-          seconds: second,
-        ),
+        Duration(days: day, hours: hour, minutes: minute, seconds: second),
       );
     });
   }
@@ -821,10 +816,7 @@ class _DurationPickerDialogState extends State<DurationPickerDialog> {
 }
 
 class TimeRange {
-  const TimeRange({
-    required this.end,
-    required this.start,
-  });
+  const TimeRange({required this.end, required this.start});
 
   final TimeOfDay start;
 

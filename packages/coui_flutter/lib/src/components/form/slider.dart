@@ -677,6 +677,7 @@ class _SliderState extends State<Slider>
                             _moveStart =
                                 (start - newValue).abs() <
                                 (end - newValue).abs();
+
                             /// Find the closest thumb and move it to the tap position.
                             if (_moveStart) {
                               if (widget.divisions != null) {
@@ -797,6 +798,7 @@ class _SliderState extends State<Slider>
               _focusing = focusing;
             });
           },
+
           /// On increase uses increaseStep or divisions or 1.
           /// And so decrease.
           () {

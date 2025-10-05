@@ -923,10 +923,7 @@ class CalendarView {
     return other is CalendarView && other.year == year && other.month == month;
   }
 
-  CalendarView copyWith({
-    ValueGetter<int>? month,
-    ValueGetter<int>? year,
-  }) {
+  CalendarView copyWith({ValueGetter<int>? month, ValueGetter<int>? year}) {
     return CalendarView(
       year == null ? this.year : year(),
       month == null ? this.month : month(),

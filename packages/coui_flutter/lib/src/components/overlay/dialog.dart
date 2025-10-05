@@ -221,14 +221,10 @@ class ModalBackdrop extends StatelessWidget {
         fit: StackFit.passthrough,
         children: [
           if (!surfaceClip)
-            Positioned.fill(
-              child: IgnorePointer(child: paintWidget),
-            ),
+            Positioned.fill(child: IgnorePointer(child: paintWidget)),
           child,
           if (surfaceClip)
-            Positioned.fill(
-              child: IgnorePointer(child: paintWidget),
-            ),
+            Positioned.fill(child: IgnorePointer(child: paintWidget)),
         ],
       ),
     );

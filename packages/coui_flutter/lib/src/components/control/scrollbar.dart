@@ -9,11 +9,7 @@ import 'package:coui_flutter/coui_flutter.dart';
 /// Theme configuration for [Scrollbar].
 class ScrollbarTheme {
   /// Creates a [ScrollbarTheme].
-  const ScrollbarTheme({
-    this.color,
-    this.radius,
-    this.thickness,
-  });
+  const ScrollbarTheme({this.color, this.radius, this.thickness});
 
   /// Color of the scrollbar thumb.
   final Color? color;

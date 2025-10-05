@@ -1117,9 +1117,7 @@ class Window {
 
   final closed = ValueNotifier<bool>(false);
 
-  final _key = GlobalKey<_WindowWidgetState>(
-    debugLabel: 'Window',
-  );
+  final _key = GlobalKey<_WindowWidgetState>(debugLabel: 'Window');
 
   WindowHandle get handle {
     final currentState = _key.currentState;

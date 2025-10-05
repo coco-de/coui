@@ -84,9 +84,9 @@ import 'package:docs/pages/docs/theme_page.dart';
 import 'package:docs/pages/docs/typography_page.dart';
 import 'package:docs/pages/docs/web_preloader_page.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+// ignore_for_file: avoid_print
 import 'package:coui_flutter/coui_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yaml/yaml.dart';

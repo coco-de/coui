@@ -93,7 +93,9 @@ class AnimatedProperty<T> {
     });
   }
   final TickerProvider _vsync;
+  // ignore: unused_field
   final PropertyLerp<T> _lerp;
+  // ignore: unused_field
   T _value;
   bool _hasTarget = false;
   T _target;

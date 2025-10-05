@@ -802,9 +802,7 @@ class _MenuGroupState extends State<MenuGroup> {
       if (child.hasLeading) {
         hasLeading = true;
       }
-      children.add(
-        Data<MenuData>.inherit(data: data, child: child),
-      );
+      children.add(Data<MenuData>.inherit(data: data, child: child));
     }
     final direction = Directionality.of(context);
 

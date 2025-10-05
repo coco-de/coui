@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:coui_flutter/coui_flutter.dart';
 
 class ItemPickerExample2 extends StatelessWidget {

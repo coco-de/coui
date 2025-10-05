@@ -832,6 +832,7 @@ class _SortableState<T> extends State<Sortable<T>>
     return MetaData(
       behavior: HitTestBehavior.translucent,
       metaData: this,
+
       /// Must define the generic type to avoid type inference _SortableState<T>.
       child: Data<_SortableState>.inherit(
         data: this,
@@ -985,10 +986,7 @@ class _SortableState<T> extends State<Sortable<T>>
 
             return !hasCandidate
                 ? container
-                : AnimatedSize(
-                    duration: kDefaultDuration,
-                    child: container,
-                  );
+                : AnimatedSize(duration: kDefaultDuration, child: container);
           },
           listenable: layer._sessions,
         ),

@@ -383,9 +383,7 @@ class AnimatedValueBuilderState<T> extends State<AnimatedValueBuilder<T>>
           start: currentValue,
         ),
       );
-      _controller.forward(
-        from: 0,
-      );
+      _controller.forward(from: 0);
     }
   }
 
@@ -608,9 +606,7 @@ class _RepeatedAnimationBuilderState<T>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-    );
+    _controller = AnimationController(vsync: this);
     if (widget.mode == RepeatMode.reverse ||
         widget.mode == RepeatMode.pingPongReverse) {
       _reverse = true;
@@ -944,16 +940,10 @@ class CrossFadedTransition extends StatefulWidget {
         Positioned.fill(
           child: Opacity(
             opacity: startOpacity,
-            child: Align(
-              alignment: alignment,
-              child: a,
-            ),
+            child: Align(alignment: alignment, child: a),
           ),
         ),
-        Opacity(
-          opacity: endOpacity,
-          child: b,
-        ),
+        Opacity(opacity: endOpacity, child: b),
       ],
     );
   }

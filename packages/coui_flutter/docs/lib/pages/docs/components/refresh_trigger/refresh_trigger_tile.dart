@@ -1,4 +1,5 @@
 import 'package:docs/pages/docs/components_page.dart';
+// ignore_for_file: deprecated_member_use
 import 'package:coui_flutter/coui_flutter.dart';
 
 class RefreshTriggerTile extends StatelessWidget implements IComponentPage {

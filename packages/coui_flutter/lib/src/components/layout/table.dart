@@ -338,6 +338,7 @@ class ResizableTableController extends ChangeNotifier {
     return _widthConstraints?[index]?.max ?? _defaultWidthConstraint?.max;
   }
 
+  // ignore: unused_element
   static double _absClosestTo(double a, double b, double target) {
     final absA = (a - target).abs();
     final absB = (b - target).abs();
@@ -739,6 +740,7 @@ class _CellResizerState extends State<_CellResizer> {
               ),
             ),
           ),
+
         /// Bottom.
         if ((row + rowSpan <= tableData.maxRow ||
                 heightMode == TableCellResizeMode.expand) &&
@@ -800,6 +802,7 @@ class _CellResizerState extends State<_CellResizer> {
               ),
             ),
           ),
+
         /// Left.
         if (column > 0 && widthMode != TableCellResizeMode.none)
           Positioned(
@@ -859,6 +862,7 @@ class _CellResizerState extends State<_CellResizer> {
               ),
             ),
           ),
+
         /// Right.
         if ((column + columnSpan <= tableData.maxColumn ||
                 widthMode == TableCellResizeMode.expand) &&
@@ -975,6 +979,7 @@ List<T> _reorganizeCells<T extends _TableCellData>(List<T> cells) {
               if (rightCell != null) {
                 /// Remove the cell from the map.
                 cellMap[i]!.remove(row);
+
                 /// Shift the cell to the right (+ columnSpan).
                 if (row == r) {
                   cellMap.putIfAbsent(i + cell.columnSpan - 1, () => {});
@@ -1215,9 +1220,7 @@ class TableRow {
             : null;
       }),
       border: WidgetStateProperty.resolveWith((states) {
-        return Border(
-          bottom: BorderSide(color: theme.colorScheme.border),
-        );
+        return Border(bottom: BorderSide(color: theme.colorScheme.border));
       }),
       textStyle: WidgetStateProperty.resolveWith((states) {
         return TextStyle(
@@ -1291,9 +1294,7 @@ class TableHeader extends TableRow {
             : theme.colorScheme.muted.withValues(alpha: 0.5);
       }),
       border: WidgetStateProperty.resolveWith((states) {
-        return Border(
-          bottom: BorderSide(color: theme.colorScheme.border),
-        );
+        return Border(bottom: BorderSide(color: theme.colorScheme.border));
       }),
       textStyle: WidgetStateProperty.resolveWith((states) {
         return theme.typography.semiBold.merge(
@@ -1887,6 +1888,7 @@ class RenderTableLayout extends RenderBox
 
   Size? _viewportSize;
 
+  // ignore: unused_field
   TableLayoutResult? _layoutResult;
 
   @override
@@ -2089,6 +2091,7 @@ class RenderTableLayout extends RenderBox
             verticalOffset = min(verticalOffset, maxVerticalOffset);
           }
           final offsetInViewport = offsetY - verticalOffset;
+
           /// Make sure its visible on the viewport.
           double minViewport = 0;
           final maxViewport = constraints.minHeight;
@@ -2113,6 +2116,7 @@ class RenderTableLayout extends RenderBox
             horizontalOffset = min(horizontalOffset, maxHorizontalOffset);
           }
           final offsetInViewport = offsetX - horizontalOffset;
+
           /// Make sure its visible on the viewport.
           double minViewport = 0;
           final maxViewport = constraints.minWidth;
@@ -2192,6 +2196,7 @@ class RenderTableLayout extends RenderBox
         rowHeights[r] = max(rowHeights[r] ?? 0, heightConstraint.value);
       }
     }
+
     /// Column.
     for (int c = 0; c <= maxColumn; c += 1) {
       final widthConstraint = _width(c);
@@ -2334,8 +2339,8 @@ class RenderTableLayout extends RenderBox
       columnWidthsList[key] = value;
     });
     final rowHeightsList = List<double>.generate(maxRow + 1, (index) {
-          return rowHeights[index] ?? 0;
-        });
+      return rowHeights[index] ?? 0;
+    });
     rowHeights.forEach((key, value) {
       rowHeightsList[key] = value;
     });

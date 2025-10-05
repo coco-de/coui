@@ -1,4 +1,19 @@
-import 'package:coui_flutter/coui_flutter.dart' as coui;
-import 'package:flutter/material.dart';
-import 'package:widgetbook/widgetbook.dart';
+import 'package:coui_flutter/coui_flutter.dart';
+import 'package:flutter/material.dart' as material;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+
+@UseCase(name: 'Primary', type: PrimaryButton)
+material.Widget buildPrimaryButtonUseCase(material.BuildContext context) {
+  return PrimaryButton(
+    onPressed: () {},
+    child: const Text('Primary Button'),
+  );
+}
+
+@UseCase(name: 'Secondary', type: SecondaryButton)
+material.Widget buildSecondaryButtonUseCase(material.BuildContext context) {
+  return SecondaryButton(
+    onPressed: () {},
+    child: const Text('Secondary Button'),
+  );
+}

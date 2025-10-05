@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:coui_flutter/coui_flutter.dart';
 
 class AutoCompleteExample1 extends StatefulWidget {
@@ -53,11 +54,15 @@ class _AutoCompleteExample1State extends State<AutoCompleteExample1> {
       child: TextField(
         controller: _controller,
         onChanged: _updateSuggestions,
-        trailing: const IconButton.text(
-          density: ButtonDensity.compact,
-          icon: Icon(Icons.clear),
-          onPressed: clearActiveTextInput,
-        ),
+        features: [
+          InputFeature.trailing(
+            const IconButton.text(
+              density: ButtonDensity.compact,
+              icon: Icon(Icons.clear),
+              onPressed: clearActiveTextInput,
+            ),
+          ),
+        ],
       ),
     );
   }

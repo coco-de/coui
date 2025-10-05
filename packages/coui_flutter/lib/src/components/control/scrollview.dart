@@ -6,8 +6,11 @@ import 'package:coui_flutter/coui_flutter.dart';
 
 // This helps to simulate middle hold scroll on web and desktop platforms
 class ScrollViewInterceptor extends StatefulWidget {
-  const ScrollViewInterceptor(
-      {required this.child, this.enabled = true, super.key});
+  const ScrollViewInterceptor({
+    required this.child,
+    this.enabled = true,
+    super.key,
+  });
 
   final Widget child;
 
@@ -75,12 +78,16 @@ class _ScrollViewInterceptorState extends State<ScrollViewInterceptor>
       try {
         path.target.handleEvent(pointerScrollEvent, path);
       } catch (e, s) {
-        FlutterError.reportError(FlutterErrorDetails(
-          context: ErrorDescription('while dispatching a pointer scroll event'),
-          exception: e,
-          library: 'coui_flutter',
-          stack: s,
-        ));
+        FlutterError.reportError(
+          FlutterErrorDetails(
+            context: ErrorDescription(
+              'while dispatching a pointer scroll event',
+            ),
+            exception: e,
+            library: 'coui_flutter',
+            stack: s,
+          ),
+        );
       }
     }
   }

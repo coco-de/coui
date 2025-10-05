@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+// ignore_for_file: avoid_print
 import 'package:http/http.dart' as http;
 import 'package:coui_flutter/coui_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';

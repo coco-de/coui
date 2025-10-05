@@ -1,3 +1,4 @@
+// ignore_for_file: library_private_types_in_public_api
 import 'package:docs/radix_icons.dart';
 import 'package:coui_flutter/coui_flutter.dart';
 
@@ -258,7 +259,9 @@ class _IconsPageState extends State<IconsPage> {
                                 ).gap(12).p(),
                                 const Gap(32),
                                 TextField(
-                                  leading: const Icon(Icons.search),
+                                  features: const [
+                                    InputFeature.leading(Icon(Icons.search)),
+                                  ],
                                   placeholder: const Text('Search icons'),
                                   controller: _controller,
                                 ),

@@ -1,10 +1,6 @@
 import 'package:coui_flutter/coui_flutter.dart';
 
-typedef WrapperBuilder =
-    Widget Function(
-      Widget child,
-      BuildContext context,
-    );
+typedef WrapperBuilder = Widget Function(Widget child, BuildContext context);
 
 class Wrapper extends StatefulWidget {
   const Wrapper({

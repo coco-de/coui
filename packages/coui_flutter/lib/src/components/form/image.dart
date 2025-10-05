@@ -1,6 +1,3 @@
-import 'package:flutter/foundation.dart';
-import 'package:image/image.dart' as img;
-
 import 'package:coui_flutter/coui_flutter.dart';
 
 enum ImageType { bmp, gif, ico, jpg, png, pvr, tga, tiff }

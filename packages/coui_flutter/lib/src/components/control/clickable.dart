@@ -304,11 +304,8 @@ class WidgetStatesData {
 }
 
 class _MapStatedWidget extends StatedWidget {
-  const _MapStatedWidget({
-    this.child,
-    super.key,
-    required this.states,
-  }) : super._();
+  const _MapStatedWidget({this.child, super.key, required this.states})
+    : super._();
 
   static final _mappedNames = WidgetState.values.asNameMap();
   final Map<Object, Widget> states;

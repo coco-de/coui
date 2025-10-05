@@ -330,11 +330,7 @@ class ScaffoldState extends State<Scaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return Overlay(
-      initialEntries: [
-        OverlayEntry(builder: _buildContent),
-      ],
-    );
+    return Overlay(initialEntries: [OverlayEntry(builder: _buildContent)]);
   }
 }
 
@@ -886,6 +882,7 @@ enum _ScaffoldPaddingType {
   header,
 }
 
+// ignore: unused_element
 class _RenderScaffoldPadding extends RenderBox
     with
         ContainerRenderObjectMixin<RenderBox, _ScaffoldParentData>,

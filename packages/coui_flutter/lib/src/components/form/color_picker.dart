@@ -406,9 +406,7 @@ class ColorHistoryGrid extends StatelessWidget {
                 ? storage.recentColors[index]
                 : null;
             if (index >= storage.capacity) {
-              tiles.add(
-                const Expanded(child: SizedBox()),
-              );
+              tiles.add(const Expanded(child: SizedBox()));
             } else {
               tiles.add(
                 Expanded(child: _buildGridTile(context, color, theme)),
@@ -2285,9 +2283,7 @@ class _ColorPickerDialogState extends State<_ColorPickerDialog> {
           IconButton.outline(
             onPressed: () {
               Navigator.of(context).pop(
-                const _ColorPickerDialogResult(
-                  pickedFromScreen: true,
-                ),
+                const _ColorPickerDialogResult(pickedFromScreen: true),
               );
             },
             icon: Icon(LucideIcons.pipette, size: theme.scaling * 16),
@@ -2302,9 +2298,7 @@ class _ColorPickerDialogState extends State<_ColorPickerDialog> {
           onPressed: () {
             widget.onColorChanged?.call(_color);
             Navigator.of(context).pop(
-              _ColorPickerDialogResult(
-                color: _color,
-              ),
+              _ColorPickerDialogResult(color: _color),
             );
           },
           child: Text(localizations.buttonOk, textAlign: TextAlign.center),

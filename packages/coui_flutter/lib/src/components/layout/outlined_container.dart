@@ -37,6 +37,7 @@ class _SurfaceBlurState extends State<SurfaceBlur> {
                       sigmaX: widget.surfaceBlur!,
                       sigmaY: widget.surfaceBlur!,
                     ),
+
                     /// Had to add SizedBox, otherwise it won't blur.
                     child: const SizedBox(),
                   ),

@@ -480,6 +480,7 @@ class _SwiperState extends State<Swiper> {
         default:
           throw UnimplementedError('Unresolved position');
       }
+
       /// Normalize delta.
       final size = _key.currentContext?.size;
       if (size == null) {

@@ -148,10 +148,7 @@ class ToastTheme {
 }
 
 typedef ToastBuilder =
-    Widget Function(
-      BuildContext context,
-      ToastOverlay overlay,
-    );
+    Widget Function(BuildContext context, ToastOverlay overlay);
 
 /// Displays a toast notification with sophisticated positioning and animation.
 ///

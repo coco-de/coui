@@ -323,14 +323,8 @@ class _RenderHiddenLayout extends RenderBox
       } else {
         final parentData = child.parentData! as BoxParentData;
         parentData.offset = direction == Axis.horizontal
-            ? Offset(
-                0,
-                -(preferredSize.height - size.height) / 2,
-              )
-            : Offset(
-                -(preferredSize.width - size.width) / 2,
-                0,
-              );
+            ? Offset(0, -(preferredSize.height - size.height) / 2)
+            : Offset(-(preferredSize.width - size.width) / 2, 0);
       }
     }
   }

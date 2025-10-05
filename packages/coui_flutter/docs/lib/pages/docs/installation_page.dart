@@ -1,3 +1,4 @@
+// ignore_for_file: library_private_types_in_public_api
 import 'package:coui_flutter/coui_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 

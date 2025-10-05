@@ -1,7 +1,6 @@
 import 'package:coui_web/src/base/component_style.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
-import 'package:coui_web/src/components/icon/icon.dart';
 
 /// Marker interface for any utility that can be passed to an [Icon]'s `modifiers` list.
 abstract class _IconStyling implements Styling {}
