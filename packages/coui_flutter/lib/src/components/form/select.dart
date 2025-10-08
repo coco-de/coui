@@ -411,10 +411,10 @@ class SelectLabel extends StatelessWidget {
 
 typedef SelectPopupBuilder = Widget Function(BuildContext context);
 typedef SelectValueBuilder<T> = Widget Function(BuildContext context, T value);
-typedef SelectValueSelectionHandler<T> =
-    T? Function(T? oldValue, bool selected, Object? value);
-typedef SelectValueSelectionPredicate<T> =
-    bool Function(Object? test, T? value);
+typedef SelectValueSelectionHandler<T> = T? Function(
+    T? oldValue, Object? value, bool selected);
+typedef SelectValueSelectionPredicate<T> = bool Function(
+    T? value, Object? test);
 
 T? _defaultSingleSelectValueSelectionHandler<T>(
   T? oldValue,
@@ -991,8 +991,8 @@ class MultiSelect<T> extends StatelessWidget with SelectBase<Iterable<T>> {
   }) : multiItemBuilder = itemBuilder;
 
   static Widget _buildItem<T>(
-    BuildContext context,
     SelectValueBuilder<T> multiItemBuilder,
+    BuildContext context,
     Iterable<T> value,
   ) {
     final theme = Theme.of(context);
@@ -1084,7 +1084,7 @@ class MultiSelect<T> extends StatelessWidget with SelectBase<Iterable<T>> {
   }
 }
 
-typedef SelectValueChanged<T> = bool Function(bool selected, T value);
+typedef SelectValueChanged<T> = bool Function(T value, bool selected);
 
 class SelectData {
   const SelectData({
@@ -1177,7 +1177,7 @@ class SelectPopup<T> extends StatefulWidget {
        disableVirtualization = true,
        shrinkWrap = false;
 
-  final SelectItemsBuilder<T>? builder;
+  final SelectItemsBuilder? builder;
   final FutureOr<SelectItemDelegate?>? items;
   final TextEditingController? searchController;
   final Widget? searchPlaceholder;
@@ -1202,7 +1202,7 @@ class SelectPopup<T> extends StatefulWidget {
 mixin SelectPopupHandle {
   bool isSelected(Object? value);
 
-  void selectItem(bool selected, Object? value);
+  void selectItem(Object? value, bool selected);
   bool get hasSelection;
 }
 
@@ -1250,7 +1250,7 @@ class _SelectPopupState<T> extends State<SelectPopup<T>>
   }
 
   @override
-  void selectItem(bool selected, Object? value) {
+  void selectItem(Object? value, bool selected) {
     _selectData?.onChanged(value, selected);
     if (widget.autoClose ?? _selectData?.autoClose ?? false) {
       closeOverlay(context, value);
@@ -1489,7 +1489,7 @@ class _SelectPopupState<T> extends State<SelectPopup<T>>
                                                                   _scrollController
                                                                       .position
                                                                       .maxScrollExtent,
-                                                                );
+                                                                ).toDouble();
                                                                 _scrollController
                                                                     .jumpTo(
                                                                       value,
@@ -1551,7 +1551,7 @@ class _SelectPopupState<T> extends State<SelectPopup<T>>
                                                                   _scrollController
                                                                       .position
                                                                       .maxScrollExtent,
-                                                                );
+                                                                ).toDouble();
                                                                 _scrollController
                                                                     .jumpTo(
                                                                       value,

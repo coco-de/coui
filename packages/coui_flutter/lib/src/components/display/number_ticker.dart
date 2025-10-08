@@ -5,8 +5,8 @@ import 'package:coui_flutter/coui_flutter.dart';
 /// Used by [NumberTicker.builder] to construct custom presentations of the
 /// animated number. The [number] parameter contains the current interpolated
 /// numeric value, while [child] is an optional widget for optimization.
-typedef NumberTickerBuilder =
-    Widget Function(Widget? child, BuildContext context, num number);
+typedef NumberTickerBuilder = Widget Function(
+    BuildContext context, num number, Widget? child);
 
 /// A callback that formats a number into a string representation.
 ///

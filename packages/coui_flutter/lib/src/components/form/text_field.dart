@@ -796,8 +796,8 @@ class TextField extends StatefulWidget with TextInput {
   }
 
   static List<Widget> _getMaterialButtons(
-    List<ContextMenuButtonItem> buttonItems,
     BuildContext context,
+    List<ContextMenuButtonItem> buttonItems,
   ) {
     final buttons = <Widget>[];
     for (int i = 0; i < buttonItems.length; i += 1) {
@@ -819,8 +819,8 @@ class TextField extends StatefulWidget with TextInput {
   }
 
   static String _getMaterialButtonLabel(
-    ContextMenuButtonItem buttonItem,
     BuildContext context,
+    ContextMenuButtonItem buttonItem,
   ) {
     final localizations = material.MaterialLocalizations.of(context);
 
@@ -843,7 +843,7 @@ class TextField extends StatefulWidget with TextInput {
     BuildContext context,
     EditableTextState editableTextState,
   ) {
-    return buildEditableTextContextMenu(context, editableTextState);
+    return buildEditableTextContextMenu(editableTextState, context);
   }
 
   @visibleForTesting
@@ -1859,7 +1859,7 @@ class TextFieldState extends State<TextField>
                 final selection = value.selection;
                 if (selection.isCollapsed) {
                   final start = selection.start;
-                  final newText = replaceWordAtCaret(text, start, replacement);
+                  final newText = replaceWordAtCaret(start, replacement, text);
                   effectiveController.value = TextEditingValue(
                     selection: TextSelection.collapsed(
                       offset: newText.$1 + replacement.length,

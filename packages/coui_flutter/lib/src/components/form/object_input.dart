@@ -151,11 +151,11 @@ class _DateInputState extends State<DateInput> {
             _convertToNullableDate(widget.initialValue),
           )
         : ConvertedController<DateTime?, NullableDate>(
-            widget.controller!,
             BiDirectionalConvert(
               _convertToNullableDate,
               _convertFromNullableDate,
             ),
+            widget.controller!,
           );
   }
 
@@ -448,13 +448,10 @@ class _TimeInputState extends State<TimeInput> {
         ? ComponentValueController<NullableTimeOfDay>(
             _convertToNullableTimeOfDay(widget.initialValue),
           )
-        : ConvertedController<TimeOfDay?, NullableTimeOfDay>(
-            widget.controller!,
-            BiDirectionalConvert(
+        : ConvertedController<TimeOfDay?, NullableTimeOfDay>(BiDirectionalConvert(
               _convertToNullableTimeOfDay,
               _convertFromNullableTimeOfDay,
-            ),
-          );
+            ), widget.controller!);
   }
 
   NullableTimeOfDay _convertToTimeOfDay(List<String?> values) {
@@ -673,13 +670,10 @@ class _DurationInputState extends State<DurationInput> {
         ? ComponentValueController<NullableTimeOfDay>(
             _convertToNullableTimeOfDay(widget.initialValue),
           )
-        : ConvertedController<Duration?, NullableTimeOfDay>(
-            widget.controller!,
-            BiDirectionalConvert(
+        : ConvertedController<Duration?, NullableTimeOfDay>(BiDirectionalConvert(
               _convertToNullableTimeOfDay,
               _convertFromNullableTimeOfDay,
-            ),
-          );
+            ), widget.controller!);
   }
 
   NullableTimeOfDay _convertToDuration(List<String?> values) {

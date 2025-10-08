@@ -285,7 +285,7 @@ class _InputRevalidateFeatureState
                     icon: RepeatedAnimationBuilder(
                       builder: (context, value, child) {
                         return Transform.rotate(
-                          angle: degToRad(value),
+                          angle: degToRad(value.toDouble()),
                           child: child,
                         );
                       },

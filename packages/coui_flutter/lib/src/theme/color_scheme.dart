@@ -215,7 +215,7 @@ class ColorShades implements Color, ColorSwatch {
     // calculate the difference between the current blue value and the new value
     final delta = b - blue;
     for (final key in shadeValues) {
-      final safe = (_colors[key]!.blue + delta).clamp(0, 255);
+      final safe = (_colors[key]!.blue + delta).clamp(0, 255).toDouble();
       colors[key] = _colors[key]!.withBlue(safe);
     }
 
@@ -228,7 +228,7 @@ class ColorShades implements Color, ColorSwatch {
     // calculate the difference between the current green value and the new value
     final delta = g - green;
     for (final key in shadeValues) {
-      final safe = (_colors[key]!.green + delta).clamp(0, 255);
+      final safe = (_colors[key]!.green + delta).clamp(0, 255).toDouble();
       colors[key] = _colors[key]!.withGreen(safe);
     }
 
@@ -251,7 +251,7 @@ class ColorShades implements Color, ColorSwatch {
     // calculate the difference between the current red value and the new value
     final delta = r - red;
     for (final key in shadeValues) {
-      final safe = (_colors[key]!.red + delta).clamp(0, 255);
+      final safe = (_colors[key]!.red + delta).clamp(0, 255).toDouble();
       colors[key] = _colors[key]!.withRed(safe);
     }
 

@@ -516,7 +516,7 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
                             });
                           },
                           value: !_pm,
-                          child: Text(localizations.timeAM),
+                          trailing: Text(localizations.timeAM),
                         ),
                       ),
                       Expanded(
@@ -528,7 +528,7 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
                             });
                           },
                           value: _pm,
-                          child: Text(localizations.timePM),
+                          trailing: Text(localizations.timePM),
                         ),
                       ),
                     ],

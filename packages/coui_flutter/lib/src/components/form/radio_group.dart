@@ -263,7 +263,7 @@ class _RadioItemState<T> extends State<RadioItem<T>> {
     );
 
     return GestureDetector(
-      onTap: widget.enabled && groupData.enabled
+      onTap: widget.enabled && (groupData?.enabled ?? false)
           ? () {
               group?._setSelected(widget.value);
             }
@@ -290,11 +290,11 @@ class _RadioItemState<T> extends State<RadioItem<T>> {
           ),
         },
         focusNode: _focusNode,
-        mouseCursor: widget.enabled && groupData.enabled
+        mouseCursor: widget.enabled && (groupData?.enabled ?? false)
             ? SystemMouseCursors.click
             : SystemMouseCursors.forbidden,
         onShowFocusHighlight: (value) {
-          if (value && widget.enabled && groupData.enabled) {
+          if (value && widget.enabled && (groupData?.enabled ?? false)) {
             group?._setSelected(widget.value);
           }
           if (value != _focusing) {
@@ -315,8 +315,8 @@ class _RadioItemState<T> extends State<RadioItem<T>> {
                     SizedBox(width: theme.scaling * 8),
                   Radio(
                     focusing:
-                        _focusing && groupData.selectedItem == widget.value,
-                    value: groupData.selectedItem == widget.value,
+                        _focusing && groupData?.selectedItem == widget.value,
+                    value: groupData?.selectedItem == widget.value,
                   ),
                   if (widget.trailing != null)
                     SizedBox(width: theme.scaling * 8),
@@ -500,7 +500,7 @@ class _RadioCardState<T> extends State<RadioCard<T>> {
     );
 
     return GestureDetector(
-      onTap: widget.enabled && groupData?.enabled ?? false
+      onTap: widget.enabled && (groupData?.enabled ?? false)
           ? () {
               group?._setSelected(widget.value);
             }
@@ -527,7 +527,7 @@ class _RadioCardState<T> extends State<RadioCard<T>> {
           ),
         },
         focusNode: _focusNode,
-        mouseCursor: widget.enabled && groupData?.enabled ?? false
+        mouseCursor: widget.enabled && (groupData?.enabled ?? false)
             ? styleValue(
                 defaultValue: SystemMouseCursors.click,
                 themeValue: componentTheme?.enabledCursor,
@@ -537,7 +537,7 @@ class _RadioCardState<T> extends State<RadioCard<T>> {
                 themeValue: componentTheme?.disabledCursor,
               ),
         onShowFocusHighlight: (value) {
-          if (value && widget.enabled && groupData?.enabled ?? false) {
+          if (value && widget.enabled && (groupData?.enabled ?? false)) {
             group?._setSelected(widget.value);
           }
           if (value != _focusing) {
@@ -850,7 +850,7 @@ class RadioGroupState<T> extends State<RadioGroup<T>>
       child: Data.inherit(
         data: this,
         child: Data.inherit(
-          data: RadioGroupData(widget.value, enabled),
+          data: RadioGroupData(enabled, widget.value),
           child: FocusTraversalGroup(child: widget.child),
         ),
       ),

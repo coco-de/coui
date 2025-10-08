@@ -241,12 +241,14 @@ class _SortableDraggingSession<T> {
     required this.data,
     required this.ghost,
     required this.layer,
+    required this.layerRenderBox,
     required this.lock,
     required this.maxOffset,
     required this.minOffset,
     required Offset offset,
     required this.placeholder,
     required this.size,
+    required this.target,
     required this.transform,
   }) : offset = ValueNotifier(offset);
   final key = GlobalKey();
@@ -257,9 +259,11 @@ class _SortableDraggingSession<T> {
   final SortableData<T> data;
   final ValueNotifier<Offset> offset;
   final _SortableLayerState layer;
+  final RenderBox layerRenderBox;
   final Offset minOffset;
   final Offset maxOffset;
   final bool lock;
+  final _SortableState<T> target;
 }
 
 enum _SortableDropLocation {
@@ -583,7 +587,7 @@ class _SortableState<T> extends State<Sortable<T>>
     setState(() {
       _dragging = true;
     });
-    _scrollableLayer?._startDrag(this, details.globalPosition);
+    _scrollableLayer?._startDrag(details.globalPosition, this);
   }
 
   ValueNotifier<_SortableDraggingSession<T>?> _getByLocation(
@@ -636,9 +640,9 @@ class _SortableState<T> extends State<Sortable<T>>
             (maxOffset.dx - minOffset.dx) / 2,
             (maxOffset.dy - minOffset.dy) / 2,
           );
-      final target = _findState(_session!.layer, globalPosition);
+      final target = _findState(globalPosition, _session!.layer);
       if (target == null) {
-        final fallback = _findFallbackState(_session!.layer, globalPosition);
+        final fallback = _findFallbackState(globalPosition, _session!.layer);
         _currentFallback.value = fallback;
         if (_currentTarget.value != null && fallback == null) {
           _currentTarget.value!.dispose(_session!);
@@ -712,7 +716,7 @@ class _SortableState<T> extends State<Sortable<T>>
       return;
     }
     _handleDrag(details.delta);
-    _scrollableLayer?._updateDrag(this, details.globalPosition);
+    _scrollableLayer?._updateDrag(details.globalPosition, this);
   }
 
   void _onDragEnd(DragEndDetails details) {
@@ -1373,13 +1377,13 @@ class _SortableLayerState extends State<SortableLayer>
     _pendingDrop.value = null;
   }
 
-  bool _canClaimDrop(Object? data, _SortableState item) {
+  bool _canClaimDrop(_SortableState item, Object? data) {
     return _pendingDrop.value != null && data == _pendingDrop.value!.data;
   }
 
   _DropTransform? _claimDrop(
-    SortableData data,
-    _SortableState item, [
+    _SortableState item,
+    SortableData data, [
     bool force = false,
   ]) {
     if (_pendingDrop.value != null &&
@@ -1411,11 +1415,11 @@ class _SortableLayerState extends State<SortableLayer>
     final toRemove = <_DropTransform>[];
     for (final drop in _activeDrops.value) {
       drop.start ??= elapsed;
-      num progress =
+      double progress =
           ((elapsed - drop.start!).inMilliseconds /
                   (widget.dropDuration ?? kDefaultDuration).inMilliseconds)
-              .clamp(0, 1);
-      progress = (widget.dropCurve ?? Curves.easeInOut).transform(progress);
+              .clamp(0, 1).toDouble();
+      progress = (widget.dropCurve ?? Curves.easeInOut).transform(progress.toDouble());
       if (progress >= 1 || !drop.state.mounted) {
         drop.state._hasClaimedDrop.value = false;
         toRemove.add(drop);
@@ -1534,8 +1538,8 @@ class _SortableLayerState extends State<SortableLayer>
                               child: Transform(
                                 transform: _tweenMatrix(
                                   drop.from,
-                                  drop.to,
                                   drop.progress.value,
+                                  drop.to,
                                 ),
                                 child: drop.child,
                               ),

@@ -3,6 +3,9 @@ import 'dart:math';
 
 import 'package:coui_flutter/coui_flutter.dart';
 
+const kDataWidgetLibrary = 'package:data_widget/data_widget.dart';
+const kDataWidgetExtensionLibrary = 'package:data_widget/extension.dart';
+
 typedef Predicate<T> = bool Function(T value);
 typedef UnaryOperator<T> = T Function(T value);
 typedef BinaryOperator<T> = T Function(T a, T b);
@@ -366,7 +369,7 @@ extension WidgetExtension on Widget {
             width: width ?? (this as SizedBox).width,
             child: (this as SizedBox).child,
           )
-        : SizedBox(height: height, width: width, child: this);
+        : SizedBox(height: height.toDouble(), width: width, child: this);
   }
 
   Widget constrained({
@@ -671,7 +674,7 @@ class SeparatedFlex extends StatefulWidget {
 }
 
 class _SeparatedFlexState extends State<SeparatedFlex> {
-  List<Widget> _children;
+  late List<Widget> _children;
 
   @override
   void initState() {
@@ -940,7 +943,7 @@ extension TextEditingControllerExtension on TextEditingController {
     }
 
     return selection.isCollapsed
-        ? getWordAtCaret(text, selection.baseOffset).$2
+        ? getWordAtCaret(selection.baseOffset, text).$2
         : null;
   }
 }

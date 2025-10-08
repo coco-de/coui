@@ -88,11 +88,11 @@ class ScrollableClient extends StatelessWidget {
   final bool? overscroll;
 
   Widget _buildViewport(
-    Clip clipBehavior,
     BuildContext context,
+    ViewportOffset verticalOffset,
     ViewportOffset horizontalOffset,
     bool overscroll,
-    ViewportOffset verticalOffset,
+    Clip clipBehavior,
   ) {
     return ScrollableClientViewport(
       clipBehavior: clipBehavior,

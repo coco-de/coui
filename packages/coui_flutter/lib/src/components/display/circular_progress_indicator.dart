@@ -245,7 +245,7 @@ class CircularProgressIndicator extends StatelessWidget {
                     backgroundColor: effectiveBackgroundColor,
                     color: effectiveColor,
                     strokeWidth: effectiveStrokeWidth,
-                    value: value,
+                    value: value.toDouble(),
                     valueColor: AlwaysStoppedAnimation<Color>(effectiveColor),
                   ),
                 ),

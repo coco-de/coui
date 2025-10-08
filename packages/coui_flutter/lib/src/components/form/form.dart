@@ -43,8 +43,8 @@ abstract class Validator<T> {
   /// or contains error information for invalid values.
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode lifecycle,
     T? value,
+    FormValidationMode lifecycle,
   );
 
   /// Combines this validator with another validator using AND logic.
@@ -163,19 +163,19 @@ abstract class Validator<T> {
 /// fine-grained control over when validation logic runs. Different validation
 /// modes can be used to optimize user experience and performance.
 enum FormValidationMode {
-  /// Validation occurs when the field value changes.
-  ///
-  /// This is the most common validation mode, providing immediate feedback
-  /// as users interact with form fields. Validation runs after each value
-  /// change event.
-  changed,
-
   /// Validation occurs when the field is first created or initialized.
   ///
   /// This mode runs validation immediately when a form field is created,
   /// which can be useful for fields with default values that need immediate
   /// validation feedback.
   initial,
+
+  /// Validation occurs when the field value changes.
+  ///
+  /// This is the most common validation mode, providing immediate feedback
+  /// as users interact with form fields. Validation runs after each value
+  /// change event.
+  changed,
 
   /// Validation occurs when the form is submitted.
   ///
@@ -202,8 +202,8 @@ class ValidationMode<T> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode lifecycle,
     T? value,
+    FormValidationMode lifecycle,
   ) {
     return mode.contains(lifecycle)
         ? validator.validate(context, value, lifecycle)
@@ -317,8 +317,8 @@ class ConditionalValidator<T> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode lifecycle,
     T? value,
+    FormValidationMode lifecycle,
   ) {
     final result = predicate(value);
     if (result is Future<bool>) {
@@ -361,8 +361,8 @@ class ValidatorBuilder<T> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode lifecycle,
     T? value,
+    FormValidationMode lifecycle,
   ) {
     return builder(value);
   }
@@ -391,8 +391,8 @@ class NotValidator<T> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
   ) {
     final localizations = Localizations.of(context, CoUILocalizations);
     final result = validator.validate(context, value, state);
@@ -431,8 +431,8 @@ class OrValidator<T> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
   ) {
     return _chainedValidation(context, value, state, 0);
   }
@@ -460,9 +460,9 @@ class OrValidator<T> extends Validator<T> {
 
   FutureOr<ValidationResult?> _chainedValidation(
     BuildContext context,
-    int index,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
+    int index,
   ) {
     if (index >= validators.length) {
       return null;
@@ -500,8 +500,8 @@ class NonNullValidator<T> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
   ) {
     if (value == null) {
       final localizations = Localizations.of(context, CoUILocalizations);
@@ -527,8 +527,8 @@ class NotEmptyValidator extends NonNullValidator<String> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     String? value,
+    FormValidationMode state,
   ) {
     if (value == null || value.isEmpty) {
       final localizations = Localizations.of(context, CoUILocalizations);
@@ -559,8 +559,8 @@ class LengthValidator extends Validator<String> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     String? value,
+    FormValidationMode state,
   ) {
     if (value == null) {
       return min != null
@@ -625,8 +625,8 @@ class CompareWith<T extends Comparable<T>> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
   ) {
     final localizations = Localizations.of(context, CoUILocalizations);
     final otherValue = context.getFormValue(key);
@@ -726,8 +726,8 @@ class SafePasswordValidator extends Validator<String> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     String? value,
+    FormValidationMode state,
   ) {
     if (value == null) {
       return null;
@@ -797,8 +797,8 @@ class MinValidator<T extends num> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
   ) {
     if (value == null) {
       return null;
@@ -850,8 +850,8 @@ class MaxValidator<T extends num> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
   ) {
     if (value == null) {
       return null;
@@ -894,8 +894,8 @@ class MaxValidator<T extends num> extends Validator<T> {
 
 class RangeValidator<T extends num> extends Validator<T> {
   const RangeValidator(
-    this.max,
-    this.min, {
+    this.min,
+    this.max, {
     this.inclusive = true,
     this.message,
   });
@@ -909,8 +909,8 @@ class RangeValidator<T extends num> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
   ) {
     if (value == null) {
       return null;
@@ -962,8 +962,8 @@ class RegexValidator extends Validator<String> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     String? value,
+    FormValidationMode state,
   ) {
     if (value == null) {
       return null;
@@ -999,8 +999,8 @@ class EmailValidator extends Validator<String> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     String? value,
+    FormValidationMode state,
   ) {
     if (value == null) {
       return null;
@@ -1032,8 +1032,8 @@ class URLValidator extends Validator<String> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     String? value,
+    FormValidationMode state,
   ) {
     if (value == null) {
       return null;
@@ -1060,7 +1060,7 @@ class URLValidator extends Validator<String> {
 }
 
 class CompareTo<T extends Comparable<T>> extends Validator<T> {
-  const CompareTo(this.type, this.value, {this.message});
+  const CompareTo(this.value, this.type, {this.message});
   const CompareTo.equal(this.value, {this.message}) : type = CompareType.equal;
   const CompareTo.greater(this.value, {this.message})
     : type = CompareType.greater;
@@ -1077,8 +1077,8 @@ class CompareTo<T extends Comparable<T>> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
   ) {
     final localizations = Localizations.of(context, CoUILocalizations);
     final compare = _compare(value, this.value);
@@ -1158,8 +1158,8 @@ class CompositeValidator<T> extends Validator<T> {
   @override
   FutureOr<ValidationResult?> validate(
     BuildContext context,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
   ) {
     return _chainValidation(context, value, state, 0);
   }
@@ -1188,9 +1188,9 @@ class CompositeValidator<T> extends Validator<T> {
 
   FutureOr<ValidationResult?> _chainValidation(
     BuildContext context,
-    int index,
-    FormValidationMode state,
     T? value,
+    FormValidationMode state,
+    int index,
   ) {
     if (index >= validators.length) {
       return null;
@@ -1538,7 +1538,7 @@ class _FormEntryHandleInterceptor with FormFieldHandle {
 
   @override
   String toString() {
-    return '_FormEntryHandleInterceptor($handle, ${onValueReported()})';
+    return '_FormEntryHandleInterceptor($handle, $onValueReported)';
   }
 
   @override
@@ -1901,8 +1901,8 @@ class FormController extends ChangeNotifier {
   FutureOr<ValidationResult?> attach(
     BuildContext context,
     FormFieldHandle handle,
-    Validator? validator,
-    Object? value, [
+    Object? value,
+    Validator? validator, [
     bool forceRevalidate = false,
   ]) {
     final key = handle.formKey;
@@ -2263,7 +2263,7 @@ mixin FormValueSupplier<T, X extends StatefulWidget> on State<X> {
 }
 
 class SubmissionResult {
-  const SubmissionResult(this.errors, this.values);
+  const SubmissionResult(this.values, this.errors);
 
   final Map<FormKey, Object?> values;
 

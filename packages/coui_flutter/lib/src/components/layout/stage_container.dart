@@ -141,8 +141,7 @@ class StageContainer extends StatelessWidget {
       themeValue: compTheme?.padding,
     );
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
+    return LayoutBuilder(builder: (context, constraints) {
         final size = constraints.maxWidth;
         final topPadding = padding.top;
         final bottomPadding = padding.bottom;

@@ -1280,8 +1280,7 @@ DrawerOverlayCompleter<T?> openRawDrawer<T>({
             final theme = Theme.of(context);
             final existingData = Data.maybeOf<BackdropTransformData>(context);
 
-            return LayoutBuilder(
-              builder: (context, constraints) {
+            return LayoutBuilder(builder: (context, constraints) {
                 return stackIndex == 0
                     ? AnimatedBuilder(
                         animation: animation,
@@ -1772,8 +1771,7 @@ class DrawerEntryWidgetState<T> extends State<DrawerEntryWidget<T>>
                   ),
                   barrier,
                   Positioned.fill(
-                    child: LayoutBuilder(
-                      builder: (context, constraints) {
+                    child: LayoutBuilder(builder: (context, constraints) {
                         return MediaQuery(
                           data: widget.useSafeArea
                               ? mediaQueryData.removePadding(

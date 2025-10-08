@@ -193,7 +193,7 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                 children: [
                   Expanded(
                     child: SizedBox(
-                      height: height,
+                      height: height.toDouble(),
                       child: AnimatedValueBuilder(
                         builder: (context, value, child) {
                           return CustomPaint(
@@ -210,8 +210,8 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                         value: DividerProperties(
                           color: color,
                           endIndent: 0,
-                          indent: indent,
-                          thickness: thickness,
+                          indent: indent.toDouble(),
+                          thickness: thickness.toDouble(),
                         ),
                       ),
                     ),
@@ -219,7 +219,7 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                   child!.muted().small().withPadding(padding: padding),
                   Expanded(
                     child: SizedBox(
-                      height: height,
+                      height: height.toDouble(),
                       child: AnimatedValueBuilder(
                         builder: (context, value, child) {
                           return CustomPaint(
@@ -235,9 +235,9 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                         lerp: DividerProperties.lerp,
                         value: DividerProperties(
                           color: color,
-                          endIndent: endIndent,
+                          endIndent: endIndent.toDouble(),
                           indent: 0,
-                          thickness: thickness,
+                          thickness: thickness.toDouble(),
                         ),
                       ),
                     ),
@@ -247,7 +247,7 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
             ),
           )
         : SizedBox(
-            height: height,
+            height: height.toDouble(),
             width: double.infinity,
             child: AnimatedValueBuilder(
               builder: (context, value, child) {
@@ -264,9 +264,9 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
               lerp: DividerProperties.lerp,
               value: DividerProperties(
                 color: color,
-                endIndent: endIndent,
-                indent: indent,
-                thickness: thickness,
+                endIndent: endIndent.toDouble(),
+                indent: indent.toDouble(),
+                thickness: thickness.toDouble(),
               ),
             ),
           );

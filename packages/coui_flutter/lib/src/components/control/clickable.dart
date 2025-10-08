@@ -186,7 +186,7 @@ class _ParamStatedWidget extends StatedWidget {
 
   final Widget? error;
 
-  Widget? _checkByOrder(int index, Set<WidgetState> states) {
+  Widget? _checkByOrder(Set<WidgetState> states, int index) {
     if (index >= order.length) {
       return child;
     }

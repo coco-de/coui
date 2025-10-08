@@ -378,7 +378,7 @@ class _AvatarState extends State<Avatar> {
               borderRadius: BorderRadius.circular(borderRadius),
               child: Image(
                 errorBuilder: (context, error, stackTrace) {
-                  return _buildInitials(context, borderRadius);
+                  return _buildInitials(borderRadius, context);
                 },
                 fit: BoxFit.cover,
                 image: widget.provider!,
@@ -387,7 +387,7 @@ class _AvatarState extends State<Avatar> {
           )
         : SizedBox.square(
             dimension: size,
-            child: _buildInitials(context, borderRadius),
+            child: _buildInitials(borderRadius, context),
           );
   }
 

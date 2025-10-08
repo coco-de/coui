@@ -1183,7 +1183,7 @@ mixin WindowNavigatorHandle on State<WindowNavigator> {
 
   void unfocusWindow(Window window);
 
-  void setAlwaysOnTop(bool value, Window window);
+  void setAlwaysOnTop(Window window, bool value);
 
   void removeWindow(Window window);
 
@@ -1201,8 +1201,9 @@ const kDefaultWindowConstraints = BoxConstraints(
 );
 
 class _DraggingWindow {
-  const _DraggingWindow(this.window);
+  const _DraggingWindow(this.window, this.cursorPosition);
   final Window window;
+  final Offset cursorPosition;
 }
 
 class _WindowLayerGroup extends StatelessWidget {
@@ -1306,8 +1307,7 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(
-                                        builder: (context, constraints) {
+                                      child: LayoutBuilder(builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1350,8 +1350,7 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(
-                                        builder: (context, constraints) {
+                                      child: LayoutBuilder(builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1395,8 +1394,7 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(
-                                        builder: (context, constraints) {
+                                      child: LayoutBuilder(builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1456,8 +1454,7 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(
-                                        builder: (context, constraints) {
+                                      child: LayoutBuilder(builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1532,8 +1529,7 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(
-                                        builder: (context, constraints) {
+                                      child: LayoutBuilder(builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1590,8 +1586,7 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(
-                                        builder: (context, constraints) {
+                                      child: LayoutBuilder(builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1723,17 +1718,17 @@ class _WindowNavigatorState extends State<WindowNavigator>
     }
   }
 
-  void _startDraggingWindow(Offset cursorPosition, Window draggingWindow) {
+  void _startDraggingWindow(Window draggingWindow, Offset cursorPosition) {
     if (_draggingWindow.value != null) return;
-    _draggingWindow.value = _DraggingWindow(cursorPosition);
+    _draggingWindow.value = _DraggingWindow(draggingWindow, cursorPosition);
   }
 
-  void _updateDraggingWindow(Offset cursorPosition, Window handle) {
+  void _updateDraggingWindow(Window handle, Offset cursorPosition) {
     if (_draggingWindow.value == null ||
         _draggingWindow.value!.window != handle) {
       return;
     }
-    _draggingWindow.value = _DraggingWindow(cursorPosition);
+    _draggingWindow.value = _DraggingWindow(_draggingWindow.value!.window, cursorPosition);
   }
 
   void _stopDraggingWindow(Window handle) {
@@ -1906,7 +1901,7 @@ class _WindowNavigatorState extends State<WindowNavigator>
   }
 
   @override
-  void setAlwaysOnTop(bool value, Window window) {
+  void setAlwaysOnTop(Window window, bool value) {
     if (value && _windows.contains(window)) {
       _windows.remove(window);
       _topWindows.add(window);
@@ -1927,8 +1922,7 @@ class _WindowNavigatorState extends State<WindowNavigator>
     final compTheme = ComponentTheme.maybeOf<WindowTheme>(context);
     final titleBarHeight = (compTheme?.titleBarHeight ?? 32) * theme.scaling;
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
+    return LayoutBuilder(builder: (context, constraints) {
         return ListenableBuilder(
           builder: (context, child) {
             return ClipRect(
@@ -2175,7 +2169,7 @@ class _BlurContainer extends StatelessWidget {
     return AnimatedValueBuilder(
       builder: (context, value, child) {
         return Opacity(
-          opacity: value,
+          opacity: value.toDouble(),
           child: Transform.scale(
             scale: lerpDouble(0.8, 1.0, value),
             child: Padding(

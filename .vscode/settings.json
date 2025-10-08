@@ -1,5 +1,5 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/3.35.3",
+  "dart.flutterSdkPath": ".fvm/versions/3.35.5",
   "dart.runPubGetOnPubspecChanges": "never",
   "files.watcherExclude": {
     "**/.fvm": true
@@ -31,7 +31,9 @@
     "class:list",
     "classes"
   ],
-  "tailwindCSS.experimental.classRegex": ["\\W\\s*classes:\\s*'(.*)'"],
+  "tailwindCSS.experimental.classRegex": [
+    "\\W\\s*classes:\\s*'(.*)'"
+  ],
   "tailwindCSS.includeLanguages": {
     "dart": "html"
   },

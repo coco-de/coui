@@ -369,8 +369,8 @@ double _endPadding(Axis direction, EdgeInsets padding) {
 
 mixin NavigationContainerMixin {
   List<Widget> wrapChildren(
-    List<NavigationBarItem> children,
     BuildContext context,
+    List<NavigationBarItem> children,
   ) {
     int index = 0;
     final newChildren = List<Widget>.of(children);

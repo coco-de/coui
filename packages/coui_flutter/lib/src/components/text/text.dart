@@ -666,7 +666,7 @@ class WrappedText extends StatelessWidget implements TextModifier {
         fontVariations: fontVariations,
         fontWeight: fontWeight,
         foreground: foreground,
-        height: height,
+        height: height.toDouble(),
         leadingDistribution: leadingDistribution,
         letterSpacing: letterSpacing,
         locale: locale,

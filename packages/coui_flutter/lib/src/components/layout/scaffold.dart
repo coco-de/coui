@@ -284,8 +284,7 @@ class ScaffoldState extends State<Scaffold> {
           floatingHeader: widget.floatingHeader,
           children: [
             buildHeader(context),
-            LayoutBuilder(
-              builder: (context, constraints) {
+            LayoutBuilder(builder: (context, constraints) {
                 Widget child =
                     (widget.resizeToAvoidBottomInset ??
                         compTheme?.resizeToAvoidBottomInset ??
@@ -636,8 +635,8 @@ class _AppBarState extends State<AppBar> {
               left: widget.useSafeArea,
               right: widget.useSafeArea,
               top:
-                  widget.useSafeArea && barData?.isHeader ??
-                  false && barData?.childIndex == 0,
+                  widget.useSafeArea && (barData?.isHeader ?? false) &&
+                  barData?.childIndex == 0,
               child: SizedBox(
                 height: widget.height,
                 child: IntrinsicHeight(
@@ -859,9 +858,9 @@ class _ScaffoldRenderFlex extends RenderBox
   }
 
   static bool _hitTestBox(
+    BoxHitTestResult result,
     RenderBox child,
     Offset position,
-    BoxHitTestResult result,
   ) {
     final childParentData = child.parentData! as BoxParentData;
 
@@ -932,15 +931,15 @@ class _RenderScaffoldPadding extends RenderBox
     switch (_paddingType) {
       case _ScaffoldPaddingType.header:
         constraints = this.constraints.copyWith(
-          maxHeight: parentData._headerSize.value,
+          maxHeight: parentData?._headerSize.value ?? 0,
           // ignore: dead_code
-          minHeight: parentData._headerSize.value,
+          minHeight: parentData?._headerSize.value ?? 0,
         );
 
       case _ScaffoldPaddingType.footer:
         constraints = this.constraints.copyWith(
-          maxHeight: parentData._footerSize.value,
-          minHeight: parentData._footerSize.value,
+          maxHeight: parentData?._footerSize.value ?? 0,
+          minHeight: parentData?._footerSize.value ?? 0,
         );
     }
     final child = firstChild;

@@ -593,10 +593,10 @@ class _ToastLayerState extends State<ToastLayer> {
             entry: entry.entry,
             entryAlignment: entryAlignment,
             entryOffset: Offset(
-              padding.left * entryAlignment.x.clamp(0, 1) +
-                  padding.right * entryAlignment.x.clamp(-1, 0),
-              padding.top * entryAlignment.y.clamp(0, 1) +
-                  padding.bottom * entryAlignment.y.clamp(-1, 0),
+              padding.left * entryAlignment.x.clamp(0, 1).toDouble() +
+                  padding.right * entryAlignment.x.clamp(-1, 0).toDouble(),
+              padding.top * entryAlignment.y.clamp(0, 1).toDouble() +
+                  padding.bottom * entryAlignment.y.clamp(-1, 0).toDouble(),
             ),
             entryOpacity: entryOpacity,
             expanded: expanding || expandMode == ExpandMode.alwaysExpanded,
@@ -1056,7 +1056,7 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
         child: FractionalTranslation(
           translation: fractionalOffset,
           child: Opacity(
-            opacity: opacity.clamp(0, 1),
+            opacity: opacity.clamp(0, 1).toDouble(),
             child: Transform.scale(scale: scale, child: widget.child),
           ),
         ),

@@ -217,8 +217,8 @@ class _OverflowMarqueeState extends State<OverflowMarquee>
         direction: direction,
         duration: duration,
         elapsed: elapsed,
-        fadePortion: fadePortion,
-        step: step,
+        fadePortion: fadePortion.toDouble(),
+        step: step.toDouble(),
         textDirection: textDirection,
         ticker: _ticker,
         child: widget.child,
@@ -398,7 +398,7 @@ class _RenderOverflowMarqueeLayout extends RenderShiftedBox
         progress > 0 && sizeDiff != 0,
         progress < 1 && sizeDiff != 0,
         Offset.zero & size,
-        25,
+        fadePortion,
       );
       assert(needsCompositing);
       layer!
@@ -495,7 +495,7 @@ class _RenderOverflowMarqueeLayout extends RenderShiftedBox
       final size = sizeDiff ?? 0;
       final progressedSize = size * offsetProgress;
 
-      return (progressedSize / fadePortion).clamp(0, 1);
+      return (progressedSize / fadePortion).clamp(0, 1).toDouble();
     }
 
     return 0;
@@ -507,17 +507,17 @@ class _RenderOverflowMarqueeLayout extends RenderShiftedBox
       final size = sizeDiff ?? 0;
       final progressedSize = size * (1 - offsetProgress);
 
-      return (progressedSize / fadePortion).clamp(0, 1);
+      return (progressedSize / fadePortion).clamp(0, 1).toDouble();
     }
 
     return 0;
   }
 
   Shader _createAlphaShader(
-    Rect bounds,
-    bool fadeEnd,
-    double fadePortion,
     bool fadeStart,
+    bool fadeEnd,
+    Rect bounds,
+    double fadePortion,
   ) {
     double portionSize;
     portionSize = direction == Axis.horizontal

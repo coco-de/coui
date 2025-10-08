@@ -127,7 +127,7 @@ class SlidingCarouselTransition extends CarouselTransition {
     for (int i = start; i <= end; i += 1) {
       double index;
       index = itemCount == null
-          ? wrapDouble(i.toDouble(), 0, itemCount.toDouble())
+          ? wrapDouble(i.toDouble(), 0, itemCount!.toDouble())
           : i.toDouble();
       final itemIndex = reverse ? (-index).toInt() : index.toInt();
       final item = itemBuilder(context, itemIndex);
@@ -212,7 +212,7 @@ class FadingCarouselTransition extends CarouselTransition {
     for (int i = start; i <= end; i += 1) {
       double index;
       index = itemCount == null
-          ? wrapDouble(i.toDouble(), 0, itemCount.toDouble())
+          ? wrapDouble(i.toDouble(), 0, itemCount!.toDouble())
           : i.toDouble();
       final itemIndex = reverse ? (-index).toInt() : index.toInt();
       final item = itemBuilder(context, itemIndex);
@@ -314,8 +314,8 @@ class CarouselController extends Listenable {
 
   /// Animates to the specified value.
   void animateTo(
-    Duration duration,
-    double value, [
+    double value,
+    Duration duration, [
     Curve curve = Curves.linear,
   ]) {
     _controller.push(AnimationRequest(value, duration, curve), false);
@@ -624,10 +624,10 @@ class _CarouselState extends State<Carousel>
       if (!_wrap &&
           widget.itemCount != null &&
           _controller.value >= widget.itemCount! - 1) {
-        _controller.animateTo(0, _autoplaySpeed ?? _speed, _curve);
+        _controller.animateTo(0.0, _autoplaySpeed ?? _speed, _curve);
       } else if (!_wrap && widget.itemCount != null && _controller.value <= 0) {
         _controller.animateTo(
-          widget.itemCount! - 1,
+          (widget.itemCount! - 1).toDouble(),
           _autoplaySpeed ?? _speed,
           _curve,
         );
@@ -791,11 +791,7 @@ class _CarouselState extends State<Carousel>
           Widget carouselWidget = buildCarousel(context, constraints);
           if (_draggable) {
             carouselWidget = _direction == Axis.horizontal
-                ? buildHorizontalDragger(
-                    context,
-                    carouselWidget,
-                    constraints,
-                  )
+                ? buildHorizontalDragger(context, carouselWidget, constraints)
                 : buildVerticalDragger(context, carouselWidget, constraints);
           }
 
@@ -806,9 +802,9 @@ class _CarouselState extends State<Carousel>
   }
 
   Widget buildHorizontalDragger(
+    BuildContext context,
     Widget carouselWidget,
     BoxConstraints constraints,
-    BuildContext context,
   ) {
     double size;
     if (widget.sizeConstraint is CarouselFixedConstraint) {
@@ -849,9 +845,9 @@ class _CarouselState extends State<Carousel>
   }
 
   Widget buildVerticalDragger(
+    BuildContext context,
     Widget carouselWidget,
     BoxConstraints constraints,
-    BuildContext context,
   ) {
     double size;
     if (widget.sizeConstraint is CarouselFixedConstraint) {
@@ -897,7 +893,7 @@ class _CarouselState extends State<Carousel>
         : _controller.value;
   }
 
-  Widget buildCarousel(BoxConstraints constraints, BuildContext context) {
+  Widget buildCarousel(BuildContext context, BoxConstraints constraints) {
     return Stack(
       children: widget.transition.layout(
         context,

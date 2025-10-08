@@ -13,6 +13,14 @@
       "args": ["--target", "lib/main.dart"]
     },
     {
+      "name": "Docs",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "./packages/coui_flutter/docs/",
+      "program": "packages/coui_flutter/docs/lib/main.dart",
+      "args": ["--target", "lib/main.dart"]
+    },
+    {
       "name": "Golden",
       "request": "launch",
       "type": "dart",

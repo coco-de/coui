@@ -86,7 +86,6 @@ dart_code_metrics:
     - avoid-flexible-outside-flex: false
     - format-comment:
         only-doc-comments: true
-    - arguments-ordering: false
     - avoid-dynamic: false
     - avoid-empty-setstate: false
     - avoid-long-files: false

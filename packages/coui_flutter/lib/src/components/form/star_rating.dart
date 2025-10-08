@@ -490,8 +490,8 @@ class _StarRatingState extends State<StarRating>
               if (!_enabled) return;
               if (widget.onChanged == null) return;
               final size = context.size!.width;
-              final progress = (event.localPosition.dx / size).clamp(0.0, 1.0);
-              final newValue = (progress * widget.max).clamp(0.0, widget.max);
+              final progress = (event.localPosition.dx / size).clamp(0.0, 1.0).toDouble();
+              final newValue = (progress * widget.max).clamp(0.0, widget.max).toDouble();
               setState(() {
                 _changingValue = newValue;
               });
@@ -521,8 +521,8 @@ class _StarRatingState extends State<StarRating>
                 final totalStarSize =
                     starSize * totalStars + (starSpacing * (totalStars - 1));
                 final progress = (details.localPosition.dx / totalStarSize)
-                    .clamp(0.0, 1.0);
-                final newValue = (progress * widget.max).clamp(0.0, widget.max);
+                    .clamp(0.0, 1.0).toDouble();
+                final newValue = (progress * widget.max).clamp(0.0, widget.max).toDouble();
                 setState(() {
                   _changingValue = newValue;
                 });
@@ -538,8 +538,8 @@ class _StarRatingState extends State<StarRating>
                 final totalStarSize =
                     starSize + (starSpacing * (widget.max.ceil() - 1));
                 final progress = (details.localPosition.dx / totalStarSize)
-                    .clamp(0.0, 1.0);
-                final newValue = (progress * widget.max).clamp(0.0, widget.max);
+                    .clamp(0.0, 1.0).toDouble();
+                final newValue = (progress * widget.max).clamp(0.0, widget.max).toDouble();
                 widget.onChanged!(newValue);
               },
               child: Flex(

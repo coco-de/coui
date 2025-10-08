@@ -478,8 +478,7 @@ class _SliderState extends State<Slider>
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: scaling * 4.0),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
+        child: LayoutBuilder(builder: (context, constraints) {
             return GestureDetector(
               onHorizontalDragEnd: enabled
                   ? (details) {
@@ -560,8 +559,8 @@ class _SliderState extends State<Slider>
                             if (_moveStart) {
                               double newStart = _currentValue.start + delta;
                               double newEnd = _currentValue.end;
-                              newStart = newStart.clamp(0, 1);
-                              newEnd = newEnd.clamp(0, 1);
+                              newStart = newStart.clamp(0, 1).toDouble();
+                              newEnd = newEnd.clamp(0, 1).toDouble();
                               final newInternalSliderValue = SliderValue.ranged(
                                 newStart,
                                 newEnd,
@@ -599,8 +598,8 @@ class _SliderState extends State<Slider>
                             } else {
                               double newStart = _currentValue.start;
                               double newEnd = _currentValue.end + delta;
-                              newStart = newStart.clamp(0, 1);
-                              newEnd = newEnd.clamp(0, 1);
+                              newStart = newStart.clamp(0, 1).toDouble();
+                              newEnd = newEnd.clamp(0, 1).toDouble();
                               final newInternalSliderValue = SliderValue.ranged(
                                 newStart,
                                 newEnd,
@@ -641,7 +640,7 @@ class _SliderState extends State<Slider>
                             final delta =
                                 details.primaryDelta! / constraints.maxWidth;
                             double newValue = _currentValue.value + delta;
-                            newValue = newValue.clamp(0, 1);
+                            newValue = newValue.clamp(0, 1).toDouble();
                             double sliderValue = newValue;
                             if (widget.divisions != null) {
                               sliderValue =
@@ -732,7 +731,7 @@ class _SliderState extends State<Slider>
                         : (details) {
                             final offset = details.localPosition.dx;
                             double newValue = offset / constraints.maxWidth;
-                            newValue = newValue.clamp(0, 1);
+                            newValue = newValue.clamp(0, 1).toDouble();
                             if (widget.divisions != null) {
                               final deltaValue = newValue - _currentValue.value;
                               if (deltaValue >= 0 &&
@@ -766,8 +765,8 @@ class _SliderState extends State<Slider>
                           : SystemMouseCursors.basic
                     : SystemMouseCursors.forbidden,
                 child: widget.value.isRanged
-                    ? buildRangedSlider(context, constraints, theme)
-                    : buildSingleSlider(context, constraints, theme),
+                    ? buildRangedSlider(constraints, context, theme)
+                    : buildSingleSlider(constraints, context, theme),
               ),
             );
           },
@@ -787,9 +786,7 @@ class _SliderState extends State<Slider>
         buildTrackBar(context, constraints, theme),
         if (widget.hintValue != null) buildHint(context, constraints, theme),
         buildTrackValue(context, constraints, theme),
-        buildThumb(
-          context,
-          constraints,
+        buildThumb(context, constraints,
           theme,
           _currentValue.value,
           _focusing,
@@ -807,7 +804,7 @@ class _SliderState extends State<Slider>
               value = (value * widget.divisions!).round() / widget.divisions!;
             }
             final step = widget.increaseStep ?? 1 / (widget.divisions ?? 100);
-            value = (value + step).clamp(0, 1);
+            value = (value + step).clamp(0, 1).toDouble();
             double sliderValue = value;
             if (widget.divisions != null) {
               sliderValue =
@@ -829,7 +826,7 @@ class _SliderState extends State<Slider>
               value = (value * widget.divisions!).round() / widget.divisions!;
             }
             final step = widget.decreaseStep ?? 1 / (widget.divisions ?? 100);
-            value = (value - step).clamp(0, 1);
+            value = (value - step).clamp(0, 1).toDouble();
             double sliderValue = value;
             if (widget.divisions != null) {
               sliderValue =
@@ -851,8 +848,8 @@ class _SliderState extends State<Slider>
   }
 
   Widget buildHint(
-    BoxConstraints constraints,
     BuildContext context,
+    BoxConstraints constraints,
     ThemeData theme,
   ) {
     final theme = Theme.of(context);
@@ -898,8 +895,8 @@ class _SliderState extends State<Slider>
   bool get _isRanged => widget.value.isRanged;
 
   Widget buildTrackValue(
-    BoxConstraints constraints,
     BuildContext context,
+    BoxConstraints constraints,
     ThemeData theme,
   ) {
     final theme = Theme.of(context);
@@ -962,11 +959,10 @@ class _SliderState extends State<Slider>
   }
 
   Widget buildTrackBar(
-    BoxConstraints constraints,
     BuildContext context,
+    BoxConstraints constraints,
     ThemeData theme,
   ) {
-    final theme = Theme.of(context);
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<SliderTheme>(context);
 
@@ -990,9 +986,7 @@ class _SliderState extends State<Slider>
     );
   }
 
-  Widget buildThumb(
-    BuildContext context,
-    BoxConstraints constraints,
+  Widget buildThumb(BuildContext context, BoxConstraints constraints,
     ThemeData theme,
     double value,
     bool focusing,
@@ -1074,7 +1068,7 @@ class _SliderState extends State<Slider>
           ? Duration.zero
           : kDefaultDuration,
       lerp: lerpDouble,
-      value: value,
+      value: value.toDouble(),
     );
   }
 
@@ -1089,9 +1083,7 @@ class _SliderState extends State<Slider>
         buildTrackBar(context, constraints, theme),
         if (widget.hintValue != null) buildHint(context, constraints, theme),
         buildTrackValue(context, constraints, theme),
-        buildThumb(
-          context,
-          constraints,
+        buildThumb(context, constraints,
           theme,
           min(_currentValue.start, _currentValue.end),
           _focusing,
@@ -1106,7 +1098,7 @@ class _SliderState extends State<Slider>
               value = (value * widget.divisions!).round() / widget.divisions!;
             }
             final step = widget.increaseStep ?? 1 / (widget.divisions ?? 100);
-            value = (value + step).clamp(0, 1);
+            value = (value + step).clamp(0, 1).toDouble();
             double sliderValue = value;
             if (widget.divisions != null) {
               sliderValue =
@@ -1129,7 +1121,7 @@ class _SliderState extends State<Slider>
               value = (value * widget.divisions!).round() / widget.divisions!;
             }
             final step = widget.decreaseStep ?? 1 / (widget.divisions ?? 100);
-            value = (value - step).clamp(0, 1);
+            value = (value - step).clamp(0, 1).toDouble();
             double sliderValue = value;
             if (widget.divisions != null) {
               sliderValue =
@@ -1147,9 +1139,7 @@ class _SliderState extends State<Slider>
             });
           },
         ),
-        buildThumb(
-          context,
-          constraints,
+        buildThumb(context, constraints,
           theme,
           max(_currentValue.start, _currentValue.end),
           _focusingEnd,
@@ -1164,7 +1154,7 @@ class _SliderState extends State<Slider>
               value = (value * widget.divisions!).round() / widget.divisions!;
             }
             final step = widget.increaseStep ?? 1 / (widget.divisions ?? 100);
-            value = (value + step).clamp(0, 1);
+            value = (value + step).clamp(0, 1).toDouble();
             double sliderValue = value;
             if (widget.divisions != null) {
               sliderValue =
@@ -1187,7 +1177,7 @@ class _SliderState extends State<Slider>
               value = (value * widget.divisions!).round() / widget.divisions!;
             }
             final step = widget.decreaseStep ?? 1 / (widget.divisions ?? 100);
-            value = (value - step).clamp(0, 1);
+            value = (value - step).clamp(0, 1).toDouble();
             double sliderValue = value;
             if (widget.divisions != null) {
               sliderValue =

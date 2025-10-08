@@ -224,7 +224,7 @@ class ResizableTableTheme {
 }
 
 class _HoveredLine {
-  const _HoveredLine(this.direction, this.index);
+  const _HoveredLine(this.index, this.direction);
 
   final int index;
 
@@ -278,12 +278,14 @@ class ResizableTableController extends ChangeNotifier {
     if (column < 0 || width < 0) {
       return false;
     }
-    width = width.clamp(
-      _widthConstraints?[column]?.min ?? _defaultWidthConstraint?.min ?? 0,
-      _widthConstraints?[column]?.max ??
-          _defaultWidthConstraint?.max ??
-          double.infinity,
-    );
+    width = width
+        .clamp(
+          _widthConstraints?[column]?.min ?? _defaultWidthConstraint?.min ?? 0,
+          _widthConstraints?[column]?.max ??
+              _defaultWidthConstraint?.max ??
+              double.infinity,
+        )
+        .toDouble();
     if (_columnWidths != null && _columnWidths![column] == width) {
       return false;
     }
@@ -294,16 +296,18 @@ class ResizableTableController extends ChangeNotifier {
     return true;
   }
 
-  bool resizeRow(double height, int row) {
+  bool resizeRow(int row, double height) {
     if (row < 0 || height < 0) {
       return false;
     }
-    height = height.clamp(
-      _heightConstraints?[row]?.min ?? _defaultHeightConstraint?.min ?? 0,
-      _heightConstraints?[row]?.max ??
-          _defaultHeightConstraint?.max ??
-          double.infinity,
-    );
+    height = height
+        .clamp(
+          _heightConstraints?[row]?.min ?? _defaultHeightConstraint?.min ?? 0,
+          _heightConstraints?[row]?.max ??
+              _defaultHeightConstraint?.max ??
+              double.infinity,
+        )
+        .toDouble();
     if (_rowHeights != null && _rowHeights![row] == height) {
       return false;
     }
@@ -530,7 +534,7 @@ class _ResizableTableState extends State<ResizableTable> {
   }
 }
 
-typedef _HoverCallback = void Function(Axis direction, bool hover, int index);
+typedef _HoverCallback = void Function(bool hover, int index, Axis direction);
 
 class _ResizableTableData {
   const _ResizableTableData({
@@ -632,8 +636,8 @@ class _CellResizerState extends State<_CellResizer> {
     widget.onDrag(true, -1, Axis.vertical);
   }
 
-  void _onDragUpdate(DragUpdateDetails details, int end, int start) {
-    _resizer!.dragDivider(end, details.primaryDelta!);
+  void _onDragUpdate(int start, int end, DragUpdateDetails details) {
+    _resizer!.dragDivider(end, details.primaryDelta!.toDouble());
     for (int i = 0; i < _resizer!.items.length; i += 1) {
       if (_resizeRow!) {
         widget.controller.resizeRow(i, _resizer!.items[i].newValue);
@@ -656,7 +660,7 @@ class _CellResizerState extends State<_CellResizer> {
     widget.onDrag(false, -1, Axis.horizontal);
     _resizer!.reset();
     for (int i = 0; i <= widget.maxRow; i += 1) {
-      if (_resizeRow ?? false) {
+      if (_resizeRow == true) {
         widget.controller.resizeRow(i, _resizer!.items[i].value);
       } else {
         widget.controller.resizeColumn(i, _resizer!.items[i].value);
@@ -1011,7 +1015,7 @@ List<T> _reorganizeCells<T extends _TableCellData>(List<T> cells) {
 }
 
 class _HoveredCell {
-  const _HoveredCell(this.column, this.columnSpan, this.row, this.rowSpan);
+  const _HoveredCell(this.column, this.row, this.columnSpan, this.rowSpan);
 
   final int column;
   final int row;
@@ -1030,7 +1034,7 @@ class _HoveredCell {
         other.rowSpan == rowSpan;
   }
 
-  bool intersects(Axis expected, _HoveredCell other) {
+  bool intersects(_HoveredCell other, Axis expected) {
     if (other == this) {
       return true;
     }
@@ -2079,7 +2083,9 @@ class RenderTableLayout extends RenderBox
         ) {
           height += result.rowHeights[row + i];
         }
-        child.layout(BoxConstraints.tightFor(height: height, width: width));
+        child.layout(
+          BoxConstraints.tightFor(height: height.toDouble(), width: width),
+        );
         final offset = result.getOffset(column, row);
         double offsetX = offset.dx;
         double offsetY = offset.dy;
@@ -2271,8 +2277,8 @@ class RenderTableLayout extends RenderBox
       child = childBefore(child);
     }
 
-    final usedColumnWidth = columnWidths.values.fold(0, (a, b) => a + b);
-    final usedRowHeight = rowHeights.values.fold(0, (a, b) => a + b);
+    final usedColumnWidth = columnWidths.values.fold(0.0, (a, b) => a + b);
+    final usedRowHeight = rowHeights.values.fold(0.0, (a, b) => a + b);
     double looseRemainingWidth = remainingWidth;
     double looseRemainingHeight = remainingHeight;
     double looseSpacePerFlexWidth = 0;

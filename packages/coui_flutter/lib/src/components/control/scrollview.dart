@@ -60,8 +60,8 @@ class _ScrollViewInterceptorState extends State<ScrollViewInterceptor>
         pow(-positionDelta.dx * kScrollDragSpeed, 3) / delta.inMilliseconds;
     double incY =
         pow(-positionDelta.dy * kScrollDragSpeed, 3) / delta.inMilliseconds;
-    incX = incX.clamp(-kMaxScrollSpeed, kMaxScrollSpeed);
-    incY = incY.clamp(-kMaxScrollSpeed, kMaxScrollSpeed);
+    incX = incX.clamp(-kMaxScrollSpeed, kMaxScrollSpeed).toDouble();
+    incY = incY.clamp(-kMaxScrollSpeed, kMaxScrollSpeed).toDouble();
     final instance = GestureBinding.instance;
     final result = HitTestResult();
     instance.hitTestInView(result, _event!.position, _event!.viewId);

@@ -1,35 +1,27 @@
-import 'package:flutter/widgets.dart';
-import 'package:coui_flutter/src/util.dart';
-
+import 'package:coui_flutter/coui_flutter.dart';
 /// A callback that builds a widget based on an animated value and optional child.
 ///
 /// Used by [AnimatedValueBuilder] to construct the widget tree during animation.
 /// The [value] parameter contains the current interpolated value between start and end,
 /// while [child] is an optional widget that can be passed through for optimization.
-typedef AnimatedChildBuilder<T> =
-    Widget Function(BuildContext context, T value, Widget? child);
+typedef AnimatedChildBuilder<T> = Widget Function(
+    BuildContext context, T value, Widget? child);
 
 /// A callback that builds a widget based on an animation object.
 ///
 /// Used by [AnimatedValueBuilder.animation] to provide direct access to the
 /// underlying [Animation] for advanced use cases. This allows for more control
 /// over animation timing and value extraction.
-typedef AnimationBuilder<T> =
-    Widget Function(BuildContext context, Animation<T> animation);
+typedef AnimationBuilder<T> = Widget Function(
+    BuildContext context, Animation<T> animation);
 
 /// A callback that builds a widget with raw animation progress information.
 ///
 /// Used by [AnimatedValueBuilder.raw] to provide complete animation state including
 /// the old value, new value, and current progress [t] between them (0.0 to 1.0).
 /// This gives maximum control for custom interpolation and transition effects.
-typedef AnimatedChildValueBuilder<T> =
-    Widget Function(
-      BuildContext context,
-      T oldValue,
-      T newValue,
-      double t,
-      Widget? child,
-    );
+typedef AnimatedChildValueBuilder<T> = Widget Function(
+    BuildContext context, T oldValue, T newValue, double t, Widget? child);
 
 /// A versatile animated widget that smoothly transitions between values.
 ///
@@ -462,7 +454,7 @@ enum RepeatMode {
 ///   mode: RepeatMode.pingPong,
 ///   builder: (context, value, child) {
 ///     return Opacity(
-///       opacity: value,
+///       opacity: value.toDouble(),
 ///       child: Icon(Icons.favorite, size: 50),
 ///     );
 ///   },
@@ -846,11 +838,12 @@ class IntervalDuration extends Curve {
     final clampedProgress =
         ((t - progressStartInterval) /
                 (progressEndInterval - progressStartInterval))
-            .clamp(0, 1);
+            .clamp(0, 1)
+            .toDouble();
     if (curve != null) {
-      return curve!.transform(clampedProgress);
+      return curve!.transform(clampedProgress.toDouble());
     }
-    return clampedProgress;
+    return clampedProgress.toDouble();
   }
 }
 
@@ -932,18 +925,18 @@ class CrossFadedTransition extends StatefulWidget {
     } else if (t == 1) {
       return b;
     }
-    final startOpacity = 1 - (t.clamp(0, 0.5) * 2);
-    final endOpacity = t.clamp(0.5, 1) * 2 - 1;
+    final startOpacity = 1 - (t.clamp(0, 0.5).toDouble() * 2);
+    final endOpacity = t.clamp(0.5, 1).toDouble() * 2 - 1;
     return Stack(
       fit: StackFit.passthrough,
       children: [
         Positioned.fill(
           child: Opacity(
-            opacity: startOpacity,
+            opacity: startOpacity.toDouble(),
             child: Align(alignment: alignment, child: a),
           ),
         ),
-        Opacity(opacity: endOpacity, child: b),
+        Opacity(opacity: endOpacity.toDouble(), child: b),
       ],
     );
   }

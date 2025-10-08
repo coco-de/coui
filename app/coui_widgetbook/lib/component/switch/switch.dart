@@ -2,7 +2,7 @@ import 'package:coui_flutter/coui_flutter.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-@UseCase(name: 'Default', type: Toggle)
+@UseCase(name: 'Switch Default', type: Switch)
 material.Widget buildSwitchUseCase(material.BuildContext context) {
   return const _SwitchExample();
 }
@@ -19,7 +19,7 @@ class _SwitchExampleState extends material.State<_SwitchExample> {
 
   @override
   material.Widget build(material.BuildContext context) {
-    return Toggle(
+    return Switch(
       onChanged: (v) => setState(() => _value = v),
       trailing: const Text('Switch'),
       value: _value,

@@ -492,9 +492,9 @@ extension TreeNodeListExtension<K> on List<TreeNode<K>> {
 
 typedef TreeNodeSelectionChanged<T> =
     void Function(
+      List<TreeNode<T>> selectedNodes,
       bool multiSelect,
       bool selected,
-      List<TreeNode<T>> selectedNodes,
     );
 
 class TreeSelectionDefaultHandler<T> {
@@ -504,7 +504,7 @@ class TreeSelectionDefaultHandler<T> {
 
   final ValueChanged<List<TreeNode<T>>> onChanged;
 
-  void call(bool multiSelect, bool selected, List<TreeNode<T>> selectedNodes) {
+  void call(List<TreeNode<T>> selectedNodes, bool multiSelect, bool selected) {
     if (multiSelect) {
       if (selected) {
         onChanged(nodes.selectNodes(selectedNodes));
@@ -518,7 +518,7 @@ class TreeSelectionDefaultHandler<T> {
 }
 
 class TreeItemExpandDefaultHandler<T> {
-  const TreeItemExpandDefaultHandler(this.nodes, this.onChanged, this.target);
+  const TreeItemExpandDefaultHandler(this.nodes, this.target, this.onChanged);
 
   final List<TreeNode<T>> nodes;
   final ValueChanged<List<TreeNode<T>>> onChanged;
@@ -672,9 +672,9 @@ class TreeView<T> extends StatefulWidget {
   }
 
   static List<TreeNode<K>>? _replaceNodesWithParent<K>(
+    TreeNode<K>? parent,
     List<TreeNode<K>> nodes,
     TreeNodeUnaryOperatorWithParent<K> operator,
-    TreeNode<K>? parent,
   ) {
     final newNodes = List<TreeNode<K>>.of(nodes);
     bool changed = false;
@@ -921,8 +921,8 @@ class TreeView<T> extends StatefulWidget {
   }
 
   static List<TreeNode<K>> deselectNodes<K>(
-    Iterable<TreeNode<K>> deselectedNodes,
     List<TreeNode<K>> nodes,
+    Iterable<TreeNode<K>> deselectedNodes,
   ) {
     return replaceNodes(nodes, (node) {
       return deselectedNodes.contains(node)
@@ -932,8 +932,8 @@ class TreeView<T> extends StatefulWidget {
   }
 
   static List<TreeNode<K>> deselectItems<K>(
-    Iterable<K> deselectedItems,
     List<TreeNode<K>> nodes,
+    Iterable<K> deselectedItems,
   ) {
     return replaceNodes(nodes, (node) {
       return node is TreeItem<K> && deselectedItems.contains(node.data)
@@ -1035,9 +1035,9 @@ class TreeView<T> extends StatefulWidget {
 
 typedef _TreeWalker<T> =
     void Function(
-      List<TreeNodeDepth> depth,
-      TreeNode<T> node,
       bool parentExpanded,
+      TreeNode<T> node,
+      List<TreeNodeDepth> depth,
     );
 
 typedef _NodeWalker<T> = void Function(TreeNode<T> node);
@@ -1050,10 +1050,10 @@ class _TreeViewState<T> extends State<TreeView<T>> {
   int? _startFocusedIndex;
 
   void _walkFlattened(
-    List<TreeNodeDepth> depth,
+    _TreeWalker<T> walker,
     List<TreeNode<T>> nodes,
     bool parentExpanded,
-    _TreeWalker<T> walker,
+    List<TreeNodeDepth> depth,
   ) {
     for (int i = 0; i < nodes.length; i += 1) {
       final node = nodes[i];
@@ -1073,7 +1073,7 @@ class _TreeViewState<T> extends State<TreeView<T>> {
     }
   }
 
-  void _walkNodes(List<TreeNode<T>> nodes, _NodeWalker<T> walker) {
+  void _walkNodes(_NodeWalker<T> walker, List<TreeNode<T>> nodes) {
     for (int i = 0; i < nodes.length; i += 1) {
       final node = nodes[i];
       if (node is TreeItem<T>) {
@@ -1087,9 +1087,9 @@ class _TreeViewState<T> extends State<TreeView<T>> {
 
   void _onChangeSelectionRange(
     List<TreeNodeData<T>> children,
+    int start,
     int end,
     bool recursive,
-    int start,
   ) {
     if (start > end) {
       final temp = start;
@@ -1099,7 +1099,9 @@ class _TreeViewState<T> extends State<TreeView<T>> {
     final selectedItems = <TreeNode<T>>[];
     for (int i = start; i <= end; i += 1) {
       if (recursive) {
-        _walkNodes(selectedItems.add, [children[i].node]);
+        _walkNodes((node) {
+          selectedItems.add(node);
+        }, [children[i].node]);
       } else {
         selectedItems.add(children[i].node);
       }
@@ -1120,55 +1122,43 @@ class _TreeViewState<T> extends State<TreeView<T>> {
     final padding = widget.padding ?? compTheme?.padding;
     final children = <TreeNodeData<T>>[];
     int index = 0;
-    _walkFlattened([], widget.nodes, true, (depth, node, parentExpanded) {
+    _walkFlattened((expanded, node, depth) {
       if (node is! TreeItem<T>) return;
-      final currentIndex = index += 1;
-      children.add(
-        TreeNodeData(
-          depth,
-          node,
-          branchLine,
-          parentExpanded,
-          expandIcon,
-          (reason) {
-            if (reason == FocusChangeReason.focusScope) {
-              _startFocusedIndex = currentIndex;
-              _currentFocusedIndex = currentIndex;
-
-              return;
-            }
+      final currentIndex = index++;
+      children.add(TreeNodeData(
+        depth,
+        node,
+        branchLine,
+        expanded,
+        expandIcon,
+        (reason) {
+          if (reason == FocusChangeReason.focusScope) {
+            _startFocusedIndex = currentIndex;
             _currentFocusedIndex = currentIndex;
-            if (_rangeMultiSelect && _startFocusedIndex != null) {
-              final start = _startFocusedIndex!;
-              final end = _currentFocusedIndex!;
-              _onChangeSelectionRange(
-                children,
-                start,
-                end,
-                recursiveSelection,
-              );
+            return;
+          }
+          _currentFocusedIndex = currentIndex;
+          if (_rangeMultiSelect && _startFocusedIndex != null) {
+            var start = _startFocusedIndex!;
+            var end = _currentFocusedIndex!;
+            _onChangeSelectionRange(children, start, end, recursiveSelection);
+          } else {
+            _startFocusedIndex = currentIndex;
+            if (recursiveSelection) {
+              final selectedItems = <TreeNode<T>>[];
+              _walkNodes((node) {
+                selectedItems.add(node);
+              }, [node]);
+              widget.onSelectionChanged
+                  ?.call(selectedItems, _multiSelect, !node.selected);
             } else {
-              _startFocusedIndex = currentIndex;
-              if (recursiveSelection) {
-                final selectedItems = <TreeNode<T>>[];
-                _walkNodes(selectedItems.add, [node]);
-                widget.onSelectionChanged?.call(
-                  selectedItems,
-                  _multiSelect,
-                  !node.selected,
-                );
-              } else {
-                widget.onSelectionChanged?.call(
-                  [node],
-                  _multiSelect,
-                  !node.selected,
-                );
-              }
+              widget.onSelectionChanged
+                  ?.call([node], _multiSelect, !node.selected);
             }
-          },
-        ),
-      );
-    });
+          }
+        },
+      ));
+    }, widget.nodes, true, []);
     int selectedCount = 0;
     for (int i = 0; i < children.length; i += 1) {
       final child = children[i];
@@ -1262,21 +1252,16 @@ class _TreeViewState<T> extends State<TreeView<T>> {
                 final selectedNode = children[_currentFocusedIndex!];
                 if (recursiveSelection) {
                   final selectedItems = <TreeNode<T>>[];
-                  _walkNodes(selectedItems.add, [selectedNode.node]);
+                  _walkNodes((node) {
+                    selectedItems.add(node);
+                  }, [selectedNode.node]);
                   widget.onSelectionChanged?.call(
-                    selectedItems,
-                    _multiSelect,
-                    !selectedNode.node.selected,
-                  );
+                      selectedItems, _multiSelect, !selectedNode.node.selected);
                 } else {
-                  widget.onSelectionChanged?.call(
-                    [selectedNode.node],
-                    _multiSelect,
-                    !selectedNode.node.selected,
-                  );
+                  widget.onSelectionChanged?.call([selectedNode.node],
+                      _multiSelect, !selectedNode.node.selected);
                 }
               }
-
               return null;
             },
           ),
@@ -1315,11 +1300,7 @@ class _TreeViewState<T> extends State<TreeView<T>> {
                 }
               }
               _onChangeSelectionRange(
-                children,
-                _startFocusedIndex!,
-                _currentFocusedIndex!,
-                recursiveSelection,
-              );
+                  children, _startFocusedIndex!, _currentFocusedIndex!, recursiveSelection);
 
               return null;
             },

@@ -560,14 +560,14 @@ class _TextAreaState extends State<TextArea> {
                       _height = _height.clamp(
                         widget.minHeight,
                         widget.maxHeight,
-                      );
+                      ).toDouble();
                       widget.onHeightChanged?.call(_height);
                     });
                   }
                   if (widget.expandableWidth && _width.isFinite) {
                     setState(() {
                       _width += details.delta.dx;
-                      _width = _width.clamp(widget.minWidth, widget.maxWidth);
+                      _width = _width.clamp(widget.minWidth, widget.maxWidth).toDouble();
                       widget.onWidthChanged?.call(_width);
                     });
                   }

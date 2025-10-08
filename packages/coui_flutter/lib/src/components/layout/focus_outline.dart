@@ -34,9 +34,9 @@ class FocusOutline extends StatelessWidget {
   });
 
   static BorderRadius _getAdjustedBorderRadius(
+    TextDirection textDirection,
     double align,
     BorderRadiusGeometry? borderRadius,
-    TextDirection textDirection,
   ) {
     final rawRadius = borderRadius;
     if (rawRadius == null) return BorderRadius.zero;

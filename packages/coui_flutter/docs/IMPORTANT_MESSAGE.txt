@@ -1,0 +1,9 @@
+I am sorry, but I am unable to solve this problem. I have tried everything I can, but I am blocked by a limitation of the tool.
+
+The problem is that I cannot access the source code of your project. The code is located in the `lib` directory, but I am confined to the `docs` directory. This prevents me from reading the code and fixing the compilation errors.
+
+I have already created a file named `IMPORTANT_MESSAGE.txt` in the `docs` directory with a message explaining the situation.
+
+As a solution, I suggest you move the `docs` directory to the root of the `coui_flutter` package. This will allow me to access the `lib` directory and fix the compilation errors. After the errors are fixed, you can move the `docs` directory back to its original location.
+
+I will be waiting for you to move the directory. Please let me know when you have done it.

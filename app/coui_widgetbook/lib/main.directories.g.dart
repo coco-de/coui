@@ -10,32 +10,28 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:coui_widgetbook/component/avatar.dart'
-    as _coui_widgetbook_component_avatar;
-import 'package:coui_widgetbook/component/badge.dart'
-    as _coui_widgetbook_component_badge;
-import 'package:coui_widgetbook/component/button.dart'
-    as _coui_widgetbook_component_button;
-import 'package:coui_widgetbook/component/checkbox.dart'
-    as _coui_widgetbook_component_checkbox;
-import 'package:coui_widgetbook/component/chip.dart'
-    as _coui_widgetbook_component_chip;
-import 'package:coui_widgetbook/component/circular_progress_indicator.dart'
-    as _coui_widgetbook_component_circular_progress_indicator;
-import 'package:coui_widgetbook/component/divider.dart'
-    as _coui_widgetbook_component_divider;
-import 'package:coui_widgetbook/component/linear_progress_indicator.dart'
-    as _coui_widgetbook_component_linear_progress_indicator;
-import 'package:coui_widgetbook/component/radio_group.dart'
-    as _coui_widgetbook_component_radio_group;
-import 'package:coui_widgetbook/component/select.dart'
-    as _coui_widgetbook_component_select;
-import 'package:coui_widgetbook/component/slider.dart'
-    as _coui_widgetbook_component_slider;
-import 'package:coui_widgetbook/component/switch.dart'
-    as _coui_widgetbook_component_switch;
-import 'package:coui_widgetbook/component/text_field.dart'
-    as _coui_widgetbook_component_text_field;
+import 'package:coui_widgetbook/component/alert/alert.dart'
+    as _coui_widgetbook_component_alert_alert;
+import 'package:coui_widgetbook/component/avatar/avatar.dart'
+    as _coui_widgetbook_component_avatar_avatar;
+import 'package:coui_widgetbook/component/button/button.dart'
+    as _coui_widgetbook_component_button_button;
+import 'package:coui_widgetbook/component/calendar/calendar.dart'
+    as _coui_widgetbook_component_calendar_calendar;
+import 'package:coui_widgetbook/component/card/card.dart'
+    as _coui_widgetbook_component_card_card;
+import 'package:coui_widgetbook/component/chip/chip.dart'
+    as _coui_widgetbook_component_chip_chip;
+import 'package:coui_widgetbook/component/circular_progress_indicator/circular_progress_indicator.dart'
+    as _coui_widgetbook_component_circular_progress_indicator_circular_progress_indicator;
+import 'package:coui_widgetbook/component/divider/divider.dart'
+    as _coui_widgetbook_component_divider_divider;
+import 'package:coui_widgetbook/component/linear_progress_indicator/linear_progress_indicator.dart'
+    as _coui_widgetbook_component_linear_progress_indicator_linear_progress_indicator;
+import 'package:coui_widgetbook/component/switch/switch.dart'
+    as _coui_widgetbook_component_switch_switch;
+import 'package:coui_widgetbook/component/toggle/toggle.dart'
+    as _coui_widgetbook_component_toggle_toggle;
 import 'package:coui_widgetbook/foundation/colors.dart'
     as _coui_widgetbook_foundation_colors;
 import 'package:coui_widgetbook/foundation/misc.dart'
@@ -52,37 +48,22 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'control',
         children: [
           _widgetbook.WidgetbookComponent(
-            name: 'Button',
+            name: 'PrimaryButton',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'destructive',
-                builder: _coui_widgetbook_component_button
-                    .buildButtonDestructiveUseCase,
+                name: 'Primary',
+                builder: _coui_widgetbook_component_button_button
+                    .buildPrimaryButtonUseCase,
               ),
+            ],
+          ),
+          _widgetbook.WidgetbookComponent(
+            name: 'SecondaryButton',
+            useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'ghost',
-                builder:
-                    _coui_widgetbook_component_button.buildButtonGhostUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'link',
-                builder:
-                    _coui_widgetbook_component_button.buildButtonLinkUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'outline',
-                builder:
-                    _coui_widgetbook_component_button.buildButtonOutlineUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'primary',
-                builder:
-                    _coui_widgetbook_component_button.buildButtonPrimaryUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'secondary',
-                builder: _coui_widgetbook_component_button
-                    .buildButtonSecondaryUseCase,
+                name: 'Secondary',
+                builder: _coui_widgetbook_component_button_button
+                    .buildSecondaryButtonUseCase,
               ),
             ],
           ),
@@ -95,29 +76,19 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Avatar',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'default',
+                name: 'Default',
                 builder:
-                    _coui_widgetbook_component_avatar.buildAvatarDefaultUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with badge',
-                builder: _coui_widgetbook_component_avatar
-                    .buildAvatarWithBadgeUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with image',
-                builder: _coui_widgetbook_component_avatar
-                    .buildAvatarWithImageUseCase,
+                    _coui_widgetbook_component_avatar_avatar.buildAvatarUseCase,
               ),
             ],
           ),
           _widgetbook.WidgetbookComponent(
-            name: 'AvatarGroup',
+            name: 'Calendar',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'group',
-                builder:
-                    _coui_widgetbook_component_avatar.buildAvatarGroupUseCase,
+                name: 'Default',
+                builder: _coui_widgetbook_component_calendar_calendar
+                    .buildCalendarUseCase,
               ),
             ],
           ),
@@ -125,24 +96,8 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Chip',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'default',
-                builder:
-                    _coui_widgetbook_component_chip.buildChipDefaultUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'interactive',
-                builder:
-                    _coui_widgetbook_component_chip.buildChipInteractiveUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with leading',
-                builder:
-                    _coui_widgetbook_component_chip.buildChipWithLeadingUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with trailing',
-                builder: _coui_widgetbook_component_chip
-                    .buildChipWithTrailingUseCase,
+                name: 'Default',
+                builder: _coui_widgetbook_component_chip_chip.buildChipUseCase,
               ),
             ],
           ),
@@ -150,24 +105,10 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'CircularProgressIndicator',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'default',
-                builder: _coui_widgetbook_component_circular_progress_indicator
-                    .buildCircularProgressIndicatorDefaultUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'determinate',
-                builder: _coui_widgetbook_component_circular_progress_indicator
-                    .buildCircularProgressIndicatorDeterminateUseCase,
-              ),
-            ],
-          ),
-          _widgetbook.WidgetbookComponent(
-            name: 'DestructiveBadge',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'destructive',
-                builder: _coui_widgetbook_component_badge
-                    .buildDestructiveBadgeUseCase,
+                name: 'Default',
+                builder:
+                    _coui_widgetbook_component_circular_progress_indicator_circular_progress_indicator
+                        .buildCircularProgressIndicatorUseCase,
               ),
             ],
           ),
@@ -175,14 +116,9 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'Divider',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'default',
-                builder: _coui_widgetbook_component_divider
-                    .buildDividerDefaultUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with child',
-                builder: _coui_widgetbook_component_divider
-                    .buildDividerWithChildUseCase,
+                name: 'Default',
+                builder: _coui_widgetbook_component_divider_divider
+                    .buildDividerUseCase,
               ),
             ],
           ),
@@ -190,59 +126,10 @@ final directories = <_widgetbook.WidgetbookNode>[
             name: 'LinearProgressIndicator',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'default',
-                builder: _coui_widgetbook_component_linear_progress_indicator
-                    .buildLinearProgressIndicatorDefaultUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'determinate',
-                builder: _coui_widgetbook_component_linear_progress_indicator
-                    .buildLinearProgressIndicatorDeterminateUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with sparks',
-                builder: _coui_widgetbook_component_linear_progress_indicator
-                    .buildLinearProgressIndicatorWithSparksUseCase,
-              ),
-            ],
-          ),
-          _widgetbook.WidgetbookComponent(
-            name: 'OutlineBadge',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'outline',
+                name: 'Default',
                 builder:
-                    _coui_widgetbook_component_badge.buildOutlineBadgeUseCase,
-              ),
-            ],
-          ),
-          _widgetbook.WidgetbookComponent(
-            name: 'PrimaryBadge',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'primary',
-                builder:
-                    _coui_widgetbook_component_badge.buildPrimaryBadgeUseCase,
-              ),
-            ],
-          ),
-          _widgetbook.WidgetbookComponent(
-            name: 'SecondaryBadge',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'secondary',
-                builder:
-                    _coui_widgetbook_component_badge.buildSecondaryBadgeUseCase,
-              ),
-            ],
-          ),
-          _widgetbook.WidgetbookComponent(
-            name: 'VerticalDivider',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'default',
-                builder: _coui_widgetbook_component_divider
-                    .buildVerticalDividerDefaultUseCase,
+                    _coui_widgetbook_component_linear_progress_indicator_linear_progress_indicator
+                        .buildLinearProgressIndicatorUseCase,
               ),
             ],
           ),
@@ -252,112 +139,41 @@ final directories = <_widgetbook.WidgetbookNode>[
         name: 'form',
         children: [
           _widgetbook.WidgetbookComponent(
-            name: 'Checkbox',
+            name: 'Toggle',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'default',
-                builder: _coui_widgetbook_component_checkbox
-                    .buildCheckboxDefaultUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'tristate',
-                builder: _coui_widgetbook_component_checkbox
-                    .buildCheckboxTristateUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with label',
-                builder: _coui_widgetbook_component_checkbox
-                    .buildCheckboxWithLabelUseCase,
-              ),
-            ],
-          ),
-          _widgetbook.WidgetbookComponent(
-            name: 'RadioGroup',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'card',
-                builder: _coui_widgetbook_component_radio_group
-                    .buildRadioGroupCardUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'default',
-                builder: _coui_widgetbook_component_radio_group
-                    .buildRadioGroupDefaultUseCase,
-              ),
-            ],
-          ),
-          _widgetbook.WidgetbookComponent(
-            name: 'Select',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'default',
+                name: 'Default',
                 builder:
-                    _coui_widgetbook_component_select.buildSelectDefaultUseCase,
+                    _coui_widgetbook_component_toggle_toggle.buildToggleUseCase,
+              ),
+              _widgetbook.WidgetbookUseCase(
+                name: 'Switch Default',
+                builder:
+                    _coui_widgetbook_component_switch_switch.buildSwitchUseCase,
+              ),
+            ],
+          ),
+        ],
+      ),
+      _widgetbook.WidgetbookFolder(
+        name: 'layout',
+        children: [
+          _widgetbook.WidgetbookComponent(
+            name: 'Alert',
+            useCases: [
+              _widgetbook.WidgetbookUseCase(
+                name: 'Default',
+                builder:
+                    _coui_widgetbook_component_alert_alert.buildAlertUseCase,
               ),
             ],
           ),
           _widgetbook.WidgetbookComponent(
-            name: 'Slider',
+            name: 'Card',
             useCases: [
               _widgetbook.WidgetbookUseCase(
-                name: 'ranged',
-                builder:
-                    _coui_widgetbook_component_slider.buildSliderRangedUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'single',
-                builder:
-                    _coui_widgetbook_component_slider.buildSliderSingleUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with divisions',
-                builder: _coui_widgetbook_component_slider
-                    .buildSliderWithDivisionsUseCase,
-              ),
-            ],
-          ),
-          _widgetbook.WidgetbookComponent(
-            name: 'Switch',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'default',
-                builder:
-                    _coui_widgetbook_component_switch.buildSwitchDefaultUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'disabled',
-                builder: _coui_widgetbook_component_switch
-                    .buildSwitchDisabledUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with_label',
-                builder: _coui_widgetbook_component_switch
-                    .buildSwitchWithLabelUseCase,
-              ),
-            ],
-          ),
-          _widgetbook.WidgetbookComponent(
-            name: 'TextField',
-            useCases: [
-              _widgetbook.WidgetbookUseCase(
-                name: 'default',
-                builder: _coui_widgetbook_component_text_field
-                    .buildTextFieldDefaultUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'password',
-                builder: _coui_widgetbook_component_text_field
-                    .buildTextFieldPasswordUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with features',
-                builder: _coui_widgetbook_component_text_field
-                    .buildTextFieldWithFeaturesUseCase,
-              ),
-              _widgetbook.WidgetbookUseCase(
-                name: 'with placeholder',
-                builder: _coui_widgetbook_component_text_field
-                    .buildTextFieldWithPlaceholderUseCase,
+                name: 'Default',
+                builder: _coui_widgetbook_component_card_card.buildCardUseCase,
               ),
             ],
           ),

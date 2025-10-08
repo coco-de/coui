@@ -123,7 +123,7 @@ class Hidden extends StatelessWidget {
             direction: directionValue,
             keepCrossAxisSize: keepCrossAxisSizeValue,
             keepMainAxisSize: keepMainAxisSizeValue,
-            progress: value.clamp(0.0, 1.0),
+            progress: value.clamp(0.0, 1.0).toDouble(),
             reverse: reverseValue,
             textDirection: textDirection,
             child: child,

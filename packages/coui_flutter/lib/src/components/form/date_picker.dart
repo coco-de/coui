@@ -244,7 +244,7 @@ class DatePicker extends StatelessWidget {
       widgetValue: initialViewType,
     );
 
-    return ObjectFormField(
+    return ObjectFormField<DateTime>(
       builder: (context, value) {
         return Text(localizations.formatDateTime(value, showTime: false));
       },
@@ -344,7 +344,7 @@ class DateRangePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizations = CoUILocalizations.of(context);
 
-    return ObjectFormField(
+    return ObjectFormField<DateTimeRange>(
       builder: (context, value) {
         return Text(
           '${localizations.formatDateTime(value.start, showTime: false)} - ${localizations.formatDateTime(value.end, showTime: false)}',
@@ -354,8 +354,7 @@ class DateRangePicker extends StatelessWidget {
       editorBuilder: (context, handler) {
         final value = handler.value;
 
-        return LayoutBuilder(
-          builder: (context, constraints) {
+        return LayoutBuilder(builder: (context, constraints) {
             return DatePickerDialog(
               initialValue: value == null
                   ? null

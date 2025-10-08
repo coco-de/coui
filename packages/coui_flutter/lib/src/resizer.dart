@@ -87,7 +87,7 @@ class Resizer {
 
         return false;
       }
-      item._newValue = (item.newValue + delta).clamp(minSize, maxSize);
+      item._newValue = (item.newValue + delta).clamp(minSize, maxSize).toDouble();
 
       // check
       return true;
@@ -98,7 +98,7 @@ class Resizer {
 
         return false;
       }
-      item._newValue = (item.newValue + delta).clamp(minSize, maxSize);
+      item._newValue = (item.newValue + delta).clamp(minSize, maxSize).toDouble();
 
       // check
       return true;
@@ -117,7 +117,7 @@ class Resizer {
 
         return false;
       }
-      item._newValue = (item.newValue + delta).clamp(minSize, maxSize);
+      item._newValue = (item.newValue + delta).clamp(minSize, maxSize).toDouble();
 
       // check
       return true;

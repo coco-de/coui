@@ -215,7 +215,7 @@ class _OutlinedContainerState extends State<OutlinedContainer> {
       child: AnimatedContainer(
         clipBehavior: widget.clipBehavior,
         decoration: BoxDecoration(
-          borderRadius: subtractByBorder(borderRadius, borderWidth),
+          borderRadius: subtractByBorder(borderWidth, borderRadius),
         ),
         duration: widget.duration ?? Duration.zero,
         padding: padding,
@@ -224,7 +224,7 @@ class _OutlinedContainerState extends State<OutlinedContainer> {
     );
     if (surfaceBlur != null && surfaceBlur > 0) {
       childWidget = SurfaceBlur(
-        borderRadius: subtractByBorder(borderRadius, borderWidth),
+        borderRadius: subtractByBorder(borderWidth, borderRadius),
         surfaceBlur: surfaceBlur,
         child: childWidget,
       );
@@ -279,9 +279,9 @@ class DashedContainerProperties {
   final BorderRadiusGeometry borderRadius;
 
   static DashedContainerProperties lerp(
+    BuildContext context,
     DashedContainerProperties a,
     DashedContainerProperties b,
-    BuildContext context,
     double t,
   ) {
     return DashedContainerProperties(

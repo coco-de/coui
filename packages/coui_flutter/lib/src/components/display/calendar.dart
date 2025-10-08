@@ -1716,8 +1716,8 @@ class CalendarGridData {
         items.add(
           CalendarGridItem(
             prevMonthLastDay.add(Duration(days: i)),
-            currentItemIndex % 7,
             true,
+            currentItemIndex % 7,
             currentItemIndex ~/ 7,
           ),
         );
@@ -1730,8 +1730,8 @@ class CalendarGridData {
       items.add(
         CalendarGridItem(
           currentDay,
-          currentItemIndex % 7,
           false,
+          currentItemIndex % 7,
           currentItemIndex ~/ 7,
         ),
       );
@@ -1746,15 +1746,15 @@ class CalendarGridData {
         items.add(
           CalendarGridItem(
             nextMonthFirstDay.add(Duration(days: i)),
-            currentItemIndex % 7,
             true,
+            currentItemIndex % 7,
             currentItemIndex ~/ 7,
           ),
         );
       }
     }
 
-    return CalendarGridData._(month, year, items);
+    return CalendarGridData._(items, month, year);
   }
   const CalendarGridData._(this.items, this.month, this.year);
 

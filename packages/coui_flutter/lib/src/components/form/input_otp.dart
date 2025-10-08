@@ -213,9 +213,9 @@ class _OTPCharacterInput extends StatefulWidget {
 
 class _OTPCharacterInputState extends State<_OTPCharacterInput> {
   static BorderRadius getBorderRadiusByRelativeIndex(
-    int groupLength,
-    int relativeIndex,
     ThemeData theme,
+    int relativeIndex,
+    int groupLength,
   ) {
     if (relativeIndex == 0) {
       return BorderRadius.only(
@@ -458,8 +458,8 @@ class OTPSeparator extends StatelessWidget {
 
 class InputOTPChildData {
   const InputOTPChildData._(
-    this._key,
-    this._state, {
+    this._state,
+    this._key, {
     required this.focusNode,
     required this.groupIndex,
     required this.groupLength,
@@ -496,7 +496,7 @@ class _InputOTPChild {
     this.value,
   }) : key = GlobalKey<_OTPCharacterInputState>();
 
-  _InputOTPChild.withNewChild(InputOTPChild newChild, _InputOTPChild old)
+  _InputOTPChild.withNewChild(_InputOTPChild old, InputOTPChild newChild)
     : focusNode = old.focusNode,
       value = old.value,
       groupIndex = old.groupIndex,

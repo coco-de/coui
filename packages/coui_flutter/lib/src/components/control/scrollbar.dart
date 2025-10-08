@@ -151,7 +151,7 @@ class _CoUIScrollbarState extends RawScrollbarState<_CoUIScrollbar> {
         themeValue: compTheme?.radius,
         widgetValue: widget.radius,
       )
-      ..minLength = _kScrollbarMinLength
+      ..minLength = _kScrollbarMinLength.toDouble()
       ..padding = MediaQuery.paddingOf(context) + EdgeInsets.all(_theme.scaling)
       ..scrollbarOrientation = widget.scrollbarOrientation
       ..ignorePointer = !enableGestures;

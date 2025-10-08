@@ -82,9 +82,13 @@ dart_code_metrics:
 
     # 복잡도 완화
     - avoid-high-cyclomatic-complexity:
-        max-complexity: 30
+        threshold: 30
     - avoid-long-functions:
         max-length: 100
     - avoid-long-parameter-list:
-        max-parameters: 10
+        ignore-optional: false
+        max-number: 5
+        ignored-names:
+          - some
+          - name
 

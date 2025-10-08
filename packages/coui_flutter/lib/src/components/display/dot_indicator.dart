@@ -1,7 +1,7 @@
 import 'package:coui_flutter/coui_flutter.dart';
 
 typedef DotBuilder =
-    Widget Function(bool active, BuildContext context, int index);
+    Widget Function(BuildContext context, int index, bool active);
 
 /// Theme configuration for [DotIndicator] and its dot items.
 class DotIndicatorTheme {

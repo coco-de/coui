@@ -113,15 +113,14 @@ class AnimatedProperty<T> {
 }
 
 class AnimationRequest {
-  const AnimationRequest(this.curve, this.duration, this.target);
+  const AnimationRequest(this.target, this.duration, this.curve);
   final double target;
   final Duration duration;
-
   final Curve curve;
 }
 
 class AnimationRunner {
-  AnimationRunner(this.curve, this.duration, this.from, this.to);
+  AnimationRunner(this.from, this.to, this.duration, this.curve);
   final double from;
   final double to;
   final Duration duration;
@@ -170,7 +169,7 @@ class AnimationQueueController extends ChangeNotifier {
       _value =
           runner.from +
           (runner.to - runner.from) *
-              runner.curve.transform(runner._progress.clamp(0, 1));
+              runner.curve.transform(runner._progress.clamp(0, 1).toDouble());
       if (runner._progress >= 1.0) {
         _runner = null;
       }
@@ -226,9 +225,9 @@ class RelativeKeyframe<T> implements Keyframe<T> {
       return target;
     }
     final previous = timeline.keyframes[index - 1].compute(
-      timeline,
       index - 1,
       1,
+      timeline,
     );
 
     return timeline.lerp(previous, target, t)!;
@@ -251,7 +250,7 @@ class StillKeyframe<T> implements Keyframe<T> {
         index > 0,
         'Relative still keyframe must have a previous keyframe',
       );
-      value = timeline.keyframes[index - 1].compute(timeline, index - 1, 1);
+      value = timeline.keyframes[index - 1].compute(index - 1, 1, timeline);
     }
 
     return value as T;
@@ -259,7 +258,7 @@ class StillKeyframe<T> implements Keyframe<T> {
 }
 
 class TimelineAnimatable<T> extends Animatable<T> {
-  const TimelineAnimatable(this.animation, this.duration);
+  const TimelineAnimatable(this.duration, this.animation);
 
   final Duration duration;
 
@@ -330,12 +329,12 @@ class TimelineAnimation<T> extends Animatable<T> {
             (duration - current).inMilliseconds /
             keyframe.duration.inMilliseconds;
 
-        return keyframe.compute(this, i, localT);
+        return keyframe.compute(i, localT, this);
       }
       current = next;
     }
 
-    return keyframes.last.compute(this, keyframes.length - 1, 1);
+    return keyframes.last.compute(keyframes.length - 1, 1, this);
   }
 
   Duration _computeDuration(double t) {

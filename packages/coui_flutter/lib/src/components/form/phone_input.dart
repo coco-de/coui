@@ -321,14 +321,6 @@ class _PhoneInputState extends State<PhoneInput>
                 children: [
                   CountryFlag.fromCountryCode(
                     item.code,
-                    height: styleValue(
-                      defaultValue: theme.scaling * 18,
-                      themeValue: componentTheme?.flagHeight,
-                    ),
-                    shape: styleValue(
-                      defaultValue: RoundedRectangle(theme.radiusSm),
-                      themeValue: componentTheme?.flagShape,
-                    ),
                     width: styleValue(
                       defaultValue: theme.scaling * 24,
                       themeValue: componentTheme?.flagWidth,
@@ -376,16 +368,6 @@ class _PhoneInputState extends State<PhoneInput>
                             children: [
                               CountryFlag.fromCountryCode(
                                 country.code,
-                                height: styleValue(
-                                  defaultValue: theme.scaling * 18,
-                                  themeValue: componentTheme?.flagHeight,
-                                ),
-                                shape: styleValue(
-                                  defaultValue: RoundedRectangle(
-                                    theme.radiusSm,
-                                  ),
-                                  themeValue: componentTheme?.flagShape,
-                                ),
                                 width: styleValue(
                                   defaultValue: theme.scaling * 24,
                                   themeValue: componentTheme?.flagWidth,

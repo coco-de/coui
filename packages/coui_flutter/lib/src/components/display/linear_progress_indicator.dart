@@ -313,10 +313,10 @@ class LinearProgressIndicator extends StatelessWidget {
           )
         : RepeatedAnimationBuilder(
             builder: (context, value, child) {
-              final start = _line1Tail.transform(value);
-              final end = _line1Head.transform(value);
-              final start2 = _line2Tail.transform(value);
-              final end2 = _line2Head.transform(value);
+              final start = _line1Tail.transform(value.toDouble());
+              final end = _line1Head.transform(value.toDouble());
+              final start2 = _line2Tail.transform(value.toDouble());
+              final end2 = _line2Head.transform(value.toDouble());
 
               return AnimatedValueBuilder(
                 builder: (context, prop, child) {

@@ -256,7 +256,7 @@ class _DefaultRefreshIndicatorState extends State<DefaultRefreshIndicator> {
               return CustomPaint(
                 painter: AnimatedCheckPainter(
                   color: theme.colorScheme.foreground,
-                  progress: value,
+                  progress: value.toDouble(),
                   strokeWidth: theme.scaling * 1.5,
                 ),
               );
@@ -280,8 +280,8 @@ class _DefaultRefreshIndicatorState extends State<DefaultRefreshIndicator> {
         double angle;
         // 0 -> 1 (0 -> 180)
         angle = widget.stage.direction == Axis.vertical
-            ? -pi * widget.stage.extentValue.clamp(0, 1)
-            : -pi / 2 + -pi * widget.stage.extentValue.clamp(0, 1);
+            ? -pi * widget.stage.extentValue.clamp(0, 1).toDouble()
+            : -pi / 2 + -pi * widget.stage.extentValue.clamp(0, 1).toDouble();
 
         return Row(
           mainAxisSize: MainAxisSize.min,
@@ -380,7 +380,7 @@ class RefreshTriggerState extends State<RefreshTrigger>
   Duration _completeDuration;
 
   static double _decelerateCurve(double value) {
-    return Curves.decelerate.transform(value);
+    return Curves.decelerate.transform(value.toDouble());
   }
 
   void _updateThemeValues() {
@@ -418,7 +418,7 @@ class RefreshTriggerState extends State<RefreshTrigger>
       final diff = (maxExtent - _minExtent) - relativeExtent;
       final diffNormalized = diff / (maxExtent - _minExtent);
 
-      return maxExtent - _decelerateCurve(diffNormalized.clamp(0, 1)) * diff;
+      return maxExtent - _decelerateCurve(diffNormalized.clamp(0, 1).toDouble()) * diff;
     }
 
     return extent;

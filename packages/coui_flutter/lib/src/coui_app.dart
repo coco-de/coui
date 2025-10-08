@@ -257,7 +257,7 @@ class CoUIScrollBehavior extends ScrollBehavior {
 }
 
 class _CoUIAppState extends State<CoUIApp> {
-  HeroController _heroController;
+  late HeroController _heroController;
 
   @override
   void initState() {
@@ -493,7 +493,7 @@ class CoUILayer extends StatelessWidget {
   final List<Color> initialRecentColors;
   final int maxRecentColors;
   final ValueChanged<List<Color>>? onRecentColorsChanged;
-  final Widget Function(Widget? child, BuildContext context)? builder;
+  final Widget Function(BuildContext context, Widget? child)? builder;
   final bool enableScrollInterception;
   final OverlayHandler? popoverHandler;
   final OverlayHandler? tooltipHandler;
@@ -614,9 +614,9 @@ class CoUIRectArcTween extends RectTween {
 
   bool _dirty = true;
 
-  CoUIPointArcTween _beginArc;
+  late CoUIPointArcTween _beginArc;
 
-  CoUIPointArcTween _endArc;
+  late CoUIPointArcTween _endArc;
 
   @override
   Rect lerp(double t) {
@@ -641,20 +641,20 @@ class CoUIRectArcTween extends RectTween {
       (_BorderRadiusCorner d) => _diagonalSupport(centersVector, d),
     );
     _beginArc = CoUIPointArcTween(
-      begin: _cornerFor(begin!, diagonal.beginId),
-      end: _cornerFor(end!, diagonal.beginId),
+      begin: _cornerFor(diagonal.beginId, begin!),
+      end: _cornerFor(diagonal.beginId, end!),
     );
     _endArc = CoUIPointArcTween(
-      begin: _cornerFor(begin!, diagonal.endId),
-      end: _cornerFor(end!, diagonal.endId),
+      begin: _cornerFor(diagonal.endId, begin!),
+      end: _cornerFor(diagonal.endId, end!),
     );
     _dirty = false;
   }
 
   double _diagonalSupport(Offset centersVector, _BorderRadiusCorner diagonal) {
     final delta =
-        _cornerFor(begin!, diagonal.endId) -
-        _cornerFor(begin!, diagonal.beginId);
+        _cornerFor(diagonal.endId, begin!) -
+        _cornerFor(diagonal.beginId, begin!);
     final length = delta.distance;
 
     return centersVector.dx * delta.dx / length +

@@ -690,7 +690,7 @@ class _CheckboxState extends State<Checkbox>
                             return CustomPaint(
                               painter: AnimatedCheckPainter(
                                 color: theme.colorScheme.primaryForeground,
-                                progress: value,
+                                progress: value.toDouble(),
                                 strokeWidth: scaling * 1,
                               ),
                             );

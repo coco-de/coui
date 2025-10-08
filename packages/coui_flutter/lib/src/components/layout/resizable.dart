@@ -94,7 +94,7 @@ class HorizontalResizableDragger extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           color: color,
         ),
-        height: height,
+        height: height.toDouble(),
         width: width,
         child: Icon(
           RadixIcons.dragHandleDots2,
@@ -148,7 +148,7 @@ class VerticalResizableDragger extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius),
           color: color,
         ),
-        height: height,
+        height: height.toDouble(),
         width: width,
         child: Transform.rotate(
           angle: pi / 2,
@@ -261,13 +261,13 @@ class AbsoluteResizablePaneController extends ChangeNotifier
     double? maxSize,
     double? minSize,
   }) {
-    _size = newSize.clamp(minSize ?? 0, maxSize ?? double.infinity);
+    _size = newSize.clamp(minSize ?? 0, maxSize ?? double.infinity).toDouble();
     notifyListeners();
   }
 
   @override
   double computeSize(double paneSize, {double? maxSize, double? minSize}) {
-    return _size.clamp(minSize ?? 0, maxSize ?? double.infinity);
+    return _size.clamp(minSize ?? 0, maxSize ?? double.infinity).toDouble();
   }
 }
 
@@ -315,7 +315,7 @@ class FlexibleResizablePaneController extends ChangeNotifier
 
   @override
   double computeSize(double paneSize, {double? maxSize, double? minSize}) {
-    return (_flex * paneSize).clamp(minSize ?? 0, maxSize ?? double.infinity);
+    return (_flex * paneSize).clamp(minSize ?? 0, maxSize ?? double.infinity).toDouble();
   }
 }
 
@@ -495,9 +495,9 @@ class _ResizablePaneState extends State<ResizablePane> {
     final draggers = _panelState!.state.computeDraggers();
     final resizer = Resizer(draggers);
     final result = resizer.attemptExpand(
-      _panelState!.index,
-      direction.direction,
       size,
+      direction.direction,
+      _panelState!.index,
     );
     if (result) {
       _panelState!.state.updateDraggers(resizer.items);
@@ -545,9 +545,9 @@ class _ResizablePaneState extends State<ResizablePane> {
 class _ResizablePanelData {
   const _ResizablePanelData(this.index, this.state);
 
-  final _ResizablePanelState state;
-
   final int index;
+
+  final _ResizablePanelState state;
 
   void attach(ResizablePaneController controller) {
     state.attachController(controller);
@@ -821,7 +821,7 @@ class _ResizablePanelState extends State<ResizablePanel> {
       children.add(
         Data<_ResizablePanelData>.inherit(
           key: widget.children[i].key,
-          data: _ResizablePanelData(this, i),
+          data: _ResizablePanelData(i, this),
           child: widget.children[i],
         ),
       );
@@ -973,7 +973,7 @@ class _ResizerState extends State<_Resizer> {
   }
 
   void _onDragUpdate(DragUpdateDetails details) {
-    _dragSession!.dragDivider(widget.index + 1, details.primaryDelta!);
+    _dragSession!.dragDivider(details.primaryDelta!, widget.index + 1);
     widget.panelState.updateDraggers(_dragSession!.items);
 
     // Call onSizeChange callbacks for affected panes

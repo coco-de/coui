@@ -474,7 +474,7 @@ class _ItemPickerDialogState<T> extends State<ItemPickerDialog<T>> {
         onChanged: _onChanged,
         value: widget.value,
       ),
-      child: widget.layout.build(context, widget.items, _buildItem),
+      child: widget.layout.build(_buildItem, context, widget.items),
     );
   }
 }
@@ -520,8 +520,7 @@ class ItemPickerOption<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = Data.maybeOf<ItemPickerData>(context);
     if (data == null) {
-      return LayoutBuilder(
-        builder: (context, constraints) {
+      return LayoutBuilder(builder: (context, constraints) {
           final size = constraints.biggest;
           if (size.width == size.height) {
             return Stack(

@@ -286,8 +286,8 @@ class _CardImageState extends State<CardImage> {
                       duration: kDefaultDuration,
                       scale:
                           _statesController.value.contains(WidgetState.hovered)
-                          ? hoverScale
-                          : normalScale,
+                          ? hoverScale.toDouble()
+                          : normalScale.toDouble(),
                       child: widget.image,
                     );
                   },
