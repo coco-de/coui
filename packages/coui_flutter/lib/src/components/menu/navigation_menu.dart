@@ -193,11 +193,11 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return AnimatedBuilder(
-      animation: Listenable.merge(
-        [_menuState!._activeIndex, _menuState!._popoverController],
-      ),
+      animation: Listenable.merge([
+        _menuState!._activeIndex,
+        _menuState!._popoverController,
+      ]),
       builder: (context, child) {
         return Button(
           onPressed: widget.onPressed != null || widget.content != null
@@ -212,21 +212,24 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
               : null,
           style: const ButtonStyle.ghost().copyWith(
             decoration: (context, states, value) {
-              return _menuState!.isActive(this)
-                  ? (value as BoxDecoration).copyWith(
-                      color: theme.colorScheme.muted.scaleAlpha(0.8),
-                      borderRadius: BorderRadius.circular(theme.radiusMd),
-                    )
-                  : value;
+              if (_menuState!.isActive(this)) {
+                return (value as BoxDecoration).copyWith(
+                  color: theme.colorScheme.muted.scaleAlpha(0.8),
+                  borderRadius: BorderRadius.circular(theme.radiusMd),
+                );
+              }
+              return value;
             },
           ),
-          trailing: widget.content == null
-              ? null
-              : AnimatedRotation(
+          trailing: widget.content != null
+              ? AnimatedRotation(
                   turns: _menuState!.isActive(this) ? 0.5 : 0,
                   duration: kDefaultDuration,
-                  child: const Icon(RadixIcons.chevronDown).iconXSmall(),
-                ),
+                  child: const Icon(
+                    RadixIcons.chevronDown,
+                  ).iconXSmall(),
+                )
+              : null,
           onHover: (hovered) {
             if (hovered) {
               _menuState!._activate(this);
@@ -326,7 +329,6 @@ class NavigationMenuContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final scaling = theme.scaling;
-
     return Button(
       onPressed: onPressed,
       style: ButtonVariance.ghost.copyWith(
@@ -435,10 +437,10 @@ class NavigationMenuContentList extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final scaling = theme.scaling;
-    List<Widget> columns = <Widget>[];
-    final rows = <Widget>[];
-    final spacing = this.spacing ?? (scaling * 12);
-    final runSpacing = this.runSpacing ?? (scaling * 12);
+    List<Widget> columns = [];
+    List<Widget> rows = [];
+    var spacing = this.spacing ?? (12 * scaling);
+    var runSpacing = this.runSpacing ?? (12 * scaling);
     for (final child in children) {
       columns.add(Expanded(child: child));
       if (columns.length == crossAxisCount) {
