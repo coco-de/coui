@@ -75,18 +75,16 @@ class _CodeSnippetFutureBuilderState extends State<CodeSnippetFutureBuilder> {
     //https://raw.githubusercontent.com/sunarya-thito/coui_flutter/master/docs/lib/pages/docs/layout_page/layout_page_example_1.dart
     String url =
         'https://raw.githubusercontent.com/sunarya-thito/coui_flutter/master/docs/${widget.path}';
-    futureCode = http
-        .get(Uri.parse(url))
-        .then((response) => response.body)
-        .then((code) {
-          try {
-            return widget.summarize ? _formatCode(code) : code;
-          } catch (e, stackTrace) {
-            print(e);
-            print(stackTrace);
-            return code;
-          }
-        });
+    futureCode =
+        http.get(Uri.parse(url)).then((response) => response.body).then((code) {
+      try {
+        return widget.summarize ? _formatCode(code) : code;
+      } catch (e, stackTrace) {
+        print(e);
+        print(stackTrace);
+        return code;
+      }
+    });
   }
 
   @override
@@ -136,7 +134,7 @@ class _CodeSnippetFutureBuilderState extends State<CodeSnippetFutureBuilder> {
                   onPressed: () {
                     // open in new tab
                     String url =
-                        'https://github.com/sunarya-thito/coui_flutter/blob/master/docs/${widget.path}';
+                        'https://github.com/coco-de/coui/blob/main/packages/coui_flutter/docs/${widget.path}';
                     // html.window.open(url, 'blank');
                     launchUrlString(url);
                   },
@@ -153,9 +151,9 @@ class _CodeSnippetFutureBuilderState extends State<CodeSnippetFutureBuilder> {
                 density: ButtonDensity.icon,
                 onPressed: () {
                   // open in new tab
-                  //https://github.com/sunarya-thito/coui_flutter/blob/master/docs/lib/pages/docs/layout_page/layout_page_example_1.dart
+                  //https://github.com/coco-de/coui/blob/main/packages/coui_flutter/docs/lib/pages/docs/layout_page/layout_page_example_1.dart
                   String url =
-                      'https://github.com/sunarya-thito/coui_flutter/blob/master/docs/${widget.path}';
+                      'https://github.com/coco-de/coui/blob/main/packages/coui_flutter/docs/${widget.path}';
                   // html.window.open(url, 'blank');
                   launchUrlString(url);
                 },

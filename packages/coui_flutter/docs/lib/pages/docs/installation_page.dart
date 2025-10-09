@@ -112,12 +112,11 @@ void main() {
           const CodeSnippet(
             // code: 'coui_flutter:\n'
             //     '  git:\n'
-            //     '    url: "https://github.com/sunarya-thito/coui_flutter.git"',
-            code:
-                'dependencies:\n'
+            //     '    url: "https://github.com/coco-de/coui.git"',
+            code: 'dependencies:\n'
                 '  coui_flutter:\n'
                 '    git:\n'
-                '      url: "https://github.com/sunarya-thito/coui_flutter.git"',
+                '      url: "https://github.com/coco-de/coui.git"',
             mode: 'yaml',
           ).p(),
           const Text('See ')

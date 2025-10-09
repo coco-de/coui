@@ -28,8 +28,8 @@ class WebPreloaderPage extends StatelessWidget {
                     mode: 'shell',
                   ).p(),
                   const Text(
-                        '* If you\'re using legacy flutter web, you need to upgrade it using the command above. ',
-                      )
+                    '* If you\'re using legacy flutter web, you need to upgrade it using the command above. ',
+                  )
                       .thenButton(
                         onPressed: () {
                           openInNewTab(
@@ -105,20 +105,19 @@ class WebPreloaderPage extends StatelessWidget {
           Alert(
             title: const Text('Contributing'),
             leading: const Icon(Icons.info_outlined),
-            content:
-                const Text(
-                      'If you have a preloader that you want to share, please create a pull request under the ',
-                    )
-                    .thenButton(
-                      onPressed: () {
-                        launchUrlString(
-                          'https://github.com/sunarya-thito/coui_flutter/tree/master/web_loaders',
-                        );
-                      },
-                      child: const Text('web_loaders'),
-                    )
-                    .thenText(' directory.')
-                    .p(),
+            content: const Text(
+              'If you have a preloader that you want to share, please create a pull request under the ',
+            )
+                .thenButton(
+                  onPressed: () {
+                    launchUrlString(
+                      'https://github.com/coco-de/coui/tree/master/web_loaders',
+                    );
+                  },
+                  child: const Text('web_loaders'),
+                )
+                .thenText(' directory.')
+                .p(),
           ),
         ],
       ),

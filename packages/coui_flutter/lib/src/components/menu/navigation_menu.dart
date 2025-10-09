@@ -605,15 +605,13 @@ class NavigationMenuState extends State<NavigationMenu> {
       allowInvertVertical: false,
       builder: buildPopover,
       context: context,
-      margin:
-          requestMargin() ??
+      margin: requestMargin() ??
           compTheme?.margin ??
           (const EdgeInsets.all(8) * scaling),
       modal: false,
       offset: compTheme?.offset ?? const Offset(0, 4) * scaling,
       onTickFollow: (value) {
-        value.margin =
-            requestMargin() ??
+        value.margin = requestMargin() ??
             compTheme?.margin ??
             (const EdgeInsets.all(8) * scaling);
       },

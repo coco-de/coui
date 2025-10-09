@@ -556,13 +556,13 @@ class DocsPageState extends State<DocsPage> {
                                   Semantics(
                                     link: true,
                                     linkUrl: Uri.tryParse(
-                                      'https://github.com/sunarya-thito/coui_flutter',
+                                      'https://github.com/coco-de/coui',
                                     ),
                                     child: GhostButton(
                                       density: ButtonDensity.icon,
                                       onPressed: () {
                                         openInNewTab(
-                                          'https://github.com/sunarya-thito/coui_flutter',
+                                          'https://github.com/coco-de/coui',
                                         );
                                       },
                                       child: FaIcon(
@@ -845,7 +845,7 @@ class DocsPageState extends State<DocsPage> {
         GhostButton(
           density: ButtonDensity.icon,
           onPressed: () {
-            openInNewTab('https://github.com/sunarya-thito/coui_flutter');
+            openInNewTab('https://github.com/coco-de/coui');
           },
           child: FaIcon(
             FontAwesomeIcons.github,

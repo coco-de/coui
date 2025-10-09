@@ -330,55 +330,60 @@ class ScaffoldState extends State<Scaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return Overlay(initialEntries: [OverlayEntry(builder: _buildContent)]);
+    return Overlay(
+      initialEntries: [
+        OverlayEntry(
+          builder: _buildContent,
+        ),
+      ],
+    );
   }
 }
 
 class ScaffoldBoxConstraints extends BoxConstraints {
+  final double headerHeight;
+  final double footerHeight;
+
   const ScaffoldBoxConstraints({
-    required this.footerHeight,
     required this.headerHeight,
-    super.maxHeight,
+    required this.footerHeight,
+    super.minWidth,
     super.maxWidth,
     super.minHeight,
-    super.minWidth,
+    super.maxHeight,
   });
 
   factory ScaffoldBoxConstraints.fromBoxConstraints({
     required BoxConstraints constraints,
-    required double footerHeight,
     required double headerHeight,
+    required double footerHeight,
   }) {
     return ScaffoldBoxConstraints(
-      footerHeight: footerHeight,
       headerHeight: headerHeight,
-      maxHeight: constraints.maxHeight,
+      footerHeight: footerHeight,
+      minWidth: constraints.minWidth,
       maxWidth: constraints.maxWidth,
       minHeight: constraints.minHeight,
-      minWidth: constraints.minWidth,
+      maxHeight: constraints.maxHeight,
     );
   }
 
-  final double headerHeight;
-
-  final double footerHeight;
-
   @override
   ScaffoldBoxConstraints copyWith({
-    double? footerHeight,
     double? headerHeight,
-    double? maxHeight,
+    double? footerHeight,
+    double? minWidth,
     double? maxWidth,
     double? minHeight,
-    double? minWidth,
+    double? maxHeight,
   }) {
     return ScaffoldBoxConstraints(
-      footerHeight: footerHeight ?? this.footerHeight,
       headerHeight: headerHeight ?? this.headerHeight,
-      maxHeight: maxHeight ?? this.maxHeight,
+      footerHeight: footerHeight ?? this.footerHeight,
+      minWidth: minWidth ?? this.minWidth,
       maxWidth: maxWidth ?? this.maxWidth,
       minHeight: minHeight ?? this.minHeight,
-      minWidth: minWidth ?? this.minWidth,
+      maxHeight: maxHeight ?? this.maxHeight,
     );
   }
 
@@ -843,8 +848,8 @@ class _ScaffoldRenderFlex extends RenderBox
     content.layout(
       ScaffoldBoxConstraints.fromBoxConstraints(
         constraints: contentConstraints,
-        footerHeight: footerSize,
         headerHeight: headerSize,
+        footerHeight: footerSize,
       ),
     );
     size = constraints.biggest;

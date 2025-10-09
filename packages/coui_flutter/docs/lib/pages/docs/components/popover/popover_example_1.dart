@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 import 'package:coui_flutter/coui_flutter.dart';
 
 class PopoverExample1 extends StatelessWidget {
@@ -65,9 +64,7 @@ class PopoverExample1 extends StatelessWidget {
               ),
             );
           },
-        ).future.then((_) {
-          print('Popover closed');
-        });
+        );
       },
       child: const Text('Open popover'),
     );

@@ -851,7 +851,7 @@ class CalendarView {
   /// ```dart
   /// final view = CalendarView(2024, 3); // March 2024
   /// ```
-  CalendarView(this.month, this.year) {
+  CalendarView(this.year, this.month) {
     assert(month >= 1 && month <= 12, 'Month must be between 1 and 12');
   }
 

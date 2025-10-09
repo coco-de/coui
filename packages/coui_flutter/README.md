@@ -8,7 +8,7 @@
 [![Pub Points](https://img.shields.io/pub/points/coui_flutter?style=for-the-badge&logo=dart&logoColor=white)](https://pub.dev/packages/coui_flutter)
 [![Pub Version](https://img.shields.io/pub/v/coui_flutter?style=for-the-badge&logo=dart&logoColor=white)](https://pub.dev/packages/coui_flutter)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/sunarya-thito?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sponsors/sunarya-thito)
-[![GitHub Repo stars](https://img.shields.io/github/stars/sunarya-thito/coui_flutter?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sunarya-thito/coui_flutter)
+[![GitHub Repo stars](https://img.shields.io/github/stars/sunarya-thito/coui_flutter?style=for-the-badge&logo=github&logoColor=white)](https://github.com/coco-de/coui)
 
 ---
 
@@ -113,10 +113,10 @@ We welcome contributions from the community! Here's how you can help make coui_f
 
 <div align="center">
 
-[![⭐ Star on GitHub](https://img.shields.io/badge/⭐_Star_on_GitHub-black?style=for-the-badge&logo=github)](https://github.com/sunarya-thito/coui_flutter)
+[![⭐ Star on GitHub](https://img.shields.io/badge/⭐_Star_on_GitHub-black?style=for-the-badge&logo=github)](https://github.com/coco-de/coui)
 [![💖 Sponsor](https://img.shields.io/badge/💖_Sponsor-pink?style=for-the-badge&logo=github-sponsors)](https://github.com/sponsors/sunarya-thito)
-[![🐛 Report Bug](https://img.shields.io/badge/🐛_Report_Bug-red?style=for-the-badge&logo=github)](https://github.com/sunarya-thito/coui_flutter/issues)
-[![💡 Request Feature](https://img.shields.io/badge/💡_Request_Feature-blue?style=for-the-badge&logo=github)](https://github.com/sunarya-thito/coui_flutter/issues)
+[![🐛 Report Bug](https://img.shields.io/badge/🐛_Report_Bug-red?style=for-the-badge&logo=github)](https://github.com/coco-de/coui/issues)
+[![💡 Request Feature](https://img.shields.io/badge/💡_Request_Feature-blue?style=for-the-badge&logo=github)](https://github.com/coco-de/coui/issues)
 
 </div>
 

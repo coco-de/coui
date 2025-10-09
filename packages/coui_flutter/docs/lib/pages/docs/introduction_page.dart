@@ -117,27 +117,26 @@ class _IntroductionPageState extends State<IntroductionPage> {
                     'Can I configure which style i would like to use? (Default/New York)',
                   ),
                 ),
-                content:
-                    const Text(
-                          'Unfortunately you can\'t. This package only supports New York style. '
-                          'But if you wish to have default style of Shadcn/UI, i would recommend ',
-                        )
-                        .thenButton(
-                          onPressed: () {
-                            launchUrlString(
-                              'https://github.com/nank1ro/flutter-shadcn-ui',
-                            );
-                          },
-                          child: const Text('this package'),
-                        )
-                        .thenText(' by ')
-                        .thenButton(
-                          onPressed: () {
-                            launchUrlString('https://x.com/nank1ro');
-                          },
-                          child: const Text('@nank1ro'),
-                        )
-                        .thenText('.'),
+                content: const Text(
+                  'Unfortunately you can\'t. This package only supports New York style. '
+                  'But if you wish to have default style of Shadcn/UI, i would recommend ',
+                )
+                    .thenButton(
+                      onPressed: () {
+                        launchUrlString(
+                          'https://github.com/nank1ro/flutter-shadcn-ui',
+                        );
+                      },
+                      child: const Text('this package'),
+                    )
+                    .thenText(' by ')
+                    .thenButton(
+                      onPressed: () {
+                        launchUrlString('https://x.com/nank1ro');
+                      },
+                      child: const Text('@nank1ro'),
+                    )
+                    .thenText('.'),
               ),
             ],
           ),
@@ -150,11 +149,11 @@ class _IntroductionPageState extends State<IntroductionPage> {
                   .thenButton(
                     onPressed: () {
                       launchUrlString(
-                        'https://github.com/sunarya-thito/coui_flutter',
+                        'https://github.com/coco-de/coui',
                       );
                     },
                     child: const Text(
-                      'https://github.com/sunarya-thito/coui_flutter',
+                      'https://github.com/coco-de/coui',
                     ),
                   )
                   .li(),
