@@ -622,7 +622,7 @@ class ContextMenuPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedValueBuilder.animation(
+    return AnimatedValueBuilder<double>.animation(
       value: 1,
       duration: const Duration(milliseconds: 100),
       builder: (context, animation) {

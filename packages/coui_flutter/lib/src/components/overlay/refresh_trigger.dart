@@ -369,7 +369,7 @@ class RefreshTriggerState extends State<RefreshTrigger>
   bool _scrolling = false;
   ScrollDirection _userScrollDirection = ScrollDirection.idle;
   TriggerStage _stage = TriggerStage.idle;
-  late Future<void>? _currentFuture;
+  Future<void>? _currentFuture;
   int _currentFutureCount = 0;
 
   // Computed theme values
@@ -595,7 +595,7 @@ class RefreshTriggerState extends State<RefreshTrigger>
 
     return NotificationListener<ScrollNotification>(
       onNotification: _handleScrollNotification,
-      child: AnimatedValueBuilder.animation(
+      child: AnimatedValueBuilder<double>.animation(
         value:
             _stage == TriggerStage.refreshing ||
                 _stage == TriggerStage.completed

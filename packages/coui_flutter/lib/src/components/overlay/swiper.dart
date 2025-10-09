@@ -441,7 +441,7 @@ class Swiper extends StatefulWidget {
 }
 
 class _SwiperState extends State<Swiper> {
-  late DrawerOverlayCompleter<dynamic>? _activeOverlay;
+  DrawerOverlayCompleter<dynamic>? _activeOverlay;
   final _key = GlobalKey();
 
   OverlayPosition get resolvedPosition {

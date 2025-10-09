@@ -412,7 +412,7 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
             child: AnimatedBuilder(
               animation: isClosed,
               builder: (innerContext, child) {
-                return AnimatedValueBuilder.animation(
+                return AnimatedValueBuilder<double>.animation(
                   value: isClosed.value ? 0.0 : 1.0,
                   duration: isClosed.value
                       ? (showDuration ?? kDefaultDuration)

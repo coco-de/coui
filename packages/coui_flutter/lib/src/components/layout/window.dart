@@ -424,7 +424,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
   }
 
   void _initializeController() {
-    controller = widget.controller == null
+    controller = widget.controller != null
         ? widget.controller!
         : WindowController(
             bounds: widget.bounds!,

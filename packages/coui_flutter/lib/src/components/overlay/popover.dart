@@ -102,7 +102,7 @@ class PopoverOverlayHandler extends OverlayHandler {
               return FocusScope(
                 autofocus: dismissBackdropFocus,
                 canRequestFocus: !isClosed.value,
-                child: AnimatedValueBuilder.animation(
+                child: AnimatedValueBuilder<double>.animation(
                   value: isClosed.value ? 0.0 : 1.0,
                   duration: isClosed.value
                       ? (showDuration ?? kDefaultDuration)

@@ -155,9 +155,12 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
     if (_menuState != newMenuState) {
       _menuState = newMenuState;
       if (widget.content != null) {
-        _menuState!._attachContentBuilder((context) {
-          return widget.content!;
-        }, this);
+        _menuState!._attachContentBuilder(
+          this,
+          (context) {
+            return widget.content!;
+          },
+        );
       }
     }
   }
@@ -166,12 +169,15 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
   void didUpdateWidget(covariant NavigationMenuItem oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.content != oldWidget.content) {
-      if (widget.content == null) {
-        _menuState!._contentBuilders.remove(this);
+      if (widget.content != null) {
+        _menuState!._attachContentBuilder(
+          this,
+          (context) {
+            return widget.content!;
+          },
+        );
       } else {
-        _menuState!._attachContentBuilder((context) {
-          return widget.content!;
-        }, this);
+        _menuState!._contentBuilders.remove(this);
       }
     }
   }
@@ -576,8 +582,8 @@ class NavigationMenuState extends State<NavigationMenu> {
   int _hoverCount = 0;
 
   void _attachContentBuilder(
-    WidgetBuilder builder,
     NavigationMenuItemState key,
+    WidgetBuilder builder,
   ) {
     _contentBuilders[key] = builder;
   }
@@ -673,10 +679,10 @@ class NavigationMenuState extends State<NavigationMenu> {
 
     return MouseRegion(
       onEnter: (_) {
-        _hoverCount += 1;
+        _hoverCount++;
       },
       onExit: (event) {
-        final currentHoverCount = _hoverCount += 1;
+        final currentHoverCount = ++_hoverCount;
         Future.delayed(kDebounceDuration, () {
           if (currentHoverCount == _hoverCount && mounted) {
             close();
@@ -769,10 +775,10 @@ class NavigationMenuState extends State<NavigationMenu> {
       groupId: this,
       child: MouseRegion(
         onEnter: (_) {
-          _hoverCount += 1;
+          _hoverCount++;
         },
         onExit: (_) {
-          final currentHoverCount = _hoverCount += 1;
+          final currentHoverCount = ++_hoverCount;
           Future.delayed(kDebounceDuration, () {
             if (currentHoverCount == _hoverCount && mounted) {
               close();
