@@ -20,11 +20,11 @@ class Validated<T> extends StatefulWidget {
   final Widget? child;
 
   @override
-  State<Validated> createState() => _ValidatedState();
+  State<Validated<dynamic>> createState() => _ValidatedState();
 }
 
-class _ValidatedState extends State<Validated> {
-  final formKey = const FormKey(#validated);
+class _ValidatedState extends State<Validated<dynamic>> {
+  final formKey = const FormKey<dynamic>(#validated);
 
   @override
   Widget build(BuildContext context) {

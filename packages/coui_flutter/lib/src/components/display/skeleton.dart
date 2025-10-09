@@ -166,32 +166,32 @@ class CoUISkeletonizerConfigLayer extends StatelessWidget {
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<SkeletonTheme>(context);
     final durationValue = styleValue(
-      defaultValue: const Duration(seconds: 1),
-      themeValue: compTheme?.duration,
       widgetValue: duration,
+      themeValue: compTheme?.duration,
+      defaultValue: const Duration(seconds: 1),
     );
     final fromValue = styleValue(
-      defaultValue: theme.colorScheme.primary.scaleAlpha(0.05),
-      themeValue: compTheme?.fromColor,
       widgetValue: fromColor,
+      themeValue: compTheme?.fromColor,
+      defaultValue: theme.colorScheme.primary.scaleAlpha(0.05),
     );
     final toValue = styleValue(
-      defaultValue: theme.colorScheme.primary.scaleAlpha(0.1),
-      themeValue: compTheme?.toColor,
       widgetValue: toColor,
+      themeValue: compTheme?.toColor,
+      defaultValue: theme.colorScheme.primary.scaleAlpha(0.1),
     );
     final enableSwitchAnimationValue = styleValue(
-      defaultValue: true,
-      themeValue: compTheme?.enableSwitchAnimation,
       widgetValue: enableSwitchAnimation,
+      themeValue: compTheme?.enableSwitchAnimation,
+      defaultValue: true,
     );
 
     return SkeletonizerConfig(
       data: SkeletonizerConfigData(
         effect: PulseEffect(
-          duration: durationValue,
           from: fromValue,
           to: toValue,
+          duration: durationValue,
         ),
         enableSwitchAnimation: enableSwitchAnimationValue,
       ),

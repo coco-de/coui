@@ -174,14 +174,14 @@ class RenderRawSortableStack extends RenderBox
       final childParentData = child.parentData! as RawSortableParentData;
       if ((childParentData.position! & child.size).contains(position)) {
         return result.addWithPaintOffset(
+          offset: childParentData.position,
+          position: position,
           hitTest: (BoxHitTestResult result, Offset position) {
             return child!.hitTest(
               result,
               position: position - childParentData.position!,
             );
           },
-          offset: childParentData.position,
-          position: position,
         );
       }
       child = childParentData.previousSibling;

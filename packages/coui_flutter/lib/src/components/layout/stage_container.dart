@@ -137,11 +137,12 @@ class StageContainer extends StatelessWidget {
     final compTheme = ComponentTheme.maybeOf<StageContainerTheme>(context);
     final breakpoint = compTheme?.breakpoint ?? this.breakpoint;
     final EdgeInsets padding = styleValue(
-      defaultValue: this.padding,
       themeValue: compTheme?.padding,
+      defaultValue: this.padding,
     );
 
-    return LayoutBuilder(builder: (context, constraints) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
         final size = constraints.maxWidth;
         final topPadding = padding.top;
         final bottomPadding = padding.bottom;
@@ -159,10 +160,10 @@ class StageContainer extends StatelessWidget {
           return builder(
             context,
             EdgeInsets.only(
-              bottom: bottomPadding,
               left: leftPadding,
-              right: rightPadding,
               top: topPadding,
+              right: rightPadding,
+              bottom: bottomPadding,
             ),
           );
         }
@@ -181,10 +182,10 @@ class StageContainer extends StatelessWidget {
         return builder(
           context,
           EdgeInsets.only(
-            bottom: bottomPadding,
             left: leftPadding,
-            right: rightPadding,
             top: topPadding,
+            right: rightPadding,
+            bottom: bottomPadding,
           ),
         );
       },

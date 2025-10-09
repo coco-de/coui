@@ -312,7 +312,7 @@ class ConditionalValidator<T> extends Validator<T> {
   final FuturePredicate<T> predicate;
   final String message;
 
-  final List<FormKey> dependencies;
+  final List<FormKey<dynamic>> dependencies;
 
   @override
   FutureOr<ValidationResult?> validate(
@@ -394,19 +394,23 @@ class NotValidator<T> extends Validator<T> {
     T? value,
     FormValidationMode state,
   ) {
-    final localizations = Localizations.of(context, CoUILocalizations);
+    final CoUILocalizations? localizations =
+        Localizations.of<CoUILocalizations>(context, CoUILocalizations)!;
     final result = validator.validate(context, value, state);
     if (result is Future<ValidationResult?>) {
       return result.then((value) {
         return value == null
             ? InvalidResult(
-                message ?? localizations.invalidValue,
+                message ?? localizations?.invalidValue ?? 'Invalid value',
                 state: state,
               )
             : null;
       });
     } else if (result == null) {
-      return InvalidResult(message ?? localizations.invalidValue, state: state);
+      return InvalidResult(
+        message ?? localizations?.invalidValue ?? 'Invalid value',
+        state: state,
+      );
     }
 
     return null;
@@ -504,7 +508,10 @@ class NonNullValidator<T> extends Validator<T> {
     FormValidationMode state,
   ) {
     if (value == null) {
-      final localizations = Localizations.of(context, CoUILocalizations);
+      final localizations = Localizations.of<CoUILocalizations>(
+        context,
+        CoUILocalizations,
+      )!;
 
       return InvalidResult(message ?? localizations.formNotEmpty, state: state);
     }
@@ -531,7 +538,10 @@ class NotEmptyValidator extends NonNullValidator<String> {
     FormValidationMode state,
   ) {
     if (value == null || value.isEmpty) {
-      final localizations = Localizations.of(context, CoUILocalizations);
+      final localizations = Localizations.of<CoUILocalizations>(
+        context,
+        CoUILocalizations,
+      )!;
 
       return InvalidResult(message ?? localizations.formNotEmpty, state: state);
     }
@@ -566,18 +576,18 @@ class LengthValidator extends Validator<String> {
       return min != null
           ? InvalidResult(
               message ??
-                  Localizations.of(
+                  Localizations.of<CoUILocalizations>(
                     context,
                     CoUILocalizations,
-                  ).formLengthLessThan(min!),
+                  )!.formLengthLessThan(min!),
               state: state,
             )
           : null;
     }
-    final CoUILocalizations localizations = Localizations.of(
+    final CoUILocalizations localizations = Localizations.of<CoUILocalizations>(
       context,
       CoUILocalizations,
-    );
+    )!;
     if (min != null && value.length < min!) {
       return InvalidResult(
         message ?? localizations.formLengthLessThan(min!),
@@ -628,7 +638,10 @@ class CompareWith<T extends Comparable<T>> extends Validator<T> {
     T? value,
     FormValidationMode state,
   ) {
-    final localizations = Localizations.of(context, CoUILocalizations);
+    final localizations = Localizations.of<CoUILocalizations>(
+      context,
+      CoUILocalizations,
+    )!;
     final otherValue = context.getFormValue(key);
     if (otherValue == null) {
       return InvalidResult(message ?? localizations.invalidValue, state: state);
@@ -638,7 +651,8 @@ class CompareWith<T extends Comparable<T>> extends Validator<T> {
       case CompareType.greater:
         if (compare <= 0) {
           return InvalidResult(
-            message ?? localizations.formGreaterThan(otherValue),
+            message ??
+                localizations.formGreaterThan((otherValue as num).toDouble()),
             state: state,
           );
         }
@@ -646,7 +660,10 @@ class CompareWith<T extends Comparable<T>> extends Validator<T> {
       case CompareType.greaterOrEqual:
         if (compare < 0) {
           return InvalidResult(
-            message ?? localizations.formGreaterThanOrEqualTo(otherValue),
+            message ??
+                localizations.formGreaterThanOrEqualTo(
+                  (otherValue as num).toDouble(),
+                ),
             state: state,
           );
         }
@@ -654,7 +671,8 @@ class CompareWith<T extends Comparable<T>> extends Validator<T> {
       case CompareType.less:
         if (compare >= 0) {
           return InvalidResult(
-            message ?? localizations.formLessThan(otherValue),
+            message ??
+                localizations.formLessThan((otherValue as num).toDouble()),
             state: state,
           );
         }
@@ -662,7 +680,10 @@ class CompareWith<T extends Comparable<T>> extends Validator<T> {
       case CompareType.lessOrEqual:
         if (compare > 0) {
           return InvalidResult(
-            message ?? localizations.formLessThanOrEqualTo(otherValue),
+            message ??
+                localizations.formLessThanOrEqualTo(
+                  (otherValue as num).toDouble(),
+                ),
             state: state,
           );
         }
@@ -670,7 +691,7 @@ class CompareWith<T extends Comparable<T>> extends Validator<T> {
       case CompareType.equal:
         if (compare != 0) {
           return InvalidResult(
-            message ?? localizations.formEqualTo(otherValue),
+            message ?? 'Must be equal to ${otherValue.toString()}',
             state: state,
           );
         }
@@ -735,21 +756,30 @@ class SafePasswordValidator extends Validator<String> {
     if (requireDigit && !RegExp(r'\d').hasMatch(value)) {
       return InvalidResult(
         message ??
-            Localizations.of(context, CoUILocalizations).formPasswordDigits,
+            Localizations.of<CoUILocalizations>(
+              context,
+              CoUILocalizations,
+            )!.formPasswordDigits,
         state: state,
       );
     }
     if (requireLowercase && !RegExp('[a-z]').hasMatch(value)) {
       return InvalidResult(
         message ??
-            Localizations.of(context, CoUILocalizations).formPasswordLowercase,
+            Localizations.of<CoUILocalizations>(
+              context,
+              CoUILocalizations,
+            )!.formPasswordLowercase,
         state: state,
       );
     }
     if (requireUppercase && !RegExp('[A-Z]').hasMatch(value)) {
       return InvalidResult(
         message ??
-            Localizations.of(context, CoUILocalizations).formPasswordUppercase,
+            Localizations.of<CoUILocalizations>(
+              context,
+              CoUILocalizations,
+            )!.formPasswordUppercase,
         state: state,
       );
     }
@@ -757,10 +787,10 @@ class SafePasswordValidator extends Validator<String> {
     return requireSpecialChar && !RegExp(r'[\W_]').hasMatch(value)
         ? InvalidResult(
             message ??
-                Localizations.of(
+                Localizations.of<CoUILocalizations>(
                   context,
                   CoUILocalizations,
-                ).formPasswordSpecial,
+                )!.formPasswordSpecial,
             state: state,
           )
         : null;
@@ -807,10 +837,10 @@ class MinValidator<T extends num> extends Validator<T> {
       if (value < min) {
         return InvalidResult(
           message ??
-              Localizations.of(
+              Localizations.of<CoUILocalizations>(
                 context,
                 CoUILocalizations,
-              ).formGreaterThanOrEqualTo(min),
+              )!.formGreaterThanOrEqualTo((min as num).toDouble()),
           state: state,
         );
       }
@@ -818,7 +848,10 @@ class MinValidator<T extends num> extends Validator<T> {
       if (value <= min) {
         return InvalidResult(
           message ??
-              Localizations.of(context, CoUILocalizations).formGreaterThan(min),
+              Localizations.of<CoUILocalizations>(
+                context,
+                CoUILocalizations,
+              )!.formGreaterThan((min as num).toDouble()),
           state: state,
         );
       }
@@ -860,10 +893,10 @@ class MaxValidator<T extends num> extends Validator<T> {
       if (value > max) {
         return InvalidResult(
           message ??
-              Localizations.of(
+              Localizations.of<CoUILocalizations>(
                 context,
                 CoUILocalizations,
-              ).formLessThanOrEqualTo(max),
+              )!.formLessThanOrEqualTo((max as num).toDouble()),
           state: state,
         );
       }
@@ -871,7 +904,10 @@ class MaxValidator<T extends num> extends Validator<T> {
       if (value >= max) {
         return InvalidResult(
           message ??
-              Localizations.of(context, CoUILocalizations).formLessThan(max),
+              Localizations.of<CoUILocalizations>(
+                context,
+                CoUILocalizations,
+              )!.formLessThan((max as num).toDouble()),
           state: state,
         );
       }
@@ -919,10 +955,13 @@ class RangeValidator<T extends num> extends Validator<T> {
       if (value < min || value > max) {
         return InvalidResult(
           message ??
-              Localizations.of(
+              Localizations.of<CoUILocalizations>(
                 context,
                 CoUILocalizations,
-              ).formBetweenInclusively(min, max),
+              )!.formBetweenInclusively(
+                (min as num).toDouble(),
+                (max as num).toDouble(),
+              ),
           state: state,
         );
       }
@@ -930,10 +969,13 @@ class RangeValidator<T extends num> extends Validator<T> {
       if (value <= min || value >= max) {
         return InvalidResult(
           message ??
-              Localizations.of(
+              Localizations.of<CoUILocalizations>(
                 context,
                 CoUILocalizations,
-              ).formBetweenExclusively(min, max),
+              )!.formBetweenExclusively(
+                (min as num).toDouble(),
+                (max as num).toDouble(),
+              ),
           state: state,
         );
       }
@@ -972,7 +1014,10 @@ class RegexValidator extends Validator<String> {
     return !pattern.hasMatch(value)
         ? InvalidResult(
             message ??
-                Localizations.of(context, CoUILocalizations).invalidValue,
+                Localizations.of<CoUILocalizations>(
+                  context,
+                  CoUILocalizations,
+                )!.invalidValue,
             state: state,
           )
         : null;
@@ -1009,7 +1054,10 @@ class EmailValidator extends Validator<String> {
     return !email_validator.EmailValidator.validate(value)
         ? InvalidResult(
             message ??
-                Localizations.of(context, CoUILocalizations).invalidEmail,
+                Localizations.of<CoUILocalizations>(
+                  context,
+                  CoUILocalizations,
+                )!.invalidEmail,
             state: state,
           )
         : null;
@@ -1042,7 +1090,11 @@ class URLValidator extends Validator<String> {
       Uri.parse(value);
     } on FormatException {
       return InvalidResult(
-        message ?? Localizations.of(context, CoUILocalizations).invalidURL,
+        message ??
+            Localizations.of<CoUILocalizations>(
+              context,
+              CoUILocalizations,
+            )!.invalidURL,
         state: state,
       );
     }
@@ -1080,13 +1132,17 @@ class CompareTo<T extends Comparable<T>> extends Validator<T> {
     T? value,
     FormValidationMode state,
   ) {
-    final localizations = Localizations.of(context, CoUILocalizations);
+    final localizations = Localizations.of<CoUILocalizations>(
+      context,
+      CoUILocalizations,
+    )!;
     final compare = _compare(value, this.value);
     switch (type) {
       case CompareType.greater:
         if (compare <= 0) {
           return InvalidResult(
-            message ?? localizations.formGreaterThan(this.value),
+            message ??
+                localizations.formGreaterThan((this.value as num).toDouble()),
             state: state,
           );
         }
@@ -1094,7 +1150,10 @@ class CompareTo<T extends Comparable<T>> extends Validator<T> {
       case CompareType.greaterOrEqual:
         if (compare < 0) {
           return InvalidResult(
-            message ?? localizations.formGreaterThanOrEqualTo(this.value),
+            message ??
+                localizations.formGreaterThanOrEqualTo(
+                  (this.value as num).toDouble(),
+                ),
             state: state,
           );
         }
@@ -1102,7 +1161,8 @@ class CompareTo<T extends Comparable<T>> extends Validator<T> {
       case CompareType.less:
         if (compare >= 0) {
           return InvalidResult(
-            message ?? localizations.formLessThan(this.value),
+            message ??
+                localizations.formLessThan((this.value as num).toDouble()),
             state: state,
           );
         }
@@ -1110,7 +1170,10 @@ class CompareTo<T extends Comparable<T>> extends Validator<T> {
       case CompareType.lessOrEqual:
         if (compare > 0) {
           return InvalidResult(
-            message ?? localizations.formLessThanOrEqualTo(this.value),
+            message ??
+                localizations.formLessThanOrEqualTo(
+                  (this.value as num).toDouble(),
+                ),
             state: state,
           );
         }
@@ -1118,7 +1181,7 @@ class CompareTo<T extends Comparable<T>> extends Validator<T> {
       case CompareType.equal:
         if (compare != 0) {
           return InvalidResult(
-            message ?? localizations.formEqualTo(this.value),
+            message ?? 'Must be equal to ${this.value?.toString()}',
             state: state,
           );
         }
@@ -1221,9 +1284,9 @@ class CompositeValidator<T> extends Validator<T> {
 abstract class ValidationResult {
   const ValidationResult({required this.state});
   final FormValidationMode state;
-  FormKey get key;
+  FormKey<dynamic> get key;
 
-  ValidationResult attach(FormKey key);
+  ValidationResult attach(FormKey<dynamic> key);
 }
 
 class ReplaceResult<T> extends ValidationResult {
@@ -1231,23 +1294,23 @@ class ReplaceResult<T> extends ValidationResult {
 
   const ReplaceResult.attached(
     this.value, {
-    required FormKey key,
+    required FormKey<dynamic> key,
     required super.state,
   }) : _key = key;
 
   final T value;
 
-  final FormKey? _key;
+  final FormKey<dynamic>? _key;
 
   @override
-  FormKey get key {
+  FormKey<dynamic> get key {
     assert(_key != null, 'The result has not been attached to a key');
 
     return _key!;
   }
 
   @override
-  ReplaceResult<T> attach(FormKey key) {
+  ReplaceResult<T> attach(FormKey<dynamic> key) {
     return ReplaceResult.attached(value, key: key, state: state);
   }
 }
@@ -1256,22 +1319,22 @@ class InvalidResult extends ValidationResult {
   const InvalidResult(this.message, {required super.state}) : _key = null;
   const InvalidResult.attached(
     this.message, {
-    required FormKey key,
+    required FormKey<dynamic> key,
     required super.state,
   }) : _key = key;
 
   final String message;
-  final FormKey? _key;
+  final FormKey<dynamic>? _key;
 
   @override
-  FormKey get key {
+  FormKey<dynamic> get key {
     assert(_key != null, 'The result has not been attached to a key');
 
     return _key!;
   }
 
   @override
-  InvalidResult attach(FormKey key) {
+  InvalidResult attach(FormKey<dynamic> key) {
     return InvalidResult.attached(message, key: key, state: state);
   }
 }
@@ -1355,15 +1418,15 @@ class FormEntry<T> extends StatefulWidget {
   final Validator<T>? validator;
 
   @override
-  FormKey get key => super.key! as FormKey<dynamic>;
+  FormKey<dynamic> get key => super.key! as FormKey<dynamic>;
 
   @override
-  State<FormEntry> createState() => FormEntryState();
+  State<FormEntry<dynamic>> createState() => FormEntryState();
 }
 
 mixin FormFieldHandle {
   bool get mounted;
-  FormKey get formKey;
+  FormKey<dynamic> get formKey;
 
   FutureOr<ValidationResult?> reportNewFormValue<T>(T? value);
 
@@ -1376,13 +1439,13 @@ class _FormEntryCachedValue {
   Object? value;
 }
 
-class FormEntryState extends State<FormEntry> with FormFieldHandle {
+class FormEntryState extends State<FormEntry<dynamic>> with FormFieldHandle {
   FormController? _controller;
   _FormEntryCachedValue? _cachedValue;
   final _validity = ValueNotifier<ValidationResult?>(null);
 
   @override
-  FormKey get formKey => widget.key;
+  FormKey<dynamic> get formKey => widget.key;
 
   @override
   ValueListenable<ValidationResult?>? get validity => _validity;
@@ -1519,7 +1582,7 @@ class _FormEntryHandleInterceptor with FormFieldHandle {
   final void Function(Object? value) onValueReported;
 
   @override
-  FormKey get formKey => handle!.formKey;
+  FormKey<dynamic> get formKey => handle!.formKey;
 
   @override
   bool get mounted => handle!.mounted;
@@ -1578,7 +1641,7 @@ class FormValueState<T> {
   int get hashCode => Object.hash(value, validator);
 }
 
-typedef FormMapValues = Map<FormKey, dynamic>;
+typedef FormMapValues = Map<FormKey<dynamic>, dynamic>;
 
 typedef FormSubmitCallback =
     void Function(BuildContext context, FormMapValues values);
@@ -1753,7 +1816,7 @@ class _ValidatorResultStash {
 /// final emailValue = controller.getValue(emailKey);
 /// ```
 class FormController extends ChangeNotifier {
-  final _attachedInputs = <FormKey<dynamic>, FormValueState>{};
+  final _attachedInputs = <FormKey<dynamic>, FormValueState<dynamic>>{};
   final _validity = <FormKey<dynamic>, _ValidatorResultStash>{};
 
   bool _disposed = false;
@@ -1766,7 +1829,7 @@ class FormController extends ChangeNotifier {
   ///
   /// Returns a Map<FormKey, Object?> where each key corresponds to a form field
   /// and each value is the current value of that field.
-  Map<FormKey, Object?> get values {
+  Map<FormKey<dynamic>, Object?> get values {
     return {
       for (final entry in _attachedInputs.entries) entry.key: entry.value.value,
     };
@@ -1786,7 +1849,7 @@ class FormController extends ChangeNotifier {
   ///
   /// Returns a Map<FormKey, FutureOr<ValidationResult?>> representing the
   /// current validation state of all form fields.
-  Map<FormKey, FutureOr<ValidationResult?>> get validities {
+  Map<FormKey<dynamic>, FutureOr<ValidationResult?>> get validities {
     return {
       for (final entry in _validity.entries) entry.key: entry.value.result,
     };
@@ -1799,8 +1862,8 @@ class FormController extends ChangeNotifier {
   /// a [WaitingResult] is included to indicate the validation is in progress.
   ///
   /// Returns a Map<FormKey, ValidationResult> containing only fields with errors.
-  Map<FormKey, ValidationResult> get errors {
-    final errors = <FormKey, ValidationResult>{};
+  Map<FormKey<dynamic>, ValidationResult> get errors {
+    final errors = <FormKey<dynamic>, ValidationResult>{};
     for (final entry in _validity.entries) {
       final result = entry.value.result;
       if (result is Future<ValidationResult?>) {
@@ -1826,7 +1889,7 @@ class FormController extends ChangeNotifier {
   /// - [key] (FormKey): The form key to get validation result for
   ///
   /// Returns the validation result or null if none exists.
-  FutureOr<ValidationResult?>? getError(FormKey key) {
+  FutureOr<ValidationResult?>? getError(FormKey<dynamic> key) {
     return _validity[key]?.result;
   }
 
@@ -1840,7 +1903,7 @@ class FormController extends ChangeNotifier {
   /// - [key] (FormKey): The form key to get validation result for
   ///
   /// Returns the synchronous validation result or null if valid.
-  ValidationResult? getSyncError(FormKey key) {
+  ValidationResult? getSyncError(FormKey<dynamic> key) {
     final entry = _validity[key];
     final result = entry?.result;
 
@@ -1853,7 +1916,7 @@ class FormController extends ChangeNotifier {
     return _attachedInputs[key]?.value as T?;
   }
 
-  bool hasValue(FormKey key) {
+  bool hasValue(FormKey<dynamic> key) {
     return _attachedInputs[key]?.value != null;
   }
 
@@ -1902,7 +1965,7 @@ class FormController extends ChangeNotifier {
     BuildContext context,
     FormFieldHandle handle,
     Object? value,
-    Validator? validator, [
+    Validator<dynamic>? validator, [
     bool forceRevalidate = false,
   ]) {
     final key = handle.formKey;
@@ -1935,7 +1998,7 @@ class FormController extends ChangeNotifier {
       _validity[key] = _ValidatorResultStash(future, lifecycle);
     }
     // check for revalidation
-    final revalidate = <FormKey, FutureOr<ValidationResult?>>{};
+    final revalidate = <FormKey<dynamic>, FutureOr<ValidationResult?>>{};
     for (final entry in _attachedInputs.entries) {
       final k = entry.key;
       final value = entry.value;
@@ -1989,7 +2052,7 @@ class FormController extends ChangeNotifier {
 }
 
 class FormState extends State<Form> {
-  FormController _controller;
+  late FormController _controller;
 
   @override
   void initState() {
@@ -2039,6 +2102,9 @@ class FormEntryErrorBuilder extends StatelessWidget {
       final validityListenable = formController.validity;
 
       return ListenableBuilder(
+        listenable: Listenable.merge([
+          if (validityListenable != null) validityListenable,
+        ]),
         builder: (context, child) {
           final validity = validityListenable?.value;
 
@@ -2046,9 +2112,6 @@ class FormEntryErrorBuilder extends StatelessWidget {
               ? builder(context, null, child)
               : builder(context, validity, child);
         },
-        listenable: Listenable.merge([
-          if (validityListenable != null) validityListenable,
-        ]),
         child: child,
       );
     }
@@ -2058,20 +2121,22 @@ class FormEntryErrorBuilder extends StatelessWidget {
 }
 
 class WaitingResult extends ValidationResult {
-  const WaitingResult.attached({required FormKey key, required super.state})
-    : _key = key;
+  const WaitingResult.attached({
+    required FormKey<dynamic> key,
+    required super.state,
+  }) : _key = key;
 
-  final FormKey? _key;
+  final FormKey<dynamic>? _key;
 
   @override
-  FormKey get key {
+  FormKey<dynamic> get key {
     assert(_key != null, 'The result has not been attached to a key');
 
     return _key!;
   }
 
   @override
-  WaitingResult attach(FormKey key) {
+  WaitingResult attach(FormKey<dynamic> key) {
     return WaitingResult.attached(key: key, state: state);
   }
 }
@@ -2083,7 +2148,7 @@ class FormErrorBuilder extends StatelessWidget {
 
   final Widget Function(
     BuildContext context,
-    Map<FormKey, ValidationResult> errors,
+    Map<FormKey<dynamic>, ValidationResult> errors,
     Widget? child,
   )
   builder;
@@ -2093,10 +2158,10 @@ class FormErrorBuilder extends StatelessWidget {
     final formController = Data.of<FormController>(context);
 
     return ListenableBuilder(
+      listenable: formController,
       builder: (context, child) {
         return builder(context, formController.errors, child);
       },
-      listenable: formController,
       child: child,
     );
   }
@@ -2105,7 +2170,7 @@ class FormErrorBuilder extends StatelessWidget {
 typedef FormPendingWidgetBuilder =
     Widget Function(
       BuildContext context,
-      Map<FormKey, Future<ValidationResult?>> errors,
+      Map<FormKey<dynamic>, Future<ValidationResult?>> errors,
       Widget? child,
     );
 
@@ -2125,7 +2190,7 @@ class FormPendingBuilder extends StatelessWidget {
             animation: controller,
             builder: (context, child) {
               final errors = controller.validities;
-              final pending = <FormKey, Future<ValidationResult?>>{};
+              final pending = <FormKey<dynamic>, Future<ValidationResult?>>{};
               for (final entry in errors.entries) {
                 final key = entry.key;
                 final value = entry.value;
@@ -2157,14 +2222,14 @@ extension FormExtension on BuildContext {
     assert(formState != null, 'Form not found');
     final formController = Data.maybeFind<FormController>(this);
     assert(formController != null, 'Form not found');
-    final values = <FormKey, Object?>{};
+    final values = <FormKey<dynamic>, Object?>{};
     for (final entry in formController!._attachedInputs.entries) {
       final key = entry.key;
       final value = entry.value;
       values[key] = value.value;
     }
     formController.revalidate(this, FormValidationMode.submitted);
-    final errors = <FormKey, ValidationResult>{};
+    final errors = <FormKey<dynamic>, ValidationResult>{};
     final iterator = formController._validity.entries.iterator;
     final result = _chainedSubmitForm(values, errors, iterator);
     if (result is Future<SubmissionResult>) {
@@ -2186,9 +2251,9 @@ extension FormExtension on BuildContext {
   }
 
   FutureOr<SubmissionResult> _chainedSubmitForm(
-    Map<FormKey, Object?> values,
-    Map<FormKey, ValidationResult> errors,
-    Iterator<MapEntry<FormKey, _ValidatorResultStash>> iterator,
+    Map<FormKey<dynamic>, Object?> values,
+    Map<FormKey<dynamic>, ValidationResult> errors,
+    Iterator<MapEntry<FormKey<dynamic>, _ValidatorResultStash>> iterator,
   ) {
     if (!iterator.moveNext()) {
       return SubmissionResult(values, errors);
@@ -2265,9 +2330,9 @@ mixin FormValueSupplier<T, X extends StatefulWidget> on State<X> {
 class SubmissionResult {
   const SubmissionResult(this.values, this.errors);
 
-  final Map<FormKey, Object?> values;
+  final Map<FormKey<dynamic>, Object?> values;
 
-  final Map<FormKey, ValidationResult> errors;
+  final Map<FormKey<dynamic>, ValidationResult> errors;
 
   @override
   String toString() {
@@ -2462,7 +2527,7 @@ class FormInline<T> extends StatelessWidget {
 class FormTableLayout extends StatelessWidget {
   const FormTableLayout({super.key, required this.rows, this.spacing});
 
-  final List<FormField> rows;
+  final List<FormField<dynamic>> rows;
 
   final double? spacing;
 
@@ -2606,45 +2671,45 @@ class SubmitButton extends StatelessWidget {
         });
         if (hasWaitingError) {
           return Button(
-            alignment: alignment,
-            disableHoverEffect: disableHoverEffect,
-            disableTransition: disableTransition,
-            enableFeedback: false,
-            enabled: false,
-            focusNode: focusNode,
-            leading: loadingLeading ?? leading,
             style: style ?? const ButtonStyle.primary(),
+            leading: loadingLeading ?? leading,
             trailing: loadingTrailing ?? trailing,
+            focusNode: focusNode,
+            alignment: alignment,
+            enabled: false,
+            disableTransition: disableTransition,
+            disableHoverEffect: disableHoverEffect,
+            enableFeedback: false,
             child: loading ?? child!,
           );
         }
 
         return hasError
             ? Button(
-                alignment: alignment,
-                disableHoverEffect: disableHoverEffect,
-                disableTransition: disableTransition,
-                enableFeedback: true,
-                enabled: false,
-                focusNode: focusNode,
-                leading: errorLeading ?? leading,
                 style: style ?? const ButtonStyle.primary(),
+                leading: errorLeading ?? leading,
                 trailing: errorTrailing ?? trailing,
+                focusNode: focusNode,
+                alignment: alignment,
+                enabled: false,
+                disableTransition: disableTransition,
+                disableHoverEffect: disableHoverEffect,
+                enableFeedback: true,
                 child: error ?? child!,
               )
             : Button(
                 onPressed: () {
                   context.submitForm();
                 },
-                alignment: alignment,
-                disableHoverEffect: disableHoverEffect,
-                disableTransition: disableTransition,
-                enableFeedback: enableFeedback ?? true,
-                enabled: enabled ?? true,
-                focusNode: focusNode,
-                leading: leading,
                 style: style ?? const ButtonStyle.primary(),
+                leading: leading,
                 trailing: trailing,
+                focusNode: focusNode,
+                alignment: alignment,
+                enabled: enabled ?? true,
+                disableTransition: disableTransition,
+                disableHoverEffect: disableHoverEffect,
+                enableFeedback: enableFeedback ?? true,
                 child: child!,
               );
       },

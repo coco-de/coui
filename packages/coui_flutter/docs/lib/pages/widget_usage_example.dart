@@ -213,8 +213,10 @@ String _formatCode(String code) {
     dotAll: true,
   );
   var firstMatch = exp.firstMatch(code);
-  assert(firstMatch != null, 'Code snippet must have a return statement');
-  code = firstMatch!.group(1)!;
+  if (firstMatch == null) {
+    return code;
+  }
+  code = firstMatch.group(1)!;
   // remove the indentation by one level for each line except the first line
   List<String> lines = code.split('\n');
   String formatted = lines.first;

@@ -250,38 +250,48 @@ class LinearProgressIndicator extends StatelessWidget {
       context,
     );
     final colorValue = styleValue(
-      defaultValue: theme.colorScheme.primary,
-      themeValue: compTheme?.color,
       widgetValue: color,
+      themeValue: compTheme?.color,
+      defaultValue: theme.colorScheme.primary,
     );
     final backgroundColorValue = styleValue(
-      defaultValue: colorValue.scaleAlpha(0.2),
-      themeValue: compTheme?.backgroundColor,
       widgetValue: backgroundColor,
+      themeValue: compTheme?.backgroundColor,
+      defaultValue: colorValue.scaleAlpha(0.2),
     );
     final minHeightValue = styleValue(
-      defaultValue: theme.scaling * 2,
-      themeValue: compTheme?.minHeight,
       widgetValue: minHeight,
+      themeValue: compTheme?.minHeight,
+      defaultValue: theme.scaling * 2,
     );
     final borderRadiusValue = styleValue(
-      defaultValue: BorderRadius.zero,
-      themeValue: compTheme?.borderRadius,
       widgetValue: borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: BorderRadius.zero,
     );
     final showSparksValue = styleValue(
-      defaultValue: false,
-      themeValue: compTheme?.showSparks,
       widgetValue: showSparks,
+      themeValue: compTheme?.showSparks,
+      defaultValue: false,
     );
     final disableAnimationValue = styleValue(
-      defaultValue: false,
-      themeValue: compTheme?.disableAnimation,
       widgetValue: disableAnimation,
+      themeValue: compTheme?.disableAnimation,
+      defaultValue: false,
     );
     Widget childWidget;
-    childWidget = value == null
+    childWidget = value != null
         ? AnimatedValueBuilder(
+            value: _LinearProgressIndicatorProperties(
+              backgroundColor: backgroundColorValue,
+              color: colorValue,
+              end: value!.clamp(0, 1),
+              showSparks: showSparksValue,
+              sparksColor: colorValue,
+              sparksRadius: theme.scaling * 16,
+              textDirection: directionality,
+            ),
+            duration: disableAnimationValue ? Duration.zero : kDefaultDuration,
             builder: (context, value, child) {
               return CustomPaint(
                 painter: _LinearProgressIndicatorPainter(
@@ -299,19 +309,14 @@ class LinearProgressIndicator extends StatelessWidget {
               );
             },
             curve: Curves.easeInOut,
-            duration: disableAnimationValue ? Duration.zero : kDefaultDuration,
             lerp: _LinearProgressIndicatorProperties.lerp,
-            value: _LinearProgressIndicatorProperties(
-              backgroundColor: backgroundColorValue,
-              color: colorValue,
-              end: value!.clamp(0, 1),
-              showSparks: showSparksValue,
-              sparksColor: colorValue,
-              sparksRadius: theme.scaling * 16,
-              textDirection: directionality,
-            ),
           )
         : RepeatedAnimationBuilder(
+            start: 0,
+            end: 1,
+            duration: const Duration(
+              milliseconds: _kIndeterminateLinearDuration,
+            ),
             builder: (context, value, child) {
               final start = _line1Tail.transform(value.toDouble());
               final end = _line1Head.transform(value.toDouble());
@@ -319,6 +324,18 @@ class LinearProgressIndicator extends StatelessWidget {
               final end2 = _line2Head.transform(value.toDouble());
 
               return AnimatedValueBuilder(
+                value: _LinearProgressIndicatorProperties(
+                  backgroundColor: backgroundColorValue,
+                  color: colorValue,
+                  end: end,
+                  end2: end2,
+                  showSparks: showSparksValue,
+                  sparksColor: colorValue,
+                  sparksRadius: theme.scaling * 16,
+                  start2: start2,
+                  textDirection: directionality,
+                ),
+                duration: kDefaultDuration,
                 builder: (context, prop, child) {
                   return CustomPaint(
                     painter: _LinearProgressIndicatorPainter(
@@ -337,26 +354,10 @@ class LinearProgressIndicator extends StatelessWidget {
                     ),
                   );
                 },
-                duration: kDefaultDuration,
                 lerp: _LinearProgressIndicatorProperties.lerp,
-                value: _LinearProgressIndicatorProperties(
-                  backgroundColor: backgroundColorValue,
-                  color: colorValue,
-                  end: end,
-                  end2: end2,
-                  showSparks: showSparksValue,
-                  sparksColor: colorValue,
-                  sparksRadius: theme.scaling * 16,
-                  start2: start2,
-                  textDirection: directionality,
-                ),
               );
             },
-            duration: const Duration(
-              milliseconds: _kIndeterminateLinearDuration,
-            ),
-            end: 1,
-            start: 0,
+            lerp: (a, b, t) => (a + (b - a) * t).round(),
           );
 
     return RepaintBoundary(

@@ -358,9 +358,9 @@ class _StarRatingState extends State<StarRating>
     final starRotation = widget.starRotation ?? 0.0;
     final starSize =
         styleValue(
-          defaultValue: 24,
-          themeValue: compTheme?.starSize,
           widgetValue: widget.starSize,
+          themeValue: compTheme?.starSize,
+          defaultValue: 24,
         ) *
         scaling;
 
@@ -368,23 +368,23 @@ class _StarRatingState extends State<StarRating>
       decoration: ShapeDecoration(
         color: focusBorder ? null : Colors.white,
         shape: StarBorder(
-          innerRadiusRatio: starInnerRadiusRatio,
-          pointRounding: widget.starPointRounding ?? (theme.radius / 2),
-          points: widget.starPoints,
-          rotation: starRotation,
           side: focusBorder && _focused
               ? BorderSide(
                   color: theme.colorScheme.ring,
-                  strokeAlign: BorderSide.strokeAlignOutside,
                   width: scaling * 2.0,
+                  strokeAlign: BorderSide.strokeAlignOutside,
                 )
               : BorderSide.none,
-          squash: starSquash,
+          points: widget.starPoints,
+          innerRadiusRatio: starInnerRadiusRatio,
+          pointRounding: widget.starPointRounding ?? (theme.radius / 2),
           valleyRounding: starValleyRounding * theme.radius,
+          rotation: starRotation,
+          squash: starSquash,
         ),
       ),
-      height: starSize,
       width: starSize,
+      height: starSize,
     );
   }
 
@@ -409,34 +409,45 @@ class _StarRatingState extends State<StarRating>
         ((_changingValue ?? widget.value) / widget.step).round() * widget.step;
 
     return AnimatedValueBuilder(
+      value: roundedValue,
+      duration: kDefaultDuration,
       builder: (context, roundedValue, child) {
         final theme = Theme.of(context);
         final scaling = theme.scaling;
         final compTheme = ComponentTheme.maybeOf<StarRatingTheme>(context);
         final starSize = styleValue(
-          defaultValue: scaling * 24.0,
-          themeValue: compTheme?.starSize,
           widgetValue: widget.starSize,
+          themeValue: compTheme?.starSize,
+          defaultValue: scaling * 24.0,
         );
         final starSpacing = styleValue(
-          defaultValue: scaling * 5.0,
-          themeValue: compTheme?.starSpacing,
           widgetValue: widget.starSpacing,
+          themeValue: compTheme?.starSpacing,
+          defaultValue: scaling * 5.0,
         );
         final activeColor = styleValue(
+          widgetValue: widget.activeColor,
+          themeValue: compTheme?.activeColor,
           defaultValue: _enabled
               ? theme.colorScheme.primary
               : theme.colorScheme.mutedForeground,
-          themeValue: compTheme?.activeColor,
-          widgetValue: widget.activeColor,
         );
         final backgroundColor = styleValue(
-          defaultValue: theme.colorScheme.muted,
-          themeValue: compTheme?.backgroundColor,
           widgetValue: widget.backgroundColor,
+          themeValue: compTheme?.backgroundColor,
+          defaultValue: theme.colorScheme.muted,
         );
 
         return FocusableActionDetector(
+          enabled: _enabled,
+          shortcuts: {
+            LogicalKeySet(LogicalKeyboardKey.arrowRight): IncreaseStarIntent(
+              widget.step,
+            ),
+            LogicalKeySet(LogicalKeyboardKey.arrowLeft): DecreaseStarIntent(
+              widget.step,
+            ),
+          },
           actions: {
             IncreaseStarIntent: CallbackAction<IncreaseStarIntent>(
               onInvoke: (intent) {
@@ -461,10 +472,6 @@ class _StarRatingState extends State<StarRating>
               },
             ),
           },
-          enabled: _enabled,
-          mouseCursor: _enabled
-              ? SystemMouseCursors.click
-              : SystemMouseCursors.forbidden,
           onShowFocusHighlight: (showFocus) {
             setState(() {
               _focused = showFocus;
@@ -477,33 +484,57 @@ class _StarRatingState extends State<StarRating>
               });
             }
           },
-          shortcuts: {
-            LogicalKeySet(LogicalKeyboardKey.arrowRight): IncreaseStarIntent(
-              widget.step,
-            ),
-            LogicalKeySet(LogicalKeyboardKey.arrowLeft): DecreaseStarIntent(
-              widget.step,
-            ),
-          },
+          mouseCursor: _enabled
+              ? SystemMouseCursors.click
+              : SystemMouseCursors.forbidden,
           child: MouseRegion(
             onHover: (event) {
               if (!_enabled) return;
               if (widget.onChanged == null) return;
               final size = context.size!.width;
-              final progress = (event.localPosition.dx / size).clamp(0.0, 1.0).toDouble();
-              final newValue = (progress * widget.max).clamp(0.0, widget.max).toDouble();
+              final progress = (event.localPosition.dx / size)
+                  .clamp(0.0, 1.0)
+                  .toDouble();
+              final newValue = (progress * widget.max)
+                  .clamp(0.0, widget.max)
+                  .toDouble();
               setState(() {
                 _changingValue = newValue;
               });
             },
             child: GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onPanCancel: () {
+              onTapDown: (details) {
                 if (!_enabled) return;
                 if (widget.onChanged == null) return;
-                widget.onChanged!(_changingValue ?? roundedValue);
+                final totalStarSize =
+                    starSize + (starSpacing * (widget.max.ceil() - 1));
+                final progress = (details.localPosition.dx / totalStarSize)
+                    .clamp(0.0, 1.0)
+                    .toDouble();
+                final newValue = (progress * widget.max)
+                    .clamp(0.0, widget.max)
+                    .toDouble();
+                widget.onChanged!(newValue);
+              },
+              onTap: () {
+                if (widget.onChanged != null && roundedValue != widget.value) {
+                  widget.onChanged!(roundedValue);
+                }
+              },
+              onPanUpdate: (details) {
+                if (!_enabled) return;
+                if (widget.onChanged == null) return;
+                final totalStars = widget.max.ceil();
+                final totalStarSize =
+                    starSize * totalStars + (starSpacing * (totalStars - 1));
+                final progress = (details.localPosition.dx / totalStarSize)
+                    .clamp(0.0, 1.0)
+                    .toDouble();
+                final newValue = (progress * widget.max)
+                    .clamp(0.0, widget.max)
+                    .toDouble();
                 setState(() {
-                  _changingValue = null;
+                  _changingValue = newValue;
                 });
               },
               onPanEnd: (details) {
@@ -514,34 +545,15 @@ class _StarRatingState extends State<StarRating>
                   _changingValue = null;
                 });
               },
-              onPanUpdate: (details) {
+              onPanCancel: () {
                 if (!_enabled) return;
                 if (widget.onChanged == null) return;
-                final totalStars = widget.max.ceil();
-                final totalStarSize =
-                    starSize * totalStars + (starSpacing * (totalStars - 1));
-                final progress = (details.localPosition.dx / totalStarSize)
-                    .clamp(0.0, 1.0).toDouble();
-                final newValue = (progress * widget.max).clamp(0.0, widget.max).toDouble();
+                widget.onChanged!(_changingValue ?? roundedValue);
                 setState(() {
-                  _changingValue = newValue;
+                  _changingValue = null;
                 });
               },
-              onTap: () {
-                if (widget.onChanged != null && roundedValue != widget.value) {
-                  widget.onChanged!(roundedValue);
-                }
-              },
-              onTapDown: (details) {
-                if (!_enabled) return;
-                if (widget.onChanged == null) return;
-                final totalStarSize =
-                    starSize + (starSpacing * (widget.max.ceil() - 1));
-                final progress = (details.localPosition.dx / totalStarSize)
-                    .clamp(0.0, 1.0).toDouble();
-                final newValue = (progress * widget.max).clamp(0.0, widget.max).toDouble();
-                widget.onChanged!(newValue);
-              },
+              behavior: HitTestBehavior.translucent,
               child: Flex(
                 direction: widget.direction,
                 mainAxisSize: MainAxisSize.min,
@@ -551,22 +563,22 @@ class _StarRatingState extends State<StarRating>
                       fit: StackFit.passthrough,
                       children: [
                         ShaderMask(
-                          blendMode: BlendMode.srcIn,
                           shaderCallback: (bounds) {
                             return LinearGradient(
                               begin: widget.direction == Axis.horizontal
                                   ? Alignment.centerLeft
                                   : Alignment.bottomCenter,
-                              colors: [activeColor, backgroundColor],
                               end: widget.direction == Axis.horizontal
                                   ? Alignment.centerRight
                                   : Alignment.topCenter,
+                              colors: [activeColor, backgroundColor],
                               stops: [
                                 (roundedValue - i).clamp(0.0, 1.0),
                                 (roundedValue - i).clamp(0.0, 1.0),
                               ],
                             ).createShader(bounds);
                           },
+                          blendMode: BlendMode.srcIn,
                           child: _buildStar(context),
                         ),
                         _buildStar(context, true),
@@ -578,8 +590,6 @@ class _StarRatingState extends State<StarRating>
           ),
         );
       },
-      duration: kDefaultDuration,
-      value: roundedValue,
     );
   }
 }

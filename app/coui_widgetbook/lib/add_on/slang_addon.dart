@@ -36,10 +36,10 @@ class SlangAddon extends WidgetbookAddon<Locale> {
   List<Field> get fields {
     return [
       ObjectDropdownField<Locale>(
-        initialValue: initialLocale ?? locales.firstOrNull,
-        labelBuilder: (locale) => locale.toLanguageTag(),
         name: 'name',
         values: locales,
+        initialValue: initialLocale ?? locales.firstOrNull,
+        labelBuilder: (locale) => locale.toLanguageTag(),
       ),
     ];
   }
@@ -59,8 +59,8 @@ class SlangAddon extends WidgetbookAddon<Locale> {
   @override
   Widget buildUseCase(BuildContext context, Widget child, Locale setting) {
     return Localizations(
-      delegates: localizationsDelegates,
       locale: setting,
+      delegates: localizationsDelegates,
       child: child,
     );
   }

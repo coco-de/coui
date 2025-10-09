@@ -63,43 +63,43 @@ class HorizontalResizableDragger extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<ResizableDraggerTheme>(context);
     final color = styleValue(
-      defaultValue: theme.colorScheme.border,
       themeValue: compTheme?.color,
+      defaultValue: theme.colorScheme.border,
     );
     final borderRadius = styleValue(
-      defaultValue: theme.radiusSm,
       themeValue: compTheme?.borderRadius,
+      defaultValue: theme.radiusSm,
     );
     final width = styleValue(
-      defaultValue: 3 * 4 * scaling,
       themeValue: compTheme?.width,
+      defaultValue: 3 * 4 * scaling,
     );
     final height = styleValue(
-      defaultValue: 4 * 4 * scaling,
       themeValue: compTheme?.height,
+      defaultValue: 4 * 4 * scaling,
     );
     final iconSize = styleValue(
-      defaultValue: 4 * 2.5 * scaling,
       themeValue: compTheme?.iconSize,
+      defaultValue: 4 * 2.5 * scaling,
     );
     final iconColor = styleValue(
-      defaultValue: null,
       themeValue: compTheme?.iconColor,
+      defaultValue: null,
     );
 
     return Center(
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius),
           color: color,
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
-        height: height.toDouble(),
         width: width,
+        height: height.toDouble(),
         child: Icon(
           RadixIcons.dragHandleDots2,
-          color: iconColor,
           size: iconSize,
+          color: iconColor,
         ),
       ),
     );
@@ -117,45 +117,45 @@ class VerticalResizableDragger extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<ResizableDraggerTheme>(context);
     final color = styleValue(
-      defaultValue: theme.colorScheme.border,
       themeValue: compTheme?.color,
+      defaultValue: theme.colorScheme.border,
     );
     final borderRadius = styleValue(
-      defaultValue: theme.radiusSm,
       themeValue: compTheme?.borderRadius,
+      defaultValue: theme.radiusSm,
     );
     final width = styleValue(
-      defaultValue: 4 * 4 * scaling,
       themeValue: compTheme?.width,
+      defaultValue: 4 * 4 * scaling,
     );
     final height = styleValue(
-      defaultValue: 3 * 4 * scaling,
       themeValue: compTheme?.height,
+      defaultValue: 3 * 4 * scaling,
     );
     final iconSize = styleValue(
-      defaultValue: 4 * 2.5 * scaling,
       themeValue: compTheme?.iconSize,
+      defaultValue: 4 * 2.5 * scaling,
     );
     final iconColor = styleValue(
-      defaultValue: null,
       themeValue: compTheme?.iconColor,
+      defaultValue: null,
     );
 
     return Center(
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius),
           color: color,
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
-        height: height.toDouble(),
         width: width,
+        height: height.toDouble(),
         child: Transform.rotate(
           angle: pi / 2,
           child: Icon(
             RadixIcons.dragHandleDots2,
-            color: iconColor,
             size: iconSize,
+            color: iconColor,
           ),
         ),
       ),
@@ -222,7 +222,7 @@ class AbsoluteResizablePaneController extends ChangeNotifier
   AbsoluteResizablePaneController(this._size, {bool collapsed = false})
     : _collapsed = collapsed;
 
-  double _size;
+  late double _size;
 
   bool _collapsed = false;
 
@@ -276,7 +276,7 @@ class FlexibleResizablePaneController extends ChangeNotifier
   FlexibleResizablePaneController(this._flex, {bool collapsed = false})
     : _collapsed = collapsed;
 
-  double _flex;
+  late double _flex;
   bool _collapsed = false;
 
   @override
@@ -315,7 +315,9 @@ class FlexibleResizablePaneController extends ChangeNotifier
 
   @override
   double computeSize(double paneSize, {double? maxSize, double? minSize}) {
-    return (_flex * paneSize).clamp(minSize ?? 0, maxSize ?? double.infinity).toDouble();
+    return (_flex * paneSize)
+        .clamp(minSize ?? 0, maxSize ?? double.infinity)
+        .toDouble();
   }
 }
 
@@ -386,7 +388,7 @@ class ResizablePane extends StatefulWidget {
 }
 
 class _ResizablePaneState extends State<ResizablePane> {
-  ResizablePaneController _controller;
+  late ResizablePaneController _controller;
 
   _ResizablePanelData? _panelState;
 
@@ -516,6 +518,7 @@ class _ResizablePaneState extends State<ResizablePane> {
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
+      listenable: _controller,
       builder: (context, child) {
         double? size;
         double? flex;
@@ -537,7 +540,6 @@ class _ResizablePaneState extends State<ResizablePane> {
           child: ClipRect(child: widget.child),
         );
       },
-      listenable: _controller,
     );
   }
 }
@@ -744,7 +746,7 @@ class _ResizablePanelState extends State<ResizablePanel> {
   final _controllers = <ResizablePaneController>[];
   final _hoveredDividers = <int>{};
   final _draggingDividers = <int>{};
-  double _panelSize;
+  late double _panelSize;
 
   List<ResizableItem> computeDraggers() {
     final draggers = <ResizableItem>[];
@@ -831,12 +833,12 @@ class _ResizablePanelState extends State<ResizablePanel> {
             isDivider: true,
             child: widget.optionalDivider
                 ? AnimatedOpacity(
-                    duration: kDefaultDuration,
                     opacity:
                         _hoveredDividers.contains(i) ||
                             _draggingDividers.contains(i)
                         ? 1.0
                         : 0.0,
+                    duration: kDefaultDuration,
                     child: dividers[i],
                   )
                 : dividers[i],
@@ -852,12 +854,12 @@ class _ResizablePanelState extends State<ResizablePanel> {
             isDragger: true,
             child: widget.optionalDivider
                 ? AnimatedOpacity(
-                    duration: kDefaultDuration,
                     opacity:
                         _hoveredDividers.contains(i) ||
                             _draggingDividers.contains(i)
                         ? 1.0
                         : 0.0,
+                    duration: kDefaultDuration,
                     child: widget.draggerBuilder!(context) ?? const SizedBox(),
                   )
                 : widget.draggerBuilder!(context) ?? const SizedBox(),
@@ -973,7 +975,7 @@ class _ResizerState extends State<_Resizer> {
   }
 
   void _onDragUpdate(DragUpdateDetails details) {
-    _dragSession!.dragDivider(details.primaryDelta!, widget.index + 1);
+    _dragSession!.dragDivider(widget.index + 1, details.primaryDelta!);
     widget.panelState.updateDraggers(_dragSession!.items);
 
     // Call onSizeChange callbacks for affected panes
@@ -1106,20 +1108,25 @@ class _ResizerState extends State<_Resizer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.direction == Axis.vertical ? widget.thickness : null,
       width: widget.direction == Axis.horizontal ? widget.thickness : null,
+      height: widget.direction == Axis.vertical ? widget.thickness : null,
       child: MouseRegion(
         cursor: widget.direction == Axis.horizontal
             ? SystemMouseCursors.resizeColumn
             : SystemMouseCursors.resizeRow,
         hitTestBehavior: HitTestBehavior.translucent,
         child: GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onHorizontalDragCancel: widget.direction == Axis.horizontal
-              ? _onDragCancel
+          onVerticalDragStart: widget.direction == Axis.vertical
+              ? _onDragStart
               : null,
-          onHorizontalDragEnd: widget.direction == Axis.horizontal
+          onVerticalDragUpdate: widget.direction == Axis.vertical
+              ? _onDragUpdate
+              : null,
+          onVerticalDragEnd: widget.direction == Axis.vertical
               ? _onDragEnd
+              : null,
+          onVerticalDragCancel: widget.direction == Axis.vertical
+              ? _onDragCancel
               : null,
           onHorizontalDragStart: widget.direction == Axis.horizontal
               ? _onDragStart
@@ -1127,18 +1134,13 @@ class _ResizerState extends State<_Resizer> {
           onHorizontalDragUpdate: widget.direction == Axis.horizontal
               ? _onDragUpdate
               : null,
-          onVerticalDragCancel: widget.direction == Axis.vertical
-              ? _onDragCancel
-              : null,
-          onVerticalDragEnd: widget.direction == Axis.vertical
+          onHorizontalDragEnd: widget.direction == Axis.horizontal
               ? _onDragEnd
               : null,
-          onVerticalDragStart: widget.direction == Axis.vertical
-              ? _onDragStart
+          onHorizontalDragCancel: widget.direction == Axis.horizontal
+              ? _onDragCancel
               : null,
-          onVerticalDragUpdate: widget.direction == Axis.vertical
-              ? _onDragUpdate
-              : null,
+          behavior: HitTestBehavior.translucent,
         ),
       ),
     );
@@ -1328,14 +1330,14 @@ class _RenderResizableLayout extends RenderBox
           BoxConstraints childConstraints;
           childConstraints = direction == Axis.horizontal
               ? BoxConstraints(
-                  maxHeight: intrinsicCross,
                   maxWidth: constraints.maxWidth,
                   minHeight: intrinsicCross,
+                  maxHeight: intrinsicCross,
                 )
               : BoxConstraints(
-                  maxHeight: constraints.maxHeight,
-                  maxWidth: intrinsicCross,
                   minWidth: intrinsicCross,
+                  maxWidth: intrinsicCross,
+                  maxHeight: constraints.maxHeight,
                 );
           child.layout(childConstraints, parentUsesSize: true);
           final childSize = child.size;
@@ -1377,16 +1379,16 @@ class _RenderResizableLayout extends RenderBox
               : childParentData.size!;
           childConstraints = direction == Axis.horizontal
               ? BoxConstraints(
-                  maxHeight: intrinsicCross,
+                  minWidth: childExtent,
                   maxWidth: childExtent,
                   minHeight: intrinsicCross,
-                  minWidth: childExtent,
+                  maxHeight: intrinsicCross,
                 )
               : BoxConstraints(
-                  maxHeight: childExtent,
+                  minWidth: intrinsicCross,
                   maxWidth: intrinsicCross,
                   minHeight: childExtent,
-                  minWidth: intrinsicCross,
+                  maxHeight: childExtent,
                 );
           child.layout(childConstraints, parentUsesSize: true);
           final childSize = child.size;
@@ -1418,14 +1420,14 @@ class _RenderResizableLayout extends RenderBox
         BoxConstraints draggerConstraints;
         draggerConstraints = direction == Axis.horizontal
             ? BoxConstraints(
-                maxHeight: intrinsicCross,
-                minHeight: intrinsicCross,
                 minWidth: minExtent,
+                minHeight: intrinsicCross,
+                maxHeight: intrinsicCross,
               )
             : BoxConstraints(
+                minWidth: intrinsicCross,
                 maxWidth: intrinsicCross,
                 minHeight: minExtent,
-                minWidth: intrinsicCross,
               );
         child.layout(draggerConstraints, parentUsesSize: true);
         final draggerSize = child.size;
@@ -1508,16 +1510,16 @@ class _RenderResizableLayout extends RenderBox
           childSize = direction == Axis.horizontal
               ? child.getDryLayout(
                   BoxConstraints(
-                    maxHeight: intrinsicCross,
                     maxWidth: constraints.maxWidth,
                     minHeight: intrinsicCross,
+                    maxHeight: intrinsicCross,
                   ),
                 )
               : child.getDryLayout(
                   BoxConstraints(
-                    maxHeight: constraints.maxHeight,
-                    maxWidth: intrinsicCross,
                     minWidth: intrinsicCross,
+                    maxWidth: intrinsicCross,
+                    maxHeight: constraints.maxHeight,
                   ),
                 );
           totalDividerSize += _getSizeExtent(childSize);

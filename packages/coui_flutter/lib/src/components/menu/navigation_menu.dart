@@ -155,9 +155,9 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
     if (_menuState != newMenuState) {
       _menuState = newMenuState;
       if (widget.content != null) {
-        _menuState!._attachContentBuilder(this, (context) {
+        _menuState!._attachContentBuilder((context) {
           return widget.content!;
-        });
+        }, this);
       }
     }
   }
@@ -169,9 +169,9 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
       if (widget.content == null) {
         _menuState!._contentBuilders.remove(this);
       } else {
-        _menuState!._attachContentBuilder(this, (context) {
+        _menuState!._attachContentBuilder((context) {
           return widget.content!;
-        });
+        }, this);
       }
     }
   }
@@ -204,17 +204,12 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
                   }
                 }
               : null,
-          onHover: (hovered) {
-            if (hovered) {
-              _menuState!._activate(this);
-            }
-          },
           style: const ButtonStyle.ghost().copyWith(
             decoration: (context, states, value) {
               return _menuState!.isActive(this)
                   ? (value as BoxDecoration).copyWith(
-                      borderRadius: BorderRadius.circular(theme.radiusMd),
                       color: theme.colorScheme.muted.scaleAlpha(0.8),
+                      borderRadius: BorderRadius.circular(theme.radiusMd),
                     )
                   : value;
             },
@@ -222,10 +217,15 @@ class NavigationMenuItemState extends State<NavigationMenuItem> {
           trailing: widget.content == null
               ? null
               : AnimatedRotation(
-                  duration: kDefaultDuration,
                   turns: _menuState!.isActive(this) ? 0.5 : 0,
+                  duration: kDefaultDuration,
                   child: const Icon(RadixIcons.chevronDown).iconXSmall(),
                 ),
+          onHover: (hovered) {
+            if (hovered) {
+              _menuState!._activate(this);
+            }
+          },
           child: widget.child,
         );
       },
@@ -323,12 +323,12 @@ class NavigationMenuContent extends StatelessWidget {
 
     return Button(
       onPressed: onPressed,
-      alignment: Alignment.topLeft,
       style: ButtonVariance.ghost.copyWith(
         padding: (context, states, value) {
           return const EdgeInsets.all(12) * scaling;
         },
       ),
+      alignment: Alignment.topLeft,
       child: Basic(
         content: content?.muted(),
         leading: leading,
@@ -439,8 +439,8 @@ class NavigationMenuContentList extends StatelessWidget {
         rows.add(
           IntrinsicWidth(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: columns.joinSeparator(SizedBox(height: spacing)),
             ),
           ),
@@ -452,8 +452,8 @@ class NavigationMenuContentList extends StatelessWidget {
       rows.add(
         IntrinsicWidth(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: columns.joinSeparator(SizedBox(height: runSpacing)),
           ),
         ),
@@ -463,8 +463,8 @@ class NavigationMenuContentList extends StatelessWidget {
     return IntrinsicWidth(
       child: IntrinsicHeight(
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: (reverse ? rows.reversed.toList() : rows).joinSeparator(
             SizedBox(width: spacing),
           ),
@@ -591,7 +591,7 @@ class NavigationMenuState extends State<NavigationMenu> {
     final theme = Theme.of(context);
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<NavigationMenuTheme>(context);
-    _popoverController.show(
+    _popoverController.show<void>(
       alignment: Alignment.topCenter,
       allowInvertHorizontal: false,
       allowInvertVertical: false,
@@ -672,7 +672,6 @@ class NavigationMenuState extends State<NavigationMenu> {
         widget.surfaceBlur ?? compTheme?.surfaceBlur ?? theme.surfaceBlur;
 
     return MouseRegion(
-      hitTestBehavior: HitTestBehavior.translucent,
       onEnter: (_) {
         _hoverCount += 1;
       },
@@ -684,10 +683,13 @@ class NavigationMenuState extends State<NavigationMenu> {
           }
         });
       },
+      hitTestBehavior: HitTestBehavior.translucent,
       child: AnimatedBuilder(
         animation: _activeIndex,
         builder: (context, child) {
           return AnimatedValueBuilder<double>(
+            value: _activeIndex.value.toDouble(),
+            duration: const Duration(milliseconds: 300),
             builder: (context, value, child) {
               final currentIndex = _activeIndex.value;
               final children = <Widget>[];
@@ -709,8 +711,8 @@ class NavigationMenuState extends State<NavigationMenu> {
               if (currentIndex + 1 < widget.children.length) {
                 children.add(
                   Positioned(
-                    right: 0,
                     top: 0,
+                    right: 0,
                     child: Opacity(
                       opacity: (1 - value + currentIndex).clamp(0.0, 1.0),
                       child: FractionalTranslation(
@@ -738,8 +740,6 @@ class NavigationMenuState extends State<NavigationMenu> {
               );
             },
             curve: Curves.easeOutCubic,
-            duration: const Duration(milliseconds: 300),
-            value: _activeIndex.value.toDouble(),
           );
         },
       ),
@@ -753,10 +753,10 @@ class NavigationMenuState extends State<NavigationMenu> {
       final size = box.size;
 
       return EdgeInsets.only(
-        bottom: 8,
         left: globalPosition.dx,
-        right: 8,
         top: globalPosition.dy + size.height,
+        right: 8,
+        bottom: 8,
       );
     }
 
@@ -768,7 +768,6 @@ class NavigationMenuState extends State<NavigationMenu> {
     return TapRegion(
       groupId: this,
       child: MouseRegion(
-        hitTestBehavior: HitTestBehavior.translucent,
         onEnter: (_) {
           _hoverCount += 1;
         },
@@ -780,12 +779,13 @@ class NavigationMenuState extends State<NavigationMenu> {
             }
           });
         },
+        hitTestBehavior: HitTestBehavior.translucent,
         child: IntrinsicHeight(
           child: Data.inherit(
             data: this,
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: widget.children,
             ),
           ),

@@ -346,10 +346,10 @@ class TimePickerDialog extends StatefulWidget {
 }
 
 class _TimePickerDialogState extends State<TimePickerDialog> {
-  TextEditingController _hourController;
-  TextEditingController _minuteController;
-  TextEditingController _secondController;
-  bool _pm;
+  late TextEditingController _hourController;
+  late TextEditingController _minuteController;
+  late TextEditingController _secondController;
+  late bool _pm;
 
   static String _formatDigits(int value) {
     return value.toString().padLeft(2, '0');
@@ -364,8 +364,8 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
 
     return ConstrainedBox(
       constraints: BoxConstraints(
-        minHeight: theme.scaling * 72,
         minWidth: theme.scaling * 72,
+        minHeight: theme.scaling * 72,
       ),
       child: Stack(
         clipBehavior: Clip.none,
@@ -504,8 +504,8 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
                 Gap(scaling * 8),
                 IntrinsicWidth(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Expanded(
                         child: Toggle(
@@ -515,8 +515,8 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
                               _onChanged();
                             });
                           },
-                          value: !_pm,
                           trailing: Text(localizations.timeAM),
+                          value: !_pm,
                         ),
                       ),
                       Expanded(
@@ -527,8 +527,8 @@ class _TimePickerDialogState extends State<TimePickerDialog> {
                               _onChanged();
                             });
                           },
-                          value: _pm,
                           trailing: Text(localizations.timePM),
+                          value: _pm,
                         ),
                       ),
                     ],
@@ -567,17 +567,17 @@ class _TimeFormatter extends TextInputFormatter {
     }
 
     return newValue.copyWith(
-      composing: newValue.composing.isValid
-          ? TextRange(
-              end: newValue.composing.end.clamp(0, 2),
-              start: newValue.composing.start.clamp(0, 2),
-            )
-          : newValue.composing,
+      text: newText,
       selection: TextSelection(
         baseOffset: baseOffset2.clamp(0, 2),
         extentOffset: extentOffset2.clamp(0, 2),
       ),
-      text: newText,
+      composing: newValue.composing.isValid
+          ? TextRange(
+              start: newValue.composing.start.clamp(0, 2),
+              end: newValue.composing.end.clamp(0, 2),
+            )
+          : newValue.composing,
     );
   }
 }
@@ -664,10 +664,10 @@ class DurationPickerDialog extends StatefulWidget {
 }
 
 class _DurationPickerDialogState extends State<DurationPickerDialog> {
-  TextEditingController _dayController;
-  TextEditingController _hourController;
-  TextEditingController _minuteController;
-  TextEditingController _secondController;
+  late TextEditingController _dayController;
+  late TextEditingController _hourController;
+  late TextEditingController _minuteController;
+  late TextEditingController _secondController;
 
   static String _formatDigits(int value) {
     return value.toString().padLeft(2, '0');
@@ -682,8 +682,8 @@ class _DurationPickerDialogState extends State<DurationPickerDialog> {
 
     return ConstrainedBox(
       constraints: BoxConstraints(
-        minHeight: theme.scaling * 72,
         minWidth: theme.scaling * 72,
+        minHeight: theme.scaling * 72,
       ),
       child: Stack(
         clipBehavior: Clip.none,

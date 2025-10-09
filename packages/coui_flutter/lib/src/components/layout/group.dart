@@ -65,7 +65,7 @@ class RenderGroup extends RenderBox
         } else if (bottom != null) {
           offsetY = constraints.maxHeight - bottom;
         }
-        childHeight = height == null ? height : constraints.maxHeight;
+        childHeight = height ?? constraints.maxHeight;
       }
       if (left != null && right != null) {
         offsetX = left;
@@ -77,10 +77,10 @@ class RenderGroup extends RenderBox
         } else if (right != null) {
           offsetX = constraints.maxWidth - right;
         }
-        childWidth = width == null ? width : constraints.maxWidth;
+        childWidth = width ?? constraints.maxWidth;
       }
       child.layout(
-        BoxConstraints.tightFor(height: childHeight, width: childWidth),
+        BoxConstraints.tightFor(width: childWidth, height: childHeight),
         parentUsesSize: true,
       );
       if (top == null && bottom != null) {
@@ -117,13 +117,13 @@ class RenderGroup extends RenderBox
       // The x, y parameters have the top left of the node's box as the origin.
       final childParentData = child.parentData! as GroupParentData;
       final isHit = result.addWithPaintOffset(
+        offset: childParentData.offset,
+        position: position,
         hitTest: (BoxHitTestResult result, Offset transformed) {
           assert(transformed == position - childParentData.offset);
 
           return child!.hitTest(result, position: transformed);
         },
-        offset: childParentData.offset,
-        position: position,
       );
       if (isHit) {
         return true;

@@ -138,11 +138,11 @@ class DatePickerDialog extends StatefulWidget {
 }
 
 class _DatePickerDialogState extends State<DatePickerDialog> {
-  CalendarView _view;
-  CalendarView _alternateView;
+  late CalendarView _view;
+  late CalendarView _alternateView;
   CalendarValue? _value;
-  CalendarViewType _viewType;
-  int _yearSelectStart;
+  late CalendarViewType _viewType;
+  late int _yearSelectStart;
   bool _alternate = false;
 
   static String getHeaderText(
@@ -177,16 +177,16 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<CalendarTheme>(context);
     final arrowColor = styleValue(
-      defaultValue: null,
       themeValue: compTheme?.arrowIconColor,
+      defaultValue: null,
     );
     final viewMode = widget.viewMode ?? widget.selectionMode;
 
     return widget.selectionMode == CalendarSelectionMode.range
         ? IntrinsicWidth(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.min,
@@ -345,10 +345,10 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
                 ),
                 Gap(theme.scaling * 16),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: viewMode == CalendarSelectionMode.range
                       ? MainAxisAlignment.spaceAround
                       : MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     buildView(
                       context,
@@ -398,8 +398,8 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
           )
         : IntrinsicWidth(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(
                   children: [
@@ -1028,7 +1028,7 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  CalendarGridData _gridData;
+  late CalendarGridData _gridData;
 
   @override
   void initState() {
@@ -1438,151 +1438,151 @@ class CalendarItem extends StatelessWidget {
     switch (type) {
       case CalendarItemType.none:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: GhostButton(
             onPressed: onTap,
+            enabled: state == DateState.enabled,
             alignment: Alignment.center,
             density: ButtonDensity.compact,
-            enabled: state == DateState.enabled,
             child: child,
           ),
         );
 
       case CalendarItemType.today:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: SecondaryButton(
             onPressed: onTap,
+            enabled: state == DateState.enabled,
             alignment: Alignment.center,
             density: ButtonDensity.compact,
-            enabled: state == DateState.enabled,
             child: child,
           ),
         );
 
       case CalendarItemType.selected:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: PrimaryButton(
             onPressed: onTap,
+            enabled: state == DateState.enabled,
             alignment: Alignment.center,
             density: ButtonDensity.compact,
-            enabled: state == DateState.enabled,
             child: child,
           ),
         );
 
       case CalendarItemType.inRange:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: Button(
             onPressed: onTap,
-            alignment: Alignment.center,
-            enabled: state == DateState.enabled,
             style:
                 const ButtonStyle(
-                  density: ButtonDensity.compact,
                   variance: ButtonVariance.secondary,
+                  density: ButtonDensity.compact,
                 ).copyWith(
                   decoration: (context, states, value) {
                     return (value as BoxDecoration).copyWith(
                       borderRadius: indexAtRow == 0
                           ? BorderRadius.only(
-                              bottomLeft: Radius.circular(theme.radiusMd),
                               topLeft: Radius.circular(theme.radiusMd),
+                              bottomLeft: Radius.circular(theme.radiusMd),
                             )
                           : indexAtRow == rowCount - 1
                           ? BorderRadius.only(
-                              bottomRight: Radius.circular(theme.radiusMd),
                               topRight: Radius.circular(theme.radiusMd),
+                              bottomRight: Radius.circular(theme.radiusMd),
                             )
                           : BorderRadius.zero,
                     );
                   },
                 ),
+            alignment: Alignment.center,
+            enabled: state == DateState.enabled,
             child: child,
           ),
         );
 
       case CalendarItemType.startRange:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: Button(
             onPressed: onTap,
-            alignment: Alignment.center,
-            enabled: state == DateState.enabled,
             style:
                 const ButtonStyle(
-                  density: ButtonDensity.compact,
                   variance: ButtonVariance.secondary,
+                  density: ButtonDensity.compact,
                 ).copyWith(
                   decoration: (context, states, value) {
                     return (value as BoxDecoration).copyWith(
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(theme.radiusMd),
                         topLeft: Radius.circular(theme.radiusMd),
+                        bottomLeft: Radius.circular(theme.radiusMd),
                       ),
                     );
                   },
                 ),
+            alignment: Alignment.center,
+            enabled: state == DateState.enabled,
             child: child,
           ),
         );
 
       case CalendarItemType.endRange:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: Button(
             onPressed: onTap,
-            alignment: Alignment.center,
-            enabled: state == DateState.enabled,
             style:
                 const ButtonStyle(
-                  density: ButtonDensity.compact,
                   variance: ButtonVariance.secondary,
+                  density: ButtonDensity.compact,
                 ).copyWith(
                   decoration: (context, states, value) {
                     return (value as BoxDecoration).copyWith(
                       borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(theme.radiusMd),
                         topRight: Radius.circular(theme.radiusMd),
+                        bottomRight: Radius.circular(theme.radiusMd),
                       ),
                     );
                   },
                 ),
+            alignment: Alignment.center,
+            enabled: state == DateState.enabled,
             child: child,
           ),
         );
 
       case CalendarItemType.startRangeSelected:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: Stack(
             fit: StackFit.passthrough,
             children: [
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(theme.radiusMd),
-                    topLeft: Radius.circular(theme.radiusMd),
-                  ),
                   color: theme.colorScheme.secondary,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(theme.radiusMd),
+                    bottomLeft: Radius.circular(theme.radiusMd),
+                  ),
                 ),
-                height: height ?? theme.scaling * 32,
                 width: width ?? theme.scaling * 32,
+                height: height ?? theme.scaling * 32,
               ),
               PrimaryButton(
                 onPressed: onTap,
+                enabled: state == DateState.enabled,
                 alignment: Alignment.center,
                 density: ButtonDensity.compact,
-                enabled: state == DateState.enabled,
                 child: child,
               ),
             ],
@@ -1591,27 +1591,27 @@ class CalendarItem extends StatelessWidget {
 
       case CalendarItemType.endRangeSelected:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: Stack(
             fit: StackFit.passthrough,
             children: [
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(theme.radiusMd),
-                    topRight: Radius.circular(theme.radiusMd),
-                  ),
                   color: theme.colorScheme.secondary,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(theme.radiusMd),
+                    bottomRight: Radius.circular(theme.radiusMd),
+                  ),
                 ),
-                height: height ?? theme.scaling * 32,
                 width: width ?? theme.scaling * 32,
+                height: height ?? theme.scaling * 32,
               ),
               PrimaryButton(
                 onPressed: onTap,
+                enabled: state == DateState.enabled,
                 alignment: Alignment.center,
                 density: ButtonDensity.compact,
-                enabled: state == DateState.enabled,
                 child: child,
               ),
             ],
@@ -1620,68 +1620,66 @@ class CalendarItem extends StatelessWidget {
 
       case CalendarItemType.startRangeSelectedShort:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: Button(
             onPressed: onTap,
-            alignment: Alignment.center,
-            enabled: state == DateState.enabled,
             style:
                 const ButtonStyle(
-                  density: ButtonDensity.compact,
                   variance: ButtonVariance.primary,
+                  density: ButtonDensity.compact,
                 ).copyWith(
                   decoration: (context, states, value) {
                     return (value as BoxDecoration).copyWith(
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(theme.radiusMd),
                         topLeft: Radius.circular(theme.radiusMd),
+                        bottomLeft: Radius.circular(theme.radiusMd),
                       ),
                     );
                   },
                 ),
+            alignment: Alignment.center,
+            enabled: state == DateState.enabled,
             child: child,
           ),
         );
 
       case CalendarItemType.endRangeSelectedShort:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: Button(
             onPressed: onTap,
-            alignment: Alignment.center,
-            enabled: state == DateState.enabled,
             style:
                 const ButtonStyle(
-                  density: ButtonDensity.compact,
                   variance: ButtonVariance.primary,
+                  density: ButtonDensity.compact,
                 ).copyWith(
                   decoration: (context, states, value) {
                     return (value as BoxDecoration).copyWith(
                       borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(theme.radiusMd),
                         topRight: Radius.circular(theme.radiusMd),
+                        bottomRight: Radius.circular(theme.radiusMd),
                       ),
                     );
                   },
                 ),
+            alignment: Alignment.center,
+            enabled: state == DateState.enabled,
             child: child,
           ),
         );
 
       case CalendarItemType.inRangeSelectedShort:
         return SizedBox(
-          height: height ?? theme.scaling * 32,
           width: width ?? theme.scaling * 32,
+          height: height ?? theme.scaling * 32,
           child: Button(
             onPressed: onTap,
-            alignment: Alignment.center,
-            enabled: state == DateState.enabled,
             style:
                 const ButtonStyle(
-                  density: ButtonDensity.compact,
                   variance: ButtonVariance.primary,
+                  density: ButtonDensity.compact,
                 ).copyWith(
                   decoration: (context, states, value) {
                     return (value as BoxDecoration).copyWith(
@@ -1689,6 +1687,8 @@ class CalendarItem extends StatelessWidget {
                     );
                   },
                 ),
+            alignment: Alignment.center,
+            enabled: state == DateState.enabled,
             child: child,
           ),
         );
@@ -1830,8 +1830,8 @@ class CalendarGrid extends StatelessWidget {
       weekDays.add(
         Container(
           alignment: Alignment.center,
-          height: theme.scaling * 32,
           width: theme.scaling * 32,
+          height: theme.scaling * 32,
           child: Text(
             localizations.getAbbreviatedWeekday(weekday),
           ).muted().xSmall(),

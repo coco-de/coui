@@ -25,9 +25,9 @@ class FutureOrBuilder<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return future is Future<T>
         ? FutureBuilder<T>(
-            builder: builder,
             future: future as Future<T>,
             initialData: initialValue,
+            builder: builder,
           )
         : builder(
             context,

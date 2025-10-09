@@ -5,8 +5,8 @@ import 'package:coui_flutter/coui_flutter.dart';
 /// Used by [NumberTicker.builder] to construct custom presentations of the
 /// animated number. The [number] parameter contains the current interpolated
 /// numeric value, while [child] is an optional widget for optimization.
-typedef NumberTickerBuilder = Widget Function(
-    BuildContext context, num number, Widget? child);
+typedef NumberTickerBuilder =
+    Widget Function(BuildContext context, num number, Widget? child);
 
 /// A callback that formats a number into a string representation.
 ///
@@ -272,41 +272,41 @@ class NumberTicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<NumberTickerTheme>(context);
     final duration = styleValue(
-      defaultValue: const Duration(milliseconds: 500),
-      themeValue: compTheme?.duration,
       widgetValue: this.duration,
+      themeValue: compTheme?.duration,
+      defaultValue: const Duration(milliseconds: 500),
     );
     final curve = styleValue(
-      defaultValue: Curves.easeInOut,
-      themeValue: compTheme?.curve,
       widgetValue: this.curve,
+      themeValue: compTheme?.curve,
+      defaultValue: Curves.easeInOut,
     );
     if (formatter != null) {
       final textStyle = styleValue(
-        defaultValue: null,
-        themeValue: compTheme?.style,
         widgetValue: style,
+        themeValue: compTheme?.style,
+        defaultValue: null,
       );
 
       return AnimatedValueBuilder(
+        value: number.toDouble(),
+        duration: duration,
         builder: (context, value, child) {
           return Text(formatter!(value), style: textStyle);
         },
-        curve: curve,
-        duration: duration,
         initialValue: initialNumber?.toDouble(),
-        value: number.toDouble(),
+        curve: curve,
       );
     }
 
     return AnimatedValueBuilder(
+      value: number.toDouble(),
+      duration: duration,
       builder: (context, value, child) {
         return builder!(context, value, child);
       },
-      curve: curve,
-      duration: duration,
       initialValue: initialNumber?.toDouble(),
-      value: number.toDouble(),
+      curve: curve,
       child: child,
     );
   }

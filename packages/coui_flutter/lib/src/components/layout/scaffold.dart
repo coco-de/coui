@@ -177,8 +177,8 @@ class ScaffoldState extends State<Scaffold> {
                   SizedBox(
                     height: 0,
                     child: Stack(
-                      clipBehavior: Clip.none,
                       fit: StackFit.passthrough,
+                      clipBehavior: Clip.none,
                       children: [
                         Positioned(
                           left: 0,
@@ -217,8 +217,8 @@ class ScaffoldState extends State<Scaffold> {
               SizedBox(
                 height: 0,
                 child: Stack(
-                  clipBehavior: Clip.none,
                   fit: StackFit.passthrough,
+                  clipBehavior: Clip.none,
                   children: [
                     Positioned(
                       left: 0,
@@ -284,7 +284,8 @@ class ScaffoldState extends State<Scaffold> {
           floatingHeader: widget.floatingHeader,
           children: [
             buildHeader(context),
-            LayoutBuilder(builder: (context, constraints) {
+            LayoutBuilder(
+              builder: (context, constraints) {
                 Widget child =
                     (widget.resizeToAvoidBottomInset ??
                         compTheme?.resizeToAvoidBottomInset ??
@@ -620,23 +621,24 @@ class _AppBarState extends State<AppBar> {
           ),
           child: Container(
             alignment: widget.alignment,
+            padding:
+                widget.padding ??
+                (const EdgeInsets.symmetric(vertical: 12, horizontal: 18) *
+                    scaling),
             color:
                 widget.backgroundColor ??
                 theme.colorScheme.card.scaleAlpha(surfaceOpacity ?? 1),
-            padding:
-                widget.padding ??
-                (const EdgeInsets.symmetric(horizontal: 18, vertical: 12) *
-                    scaling),
             child: SafeArea(
+              left: widget.useSafeArea,
+              top:
+                  widget.useSafeArea &&
+                  (barData?.isHeader ?? false) &&
+                  barData?.childIndex == 0,
+              right: widget.useSafeArea,
               bottom:
                   widget.useSafeArea &&
                   barData?.isHeader == false &&
                   barData?.childIndex == (barData?.childrenCount ?? 0) - 1,
-              left: widget.useSafeArea,
-              right: widget.useSafeArea,
-              top:
-                  widget.useSafeArea && (barData?.isHeader ?? false) &&
-                  barData?.childIndex == 0,
               child: SizedBox(
                 height: widget.height,
                 child: IntrinsicHeight(
@@ -654,8 +656,8 @@ class _AppBarState extends State<AppBar> {
                         child:
                             widget.child ??
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 if (widget.header != null)
                                   KeyedSubtree(
@@ -834,7 +836,7 @@ class _ScaffoldRenderFlex extends RenderBox
 
       case (false, false):
         contentConstraints = constraints.deflate(
-          EdgeInsets.only(bottom: footerSize, top: headerSize),
+          EdgeInsets.only(top: headerSize, bottom: footerSize),
         );
         contentOffset = Offset(0, headerSize);
     }
@@ -865,13 +867,13 @@ class _ScaffoldRenderFlex extends RenderBox
     final childParentData = child.parentData! as BoxParentData;
 
     return result.addWithPaintOffset(
+      offset: childParentData.offset,
+      position: position,
       hitTest: (BoxHitTestResult result, Offset transformed) {
         assert(transformed == position - childParentData.offset);
 
         return child.hitTest(result, position: transformed);
       },
-      offset: childParentData.offset,
-      position: position,
     );
   }
 }
@@ -931,15 +933,15 @@ class _RenderScaffoldPadding extends RenderBox
     switch (_paddingType) {
       case _ScaffoldPaddingType.header:
         constraints = this.constraints.copyWith(
-          maxHeight: parentData?._headerSize.value ?? 0,
           // ignore: dead_code
           minHeight: parentData?._headerSize.value ?? 0,
+          maxHeight: parentData?._headerSize.value ?? 0,
         );
 
       case _ScaffoldPaddingType.footer:
         constraints = this.constraints.copyWith(
-          maxHeight: parentData?._footerSize.value ?? 0,
           minHeight: parentData?._footerSize.value ?? 0,
+          maxHeight: parentData?._footerSize.value ?? 0,
         );
     }
     final child = firstChild;

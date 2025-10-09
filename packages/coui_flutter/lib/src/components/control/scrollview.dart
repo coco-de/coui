@@ -37,7 +37,7 @@ class DesktopPointerScrollEvent extends PointerScrollEvent {
 
 class _ScrollViewInterceptorState extends State<ScrollViewInterceptor>
     with SingleTickerProviderStateMixin {
-  Ticker _ticker;
+  late Ticker _ticker;
 
   Duration? _lastTime;
 
@@ -80,12 +80,12 @@ class _ScrollViewInterceptorState extends State<ScrollViewInterceptor>
       } catch (e, s) {
         FlutterError.reportError(
           FlutterErrorDetails(
+            exception: e,
+            stack: s,
+            library: 'coui_flutter',
             context: ErrorDescription(
               'while dispatching a pointer scroll event',
             ),
-            exception: e,
-            library: 'coui_flutter',
-            stack: s,
           ),
         );
       }
@@ -103,8 +103,8 @@ class _ScrollViewInterceptorState extends State<ScrollViewInterceptor>
     if (!widget.enabled) return widget.child;
 
     return Stack(
-      clipBehavior: Clip.none,
       fit: StackFit.passthrough,
+      clipBehavior: Clip.none,
       children: [
         Listener(
           onPointerDown: (event) {

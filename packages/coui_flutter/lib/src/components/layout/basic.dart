@@ -94,49 +94,49 @@ class Basic extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<BasicTheme>(context);
     final padding = styleValue(
-      defaultValue: EdgeInsets.zero,
-      themeValue: compTheme?.padding,
       widgetValue: this.padding,
+      themeValue: compTheme?.padding,
+      defaultValue: EdgeInsets.zero,
     );
     final contentSpacing = styleValue(
-      defaultValue: scaling * 16,
-      themeValue: compTheme?.contentSpacing,
       widgetValue: this.contentSpacing,
+      themeValue: compTheme?.contentSpacing,
+      defaultValue: scaling * 16,
     );
     final titleSpacing = styleValue(
-      defaultValue: scaling * 4,
-      themeValue: compTheme?.titleSpacing,
       widgetValue: this.titleSpacing,
+      themeValue: compTheme?.titleSpacing,
+      defaultValue: scaling * 4,
     );
     final leadingAlignment = styleValue(
-      defaultValue: Alignment.topCenter,
-      themeValue: compTheme?.leadingAlignment,
       widgetValue: this.leadingAlignment,
+      themeValue: compTheme?.leadingAlignment,
+      defaultValue: Alignment.topCenter,
     );
     final trailingAlignment = styleValue(
-      defaultValue: Alignment.topCenter,
-      themeValue: compTheme?.trailingAlignment,
       widgetValue: this.trailingAlignment,
+      themeValue: compTheme?.trailingAlignment,
+      defaultValue: Alignment.topCenter,
     );
     final titleAlignment = styleValue(
-      defaultValue: Alignment.topLeft,
-      themeValue: compTheme?.titleAlignment,
       widgetValue: this.titleAlignment,
+      themeValue: compTheme?.titleAlignment,
+      defaultValue: Alignment.topLeft,
     );
     final subtitleAlignment = styleValue(
-      defaultValue: Alignment.topLeft,
-      themeValue: compTheme?.subtitleAlignment,
       widgetValue: this.subtitleAlignment,
+      themeValue: compTheme?.subtitleAlignment,
+      defaultValue: Alignment.topLeft,
     );
     final contentAlignment = styleValue(
-      defaultValue: Alignment.topLeft,
-      themeValue: compTheme?.contentAlignment,
       widgetValue: this.contentAlignment,
+      themeValue: compTheme?.contentAlignment,
+      defaultValue: Alignment.topLeft,
     );
     final mainAxisAlignment = styleValue(
-      defaultValue: MainAxisAlignment.center,
-      themeValue: compTheme?.mainAxisAlignment,
       widgetValue: this.mainAxisAlignment,
+      themeValue: compTheme?.mainAxisAlignment,
+      defaultValue: MainAxisAlignment.center,
     );
 
     return Padding(
@@ -144,8 +144,8 @@ class Basic extends StatelessWidget {
       child: IntrinsicWidth(
         child: IntrinsicHeight(
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: mainAxisAlignment,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               if (leading != null)
                 Align(alignment: leadingAlignment, child: leading),
@@ -155,8 +155,8 @@ class Basic extends StatelessWidget {
               if (title != null || content != null || subtitle != null)
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: mainAxisAlignment,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       if (title != null)
                         Align(
@@ -235,39 +235,39 @@ class BasicLayout extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<BasicTheme>(context);
     final contentSpacing = styleValue(
-      defaultValue: scaling * 16,
-      themeValue: compTheme?.contentSpacing,
       widgetValue: this.contentSpacing,
+      themeValue: compTheme?.contentSpacing,
+      defaultValue: scaling * 16,
     );
     final titleSpacing = styleValue(
-      defaultValue: scaling * 4,
-      themeValue: compTheme?.titleSpacing,
       widgetValue: this.titleSpacing,
+      themeValue: compTheme?.titleSpacing,
+      defaultValue: scaling * 4,
     );
     final leadingAlignment = styleValue(
-      defaultValue: Alignment.topCenter,
-      themeValue: compTheme?.leadingAlignment,
       widgetValue: this.leadingAlignment,
+      themeValue: compTheme?.leadingAlignment,
+      defaultValue: Alignment.topCenter,
     );
     final trailingAlignment = styleValue(
-      defaultValue: Alignment.topCenter,
-      themeValue: compTheme?.trailingAlignment,
       widgetValue: this.trailingAlignment,
+      themeValue: compTheme?.trailingAlignment,
+      defaultValue: Alignment.topCenter,
     );
     final titleAlignment = styleValue(
-      defaultValue: Alignment.topLeft,
-      themeValue: compTheme?.titleAlignment,
       widgetValue: this.titleAlignment,
+      themeValue: compTheme?.titleAlignment,
+      defaultValue: Alignment.topLeft,
     );
     final subtitleAlignment = styleValue(
-      defaultValue: Alignment.topLeft,
-      themeValue: compTheme?.subtitleAlignment,
       widgetValue: this.subtitleAlignment,
+      themeValue: compTheme?.subtitleAlignment,
+      defaultValue: Alignment.topLeft,
     );
     final contentAlignment = styleValue(
-      defaultValue: Alignment.topLeft,
-      themeValue: compTheme?.contentAlignment,
       widgetValue: this.contentAlignment,
+      themeValue: compTheme?.contentAlignment,
+      defaultValue: Alignment.topLeft,
     );
 
     return Row(
@@ -280,9 +280,9 @@ class BasicLayout extends StatelessWidget {
         if (title != null || content != null || subtitle != null)
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 if (title != null)
                   Align(alignment: titleAlignment, child: title),

@@ -3,40 +3,6 @@ include: ../../analysis_options.yaml
 analyzer:
   exclude:
     - 'example/**'
-  errors:
-    strict_raw_type: ignore
-    dead_null_aware_expression: ignore
-    deprecated_member_use: ignore
-    deprecated_member_use_from_same_package: ignore
-    dead_code: ignore
-    unnecessary_null_comparison: ignore
-    argument_type_not_assignable: ignore
-    avoid_catches_without_on_clauses: ignore
-    avoid_dynamic_calls: ignore
-    avoid_equals_and_hash_code_on_mutable_classes: ignore
-    comment_references: ignore
-    inference_failure_on_collection_literal: ignore
-    inference_failure_on_function_invocation: ignore
-    inference_failure_on_instance_creation: ignore
-    inference_failure_on_unresolved_type_parameters: ignore
-    invalid_assignment: ignore
-    lines_longer_than_80_chars: ignore
-    non_bool_condition: ignore
-    not_enough_positional_arguments: ignore
-    omit_local_variable_types: ignore
-    prefer_null_aware_method_calls: ignore
-    public_member_api_docs: ignore ignore ignore ignore
-    return_of_invalid_type: ignore
-    sort_constructors_first: ignore
-    unchecked_use_of_nullable_value: ignore
-    undefined_named_parameter: ignore
-    # use_late_for_private_fields_and_variables: ignore
-    use_of_void_result: ignore
-    wrong_number_of_type_arguments: ignore
-    return_of_invalid_type_from_closure: ignore
-    final_not_initialized_constructor_body: ignore
-    final_not_initialized_constructor: ignore
-    not_initialized_non_nullable_instance_field: ignore
 
 linter:
   rules:

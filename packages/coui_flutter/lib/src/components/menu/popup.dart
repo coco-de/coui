@@ -56,14 +56,14 @@ class MenuPopupTheme {
 
 class MenuPopup extends StatelessWidget {
   const MenuPopup({
+    super.key,
+    this.surfaceOpacity,
+    this.surfaceBlur,
+    this.padding,
+    this.fillColor,
     this.borderColor,
     this.borderRadius,
     required this.children,
-    this.fillColor,
-    super.key,
-    this.padding,
-    this.surfaceBlur,
-    this.surfaceOpacity,
   });
 
   static Widget _buildIntrinsicContainer(
@@ -98,49 +98,49 @@ class MenuPopup extends StatelessWidget {
     final isSheetOverlay = SheetOverlayHandler.isSheetOverlay(context);
     final isDialogOverlay = DialogOverlayHandler.isDialogOverlay(context);
     final pad = styleValue(
+      widgetValue: padding,
+      themeValue: compTheme?.padding,
       defaultValue: isSheetOverlay
-          ? const EdgeInsets.symmetric(horizontal: 4, vertical: 12) *
+          ? const EdgeInsets.symmetric(vertical: 12, horizontal: 4) *
                 theme.scaling
           : const EdgeInsets.all(4) * theme.scaling,
-      themeValue: compTheme?.padding,
-      widgetValue: padding,
     );
 
     return ModalContainer(
       borderColor: styleValue(
-        defaultValue: theme.colorScheme.border,
-        themeValue: compTheme?.borderColor,
         widgetValue: borderColor,
+        themeValue: compTheme?.borderColor,
+        defaultValue: theme.colorScheme.border,
       ),
       borderRadius: styleValue(
-        defaultValue: theme.borderRadiusMd,
-        themeValue: compTheme?.borderRadius,
         widgetValue: borderRadius,
+        themeValue: compTheme?.borderRadius,
+        defaultValue: theme.borderRadiusMd,
       ),
       fillColor: styleValue(
-        defaultValue: theme.colorScheme.popover,
-        themeValue: compTheme?.fillColor,
         widgetValue: fillColor,
+        themeValue: compTheme?.fillColor,
+        defaultValue: theme.colorScheme.popover,
       ),
       filled: true,
       padding: pad,
       surfaceBlur: styleValue(
-        defaultValue: theme.surfaceBlur,
-        themeValue: compTheme?.surfaceBlur,
         widgetValue: surfaceBlur,
+        themeValue: compTheme?.surfaceBlur,
+        defaultValue: theme.surfaceBlur,
       ),
       surfaceOpacity: styleValue(
-        defaultValue: theme.surfaceOpacity,
-        themeValue: compTheme?.surfaceOpacity,
         widgetValue: surfaceOpacity,
+        themeValue: compTheme?.surfaceOpacity,
+        defaultValue: theme.surfaceOpacity,
       ),
       child: SingleChildScrollView(
         scrollDirection: data?.direction ?? Axis.vertical,
         child: _buildIntrinsicContainer(
           Flex(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             direction: data?.direction ?? Axis.vertical,
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: children,
           ),
           data?.direction ?? Axis.vertical,

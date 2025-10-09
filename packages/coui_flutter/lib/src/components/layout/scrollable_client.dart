@@ -99,6 +99,7 @@ class ScrollableClient extends StatelessWidget {
       delegate: TwoDimensionalChildBuilderDelegate(
         builder: (context, vicinity) {
           return ListenableBuilder(
+            listenable: Listenable.merge([verticalOffset, horizontalOffset]),
             builder: (context, child) {
               final horizontalPixels = horizontalOffset.pixels;
               final verticalPixels = verticalOffset.pixels;
@@ -110,7 +111,6 @@ class ScrollableClient extends StatelessWidget {
                 child,
               );
             },
-            listenable: Listenable.merge([verticalOffset, horizontalOffset]),
             child: child,
           );
         },
@@ -177,9 +177,6 @@ class ScrollableClient extends StatelessWidget {
     }
 
     final scrollable = TwoDimensionalScrollable(
-      diagonalDragBehavior: diag,
-      dragStartBehavior: dragStart,
-      hitTestBehavior: hitTest,
       horizontalDetails: switch (mainAxis) {
         Axis.horizontal => mainAxisDetails,
         Axis.vertical => horizontalDetails,
@@ -190,6 +187,9 @@ class ScrollableClient extends StatelessWidget {
       },
       viewportBuilder: (context, vOffset, hOffset) =>
           _buildViewport(context, vOffset, hOffset, overscroll, clip),
+      diagonalDragBehavior: diag,
+      dragStartBehavior: dragStart,
+      hitTestBehavior: hitTest,
     );
 
     final scrollableResult = effectivePrimary
@@ -277,8 +277,8 @@ class RenderScrollableClientViewport extends RenderTwoDimensionalViewport {
     final child = buildOrObtainChildFor(vicinity)!;
     child.layout(
       BoxConstraints(
-        minHeight: constraints.maxHeight,
         minWidth: constraints.maxWidth,
+        minHeight: constraints.maxHeight,
       ),
       parentUsesSize: true,
     );

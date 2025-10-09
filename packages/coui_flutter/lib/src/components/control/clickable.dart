@@ -264,6 +264,7 @@ class WidgetStatesProvider extends StatelessWidget {
     }
 
     return ListenableBuilder(
+      listenable: Listenable.merge([if (controller != null) controller!]),
       builder: (context, child) {
         Set<WidgetState> currentStates = states ?? {};
         if (controller != null) {
@@ -278,7 +279,6 @@ class WidgetStatesProvider extends StatelessWidget {
           child: child,
         );
       },
-      listenable: Listenable.merge([if (controller != null) controller!]),
       child: child,
     );
   }
@@ -350,7 +350,7 @@ class _BuilderStatedWidget extends StatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    final statesData = Data.maybeOf(context);
+    final statesData = Data.maybeOf<WidgetStatesData>(context);
     final states = statesData?.states ?? {};
 
     return builder(context, states);
@@ -530,28 +530,6 @@ class _ClickableState extends State<Clickable> {
           widgetStates.contains(WidgetState.focused) &&
           !widget.disableFocusOutline,
       child: GestureDetector(
-        behavior: widget.behavior,
-        onLongPress: widget.onLongPress,
-        onLongPressEnd: widget.onLongPressEnd,
-        onLongPressMoveUpdate: widget.onLongPressMoveUpdate,
-        onLongPressStart: widget.onLongPressStart,
-        onLongPressUp: widget.onLongPressUp,
-        onSecondaryLongPress: widget.onSecondaryLongPress,
-        onSecondaryTapCancel: widget.onSecondaryTapCancel,
-        // onDoubleTap: widget.onDoubleTap, HANDLED CUSTOMLY
-        onSecondaryTapDown: widget.onSecondaryTapDown,
-        onSecondaryTapUp: widget.onSecondaryTapUp,
-        onTap: widget.onPressed == null ? null : _onPressed,
-        onTapCancel: widget.onPressed == null
-            ? widget.onTapCancel
-            : () {
-                if (widget.enableFeedback) {
-                  /// Also dispatch hover.
-                  _controller.update(WidgetState.hovered, false);
-                }
-                _controller.update(WidgetState.pressed, false);
-                widget.onTapCancel?.call();
-              },
         onTapDown: widget.onPressed == null
             ? widget.onTapDown
             : (details) {
@@ -572,11 +550,48 @@ class _ClickableState extends State<Clickable> {
                 _controller.update(WidgetState.pressed, false);
                 widget.onTapUp?.call(details);
               },
-        onTertiaryLongPress: widget.onTertiaryLongPress,
-        onTertiaryTapCancel: widget.onTertiaryTapCancel,
+        onTap: widget.onPressed == null ? null : _onPressed,
+        onTapCancel: widget.onPressed == null
+            ? widget.onTapCancel
+            : () {
+                if (widget.enableFeedback) {
+                  /// Also dispatch hover.
+                  _controller.update(WidgetState.hovered, false);
+                }
+                _controller.update(WidgetState.pressed, false);
+                widget.onTapCancel?.call();
+              },
+        // onDoubleTap: widget.onDoubleTap, HANDLED CUSTOMLY
+        onSecondaryTapDown: widget.onSecondaryTapDown,
+        onSecondaryTapUp: widget.onSecondaryTapUp,
+        onSecondaryTapCancel: widget.onSecondaryTapCancel,
         onTertiaryTapDown: widget.onTertiaryTapDown,
         onTertiaryTapUp: widget.onTertiaryTapUp,
+        onTertiaryTapCancel: widget.onTertiaryTapCancel,
+        onLongPress: widget.onLongPress,
+        onLongPressStart: widget.onLongPressStart,
+        onLongPressMoveUpdate: widget.onLongPressMoveUpdate,
+        onLongPressUp: widget.onLongPressUp,
+        onLongPressEnd: widget.onLongPressEnd,
+        onSecondaryLongPress: widget.onSecondaryLongPress,
+        onTertiaryLongPress: widget.onTertiaryLongPress,
+        behavior: widget.behavior,
         child: FocusableActionDetector(
+          enabled: enabled,
+          focusNode: _focusNode,
+          shortcuts: {
+            LogicalKeySet(LogicalKeyboardKey.enter): const ActivateIntent(),
+            LogicalKeySet(LogicalKeyboardKey.space): const ActivateIntent(),
+            LogicalKeySet(LogicalKeyboardKey.arrowUp):
+                const DirectionalFocusIntent(TraversalDirection.up),
+            LogicalKeySet(LogicalKeyboardKey.arrowDown):
+                const DirectionalFocusIntent(TraversalDirection.down),
+            LogicalKeySet(LogicalKeyboardKey.arrowLeft):
+                const DirectionalFocusIntent(TraversalDirection.left),
+            LogicalKeySet(LogicalKeyboardKey.arrowRight):
+                const DirectionalFocusIntent(TraversalDirection.right),
+            ...?widget.shortcuts,
+          },
           actions: {
             ActivateIntent: CallbackAction(
               onInvoke: (e) {
@@ -608,10 +623,6 @@ class _ClickableState extends State<Clickable> {
             ),
             ...?widget.actions,
           },
-          enabled: enabled,
-          focusNode: _focusNode,
-          mouseCursor:
-              widget.mouseCursor?.resolve(widgetStates) ?? MouseCursor.defer,
           onShowFocusHighlight: (value) {
             _controller.update(WidgetState.focused, value);
             widget.onFocus?.call(value);
@@ -623,19 +634,8 @@ class _ClickableState extends State<Clickable> {
             );
             widget.onHover?.call(value);
           },
-          shortcuts: {
-            LogicalKeySet(LogicalKeyboardKey.enter): const ActivateIntent(),
-            LogicalKeySet(LogicalKeyboardKey.space): const ActivateIntent(),
-            LogicalKeySet(LogicalKeyboardKey.arrowUp):
-                const DirectionalFocusIntent(TraversalDirection.up),
-            LogicalKeySet(LogicalKeyboardKey.arrowDown):
-                const DirectionalFocusIntent(TraversalDirection.down),
-            LogicalKeySet(LogicalKeyboardKey.arrowLeft):
-                const DirectionalFocusIntent(TraversalDirection.left),
-            LogicalKeySet(LogicalKeyboardKey.arrowRight):
-                const DirectionalFocusIntent(TraversalDirection.right),
-            ...?widget.shortcuts,
-          },
+          mouseCursor:
+              widget.mouseCursor?.resolve(widgetStates) ?? MouseCursor.defer,
           child: DefaultTextStyle.merge(
             style: widget.textStyle?.resolve(widgetStates),
             child: IconTheme.merge(
@@ -646,16 +646,16 @@ class _ClickableState extends State<Clickable> {
                 animation: _controller,
                 builder: (context, child) {
                   return AnimatedValueBuilder(
+                    value: widget.transform?.resolve(widgetStates),
+                    duration: const Duration(milliseconds: 50),
                     builder: (context, value, child) {
                       return Transform(
-                        alignment: Alignment.center,
                         transform: value ?? Matrix4.identity(),
+                        alignment: Alignment.center,
                         child: child,
                       );
                     },
-                    duration: const Duration(milliseconds: 50),
                     lerp: lerpMatrix4,
-                    value: widget.transform?.resolve(widgetStates),
                     child: child,
                   );
                 },
@@ -677,10 +677,10 @@ class _ClickableState extends State<Clickable> {
     final resolvedPadding = widget.padding?.resolve(widgetStates);
     if (widget.disableTransition) {
       Widget container = Container(
-        clipBehavior: Clip.antiAlias,
+        padding: resolvedPadding,
         decoration: decoration,
         margin: resolvedMargin,
-        padding: resolvedPadding,
+        clipBehavior: Clip.antiAlias,
         child: widget.child,
       );
       if (widget.marginAlignment != null) {
@@ -693,11 +693,11 @@ class _ClickableState extends State<Clickable> {
       return container;
     }
     Widget animatedContainer = AnimatedContainer(
-      clipBehavior: decoration == null ? Clip.none : Clip.antiAlias,
-      decoration: decoration,
-      duration: kDefaultDuration,
-      margin: resolvedMargin,
       padding: resolvedPadding,
+      decoration: decoration,
+      margin: resolvedMargin,
+      clipBehavior: decoration == null ? Clip.none : Clip.antiAlias,
+      duration: kDefaultDuration,
       child: widget.child,
     );
     if (widget.marginAlignment != null) {
@@ -733,7 +733,7 @@ class _ClickableState extends State<Clickable> {
     return WidgetStatesProvider(
       controller: _controller,
       states: {if (!enabled) WidgetState.disabled},
-      child: ListenableBuilder(builder: _builder, listenable: _controller),
+      child: ListenableBuilder(listenable: _controller, builder: _builder),
     );
   }
 }

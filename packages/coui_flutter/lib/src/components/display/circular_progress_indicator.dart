@@ -197,30 +197,30 @@ class CircularProgressIndicator extends StatelessWidget {
     );
 
     final effectiveSize = styleValue(
+      widgetValue: size,
+      themeValue: compTheme?.size,
       defaultValue:
           (iconThemeData.size ?? theme.scaling * 24) - theme.scaling * 8,
-      themeValue: compTheme?.size,
-      widgetValue: size,
     );
 
     final effectiveColor = styleValue(
+      widgetValue: color,
+      themeValue: compTheme?.color,
       defaultValue: onSurface
           ? theme.colorScheme.background
           : theme.colorScheme.primary,
-      themeValue: compTheme?.color,
-      widgetValue: color,
     );
 
     final effectiveBackgroundColor = styleValue(
-      defaultValue: effectiveColor.scaleAlpha(0.2),
-      themeValue: compTheme?.backgroundColor,
       widgetValue: backgroundColor,
+      themeValue: compTheme?.backgroundColor,
+      defaultValue: effectiveColor.scaleAlpha(0.2),
     );
 
     final effectiveStrokeWidth = styleValue(
-      defaultValue: effectiveSize / 12,
-      themeValue: compTheme?.strokeWidth,
       widgetValue: strokeWidth,
+      themeValue: compTheme?.strokeWidth,
+      defaultValue: effectiveSize / 12,
     );
 
     return value == null || !animated
@@ -228,31 +228,31 @@ class CircularProgressIndicator extends StatelessWidget {
             child: SizedBox.square(
               dimension: effectiveSize,
               child: mat.CircularProgressIndicator(
+                value: value,
                 backgroundColor: effectiveBackgroundColor,
                 color: effectiveColor,
-                strokeWidth: effectiveStrokeWidth,
-                value: value,
                 valueColor: AlwaysStoppedAnimation<Color>(effectiveColor),
+                strokeWidth: effectiveStrokeWidth,
               ),
             ),
           )
         : AnimatedValueBuilder(
+            value: value!,
+            duration: duration,
             builder: (context, value, child) {
               return RepaintBoundary(
                 child: SizedBox.square(
                   dimension: effectiveSize,
                   child: mat.CircularProgressIndicator(
+                    value: value.toDouble(),
                     backgroundColor: effectiveBackgroundColor,
                     color: effectiveColor,
-                    strokeWidth: effectiveStrokeWidth,
-                    value: value.toDouble(),
                     valueColor: AlwaysStoppedAnimation<Color>(effectiveColor),
+                    strokeWidth: effectiveStrokeWidth,
                   ),
                 ),
               );
             },
-            duration: duration,
-            value: value!,
           );
   }
 }

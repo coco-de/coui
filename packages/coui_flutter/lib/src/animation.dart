@@ -98,7 +98,7 @@ class AnimatedProperty<T> {
   // ignore: unused_field
   T _value;
   bool _hasTarget = false;
-  T _target;
+  late T _target;
   late AnimationController _controller;
 
   static void _empty() {}

@@ -77,6 +77,8 @@ class ThemeData {
   );
 
   /// Creates a copy with optional changes.
+  // Standard copyWith pattern requires all optional parameters
+  // ignore: avoid-long-parameter-list
   ThemeData copyWith({
     ColorScheme? colorScheme,
     TypographyScale? typography,

@@ -183,59 +183,59 @@ class Card extends StatelessWidget {
     final compTheme = ComponentTheme.maybeOf<CardTheme>(context);
     final scaling = theme.scaling;
     final padding = styleValue(
-      defaultValue: EdgeInsets.all(scaling * 16),
-      themeValue: compTheme?.padding,
       widgetValue: this.padding,
+      themeValue: compTheme?.padding,
+      defaultValue: EdgeInsets.all(scaling * 16),
     );
     final filled = styleValue(
-      defaultValue: false,
-      themeValue: compTheme?.filled,
       widgetValue: this.filled,
+      themeValue: compTheme?.filled,
+      defaultValue: false,
     );
     final fillColor = styleValue(
-      defaultValue: theme.colorScheme.border,
-      themeValue: compTheme?.fillColor,
       widgetValue: this.fillColor,
+      themeValue: compTheme?.fillColor,
+      defaultValue: theme.colorScheme.border,
     );
     final borderRadius = styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.borderRadius,
       widgetValue: this.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: null,
     );
     final borderColor = styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.borderColor,
       widgetValue: this.borderColor,
+      themeValue: compTheme?.borderColor,
+      defaultValue: null,
     );
     final borderWidth = styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.borderWidth,
       widgetValue: this.borderWidth,
+      themeValue: compTheme?.borderWidth,
+      defaultValue: null,
     );
     final clipBehavior = styleValue(
-      defaultValue: Clip.none,
-      themeValue: compTheme?.clipBehavior,
       widgetValue: this.clipBehavior,
+      themeValue: compTheme?.clipBehavior,
+      defaultValue: Clip.none,
     );
     final boxShadow = styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.boxShadow,
       widgetValue: this.boxShadow,
+      themeValue: compTheme?.boxShadow,
+      defaultValue: null,
     );
     final surfaceOpacity = styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.surfaceOpacity,
       widgetValue: this.surfaceOpacity,
+      themeValue: compTheme?.surfaceOpacity,
+      defaultValue: null,
     );
     final surfaceBlur = styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.surfaceBlur,
       widgetValue: this.surfaceBlur,
+      themeValue: compTheme?.surfaceBlur,
+      defaultValue: null,
     );
     final duration = styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.duration,
       widgetValue: this.duration,
+      themeValue: compTheme?.duration,
+      defaultValue: null,
     );
 
     return OutlinedContainer(
@@ -296,9 +296,9 @@ class SurfaceCard extends StatelessWidget {
     final scaling = theme.scaling;
     if (isSheetOverlay) {
       final padding = styleValue(
-        defaultValue: EdgeInsets.all(scaling * 16),
-        themeValue: compTheme?.padding,
         widgetValue: this.padding,
+        themeValue: compTheme?.padding,
+        defaultValue: EdgeInsets.all(scaling * 16),
       );
 
       return Padding(padding: padding, child: child);

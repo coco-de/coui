@@ -87,7 +87,9 @@ class Resizer {
 
         return false;
       }
-      item._newValue = (item.newValue + delta).clamp(minSize, maxSize).toDouble();
+      item._newValue = (item.newValue + delta)
+          .clamp(minSize, maxSize)
+          .toDouble();
 
       // check
       return true;
@@ -98,7 +100,9 @@ class Resizer {
 
         return false;
       }
-      item._newValue = (item.newValue + delta).clamp(minSize, maxSize).toDouble();
+      item._newValue = (item.newValue + delta)
+          .clamp(minSize, maxSize)
+          .toDouble();
 
       // check
       return true;
@@ -117,7 +121,9 @@ class Resizer {
 
         return false;
       }
-      item._newValue = (item.newValue + delta).clamp(minSize, maxSize).toDouble();
+      item._newValue = (item.newValue + delta)
+          .clamp(minSize, maxSize)
+          .toDouble();
 
       // check
       return true;
@@ -238,7 +244,7 @@ class Resizer {
     return false;
   }
 
-  void dragDivider(double delta, int index) {
+  void dragDivider(int index, double delta) {
     if (delta == 0) {
       return;
     }
@@ -280,8 +286,8 @@ class Resizer {
       return;
     }
 
-    final payOffLeft = _payOffLoanSize(index - 1, delta, -1);
-    final payOffRight = _payOffLoanSize(index, -delta, 1);
+    final payOffLeft = _payOffLoanSize(delta, -1, index - 1);
+    final payOffRight = _payOffLoanSize(-delta, 1, index);
 
     final payingBackLeft = _borrowSize(index - 1, -payOffLeft, 0, -1).givenSize;
     final payingBackRight = _borrowSize(
@@ -393,17 +399,17 @@ class Resizer {
     return index < 0 || index >= items.length ? null : items[index];
   }
 
-  _BorrowInfo _borrowSize(double delta, int direction, int index, int until) {
+  _BorrowInfo _borrowSize(int index, double delta, int until, int direction) {
     assert(direction == -1 || direction == 1, 'Direction must be -1 or 1');
     final item = _getItem(index);
     if (item == null) {
-      return _BorrowInfo(0, index - direction);
+      return _BorrowInfo(index - direction, 0.0);
     }
     if (index == until + direction) {
-      return _BorrowInfo(0, index);
+      return _BorrowInfo(index, 0.0);
     }
     if (!item.resizable) {
-      return _BorrowInfo(0, index - direction);
+      return _BorrowInfo(index - direction, 0.0);
     }
 
     final minSize = item.min;
@@ -412,7 +418,7 @@ class Resizer {
     if (item.newCollapsed) {
       return (direction < 0 && delta < 0) || (direction > 0 && delta > 0)
           ? _borrowSize(index + direction, delta, until, direction)
-          : _BorrowInfo(0, index);
+          : _BorrowInfo(index, 0.0);
     }
 
     final newSize = item.newValue + delta;
@@ -428,7 +434,7 @@ class Resizer {
       );
       item._newValue = minSize;
 
-      return _BorrowInfo(borrowSize.givenSize + given, borrowSize.from);
+      return _BorrowInfo(borrowSize.from, borrowSize.givenSize + given);
     }
 
     if (newSize > maxSize) {
@@ -443,12 +449,12 @@ class Resizer {
       );
       item._newValue = maxSize;
 
-      return _BorrowInfo(borrowSize.givenSize + given, borrowSize.from);
+      return _BorrowInfo(borrowSize.from, borrowSize.givenSize + given);
     }
 
     item._newValue = newSize;
 
-    return _BorrowInfo(delta, index);
+    return _BorrowInfo(index, delta);
   }
 
   void _checkCollapseUntil(int index) {

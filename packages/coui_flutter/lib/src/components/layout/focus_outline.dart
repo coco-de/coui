@@ -43,10 +43,10 @@ class FocusOutline extends StatelessWidget {
     final resolved = rawRadius.resolve(textDirection);
 
     return BorderRadius.only(
-      bottomLeft: resolved.bottomLeft + Radius.circular(align),
-      bottomRight: resolved.bottomRight + Radius.circular(align),
       topLeft: resolved.topLeft + Radius.circular(align),
       topRight: resolved.topRight + Radius.circular(align),
+      bottomLeft: resolved.bottomLeft + Radius.circular(align),
+      bottomRight: resolved.bottomRight + Radius.circular(align),
     );
   }
 
@@ -62,42 +62,44 @@ class FocusOutline extends StatelessWidget {
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<FocusOutlineTheme>(context);
     final double align = styleValue(
-      defaultValue: 3,
-      themeValue: compTheme?.align,
       widgetValue: this.align,
+      themeValue: compTheme?.align,
+      defaultValue: 3,
     );
     final BorderRadiusGeometry? borderRadius = styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.borderRadius,
       widgetValue: this.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: null,
     );
     final offset = -align;
     final textDirection = Directionality.of(context);
 
     return Stack(
-      clipBehavior: Clip.none,
       fit: StackFit.passthrough,
+      clipBehavior: Clip.none,
       children: [
         child,
         AnimatedValueBuilder(
+          value: focused ? 1.0 : 0.0,
+          duration: kDefaultDuration,
           builder: (context, value, child) {
             return Positioned(
-              bottom: offset * value,
               left: offset * value,
-              right: offset * value,
               top: offset * value,
+              right: offset * value,
+              bottom: offset * value,
               child: IgnorePointer(
                 child: Container(
                   decoration: BoxDecoration(
                     border: styleValue(
+                      widgetValue: border,
+                      themeValue: compTheme?.border,
                       defaultValue: Border.all(
                         color: Theme.of(
                           context,
                         ).colorScheme.ring.scaleAlpha(0.5),
                         width: 3,
                       ),
-                      themeValue: compTheme?.border,
-                      widgetValue: border,
                     ).scale(value),
                     borderRadius: shape == BoxShape.circle
                         ? null
@@ -112,8 +114,6 @@ class FocusOutline extends StatelessWidget {
               ),
             );
           },
-          duration: kDefaultDuration,
-          value: focused ? 1.0 : 0.0,
         ),
       ],
     );

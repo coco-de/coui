@@ -171,10 +171,10 @@ class _EditablePartController extends TextEditingController {
 
       return TextSpan(
         children: [
-          TextSpan(style: style, text: text),
+          TextSpan(text: text, style: style),
           TextSpan(
-            style: style?.copyWith(color: theme.colorScheme.mutedForeground),
             text: padding,
+            style: style?.copyWith(color: theme.colorScheme.mutedForeground),
           ),
         ],
       );
@@ -197,11 +197,11 @@ class _EditablePartController extends TextEditingController {
       style: style,
       children: <TextSpan>[
         TextSpan(text: textBefore),
-        TextSpan(style: composingStyle, text: textInside),
+        TextSpan(text: textInside, style: composingStyle),
         TextSpan(text: textAfter),
         TextSpan(
-          style: style?.copyWith(color: theme.colorScheme.mutedForeground),
           text: padding,
+          style: style?.copyWith(color: theme.colorScheme.mutedForeground),
         ),
       ],
     );
@@ -230,7 +230,7 @@ class _EditablePartWidget extends StatefulWidget {
 }
 
 class _EditablePartWidgetState extends State<_EditablePartWidget> {
-  TextEditingController _controller;
+  late TextEditingController _controller;
 
   @override
   void initState() {
@@ -600,7 +600,7 @@ class _FormattedInputState extends State<FormattedInput> {
   bool _hasFocus = false;
   FormattedValue? _value;
 
-  List<FocusNode> _focusNodes;
+  late List<FocusNode> _focusNodes;
 
   @override
   void initState() {
@@ -647,7 +647,7 @@ class _FormattedInputState extends State<FormattedInput> {
         for (int i = 0; i < value.parts.length; i += 1) {
           final part = value.parts[i];
           if (part.part.canHaveValue) {
-            final key = FormKey(partIndex);
+            final key = FormKey<String>(partIndex);
             final val = values[key];
             parts.add(part.withValue(val as String? ?? ''));
             partIndex += 1;
@@ -718,8 +718,8 @@ class _FormattedInputState extends State<FormattedInput> {
                   policy: WidgetOrderTraversalPolicy(),
                   child: IntrinsicHeight(
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         if (widget.leading != null) widget.leading!,
                         ...children,
@@ -831,8 +831,8 @@ class _FormattedObjectController<T> extends ValueNotifier<T?>
 }
 
 class _FormattedObjectInputState<T> extends State<FormattedObjectInput<T>> {
-  FormattedInputController _formattedController;
-  ComponentController<T?> _controller;
+  late FormattedInputController _formattedController;
+  late ComponentController<T?> _controller;
 
   final _popoverController = PopoverController();
 
@@ -927,7 +927,7 @@ class _FormattedObjectInputState<T> extends State<FormattedObjectInput<T>> {
       return;
     }
     final theme = Theme.of(context);
-    _popoverController.show(
+    _popoverController.show<void>(
       alignment: widget.popoverAlignment ?? AlignmentDirectional.topStart,
       anchorAlignment:
           widget.popoverAnchorAlignment ?? AlignmentDirectional.bottomStart,
@@ -1000,6 +1000,7 @@ class _FormattedObjectInputState<T> extends State<FormattedObjectInput<T>> {
       trailing: popoverIcon == null
           ? null
           : ListenableBuilder(
+              listenable: _popoverController,
               builder: (context, child) {
                 return WidgetStatesProvider(
                   states: {
@@ -1008,11 +1009,10 @@ class _FormattedObjectInputState<T> extends State<FormattedObjectInput<T>> {
                   child: child!,
                 );
               },
-              listenable: _popoverController,
               child: IconButton.text(
                 onPressed: _openPopover,
-                density: ButtonDensity.compact,
                 icon: popoverIcon,
+                density: ButtonDensity.compact,
               ),
             ),
     );

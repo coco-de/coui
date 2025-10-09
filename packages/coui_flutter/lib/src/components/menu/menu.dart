@@ -112,9 +112,9 @@ class MenuRadioGroup<T> extends StatelessWidget implements MenuItem {
     return Data<MenuRadioGroup<T>>.inherit(
       data: this,
       child: Flex(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         direction: menuGroupData!.direction,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: children,
       ),
     );
@@ -178,12 +178,12 @@ class MenuDivider extends StatelessWidget implements MenuItem {
     final scaling = theme.scaling;
 
     return AnimatedPadding(
-      duration: kDefaultDuration,
       padding:
           (menuGroupData == null || menuGroupData.direction == Axis.vertical
               ? const EdgeInsets.symmetric(vertical: 4)
               : const EdgeInsets.symmetric(horizontal: 4)) *
           scaling,
+      duration: kDefaultDuration,
       child: menuGroupData == null || menuGroupData.direction == Axis.vertical
           ? Divider(
               color: theme.colorScheme.border,
@@ -286,7 +286,7 @@ class MenuLabel extends StatelessWidget implements MenuItem {
 
     return Padding(
       padding:
-          const EdgeInsets.only(bottom: 6, left: 8, right: 6, top: 6) *
+          const EdgeInsets.only(left: 8, top: 6, right: 6, bottom: 6) *
               scaling +
           menuGroupData!.itemPadding,
       child: Basic(
@@ -391,10 +391,10 @@ class _MenuButtonState extends State<MenuButton> {
     final isSheetOverlay = SheetOverlayHandler.isSheetOverlay(context);
     final isDialogOverlay = DialogOverlayHandler.isDialogOverlay(context);
     final isIndependentOverlay = isSheetOverlay || isDialogOverlay;
-    void openSubMenu(bool autofocus, BuildContext context) {
+    void openSubMenu(BuildContext context, bool autofocus) {
       menuGroupData!.closeOthers();
       final overlayManager = OverlayManager.of(context);
-      menuData!.popoverController.show(
+      menuData!.popoverController.show<void>(
         alignment: Alignment.topLeft,
         anchorAlignment: menuBarData == null
             ? Alignment.topRight
@@ -500,13 +500,32 @@ class _MenuButtonState extends State<MenuButton> {
                           }
                         }
                       },
-                      alignment: menuGroupData.direction == Axis.vertical
-                          ? AlignmentDirectional.centerStart
-                          : Alignment.center,
-                      disableFocusOutline: true,
-                      disableTransition: true,
-                      enabled: widget.enabled,
-                      focusNode: widget.focusNode,
+                      style:
+                          (menuBarData == null
+                                  ? ButtonVariance.menu
+                                  : ButtonVariance.menubar)
+                              .copyWith(
+                                decoration: (context, states, value) {
+                                  final theme = Theme.of(context);
+
+                                  return (value as BoxDecoration).copyWith(
+                                    color:
+                                        menuData
+                                                .popoverController
+                                                .hasOpenPopover ||
+                                            hasFocus
+                                        ? theme.colorScheme.accent
+                                        : null,
+                                    borderRadius: BorderRadius.circular(
+                                      theme.radiusMd,
+                                    ),
+                                  );
+                                },
+                                padding: (context, states, value) {
+                                  return value.optionallyResolve(context) +
+                                      menuGroupData.itemPadding;
+                                },
+                              ),
                       leading:
                           widget.leading == null &&
                               menuGroupData.hasLeading &&
@@ -518,6 +537,29 @@ class _MenuButtonState extends State<MenuButton> {
                               dimension: scaling * 16,
                               child: widget.leading!.iconSmall(),
                             ),
+                      trailing: menuBarData == null
+                          ? widget.trailing != null ||
+                                    (widget.subMenu != null &&
+                                        menuBarData == null)
+                                ? Row(
+                                    children: [
+                                      if (widget.trailing != null)
+                                        widget.trailing!,
+                                      if (widget.subMenu != null &&
+                                          menuBarData == null)
+                                        const Icon(
+                                          RadixIcons.chevronRight,
+                                        ).iconSmall(),
+                                    ],
+                                  ).gap(scaling * 8)
+                                : null
+                          : widget.trailing,
+                      focusNode: widget.focusNode,
+                      alignment: menuGroupData.direction == Axis.vertical
+                          ? AlignmentDirectional.centerStart
+                          : Alignment.center,
+                      enabled: widget.enabled,
+                      disableTransition: true,
                       onHover: (value) {
                         if (value) {
                           subFocusState.requestFocus();
@@ -536,49 +578,7 @@ class _MenuButtonState extends State<MenuButton> {
                           subFocusState.unfocus();
                         }
                       },
-                      style:
-                          (menuBarData == null
-                                  ? ButtonVariance.menu
-                                  : ButtonVariance.menubar)
-                              .copyWith(
-                                decoration: (context, states, value) {
-                                  final theme = Theme.of(context);
-
-                                  return (value as BoxDecoration).copyWith(
-                                    borderRadius: BorderRadius.circular(
-                                      theme.radiusMd,
-                                    ),
-                                    color:
-                                        menuData
-                                                .popoverController
-                                                .hasOpenPopover ||
-                                            hasFocus
-                                        ? theme.colorScheme.accent
-                                        : null,
-                                  );
-                                },
-                                padding: (context, states, value) {
-                                  return value.optionallyResolve(context) +
-                                      menuGroupData.itemPadding;
-                                },
-                              ),
-                      trailing: menuBarData == null
-                          ? widget.trailing != null ||
-                                    (widget.subMenu != null &&
-                                        menuBarData == null)
-                                ? Row(
-                                    children: [
-                                      if (widget.trailing != null)
-                                        widget.trailing!,
-                                      if (widget.subMenu != null &&
-                                          menuBarData == null)
-                                        const Icon(
-                                          RadixIcons.chevronRight,
-                                        ).iconSmall(),
-                                    ],
-                                  ).gap(scaling * 8)
-                                : null
-                          : widget.trailing,
+                      disableFocusOutline: true,
                       child: widget.child,
                     );
                   },
@@ -664,7 +664,7 @@ class MenuGroupData {
 
   @override
   String toString() {
-    return 'MenuGroupData{parent: $parent, children: $children, hasLeading: $hasLeading, subMenuOffset: $subMenuOffset, onDismissed: ${onDismissed()}, regionGroupId: $regionGroupId, direction: $direction}';
+    return 'MenuGroupData{parent: $parent, children: $children, hasLeading: $hasLeading, subMenuOffset: $subMenuOffset, onDismissed: $onDismissed, regionGroupId: $regionGroupId, direction: $direction}';
   }
 
   MenuGroupData get root {
@@ -706,7 +706,7 @@ class MenuGroup extends StatefulWidget {
   });
 
   final List<MenuItem> children;
-  final Widget Function(List<Widget> children, BuildContext context) builder;
+  final Widget Function(BuildContext context, List<Widget> children) builder;
   final MenuGroupData? parent;
   final Offset? subMenuOffset;
   final VoidCallback? onDismissed;
@@ -723,7 +723,7 @@ class MenuGroup extends StatefulWidget {
 }
 
 class _MenuGroupState extends State<MenuGroup> {
-  List<MenuData> _data;
+  late List<MenuData> _data;
 
   @override
   void initState() {
@@ -918,19 +918,19 @@ class _MenuGroupState extends State<MenuGroup> {
                   const ActivateIntent(),
             },
             child: Focus(
-              autofocus: menubarData == null,
               focusNode: widget.focusNode,
+              autofocus: menubarData == null,
               child: Data.inherit(
                 data: MenuGroupData(
-                  widget.parent,
                   _data,
-                  hasLeading,
-                  subMenuOffset,
-                  widget.onDismissed,
-                  widget.regionGroupId,
                   widget.direction,
-                  itemPadding,
                   scope,
+                  hasLeading,
+                  itemPadding,
+                  widget.onDismissed,
+                  widget.parent,
+                  widget.regionGroupId,
+                  subMenuOffset,
                 ),
                 child: Builder(
                   builder: (context) {

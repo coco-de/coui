@@ -194,13 +194,13 @@ extension TextExtension on Widget {
   TextModifier get h2 => WrappedText(
     style: (context, theme) => theme.typography.h2,
     wrapper: (context, child) => Container(
+      padding: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(color: Theme.of(context).colorScheme.border),
         ),
       ),
       margin: const EdgeInsets.only(top: 40),
-      padding: const EdgeInsets.only(bottom: 8),
       child: child,
     ),
     child: this,
@@ -227,6 +227,7 @@ extension TextExtension on Widget {
   TextModifier get blockQuote => WrappedText(
     style: (context, theme) => theme.typography.blockQuote,
     wrapper: (context, child) => Container(
+      padding: const EdgeInsets.only(left: 16),
       decoration: BoxDecoration(
         border: Border(
           left: BorderSide(
@@ -235,7 +236,6 @@ extension TextExtension on Widget {
           ),
         ),
       ),
-      padding: const EdgeInsets.only(left: 16),
       child: child,
     ),
     child: this,
@@ -243,7 +243,7 @@ extension TextExtension on Widget {
 
   TextModifier get li => WrappedText(
     wrapper: (context, child) {
-      final data = Data.maybeOf(context);
+      final data = Data.maybeOf<dynamic>(context);
       final depth = data?.depth ?? 0;
       final style = DefaultTextStyle.of(context).style;
       final size = (style.fontSize ?? 12) / 16 * 6;
@@ -254,7 +254,7 @@ extension TextExtension on Widget {
           children: [
             SizedBox(
               height: ((style.fontSize ?? 12) * (style.height ?? 1)) * 1.2,
-              child: getBullet(context, depth, size),
+              child: getBullet(context, depth as int, size),
             ),
             const SizedBox(width: 8),
             Expanded(
@@ -276,13 +276,13 @@ extension TextExtension on Widget {
       final themeData = Theme.of(context);
 
       return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(themeData.radiusSm),
-          color: Theme.of(context).colorScheme.muted,
-        ),
         padding: EdgeInsets.symmetric(
-          horizontal: paddingHorizontal,
           vertical: paddingVertical,
+          horizontal: paddingHorizontal,
+        ),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.muted,
+          borderRadius: BorderRadius.circular(themeData.radiusSm),
         ),
         child: child,
       );
@@ -386,15 +386,15 @@ extension TextExtension on Widget {
                   final buttonTextStyle = DefaultTextStyle.of(context);
 
                   return DefaultTextStyle(
-                    maxLines: defaultTextStyle.maxLines,
-                    overflow: defaultTextStyle.overflow,
-                    softWrap: defaultTextStyle.softWrap,
                     style: defaultTextStyle.style.copyWith(
                       decoration: buttonTextStyle.style.decoration,
                     ),
                     textAlign: defaultTextStyle.textAlign,
-                    textHeightBehavior: defaultTextStyle.textHeightBehavior,
+                    softWrap: defaultTextStyle.softWrap,
+                    overflow: defaultTextStyle.overflow,
+                    maxLines: defaultTextStyle.maxLines,
                     textWidthBasis: defaultTextStyle.textWidthBasis,
+                    textHeightBehavior: defaultTextStyle.textHeightBehavior,
                     child: child,
                   );
                 },
@@ -428,19 +428,6 @@ class _TextThenWidget extends StatelessWidget {
     }
     final registrar = SelectionContainer.maybeOf(context);
     Widget result = RichText(
-      locale: text.locale,
-      maxLines: text.maxLines ?? defaultTextStyle.maxLines,
-      overflow:
-          text.overflow ??
-          effectiveTextStyle?.overflow ??
-          defaultTextStyle.overflow,
-      selectionColor:
-          text.selectionColor ??
-          DefaultSelectionStyle.of(context).selectionColor ??
-          DefaultSelectionStyle.defaultColor,
-      selectionRegistrar: registrar,
-      softWrap: text.softWrap ?? defaultTextStyle.softWrap,
-      strutStyle: text.strutStyle,
       text: TextSpan(
         style: effectiveTextStyle,
         children: [
@@ -451,12 +438,25 @@ class _TextThenWidget extends StatelessWidget {
       textAlign:
           text.textAlign ?? defaultTextStyle.textAlign ?? TextAlign.start,
       textDirection: text.textDirection,
+      softWrap: text.softWrap ?? defaultTextStyle.softWrap,
+      overflow:
+          text.overflow ??
+          effectiveTextStyle?.overflow ??
+          defaultTextStyle.overflow,
+      textScaler: text.textScaler ?? TextScaler.noScaling,
+      maxLines: text.maxLines ?? defaultTextStyle.maxLines,
+      locale: text.locale,
+      strutStyle: text.strutStyle,
+      textWidthBasis: text.textWidthBasis ?? defaultTextStyle.textWidthBasis,
       textHeightBehavior:
           text.textHeightBehavior ??
           defaultTextStyle.textHeightBehavior ??
           DefaultTextHeightBehavior.maybeOf(context),
-      textScaler: text.textScaler ?? TextScaler.noScaling,
-      textWidthBasis: text.textWidthBasis ?? defaultTextStyle.textWidthBasis,
+      selectionRegistrar: registrar,
+      selectionColor:
+          text.selectionColor ??
+          DefaultSelectionStyle.of(context).selectionColor ??
+          DefaultSelectionStyle.defaultColor,
     );
     if (registrar != null) {
       result = MouseRegion(
@@ -488,19 +488,19 @@ class _RichTextThenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-      locale: text.locale,
-      maxLines: text.maxLines,
-      overflow: text.overflow,
-      selectionColor: text.selectionColor,
-      selectionRegistrar: text.selectionRegistrar,
-      softWrap: text.softWrap,
-      strutStyle: text.strutStyle,
       text: TextSpan(children: [text.text, ...then]),
       textAlign: text.textAlign,
       textDirection: text.textDirection,
-      textHeightBehavior: text.textHeightBehavior,
+      softWrap: text.softWrap,
+      overflow: text.overflow,
       textScaler: text.textScaler,
+      maxLines: text.maxLines,
+      locale: text.locale,
+      strutStyle: text.strutStyle,
       textWidthBasis: text.textWidthBasis,
+      textHeightBehavior: text.textHeightBehavior,
+      selectionRegistrar: text.selectionRegistrar,
+      selectionColor: text.selectionColor,
     );
   }
 }
@@ -563,8 +563,8 @@ Widget getBullet(BuildContext context, int depth, double size) {
           color: themeData.colorScheme.foreground,
           shape: BoxShape.circle,
         ),
-        height: size,
         width: size,
+        height: size,
       ),
     );
   }
@@ -576,15 +576,15 @@ Widget getBullet(BuildContext context, int depth, double size) {
               border: Border.all(color: themeData.colorScheme.foreground),
               shape: BoxShape.circle,
             ),
-            height: size,
             width: size,
+            height: size,
           ),
         )
       : Center(
           child: Container(
             decoration: BoxDecoration(color: themeData.colorScheme.foreground),
-            height: size,
             width: size,
+            height: size,
           ),
         );
 }
@@ -595,7 +595,7 @@ class UnorderedListData {
 
 typedef WrappedTextDataBuilder<T> =
     T Function(BuildContext context, ThemeData theme);
-typedef WidgetTextWrapper = Widget Function(Widget child, BuildContext context);
+typedef WidgetTextWrapper = Widget Function(BuildContext context, Widget child);
 
 class WrappedText extends StatelessWidget implements TextModifier {
   const WrappedText({
@@ -650,31 +650,31 @@ class WrappedText extends StatelessWidget implements TextModifier {
   }) {
     return copyWithStyle(
       (context, theme) => TextStyle(
-        background: background,
-        backgroundColor: backgroundColor,
         color: color,
-        debugLabel: debugLabel,
+        backgroundColor: backgroundColor,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        fontStyle: fontStyle,
+        letterSpacing: letterSpacing,
+        wordSpacing: wordSpacing,
+        textBaseline: textBaseline,
+        height: height?.toDouble(),
+        leadingDistribution: leadingDistribution,
+        locale: locale,
+        foreground: foreground,
+        background: background,
+        shadows: shadows,
+        fontFeatures: fontFeatures,
+        fontVariations: fontVariations,
         decoration: decoration,
         decorationColor: decorationColor,
         decorationStyle: decorationStyle,
         decorationThickness: decorationThickness,
+        debugLabel: debugLabel,
         fontFamily: fontFamily,
         fontFamilyFallback: fontFamilyFallback,
-        fontFeatures: fontFeatures,
-        fontSize: fontSize,
-        fontStyle: fontStyle,
-        fontVariations: fontVariations,
-        fontWeight: fontWeight,
-        foreground: foreground,
-        height: height.toDouble(),
-        leadingDistribution: leadingDistribution,
-        letterSpacing: letterSpacing,
-        locale: locale,
-        overflow: overflow,
         package: package,
-        shadows: shadows,
-        textBaseline: textBaseline,
-        wordSpacing: wordSpacing,
+        overflow: overflow,
       ),
     );
   }
@@ -684,11 +684,11 @@ class WrappedText extends StatelessWidget implements TextModifier {
     final theme = Theme.of(context);
 
     return DefaultTextStyle.merge(
-      maxLines: maxLines?.call(context, theme),
-      overflow: overflow?.call(context, theme),
-      softWrap: softWrap?.call(context, theme),
       style: style?.call(context, theme),
       textAlign: textAlign?.call(context, theme),
+      softWrap: softWrap?.call(context, theme),
+      overflow: overflow?.call(context, theme),
+      maxLines: maxLines?.call(context, theme),
       textWidthBasis: textWidthBasis?.call(context, theme),
       child: wrapper?.call(context, child) ?? child,
     );

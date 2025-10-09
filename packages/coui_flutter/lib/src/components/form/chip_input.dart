@@ -478,9 +478,9 @@ class ChipInput<T> extends StatefulWidget {
 
 class ChipInputState<T> extends State<ChipInput<T>>
     with FormValueSupplier<List<T>, ChipInput<T>> {
-  FocusNode _focusNode;
-  TextEditingController _controller;
-  ValueNotifier<List<T>> _suggestions;
+  late FocusNode _focusNode;
+  late TextEditingController _controller;
+  late ValueNotifier<List<T>> _suggestions;
   final _selectedSuggestions = ValueNotifier<int>(-1);
   final _popoverController = PopoverController();
 
@@ -491,9 +491,9 @@ class ChipInputState<T> extends State<ChipInput<T>>
     final compTheme = ComponentTheme.maybeOf<ChipInputTheme>(context);
 
     return styleValue(
-      defaultValue: BoxConstraints(maxHeight: theme.scaling * 300),
-      themeValue: compTheme?.popoverConstraints,
       widgetValue: widget.popoverConstraints,
+      themeValue: compTheme?.popoverConstraints,
+      defaultValue: BoxConstraints(maxHeight: theme.scaling * 300),
     );
   }
 
@@ -501,9 +501,9 @@ class ChipInputState<T> extends State<ChipInput<T>>
     final compTheme = ComponentTheme.maybeOf<ChipInputTheme>(context);
 
     return styleValue(
-      defaultValue: true,
-      themeValue: compTheme?.useChips,
       widgetValue: widget.useChips,
+      themeValue: compTheme?.useChips,
+      defaultValue: true,
     );
   }
 
@@ -540,7 +540,7 @@ class ChipInputState<T> extends State<ChipInput<T>>
       _popoverController.close();
     } else if (!_popoverController.hasOpenPopover &&
         _suggestions.value.isNotEmpty) {
-      _popoverController.show(
+      _popoverController.show<void>(
         alignment: Alignment.topCenter,
         builder: buildPopover,
         context: context,
@@ -627,11 +627,12 @@ class ChipInputState<T> extends State<ChipInput<T>>
               animation: Listenable.merge([_suggestions, _selectedSuggestions]),
               builder: (context, child) {
                 return ListView(
-                  padding: EdgeInsets.all(theme.scaling * 4),
                   shrinkWrap: true,
+                  padding: EdgeInsets.all(theme.scaling * 4),
                   children: [
                     for (int i = 0; i < _suggestions.value.length; i += 1)
                       SelectedButton(
+                        value: i == _selectedSuggestions.value,
                         onChanged: (value) {
                           if (value) {
                             widget.onSuggestionChoosen?.call(i);
@@ -640,7 +641,6 @@ class ChipInputState<T> extends State<ChipInput<T>>
                             _popoverController.close();
                           }
                         },
-                        value: i == _selectedSuggestions.value,
                         child: Row(
                           children: [
                             if (widget.suggestionLeadingBuilder != null) ...[
@@ -692,6 +692,7 @@ class ChipInputState<T> extends State<ChipInput<T>>
     final theme = Theme.of(context);
 
     return ListenableBuilder(
+      listenable: _focusNode,
       builder: (context, child) {
         return FocusOutline(
           borderRadius: theme.borderRadiusMd,
@@ -699,12 +700,19 @@ class ChipInputState<T> extends State<ChipInput<T>>
           child: child!,
         );
       },
-      listenable: _focusNode,
       child: GestureDetector(
         onTap: () {
           _focusNode.requestFocus();
         },
         child: FocusableActionDetector(
+          shortcuts: {
+            LogicalKeySet(LogicalKeyboardKey.tab):
+                const SelectSuggestionIntent(),
+            LogicalKeySet(LogicalKeyboardKey.arrowDown):
+                const NextSuggestionIntent(),
+            LogicalKeySet(LogicalKeyboardKey.arrowUp):
+                const PreviousSuggestionIntent(),
+          },
           actions: {
             SelectSuggestionIntent: CallbackAction(
               onInvoke: (intent) {
@@ -746,14 +754,6 @@ class ChipInputState<T> extends State<ChipInput<T>>
             ),
           },
           mouseCursor: SystemMouseCursors.text,
-          shortcuts: {
-            LogicalKeySet(LogicalKeyboardKey.tab):
-                const SelectSuggestionIntent(),
-            LogicalKeySet(LogicalKeyboardKey.arrowDown):
-                const NextSuggestionIntent(),
-            LogicalKeySet(LogicalKeyboardKey.arrowUp):
-                const PreviousSuggestionIntent(),
-          },
           child: AnimatedBuilder(
             animation: _focusNode,
             builder: (context, child) {
@@ -764,8 +764,8 @@ class ChipInputState<T> extends State<ChipInput<T>>
                         children: [
                           child!,
                           Wrap(
-                            runSpacing: theme.scaling * 4,
                             spacing: theme.scaling * 4,
+                            runSpacing: theme.scaling * 4,
                             children: [
                               for (int i = 0; i < widget.chips.length; i += 1)
                                 _chipBuilder(i),
@@ -781,18 +781,18 @@ class ChipInputState<T> extends State<ChipInput<T>>
                         alignment: AlignmentDirectional.centerStart,
                         children: [
                           Visibility(
-                            maintainAnimation: true,
-                            maintainInteractivity: true,
-                            maintainSemantics: true,
-                            maintainSize: true,
-                            maintainState: true,
                             visible: false,
+                            maintainState: true,
+                            maintainAnimation: true,
+                            maintainSize: true,
+                            maintainSemantics: true,
+                            maintainInteractivity: true,
                             child: child!,
                           ),
                           Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            runSpacing: theme.scaling * 4,
                             spacing: theme.scaling * 4,
+                            runSpacing: theme.scaling * 4,
+                            crossAxisAlignment: WrapCrossAlignment.center,
                             children: [
                               for (int i = 0; i < widget.chips.length; i += 1)
                                 _chipBuilder(i),

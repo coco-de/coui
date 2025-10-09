@@ -246,34 +246,34 @@ class _ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<ToggleTheme>(context);
     final gap = styleValue(
-      defaultValue: scaling * 8,
-      themeValue: compTheme?.gap,
       widgetValue: widget.gap,
+      themeValue: compTheme?.gap,
+      defaultValue: scaling * 8,
     );
     final activeColor = styleValue(
-      defaultValue: theme.colorScheme.primary,
-      themeValue: compTheme?.activeColor,
       widgetValue: widget.activeColor,
+      themeValue: compTheme?.activeColor,
+      defaultValue: theme.colorScheme.primary,
     );
     final inactiveColor = styleValue(
-      defaultValue: theme.colorScheme.input,
-      themeValue: compTheme?.inactiveColor,
       widgetValue: widget.inactiveColor,
+      themeValue: compTheme?.inactiveColor,
+      defaultValue: theme.colorScheme.input,
     );
     final activeThumbColor = styleValue(
-      defaultValue: theme.colorScheme.background,
-      themeValue: compTheme?.activeThumbColor,
       widgetValue: widget.activeThumbColor,
+      themeValue: compTheme?.activeThumbColor,
+      defaultValue: theme.colorScheme.background,
     );
     final inactiveThumbColor = styleValue(
-      defaultValue: theme.colorScheme.foreground,
-      themeValue: compTheme?.inactiveThumbColor,
       widgetValue: widget.inactiveThumbColor,
+      themeValue: compTheme?.inactiveThumbColor,
+      defaultValue: theme.colorScheme.foreground,
     );
     final borderRadius = styleValue<BorderRadiusGeometry>(
-      defaultValue: BorderRadius.circular(theme.radiusXl),
-      themeValue: compTheme?.borderRadius,
       widgetValue: widget.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: BorderRadius.circular(theme.radiusXl),
     );
 
     return FocusOutline(
@@ -288,6 +288,11 @@ class _ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
               }
             : null,
         child: FocusableActionDetector(
+          enabled: _enabled,
+          shortcuts: const {
+            SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
+            SingleActivator(LogicalKeyboardKey.space): ActivateIntent(),
+          },
           actions: {
             ActivateIntent: CallbackAction(
               onInvoke: (Intent intent) {
@@ -297,57 +302,52 @@ class _ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
               },
             ),
           },
-          enabled: _enabled,
-          mouseCursor: _enabled
-              ? SystemMouseCursors.click
-              : SystemMouseCursors.forbidden,
           onShowFocusHighlight: (value) {
             setState(() {
               _focusing = value;
             });
           },
-          shortcuts: const {
-            SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
-            SingleActivator(LogicalKeyboardKey.space): ActivateIntent(),
-          },
+          mouseCursor: _enabled
+              ? SystemMouseCursors.click
+              : SystemMouseCursors.forbidden,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               if (widget.leading != null) widget.leading!,
               if (widget.leading != null) SizedBox(width: gap),
               AnimatedContainer(
+                padding: EdgeInsets.all(scaling * 2),
                 decoration: BoxDecoration(
-                  borderRadius:
-                      optionallyResolveBorderRadius(context, borderRadius) ??
-                      BorderRadius.circular(theme.radiusXl),
                   color: _enabled
                       ? widget.value
                             ? activeColor
                             : inactiveColor
                       : theme.colorScheme.muted,
+                  borderRadius:
+                      optionallyResolveBorderRadius(context, borderRadius) ??
+                      BorderRadius.circular(theme.radiusXl),
                 ),
-                duration: kToggleDuration,
-                height: (16 + 4) * scaling,
-                padding: EdgeInsets.all(scaling * 2),
                 width: (32 + 4) * scaling,
+                height: (16 + 4) * scaling,
+                duration: kToggleDuration,
                 child: Stack(
                   children: [
                     AnimatedPositioned(
+                      left: widget.value ? scaling * 16 : 0,
+                      top: 0,
                       bottom: 0,
                       curve: Curves.easeInOut,
                       duration: kToggleDuration,
-                      left: widget.value ? scaling * 16 : 0,
-                      top: 0,
                       child: AspectRatio(
                         aspectRatio: 1,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(theme.radiusLg),
                             color: _enabled
                                 ? widget.value
                                       ? activeThumbColor
                                       : inactiveThumbColor
                                 : theme.colorScheme.mutedForeground,
+                            borderRadius: BorderRadius.circular(theme.radiusLg),
                           ),
                         ),
                       ),

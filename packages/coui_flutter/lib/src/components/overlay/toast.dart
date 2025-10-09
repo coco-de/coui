@@ -514,7 +514,7 @@ class _ToastLayerState extends State<ToastLayer> {
   }
 
   ToastOverlay addEntry(ToastEntry entry) {
-    final attachedToastEntry = _AttachedToastEntry(entry, this);
+    final attachedToastEntry = _AttachedToastEntry(this, entry);
     setState(() {
       final entries = this.entries[entry.location];
       entries!.entries.add(attachedToastEntry);
@@ -633,7 +633,6 @@ class _ToastLayerState extends State<ToastLayer> {
               child: Align(
                 alignment: location.alignment,
                 child: MouseRegion(
-                  hitTestBehavior: HitTestBehavior.deferToChild,
                   onEnter: (event) {
                     locationEntry.value._hoverCount += 1;
                     if (expandMode == ExpandMode.expandOnHover) {
@@ -656,12 +655,13 @@ class _ToastLayerState extends State<ToastLayer> {
                       }
                     });
                   },
+                  hitTestBehavior: HitTestBehavior.deferToChild,
                   child: ConstrainedBox(
                     constraints: toastConstraints,
                     child: Stack(
                       alignment: location.alignment,
-                      clipBehavior: Clip.none,
                       fit: StackFit.passthrough,
+                      clipBehavior: Clip.none,
                       children: positionedChildren,
                     ),
                   ),
@@ -676,8 +676,8 @@ class _ToastLayerState extends State<ToastLayer> {
     return Data.inherit(
       data: this,
       child: Stack(
-        clipBehavior: Clip.none,
         fit: StackFit.passthrough,
+        clipBehavior: Clip.none,
         children: children,
       ),
     );
@@ -856,14 +856,29 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
   Widget build(BuildContext context) {
     Widget childWidget = MouseRegion(
       key: _key,
-      hitTestBehavior: HitTestBehavior.deferToChild,
       onEnter: (event) {
         _closingTimer?.cancel();
       },
       onExit: (event) {
         _startClosingTimer();
       },
+      hitTestBehavior: HitTestBehavior.deferToChild,
       child: GestureDetector(
+        onHorizontalDragStart: (details) {
+          if (widget.dismissible) {
+            setState(() {
+              _closingTimer?.cancel();
+              _dismissing = true;
+            });
+          }
+        },
+        onHorizontalDragUpdate: (details) {
+          if (widget.dismissible) {
+            setState(() {
+              _dismissOffset += details.primaryDelta! / context.size!.width;
+            });
+          }
+        },
         onHorizontalDragEnd: (details) {
           if (widget.dismissible) {
             setState(() {
@@ -880,35 +895,36 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
             }
           }
         },
-        onHorizontalDragStart: (details) {
-          if (widget.dismissible) {
-            setState(() {
-              _closingTimer?.cancel();
-              _dismissing = true;
-            });
-          }
-        },
-        onHorizontalDragUpdate: (details) {
-          if (widget.dismissible) {
-            setState(() {
-              _dismissOffset += details.primaryDelta! / context.size!.width;
-            });
-          }
-        },
         child: AnimatedBuilder(
           animation: widget.closing,
           builder: (context, child) {
             return AnimatedValueBuilder(
+              value: widget.closing.value ? 0.0 : _dismissOffset,
+              duration: _dismissing && !widget.closing.value
+                  ? Duration.zero
+                  : kDefaultDuration,
               builder: (context, dismissProgress, child) {
                 return AnimatedValueBuilder(
+                  value: widget.closing.value ? 0.0 : _closeDismissing ?? 0.0,
+                  duration: kDefaultDuration,
                   builder: (context, closeDismissingProgress, child) {
                     return AnimatedValueBuilder(
+                      value: widget.index.toDouble(),
+                      duration: widget.duration,
                       builder: (context, indexProgress, child) {
                         return AnimatedValueBuilder(
+                          value: widget.closing.value && !_dismissing
+                              ? 0.0
+                              : 1.0,
+                          duration: widget.duration,
                           builder: (context, showingProgress, child) {
                             return AnimatedValueBuilder(
+                              value: widget.visible ? 1.0 : 0.0,
+                              duration: widget.duration,
                               builder: (context, visibleProgress, child) {
                                 return AnimatedValueBuilder(
+                                  value: widget.expanded ? 1.0 : 0.0,
+                                  duration: widget.expandingDuration,
                                   builder: (context, expandProgress, child) {
                                     return buildToast(
                                       expandProgress,
@@ -920,46 +936,30 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
                                     );
                                   },
                                   curve: widget.expandingCurve,
-                                  duration: widget.expandingDuration,
-                                  value: widget.expanded ? 1.0 : 0.0,
                                 );
                               },
                               curve: widget.curve,
-                              duration: widget.duration,
-                              value: widget.visible ? 1.0 : 0.0,
                             );
                           },
-                          curve: widget.curve,
-                          duration: widget.duration,
                           initialValue: widget.index > 0 ? 1.0 : 0.0,
                           onEnd: (value) {
                             if (value == 0.0 && widget.closing.value) {
                               widget.onClosed();
                             }
                           },
-                          value: widget.closing.value && !_dismissing
-                              ? 0.0
-                              : 1.0,
+                          curve: widget.curve,
                         );
                       },
                       curve: widget.curve,
-                      duration: widget.duration,
-                      value: widget.index.toDouble(),
                     );
                   },
-                  duration: kDefaultDuration,
                   onEnd: (value) {
                     if (value == -1.0 || value == 1.0) {
                       widget.onClosed();
                     }
                   },
-                  value: widget.closing.value ? 0.0 : _closeDismissing ?? 0.0,
                 );
               },
-              duration: _dismissing && !widget.closing.value
-                  ? Duration.zero
-                  : kDefaultDuration,
-              value: widget.closing.value ? 0.0 : _dismissOffset,
             );
           },
         ),

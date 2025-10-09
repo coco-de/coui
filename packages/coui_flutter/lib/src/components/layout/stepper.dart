@@ -294,8 +294,8 @@ class _StepVariantCircle extends StepVariant {
       }
 
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           IntrinsicHeight(
             child: Row(
@@ -334,8 +334,8 @@ class _StepVariantCircle extends StepVariant {
         Data.inherit(
           data: StepNumberData(stepIndex: i),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Row(
                 children: [
@@ -350,9 +350,9 @@ class _StepVariantCircle extends StepVariant {
                 child: Stack(
                   children: [
                     PositionedDirectional(
-                      bottom: 0,
                       start: 0,
                       top: 0,
+                      bottom: 0,
                       child: SizedBox(
                         width: properties.size.size,
                         child: i == properties.steps.length - 1
@@ -383,22 +383,17 @@ class _StepVariantCircle extends StepVariant {
                       animation: properties.state,
                       builder: (context, child) {
                         return AnimatedCrossFade(
-                          crossFadeState:
-                              properties.state.value.currentStep == i
-                              ? CrossFadeState.showSecond
-                              : CrossFadeState.showFirst,
-                          duration: kDefaultDuration,
                           firstChild: Container(height: 0),
-                          firstCurve: const Interval(
-                            0,
-                            0.6,
-                            curve: Curves.fastOutSlowIn,
-                          ),
                           secondChild: Padding(
                             padding: EdgeInsets.only(
                               left: properties.size.size,
                             ),
                             child: child,
+                          ),
+                          firstCurve: const Interval(
+                            0,
+                            0.6,
+                            curve: Curves.fastOutSlowIn,
                           ),
                           secondCurve: const Interval(
                             0.4,
@@ -406,6 +401,11 @@ class _StepVariantCircle extends StepVariant {
                             curve: Curves.fastOutSlowIn,
                           ),
                           sizeCurve: Curves.fastOutSlowIn,
+                          crossFadeState:
+                              properties.state.value.currentStep == i
+                              ? CrossFadeState.showSecond
+                              : CrossFadeState.showFirst,
+                          duration: kDefaultDuration,
                         );
                       },
                       child: properties.steps[i].contentBuilder?.call(context),
@@ -428,8 +428,8 @@ class _StepVariantCircle extends StepVariant {
     }
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: children,
     );
   }
@@ -451,8 +451,8 @@ class _StepVariantCircleAlternative extends StepVariant {
             data: StepNumberData(stepIndex: i),
             child: Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Row(
                     children: [
@@ -521,8 +521,8 @@ class _StepVariantCircleAlternative extends StepVariant {
       }
 
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           IntrinsicHeight(
             child: Row(
@@ -561,8 +561,8 @@ class _StepVariantCircleAlternative extends StepVariant {
         Data.inherit(
           data: StepNumberData(stepIndex: i),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Row(
                 children: [
@@ -577,9 +577,9 @@ class _StepVariantCircleAlternative extends StepVariant {
                 child: Stack(
                   children: [
                     PositionedDirectional(
-                      bottom: 0,
                       start: 0,
                       top: 0,
+                      bottom: 0,
                       child: SizedBox(
                         width: properties.size.size,
                         child: i == properties.steps.length - 1
@@ -610,22 +610,17 @@ class _StepVariantCircleAlternative extends StepVariant {
                       animation: properties.state,
                       builder: (context, child) {
                         return AnimatedCrossFade(
-                          crossFadeState:
-                              properties.state.value.currentStep == i
-                              ? CrossFadeState.showSecond
-                              : CrossFadeState.showFirst,
-                          duration: kDefaultDuration,
                           firstChild: Container(height: 0),
-                          firstCurve: const Interval(
-                            0,
-                            0.6,
-                            curve: Curves.fastOutSlowIn,
-                          ),
                           secondChild: Padding(
                             padding: EdgeInsets.only(
                               left: properties.size.size,
                             ),
                             child: child,
+                          ),
+                          firstCurve: const Interval(
+                            0,
+                            0.6,
+                            curve: Curves.fastOutSlowIn,
                           ),
                           secondCurve: const Interval(
                             0.4,
@@ -633,6 +628,11 @@ class _StepVariantCircleAlternative extends StepVariant {
                             curve: Curves.fastOutSlowIn,
                           ),
                           sizeCurve: Curves.fastOutSlowIn,
+                          crossFadeState:
+                              properties.state.value.currentStep == i
+                              ? CrossFadeState.showSecond
+                              : CrossFadeState.showFirst,
+                          duration: kDefaultDuration,
                         );
                       },
                       child: properties.steps[i].contentBuilder?.call(context),
@@ -655,8 +655,8 @@ class _StepVariantCircleAlternative extends StepVariant {
     }
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: children,
     );
   }
@@ -678,8 +678,8 @@ class _StepVariantLine extends StepVariant {
             child: Data.inherit(
               data: StepNumberData(stepIndex: i),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   AnimatedBuilder(
                     animation: properties.state,
@@ -706,8 +706,8 @@ class _StepVariantLine extends StepVariant {
       }
 
       return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           IntrinsicHeight(
             child: Row(
@@ -746,8 +746,8 @@ class _StepVariantLine extends StepVariant {
         Data.inherit(
           data: StepNumberData(stepIndex: i),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               IntrinsicHeight(
                 child: Row(
@@ -781,23 +781,23 @@ class _StepVariantLine extends StepVariant {
                   animation: properties.state,
                   builder: (context, child) {
                     return AnimatedCrossFade(
-                      crossFadeState: properties.state.value.currentStep == i
-                          ? CrossFadeState.showSecond
-                          : CrossFadeState.showFirst,
-                      duration: kDefaultDuration,
                       firstChild: Container(height: 0),
+                      secondChild: Container(child: child),
                       firstCurve: const Interval(
                         0,
                         0.6,
                         curve: Curves.fastOutSlowIn,
                       ),
-                      secondChild: Container(child: child),
                       secondCurve: const Interval(
                         0.4,
                         1,
                         curve: Curves.fastOutSlowIn,
                       ),
                       sizeCurve: Curves.fastOutSlowIn,
+                      crossFadeState: properties.state.value.currentStep == i
+                          ? CrossFadeState.showSecond
+                          : CrossFadeState.showFirst,
+                      duration: kDefaultDuration,
                     );
                   },
                   child: properties.steps[i].contentBuilder?.call(context),
@@ -818,8 +818,8 @@ class _StepVariantLine extends StepVariant {
     }
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: children,
     );
   }
@@ -1236,16 +1236,6 @@ class StepNumber extends StatelessWidget {
                   onPressed: onPressed,
                   decoration: WidgetStateProperty.resolveWith((states) {
                     return BoxDecoration(
-                      border: Border.all(
-                        color:
-                            properties.state.value.stepStates[stepIndex] ==
-                                StepState.failed
-                            ? theme.colorScheme.destructive
-                            : properties.state.value.currentStep >= stepIndex
-                            ? theme.colorScheme.primary
-                            : theme.colorScheme.border,
-                        width: theme.scaling * 2,
-                      ),
                       color:
                           properties.state.value.stepStates[stepIndex] ==
                               StepState.failed
@@ -1257,6 +1247,16 @@ class StepNumber extends StatelessWidget {
                                 states.contains(WidgetState.focused)
                           ? theme.colorScheme.secondary
                           : theme.colorScheme.background,
+                      border: Border.all(
+                        color:
+                            properties.state.value.stepStates[stepIndex] ==
+                                StepState.failed
+                            ? theme.colorScheme.destructive
+                            : properties.state.value.currentStep >= stepIndex
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.border,
+                        width: theme.scaling * 2,
+                      ),
                       shape: theme.radius == 0
                           ? BoxShape.rectangle
                           : BoxShape.circle,

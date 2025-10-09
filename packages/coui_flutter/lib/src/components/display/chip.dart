@@ -49,20 +49,14 @@ class ChipButton extends StatelessWidget {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<ChipTheme>(context);
     final padding = styleValue(
-      defaultValue: EdgeInsets.zero,
       themeValue: compTheme?.padding,
+      defaultValue: EdgeInsets.zero,
     );
     final style =
         compTheme?.style ??
         ButtonVariance(
           decoration: (context, states) {
             return const BoxDecoration();
-          },
-          iconTheme: (context, states) {
-            return theme.iconTheme.xSmall;
-          },
-          margin: (context, states) {
-            return EdgeInsets.zero;
           },
           mouseCursor: (context, states) {
             return states.contains(WidgetState.disabled)
@@ -74,6 +68,12 @@ class ChipButton extends StatelessWidget {
           },
           textStyle: (context, states) {
             return const TextStyle();
+          },
+          iconTheme: (context, states) {
+            return theme.iconTheme.xSmall;
+          },
+          margin: (context, states) {
+            return EdgeInsets.zero;
           },
         );
 
@@ -162,7 +162,6 @@ class Chip extends StatelessWidget {
 
     return Button(
       onPressed: onPressed ?? () {},
-      leading: leading,
       style: baseStyle.copyWith(
         mouseCursor: (context, states, value) {
           return onPressed == null
@@ -171,14 +170,15 @@ class Chip extends StatelessWidget {
         },
         padding: (context, states, value) {
           return styleValue(
-            defaultValue: EdgeInsets.symmetric(
-              horizontal: theme.scaling * 8,
-              vertical: theme.scaling * 4,
-            ),
             themeValue: compTheme?.padding,
+            defaultValue: EdgeInsets.symmetric(
+              vertical: theme.scaling * 4,
+              horizontal: theme.scaling * 8,
+            ),
           );
         },
       ),
+      leading: leading,
       trailing: trailing,
       child: child,
     );

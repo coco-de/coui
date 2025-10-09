@@ -108,30 +108,30 @@ class Tabs extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<TabsTheme>(context);
     final tabPadding = styleValue(
-      defaultValue:
-          const EdgeInsets.symmetric(horizontal: 16, vertical: 4) * scaling,
-      themeValue: compTheme?.tabPadding,
       widgetValue: padding,
+      themeValue: compTheme?.tabPadding,
+      defaultValue:
+          const EdgeInsets.symmetric(vertical: 4, horizontal: 16) * scaling,
     );
     final i = data.index;
 
     return GestureDetector(
-      behavior: HitTestBehavior.translucent,
       onTap: () {
         onChanged(i);
       },
+      behavior: HitTestBehavior.translucent,
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         hitTestBehavior: HitTestBehavior.translucent,
         child: AnimatedContainer(
           /// Slightly faster than kDefaultDuration.
           alignment: Alignment.center,
+          padding: tabPadding,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(theme.radiusMd),
             color: i == index ? theme.colorScheme.background : null,
+            borderRadius: BorderRadius.circular(theme.radiusMd),
           ),
           duration: const Duration(milliseconds: 50),
-          padding: tabPadding,
           child: (i == index ? child.foreground() : child.muted())
               .small()
               .medium(),
@@ -146,32 +146,32 @@ class Tabs extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<TabsTheme>(context);
     final containerPadding = styleValue(
-      defaultValue: const EdgeInsets.all(4) * scaling,
       themeValue: compTheme?.containerPadding,
+      defaultValue: const EdgeInsets.all(4) * scaling,
     );
     final backgroundColor = styleValue(
-      defaultValue: theme.colorScheme.muted,
       themeValue: compTheme?.backgroundColor,
+      defaultValue: theme.colorScheme.muted,
     );
     final borderRadius = styleValue(
-      defaultValue: BorderRadius.circular(theme.radiusLg),
       themeValue: compTheme?.borderRadius,
+      defaultValue: BorderRadius.circular(theme.radiusLg),
     );
 
     return TabContainer(
       builder: (context, children) {
         return Container(
+          padding: containerPadding,
           decoration: BoxDecoration(
+            color: backgroundColor,
             borderRadius: borderRadius is BorderRadius
                 ? borderRadius
                 : borderRadius.resolve(Directionality.of(context)),
-            color: backgroundColor,
           ),
-          padding: containerPadding,
           child: IntrinsicHeight(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: children,
             ).muted(),
           ),

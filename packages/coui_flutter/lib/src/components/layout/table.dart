@@ -394,9 +394,9 @@ class ResizableTable extends StatefulWidget {
 }
 
 class _ResizableTableState extends State<ResizableTable> {
-  List<_FlattenedTableCell> _cells;
-  int _maxColumn;
-  int _maxRow;
+  late List<_FlattenedTableCell> _cells;
+  late int _maxColumn;
+  late int _maxRow;
   final _hoverNotifier = ValueNotifier<_HoveredLine?>(null);
   final _hoveredCellNotifier = ValueNotifier<_HoveredCell?>(null);
   final _dragNotifier = ValueNotifier<_HoveredLine?>(null);
@@ -506,13 +506,14 @@ class _ResizableTableState extends State<ResizableTable> {
           maxRow: _maxRow,
         ),
         child: Container(
-          clipBehavior: widget.clipBehavior,
           decoration: BoxDecoration(
+            color: tableTheme?.backgroundColor,
             border: tableTheme?.border,
             borderRadius: tableTheme?.borderRadius,
-            color: tableTheme?.backgroundColor,
           ),
+          clipBehavior: widget.clipBehavior,
           child: ListenableBuilder(
+            listenable: widget.controller,
             builder: (context, child) {
               return RawTableLayout(
                 clipBehavior: widget.clipBehavior,
@@ -526,7 +527,6 @@ class _ResizableTableState extends State<ResizableTable> {
                 children: children,
               );
             },
-            listenable: widget.controller,
           ),
         ),
       ),
@@ -688,23 +688,20 @@ class _CellResizerState extends State<_CellResizer> {
         /// Top.
         if (row > 0 && heightMode != TableCellResizeMode.none)
           Positioned(
-            height: thickness,
             left: 0,
-            right: 0,
             top: -thickness / 2,
+            right: 0,
+            height: thickness,
             child: MouseRegion(
-              cursor: SystemMouseCursors.resizeRow,
-              hitTestBehavior: HitTestBehavior.translucent,
               onEnter: (event) {
                 widget.onHover(true, row - 1, Axis.horizontal);
               },
               onExit: (event) {
                 widget.onHover(false, row - 1, Axis.horizontal);
               },
+              cursor: SystemMouseCursors.resizeRow,
+              hitTestBehavior: HitTestBehavior.translucent,
               child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onVerticalDragCancel: _onDragCancel,
-                onVerticalDragEnd: _onDragEnd,
                 onVerticalDragStart: _onDragStartRow,
                 onVerticalDragUpdate: (details) {
                   if (heightMode == TableCellResizeMode.reallocate) {
@@ -717,7 +714,14 @@ class _CellResizerState extends State<_CellResizer> {
                     );
                   }
                 },
+                onVerticalDragEnd: _onDragEnd,
+                onVerticalDragCancel: _onDragCancel,
+                behavior: HitTestBehavior.translucent,
                 child: ListenableBuilder(
+                  listenable: Listenable.merge([
+                    widget.hoverNotifier,
+                    widget.dragNotifier,
+                  ]),
                   builder: (context, child) {
                     _HoveredLine? hover = widget.hoverNotifier.value;
                     final drag = widget.dragNotifier.value;
@@ -736,10 +740,6 @@ class _CellResizerState extends State<_CellResizer> {
                           : null,
                     );
                   },
-                  listenable: Listenable.merge([
-                    widget.hoverNotifier,
-                    widget.dragNotifier,
-                  ]),
                 ),
               ),
             ),
@@ -750,23 +750,20 @@ class _CellResizerState extends State<_CellResizer> {
                 heightMode == TableCellResizeMode.expand) &&
             heightMode != TableCellResizeMode.none)
           Positioned(
-            bottom: -thickness / 2,
-            height: thickness,
             left: 0,
             right: 0,
+            bottom: -thickness / 2,
+            height: thickness,
             child: MouseRegion(
-              cursor: SystemMouseCursors.resizeRow,
-              hitTestBehavior: HitTestBehavior.translucent,
               onEnter: (event) {
                 widget.onHover(true, row + rowSpan - 1, Axis.horizontal);
               },
               onExit: (event) {
                 widget.onHover(false, row + rowSpan - 1, Axis.horizontal);
               },
+              cursor: SystemMouseCursors.resizeRow,
+              hitTestBehavior: HitTestBehavior.translucent,
               child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onVerticalDragCancel: _onDragCancel,
-                onVerticalDragEnd: _onDragEnd,
                 onVerticalDragStart: _onDragStartRow,
                 onVerticalDragUpdate: (details) {
                   if (heightMode == TableCellResizeMode.reallocate) {
@@ -779,7 +776,14 @@ class _CellResizerState extends State<_CellResizer> {
                     );
                   }
                 },
+                onVerticalDragEnd: _onDragEnd,
+                onVerticalDragCancel: _onDragCancel,
+                behavior: HitTestBehavior.translucent,
                 child: ListenableBuilder(
+                  listenable: Listenable.merge([
+                    widget.hoverNotifier,
+                    widget.dragNotifier,
+                  ]),
                   builder: (context, child) {
                     _HoveredLine? hover = widget.hoverNotifier.value;
                     final drag = widget.dragNotifier.value;
@@ -798,10 +802,6 @@ class _CellResizerState extends State<_CellResizer> {
                           : null,
                     );
                   },
-                  listenable: Listenable.merge([
-                    widget.hoverNotifier,
-                    widget.dragNotifier,
-                  ]),
                 ),
               ),
             ),
@@ -810,23 +810,20 @@ class _CellResizerState extends State<_CellResizer> {
         /// Left.
         if (column > 0 && widthMode != TableCellResizeMode.none)
           Positioned(
-            bottom: 0,
             left: -thickness / 2,
             top: 0,
+            bottom: 0,
             width: thickness,
             child: MouseRegion(
-              cursor: SystemMouseCursors.resizeColumn,
-              hitTestBehavior: HitTestBehavior.translucent,
               onEnter: (event) {
                 widget.onHover(true, column - 1, Axis.vertical);
               },
               onExit: (event) {
                 widget.onHover(false, column - 1, Axis.vertical);
               },
+              cursor: SystemMouseCursors.resizeColumn,
+              hitTestBehavior: HitTestBehavior.translucent,
               child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onHorizontalDragCancel: _onDragCancel,
-                onHorizontalDragEnd: _onDragEnd,
                 onHorizontalDragStart: _onDragStartColumn,
                 onHorizontalDragUpdate: (details) {
                   if (widthMode == TableCellResizeMode.reallocate) {
@@ -839,7 +836,14 @@ class _CellResizerState extends State<_CellResizer> {
                     );
                   }
                 },
+                onHorizontalDragEnd: _onDragEnd,
+                onHorizontalDragCancel: _onDragCancel,
+                behavior: HitTestBehavior.translucent,
                 child: ListenableBuilder(
+                  listenable: Listenable.merge([
+                    widget.hoverNotifier,
+                    widget.dragNotifier,
+                  ]),
                   builder: (context, child) {
                     _HoveredLine? hover = widget.hoverNotifier.value;
                     final drag = widget.dragNotifier.value;
@@ -858,10 +862,6 @@ class _CellResizerState extends State<_CellResizer> {
                           : null,
                     );
                   },
-                  listenable: Listenable.merge([
-                    widget.hoverNotifier,
-                    widget.dragNotifier,
-                  ]),
                 ),
               ),
             ),
@@ -872,23 +872,20 @@ class _CellResizerState extends State<_CellResizer> {
                 widthMode == TableCellResizeMode.expand) &&
             widthMode != TableCellResizeMode.none)
           Positioned(
-            bottom: 0,
-            right: -thickness / 2,
             top: 0,
+            right: -thickness / 2,
+            bottom: 0,
             width: thickness,
             child: MouseRegion(
-              cursor: SystemMouseCursors.resizeColumn,
-              hitTestBehavior: HitTestBehavior.translucent,
               onEnter: (event) {
                 widget.onHover(true, column + columnSpan - 1, Axis.vertical);
               },
               onExit: (event) {
                 widget.onHover(false, column + columnSpan - 1, Axis.vertical);
               },
+              cursor: SystemMouseCursors.resizeColumn,
+              hitTestBehavior: HitTestBehavior.translucent,
               child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onHorizontalDragCancel: _onDragCancel,
-                onHorizontalDragEnd: _onDragEnd,
                 onHorizontalDragStart: _onDragStartColumn,
                 onHorizontalDragUpdate: (details) {
                   if (widthMode == TableCellResizeMode.reallocate) {
@@ -907,7 +904,14 @@ class _CellResizerState extends State<_CellResizer> {
                     );
                   }
                 },
+                onHorizontalDragEnd: _onDragEnd,
+                onHorizontalDragCancel: _onDragCancel,
+                behavior: HitTestBehavior.translucent,
                 child: ListenableBuilder(
+                  listenable: Listenable.merge([
+                    widget.hoverNotifier,
+                    widget.dragNotifier,
+                  ]),
                   builder: (context, child) {
                     _HoveredLine? hover = widget.hoverNotifier.value;
                     final drag = widget.dragNotifier.value;
@@ -926,10 +930,6 @@ class _CellResizerState extends State<_CellResizer> {
                           : null,
                     );
                   },
-                  listenable: Listenable.merge([
-                    widget.hoverNotifier,
-                    widget.dragNotifier,
-                  ]),
                 ),
               ),
             ),
@@ -1105,6 +1105,10 @@ class TableCell {
               }
             },
             child: ListenableBuilder(
+              listenable: Listenable.merge([
+                flattenedData.hoveredCellNotifier,
+                flattenedData.dragNotifier,
+              ]),
               builder: (context, child) {
                 _HoveredCell? hoveredCell =
                     flattenedData.hoveredCellNotifier.value;
@@ -1131,12 +1135,12 @@ class TableCell {
 
                 return Container(
                   decoration: BoxDecoration(
-                    border:
-                        theme?.border?.resolve(resolvedStates) ??
-                        defaultTheme.border?.resolve(resolvedStates),
                     color:
                         theme?.backgroundColor?.resolve(resolvedStates) ??
                         defaultTheme.backgroundColor?.resolve(resolvedStates),
+                    border:
+                        theme?.border?.resolve(resolvedStates) ??
+                        defaultTheme.border?.resolve(resolvedStates),
                   ),
                   child: DefaultTextStyle.merge(
                     style:
@@ -1146,10 +1150,6 @@ class TableCell {
                   ),
                 );
               },
-              listenable: Listenable.merge([
-                flattenedData.hoveredCellNotifier,
-                flattenedData.dragNotifier,
-              ]),
               child: child,
             ),
           ),
@@ -1557,7 +1557,7 @@ class Table extends StatefulWidget {
 }
 
 class _TableState extends State<Table> {
-  List<_FlattenedTableCell> _cells;
+  late List<_FlattenedTableCell> _cells;
   final _hoveredCellNotifier = ValueNotifier<_HoveredCell?>(null);
 
   @override
@@ -1605,12 +1605,12 @@ class _TableState extends State<Table> {
         widget.theme ?? ComponentTheme.maybeOf<TableTheme>(context);
 
     return Container(
-      clipBehavior: widget.clipBehavior,
       decoration: BoxDecoration(
+        color: tableTheme?.backgroundColor,
         border: tableTheme?.border,
         borderRadius: tableTheme?.borderRadius,
-        color: tableTheme?.backgroundColor,
       ),
+      clipBehavior: widget.clipBehavior,
       child: RawTableLayout(
         clipBehavior: widget.clipBehavior,
         frozenColumn: widget.frozenCells?.testColumn,
@@ -1882,9 +1882,9 @@ class RenderTableLayout extends RenderBox
        _viewportSize = viewportSize {
     addAll(children);
   }
-  TableSizeSupplier _width;
-  TableSizeSupplier _height;
-  Clip _clipBehavior;
+  late TableSizeSupplier _width;
+  late TableSizeSupplier _height;
+  late Clip _clipBehavior;
   CellPredicate? _frozenColumn;
   CellPredicate? _frozenRow;
   double? _verticalOffset;
@@ -1908,11 +1908,11 @@ class RenderTableLayout extends RenderBox
     while (child != null) {
       final parentData = child.parentData! as TableParentData;
       final hit = result.addWithPaintOffset(
+        offset: parentData.offset,
+        position: position,
         hitTest: (BoxHitTestResult result, Offset transformed) {
           return child!.hitTest(result, position: transformed);
         },
-        offset: parentData.offset,
-        position: position,
       );
       if (hit) {
         return true;
@@ -2084,7 +2084,7 @@ class RenderTableLayout extends RenderBox
           height += result.rowHeights[row + i];
         }
         child.layout(
-          BoxConstraints.tightFor(height: height.toDouble(), width: width),
+          BoxConstraints.tightFor(width: width, height: height.toDouble()),
         );
         final offset = result.getOffset(column, row);
         double offsetX = offset.dx;

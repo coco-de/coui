@@ -208,7 +208,7 @@ class _SubFocusScopeState extends State<SubFocusScope> with SubFocusScopeState {
         }
       }
       if (nearestNextItem != null) {
-        _setCurrentItem(nearestNextItem.$1, forward);
+        _setCurrentItem(forward, nearestNextItem.$1);
 
         return true;
       }
@@ -266,10 +266,10 @@ class _SubFocusScopeState extends State<SubFocusScope> with SubFocusScopeState {
         }
       }
       if (nearestItem != null) {
-        _setCurrentItem(nearestItem.$1, null);
+        _setCurrentItem(null, nearestItem.$1);
       }
     } else {
-      _setCurrentItem(mostItem.$1, null);
+      _setCurrentItem(null, mostItem.$1);
     }
   }
 

@@ -160,7 +160,7 @@ BorderRadius? optionallyResolveBorderRadius(
 }
 
 /// A style helper function that returns the value from the widget, theme, or default value.
-T styleValue<T>({required T defaultValue, T? themeValue, T? widgetValue}) {
+T styleValue<T>({T? widgetValue, T? themeValue, required T defaultValue}) {
   return widgetValue ?? themeValue ?? defaultValue;
 }
 
@@ -212,13 +212,13 @@ extension EdgeInsetsExtension on EdgeInsetsGeometry {
 
 BorderRadius subtractByBorder(double borderWidth, BorderRadius radius) {
   return BorderRadius.only(
+    topLeft: _subtractSafe(radius.topLeft, Radius.circular(borderWidth)),
+    topRight: _subtractSafe(radius.topRight, Radius.circular(borderWidth)),
     bottomLeft: _subtractSafe(radius.bottomLeft, Radius.circular(borderWidth)),
     bottomRight: _subtractSafe(
       radius.bottomRight,
       Radius.circular(borderWidth),
     ),
-    topLeft: _subtractSafe(radius.topLeft, Radius.circular(borderWidth)),
-    topRight: _subtractSafe(radius.topRight, Radius.circular(borderWidth)),
   );
 }
 
@@ -365,11 +365,11 @@ extension WidgetExtension on Widget {
   Widget sized({double? height, double? width}) {
     return this is SizedBox
         ? SizedBox(
-            height: height ?? (this as SizedBox).height,
             width: width ?? (this as SizedBox).width,
+            height: height ?? (this as SizedBox).height,
             child: (this as SizedBox).child,
           )
-        : SizedBox(height: height.toDouble(), width: width, child: this);
+        : SizedBox(width: width, height: height?.toDouble(), child: this);
   }
 
   Widget constrained({
@@ -383,10 +383,10 @@ extension WidgetExtension on Widget {
     return this is ConstrainedBox
         ? ConstrainedBox(
             constraints: BoxConstraints(
-              maxHeight:
-                  height ??
-                  maxHeight ??
-                  (this as ConstrainedBox).constraints.maxHeight,
+              minWidth:
+                  width ??
+                  minWidth ??
+                  (this as ConstrainedBox).constraints.minWidth,
               maxWidth:
                   width ??
                   maxWidth ??
@@ -395,19 +395,19 @@ extension WidgetExtension on Widget {
                   height ??
                   minHeight ??
                   (this as ConstrainedBox).constraints.minHeight,
-              minWidth:
-                  width ??
-                  minWidth ??
-                  (this as ConstrainedBox).constraints.minWidth,
+              maxHeight:
+                  height ??
+                  maxHeight ??
+                  (this as ConstrainedBox).constraints.maxHeight,
             ),
             child: (this as ConstrainedBox).child,
           )
         : ConstrainedBox(
             constraints: BoxConstraints(
-              maxHeight: height ?? maxHeight ?? double.infinity,
+              minWidth: width ?? minWidth ?? 0,
               maxWidth: width ?? maxWidth ?? double.infinity,
               minHeight: height ?? minHeight ?? 0,
-              minWidth: width ?? minWidth ?? 0,
+              maxHeight: height ?? maxHeight ?? double.infinity,
             ),
             child: this,
           );
@@ -452,10 +452,10 @@ extension WidgetExtension on Widget {
       return true;
     }());
     final edgeInsets = EdgeInsets.only(
-      bottom: bottom ?? vertical ?? all ?? 0,
       left: left ?? horizontal ?? all ?? 0,
-      right: right ?? horizontal ?? all ?? 0,
       top: top ?? vertical ?? all ?? 0,
+      right: right ?? horizontal ?? all ?? 0,
+      bottom: bottom ?? vertical ?? all ?? 0,
     );
 
     return Padding(padding: padding ?? edgeInsets, child: this);
@@ -501,10 +501,10 @@ extension WidgetExtension on Widget {
 
     return Padding(
       padding: EdgeInsets.only(
-        bottom: bottom ?? vertical ?? all ?? 0,
         left: left ?? horizontal ?? all ?? 0,
-        right: right ?? horizontal ?? all ?? 0,
         top: top ?? vertical ?? all ?? 0,
+        right: right ?? horizontal ?? all ?? 0,
+        bottom: bottom ?? vertical ?? all ?? 0,
       ),
       child: this,
     );
@@ -527,10 +527,10 @@ extension WidgetExtension on Widget {
   }) {
     return Positioned(
       key: key,
-      bottom: bottom,
       left: left,
-      right: right,
       top: top,
+      right: right,
+      bottom: bottom,
       child: this,
     );
   }
@@ -567,8 +567,8 @@ extension WidgetExtension on Widget {
     required CustomClipper<Path> clipper,
   }) {
     return ClipPath(
-      clipBehavior: clipBehavior,
       clipper: clipper,
+      clipBehavior: clipBehavior,
       child: this,
     );
   }
@@ -579,8 +579,8 @@ extension WidgetExtension on Widget {
 
   Widget intrinsicWidth({double? stepHeight, double? stepWidth}) {
     return IntrinsicWidth(
-      stepHeight: stepHeight,
       stepWidth: stepWidth,
+      stepHeight: stepHeight,
       child: this,
     );
   }
@@ -591,8 +591,8 @@ extension WidgetExtension on Widget {
 
   Widget intrinsic({double? stepHeight, double? stepWidth}) {
     return IntrinsicWidth(
-      stepHeight: stepHeight,
       stepWidth: stepWidth,
+      stepHeight: stepHeight,
       child: IntrinsicHeight(child: this),
     );
   }
@@ -685,21 +685,21 @@ class _SeparatedFlexState extends State<SeparatedFlex> {
   @override
   void didUpdateWidget(covariant SeparatedFlex oldWidget) {
     super.didUpdateWidget(oldWidget);
-    mutateSeparated(widget.children, _children, widget.separator);
+    mutateSeparated(_children, widget.separator, widget.children);
   }
 
   @override
   Widget build(BuildContext context) {
     return Flex(
       key: widget.key,
-      clipBehavior: widget.clipBehavior,
-      crossAxisAlignment: widget.crossAxisAlignment,
       direction: widget.direction,
       mainAxisAlignment: widget.mainAxisAlignment,
       mainAxisSize: widget.mainAxisSize,
-      textBaseline: widget.textBaseline,
+      crossAxisAlignment: widget.crossAxisAlignment,
       textDirection: widget.textDirection,
       verticalDirection: widget.verticalDirection,
+      textBaseline: widget.textBaseline,
+      clipBehavior: widget.clipBehavior,
       children: _children,
     );
   }
@@ -780,7 +780,7 @@ extension ColorExtension on Color {
   }
 
   String toHex({bool includeAlpha = true, bool includeHashSign = false}) {
-    String hex = value.toRadixString(16).padLeft(8, '0');
+    String hex = toARGB32().toRadixString(16).padLeft(8, '0');
     if (!includeAlpha) {
       hex = hex.substring(2);
     }
@@ -1147,7 +1147,7 @@ extension TextEditingValueExtension on TextEditingValue {
       extentOffset: selection.extentOffset.clamp(0, newText.length),
     );
 
-    return TextEditingValue(selection: selection, text: newText);
+    return TextEditingValue(text: newText, selection: selection);
   }
 }
 

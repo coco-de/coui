@@ -150,75 +150,75 @@ class _OutlinedContainerState extends State<OutlinedContainer> {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<OutlinedContainerTheme>(context);
     final borderRadius = styleValue(
-      defaultValue: theme.borderRadiusXl,
-      themeValue: compTheme?.borderRadius,
       widgetValue: widget.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: theme.borderRadiusXl,
     ).resolve(Directionality.of(context));
     Color backgroundColor = styleValue(
-      defaultValue: theme.colorScheme.background,
-      themeValue: compTheme?.backgroundColor,
       widgetValue: widget.backgroundColor,
+      themeValue: compTheme?.backgroundColor,
+      defaultValue: theme.colorScheme.background,
     );
     final double? surfaceOpacity = styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.surfaceOpacity,
       widgetValue: widget.surfaceOpacity,
+      themeValue: compTheme?.surfaceOpacity,
+      defaultValue: null,
     );
     if (surfaceOpacity != null) {
       backgroundColor = backgroundColor.scaleAlpha(surfaceOpacity);
     }
     final borderColor = styleValue(
-      defaultValue: theme.colorScheme.muted,
-      themeValue: compTheme?.borderColor,
       widgetValue: widget.borderColor,
+      themeValue: compTheme?.borderColor,
+      defaultValue: theme.colorScheme.muted,
     );
     final borderWidth = styleValue(
-      defaultValue: scaling * 1,
-      themeValue: compTheme?.borderWidth,
       widgetValue: widget.borderWidth,
+      themeValue: compTheme?.borderWidth,
+      defaultValue: scaling * 1,
     );
     final borderStyle = styleValue<BorderStyle>(
-      defaultValue: BorderStyle.solid,
-      themeValue: compTheme?.borderStyle,
       widgetValue: widget.borderStyle,
+      themeValue: compTheme?.borderStyle,
+      defaultValue: BorderStyle.solid,
     );
     final boxShadow = styleValue<List<BoxShadow>>(
-      defaultValue: [],
-      themeValue: compTheme?.boxShadow,
       widgetValue: widget.boxShadow,
+      themeValue: compTheme?.boxShadow,
+      defaultValue: [],
     );
     final padding = styleValue<EdgeInsetsGeometry>(
-      defaultValue: EdgeInsets.zero,
-      themeValue: compTheme?.padding,
       widgetValue: widget.padding,
+      themeValue: compTheme?.padding,
+      defaultValue: EdgeInsets.zero,
     );
     final surfaceBlur = styleValue<double?>(
-      defaultValue: null,
-      themeValue: compTheme?.surfaceBlur,
       widgetValue: widget.surfaceBlur,
+      themeValue: compTheme?.surfaceBlur,
+      defaultValue: null,
     );
     Widget childWidget = AnimatedContainer(
       key: _mainContainerKey,
       decoration: BoxDecoration(
+        color: backgroundColor,
         border: Border.all(
           color: borderColor,
-          style: borderStyle,
           width: borderWidth,
+          style: borderStyle,
         ),
         borderRadius: borderRadius,
         boxShadow: boxShadow,
-        color: backgroundColor,
       ),
-      duration: widget.duration ?? Duration.zero,
-      height: widget.height,
       width: widget.width,
+      height: widget.height,
+      duration: widget.duration ?? Duration.zero,
       child: AnimatedContainer(
-        clipBehavior: widget.clipBehavior,
+        padding: padding,
         decoration: BoxDecoration(
           borderRadius: subtractByBorder(borderWidth, borderRadius),
         ),
+        clipBehavior: widget.clipBehavior,
         duration: widget.duration ?? Duration.zero,
-        padding: padding,
         child: widget.child,
       ),
     );
@@ -322,6 +322,14 @@ class DashedContainer extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AnimatedValueBuilder(
+      value: DashedContainerProperties(
+        borderRadius: borderRadius ?? theme.borderRadiusLg,
+        color: color ?? theme.colorScheme.border,
+        gap: gap ?? (theme.scaling * 5),
+        thickness: thickness ?? (theme.scaling * 1),
+        width: strokeWidth ?? (theme.scaling * 8),
+      ),
+      duration: kDefaultDuration,
       builder: (context, value, child) {
         return CustomPaint(
           painter: DashedPainter(
@@ -334,17 +342,9 @@ class DashedContainer extends StatelessWidget {
           child: child,
         );
       },
-      duration: kDefaultDuration,
       lerp: (a, b, t) {
         return DashedContainerProperties.lerp(context, a, b, t);
       },
-      value: DashedContainerProperties(
-        borderRadius: borderRadius ?? theme.borderRadiusLg,
-        color: color ?? theme.colorScheme.border,
-        gap: gap ?? (theme.scaling * 5),
-        thickness: thickness ?? (theme.scaling * 1),
-        width: strokeWidth ?? (theme.scaling * 8),
-      ),
       child: child,
     );
   }
@@ -422,10 +422,10 @@ class DashedPainter extends CustomPainter {
       path.addRRect(
         RRect.fromRectAndCorners(
           Rect.fromLTWH(0, 0, size.width, size.height),
-          bottomLeft: borderRadius!.bottomLeft,
-          bottomRight: borderRadius!.bottomRight,
           topLeft: borderRadius!.topLeft,
           topRight: borderRadius!.topRight,
+          bottomRight: borderRadius!.bottomRight,
+          bottomLeft: borderRadius!.bottomLeft,
         ),
       );
     } else {

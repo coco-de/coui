@@ -134,7 +134,7 @@ dart_code_metrics:
           - WithAutoDispose
           - autoDispose
     - arguments-ordering:
-        alphabetize: true
+        alphabetize: false
         first:
           - key
           - super

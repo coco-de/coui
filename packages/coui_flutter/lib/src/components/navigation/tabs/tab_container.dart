@@ -24,7 +24,7 @@ class TabContainerTheme {
 
   @override
   String toString() {
-    return 'TabContainerTheme(builder: ${builder()}, childBuilder: ${childBuilder()})';
+    return 'TabContainerTheme(builder: $builder, childBuilder: $childBuilder)';
   }
 
   @override

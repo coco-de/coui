@@ -154,34 +154,34 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<DividerTheme>(context);
     final color = styleValue(
-      defaultValue: theme.colorScheme.border,
-      themeValue: compTheme?.color,
       widgetValue: this.color,
+      themeValue: compTheme?.color,
+      defaultValue: theme.colorScheme.border,
     );
     final thickness = styleValue(
-      defaultValue: 1,
-      themeValue: compTheme?.thickness,
       widgetValue: this.thickness,
+      themeValue: compTheme?.thickness,
+      defaultValue: 1,
     );
     final height = styleValue(
-      defaultValue: thickness,
-      themeValue: compTheme?.height,
       widgetValue: this.height,
+      themeValue: compTheme?.height,
+      defaultValue: thickness,
     );
     final indent = styleValue(
-      defaultValue: 0,
-      themeValue: compTheme?.indent,
       widgetValue: this.indent,
+      themeValue: compTheme?.indent,
+      defaultValue: 0,
     );
     final endIndent = styleValue(
-      defaultValue: 0,
-      themeValue: compTheme?.endIndent,
       widgetValue: this.endIndent,
+      themeValue: compTheme?.endIndent,
+      defaultValue: 0,
     );
     final padding = styleValue(
-      defaultValue: EdgeInsets.symmetric(horizontal: theme.scaling * 8),
-      themeValue: compTheme?.padding,
       widgetValue: this.padding,
+      themeValue: compTheme?.padding,
+      defaultValue: EdgeInsets.symmetric(horizontal: theme.scaling * 8),
     );
 
     return child != null
@@ -195,6 +195,13 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                     child: SizedBox(
                       height: height.toDouble(),
                       child: AnimatedValueBuilder(
+                        value: DividerProperties(
+                          color: color,
+                          endIndent: 0,
+                          indent: indent.toDouble(),
+                          thickness: thickness.toDouble(),
+                        ),
+                        duration: kDefaultDuration,
                         builder: (context, value, child) {
                           return CustomPaint(
                             painter: DividerPainter(
@@ -205,14 +212,7 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           );
                         },
-                        duration: kDefaultDuration,
                         lerp: DividerProperties.lerp,
-                        value: DividerProperties(
-                          color: color,
-                          endIndent: 0,
-                          indent: indent.toDouble(),
-                          thickness: thickness.toDouble(),
-                        ),
                       ),
                     ),
                   ),
@@ -221,6 +221,13 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                     child: SizedBox(
                       height: height.toDouble(),
                       child: AnimatedValueBuilder(
+                        value: DividerProperties(
+                          color: color,
+                          endIndent: endIndent.toDouble(),
+                          indent: 0,
+                          thickness: thickness.toDouble(),
+                        ),
+                        duration: kDefaultDuration,
                         builder: (context, value, child) {
                           return CustomPaint(
                             painter: DividerPainter(
@@ -231,14 +238,7 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           );
                         },
-                        duration: kDefaultDuration,
                         lerp: DividerProperties.lerp,
-                        value: DividerProperties(
-                          color: color,
-                          endIndent: endIndent.toDouble(),
-                          indent: 0,
-                          thickness: thickness.toDouble(),
-                        ),
                       ),
                     ),
                   ),
@@ -247,9 +247,16 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
             ),
           )
         : SizedBox(
-            height: height.toDouble(),
             width: double.infinity,
+            height: height.toDouble(),
             child: AnimatedValueBuilder(
+              value: DividerProperties(
+                color: color,
+                endIndent: endIndent.toDouble(),
+                indent: indent.toDouble(),
+                thickness: thickness.toDouble(),
+              ),
+              duration: kDefaultDuration,
               builder: (context, value, child) {
                 return CustomPaint(
                   painter: DividerPainter(
@@ -260,14 +267,7 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 );
               },
-              duration: kDefaultDuration,
               lerp: DividerProperties.lerp,
-              value: DividerProperties(
-                color: color,
-                endIndent: endIndent.toDouble(),
-                indent: indent.toDouble(),
-                thickness: thickness.toDouble(),
-              ),
             ),
           );
   }
@@ -380,6 +380,13 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                     child: SizedBox(
                       width: width ?? 1,
                       child: AnimatedValueBuilder(
+                        value: DividerProperties(
+                          color: color ?? theme.colorScheme.border,
+                          endIndent: 0,
+                          indent: indent ?? 0,
+                          thickness: thickness ?? 1,
+                        ),
+                        duration: kDefaultDuration,
                         builder: (context, value, child) {
                           return CustomPaint(
                             painter: VerticalDividerPainter(
@@ -390,14 +397,7 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           );
                         },
-                        duration: kDefaultDuration,
                         lerp: DividerProperties.lerp,
-                        value: DividerProperties(
-                          color: color ?? theme.colorScheme.border,
-                          endIndent: 0,
-                          indent: indent ?? 0,
-                          thickness: thickness ?? 1,
-                        ),
                       ),
                     ),
                   ),
@@ -406,6 +406,13 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                     child: SizedBox(
                       width: width ?? 1,
                       child: AnimatedValueBuilder(
+                        value: DividerProperties(
+                          color: color ?? theme.colorScheme.border,
+                          endIndent: endIndent ?? 0,
+                          indent: 0,
+                          thickness: thickness ?? 1,
+                        ),
+                        duration: kDefaultDuration,
                         builder: (context, value, child) {
                           return CustomPaint(
                             painter: VerticalDividerPainter(
@@ -416,14 +423,7 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           );
                         },
-                        duration: kDefaultDuration,
                         lerp: DividerProperties.lerp,
-                        value: DividerProperties(
-                          color: color ?? theme.colorScheme.border,
-                          endIndent: endIndent ?? 0,
-                          indent: 0,
-                          thickness: thickness ?? 1,
-                        ),
                       ),
                     ),
                   ),
@@ -432,9 +432,16 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
             ),
           )
         : SizedBox(
-            height: double.infinity,
             width: width ?? 1,
+            height: double.infinity,
             child: AnimatedValueBuilder(
+              value: DividerProperties(
+                color: color ?? theme.colorScheme.border,
+                endIndent: endIndent ?? 0,
+                indent: indent ?? 0,
+                thickness: thickness ?? 1,
+              ),
+              duration: kDefaultDuration,
               builder: (context, value, child) {
                 return CustomPaint(
                   painter: VerticalDividerPainter(
@@ -445,14 +452,7 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 );
               },
-              duration: kDefaultDuration,
               lerp: DividerProperties.lerp,
-              value: DividerProperties(
-                color: color ?? theme.colorScheme.border,
-                endIndent: endIndent ?? 0,
-                indent: indent ?? 0,
-                thickness: thickness ?? 1,
-              ),
             ),
           );
   }

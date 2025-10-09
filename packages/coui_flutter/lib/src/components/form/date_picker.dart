@@ -214,34 +214,34 @@ class DatePicker extends StatelessWidget {
     final localizations = CoUILocalizations.of(context);
     final compTheme = ComponentTheme.maybeOf<DatePickerTheme>(context);
     final resolvedMode = styleValue(
-      defaultValue: PromptMode.dialog,
-      themeValue: compTheme?.mode,
       widgetValue: mode,
+      themeValue: compTheme?.mode,
+      defaultValue: PromptMode.dialog,
     );
     final resolvedAlignment = styleValue(
-      defaultValue: Alignment.topLeft,
-      themeValue: compTheme?.popoverAlignment,
       widgetValue: popoverAlignment,
+      themeValue: compTheme?.popoverAlignment,
+      defaultValue: Alignment.topLeft,
     );
     final resolvedAnchorAlignment = styleValue(
-      defaultValue: Alignment.bottomLeft,
-      themeValue: compTheme?.popoverAnchorAlignment,
       widgetValue: popoverAnchorAlignment,
+      themeValue: compTheme?.popoverAnchorAlignment,
+      defaultValue: Alignment.bottomLeft,
     );
     final resolvedPadding = styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.popoverPadding,
       widgetValue: popoverPadding,
+      themeValue: compTheme?.popoverPadding,
+      defaultValue: null,
     );
     final resolvedInitialView = styleValue(
-      defaultValue: CalendarView.now(),
-      themeValue: compTheme?.initialView,
       widgetValue: initialView,
+      themeValue: compTheme?.initialView,
+      defaultValue: CalendarView.now(),
     );
     final resolvedInitialViewType = styleValue(
-      defaultValue: CalendarViewType.date,
-      themeValue: compTheme?.initialViewType,
       widgetValue: initialViewType,
+      themeValue: compTheme?.initialViewType,
+      defaultValue: CalendarViewType.date,
     );
 
     return ObjectFormField<DateTime>(
@@ -354,7 +354,8 @@ class DateRangePicker extends StatelessWidget {
       editorBuilder: (context, handler) {
         final value = handler.value;
 
-        return LayoutBuilder(builder: (context, constraints) {
+        return LayoutBuilder(
+          builder: (context, constraints) {
             return DatePickerDialog(
               initialValue: value == null
                   ? null

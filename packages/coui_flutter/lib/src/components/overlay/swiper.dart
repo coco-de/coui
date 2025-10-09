@@ -115,7 +115,7 @@ class SwiperTheme {
 
   @override
   String toString() {
-    return 'SwiperTheme(expands: $expands, draggable: $draggable, barrierDismissible: $barrierDismissible, backdropBuilder: ${backdropBuilder()}, useSafeArea: $useSafeArea, showDragHandle: $showDragHandle, borderRadius: $borderRadius, dragHandleSize: $dragHandleSize, transformBackdrop: $transformBackdrop, surfaceOpacity: $surfaceOpacity, surfaceBlur: $surfaceBlur, barrierColor: $barrierColor, behavior: $behavior)';
+    return 'SwiperTheme(expands: $expands, draggable: $draggable, barrierDismissible: $barrierDismissible, backdropBuilder: $backdropBuilder, useSafeArea: $useSafeArea, showDragHandle: $showDragHandle, borderRadius: $borderRadius, dragHandleSize: $dragHandleSize, transformBackdrop: $transformBackdrop, surfaceOpacity: $surfaceOpacity, surfaceBlur: $surfaceBlur, barrierColor: $barrierColor, behavior: $behavior)';
   }
 
   @override
@@ -168,8 +168,8 @@ abstract class SwiperHandler {
   /// builder, and visual/behavioral properties.
   ///
   /// Returns:
-  /// A [DrawerOverlayCompleter] for managing the swiper lifecycle.
-  DrawerOverlayCompleter openSwiper({
+  /// A [DrawerOverlayCompleter<dynamic>] for managing the swiper lifecycle.
+  DrawerOverlayCompleter<dynamic> openSwiper({
     WidgetBuilder? backdropBuilder,
     Color? barrierColor,
     bool? barrierDismissible,
@@ -206,7 +206,7 @@ class DrawerSwiperHandler extends SwiperHandler {
   const DrawerSwiperHandler();
 
   @override
-  DrawerOverlayCompleter openSwiper({
+  DrawerOverlayCompleter<dynamic> openSwiper({
     WidgetBuilder? backdropBuilder,
     Color? barrierColor,
     bool? barrierDismissible,
@@ -262,7 +262,7 @@ class SheetSwiperHandler extends SwiperHandler {
   const SheetSwiperHandler();
 
   @override
-  DrawerOverlayCompleter openSwiper({
+  DrawerOverlayCompleter<dynamic> openSwiper({
     WidgetBuilder? backdropBuilder,
     Color? barrierColor,
     bool? barrierDismissible,
@@ -441,7 +441,7 @@ class Swiper extends StatefulWidget {
 }
 
 class _SwiperState extends State<Swiper> {
-  DrawerOverlayCompleter? _activeOverlay;
+  late DrawerOverlayCompleter<dynamic>? _activeOverlay;
   final _key = GlobalKey();
 
   OverlayPosition get resolvedPosition {
@@ -560,24 +560,24 @@ class _SwiperState extends State<Swiper> {
     final behavior =
         widget.behavior ?? compTheme?.behavior ?? HitTestBehavior.translucent;
 
-    return widget.position == OverlayPosition.top ||
-            widget.position == OverlayPosition.bottom
-        ? GestureDetector(
-            behavior: behavior,
-            onVerticalDragCancel: _onDragCancel,
-            onVerticalDragEnd: draggable ? _onDragEnd : null,
-            onVerticalDragStart: draggable ? _onDragStart : null,
-            onVerticalDragUpdate: draggable ? _onDrag : null,
-            child: child,
-          )
-        : GestureDetector(
-            behavior: behavior,
-            onHorizontalDragCancel: _onDragCancel,
-            onHorizontalDragEnd: draggable ? _onDragEnd : null,
-            onHorizontalDragStart: draggable ? _onDragStart : null,
-            onHorizontalDragUpdate: draggable ? _onDrag : null,
-            child: child,
-          );
+    return switch (widget.position) {
+      OverlayPosition.top || OverlayPosition.bottom => GestureDetector(
+          onVerticalDragStart: draggable ? _onDragStart : null,
+          onVerticalDragUpdate: draggable ? _onDrag : null,
+          onVerticalDragEnd: draggable ? _onDragEnd : null,
+          onVerticalDragCancel: _onDragCancel,
+          behavior: behavior,
+          child: child,
+        ),
+      OverlayPosition.left || OverlayPosition.right || OverlayPosition.start || OverlayPosition.end => GestureDetector(
+          onHorizontalDragStart: draggable ? _onDragStart : null,
+          onHorizontalDragUpdate: draggable ? _onDrag : null,
+          onHorizontalDragEnd: draggable ? _onDragEnd : null,
+          onHorizontalDragCancel: _onDragCancel,
+          behavior: behavior,
+          child: child,
+        ),
+    };
   }
 
   @override

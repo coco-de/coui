@@ -308,49 +308,39 @@ class _CoUIAppState extends State<CoUIApp> {
     return _usesRouter
         ? WidgetsApp.router(
             key: GlobalObjectKey(this),
-            actions: widget.actions,
+            routeInformationProvider: widget.routeInformationProvider,
+            routeInformationParser: widget.routeInformationParser,
+            routerDelegate: widget.routerDelegate,
+            routerConfig: widget.routerConfig,
             backButtonDispatcher: widget.backButtonDispatcher,
             builder: _builder,
-            color: primaryColor,
-            debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-            locale: widget.locale,
-            localeListResolutionCallback: widget.localeListResolutionCallback,
-            localeResolutionCallback: widget.localeResolutionCallback,
-            localizationsDelegates: _localizationsDelegates,
+            title: widget.title,
             onGenerateTitle: widget.onGenerateTitle,
-            restorationScopeId: widget.restorationScopeId,
-            routeInformationParser: widget.routeInformationParser,
-            routeInformationProvider: widget.routeInformationProvider,
-            routerConfig: widget.routerConfig,
-            routerDelegate: widget.routerDelegate,
-            shortcuts: widget.shortcuts,
-            showPerformanceOverlay: widget.showPerformanceOverlay,
-            showSemanticsDebugger: widget.showSemanticsDebugger,
-            supportedLocales: widget.supportedLocales,
             textStyle: widget.theme.typography.sans.copyWith(
               color: widget.theme.colorScheme.foreground,
             ),
-            title: widget.title,
+            color: primaryColor,
+            locale: widget.locale,
+            localizationsDelegates: _localizationsDelegates,
+            localeListResolutionCallback: widget.localeListResolutionCallback,
+            localeResolutionCallback: widget.localeResolutionCallback,
+            supportedLocales: widget.supportedLocales,
+            showPerformanceOverlay: widget.showPerformanceOverlay,
+            showSemanticsDebugger: widget.showSemanticsDebugger,
+            debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+            shortcuts: widget.shortcuts,
+            actions: widget.actions,
+            restorationScopeId: widget.restorationScopeId,
           )
         : WidgetsApp(
             key: GlobalObjectKey(this),
-            actions: widget.actions,
-            builder: _builder,
-            color: primaryColor,
-            debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-            home: widget.home,
-            initialRoute: widget.initialRoute,
-            locale: widget.locale,
-            localeListResolutionCallback: widget.localeListResolutionCallback,
-            localeResolutionCallback: widget.localeResolutionCallback,
-            localizationsDelegates: _localizationsDelegates,
             navigatorKey: widget.navigatorKey,
-            navigatorObservers: widget.navigatorObservers!,
-            onGenerateInitialRoutes: widget.onGenerateInitialRoutes,
             onGenerateRoute: widget.onGenerateRoute,
-            onGenerateTitle: widget.onGenerateTitle,
-            onNavigationNotification: widget.onNavigationNotification,
+            onGenerateInitialRoutes: widget.onGenerateInitialRoutes,
             onUnknownRoute: widget.onUnknownRoute,
+            onNavigationNotification: widget.onNavigationNotification,
+            navigatorObservers: widget.navigatorObservers!,
+            initialRoute: widget.initialRoute,
             pageRouteBuilder:
                 <T>(RouteSettings settings, WidgetBuilder builder) {
                   return MaterialPageRoute<T>(
@@ -358,16 +348,26 @@ class _CoUIAppState extends State<CoUIApp> {
                     settings: settings,
                   );
                 },
-            restorationScopeId: widget.restorationScopeId,
+            home: widget.home,
             routes: widget.routes!,
-            shortcuts: widget.shortcuts,
-            showPerformanceOverlay: widget.showPerformanceOverlay,
-            showSemanticsDebugger: widget.showSemanticsDebugger,
-            supportedLocales: widget.supportedLocales,
+            builder: _builder,
+            title: widget.title,
+            onGenerateTitle: widget.onGenerateTitle,
             textStyle: widget.theme.typography.sans.copyWith(
               color: widget.theme.colorScheme.foreground,
             ),
-            title: widget.title,
+            color: primaryColor,
+            locale: widget.locale,
+            localizationsDelegates: _localizationsDelegates,
+            localeListResolutionCallback: widget.localeListResolutionCallback,
+            localeResolutionCallback: widget.localeResolutionCallback,
+            supportedLocales: widget.supportedLocales,
+            showPerformanceOverlay: widget.showPerformanceOverlay,
+            showSemanticsDebugger: widget.showSemanticsDebugger,
+            debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
+            shortcuts: widget.shortcuts,
+            actions: widget.actions,
+            restorationScopeId: widget.restorationScopeId,
           );
   }
 
@@ -429,11 +429,11 @@ class _CoUIAppState extends State<CoUIApp> {
           widget.materialTheme ??
           m.ThemeData.from(
             colorScheme: m.ColorScheme.fromSeed(
+              seedColor: widget.theme.colorScheme.primary,
               brightness: widget.theme.brightness,
-              error: widget.theme.colorScheme.destructive,
               primary: widget.theme.colorScheme.primary,
               secondary: widget.theme.colorScheme.secondary,
-              seedColor: widget.theme.colorScheme.primary,
+              error: widget.theme.colorScheme.destructive,
               surface: widget.theme.colorScheme.background,
             ),
           ),
@@ -441,13 +441,13 @@ class _CoUIAppState extends State<CoUIApp> {
         data:
             widget.cupertinoTheme ??
             c.CupertinoThemeData(
-              applyThemeToAll: true,
-              barBackgroundColor: widget.theme.colorScheme.accent,
               brightness: widget.theme.brightness,
               primaryColor: widget.theme.colorScheme.primary,
               primaryContrastingColor:
                   widget.theme.colorScheme.primaryForeground,
+              barBackgroundColor: widget.theme.colorScheme.accent,
               scaffoldBackgroundColor: widget.theme.colorScheme.background,
+              applyThemeToAll: true,
             ),
         child: m.Material(
           color: widget.background ?? m.Colors.transparent,
@@ -904,12 +904,12 @@ class CoUIUI extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AnimatedDefaultTextStyle(
-      duration: kDefaultDuration,
       style:
           textStyle ??
           theme.typography.sans.copyWith(
             color: theme.colorScheme.foreground,
           ),
+      duration: kDefaultDuration,
       child: IconTheme(
         data: IconThemeData(color: theme.colorScheme.foreground),
         child: child,

@@ -1,27 +1,34 @@
 import 'package:coui_flutter/coui_flutter.dart';
+
 /// A callback that builds a widget based on an animated value and optional child.
 ///
 /// Used by [AnimatedValueBuilder] to construct the widget tree during animation.
 /// The [value] parameter contains the current interpolated value between start and end,
 /// while [child] is an optional widget that can be passed through for optimization.
-typedef AnimatedChildBuilder<T> = Widget Function(
-    BuildContext context, T value, Widget? child);
+typedef AnimatedChildBuilder<T> =
+    Widget Function(BuildContext context, T value, Widget? child);
 
 /// A callback that builds a widget based on an animation object.
 ///
 /// Used by [AnimatedValueBuilder.animation] to provide direct access to the
 /// underlying [Animation] for advanced use cases. This allows for more control
 /// over animation timing and value extraction.
-typedef AnimationBuilder<T> = Widget Function(
-    BuildContext context, Animation<T> animation);
+typedef AnimationBuilder<T> =
+    Widget Function(BuildContext context, Animation<T> animation);
 
 /// A callback that builds a widget with raw animation progress information.
 ///
 /// Used by [AnimatedValueBuilder.raw] to provide complete animation state including
 /// the old value, new value, and current progress [t] between them (0.0 to 1.0).
 /// This gives maximum control for custom interpolation and transition effects.
-typedef AnimatedChildValueBuilder<T> = Widget Function(
-    BuildContext context, T oldValue, T newValue, double t, Widget? child);
+typedef AnimatedChildValueBuilder<T> =
+    Widget Function(
+      BuildContext context,
+      T oldValue,
+      T newValue,
+      double t,
+      Widget? child,
+    );
 
 /// A versatile animated widget that smoothly transitions between values.
 ///
@@ -299,8 +306,8 @@ class AnimatedValueBuilderState<T> extends State<AnimatedValueBuilder<T>>
     _currentValue = widget.initialValue ?? widget.value;
     _controller = AnimationController(duration: widget.duration, vsync: this);
     _curvedAnimation = CurvedAnimation(
-      curve: widget.curve,
       parent: _controller,
+      curve: widget.curve,
     );
     _curvedAnimation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -309,9 +316,9 @@ class AnimatedValueBuilderState<T> extends State<AnimatedValueBuilder<T>>
     });
     _animation = _curvedAnimation.drive(
       _AnimatableValue(
+        start: widget.initialValue ?? widget.value,
         end: widget.value,
         lerp: lerpedValue,
-        start: widget.initialValue ?? widget.value,
       ),
     );
     if (widget.initialValue != null) {
@@ -363,16 +370,16 @@ class AnimatedValueBuilderState<T> extends State<AnimatedValueBuilder<T>>
     if (widget.curve != oldWidget.curve) {
       _curvedAnimation.dispose();
       _curvedAnimation = CurvedAnimation(
-        curve: widget.curve,
         parent: _controller,
+        curve: widget.curve,
       );
     }
     if (oldWidget.value != widget.value || oldWidget.lerp != widget.lerp) {
       _animation = _curvedAnimation.drive(
         _AnimatableValue(
+          start: currentValue,
           end: widget.value,
           lerp: lerpedValue,
-          start: currentValue,
         ),
       );
       _controller.forward(from: 0);
@@ -605,30 +612,30 @@ class _RepeatedAnimationBuilderState<T>
       _controller.duration = widget.reverseDuration ?? widget.duration;
       _controller.reverseDuration = widget.duration;
       _curvedAnimation = CurvedAnimation(
-        curve: widget.reverseCurve ?? widget.curve,
         parent: _controller,
+        curve: widget.reverseCurve ?? widget.curve,
         reverseCurve: widget.curve,
       );
       _animation = _curvedAnimation.drive(
         _AnimatableValue(
+          start: widget.end,
           end: widget.start,
           lerp: lerpedValue,
-          start: widget.end,
         ),
       );
     } else {
       _controller.duration = widget.duration;
       _controller.reverseDuration = widget.reverseDuration;
       _curvedAnimation = CurvedAnimation(
-        curve: widget.curve,
         parent: _controller,
+        curve: widget.curve,
         reverseCurve: widget.reverseCurve ?? widget.curve,
       );
       _animation = _curvedAnimation.drive(
         _AnimatableValue(
+          start: widget.start,
           end: widget.end,
           lerp: lerpedValue,
-          start: widget.start,
         ),
       );
     }
@@ -676,15 +683,15 @@ class _RepeatedAnimationBuilderState<T>
         _controller.reverseDuration = widget.duration;
         _curvedAnimation.dispose();
         _curvedAnimation = CurvedAnimation(
-          curve: widget.reverseCurve ?? widget.curve,
           parent: _controller,
+          curve: widget.reverseCurve ?? widget.curve,
           reverseCurve: widget.curve,
         );
         _animation = _curvedAnimation.drive(
           _AnimatableValue(
+            start: widget.end,
             end: widget.start,
             lerp: lerpedValue,
-            start: widget.end,
           ),
         );
       } else {
@@ -692,15 +699,15 @@ class _RepeatedAnimationBuilderState<T>
         _controller.reverseDuration = widget.reverseDuration;
         _curvedAnimation.dispose();
         _curvedAnimation = CurvedAnimation(
-          curve: widget.curve,
           parent: _controller,
+          curve: widget.curve,
           reverseCurve: widget.reverseCurve ?? widget.curve,
         );
         _animation = _curvedAnimation.drive(
           _AnimatableValue(
+            start: widget.start,
             end: widget.end,
             lerp: lerpedValue,
-            start: widget.start,
           ),
         );
       }
@@ -730,7 +737,7 @@ class _RepeatedAnimationBuilderState<T>
       return widget.lerp!(a, b, t);
     }
     try {
-      return (a as dynamic) + ((b as dynamic) - (a as dynamic)) * t;
+      return (a as dynamic) + ((b as dynamic) - (a as dynamic)) * t as T;
     } catch (e) {
       throw Exception(
         'Could not lerp $a and $b. You must provide a custom lerp function.',
@@ -1008,10 +1015,10 @@ class _CrossFadedTransitionState extends State<CrossFadedTransition> {
       alignment: widget.alignment,
       duration: widget.duration,
       child: AnimatedValueBuilder(
-        builder: _builder,
-        duration: widget.duration,
-        lerp: _lerpWidget,
         value: newChild,
+        duration: widget.duration,
+        builder: _builder,
+        lerp: _lerpWidget,
       ),
     );
   }

@@ -159,7 +159,7 @@ class OverflowMarquee extends StatefulWidget {
 
 class _OverflowMarqueeState extends State<OverflowMarquee>
     with SingleTickerProviderStateMixin {
-  Ticker _ticker;
+  late Ticker _ticker;
   Duration elapsed = Duration.zero;
 
   @override
@@ -186,29 +186,29 @@ class _OverflowMarqueeState extends State<OverflowMarquee>
     final textDirection = Directionality.of(context);
     final compTheme = ComponentTheme.maybeOf<OverflowMarqueeTheme>(context);
     final direction = styleValue(
-      defaultValue: Axis.horizontal,
-      themeValue: compTheme?.direction,
       widgetValue: widget.direction,
+      themeValue: compTheme?.direction,
+      defaultValue: Axis.horizontal,
     );
     final fadePortion = styleValue(
-      defaultValue: 25,
-      themeValue: compTheme?.fadePortion,
       widgetValue: widget.fadePortion,
+      themeValue: compTheme?.fadePortion,
+      defaultValue: 25,
     );
     final duration = styleValue(
-      defaultValue: const Duration(seconds: 1),
-      themeValue: compTheme?.duration,
       widgetValue: widget.duration,
+      themeValue: compTheme?.duration,
+      defaultValue: const Duration(seconds: 1),
     );
     final delayDuration = styleValue(
-      defaultValue: const Duration(milliseconds: 500),
-      themeValue: compTheme?.delayDuration,
       widgetValue: widget.delayDuration,
+      themeValue: compTheme?.delayDuration,
+      defaultValue: const Duration(milliseconds: 500),
     );
     final step = styleValue(
-      defaultValue: 100,
-      themeValue: compTheme?.step,
       widgetValue: widget.step,
+      themeValue: compTheme?.step,
+      defaultValue: 100,
     );
 
     return ClipRect(
@@ -555,8 +555,8 @@ class _RenderOverflowMarqueeLayout extends RenderShiftedBox
 
     return LinearGradient(
       begin: begin,
-      colors: colors,
       end: end,
+      colors: colors,
       stops: stops,
     ).createShader(bounds);
   }

@@ -218,7 +218,7 @@ class ControlledComponentAdapter<T> extends StatefulWidget
 
 class _ControlledComponentAdapterState<T>
     extends State<ControlledComponentAdapter<T>> {
-  T _value;
+  late T _value;
 
   @override
   void initState() {

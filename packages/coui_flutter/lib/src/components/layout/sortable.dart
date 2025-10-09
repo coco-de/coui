@@ -388,8 +388,8 @@ class _SortableDropFallbackState<T> extends State<SortableDropFallback<T>> {
       children: [
         Positioned.fill(
           child: MetaData(
-            behavior: HitTestBehavior.translucent,
             metaData: this,
+            behavior: HitTestBehavior.translucent,
           ),
         ),
         widget.child,
@@ -444,7 +444,7 @@ class _DropTransform {
   final Matrix4 to;
   final Widget child;
 
-  final _SortableState state;
+  final _SortableState<dynamic> state;
 
   Duration? start;
 
@@ -564,12 +564,12 @@ class _SortableState<T> extends State<Sortable<T>>
     _session = _SortableDraggingSession(
       data: widget.data,
       ghost: ListenableBuilder(
+        listenable: _currentTarget,
         builder: (context, child) {
           return _currentTarget.value != null
               ? candidateFallback ?? widget.child
               : ghost;
         },
-        listenable: _currentTarget,
       ),
       layer: layer,
       layerRenderBox: layerRenderBox,
@@ -834,22 +834,24 @@ class _SortableState<T> extends State<Sortable<T>>
     final layer = Data.of<_SortableLayerState>(context);
 
     return MetaData(
-      behavior: HitTestBehavior.translucent,
       metaData: this,
 
+      behavior: HitTestBehavior.translucent,
+
       /// Must define the generic type to avoid type inference _SortableState<T>.
-      child: Data<_SortableState>.inherit(
+      child: Data<_SortableState<dynamic>>.inherit(
         data: this,
         child: ListenableBuilder(
+          listenable: layer._sessions,
           builder: (context, child) {
             final hasCandidate = layer._sessions.value.isNotEmpty;
             final container = GestureDetector(
               key: _gestureKey,
-              behavior: widget.behavior,
-              onPanCancel: widget.enabled ? _onDragCancel : null,
-              onPanEnd: widget.enabled ? _onDragEnd : null,
               onPanStart: widget.enabled ? _onDragStart : null,
               onPanUpdate: widget.enabled ? _onDragUpdate : null,
+              onPanEnd: widget.enabled ? _onDragEnd : null,
+              onPanCancel: widget.enabled ? _onDragCancel : null,
+              behavior: widget.behavior,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -859,6 +861,7 @@ class _SortableState<T> extends State<Sortable<T>>
                       duration: kDefaultDuration,
                       hasCandidate: hasCandidate,
                       child: ListenableBuilder(
+                        listenable: leftCandidate,
                         builder: (context, child) {
                           return leftCandidate.value != null
                               ? SizedBox.fromSize(
@@ -867,7 +870,6 @@ class _SortableState<T> extends State<Sortable<T>>
                                 )
                               : const SizedBox.shrink();
                         },
-                        listenable: leftCandidate,
                       ),
                     ),
                   ),
@@ -881,6 +883,7 @@ class _SortableState<T> extends State<Sortable<T>>
                             duration: kDefaultDuration,
                             hasCandidate: hasCandidate,
                             child: ListenableBuilder(
+                              listenable: topCandidate,
                               builder: (context, child) {
                                 return topCandidate.value != null
                                     ? SizedBox.fromSize(
@@ -889,20 +892,20 @@ class _SortableState<T> extends State<Sortable<T>>
                                       )
                                     : const SizedBox.shrink();
                               },
-                              listenable: topCandidate,
                             ),
                           ),
                         ),
                         Flexible(
                           child: _dragging
-                              ? widget.fallback ??
+                              ? (widget.fallback ??
                                     ListenableBuilder(
+                                      listenable: _hasDraggedOff,
                                       builder: (context, child) {
                                         return (_hasDraggedOff.value
                                             ? AbsorbPointer(
                                                 child: Visibility(
-                                                  maintainState: true,
                                                   visible: false,
+                                                  maintainState: true,
                                                   child: KeyedSubtree(
                                                     key: _key,
                                                     child: widget.child,
@@ -911,10 +914,10 @@ class _SortableState<T> extends State<Sortable<T>>
                                               )
                                             : AbsorbPointer(
                                                 child: Visibility(
+                                                  visible: false,
+                                                  maintainState: true,
                                                   maintainAnimation: true,
                                                   maintainSize: true,
-                                                  maintainState: true,
-                                                  visible: false,
                                                   child: KeyedSubtree(
                                                     key: _key,
                                                     child: widget.child,
@@ -922,18 +925,18 @@ class _SortableState<T> extends State<Sortable<T>>
                                                 ),
                                               ));
                                       },
-                                      listenable: _hasDraggedOff,
-                                    )
+                                    ))
                               : ListenableBuilder(
+                                  listenable: _hasClaimedDrop,
                                   builder: (context, child) {
                                     return IgnorePointer(
                                       ignoring:
                                           hasCandidate || _hasClaimedDrop.value,
                                       child: Visibility(
+                                        visible: !_hasClaimedDrop.value,
+                                        maintainState: true,
                                         maintainAnimation: true,
                                         maintainSize: true,
-                                        maintainState: true,
-                                        visible: !_hasClaimedDrop.value,
                                         child: KeyedSubtree(
                                           key: _key,
                                           child: widget.child,
@@ -941,7 +944,6 @@ class _SortableState<T> extends State<Sortable<T>>
                                       ),
                                     );
                                   },
-                                  listenable: _hasClaimedDrop,
                                 ),
                         ),
                         AbsorbPointer(
@@ -950,6 +952,7 @@ class _SortableState<T> extends State<Sortable<T>>
                             duration: kDefaultDuration,
                             hasCandidate: hasCandidate,
                             child: ListenableBuilder(
+                              listenable: bottomCandidate,
                               builder: (context, child) {
                                 return bottomCandidate.value != null
                                     ? SizedBox.fromSize(
@@ -959,7 +962,6 @@ class _SortableState<T> extends State<Sortable<T>>
                                       )
                                     : const SizedBox.shrink();
                               },
-                              listenable: bottomCandidate,
                             ),
                           ),
                         ),
@@ -972,6 +974,7 @@ class _SortableState<T> extends State<Sortable<T>>
                       duration: kDefaultDuration,
                       hasCandidate: hasCandidate,
                       child: ListenableBuilder(
+                        listenable: rightCandidate,
                         builder: (context, child) {
                           return rightCandidate.value != null
                               ? SizedBox.fromSize(
@@ -980,7 +983,6 @@ class _SortableState<T> extends State<Sortable<T>>
                                 )
                               : const SizedBox.shrink();
                         },
-                        listenable: rightCandidate,
                       ),
                     ),
                   ),
@@ -992,7 +994,6 @@ class _SortableState<T> extends State<Sortable<T>>
                 ? container
                 : AnimatedSize(duration: kDefaultDuration, child: container);
           },
-          listenable: layer._sessions,
         ),
       ),
     );
@@ -1097,14 +1098,14 @@ class SortableDragHandle extends StatefulWidget {
 
 class _SortableDragHandleState extends State<SortableDragHandle>
     with AutomaticKeepAliveClientMixin {
-  _SortableState? _state;
+  _SortableState<dynamic>? _state;
 
   bool _dragging = false;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _state = Data.maybeOf<_SortableState>(context);
+    _state = Data.maybeOf<_SortableState<dynamic>>(context);
   }
 
   @override
@@ -1122,19 +1123,6 @@ class _SortableDragHandleState extends State<SortableDragHandle>
           : MouseCursor.defer,
       hitTestBehavior: widget.behavior,
       child: GestureDetector(
-        behavior: widget.behavior,
-        onPanCancel: widget.enabled && _state != null
-            ? () {
-                _state!._onDragCancel();
-                _dragging = false;
-              }
-            : null,
-        onPanEnd: widget.enabled && _state != null
-            ? (details) {
-                _state!._onDragEnd(details);
-                _dragging = false;
-              }
-            : null,
         onPanStart: widget.enabled && _state != null
             ? (details) {
                 _dragging = true;
@@ -1144,6 +1132,19 @@ class _SortableDragHandleState extends State<SortableDragHandle>
         onPanUpdate: widget.enabled && _state != null
             ? _state!._onDragUpdate
             : null,
+        onPanEnd: widget.enabled && _state != null
+            ? (details) {
+                _state!._onDragEnd(details);
+                _dragging = false;
+              }
+            : null,
+        onPanCancel: widget.enabled && _state != null
+            ? () {
+                _state!._onDragCancel();
+                _dragging = false;
+              }
+            : null,
+        behavior: widget.behavior,
         child: widget.child,
       ),
     );
@@ -1344,7 +1345,7 @@ class _PendingDropTransform {
   final Matrix4 from;
   final Widget child;
 
-  final SortableData data;
+  final SortableData<dynamic> data;
 }
 
 class _SortableLayerState extends State<SortableLayer>
@@ -1353,13 +1354,15 @@ class _SortableLayerState extends State<SortableLayer>
     return Matrix4Tween(begin: from, end: to).transform(progress);
   }
 
-  final _sessions = MutableNotifier<List<_SortableDraggingSession>>([]);
+  final _sessions = MutableNotifier<List<_SortableDraggingSession<dynamic>>>(
+    [],
+  );
 
   final _activeDrops = MutableNotifier<List<_DropTransform>>([]);
 
   final _pendingDrop = ValueNotifier<_PendingDropTransform?>(null);
 
-  Ticker _ticker;
+  late Ticker _ticker;
 
   @override
   void initState() {
@@ -1377,13 +1380,13 @@ class _SortableLayerState extends State<SortableLayer>
     _pendingDrop.value = null;
   }
 
-  bool _canClaimDrop(_SortableState item, Object? data) {
+  bool _canClaimDrop(_SortableState<dynamic> item, Object? data) {
     return _pendingDrop.value != null && data == _pendingDrop.value!.data;
   }
 
   _DropTransform? _claimDrop(
-    _SortableState item,
-    SortableData data, [
+    _SortableState<dynamic> item,
+    SortableData<dynamic> data, [
     bool force = false,
   ]) {
     if (_pendingDrop.value != null &&
@@ -1418,8 +1421,11 @@ class _SortableLayerState extends State<SortableLayer>
       double progress =
           ((elapsed - drop.start!).inMilliseconds /
                   (widget.dropDuration ?? kDefaultDuration).inMilliseconds)
-              .clamp(0, 1).toDouble();
-      progress = (widget.dropCurve ?? Curves.easeInOut).transform(progress.toDouble());
+              .clamp(0, 1)
+              .toDouble();
+      progress = (widget.dropCurve ?? Curves.easeInOut).transform(
+        progress.toDouble(),
+      );
       if (progress >= 1 || !drop.state.mounted) {
         drop.state._hasClaimedDrop.value = false;
         toRemove.add(drop);
@@ -1441,13 +1447,13 @@ class _SortableLayerState extends State<SortableLayer>
     super.dispose();
   }
 
-  void pushDraggingSession(_SortableDraggingSession session) {
+  void pushDraggingSession(_SortableDraggingSession<dynamic> session) {
     _sessions.mutate((value) {
       value.add(session);
     });
   }
 
-  void removeDraggingSession(_SortableDraggingSession session) {
+  void removeDraggingSession(_SortableDraggingSession<dynamic> session) {
     if (!mounted) {
       return;
     }
@@ -1476,30 +1482,32 @@ class _SortableLayerState extends State<SortableLayer>
   @override
   Widget build(BuildContext context) {
     return MetaData(
-      behavior: HitTestBehavior.translucent,
       metaData: this,
+      behavior: HitTestBehavior.translucent,
       child: Data.inherit(
         data: this,
         child: Stack(
+          fit: StackFit.passthrough,
           clipBehavior:
               widget.clipBehavior ?? (widget.lock ? Clip.hardEdge : Clip.none),
-          fit: StackFit.passthrough,
           children: [
             widget.child,
             ListenableBuilder(
+              listenable: _sessions,
               builder: (context, child) {
                 return Positioned.fill(
                   child: MouseRegion(
                     cursor: _sessions.value.isNotEmpty
                         ? SystemMouseCursors.grabbing
                         : MouseCursor.defer,
-                    hitTestBehavior: HitTestBehavior.translucent,
                     opaque: false,
+                    hitTestBehavior: HitTestBehavior.translucent,
                     child: Stack(
                       clipBehavior: Clip.none,
                       children: [
                         for (final session in _sessions.value)
                           ListenableBuilder(
+                            listenable: session.offset,
                             builder: (context, child) {
                               return Positioned(
                                 left: session.offset.value.dx,
@@ -1516,16 +1524,15 @@ class _SortableLayerState extends State<SortableLayer>
                                 ),
                               );
                             },
-                            listenable: session.offset,
                           ),
                       ],
                     ),
                   ),
                 );
               },
-              listenable: _sessions,
             ),
             ListenableBuilder(
+              listenable: _activeDrops,
               builder: (context, child) {
                 return Positioned.fill(
                   child: Stack(
@@ -1533,6 +1540,7 @@ class _SortableLayerState extends State<SortableLayer>
                     children: [
                       for (final drop in _activeDrops.value)
                         ListenableBuilder(
+                          listenable: drop.progress,
                           builder: (context, child) {
                             return IgnorePointer(
                               child: Transform(
@@ -1545,15 +1553,14 @@ class _SortableLayerState extends State<SortableLayer>
                               ),
                             );
                           },
-                          listenable: drop.progress,
                         ),
                       child!,
                     ],
                   ),
                 );
               },
-              listenable: _activeDrops,
               child: ListenableBuilder(
+                listenable: _pendingDrop,
                 builder: (context, child) {
                   return _pendingDrop.value != null
                       ? IgnorePointer(
@@ -1564,7 +1571,6 @@ class _SortableLayerState extends State<SortableLayer>
                         )
                       : const SizedBox();
                 },
-                listenable: _pendingDrop,
               ),
             ),
           ],
@@ -1674,7 +1680,7 @@ class ScrollableSortableLayer extends StatefulWidget {
 
 class _ScrollableSortableLayerState extends State<ScrollableSortableLayer>
     with SingleTickerProviderStateMixin {
-  Ticker ticker;
+  late Ticker ticker;
 
   @override
   void initState() {
@@ -1709,7 +1715,7 @@ class _ScrollableSortableLayerState extends State<ScrollableSortableLayer>
     _lastElapsed = elapsed;
   }
 
-  void _startDrag(Offset globalPosition, _SortableState state) {
+  void _startDrag(Offset globalPosition, _SortableState<dynamic> state) {
     if (_attached != null && _attached!.context.mounted) {
       return;
     }
@@ -1720,14 +1726,14 @@ class _ScrollableSortableLayerState extends State<ScrollableSortableLayer>
     }
   }
 
-  void _updateDrag(Offset globalPosition, _SortableState state) {
+  void _updateDrag(Offset globalPosition, _SortableState<dynamic> state) {
     if (state != _attached) {
       return;
     }
     _globalPosition = globalPosition;
   }
 
-  void _endDrag(_SortableState state) {
+  void _endDrag(_SortableState<dynamic> state) {
     if (state != _attached) {
       return;
     }
@@ -1744,7 +1750,7 @@ class _ScrollableSortableLayerState extends State<ScrollableSortableLayer>
     super.dispose();
   }
 
-  _SortableState? _attached;
+  _SortableState<dynamic>? _attached;
 
   Offset? _globalPosition;
 

@@ -365,10 +365,10 @@ class TabPaneState<T> extends State<TabPane<T>> {
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(
         context,
-      ).copyWith(overscroll: false, scrollbars: false),
+      ).copyWith(scrollbars: false, overscroll: false),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         verticalDirection: VerticalDirection.up,
         children: [
           Flexible(
@@ -379,11 +379,11 @@ class TabPaneState<T> extends State<TabPane<T>> {
             ),
           ),
           Container(
-            height: barHeight,
             padding: EdgeInsets.only(
               left: resolvedBorderRadius.bottomLeft.x,
               right: resolvedBorderRadius.bottomRight.x,
             ),
+            height: barHeight,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -398,7 +398,6 @@ class TabPaneState<T> extends State<TabPane<T>> {
                 Flexible(
                   child: FadeScroll(
                     controller: _scrollController,
-                    endCrossOffset: border?.width ?? 1,
                     endOffset: resolvedBorderRadius.bottomRight.x,
                     gradient: [Colors.white.withAlpha(0)],
                     startOffset: resolvedBorderRadius.bottomLeft.x,
@@ -425,8 +424,12 @@ class TabPaneState<T> extends State<TabPane<T>> {
                             child: TabContainer(
                               builder: (context, children) {
                                 return ListView.separated(
-                                  clipBehavior: Clip.none,
+                                  scrollDirection: Axis.horizontal,
                                   controller: _scrollController,
+                                  padding: EdgeInsets.only(
+                                    left: resolvedBorderRadius.bottomLeft.x,
+                                    right: resolvedBorderRadius.bottomRight.x,
+                                  ),
                                   itemBuilder: (context, index) {
                                     return GestureDetector(
                                       onTap: () {
@@ -465,12 +468,6 @@ class TabPaneState<T> extends State<TabPane<T>> {
                                       ),
                                     );
                                   },
-                                  itemCount: children.length,
-                                  padding: EdgeInsets.only(
-                                    left: resolvedBorderRadius.bottomLeft.x,
-                                    right: resolvedBorderRadius.bottomRight.x,
-                                  ),
-                                  scrollDirection: Axis.horizontal,
                                   separatorBuilder: (context, index) {
                                     final beforeIsFocused =
                                         widget.focused == index;
@@ -485,6 +482,8 @@ class TabPaneState<T> extends State<TabPane<T>> {
                                           )
                                         : SizedBox(width: theme.scaling * 8);
                                   },
+                                  itemCount: children.length,
+                                  clipBehavior: Clip.none,
                                 );
                               },
                               childBuilder: _childBuilder,

@@ -183,21 +183,21 @@ class Pagination extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<PaginationTheme>(context);
     final gap = styleValue(
-      defaultValue: scaling * 4,
-      themeValue: compTheme?.gap,
       widgetValue: this.gap,
+      themeValue: compTheme?.gap,
+      defaultValue: scaling * 4,
     );
     final showLabel = styleValue(
-      defaultValue: true,
-      themeValue: compTheme?.showLabel,
       widgetValue: this.showLabel,
+      themeValue: compTheme?.showLabel,
+      defaultValue: true,
     );
     final localizations = CoUILocalizations.of(context);
 
     return IntrinsicHeight(
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (!hidePreviousOnFirstPage || hasPrevious)
             _buildPreviousLabel(localizations, showLabel),

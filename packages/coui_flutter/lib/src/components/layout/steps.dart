@@ -120,8 +120,8 @@ class Steps extends StatelessWidget {
       mapped.add(
         IntrinsicHeight(
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Column(
                 children: [
@@ -130,8 +130,8 @@ class Steps extends StatelessWidget {
                       color: indicatorColor,
                       shape: BoxShape.circle,
                     ),
-                    height: indicatorSize,
                     width: indicatorSize,
+                    height: indicatorSize,
                     child: Center(
                       child: Text((i + 1).toString()).mono().bold(),
                     ),
@@ -156,8 +156,8 @@ class Steps extends StatelessWidget {
 
     return IntrinsicWidth(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: mapped,
       ),
     );

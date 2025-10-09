@@ -74,7 +74,7 @@ class RefreshTriggerTheme {
     return 'RefreshTriggerTheme('
         'minExtent: $minExtent, '
         'maxExtent: $maxExtent, '
-        'indicatorBuilder: ${indicatorBuilder()}, '
+        'indicatorBuilder: $indicatorBuilder, '
         'curve: $curve, '
         'completeDuration: $completeDuration)';
   }
@@ -249,9 +249,11 @@ class _DefaultRefreshIndicatorState extends State<DefaultRefreshIndicator> {
       children: [
         Flexible(child: Text(localizations.refreshTriggerComplete)),
         SizedBox(
-          height: theme.scaling * 8.0,
           width: theme.scaling * 12.0,
+          height: theme.scaling * 8.0,
           child: AnimatedValueBuilder(
+            value: 1,
+            duration: const Duration(milliseconds: 300),
             builder: (context, value, _) {
               return CustomPaint(
                 painter: AnimatedCheckPainter(
@@ -261,10 +263,8 @@ class _DefaultRefreshIndicatorState extends State<DefaultRefreshIndicator> {
                 ),
               );
             },
-            curve: const Interval(0.5, 1),
-            duration: const Duration(milliseconds: 300),
             initialValue: 0,
-            value: 1,
+            curve: const Interval(0.5, 1),
           ),
         ),
       ],
@@ -339,7 +339,7 @@ class _DefaultRefreshIndicatorState extends State<DefaultRefreshIndicator> {
         borderRadius: theme.borderRadiusXl,
         padding: widget.stage.stage == TriggerStage.pulling
             ? const EdgeInsets.all(4) * theme.scaling
-            : const EdgeInsets.symmetric(horizontal: 12, vertical: 4) *
+            : const EdgeInsets.symmetric(vertical: 4, horizontal: 12) *
                   theme.scaling,
         child: CrossFadedTransition(
           child: KeyedSubtree(
@@ -369,15 +369,15 @@ class RefreshTriggerState extends State<RefreshTrigger>
   bool _scrolling = false;
   ScrollDirection _userScrollDirection = ScrollDirection.idle;
   TriggerStage _stage = TriggerStage.idle;
-  Future<void>? _currentFuture;
+  late Future<void>? _currentFuture;
   int _currentFutureCount = 0;
 
   // Computed theme values
-  double _minExtent;
-  double _maxExtent;
-  RefreshIndicatorBuilder _indicatorBuilder;
-  Curve _curve;
-  Duration _completeDuration;
+  late double _minExtent;
+  late double _maxExtent;
+  late RefreshIndicatorBuilder _indicatorBuilder;
+  late Curve _curve;
+  late Duration _completeDuration;
 
   static double _decelerateCurve(double value) {
     return Curves.decelerate.transform(value.toDouble());
@@ -388,14 +388,14 @@ class RefreshTriggerState extends State<RefreshTrigger>
     final compTheme = ComponentTheme.maybeOf<RefreshTriggerTheme>(context);
 
     _minExtent = styleValue(
-      defaultValue: theme.scaling * 75.0,
-      themeValue: compTheme?.minExtent,
       widgetValue: widget.minExtent,
+      themeValue: compTheme?.minExtent,
+      defaultValue: theme.scaling * 75.0,
     );
     _maxExtent = styleValue(
-      defaultValue: theme.scaling * 150.0,
-      themeValue: compTheme?.maxExtent,
       widgetValue: widget.maxExtent,
+      themeValue: compTheme?.maxExtent,
+      defaultValue: theme.scaling * 150.0,
     );
     _indicatorBuilder =
         widget.indicatorBuilder ??
@@ -418,7 +418,8 @@ class RefreshTriggerState extends State<RefreshTrigger>
       final diff = (maxExtent - _minExtent) - relativeExtent;
       final diffNormalized = diff / (maxExtent - _minExtent);
 
-      return maxExtent - _decelerateCurve(diffNormalized.clamp(0, 1).toDouble()) * diff;
+      return maxExtent -
+          _decelerateCurve(diffNormalized.clamp(0, 1).toDouble()) * diff;
     }
 
     return extent;
@@ -427,17 +428,17 @@ class RefreshTriggerState extends State<RefreshTrigger>
   Widget _wrapPositioned(Widget child) {
     return widget.direction == Axis.vertical
         ? Positioned(
-            bottom: widget.reverse ? 0 : null,
             left: 0,
-            right: 0,
             top: widget.reverse ? null : 0,
+            right: 0,
+            bottom: widget.reverse ? 0 : null,
             child: child,
           )
         : Positioned(
-            bottom: 0,
             left: widget.reverse ? null : 0,
-            right: widget.reverse ? 0 : null,
             top: 0,
+            right: widget.reverse ? 0 : null,
+            bottom: 0,
             child: child,
           );
   }
@@ -595,6 +596,12 @@ class RefreshTriggerState extends State<RefreshTrigger>
     return NotificationListener<ScrollNotification>(
       onNotification: _handleScrollNotification,
       child: AnimatedValueBuilder.animation(
+        value:
+            _stage == TriggerStage.refreshing ||
+                _stage == TriggerStage.completed
+            ? _minExtent
+            : _currentExtent,
+        duration: _scrolling ? Duration.zero : kDefaultDuration,
         builder: (context, animation) {
           return Stack(
             fit: StackFit.passthrough,
@@ -632,9 +639,9 @@ class RefreshTriggerState extends State<RefreshTrigger>
                 child: _indicatorBuilder(
                   context,
                   RefreshTriggerStage(
-                    _stage,
+                    widget.direction,
                     tween.animate(animation),
-                    widget.reverse,
+                    _stage,
                   ),
                 ),
               ),
@@ -642,12 +649,6 @@ class RefreshTriggerState extends State<RefreshTrigger>
           );
         },
         curve: _curve,
-        duration: _scrolling ? Duration.zero : kDefaultDuration,
-        value:
-            _stage == TriggerStage.refreshing ||
-                _stage == TriggerStage.completed
-            ? _minExtent
-            : _currentExtent,
       ),
     );
   }

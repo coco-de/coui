@@ -425,8 +425,8 @@ class MobileEditableTextContextMenu extends StatelessWidget {
 }
 
 Widget buildEditableTextContextMenu(
-  EditableTextState editableTextState,
-  BuildContext innerContext, [
+  BuildContext innerContext,
+  EditableTextState editableTextState, [
   UndoHistoryController? undoHistoryController,
 ]) {
   final platform = Theme.of(innerContext).platform;
@@ -474,7 +474,7 @@ class ContextMenu extends StatefulWidget {
 }
 
 class _ContextMenuState extends State<ContextMenu> {
-  ValueNotifier<List<MenuItem>> _children;
+  late ValueNotifier<List<MenuItem>> _children;
 
   @override
   void initState() {
@@ -507,17 +507,6 @@ class _ContextMenuState extends State<ContextMenu> {
         platform == TargetPlatform.fuchsia;
 
     return GestureDetector(
-      behavior: widget.behavior,
-      onLongPressStart: enableLongPress && widget.enabled
-          ? (details) {
-              _showContextMenu(
-                context,
-                details.globalPosition,
-                _children,
-                widget.direction,
-              );
-            }
-          : null,
       onSecondaryTapDown: widget.enabled
           ? (details) {
               _showContextMenu(
@@ -528,23 +517,34 @@ class _ContextMenuState extends State<ContextMenu> {
               );
             }
           : null,
+      onLongPressStart: enableLongPress && widget.enabled
+          ? (details) {
+              _showContextMenu(
+                context,
+                details.globalPosition,
+                _children,
+                widget.direction,
+              );
+            }
+          : null,
+      behavior: widget.behavior,
       child: widget.child,
     );
   }
 }
 
 Future<void> _showContextMenu(
-  ValueListenable<List<MenuItem>> children,
   BuildContext context,
-  Axis direction,
   Offset position,
+  ValueListenable<List<MenuItem>> children,
+  Axis direction,
 ) {
   final key = GlobalKey<OverlayHandlerStateMixin>();
   final theme = Theme.of(context);
   final overlayManager = OverlayManager.of(context);
 
   return overlayManager
-      .showMenu(
+      .showMenu<void>(
         key: key,
         alignment: Alignment.topLeft,
         anchorAlignment: Alignment.topRight,
@@ -565,8 +565,8 @@ Future<void> _showContextMenu(
                     );
 
                     return MenuPopup(
-                      surfaceBlur: compTheme?.surfaceBlur,
                       surfaceOpacity: compTheme?.surfaceOpacity,
+                      surfaceBlur: compTheme?.surfaceBlur,
                       children: children,
                     );
                   },
@@ -576,7 +576,7 @@ Future<void> _showContextMenu(
                             theme.scaling
                       : EdgeInsets.zero,
                   onDismissed: () {
-                    closeOverlay(context);
+                    closeOverlay<void>(context);
                   },
                   regionGroupId: key,
                   subMenuOffset: const Offset(8, -4),
@@ -623,6 +623,8 @@ class ContextMenuPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedValueBuilder.animation(
+      value: 1,
+      duration: const Duration(milliseconds: 100),
       builder: (context, animation) {
         final isSheetOverlay = SheetOverlayHandler.isSheetOverlay(context);
 
@@ -631,7 +633,7 @@ class ContextMenuPopup extends StatelessWidget {
           anchorAlignment: Alignment.topRight,
           anchorContext: anchorContext,
           anchorSize: anchorSize,
-          animation: animation,
+          animation: animation.drive(Tween<double>(begin: 0, end: 1)),
           builder: (context) {
             final theme = Theme.of(context);
 
@@ -644,8 +646,8 @@ class ContextMenuPopup extends StatelessWidget {
                   );
 
                   return MenuPopup(
-                    surfaceBlur: compTheme?.surfaceBlur,
                     surfaceOpacity: compTheme?.surfaceOpacity,
+                    surfaceBlur: compTheme?.surfaceBlur,
                     children: children,
                   );
                 },
@@ -663,9 +665,7 @@ class ContextMenuPopup extends StatelessWidget {
           themes: themes,
         );
       },
-      duration: const Duration(milliseconds: 100),
       initialValue: 0,
-      value: 1,
     );
   }
 }

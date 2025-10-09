@@ -275,11 +275,11 @@ class _AutoCompleteItemState extends State<_AutoCompleteItem> {
   @override
   Widget build(BuildContext context) {
     return SelectedButton(
-      alignment: AlignmentDirectional.centerStart,
+      value: widget.selected,
       onChanged: (value) {
         widget.onSelected();
       },
-      value: widget.selected,
+      alignment: AlignmentDirectional.centerStart,
       child: Text(widget.suggestion),
     );
   }
@@ -295,9 +295,9 @@ class _AutoCompleteState extends State<AutoComplete> {
     final compTheme = ComponentTheme.maybeOf<AutoCompleteTheme>(context);
 
     return styleValue(
-      defaultValue: AutoCompleteMode.replaceWord,
-      themeValue: compTheme?.mode,
       widgetValue: widget.mode,
+      themeValue: compTheme?.mode,
+      defaultValue: AutoCompleteMode.replaceWord,
     );
   }
 
@@ -324,24 +324,24 @@ class _AutoCompleteState extends State<AutoComplete> {
         _suggestions.value.isNotEmpty) {
       final compTheme = ComponentTheme.maybeOf<AutoCompleteTheme>(context);
       _selectedIndex.value = -1;
-      _popoverController.show(
+      _popoverController.show<void>(
         alignment: styleValue(
-          defaultValue: AlignmentDirectional.topStart,
-          themeValue: compTheme?.popoverAlignment,
           widgetValue: widget.popoverAlignment,
+          themeValue: compTheme?.popoverAlignment,
+          defaultValue: AlignmentDirectional.topStart,
         ),
         anchorAlignment: styleValue(
-          defaultValue: AlignmentDirectional.bottomStart,
-          themeValue: compTheme?.popoverAnchorAlignment,
           widgetValue: widget.popoverAnchorAlignment,
+          themeValue: compTheme?.popoverAnchorAlignment,
+          defaultValue: AlignmentDirectional.bottomStart,
         ),
         builder: (context) {
           final theme = Theme.of(context);
           final compTheme = ComponentTheme.maybeOf<AutoCompleteTheme>(context);
           final popoverConstraints = styleValue<BoxConstraints>(
-            defaultValue: BoxConstraints(maxHeight: theme.scaling * 300),
-            themeValue: compTheme?.popoverConstraints,
             widgetValue: widget.popoverConstraints,
+            themeValue: compTheme?.popoverConstraints,
+            defaultValue: BoxConstraints(maxHeight: theme.scaling * 300),
           );
 
           return TextFieldTapRegion(
@@ -353,6 +353,7 @@ class _AutoCompleteState extends State<AutoComplete> {
                   animation: Listenable.merge([_suggestions, _selectedIndex]),
                   builder: (context, child) {
                     return ListView.builder(
+                      shrinkWrap: true,
                       itemBuilder: (context, index) {
                         final suggestion = _suggestions.value[index];
 
@@ -366,7 +367,6 @@ class _AutoCompleteState extends State<AutoComplete> {
                         );
                       },
                       itemCount: _suggestions.value.length,
-                      shrinkWrap: true,
                     );
                   },
                 ),
@@ -377,9 +377,9 @@ class _AutoCompleteState extends State<AutoComplete> {
         context: context,
         handler: const PopoverOverlayHandler(),
         widthConstraint: styleValue(
-          defaultValue: PopoverConstraint.anchorFixedSize,
-          themeValue: compTheme?.popoverWidthConstraint,
           widgetValue: widget.popoverWidthConstraint,
+          themeValue: compTheme?.popoverWidthConstraint,
+          defaultValue: PopoverConstraint.anchorFixedSize,
         ),
       );
     }
@@ -432,8 +432,21 @@ class _AutoCompleteState extends State<AutoComplete> {
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
+      listenable: _selectedIndex,
       builder: (context, child) {
         return FocusableActionDetector(
+          shortcuts: _popoverController.hasOpenPopover
+              ? {
+                  LogicalKeySet(LogicalKeyboardKey.arrowDown):
+                      const NavigateSuggestionIntent(1),
+                  LogicalKeySet(LogicalKeyboardKey.arrowUp):
+                      const NavigateSuggestionIntent(-1),
+                  if (widget.suggestions.isNotEmpty &&
+                      _selectedIndex.value != -1)
+                    LogicalKeySet(LogicalKeyboardKey.tab):
+                        const AcceptSuggestionIntent(),
+                }
+              : null,
           actions: _popoverController.hasOpenPopover
               ? {
                   NavigateSuggestionIntent:
@@ -465,22 +478,9 @@ class _AutoCompleteState extends State<AutoComplete> {
                 }
               : null,
           onFocusChange: _onFocusChanged,
-          shortcuts: _popoverController.hasOpenPopover
-              ? {
-                  LogicalKeySet(LogicalKeyboardKey.arrowDown):
-                      const NavigateSuggestionIntent(1),
-                  LogicalKeySet(LogicalKeyboardKey.arrowUp):
-                      const NavigateSuggestionIntent(-1),
-                  if (widget.suggestions.isNotEmpty &&
-                      _selectedIndex.value != -1)
-                    LogicalKeySet(LogicalKeyboardKey.tab):
-                        const AcceptSuggestionIntent(),
-                }
-              : null,
           child: widget.child,
         );
       },
-      listenable: _selectedIndex,
     );
   }
 }

@@ -107,8 +107,8 @@ class PrimaryBadge extends StatelessWidget {
         style ??
         compTheme?.primaryStyle ??
         const ButtonStyle.primary(
-          density: ButtonDensity.dense,
           size: ButtonSize.small,
+          density: ButtonDensity.dense,
         ).copyWith(
           textStyle: (context, states, value) {
             return value.copyWith(fontWeight: FontWeight.w500);
@@ -118,10 +118,10 @@ class PrimaryBadge extends StatelessWidget {
     return ExcludeFocus(
       child: Button(
         onPressed: onPressed,
-        enabled: true,
-        leading: leading,
         style: baseStyle,
+        leading: leading,
         trailing: trailing,
+        enabled: true,
         child: child,
       ),
     );
@@ -152,8 +152,8 @@ class SecondaryBadge extends StatelessWidget {
         style ??
         compTheme?.secondaryStyle ??
         const ButtonStyle.secondary(
-          density: ButtonDensity.dense,
           size: ButtonSize.small,
+          density: ButtonDensity.dense,
         ).copyWith(
           textStyle: (context, states, value) {
             return value.copyWith(fontWeight: FontWeight.w500);
@@ -163,10 +163,10 @@ class SecondaryBadge extends StatelessWidget {
     return ExcludeFocus(
       child: Button(
         onPressed: onPressed,
-        enabled: true,
-        leading: leading,
         style: baseStyle,
+        leading: leading,
         trailing: trailing,
+        enabled: true,
         child: child,
       ),
     );
@@ -197,8 +197,8 @@ class OutlineBadge extends StatelessWidget {
         style ??
         compTheme?.outlineStyle ??
         const ButtonStyle.outline(
-          density: ButtonDensity.dense,
           size: ButtonSize.small,
+          density: ButtonDensity.dense,
         ).copyWith(
           textStyle: (context, states, value) {
             return value.copyWith(fontWeight: FontWeight.w500);
@@ -208,10 +208,10 @@ class OutlineBadge extends StatelessWidget {
     return ExcludeFocus(
       child: Button(
         onPressed: onPressed,
-        enabled: true,
-        leading: leading,
         style: baseStyle,
+        leading: leading,
         trailing: trailing,
+        enabled: true,
         child: child,
       ),
     );
@@ -242,8 +242,8 @@ class DestructiveBadge extends StatelessWidget {
         style ??
         compTheme?.destructiveStyle ??
         const ButtonStyle.destructive(
-          density: ButtonDensity.dense,
           size: ButtonSize.small,
+          density: ButtonDensity.dense,
         ).copyWith(
           textStyle: (context, states, value) {
             return value.copyWith(fontWeight: FontWeight.w500);
@@ -253,10 +253,10 @@ class DestructiveBadge extends StatelessWidget {
     return ExcludeFocus(
       child: Button(
         onPressed: onPressed,
-        enabled: true,
-        leading: leading,
         style: baseStyle,
+        leading: leading,
         trailing: trailing,
+        enabled: true,
         child: child,
       ),
     );

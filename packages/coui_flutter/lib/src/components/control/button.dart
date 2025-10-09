@@ -167,10 +167,10 @@ class ControlledToggle extends StatelessWidget with ControlledComponent<bool> {
     return ControlledComponentAdapter(
       builder: (context, data) {
         return Toggle(
-          enabled: data.enabled,
-          onChanged: data.onChanged,
-          style: style,
           value: data.value,
+          onChanged: data.onChanged,
+          enabled: data.enabled,
+          style: style,
           child: child,
         );
       },
@@ -290,23 +290,13 @@ class ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
               widget.onChanged!(!widget.value);
             }
           : null,
-      enabled: widget.enabled,
-      statesController: statesController,
       style: widget.value
           ? ButtonStyle.secondary(
+              size: widget.style.size,
               density: widget.style.density,
               shape: widget.style.shape,
-              size: widget.style.size,
             )
           : widget.style.copyWith(
-              iconTheme: (context, states, value) {
-                final theme = Theme.of(context);
-                return value.copyWith(
-                  color: states.contains(WidgetState.hovered)
-                      ? theme.colorScheme.mutedForeground
-                      : null,
-                );
-              },
               textStyle: (context, states, value) {
                 final theme = Theme.of(context);
                 return value.copyWith(
@@ -315,7 +305,17 @@ class ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
                       : null,
                 );
               },
+              iconTheme: (context, states, value) {
+                final theme = Theme.of(context);
+                return value.copyWith(
+                  color: states.contains(WidgetState.hovered)
+                      ? theme.colorScheme.mutedForeground
+                      : null,
+                );
+              },
             ),
+      statesController: statesController,
+      enabled: widget.enabled,
       child: widget.child,
     );
   }
@@ -425,31 +425,31 @@ class SelectedButtonState extends State<SelectedButton> {
           widget.onPressed!();
         }
       },
+      style: widget.value ? widget.selectedStyle : widget.style,
+      statesController: statesController,
       alignment: widget.alignment,
-      disableHoverEffect: widget.disableHoverEffect,
-      disableTransition: widget.disableTransition,
-      enableFeedback: widget.enableFeedback,
       enabled: widget.enabled,
-      marginAlignment: widget.marginAlignment,
+      disableTransition: widget.disableTransition,
       onFocus: widget.onFocus,
       onHover: widget.onHover,
-      onLongPressEnd: widget.onLongPressEnd,
-      onLongPressMoveUpdate: widget.onLongPressMoveUpdate,
-      onLongPressStart: widget.onLongPressStart,
-      onLongPressUp: widget.onLongPressUp,
-      onSecondaryLongPress: widget.onSecondaryLongPress,
-      onSecondaryTapCancel: widget.onSecondaryTapCancel,
-      onSecondaryTapDown: widget.onSecondaryTapDown,
-      onSecondaryTapUp: widget.onSecondaryTapUp,
-      onTapCancel: widget.onTapCancel,
+      disableHoverEffect: widget.disableHoverEffect,
+      enableFeedback: widget.enableFeedback,
       onTapDown: widget.onTapDown,
       onTapUp: widget.onTapUp,
-      onTertiaryLongPress: widget.onTertiaryLongPress,
-      onTertiaryTapCancel: widget.onTertiaryTapCancel,
+      onTapCancel: widget.onTapCancel,
+      onSecondaryTapDown: widget.onSecondaryTapDown,
+      onSecondaryTapUp: widget.onSecondaryTapUp,
+      onSecondaryTapCancel: widget.onSecondaryTapCancel,
       onTertiaryTapDown: widget.onTertiaryTapDown,
       onTertiaryTapUp: widget.onTertiaryTapUp,
-      statesController: statesController,
-      style: widget.value ? widget.selectedStyle : widget.style,
+      onTertiaryTapCancel: widget.onTertiaryTapCancel,
+      onLongPressStart: widget.onLongPressStart,
+      onLongPressUp: widget.onLongPressUp,
+      onLongPressMoveUpdate: widget.onLongPressMoveUpdate,
+      onLongPressEnd: widget.onLongPressEnd,
+      onSecondaryLongPress: widget.onSecondaryLongPress,
+      onTertiaryLongPress: widget.onTertiaryLongPress,
+      marginAlignment: widget.marginAlignment,
       child: widget.child,
     );
   }
@@ -1160,11 +1160,11 @@ class ButtonState<T extends Button> extends State<T> {
       if (overrideData != null) {
         _style = widget.style.copyWith(
           decoration: overrideData.decoration,
-          iconTheme: overrideData.iconTheme,
-          margin: overrideData.margin,
           mouseCursor: overrideData.mouseCursor,
           padding: overrideData.padding,
           textStyle: overrideData.textStyle,
+          iconTheme: overrideData.iconTheme,
+          margin: overrideData.margin,
         );
       } else {
         _style = widget.style;
@@ -1180,11 +1180,11 @@ class ButtonState<T extends Button> extends State<T> {
       if (overrideData != null) {
         _style = widget.style.copyWith(
           decoration: overrideData.decoration,
-          iconTheme: overrideData.iconTheme,
-          margin: overrideData.margin,
           mouseCursor: overrideData.mouseCursor,
           padding: overrideData.padding,
           textStyle: overrideData.textStyle,
+          iconTheme: overrideData.iconTheme,
+          margin: overrideData.margin,
         );
       } else {
         _style = widget.style;
@@ -1242,15 +1242,15 @@ class ButtonState<T extends Button> extends State<T> {
       child: widget.leading == null && widget.trailing == null
           ? Align(
               alignment: widget.alignment ?? Alignment.center,
-              heightFactor: 1,
               widthFactor: 1,
+              heightFactor: 1,
               child: widget.child,
             )
           : IntrinsicWidth(
               child: IntrinsicHeight(
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     if (widget.leading != null) widget.leading!,
                     if (widget.leading != null) Gap(8 * scaling),
@@ -1259,8 +1259,8 @@ class ButtonState<T extends Button> extends State<T> {
                         alignment:
                             widget.alignment ??
                             AlignmentDirectional.centerStart,
-                        heightFactor: 1,
                         widthFactor: 1,
+                        heightFactor: 1,
                         child: widget.child,
                       ),
                     ),
@@ -1573,12 +1573,12 @@ class ButtonStyle implements AbstractButtonStyle {
     final decoration = variance.decoration(context, states);
     if (decoration is BoxDecoration) {
       return BoxDecoration(
-        backgroundBlendMode: decoration.backgroundBlendMode,
+        color: decoration.color,
+        image: decoration.image,
         border: decoration.border,
         boxShadow: decoration.boxShadow,
-        color: decoration.color,
         gradient: decoration.gradient,
-        image: decoration.image,
+        backgroundBlendMode: decoration.backgroundBlendMode,
         shape: BoxShape.circle,
       );
     } else if (decoration is ShapeDecoration) {
@@ -1785,8 +1785,8 @@ extension ShapeDecorationExtension on ShapeDecoration {
   }) {
     return ShapeDecoration(
       color: color ?? this.color,
-      gradient: gradient ?? this.gradient,
       image: image ?? this.image,
+      gradient: gradient ?? this.gradient,
       shadows: shadows ?? this.shadows,
       shape: shape ?? this.shape,
     );
@@ -1807,25 +1807,25 @@ extension DecorationExtension on Decoration {
     if (this is BoxDecoration) {
       final boxDecoration = this as BoxDecoration;
       return BoxDecoration(
-        backgroundBlendMode:
-            backgroundBlendMode ?? boxDecoration.backgroundBlendMode,
+        color: color ?? boxDecoration.color,
+        image: image ?? boxDecoration.image,
         border: border ?? boxDecoration.border,
         borderRadius: borderRadius ?? boxDecoration.borderRadius,
         boxShadow: boxShadow ?? boxDecoration.boxShadow,
-        color: color ?? boxDecoration.color,
         gradient: gradient ?? boxDecoration.gradient,
-        image: image ?? boxDecoration.image,
+        backgroundBlendMode:
+            backgroundBlendMode ?? boxDecoration.backgroundBlendMode,
         shape: shape ?? boxDecoration.shape,
       );
     }
     return BoxDecoration(
-      backgroundBlendMode: backgroundBlendMode,
+      color: color,
+      image: image,
       border: border,
       borderRadius: borderRadius,
       boxShadow: boxShadow,
-      color: color,
       gradient: gradient,
-      image: image,
+      backgroundBlendMode: backgroundBlendMode,
       shape: shape ?? BoxShape.rectangle,
     );
   }
@@ -1841,16 +1841,16 @@ extension DecorationExtension on Decoration {
       final shapeDecoration = this as ShapeDecoration;
       return ShapeDecoration(
         color: color ?? shapeDecoration.color,
-        gradient: gradient ?? shapeDecoration.gradient,
         image: image ?? shapeDecoration.image,
+        gradient: gradient ?? shapeDecoration.gradient,
         shadows: shadows ?? shapeDecoration.shadows,
         shape: shape ?? shapeDecoration.shape,
       );
     }
     return ShapeDecoration(
       color: color,
-      gradient: gradient,
       image: image,
+      gradient: gradient,
       shadows: shadows,
       shape: shape ?? const RoundedRectangleBorder(),
     );
@@ -1877,11 +1877,11 @@ class PrimaryButtonTheme extends ButtonTheme {
   }) {
     return PrimaryButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -1906,11 +1906,11 @@ class SecondaryButtonTheme extends ButtonTheme {
   }) {
     return SecondaryButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -1935,11 +1935,11 @@ class OutlineButtonTheme extends ButtonTheme {
   }) {
     return OutlineButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -1964,11 +1964,11 @@ class GhostButtonTheme extends ButtonTheme {
   }) {
     return GhostButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -1993,11 +1993,11 @@ class LinkButtonTheme extends ButtonTheme {
   }) {
     return LinkButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -2022,11 +2022,11 @@ class TextButtonTheme extends ButtonTheme {
   }) {
     return TextButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -2051,11 +2051,11 @@ class DestructiveButtonTheme extends ButtonTheme {
   }) {
     return DestructiveButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -2080,11 +2080,11 @@ class FixedButtonTheme extends ButtonTheme {
   }) {
     return FixedButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -2109,11 +2109,11 @@ class MenuButtonTheme extends ButtonTheme {
   }) {
     return MenuButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -2138,11 +2138,11 @@ class MenubarButtonTheme extends ButtonTheme {
   }) {
     return MenubarButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -2167,11 +2167,11 @@ class MutedButtonTheme extends ButtonTheme {
   }) {
     return MutedButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -2196,11 +2196,11 @@ class CardButtonTheme extends ButtonTheme {
   }) {
     return CardButtonTheme(
       decoration: decoration == null ? this.decoration : decoration(),
-      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
-      margin: margin == null ? this.margin : margin(),
       mouseCursor: mouseCursor == null ? this.mouseCursor : mouseCursor(),
       padding: padding == null ? this.padding : padding(),
       textStyle: textStyle == null ? this.textStyle : textStyle(),
+      iconTheme: iconTheme == null ? this.iconTheme : iconTheme(),
+      margin: margin == null ? this.margin : margin(),
     );
   }
 }
@@ -2219,66 +2219,66 @@ class ButtonVariance implements AbstractButtonStyle {
       ComponentThemeButtonStyle<PrimaryButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonPrimaryDecoration,
-          iconTheme: _buttonPrimaryIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonPadding,
           textStyle: _buttonPrimaryTextStyle,
+          iconTheme: _buttonPrimaryIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
   static const AbstractButtonStyle secondary =
       ComponentThemeButtonStyle<SecondaryButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonSecondaryDecoration,
-          iconTheme: _buttonSecondaryIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonPadding,
           textStyle: _buttonSecondaryTextStyle,
+          iconTheme: _buttonSecondaryIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
   static const AbstractButtonStyle outline =
       ComponentThemeButtonStyle<OutlineButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonOutlineDecoration,
-          iconTheme: _buttonOutlineIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonPadding,
           textStyle: _buttonOutlineTextStyle,
+          iconTheme: _buttonOutlineIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
   static const AbstractButtonStyle ghost =
       ComponentThemeButtonStyle<GhostButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonGhostDecoration,
-          iconTheme: _buttonGhostIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonPadding,
           textStyle: _buttonGhostTextStyle,
+          iconTheme: _buttonGhostIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
   static const AbstractButtonStyle link =
       ComponentThemeButtonStyle<LinkButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonLinkDecoration,
-          iconTheme: _buttonLinkIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonPadding,
           textStyle: _buttonLinkTextStyle,
+          iconTheme: _buttonLinkIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
   static const AbstractButtonStyle text =
       ComponentThemeButtonStyle<TextButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonTextDecoration,
-          iconTheme: _buttonTextIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonPadding,
           textStyle: _buttonTextTextStyle,
+          iconTheme: _buttonTextIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
 
@@ -2286,11 +2286,11 @@ class ButtonVariance implements AbstractButtonStyle {
       ComponentThemeButtonStyle<DestructiveButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonDestructiveDecoration,
-          iconTheme: _buttonDestructiveIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonPadding,
           textStyle: _buttonDestructiveTextStyle,
+          iconTheme: _buttonDestructiveIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
 
@@ -2298,11 +2298,11 @@ class ButtonVariance implements AbstractButtonStyle {
       ComponentThemeButtonStyle<FixedButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonTextDecoration,
-          iconTheme: _buttonStaticIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonPadding,
           textStyle: _buttonStaticTextStyle,
+          iconTheme: _buttonStaticIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
 
@@ -2310,11 +2310,11 @@ class ButtonVariance implements AbstractButtonStyle {
       ComponentThemeButtonStyle<MenuButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonMenuDecoration,
-          iconTheme: _buttonMenuIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonMenuPadding,
           textStyle: _buttonMenuTextStyle,
+          iconTheme: _buttonMenuIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
 
@@ -2322,11 +2322,11 @@ class ButtonVariance implements AbstractButtonStyle {
       ComponentThemeButtonStyle<MenubarButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonMenuDecoration,
-          iconTheme: _buttonMenuIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonMenubarPadding,
           textStyle: _buttonMenuTextStyle,
+          iconTheme: _buttonMenuIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
 
@@ -2334,11 +2334,11 @@ class ButtonVariance implements AbstractButtonStyle {
       ComponentThemeButtonStyle<MutedButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonTextDecoration,
-          iconTheme: _buttonMutedIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonPadding,
           textStyle: _buttonMutedTextStyle,
+          iconTheme: _buttonMutedIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
 
@@ -2346,11 +2346,11 @@ class ButtonVariance implements AbstractButtonStyle {
       ComponentThemeButtonStyle<CardButtonTheme>(
         fallback: ButtonVariance(
           decoration: _buttonCardDecoration,
-          iconTheme: _buttonCardIconTheme,
-          margin: _buttonZeroMargin,
           mouseCursor: _buttonMouseCursor,
           padding: _buttonCardPadding,
           textStyle: _buttonCardTextStyle,
+          iconTheme: _buttonCardIconTheme,
+          margin: _buttonZeroMargin,
         ),
       );
   @override
@@ -2482,17 +2482,6 @@ extension ButtonStyleExtension on AbstractButtonStyle {
     Color? disabledColor,
   }) {
     return copyWith(
-      iconTheme: (context, states, iconTheme) {
-        return iconTheme.copyWith(
-          color: states.disabled
-              ? disabledColor ?? iconTheme.color
-              : states.hovered
-              ? hoverColor ?? iconTheme.color
-              : states.focused
-              ? focusColor ?? iconTheme.color
-              : color,
-        );
-      },
       textStyle: (context, states, textStyle) {
         return textStyle.copyWith(
           color: states.disabled
@@ -2501,6 +2490,17 @@ extension ButtonStyleExtension on AbstractButtonStyle {
               ? hoverColor ?? textStyle.color
               : states.focused
               ? focusColor ?? textStyle.color
+              : color,
+        );
+      },
+      iconTheme: (context, states, iconTheme) {
+        return iconTheme.copyWith(
+          color: states.disabled
+              ? disabledColor ?? iconTheme.color
+              : states.hovered
+              ? hoverColor ?? iconTheme.color
+              : states.focused
+              ? focusColor ?? iconTheme.color
               : color,
         );
       },
@@ -2726,8 +2726,8 @@ MouseCursor _buttonMouseCursor(BuildContext context, Set<WidgetState> states) {
 EdgeInsets _buttonPadding(BuildContext context, Set<WidgetState> states) {
   final theme = Theme.of(context);
   return EdgeInsets.symmetric(
-    horizontal: theme.scaling * 16,
     vertical: theme.scaling * 8,
+    horizontal: theme.scaling * 16,
   );
 }
 
@@ -2754,23 +2754,23 @@ Decoration _buttonCardDecoration(
   final themeData = Theme.of(context);
   if (states.contains(WidgetState.disabled)) {
     return BoxDecoration(
+      color: themeData.colorScheme.muted,
       border: Border.all(color: themeData.colorScheme.border),
       borderRadius: BorderRadius.circular(themeData.radiusXl),
-      color: themeData.colorScheme.muted,
     );
   }
   if (states.contains(WidgetState.hovered) ||
       states.contains(WidgetState.selected)) {
     return BoxDecoration(
+      color: themeData.colorScheme.border,
       border: Border.all(color: themeData.colorScheme.border),
       borderRadius: BorderRadius.circular(themeData.radiusXl),
-      color: themeData.colorScheme.border,
     );
   }
   return BoxDecoration(
+    color: themeData.colorScheme.card,
     border: Border.all(color: themeData.colorScheme.border),
     borderRadius: BorderRadius.circular(themeData.radiusXl),
-    color: themeData.colorScheme.card,
   );
 }
 
@@ -2792,8 +2792,8 @@ Decoration _buttonMenuDecoration(
       states.contains(WidgetState.hovered) ||
       states.contains(WidgetState.selected)) {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(themeData.radiusSm),
       color: themeData.colorScheme.accent,
+      borderRadius: BorderRadius.circular(themeData.radiusSm),
     );
   }
   return const BoxDecoration();
@@ -2816,9 +2816,9 @@ EdgeInsets _buttonMenuPadding(BuildContext context, Set<WidgetState> states) {
   final scaling = theme.scaling;
   final menuGroupData = Data.maybeOf<MenuGroupData>(context);
   if (menuGroupData != null && menuGroupData.direction == Axis.horizontal) {
-    return const EdgeInsets.symmetric(horizontal: 18, vertical: 6) * scaling;
+    return const EdgeInsets.symmetric(vertical: 6, horizontal: 18) * scaling;
   }
-  return const EdgeInsets.only(bottom: 6, left: 8, right: 6, top: 6) * scaling;
+  return const EdgeInsets.only(left: 8, top: 6, right: 6, bottom: 6) * scaling;
 }
 
 EdgeInsets _buttonMenubarPadding(
@@ -2827,7 +2827,7 @@ EdgeInsets _buttonMenubarPadding(
 ) {
   final theme = Theme.of(context);
   final scaling = theme.scaling;
-  return const EdgeInsets.symmetric(horizontal: 12, vertical: 4) * scaling;
+  return const EdgeInsets.symmetric(vertical: 4, horizontal: 12) * scaling;
 }
 
 IconThemeData _buttonMenuIconTheme(
@@ -2846,19 +2846,19 @@ Decoration _buttonPrimaryDecoration(
   final themeData = Theme.of(context);
   if (states.contains(WidgetState.disabled)) {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(themeData.radiusMd),
       color: themeData.colorScheme.mutedForeground,
+      borderRadius: BorderRadius.circular(themeData.radiusMd),
     );
   }
   if (states.contains(WidgetState.hovered)) {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(themeData.radiusMd),
       color: themeData.colorScheme.primary.scaleAlpha(0.8),
+      borderRadius: BorderRadius.circular(themeData.radiusMd),
     );
   }
   return BoxDecoration(
-    borderRadius: BorderRadius.circular(themeData.radiusMd),
     color: themeData.colorScheme.primary,
+    borderRadius: BorderRadius.circular(themeData.radiusMd),
   );
 }
 
@@ -2888,19 +2888,19 @@ Decoration _buttonSecondaryDecoration(
   final themeData = Theme.of(context);
   if (states.contains(WidgetState.disabled)) {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(themeData.radiusMd),
       color: themeData.colorScheme.primaryForeground,
+      borderRadius: BorderRadius.circular(themeData.radiusMd),
     );
   }
   if (states.contains(WidgetState.hovered)) {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(themeData.radiusMd),
       color: themeData.colorScheme.secondary.scaleAlpha(0.8),
+      borderRadius: BorderRadius.circular(themeData.radiusMd),
     );
   }
   return BoxDecoration(
-    borderRadius: BorderRadius.circular(themeData.radiusMd),
     color: themeData.colorScheme.secondary,
+    borderRadius: BorderRadius.circular(themeData.radiusMd),
   );
 }
 
@@ -2937,22 +2937,22 @@ Decoration _buttonOutlineDecoration(
   final themeData = Theme.of(context);
   if (states.contains(WidgetState.disabled)) {
     return BoxDecoration(
+      color: themeData.colorScheme.border.withValues(alpha: 0),
       border: Border.all(color: themeData.colorScheme.border),
       borderRadius: BorderRadius.circular(themeData.radiusMd),
-      color: themeData.colorScheme.border.withValues(alpha: 0),
     );
   }
   if (states.contains(WidgetState.hovered)) {
     return BoxDecoration(
+      color: themeData.colorScheme.input.scaleAlpha(0.5),
       border: Border.all(color: themeData.colorScheme.input),
       borderRadius: BorderRadius.circular(themeData.radiusMd),
-      color: themeData.colorScheme.input.scaleAlpha(0.5),
     );
   }
   return BoxDecoration(
+    color: themeData.colorScheme.input.scaleAlpha(0.3),
     border: Border.all(color: themeData.colorScheme.input),
     borderRadius: BorderRadius.circular(themeData.radiusMd),
-    color: themeData.colorScheme.input.scaleAlpha(0.3),
   );
 }
 
@@ -2989,19 +2989,19 @@ Decoration _buttonGhostDecoration(
   final themeData = Theme.of(context);
   if (states.contains(WidgetState.disabled)) {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(themeData.radiusMd),
       color: themeData.colorScheme.muted.withValues(alpha: 0),
+      borderRadius: BorderRadius.circular(themeData.radiusMd),
     );
   }
   if (states.contains(WidgetState.hovered)) {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(themeData.radiusMd),
       color: themeData.colorScheme.muted.scaleAlpha(0.8),
+      borderRadius: BorderRadius.circular(themeData.radiusMd),
     );
   }
   return BoxDecoration(
-    borderRadius: BorderRadius.circular(themeData.radiusMd),
     color: themeData.colorScheme.muted.withValues(alpha: 0),
+    borderRadius: BorderRadius.circular(themeData.radiusMd),
   );
 }
 
@@ -3119,19 +3119,19 @@ Decoration _buttonDestructiveDecoration(
   final themeData = Theme.of(context);
   if (states.contains(WidgetState.disabled)) {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(themeData.radiusMd),
       color: themeData.colorScheme.primaryForeground,
+      borderRadius: BorderRadius.circular(themeData.radiusMd),
     );
   }
   if (states.contains(WidgetState.hovered)) {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(themeData.radiusMd),
       color: themeData.colorScheme.destructive.scaleAlpha(0.8),
+      borderRadius: BorderRadius.circular(themeData.radiusMd),
     );
   }
   return BoxDecoration(
-    borderRadius: BorderRadius.circular(themeData.radiusMd),
     color: themeData.colorScheme.destructive.scaleAlpha(0.5),
+    borderRadius: BorderRadius.circular(themeData.radiusMd),
   );
 }
 
@@ -3250,31 +3250,31 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Button(
       onPressed: onPressed,
-      alignment: alignment,
-      disableTransition: disableTransition,
-      enableFeedback: enableFeedback,
-      enabled: enabled,
-      focusNode: focusNode,
+      style: ButtonStyle.primary(size: size, density: density, shape: shape),
       leading: leading,
+      trailing: trailing,
+      focusNode: focusNode,
+      alignment: alignment,
+      enabled: enabled,
+      disableTransition: disableTransition,
       onFocus: onFocus,
       onHover: onHover,
-      onLongPressEnd: onLongPressEnd,
-      onLongPressMoveUpdate: onLongPressMoveUpdate,
-      onLongPressStart: onLongPressStart,
-      onLongPressUp: onLongPressUp,
-      onSecondaryLongPress: onSecondaryLongPress,
-      onSecondaryTapCancel: onSecondaryTapCancel,
-      onSecondaryTapDown: onSecondaryTapDown,
-      onSecondaryTapUp: onSecondaryTapUp,
-      onTapCancel: onTapCancel,
+      enableFeedback: enableFeedback,
       onTapDown: onTapDown,
       onTapUp: onTapUp,
-      onTertiaryLongPress: onTertiaryLongPress,
-      onTertiaryTapCancel: onTertiaryTapCancel,
+      onTapCancel: onTapCancel,
+      onSecondaryTapDown: onSecondaryTapDown,
+      onSecondaryTapUp: onSecondaryTapUp,
+      onSecondaryTapCancel: onSecondaryTapCancel,
       onTertiaryTapDown: onTertiaryTapDown,
       onTertiaryTapUp: onTertiaryTapUp,
-      style: ButtonStyle.primary(density: density, shape: shape, size: size),
-      trailing: trailing,
+      onTertiaryTapCancel: onTertiaryTapCancel,
+      onLongPressStart: onLongPressStart,
+      onLongPressUp: onLongPressUp,
+      onLongPressMoveUpdate: onLongPressMoveUpdate,
+      onLongPressEnd: onLongPressEnd,
+      onSecondaryLongPress: onSecondaryLongPress,
+      onTertiaryLongPress: onTertiaryLongPress,
       child: child,
     );
   }
@@ -3350,31 +3350,31 @@ class SecondaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Button(
       onPressed: onPressed,
-      alignment: alignment,
-      disableTransition: disableTransition,
-      enableFeedback: enableFeedback,
-      enabled: enabled,
-      focusNode: focusNode,
+      style: ButtonStyle.secondary(size: size, density: density, shape: shape),
       leading: leading,
+      trailing: trailing,
+      focusNode: focusNode,
+      alignment: alignment,
+      enabled: enabled,
+      disableTransition: disableTransition,
       onFocus: onFocus,
       onHover: onHover,
-      onLongPressEnd: onLongPressEnd,
-      onLongPressMoveUpdate: onLongPressMoveUpdate,
-      onLongPressStart: onLongPressStart,
-      onLongPressUp: onLongPressUp,
-      onSecondaryLongPress: onSecondaryLongPress,
-      onSecondaryTapCancel: onSecondaryTapCancel,
-      onSecondaryTapDown: onSecondaryTapDown,
-      onSecondaryTapUp: onSecondaryTapUp,
-      onTapCancel: onTapCancel,
+      enableFeedback: enableFeedback,
       onTapDown: onTapDown,
       onTapUp: onTapUp,
-      onTertiaryLongPress: onTertiaryLongPress,
-      onTertiaryTapCancel: onTertiaryTapCancel,
+      onTapCancel: onTapCancel,
+      onSecondaryTapDown: onSecondaryTapDown,
+      onSecondaryTapUp: onSecondaryTapUp,
+      onSecondaryTapCancel: onSecondaryTapCancel,
       onTertiaryTapDown: onTertiaryTapDown,
       onTertiaryTapUp: onTertiaryTapUp,
-      style: ButtonStyle.secondary(density: density, shape: shape, size: size),
-      trailing: trailing,
+      onTertiaryTapCancel: onTertiaryTapCancel,
+      onLongPressStart: onLongPressStart,
+      onLongPressUp: onLongPressUp,
+      onLongPressMoveUpdate: onLongPressMoveUpdate,
+      onLongPressEnd: onLongPressEnd,
+      onSecondaryLongPress: onSecondaryLongPress,
+      onTertiaryLongPress: onTertiaryLongPress,
       child: child,
     );
   }
@@ -3450,31 +3450,31 @@ class OutlineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Button(
       onPressed: onPressed,
-      alignment: alignment,
-      disableTransition: disableTransition,
-      enableFeedback: enableFeedback,
-      enabled: enabled,
-      focusNode: focusNode,
+      style: ButtonStyle.outline(size: size, density: density, shape: shape),
       leading: leading,
+      trailing: trailing,
+      focusNode: focusNode,
+      alignment: alignment,
+      enabled: enabled,
+      disableTransition: disableTransition,
       onFocus: onFocus,
       onHover: onHover,
-      onLongPressEnd: onLongPressEnd,
-      onLongPressMoveUpdate: onLongPressMoveUpdate,
-      onLongPressStart: onLongPressStart,
-      onLongPressUp: onLongPressUp,
-      onSecondaryLongPress: onSecondaryLongPress,
-      onSecondaryTapCancel: onSecondaryTapCancel,
-      onSecondaryTapDown: onSecondaryTapDown,
-      onSecondaryTapUp: onSecondaryTapUp,
-      onTapCancel: onTapCancel,
+      enableFeedback: enableFeedback,
       onTapDown: onTapDown,
       onTapUp: onTapUp,
-      onTertiaryLongPress: onTertiaryLongPress,
-      onTertiaryTapCancel: onTertiaryTapCancel,
+      onTapCancel: onTapCancel,
+      onSecondaryTapDown: onSecondaryTapDown,
+      onSecondaryTapUp: onSecondaryTapUp,
+      onSecondaryTapCancel: onSecondaryTapCancel,
       onTertiaryTapDown: onTertiaryTapDown,
       onTertiaryTapUp: onTertiaryTapUp,
-      style: ButtonStyle.outline(density: density, shape: shape, size: size),
-      trailing: trailing,
+      onTertiaryTapCancel: onTertiaryTapCancel,
+      onLongPressStart: onLongPressStart,
+      onLongPressUp: onLongPressUp,
+      onLongPressMoveUpdate: onLongPressMoveUpdate,
+      onLongPressEnd: onLongPressEnd,
+      onSecondaryLongPress: onSecondaryLongPress,
+      onTertiaryLongPress: onTertiaryLongPress,
       child: child,
     );
   }
@@ -3550,31 +3550,31 @@ class GhostButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Button(
       onPressed: onPressed,
-      alignment: alignment,
-      disableTransition: disableTransition,
-      enableFeedback: enableFeedback,
-      enabled: enabled,
-      focusNode: focusNode,
+      style: ButtonStyle.ghost(size: size, density: density, shape: shape),
       leading: leading,
+      trailing: trailing,
+      focusNode: focusNode,
+      alignment: alignment,
+      enabled: enabled,
+      disableTransition: disableTransition,
       onFocus: onFocus,
       onHover: onHover,
-      onLongPressEnd: onLongPressEnd,
-      onLongPressMoveUpdate: onLongPressMoveUpdate,
-      onLongPressStart: onLongPressStart,
-      onLongPressUp: onLongPressUp,
-      onSecondaryLongPress: onSecondaryLongPress,
-      onSecondaryTapCancel: onSecondaryTapCancel,
-      onSecondaryTapDown: onSecondaryTapDown,
-      onSecondaryTapUp: onSecondaryTapUp,
-      onTapCancel: onTapCancel,
+      enableFeedback: enableFeedback,
       onTapDown: onTapDown,
       onTapUp: onTapUp,
-      onTertiaryLongPress: onTertiaryLongPress,
-      onTertiaryTapCancel: onTertiaryTapCancel,
+      onTapCancel: onTapCancel,
+      onSecondaryTapDown: onSecondaryTapDown,
+      onSecondaryTapUp: onSecondaryTapUp,
+      onSecondaryTapCancel: onSecondaryTapCancel,
       onTertiaryTapDown: onTertiaryTapDown,
       onTertiaryTapUp: onTertiaryTapUp,
-      style: ButtonStyle.ghost(density: density, shape: shape, size: size),
-      trailing: trailing,
+      onTertiaryTapCancel: onTertiaryTapCancel,
+      onLongPressStart: onLongPressStart,
+      onLongPressUp: onLongPressUp,
+      onLongPressMoveUpdate: onLongPressMoveUpdate,
+      onLongPressEnd: onLongPressEnd,
+      onSecondaryLongPress: onSecondaryLongPress,
+      onTertiaryLongPress: onTertiaryLongPress,
       child: child,
     );
   }
@@ -3650,31 +3650,31 @@ class LinkButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Button(
       onPressed: onPressed,
-      alignment: alignment,
-      disableTransition: disableTransition,
-      enableFeedback: enableFeedback,
-      enabled: enabled,
-      focusNode: focusNode,
+      style: ButtonStyle.link(size: size, density: density, shape: shape),
       leading: leading,
+      trailing: trailing,
+      focusNode: focusNode,
+      alignment: alignment,
+      enabled: enabled,
+      disableTransition: disableTransition,
       onFocus: onFocus,
       onHover: onHover,
-      onLongPressEnd: onLongPressEnd,
-      onLongPressMoveUpdate: onLongPressMoveUpdate,
-      onLongPressStart: onLongPressStart,
-      onLongPressUp: onLongPressUp,
-      onSecondaryLongPress: onSecondaryLongPress,
-      onSecondaryTapCancel: onSecondaryTapCancel,
-      onSecondaryTapDown: onSecondaryTapDown,
-      onSecondaryTapUp: onSecondaryTapUp,
-      onTapCancel: onTapCancel,
+      enableFeedback: enableFeedback,
       onTapDown: onTapDown,
       onTapUp: onTapUp,
-      onTertiaryLongPress: onTertiaryLongPress,
-      onTertiaryTapCancel: onTertiaryTapCancel,
+      onTapCancel: onTapCancel,
+      onSecondaryTapDown: onSecondaryTapDown,
+      onSecondaryTapUp: onSecondaryTapUp,
+      onSecondaryTapCancel: onSecondaryTapCancel,
       onTertiaryTapDown: onTertiaryTapDown,
       onTertiaryTapUp: onTertiaryTapUp,
-      style: ButtonStyle.link(density: density, shape: shape, size: size),
-      trailing: trailing,
+      onTertiaryTapCancel: onTertiaryTapCancel,
+      onLongPressStart: onLongPressStart,
+      onLongPressUp: onLongPressUp,
+      onLongPressMoveUpdate: onLongPressMoveUpdate,
+      onLongPressEnd: onLongPressEnd,
+      onSecondaryLongPress: onSecondaryLongPress,
+      onTertiaryLongPress: onTertiaryLongPress,
       child: child,
     );
   }
@@ -3749,13 +3749,13 @@ class TextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Button(
       onPressed: onPressed,
-      alignment: alignment,
-      disableTransition: disableTransition,
-      enabled: enabled,
-      focusNode: focusNode,
+      style: ButtonStyle.text(size: size, density: density, shape: shape),
       leading: leading,
-      style: ButtonStyle.text(density: density, shape: shape, size: size),
       trailing: trailing,
+      focusNode: focusNode,
+      alignment: alignment,
+      enabled: enabled,
+      disableTransition: disableTransition,
       child: child,
     );
   }
@@ -3831,35 +3831,35 @@ class DestructiveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Button(
       onPressed: onPressed,
-      alignment: alignment,
-      disableTransition: disableTransition,
-      enableFeedback: enableFeedback,
-      enabled: enabled,
-      focusNode: focusNode,
-      leading: leading,
-      onFocus: onFocus,
-      onHover: onHover,
-      onLongPressEnd: onLongPressEnd,
-      onLongPressMoveUpdate: onLongPressMoveUpdate,
-      onLongPressStart: onLongPressStart,
-      onLongPressUp: onLongPressUp,
-      onSecondaryLongPress: onSecondaryLongPress,
-      onSecondaryTapCancel: onSecondaryTapCancel,
-      onSecondaryTapDown: onSecondaryTapDown,
-      onSecondaryTapUp: onSecondaryTapUp,
-      onTapCancel: onTapCancel,
-      onTapDown: onTapDown,
-      onTapUp: onTapUp,
-      onTertiaryLongPress: onTertiaryLongPress,
-      onTertiaryTapCancel: onTertiaryTapCancel,
-      onTertiaryTapDown: onTertiaryTapDown,
-      onTertiaryTapUp: onTertiaryTapUp,
       style: ButtonStyle.destructive(
+        size: size,
         density: density,
         shape: shape,
-        size: size,
       ),
+      leading: leading,
       trailing: trailing,
+      focusNode: focusNode,
+      alignment: alignment,
+      enabled: enabled,
+      disableTransition: disableTransition,
+      onFocus: onFocus,
+      onHover: onHover,
+      enableFeedback: enableFeedback,
+      onTapDown: onTapDown,
+      onTapUp: onTapUp,
+      onTapCancel: onTapCancel,
+      onSecondaryTapDown: onSecondaryTapDown,
+      onSecondaryTapUp: onSecondaryTapUp,
+      onSecondaryTapCancel: onSecondaryTapCancel,
+      onTertiaryTapDown: onTertiaryTapDown,
+      onTertiaryTapUp: onTertiaryTapUp,
+      onTertiaryTapCancel: onTertiaryTapCancel,
+      onLongPressStart: onLongPressStart,
+      onLongPressUp: onLongPressUp,
+      onLongPressMoveUpdate: onLongPressMoveUpdate,
+      onLongPressEnd: onLongPressEnd,
+      onSecondaryLongPress: onSecondaryLongPress,
+      onTertiaryLongPress: onTertiaryLongPress,
       child: child,
     );
   }
@@ -3935,31 +3935,31 @@ class TabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Button(
       onPressed: onPressed,
-      alignment: alignment,
-      disableTransition: disableTransition,
-      enableFeedback: enableFeedback,
-      enabled: enabled,
-      focusNode: focusNode,
+      style: ButtonStyle.fixed(size: size, density: density, shape: shape),
       leading: leading,
+      trailing: trailing,
+      focusNode: focusNode,
+      alignment: alignment,
+      enabled: enabled,
+      disableTransition: disableTransition,
       onFocus: onFocus,
       onHover: onHover,
-      onLongPressEnd: onLongPressEnd,
-      onLongPressMoveUpdate: onLongPressMoveUpdate,
-      onLongPressStart: onLongPressStart,
-      onLongPressUp: onLongPressUp,
-      onSecondaryLongPress: onSecondaryLongPress,
-      onSecondaryTapCancel: onSecondaryTapCancel,
-      onSecondaryTapDown: onSecondaryTapDown,
-      onSecondaryTapUp: onSecondaryTapUp,
-      onTapCancel: onTapCancel,
+      enableFeedback: enableFeedback,
       onTapDown: onTapDown,
       onTapUp: onTapUp,
-      onTertiaryLongPress: onTertiaryLongPress,
-      onTertiaryTapCancel: onTertiaryTapCancel,
+      onTapCancel: onTapCancel,
+      onSecondaryTapDown: onSecondaryTapDown,
+      onSecondaryTapUp: onSecondaryTapUp,
+      onSecondaryTapCancel: onSecondaryTapCancel,
       onTertiaryTapDown: onTertiaryTapDown,
       onTertiaryTapUp: onTertiaryTapUp,
-      style: ButtonStyle.fixed(density: density, shape: shape, size: size),
-      trailing: trailing,
+      onTertiaryTapCancel: onTertiaryTapCancel,
+      onLongPressStart: onLongPressStart,
+      onLongPressUp: onLongPressUp,
+      onLongPressMoveUpdate: onLongPressMoveUpdate,
+      onLongPressEnd: onLongPressEnd,
+      onSecondaryLongPress: onSecondaryLongPress,
+      onTertiaryLongPress: onTertiaryLongPress,
       child: child,
     );
   }
@@ -4158,31 +4158,31 @@ class CardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Button(
       onPressed: onPressed,
-      alignment: alignment,
-      disableTransition: disableTransition,
-      enableFeedback: enableFeedback,
-      enabled: enabled,
-      focusNode: focusNode,
+      style: ButtonStyle.card(size: size, density: density, shape: shape),
       leading: leading,
+      trailing: trailing,
+      focusNode: focusNode,
+      alignment: alignment,
+      enabled: enabled,
+      disableTransition: disableTransition,
       onFocus: onFocus,
       onHover: onHover,
-      onLongPressEnd: onLongPressEnd,
-      onLongPressMoveUpdate: onLongPressMoveUpdate,
-      onLongPressStart: onLongPressStart,
-      onLongPressUp: onLongPressUp,
-      onSecondaryLongPress: onSecondaryLongPress,
-      onSecondaryTapCancel: onSecondaryTapCancel,
-      onSecondaryTapDown: onSecondaryTapDown,
-      onSecondaryTapUp: onSecondaryTapUp,
-      onTapCancel: onTapCancel,
+      enableFeedback: enableFeedback,
       onTapDown: onTapDown,
       onTapUp: onTapUp,
-      onTertiaryLongPress: onTertiaryLongPress,
-      onTertiaryTapCancel: onTertiaryTapCancel,
+      onTapCancel: onTapCancel,
+      onSecondaryTapDown: onSecondaryTapDown,
+      onSecondaryTapUp: onSecondaryTapUp,
+      onSecondaryTapCancel: onSecondaryTapCancel,
       onTertiaryTapDown: onTertiaryTapDown,
       onTertiaryTapUp: onTertiaryTapUp,
-      style: ButtonStyle.card(density: density, shape: shape, size: size),
-      trailing: trailing,
+      onTertiaryTapCancel: onTertiaryTapCancel,
+      onLongPressStart: onLongPressStart,
+      onLongPressUp: onLongPressUp,
+      onLongPressMoveUpdate: onLongPressMoveUpdate,
+      onLongPressEnd: onLongPressEnd,
+      onSecondaryLongPress: onSecondaryLongPress,
+      onTertiaryLongPress: onTertiaryLongPress,
       child: child,
     );
   }
@@ -4504,36 +4504,36 @@ class IconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Button(
       onPressed: onPressed,
-      alignment: alignment,
-      disableTransition: disableTransition,
-      enableFeedback: enableFeedback,
-      enabled: enabled,
-      focusNode: focusNode,
-      leading: leading,
-      onFocus: onFocus,
-      onHover: onHover,
-      onLongPressEnd: onLongPressEnd,
-      onLongPressMoveUpdate: onLongPressMoveUpdate,
-      onLongPressStart: onLongPressStart,
-      onLongPressUp: onLongPressUp,
-      onSecondaryLongPress: onSecondaryLongPress,
-      onSecondaryTapCancel: onSecondaryTapCancel,
-      onSecondaryTapDown: onSecondaryTapDown,
-      onSecondaryTapUp: onSecondaryTapUp,
-      onTapCancel: onTapCancel,
-      onTapDown: onTapDown,
-      onTapUp: onTapUp,
-      onTertiaryLongPress: onTertiaryLongPress,
-      onTertiaryTapCancel: onTertiaryTapCancel,
-      onTertiaryTapDown: onTertiaryTapDown,
-      onTertiaryTapUp: onTertiaryTapUp,
       style: ButtonStyle(
+        variance: variance,
+        size: size,
         density: density,
         shape: shape,
-        size: size,
-        variance: variance,
       ),
+      leading: leading,
       trailing: trailing,
+      focusNode: focusNode,
+      alignment: alignment,
+      enabled: enabled,
+      disableTransition: disableTransition,
+      onFocus: onFocus,
+      onHover: onHover,
+      enableFeedback: enableFeedback,
+      onTapDown: onTapDown,
+      onTapUp: onTapUp,
+      onTapCancel: onTapCancel,
+      onSecondaryTapDown: onSecondaryTapDown,
+      onSecondaryTapUp: onSecondaryTapUp,
+      onSecondaryTapCancel: onSecondaryTapCancel,
+      onTertiaryTapDown: onTertiaryTapDown,
+      onTertiaryTapUp: onTertiaryTapUp,
+      onTertiaryTapCancel: onTertiaryTapCancel,
+      onLongPressStart: onLongPressStart,
+      onLongPressUp: onLongPressUp,
+      onLongPressMoveUpdate: onLongPressMoveUpdate,
+      onLongPressEnd: onLongPressEnd,
+      onSecondaryLongPress: onSecondaryLongPress,
+      onTertiaryLongPress: onTertiaryLongPress,
       child: icon,
     );
   }
@@ -4643,11 +4643,11 @@ class ButtonStyleOverride extends StatelessWidget {
     return Data.inherit(
       data: ButtonStyleOverrideData(
         decoration: decoration,
-        iconTheme: iconTheme,
-        margin: margin,
         mouseCursor: mouseCursor,
         padding: padding,
         textStyle: textStyle,
+        iconTheme: iconTheme,
+        margin: margin,
       ),
       child: child,
     );
@@ -4806,24 +4806,24 @@ class ButtonGroup extends StatelessWidget {
                 if (i == 0) {
                   return value.copyWith(
                     borderRadius: resolvedBorderRadius.copyWith(
-                      bottomRight: Radius.zero,
                       topRight: Radius.zero,
+                      bottomRight: Radius.zero,
                     ),
                   );
                 } else if (i == children.length - 1) {
                   return value.copyWith(
                     borderRadius: resolvedBorderRadius.copyWith(
-                      bottomLeft: Radius.zero,
                       topLeft: Radius.zero,
+                      bottomLeft: Radius.zero,
                     ),
                   );
                 }
                 return value.copyWith(
                   borderRadius: resolvedBorderRadius.copyWith(
-                    bottomLeft: Radius.zero,
-                    bottomRight: Radius.zero,
                     topLeft: Radius.zero,
                     topRight: Radius.zero,
+                    bottomLeft: Radius.zero,
+                    bottomRight: Radius.zero,
                   ),
                 );
               }
@@ -4844,10 +4844,10 @@ class ButtonGroup extends StatelessWidget {
               }
               return value.copyWith(
                 borderRadius: resolvedBorderRadius.copyWith(
-                  bottomLeft: Radius.zero,
-                  bottomRight: Radius.zero,
                   topLeft: Radius.zero,
                   topRight: Radius.zero,
+                  bottomLeft: Radius.zero,
+                  bottomRight: Radius.zero,
                 ),
               );
             }
@@ -4858,9 +4858,9 @@ class ButtonGroup extends StatelessWidget {
       }
     }
     Widget flex = Flex(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       direction: direction,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: children,
     );
     if (direction == Axis.horizontal) {

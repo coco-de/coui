@@ -171,29 +171,29 @@ class ModalBackdrop extends StatelessWidget {
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<ModalBackdropTheme>(context);
     final modal = styleValue(
-      defaultValue: true,
-      themeValue: compTheme?.modal,
       widgetValue: this.modal,
+      themeValue: compTheme?.modal,
+      defaultValue: true,
     );
     final surfaceClip = styleValue(
-      defaultValue: true,
-      themeValue: compTheme?.surfaceClip,
       widgetValue: this.surfaceClip,
+      themeValue: compTheme?.surfaceClip,
+      defaultValue: true,
     );
     final borderRadius = styleValue(
-      defaultValue: BorderRadius.zero,
-      themeValue: compTheme?.borderRadius,
       widgetValue: this.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: BorderRadius.zero,
     );
     final padding = styleValue(
-      defaultValue: EdgeInsets.zero,
-      themeValue: compTheme?.padding,
       widgetValue: this.padding,
+      themeValue: compTheme?.padding,
+      defaultValue: EdgeInsets.zero,
     );
     final barrierColor = styleValue(
-      defaultValue: const Color.fromRGBO(0, 0, 0, 0.8),
-      themeValue: compTheme?.barrierColor,
       widgetValue: this.barrierColor,
+      themeValue: compTheme?.barrierColor,
+      defaultValue: const Color.fromRGBO(0, 0, 0, 0.8),
     );
     if (!modal) {
       return child;
@@ -445,10 +445,10 @@ class SurfaceBarrierPainter extends CustomPainter {
         ..addRRect(
           RRect.fromRectAndCorners(
             rect,
-            bottomLeft: borderRadius.bottomLeft,
-            bottomRight: borderRadius.bottomRight,
             topLeft: borderRadius.topLeft,
             topRight: borderRadius.topRight,
+            bottomRight: borderRadius.bottomRight,
+            bottomLeft: borderRadius.bottomLeft,
           ),
         );
       path.fillType = PathFillType.evenOdd;
@@ -562,12 +562,12 @@ Widget _buildCoUIDialogTransitions(
 ) {
   final scaleTransition = ScaleTransition(
     scale: CurvedAnimation(
-      curve: Curves.easeOut,
       parent: animation.drive(Tween<double>(begin: 0.7, end: 1)),
+      curve: Curves.easeOut,
       reverseCurve: Curves.easeIn,
     ),
     child: FadeTransition(
-      opacity: CurvedAnimation(curve: Curves.easeOut, parent: animation),
+      opacity: CurvedAnimation(parent: animation, curve: Curves.easeOut),
       child: child,
     ),
   );
@@ -657,7 +657,7 @@ Future<T?> showDialog<T>({
   );
   final data = Data.capture(from: context, to: navigatorState.context);
   final dialogRoute = DialogRoute<T>(
-    alignment: alignment ?? Alignment.center,
+    // alignment: alignment ?? Alignment.center, // Removed in Flutter 3.35
     anchorPoint: anchorPoint,
     barrierColor: barrierColor ?? const Color.fromRGBO(0, 0, 0, 0),
     barrierDismissible: barrierDismissible,
@@ -672,19 +672,19 @@ Future<T?> showDialog<T>({
         ),
       );
     },
-    context: context,
+    // context: context, // Removed in Flutter 3.35
     data: data,
     settings: routeSettings,
     themes: themes,
     transitionBuilder: (context, animation, secondaryAnimation, child) {
       return _buildCoUIDialogTransitions(
-        context,
-        BorderRadius.zero,
         alignment ?? Alignment.center,
         animation,
-        secondaryAnimation,
-        fullScreen,
+        BorderRadius.zero,
         child,
+        context,
+        fullScreen,
+        secondaryAnimation,
       );
     },
     traversalEdgeBehavior:
@@ -830,7 +830,7 @@ class DialogOverlayHandler extends OverlayHandler {
     );
     final data = Data.capture(from: context, to: navigatorState.context);
     final dialogRoute = DialogRoute<T>(
-      alignment: Alignment.center,
+      // alignment: Alignment.center, // Removed in Flutter 3.35
       barrierColor: overlayBarrier == null
           ? const Color.fromRGBO(0, 0, 0, 0.8)
           : Colors.transparent,
@@ -867,18 +867,18 @@ class DialogOverlayHandler extends OverlayHandler {
                 child: child,
               );
       },
-      context: context,
+      // context: context, // Removed in Flutter 3.35
       data: data,
       themes: themes,
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         return _buildCoUIDialogTransitions(
-          context,
-          BorderRadius.zero,
           Alignment.center,
           animation,
-          secondaryAnimation,
-          false,
+          BorderRadius.zero,
           child,
+          context,
+          false,
+          secondaryAnimation,
         );
       },
       traversalEdgeBehavior: TraversalEdgeBehavior.closedLoop,

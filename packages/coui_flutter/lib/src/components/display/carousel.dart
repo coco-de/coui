@@ -147,24 +147,24 @@ class SlidingCarouselTransition extends CarouselTransition {
         ? [
             for (final item in items)
               Positioned(
-                height: constraints.maxHeight,
                 left:
                     snapOffsetAlignment +
                     (item.position - currentIndex) * size +
                     (gap * item.relativeIndex),
                 width: size,
+                height: constraints.maxHeight,
                 child: item.child,
               ),
           ]
         : [
             for (final item in items)
               Positioned(
-                height: size,
                 top:
                     snapOffsetAlignment +
                     (item.position - currentIndex) * size +
                     (gap * item.relativeIndex),
                 width: constraints.maxWidth,
+                height: size,
                 child: item.child,
               ),
           ];
@@ -232,9 +232,9 @@ class FadingCarouselTransition extends CarouselTransition {
         ? [
             for (final item in items)
               Positioned(
-                height: constraints.maxHeight,
                 left: snapOffsetAlignment,
                 width: size,
+                height: constraints.maxHeight,
                 child: Opacity(
                   opacity: (1 - (progress - item.position).abs()).clamp(
                     0.0,
@@ -247,9 +247,9 @@ class FadingCarouselTransition extends CarouselTransition {
         : [
             for (final item in items)
               Positioned(
-                height: size,
                 top: snapOffsetAlignment,
                 width: constraints.maxWidth,
+                height: size,
                 child: Opacity(
                   opacity: (1 - (progress - item.position).abs()).clamp(
                     0.0,
@@ -549,16 +549,16 @@ class Carousel extends StatefulWidget {
 
 class _CarouselState extends State<Carousel>
     with SingleTickerProviderStateMixin {
-  CarouselController _controller;
+  late CarouselController _controller;
   Duration? _startTime;
-  Ticker _ticker;
+  late Ticker _ticker;
   bool hovered = false;
   bool dragging = false;
 
-  double _lastDragValue;
+  late double _lastDragValue;
   double _dragVelocity = 0;
 
-  int _currentIndex;
+  late int _currentIndex;
 
   CarouselTheme? _theme;
 
@@ -716,50 +716,50 @@ class _CarouselState extends State<Carousel>
   }
 
   CarouselAlignment get _alignment => styleValue(
-    defaultValue: CarouselAlignment.center,
-    themeValue: _theme?.alignment,
     widgetValue: widget.alignment,
+    themeValue: _theme?.alignment,
+    defaultValue: CarouselAlignment.center,
   );
 
   Axis get _direction => styleValue(
-    defaultValue: Axis.horizontal,
-    themeValue: _theme?.direction,
     widgetValue: widget.direction,
+    themeValue: _theme?.direction,
+    defaultValue: Axis.horizontal,
   );
 
   bool get _wrap => styleValue(
-    defaultValue: true,
-    themeValue: _theme?.wrap,
     widgetValue: widget.wrap,
+    themeValue: _theme?.wrap,
+    defaultValue: true,
   );
 
   bool get _pauseOnHover => styleValue(
-    defaultValue: true,
-    themeValue: _theme?.pauseOnHover,
     widgetValue: widget.pauseOnHover,
+    themeValue: _theme?.pauseOnHover,
+    defaultValue: true,
   );
 
   Duration? get _autoplaySpeed => styleValue(
-    defaultValue: null,
-    themeValue: _theme?.autoplaySpeed,
     widgetValue: widget.autoplaySpeed,
+    themeValue: _theme?.autoplaySpeed,
+    defaultValue: null,
   );
   bool get _draggable => styleValue(
-    defaultValue: true,
-    themeValue: _theme?.draggable,
     widgetValue: widget.draggable,
+    themeValue: _theme?.draggable,
+    defaultValue: true,
   );
 
   Duration get _speed => styleValue(
-    defaultValue: const Duration(milliseconds: 200),
-    themeValue: _theme?.speed,
     widgetValue: widget.speed,
+    themeValue: _theme?.speed,
+    defaultValue: const Duration(milliseconds: 200),
   );
 
   Curve get _curve => styleValue(
-    defaultValue: Curves.easeInOut,
-    themeValue: _theme?.curve,
     widgetValue: widget.curve,
+    themeValue: _theme?.curve,
+    defaultValue: Curves.easeInOut,
   );
 
   Duration? get _currentSlideDuration {
@@ -818,15 +818,6 @@ class _CarouselState extends State<Carousel>
     }
 
     return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onHorizontalDragEnd: (details) {
-        dragging = false;
-        _dragVelocity = widget.disableDraggingVelocity
-            ? 0
-            : -details.primaryVelocity! / size / 100.0;
-        _controller.animateSnap(_speed, _curve);
-        _check();
-      },
       onHorizontalDragStart: (details) {
         dragging = true;
         _lastDragValue = progressedValue;
@@ -840,6 +831,15 @@ class _CarouselState extends State<Carousel>
           });
         }
       },
+      onHorizontalDragEnd: (details) {
+        dragging = false;
+        _dragVelocity = widget.disableDraggingVelocity
+            ? 0
+            : -details.primaryVelocity! / size / 100.0;
+        _controller.animateSnap(_speed, _curve);
+        _check();
+      },
+      behavior: HitTestBehavior.translucent,
       child: carouselWidget,
     );
   }
@@ -861,15 +861,6 @@ class _CarouselState extends State<Carousel>
     }
 
     return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onVerticalDragEnd: (details) {
-        dragging = false;
-        _dragVelocity = widget.disableDraggingVelocity
-            ? 0
-            : -details.primaryVelocity! / size / 100.0;
-        _controller.animateSnap(_speed, _curve);
-        _check();
-      },
       onVerticalDragStart: (details) {
         dragging = true;
         _lastDragValue = progressedValue;
@@ -883,6 +874,15 @@ class _CarouselState extends State<Carousel>
           });
         }
       },
+      onVerticalDragEnd: (details) {
+        dragging = false;
+        _dragVelocity = widget.disableDraggingVelocity
+            ? 0
+            : -details.primaryVelocity! / size / 100.0;
+        _controller.animateSnap(_speed, _curve);
+        _check();
+      },
+      behavior: HitTestBehavior.translucent,
       child: carouselWidget,
     );
   }
@@ -950,6 +950,7 @@ class CarouselDotIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
+      listenable: controller,
       builder: (context, child) {
         int value = controller.value.round() % itemCount;
         if (value < 0) {
@@ -964,7 +965,6 @@ class CarouselDotIndicator extends StatelessWidget {
           },
         );
       },
-      listenable: controller,
     );
   }
 }

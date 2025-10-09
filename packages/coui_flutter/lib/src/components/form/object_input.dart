@@ -141,7 +141,7 @@ class NullableDate {
 }
 
 class _DateInputState extends State<DateInput> {
-  ComponentController<NullableDate> _controller;
+  late ComponentController<NullableDate> _controller;
 
   @override
   void initState() {
@@ -439,7 +439,7 @@ class TimeInput extends StatefulWidget with ControlledComponent<TimeOfDay?> {
 }
 
 class _TimeInputState extends State<TimeInput> {
-  ComponentController<NullableTimeOfDay> _controller;
+  late ComponentController<NullableTimeOfDay> _controller;
 
   @override
   void initState() {
@@ -661,7 +661,7 @@ class DurationInput extends StatefulWidget with ControlledComponent<Duration?> {
 }
 
 class _DurationInputState extends State<DurationInput> {
-  ComponentController<NullableTimeOfDay> _controller;
+  late ComponentController<NullableTimeOfDay> _controller;
 
   @override
   void initState() {

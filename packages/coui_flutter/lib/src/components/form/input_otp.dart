@@ -219,13 +219,13 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
   ) {
     if (relativeIndex == 0) {
       return BorderRadius.only(
-        bottomLeft: Radius.circular(theme.radiusMd),
         topLeft: Radius.circular(theme.radiusMd),
+        bottomLeft: Radius.circular(theme.radiusMd),
       );
     } else if (relativeIndex == groupLength - 1) {
       return BorderRadius.only(
-        bottomRight: Radius.circular(theme.radiusMd),
         topRight: Radius.circular(theme.radiusMd),
+        bottomRight: Radius.circular(theme.radiusMd),
       );
     }
 
@@ -301,8 +301,8 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
               color: theme.colorScheme.foreground,
               shape: BoxShape.circle,
             ),
-            height: theme.scaling * 8,
             width: theme.scaling * 8,
+            height: theme.scaling * 8,
           )
         : Text(String.fromCharCode(_value!)).small().foreground();
   }
@@ -363,6 +363,7 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
           children: [
             Positioned.fill(
               child: ListenableBuilder(
+                listenable: widget.data.focusNode!,
                 builder: (context, child) {
                   return FocusOutline(
                     borderRadius: getBorderRadiusByRelativeIndex(
@@ -374,16 +375,15 @@ class _OTPCharacterInputState extends State<_OTPCharacterInput> {
                     child: child!,
                   );
                 },
-                listenable: widget.data.focusNode!,
                 child: Container(
                   decoration: BoxDecoration(
+                    color: theme.colorScheme.input.scaleAlpha(0.3),
                     border: Border.all(color: theme.colorScheme.border),
                     borderRadius: getBorderRadiusByRelativeIndex(
                       theme,
                       widget.data.relativeIndex,
                       widget.data.groupLength,
                     ),
-                    color: theme.colorScheme.input.scaleAlpha(0.3),
                   ),
                 ),
               ),

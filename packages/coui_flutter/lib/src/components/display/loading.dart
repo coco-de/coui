@@ -48,9 +48,9 @@ abstract class Loading extends StatelessWidget {
     final compTheme = ComponentTheme.maybeOf<LoadingTheme>(context);
 
     return styleValue(
-      defaultValue: null,
-      themeValue: compTheme?.color,
       widgetValue: color,
+      themeValue: compTheme?.color,
+      defaultValue: null,
     );
   }
 
@@ -59,9 +59,9 @@ abstract class Loading extends StatelessWidget {
     final compTheme = ComponentTheme.maybeOf<LoadingTheme>(context);
 
     return styleValue(
-      defaultValue: defaultValue,
-      themeValue: compTheme?.size,
       widgetValue: size,
+      themeValue: compTheme?.size,
+      defaultValue: defaultValue,
     );
   }
 }

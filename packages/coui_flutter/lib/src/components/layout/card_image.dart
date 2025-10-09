@@ -230,50 +230,50 @@ class _CardImageState extends State<CardImage> {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<CardImageTheme>(context);
     final style = styleValue(
-      defaultValue: const ButtonStyle.fixed(density: ButtonDensity.compact),
-      themeValue: compTheme?.style,
       widgetValue: widget.style,
+      themeValue: compTheme?.style,
+      defaultValue: const ButtonStyle.fixed(density: ButtonDensity.compact),
     );
     final direction = styleValue(
-      defaultValue: Axis.vertical,
-      themeValue: compTheme?.direction,
       widgetValue: widget.direction,
+      themeValue: compTheme?.direction,
+      defaultValue: Axis.vertical,
     );
     final hoverScale = styleValue(
-      defaultValue: 1.05,
-      themeValue: compTheme?.hoverScale,
       widgetValue: widget.hoverScale,
+      themeValue: compTheme?.hoverScale,
+      defaultValue: 1.05,
     );
     final normalScale = styleValue(
-      defaultValue: 1,
-      themeValue: compTheme?.normalScale,
       widgetValue: widget.normalScale,
+      themeValue: compTheme?.normalScale,
+      defaultValue: 1,
     );
     final backgroundColor = styleValue(
-      defaultValue: Colors.transparent,
-      themeValue: compTheme?.backgroundColor,
       widgetValue: widget.backgroundColor,
+      themeValue: compTheme?.backgroundColor,
+      defaultValue: Colors.transparent,
     );
     final borderColor = styleValue(
-      defaultValue: Colors.transparent,
-      themeValue: compTheme?.borderColor,
       widgetValue: widget.borderColor,
+      themeValue: compTheme?.borderColor,
+      defaultValue: Colors.transparent,
     );
     final gap = styleValue(
-      defaultValue: scaling * 12,
-      themeValue: compTheme?.gap,
       widgetValue: widget.gap,
+      themeValue: compTheme?.gap,
+      defaultValue: scaling * 12,
     );
 
     return Button(
       onPressed: widget.onPressed,
-      enabled: widget.enabled,
-      statesController: _statesController,
       style: style,
+      statesController: _statesController,
+      enabled: widget.enabled,
       child: _wrapIntrinsic(
         Flex(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           direction: direction,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Flexible(
               child: OutlinedContainer(
@@ -283,11 +283,11 @@ class _CardImageState extends State<CardImage> {
                   animation: _statesController,
                   builder: (context, child) {
                     return AnimatedScale(
-                      duration: kDefaultDuration,
                       scale:
                           _statesController.value.contains(WidgetState.hovered)
                           ? hoverScale.toDouble()
                           : normalScale.toDouble(),
+                      duration: kDefaultDuration,
                       child: widget.image,
                     );
                   },

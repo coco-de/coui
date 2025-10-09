@@ -51,22 +51,23 @@ class FadeScroll extends StatelessWidget {
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<FadeScrollTheme>(context);
     final startOffset = styleValue(
-      defaultValue: 0,
-      themeValue: compTheme?.startOffset,
       widgetValue: this.startOffset,
+      themeValue: compTheme?.startOffset,
+      defaultValue: 0,
     );
     final endOffset = styleValue(
-      defaultValue: 0,
-      themeValue: compTheme?.endOffset,
       widgetValue: this.endOffset,
+      themeValue: compTheme?.endOffset,
+      defaultValue: 0,
     );
     final gradient = styleValue(
-      defaultValue: const [Colors.white, Colors.transparent],
-      themeValue: compTheme?.gradient,
       widgetValue: this.gradient,
+      themeValue: compTheme?.gradient,
+      defaultValue: const [Colors.white, Colors.transparent],
     );
 
     return ListenableBuilder(
+      listenable: controller,
       builder: (context, child) {
         if (!controller.hasClients) {
           return child!;
@@ -91,40 +92,38 @@ class FadeScroll extends StatelessWidget {
                       : Alignment.bottomCenter;
                   final relativeStart = startOffset / size;
                   final relativeEnd = 1 - endOffset / size;
-                  final stops = shouldFadeStart && shouldFadeEnd
-                      ? [
-                          for (int i = 0; i < gradient.length; i += 1)
-                            (i / gradient.length) * relativeStart,
-                          relativeStart,
-                          relativeEnd,
-                          for (int i = 1; i < gradient.length + 1; i += 1)
-                            relativeEnd +
-                                (i / gradient.length) * (1 - relativeEnd),
-                        ]
-                      : shouldFadeStart
-                      ? [
-                          for (int i = 0; i < gradient.length; i += 1)
-                            (i / gradient.length) * relativeStart,
-                          relativeStart,
-                          1,
-                        ]
-                      : [
-                          0,
-                          relativeEnd,
-                          for (int i = 1; i < gradient.length + 1; i += 1)
-                            relativeEnd +
-                                (i / gradient.length) * (1 - relativeEnd),
-                        ];
+                  final stops = <double>[
+                    if (shouldFadeStart && shouldFadeEnd) ...[
+                      for (int i = 0; i < gradient.length; i += 1)
+                        ((i / gradient.length) * relativeStart),
+                      relativeStart,
+                      relativeEnd,
+                      for (int i = 1; i < gradient.length + 1; i += 1)
+                        (relativeEnd +
+                            (i / gradient.length) * (1 - relativeEnd)),
+                    ] else if (shouldFadeStart) ...[
+                      for (int i = 0; i < gradient.length; i += 1)
+                        ((i / gradient.length) * relativeStart),
+                      relativeStart,
+                      1.0,
+                    ] else ...[
+                      0.0,
+                      relativeEnd,
+                      for (int i = 1; i < gradient.length + 1; i += 1)
+                        (relativeEnd +
+                            (i / gradient.length) * (1 - relativeEnd)),
+                    ]
+                  ];
 
                   return LinearGradient(
                     begin: start,
+                    end: end,
                     colors: [
                       if (shouldFadeStart) ...gradient,
                       Colors.white,
                       Colors.white,
                       if (shouldFadeEnd) ...gradient.reversed,
                     ],
-                    end: end,
                     stops: stops,
                     transform: const _ScaleGradient(Offset(1, 1.5)),
                   ).createShader(bounds);
@@ -132,7 +131,6 @@ class FadeScroll extends StatelessWidget {
                 child: child,
               );
       },
-      listenable: controller,
       child: child,
     );
   }

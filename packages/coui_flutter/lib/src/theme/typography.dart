@@ -44,8 +44,8 @@ class Typography {
     this.black = const TextStyle(fontWeight: FontWeight.w900),
     this.blockQuote = const TextStyle(
       fontSize: 16,
-      fontStyle: FontStyle.italic,
       fontWeight: FontWeight.w400,
+      fontStyle: FontStyle.italic,
     ),
     this.bold = const TextStyle(fontWeight: FontWeight.w700),
     this.extraBold = const TextStyle(fontWeight: FontWeight.w800),
@@ -55,9 +55,9 @@ class Typography {
     this.h3 = const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
     this.h4 = const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
     this.inlineCode = const TextStyle(
-      fontFamily: 'GeistMono',
       fontSize: 14,
       fontWeight: FontWeight.w600,
+      fontFamily: 'GeistMono',
     ),
     this.italic = const TextStyle(fontStyle: FontStyle.italic),
     this.large = const TextStyle(fontSize: 18),

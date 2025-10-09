@@ -805,11 +805,11 @@ class TextField extends StatefulWidget with TextInput {
       buttons.add(
         material.TextSelectionToolbarTextButton(
           onPressed: buttonItem.onPressed,
-          alignment: AlignmentDirectional.centerStart,
           padding: material.TextSelectionToolbarTextButton.getPadding(
             i,
             buttonItems.length,
           ),
+          alignment: AlignmentDirectional.centerStart,
           child: Text(_getMaterialButtonLabel(context, buttonItem)),
         ),
       );
@@ -843,7 +843,7 @@ class TextField extends StatefulWidget with TextInput {
     BuildContext context,
     EditableTextState editableTextState,
   ) {
-    return buildEditableTextContextMenu(editableTextState, context);
+    return buildEditableTextContextMenu(context, editableTextState);
   }
 
   @visibleForTesting
@@ -1191,9 +1191,9 @@ class TextField extends StatefulWidget with TextInput {
     properties.add(
       FlagProperty(
         'selectionEnabled',
-        defaultValue: true,
-        ifFalse: 'selection disabled',
         value: selectionEnabled,
+        ifFalse: 'selection disabled',
+        defaultValue: true,
       ),
     );
     properties.add(
@@ -1394,6 +1394,7 @@ class TextField extends StatefulWidget with TextInput {
           ? this.keyboardAppearance
           : keyboardAppearance(),
       keyboardType: keyboardType == null ? this.keyboardType : keyboardType(),
+      // ignore: deprecated_member_use_from_same_package
       leading: leading == null ? this.leading : leading(),
       magnifierConfiguration: magnifierConfiguration == null
           ? this.magnifierConfiguration
@@ -1479,6 +1480,7 @@ class TextField extends StatefulWidget with TextInput {
       textInputAction: textInputAction == null
           ? this.textInputAction
           : textInputAction(),
+      // ignore: deprecated_member_use_from_same_package
       trailing: trailing == null ? this.trailing : trailing(),
       undoController: undoController == null
           ? this.undoController
@@ -1511,7 +1513,7 @@ class TextFieldState extends State<TextField>
   @override
   final editableTextKey = GlobalKey<EditableTextState>();
 
-  WidgetStatesController _statesController;
+  late WidgetStatesController _statesController;
   RestorableTextEditingController? _controller;
 
   TextEditingController get effectiveController =>
@@ -1527,7 +1529,8 @@ class TextFieldState extends State<TextField>
 
   bool _showSelectionHandles = false;
 
-  _TextFieldSelectionGestureDetectorBuilder _selectionGestureDetectorBuilder;
+  late _TextFieldSelectionGestureDetectorBuilder
+  _selectionGestureDetectorBuilder;
 
   /// End of API for TextSelectionGestureDetectorBuilderDelegate.
 
@@ -1699,20 +1702,20 @@ class TextFieldState extends State<TextField>
     return !_hasDecoration
         ? editableText
         : ValueListenableBuilder<TextEditingValue>(
+            valueListenable: effectiveController,
             builder: (BuildContext context, TextEditingValue text, Widget? child) {
               final hasText = text.text.isNotEmpty;
               final placeholder = widget.placeholder == null
                   ? null
                   /// Make the placeholder invisible when hasText is true.
                   : Visibility(
+                      visible: !hasText,
+                      maintainState: true,
                       maintainAnimation: true,
                       maintainSize: true,
-                      maintainState: true,
-                      visible: !hasText,
                       child: SizedBox(
                         width: double.infinity,
                         child: DefaultTextStyle(
-                          maxLines: widget.maxLines,
                           style: textStyle
                               .merge(theme.typography.small)
                               .merge(theme.typography.normal)
@@ -1720,6 +1723,7 @@ class TextFieldState extends State<TextField>
                                 color: theme.colorScheme.mutedForeground,
                               ),
                           textAlign: widget.textAlign,
+                          maxLines: widget.maxLines,
                           child: widget.placeholder!,
                         ),
                       ),
@@ -1790,7 +1794,6 @@ class TextFieldState extends State<TextField>
                 ],
               );
             },
-            valueListenable: effectiveController,
             child: editableText,
           );
   }
@@ -1840,11 +1843,12 @@ class TextFieldState extends State<TextField>
           },
         ),
         TextFieldAppendTextIntent: CallbackAction<TextFieldAppendTextIntent>(
+          // ignore: function-always-returns-null
           onInvoke: (intent) {
             final newText = effectiveController.text + intent.text;
             effectiveController.value = TextEditingValue(
-              selection: TextSelection.collapsed(offset: newText.length),
               text: newText,
+              selection: TextSelection.collapsed(offset: newText.length),
             );
 
             return null;
@@ -1852,6 +1856,7 @@ class TextFieldState extends State<TextField>
         ),
         TextFieldReplaceCurrentWordIntent:
             CallbackAction<TextFieldReplaceCurrentWordIntent>(
+              // ignore: function-always-returns-null
               onInvoke: (intent) {
                 final replacement = intent.text;
                 final value = effectiveController.value;
@@ -1861,10 +1866,10 @@ class TextFieldState extends State<TextField>
                   final start = selection.start;
                   final newText = replaceWordAtCaret(start, replacement, text);
                   effectiveController.value = TextEditingValue(
+                    text: newText.$2,
                     selection: TextSelection.collapsed(
                       offset: newText.$1 + replacement.length,
                     ),
-                    text: newText.$2,
                   );
                 }
 
@@ -1872,10 +1877,11 @@ class TextFieldState extends State<TextField>
               },
             ),
         TextFieldSetTextIntent: CallbackAction<TextFieldSetTextIntent>(
+          // ignore: function-always-returns-null
           onInvoke: (intent) {
             effectiveController.value = TextEditingValue(
-              selection: TextSelection.collapsed(offset: intent.text.length),
               text: intent.text,
+              selection: TextSelection.collapsed(offset: intent.text.length),
             );
 
             return null;
@@ -2065,10 +2071,10 @@ class TextFieldState extends State<TextField>
     final autofillConfiguration = autofillHints == null
         ? AutofillConfiguration.disabled
         : AutofillConfiguration(
+            uniqueIdentifier: autofillId,
             autofillHints: autofillHints,
             currentEditingValue: effectiveController.value,
             hintText: widget.hintText,
-            uniqueIdentifier: autofillId,
           );
 
     return _editableText.textInputConfiguration.copyWith(
@@ -2137,13 +2143,16 @@ class TextFieldState extends State<TextField>
 
     // Use the default disabled color only if the box decoration was not set.
     final effectiveBorder = styleValue(
-      defaultValue: Border.all(color: theme.colorScheme.border),
-      themeValue: compTheme?.border,
       widgetValue: widget.border,
+      themeValue: compTheme?.border,
+      defaultValue: Border.all(color: theme.colorScheme.border),
     );
     final effectiveDecoration =
         widget.decoration ??
         BoxDecoration(
+          color: (widget.filled ?? compTheme?.filled ?? false)
+              ? theme.colorScheme.muted
+              : theme.colorScheme.input.scaleAlpha(0.3),
           border: effectiveBorder,
           borderRadius:
               optionallyResolveBorderRadius(
@@ -2151,9 +2160,6 @@ class TextFieldState extends State<TextField>
                 widget.borderRadius ?? compTheme?.borderRadius,
               ) ??
               BorderRadius.circular(theme.radiusMd),
-          color: (widget.filled ?? compTheme?.filled ?? false)
-              ? theme.colorScheme.muted
-              : theme.colorScheme.input.scaleAlpha(0.3),
         );
 
     final selectionColor =
@@ -2173,75 +2179,75 @@ class TextFieldState extends State<TextField>
         bucket: bucket,
         child: EditableText(
           key: editableTextKey,
-          autocorrect: widget.autocorrect,
-          autocorrectionTextRectColor: selectionColor,
-          autofillClient: this,
-          autofillHints: widget.autofillHints,
-          autofocus: widget.autofocus,
-          backgroundCursorColor: theme.colorScheme.border,
-          clipBehavior: widget.clipBehavior,
-          contentInsertionConfiguration: widget.contentInsertionConfiguration,
-          contextMenuBuilder: widget.contextMenuBuilder,
           controller: controller,
-          cursorColor: cursorColor,
-          cursorHeight: widget.cursorHeight,
-          cursorOpacityAnimates: widget.cursorOpacityAnimates,
-          cursorRadius: widget.cursorRadius,
-          cursorWidth: widget.cursorWidth,
-          dragStartBehavior: widget.dragStartBehavior,
-          enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
-          enableInteractiveSelection: widget.enableInteractiveSelection,
-          enableSuggestions: widget.enableSuggestions,
-          expands: widget.expands,
           focusNode: _effectiveFocusNode,
-          groupId: widget.groupId,
-          inputFormatters: formatters,
-          keyboardAppearance: keyboardAppearance,
-          keyboardType: widget.keyboardType,
-          magnifierConfiguration:
-              widget.magnifierConfiguration ??
-              const TextMagnifierConfiguration(),
+          readOnly: widget.readOnly || !enabled,
+          obscuringCharacter: widget.obscuringCharacter,
+          obscureText: widget.obscureText,
+          autocorrect: widget.autocorrect,
+          smartDashesType: widget.smartDashesType,
+          smartQuotesType: widget.smartQuotesType,
+          enableSuggestions: widget.enableSuggestions,
+          style: defaultTextStyle,
+          strutStyle: widget.strutStyle,
+          cursorColor: cursorColor,
+          backgroundCursorColor: theme.colorScheme.border,
+          textAlign: widget.textAlign,
+          textDirection: widget.textDirection,
           maxLines: widget.maxLines,
           minLines: widget.minLines,
-          obscureText: widget.obscureText,
-          obscuringCharacter: widget.obscuringCharacter,
-          onChanged: _onChanged,
-          onEditingComplete: () {
-            widget.onEditingComplete?.call();
-            _formatSubmit();
-          },
-          onSelectionChanged: _handleSelectionChanged,
-          onSubmitted: (value) {
-            widget.onSubmitted?.call(value);
-            _formatSubmit();
-          },
-          onTapOutside: widget.onTapOutside,
-          paintCursorAboveText: true,
-          readOnly: widget.readOnly || !enabled,
-          rendererIgnoresPointer: true,
-          restorationId: 'editable',
-          scrollController: widget.scrollController,
-          scrollPadding: widget.scrollPadding,
-          scrollPhysics: widget.scrollPhysics,
+          expands: widget.expands,
+          autofocus: widget.autofocus,
+          showCursor: widget.showCursor,
+          showSelectionHandles: _showSelectionHandles,
           // Only show the selection highlight when the text field is focused.
           selectionColor: _effectiveFocusNode.hasFocus ? selectionColor : null,
           selectionControls: widget.selectionEnabled
               ? textSelectionControls
               : null,
+          keyboardType: widget.keyboardType,
+          textInputAction: widget.textInputAction,
+          textCapitalization: widget.textCapitalization,
+          onChanged: _onChanged,
+          onEditingComplete: () {
+            widget.onEditingComplete?.call();
+            _formatSubmit();
+          },
+          onSubmitted: (value) {
+            widget.onSubmitted?.call(value);
+            _formatSubmit();
+          },
+          onSelectionChanged: _handleSelectionChanged,
+          groupId: widget.groupId,
+          onTapOutside: widget.onTapOutside,
+          inputFormatters: formatters,
+          rendererIgnoresPointer: true,
+          cursorWidth: widget.cursorWidth,
+          cursorHeight: widget.cursorHeight,
+          cursorRadius: widget.cursorRadius,
+          cursorOpacityAnimates: widget.cursorOpacityAnimates,
+          paintCursorAboveText: true,
           selectionHeightStyle: widget.selectionHeightStyle,
           selectionWidthStyle: widget.selectionWidthStyle,
-          showCursor: widget.showCursor,
-          showSelectionHandles: _showSelectionHandles,
-          smartDashesType: widget.smartDashesType,
-          smartQuotesType: widget.smartQuotesType,
-          spellCheckConfiguration: spellCheckConfiguration,
-          strutStyle: widget.strutStyle,
-          style: defaultTextStyle,
+          scrollPadding: widget.scrollPadding,
+          keyboardAppearance: keyboardAppearance,
+          dragStartBehavior: widget.dragStartBehavior,
+          enableInteractiveSelection: widget.enableInteractiveSelection,
+          scrollController: widget.scrollController,
+          scrollPhysics: widget.scrollPhysics,
+          autocorrectionTextRectColor: selectionColor,
+          autofillHints: widget.autofillHints,
+          autofillClient: this,
+          clipBehavior: widget.clipBehavior,
+          restorationId: 'editable',
           stylusHandwritingEnabled: widget.stylusHandwritingEnabled,
-          textAlign: widget.textAlign,
-          textCapitalization: widget.textCapitalization,
-          textDirection: widget.textDirection,
-          textInputAction: widget.textInputAction,
+          enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
+          contentInsertionConfiguration: widget.contentInsertionConfiguration,
+          contextMenuBuilder: widget.contextMenuBuilder,
+          spellCheckConfiguration: spellCheckConfiguration,
+          magnifierConfiguration:
+              widget.magnifierConfiguration ??
+              const TextMagnifierConfiguration(),
           undoController: widget.undoController,
         ),
       ),
@@ -2263,6 +2269,16 @@ class TextFieldState extends State<TextField>
               opaque: false,
               child: Semantics(
                 enabled: enabled,
+                onTap: !enabled || widget.readOnly
+                    ? null
+                    : () {
+                        if (!controller.selection.isValid) {
+                          controller.selection = TextSelection.collapsed(
+                            offset: controller.text.length,
+                          );
+                        }
+                        _requestKeyboard();
+                      },
                 onDidGainAccessibilityFocus: handleDidGainAccessibilityFocus,
                 onDidLoseAccessibilityFocus: handleDidLoseAccessibilityFocus,
                 onFocus: enabled
@@ -2295,16 +2311,6 @@ class TextFieldState extends State<TextField>
                         }
                       }
                     : null,
-                onTap: !enabled || widget.readOnly
-                    ? null
-                    : () {
-                        if (!controller.selection.isValid) {
-                          controller.selection = TextSelection.collapsed(
-                            offset: controller.text.length,
-                          );
-                        }
-                        _requestKeyboard();
-                      },
                 child: TextFieldTapRegion(
                   child: IgnorePointer(
                     ignoring: !enabled,
@@ -2315,15 +2321,15 @@ class TextFieldState extends State<TextField>
                             behavior: HitTestBehavior.translucent,
                             child: Align(
                               alignment: Alignment(-1, _textAlignVertical.y),
-                              heightFactor: 1,
                               widthFactor: 1,
+                              heightFactor: 1,
                               child: Padding(
                                 padding:
                                     widget.padding ??
                                     compTheme?.padding ??
                                     EdgeInsets.symmetric(
-                                      horizontal: scaling * 12,
                                       vertical: scaling * 8,
+                                      horizontal: scaling * 12,
                                     ),
                                 child: _addTextDependentAttachments(
                                   editable,

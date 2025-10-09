@@ -33,7 +33,6 @@ class _ClickDetectorState extends State<ClickDetector> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      behavior: widget.behavior,
       onTap: widget.onClick == null
           ? null
           : () {
@@ -47,6 +46,7 @@ class _ClickDetectorState extends State<ClickDetector> {
               widget.onClick?.call(ClickDetails(clickCount: count));
               lastClick = now;
             },
+      behavior: widget.behavior,
       child: widget.child,
     );
   }

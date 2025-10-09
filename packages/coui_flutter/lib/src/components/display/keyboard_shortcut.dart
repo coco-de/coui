@@ -107,7 +107,7 @@ class KeyboardShortcutDisplayMapper extends StatefulWidget {
 
 class _KeyboardShortcutDisplayMapperState
     extends State<KeyboardShortcutDisplayMapper> {
-  KeyboardShortcutDisplayHandle _handle;
+  late KeyboardShortcutDisplayHandle _handle;
 
   @override
   void initState() {
@@ -222,9 +222,9 @@ class KeyboardDisplay extends StatelessWidget {
     final compTheme = ComponentTheme.maybeOf<KeyboardShortcutTheme>(context);
     final keys = _keys ?? shortcutActivatorToKeySet(_activator!);
     final spacing = styleValue(
-      defaultValue: theme.scaling * 2,
-      themeValue: compTheme?.spacing,
       widgetValue: this.spacing,
+      themeValue: compTheme?.spacing,
+      defaultValue: theme.scaling * 2,
     );
 
     return Row(
@@ -298,9 +298,9 @@ class KeyboardKeyDisplay extends StatelessWidget {
     final compTheme = ComponentTheme.maybeOf<KeyboardShortcutTheme>(context);
     final padding =
         styleValue(
-          defaultValue: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-          themeValue: compTheme?.keyPadding,
           widgetValue: this.padding,
+          themeValue: compTheme?.keyPadding,
+          defaultValue: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
         ).resolve(directionality) *
         theme.scaling;
 

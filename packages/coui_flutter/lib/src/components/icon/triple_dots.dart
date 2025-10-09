@@ -29,18 +29,18 @@ class MoreDots extends StatelessWidget {
       children.add(
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(size / 2),
             color: color,
+            borderRadius: BorderRadius.circular(size / 2),
           ),
-          height: size,
           width: size,
+          height: size,
         ),
       );
       if (i < count - 1) {
         children.add(
           SizedBox(
-            height: direction == Axis.vertical ? spacing : null,
             width: direction == Axis.horizontal ? spacing : null,
+            height: direction == Axis.vertical ? spacing : null,
           ),
         );
       }

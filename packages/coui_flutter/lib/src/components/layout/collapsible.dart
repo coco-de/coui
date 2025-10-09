@@ -221,7 +221,7 @@ class Collapsible extends StatefulWidget {
 }
 
 class CollapsibleState extends State<Collapsible> {
-  bool _isExpanded;
+  late bool _isExpanded;
 
   @override
   void initState() {
@@ -258,10 +258,10 @@ class CollapsibleState extends State<Collapsible> {
       ),
       child: IntrinsicWidth(
         child: Column(
-          crossAxisAlignment:
-              compTheme?.crossAxisAlignment ?? CrossAxisAlignment.stretch,
           mainAxisAlignment:
               compTheme?.mainAxisAlignment ?? MainAxisAlignment.start,
+          crossAxisAlignment:
+              compTheme?.crossAxisAlignment ?? CrossAxisAlignment.stretch,
           children: widget.children,
         ),
       ),

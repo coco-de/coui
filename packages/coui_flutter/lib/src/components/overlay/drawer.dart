@@ -187,14 +187,12 @@ DrawerOverlayCompleter<T?> openDrawerOverlay<T>({
   dragHandleSize ??= theme?.dragHandleSize;
 
   return openRawDrawer(
-    alignment: alignment,
     animationController: animationController,
     autoOpen: autoOpen,
     backdropBuilder: backdropBuilder,
     barrierDismissible: barrierDismissible,
-    builder: (context, extraSize, size, padding, stackIndex) {
+    builder: (context, extraSize, padding, size, stackIndex) {
       return DrawerWrapper(
-        barrierColor: barrierColor,
         borderRadius: borderRadius,
         dragHandleSize: dragHandleSize,
         draggable: draggable,
@@ -214,7 +212,6 @@ DrawerOverlayCompleter<T?> openDrawerOverlay<T>({
         ),
       );
     },
-    constraints: constraints,
     context: context,
     position: position,
     transformBackdrop: transformBackdrop,
@@ -279,22 +276,20 @@ DrawerOverlayCompleter<T?> openSheetOverlay<T>({
   barrierColor ??= theme?.barrierColor;
 
   return openRawDrawer(
-    alignment: alignment,
     // handled by the sheet itself
     animationController: animationController,
     autoOpen: autoOpen,
     backdropBuilder: backdropBuilder,
     barrierDismissible: barrierDismissible,
-    builder: (context, extraSize, size, padding, stackIndex) {
+    builder: (context, extraSize, padding, size, stackIndex) {
       return SheetWrapper(
-        barrierColor: barrierColor,
+        position: position,
+        size: size,
+        stackIndex: stackIndex,
         draggable: draggable,
         expands: true,
         extraSize: extraSize,
         padding: padding,
-        position: position,
-        size: size,
-        stackIndex: stackIndex,
         child: Builder(
           builder: (context) {
             return builder(context);
@@ -302,7 +297,6 @@ DrawerOverlayCompleter<T?> openSheetOverlay<T>({
         ),
       );
     },
-    constraints: constraints,
     context: context,
     position: position,
     transformBackdrop: transformBackdrop,
@@ -347,14 +341,12 @@ Future<T?> openDrawer<T>({
   bool useSafeArea = true,
 }) {
   return openDrawerOverlay<T>(
-    alignment: alignment,
     animationController: animationController,
     backdropBuilder: backdropBuilder,
     barrierColor: barrierColor,
     barrierDismissible: barrierDismissible,
     borderRadius: borderRadius,
     builder: builder,
-    constraints: constraints,
     context: context,
     dragHandleSize: dragHandleSize,
     draggable: draggable,
@@ -398,13 +390,11 @@ Future<T?> openSheet<T>({
   bool transformBackdrop = false,
 }) {
   return openSheetOverlay<T>(
-    alignment: alignment,
     animationController: animationController,
     backdropBuilder: backdropBuilder,
     barrierColor: barrierColor,
     barrierDismissible: barrierDismissible,
     builder: builder,
-    constraints: constraints,
     context: context,
     draggable: draggable,
     position: position,
@@ -464,7 +454,7 @@ class DrawerWrapper extends StatefulWidget {
 class _DrawerWrapperState extends State<DrawerWrapper>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  ControlledAnimation _extraOffset;
+  late ControlledAnimation _extraOffset;
 
   OverlayPosition get resolvedPosition {
     final position = widget.position;
@@ -525,22 +515,22 @@ class _DrawerWrapperState extends State<DrawerWrapper>
       case OverlayPosition.right:
         return Container(
           decoration: BoxDecoration(
-            borderRadius: theme.borderRadiusXxl,
             color: theme.colorScheme.muted,
+            borderRadius: theme.borderRadiusXxl,
           ),
-          height: widget.dragHandleSize?.height ?? theme.scaling * 100,
           width: widget.dragHandleSize?.width ?? theme.scaling * 6,
+          height: widget.dragHandleSize?.height ?? theme.scaling * 100,
         );
 
       case OverlayPosition.top:
       case OverlayPosition.bottom:
         return Container(
           decoration: BoxDecoration(
-            borderRadius: theme.borderRadiusXxl,
             color: theme.colorScheme.muted,
+            borderRadius: theme.borderRadiusXxl,
           ),
-          height: widget.dragHandleSize?.height ?? theme.scaling * 6,
           width: widget.dragHandleSize?.width ?? theme.scaling * 100,
+          height: widget.dragHandleSize?.height ?? theme.scaling * 6,
         );
 
       default:
@@ -557,28 +547,14 @@ class _DrawerWrapperState extends State<DrawerWrapper>
   }
 
   Widget buildDraggable(
-    Widget child,
     BuildContext context,
     ControlledAnimation? controlled,
+    Widget child,
     ThemeData theme,
   ) {
     switch (resolvedPosition) {
       case OverlayPosition.left:
         return GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onHorizontalDragEnd: (details) {
-            if (controlled == null) {
-              return;
-            }
-            _extraOffset.forward(0, Curves.easeOut);
-            if (controlled.value + _extraOffset.value < 0.5) {
-              controlled.forward(0, Curves.easeOut).then((value) {
-                closeDrawer(context);
-              });
-            } else {
-              controlled.forward(1, Curves.easeOut);
-            }
-          },
           onHorizontalDragUpdate: (details) {
             if (controlled == null) {
               return;
@@ -596,6 +572,20 @@ class _DrawerWrapperState extends State<DrawerWrapper>
             }
             controlled.value = newValue;
           },
+          onHorizontalDragEnd: (details) {
+            if (controlled == null) {
+              return;
+            }
+            _extraOffset.forward(0, Curves.easeOut);
+            if (controlled.value + _extraOffset.value < 0.5) {
+              controlled.forward(0, Curves.easeOut).then((value) {
+                closeDrawer<void>(context);
+              });
+            } else {
+              controlled.forward(1, Curves.easeOut);
+            }
+          },
+          behavior: HitTestBehavior.translucent,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             textDirection: TextDirection.ltr,
@@ -613,9 +603,9 @@ class _DrawerWrapperState extends State<DrawerWrapper>
                   animation: _extraOffset,
                   builder: (context, child) {
                     return Transform.scale(
-                      alignment: Alignment.centerRight,
                       scaleX:
                           _extraOffset.value / getSize(context).width / 4 + 1,
+                      alignment: Alignment.centerRight,
                       child: child,
                     );
                   },
@@ -633,20 +623,6 @@ class _DrawerWrapperState extends State<DrawerWrapper>
 
       case OverlayPosition.right:
         return GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onHorizontalDragEnd: (details) {
-            if (controlled == null) {
-              return;
-            }
-            _extraOffset.forward(0, Curves.easeOut);
-            if (controlled.value + _extraOffset.value < 0.5) {
-              controlled.forward(0, Curves.easeOut).then((value) {
-                closeDrawer(context);
-              });
-            } else {
-              controlled.forward(1, Curves.easeOut);
-            }
-          },
           onHorizontalDragUpdate: (details) {
             if (controlled == null) {
               return;
@@ -664,6 +640,20 @@ class _DrawerWrapperState extends State<DrawerWrapper>
             }
             controlled.value = newValue;
           },
+          onHorizontalDragEnd: (details) {
+            if (controlled == null) {
+              return;
+            }
+            _extraOffset.forward(0, Curves.easeOut);
+            if (controlled.value + _extraOffset.value < 0.5) {
+              controlled.forward(0, Curves.easeOut).then((value) {
+                closeDrawer<void>(context);
+              });
+            } else {
+              controlled.forward(1, Curves.easeOut);
+            }
+          },
+          behavior: HitTestBehavior.translucent,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             textDirection: TextDirection.ltr,
@@ -678,9 +668,9 @@ class _DrawerWrapperState extends State<DrawerWrapper>
                   animation: _extraOffset,
                   builder: (context, child) {
                     return Transform.scale(
-                      alignment: Alignment.centerLeft,
                       scaleX:
                           _extraOffset.value / getSize(context).width / 4 + 1,
+                      alignment: Alignment.centerLeft,
                       child: child,
                     );
                   },
@@ -701,20 +691,6 @@ class _DrawerWrapperState extends State<DrawerWrapper>
 
       case OverlayPosition.top:
         return GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onVerticalDragEnd: (details) {
-            if (controlled == null) {
-              return;
-            }
-            _extraOffset.forward(0, Curves.easeOut);
-            if (controlled.value + _extraOffset.value < 0.5) {
-              controlled.forward(0, Curves.easeOut).then((value) {
-                closeDrawer(context);
-              });
-            } else {
-              controlled.forward(1, Curves.easeOut);
-            }
-          },
           onVerticalDragUpdate: (details) {
             if (controlled == null) {
               return;
@@ -732,6 +708,20 @@ class _DrawerWrapperState extends State<DrawerWrapper>
             }
             controlled.value = newValue;
           },
+          onVerticalDragEnd: (details) {
+            if (controlled == null) {
+              return;
+            }
+            _extraOffset.forward(0, Curves.easeOut);
+            if (controlled.value + _extraOffset.value < 0.5) {
+              controlled.forward(0, Curves.easeOut).then((value) {
+                closeDrawer<void>(context);
+              });
+            } else {
+              controlled.forward(1, Curves.easeOut);
+            }
+          },
+          behavior: HitTestBehavior.translucent,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -748,9 +738,9 @@ class _DrawerWrapperState extends State<DrawerWrapper>
                   animation: _extraOffset,
                   builder: (context, child) {
                     return Transform.scale(
-                      alignment: Alignment.bottomCenter,
                       scaleY:
                           _extraOffset.value / getSize(context).height / 4 + 1,
+                      alignment: Alignment.bottomCenter,
                       child: child,
                     );
                   },
@@ -768,20 +758,6 @@ class _DrawerWrapperState extends State<DrawerWrapper>
 
       case OverlayPosition.bottom:
         return GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onVerticalDragEnd: (details) {
-            if (controlled == null) {
-              return;
-            }
-            _extraOffset.forward(0, Curves.easeOut);
-            if (controlled.value + _extraOffset.value < 0.5) {
-              controlled.forward(0, Curves.easeOut).then((value) {
-                closeDrawer(context);
-              });
-            } else {
-              controlled.forward(1, Curves.easeOut);
-            }
-          },
           onVerticalDragUpdate: (details) {
             if (controlled == null) {
               return;
@@ -799,6 +775,20 @@ class _DrawerWrapperState extends State<DrawerWrapper>
             }
             controlled.value = newValue;
           },
+          onVerticalDragEnd: (details) {
+            if (controlled == null) {
+              return;
+            }
+            _extraOffset.forward(0, Curves.easeOut);
+            if (controlled.value + _extraOffset.value < 0.5) {
+              controlled.forward(0, Curves.easeOut).then((value) {
+                closeDrawer<void>(context);
+              });
+            } else {
+              controlled.forward(1, Curves.easeOut);
+            }
+          },
+          behavior: HitTestBehavior.translucent,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -812,9 +802,9 @@ class _DrawerWrapperState extends State<DrawerWrapper>
                   animation: _extraOffset,
                   builder: (context, child) {
                     return Transform.scale(
-                      alignment: Alignment.topCenter,
                       scaleY:
                           _extraOffset.value / getSize(context).height / 4 + 1,
+                      alignment: Alignment.topCenter,
                       child: child,
                     );
                   },
@@ -867,33 +857,33 @@ class _DrawerWrapperState extends State<DrawerWrapper>
       case OverlayPosition.left:
         // top, right, bottom
         return Border(
-          bottom: BorderSide(color: theme.colorScheme.border),
-          right: BorderSide(color: theme.colorScheme.border),
           top: BorderSide(color: theme.colorScheme.border),
+          right: BorderSide(color: theme.colorScheme.border),
+          bottom: BorderSide(color: theme.colorScheme.border),
         );
 
       case OverlayPosition.right:
         // top, left, bottom
         return Border(
+          top: BorderSide(color: theme.colorScheme.border),
           bottom: BorderSide(color: theme.colorScheme.border),
           left: BorderSide(color: theme.colorScheme.border),
-          top: BorderSide(color: theme.colorScheme.border),
         );
 
       case OverlayPosition.top:
         // left, right, bottom
         return Border(
+          right: BorderSide(color: theme.colorScheme.border),
           bottom: BorderSide(color: theme.colorScheme.border),
           left: BorderSide(color: theme.colorScheme.border),
-          right: BorderSide(color: theme.colorScheme.border),
         );
 
       case OverlayPosition.bottom:
         // left, right, top
         return Border(
-          left: BorderSide(color: theme.colorScheme.border),
-          right: BorderSide(color: theme.colorScheme.border),
           top: BorderSide(color: theme.colorScheme.border),
+          right: BorderSide(color: theme.colorScheme.border),
+          left: BorderSide(color: theme.colorScheme.border),
         );
 
       default:
@@ -905,14 +895,14 @@ class _DrawerWrapperState extends State<DrawerWrapper>
     switch (resolvedPosition) {
       case OverlayPosition.left:
         return BorderRadius.only(
-          bottomRight: Radius.circular(radius),
           topRight: Radius.circular(radius),
+          bottomRight: Radius.circular(radius),
         );
 
       case OverlayPosition.right:
         return BorderRadius.only(
-          bottomLeft: Radius.circular(radius),
           topLeft: Radius.circular(radius),
+          bottomLeft: Radius.circular(radius),
         );
 
       case OverlayPosition.top:
@@ -950,9 +940,9 @@ class _DrawerWrapperState extends State<DrawerWrapper>
     }
 
     return BoxDecoration(
+      color: backgroundColor,
       border: border,
       borderRadius: borderRadius,
-      color: backgroundColor,
     );
   }
 
@@ -974,11 +964,11 @@ class _DrawerWrapperState extends State<DrawerWrapper>
     final borderRadius =
         widget.borderRadius ?? getBorderRadius(theme.radiusXxl);
     Widget container = Container(
+      padding: buildPadding(context),
       decoration: getDecoration(theme),
+      width: widget.expands ? expandingWidth : null,
       height: widget.expands ? expandingHeight : null,
       margin: buildMargin(context),
-      padding: buildPadding(context),
-      width: widget.expands ? expandingWidth : null,
       child: widget.draggable
           ? buildDraggable(context, animation, buildChild(context), theme)
           : buildChild(context),
@@ -1009,7 +999,6 @@ class _DrawerWrapperState extends State<DrawerWrapper>
         barrierColor = barrierColor.scaleAlpha(0.75);
       }
       container = ModalBackdrop(
-        barrierColor: barrierColor,
         borderRadius: borderRadius,
         fadeAnimation: animation,
         padding: buildMargin(context),
@@ -1024,7 +1013,8 @@ class _DrawerWrapperState extends State<DrawerWrapper>
 
 Future<void> closeSheet(BuildContext context) {
   // sheet is just a drawer with no backdrop transformation
-  return closeDrawer(context);
+  // ignore: avoid-inferrable-type-arguments
+  return closeDrawer<void>(context);
 }
 
 class SheetWrapper extends DrawerWrapper {
@@ -1093,10 +1083,10 @@ class _SheetWrapperState extends _DrawerWrapperState {
 
     return super.buildMargin(context) +
         EdgeInsets.only(
-          bottom: marginBottom,
           left: marginLeft,
-          right: marginRight,
           top: marginTop,
+          right: marginRight,
+          bottom: marginBottom,
         );
   }
 
@@ -1134,10 +1124,10 @@ class _SheetWrapperState extends _DrawerWrapperState {
 
     return Padding(
       padding: EdgeInsets.only(
-        bottom: paddingBottom,
         left: paddingLeft,
-        right: paddingRight,
         top: paddingTop,
+        right: paddingRight,
+        bottom: paddingBottom,
       ),
       child: super.buildChild(context),
     );
@@ -1161,7 +1151,7 @@ class _SheetWrapperState extends _DrawerWrapperState {
       backgroundColor = backgroundColor.scaleAlpha(surfaceOpacity);
     }
 
-    return BoxDecoration(border: getBorder(theme), color: backgroundColor);
+    return BoxDecoration(color: backgroundColor, border: getBorder(theme));
   }
 }
 
@@ -1188,7 +1178,7 @@ class _DrawerOverlayWrapper extends StatefulWidget {
   });
 
   final Widget child;
-  final Completer completer;
+  final Completer<dynamic> completer;
 
   @override
   State<_DrawerOverlayWrapper> createState() => _DrawerOverlayWrapperState();
@@ -1204,7 +1194,8 @@ class _DrawerOverlayWrapperState extends State<_DrawerOverlayWrapper>
       return widget.completer.future;
     }
 
-    return closeDrawer(context);
+    // ignore: avoid-inferrable-type-arguments
+    return closeDrawer<void>(context);
   }
 
   @override
@@ -1212,7 +1203,7 @@ class _DrawerOverlayWrapperState extends State<_DrawerOverlayWrapper>
     if (mounted) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         if (mounted) {
-          closeDrawer(context);
+          closeDrawer<void>(context);
         } else {
           widget.completer.complete();
         }
@@ -1272,7 +1263,6 @@ DrawerOverlayCompleter<T?> openRawDrawer<T>({
   assert(parentLayer != null, 'No DrawerOverlay found in the widget tree');
   final completer = Completer<T?>();
   final entry = DrawerOverlayEntry(
-    alignment: alignment,
     animationController: animationController,
     autoOpen: autoOpen,
     backdropBuilder: transformBackdrop
@@ -1280,7 +1270,8 @@ DrawerOverlayCompleter<T?> openRawDrawer<T>({
             final theme = Theme.of(context);
             final existingData = Data.maybeOf<BackdropTransformData>(context);
 
-            return LayoutBuilder(builder: (context, constraints) {
+            return LayoutBuilder(
+              builder: (context, constraints) {
                 return stackIndex == 0
                     ? AnimatedBuilder(
                         animation: animation,
@@ -1366,10 +1357,10 @@ DrawerOverlayCompleter<T?> openRawDrawer<T>({
       }
 
       return Positioned(
-        bottom: -9999,
         left: -9999,
-        right: -9999,
         top: -9999,
+        right: -9999,
+        bottom: -9999,
         child: FadeTransition(
           opacity: animation,
           child: AnimatedBuilder(
@@ -1381,8 +1372,10 @@ DrawerOverlayCompleter<T?> openRawDrawer<T>({
               );
             },
             child: GestureDetector(
+              onTap: barrierDismissible
+                  ? () => closeDrawer<void>(context)
+                  : null,
               behavior: HitTestBehavior.translucent,
-              onTap: barrierDismissible ? () => closeDrawer(context) : null,
               child: Container(child: backdropBuilder?.call(context)),
             ),
           ),
@@ -1390,18 +1383,17 @@ DrawerOverlayCompleter<T?> openRawDrawer<T>({
       );
     },
     barrierDismissible: barrierDismissible,
-    builder: (context, extraSize, size, padding, stackIndex) {
+    builder: (context, extraSize, padding, size, stackIndex) {
       return _DrawerOverlayWrapper(
         completer: completer,
         child: Builder(
           builder: (context) {
-            return builder(context, extraSize, size, padding, stackIndex);
+            return builder(context, extraSize, padding, size, stackIndex);
           },
         ),
       );
     },
     completer: completer,
-    constraints: constraints,
     data: data,
     modal: modal,
     position: position,
@@ -1419,7 +1411,7 @@ DrawerOverlayCompleter<T?> openRawDrawer<T>({
 
 class _MountedOverlayEntryData {
   const _MountedOverlayEntryData(this.state);
-  final DrawerEntryWidgetState state;
+  final DrawerEntryWidgetState<dynamic> state;
 }
 
 Future<void> closeDrawer<T>(BuildContext context, [T? result]) {
@@ -1486,10 +1478,10 @@ class DrawerOverlay extends StatefulWidget {
 }
 
 class DrawerOverlayState extends State<DrawerOverlay> {
-  final _entries = <DrawerOverlayEntry>[];
+  final _entries = <DrawerOverlayEntry<dynamic>>[];
   final backdropKey = GlobalKey();
 
-  void addEntry(DrawerOverlayEntry entry) {
+  void addEntry(DrawerOverlayEntry<dynamic> entry) {
     setState(() {
       _entries.add(entry);
     });
@@ -1502,7 +1494,7 @@ class DrawerOverlayState extends State<DrawerOverlay> {
     return size!;
   }
 
-  void removeEntry(DrawerOverlayEntry entry) {
+  void removeEntry(DrawerOverlayEntry<dynamic> entry) {
     setState(() {
       _entries.remove(entry);
     });
@@ -1528,7 +1520,6 @@ class DrawerOverlayState extends State<DrawerOverlay> {
         position: entry.position,
         stackIndex: index += 1,
         themes: entry.themes,
-        totalStack: _entries.length,
         useSafeArea: entry.useSafeArea,
       );
     }
@@ -1599,7 +1590,7 @@ class DrawerEntryWidget<T> extends StatefulWidget {
 class DrawerEntryWidgetState<T> extends State<DrawerEntryWidget<T>>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  ControlledAnimation _controlledAnimation;
+  late ControlledAnimation _controlledAnimation;
   final _focusScopeNode = FocusScopeNode();
 
   @override
@@ -1709,10 +1700,10 @@ class DrawerEntryWidgetState<T> extends State<DrawerEntryWidget<T>>
                         )
                       : null) ??
                   Positioned(
-                    bottom: -9999,
                     left: -9999,
-                    right: -9999,
                     top: -9999,
+                    right: -9999,
+                    bottom: -9999,
                     child: GestureDetector(onTap: close),
                   );
               final extraSize = Data.maybeOf<BackdropTransformData>(
@@ -1758,8 +1749,8 @@ class DrawerEntryWidgetState<T> extends State<DrawerEntryWidget<T>>
               }
 
               return Stack(
-                clipBehavior: Clip.none,
                 fit: StackFit.passthrough,
+                clipBehavior: Clip.none,
                 children: [
                   IgnorePointer(
                     child: widget.backdropBuilder(
@@ -1771,22 +1762,23 @@ class DrawerEntryWidgetState<T> extends State<DrawerEntryWidget<T>>
                   ),
                   barrier,
                   Positioned.fill(
-                    child: LayoutBuilder(builder: (context, constraints) {
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
                         return MediaQuery(
                           data: widget.useSafeArea
                               ? mediaQueryData.removePadding(
-                                  removeBottom: true,
                                   removeLeft: true,
-                                  removeRight: true,
                                   removeTop: true,
+                                  removeRight: true,
+                                  removeBottom: true,
                                 )
                               : mediaQueryData,
                           child: Padding(
                             padding: EdgeInsets.only(
-                              bottom: padBottom ? padding.bottom : 0,
                               left: padLeft ? padding.left : 0,
-                              right: padRight ? padding.right : 0,
                               top: padTop ? padding.top : 0,
+                              right: padRight ? padding.right : 0,
+                              bottom: padBottom ? padding.bottom : 0,
                             ),
                             child: Align(
                               alignment: alignment,
@@ -1805,13 +1797,13 @@ class DrawerEntryWidgetState<T> extends State<DrawerEntryWidget<T>>
                                   child: widget.builder(
                                     context,
                                     additionalSize,
-                                    constraints.biggest,
                                     EdgeInsets.only(
-                                      bottom: insetBottom ? padding.bottom : 0,
                                       left: insetLeft ? padding.left : 0,
-                                      right: insetRight ? padding.right : 0,
                                       top: insetTop ? padding.top : 0,
+                                      right: insetRight ? padding.right : 0,
+                                      bottom: insetBottom ? padding.bottom : 0,
                                     ),
+                                    constraints.biggest,
                                     widget.stackIndex,
                                   ),
                                 ),
@@ -1962,21 +1954,18 @@ class SheetOverlayHandler extends OverlayHandler {
   }) {
     return openRawDrawer<T>(
       barrierDismissible: barrierDismissable,
-      builder: (context, extraSize, size, padding, stackIndex) {
-        final theme = Theme.of(context);
-
+      builder: (context, extraSize, padding, size, stackIndex) {
         return MultiModel(
           data: const [Model(#coui_flutter_sheet_overlay, true)],
           child: SheetWrapper(
-            barrierColor: barrierColor,
-            draggable: barrierDismissable,
-            expands: true,
-            extraSize: extraSize,
-            gapAfterDragger: theme.scaling * 8,
-            padding: padding,
             position: this.position,
             size: size,
             stackIndex: stackIndex,
+            // barrierColor: barrierColor, // Removed in Flutter 3.35
+            draggable: barrierDismissable,
+            expands: true,
+            extraSize: extraSize,
+            padding: padding,
             child: Builder(
               builder: (context) {
                 return builder(context);

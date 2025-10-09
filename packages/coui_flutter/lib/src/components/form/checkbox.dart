@@ -621,29 +621,29 @@ class _CheckboxState extends State<Checkbox>
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<CheckboxTheme>(context);
     final size = styleValue(
-      defaultValue: scaling * 16,
-      themeValue: compTheme?.size,
       widgetValue: widget.size,
+      themeValue: compTheme?.size,
+      defaultValue: scaling * 16,
     );
     final gap = styleValue(
-      defaultValue: scaling * 8,
-      themeValue: compTheme?.gap,
       widgetValue: widget.gap,
+      themeValue: compTheme?.gap,
+      defaultValue: scaling * 8,
     );
     final activeColor = styleValue(
-      defaultValue: theme.colorScheme.primary,
-      themeValue: compTheme?.activeColor,
       widgetValue: widget.activeColor,
+      themeValue: compTheme?.activeColor,
+      defaultValue: theme.colorScheme.primary,
     );
     final borderColor = styleValue(
-      defaultValue: theme.colorScheme.border,
-      themeValue: compTheme?.borderColor,
       widgetValue: widget.borderColor,
+      themeValue: compTheme?.borderColor,
+      defaultValue: theme.colorScheme.border,
     );
     final borderRadius = styleValue<BorderRadiusGeometry>(
-      defaultValue: BorderRadius.circular(theme.radiusSm),
-      themeValue: compTheme?.borderRadius,
       widgetValue: widget.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: BorderRadius.circular(theme.radiusSm),
     );
 
     return Clickable(
@@ -660,6 +660,9 @@ class _CheckboxState extends State<Checkbox>
           SizedBox(width: gap),
           AnimatedContainer(
             decoration: BoxDecoration(
+              color: widget.state == CheckboxState.checked
+                  ? activeColor
+                  : theme.colorScheme.input.scaleAlpha(0.3),
               border: Border.all(
                 color: enabled
                     ? widget.state == CheckboxState.checked
@@ -671,21 +674,20 @@ class _CheckboxState extends State<Checkbox>
               borderRadius:
                   optionallyResolveBorderRadius(context, borderRadius) ??
                   BorderRadius.circular(theme.radiusSm),
-              color: widget.state == CheckboxState.checked
-                  ? activeColor
-                  : theme.colorScheme.input.scaleAlpha(0.3),
             ),
-            duration: kDefaultDuration,
-            height: size,
             width: size,
+            height: size,
+            duration: kDefaultDuration,
             child: widget.state == CheckboxState.checked
                 ? Center(
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 100),
                       child: SizedBox(
-                        height: scaling * 6.5,
                         width: scaling * 9,
+                        height: scaling * 6.5,
                         child: AnimatedValueBuilder(
+                          value: 1,
+                          duration: const Duration(milliseconds: 300),
                           builder: (context, value, child) {
                             return CustomPaint(
                               painter: AnimatedCheckPainter(
@@ -695,31 +697,29 @@ class _CheckboxState extends State<Checkbox>
                               ),
                             );
                           },
+                          initialValue: _shouldAnimate ? 0.0 : null,
                           curve: const IntervalDuration(
                             duration: Duration(milliseconds: 300),
                             start: Duration(milliseconds: 175),
                           ),
-                          duration: const Duration(milliseconds: 300),
-                          initialValue: _shouldAnimate ? 0.0 : null,
-                          value: 1,
                         ),
                       ),
                     ),
                   )
                 : Center(
                     child: AnimatedContainer(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(theme.radiusXs),
-                        color: activeColor,
-                      ),
-                      duration: const Duration(milliseconds: 100),
-                      height: widget.state == CheckboxState.indeterminate
-                          ? scaling * 8
-                          : 0,
                       padding: EdgeInsets.zero,
+                      decoration: BoxDecoration(
+                        color: activeColor,
+                        borderRadius: BorderRadius.circular(theme.radiusXs),
+                      ),
                       width: widget.state == CheckboxState.indeterminate
                           ? scaling * 8
                           : 0,
+                      height: widget.state == CheckboxState.indeterminate
+                          ? scaling * 8
+                          : 0,
+                      duration: const Duration(milliseconds: 100),
                     ),
                   ),
           ),

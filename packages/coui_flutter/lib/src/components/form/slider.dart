@@ -384,7 +384,7 @@ class _SliderState extends State<Slider>
     with FormValueSupplier<SliderValue, Slider> {
   /// Used for the thumb position (not the trackbar).
   /// Trackbar position uses the widget.value.
-  SliderValue _currentValue;
+  late SliderValue _currentValue;
   bool _dragging = false;
   bool _moveStart = false;
 
@@ -472,38 +472,113 @@ class _SliderState extends State<Slider>
 
     return ConstrainedBox(
       constraints: BoxConstraints(
-        maxHeight: scaling * 16,
-        minHeight: scaling * 16,
         minWidth: scaling * 20,
+        minHeight: scaling * 16,
+        maxHeight: scaling * 16,
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: scaling * 4.0),
-        child: LayoutBuilder(builder: (context, constraints) {
+        child: LayoutBuilder(
+          builder: (context, constraints) {
             return GestureDetector(
-              onHorizontalDragEnd: enabled
-                  ? (details) {
-                      _dragging = false;
-                      if (_currentValue.isRanged) {
-                        final start = _currentValue.start;
-                        final end = _currentValue.end;
-                        final newStart = min(start, end);
-                        final newEnd = max(start, end);
-                        _dispatchValueChangeEnd(
-                          SliderValue.ranged(
-                            newStart * (widget.max - widget.min) + widget.min,
-                            newEnd * (widget.max - widget.min) + widget.min,
-                          ),
-                        );
-                      } else {
-                        _dispatchValueChangeEnd(
-                          SliderValue.single(
-                            _currentValue.value * (widget.max - widget.min) +
-                                widget.min,
-                          ),
-                        );
-                      }
-                      setState(() {});
-                    }
+              onTapDown: enabled
+                  ? widget.value.isRanged
+                        ? (details) {
+                            /// Set _moveStart to true if the tap is closer to the start thumb.
+                            final offset = details.localPosition.dx;
+                            double newValue = offset / constraints.maxWidth;
+                            double start = _currentValue.start;
+                            double end = _currentValue.end;
+                            if (widget.divisions != null) {
+                              start =
+                                  (start * widget.divisions!).round() /
+                                  widget.divisions!;
+                              end =
+                                  (end * widget.divisions!).round() /
+                                  widget.divisions!;
+                            }
+                            _moveStart =
+                                (start - newValue).abs() <
+                                (end - newValue).abs();
+
+                            /// Find the closest thumb and move it to the tap position.
+                            if (_moveStart) {
+                              if (widget.divisions != null) {
+                                final deltaValue = newValue - start;
+                                if (deltaValue >= 0 &&
+                                    deltaValue < 0.5 / widget.divisions!) {
+                                  newValue += 0.5 / widget.divisions!;
+                                } else if (deltaValue < 0 &&
+                                    deltaValue > -0.5 / widget.divisions!) {
+                                  newValue -= 0.5 / widget.divisions!;
+                                }
+                              }
+                              final newSliderValue = SliderValue.ranged(
+                                newValue,
+                                widget.value.end,
+                              );
+                              _dispatchValueChangeStart(newSliderValue);
+                              _dispatchValueChange(newSliderValue);
+                              _dispatchValueChangeEnd(newSliderValue);
+                              setState(() {
+                                _currentValue = SliderValue.ranged(
+                                  newValue,
+                                  end,
+                                );
+                              });
+                            } else {
+                              if (widget.divisions != null) {
+                                final deltaValue = newValue - end;
+                                if (deltaValue >= 0 &&
+                                    deltaValue < 0.5 / widget.divisions!) {
+                                  newValue += 0.5 / widget.divisions!;
+                                } else if (deltaValue < 0 &&
+                                    deltaValue > -0.5 / widget.divisions!) {
+                                  newValue -= 0.5 / widget.divisions!;
+                                }
+                              }
+                              final newSliderValue = SliderValue.ranged(
+                                widget.value.start,
+                                newValue,
+                              );
+                              _dispatchValueChangeStart(newSliderValue);
+                              _dispatchValueChange(newSliderValue);
+                              _dispatchValueChangeEnd(newSliderValue);
+                              setState(() {
+                                _currentValue = SliderValue.ranged(
+                                  start,
+                                  newValue,
+                                );
+                              });
+                            }
+                          }
+                        : (details) {
+                            final offset = details.localPosition.dx;
+                            double newValue = offset / constraints.maxWidth;
+                            newValue = newValue.clamp(0, 1).toDouble();
+                            if (widget.divisions != null) {
+                              final deltaValue = newValue - _currentValue.value;
+                              if (deltaValue >= 0 &&
+                                  deltaValue < 0.5 / widget.divisions!) {
+                                newValue += 0.5 / widget.divisions!;
+                              } else if (deltaValue < 0 &&
+                                  deltaValue > -0.5 / widget.divisions!) {
+                                newValue -= 0.5 / widget.divisions!;
+                              }
+                              newValue =
+                                  (newValue * widget.divisions!).round() /
+                                  widget.divisions!;
+                            }
+                            final newSliderValue = SliderValue.single(
+                              newValue * (widget.max - widget.min) + widget.min,
+                            );
+                            _dispatchValueChangeStart(newSliderValue);
+                            _dispatchValueChange(newSliderValue);
+                            _dispatchValueChangeEnd(newSliderValue);
+                            setState(() {
+                              _currentValue = SliderValue.single(newValue);
+                            });
+                          }
                   : null,
               onHorizontalDragStart: enabled
                   ? (details) {
@@ -657,104 +732,30 @@ class _SliderState extends State<Slider>
                             });
                           }
                   : null,
-              onTapDown: enabled
-                  ? widget.value.isRanged
-                        ? (details) {
-                            /// Set _moveStart to true if the tap is closer to the start thumb.
-                            final offset = details.localPosition.dx;
-                            double newValue = offset / constraints.maxWidth;
-                            double start = _currentValue.start;
-                            double end = _currentValue.end;
-                            if (widget.divisions != null) {
-                              start =
-                                  (start * widget.divisions!).round() /
-                                  widget.divisions!;
-                              end =
-                                  (end * widget.divisions!).round() /
-                                  widget.divisions!;
-                            }
-                            _moveStart =
-                                (start - newValue).abs() <
-                                (end - newValue).abs();
-
-                            /// Find the closest thumb and move it to the tap position.
-                            if (_moveStart) {
-                              if (widget.divisions != null) {
-                                final deltaValue = newValue - start;
-                                if (deltaValue >= 0 &&
-                                    deltaValue < 0.5 / widget.divisions!) {
-                                  newValue += 0.5 / widget.divisions!;
-                                } else if (deltaValue < 0 &&
-                                    deltaValue > -0.5 / widget.divisions!) {
-                                  newValue -= 0.5 / widget.divisions!;
-                                }
-                              }
-                              final newSliderValue = SliderValue.ranged(
-                                newValue,
-                                widget.value.end,
-                              );
-                              _dispatchValueChangeStart(newSliderValue);
-                              _dispatchValueChange(newSliderValue);
-                              _dispatchValueChangeEnd(newSliderValue);
-                              setState(() {
-                                _currentValue = SliderValue.ranged(
-                                  newValue,
-                                  end,
-                                );
-                              });
-                            } else {
-                              if (widget.divisions != null) {
-                                final deltaValue = newValue - end;
-                                if (deltaValue >= 0 &&
-                                    deltaValue < 0.5 / widget.divisions!) {
-                                  newValue += 0.5 / widget.divisions!;
-                                } else if (deltaValue < 0 &&
-                                    deltaValue > -0.5 / widget.divisions!) {
-                                  newValue -= 0.5 / widget.divisions!;
-                                }
-                              }
-                              final newSliderValue = SliderValue.ranged(
-                                widget.value.start,
-                                newValue,
-                              );
-                              _dispatchValueChangeStart(newSliderValue);
-                              _dispatchValueChange(newSliderValue);
-                              _dispatchValueChangeEnd(newSliderValue);
-                              setState(() {
-                                _currentValue = SliderValue.ranged(
-                                  start,
-                                  newValue,
-                                );
-                              });
-                            }
-                          }
-                        : (details) {
-                            final offset = details.localPosition.dx;
-                            double newValue = offset / constraints.maxWidth;
-                            newValue = newValue.clamp(0, 1).toDouble();
-                            if (widget.divisions != null) {
-                              final deltaValue = newValue - _currentValue.value;
-                              if (deltaValue >= 0 &&
-                                  deltaValue < 0.5 / widget.divisions!) {
-                                newValue += 0.5 / widget.divisions!;
-                              } else if (deltaValue < 0 &&
-                                  deltaValue > -0.5 / widget.divisions!) {
-                                newValue -= 0.5 / widget.divisions!;
-                              }
-                              newValue =
-                                  (newValue * widget.divisions!).round() /
-                                  widget.divisions!;
-                            }
-                            final newSliderValue = SliderValue.single(
-                              newValue * (widget.max - widget.min) + widget.min,
-                            );
-                            _dispatchValueChangeStart(newSliderValue);
-                            _dispatchValueChange(newSliderValue);
-                            _dispatchValueChangeEnd(newSliderValue);
-                            setState(() {
-                              _currentValue = SliderValue.single(newValue);
-                            });
-                          }
+              onHorizontalDragEnd: enabled
+                  ? (details) {
+                      _dragging = false;
+                      if (_currentValue.isRanged) {
+                        final start = _currentValue.start;
+                        final end = _currentValue.end;
+                        final newStart = min(start, end);
+                        final newEnd = max(start, end);
+                        _dispatchValueChangeEnd(
+                          SliderValue.ranged(
+                            newStart * (widget.max - widget.min) + widget.min,
+                            newEnd * (widget.max - widget.min) + widget.min,
+                          ),
+                        );
+                      } else {
+                        _dispatchValueChangeEnd(
+                          SliderValue.single(
+                            _currentValue.value * (widget.max - widget.min) +
+                                widget.min,
+                          ),
+                        );
+                      }
+                      setState(() {});
+                    }
                   : null,
               child: MouseRegion(
                 cursor: enabled
@@ -786,7 +787,9 @@ class _SliderState extends State<Slider>
         buildTrackBar(context, constraints, theme),
         if (widget.hintValue != null) buildHint(context, constraints, theme),
         buildTrackValue(context, constraints, theme),
-        buildThumb(context, constraints,
+        buildThumb(
+          context,
+          constraints,
           theme,
           _currentValue.value,
           _focusing,
@@ -856,6 +859,8 @@ class _SliderState extends State<Slider>
     final scaling = theme.scaling;
 
     return AnimatedValueBuilder(
+      value: widget.hintValue,
+      duration: _dragging ? Duration.zero : kDefaultDuration,
       builder: (context, hintValue, _) {
         final start = hintValue!.start;
         final end = hintValue.end;
@@ -870,15 +875,15 @@ class _SliderState extends State<Slider>
             constraints.maxWidth;
 
         return Positioned(
-          bottom: 0,
           left: _isRanged ? left : 0,
-          right: right,
           top: 0,
+          right: right,
+          bottom: 0,
           child: Center(
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(theme.radiusSm),
                 color: theme.colorScheme.primary.scaleAlpha(0.2),
+                borderRadius: BorderRadius.circular(theme.radiusSm),
               ),
               height: scaling * 6,
             ),
@@ -886,9 +891,7 @@ class _SliderState extends State<Slider>
         );
       },
       curve: Curves.easeInOut,
-      duration: _dragging ? Duration.zero : kDefaultDuration,
       lerp: SliderValue.lerp,
-      value: widget.hintValue,
     );
   }
 
@@ -919,6 +922,10 @@ class _SliderState extends State<Slider>
     final newEnd = max(start, end);
 
     return AnimatedValueBuilder(
+      value: Offset(newStart, newEnd),
+      duration: _dragging && widget.divisions == null
+          ? Duration.zero
+          : kDefaultDuration,
       builder: (context, value, _) {
         final newStart = value!.dx;
         final newEnd = value.dy;
@@ -931,18 +938,18 @@ class _SliderState extends State<Slider>
             constraints.maxWidth;
 
         return Positioned(
-          bottom: 0,
           left: _isRanged ? left : 0,
-          right: right,
           top: 0,
+          right: right,
+          bottom: 0,
           child: Center(
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(theme.radiusSm),
                 color: enabled
                     ? (compTheme?.valueColor ?? theme.colorScheme.primary)
                     : (compTheme?.disabledValueColor ??
                           theme.colorScheme.mutedForeground),
+                borderRadius: BorderRadius.circular(theme.radiusSm),
               ),
               height: (compTheme?.trackHeight ?? 6) * scaling,
             ),
@@ -950,11 +957,7 @@ class _SliderState extends State<Slider>
         );
       },
       curve: Curves.easeInOut,
-      duration: _dragging && widget.divisions == null
-          ? Duration.zero
-          : kDefaultDuration,
       lerp: Offset.lerp,
-      value: Offset(newStart, newEnd),
     );
   }
 
@@ -967,18 +970,18 @@ class _SliderState extends State<Slider>
     final compTheme = ComponentTheme.maybeOf<SliderTheme>(context);
 
     return Positioned(
-      bottom: 0,
       left: 0,
-      right: 0,
       top: 0,
+      right: 0,
+      bottom: 0,
       child: Center(
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(theme.radiusSm),
             color: enabled
                 ? (compTheme?.trackColor ??
                       theme.colorScheme.primary.scaleAlpha(0.2))
                 : (compTheme?.disabledTrackColor ?? theme.colorScheme.muted),
+            borderRadius: BorderRadius.circular(theme.radiusSm),
           ),
           height: (compTheme?.trackHeight ?? 6) * scaling,
         ),
@@ -986,7 +989,9 @@ class _SliderState extends State<Slider>
     );
   }
 
-  Widget buildThumb(BuildContext context, BoxConstraints constraints,
+  Widget buildThumb(
+    BuildContext context,
+    BoxConstraints constraints,
     ThemeData theme,
     double value,
     bool focusing,
@@ -1001,10 +1006,25 @@ class _SliderState extends State<Slider>
     }
 
     return AnimatedValueBuilder(
+      value: value.toDouble(),
+      duration: _dragging && widget.divisions == null
+          ? Duration.zero
+          : kDefaultDuration,
       builder: (context, value, _) {
         return Positioned(
           left: value! * constraints.maxWidth - scaling * 8,
           child: FocusableActionDetector(
+            enabled: enabled,
+            shortcuts: {
+              LogicalKeySet(LogicalKeyboardKey.arrowLeft):
+                  const DecreaseSliderValue(),
+              LogicalKeySet(LogicalKeyboardKey.arrowRight):
+                  const IncreaseSliderValue(),
+              LogicalKeySet(LogicalKeyboardKey.arrowUp):
+                  const IncreaseSliderValue(),
+              LogicalKeySet(LogicalKeyboardKey.arrowDown):
+                  const DecreaseSliderValue(),
+            },
             actions: {
               IncreaseSliderValue: CallbackAction(
                 onInvoke: (e) {
@@ -1021,22 +1041,12 @@ class _SliderState extends State<Slider>
                 },
               ),
             },
-            enabled: enabled,
             onShowFocusHighlight: (showHighlight) {
               onFocusing(showHighlight);
             },
-            shortcuts: {
-              LogicalKeySet(LogicalKeyboardKey.arrowLeft):
-                  const DecreaseSliderValue(),
-              LogicalKeySet(LogicalKeyboardKey.arrowRight):
-                  const IncreaseSliderValue(),
-              LogicalKeySet(LogicalKeyboardKey.arrowUp):
-                  const IncreaseSliderValue(),
-              LogicalKeySet(LogicalKeyboardKey.arrowDown):
-                  const DecreaseSliderValue(),
-            },
             child: Container(
               decoration: BoxDecoration(
+                color: compTheme?.thumbColor ?? theme.colorScheme.background,
                 border: Border.all(
                   color: focusing
                       ? (enabled
@@ -1049,26 +1059,21 @@ class _SliderState extends State<Slider>
                                   theme.colorScheme.primary.scaleAlpha(0.5))
                             : (compTheme?.disabledValueColor ??
                                   theme.colorScheme.mutedForeground)),
+                  width: focusing ? scaling * 2 : scaling * 1,
                   strokeAlign: focusing
                       ? BorderSide.strokeAlignOutside
                       : BorderSide.strokeAlignInside,
-                  width: focusing ? scaling * 2 : scaling * 1,
                 ),
-                color: compTheme?.thumbColor ?? theme.colorScheme.background,
                 shape: BoxShape.circle,
               ),
-              height: (compTheme?.thumbSize ?? 16) * scaling,
               width: (compTheme?.thumbSize ?? 16) * scaling,
+              height: (compTheme?.thumbSize ?? 16) * scaling,
             ),
           ),
         );
       },
       curve: Curves.easeInOut,
-      duration: _dragging && widget.divisions == null
-          ? Duration.zero
-          : kDefaultDuration,
       lerp: lerpDouble,
-      value: value.toDouble(),
     );
   }
 
@@ -1083,7 +1088,9 @@ class _SliderState extends State<Slider>
         buildTrackBar(context, constraints, theme),
         if (widget.hintValue != null) buildHint(context, constraints, theme),
         buildTrackValue(context, constraints, theme),
-        buildThumb(context, constraints,
+        buildThumb(
+          context,
+          constraints,
           theme,
           min(_currentValue.start, _currentValue.end),
           _focusing,
@@ -1139,7 +1146,9 @@ class _SliderState extends State<Slider>
             });
           },
         ),
-        buildThumb(context, constraints,
+        buildThumb(
+          context,
+          constraints,
           theme,
           max(_currentValue.start, _currentValue.end),
           _focusingEnd,

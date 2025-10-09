@@ -133,15 +133,15 @@ class Breadcrumb extends StatelessWidget {
     final compTheme = ComponentTheme.maybeOf<BreadcrumbTheme>(context);
     final sep = separator ?? compTheme?.separator ?? Breadcrumb.arrowSeparator;
     final pad = styleValue(
-      defaultValue: EdgeInsets.zero,
-      themeValue: compTheme?.padding,
       widgetValue: padding,
+      themeValue: compTheme?.padding,
+      defaultValue: EdgeInsets.zero,
     );
 
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(
         context,
-      ).copyWith(dragDevices: {PointerDeviceKind.touch}, scrollbars: false),
+      ).copyWith(scrollbars: false, dragDevices: {PointerDeviceKind.touch}),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Padding(

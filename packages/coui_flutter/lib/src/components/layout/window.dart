@@ -352,7 +352,11 @@ class WindowWidget extends StatefulWidget {
     this.minimizable = true,
     this.minimized,
     this.resizable = true,
+    // ignore: unused_element_parameter
+    this.resizeThickness,
     this.title,
+    // ignore: unused_element_parameter
+    this.titleBarHeight,
   });
 
   final Widget? title;
@@ -370,9 +374,7 @@ class WindowWidget extends StatefulWidget {
   final bool? enableSnapping;
 
   final BoxConstraints? constraints;
-
   final double? titleBarHeight;
-
   final double? resizeThickness;
 
   @override
@@ -409,8 +411,8 @@ mixin WindowHandle on State<WindowWidget> {
 
 class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
   @override
-  WindowController controller;
-  WindowState state;
+  late WindowController controller;
+  late WindowState state;
   WindowViewport? _viewport;
   Window? _entry;
   Alignment? _dragAlignment;
@@ -455,7 +457,6 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
     return MouseRegion(
       cursor: cursor,
       child: GestureDetector(
-        behavior: HitTestBehavior.translucent,
         onPanUpdate: (details) {
           if (state.maximized != null || state.minimized) return;
           Rect newBounds = onResize(bounds, details.delta);
@@ -481,6 +482,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
           }
           bounds = newBounds;
         },
+        behavior: HitTestBehavior.translucent,
       ),
     );
   }
@@ -524,6 +526,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
     return Data<WindowHandle>.inherit(
       data: this,
       child: ListenableBuilder(
+        listenable: controller,
         builder: (context, child) {
           final compTheme = ComponentTheme.maybeOf<WindowTheme>(context);
           final resizeThickness =
@@ -553,23 +556,6 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                           }
                         : null,
                     child: GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onPanCancel: () {
-                        if (_entry != null) {
-                          _viewport?.navigator._state._stopDraggingWindow(
-                            _entry!,
-                          );
-                        }
-                        _dragAlignment = null;
-                      },
-                      onPanEnd: (details) {
-                        if (_entry != null) {
-                          _viewport?.navigator._state._stopDraggingWindow(
-                            _entry!,
-                          );
-                        }
-                        _dragAlignment = null;
-                      },
                       onPanStart: (details) {
                         final localPosition = details.localPosition;
                         Rect bounds = this.bounds;
@@ -635,9 +621,26 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                           );
                         }
                       },
+                      onPanEnd: (details) {
+                        if (_entry != null) {
+                          _viewport?.navigator._state._stopDraggingWindow(
+                            _entry!,
+                          );
+                        }
+                        _dragAlignment = null;
+                      },
+                      onPanCancel: () {
+                        if (_entry != null) {
+                          _viewport?.navigator._state._stopDraggingWindow(
+                            _entry!,
+                          );
+                        }
+                        _dragAlignment = null;
+                      },
+                      behavior: HitTestBehavior.translucent,
                       child: Container(
-                        height: titleBarHeight,
                         padding: EdgeInsets.all(theme.scaling * 2),
+                        height: titleBarHeight,
                         child: Row(
                           children: [
                             Expanded(
@@ -664,29 +667,29 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
 
           /// Add transition.
           windowClient = AnimatedValueBuilder(
+            value: (_viewport?.closed ?? false) ? 0.0 : 1.0,
+            duration: kDefaultDuration,
             builder: (context, value, child) {
               return Transform.scale(
                 scale: (_viewport?.closed ?? false)
-                    ? lerpDouble(0.8, 1.0, value)!
-                    : lerpDouble(0.9, 1.0, value)!,
-                child: Opacity(opacity: value, child: child),
+                    ? lerpDouble(0.8, 1.0, value.toDouble())!
+                    : lerpDouble(0.9, 1.0, value.toDouble())!,
+                child: Opacity(opacity: value.toDouble(), child: child),
               );
             },
-            duration: kDefaultDuration,
             initialValue: 0,
             onEnd: (value) {
               if (_viewport?.closed ?? false) {
                 _viewport?.navigator.removeWindow(_entry!);
               }
             },
-            value: (_viewport?.closed ?? false) ? 0.0 : 1.0,
             child: windowClient,
           );
           windowClient = AnimatedScale(
+            scale: (_viewport?.minify ?? false) ? 0.65 : 1.0,
             alignment: _dragAlignment ?? Alignment.center,
             curve: Curves.easeInOut,
             duration: kDefaultDuration,
-            scale: (_viewport?.minify ?? false) ? 0.65 : 1.0,
             child: windowClient,
           );
           windowClient = IgnorePointer(
@@ -694,12 +697,12 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
             child: windowClient,
           );
           final windowContainer = Listener(
-            behavior: HitTestBehavior.translucent,
             onPointerDown: (event) {
               if (_entry != null) {
                 _viewport?.navigator.focusWindow(_entry!);
               }
             },
+            behavior: HitTestBehavior.translucent,
             child: GroupWidget(
               children: [
                 windowClient,
@@ -864,6 +867,8 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
           );
 
           return AnimatedValueBuilder.raw(
+            value: maximized,
+            duration: kDefaultDuration,
             builder: (context, oldValue, newValue, t, child) {
               Rect rect = bounds;
               if (newValue != null) {
@@ -889,13 +894,10 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
               return GroupPositioned.fromRect(rect: rect, child: child!);
             },
             curve: Curves.easeInOut,
-            duration: kDefaultDuration,
             lerp: Rect.lerp,
-            value: maximized,
             child: windowContainer,
           );
         },
-        listenable: controller,
       ),
     );
   }
@@ -1137,6 +1139,7 @@ class Window {
     required Size size,
   }) {
     return ListenableBuilder(
+      listenable: closed,
       builder: (context, child) {
         return Data.inherit(
           data: WindowViewport(
@@ -1151,7 +1154,6 @@ class Window {
           child: child,
         );
       },
-      listenable: closed,
       child: Data.inherit(
         data: this,
         child: WindowWidget._raw(
@@ -1196,8 +1198,8 @@ mixin WindowNavigatorHandle on State<WindowNavigator> {
 }
 
 const kDefaultWindowConstraints = BoxConstraints(
-  minHeight: 200,
   minWidth: 200,
+  minHeight: 200,
 );
 
 class _DraggingWindow {
@@ -1262,6 +1264,7 @@ class _WindowLayerGroup extends StatelessWidget {
           ),
         if (showTopSnapBar)
           ListenableBuilder(
+            listenable: handle._hoveringTopSnapper,
             builder: (context, _) {
               return GroupPositioned(
                 left: 0,
@@ -1270,7 +1273,6 @@ class _WindowLayerGroup extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: MouseRegion(
-                    hitTestBehavior: HitTestBehavior.translucent,
                     onEnter: (_) {
                       handle._hoveringTopSnapper.value = true;
                     },
@@ -1278,7 +1280,23 @@ class _WindowLayerGroup extends StatelessWidget {
                       handle._hoveringTopSnapper.value = false;
                       handle._snappingStrategy.value = null;
                     },
+                    hitTestBehavior: HitTestBehavior.translucent,
                     child: AnimatedValueBuilder(
+                      value:
+                          handle._draggingWindow.value == null ||
+                              handle
+                                      ._draggingWindow
+                                      .value!
+                                      .window
+                                      .alwaysOnTop !=
+                                  alwaysOnTop
+                          ? -1.0
+                          : handle._hoveringTopSnapper.value
+                          ? 0.0
+                          : -0.85,
+                      duration: handle._hoveringTopSnapper.value
+                          ? const Duration(milliseconds: 300)
+                          : kDefaultDuration,
                       builder: (context, value, child) {
                         return Transform.translate(
                           offset: Offset(
@@ -1297,9 +1315,9 @@ class _WindowLayerGroup extends StatelessWidget {
                                   0,
                                 ).clamp(0, 1),
                                 child: Row(
+                                  mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment:
                                       CrossAxisAlignment.stretch,
-                                  mainAxisSize: MainAxisSize.min,
                                   spacing: theme.scaling * 8,
                                   children: [
                                     // 0.5 | 0.5
@@ -1307,7 +1325,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(builder: (context, constraints) {
+                                      child: LayoutBuilder(
+                                        builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1323,8 +1342,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     1,
                                                   ),
                                                 ),
-                                                bottomRight: true,
                                                 topRight: true,
+                                                bottomRight: true,
                                               ),
                                               createPaneSnapStrategy(
                                                 size,
@@ -1337,8 +1356,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     1,
                                                   ),
                                                 ),
-                                                bottomLeft: true,
                                                 topLeft: true,
+                                                bottomLeft: true,
                                               ),
                                             ],
                                           );
@@ -1350,7 +1369,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(builder: (context, constraints) {
+                                      child: LayoutBuilder(
+                                        builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1366,8 +1386,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     1,
                                                   ),
                                                 ),
-                                                bottomRight: true,
                                                 topRight: true,
+                                                bottomRight: true,
                                               ),
                                               createPaneSnapStrategy(
                                                 size,
@@ -1380,8 +1400,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     1,
                                                   ),
                                                 ),
-                                                bottomLeft: true,
                                                 topLeft: true,
+                                                bottomLeft: true,
                                               ),
                                             ],
                                           );
@@ -1394,7 +1414,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(builder: (context, constraints) {
+                                      child: LayoutBuilder(
+                                        builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1410,8 +1431,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     1,
                                                   ),
                                                 ),
-                                                bottomRight: true,
                                                 topRight: true,
+                                                bottomRight: true,
                                               ),
                                               createPaneSnapStrategy(
                                                 size,
@@ -1424,9 +1445,9 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     0.5,
                                                   ),
                                                 ),
+                                                topLeft: true,
                                                 bottomLeft: true,
                                                 bottomRight: true,
-                                                topLeft: true,
                                               ),
                                               createPaneSnapStrategy(
                                                 size,
@@ -1439,9 +1460,9 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     0.5,
                                                   ),
                                                 ),
-                                                bottomLeft: true,
                                                 topLeft: true,
                                                 topRight: true,
+                                                bottomLeft: true,
                                               ),
                                             ],
                                           );
@@ -1454,7 +1475,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(builder: (context, constraints) {
+                                      child: LayoutBuilder(
+                                        builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1470,9 +1492,9 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     0.5,
                                                   ),
                                                 ),
+                                                topRight: true,
                                                 bottomLeft: true,
                                                 bottomRight: true,
-                                                topRight: true,
                                               ),
                                               createPaneSnapStrategy(
                                                 size,
@@ -1485,9 +1507,9 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     0.5,
                                                   ),
                                                 ),
+                                                topLeft: true,
                                                 bottomLeft: true,
                                                 bottomRight: true,
-                                                topLeft: true,
                                               ),
                                               createPaneSnapStrategy(
                                                 size,
@@ -1500,9 +1522,9 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     0.5,
                                                   ),
                                                 ),
-                                                bottomRight: true,
                                                 topLeft: true,
                                                 topRight: true,
+                                                bottomRight: true,
                                               ),
                                               createPaneSnapStrategy(
                                                 size,
@@ -1515,9 +1537,9 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     0.5,
                                                   ),
                                                 ),
-                                                bottomLeft: true,
                                                 topLeft: true,
                                                 topRight: true,
+                                                bottomLeft: true,
                                               ),
                                             ],
                                           );
@@ -1529,7 +1551,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(builder: (context, constraints) {
+                                      child: LayoutBuilder(
+                                        builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1545,8 +1568,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     1,
                                                   ),
                                                 ),
-                                                bottomRight: true,
                                                 topRight: true,
+                                                bottomRight: true,
                                               ),
                                               createPaneSnapStrategy(
                                                 size,
@@ -1573,8 +1596,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     1,
                                                   ),
                                                 ),
-                                                bottomLeft: true,
                                                 topLeft: true,
+                                                bottomLeft: true,
                                               ),
                                             ],
                                           );
@@ -1586,7 +1609,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                       aspectRatio:
                                           constraints.biggest.width /
                                           constraints.biggest.height,
-                                      child: LayoutBuilder(builder: (context, constraints) {
+                                      child: LayoutBuilder(
+                                        builder: (context, constraints) {
                                           final size = constraints.biggest;
 
                                           return GroupWidget(
@@ -1602,8 +1626,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     1,
                                                   ),
                                                 ),
-                                                bottomRight: true,
                                                 topRight: true,
+                                                bottomRight: true,
                                               ),
                                               createPaneSnapStrategy(
                                                 size,
@@ -1630,8 +1654,8 @@ class _WindowLayerGroup extends StatelessWidget {
                                                     1,
                                                   ),
                                                 ),
-                                                bottomLeft: true,
                                                 topLeft: true,
+                                                bottomLeft: true,
                                               ),
                                             ],
                                           );
@@ -1646,27 +1670,11 @@ class _WindowLayerGroup extends StatelessWidget {
                         );
                       },
                       curve: Curves.easeInOut,
-                      duration: handle._hoveringTopSnapper.value
-                          ? const Duration(milliseconds: 300)
-                          : kDefaultDuration,
-                      value:
-                          handle._draggingWindow.value == null ||
-                              handle
-                                      ._draggingWindow
-                                      .value!
-                                      .window
-                                      .alwaysOnTop !=
-                                  alwaysOnTop
-                          ? -1.0
-                          : handle._hoveringTopSnapper.value
-                          ? 0.0
-                          : -0.85,
                     ),
                   ),
                 ),
               );
             },
-            listenable: handle._hoveringTopSnapper,
           ),
         if (handle._draggingWindow.value != null &&
             handle._draggingWindow.value!.window.alwaysOnTop == alwaysOnTop)
@@ -1696,8 +1704,8 @@ class _WindowLayerGroup extends StatelessWidget {
 
 class _WindowNavigatorState extends State<WindowNavigator>
     with WindowNavigatorHandle {
-  List<Window> _windows;
-  List<Window> _topWindows;
+  late List<Window> _windows;
+  late List<Window> _topWindows;
   int _focusLayer = 0; // 0: background, 1: foreground, 2: foremost
 
   final _draggingWindow = ValueNotifier<_DraggingWindow?>(null);
@@ -1728,7 +1736,10 @@ class _WindowNavigatorState extends State<WindowNavigator>
         _draggingWindow.value!.window != handle) {
       return;
     }
-    _draggingWindow.value = _DraggingWindow(_draggingWindow.value!.window, cursorPosition);
+    _draggingWindow.value = _DraggingWindow(
+      _draggingWindow.value!.window,
+      cursorPosition,
+    );
   }
 
   void _stopDraggingWindow(Window handle) {
@@ -1747,7 +1758,6 @@ class _WindowNavigatorState extends State<WindowNavigator>
 
   Widget _createBorderSnapStrategy(WindowSnapStrategy snapStrategy) {
     return MouseRegion(
-      hitTestBehavior: HitTestBehavior.translucent,
       onEnter: (event) {
         _snappingStrategy.value = snapStrategy;
       },
@@ -1758,6 +1768,7 @@ class _WindowNavigatorState extends State<WindowNavigator>
         _snappingStrategy.value = snapStrategy;
       },
       opaque: false,
+      hitTestBehavior: HitTestBehavior.translucent,
     );
   }
 
@@ -1922,14 +1933,15 @@ class _WindowNavigatorState extends State<WindowNavigator>
     final compTheme = ComponentTheme.maybeOf<WindowTheme>(context);
     final titleBarHeight = (compTheme?.titleBarHeight ?? 32) * theme.scaling;
 
-    return LayoutBuilder(builder: (context, constraints) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
         return ListenableBuilder(
+          listenable: Listenable.merge([_draggingWindow, _snappingStrategy]),
           builder: (context, child) {
             return ClipRect(
               child: GroupWidget(
                 children: [
                   Listener(
-                    behavior: HitTestBehavior.translucent,
                     onPointerDown: (_) {
                       if (_focusLayer != 0) {
                         setState(() {
@@ -1937,6 +1949,7 @@ class _WindowNavigatorState extends State<WindowNavigator>
                         });
                       }
                     },
+                    behavior: HitTestBehavior.translucent,
                     child: widget.child,
                   ),
                   _WindowLayerGroup(
@@ -1993,7 +2006,6 @@ class _WindowNavigatorState extends State<WindowNavigator>
               ),
             );
           },
-          listenable: Listenable.merge([_draggingWindow, _snappingStrategy]),
         );
       },
     );
@@ -2048,24 +2060,24 @@ class _SnapHoverState extends State<_SnapHover> {
       },
       child: Container(
         decoration: BoxDecoration(
+          color: _hovering
+              ? theme.colorScheme.secondary
+              : theme.colorScheme.card,
           border: Border.all(color: theme.colorScheme.border),
           borderRadius: BorderRadius.only(
-            bottomLeft: widget.bottomLeft
-                ? theme.radiusSmRadius
-                : theme.radiusLgRadius,
-            bottomRight: widget.bottomRight
-                ? theme.radiusSmRadius
-                : theme.radiusLgRadius,
             topLeft: widget.topLeft
                 ? theme.radiusSmRadius
                 : theme.radiusLgRadius,
             topRight: widget.topRight
                 ? theme.radiusSmRadius
                 : theme.radiusLgRadius,
+            bottomLeft: widget.bottomLeft
+                ? theme.radiusSmRadius
+                : theme.radiusLgRadius,
+            bottomRight: widget.bottomRight
+                ? theme.radiusSmRadius
+                : theme.radiusLgRadius,
           ),
-          color: _hovering
-              ? theme.colorScheme.secondary
-              : theme.colorScheme.card,
         ),
       ),
     );
@@ -2167,11 +2179,13 @@ class _BlurContainer extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AnimatedValueBuilder(
+      value: 1,
+      duration: kDefaultDuration,
       builder: (context, value, child) {
         return Opacity(
           opacity: value.toDouble(),
           child: Transform.scale(
-            scale: lerpDouble(0.8, 1.0, value),
+            scale: lerpDouble(0.8, 1.0, value.toDouble())!,
             child: Padding(
               padding: const EdgeInsets.all(8) * theme.scaling,
               child: ClipRRect(
@@ -2179,9 +2193,9 @@ class _BlurContainer extends StatelessWidget {
                   filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
                   child: Container(
                     decoration: BoxDecoration(
+                      color: theme.colorScheme.card.withAlpha(100),
                       border: Border.all(color: theme.colorScheme.border),
                       borderRadius: theme.borderRadiusMd,
-                      color: theme.colorScheme.card.withAlpha(100),
                     ),
                   ),
                 ),
@@ -2190,10 +2204,8 @@ class _BlurContainer extends StatelessWidget {
           ),
         );
       },
-      curve: Curves.easeInOut,
-      duration: kDefaultDuration,
       initialValue: 0,
-      value: 1,
+      curve: Curves.easeInOut,
     );
   }
 }

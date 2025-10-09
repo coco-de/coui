@@ -83,41 +83,43 @@ class Hidden extends StatelessWidget {
     final textDirection = Directionality.of(context);
     final compTheme = ComponentTheme.maybeOf<HiddenTheme>(context);
     final directionValue = styleValue(
-      defaultValue: Axis.horizontal,
-      themeValue: compTheme?.direction,
       widgetValue: direction,
+      themeValue: compTheme?.direction,
+      defaultValue: Axis.horizontal,
     );
     final durationValue = styleValue(
-      defaultValue: kDefaultDuration,
-      themeValue: compTheme?.duration,
       widgetValue: duration,
+      themeValue: compTheme?.duration,
+      defaultValue: kDefaultDuration,
     );
     final curveValue = styleValue(
-      defaultValue: Curves.easeInOut,
-      themeValue: compTheme?.curve,
       widgetValue: curve,
+      themeValue: compTheme?.curve,
+      defaultValue: Curves.easeInOut,
     );
     final reverseValue = styleValue(
-      defaultValue: false,
-      themeValue: compTheme?.reverse,
       widgetValue: reverse,
+      themeValue: compTheme?.reverse,
+      defaultValue: false,
     );
     final keepCrossAxisSizeValue = styleValue(
-      defaultValue: false,
-      themeValue: compTheme?.keepCrossAxisSize,
       widgetValue: keepCrossAxisSize,
+      themeValue: compTheme?.keepCrossAxisSize,
+      defaultValue: false,
     );
     final keepMainAxisSizeValue = styleValue(
-      defaultValue: false,
-      themeValue: compTheme?.keepMainAxisSize,
       widgetValue: keepMainAxisSize,
+      themeValue: compTheme?.keepMainAxisSize,
+      defaultValue: false,
     );
 
     return AnimatedOpacity(
+      opacity: hidden ? 0.0 : 1.0,
       curve: curveValue,
       duration: durationValue,
-      opacity: hidden ? 0.0 : 1.0,
       child: AnimatedValueBuilder(
+        value: hidden ? 0.0 : 1.0,
+        duration: durationValue,
         builder: (context, value, child) {
           return _HiddenLayout(
             direction: directionValue,
@@ -130,8 +132,6 @@ class Hidden extends StatelessWidget {
           );
         },
         curve: curveValue,
-        duration: durationValue,
-        value: hidden ? 0.0 : 1.0,
         child: child,
       ),
     );
@@ -263,11 +263,11 @@ class _RenderHiddenLayout extends RenderBox
       final parentData = child.parentData! as BoxParentData;
 
       return result.addWithPaintOffset(
+        offset: parentData.offset,
+        position: position,
         hitTest: (result, position) {
           return child.hitTest(result, position: position);
         },
-        offset: parentData.offset,
-        position: position,
       );
     }
 

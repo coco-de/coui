@@ -237,8 +237,8 @@ class PhoneInput extends StatefulWidget {
 
 class _PhoneInputState extends State<PhoneInput>
     with FormValueSupplier<PhoneNumber, PhoneInput> {
-  Country _country;
-  TextEditingController _controller;
+  late Country _country;
+  late TextEditingController _controller;
 
   static bool _filterCountryCode(Country country, String text) {
     return country.name.toLowerCase().contains(text) ||
@@ -305,31 +305,37 @@ class _PhoneInputState extends State<PhoneInput>
 
     return IntrinsicHeight(
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Select<Country>(
             borderRadius: styleValue(
-              defaultValue: BorderRadius.only(
-                bottomLeft: theme.radiusMdRadius,
-                topLeft: theme.radiusMdRadius,
-              ),
               themeValue: componentTheme?.borderRadius,
+              defaultValue: BorderRadius.only(
+                topLeft: theme.radiusMdRadius,
+                bottomLeft: theme.radiusMdRadius,
+              ),
             ),
             itemBuilder: (context, item) {
               return Row(
                 children: [
                   CountryFlag.fromCountryCode(
                     item.code,
-                    width: styleValue(
-                      defaultValue: theme.scaling * 24,
-                      themeValue: componentTheme?.flagWidth,
+                    theme: ImageTheme(
+                      width: styleValue(
+                        themeValue: componentTheme?.flagWidth,
+                        defaultValue: theme.scaling * 24,
+                      ),
+                      shape: styleValue(
+                        themeValue: componentTheme?.flagShape,
+                        defaultValue: RoundedRectangle(theme.radiusSm),
+                      ),
                     ),
                   ),
                   Gap(
                     styleValue(
-                      defaultValue: theme.scaling * 8,
                       themeValue: componentTheme?.flagGap,
+                      defaultValue: theme.scaling * 8,
                     ),
                   ),
                   Text(item.dialCode),
@@ -345,17 +351,17 @@ class _PhoneInputState extends State<PhoneInput>
               }
             },
             padding: styleValue(
-              defaultValue: EdgeInsets.only(
-                bottom: theme.scaling * 8,
-                left: theme.scaling * 8,
-                right: theme.scaling * 4,
-                top: theme.scaling * 8,
-              ),
               themeValue: componentTheme?.padding,
+              defaultValue: EdgeInsets.only(
+                left: theme.scaling * 8,
+                top: theme.scaling * 8,
+                right: theme.scaling * 4,
+                bottom: theme.scaling * 8,
+              ),
             ),
             popoverAlignment: Alignment.topLeft,
             popoverAnchorAlignment: Alignment.bottomLeft,
-            popup: SelectPopup.builder(
+            popup: SelectPopup<Country>.builder(
               builder: (context, searchQuery) {
                 return SelectItemList(
                   children: [
@@ -368,22 +374,30 @@ class _PhoneInputState extends State<PhoneInput>
                             children: [
                               CountryFlag.fromCountryCode(
                                 country.code,
-                                width: styleValue(
-                                  defaultValue: theme.scaling * 24,
-                                  themeValue: componentTheme?.flagWidth,
+                                theme: ImageTheme(
+                                  width: styleValue(
+                                    themeValue: componentTheme?.flagWidth,
+                                    defaultValue: theme.scaling * 24,
+                                  ),
+                                  shape: styleValue(
+                                    themeValue: componentTheme?.flagShape,
+                                    defaultValue: RoundedRectangle(
+                                      theme.radiusSm,
+                                    ),
+                                  ),
                                 ),
                               ),
                               Gap(
                                 styleValue(
-                                  defaultValue: theme.scaling * 8,
                                   themeValue: componentTheme?.flagGap,
+                                  defaultValue: theme.scaling * 8,
                                 ),
                               ),
                               Expanded(child: Text(country.name)),
                               Gap(
                                 styleValue(
-                                  defaultValue: theme.scaling * 16,
                                   themeValue: componentTheme?.countryGap,
+                                  defaultValue: theme.scaling * 16,
                                 ),
                               ),
                               Text(country.dialCode).muted(),
@@ -395,28 +409,28 @@ class _PhoneInputState extends State<PhoneInput>
               },
             ).asBuilder,
             popupConstraints: styleValue(
-              defaultValue: BoxConstraints(
-                maxHeight: theme.scaling * 300,
-                maxWidth: theme.scaling * 250,
-              ),
               themeValue: componentTheme?.popupConstraints,
+              defaultValue: BoxConstraints(
+                maxWidth: theme.scaling * 250,
+                maxHeight: theme.scaling * 300,
+              ),
             ),
             popupWidthConstraint: PopoverConstraint.flexible,
             value: _country,
           ),
           LimitedBox(
             maxWidth: styleValue(
-              defaultValue: theme.scaling * 200,
               themeValue: componentTheme?.maxWidth,
+              defaultValue: theme.scaling * 200,
             ),
             child: TextField(
               autofillHints: const [AutofillHints.telephoneNumber],
               borderRadius: styleValue(
-                defaultValue: BorderRadius.only(
-                  bottomRight: theme.radiusMdRadius,
-                  topRight: theme.radiusMdRadius,
-                ),
                 themeValue: componentTheme?.borderRadius,
+                defaultValue: BorderRadius.only(
+                  topRight: theme.radiusMdRadius,
+                  bottomRight: theme.radiusMdRadius,
+                ),
               ),
               controller: _controller,
               initialValue: widget.initialValue?.number,

@@ -430,10 +430,10 @@ BorderRadius _borderRadiusFromPosition(
 class TreeNodeData<T> {
   TreeNodeData(
     this.depth,
-    this.expandIcon,
-    this.expanded,
-    this.indentGuide,
     this.node,
+    this.indentGuide,
+    this.expanded,
+    this.expandIcon,
     this.onFocusChanged,
   );
   final TreeNode<T> node;
@@ -454,7 +454,7 @@ class TreeNodeDepth {
 
 typedef TreeNodeUnaryOperator<K> = TreeNode<K>? Function(TreeNode<K> node);
 typedef TreeNodeUnaryOperatorWithParent<K> =
-    TreeNode<K>? Function(TreeNode<K> node, TreeNode<K>? parent);
+    TreeNode<K>? Function(TreeNode<K>? parent, TreeNode<K> node);
 
 extension TreeNodeListExtension<K> on List<TreeNode<K>> {
   List<TreeNode<K>> expandAll() {
@@ -1122,43 +1122,61 @@ class _TreeViewState<T> extends State<TreeView<T>> {
     final padding = widget.padding ?? compTheme?.padding;
     final children = <TreeNodeData<T>>[];
     int index = 0;
-    _walkFlattened((expanded, node, depth) {
-      if (node is! TreeItem<T>) return;
-      final currentIndex = index++;
-      children.add(TreeNodeData(
-        depth,
-        node,
-        branchLine,
-        expanded,
-        expandIcon,
-        (reason) {
-          if (reason == FocusChangeReason.focusScope) {
-            _startFocusedIndex = currentIndex;
-            _currentFocusedIndex = currentIndex;
-            return;
-          }
-          _currentFocusedIndex = currentIndex;
-          if (_rangeMultiSelect && _startFocusedIndex != null) {
-            var start = _startFocusedIndex!;
-            var end = _currentFocusedIndex!;
-            _onChangeSelectionRange(children, start, end, recursiveSelection);
-          } else {
-            _startFocusedIndex = currentIndex;
-            if (recursiveSelection) {
-              final selectedItems = <TreeNode<T>>[];
-              _walkNodes((node) {
-                selectedItems.add(node);
-              }, [node]);
-              widget.onSelectionChanged
-                  ?.call(selectedItems, _multiSelect, !node.selected);
-            } else {
-              widget.onSelectionChanged
-                  ?.call([node], _multiSelect, !node.selected);
-            }
-          }
-        },
-      ));
-    }, widget.nodes, true, []);
+    _walkFlattened(
+      (expanded, node, depth) {
+        if (node is! TreeItem<T>) return;
+        final currentIndex = index++;
+        children.add(
+          TreeNodeData(
+            depth,
+            node,
+            branchLine,
+            expanded,
+            expandIcon,
+            (reason) {
+              if (reason == FocusChangeReason.focusScope) {
+                _startFocusedIndex = currentIndex;
+                _currentFocusedIndex = currentIndex;
+                return;
+              }
+              _currentFocusedIndex = currentIndex;
+              if (_rangeMultiSelect && _startFocusedIndex != null) {
+                var start = _startFocusedIndex!;
+                var end = _currentFocusedIndex!;
+                _onChangeSelectionRange(
+                  children,
+                  start,
+                  end,
+                  recursiveSelection,
+                );
+              } else {
+                _startFocusedIndex = currentIndex;
+                if (recursiveSelection) {
+                  final selectedItems = <TreeNode<T>>[];
+                  _walkNodes((node) {
+                    selectedItems.add(node);
+                  }, [node]);
+                  widget.onSelectionChanged?.call(
+                    selectedItems,
+                    _multiSelect,
+                    !node.selected,
+                  );
+                } else {
+                  widget.onSelectionChanged?.call(
+                    [node],
+                    _multiSelect,
+                    !node.selected,
+                  );
+                }
+              }
+            },
+          ),
+        );
+      },
+      widget.nodes,
+      true,
+      [],
+    );
     int selectedCount = 0;
     for (int i = 0; i < children.length; i += 1) {
       final child = children[i];
@@ -1247,6 +1265,7 @@ class _TreeViewState<T> extends State<TreeView<T>> {
       child: Actions(
         actions: {
           SelectTreeNodeIntent: CallbackAction(
+            // ignore: function-always-returns-null
             onInvoke: (e) {
               if (_currentFocusedIndex != null) {
                 final selectedNode = children[_currentFocusedIndex!];
@@ -1256,10 +1275,16 @@ class _TreeViewState<T> extends State<TreeView<T>> {
                     selectedItems.add(node);
                   }, [selectedNode.node]);
                   widget.onSelectionChanged?.call(
-                      selectedItems, _multiSelect, !selectedNode.node.selected);
+                    selectedItems,
+                    _multiSelect,
+                    !selectedNode.node.selected,
+                  );
                 } else {
-                  widget.onSelectionChanged?.call([selectedNode.node],
-                      _multiSelect, !selectedNode.node.selected);
+                  widget.onSelectionChanged?.call(
+                    [selectedNode.node],
+                    _multiSelect,
+                    !selectedNode.node.selected,
+                  );
                 }
               }
               return null;
@@ -1300,7 +1325,11 @@ class _TreeViewState<T> extends State<TreeView<T>> {
                 }
               }
               _onChangeSelectionRange(
-                  children, _startFocusedIndex!, _currentFocusedIndex!, recursiveSelection);
+                children,
+                _startFocusedIndex!,
+                _currentFocusedIndex!,
+                recursiveSelection,
+              );
 
               return null;
             },
@@ -1336,11 +1365,11 @@ class _TreeViewState<T> extends State<TreeView<T>> {
           },
           child: ListView(
             controller: widget.controller,
-            padding: padding ?? const EdgeInsets.all(8),
             shrinkWrap: widget.shrinkWrap,
+            padding: padding ?? const EdgeInsets.all(8),
             children: children
                 .map(
-                  (data) => Data<TreeNodeData>.inherit(
+                  (data) => Data<TreeNodeData<dynamic>>.inherit(
                     data: data,
                     child: Builder(
                       builder: (context) {
@@ -1666,10 +1695,10 @@ class TreeItemView extends StatefulWidget {
 }
 
 class _TreeItemViewState extends State<TreeItemView> {
-  FocusNode _focusNode;
+  late FocusNode _focusNode;
   final _statesController = WidgetStatesController();
 
-  TreeNodeData? _data;
+  TreeNodeData<dynamic>? _data;
 
   @override
   void initState() {
@@ -1703,7 +1732,7 @@ class _TreeItemViewState extends State<TreeItemView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final newData = Data.maybeOf<TreeNodeData>(context);
+    final newData = Data.maybeOf<TreeNodeData<dynamic>>(context);
     if (_data != newData) {
       _data = newData;
       if (_data != null) {
@@ -1743,8 +1772,8 @@ class _TreeItemViewState extends State<TreeItemView> {
               }
             },
             child: AnimatedRotation(
-              duration: kDefaultDuration,
               turns: data.node.expanded ? 0.25 : 0,
+              duration: kDefaultDuration,
               child: const Icon(Icons.chevron_right).iconSmall(),
             ),
           ),
@@ -1775,7 +1804,7 @@ class _TreeItemViewState extends State<TreeItemView> {
       Expanded(
         child: Padding(
           padding:
-              const EdgeInsets.symmetric(horizontal: 8, vertical: 4) * scaling,
+              const EdgeInsets.symmetric(vertical: 4, horizontal: 8) * scaling,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: subRowChildren,
@@ -1787,13 +1816,9 @@ class _TreeItemViewState extends State<TreeItemView> {
     return ExcludeFocus(
       excluding: !data.expanded && !data.node.expanded,
       child: DefaultTextStyle.merge(
-        maxLines: 1,
         overflow: TextOverflow.ellipsis,
+        maxLines: 1,
         child: AnimatedCrossFade(
-          crossFadeState: data.expanded
-              ? CrossFadeState.showFirst
-              : CrossFadeState.showSecond,
-          duration: kDefaultDuration,
           firstChild: IntrinsicHeight(
             child: Clickable(
               onPressed: () {
@@ -1840,18 +1865,18 @@ class _TreeItemViewState extends State<TreeItemView> {
                 if (states.contains(WidgetState.selected)) {
                   return states.contains(WidgetState.focused)
                       ? BoxDecoration(
+                          color: theme.colorScheme.primary.scaleAlpha(0.1),
                           borderRadius: _borderRadiusFromPosition(
                             data.selectionPosition,
                             theme.radiusMd,
                           ),
-                          color: theme.colorScheme.primary.scaleAlpha(0.1),
                         )
                       : BoxDecoration(
+                          color: theme.colorScheme.primary.scaleAlpha(0.05),
                           borderRadius: _borderRadiusFromPosition(
                             data.selectionPosition,
                             theme.radiusMd,
                           ),
-                          color: theme.colorScheme.primary.scaleAlpha(0.05),
                         );
                 }
 
@@ -1899,9 +1924,13 @@ class _TreeItemViewState extends State<TreeItemView> {
               ),
             ),
           ),
-          firstCurve: Curves.easeInOut,
           secondChild: const SizedBox(),
+          firstCurve: Curves.easeInOut,
           secondCurve: Curves.easeInOut,
+          crossFadeState: data.expanded
+              ? CrossFadeState.showFirst
+              : CrossFadeState.showSecond,
+          duration: kDefaultDuration,
         ).iconSmall(),
       ),
     );

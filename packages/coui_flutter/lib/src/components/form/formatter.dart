@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:expressions/expressions.dart';
 import 'package:flutter/services.dart';
 
-TextSelection contraintToNewText(String newText, TextEditingValue newValue) {
+TextSelection contraintToNewText(TextEditingValue newValue, String newText) {
   return TextSelection(
     baseOffset: newValue.selection.baseOffset.clamp(0, newText.length),
     extentOffset: newValue.selection.extentOffset.clamp(0, newText.length),
@@ -43,30 +43,35 @@ class _TimeFormatter extends TextInputFormatter {
     }
 
     return newValue.copyWith(
+      text: newText,
+      selection: TextSelection(
+        baseOffset: baseOffset2.clamp(0, min(length, newText.length)),
+        extentOffset: extentOffset2.clamp(0, min(length, newText.length)),
+      ),
       composing: newValue.composing.isValid
           ? TextRange(
-              end: newValue.composing.end.clamp(
+              start: newValue.composing.start.clamp(
                 0,
                 min(length, newValue.text.length),
               ),
-              start: newValue.composing.start.clamp(
+              end: newValue.composing.end.clamp(
                 0,
                 min(length, newValue.text.length),
               ),
             )
           : newValue.composing,
-      selection: TextSelection(
-        baseOffset: baseOffset2.clamp(0, min(length, newText.length)),
-        extentOffset: extentOffset2.clamp(0, min(length, newText.length)),
-      ),
-      text: newText,
     );
   }
 }
 
 // ignore: unused_element
 class _IntegerOnlyFormatter extends TextInputFormatter {
-  const _IntegerOnlyFormatter();
+  const _IntegerOnlyFormatter({
+    // ignore: unused_element_parameter
+    this.min,
+    // ignore: unused_element_parameter
+    this.max,
+  });
 
   final int? min;
 
@@ -89,32 +94,33 @@ class _IntegerOnlyFormatter extends TextInputFormatter {
     if (value == null) {
       return negate
           ? const TextEditingValue(
-              selection: TextSelection.collapsed(offset: 1),
               text: '-',
+              selection: TextSelection.collapsed(offset: 1),
             )
           : oldValue;
     }
     if (min != null && value <= min!) {
-      value = min;
+      value = min!;
     }
     if (max != null && value >= max!) {
-      value = max;
+      value = max!;
     }
-    newText = value?.toString();
+    newText = value.toString();
     if (negate) {
       newText = '-$newText';
     }
 
     return TextEditingValue(
-      selection: contraintToNewText(newValue, newText),
       text: newText,
+      selection: contraintToNewText(newValue, newText),
     );
   }
 }
 
 // ignore: unused_element
 class _DoubleOnlyFormatter extends TextInputFormatter {
-  const _DoubleOnlyFormatter();
+  // ignore: unused_element_parameter
+  const _DoubleOnlyFormatter({this.min, this.max, this.decimalDigits});
 
   final double? min;
   final double? max;
@@ -142,22 +148,22 @@ class _DoubleOnlyFormatter extends TextInputFormatter {
     if (value == null) {
       return negate
           ? const TextEditingValue(
-              selection: TextSelection.collapsed(offset: 1),
               text: '-',
+              selection: TextSelection.collapsed(offset: 1),
             )
           : oldValue;
     }
     if (min != null && value <= min!) {
-      value = min;
+      value = min!;
       endsWithDot = false;
     }
     if (max != null && value >= max!) {
-      value = max;
+      value = max!;
       endsWithDot = false;
     }
-    newText = decimalDigits == null
+    newText = decimalDigits != null
         ? value.toStringAsFixed(decimalDigits!)
-        : value?.toString();
+        : value.toString();
     if (newText.contains('.')) {
       while (newText.endsWith('0')) {
         newText = newText.substring(0, newText.length - 1);
@@ -174,8 +180,8 @@ class _DoubleOnlyFormatter extends TextInputFormatter {
     }
 
     return TextEditingValue(
-      selection: contraintToNewText(newValue, newText),
       text: newText,
+      selection: contraintToNewText(newValue, newText),
     );
   }
 }
@@ -201,7 +207,7 @@ class _MathExpressionFormatter extends TextInputFormatter {
     } catch (e) {
       result = '';
     }
-    String resultText = result?.toString();
+    String resultText = result?.toString() ?? '';
     if (resultText.contains('.')) {
       while (resultText.endsWith('0')) {
         resultText = resultText.substring(0, resultText.length - 1);
@@ -212,8 +218,8 @@ class _MathExpressionFormatter extends TextInputFormatter {
     }
 
     return TextEditingValue(
-      selection: contraintToNewText(newValue, resultText),
       text: resultText,
+      selection: contraintToNewText(newValue, resultText),
     );
   }
 }
@@ -228,8 +234,8 @@ class _ToUpperCaseTextFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
   ) {
     return TextEditingValue(
-      selection: newValue.selection,
       text: newValue.text.toUpperCase(),
+      selection: newValue.selection,
     );
   }
 }
@@ -244,8 +250,8 @@ class _ToLowerCaseTextFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
   ) {
     return TextEditingValue(
-      selection: newValue.selection,
       text: newValue.text.toLowerCase(),
+      selection: newValue.selection,
     );
   }
 }

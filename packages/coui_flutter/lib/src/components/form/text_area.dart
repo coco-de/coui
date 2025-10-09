@@ -441,8 +441,8 @@ class TextArea extends StatefulWidget {
 }
 
 class _TextAreaState extends State<TextArea> {
-  double _height;
-  double _width;
+  late double _height;
+  late double _width;
 
   @override
   void initState() {
@@ -468,32 +468,32 @@ class _TextAreaState extends State<TextArea> {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<TextAreaTheme>(context);
     final filled = styleValue<bool>(
-      defaultValue: false,
-      themeValue: compTheme?.filled,
       widgetValue: widget.filled,
+      themeValue: compTheme?.filled,
+      defaultValue: false,
     );
     final border = styleValue<Border?>(
-      defaultValue: null,
-      themeValue: compTheme?.border,
       widgetValue: widget.border,
+      themeValue: compTheme?.border,
+      defaultValue: null,
     );
     final padding = styleValue<EdgeInsetsGeometry?>(
-      defaultValue: null,
-      themeValue: compTheme?.padding,
       widgetValue: widget.padding,
+      themeValue: compTheme?.padding,
+      defaultValue: null,
     );
     final borderRadius = styleValue<BorderRadiusGeometry?>(
-      defaultValue: null,
-      themeValue: compTheme?.borderRadius,
       widgetValue: widget.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: null,
     );
 
     return SizedBox(
-      height: _height,
       width: _width,
+      height: _height,
       child: Stack(
-        clipBehavior: Clip.none,
         fit: StackFit.passthrough,
+        clipBehavior: Clip.none,
         children: [
           Positioned.fill(
             child: TextField(
@@ -538,10 +538,10 @@ class _TextAreaState extends State<TextArea> {
             ),
           ),
           Positioned(
-            bottom: -1 * scaling,
-            height: (8 + 8) * scaling,
             right: -1 * scaling,
+            bottom: -1 * scaling,
             width: (8 + 8) * scaling,
+            height: (8 + 8) * scaling,
             child: MouseRegion(
               cursor: widget.expandableWidth
                   ? widget.expandableHeight
@@ -552,26 +552,30 @@ class _TextAreaState extends State<TextArea> {
                   : SystemMouseCursors.basic,
               hitTestBehavior: HitTestBehavior.translucent,
               child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
                 onPanUpdate: (details) {
                   if (widget.expandableHeight && _height.isFinite) {
                     setState(() {
                       _height += details.delta.dy;
-                      _height = _height.clamp(
-                        widget.minHeight,
-                        widget.maxHeight,
-                      ).toDouble();
+                      _height = _height
+                          .clamp(
+                            widget.minHeight,
+                            widget.maxHeight,
+                          )
+                          .toDouble();
                       widget.onHeightChanged?.call(_height);
                     });
                   }
                   if (widget.expandableWidth && _width.isFinite) {
                     setState(() {
                       _width += details.delta.dx;
-                      _width = _width.clamp(widget.minWidth, widget.maxWidth).toDouble();
+                      _width = _width
+                          .clamp(widget.minWidth, widget.maxWidth)
+                          .toDouble();
                       widget.onWidthChanged?.call(_width);
                     });
                   }
                 },
+                behavior: HitTestBehavior.translucent,
                 child: Padding(
                   padding: EdgeInsets.all(scaling * 4.0),
                   child: CustomPaint(

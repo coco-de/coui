@@ -36,8 +36,8 @@ class _InputHintFeatureState extends InputFeatureState<InputHintFeature> {
         builder: (context) {
           return IconButton.text(
             onPressed: () => _showPopup(context),
-            density: ButtonDensity.compact,
             icon: feature.icon ?? const Icon(LucideIcons.info),
+            density: ButtonDensity.compact,
           );
         },
       );
@@ -49,8 +49,8 @@ class _InputHintFeatureState extends InputFeatureState<InputHintFeature> {
     if (feature.position == InputFeaturePosition.leading) {
       yield IconButton.text(
         onPressed: () => _showPopup(context),
-        density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.info),
+        density: ButtonDensity.compact,
       );
     }
   }
@@ -89,7 +89,7 @@ class _InputHintFeatureState extends InputFeatureState<InputHintFeature> {
   }
 
   void _showPopup(BuildContext context) {
-    _popoverController.show(
+    _popoverController.show<void>(
       alignment: AlignmentDirectional.topCenter,
       anchorAlignment: AlignmentDirectional.bottomCenter,
       builder: feature.popupBuilder,
@@ -163,9 +163,8 @@ class _InputPasswordToggleFeatureState
   Widget _buildIconButton() {
     return feature.mode == PasswordPeekMode.hold
         ? IconButton.text(
-            density: ButtonDensity.compact,
-            enabled: true,
             icon: _buildIcon(),
+            enabled: true,
             onTapDown: (_) {
               setState(() {
                 _obscureText = null;
@@ -176,11 +175,12 @@ class _InputPasswordToggleFeatureState
                 _obscureText = true;
               });
             },
+            density: ButtonDensity.compact,
           )
         : IconButton.text(
             onPressed: _toggleObscureText,
-            density: ButtonDensity.compact,
             icon: _buildIcon(),
+            density: ButtonDensity.compact,
           );
   }
 }
@@ -205,8 +205,8 @@ class _InputClearFeatureState extends InputFeatureState<InputClearFeature> {
     if (feature.position == InputFeaturePosition.trailing) {
       yield IconButton.text(
         onPressed: _clear,
-        density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.x),
+        density: ButtonDensity.compact,
       );
     }
   }
@@ -216,8 +216,8 @@ class _InputClearFeatureState extends InputFeatureState<InputClearFeature> {
     if (feature.position == InputFeaturePosition.leading) {
       yield IconButton.text(
         onPressed: _clear,
-        density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.x),
+        density: ButtonDensity.compact,
       );
     }
   }
@@ -270,38 +270,39 @@ class _InputRevalidateFeatureState
         if (futures.isEmpty) {
           return IconButton.text(
             onPressed: _revalidate,
-            density: ButtonDensity.compact,
             icon: feature.icon ?? const Icon(LucideIcons.refreshCw),
+            density: ButtonDensity.compact,
           );
         }
 
         final futureAll = Future.wait(futures.values);
 
         return FutureBuilder(
+          future: futureAll,
           builder: (context, snapshot) {
             return snapshot.connectionState == ConnectionState.waiting
                 ? IconButton.text(
-                    density: ButtonDensity.compact,
                     icon: RepeatedAnimationBuilder(
+                      start: 0,
+                      end: 360,
+                      duration: const Duration(seconds: 1),
                       builder: (context, value, child) {
                         return Transform.rotate(
                           angle: degToRad(value.toDouble()),
                           child: child,
                         );
                       },
-                      duration: const Duration(seconds: 1),
-                      end: 360,
-                      start: 0,
+                      lerp: (a, b, t) => (a + (b - a) * t).round(),
                       child: feature.icon ?? const Icon(LucideIcons.refreshCw),
                     ),
+                    density: ButtonDensity.compact,
                   )
                 : IconButton.text(
                     onPressed: _revalidate,
-                    density: ButtonDensity.compact,
                     icon: feature.icon ?? const Icon(LucideIcons.refreshCw),
+                    density: ButtonDensity.compact,
                   );
           },
-          future: futureAll,
         );
       },
     );
@@ -348,11 +349,13 @@ class _AutoCompleteFeatureState
   @override
   Widget wrap(Widget child) {
     return ListenableBuilder(
+      listenable: _suggestions,
       builder: (context, child) {
         final suggestions = _suggestions.value;
 
         return suggestions is Future<Iterable<String>>
             ? FutureBuilder(
+                future: suggestions,
                 builder: (context, snapshot) {
                   return AutoComplete(
                     key: _key,
@@ -367,7 +370,6 @@ class _AutoCompleteFeatureState
                     child: child!,
                   );
                 },
-                future: suggestions,
               )
             : AutoComplete(
                 key: _key,
@@ -382,7 +384,6 @@ class _AutoCompleteFeatureState
                 child: child!,
               );
       },
-      listenable: _suggestions,
       child: child,
     );
   }
@@ -484,7 +485,6 @@ class _InputSpinnerFeatureState extends InputFeatureState<InputSpinnerFeature> {
           children: [
             IconButton.text(
               onPressed: _increase,
-              density: ButtonDensity.compact,
               icon: Transform.translate(
                 offset: Offset(0, -1 * theme.scaling),
                 child: Transform.scale(
@@ -493,10 +493,10 @@ class _InputSpinnerFeatureState extends InputFeatureState<InputSpinnerFeature> {
                 ),
               ),
               size: ButtonSize.xSmall,
+              density: ButtonDensity.compact,
             ),
             IconButton.text(
               onPressed: _decrease,
-              density: ButtonDensity.compact,
               icon: Transform.translate(
                 offset: Offset(0, theme.scaling * 1),
                 child: Transform.scale(
@@ -505,6 +505,7 @@ class _InputSpinnerFeatureState extends InputFeatureState<InputSpinnerFeature> {
                 ),
               ),
               size: ButtonSize.xSmall,
+              density: ButtonDensity.compact,
             ),
           ],
         );
@@ -533,8 +534,8 @@ class _InputCopyFeatureState extends InputFeatureState<InputCopyFeature> {
     if (feature.position == InputFeaturePosition.trailing) {
       yield IconButton.text(
         onPressed: _copy,
-        density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.copy),
+        density: ButtonDensity.compact,
       );
     }
   }
@@ -544,8 +545,8 @@ class _InputCopyFeatureState extends InputFeatureState<InputCopyFeature> {
     if (feature.position == InputFeaturePosition.leading) {
       yield IconButton.text(
         onPressed: _copy,
-        density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.copy),
+        density: ButtonDensity.compact,
       );
     }
   }
@@ -608,8 +609,8 @@ class _InputPasteFeatureState extends InputFeatureState<InputPasteFeature> {
     if (feature.position == InputFeaturePosition.trailing) {
       yield IconButton.text(
         onPressed: _paste,
-        density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.clipboard),
+        density: ButtonDensity.compact,
       );
     }
   }
@@ -619,8 +620,8 @@ class _InputPasteFeatureState extends InputFeatureState<InputPasteFeature> {
     if (feature.position == InputFeaturePosition.leading) {
       yield IconButton.text(
         onPressed: _paste,
-        density: ButtonDensity.compact,
         icon: feature.icon ?? const Icon(LucideIcons.clipboard),
+        density: ButtonDensity.compact,
       );
     }
   }

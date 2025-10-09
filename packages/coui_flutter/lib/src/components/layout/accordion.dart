@@ -98,8 +98,8 @@ class AccordionState extends State<Accordion> {
       data: this,
       child: IntrinsicWidth(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ...join(
               widget.items,
@@ -346,7 +346,7 @@ class _AccordionItemState extends State<AccordionItem>
   final _expanded = ValueNotifier<bool>(false);
 
   late AnimationController _controller;
-  CurvedAnimation _easeInAnimation;
+  late CurvedAnimation _easeInAnimation;
   AccordionTheme? _theme;
 
   @override
@@ -362,8 +362,8 @@ class _AccordionItemState extends State<AccordionItem>
         _theme?.duration ?? const Duration(milliseconds: 200);
     _controller.value = _expanded.value ? 1 : 0;
     _easeInAnimation = CurvedAnimation(
-      curve: _theme?.curve ?? Curves.easeIn,
       parent: _controller,
+      curve: _theme?.curve ?? Curves.easeIn,
       reverseCurve: _theme?.reverseCurve ?? Curves.easeOut,
     );
   }
@@ -435,8 +435,8 @@ class _AccordionItemState extends State<AccordionItem>
           children: [
             widget.trigger,
             SizeTransition(
-              axisAlignment: -1,
               sizeFactor: _easeInAnimation,
+              axisAlignment: -1,
               child: Padding(
                 padding: EdgeInsets.only(
                   bottom: _theme?.padding ?? scaling * 16,
@@ -564,6 +564,10 @@ class _AccordionTriggerState extends State<AccordionTrigger> {
         _item?._dispatchToggle();
       },
       child: FocusableActionDetector(
+        shortcuts: const {
+          SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
+          SingleActivator(LogicalKeyboardKey.space): ActivateIntent(),
+        },
         actions: {
           ActivateIntent: CallbackAction(
             onInvoke: (Intent intent) {
@@ -573,7 +577,6 @@ class _AccordionTriggerState extends State<AccordionTrigger> {
             },
           ),
         },
-        mouseCursor: SystemMouseCursors.click,
         onShowFocusHighlight: (value) {
           setState(() {
             _focusing = value;
@@ -584,10 +587,7 @@ class _AccordionTriggerState extends State<AccordionTrigger> {
             _hovering = value;
           });
         },
-        shortcuts: const {
-          SingleActivator(LogicalKeyboardKey.enter): ActivateIntent(),
-          SingleActivator(LogicalKeyboardKey.space): ActivateIntent(),
-        },
+        mouseCursor: SystemMouseCursors.click,
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(
@@ -618,6 +618,10 @@ class _AccordionTriggerState extends State<AccordionTrigger> {
                 ),
                 SizedBox(width: accTheme?.iconGap ?? scaling * 18),
                 TweenAnimationBuilder(
+                  tween: _expanded
+                      ? Tween(begin: 1.0, end: 0)
+                      : Tween(begin: 0, end: 1.0),
+                  duration: accTheme?.duration ?? kDefaultDuration,
                   builder: (context, value, child) {
                     return Transform.rotate(
                       angle: value * pi,
@@ -633,10 +637,6 @@ class _AccordionTriggerState extends State<AccordionTrigger> {
                       ),
                     );
                   },
-                  duration: accTheme?.duration ?? kDefaultDuration,
-                  tween: _expanded
-                      ? Tween(begin: 1.0, end: 0)
-                      : Tween(begin: 0, end: 1.0),
                 ),
               ],
             ),

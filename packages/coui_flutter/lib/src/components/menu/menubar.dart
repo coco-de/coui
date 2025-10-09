@@ -241,8 +241,8 @@ class MenubarState extends State<Menubar> {
             borderColor: borderColor,
             borderRadius: borderRadius,
             child: AnimatedPadding(
-              duration: kDefaultDuration,
               padding: padding,
+              duration: kDefaultDuration,
               child: buildContainer(
                 context,
                 theme,
@@ -260,10 +260,10 @@ class MenubarState extends State<Menubar> {
   }
 
   Widget buildContainer(
-    bool border,
     BuildContext context,
-    Offset? subMenuOffset,
     ThemeData theme,
+    Offset? subMenuOffset,
+    bool border,
   ) {
     final scaling = theme.scaling;
     final offset =
@@ -277,8 +277,8 @@ class MenubarState extends State<Menubar> {
         builder: (context, children) {
           return IntrinsicHeight(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: children,
             ),
           ).medium();

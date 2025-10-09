@@ -170,15 +170,15 @@ class DotIndicator extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<DotIndicatorTheme>(context);
     final spacing = styleValue(
-      defaultValue: scaling * 8,
-      themeValue: compTheme?.spacing,
       widgetValue: this.spacing,
+      themeValue: compTheme?.spacing,
+      defaultValue: scaling * 8,
     );
     final padding =
         styleValue(
-          defaultValue: const EdgeInsets.all(8),
-          themeValue: compTheme?.padding,
           widgetValue: this.padding,
+          themeValue: compTheme?.padding,
+          defaultValue: const EdgeInsets.all(8),
         ).resolve(directionality) *
         theme.scaling;
     final dotBuilder =
@@ -190,10 +190,10 @@ class DotIndicator extends StatelessWidget {
       final leftPadding = i == 0 ? padding.left : (spacing / 2);
       final rightPadding = i == length - 1 ? padding.right : (spacing / 2);
       final itemPadding = EdgeInsets.only(
-        bottom: bottomPadding,
         left: leftPadding,
-        right: rightPadding,
         top: topPadding,
+        right: rightPadding,
+        bottom: bottomPadding,
       );
       children.add(
         Flexible(
@@ -211,9 +211,9 @@ class DotIndicator extends StatelessWidget {
 
     return IntrinsicHeight(
       child: Flex(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         direction: direction,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: children,
       ),
     );
@@ -243,33 +243,33 @@ class ActiveDotItem extends StatelessWidget {
     final compTheme = ComponentTheme.maybeOf<DotIndicatorTheme>(context);
     final scaling = theme.scaling;
     final size = styleValue(
-      defaultValue: scaling * 12,
-      themeValue: compTheme?.size,
       widgetValue: this.size,
+      themeValue: compTheme?.size,
+      defaultValue: scaling * 12,
     );
     final color = styleValue(
-      defaultValue: theme.colorScheme.primary,
-      themeValue: compTheme?.activeColor,
       widgetValue: this.color,
+      themeValue: compTheme?.activeColor,
+      defaultValue: theme.colorScheme.primary,
     );
     final borderRadius = styleValue(
-      defaultValue: theme.radiusMd,
-      themeValue: compTheme?.borderRadius,
       widgetValue: this.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: theme.radiusMd,
     );
     final borderColor = this.borderColor;
     final borderWidth = this.borderWidth;
 
     return Container(
       decoration: BoxDecoration(
+        color: color,
         border: borderColor != null && borderWidth != null
             ? Border.all(color: borderColor, width: borderWidth)
             : null,
         borderRadius: BorderRadius.circular(borderRadius),
-        color: color,
       ),
-      height: size,
       width: size,
+      height: size,
     );
   }
 }
@@ -297,14 +297,14 @@ class InactiveDotItem extends StatelessWidget {
     final compTheme = ComponentTheme.maybeOf<DotIndicatorTheme>(context);
     final scaling = theme.scaling;
     final size = styleValue(
-      defaultValue: scaling * 12,
-      themeValue: compTheme?.size,
       widgetValue: this.size,
+      themeValue: compTheme?.size,
+      defaultValue: scaling * 12,
     );
     final borderRadius = styleValue(
-      defaultValue: theme.radiusMd,
-      themeValue: compTheme?.borderRadius,
       widgetValue: this.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: theme.radiusMd,
     );
     final borderColor =
         this.borderColor ??
@@ -316,12 +316,12 @@ class InactiveDotItem extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
+        color: color,
         border: Border.all(color: borderColor, width: borderWidth),
         borderRadius: BorderRadius.circular(borderRadius),
-        color: color,
       ),
-      height: size,
       width: size,
+      height: size,
     );
   }
 }

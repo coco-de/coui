@@ -237,12 +237,12 @@ abstract class UiComponent extends StatelessComponent {
     // (which includes prefixes)
     final utilityClasses =
         style?.map((Styling styling) => styling.toString()).join(' ') ??
-            _emptyString;
+        _emptyString;
 
     return <String>[
       baseClass,
       utilityClasses,
-      classes ?? _emptyString
+      classes ?? _emptyString,
     ].where((String className) => className.isNotEmpty).join(' ');
   }
 

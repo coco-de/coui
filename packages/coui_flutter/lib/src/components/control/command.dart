@@ -46,7 +46,7 @@ Future<T?> showCommandDialog<T>({
       return ConstrainedBox(
         constraints:
             constraints ??
-            const BoxConstraints.tightFor(height: 349, width: 510) * scaling,
+            (const BoxConstraints.tightFor(width: 510, height: 349) * scaling),
         child: ModalBackdrop(
           borderRadius: subtractByBorder(scaling * 1, theme.borderRadiusXxl),
           surfaceClip: ModalBackdrop.shouldClipSurface(surfaceOpacity),
@@ -175,7 +175,7 @@ class _Query {
 
 class _CommandState extends State<Command> {
   final _controller = TextEditingController();
-  _Query _currentRequest;
+  late _Query _currentRequest;
 
   int requestCount = 0;
 
@@ -200,7 +200,7 @@ class _CommandState extends State<Command> {
   Stream<List<Widget>> _request(BuildContext context, String? query) async* {
     final currentRequest = requestCount += 1;
     yield [];
-    await Future.delayed(widget.debounceDuration);
+    await Future<void>.delayed(widget.debounceDuration);
     if (!context.mounted || currentRequest != requestCount) return;
     final resultItems = <Widget>[];
     await for (final items in widget.builder(context, query)) {
@@ -258,8 +258,8 @@ class _CommandState extends State<Command> {
                 surfaceBlur: widget.surfaceBlur ?? theme.surfaceBlur,
                 surfaceOpacity: widget.surfaceOpacity ?? theme.surfaceOpacity,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     ComponentTheme(
                       data: const FocusOutlineTheme(
@@ -295,6 +295,7 @@ class _CommandState extends State<Command> {
                     const Divider(),
                     Expanded(
                       child: StreamBuilder(
+                        stream: _currentRequest.stream,
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             final items = List<Widget>.of(snapshot.data!);
@@ -316,16 +317,16 @@ class _CommandState extends State<Command> {
                             }
 
                             return ListView.separated(
-                              itemBuilder: (context, index) {
-                                return items[index];
-                              },
-                              itemCount: items.length,
+                              shrinkWrap: true,
                               padding: EdgeInsets.symmetric(
                                 vertical: theme.scaling * 2,
                               ),
+                              itemBuilder: (context, index) {
+                                return items[index];
+                              },
                               separatorBuilder: (context, index) =>
                                   const Divider(),
-                              shrinkWrap: true,
+                              itemCount: items.length,
                             );
                           }
 
@@ -334,16 +335,15 @@ class _CommandState extends State<Command> {
                                 child: CircularProgressIndicator(),
                               ).withPadding(vertical: theme.scaling * 24);
                         },
-                        stream: _currentRequest.stream,
                       ),
                     ),
                     const Divider(),
                     Container(
-                      color: theme.colorScheme.card,
                       padding: EdgeInsets.symmetric(
-                        horizontal: theme.scaling * 12,
                         vertical: theme.scaling * 6,
+                        horizontal: theme.scaling * 12,
                       ),
+                      color: theme.colorScheme.card,
                       child: IntrinsicHeight(
                         child: Row(
                           spacing: theme.scaling * 8,
@@ -395,8 +395,8 @@ class CommandCategory extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (title != null)
           title!
@@ -459,17 +459,17 @@ class _CommandItemState extends State<CommandItem> {
               });
             },
             child: AnimatedContainer(
+              padding: EdgeInsets.symmetric(
+                vertical: themeData.scaling * 6,
+                horizontal: themeData.scaling * 8,
+              ),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(themeData.radiusSm),
                 color: state.isFocused
                     ? themeData.colorScheme.accent
                     : themeData.colorScheme.accent.withValues(alpha: 0),
+                borderRadius: BorderRadius.circular(themeData.radiusSm),
               ),
               duration: kDefaultDuration,
-              padding: EdgeInsets.symmetric(
-                horizontal: themeData.scaling * 8,
-                vertical: themeData.scaling * 6,
-              ),
               child: IconTheme(
                 data: themeData.iconTheme.small.copyWith(
                   color: widget.onTap == null

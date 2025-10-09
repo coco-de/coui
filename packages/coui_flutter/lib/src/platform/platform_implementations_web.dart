@@ -36,12 +36,11 @@ extension type const _CoUIAppTheme._(JSObject _) implements JSObject {
 }
 
 class CoUIFlutterPlatformImplementations {
-  const CoUIFlutterPlatformImplementations();
-  bool get _isPreloaderAvailable {
+  static bool get _isPreloaderAvailable {
     return _window.globalThis.CoUIApp != null;
   }
 
-  void onAppInitialized() {
+  static void onAppInitialized() {
     if (!_isPreloaderAvailable) {
       return;
     }
@@ -50,7 +49,7 @@ class CoUIFlutterPlatformImplementations {
     _window.dispatchEvent(event);
   }
 
-  void onThemeChanged(ThemeData theme) {
+  static void onThemeChanged(ThemeData theme) {
     if (!_isPreloaderAvailable) {
       return;
     }

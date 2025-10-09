@@ -361,14 +361,14 @@ class _AvatarState extends State<Avatar> {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<AvatarTheme>(context);
     final double size = styleValue(
-      defaultValue: theme.scaling * 40,
-      themeValue: compTheme?.size,
       widgetValue: widget.size,
+      themeValue: compTheme?.size,
+      defaultValue: theme.scaling * 40,
     );
     final double borderRadius = styleValue(
-      defaultValue: theme.radius * size,
-      themeValue: compTheme?.borderRadius,
       widgetValue: widget.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: theme.radius * size,
     );
 
     return widget.provider != null
@@ -377,11 +377,11 @@ class _AvatarState extends State<Avatar> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(borderRadius),
               child: Image(
+                image: widget.provider!,
                 errorBuilder: (context, error, stackTrace) {
                   return _buildInitials(borderRadius, context);
                 },
                 fit: BoxFit.cover,
-                image: widget.provider!,
               ),
             ),
           )
@@ -397,12 +397,12 @@ class _AvatarState extends State<Avatar> {
 
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius),
         color: styleValue(
-          defaultValue: theme.colorScheme.muted,
-          themeValue: compTheme?.backgroundColor,
           widgetValue: widget.backgroundColor,
+          themeValue: compTheme?.backgroundColor,
+          defaultValue: theme.colorScheme.muted,
         ),
+        borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: FittedBox(
         fit: BoxFit.fill,
@@ -410,11 +410,11 @@ class _AvatarState extends State<Avatar> {
           padding: EdgeInsets.all(theme.scaling * 8),
           child: DefaultTextStyle.merge(
             style: styleValue(
+              themeValue: compTheme?.textStyle,
               defaultValue: TextStyle(
                 color: theme.colorScheme.foreground,
                 fontWeight: FontWeight.bold,
               ),
-              themeValue: compTheme?.textStyle,
             ),
             child: Center(child: Text(widget.initials)),
           ),
@@ -431,27 +431,27 @@ class _AvatarState extends State<Avatar> {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<AvatarTheme>(context);
     final double size = styleValue(
-      defaultValue: theme.scaling * 40,
-      themeValue: compTheme?.size,
       widgetValue: widget.size,
+      themeValue: compTheme?.size,
+      defaultValue: theme.scaling * 40,
     );
     final double borderRadius = styleValue(
-      defaultValue: theme.radius * size,
-      themeValue: compTheme?.borderRadius,
       widgetValue: widget.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: theme.radius * size,
     );
     final badgeSize = widget.badge!.size ?? theme.scaling * 12;
     double offset = size / 2 - badgeSize / 2;
     offset /= size;
     final alignment = styleValue(
-      defaultValue: AlignmentDirectional(offset, offset),
-      themeValue: compTheme?.badgeAlignment,
       widgetValue: widget.badgeAlignment,
+      themeValue: compTheme?.badgeAlignment,
+      defaultValue: AlignmentDirectional(offset, offset),
     );
     final gap = styleValue(
-      defaultValue: theme.scaling * 4,
-      themeValue: compTheme?.badgeGap,
       widgetValue: widget.badgeGap,
+      themeValue: compTheme?.badgeGap,
+      defaultValue: theme.scaling * 4,
     );
 
     return AvatarGroup(
@@ -562,13 +562,13 @@ class AvatarBadge extends StatelessWidget implements AvatarWidget {
 
     return Container(
       decoration: BoxDecoration(
+        color: color ?? Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(
           borderRadius ?? theme.radius * size,
         ),
-        color: color ?? Theme.of(context).colorScheme.primary,
       ),
-      height: size,
       width: size,
+      height: size,
       child: child,
     );
   }
@@ -843,10 +843,10 @@ class AvatarGroup extends StatelessWidget {
 
         children.add(
           Positioned(
-            height: size,
             left: x,
             top: y,
             width: size,
+            height: size,
             child: ClipPath(
               clipper: AvatarGroupClipper(
                 alignment: resolved,
@@ -870,17 +870,17 @@ class AvatarGroup extends StatelessWidget {
     }
 
     return SizedBox(
-      height: rect.height,
       width: rect.width,
+      height: rect.height,
       child: Stack(
         alignment: Alignment.center,
         clipBehavior: clipBehavior ?? Clip.none,
         children: children.map((e) {
           return Positioned(
-            height: e.height,
             left: e.left! - rect.left,
             top: e.top! - rect.top,
             width: e.width,
+            height: e.height,
             child: e.child,
           );
         }).toList(),

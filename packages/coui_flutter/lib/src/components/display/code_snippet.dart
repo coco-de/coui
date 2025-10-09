@@ -250,7 +250,7 @@ class _CodeSnippetState extends State<CodeSnippet> {
 
   static final _initializedThemes = <Brightness, Future<HighlighterTheme>>{};
 
-  Future<Highlighter?> _highlighter;
+  late Future<Highlighter?> _highlighter;
   Brightness? _brightness;
 
   Future<Highlighter?> _initializeHighlighter() async {
@@ -287,43 +287,44 @@ class _CodeSnippetState extends State<CodeSnippet> {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<CodeSnippetTheme>(context);
     final backgroundColor = styleValue(
-      defaultValue: theme.colorScheme.card,
       themeValue: compTheme?.backgroundColor,
+      defaultValue: theme.colorScheme.card,
     );
     final borderColor = styleValue(
-      defaultValue: theme.colorScheme.border,
       themeValue: compTheme?.borderColor,
+      defaultValue: theme.colorScheme.border,
     );
     final borderWidth = styleValue(
-      defaultValue: theme.scaling,
       themeValue: compTheme?.borderWidth,
+      defaultValue: theme.scaling,
     );
     final borderRadius = styleValue(
-      defaultValue: BorderRadius.circular(theme.radiusLg),
       themeValue: compTheme?.borderRadius,
+      defaultValue: BorderRadius.circular(theme.radiusLg),
     );
     final padding = styleValue(
-      defaultValue: EdgeInsets.only(
-        bottom: theme.scaling * 16,
-        left: theme.scaling * 16,
-        right: theme.scaling * 48,
-        top: theme.scaling * 16,
-      ),
       themeValue: compTheme?.padding,
+      defaultValue: EdgeInsets.only(
+        left: theme.scaling * 16,
+        top: theme.scaling * 16,
+        right: theme.scaling * 48,
+        bottom: theme.scaling * 16,
+      ),
     );
 
     return Semantics(
       value: widget.code,
       child: Container(
         decoration: BoxDecoration(
+          color: backgroundColor,
           border: Border.all(color: borderColor, width: borderWidth),
           borderRadius: borderRadius,
-          color: backgroundColor,
         ),
         child: Stack(
           fit: StackFit.passthrough,
           children: [
             FutureBuilder(
+              future: _highlighter,
               builder: (context, snapshot) {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return Container(
@@ -338,8 +339,8 @@ class _CodeSnippetState extends State<CodeSnippet> {
                   constraints: widget.constraints,
                   child: SingleChildScrollView(
                     child: SingleChildScrollView(
-                      padding: padding,
                       scrollDirection: Axis.horizontal,
+                      padding: padding,
                       child: data == null
                           ? SelectableText(widget.code).muted().mono().small()
                           : SelectableText.rich(
@@ -349,11 +350,10 @@ class _CodeSnippetState extends State<CodeSnippet> {
                   ),
                 );
               },
-              future: _highlighter,
             ),
             Positioned(
-              right: 8,
               top: 8,
+              right: 8,
               child: Row(
                 children: [
                   ...widget.actions,

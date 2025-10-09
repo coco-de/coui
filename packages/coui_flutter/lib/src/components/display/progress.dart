@@ -195,22 +195,22 @@ class Progress extends StatelessWidget {
 
     return LinearProgressIndicator(
       backgroundColor: styleValue(
-        defaultValue: backgroundColor,
         themeValue: compTheme?.backgroundColor,
+        defaultValue: backgroundColor,
       ),
       borderRadius: styleValue(
-        defaultValue: theme.borderRadiusSm,
         themeValue: compTheme?.borderRadius,
+        defaultValue: theme.borderRadiusSm,
       ),
       color: styleValue(
-        defaultValue: null,
-        themeValue: compTheme?.color,
         widgetValue: color,
+        themeValue: compTheme?.color,
+        defaultValue: null,
       ),
       disableAnimation: disableAnimation,
       minHeight: styleValue(
-        defaultValue: theme.scaling * 8.0,
         themeValue: compTheme?.minHeight,
+        defaultValue: theme.scaling * 8.0,
       ),
       value: normalizedValue,
     );

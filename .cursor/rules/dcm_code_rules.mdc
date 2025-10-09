@@ -40,7 +40,7 @@ alwaysApply: true
   }
   
   // Good
-  late final AnimationController _controller;
+  final AnimationController _controller;
   @override
   void dispose() {
     _controller.dispose();

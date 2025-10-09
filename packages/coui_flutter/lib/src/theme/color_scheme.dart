@@ -47,7 +47,7 @@ class ChartColorScheme {
   Color get chart5 => chartColors[4];
 }
 
-class ColorShades implements Color, ColorSwatch {
+class ColorShades implements Color, ColorSwatch<dynamic> {
   ColorShades._() : _colors = {};
 
   @protected
@@ -215,7 +215,7 @@ class ColorShades implements Color, ColorSwatch {
     // calculate the difference between the current blue value and the new value
     final delta = b - blue;
     for (final key in shadeValues) {
-      final safe = (_colors[key]!.blue + delta).clamp(0, 255).toDouble();
+      final safe = ((_colors[key]!.b * 255.0).round() + delta).clamp(0, 255);
       colors[key] = _colors[key]!.withBlue(safe);
     }
 
@@ -228,7 +228,7 @@ class ColorShades implements Color, ColorSwatch {
     // calculate the difference between the current green value and the new value
     final delta = g - green;
     for (final key in shadeValues) {
-      final safe = (_colors[key]!.green + delta).clamp(0, 255).toDouble();
+      final safe = ((_colors[key]!.g * 255.0).round() + delta).clamp(0, 255);
       colors[key] = _colors[key]!.withGreen(safe);
     }
 
@@ -251,7 +251,7 @@ class ColorShades implements Color, ColorSwatch {
     // calculate the difference between the current red value and the new value
     final delta = r - red;
     for (final key in shadeValues) {
-      final safe = (_colors[key]!.red + delta).clamp(0, 255).toDouble();
+      final safe = ((_colors[key]!.r * 255.0).round() + delta).clamp(0, 255);
       colors[key] = _colors[key]!.withRed(safe);
     }
 
@@ -278,10 +278,10 @@ class ColorShades implements Color, ColorSwatch {
     for (final key in shadeValues) {
       colors[key] = _colors[key]!.withValues(
         alpha: alpha,
+        red: red,
+        green: green,
         blue: blue,
         colorSpace: colorSpace,
-        green: green,
-        red: red,
       );
     }
 
@@ -317,22 +317,22 @@ class ColorShades implements Color, ColorSwatch {
   Color get _primary => _colors[500]!;
 
   @override
-  int get alpha => _primary.alpha;
+  int get alpha => (_primary.a * 255.0).round() & 0xff;
 
   @override
-  int get blue => _primary.blue;
+  int get blue => (_primary.b * 255.0).round() & 0xff;
 
   @override
-  int get green => _primary.green;
+  int get green => (_primary.g * 255.0).round() & 0xff;
 
   @override
-  double get opacity => _primary.opacity;
+  double get opacity => _primary.a;
 
   @override
-  int get red => _primary.red;
+  int get red => (_primary.r * 255.0).round() & 0xff;
 
   @override
-  int get value => _primary.value;
+  int get value => _primary.toARGB32();
 
   @override
   double get a => _primary.a;
@@ -347,14 +347,14 @@ class ColorShades implements Color, ColorSwatch {
   double get g => _primary.g;
 
   @override
-  Iterable get keys => _colors.keys;
+  Iterable<dynamic> get keys => _colors.keys;
 
   @override
   double get r => _primary.r;
 }
 
 String hexFromColor(Color color) {
-  return '#${color.value.toRadixString(16).toUpperCase()}';
+  return '#${color.toARGB32().toRadixString(16).toUpperCase()}';
 }
 
 class ColorScheme implements ChartColorScheme {
@@ -410,6 +410,7 @@ class ColorScheme implements ChartColorScheme {
       accent = map._col('accent'),
       accentForeground = map._col('accentForeground'),
       destructive = map._col('destructive'),
+      // ignore: deprecated_member_use_from_same_package
       destructiveForeground = map._col('destructiveForeground'),
       border = map._col('border'),
       input = map._col('input'),
@@ -450,6 +451,7 @@ class ColorScheme implements ChartColorScheme {
          chart4: colors._col('chart4'),
          chart5: colors._col('chart5'),
          destructive: colors._col('destructive'),
+         // ignore: deprecated_member_use_from_same_package
          destructiveForeground: colors._col('destructiveForeground'),
          foreground: colors._col('foreground'),
          input: colors._col('input'),
@@ -556,6 +558,7 @@ class ColorScheme implements ChartColorScheme {
       'chart4': hexFromColor(chart4),
       'chart5': hexFromColor(chart5),
       'destructive': hexFromColor(destructive),
+      // ignore: deprecated_member_use_from_same_package
       'destructiveForeground': hexFromColor(destructiveForeground),
       'foreground': hexFromColor(foreground),
       'input': hexFromColor(input),
@@ -593,6 +596,7 @@ class ColorScheme implements ChartColorScheme {
       'chart4': chart4,
       'chart5': chart5,
       'destructive': destructive,
+      // ignore: deprecated_member_use_from_same_package
       'destructiveForeground': destructiveForeground,
       'foreground': foreground,
       'input': input,
@@ -669,7 +673,9 @@ class ColorScheme implements ChartColorScheme {
       chart4: chart4 == null ? this.chart4 : chart4(),
       chart5: chart5 == null ? this.chart5 : chart5(),
       destructive: destructive == null ? this.destructive : destructive(),
+      // ignore: deprecated_member_use_from_same_package
       destructiveForeground: destructiveForeground == null
+          // ignore: deprecated_member_use_from_same_package
           ? this.destructiveForeground
           : destructiveForeground(),
       foreground: foreground == null ? this.foreground : foreground(),
@@ -729,8 +735,11 @@ class ColorScheme implements ChartColorScheme {
       chart4: Color.lerp(a.chart4, b.chart4, t)!,
       chart5: Color.lerp(a.chart5, b.chart5, t)!,
       destructive: Color.lerp(a.destructive, b.destructive, t)!,
+      // ignore: deprecated_member_use_from_same_package
       destructiveForeground: Color.lerp(
+        // ignore: deprecated_member_use_from_same_package
         a.destructiveForeground,
+        // ignore: deprecated_member_use_from_same_package
         b.destructiveForeground,
         t,
       )!,
@@ -801,6 +810,7 @@ class ColorScheme implements ChartColorScheme {
           accent == other.accent &&
           accentForeground == other.accentForeground &&
           destructive == other.destructive &&
+          // ignore: deprecated_member_use_from_same_package
           destructiveForeground == other.destructiveForeground &&
           border == other.border &&
           input == other.input &&
@@ -821,6 +831,7 @@ class ColorScheme implements ChartColorScheme {
 
   @override
   String toString() {
+    // ignore: deprecated_member_use_from_same_package
     return 'ColorScheme{brightness: $brightness, background: $background, foreground: $foreground, card: $card, cardForeground: $cardForeground, popover: $popover, popoverForeground: $popoverForeground, primary: $primary, primaryForeground: $primaryForeground, secondary: $secondary, secondaryForeground: $secondaryForeground, muted: $muted, mutedForeground: $mutedForeground, accent: $accent, accentForeground: $accentForeground, destructive: $destructive, destructiveForeground: $destructiveForeground, border: $border, input: $input, ring: $ring, chart1: $chart1, chart2: $chart2, chart3: $chart3, chart4: $chart4, chart5: $chart5, sidebar: $sidebar, sidebarForeground: $sidebarForeground, sidebarPrimary: $sidebarPrimary, sidebarPrimaryForeground: $sidebarPrimaryForeground, sidebarAccent: $sidebarAccent, sidebarAccentForeground: $sidebarAccentForeground, sidebarBorder: $sidebarBorder, sidebarRing: $sidebarRing}';
   }
 
@@ -846,6 +857,7 @@ class ColorScheme implements ChartColorScheme {
       accent,
       accentForeground,
       destructive,
+      // ignore: deprecated_member_use_from_same_package
       destructiveForeground,
       border,
       input,
@@ -880,7 +892,7 @@ extension _MapColorGetter on Map<String, Color> {
 
 extension _DynamicMapColorGetter on Map<String, dynamic> {
   Color _col(String name) {
-    String? value = this[name];
+    String? value = this[name] as String?;
     assert(value != null, 'ColorScheme: Missing color for $name');
     if (value!.startsWith('#')) {
       value = value.substring(1);

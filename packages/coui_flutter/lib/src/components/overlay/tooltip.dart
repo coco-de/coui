@@ -83,9 +83,9 @@ class TooltipContainer extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<TooltipTheme>(context);
     Color backgroundColor = styleValue(
-      defaultValue: theme.colorScheme.primary,
-      themeValue: compTheme?.backgroundColor,
       widgetValue: this.backgroundColor,
+      themeValue: compTheme?.backgroundColor,
+      defaultValue: theme.colorScheme.primary,
     );
     final surfaceOpacity = this.surfaceOpacity ?? compTheme?.surfaceOpacity;
     final surfaceBlur = this.surfaceBlur ?? compTheme?.surfaceBlur;
@@ -94,22 +94,22 @@ class TooltipContainer extends StatelessWidget {
     }
     final padding =
         styleValue(
-          defaultValue: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          themeValue: compTheme?.padding,
           widgetValue: this.padding,
+          themeValue: compTheme?.padding,
+          defaultValue: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
         ).resolve(Directionality.of(context)) *
         scaling;
     final borderRadius = styleValue(
-      defaultValue: BorderRadius.circular(theme.radiusSm),
-      themeValue: compTheme?.borderRadius,
       widgetValue: this.borderRadius,
+      themeValue: compTheme?.borderRadius,
+      defaultValue: BorderRadius.circular(theme.radiusSm),
     );
     Widget animatedContainer = Container(
-      decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        color: backgroundColor,
-      ),
       padding: padding,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: borderRadius,
+      ),
       child: child.xSmall().primaryForeground(),
     );
     if (surfaceBlur != null && surfaceBlur > 0) {
@@ -204,7 +204,7 @@ class _TooltipState extends State<Tooltip> {
       minDuration: widget.minDuration,
       onHover: (hovered) {
         if (hovered) {
-          _controller.show(
+          _controller.show<void>(
             alignment: widget.alignment,
             anchorAlignment: widget.anchorAlignment,
             builder: (context) {
@@ -266,10 +266,9 @@ class _InstantTooltipState extends State<InstantTooltip> {
     final overlayManager = OverlayManager.of(context);
 
     return MouseRegion(
-      hitTestBehavior: widget.behavior,
       onEnter: (event) {
         _controller.close(true);
-        _controller.show(
+        _controller.show<void>(
           alignment: widget.tooltipAlignment,
           anchorAlignment: widget.tooltipAnchorAlignment,
           builder: widget.tooltipBuilder,
@@ -289,6 +288,7 @@ class _InstantTooltipState extends State<InstantTooltip> {
       onExit: (event) {
         _controller.close();
       },
+      hitTestBehavior: widget.behavior,
       child: widget.child,
     );
   }
@@ -338,7 +338,6 @@ class OverlayManagerAsTooltipOverlayHandler extends OverlayHandler {
       anchorAlignment: anchorAlignment,
       builder: builder,
       clipBehavior: clipBehavior,
-      consumeOutsideTaps: consumeOutsideTaps,
       context: context,
       dismissBackdropFocus: dismissBackdropFocus,
       dismissDuration: dismissDuration,
@@ -414,6 +413,10 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
               animation: isClosed,
               builder: (innerContext, child) {
                 return AnimatedValueBuilder.animation(
+                  value: isClosed.value ? 0.0 : 1.0,
+                  duration: isClosed.value
+                      ? (showDuration ?? kDefaultDuration)
+                      : (dismissDuration ?? const Duration(milliseconds: 100)),
                   builder: (innerContext, animation) {
                     final theme = Theme.of(innerContext);
 
@@ -424,9 +427,10 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       allowInvertVertical: allowInvertVertical,
                       anchorAlignment: resolvedAnchorAlignment,
                       anchorContext: context,
-                      animation: animation,
+                      animation: animation.drive(
+                        Tween<double>(begin: 0, end: 1),
+                      ),
                       builder: builder,
-                      consumeOutsideTaps: consumeOutsideTaps,
                       data: data,
                       follow: false,
                       heightConstraint: heightConstraint,
@@ -464,12 +468,6 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       widthConstraint: widthConstraint,
                     );
                   },
-                  curve: isClosed.value
-                      ? const Interval(0, 2 / 3)
-                      : Curves.linear,
-                  duration: isClosed.value
-                      ? (showDuration ?? kDefaultDuration)
-                      : (dismissDuration ?? const Duration(milliseconds: 100)),
                   initialValue: 0,
                   onEnd: (value) {
                     if (value == 0.0 && isClosed.value) {
@@ -478,7 +476,9 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       animationCompleter.complete();
                     }
                   },
-                  value: isClosed.value ? 0.0 : 1.0,
+                  curve: isClosed.value
+                      ? const Interval(0, 2 / 3)
+                      : Curves.linear,
                 );
               },
             ),

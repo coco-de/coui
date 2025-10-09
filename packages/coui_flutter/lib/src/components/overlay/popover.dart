@@ -82,12 +82,12 @@ class PopoverOverlayHandler extends OverlayHandler {
           : OverlayEntry(
               builder: (context) {
                 return Listener(
-                  behavior: HitTestBehavior.translucent,
                   onPointerDown: (event) {
                     if (!barrierDismissable || isClosed.value) return;
                     isClosed.value = true;
                     completer.complete();
                   },
+                  behavior: HitTestBehavior.translucent,
                 );
               },
             );
@@ -103,6 +103,10 @@ class PopoverOverlayHandler extends OverlayHandler {
                 autofocus: dismissBackdropFocus,
                 canRequestFocus: !isClosed.value,
                 child: AnimatedValueBuilder.animation(
+                  value: isClosed.value ? 0.0 : 1.0,
+                  duration: isClosed.value
+                      ? (showDuration ?? kDefaultDuration)
+                      : (dismissDuration ?? const Duration(milliseconds: 100)),
                   builder: (innerContext, animation) {
                     return PopoverOverlayWidget(
                       key: key,
@@ -112,7 +116,9 @@ class PopoverOverlayHandler extends OverlayHandler {
                       anchorAlignment: resolvedAnchorAlignment,
                       anchorContext: context,
                       anchorSize: anchorSize,
-                      animation: animation,
+                      animation: animation.drive(
+                        Tween<double>(begin: 0, end: 1),
+                      ),
                       builder: builder,
                       data: data,
                       follow: follow,
@@ -152,12 +158,6 @@ class PopoverOverlayHandler extends OverlayHandler {
                       widthConstraint: widthConstraint,
                     );
                   },
-                  curve: isClosed.value
-                      ? const Interval(0, 2 / 3)
-                      : Curves.linear,
-                  duration: isClosed.value
-                      ? (showDuration ?? kDefaultDuration)
-                      : (dismissDuration ?? const Duration(milliseconds: 100)),
                   initialValue: 0,
                   onEnd: (value) {
                     if (value == 0.0 && isClosed.value) {
@@ -166,7 +166,9 @@ class PopoverOverlayHandler extends OverlayHandler {
                       animationCompleter.complete();
                     }
                   },
-                  value: isClosed.value ? 0.0 : 1.0,
+                  curve: isClosed.value
+                      ? const Interval(0, 2 / 3)
+                      : Curves.linear,
                 ),
               );
             },
@@ -254,19 +256,19 @@ enum PopoverConstraint {
 
 class PopoverOverlayWidgetState extends State<PopoverOverlayWidget>
     with SingleTickerProviderStateMixin, OverlayHandlerStateMixin {
-  BuildContext _anchorContext;
+  late BuildContext _anchorContext;
   Offset? _position;
   Offset? _offset;
-  AlignmentGeometry _alignment;
-  AlignmentGeometry _anchorAlignment;
-  PopoverConstraint _widthConstraint;
-  PopoverConstraint _heightConstraint;
+  late AlignmentGeometry _alignment;
+  late AlignmentGeometry _anchorAlignment;
+  late PopoverConstraint _widthConstraint;
+  late PopoverConstraint _heightConstraint;
   EdgeInsetsGeometry? _margin;
   Size? _anchorSize;
-  bool _follow;
-  bool _allowInvertHorizontal;
-  bool _allowInvertVertical;
-  Ticker _ticker;
+  late bool _follow;
+  late bool _allowInvertHorizontal;
+  late bool _allowInvertVertical;
+  late Ticker _ticker;
   LayerLink? _layerLink;
 
   @override
@@ -528,18 +530,18 @@ class PopoverOverlayWidgetState extends State<PopoverOverlayWidget>
     Widget childWidget = Data<OverlayHandlerStateMixin>.inherit(
       data: this,
       child: TapRegion(
-        groupId: widget.regionGroupId,
         onTapOutside: widget.onTapOutside == null
             ? null
             : (event) {
                 widget.onTapOutside?.call();
               },
+        groupId: widget.regionGroupId,
         child: MediaQuery.removePadding(
           context: context,
-          removeBottom: true,
           removeLeft: true,
-          removeRight: true,
           removeTop: true,
+          removeRight: true,
+          removeBottom: true,
           child: AnimatedBuilder(
             animation: widget.animation,
             builder: (context, child) {
@@ -591,7 +593,7 @@ class PopoverOverlayWidgetState extends State<PopoverOverlayWidget>
 class OverlayPopoverEntry<T> implements OverlayCompleter<T> {
   final completer = Completer<T?>();
   final animationCompleter = Completer<T?>();
-  OverlayEntry _overlayEntry;
+  late OverlayEntry _overlayEntry;
   OverlayEntry? _barrierEntry;
 
   bool _removed = false;
@@ -748,7 +750,7 @@ class Popover {
   final GlobalKey<OverlayHandlerStateMixin> key;
 
   /// The overlay completer that manages this popover's lifecycle.
-  final OverlayCompleter entry;
+  final OverlayCompleter<dynamic> entry;
 
   /// Closes this popover with optional immediate dismissal.
   ///
@@ -903,7 +905,7 @@ class PopoverController extends ChangeNotifier {
       transitionAlignment: transitionAlignment,
       widthConstraint: widthConstraint,
     );
-    final popover = Popover._(key, res);
+    final popover = Popover._(res, key);
     _openPopovers.add(popover);
     notifyListeners();
     await res.future;
@@ -1145,20 +1147,20 @@ class PopoverLayoutRender extends RenderShiftedBox {
        _allowInvertVertical = allowInvertVertical,
        super(child);
 
-  Alignment _alignment;
-  Alignment _anchorAlignment;
+  late Alignment _alignment;
+  late Alignment _anchorAlignment;
   Offset? _position;
   Size? _anchorSize;
-  PopoverConstraint _widthConstraint;
-  PopoverConstraint _heightConstraint;
+  late PopoverConstraint _widthConstraint;
+  late PopoverConstraint _heightConstraint;
   Offset? _offset;
-  EdgeInsets _margin;
-  double _scale;
-  Alignment _scaleAlignment;
+  late EdgeInsets _margin;
+  late double _scale;
+  late Alignment _scaleAlignment;
   FilterQuality? _filterQuality;
-  bool _allowInvertHorizontal;
+  late bool _allowInvertHorizontal;
 
-  bool _allowInvertVertical;
+  late bool _allowInvertVertical;
   bool _invertX = false;
 
   bool _invertY = false;
@@ -1176,11 +1178,11 @@ class PopoverLayoutRender extends RenderShiftedBox {
   @override
   bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
     return result.addWithPaintTransform(
+      transform: _effectiveTransform,
+      position: position,
       hitTest: (BoxHitTestResult result, Offset position) {
         return super.hitTestChildren(result, position: position);
       },
-      position: position,
-      transform: _effectiveTransform,
     );
   }
 
@@ -1219,7 +1221,7 @@ class PopoverLayoutRender extends RenderShiftedBox {
         final effectiveTransform =
             Matrix4.translationValues(offset.dx, offset.dy, 0)
               ..multiply(transform)
-              ..translate(-offset.dx, -offset.dy);
+              ..translateByDouble(-offset.dx, -offset.dy, 0, 0);
         final filter = ui.ImageFilter.matrix(
           effectiveTransform.storage,
           filterQuality: _filterQuality!,
@@ -1279,10 +1281,10 @@ class PopoverLayoutRender extends RenderShiftedBox {
     }
 
     return BoxConstraints(
-      maxHeight: maxHeight,
+      minWidth: minWidth,
       maxWidth: maxWidth,
       minHeight: minHeight,
-      minWidth: minWidth,
+      maxHeight: maxHeight,
     );
   }
 
@@ -1367,11 +1369,21 @@ class PopoverLayoutRender extends RenderShiftedBox {
     }
     final transform = Matrix4.identity();
     final alignmentTranslation = scaleAlignment.alongSize(childSize);
-    transform.translate(childOffset.dx, childOffset.dy);
-    transform.translate(alignmentTranslation.dx, alignmentTranslation.dy);
-    transform.scale(_scale, _scale);
-    transform.translate(-alignmentTranslation.dx, -alignmentTranslation.dy);
-    transform.translate(-childOffset.dx, -childOffset.dy);
+    transform.translateByDouble(childOffset.dx, childOffset.dy, 0, 0);
+    transform.translateByDouble(
+      alignmentTranslation.dx,
+      alignmentTranslation.dy,
+      0,
+      0,
+    );
+    transform.scaleByDouble(_scale, _scale, 1, 0);
+    transform.translateByDouble(
+      -alignmentTranslation.dx,
+      -alignmentTranslation.dy,
+      0,
+      0,
+    );
+    transform.translateByDouble(-childOffset.dx, -childOffset.dy, 0, 0);
 
     return transform;
   }

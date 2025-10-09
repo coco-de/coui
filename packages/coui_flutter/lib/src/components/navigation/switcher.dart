@@ -94,7 +94,7 @@ class Switcher extends StatefulWidget {
 }
 
 class _SwitcherState extends State<Switcher> {
-  double _index;
+  late double _index;
   bool _dragging = false;
 
   @override
@@ -116,29 +116,8 @@ class _SwitcherState extends State<Switcher> {
   ///
   /// Handles pan gestures to allow users to drag between different views.
   /// The drag distance is normalized based on the widget's size and direction.
-  Widget buildDraggable(Widget child, BuildContext context) {
+  Widget buildDraggable(BuildContext context, Widget child) {
     return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onPanCancel: () {
-        setState(() {
-          _dragging = false;
-          // Snap to the nearest index
-          _index = _index.roundToDouble();
-          if (widget.onIndexChanged != null) {
-            widget.onIndexChanged!(_index.toInt());
-          }
-        });
-      },
-      onPanEnd: (details) {
-        setState(() {
-          _dragging = false;
-          // Snap to the nearest index
-          _index = _index.roundToDouble();
-          if (widget.onIndexChanged != null) {
-            widget.onIndexChanged!(_index.toInt());
-          }
-        });
-      },
       onPanStart: (details) {
         _dragging = true;
       },
@@ -165,6 +144,27 @@ class _SwitcherState extends State<Switcher> {
           });
         }
       },
+      onPanEnd: (details) {
+        setState(() {
+          _dragging = false;
+          // Snap to the nearest index
+          _index = _index.roundToDouble();
+          if (widget.onIndexChanged != null) {
+            widget.onIndexChanged!(_index.toInt());
+          }
+        });
+      },
+      onPanCancel: () {
+        setState(() {
+          _dragging = false;
+          // Snap to the nearest index
+          _index = _index.roundToDouble();
+          if (widget.onIndexChanged != null) {
+            widget.onIndexChanged!(_index.toInt());
+          }
+        });
+      },
+      behavior: HitTestBehavior.translucent,
       child: child,
     );
   }
@@ -174,6 +174,8 @@ class _SwitcherState extends State<Switcher> {
     return buildDraggable(
       context,
       AnimatedValueBuilder(
+        value: _index,
+        duration: _dragging ? Duration.zero : widget.duration,
         builder: (context, value, child) {
           final sourceChild = value.floor();
           final targetChild = value.ceil();
@@ -204,8 +206,6 @@ class _SwitcherState extends State<Switcher> {
           );
         },
         curve: widget.curve,
-        duration: _dragging ? Duration.zero : widget.duration,
-        value: _index,
       ),
     );
   }

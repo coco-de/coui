@@ -261,7 +261,7 @@ class Timeline extends StatelessWidget {
     final timeConstraints =
         this.timeConstraints ??
         compTheme?.timeConstraints ??
-        BoxConstraints(maxWidth: scaling * 120, minWidth: scaling * 120);
+        BoxConstraints(minWidth: scaling * 120, maxWidth: scaling * 120);
     final spacing = compTheme?.spacing ?? scaling * 16;
     final dotSize = compTheme?.dotSize ?? scaling * 12;
     final connectorThickness = compTheme?.connectorThickness ?? scaling * 2;
@@ -293,9 +293,9 @@ class Timeline extends StatelessWidget {
                           ? BoxShape.rectangle
                           : BoxShape.circle,
                     ),
+                    width: dotSize,
                     height: dotSize,
                     margin: EdgeInsets.only(top: scaling * 4),
-                    width: dotSize,
                   ),
                   if (i != this.data.length - 1)
                     Expanded(
@@ -310,8 +310,8 @@ class Timeline extends StatelessWidget {
               Gap(spacing),
               Expanded(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     data.title
                         .semiBold()

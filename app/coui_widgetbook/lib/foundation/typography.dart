@@ -2,6 +2,7 @@ import 'package:coui_flutter/coui_flutter.dart' as coui;
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// Builds the Typography use case for Widgetbook.
 @UseCase(name: 'typography', type: coui.Typography)
 Widget buildTypographyUseCase(BuildContext context) {
   final typography = coui.Theme.of(context).typography;
@@ -25,11 +26,11 @@ Widget buildTypographyUseCase(BuildContext context) {
       final style = styles.values.elementAtOrNull(index);
 
       return ListTile(
+        title: Text(name, style: style),
         subtitle: Text(
           'The quick brown fox jumps over the lazy dog',
           style: style,
         ),
-        title: Text(name, style: style),
       );
     },
     itemCount: styles.length,

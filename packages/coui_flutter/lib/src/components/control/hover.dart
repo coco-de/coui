@@ -95,19 +95,18 @@ class _HoverActivityState extends State<HoverActivity>
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<HoverTheme>(context);
     final debounceDuration = styleValue(
-      defaultValue: const Duration(milliseconds: 100),
-      themeValue: compTheme?.debounceDuration,
       widgetValue: widget.debounceDuration,
+      themeValue: compTheme?.debounceDuration,
+      defaultValue: const Duration(milliseconds: 100),
     );
     final behavior = styleValue(
-      defaultValue: HitTestBehavior.deferToChild,
-      themeValue: compTheme?.hitTestBehavior,
       widgetValue: widget.hitTestBehavior,
+      themeValue: compTheme?.hitTestBehavior,
+      defaultValue: HitTestBehavior.deferToChild,
     );
     _controller.duration = debounceDuration;
 
     return MouseRegion(
-      hitTestBehavior: behavior,
       onEnter: (_) {
         widget.onEnter?.call();
         _controller.repeat(reverse: true);
@@ -116,6 +115,7 @@ class _HoverActivityState extends State<HoverActivity>
         _controller.stop();
         widget.onExit?.call();
       },
+      hitTestBehavior: behavior,
       child: widget.child,
     );
   }
@@ -148,10 +148,10 @@ class Hover extends StatefulWidget {
 class _HoverState extends State<Hover> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   int? _enterTime;
-  Duration _waitDur;
-  Duration _minDur;
-  Duration _showDur;
-  HitTestBehavior _behavior;
+  late Duration _waitDur;
+  late Duration _minDur;
+  late Duration _showDur;
+  late HitTestBehavior _behavior;
 
   @override
   void initState() {
@@ -200,24 +200,24 @@ class _HoverState extends State<Hover> with SingleTickerProviderStateMixin {
     final platform = Theme.of(context).platform;
     final compTheme = ComponentTheme.maybeOf<HoverTheme>(context);
     _waitDur = styleValue(
-      defaultValue: const Duration(milliseconds: 500),
-      themeValue: compTheme?.waitDuration,
       widgetValue: widget.waitDuration,
+      themeValue: compTheme?.waitDuration,
+      defaultValue: const Duration(milliseconds: 500),
     );
     _minDur = styleValue(
-      defaultValue: const Duration(),
-      themeValue: compTheme?.minDuration,
       widgetValue: widget.minDuration,
+      themeValue: compTheme?.minDuration,
+      defaultValue: const Duration(),
     );
     _showDur = styleValue(
-      defaultValue: const Duration(milliseconds: 200),
-      themeValue: compTheme?.showDuration,
       widgetValue: widget.showDuration,
+      themeValue: compTheme?.showDuration,
+      defaultValue: const Duration(milliseconds: 200),
     );
     _behavior = styleValue(
-      defaultValue: HitTestBehavior.deferToChild,
-      themeValue: compTheme?.hitTestBehavior,
       widgetValue: widget.hitTestBehavior,
+      themeValue: compTheme?.hitTestBehavior,
+      defaultValue: HitTestBehavior.deferToChild,
     );
     _controller.duration = _waitDur;
     final enableLongPress =
@@ -231,24 +231,24 @@ class _HoverState extends State<Hover> with SingleTickerProviderStateMixin {
         _onExit(true);
       },
       child: MouseRegion(
-        hitTestBehavior: _behavior,
         onEnter: (_) => _onEnter(),
         onExit: (_) {
           _onExit(true);
         },
+        hitTestBehavior: _behavior,
         child: GestureDetector(
-          onLongPressCancel: enableLongPress
-              ? () {
-                  _onExit(true);
-                }
-              : null,
-
           /// For mobile platforms, hover is triggered by a long press.
           onLongPressDown: enableLongPress
               ? (details) {
                   _onEnter();
                 }
               : null,
+          onLongPressCancel: enableLongPress
+              ? () {
+                  _onExit(true);
+                }
+              : null,
+
           onLongPressUp: enableLongPress
               ? () {
                   _onExit(true);

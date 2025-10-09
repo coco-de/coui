@@ -154,24 +154,24 @@ class Radio extends StatelessWidget {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<RadioTheme>(context);
     final size = styleValue<double>(
-      defaultValue: theme.scaling * 16,
-      themeValue: compTheme?.size,
       widgetValue: this.size,
+      themeValue: compTheme?.size,
+      defaultValue: theme.scaling * 16,
     );
     final activeColor = styleValue<Color>(
-      defaultValue: theme.colorScheme.primary,
-      themeValue: compTheme?.activeColor,
       widgetValue: this.activeColor,
+      themeValue: compTheme?.activeColor,
+      defaultValue: theme.colorScheme.primary,
     );
     final borderColor = styleValue<Color>(
-      defaultValue: theme.colorScheme.input,
-      themeValue: compTheme?.borderColor,
       widgetValue: this.borderColor,
+      themeValue: compTheme?.borderColor,
+      defaultValue: theme.colorScheme.input,
     );
     final backgroundColor = styleValue<Color>(
-      defaultValue: theme.colorScheme.input.scaleAlpha(0.3),
-      themeValue: compTheme?.backgroundColor,
       widgetValue: this.backgroundColor,
+      themeValue: compTheme?.backgroundColor,
+      defaultValue: theme.colorScheme.input.scaleAlpha(0.3),
     );
     final innerSize = value ? (size - (6 + 2) * theme.scaling) : 0.0;
 
@@ -180,22 +180,22 @@ class Radio extends StatelessWidget {
       shape: BoxShape.circle,
       child: AnimatedContainer(
         decoration: BoxDecoration(
-          border: Border.all(color: borderColor),
           color: backgroundColor,
+          border: Border.all(color: borderColor),
           shape: BoxShape.circle,
         ),
-        duration: kDefaultDuration,
-        height: size,
         width: size,
+        height: size,
+        duration: kDefaultDuration,
         child: Center(
           child: AnimatedContainer(
             decoration: BoxDecoration(
               color: activeColor,
               shape: BoxShape.circle,
             ),
-            duration: kDefaultDuration,
-            height: innerSize,
             width: innerSize,
+            height: innerSize,
+            duration: kDefaultDuration,
           ),
         ),
       ),
@@ -233,7 +233,7 @@ class RadioItem<T> extends StatefulWidget {
 }
 
 class _RadioItemState<T> extends State<RadioItem<T>> {
-  FocusNode _focusNode;
+  late FocusNode _focusNode;
 
   bool _focusing = false;
 
@@ -269,6 +269,7 @@ class _RadioItemState<T> extends State<RadioItem<T>> {
             }
           : null,
       child: FocusableActionDetector(
+        focusNode: _focusNode,
         actions: {
           NextItemIntent: CallbackAction<NextItemIntent>(
             onInvoke: (intent) {
@@ -289,10 +290,6 @@ class _RadioItemState<T> extends State<RadioItem<T>> {
             },
           ),
         },
-        focusNode: _focusNode,
-        mouseCursor: widget.enabled && (groupData?.enabled ?? false)
-            ? SystemMouseCursors.click
-            : SystemMouseCursors.forbidden,
         onShowFocusHighlight: (value) {
           if (value && widget.enabled && (groupData?.enabled ?? false)) {
             group?._setSelected(widget.value);
@@ -303,12 +300,15 @@ class _RadioItemState<T> extends State<RadioItem<T>> {
             });
           }
         },
+        mouseCursor: widget.enabled && (groupData?.enabled ?? false)
+            ? SystemMouseCursors.click
+            : SystemMouseCursors.forbidden,
         child: Data<RadioGroupData<T>>.boundary(
           child: Data<_RadioItemState<T>>.boundary(
             child: IntrinsicHeight(
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   if (widget.leading != null) widget.leading!,
                   if (widget.leading != null)
@@ -469,7 +469,7 @@ class RadioCardTheme {
 }
 
 class _RadioCardState<T> extends State<RadioCard<T>> {
-  FocusNode _focusNode;
+  late FocusNode _focusNode;
   bool _focusing = false;
   bool _hovering = false;
 
@@ -506,6 +506,7 @@ class _RadioCardState<T> extends State<RadioCard<T>> {
             }
           : null,
       child: FocusableActionDetector(
+        focusNode: _focusNode,
         actions: {
           NextItemIntent: CallbackAction<NextItemIntent>(
             onInvoke: (intent) {
@@ -526,16 +527,6 @@ class _RadioCardState<T> extends State<RadioCard<T>> {
             },
           ),
         },
-        focusNode: _focusNode,
-        mouseCursor: widget.enabled && (groupData?.enabled ?? false)
-            ? styleValue(
-                defaultValue: SystemMouseCursors.click,
-                themeValue: componentTheme?.enabledCursor,
-              )
-            : styleValue(
-                defaultValue: SystemMouseCursors.forbidden,
-                themeValue: componentTheme?.disabledCursor,
-              ),
         onShowFocusHighlight: (value) {
           if (value && widget.enabled && (groupData?.enabled ?? false)) {
             group?._setSelected(widget.value);
@@ -553,60 +544,67 @@ class _RadioCardState<T> extends State<RadioCard<T>> {
             });
           }
         },
+        mouseCursor: widget.enabled && (groupData?.enabled ?? false)
+            ? styleValue(
+                themeValue: componentTheme?.enabledCursor,
+                defaultValue: SystemMouseCursors.click,
+              )
+            : styleValue(
+                themeValue: componentTheme?.disabledCursor,
+                defaultValue: SystemMouseCursors.forbidden,
+              ),
         child: Data<RadioGroupData<T>>.boundary(
           child: Data<_RadioCardState<T>>.boundary(
             child: Card(
               borderColor: groupData?.selectedItem == widget.value
                   ? styleValue(
-                      defaultValue: theme.colorScheme.primary,
                       themeValue: componentTheme?.selectedBorderColor,
+                      defaultValue: theme.colorScheme.primary,
                     )
                   : styleValue(
-                      defaultValue: theme.colorScheme.muted,
                       themeValue: componentTheme?.borderColor,
+                      defaultValue: theme.colorScheme.muted,
                     ),
               borderRadius: styleValue(
-                defaultValue: theme.borderRadiusMd,
                 themeValue: componentTheme?.borderRadius,
+                defaultValue: theme.borderRadiusMd,
               ),
               borderWidth: groupData?.selectedItem == widget.value
                   ? styleValue(
-                      defaultValue: theme.scaling * 2,
                       themeValue: componentTheme?.selectedBorderWidth,
+                      defaultValue: theme.scaling * 2,
                     )
                   : styleValue(
-                      defaultValue: theme.scaling * 1,
                       themeValue: componentTheme?.borderWidth,
+                      defaultValue: theme.scaling * 1,
                     ),
               clipBehavior: Clip.antiAlias,
               duration: kDefaultDuration,
               fillColor: _hovering
                   ? styleValue(
-                      defaultValue: theme.colorScheme.muted,
                       themeValue: componentTheme?.hoverColor,
+                      defaultValue: theme.colorScheme.muted,
                     )
                   : styleValue(
-                      defaultValue: theme.colorScheme.background,
                       themeValue: componentTheme?.color,
+                      defaultValue: theme.colorScheme.background,
                     ),
               padding: EdgeInsets.zero,
               child: Container(
                 padding: styleValue(
-                  defaultValue: EdgeInsets.all(theme.scaling * 16),
                   themeValue: componentTheme?.padding,
+                  defaultValue: EdgeInsets.all(theme.scaling * 16),
                 ),
                 child: AnimatedPadding(
-                  duration: kDefaultDuration,
                   padding: groupData?.selectedItem == widget.value
                       ? styleValue(
-                          defaultValue: EdgeInsets.zero,
                           themeValue: componentTheme?.borderWidth == null
                               ? null
                               : EdgeInsets.all(componentTheme!.borderWidth!),
+                          defaultValue: EdgeInsets.zero,
                         )
                       /// To compensate for the border width.
                       : styleValue(
-                          defaultValue: EdgeInsets.all(theme.scaling * 1),
                           themeValue:
                               componentTheme?.borderWidth != null &&
                                   componentTheme?.selectedBorderWidth != null
@@ -615,7 +613,9 @@ class _RadioCardState<T> extends State<RadioCard<T>> {
                                       componentTheme.selectedBorderWidth!,
                                 )
                               : null,
+                          defaultValue: EdgeInsets.all(theme.scaling * 1),
                         ),
+                  duration: kDefaultDuration,
                   child: widget.child,
                 ),
               ),

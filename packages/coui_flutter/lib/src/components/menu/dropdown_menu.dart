@@ -121,11 +121,11 @@ class _DropdownMenuState extends State<DropdownMenu> {
       child: MenuGroup(
         builder: (context, children) {
           return MenuPopup(
-            surfaceBlur: widget.surfaceBlur ?? compTheme?.surfaceBlur,
-
             /// Does not need to check for theme.surfaceOpacity and theme.surfaceBlur.
             /// MenuPopup already has default values for these properties.
             surfaceOpacity: widget.surfaceOpacity ?? compTheme?.surfaceOpacity,
+            surfaceBlur: widget.surfaceBlur ?? compTheme?.surfaceBlur,
+
             children: children,
           );
         },
@@ -134,7 +134,7 @@ class _DropdownMenuState extends State<DropdownMenu> {
             ? const EdgeInsets.symmetric(horizontal: 8) * theme.scaling
             : EdgeInsets.zero,
         onDismissed: () {
-          closeOverlay(context);
+          closeOverlay<void>(context);
         },
         regionGroupId: Data.maybeOf<DropdownMenuData>(context)?.key,
         subMenuOffset: const Offset(8, -4) * theme.scaling,

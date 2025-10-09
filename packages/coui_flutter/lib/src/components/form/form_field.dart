@@ -85,7 +85,7 @@ class ObjectFormFieldState<T> extends State<ObjectFormField<T>>
 
   void _showDialog([T? value]) {
     value ??= formValue;
-    showDialog(
+    showDialog<ObjectFormFieldDialogResult<T>>(
       builder: (context) {
         return _ObjectFormFieldDialog<T>(
           decorate: widget.decorate,
@@ -108,7 +108,7 @@ class ObjectFormFieldState<T> extends State<ObjectFormField<T>>
     final theme = Theme.of(context);
     final scaling = theme.scaling;
     value ??= formValue;
-    _popoverController.show(
+    _popoverController.show<void>(
       alignment: widget.popoverAlignment ?? Alignment.topLeft,
       anchorAlignment: widget.popoverAnchorAlignment ?? Alignment.bottomLeft,
       builder: (context) {
@@ -170,12 +170,12 @@ class ObjectFormFieldState<T> extends State<ObjectFormField<T>>
 
     return OutlineButton(
       onPressed: widget.onChanged == null ? null : prompt,
-      density: density,
       enabled: enabled,
       leading: widget.leading?.iconMutedForeground().iconSmall(),
-      shape: shape,
-      size: size,
       trailing: widget.trailing?.iconMutedForeground().iconSmall(),
+      size: size,
+      density: density,
+      shape: shape,
       child: value == null
           ? widget.placeholder.muted()
           : widget.builder(context, value as T),
@@ -348,7 +348,8 @@ class _ObjectFormFieldPopupState<T> extends State<_ObjectFormFieldPopup<T>>
 
   @override
   Future<void> close() {
-    return closeOverlay(context);
+    // ignore: avoid-inferrable-type-arguments
+    return closeOverlay<void>(context);
   }
 
   @override

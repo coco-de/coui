@@ -162,12 +162,12 @@ class TabList extends StatelessWidget {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<TabListTheme>(context);
     final indicatorColor = styleValue(
-      defaultValue: theme.colorScheme.primary,
       themeValue: compTheme?.indicatorColor,
+      defaultValue: theme.colorScheme.primary,
     );
     final indicatorHeight = styleValue(
-      defaultValue: theme.scaling * 2,
       themeValue: compTheme?.indicatorHeight,
+      defaultValue: theme.scaling * 2,
     );
     child = TabButton(
       onPressed: () {
@@ -183,9 +183,9 @@ class TabList extends StatelessWidget {
         if (data.index == index) child.foreground() else child.muted(),
         if (data.index == index)
           Positioned(
-            bottom: 0,
             left: 0,
             right: 0,
+            bottom: 0,
             child: Container(color: indicatorColor, height: indicatorHeight),
           ),
       ],
@@ -198,12 +198,12 @@ class TabList extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<TabListTheme>(context);
     final borderColor = styleValue(
-      defaultValue: theme.colorScheme.border,
       themeValue: compTheme?.borderColor,
+      defaultValue: theme.colorScheme.border,
     );
     final borderWidth = styleValue(
-      defaultValue: scaling * 1,
       themeValue: compTheme?.borderWidth,
+      defaultValue: scaling * 1,
     );
 
     return TabContainer(

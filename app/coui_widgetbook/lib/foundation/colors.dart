@@ -2,6 +2,7 @@ import 'package:coui_flutter/coui_flutter.dart' as coui;
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// Builds the ColorScheme use case for Widgetbook.
 @UseCase(name: 'colors', type: ColorScheme)
 Widget buildColorSchemeUseCase(BuildContext context) {
   final colorScheme = coui.Theme.of(context).colorScheme;
@@ -32,9 +33,9 @@ Widget buildColorSchemeUseCase(BuildContext context) {
       final color = colors.values.elementAtOrNull(index) ?? Colors.transparent;
 
       return ListTile(
-        leading: Container(color: color, height: 24, width: 24),
-        subtitle: Text(color.toString()),
+        leading: Container(color: color, width: 24, height: 24),
         title: Text(name),
+        subtitle: Text(color.toString()),
       );
     },
     itemCount: colors.length,

@@ -191,7 +191,7 @@ class HoverCard extends StatefulWidget {
 }
 
 class _HoverCardState extends State<HoverCard> {
-  PopoverController _controller;
+  late PopoverController _controller;
 
   int _hoverCount = 0;
 
@@ -215,7 +215,7 @@ class _HoverCardState extends State<HoverCard> {
         overlayManager: overlayManager,
       );
     }
-    _controller.show(
+    _controller.show<void>(
       alignment: alignment,
       anchorAlignment: anchorAlignment,
       builder: (context) {
@@ -259,38 +259,37 @@ class _HoverCardState extends State<HoverCard> {
   Widget build(BuildContext context) {
     final compTheme = ComponentTheme.maybeOf<HoverCardTheme>(context);
     final debounce = styleValue(
-      defaultValue: const Duration(milliseconds: 500),
-      themeValue: compTheme?.debounce,
       widgetValue: widget.debounce,
+      themeValue: compTheme?.debounce,
+      defaultValue: const Duration(milliseconds: 500),
     );
     final wait = styleValue(
-      defaultValue: const Duration(milliseconds: 500),
-      themeValue: compTheme?.wait,
       widgetValue: widget.wait,
+      themeValue: compTheme?.wait,
+      defaultValue: const Duration(milliseconds: 500),
     );
     final popoverAlignment = styleValue(
-      defaultValue: Alignment.topCenter,
-      themeValue: compTheme?.popoverAlignment,
       widgetValue: widget.popoverAlignment,
+      themeValue: compTheme?.popoverAlignment,
+      defaultValue: Alignment.topCenter,
     );
     final anchorAlignment = styleValue(
-      defaultValue: Alignment.bottomCenter,
-      themeValue: compTheme?.anchorAlignment,
       widgetValue: widget.anchorAlignment,
+      themeValue: compTheme?.anchorAlignment,
+      defaultValue: Alignment.bottomCenter,
     );
     final popoverOffset = styleValue(
-      defaultValue: const Offset(0, 8),
-      themeValue: compTheme?.popoverOffset,
       widgetValue: widget.popoverOffset,
+      themeValue: compTheme?.popoverOffset,
+      defaultValue: const Offset(0, 8),
     );
     final behavior = styleValue(
-      defaultValue: HitTestBehavior.deferToChild,
-      themeValue: compTheme?.behavior,
       widgetValue: widget.behavior,
+      themeValue: compTheme?.behavior,
+      defaultValue: HitTestBehavior.deferToChild,
     );
 
     return MouseRegion(
-      hitTestBehavior: behavior,
       onEnter: (_) {
         final count = _hoverCount += 1;
         Future.delayed(wait, () {
@@ -315,6 +314,7 @@ class _HoverCardState extends State<HoverCard> {
           }
         });
       },
+      hitTestBehavior: behavior,
       child: GestureDetector(
         onLongPress: () {
           /// Open popover on long press.

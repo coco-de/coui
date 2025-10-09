@@ -156,21 +156,21 @@ class _AlertDialogState extends State<AlertDialog> {
         surfaceBlur: widget.surfaceBlur ?? themeData.surfaceBlur,
         surfaceOpacity: widget.surfaceOpacity ?? themeData.surfaceOpacity,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Flexible(
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (widget.leading != null)
                     widget.leading!.iconXLarge().iconMutedForeground(),
                   if (widget.title != null || widget.content != null)
                     Flexible(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (widget.title != null)
                             widget.title!.large().semiBold(),

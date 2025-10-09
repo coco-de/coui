@@ -219,9 +219,9 @@ abstract class ItemPickerLayout {
   static const grid = GridItemPickerLayout();
 
   Widget build(
-    ItemPickerBuilder builder,
+    ItemPickerBuilder<dynamic> builder,
     BuildContext context,
-    ItemChildDelegate items,
+    ItemChildDelegate<dynamic> items,
   );
 }
 
@@ -230,26 +230,26 @@ class ListItemPickerLayout extends ItemPickerLayout {
 
   @override
   Widget build(
-    ItemPickerBuilder builder,
+    ItemPickerBuilder<dynamic> builder,
     BuildContext context,
-    ItemChildDelegate items,
+    ItemChildDelegate<dynamic> items,
   ) {
     final padding = MediaQuery.paddingOf(context);
 
     return MediaQuery.removePadding(
       context: context,
-      removeBottom: true,
       removeLeft: true,
-      removeRight: true,
       removeTop: true,
+      removeRight: true,
+      removeBottom: true,
       child: ListView.builder(
+        padding: padding,
         itemBuilder: (context, index) {
           final item = items[index];
 
           return item == null ? null : builder(context, item);
         },
         itemCount: items.itemCount,
-        padding: padding,
       ),
     );
   }
@@ -266,24 +266,25 @@ class GridItemPickerLayout extends ItemPickerLayout {
 
   @override
   Widget build(
-    ItemPickerBuilder builder,
+    ItemPickerBuilder<dynamic> builder,
     BuildContext context,
-    ItemChildDelegate items,
+    ItemChildDelegate<dynamic> items,
   ) {
     final theme = Theme.of(context);
     final padding = MediaQuery.paddingOf(context);
 
     return MediaQuery.removePadding(
       context: context,
-      removeBottom: true,
       removeLeft: true,
-      removeRight: true,
       removeTop: true,
+      removeRight: true,
+      removeBottom: true,
       child: GridView.builder(
+        padding: padding,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount,
-          crossAxisSpacing: theme.scaling * 4.0,
           mainAxisSpacing: theme.scaling * 4.0,
+          crossAxisSpacing: theme.scaling * 4.0,
         ),
         itemBuilder: (context, index) {
           final item = items[index];
@@ -291,7 +292,6 @@ class GridItemPickerLayout extends ItemPickerLayout {
           return item == null ? null : builder(context, item);
         },
         itemCount: items.itemCount,
-        padding: padding,
       ),
     );
   }
@@ -360,8 +360,8 @@ class _InternalItemPicker<T> extends StatelessWidget {
     final padding = MediaQuery.paddingOf(context);
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (title != null)
           Padding(
@@ -374,15 +374,15 @@ class _InternalItemPicker<T> extends StatelessWidget {
           constraints:
               constraints ??
               BoxConstraints(
-                maxHeight: theme.scaling * 320,
                 maxWidth: theme.scaling * 320,
+                maxHeight: theme.scaling * 320,
               ),
           child: MediaQuery(
             data: MediaQuery.of(context).copyWith(
               padding: title == null
                   ? padding + const EdgeInsets.all(8) * theme.scaling
                   : padding.copyWith(top: 0) +
-                        const EdgeInsets.only(bottom: 8, left: 8, right: 8) *
+                        const EdgeInsets.only(left: 8, right: 8, bottom: 8) *
                             theme.scaling,
             ),
             child: ItemPickerDialog<T>(
@@ -520,7 +520,8 @@ class ItemPickerOption<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = Data.maybeOf<ItemPickerData>(context);
     if (data == null) {
-      return LayoutBuilder(builder: (context, constraints) {
+      return LayoutBuilder(
+        builder: (context, constraints) {
           final size = constraints.biggest;
           if (size.width == size.height) {
             return Stack(
@@ -529,10 +530,10 @@ class ItemPickerOption<T> extends StatelessWidget {
                 child,
                 if (label != null)
                   Positioned(
-                    bottom: 0,
                     left: 0,
-                    right: 0,
                     top: 0,
+                    right: 0,
+                    bottom: 0,
                     child: Center(child: label),
                   ),
               ],
@@ -560,10 +561,10 @@ class ItemPickerOption<T> extends StatelessWidget {
               onPressed: data.onChanged == null
                   ? null
                   : () => data.onChanged!(value),
-              leading: child,
               style: data.value == value
                   ? (selectedStyle ?? ButtonVariance.primary)
                   : (style ?? ButtonVariance.ghost),
+              leading: child,
               child: label!,
             );
     }
@@ -576,10 +577,10 @@ class ItemPickerOption<T> extends StatelessWidget {
           child,
           if (label != null)
             Positioned(
-              bottom: 0,
               left: 0,
-              right: 0,
               top: 0,
+              right: 0,
+              bottom: 0,
               child: Center(child: label),
             ),
         ],

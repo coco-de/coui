@@ -176,15 +176,15 @@ class Alert extends StatelessWidget {
     final scaling = theme.scaling;
     final scheme = theme.colorScheme;
     final padding = styleValue(
-      defaultValue: EdgeInsets.symmetric(
-        horizontal: scaling * 16,
-        vertical: scaling * 12,
-      ),
       themeValue: compTheme?.padding,
+      defaultValue: EdgeInsets.symmetric(
+        vertical: scaling * 12,
+        horizontal: scaling * 16,
+      ),
     );
     final backgroundColor = styleValue(
-      defaultValue: scheme.card,
       themeValue: compTheme?.backgroundColor,
+      defaultValue: scheme.card,
     );
 
     return OutlinedContainer(

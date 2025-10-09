@@ -112,7 +112,7 @@ class _CoUIScrollbar extends RawScrollbar {
 class _CoUIScrollbarState extends RawScrollbarState<_CoUIScrollbar> {
   late AnimationController _hoverAnimationController;
   bool _hoverIsActive = false;
-  ThemeData _theme;
+  late ThemeData _theme;
 
   @override
   void initState() {
@@ -135,21 +135,21 @@ class _CoUIScrollbarState extends RawScrollbarState<_CoUIScrollbar> {
     final compTheme = ComponentTheme.maybeOf<ScrollbarTheme>(context);
     scrollbarPainter
       ..color = styleValue(
-        defaultValue: _theme.colorScheme.border,
-        themeValue: compTheme?.color,
         widgetValue: widget.color,
+        themeValue: compTheme?.color,
+        defaultValue: _theme.colorScheme.border,
       )
       ..textDirection = Directionality.of(context)
       // Should this be affected by density?
       ..thickness = styleValue(
-        defaultValue: _theme.scaling * 7.0,
-        themeValue: compTheme?.thickness,
         widgetValue: widget.thickness,
+        themeValue: compTheme?.thickness,
+        defaultValue: _theme.scaling * 7.0,
       )
       ..radius = styleValue(
-        defaultValue: Radius.circular(_theme.radiusSm),
-        themeValue: compTheme?.radius,
         widgetValue: widget.radius,
+        themeValue: compTheme?.radius,
+        defaultValue: Radius.circular(_theme.radiusSm),
       )
       ..minLength = _kScrollbarMinLength.toDouble()
       ..padding = MediaQuery.paddingOf(context) + EdgeInsets.all(_theme.scaling)

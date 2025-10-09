@@ -2,6 +2,7 @@ import 'package:coui_flutter/coui_flutter.dart' as coui;
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
+/// Builds the BorderRadius use case for Widgetbook.
 @UseCase(name: 'radius', type: BorderRadius)
 Widget buildRadiusUseCase(BuildContext context) {
   final theme = coui.Theme.of(context);
@@ -22,20 +23,21 @@ Widget buildRadiusUseCase(BuildContext context) {
       return ListTile(
         leading: Container(
           decoration: BoxDecoration(
-            borderRadius: radius,
             color: theme.colorScheme.primary,
+            borderRadius: radius,
           ),
-          height: 48,
           width: 48,
+          height: 48,
         ),
-        subtitle: Text(radius.toString()),
         title: Text(name),
+        subtitle: Text(radius.toString()),
       );
     },
     itemCount: radii.length,
   );
 }
 
+/// Builds the icon sizes use case for Widgetbook.
 @UseCase(name: 'icon sizes', type: IconThemeData)
 Widget buildIconSizesUseCase(BuildContext context) {
   final iconTheme = coui.Theme.of(context).iconTheme;
@@ -60,8 +62,8 @@ Widget buildIconSizesUseCase(BuildContext context) {
 
       return ListTile(
         leading: Icon(Icons.star, size: size),
-        subtitle: Text('${size ?? 0}px'),
         title: Text(name),
+        subtitle: Text('${size ?? 0}px'),
       );
     },
     itemCount: sizes.length,
