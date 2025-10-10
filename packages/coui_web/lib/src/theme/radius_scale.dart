@@ -51,8 +51,8 @@ class RadiusScale {
     full: 9999,
   );
 
-  /// shadcn radius scale.
-  static const shadcn = RadiusScale(
+  /// coui radius scale.
+  static const coui = RadiusScale(
     none: 0,
     xs: 2,
     sm: 4,

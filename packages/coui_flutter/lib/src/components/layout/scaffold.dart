@@ -341,9 +341,6 @@ class ScaffoldState extends State<Scaffold> {
 }
 
 class ScaffoldBoxConstraints extends BoxConstraints {
-  final double headerHeight;
-  final double footerHeight;
-
   const ScaffoldBoxConstraints({
     required this.headerHeight,
     required this.footerHeight,
@@ -367,6 +364,10 @@ class ScaffoldBoxConstraints extends BoxConstraints {
       maxHeight: constraints.maxHeight,
     );
   }
+
+  final double headerHeight;
+
+  final double footerHeight;
 
   @override
   ScaffoldBoxConstraints copyWith({

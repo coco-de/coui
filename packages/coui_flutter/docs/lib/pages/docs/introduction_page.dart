@@ -32,7 +32,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
         children: [
           const Text('Introduction').h1(),
           const Text(
-            'Beautifully designed components from Shadcn/UI is now available for Flutter.',
+            'Beautifully designed components from Coui/UI is now available for Flutter.',
           ).lead(),
           const Text(
             'Welcome to coui_flutter, a versatile and comprehensive set '
@@ -62,7 +62,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
               const Text(
                 'Supports both Material and Cupertino Widgets with theme being able to adapt to the current coui_flutter theme.',
               ).li(),
-              const Text('Pre-made themes from Shadcn/UI.').li(),
+              const Text('Pre-made themes from Coui/UI.').li(),
               const Text('Supports mobile, web, and desktop platforms.').li(),
               const Text('Supports middle drag scrolling.').li(),
               const Text(
@@ -77,7 +77,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
             'Please be cautious when using this package in production.',
           ).p(),
           const Text(
-            'This package is not affiliated with Shadcn/UI. This package is a community-driven project.',
+            'This package is not affiliated with Coui/UI. This package is a community-driven project.',
           ).p(),
           const Text('Frequently Asked Questions').h2().anchored(faqKey),
           Accordion(
@@ -119,12 +119,12 @@ class _IntroductionPageState extends State<IntroductionPage> {
                 ),
                 content: const Text(
                   'Unfortunately you can\'t. This package only supports New York style. '
-                  'But if you wish to have default style of Shadcn/UI, i would recommend ',
+                  'But if you wish to have default style of Coui/UI, i would recommend ',
                 )
                     .thenButton(
                       onPressed: () {
                         launchUrlString(
-                          'https://github.com/nank1ro/flutter-shadcn-ui',
+                          'https://github.com/nank1ro/flutter-coui-ui',
                         );
                       },
                       child: const Text('this package'),

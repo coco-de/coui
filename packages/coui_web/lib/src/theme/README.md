@@ -1,10 +1,10 @@
 # CoUI Web Theme System
 
-통합 테마 시스템으로 Material Design, DaisyUI, shadcn 스타일을 모두 지원합니다.
+통합 테마 시스템으로 Material Design, DaisyUI, coui 스타일을 모두 지원합니다.
 
 ## 특징
 
-- ✅ **다중 디자인 시스템 지원**: Material Design 3, shadcn/ui 스타일
+- ✅ **다중 디자인 시스템 지원**: Material Design 3, coui/ui 스타일
 - ✅ **타이포그래피 스케일**: 반응형 텍스트 크기 자동 조절
 - ✅ **일관된 스페이싱**: 4px 기반 간격 시스템
 - ✅ **유연한 반경**: 컴포넌트별 border-radius 커스터마이징
@@ -21,8 +21,8 @@ import 'package:coui_web/src/theme/theme.dart';
 // Material Design 3 라이트 테마
 final theme = ThemeData.lightMaterial;
 
-// shadcn 스타일 다크 테마
-final darkTheme = ThemeData.darkShadcn;
+// coui 스타일 다크 테마
+final darkTheme = ThemeData.darkCoui;
 ```
 
 ### 2. 커스텀 테마 생성
@@ -37,7 +37,7 @@ final customTheme = ThemeData(
   ),
   typography: TypographyScale.material3,
   spacing: SpacingScale.material3,
-  radius: RadiusScale.shadcn,  // shadcn 스타일 반경 사용
+  radius: RadiusScale.coui,  // coui 스타일 반경 사용
 );
 ```
 
@@ -107,7 +107,7 @@ ColorScheme(
 
 ```dart
 TypographyScale.material3  // Material Design 3
-TypographyScale.shadcn     // shadcn/ui
+TypographyScale.coui     // coui/ui
 
 // 포함된 스타일:
 - displayLarge (57px)
@@ -131,7 +131,7 @@ TypographyScale.shadcn     // shadcn/ui
 
 ```dart
 SpacingScale.material3  // 4px 기반
-SpacingScale.shadcn     // 4px 기반
+SpacingScale.coui     // 4px 기반
 
 // 사이즈:
 - xs: 4px
@@ -146,12 +146,12 @@ SpacingScale.shadcn     // 4px 기반
 
 ```dart
 RadiusScale.material3  // Material 스타일
-RadiusScale.shadcn     // shadcn 스타일
+RadiusScale.coui     // coui 스타일
 
 // Material 반경:
 - xs: 4px, sm: 8px, md: 12px, lg: 16px, xl: 20px, xxl: 28px
 
-// shadcn 반경:
+// coui 반경:
 - xs: 2px, sm: 4px, md: 6px, lg: 8px, xl: 12px, xxl: 16px
 ```
 

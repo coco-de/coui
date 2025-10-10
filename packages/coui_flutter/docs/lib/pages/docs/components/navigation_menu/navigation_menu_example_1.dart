@@ -15,7 +15,7 @@ class NavigationMenuExample1 extends StatelessWidget {
               NavigationMenuContent(
                 title: const Text('Introduction'),
                 content: const Text(
-                  'Component library for Flutter based on Shadcn/UI design.',
+                  'Component library for Flutter based on Coui/UI design.',
                 ),
                 onPressed: () {
                   // TODOS: will be implemented later.
@@ -55,7 +55,7 @@ class NavigationMenuExample1 extends StatelessWidget {
                       const Text('coui_flutter').mono().semiBold().large(),
                       const Gap(8),
                       const Text(
-                        'Beautifully designed components from Shadcn/UI is now available for Flutter',
+                        'Beautifully designed components from Coui/UI is now available for Flutter',
                       ).muted(),
                     ],
                   ),

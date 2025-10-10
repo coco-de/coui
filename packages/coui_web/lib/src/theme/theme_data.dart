@@ -60,20 +60,20 @@ class ThemeData {
     radius: RadiusScale.material3,
   );
 
-  /// Light theme with shadcn style.
-  static final lightShadcn = ThemeData(
+  /// Light theme with coui style.
+  static final lightCoui = ThemeData(
     colorScheme: ColorScheme.light,
-    typography: TypographyScale.shadcn,
-    spacing: SpacingScale.shadcn,
-    radius: RadiusScale.shadcn,
+    typography: TypographyScale.coui,
+    spacing: SpacingScale.coui,
+    radius: RadiusScale.coui,
   );
 
-  /// Dark theme with shadcn style.
-  static final darkShadcn = ThemeData(
+  /// Dark theme with coui style.
+  static final darkCoui = ThemeData(
     colorScheme: ColorScheme.dark,
-    typography: TypographyScale.shadcn,
-    spacing: SpacingScale.shadcn,
-    radius: RadiusScale.shadcn,
+    typography: TypographyScale.coui,
+    spacing: SpacingScale.coui,
+    radius: RadiusScale.coui,
   );
 
   /// Creates a copy with optional changes.

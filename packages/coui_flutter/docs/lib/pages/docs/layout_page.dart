@@ -46,7 +46,7 @@ class _LayoutPageState extends State<LayoutPage> {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Text('Layout Page').h1(),
-          const Text('Guide to layout in Shadcn Flutter.').lead(),
+          const Text('Guide to layout in Coui Flutter.').lead(),
           const Text('Padding').h2().anchored(paddingKey),
           const WidgetUsageExample(
             path: 'lib/pages/docs/layout_page/layout_page_example_1.dart',

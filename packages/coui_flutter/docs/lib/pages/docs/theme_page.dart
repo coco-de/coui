@@ -153,9 +153,8 @@ class _ThemePageState extends State<ThemePage> {
           Wrap(
             runSpacing: 8,
             spacing: 8,
-            children: colorSchemes.keys
-                .map(buildPremadeColorSchemeButton)
-                .toList(),
+            children:
+                colorSchemes.keys.map(buildPremadeColorSchemeButton).toList(),
           ).p(),
           const Text('Radius').h2().anchored(radiusKey),
           const Row(
@@ -278,7 +277,7 @@ class _ThemePageState extends State<ThemePage> {
 
   String buildCustomCode() {
     bool isDark = colorScheme.background.computeLuminance() < 0.5;
-    String buffer = 'ShadcnApp(';
+    String buffer = 'CouiApp(';
     buffer += '\n...';
     buffer += '\n\ttheme: ThemeData(';
     buffer += '\n\t\tcolorScheme: ColorScheme(';
@@ -308,7 +307,7 @@ class _ThemePageState extends State<ThemePage> {
   String buildPremadeCode() {
     // return 'ColorSchemes.${nameFromColorScheme(colorScheme)}()';
     String name = nameFromColorScheme(colorScheme)!;
-    String buffer = 'ShadcnApp(';
+    String buffer = 'CouiApp(';
     buffer += '\n...';
     buffer += '\n\ttheme: ThemeData(';
     buffer += '\n\t\tcolorScheme: ColorSchemes.$name,';

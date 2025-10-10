@@ -330,6 +330,19 @@ class AnimatedValueBuilderState<T> extends State<AnimatedValueBuilder<T>>
     if (widget.lerp != null) {
       return widget.lerp!(a, b, t);
     }
+
+    // Handle int type specifically
+    if (a is int && b is int) {
+      final result = (a + (b - a) * t).round();
+      return result as T;
+    }
+
+    // Handle other numeric types (double, num)
+    if (a is num && b is num) {
+      final result = a + (b - a) * t;
+      return result as T;
+    }
+
     try {
       return (a as dynamic) + ((b as dynamic) - (a as dynamic)) * t as T;
     } catch (e) {
@@ -736,6 +749,19 @@ class _RepeatedAnimationBuilderState<T>
     if (widget.lerp != null) {
       return widget.lerp!(a, b, t);
     }
+
+    // Handle int type specifically
+    if (a is int && b is int) {
+      final result = (a + (b - a) * t).round();
+      return result as T;
+    }
+
+    // Handle other numeric types (double, num)
+    if (a is num && b is num) {
+      final result = a + (b - a) * t;
+      return result as T;
+    }
+
     try {
       return (a as dynamic) + ((b as dynamic) - (a as dynamic)) * t as T;
     } catch (e) {

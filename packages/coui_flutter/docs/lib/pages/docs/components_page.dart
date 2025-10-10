@@ -134,7 +134,7 @@ class _ComponentsPageState extends State<ComponentsPage> {
           children: [
             const Text('Components').h1(),
             const Text(
-              'Beautifully designed components from Shadcn/UI is now available for Flutter.',
+              'Beautifully designed components from Coui/UI is now available for Flutter.',
             ).lead(),
             const Gap(16),
             const Align(

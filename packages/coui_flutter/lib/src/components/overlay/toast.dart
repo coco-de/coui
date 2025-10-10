@@ -202,16 +202,20 @@ ToastOverlay showToast({
   VoidCallback? onClosed,
   Duration showDuration = const Duration(seconds: 5),
 }) {
+  print('🔍 [showToast] Called with location: $location');
   CapturedThemes? themes;
   CapturedData? data;
   _ToastLayerState? layer = Data.maybeFind<_ToastLayerState>(context);
+  print('🔍 [showToast] Data.maybeFind result: $layer');
   if (layer == null) {
     layer = Data.maybeFindMessenger<_ToastLayerState>(context);
+    print('🔍 [showToast] Data.maybeFindMessenger result: $layer');
   } else {
     themes = InheritedTheme.capture(from: context, to: layer.context);
     data = Data.capture(from: context, to: layer.context);
   }
   assert(layer != null, 'No ToastLayer found in context');
+  print('✅ [showToast] ToastLayer found: ${layer.runtimeType}');
   final entry = ToastEntry(
     builder: builder,
     curve: curve,
@@ -224,7 +228,10 @@ ToastOverlay showToast({
     themes: themes,
   );
 
-  return layer!.addEntry(entry);
+  print('✅ [showToast] Calling addEntry...');
+  final result = layer!.addEntry(entry);
+  print('✅ [showToast] addEntry returned: ${result.runtimeType}');
+  return result;
 }
 
 /// Screen position enumeration for toast notification placement.
@@ -514,11 +521,17 @@ class _ToastLayerState extends State<ToastLayer> {
   }
 
   ToastOverlay addEntry(ToastEntry entry) {
+    print(
+      '🔬 [addEntry] Creating attached entry for location: ${entry.location}',
+    );
     final attachedToastEntry = _AttachedToastEntry(this, entry);
     setState(() {
       final entries = this.entries[entry.location];
-      entries!.entries.add(attachedToastEntry);
+      print('🔬 [addEntry] Current entries count: ${entries!.entries.length}');
+      entries.entries.add(attachedToastEntry);
+      print('🔬 [addEntry] After add entries count: ${entries.entries.length}');
     });
+    print('✅ [addEntry] setState completed, returning overlay');
 
     return attachedToastEntry;
   }
@@ -536,6 +549,9 @@ class _ToastLayerState extends State<ToastLayer> {
 
   @override
   Widget build(BuildContext context) {
+    print(
+      '🎨 [ToastLayer.build] Building with ${entries.values.fold(0, (sum, e) => sum + e.entries.length)} total entries',
+    );
     final theme = Theme.of(context);
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<ToastTheme>(context);
@@ -569,14 +585,21 @@ class _ToastLayerState extends State<ToastLayer> {
     for (final locationEntry in entries.entries) {
       final location = locationEntry.key;
       final entries = locationEntry.value.entries;
+      print(
+        '🎨 [ToastLayer.build] Location $location has ${entries.length} entries',
+      );
       final expanding = locationEntry.value._expanding;
       final startVisible =
           (entries.length - (maxStackedEntries + reservedEntries)).max(0);
+      print(
+        '🔍 [build loop] Location $location: entries.length=${entries.length}, startVisible=$startVisible, maxStacked=$maxStackedEntries',
+      );
       final entryAlignment =
           location.childrenAlignment.optionallyResolve(context) * -1;
       final positionedChildren = <Widget>[];
       int toastIndex = 0;
       for (int i = entries.length - 1; i >= startVisible; i -= 1) {
+        print('🔍 [build loop] Creating ToastEntryLayout for index $i');
         final entry = entries[i];
         positionedChildren.insert(
           0,
@@ -622,9 +645,14 @@ class _ToastLayerState extends State<ToastLayer> {
           toastIndex += 1;
         }
       }
+      print(
+        '🔍 [build loop] After loop: positionedChildren.length=${positionedChildren.length}',
+      );
       if (positionedChildren.isEmpty) {
+        print('⚠️ [build loop] positionedChildren is empty, skipping');
         continue;
       }
+      print('✅ [build loop] Adding Positioned.fill to children');
       children.add(
         Positioned.fill(
           child: SafeArea(
@@ -673,6 +701,7 @@ class _ToastLayerState extends State<ToastLayer> {
       );
     }
 
+    print('🎨 [ToastLayer.build] Final children count: ${children.length}');
     return Data.inherit(
       data: this,
       child: Stack(
@@ -895,34 +924,38 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
             }
           }
         },
-        child: AnimatedBuilder(
-          animation: widget.closing,
-          builder: (context, child) {
+        child: ValueListenableBuilder<bool>(
+          valueListenable: widget.closing,
+          builder: (context, isClosing, child) {
             return AnimatedValueBuilder(
-              value: widget.closing.value ? 0.0 : _dismissOffset,
-              duration: _dismissing && !widget.closing.value
+              key: ValueKey('dismiss_$isClosing'),
+              value: isClosing ? 0.0 : _dismissOffset,
+              duration: _dismissing && !isClosing
                   ? Duration.zero
                   : kDefaultDuration,
               builder: (context, dismissProgress, child) {
                 return AnimatedValueBuilder(
-                  value: widget.closing.value ? 0.0 : _closeDismissing ?? 0.0,
+                  key: ValueKey('closeDismiss_$isClosing'),
+                  value: isClosing ? 0.0 : _closeDismissing ?? 0.0,
                   duration: kDefaultDuration,
                   builder: (context, closeDismissingProgress, child) {
                     return AnimatedValueBuilder(
+                      key: ValueKey('index_${widget.index}'),
                       value: widget.index.toDouble(),
                       duration: widget.duration,
                       builder: (context, indexProgress, child) {
                         return AnimatedValueBuilder(
-                          value: widget.closing.value && !_dismissing
-                              ? 0.0
-                              : 1.0,
+                          key: ValueKey('showing_${isClosing}_$_dismissing'),
+                          value: isClosing && !_dismissing ? 0.0 : 1.0,
                           duration: widget.duration,
                           builder: (context, showingProgress, child) {
                             return AnimatedValueBuilder(
+                              key: ValueKey('visible_${widget.visible}'),
                               value: widget.visible ? 1.0 : 0.0,
                               duration: widget.duration,
                               builder: (context, visibleProgress, child) {
                                 return AnimatedValueBuilder(
+                                  key: ValueKey('expand_${widget.expanded}'),
                                   value: widget.expanded ? 1.0 : 0.0,
                                   duration: widget.expandingDuration,
                                   builder: (context, expandProgress, child) {
@@ -943,7 +976,7 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
                           },
                           initialValue: widget.index > 0 ? 1.0 : 0.0,
                           onEnd: (value) {
-                            if (value == 0.0 && widget.closing.value) {
+                            if (value == 0.0 && isClosing) {
                               widget.onClosed();
                             }
                           },
@@ -983,6 +1016,9 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
     double showingProgress,
     double visibleProgress,
   ) {
+    print(
+      '🎨 [buildToast] expandProgress=$expandProgress, showingProgress=$showingProgress, visibleProgress=$visibleProgress, indexProgress=$indexProgress',
+    );
     final nonCollapsingProgress = (1.0 - expandProgress) * showingProgress;
     Offset offset = widget.entryOffset * (1.0 - showingProgress);
 
@@ -1049,6 +1085,9 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
     final scale =
         pow(widget.collapsedScale, indexProgress * (1 - expandProgress)) * 1.0;
 
+    print(
+      '🎨 [buildToast] Final values: opacity=$opacity, scale=$scale, offset=$offset, fractionalOffset=$fractionalOffset',
+    );
     return Align(
       alignment: entryAlignment,
       child: Transform.translate(

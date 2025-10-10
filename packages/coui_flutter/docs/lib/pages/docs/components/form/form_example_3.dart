@@ -10,7 +10,7 @@ class FormExample3 extends StatefulWidget {
 }
 
 class _FormExample3State extends State<FormExample3> {
-  final _dummyData = ['sunarya-thito', 'septogeddon', 'shadcn'];
+  final _dummyData = ['sunarya-thito', 'septogeddon', 'coui'];
 
   final _usernameKey = const TextFieldKey('username');
   final _passwordKey = const TextFieldKey('password');
@@ -53,8 +53,7 @@ class _FormExample3State extends State<FormExample3> {
                   key: _usernameKey,
                   label: const Text('Username'),
                   hint: const Text('This is your public display name'),
-                  validator:
-                      const LengthValidator(min: 4) &
+                  validator: const LengthValidator(min: 4) &
                       ValidationMode(
                         ConditionalValidator((value) async {
                           // simulate a network delay for example purpose

@@ -633,7 +633,7 @@ class ContextMenuPopup extends StatelessWidget {
           anchorAlignment: Alignment.topRight,
           anchorContext: anchorContext,
           anchorSize: anchorSize,
-          animation: animation.drive(Tween<double>(begin: 0, end: 1)),
+          animation: animation,
           builder: (context) {
             final theme = Theme.of(context);
 

@@ -105,8 +105,8 @@ class PopoverOverlayHandler extends OverlayHandler {
                 child: AnimatedValueBuilder<double>.animation(
                   value: isClosed.value ? 0.0 : 1.0,
                   duration: isClosed.value
-                      ? (showDuration ?? kDefaultDuration)
-                      : (dismissDuration ?? const Duration(milliseconds: 100)),
+                      ? (dismissDuration ?? const Duration(milliseconds: 100))
+                      : (showDuration ?? kDefaultDuration),
                   builder: (innerContext, animation) {
                     return PopoverOverlayWidget(
                       key: key,
@@ -116,9 +116,7 @@ class PopoverOverlayHandler extends OverlayHandler {
                       anchorAlignment: resolvedAnchorAlignment,
                       anchorContext: context,
                       anchorSize: anchorSize,
-                      animation: animation.drive(
-                        Tween<double>(begin: 0, end: 1),
-                      ),
+                      animation: animation,
                       builder: builder,
                       data: data,
                       follow: follow,
@@ -168,7 +166,7 @@ class PopoverOverlayHandler extends OverlayHandler {
                   },
                   curve: isClosed.value
                       ? const Interval(0, 2 / 3)
-                      : Curves.linear,
+                      : Curves.easeOut,
                 ),
               );
             },

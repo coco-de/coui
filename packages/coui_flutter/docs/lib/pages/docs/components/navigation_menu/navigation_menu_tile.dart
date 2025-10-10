@@ -68,7 +68,7 @@ class NavigationMenuTile extends StatelessWidget implements IComponentPage {
                       child: Basic(
                         title: const Text('Installation').medium(),
                         content: const Text(
-                          'How to install Shadcn/UI for Flutter',
+                          'How to install Coui/UI for Flutter',
                         ).muted(),
                         mainAxisAlignment: MainAxisAlignment.start,
                       ),

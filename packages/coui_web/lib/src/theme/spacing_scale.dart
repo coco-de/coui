@@ -41,8 +41,8 @@ class SpacingScale {
     xxl: 48,
   );
 
-  /// shadcn spacing scale (4px base).
-  static const shadcn = SpacingScale(
+  /// coui spacing scale (4px base).
+  static const coui = SpacingScale(
     xs: 4,
     sm: 8,
     md: 16,

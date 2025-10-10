@@ -562,7 +562,7 @@ Widget _buildCoUIDialogTransitions(
 ) {
   final scaleTransition = ScaleTransition(
     scale: CurvedAnimation(
-      parent: animation.drive(Tween<double>(begin: 0.7, end: 1)),
+      parent: animation.drive(Tween<double>(begin: 0.9, end: 1)),
       curve: Curves.easeOut,
       reverseCurve: Curves.easeIn,
     ),

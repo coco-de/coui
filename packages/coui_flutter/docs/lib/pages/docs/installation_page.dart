@@ -70,16 +70,16 @@ class _InstallationPageState extends State<InstallationPage> {
                 ],
               ),
               StepItem(
-                title: const Text('Adding the ShadcnApp widget'),
+                title: const Text('Adding the CouiApp widget'),
                 content: [
                   const Text(
-                    'Add the ShadcnApp widget to your main function.',
+                    'Add the CouiApp widget to your main function.',
                   ).p(),
                   const CodeSnippet(
                     code: '''
 void main() {
   runApp(
-    ShadcnApp(
+    CouiApp(
       title: 'My App',
       home: MyHomePage(),
       theme: ThemeData(

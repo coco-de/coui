@@ -1785,11 +1785,14 @@ class DrawerEntryWidgetState<T> extends State<DrawerEntryWidget<T>>
                               child: AnimatedBuilder(
                                 animation: _controlledAnimation,
                                 builder: (context, child) {
-                                  return FractionalTranslation(
-                                    translation:
-                                        startFractionalOffset *
-                                        (1 - _controlledAnimation.value),
-                                    child: child,
+                                  return FadeTransition(
+                                    opacity: _controlledAnimation,
+                                    child: FractionalTranslation(
+                                      translation:
+                                          startFractionalOffset *
+                                          (1 - _controlledAnimation.value),
+                                      child: child,
+                                    ),
                                   );
                                 },
                                 child: Transform.translate(

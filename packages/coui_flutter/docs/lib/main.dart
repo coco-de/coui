@@ -124,6 +124,7 @@ String getReleaseTagName() {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   /// Interactive docs now serves as Widget Catalog.
   // if (kIsWeb) {
   //   SemanticsBinding.instance.ensureSemantics();
@@ -863,7 +864,7 @@ class MyAppState extends State<MyApp> {
       child: CoUIApp.router(
         routerConfig: router,
         debugShowCheckedModeBanner: false,
-        title: 'shadcn/ui Flutter',
+        title: 'coui/ui Flutter',
         scaling: AdaptiveScaling(scaling),
         enableScrollInterception: true,
         // popoverHandler: DialogOverlayHandler(),

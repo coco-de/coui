@@ -70,7 +70,7 @@ class DocsPage extends StatefulWidget {
   DocsPageState createState() => DocsPageState();
 }
 
-enum ShadcnFeatureTag {
+enum CouiFeatureTag {
   newFeature,
   updated,
   experimental,
@@ -81,28 +81,28 @@ enum ShadcnFeatureTag {
     ThemeData copy;
     String badgeText;
     switch (this) {
-      case ShadcnFeatureTag.newFeature:
+      case CouiFeatureTag.newFeature:
         copy = theme.copyWith(
           colorScheme: () =>
               theme.colorScheme.copyWith(primary: () => Colors.green),
         );
         badgeText = 'New';
         break;
-      case ShadcnFeatureTag.updated:
+      case CouiFeatureTag.updated:
         copy = theme.copyWith(
           colorScheme: () =>
               theme.colorScheme.copyWith(primary: () => Colors.blue),
         );
         badgeText = 'Updated';
         break;
-      case ShadcnFeatureTag.workInProgress:
+      case CouiFeatureTag.workInProgress:
         copy = theme.copyWith(
           colorScheme: () =>
               theme.colorScheme.copyWith(primary: () => Colors.orange),
         );
         badgeText = 'WIP';
         break;
-      case ShadcnFeatureTag.experimental:
+      case CouiFeatureTag.experimental:
         copy = theme.copyWith(
           colorScheme: () =>
               theme.colorScheme.copyWith(primary: () => Colors.purple),
@@ -117,203 +117,203 @@ enum ShadcnFeatureTag {
   }
 }
 
-class ShadcnDocsPage {
+class CouiDocsPage {
   final String title;
   final String name; // name for go_router
-  final ShadcnFeatureTag? tag;
+  final CouiFeatureTag? tag;
 
-  ShadcnDocsPage(this.title, this.name, [this.tag]);
+  CouiDocsPage(this.title, this.name, [this.tag]);
 }
 
-class ShadcnDocsSection {
+class CouiDocsSection {
   final String title;
-  final List<ShadcnDocsPage> pages;
+  final List<CouiDocsPage> pages;
   final IconData icon;
 
-  ShadcnDocsSection(this.title, this.pages, [this.icon = Icons.book]);
+  CouiDocsSection(this.title, this.pages, [this.icon = Icons.book]);
 }
 
 class DocsPageState extends State<DocsPage> {
-  static final List<ShadcnDocsSection> sections = [
-    ShadcnDocsSection(
+  static final List<CouiDocsSection> sections = [
+    CouiDocsSection(
       'Getting Started',
       List.unmodifiable([
-        ShadcnDocsPage('Introduction', 'introduction'),
-        ShadcnDocsPage('Installation', 'installation'),
-        ShadcnDocsPage('Theme', 'theme'),
-        ShadcnDocsPage('Typography', 'typography'),
-        ShadcnDocsPage('Layout', 'layout'),
-        ShadcnDocsPage('Web Preloader', 'web_preloader'),
-        ShadcnDocsPage('Components', 'components'),
-        ShadcnDocsPage('Icons', 'icons'),
-        ShadcnDocsPage('Colors', 'colors'),
-        ShadcnDocsPage('Material/Cupertino', 'external'),
-        ShadcnDocsPage('State Management', 'state'),
+        CouiDocsPage('Introduction', 'introduction'),
+        CouiDocsPage('Installation', 'installation'),
+        CouiDocsPage('Theme', 'theme'),
+        CouiDocsPage('Typography', 'typography'),
+        CouiDocsPage('Layout', 'layout'),
+        CouiDocsPage('Web Preloader', 'web_preloader'),
+        CouiDocsPage('Components', 'components'),
+        CouiDocsPage('Icons', 'icons'),
+        CouiDocsPage('Colors', 'colors'),
+        CouiDocsPage('Material/Cupertino', 'external'),
+        CouiDocsPage('State Management', 'state'),
       ]),
       Icons.book,
     ),
     // COMPONENTS BEGIN
-    ShadcnDocsSection('Animation', [
-      ShadcnDocsPage('Animated Value', 'animated_value_builder'),
+    CouiDocsSection('Animation', [
+      CouiDocsPage('Animated Value', 'animated_value_builder'),
       // https://nyxbui.design/docs/components/number-ticker
-      ShadcnDocsPage('Number Ticker', 'number_ticker'),
-      ShadcnDocsPage('Repeated Animation', 'repeated_animation_builder'),
-      ShadcnDocsPage('Timeline Animation', 'timeline_animation'),
+      CouiDocsPage('Number Ticker', 'number_ticker'),
+      CouiDocsPage('Repeated Animation', 'repeated_animation_builder'),
+      CouiDocsPage('Timeline Animation', 'timeline_animation'),
     ]),
-    ShadcnDocsSection('Control', [
-      ShadcnDocsPage('Button', 'button'),
-      ShadcnDocsPage(
+    CouiDocsSection('Control', [
+      CouiDocsPage('Button', 'button'),
+      CouiDocsPage(
         'Audio Control',
         'audio_control',
-        ShadcnFeatureTag.workInProgress,
+        CouiFeatureTag.workInProgress,
       ),
-      ShadcnDocsPage(
+      CouiDocsPage(
         'Video Control',
         'video_control',
-        ShadcnFeatureTag.workInProgress,
+        CouiFeatureTag.workInProgress,
       ),
     ]),
-    ShadcnDocsSection('Disclosure', [
-      ShadcnDocsPage('Accordion', 'accordion'),
-      ShadcnDocsPage('Collapsible', 'collapsible'),
+    CouiDocsSection('Disclosure', [
+      CouiDocsPage('Accordion', 'accordion'),
+      CouiDocsPage('Collapsible', 'collapsible'),
     ]),
-    ShadcnDocsSection('Display', [
-      ShadcnDocsPage('Avatar', 'avatar'),
-      ShadcnDocsPage('Avatar Group', 'avatar_group'),
-      // ShadcnDocsPage(
-      // 'Data Table', 'data_table', ShadcnFeatureTag.experimental),
+    CouiDocsSection('Display', [
+      CouiDocsPage('Avatar', 'avatar'),
+      CouiDocsPage('Avatar Group', 'avatar_group'),
+      // CouiDocsPage(
+      // 'Data Table', 'data_table', CouiFeatureTag.experimental),
       // TODO also make it zoomable like: https://zoom-chart-demo.vercel.app/
-      // ShadcnDocsPage('Chart', 'chart', ShadcnFeatureTag.workInProgress),
-      ShadcnDocsPage('Code Snippet', 'code_snippet'),
-      ShadcnDocsPage('Table', 'table'),
-      ShadcnDocsPage('Tracker', 'tracker'),
+      // CouiDocsPage('Chart', 'chart', CouiFeatureTag.workInProgress),
+      CouiDocsPage('Code Snippet', 'code_snippet'),
+      CouiDocsPage('Table', 'table'),
+      CouiDocsPage('Tracker', 'tracker'),
     ]),
-    ShadcnDocsSection('Feedback', [
-      ShadcnDocsPage('Alert', 'alert'),
-      ShadcnDocsPage('Alert Dialog', 'alert_dialog'),
-      ShadcnDocsPage('Circular Progress', 'circular_progress'),
-      ShadcnDocsPage('Progress', 'progress'),
-      ShadcnDocsPage('Linear Progress', 'linear_progress'),
-      ShadcnDocsPage('Skeleton', 'skeleton'),
-      ShadcnDocsPage('Toast', 'toast'),
+    CouiDocsSection('Feedback', [
+      CouiDocsPage('Alert', 'alert'),
+      CouiDocsPage('Alert Dialog', 'alert_dialog'),
+      CouiDocsPage('Circular Progress', 'circular_progress'),
+      CouiDocsPage('Progress', 'progress'),
+      CouiDocsPage('Linear Progress', 'linear_progress'),
+      CouiDocsPage('Skeleton', 'skeleton'),
+      CouiDocsPage('Toast', 'toast'),
     ]),
-    ShadcnDocsSection('Form', [
+    CouiDocsSection('Form', [
       // mostly same as file input, except it only accepts audio file
       // and adds the ability to play the audio
-      // ShadcnDocsPage(
-      //     'Audio Input', 'audio_input', ShadcnFeatureTag.workInProgress),
+      // CouiDocsPage(
+      //     'Audio Input', 'audio_input', CouiFeatureTag.workInProgress),
       // update: NVM, merge the component with file input
-      // ShadcnDocsPage('Button', 'button'),
+      // CouiDocsPage('Button', 'button'),
       // moved to control
-      ShadcnDocsPage('Checkbox', 'checkbox'),
-      ShadcnDocsPage('Chip Input', 'chip_input'),
-      ShadcnDocsPage('Color Picker', 'color_picker'),
-      ShadcnDocsPage('Date Picker', 'date_picker'),
+      CouiDocsPage('Checkbox', 'checkbox'),
+      CouiDocsPage('Chip Input', 'chip_input'),
+      CouiDocsPage('Color Picker', 'color_picker'),
+      CouiDocsPage('Date Picker', 'date_picker'),
       // TODO: https://file-vault-delta.vercel.app/ also https://uploader.sadmn.com/
-      ShadcnDocsPage(
+      CouiDocsPage(
         'File Picker',
         'file_picker',
-        ShadcnFeatureTag.workInProgress,
+        CouiFeatureTag.workInProgress,
       ),
-      ShadcnDocsPage('Form', 'form'),
-      ShadcnDocsPage(
+      CouiDocsPage('Form', 'form'),
+      CouiDocsPage(
         'Formatted Input',
         'formatted_input',
-        ShadcnFeatureTag.newFeature,
+        CouiFeatureTag.newFeature,
       ),
       // TODO: Image Input (with cropper and rotate tool, upload from file or take photo from camera)
-      // ShadcnDocsPage(
-      // 'Image Input', 'image_input', ShadcnFeatureTag.workInProgress),
+      // CouiDocsPage(
+      // 'Image Input', 'image_input', CouiFeatureTag.workInProgress),
       // replaced with File Input
-      ShadcnDocsPage('Text Input', 'input'),
+      CouiDocsPage('Text Input', 'input'),
       // TODO: same as text input, but has dropdown autocomplete like chip input, the difference is, it does not convert
       // the value into chips
-      ShadcnDocsPage('AutoComplete', 'autocomplete'),
+      CouiDocsPage('AutoComplete', 'autocomplete'),
       // TODO: same as input, except it only accepts number, and can be increased or decreased
       // using scroll, also has increment and decrement button
       // in between increment and decrement button, theres
       // a divider that can be dragged to increase or decrease the value
-      ShadcnDocsPage('Number Input', 'number_input'),
-      ShadcnDocsPage('Input OTP', 'input_otp'),
-      ShadcnDocsPage('Phone Input', 'phone_input'),
-      ShadcnDocsPage('Radio Group', 'radio_group'),
+      CouiDocsPage('Number Input', 'number_input'),
+      CouiDocsPage('Input OTP', 'input_otp'),
+      CouiDocsPage('Phone Input', 'phone_input'),
+      CouiDocsPage('Radio Group', 'radio_group'),
       //https://www.radix-ui.com/themes/docs/components/radio-cards
-      ShadcnDocsPage('Radio Card', 'radio_card'),
-      ShadcnDocsPage('Select', 'select'),
-      ShadcnDocsPage('Slider', 'slider'),
-      ShadcnDocsPage('Star Rating', 'star_rating'),
-      ShadcnDocsPage('Switch', 'switch'),
-      ShadcnDocsPage('Text Area', 'text_area'),
-      ShadcnDocsPage('Time Picker', 'time_picker'),
-      ShadcnDocsPage('Toggle', 'toggle'),
-      ShadcnDocsPage('Multi Select', 'multiselect'),
-      ShadcnDocsPage('Item Picker', 'item_picker', ShadcnFeatureTag.newFeature),
+      CouiDocsPage('Radio Card', 'radio_card'),
+      CouiDocsPage('Select', 'select'),
+      CouiDocsPage('Slider', 'slider'),
+      CouiDocsPage('Star Rating', 'star_rating'),
+      CouiDocsPage('Switch', 'switch'),
+      CouiDocsPage('Text Area', 'text_area'),
+      CouiDocsPage('Time Picker', 'time_picker'),
+      CouiDocsPage('Toggle', 'toggle'),
+      CouiDocsPage('Multi Select', 'multiselect'),
+      CouiDocsPage('Item Picker', 'item_picker', CouiFeatureTag.newFeature),
     ]),
-    ShadcnDocsSection('Layout', [
-      ShadcnDocsPage('Card', 'card'),
-      ShadcnDocsPage('Carousel', 'carousel'),
-      ShadcnDocsPage('Divider', 'divider'),
-      ShadcnDocsPage('Resizable', 'resizable'),
-      // https://nextjs-shadcn-dnd.vercel.app/ (make it headless)
-      ShadcnDocsPage('Sortable', 'sortable'),
-      ShadcnDocsPage('Steps', 'steps'),
-      ShadcnDocsPage('Stepper', 'stepper'),
-      ShadcnDocsPage('Timeline', 'timeline'),
-      ShadcnDocsPage('Scaffold', 'scaffold'),
-      ShadcnDocsPage('App Bar', 'app_bar'),
-      ShadcnDocsPage('Card Image', 'card_image'),
+    CouiDocsSection('Layout', [
+      CouiDocsPage('Card', 'card'),
+      CouiDocsPage('Carousel', 'carousel'),
+      CouiDocsPage('Divider', 'divider'),
+      CouiDocsPage('Resizable', 'resizable'),
+      // https://nextjs-coui-dnd.vercel.app/ (make it headless)
+      CouiDocsPage('Sortable', 'sortable'),
+      CouiDocsPage('Steps', 'steps'),
+      CouiDocsPage('Stepper', 'stepper'),
+      CouiDocsPage('Timeline', 'timeline'),
+      CouiDocsPage('Scaffold', 'scaffold'),
+      CouiDocsPage('App Bar', 'app_bar'),
+      CouiDocsPage('Card Image', 'card_image'),
     ]),
-    ShadcnDocsSection('Navigation', [
-      ShadcnDocsPage('Breadcrumb', 'breadcrumb'),
-      ShadcnDocsPage('Menubar', 'menubar'),
-      ShadcnDocsPage('Navigation Menu', 'navigation_menu'),
-      ShadcnDocsPage('Pagination', 'pagination'),
-      ShadcnDocsPage('Tabs', 'tabs'),
-      ShadcnDocsPage('Tab List', 'tab_list'),
+    CouiDocsSection('Navigation', [
+      CouiDocsPage('Breadcrumb', 'breadcrumb'),
+      CouiDocsPage('Menubar', 'menubar'),
+      CouiDocsPage('Navigation Menu', 'navigation_menu'),
+      CouiDocsPage('Pagination', 'pagination'),
+      CouiDocsPage('Tabs', 'tabs'),
+      CouiDocsPage('Tab List', 'tab_list'),
       // TODO: like a chrome tab, complete with its view
-      ShadcnDocsPage('Tab Pane', 'tab_pane'),
-      ShadcnDocsPage('Tree', 'tree'),
+      CouiDocsPage('Tab Pane', 'tab_pane'),
+      CouiDocsPage('Tree', 'tree'),
       // aka Bottom Navigation Bar
-      ShadcnDocsPage('Navigation Bar', 'navigation_bar'),
-      ShadcnDocsPage('Navigation Rail', 'navigation_rail'),
-      ShadcnDocsPage('Expandable Sidebar', 'expandable_sidebar'),
+      CouiDocsPage('Navigation Bar', 'navigation_bar'),
+      CouiDocsPage('Navigation Rail', 'navigation_rail'),
+      CouiDocsPage('Expandable Sidebar', 'expandable_sidebar'),
       // aka Drawer
-      ShadcnDocsPage('Navigation Sidebar', 'navigation_sidebar'),
-      ShadcnDocsPage('Dot Indicator', 'dot_indicator'),
+      CouiDocsPage('Navigation Sidebar', 'navigation_sidebar'),
+      CouiDocsPage('Dot Indicator', 'dot_indicator'),
       //
-      ShadcnDocsPage('Switcher', 'switcher', ShadcnFeatureTag.experimental),
+      CouiDocsPage('Switcher', 'switcher', CouiFeatureTag.experimental),
     ]),
-    ShadcnDocsSection('Overlay', [
-      ShadcnDocsPage('Dialog', 'dialog'),
-      ShadcnDocsPage('Drawer', 'drawer'),
-      ShadcnDocsPage('Hover Card', 'hover_card'),
-      ShadcnDocsPage('Popover', 'popover'),
-      ShadcnDocsPage('Sheet', 'sheet'),
-      ShadcnDocsPage('Swiper', 'swiper', ShadcnFeatureTag.newFeature),
-      ShadcnDocsPage('Tooltip', 'tooltip'),
+    CouiDocsSection('Overlay', [
+      CouiDocsPage('Dialog', 'dialog'),
+      CouiDocsPage('Drawer', 'drawer'),
+      CouiDocsPage('Hover Card', 'hover_card'),
+      CouiDocsPage('Popover', 'popover'),
+      CouiDocsPage('Sheet', 'sheet'),
+      CouiDocsPage('Swiper', 'swiper', CouiFeatureTag.newFeature),
+      CouiDocsPage('Tooltip', 'tooltip'),
       // TODO: window as in like a window in desktop
-      ShadcnDocsPage('Window', 'window', ShadcnFeatureTag.experimental),
+      CouiDocsPage('Window', 'window', CouiFeatureTag.experimental),
     ]),
 
-    ShadcnDocsSection('Utility', [
-      ShadcnDocsPage('Badge', 'badge'),
-      ShadcnDocsPage('Chip', 'chip'),
-      ShadcnDocsPage('Calendar', 'calendar'),
-      ShadcnDocsPage('Command', 'command'),
-      ShadcnDocsPage('Context Menu', 'context_menu'),
-      ShadcnDocsPage('Dropdown Menu', 'dropdown_menu'),
+    CouiDocsSection('Utility', [
+      CouiDocsPage('Badge', 'badge'),
+      CouiDocsPage('Chip', 'chip'),
+      CouiDocsPage('Calendar', 'calendar'),
+      CouiDocsPage('Command', 'command'),
+      CouiDocsPage('Context Menu', 'context_menu'),
+      CouiDocsPage('Dropdown Menu', 'dropdown_menu'),
       // TODO https://www.radix-ui.com/themes/docs/components/kbd
-      ShadcnDocsPage('Keyboard Display', 'keyboard_display'),
+      CouiDocsPage('Keyboard Display', 'keyboard_display'),
       // TODO: Same progress as image input
-      ShadcnDocsPage(
+      CouiDocsPage(
         'Image Tools',
         'image_tools',
-        ShadcnFeatureTag.workInProgress,
+        CouiFeatureTag.workInProgress,
       ),
       // TODO: Mostly same as refresh indicator, but it does not provide indicator
       // the indicator itself is provided by scaffold
-      ShadcnDocsPage('Refresh Trigger', 'refresh_trigger'),
-      ShadcnDocsPage('Overflow Marquee', 'overflow_marquee'),
+      CouiDocsPage('Refresh Trigger', 'refresh_trigger'),
+      CouiDocsPage('Overflow Marquee', 'overflow_marquee'),
     ]),
     // COMPONENTS END
   ];
@@ -346,7 +346,7 @@ class DocsPageState extends State<DocsPage> {
       if (componentCategories.contains(section.title)) {
         count += section.pages.length;
         for (var page in section.pages) {
-          if (page.tag == ShadcnFeatureTag.workInProgress) {
+          if (page.tag == CouiFeatureTag.workInProgress) {
             workInProgress++;
           }
         }
@@ -499,7 +499,7 @@ class DocsPageState extends State<DocsPage> {
   @override
   Widget build(BuildContext context) {
     Map<String, OnThisPage> onThisPage = widget.onThisPage;
-    ShadcnDocsPage? page = sections
+    CouiDocsPage? page = sections
         .expand((e) => e.pages)
         .where((e) => e.name == widget.name)
         .firstOrNull;
@@ -926,7 +926,7 @@ class DocsPageState extends State<DocsPage> {
                                   child: DocsNavigationButton(
                                     onPressed: () {
                                       if (page.tag ==
-                                          ShadcnFeatureTag.workInProgress) {
+                                          CouiFeatureTag.workInProgress) {
                                         showDialog(
                                           context: context,
                                           builder: (context) {
@@ -984,7 +984,7 @@ class OpenSearchCommandIntent extends Intent {
 class _DocsSidebar extends StatefulWidget {
   const _DocsSidebar({required this.sections, required this.pageName});
 
-  final List<ShadcnDocsSection> sections;
+  final List<CouiDocsSection> sections;
   final String pageName;
 
   @override
@@ -1073,7 +1073,7 @@ class _DocsSecondarySidebarState extends State<_DocsSecondarySidebar> {
 class _DocsSidebarSection extends StatefulWidget {
   const _DocsSidebarSection({required this.section, required this.pageName});
 
-  final ShadcnDocsSection section;
+  final CouiDocsSection section;
   final String pageName;
 
   @override
@@ -1103,7 +1103,7 @@ class _DocsSidebarSectionState extends State<_DocsSidebarSection> {
 class _DocsSidebarButton extends StatefulWidget {
   const _DocsSidebarButton({required this.page, required this.pageName});
 
-  final ShadcnDocsPage page;
+  final CouiDocsPage page;
   final String pageName;
 
   @override
@@ -1139,7 +1139,7 @@ class _DocsSidebarButtonState extends State<_DocsSidebarButton> {
   }
 
   void _onPressed() {
-    if (widget.page.tag == ShadcnFeatureTag.workInProgress) {
+    if (widget.page.tag == CouiFeatureTag.workInProgress) {
       showDialog(
         context: context,
         builder: (context) {

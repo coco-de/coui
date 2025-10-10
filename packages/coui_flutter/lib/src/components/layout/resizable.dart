@@ -1282,7 +1282,22 @@ class _RenderResizableLayout extends RenderBox
 
   @override
   bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
-    return defaultHitTestChildren(result, position: position);
+    RenderBox? child = lastChild;
+    while (child != null) {
+      final childParentData = child.parentData! as _ResizableLayoutParentData;
+      if (child.hasSize) {
+        final isHit = result.addWithPaintOffset(
+          offset: childParentData.offset,
+          position: position,
+          hitTest: (BoxHitTestResult result, Offset transformed) {
+            return child!.hitTest(result, position: transformed);
+          },
+        );
+        if (isHit) return true;
+      }
+      child = childParentData.previousSibling;
+    }
+    return false;
   }
 
   @override
@@ -1374,7 +1389,7 @@ class _RenderResizableLayout extends RenderBox
         } else {
           BoxConstraints childConstraints;
           double childExtent;
-          childExtent = childParentData.flex == null
+          childExtent = childParentData.flex != null
               ? flexSpace * childParentData.flex!
               : childParentData.size!;
           childConstraints = direction == Axis.horizontal

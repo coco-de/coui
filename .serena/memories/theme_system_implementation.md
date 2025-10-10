@@ -8,7 +8,7 @@
 ```
 packages/coui_web/lib/src/theme/
 ├── brightness.dart          # 라이트/다크 모드 열거형
-├── color_scheme.dart        # 색상 스킴 (Material/DaisyUI/shadcn 통합)
+├── color_scheme.dart        # 색상 스킴 (Material/DaisyUI/coui 통합)
 ├── typography_scale.dart    # 타이포그래피 스케일 시스템
 ├── spacing_scale.dart       # 스페이싱 스케일 시스템
 ├── radius_scale.dart        # 반경 스케일 시스템
@@ -35,7 +35,7 @@ packages/coui_web/lib/src/theme/
   - Body: 16px, 14px, 12px
   - Label: 14px, 12px, 11px
 
-- **shadcn 스케일**:
+- **coui 스케일**:
   - Display: 72px, 60px, 48px (더 크고 대담함)
   - Headline: 36px, 30px, 24px
   - 기타 유사하지만 line-height 차이
@@ -46,7 +46,7 @@ packages/coui_web/lib/src/theme/
 - **SpacingScale**: 4px 기반 (xs: 4, sm: 8, md: 16, lg: 24, xl: 32, xxl: 48)
 - **RadiusScale**:
   - Material 3: xs:4 ~ xxl:28
-  - shadcn: xs:2 ~ xxl:16 (더 작고 세련됨)
+  - coui: xs:2 ~ xxl:16 (더 작고 세련됨)
 
 #### 메인 테마 데이터 (ThemeData)
 ```dart
@@ -64,8 +64,8 @@ class ThemeData {
 **프리셋 테마**:
 - `ThemeData.lightMaterial` - Material Design 3 라이트
 - `ThemeData.darkMaterial` - Material Design 3 다크
-- `ThemeData.lightShadcn` - shadcn/ui 라이트
-- `ThemeData.darkShadcn` - shadcn/ui 다크
+- `ThemeData.lightCoui` - coui/ui 라이트
+- `ThemeData.darkCoui` - coui/ui 다크
 
 ### 3. 핵심 메서드
 
@@ -161,9 +161,9 @@ final customTheme = ThemeData(
   colorScheme: ColorScheme.light.copyWith(
     primary: '#6366f1',  // Indigo
   ),
-  typography: TypographyScale.shadcn,
+  typography: TypographyScale.coui,
   spacing: SpacingScale.material3,
-  radius: RadiusScale.shadcn,
+  radius: RadiusScale.coui,
 );
 ```
 

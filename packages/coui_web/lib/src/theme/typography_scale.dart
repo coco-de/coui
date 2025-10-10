@@ -1,4 +1,4 @@
-/// Typography scale system supporting Material Design, DaisyUI, and shadcn.
+/// Typography scale system supporting Material Design, DaisyUI, and coui.
 ///
 /// Provides unified typography tokens that work across all design systems.
 library;
@@ -196,8 +196,8 @@ class TypographyScale {
     ),
   );
 
-  /// shadcn/ui typography scale.
-  static const shadcn = TypographyScale(
+  /// coui/ui typography scale.
+  static const coui = TypographyScale(
     displayLarge: TextStyleConfig(
       fontSize: 72,
       lineHeight: 1,
