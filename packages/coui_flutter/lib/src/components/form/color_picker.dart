@@ -308,6 +308,7 @@ class ControlledColorInput extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter<ColorDerivative>(
+      initialValue: initialValue,
       builder: (context, data) {
         return ColorInput(
           allowPickFromScreen: allowPickFromScreen,
@@ -327,7 +328,6 @@ class ControlledColorInput extends StatelessWidget
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }

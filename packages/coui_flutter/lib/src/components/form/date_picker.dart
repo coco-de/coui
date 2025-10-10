@@ -154,6 +154,7 @@ class ControlledDatePicker extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
+      initialValue: initialValue,
       builder: (context, data) {
         return DatePicker(
           dialogTitle: dialogTitle,
@@ -172,7 +173,6 @@ class ControlledDatePicker extends StatelessWidget
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }

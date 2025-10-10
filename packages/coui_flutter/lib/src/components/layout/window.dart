@@ -138,22 +138,6 @@ class WindowState {
     return 'WindowState(bounds: $bounds, maximized: $maximized, minimized: $minimized, alwaysOnTop: $alwaysOnTop, closable: $closable, resizable: $resizable, draggable: $draggable, maximizable: $maximizable, minimizable: $minimizable, enableSnapping: $enableSnapping, constraints: $constraints)';
   }
 
-  WindowState withMaximized(Rect? maximized) {
-    return WindowState(
-      alwaysOnTop: alwaysOnTop,
-      bounds: bounds,
-      closable: closable,
-      constraints: constraints,
-      draggable: draggable,
-      enableSnapping: enableSnapping,
-      maximizable: maximizable,
-      maximized: maximized,
-      minimizable: minimizable,
-      minimized: minimized,
-      resizable: resizable,
-    );
-  }
-
   WindowState copyWith({
     ValueGetter<bool>? alwaysOnTop,
     ValueGetter<Rect>? bounds,
@@ -162,6 +146,7 @@ class WindowState {
     ValueGetter<bool>? draggable,
     ValueGetter<bool>? enableSnapping,
     ValueGetter<bool>? maximizable,
+    ValueGetter<Rect?>? maximized,
     ValueGetter<bool>? minimizable,
     ValueGetter<bool>? minimized,
     ValueGetter<bool>? resizable,
@@ -176,6 +161,7 @@ class WindowState {
           ? this.enableSnapping
           : enableSnapping(),
       maximizable: maximizable == null ? this.maximizable : maximizable(),
+      maximized: maximized == null ? this.maximized : maximized(),
       minimizable: minimizable == null ? this.minimizable : minimizable(),
       minimized: minimized == null ? this.minimized : minimized(),
       resizable: resizable == null ? this.resizable : resizable(),
@@ -278,7 +264,7 @@ class WindowController extends ValueNotifier<WindowState> {
   Rect? get maximized => value.maximized;
   set maximized(Rect? value) {
     if (value == maximized) return;
-    this.value = this.value.withMaximized(value);
+    this.value = this.value.copyWith(maximized: () => value);
   }
 
   bool get minimized => value.minimized;
@@ -444,8 +430,12 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
   }
 
   void _handleControllerUpdate() {
-    didControllerUpdate(state);
-    state = controller.value;
+    if (!mounted) return;
+    final oldState = state;
+    setState(() {
+      state = controller.value;
+    });
+    didControllerUpdate(oldState);
   }
 
   Widget _wrapResizer({
@@ -512,6 +502,13 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
         didControllerUpdate(oldState);
       }
     }
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(_handleControllerUpdate);
+    controller._attachedState = null;
+    super.dispose();
   }
 
   @override
@@ -667,17 +664,17 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
 
           /// Add transition.
           windowClient = AnimatedValueBuilder(
+            initialValue: 0.0,
             value: (_viewport?.closed ?? false) ? 0.0 : 1.0,
             duration: kDefaultDuration,
             builder: (context, value, child) {
               return Transform.scale(
                 scale: (_viewport?.closed ?? false)
-                    ? lerpDouble(0.8, 1.0, value.toDouble())!
-                    : lerpDouble(0.9, 1.0, value.toDouble())!,
-                child: Opacity(opacity: value.toDouble(), child: child),
+                    ? lerpDouble(0.8, 1.0, value)!
+                    : lerpDouble(0.9, 1.0, value)!,
+                child: Opacity(opacity: value, child: child),
               );
             },
-            initialValue: 0,
             onEnd: (value) {
               if (_viewport?.closed ?? false) {
                 _viewport?.navigator.removeWindow(_entry!);
@@ -990,7 +987,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
   @override
   set maximized(Rect? value) {
     if (value != state.maximized) {
-      controller.value = state.withMaximized(value);
+      controller.value = state.copyWith(maximized: () => value);
     }
   }
 
@@ -1928,6 +1925,14 @@ class _WindowNavigatorState extends State<WindowNavigator>
   }
 
   @override
+  void dispose() {
+    _draggingWindow.dispose();
+    _hoveringTopSnapper.dispose();
+    _snappingStrategy.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final compTheme = ComponentTheme.maybeOf<WindowTheme>(context);
@@ -2128,7 +2133,6 @@ class WindowActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final handle = Data.maybeOf<WindowHandle>(context);
-    final viewport = Data.maybeOf<WindowViewport>(context);
 
     return Row(
       children: [
@@ -2145,14 +2149,8 @@ class WindowActions extends StatelessWidget {
             onPressed: () {
               if (handle != null) {
                 handle.maximized = handle.maximized == null
-                    ? null
-                    : viewport
-                              ?.navigator
-                              ._state
-                              ._snappingStrategy
-                              .value
-                              ?.relativeBounds ??
-                          const Rect.fromLTWH(0, 0, 1, 1);
+                    ? const Rect.fromLTWH(0, 0, 1, 1)
+                    : null;
               }
             },
             icon: const Icon(Icons.crop_square),
@@ -2179,13 +2177,14 @@ class _BlurContainer extends StatelessWidget {
     final theme = Theme.of(context);
 
     return AnimatedValueBuilder(
-      value: 1,
+      initialValue: 0.0,
+      value: 1.0,
       duration: kDefaultDuration,
       builder: (context, value, child) {
         return Opacity(
-          opacity: value.toDouble(),
+          opacity: value,
           child: Transform.scale(
-            scale: lerpDouble(0.8, 1.0, value.toDouble())!,
+            scale: lerpDouble(0.8, 1.0, value)!,
             child: Padding(
               padding: const EdgeInsets.all(8) * theme.scaling,
               child: ClipRRect(
@@ -2204,7 +2203,6 @@ class _BlurContainer extends StatelessWidget {
           ),
         );
       },
-      initialValue: 0,
       curve: Curves.easeInOut,
     );
   }

@@ -33,13 +33,11 @@ class _ToastExample1State extends State<ToastExample1> {
       children: [
         PrimaryButton(
           onPressed: () {
-            print('🔬 [Toast] Button pressed');
-            final overlay = showToast(
+            showToast(
               context: context,
               builder: buildToast,
               location: ToastLocation.bottomLeft,
             );
-            print('✅ [Toast] showToast returned: ${overlay.runtimeType}');
           },
           child: const Text('Show Bottom Left Toast'),
         ),

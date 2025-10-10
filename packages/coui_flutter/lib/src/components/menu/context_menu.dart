@@ -623,7 +623,8 @@ class ContextMenuPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedValueBuilder<double>.animation(
-      value: 1,
+      initialValue: 0.0,
+      value: 1.0,
       duration: const Duration(milliseconds: 100),
       builder: (context, animation) {
         final isSheetOverlay = SheetOverlayHandler.isSheetOverlay(context);
@@ -665,7 +666,6 @@ class ContextMenuPopup extends StatelessWidget {
           themes: themes,
         );
       },
-      initialValue: 0,
     );
   }
 }

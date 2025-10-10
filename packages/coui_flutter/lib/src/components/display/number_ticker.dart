@@ -289,23 +289,23 @@ class NumberTicker extends StatelessWidget {
       );
 
       return AnimatedValueBuilder(
+        initialValue: initialNumber?.toDouble(),
         value: number.toDouble(),
         duration: duration,
         builder: (context, value, child) {
           return Text(formatter!(value), style: textStyle);
         },
-        initialValue: initialNumber?.toDouble(),
         curve: curve,
       );
     }
 
     return AnimatedValueBuilder(
+      initialValue: initialNumber?.toDouble(),
       value: number.toDouble(),
       duration: duration,
       builder: (context, value, child) {
         return builder!(context, value, child);
       },
-      initialValue: initialNumber?.toDouble(),
       curve: curve,
       child: child,
     );

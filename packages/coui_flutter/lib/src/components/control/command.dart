@@ -353,21 +353,36 @@ class _CommandState extends State<Command> {
                                 LogicalKeyboardKey.arrowUp,
                               ),
                             ).xSmall,
-                            Text(localization.commandMoveUp).muted.small,
+                            Flexible(
+                              fit: FlexFit.loose,
+                              child: Text(
+                                localization.commandMoveUp,
+                              ).muted.small,
+                            ),
                             const VerticalDivider(),
                             const KeyboardDisplay.fromActivator(
                               activator: SingleActivator(
                                 LogicalKeyboardKey.arrowDown,
                               ),
                             ).xSmall,
-                            Text(localization.commandMoveDown).muted.small,
+                            Flexible(
+                              fit: FlexFit.loose,
+                              child: Text(
+                                localization.commandMoveDown,
+                              ).muted.small,
+                            ),
                             const VerticalDivider(),
                             const KeyboardDisplay.fromActivator(
                               activator: SingleActivator(
                                 LogicalKeyboardKey.enter,
                               ),
                             ).xSmall,
-                            Text(localization.commandActivate).muted.small,
+                            Flexible(
+                              fit: FlexFit.loose,
+                              child: Text(
+                                localization.commandActivate,
+                              ).muted.small,
+                            ),
                           ],
                         ),
                       ),

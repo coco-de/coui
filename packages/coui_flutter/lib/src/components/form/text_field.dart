@@ -1342,6 +1342,7 @@ class TextField extends StatefulWidget with TextInput {
   }) {
     return TextField(
       key: key == null ? this.key : key(),
+      initialValue: initialValue == null ? this.initialValue : initialValue(),
       autocorrect: autocorrect == null ? this.autocorrect : autocorrect(),
       autofillHints: autofillHints == null
           ? this.autofillHints
@@ -1386,14 +1387,15 @@ class TextField extends StatefulWidget with TextInput {
       filled: filled == null ? this.filled : filled(),
       focusNode: focusNode == null ? this.focusNode : focusNode(),
       hintText: hintText == null ? this.hintText : hintText(),
-      initialValue: initialValue == null ? this.initialValue : initialValue(),
       inputFormatters: inputFormatters == null
           ? this.inputFormatters
           : inputFormatters(),
       keyboardAppearance: keyboardAppearance == null
           ? this.keyboardAppearance
           : keyboardAppearance(),
-      keyboardType: keyboardType == null ? this.keyboardType : keyboardType(),
+      keyboardType: keyboardType == null
+          ? this.keyboardType
+          : keyboardType(), // ignore: deprecated_member_use_from_same_package
       // ignore: deprecated_member_use_from_same_package
       leading: leading == null ? this.leading : leading(),
       magnifierConfiguration: magnifierConfiguration == null
@@ -1479,7 +1481,7 @@ class TextField extends StatefulWidget with TextInput {
           : textDirection(),
       textInputAction: textInputAction == null
           ? this.textInputAction
-          : textInputAction(),
+          : textInputAction(), // ignore: deprecated_member_use_from_same_package
       // ignore: deprecated_member_use_from_same_package
       trailing: trailing == null ? this.trailing : trailing(),
       undoController: undoController == null

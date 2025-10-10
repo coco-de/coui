@@ -413,10 +413,11 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
               animation: isClosed,
               builder: (innerContext, child) {
                 return AnimatedValueBuilder<double>.animation(
+                  initialValue: 0.0,
                   value: isClosed.value ? 0.0 : 1.0,
                   duration: isClosed.value
-                      ? (dismissDuration ?? const Duration(milliseconds: 100))
-                      : (showDuration ?? kDefaultDuration),
+                      ? (showDuration ?? kDefaultDuration)
+                      : (dismissDuration ?? const Duration(milliseconds: 100)),
                   builder: (innerContext, animation) {
                     final theme = Theme.of(innerContext);
 
@@ -466,7 +467,6 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       widthConstraint: widthConstraint,
                     );
                   },
-                  initialValue: 0,
                   onEnd: (value) {
                     if (value == 0.0 && isClosed.value) {
                       popoverEntry.remove();
@@ -476,7 +476,7 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                   },
                   curve: isClosed.value
                       ? const Interval(0, 2 / 3)
-                      : Curves.easeOut,
+                      : Curves.linear,
                 );
               },
             ),

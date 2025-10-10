@@ -761,6 +761,7 @@ class ControlledRadioGroup<T> extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
+      initialValue: initialValue,
       builder: (context, data) {
         return RadioGroup(
           onChanged: data.onChanged,
@@ -770,7 +771,6 @@ class ControlledRadioGroup<T> extends StatelessWidget
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }

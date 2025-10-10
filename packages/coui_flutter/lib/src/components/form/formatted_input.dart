@@ -363,11 +363,11 @@ class _EditablePartWidgetState extends State<_EditablePartWidget> {
               border: Border.fromBorderSide(BorderSide.none),
             ),
             child: TextField(
+              initialValue: data.initialValue,
               border: const Border.fromBorderSide(BorderSide.none),
               controller: _controller,
               decoration: const BoxDecoration(),
               focusNode: data.focusNode,
-              initialValue: data.initialValue,
               inputFormatters: widget.inputFormatters,
               maxLength: widget.length,
               obscureText: widget.obscureText,
@@ -620,11 +620,11 @@ class _FormattedInputState extends State<FormattedInput> {
 
   Widget _buildPart(int index, InputPart part) {
     final formattedInputData = FormattedInputData(
+      initialValue: index < 0 ? null : (_value?[index]?.value ?? ''),
       controller: widget.controller,
       enabled: widget.enabled,
       focusNode: index < 0 ? null : _focusNodes[index],
       focusNodes: _focusNodes,
-      initialValue: index < 0 ? null : (_value?[index]?.value ?? ''),
       partIndex: index,
     );
 

@@ -103,10 +103,11 @@ class PopoverOverlayHandler extends OverlayHandler {
                 autofocus: dismissBackdropFocus,
                 canRequestFocus: !isClosed.value,
                 child: AnimatedValueBuilder<double>.animation(
+                  initialValue: 0.0,
                   value: isClosed.value ? 0.0 : 1.0,
                   duration: isClosed.value
-                      ? (dismissDuration ?? const Duration(milliseconds: 100))
-                      : (showDuration ?? kDefaultDuration),
+                      ? (showDuration ?? kDefaultDuration)
+                      : (dismissDuration ?? const Duration(milliseconds: 100)),
                   builder: (innerContext, animation) {
                     return PopoverOverlayWidget(
                       key: key,
@@ -156,7 +157,6 @@ class PopoverOverlayHandler extends OverlayHandler {
                       widthConstraint: widthConstraint,
                     );
                   },
-                  initialValue: 0,
                   onEnd: (value) {
                     if (value == 0.0 && isClosed.value) {
                       popoverEntry.remove();
@@ -166,7 +166,7 @@ class PopoverOverlayHandler extends OverlayHandler {
                   },
                   curve: isClosed.value
                       ? const Interval(0, 2 / 3)
-                      : Curves.easeOut,
+                      : Curves.linear,
                 ),
               );
             },
@@ -1219,7 +1219,7 @@ class PopoverLayoutRender extends RenderShiftedBox {
         final effectiveTransform =
             Matrix4.translationValues(offset.dx, offset.dy, 0)
               ..multiply(transform)
-              ..translate(-offset.dx, -offset.dy);
+              ..leftTranslateByDouble(-offset.dx, -offset.dy, 0, 1.0);
         final filter = ui.ImageFilter.matrix(
           effectiveTransform.storage,
           filterQuality: _filterQuality!,
@@ -1367,11 +1367,21 @@ class PopoverLayoutRender extends RenderShiftedBox {
     }
     final transform = Matrix4.identity();
     final alignmentTranslation = scaleAlignment.alongSize(childSize);
-    transform.translate(childOffset.dx, childOffset.dy);
-    transform.translate(alignmentTranslation.dx, alignmentTranslation.dy);
-    transform.scale(_scale, _scale);
-    transform.translate(-alignmentTranslation.dx, -alignmentTranslation.dy);
-    transform.translate(-childOffset.dx, -childOffset.dy);
+    transform.translateByDouble(childOffset.dx, childOffset.dy, 0, 1.0);
+    transform.translateByDouble(
+      alignmentTranslation.dx,
+      alignmentTranslation.dy,
+      0,
+      1.0,
+    );
+    transform.scaleByDouble(_scale, _scale, 1.0, 1.0);
+    transform.translateByDouble(
+      -alignmentTranslation.dx,
+      -alignmentTranslation.dy,
+      0,
+      1.0,
+    );
+    transform.translateByDouble(-childOffset.dx, -childOffset.dy, 0, 1.0);
 
     return transform;
   }

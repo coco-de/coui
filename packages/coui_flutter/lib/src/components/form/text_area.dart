@@ -497,6 +497,7 @@ class _TextAreaState extends State<TextArea> {
         children: [
           Positioned.fill(
             child: TextField(
+              initialValue: widget.initialValue,
               autofillHints: widget.autofillHints,
               autofocus: widget.autofocus,
               border: border,
@@ -514,7 +515,6 @@ class _TextAreaState extends State<TextArea> {
               ],
               filled: filled,
               focusNode: widget.focusNode,
-              initialValue: widget.initialValue,
               inputFormatters: widget.inputFormatters,
               keyboardType: widget.keyboardType,
               maxLength: widget.maxLength,

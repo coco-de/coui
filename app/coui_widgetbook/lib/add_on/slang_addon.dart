@@ -36,9 +36,9 @@ class SlangAddon extends WidgetbookAddon<Locale> {
   List<Field> get fields {
     return [
       ObjectDropdownField<Locale>(
+        initialValue: initialLocale ?? locales.firstOrNull,
         name: 'name',
         values: locales,
-        initialValue: initialLocale ?? locales.firstOrNull,
         labelBuilder: (locale) => locale.toLanguageTag(),
       ),
     ];

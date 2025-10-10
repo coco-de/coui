@@ -246,6 +246,7 @@ class ControlledSelect<T> extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter<T?>(
+      initialValue: initialValue,
       builder: (context, data) {
         return Select<T>(
           autoClosePopover: autoClosePopover,
@@ -273,7 +274,6 @@ class ControlledSelect<T> extends StatelessWidget
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }

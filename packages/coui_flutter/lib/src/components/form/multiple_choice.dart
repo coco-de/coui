@@ -175,6 +175,7 @@ class ControlledMultipleAnswer<T> extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter<Iterable<T>?>(
+      initialValue: initialValue,
       builder: (context, data) {
         return MultipleAnswer<T>(
           allowUnselect: allowUnselect,
@@ -186,7 +187,6 @@ class ControlledMultipleAnswer<T> extends StatelessWidget
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }
@@ -280,6 +280,7 @@ class ControlledMultipleChoice<T> extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter<T?>(
+      initialValue: initialValue,
       builder: (context, data) {
         return MultipleChoice<T>(
           allowUnselect: allowUnselect,
@@ -291,7 +292,6 @@ class ControlledMultipleChoice<T> extends StatelessWidget
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }

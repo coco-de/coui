@@ -160,6 +160,7 @@ class ControlledToggle extends StatelessWidget with ControlledComponent<bool> {
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
+      initialValue: initialValue,
       builder: (context, data) {
         return Toggle(
           activeColor: activeColor,
@@ -177,7 +178,6 @@ class ControlledToggle extends StatelessWidget with ControlledComponent<bool> {
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }
@@ -313,7 +313,11 @@ class _ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (widget.leading != null) widget.leading!,
+              if (widget.leading != null)
+                Flexible(
+                  fit: FlexFit.loose,
+                  child: widget.leading!,
+                ),
               if (widget.leading != null) SizedBox(width: gap),
               AnimatedContainer(
                 padding: EdgeInsets.all(scaling * 2),
@@ -356,7 +360,11 @@ class _ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
                 ),
               ),
               if (widget.trailing != null) SizedBox(width: gap),
-              if (widget.trailing != null) widget.trailing!,
+              if (widget.trailing != null)
+                Flexible(
+                  fit: FlexFit.loose,
+                  child: widget.trailing!,
+                ),
             ],
           ),
         ),

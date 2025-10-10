@@ -401,6 +401,7 @@ class AnimatedValueBuilderState<T> extends State<AnimatedValueBuilder<T>>
 
   @override
   void dispose() {
+    _curvedAnimation.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -474,7 +475,7 @@ enum RepeatMode {
 ///   mode: RepeatMode.pingPong,
 ///   builder: (context, value, child) {
 ///     return Opacity(
-///       opacity: value.toDouble(),
+///       opacity: value,
 ///       child: Icon(Icons.favorite, size: 50),
 ///     );
 ///   },
@@ -681,7 +682,6 @@ class _RepeatedAnimationBuilderState<T>
   @override
   void didUpdateWidget(covariant RepeatedAnimationBuilder<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.duration != widget.duration) {}
     if (oldWidget.start != widget.start ||
         oldWidget.end != widget.end ||
         oldWidget.duration != widget.duration ||
@@ -830,6 +830,49 @@ class IntervalDuration extends Curve {
     this.curve,
   });
 
+  /// Creates an [IntervalDuration] with delay-based timing.
+  ///
+  /// This factory constructor makes it easier to specify delays from the start
+  /// and end of the animation rather than absolute timing positions.
+  ///
+  /// Parameters:
+  /// - [startDelay] (Duration?, optional): Delay before animation starts.
+  /// - [endDelay] (Duration?, optional): How much earlier animation should end.
+  /// - [duration] (Duration, required): Base animation duration.
+  /// - [curve] (Curve?, optional): Easing curve for the active animation portion.
+  ///
+  /// The total timeline duration becomes [duration] + [startDelay] + [endDelay].
+  ///
+  /// Example:
+  /// ```dart
+  /// // Animation with 200ms start delay and ending 100ms early
+  /// IntervalDuration.delayed(
+  ///   startDelay: Duration(milliseconds: 200),
+  ///   endDelay: Duration(milliseconds: 100),
+  ///   duration: Duration(seconds: 1),
+  /// );
+  /// ```
+  factory IntervalDuration.delayed({
+    Duration? startDelay,
+    Duration? endDelay,
+    required Duration duration,
+    Curve? curve,
+  }) {
+    Duration totalDuration = duration;
+    if (startDelay != null) {
+      totalDuration += startDelay;
+    }
+    if (endDelay != null) {
+      totalDuration += endDelay;
+    }
+    return IntervalDuration(
+      duration: totalDuration,
+      start: startDelay,
+      end: endDelay == null ? null : totalDuration - endDelay,
+      curve: curve,
+    );
+  }
+
   /// The duration after which the animation should start.
   ///
   /// If null, animation starts immediately. When specified, the animation
@@ -871,12 +914,11 @@ class IntervalDuration extends Curve {
     final clampedProgress =
         ((t - progressStartInterval) /
                 (progressEndInterval - progressStartInterval))
-            .clamp(0, 1)
-            .toDouble();
+            .clamp(0.0, 1.0);
     if (curve != null) {
-      return curve!.transform(clampedProgress.toDouble());
+      return curve!.transform(clampedProgress);
     }
-    return clampedProgress.toDouble();
+    return clampedProgress;
   }
 }
 
@@ -893,7 +935,7 @@ class IntervalDuration extends Curve {
 ///
 /// Built-in lerp functions:
 /// - [lerpOpacity]: Cross-fades using opacity (default)
-/// - [lerpStep]: Instant transition without fade effect
+/// - [lerpStep]: Instant step-wise transition at t=0.5
 ///
 /// Example:
 /// ```dart
@@ -958,20 +1000,54 @@ class CrossFadedTransition extends StatefulWidget {
     } else if (t == 1) {
       return b;
     }
-    final startOpacity = 1 - (t.clamp(0, 0.5).toDouble() * 2);
-    final endOpacity = t.clamp(0.5, 1).toDouble() * 2 - 1;
+    final startOpacity = 1 - (t.clamp(0.0, 0.5) * 2);
+    final endOpacity = t.clamp(0.5, 1.0) * 2 - 1;
     return Stack(
       fit: StackFit.passthrough,
       children: [
         Positioned.fill(
           child: Opacity(
-            opacity: startOpacity.toDouble(),
+            opacity: startOpacity,
             child: Align(alignment: alignment, child: a),
           ),
         ),
-        Opacity(opacity: endOpacity.toDouble(), child: b),
+        Opacity(opacity: endOpacity, child: b),
       ],
     );
+  }
+
+  /// Creates an instant transition between two widgets without animation.
+  ///
+  /// This lerp function provides a step-wise transition where the widget
+  /// switches instantly at t=0.5. At t < 0.5, widget [a] is returned;
+  /// at t >= 0.5, widget [b] is returned.
+  ///
+  /// Parameters:
+  /// - [a] (Widget): The first widget in the transition.
+  /// - [b] (Widget): The second widget in the transition.
+  /// - [t] (double): Animation progress from 0.0 to 1.0.
+  /// - [alignment] (AlignmentGeometry): How to align widgets (unused in step mode).
+  ///
+  /// Returns either widget [a] or [b] based on progress threshold.
+  ///
+  /// Example:
+  /// ```dart
+  /// CrossFadedTransition(
+  ///   lerp: CrossFadedTransition.lerpStep,
+  ///   duration: Duration(milliseconds: 0),
+  ///   child: _showFirst ? firstWidget : secondWidget,
+  /// );
+  /// ```
+  static Widget lerpStep(
+    Widget a,
+    Widget b,
+    double t, {
+    AlignmentGeometry alignment = Alignment.center,
+  }) {
+    if (t < 0.5) {
+      return a;
+    }
+    return b;
   }
 
   /// The child widget to display and potentially transition from.

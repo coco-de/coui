@@ -424,6 +424,7 @@ class _PhoneInputState extends State<PhoneInput>
               defaultValue: theme.scaling * 200,
             ),
             child: TextField(
+              initialValue: widget.initialValue?.number,
               autofillHints: const [AutofillHints.telephoneNumber],
               borderRadius: styleValue(
                 themeValue: componentTheme?.borderRadius,
@@ -433,7 +434,6 @@ class _PhoneInputState extends State<PhoneInput>
                 ),
               ),
               controller: _controller,
-              initialValue: widget.initialValue?.number,
               inputFormatters: [
                 if (widget.onlyNumber) FilteringTextInputFormatter.digitsOnly,
               ],

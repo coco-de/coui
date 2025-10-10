@@ -252,18 +252,18 @@ class _DefaultRefreshIndicatorState extends State<DefaultRefreshIndicator> {
           width: theme.scaling * 12.0,
           height: theme.scaling * 8.0,
           child: AnimatedValueBuilder(
-            value: 1,
+            initialValue: 0.0,
+            value: 1.0,
             duration: const Duration(milliseconds: 300),
             builder: (context, value, _) {
               return CustomPaint(
                 painter: AnimatedCheckPainter(
                   color: theme.colorScheme.foreground,
-                  progress: value.toDouble(),
+                  progress: value,
                   strokeWidth: theme.scaling * 1.5,
                 ),
               );
             },
-            initialValue: 0,
             curve: const Interval(0.5, 1),
           ),
         ),
@@ -380,7 +380,7 @@ class RefreshTriggerState extends State<RefreshTrigger>
   late Duration _completeDuration;
 
   static double _decelerateCurve(double value) {
-    return Curves.decelerate.transform(value.toDouble());
+    return Curves.decelerate.transform(value);
   }
 
   void _updateThemeValues() {

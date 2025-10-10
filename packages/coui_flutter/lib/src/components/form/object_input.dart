@@ -262,9 +262,9 @@ class _DateInputState extends State<DateInput> {
         widget.datePartsOrder ?? CoUILocalizations.of(context).datePartsOrder;
 
     return FormattedObjectInput<NullableDate>(
+      initialValue: _convertToNullableDate(widget.initialValue),
       controller: _controller,
       converter: BiDirectionalConvert(_convertFromDateTime, _convertToDateTime),
-      initialValue: _convertToNullableDate(widget.initialValue),
       onChanged: (value) {
         widget.onChanged?.call(
           value == null ? null : _convertFromNullableDate(value),
@@ -448,10 +448,13 @@ class _TimeInputState extends State<TimeInput> {
         ? ComponentValueController<NullableTimeOfDay>(
             _convertToNullableTimeOfDay(widget.initialValue),
           )
-        : ConvertedController<TimeOfDay?, NullableTimeOfDay>(BiDirectionalConvert(
+        : ConvertedController<TimeOfDay?, NullableTimeOfDay>(
+            BiDirectionalConvert(
               _convertToNullableTimeOfDay,
               _convertFromNullableTimeOfDay,
-            ), widget.controller!);
+            ),
+            widget.controller!,
+          );
   }
 
   NullableTimeOfDay _convertToTimeOfDay(List<String?> values) {
@@ -519,12 +522,12 @@ class _TimeInputState extends State<TimeInput> {
   @override
   Widget build(BuildContext context) {
     return FormattedObjectInput<NullableTimeOfDay>(
+      initialValue: _convertToNullableTimeOfDay(widget.initialValue),
       controller: _controller,
       converter: BiDirectionalConvert(
         _convertFromTimeOfDay,
         _convertToTimeOfDay,
       ),
-      initialValue: _convertToNullableTimeOfDay(widget.initialValue),
       onChanged: (value) {
         widget.onChanged?.call(
           value == null ? null : _convertFromNullableTimeOfDay(value),
@@ -670,10 +673,13 @@ class _DurationInputState extends State<DurationInput> {
         ? ComponentValueController<NullableTimeOfDay>(
             _convertToNullableTimeOfDay(widget.initialValue),
           )
-        : ConvertedController<Duration?, NullableTimeOfDay>(BiDirectionalConvert(
+        : ConvertedController<Duration?, NullableTimeOfDay>(
+            BiDirectionalConvert(
               _convertToNullableTimeOfDay,
               _convertFromNullableTimeOfDay,
-            ), widget.controller!);
+            ),
+            widget.controller!,
+          );
   }
 
   NullableTimeOfDay _convertToDuration(List<String?> values) {
@@ -749,9 +755,9 @@ class _DurationInputState extends State<DurationInput> {
   @override
   Widget build(BuildContext context) {
     return FormattedObjectInput<NullableTimeOfDay>(
+      initialValue: _convertToNullableTimeOfDay(widget.initialValue),
       controller: _controller,
       converter: BiDirectionalConvert(_convertFromDuration, _convertToDuration),
-      initialValue: _convertToNullableTimeOfDay(widget.initialValue),
       onChanged: (value) {
         widget.onChanged?.call(
           value == null ? null : _convertFromNullableTimeOfDay(value),

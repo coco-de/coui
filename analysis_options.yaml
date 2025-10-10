@@ -140,6 +140,7 @@ dart_code_metrics:
           - super
           - onPressed
           - onClick
+          - initialValue
         last:
           - child
           - children

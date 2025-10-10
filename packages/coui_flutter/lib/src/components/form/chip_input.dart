@@ -393,6 +393,7 @@ class ControlledChipInput<T> extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
+      initialValue: initialValue,
       builder: (context, data) {
         return ChipInput(
           chipBuilder: chipBuilder,
@@ -419,7 +420,6 @@ class ControlledChipInput<T> extends StatelessWidget
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }
@@ -831,12 +831,12 @@ class ChipInputState<T> extends State<ChipInput<T>>
               ),
               child: TextField(
                 key: _textFieldKey,
+                initialValue: widget.initialText,
                 border: const Border.fromBorderSide(BorderSide.none),
                 controller: _controller,
                 decoration: const BoxDecoration(),
                 enabled: widget.enabled,
                 focusNode: _focusNode,
-                initialValue: widget.initialText,
                 inputFormatters: widget.inputFormatters,
                 onSubmitted: _handleSubmitted,
                 placeholder: widget.placeholder,

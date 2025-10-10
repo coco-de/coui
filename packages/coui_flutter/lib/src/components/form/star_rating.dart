@@ -226,6 +226,7 @@ class ControlledStarRating extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
+      initialValue: initialValue,
       builder: (context, data) {
         return StarRating(
           activeColor: activeColor,
@@ -248,7 +249,6 @@ class ControlledStarRating extends StatelessWidget
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }

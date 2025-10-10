@@ -146,9 +146,9 @@ class ItemPicker<T> extends StatelessWidget {
               borderRadius: theme.borderRadiusXl,
               padding: EdgeInsets.zero,
               child: _InternalItemPicker<T>(
+                initialValue: handler.value,
                 builder: builder,
                 constraints: constraints,
-                initialValue: handler.value,
                 items: items,
                 layout: layout,
                 onChanged: (value) {
@@ -163,9 +163,9 @@ class ItemPicker<T> extends StatelessWidget {
         return SurfaceCard(
           padding: EdgeInsets.zero,
           child: _InternalItemPicker<T>(
+            initialValue: handler.value,
             builder: builder,
             constraints: constraints,
-            initialValue: handler.value,
             items: items,
             layout: layout,
             onChanged: (value) {
@@ -318,9 +318,9 @@ Future<T?> showItemPicker<T>(
       return SurfaceCard(
         padding: EdgeInsets.zero,
         child: _InternalItemPicker<T>(
+          initialValue: initialValue,
           builder: builder,
           constraints: constraints,
-          initialValue: initialValue,
           items: items,
           layout: layout,
           onChanged: (value) {
@@ -418,9 +418,9 @@ Future<T?> showItemPickerDialog<T>(
           borderRadius: theme.borderRadiusXl,
           padding: EdgeInsets.zero,
           child: _InternalItemPicker<T>(
+            initialValue: initialValue,
             builder: builder,
             constraints: constraints,
-            initialValue: initialValue,
             items: items,
             layout: layout,
             onChanged: (value) {

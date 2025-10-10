@@ -165,6 +165,7 @@ class ControlledToggle extends StatelessWidget with ControlledComponent<bool> {
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
+      initialValue: initialValue,
       builder: (context, data) {
         return Toggle(
           value: data.value,
@@ -176,7 +177,6 @@ class ControlledToggle extends StatelessWidget with ControlledComponent<bool> {
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }

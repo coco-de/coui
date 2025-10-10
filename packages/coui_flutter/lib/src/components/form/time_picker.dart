@@ -229,6 +229,7 @@ class ControlledTimePicker extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
+      initialValue: initialValue,
       builder: (context, data) {
         return TimePicker(
           dialogTitle: dialogTitle,
@@ -246,7 +247,6 @@ class ControlledTimePicker extends StatelessWidget
       },
       controller: controller,
       enabled: enabled,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }

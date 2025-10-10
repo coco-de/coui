@@ -161,6 +161,7 @@ class ControlledSlider extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
+      initialValue: initialValue,
       builder: (context, data) {
         return Slider(
           decreaseStep: decreaseStep,
@@ -177,7 +178,6 @@ class ControlledSlider extends StatelessWidget
         );
       },
       controller: controller,
-      initialValue: initialValue,
       onChanged: onChanged,
     );
   }
