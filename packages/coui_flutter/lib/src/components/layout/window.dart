@@ -664,6 +664,7 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
 
           /// Add transition.
           windowClient = AnimatedValueBuilder(
+            key: const ValueKey('window-close-animation'),
             initialValue: 0.0,
             value: (_viewport?.closed ?? false) ? 0.0 : 1.0,
             duration: kDefaultDuration,
@@ -864,6 +865,8 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
           );
 
           return AnimatedValueBuilder.raw(
+            key: const ValueKey('window-maximize-animation'),
+            initialValue: maximized,
             value: maximized,
             duration: kDefaultDuration,
             builder: (context, oldValue, newValue, t, child) {

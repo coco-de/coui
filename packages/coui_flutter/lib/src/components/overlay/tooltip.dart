@@ -409,16 +409,30 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
         return RepaintBoundary(
           child: FocusScope(
             autofocus: dismissBackdropFocus,
-            child: AnimatedBuilder(
-              animation: isClosed,
+            child: ListenableBuilder(
+              listenable: isClosed,
               builder: (innerContext, child) {
-                return AnimatedValueBuilder<double>.animation(
-                  initialValue: 0.0,
-                  value: isClosed.value ? 0.0 : 1.0,
-                  duration: isClosed.value
-                      ? (showDuration ?? kDefaultDuration)
-                      : (dismissDuration ?? const Duration(milliseconds: 100)),
-                  builder: (innerContext, animation) {
+                final isClosedValue = isClosed.value;
+                return TweenAnimationBuilder<double>(
+                  key: const ValueKey('tooltip-animation'),
+                  tween: Tween<double>(
+                    begin: 0.0,
+                    end: isClosedValue ? 0.0 : 1.0,
+                  ),
+                  duration: isClosedValue
+                      ? (dismissDuration ?? const Duration(milliseconds: 100))
+                      : (showDuration ?? kDefaultDuration),
+                  curve: isClosedValue
+                      ? const Interval(0, 2 / 3)
+                      : Curves.linear,
+                  onEnd: () {
+                    if (isClosedValue) {
+                      popoverEntry.remove();
+                      popoverEntry.dispose();
+                      animationCompleter.complete();
+                    }
+                  },
+                  builder: (innerContext, animationValue, child) {
                     final theme = Theme.of(innerContext);
 
                     return PopoverOverlayWidget(
@@ -428,7 +442,7 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       allowInvertVertical: allowInvertVertical,
                       anchorAlignment: resolvedAnchorAlignment,
                       anchorContext: context,
-                      animation: animation,
+                      animation: AlwaysStoppedAnimation(animationValue),
                       builder: builder,
                       data: data,
                       follow: false,
@@ -467,16 +481,6 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       widthConstraint: widthConstraint,
                     );
                   },
-                  onEnd: (value) {
-                    if (value == 0.0 && isClosed.value) {
-                      popoverEntry.remove();
-                      popoverEntry.dispose();
-                      animationCompleter.complete();
-                    }
-                  },
-                  curve: isClosed.value
-                      ? const Interval(0, 2 / 3)
-                      : Curves.linear,
                 );
               },
             ),

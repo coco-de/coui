@@ -907,6 +907,7 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
           valueListenable: widget.closing,
           builder: (context, isClosing, child) {
             return AnimatedValueBuilder(
+              key: const ValueKey('toast-dismiss-animation'),
               initialValue: 0.0,
               value: isClosing ? 0.0 : _dismissOffset,
               duration: _dismissing && !isClosing
@@ -914,26 +915,31 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
                   : kDefaultDuration,
               builder: (context, dismissProgress, child) {
                 return AnimatedValueBuilder(
+                  key: const ValueKey('toast-close-dismissing-animation'),
                   initialValue: 0.0,
                   value: isClosing ? 0.0 : _closeDismissing ?? 0.0,
                   duration: kDefaultDuration,
                   builder: (context, closeDismissingProgress, child) {
                     return AnimatedValueBuilder(
+                      key: const ValueKey('toast-index-animation'),
                       initialValue: widget.index.toDouble(),
                       value: widget.index.toDouble(),
                       duration: widget.duration,
                       builder: (context, indexProgress, child) {
                         return AnimatedValueBuilder(
+                          key: const ValueKey('toast-showing-animation'),
                           initialValue: 0.0,
                           value: isClosing && !_dismissing ? 0.0 : 1.0,
                           duration: widget.duration,
                           builder: (context, showingProgress, child) {
                             return AnimatedValueBuilder(
+                              key: const ValueKey('toast-visible-animation'),
                               initialValue: 0.0,
                               value: widget.visible ? 1.0 : 0.0,
                               duration: widget.duration,
                               builder: (context, visibleProgress, child) {
                                 return AnimatedValueBuilder(
+                                  key: const ValueKey('toast-expand-animation'),
                                   initialValue: 0.0,
                                   value: widget.expanded ? 1.0 : 0.0,
                                   duration: widget.expandingDuration,

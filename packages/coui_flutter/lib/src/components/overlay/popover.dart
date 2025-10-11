@@ -96,19 +96,33 @@ class PopoverOverlayHandler extends OverlayHandler {
     overlayEntry = OverlayEntry(
       builder: (innerContext) {
         return RepaintBoundary(
-          child: AnimatedBuilder(
-            animation: isClosed,
+          child: ListenableBuilder(
+            listenable: isClosed,
             builder: (innerContext, child) {
+              final isClosedValue = isClosed.value;
               return FocusScope(
                 autofocus: dismissBackdropFocus,
-                canRequestFocus: !isClosed.value,
-                child: AnimatedValueBuilder<double>.animation(
-                  initialValue: 0.0,
-                  value: isClosed.value ? 0.0 : 1.0,
-                  duration: isClosed.value
-                      ? (showDuration ?? kDefaultDuration)
-                      : (dismissDuration ?? const Duration(milliseconds: 100)),
-                  builder: (innerContext, animation) {
+                canRequestFocus: !isClosedValue,
+                child: TweenAnimationBuilder<double>(
+                  key: const ValueKey('popover-animation'),
+                  tween: Tween<double>(
+                    begin: 0.0,
+                    end: isClosedValue ? 0.0 : 1.0,
+                  ),
+                  duration: isClosedValue
+                      ? (dismissDuration ?? const Duration(milliseconds: 100))
+                      : (showDuration ?? kDefaultDuration),
+                  curve: isClosedValue
+                      ? const Interval(0, 2 / 3)
+                      : Curves.linear,
+                  onEnd: () {
+                    if (isClosedValue) {
+                      popoverEntry.remove();
+                      popoverEntry.dispose();
+                      animationCompleter.complete();
+                    }
+                  },
+                  builder: (innerContext, animationValue, child) {
                     return PopoverOverlayWidget(
                       key: key,
                       alignment: resolvedAlignment,
@@ -117,7 +131,7 @@ class PopoverOverlayHandler extends OverlayHandler {
                       anchorAlignment: resolvedAnchorAlignment,
                       anchorContext: context,
                       anchorSize: anchorSize,
-                      animation: animation,
+                      animation: AlwaysStoppedAnimation(animationValue),
                       builder: builder,
                       data: data,
                       follow: follow,
@@ -157,16 +171,6 @@ class PopoverOverlayHandler extends OverlayHandler {
                       widthConstraint: widthConstraint,
                     );
                   },
-                  onEnd: (value) {
-                    if (value == 0.0 && isClosed.value) {
-                      popoverEntry.remove();
-                      popoverEntry.dispose();
-                      animationCompleter.complete();
-                    }
-                  },
-                  curve: isClosed.value
-                      ? const Interval(0, 2 / 3)
-                      : Curves.linear,
                 ),
               );
             },
