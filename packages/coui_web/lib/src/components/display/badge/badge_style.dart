@@ -30,6 +30,7 @@ class BadgeStyle implements BadgeStyling {
       return cssClass;
     }
     final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
     return '$prefixesString$cssClass';
   }
 }

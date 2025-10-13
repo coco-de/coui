@@ -90,7 +90,7 @@ class DatePicker extends UiComponent {
       placeholder: placeholder,
       disabled: disabled,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: _buildAttributes(),
       events: _buildEvents(),
     );

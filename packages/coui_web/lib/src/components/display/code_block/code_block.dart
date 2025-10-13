@@ -50,7 +50,7 @@ class CodeBlock extends UiComponent {
     return div(
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       children: [
@@ -176,7 +176,7 @@ class InlineCode extends UiComponent {
       tag: 'code',
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       child: text(code),

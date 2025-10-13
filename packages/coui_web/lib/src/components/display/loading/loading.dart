@@ -9,13 +9,15 @@ import 'package:jaspr/jaspr.dart';
 /// Loading(size: 24) // Custom size
 /// ```
 class Loading extends UiComponent {
+  static const _defaultSpinnerSize = 16;
+
   /// Creates a Loading component.
   ///
   /// Parameters:
   /// - [size]: Size of the spinner in pixels
   const Loading({
     super.key,
-    this.size = 16,
+    this.size = _defaultSpinnerSize,
     super.attributes,
     super.classes,
     super.css,

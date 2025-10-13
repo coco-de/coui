@@ -128,7 +128,7 @@ class Checkbox extends UiComponent {
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: _buildEvents(),
     );

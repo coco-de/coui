@@ -42,6 +42,8 @@ class Pagination extends UiComponent {
   /// Callback when page changes.
   final PageChangeCallback? onPageChanged;
 
+  static const _maxVisiblePages = 7;
+
   static const _navValue = 'nav';
 
   @override
@@ -70,9 +72,6 @@ class Pagination extends UiComponent {
   }
 
   @override
-  String get baseClass => 'flex items-center justify-center space-x-2';
-
-  @override
   Component build(BuildContext context) {
     final pages = <Component>[];
 
@@ -87,9 +86,9 @@ class Pagination extends UiComponent {
     );
 
     // Page numbers (simplified - show first, current, and last)
-    if (totalPages <= 7) {
+    if (totalPages <= _maxVisiblePages) {
       // Show all pages
-      for (var i = 1; i <= totalPages; i += 1) {
+      for (int i = 1; i <= totalPages; i += 1) {
         pages.add(_buildPageButton(label: i.toString(), page: i));
       }
     } else {
@@ -118,7 +117,7 @@ class Pagination extends UiComponent {
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: {
         ...this.componentAttributes,
         'role': 'navigation',
@@ -128,6 +127,9 @@ class Pagination extends UiComponent {
       children: pages,
     );
   }
+
+  @override
+  String get baseClass => 'flex items-center justify-center space-x-2';
 
   Component _buildPageButton({
     required String label,

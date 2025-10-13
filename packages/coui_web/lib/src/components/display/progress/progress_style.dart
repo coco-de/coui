@@ -30,6 +30,7 @@ class ProgressStyle implements ProgressStyling {
       return cssClass;
     }
     final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
     return '$prefixesString$cssClass';
   }
 }

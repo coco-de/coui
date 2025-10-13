@@ -81,7 +81,7 @@ class Skeleton extends UiComponent {
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: inlineStyles.isNotEmpty ? inlineStyles : css,
+      styles: inlineStyles.isNotEmpty ? inlineStyles : this.css,
       attributes: this.componentAttributes,
       events: this.events,
     );

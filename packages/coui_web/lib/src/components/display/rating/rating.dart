@@ -15,11 +15,13 @@ typedef RatingCallback = void Function(int rating);
 /// )
 /// ```
 class Rating extends UiComponent {
+  static const _defaultMaxRating = 5;
+
   /// Creates a Rating component.
   const Rating({
     super.key,
     this.value = 0,
-    this.max = 5,
+    this.max = _defaultMaxRating,
     this.readonly = false,
     this.onChanged,
     this.size = RatingSize.md,

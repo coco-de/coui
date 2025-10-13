@@ -29,6 +29,7 @@ class AvatarStyle implements AvatarStyling {
       return cssClass;
     }
     final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
     return '$prefixesString$cssClass';
   }
 }

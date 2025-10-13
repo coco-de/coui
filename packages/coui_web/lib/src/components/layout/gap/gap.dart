@@ -19,11 +19,13 @@ import 'package:jaspr/jaspr.dart';
 class Gap extends UiComponent {
   /// Creates a Gap component.
   ///
+  static const _defaultGapSize = 4;
+
   /// Parameters:
   /// - [size]: Gap size in Tailwind spacing scale (0-96, 0.5, 1.5, 2.5, 3.5)
   const Gap({
     super.key,
-    this.size = 4,
+    this.size = _defaultGapSize,
     super.attributes,
     super.classes,
     super.css,
@@ -62,7 +64,7 @@ class Gap extends UiComponent {
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
     );
@@ -97,7 +99,7 @@ class HGap extends Gap {
   /// Creates a horizontal Gap component.
   const HGap({
     super.key,
-    super.size = 4,
+    super.size = Gap._defaultGapSize,
     super.attributes,
     super.classes,
     super.css,
@@ -119,7 +121,7 @@ class VGap extends Gap {
   /// Creates a vertical Gap component.
   const VGap({
     super.key,
-    super.size = 4,
+    super.size = Gap._defaultGapSize,
     super.attributes,
     super.classes,
     super.css,

@@ -29,6 +29,7 @@ class TableStyle implements TableStyling {
       return cssClass;
     }
     final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
     return '$prefixesString$cssClass';
   }
 }

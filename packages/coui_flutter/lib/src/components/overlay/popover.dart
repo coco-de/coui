@@ -105,7 +105,7 @@ class PopoverOverlayHandler extends OverlayHandler {
                 canRequestFocus: !isClosedValue,
                 child: TweenAnimationBuilder<double>(
                   key: const ValueKey('popover-animation'),
-                  tween: Tween<double>(
+                  tween: Tween(
                     begin: 0.0,
                     end: isClosedValue ? 0.0 : 1.0,
                   ),
@@ -115,13 +115,6 @@ class PopoverOverlayHandler extends OverlayHandler {
                   curve: isClosedValue
                       ? const Interval(0, 2 / 3)
                       : Curves.linear,
-                  onEnd: () {
-                    if (isClosedValue) {
-                      popoverEntry.remove();
-                      popoverEntry.dispose();
-                      animationCompleter.complete();
-                    }
-                  },
                   builder: (innerContext, animationValue, child) {
                     return PopoverOverlayWidget(
                       key: key,
@@ -170,6 +163,13 @@ class PopoverOverlayHandler extends OverlayHandler {
                       transitionAlignment: transitionAlignment,
                       widthConstraint: widthConstraint,
                     );
+                  },
+                  onEnd: () {
+                    if (isClosedValue) {
+                      popoverEntry.remove();
+                      popoverEntry.dispose();
+                      animationCompleter.complete();
+                    }
                   },
                 ),
               );

@@ -75,12 +75,11 @@ class Drawer extends UiComponent {
 
   @override
   Component build(BuildContext context) {
-    return !isOpen
-        ? Component.empty()
-        : div(
+    return isOpen
+        ? div(
             id: id,
             classes: _buildClasses(),
-            styles: css,
+            styles: this.css,
             attributes: this.componentAttributes,
             events: this.events,
             children: [
@@ -128,7 +127,8 @@ class Drawer extends UiComponent {
                 ],
               ),
             ],
-          );
+          )
+        : Component.empty();
   }
 
   @override
@@ -159,6 +159,7 @@ class Drawer extends UiComponent {
 
   Map<String, List<dynamic>> _buildOverlayEvents() {
     final currentOnClose = onClose;
+
     return currentOnClose == null
         ? {}
         : {
@@ -170,6 +171,7 @@ class Drawer extends UiComponent {
 
   Map<String, List<dynamic>> _buildCloseEvents() {
     final currentOnClose = onClose;
+
     return currentOnClose == null
         ? {}
         : {

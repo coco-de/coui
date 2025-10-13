@@ -30,6 +30,7 @@ class DialogStyle implements DialogStyling {
       return cssClass;
     }
     final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
     return '$prefixesString$cssClass';
   }
 }

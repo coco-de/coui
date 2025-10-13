@@ -98,7 +98,7 @@ class Avatar extends UiComponent {
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       child: content,

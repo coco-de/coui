@@ -74,7 +74,7 @@ class Tooltip extends UiComponent {
       tag: tag,
       id: id,
       classes: baseClass,
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       children: [

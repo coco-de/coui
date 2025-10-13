@@ -17,6 +17,8 @@ typedef CarouselIndexCallback = void Function(int index);
 /// )
 /// ```
 class Carousel extends UiComponent {
+  static const _percentageMultiplier = 100;
+
   /// Creates a Carousel component.
   ///
   /// Parameters:
@@ -95,7 +97,8 @@ class Carousel extends UiComponent {
         div(
           classes: 'flex transition-transform duration-300',
           styles: {
-            'transform': 'translateX(-${currentIndex * 100}%)',
+            'transform':
+                'translateX(-${currentIndex * _percentageMultiplier}%)',
           },
           children: items
               .map(

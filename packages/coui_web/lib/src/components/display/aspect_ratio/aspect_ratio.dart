@@ -41,7 +41,7 @@ class AspectRatio extends UiComponent {
     return div(
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       children: [

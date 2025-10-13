@@ -86,7 +86,7 @@ class Resizable extends UiComponent {
     return div(
       id: id,
       classes: _buildClasses(isHorizontal),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       children: panels,

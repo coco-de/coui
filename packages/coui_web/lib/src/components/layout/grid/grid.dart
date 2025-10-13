@@ -20,8 +20,8 @@ class Grid extends UiComponent {
   Grid({
     super.key,
     required List<Component> children,
-    this.columns = 1,
-    this.gap = 4,
+    this.columns = _defaultColumns,
+    this.gap = _defaultGapSize,
     this.responsive = true,
     super.attributes,
     super.classes,
@@ -38,6 +38,10 @@ class Grid extends UiComponent {
 
   /// Whether to use responsive breakpoints.
   final bool responsive;
+
+  static const _defaultColumns = 12;
+
+  static const _defaultGapSize = 4;
 
   static const _divValue = 'div';
 
@@ -73,7 +77,7 @@ class Grid extends UiComponent {
     return div(
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       children: children,
@@ -94,8 +98,9 @@ class Grid extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -160,7 +165,7 @@ class GridItem extends UiComponent {
     return div(
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       child: child,
@@ -182,8 +187,9 @@ class GridItem extends UiComponent {
       classList.add(baseClass);
     }
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

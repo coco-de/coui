@@ -17,6 +17,10 @@ typedef SliderCallback = void Function(double value);
 /// )
 /// ```
 class Slider extends UiComponent {
+  static const _defaultMinValue = 0;
+  static const _defaultMaxValue = 100;
+  static const _percentageMultiplier = 100;
+
   /// Creates a Slider component.
   ///
   /// Parameters:
@@ -28,9 +32,9 @@ class Slider extends UiComponent {
   /// - [onChanged]: Callback when value changes
   Slider({
     super.key,
-    this.value = 0,
-    this.min = 0,
-    this.max = 100,
+    this.value = _defaultMinValue,
+    this.min = _defaultMinValue,
+    this.max = _defaultMaxValue,
     this.step = 1,
     this.disabled = false,
     this.onChanged,
@@ -104,13 +108,14 @@ class Slider extends UiComponent {
   @override
   Component build(BuildContext context) {
     // Calculate percentage for visual representation
-    final percentage = ((value - min) / (max - min) * 100).clamp(0, 100);
+    final percentage = ((value - min) / (max - min) * _percentageMultiplier)
+        .clamp(_defaultMinValue, _defaultMaxValue);
 
     return Component.element(
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       children: [

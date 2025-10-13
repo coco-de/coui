@@ -415,7 +415,7 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                 final isClosedValue = isClosed.value;
                 return TweenAnimationBuilder<double>(
                   key: const ValueKey('tooltip-animation'),
-                  tween: Tween<double>(
+                  tween: Tween(
                     begin: 0.0,
                     end: isClosedValue ? 0.0 : 1.0,
                   ),
@@ -425,13 +425,6 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                   curve: isClosedValue
                       ? const Interval(0, 2 / 3)
                       : Curves.linear,
-                  onEnd: () {
-                    if (isClosedValue) {
-                      popoverEntry.remove();
-                      popoverEntry.dispose();
-                      animationCompleter.complete();
-                    }
-                  },
                   builder: (innerContext, animationValue, child) {
                     final theme = Theme.of(innerContext);
 
@@ -480,6 +473,13 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       transitionAlignment: Alignment.center,
                       widthConstraint: widthConstraint,
                     );
+                  },
+                  onEnd: () {
+                    if (isClosedValue) {
+                      popoverEntry.remove();
+                      popoverEntry.dispose();
+                      animationCompleter.complete();
+                    }
                   },
                 );
               },

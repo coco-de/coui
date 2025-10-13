@@ -78,8 +78,8 @@ class ScrollArea extends UiComponent {
     });
 
     final finalStyles = <String, String>{};
-    if (css != null) {
-      finalStyles.addAll(css!);
+    if (this.css != null) {
+      finalStyles.addAll(this.css!);
     }
     finalStyles.addAll(styles);
 

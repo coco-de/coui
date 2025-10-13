@@ -60,7 +60,7 @@ class Accordion extends UiComponent {
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       children: children,
@@ -137,7 +137,7 @@ class AccordionItem extends UiComponent {
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       children: [

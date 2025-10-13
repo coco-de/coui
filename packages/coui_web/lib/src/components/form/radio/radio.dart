@@ -124,8 +124,8 @@ class Radio extends UiComponent {
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: css,
-      attributes: componentAttributes,
+      styles: this.css,
+      attributes: this.componentAttributes,
       events: _buildEvents(),
     );
   }
@@ -224,7 +224,7 @@ class RadioGroup extends UiComponent {
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       children: children,

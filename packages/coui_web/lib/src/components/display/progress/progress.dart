@@ -19,8 +19,8 @@ class Progress extends UiComponent {
   /// - [max]: The maximum value (default: 100)
   Progress({
     super.key,
-    this.value = 0,
-    this.max = 100,
+    this.value = _defaultMinValue,
+    this.max = _defaultMaxValue,
     super.attributes,
     super.classes,
     super.css,
@@ -40,6 +40,9 @@ class Progress extends UiComponent {
   final double max;
 
   static const _divValue = 'div';
+  static const _defaultMinValue = 0;
+  static const _defaultMaxValue = 100;
+  static const _percentageMultiplier = 100;
 
   @override
   Progress copyWith({
@@ -68,13 +71,16 @@ class Progress extends UiComponent {
 
   @override
   Component build(BuildContext context) {
-    final percentage = (value / max * 100).clamp(0, 100);
+    final percentage = (value / max * _percentageMultiplier).clamp(
+      _defaultMinValue,
+      _defaultMaxValue,
+    );
 
     return Component.element(
       tag: tag,
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
       child: div(
