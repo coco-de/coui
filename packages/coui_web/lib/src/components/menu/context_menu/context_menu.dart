@@ -17,29 +17,6 @@ typedef ContextMenuItemCallback = void Function();
 /// )
 /// ```
 class ContextMenu extends UiComponent {
-  @override
-  ContextMenu copyWith({
-    Map<String, String>? attributes,
-    String? classes,
-    Styles? css,
-    String? id,
-    String? tag,
-    Component? triggerChild,
-    List<Component>? items,
-    Key? key,
-  }) {
-    return ContextMenu(
-      key: key ?? this.key,
-      triggerChild: triggerChild ?? this.triggerChild,
-      items: items ?? this.items,
-      attributes: attributes ?? this.componentAttributes,
-      classes: mergeClasses(classes, this.classes),
-      css: css ?? this.css,
-      id: id ?? this.id,
-      tag: tag ?? this.tag,
-    );
-  }
-
   /// Creates a ContextMenu component.
   ///
   /// Parameters:
@@ -65,14 +42,34 @@ class ContextMenu extends UiComponent {
   static const _divValue = 'div';
 
   @override
-  String get baseClass => 'relative';
+  ContextMenu copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    String? tag,
+    Component? triggerChild,
+    List<Component>? items,
+    Key? key,
+  }) {
+    return ContextMenu(
+      key: key ?? this.key,
+      triggerChild: triggerChild ?? this.triggerChild,
+      items: items ?? this.items,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
+    );
+  }
 
   @override
   Component build(BuildContext context) {
     return div(
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: {
         ...this.componentAttributes,
         'data-context-menu': '',
@@ -93,6 +90,9 @@ class ContextMenu extends UiComponent {
     );
   }
 
+  @override
+  String get baseClass => 'relative';
+
   String _buildClasses() {
     final classList = [baseClass];
 
@@ -103,7 +103,7 @@ class ContextMenu extends UiComponent {
     return classList.join(' ');
   }
 
-  Map<String, List<dynamic>> _buildEvents() {
+  static Map<String, List<dynamic>> _buildEvents() {
     final eventMap = <String, List<dynamic>>{};
 
     // Add contextmenu event handler
@@ -120,35 +120,6 @@ class ContextMenu extends UiComponent {
 
 /// A context menu item component.
 class ContextMenuItem extends UiComponent {
-  @override
-  ContextMenuItem copyWith({
-    Map<String, String>? attributes,
-    String? classes,
-    Styles? css,
-    String? id,
-    Key? key,
-    String? label,
-    ContextMenuItemCallback? onSelect,
-    Component? icon,
-    String? shortcut,
-    bool? disabled,
-    String? tag,
-  }) {
-    return ContextMenuItem(
-      key: key ?? this.key,
-      label: label ?? this.label,
-      onSelect: onSelect ?? this.onSelect,
-      icon: icon ?? this.icon,
-      shortcut: shortcut ?? this.shortcut,
-      disabled: disabled ?? this.disabled,
-      attributes: attributes ?? this.componentAttributes,
-      classes: mergeClasses(classes, this.classes),
-      css: css ?? this.css,
-      id: id ?? this.id,
-      tag: tag ?? this.tag,
-    );
-  }
-
   /// Creates a ContextMenuItem component.
   const ContextMenuItem({
     super.key,
@@ -182,8 +153,33 @@ class ContextMenuItem extends UiComponent {
   static const _divValue = 'div';
 
   @override
-  String get baseClass =>
-      'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50';
+  ContextMenuItem copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    Key? key,
+    String? label,
+    ContextMenuItemCallback? onSelect,
+    Component? icon,
+    String? shortcut,
+    bool? disabled,
+    String? tag,
+  }) {
+    return ContextMenuItem(
+      key: key ?? this.key,
+      label: label ?? this.label,
+      onSelect: onSelect ?? this.onSelect,
+      icon: icon ?? this.icon,
+      shortcut: shortcut ?? this.shortcut,
+      disabled: disabled ?? this.disabled,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
+    );
+  }
 
   @override
   Component build(BuildContext context) {
@@ -209,9 +205,9 @@ class ContextMenuItem extends UiComponent {
     return div(
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: {
-        ...componentAttributes,
+        ...this.componentAttributes,
         'role': 'menuitem',
         if (disabled) 'data-disabled': '',
       },
@@ -219,6 +215,10 @@ class ContextMenuItem extends UiComponent {
       children: children,
     );
   }
+
+  @override
+  String get baseClass =>
+      'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50';
 
   String _buildClasses() {
     final classList = [baseClass];

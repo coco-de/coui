@@ -79,9 +79,9 @@ class Breadcrumb extends UiComponent {
     return nav(
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: {
-        ...componentAttributes,
+        ...this.componentAttributes,
         'aria-label': 'Breadcrumb',
       },
       events: events,

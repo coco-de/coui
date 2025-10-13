@@ -75,7 +75,7 @@ class Link extends UiComponent {
       id: id,
       href: href,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: {
         ...this.componentAttributes,
         if (external) ...{

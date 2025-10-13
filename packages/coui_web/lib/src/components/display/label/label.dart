@@ -71,7 +71,7 @@ class Label extends UiComponent {
         if (htmlFor != null) 'for': htmlFor!,
       },
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       events: this.events,
       children: [
         Component.text(this.text),

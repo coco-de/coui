@@ -295,9 +295,9 @@ class TabsContent extends UiComponent {
             tag: tag,
             id: id,
             classes: _buildClasses(),
-            styles: css,
+            styles: this.css,
             attributes: {
-              ...componentAttributes,
+              ...this.componentAttributes,
               'role': 'tabpanel',
               'data-value': value,
               'data-state': isActive ? 'active' : 'inactive',

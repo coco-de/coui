@@ -173,9 +173,9 @@ class DropdownMenuItem extends UiComponent {
     return button(
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: {
-        ...componentAttributes,
+        ...this.componentAttributes,
         'type': 'button',
         'role': 'menuitem',
         if (disabled) 'disabled': '',

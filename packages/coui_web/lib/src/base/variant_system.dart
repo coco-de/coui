@@ -232,12 +232,10 @@ class ClassBuilder {
 
   /// Combines multiple class strings, removing duplicates and empty strings.
   static String combine(List<String?> classes) {
-    return classes
-        .where((cls) => cls != null && cls.isNotEmpty)
-        .expand((cls) => cls!.split(' '))
-        .where((cls) => cls.isNotEmpty)
-        .toSet()
-        .join(' ');
+    return [
+      for (String? cls in classes)
+        if (cls?.isNotEmpty ?? false) ...cls.split(' '),
+    ].where((cls) => cls.isNotEmpty).toSet().join(' ');
   }
 
   /// Conditionally adds a class.

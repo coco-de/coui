@@ -183,7 +183,7 @@ class Form extends UiComponent {
     return form(
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: componentAttributes,
       events: _buildEvents(),
       children: children,

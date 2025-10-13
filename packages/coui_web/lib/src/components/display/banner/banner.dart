@@ -57,7 +57,7 @@ class Banner extends UiComponent {
     return div(
       id: id,
       classes: '${_buildClasses()} ${_getVariantClasses()}',
-      styles: css,
+      styles: this.css,
       attributes: {
         ...this.componentAttributes,
         'role': 'banner',
@@ -146,10 +146,10 @@ class Banner extends UiComponent {
 
   String _getVariantIcon() {
     return switch (variant) {
-      BannerVariant.info => 'ℹ',
-      BannerVariant.warning => '⚠',
-      BannerVariant.error => '✖',
-      BannerVariant.success => '✓',
+      BannerVariant.info => '\u2139',
+      BannerVariant.warning => '\u26A0',
+      BannerVariant.error => '\u2716',
+      BannerVariant.success => '\u2713',
     };
   }
 }

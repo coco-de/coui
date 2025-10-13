@@ -103,7 +103,7 @@ class NavigationBar extends UiComponent {
     return nav(
       id: id,
       classes: _buildClasses(),
-      styles: css,
+      styles: this.css,
       attributes: {
         ...this.componentAttributes,
         'aria-label': 'Main navigation',

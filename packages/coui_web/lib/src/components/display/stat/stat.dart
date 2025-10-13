@@ -135,9 +135,9 @@ class Stat extends UiComponent {
 
   String _getChangeIcon() {
     return switch (changeType!) {
-      StatChangeType.positive => '↑',
-      StatChangeType.negative => '↓',
-      StatChangeType.neutral => '→',
+      StatChangeType.positive => '\u2191',
+      StatChangeType.negative => '\u2193',
+      StatChangeType.neutral => '\u2192',
     };
   }
 }
