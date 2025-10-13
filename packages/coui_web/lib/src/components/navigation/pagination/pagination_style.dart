@@ -1,25 +1,35 @@
 import 'package:coui_web/src/base/style_type.dart';
+import 'package:coui_web/src/base/styling.dart';
+import 'package:coui_web/src/base/ui_prefix_modifier.dart';
 
-/// Style configuration for Pagination components.
-///
-/// Defines the visual styling options available for pagination components,
-/// following DaisyUI's pagination styling patterns using the join component.
-abstract class PaginationStyling {
-  /// The CSS class name for this style.
-  String get cssClass;
+/// Styling interface for Pagination components.
+abstract interface class PaginationStyling implements Styling {}
 
-  /// The type of style this represents.
-  StyleType get type;
-}
-
-/// Concrete implementation of pagination styles.
+/// Pagination style class using Tailwind CSS.
 class PaginationStyle implements PaginationStyling {
-  /// Creates a [PaginationStyle].
-  const PaginationStyle(this.cssClass, {required this.type});
+  const PaginationStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
   @override
   final String cssClass;
 
   @override
   final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
+    return '$prefixesString$cssClass';
+  }
 }

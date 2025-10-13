@@ -1,25 +1,65 @@
 import 'package:coui_web/src/base/style_type.dart';
+import 'package:coui_web/src/base/styling.dart';
+import 'package:coui_web/src/base/ui_prefix_modifier.dart';
 
-/// Style configuration for Slider components.
-///
-/// Defines the visual styling options available for slider components,
-/// following DaisyUI's range slider styling patterns.
-abstract class SliderStyling {
-  /// The CSS class name for this style.
-  String get cssClass;
+/// Styling interface for Slider components.
+abstract interface class SliderStyling implements Styling {}
 
-  /// The type of style this represents.
-  StyleType get type;
-}
-
-/// Concrete implementation of slider styles.
+/// Slider style class using Tailwind CSS.
 class SliderStyle implements SliderStyling {
-  /// Creates a [SliderStyle].
-  const SliderStyle(this.cssClass, {required this.type});
+  const SliderStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
   @override
   final String cssClass;
 
   @override
   final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
+    return '$prefixesString$cssClass';
+  }
+}
+
+/// Slider variant style.
+class SliderVariantStyle implements SliderStyling {
+  const SliderVariantStyle({
+    this.additionalClasses,
+  });
+
+  /// Additional custom classes.
+  final String? additionalClasses;
+
+  @override
+  String get cssClass {
+    const baseClasses =
+        'relative flex w-full touch-none select-none items-center';
+
+    return [
+      baseClasses,
+      additionalClasses,
+    ].where((c) => c != null && c.isNotEmpty).join(' ');
+  }
+
+  @override
+  StyleType get type => StyleType.form;
+
+  @override
+  List<PrefixModifier>? get modifiers => null;
+
+  @override
+  String toString() => cssClass;
 }

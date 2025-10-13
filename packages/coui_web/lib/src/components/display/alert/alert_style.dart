@@ -1,37 +1,67 @@
-import 'package:coui_web/src/base/component_style.dart';
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
-import 'package:coui_web/src/components/display/alert/alert.dart';
+import 'package:coui_web/src/base/variant_system.dart';
 
-/// A marker interface for any utility that can be passed to an [Alert]'s `style` list.
-///
-/// This allows for type-safe application of styles for colors, variants, and layout direction.
-abstract class _AlertStyling implements Styling {}
+/// Styling interface for Alert components.
+abstract interface class AlertStyling implements Styling {}
 
-/// A marker interface for any utility that can be passed to an [Alert]'s `style` list.
-///
-/// This allows for type-safe application of styles for colors, variants, and layout direction.
-typedef AlertStyling = _AlertStyling;
+/// Alert style class using Tailwind CSS variants.
+class AlertStyle implements AlertStyling {
+  const AlertStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
-/// Defines specific styling options for an [Alert] component.
-///
-/// This is the concrete implementation class for alert-specific modifiers.
-/// It implements the [AlertStyling] interface, making it a valid type for the
-/// `style` property of an [Alert] component.
-class AlertStyle extends ComponentStyle<AlertStyle>
-    with Breakpoints<AlertStyle>
-    implements AlertStyling {
-  /// Constructs an [AlertStyle].
-  ///
-  /// - [cssClass]: The core CSS class string for this modifier (e.g., "alert-success").
-  /// - [type]: The [StyleType] categorizing this modifier.
-  /// - [modifiers]: An optional list of [PrefixModifier]s for responsive styling.
-  const AlertStyle(super.cssClass, {super.modifiers, required super.type});
-
-  /// Creates a new instance of [AlertStyle] with the provided modifiers.
   @override
-  AlertStyle create(List<PrefixModifier> modifiers) {
-    return AlertStyle(cssClass, modifiers: modifiers, type: type);
+  final String cssClass;
+
+  @override
+  final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+    return '$prefixesString$cssClass';
   }
+}
+
+/// Alert variant style using the new variant system.
+class AlertVariantStyle implements AlertStyling {
+  const AlertVariantStyle({
+    required this.variant,
+    this.additionalClasses,
+  });
+
+  /// The alert variant.
+  final AlertVariant variant;
+
+  /// Additional custom classes.
+  final String? additionalClasses;
+
+  @override
+  String get cssClass {
+    return [
+      AlertVariant.defaultVariant.classes,
+      variant.classes,
+      additionalClasses,
+    ].where((c) => c != null && c.isNotEmpty).join(' ');
+  }
+
+  @override
+  StyleType get type => StyleType.style;
+
+  @override
+  List<PrefixModifier>? get modifiers => null;
+
+  @override
+  String toString() => cssClass;
 }

@@ -1,25 +1,35 @@
 import 'package:coui_web/src/base/style_type.dart';
+import 'package:coui_web/src/base/styling.dart';
+import 'package:coui_web/src/base/ui_prefix_modifier.dart';
 
-/// Style configuration for Accordion components.
-///
-/// Defines the visual styling options available for accordion components,
-/// following DaisyUI's collapse component styling patterns.
-abstract class AccordionStyling {
-  /// The CSS class name for this style.
-  String get cssClass;
+/// Styling interface for Accordion components.
+abstract interface class AccordionStyling implements Styling {}
 
-  /// The type of style this represents.
-  StyleType get type;
-}
-
-/// Concrete implementation of accordion styles.
+/// Accordion style class using Tailwind CSS.
 class AccordionStyle implements AccordionStyling {
-  /// Creates an [AccordionStyle].
-  const AccordionStyle(this.cssClass, {required this.type});
+  const AccordionStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
   @override
   final String cssClass;
 
   @override
   final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
+    return '$prefixesString$cssClass';
+  }
 }

@@ -1,25 +1,35 @@
 import 'package:coui_web/src/base/style_type.dart';
+import 'package:coui_web/src/base/styling.dart';
+import 'package:coui_web/src/base/ui_prefix_modifier.dart';
 
-/// Style configuration for DropdownMenu components.
-///
-/// Defines the visual styling options available for dropdown menu components,
-/// following DaisyUI's dropdown styling patterns.
-abstract class DropdownMenuStyling {
-  /// The CSS class name for this style.
-  String get cssClass;
+/// Styling interface for DropdownMenu components.
+abstract interface class DropdownMenuStyling implements Styling {}
 
-  /// The type of style this represents.
-  StyleType get type;
-}
-
-/// Concrete implementation of dropdown menu styles.
+/// DropdownMenu style class using Tailwind CSS.
 class DropdownMenuStyle implements DropdownMenuStyling {
-  /// Creates a [DropdownMenuStyle].
-  const DropdownMenuStyle(this.cssClass, {required this.type});
+  const DropdownMenuStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
   @override
   final String cssClass;
 
   @override
   final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
+    return '$prefixesString$cssClass';
+  }
 }

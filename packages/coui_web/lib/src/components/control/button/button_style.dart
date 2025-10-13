@@ -1,31 +1,82 @@
-import 'package:coui_web/src/base/component_style.dart';
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
-import 'package:coui_web/src/components/control/button/button.dart';
+import 'package:coui_web/src/base/variant_system.dart';
 
-/// Marker interface for any utility that can be passed to a [Button]'s `modifiers` list.
-abstract class _ButtonStyling implements Styling {}
-
-/// Public interface for ButtonStyling.
-typedef ButtonStyling = _ButtonStyling;
-
-/// Represents component-specific utility classes for the [Button] component.
+/// Styling interface for Button components using Tailwind CSS variants.
 ///
-/// These modifiers control the appearance and state of the button, such as its
-/// color, size, shape (e.g., square, circle), and operational state (e.g., disabled).
-class ButtonStyle extends ComponentStyle<ButtonStyle>
-    with Breakpoints<ButtonStyle>
-    implements ButtonStyling {
-  /// Constructs a [ButtonStyle].
-  ///
-  /// [cssClass]: The core CSS class string for this modifier (e.g., "btn-primary").
-  /// [type]: The [StyleType] categorizing this modifier.
-  /// [modifiers]: An optional list of [PrefixModifier]s already applied to this modifier.
-  const ButtonStyle(super.cssClass, {super.modifiers, required super.type});
+/// This class is kept for backward compatibility but delegates to the
+/// new variant system internally.
+abstract interface class ButtonStyling implements Styling {}
+
+/// Button style class supporting Tailwind CSS-based styling.
+class ButtonStyle implements ButtonStyling {
+  const ButtonStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
   @override
-  ButtonStyle create(List<PrefixModifier> modifiers) {
-    return ButtonStyle(cssClass, modifiers: modifiers, type: type);
+  final String cssClass;
+
+  @override
+  final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+    return '$prefixesString$cssClass';
   }
+}
+
+/// Button variant class using the new variant system.
+///
+/// This provides a more flexible way to compose button styles using
+/// Tailwind CSS utility classes.
+class ButtonVariantStyle implements ButtonStyling {
+  const ButtonVariantStyle({
+    required this.variant,
+    this.size,
+    this.additionalClasses,
+  });
+
+  /// The button variant (primary, secondary, etc.).
+  final ButtonVariant variant;
+
+  /// The button size.
+  final ButtonSize? size;
+
+  /// Additional custom classes.
+  final String? additionalClasses;
+
+  @override
+  String get cssClass {
+    final sizeClasses = size?.classes ?? ButtonSize.md.classes;
+    final baseClasses =
+        'inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50';
+
+    return [
+      baseClasses,
+      variant.classes,
+      sizeClasses,
+      additionalClasses,
+    ].where((c) => c != null && c.isNotEmpty).join(' ');
+  }
+
+  @override
+  StyleType get type => StyleType.style;
+
+  @override
+  List<PrefixModifier>? get modifiers => null;
+
+  @override
+  String toString() => cssClass;
 }

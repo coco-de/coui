@@ -1,37 +1,69 @@
-import 'package:coui_web/src/base/component_style.dart';
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
-import 'package:coui_web/src/components/form/input/input.dart';
+import 'package:coui_web/src/base/variant_system.dart';
 
-/// A marker interface for any utility that can be passed to an [Input]'s `style` list.
-///
-/// This allows for type-safe application of styles for colors, sizes, and variants.
-abstract class _InputStyling implements Styling {}
+/// Styling interface for Input components.
+abstract interface class InputStyling implements Styling {}
 
-/// A marker interface for any utility that can be passed to an [Input]'s `style` list.
-///
-/// This allows for type-safe application of styles for colors, sizes, and variants.
-typedef InputStyling = _InputStyling;
+/// Input style class using Tailwind CSS variants.
+class InputStyle implements InputStyling {
+  const InputStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
-/// Defines specific styling options for an [Input] component.
-///
-/// This is the concrete implementation class for input-specific modifiers.
-/// It implements the [InputStyling] interface, making it a valid type for the
-/// `style` property of an [Input] component.
-class InputStyle extends ComponentStyle<InputStyle>
-    with Breakpoints<InputStyle>
-    implements InputStyling {
-  /// Constructs an [InputStyle].
-  ///
-  /// - [cssClass]: The core CSS class string for this modifier (e.g., "input-bordered").
-  /// - [type]: The [StyleType] categorizing this modifier.
-  /// - [modifiers]: An optional list of [PrefixModifier]s for responsive styling.
-  const InputStyle(super.cssClass, {super.modifiers, required super.type});
-
-  /// Creates a new instance of [InputStyle] with the provided modifiers.
   @override
-  InputStyle create(List<PrefixModifier> modifiers) {
-    return InputStyle(cssClass, modifiers: modifiers, type: type);
+  final String cssClass;
+
+  @override
+  final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+    return '$prefixesString$cssClass';
   }
+}
+
+/// Input variant style using the new variant system.
+class InputVariantStyle implements InputStyling {
+  const InputVariantStyle({
+    this.variant,
+    this.additionalClasses,
+  });
+
+  /// The input variant.
+  final InputVariant? variant;
+
+  /// Additional custom classes.
+  final String? additionalClasses;
+
+  @override
+  String get cssClass {
+    final variantClasses =
+        variant?.classes ?? InputVariant.defaultVariant.classes;
+
+    return [
+      variantClasses,
+      additionalClasses,
+    ].where((c) => c != null && c.isNotEmpty).join(' ');
+  }
+
+  @override
+  StyleType get type => StyleType.style;
+
+  @override
+  List<PrefixModifier>? get modifiers => null;
+
+  @override
+  String toString() => cssClass;
 }

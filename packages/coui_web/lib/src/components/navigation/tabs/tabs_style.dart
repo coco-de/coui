@@ -1,25 +1,35 @@
 import 'package:coui_web/src/base/style_type.dart';
+import 'package:coui_web/src/base/styling.dart';
+import 'package:coui_web/src/base/ui_prefix_modifier.dart';
 
-/// Style configuration for Tabs components.
-///
-/// Defines the visual styling options available for tabs components,
-/// following DaisyUI's tabs styling patterns.
-abstract class TabsStyling {
-  /// The CSS class name for this style.
-  String get cssClass;
+/// Styling interface for Tabs components.
+abstract interface class TabsStyling implements Styling {}
 
-  /// The type of style this represents.
-  StyleType get type;
-}
-
-/// Concrete implementation of tabs styles.
+/// Tabs style class using Tailwind CSS.
 class TabsStyle implements TabsStyling {
-  /// Creates a [TabsStyle].
-  const TabsStyle(this.cssClass, {required this.type});
+  const TabsStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
   @override
   final String cssClass;
 
   @override
   final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
+    return '$prefixesString$cssClass';
+  }
 }

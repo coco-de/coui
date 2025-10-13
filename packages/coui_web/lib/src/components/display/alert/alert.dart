@@ -1,101 +1,263 @@
-import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
-import 'package:coui_web/src/base/ui_component_attributes.dart';
+import 'package:coui_web/src/base/variant_system.dart';
 import 'package:coui_web/src/components/display/alert/alert_style.dart';
-import 'package:jaspr/jaspr.dart' show Component, Key, Styles;
+import 'package:jaspr/jaspr.dart';
 
-/// A component to inform users about important events, rendering a `<div>` with `role="alert"`.
+/// An alert component for displaying important messages.
 ///
-/// The `Alert` component is a flexible container. Its children can be any combination
-/// of `Icon`, `span`, `div`, or `Button` components to create the desired layout.
+/// Follows shadcn-ui design patterns with Tailwind CSS styling.
 ///
-/// Example Usage:
+/// Example:
 /// ```dart
 /// Alert(
-///   style: [Alert.success, Alert.soft],
-///   [
-///     Icon('check_circle'), // Assumes coui_web Icon component
-///     span([text('Your purchase has been confirmed!')]),
-///     div([
-///       Button([text('View Receipt')], style: [Button.sm]),
-///     ])
+///   children: [
+///     AlertTitle(titleChild: text('Heads up!')),
+///     AlertDescription(descriptionChild: text('You can add components to your app using the cli.')),
 ///   ],
 /// )
 /// ```
 class Alert extends UiComponent {
   /// Creates an Alert component.
   ///
-  /// - [children]: The content of the alert, typically including an icon,
-  ///   text, and optional action buttons.
-  /// - [tag]: The HTML tag for the root element, defaults to 'div'.
-  /// - [style]: A list of [AlertStyling] instances to control the color,
-  ///   style, and layout.
-  /// - Other parameters are inherited from [UiComponent].
-  const Alert(
-    super.children, {
+  /// Parameters:
+  /// - [children]: Child components to display in the alert
+  /// - [child]: Single child component (alternative to children)
+  /// - [variant]: Alert variant (default or destructive)
+  Alert(
+    List<Component> list, {
+    List<Component>? children,
+    Component? child,
+    super.key,
+    AlertVariant? variant,
     super.attributes,
-    super.child,
     super.classes,
     super.css,
     super.id,
+    super.tag = _divValue,
+  }) : _variant = variant ?? AlertVariant.defaultVariant,
+       super(
+         children,
+         child: child,
+         style: [
+           AlertVariantStyle(variant: variant ?? AlertVariant.defaultVariant),
+         ],
+       );
+
+  /// Creates a destructive alert.
+  Alert.destructive({
+    List<Component>? children,
+    Component? child,
     super.key,
-    List<AlertStyling>? style,
-    super.tag = 'div',
-  }) : super(style: style);
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _divValue,
+  }) : _variant = AlertVariant.destructive,
+       super(
+         children,
+         child: child,
+         style: [
+           AlertVariantStyle(variant: AlertVariant.destructive),
+         ],
+       );
 
-  // Colors.
-  /// Info color, for neutral informative messages. `alert-info`.
-  static const info = AlertStyle('alert-info', type: StyleType.style);
+  /// Internal variant reference.
+  final AlertVariant _variant;
 
-  /// Success color, for positive confirmation messages. `alert-success`.
-  static const success = AlertStyle('alert-success', type: StyleType.style);
-
-  /// Warning color, for potentially harmful actions. `alert-warning`.
-  static const warning = AlertStyle('alert-warning', type: StyleType.style);
-
-  /// Error color, for failed actions or errors. `alert-error`.
-  static const error = AlertStyle('alert-error', type: StyleType.style);
-
-  // HTML attribute constants
-  static const _roleAttribute = 'role';
-  static const _alertValue = 'alert';
-
-  @override
-  String get baseClass => _alertValue;
-
-  @override
-  void configureAttributes(UiComponentAttributes attributes) {
-    super.configureAttributes(attributes);
-    // The 'alert' role is crucial for accessibility, making screen readers
-    // announce the message dynamically.
-    if (!userProvidedAttributes.containsKey(_roleAttribute)) {
-      attributes.addRole(_alertValue);
-    }
-  }
+  static const _divValue = 'div';
 
   @override
   Alert copyWith({
     Map<String, String>? attributes,
-    Component? child,
     String? classes,
     Styles? css,
     String? id,
-    Key? key,
-    List<AlertStyling>? style,
     String? tag,
+    List<Component>? children,
+    Component? child,
+    AlertVariant? variant,
+    Key? key,
   }) {
-    final styleValue = style ?? this.style;
-
     return Alert(
-      children,
       key: key ?? this.key,
-      attributes: attributes ?? userProvidedAttributes,
-      classes: mergeClasses(this.classes, classes),
+      variant: variant ?? _variant,
+      children: children ?? this.children,
+      child: child ?? this.child,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      style: styleValue,
       tag: tag ?? this.tag,
-      child: child ?? this.child,
     );
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      child: child,
+      children: children,
+    );
+  }
+
+  @override
+  String get baseClass => '';
+
+  String _buildClasses() {
+    final classList = <String>[];
+
+    // Add variant classes from style
+    if (style != null) {
+      for (final s in style!) {
+        classList.add(s.cssClass);
+      }
+    }
+
+    // Add user classes
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
+}
+
+/// Alert title component.
+class AlertTitle extends UiComponent {
+  /// Creates an AlertTitle component.
+  const AlertTitle({
+    required Component this.titleChild,
+    super.key,
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _h5Value,
+  }) : super(null);
+
+  /// Content of the title.
+  final Component titleChild;
+
+  static const _h5Value = 'h5';
+
+  static const _baseClasses = 'mb-1 font-medium leading-none tracking-tight';
+  @override
+  AlertTitle copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    String? tag,
+    Component? titleChild,
+    Key? key,
+  }) {
+    return AlertTitle(
+      key: key ?? this.key,
+      titleChild: titleChild ?? this.titleChild,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
+    );
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      child: titleChild,
+    );
+  }
+
+  @override
+  String get baseClass => _baseClasses;
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
+}
+
+/// Alert description component.
+class AlertDescription extends UiComponent {
+  /// Creates an AlertDescription component.
+  const AlertDescription({
+    required Component this.descriptionChild,
+    super.key,
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _divValue,
+  }) : super(null);
+
+  /// Content of the description.
+  final Component descriptionChild;
+
+  static const _divValue = 'div';
+
+  static const _baseClasses = 'text-sm [&_p]:leading-relaxed';
+  @override
+  AlertDescription copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    String? tag,
+    Component? descriptionChild,
+    Key? key,
+  }) {
+    return AlertDescription(
+      key: key ?? this.key,
+      descriptionChild: descriptionChild ?? this.descriptionChild,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
+    );
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      child: descriptionChild,
+    );
+  }
+
+  @override
+  String get baseClass => _baseClasses;
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
   }
 }

@@ -139,16 +139,16 @@ class Breadcrumb extends UiComponent {
     final itemContent = switch ((active, href, onPressed)) {
       // Link item
       (false, final String h, _) => Component.element(
-          tag: 'a',
-          attributes: {'href': h},
-          children: [Component.text(label)],
-        ),
+        tag: 'a',
+        attributes: {'href': h},
+        children: [Component.text(label)],
+      ),
       // Button item (for SPA navigation)
       (false, null, final VoidCallback cb) => Component.element(
-          tag: 'a',
-          events: {'click': (_) => cb()},
-          children: [Component.text(label)],
-        ),
+        tag: 'a',
+        events: {'click': (_) => cb()},
+        children: [Component.text(label)],
+      ),
       // Active item or plain text
       _ => Component.text(label),
     };

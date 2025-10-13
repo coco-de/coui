@@ -1,382 +1,482 @@
-import 'package:coui_web/src/base/style_type.dart';
-import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_component.dart';
-import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/base/utilities/alignment.dart';
+import 'package:coui_web/src/base/variant_system.dart';
 import 'package:coui_web/src/components/layout/card/card_style.dart';
-import 'package:coui_web/src/elements/figure.dart';
 import 'package:jaspr/jaspr.dart';
 
-/// A content container, often used to display information in a structured layout.
-/// It typically renders as an HTML `<div>` element with the 'card' base class.
-/// The `modifiers` list accepts instances of [CardStyling] (the interface),
-/// which includes specific card styles and general utility classes.
-/// Compatible with coui_flutter API.
+/// A card container component following shadcn-ui design patterns.
+///
+/// Cards are surfaces that display content and actions on a single topic.
+///
+/// Example:
+/// ```dart
+/// Card(
+///   children: [
+///     CardHeader(child: text('Card Title')),
+///     CardContent(child: text('Card content goes here')),
+///     CardFooter(child: Button.primary(child: text('Action'))),
+///   ],
+/// )
+/// ```
 class Card extends UiComponent {
   /// Creates a Card component.
   ///
-  /// - [children] or [child]: The content, typically [CardBody], [Figure], [CardActions].
-  /// - [tag]: The HTML tag, defaults to 'div'.
-  /// - [style]: A list of [CardStyling] (the interface) instances.
-  /// - [onPressed]: Callback when card is clicked (Flutter-compatible API).
-  /// - [ariaLabel], [ariaLabelledBy]: For accessibility.
-  /// - Other parameters from [UiComponent].
-  Card(
-    super.children, {
-    this.ariaLabel,
-    this.ariaLabelledBy,
+  /// Parameters:
+  /// - [children]: Child components to display in the card
+  /// - [child]: Single child component (alternative to children)
+  /// - [variant]: Card variant (default or hoverable)
+  Card({
+    List<Component>? children,
+    Component? child,
+    super.key,
+    CardVariant? variant,
     super.attributes,
-    super.child,
     super.classes,
     super.css,
     super.id,
-    super.key,
-    VoidCallback? onPressed,
-    List<CardStyling>? style,
-    super.tag = 'div',
-  }) : super(
-         // Convert Flutter-style onPressed to web onClick event.
-         onClick: onPressed == null ? null : (_) => onPressed(),
-         style: style,
+    super.tag = _divValue,
+  }) : _variant = variant ?? CardVariant.defaultVariant,
+       super(
+         children,
+         child: child,
+         style: [
+           CardVariantStyle(variant: variant ?? CardVariant.defaultVariant),
+         ],
        );
 
-  final String? ariaLabel;
+  /// Creates a hoverable card with hover effects.
+  Card.hoverable({
+    List<Component>? children,
+    Component? child,
+    super.key,
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _divValue,
+  }) : _variant = CardVariant.hoverable,
+       super(
+         children,
+         child: child,
+         style: [
+           CardVariantStyle(variant: CardVariant.hoverable),
+         ],
+       );
 
-  final String? ariaLabelledBy; // --- Static Card Modifiers ---
+  /// Internal variant reference.
+  final CardVariant _variant;
 
-  // Style Modifiers
-  /// Adds a solid border to the card. `card-border`.
-  static const border = CardStyle('card-border', type: StyleType.style);
-
-  /// Adds a dashed border to the card. `card-dash` (New in DaisyUI 5).
-  static const dash = CardStyle('card-dash', type: StyleType.style);
-
-  /// Styles the card for full-width image display, where the image becomes
-  /// the background. `image-full`.
-  static const imageFull = CardStyle('image-full', type: StyleType.style);
-
-  // Modifier
-  /// Styles the card for a side-by-side layout, typically image on one side,
-  /// body on the other. `card-side`.
-  static const side = CardStyle('card-side', type: StyleType.layout);
-
-  // Size Modifiers (padding and overall look)
-  /// Extra small card size/padding. `card-xs` (New in DaisyUI 5).
-  static const xs = CardStyle('card-xs', type: StyleType.sizing);
-
-  /// Small card size/padding. `card-sm`.
-  static const sm = CardStyle('card-sm', type: StyleType.sizing);
-
-  /// Medium card size/padding (default). `card-md`.
-  static const md = CardStyle('card-md', type: StyleType.sizing);
-
-  /// Large card size/padding. `card-lg`.
-  static const lg = CardStyle('card-lg', type: StyleType.sizing);
-
-  /// Extra large card size/padding. `card-xl` (New in DaisyUI 5).
-  static const xl = CardStyle(
-    'card-xl',
-    type: StyleType.sizing,
-  ); // HTML attribute constants
-  static const _ariaLabelAttribute = 'label';
-
-  static const _ariaLabelledByAttribute = 'labelledby';
-
-  @override
-  String get baseClass => 'card';
-
-  @override
-  void configureAttributes(UiComponentAttributes attributes) {
-    super.configureAttributes(attributes);
-
-    final ariaLabelValue = ariaLabel;
-    if (ariaLabelValue != null) {
-      attributes.addAria(_ariaLabelAttribute, ariaLabelValue);
-    }
-    final ariaLabelledByValue = ariaLabelledBy;
-    if (ariaLabelledByValue != null) {
-      attributes.addAria(_ariaLabelledByAttribute, ariaLabelledByValue);
-    }
-    // Role "group" or "region" could be applicable depending on context,
-    // but not applied by default.
-  }
+  static const _divValue = 'div';
 
   @override
   Card copyWith({
-    String? ariaLabel,
-    String? ariaLabelledBy,
     Map<String, String>? attributes,
-    Component? child,
     String? classes,
     Styles? css,
     String? id,
-    Key? key,
-    VoidCallback? onPressed,
-    List<CardStyling>? style,
     String? tag,
+    List<Component>? children,
+    Component? child,
+    CardVariant? variant,
+    Key? key,
   }) {
     return Card(
-      children,
-      ariaLabel: ariaLabel ?? this.ariaLabel,
-      ariaLabelledBy: ariaLabelledBy ?? this.ariaLabelledBy,
-      attributes: attributes ?? userProvidedAttributes,
+      key: key ?? this.key,
+      variant: variant ?? _variant,
       child: child ?? this.child,
-      classes: mergeClasses(this.classes, classes),
+      children: children ?? this.children,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      key: key ?? this.key,
-      onPressed: onPressed,
-      style:
-          style ??
-          () {
-            final currentStyle = this.style;
-
-            return currentStyle is List<CardStyling>? ? currentStyle : null;
-          }(),
       tag: tag ?? this.tag,
     );
   }
 
-  // 'glass' was previously a CardStyleModifier. In DaisyUI 5, 'glass' is a general utility
-  // that can be applied to any element, including cards. It should be used as a general Effect.
-  // Example: Card([...], styles: [Effects.glass])
-}
-
-/// The main content area of a [Card].
-/// Typically renders as an HTML `<div>` element with the 'card-body' class.
-class CardBody extends UiComponent {
-  /// Creates a CardBody component.
-  ///
-  /// styles can include general utilities like `Spacing` or `Typography`.
-  const CardBody(
-    super.children, {
-    super.attributes,
-    super.child,
-    super.classes,
-    super.css,
-    super.id,
-    super.key,
-    super.style,
-    super.tag = 'div',
-  });
-
   @override
-  String get baseClass => 'card-body';
-
-  @override
-  void configureAttributes(UiComponentAttributes attributes) {
-    super.configureAttributes(attributes);
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      child: child,
+      children: children,
+    );
   }
 
   @override
-  CardBody copyWith({
-    Map<String, String>? attributes,
+  String get baseClass => '';
+
+  String _buildClasses() {
+    final classList = <String>[];
+
+    // Add variant classes from style
+    if (style != null) {
+      for (final s in style!) {
+        classList.add(s.cssClass);
+      }
+    }
+
+    // Add user classes
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
+}
+
+/// Card header component.
+class CardHeader extends UiComponent {
+  /// Creates a CardHeader component.
+  CardHeader({
+    List<Component>? children,
     Component? child,
+    super.key,
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _divValue,
+  }) : super(
+         children,
+         child: child,
+       );
+
+  static const _divValue = 'div';
+
+  static const _baseClasses = 'flex flex-col space-y-1.5 p-6';
+
+  @override
+  CardHeader copyWith({
+    Map<String, String>? attributes,
     String? classes,
     Styles? css,
     String? id,
-    Key? key,
-    List<Styling>? style,
     String? tag,
+    Component? child,
+    List<Component>? children,
+    Key? key,
   }) {
-    return CardBody(
-      children,
+    return CardHeader(
       key: key ?? this.key,
-      attributes: attributes ?? userProvidedAttributes,
-      classes: mergeClasses(this.classes, classes),
+      children: children ?? this.children,
+      child: child ?? this.child,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      style: style ?? this.style,
       tag: tag ?? this.tag,
-      child: child ?? this.child,
     );
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      child: child,
+      children: children,
+    );
+  }
+
+  @override
+  String get baseClass => _baseClasses;
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
   }
 }
 
-/// The title section of a [Card].
-/// Typically renders as an HTML `<h2>` element with the 'card-title' class.
+/// Card title component.
 class CardTitle extends UiComponent {
   /// Creates a CardTitle component.
-  /// Its `id` can be used by the parent [Card]'s `aria-labelledby` attribute.
-  /// modifiers can include general utilities like `Typography`.
-  const CardTitle(
-    super.children, {
+  const CardTitle({
+    required Component this.titleChild,
+    super.key,
     super.attributes,
-    super.child,
     super.classes,
     super.css,
     super.id,
-    super.key,
-    super.style,
-    super.tag = 'h2',
-  });
+    super.tag = _h3Value,
+  }) : super(null);
 
-  @override
-  String get baseClass => 'card-title';
+  /// Content of the title.
+  final Component titleChild;
 
-  @override
-  void configureAttributes(UiComponentAttributes attributes) {
-    super.configureAttributes(attributes);
-  }
+  static const _h3Value = 'h3';
+
+  static const _baseClasses =
+      'text-2xl font-semibold leading-none tracking-tight';
 
   @override
   CardTitle copyWith({
     Map<String, String>? attributes,
-    Component? child,
     String? classes,
     Styles? css,
     String? id,
-    Key? key,
-    List<Styling>? style,
     String? tag,
+    Component? titleChild,
+    Key? key,
   }) {
     return CardTitle(
-      children,
       key: key ?? this.key,
-      attributes: attributes ?? userProvidedAttributes,
-      classes: mergeClasses(this.classes, classes),
+      titleChild: titleChild ?? this.titleChild,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      style: style ?? this.style,
       tag: tag ?? this.tag,
-      child: child ?? this.child,
     );
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      child: titleChild,
+    );
+  }
+
+  @override
+  String get baseClass => _baseClasses;
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
   }
 }
 
-/// A container for action elements (like buttons) within a [Card].
-/// Typically renders as an HTML `<div>` element with the 'card-actions' class.
-class CardActions extends UiComponent {
-  /// Creates a CardActions component.
-  /// [style] can include general utilities like `Layout` for alignment.
-  const CardActions(
-    super.children, {
+/// Card description component.
+class CardDescription extends UiComponent {
+  /// Creates a CardDescription component.
+  const CardDescription({
+    required Component this.descriptionChild,
+    super.key,
     super.attributes,
-    super.child,
     super.classes,
     super.css,
     super.id,
-    super.key,
-    super.style,
-    super.tag = 'div',
-  });
+    super.tag = _pValue,
+  }) : super(null);
+
+  /// Content of the description.
+  final Component descriptionChild;
+
+  static const _pValue = 'p';
+
+  static const _baseClasses = 'text-sm text-muted-foreground';
 
   @override
-  String get baseClass => 'card-actions';
-
-  @override
-  void configureAttributes(UiComponentAttributes attributes) {
-    super.configureAttributes(attributes);
-  }
-
-  @override
-  CardActions copyWith({
+  CardDescription copyWith({
     Map<String, String>? attributes,
-    Component? child,
     String? classes,
     Styles? css,
     String? id,
-    Key? key,
-    List<Styling>? style,
     String? tag,
+    Component? descriptionChild,
+    Key? key,
   }) {
-    return CardActions(
-      children,
+    return CardDescription(
       key: key ?? this.key,
-      attributes: attributes ?? userProvidedAttributes,
-      classes: mergeClasses(this.classes, classes),
+      descriptionChild: descriptionChild ?? this.descriptionChild,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      style: style ?? this.style,
       tag: tag ?? this.tag,
+    );
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      child: descriptionChild,
+    );
+  }
+
+  @override
+  String get baseClass => _baseClasses;
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
+}
+
+/// Card content component.
+class CardContent extends UiComponent {
+  /// Creates a CardContent component.
+  CardContent({
+    List<Component>? children,
+    Component? child,
+    super.key,
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _divValue,
+  }) : super(
+         children,
+         child: child,
+       );
+
+  static const _divValue = 'div';
+
+  static const _baseClasses = 'p-6 pt-0';
+
+  @override
+  CardContent copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    String? tag,
+    Component? child,
+    List<Component>? children,
+    Key? key,
+  }) {
+    return CardContent(
+      key: key ?? this.key,
       child: child ?? this.child,
-    );
-  }
-}
-
-/// Configuration object for creating basic cards.
-class BasicCardConfig {
-  const BasicCardConfig({
-    this.actions,
-    this.cardClasses = 'w-96 bg-base-100 shadow-sm',
-    this.cardId,
-    this.cardStyles,
-    required this.content,
-    this.figureStyles,
-    this.imageAlt,
-    this.imageUrl,
-    this.key,
-    this.titleId,
-    required this.titleText,
-  });
-  final List<Component>? actions;
-  final String cardClasses;
-  final String? cardId;
-  final List<CardStyling>? cardStyles;
-  final List<Component> content;
-  final List<Styling>? figureStyles;
-  final String? imageAlt;
-  final String? imageUrl;
-  final Key? key;
-  final String? titleId;
-
-  final String titleText;
-}
-
-/// Helper methods for creating common card patterns.
-abstract final class CardHelper {
-  static const _defaultImageAlt = 'Card image';
-
-  /// Creates a basic card with title, content, and optional actions.
-  static Card createBasicCard(BasicCardConfig config) {
-    final actions = config.actions;
-    final cardClasses = config.cardClasses;
-    final cardId = config.cardId;
-    final cardStyles = config.cardStyles;
-    final content = config.content;
-    final titleText = config.titleText;
-    final titleId = config.titleId;
-    final key = config.key;
-    final imageUrl = config.imageUrl;
-    final imageAlt = config.imageAlt;
-    final figureStyles = config.figureStyles;
-
-    final cardChildren = <Component>[];
-
-    // Handle optional image
-    if (imageUrl != null) {
-
-      cardChildren.add(
-        Figure(
-          [img(alt: imageAlt ?? _defaultImageAlt, src: imageUrl)],
-          style: figureStyles,
-        ),
-      );
-    }
-
-    final bodyChildren = <Component>[
-      CardTitle([Component.text(titleText)], id: titleId),
-      ...content,
-    ];
-    if (actions != null && actions.isNotEmpty) {
-      bodyChildren.add(
-        CardActions(
-          actions,
-          style: const [Alignment.justifyEnd],
-        ), // Default to justify-end for actions.
-      );
-    }
-    cardChildren.add(CardBody(bodyChildren));
-
-    return Card(
-      cardChildren,
-      key: key,
-      ariaLabelledBy: titleId,
-      classes: cardClasses,
-      id: cardId,
-      style: cardStyles,
+      children: children ?? this.children,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
     );
   }
 
-  // Other helpers can be added if needed, e.g., for specific complex card layouts.
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      child: child,
+      children: children,
+    );
+  }
+
+  @override
+  String get baseClass => _baseClasses;
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
+}
+
+/// Card footer component.
+class CardFooter extends UiComponent {
+  /// Creates a CardFooter component.
+  CardFooter({
+    List<Component>? children,
+    Component? child,
+    super.key,
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _divValue,
+  }) : super(
+         children,
+         child: child,
+       );
+
+  static const _divValue = 'div';
+
+  static const _baseClasses = 'flex items-center p-6 pt-0';
+
+  @override
+  CardFooter copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    String? tag,
+    Component? child,
+    List<Component>? children,
+    Key? key,
+  }) {
+    return CardFooter(
+      key: key ?? this.key,
+      child: child ?? this.child,
+      children: children ?? this.children,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
+    );
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      child: child,
+      children: children,
+    );
+  }
+
+  @override
+  String get baseClass => _baseClasses;
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
 }

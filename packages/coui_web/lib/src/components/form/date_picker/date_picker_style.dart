@@ -1,13 +1,35 @@
 import 'package:coui_web/src/base/style_type.dart';
+import 'package:coui_web/src/base/styling.dart';
+import 'package:coui_web/src/base/ui_prefix_modifier.dart';
 
-/// Style configuration for DatePicker components.
-///
-/// Defines the visual styling options available for date picker components,
-/// following DaisyUI's modal and button styling patterns.
-abstract class DatePickerStyling {
-  /// The CSS class name for this style.
-  String get cssClass;
+/// Styling interface for DatePicker components.
+abstract interface class DatePickerStyling implements Styling {}
 
-  /// The type of style this represents.
-  StyleType get type;
+/// DatePicker style class using Tailwind CSS.
+class DatePickerStyle implements DatePickerStyling {
+  const DatePickerStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
+
+  @override
+  final String cssClass;
+
+  @override
+  final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
+    return '$prefixesString$cssClass';
+  }
 }

@@ -26,7 +26,7 @@ abstract class UiComponent extends StatelessComponent {
   /// - [style]: A list of [Styling] instances (general or
   ///   component-specific utility classes) to apply for styling.
   /// - [id]: The HTML ID for the root element. This is passed directly
-  ///   to the underlying [DomComponent].
+  ///   to the underlying [Component.element].
   /// - [classes]: A string of additional space-separated CSS classes to apply.
   /// - [css]: Inline CSS styles to apply to the root element.
   /// - [attributes]: A map of user-provided HTML attributes. These will
@@ -246,7 +246,7 @@ abstract class UiComponent extends StatelessComponent {
     ].where((String className) => className.isNotEmpty).join(' ');
   }
 
-  /// Constructs the map of event handlers for the [DomComponent].
+  /// Constructs the map of event handlers for the [Component.element].
   Map<String, EventCallback> get events {
     final eventMap = <String, EventCallback>{};
 
@@ -319,7 +319,7 @@ abstract class UiComponent extends StatelessComponent {
   ///
   /// (component-defined and user-provided).
   ///
-  /// The `id` is handled separately and passed directly to [DomComponent].
+  /// The `id` is handled separately and passed directly to [Component.element].
   /// This getter orchestrates the collection of attributes by:
   /// 1. Calling [configureAttributes] to allow the component to define its
   ///    specific attributes.

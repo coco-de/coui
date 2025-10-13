@@ -1,280 +1,187 @@
-import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
-import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/components/display/accordion/accordion_style.dart';
 import 'package:jaspr/jaspr.dart';
 
-/// Callback signature for accordion state change events.
-typedef AccordionChangeCallback = void Function(int index, bool expanded);
-
-/// An accordion component for expandable/collapsible content sections.
-///
-/// The Accordion component allows organizing content into expandable panels
-/// with either single or multiple expansion modes. It follows DaisyUI's
-/// collapse component patterns.
-///
-/// Features:
-/// - Single or multiple expansion modes
-/// - Checkbox-based toggle (DaisyUI pattern)
-/// - Arrow or plus icon indicators
-/// - Support for disabled items
-/// - Accessibility with ARIA attributes
+/// An accordion component for collapsible content sections.
 ///
 /// Example:
 /// ```dart
 /// Accordion(
-///   items: [
+///   children: [
 ///     AccordionItem(
 ///       title: 'Section 1',
-///       content: [text('Content for section 1')],
+///       content: text('Content 1'),
 ///     ),
 ///     AccordionItem(
 ///       title: 'Section 2',
-///       content: [text('Content for section 2')],
-///       expanded: true,
+///       content: text('Content 2'),
 ///     ),
 ///   ],
-///   mode: AccordionMode.single,
-///   onChanged: (index, isExpanded) => handleExpansion(index, isExpanded),
 /// )
 /// ```
 class Accordion extends UiComponent {
   /// Creates an Accordion component.
-  ///
-  /// - [items]: List of accordion items.
-  /// - [mode]: Expansion mode (single or multiple).
-  /// - [onChanged]: Callback when item expansion changes (Flutter-compatible).
-  /// - [icon]: Icon type to display (arrow or plus).
-  /// - [style]: List of [AccordionStyling] instances for styling.
-  const Accordion({
+  Accordion({
+    super.key,
+    required List<Component> children,
     super.attributes,
-    super.child,
     super.classes,
     super.css,
-    this.icon = AccordionIcon.arrow,
     super.id,
-    required this.items,
-    super.key,
-    this.mode = AccordionMode.single,
-    this.onChanged,
-    List<AccordionStyling>? style,
-    super.tag = 'div',
-  }) : super(null, style: style);
+    super.tag = _divValue,
+  }) : super(children);
 
-  /// List of accordion items.
-  final List<AccordionItem> items;
-
-  /// Expansion mode (single or multiple).
-  final AccordionMode mode;
-
-  /// Callback when item expansion changes.
-  ///
-  /// Flutter-compatible callback.
-  /// Receives item index and new expanded state.
-  final AccordionChangeCallback? onChanged;
-
-  /// Icon type to display.
-  final AccordionIcon icon;
-
-  // --- Static Style Modifiers ---
-
-  /// Arrow icon style. `collapse-arrow`.
-  static const arrow = AccordionStyle('collapse-arrow', type: StyleType.style);
-
-  /// Plus icon style. `collapse-plus`.
-  static const plus = AccordionStyle('collapse-plus', type: StyleType.style);
-
-  static const _emptyValue = '';
-
-  @override
-  String get baseClass {
-    return '';
-  }
-
-  @override
-  void configureAttributes(UiComponentAttributes attributes) {
-    super.configureAttributes(attributes);
-
-    // Set ARIA attributes for accessibility
-    if (!userProvidedAttributes.containsKey('role')) {
-      attributes.addRole('region');
-    }
-  }
-
-  @override
-  Component build(BuildContext context) {
-    final styles = _buildStyleClasses();
-    final accordionItems = <Component>[];
-
-    for (final (index, item) in items.indexed) {
-      accordionItems.add(_buildAccordionItem(item, index));
-    }
-
-    const emptyString = '';
-
-    return Component.element(
-      attributes: componentAttributes,
-      classes:
-          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : emptyString}',
-      css: this.css,
-      id: id,
-      tag: tag,
-      children: accordionItems,
-    );
-  }
+  static const _divValue = 'div';
 
   @override
   Accordion copyWith({
     Map<String, String>? attributes,
-    Component? child,
     String? classes,
     Styles? css,
-    AccordionIcon? icon,
     String? id,
-    List<AccordionItem>? items,
-    Key? key,
-    AccordionMode? mode,
-    AccordionChangeCallback? onChanged,
-    List<AccordionStyling>? style,
     String? tag,
+    List<Component>? children,
+
+    Key? key,
   }) {
     return Accordion(
-      attributes: attributes ?? userProvidedAttributes,
-      child: child ?? this.child,
-      classes: mergeClasses(this.classes, classes),
-      css: css ?? this.css,
-      icon: icon ?? this.icon,
-      id: id ?? this.id,
-      items: items ?? this.items,
       key: key ?? this.key,
-      mode: mode ?? this.mode,
-      onChanged: onChanged ?? this.onChanged,
-      style: style,
+      attributes: attributes ?? this.componentAttributes,
+      children: children ?? this.children,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
       tag: tag ?? this.tag,
     );
   }
 
-  List<String> _buildStyleClasses() {
-    final stylesList = <String>[];
-    final currentStyle = style;
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      children: children,
+    );
+  }
 
-    // Add custom styles
-    if (currentStyle != null) {
-      for (final s in currentStyle) {
-        stylesList.add(s.cssClass);
-      }
+  @override
+  String get baseClass => 'w-full';
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
     }
 
-    return stylesList;
-  }
-
-  Component _buildAccordionItem(AccordionItem item, int index) {
-    final itemId = 'accordion-item-$index';
-    final iconClass = icon == AccordionIcon.plus
-        ? 'collapse-plus'
-        : 'collapse-arrow';
-
-    final itemClasses = [
-      'collapse',
-      'bg-base-200',
-      iconClass,
-      if (item.disabled) 'collapse-disabled',
-    ].join(' ');
-
-    // Checkbox for expansion state (DaisyUI pattern)
-    final disabled = item.disabled;
-    final expanded = item.expanded;
-    final title = item.title;
-    final content = item.content;
-    final changed = onChanged;
-    final checkbox = Component.element(
-      attributes: {
-        'id': itemId,
-        'type': disabled ? 'hidden' : 'checkbox',
-        if (expanded && !disabled) 'checked': _emptyValue,
-        if (mode == AccordionMode.single) 'name': 'accordion-group',
-      },
-      events: !disabled && changed != null
-          ? {
-              'change': (event) {
-                // ignore: avoid-dynamic-calls, avoid-type-casts - DOM event handling requires dynamic access
-                final target = (event as dynamic).target;
-                final checkedValue = target.checked;
-                if (checkedValue is bool) {
-                  changed(index, checkedValue);
-                }
-              },
-            }
-          : null,
-      tag: 'input',
-    );
-
-    // Title section
-    const emptyString = '';
-    final titleSection = Component.element(
-      attributes: {'for': disabled ? emptyString : itemId},
-      classes: 'collapse-title text-xl font-medium',
-      tag: disabled ? 'div' : 'label',
-      children: [Component.text(title)],
-    );
-
-    // Content section
-    final contentSection = Component.element(
-      classes: 'collapse-content',
-      tag: 'div',
-      children: content,
-    );
-
-    return Component.element(
-      classes: itemClasses,
-      tag: 'div',
-      children: [checkbox, titleSection, contentSection],
-    );
+    return classList.join(' ');
   }
 }
 
-/// Individual accordion item configuration.
-class AccordionItem {
-  /// Creates an AccordionItem.
-  ///
-  /// - [title]: Title text displayed in the header.
-  /// - [content]: Content components displayed when expanded.
-  /// - [expanded]: Whether the item is initially expanded.
-  /// - [disabled]: Whether the item is disabled.
+/// An accordion item component.
+class AccordionItem extends UiComponent {
+  /// Creates an AccordionItem component.
   const AccordionItem({
+    super.key,
     required this.title,
     required this.content,
-    this.expanded = false,
-    this.disabled = false,
-  });
+    this.isOpen = false,
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _divValue,
+  }) : super(null);
 
-  /// Title text displayed in the header.
+  /// Title of the accordion item.
   final String title;
 
-  /// Content components displayed when expanded.
-  final List<Component> content;
+  /// Content of the accordion item.
+  final Component content;
 
-  /// Whether the item is initially expanded.
-  final bool expanded;
+  /// Whether the item is open.
+  final bool isOpen;
 
-  /// Whether the item is disabled.
-  final bool disabled;
-}
+  static const _divValue = 'div';
 
-/// Expansion mode for accordion.
-enum AccordionMode {
-  /// Multiple items can be expanded simultaneously.
-  multiple,
+  @override
+  AccordionItem copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    String? tag,
+    String? title,
+    Component? content,
+    bool? isOpen,
+    Key? key,
+  }) {
+    return AccordionItem(
+      key: key ?? this.key,
+      title: title ?? this.title,
+      content: content ?? this.content,
+      isOpen: isOpen ?? this.isOpen,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
+    );
+  }
 
-  /// Only one item can be expanded at a time.
-  single,
-}
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      children: [
+        // Header/Trigger
+        Component.element(
+          tag: 'button',
+          classes:
+              'flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+          attributes: {
+            'type': 'button',
+            'data-state': isOpen ? 'open' : 'closed',
+          },
+          children: [
+            text(title),
+            // Chevron icon (placeholder - you'd use actual icon component)
+            span(
+              classes: 'transition-transform duration-200',
+              child: text('\u25BC'),
+            ),
+          ],
+        ),
+        // Content
+        if (isOpen)
+          div(
+            classes: 'overflow-hidden text-sm transition-all pb-4 pt-0',
+            child: div(
+              classes: 'pt-0',
+              child: content,
+            ),
+          ),
+      ],
+    );
+  }
 
-/// Icon type for accordion items.
-enum AccordionIcon {
-  /// Arrow icon.
-  arrow,
+  @override
+  String get baseClass => 'border-b';
 
-  /// Plus icon.
-  plus,
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
 }

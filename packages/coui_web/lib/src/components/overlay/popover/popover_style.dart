@@ -1,25 +1,35 @@
 import 'package:coui_web/src/base/style_type.dart';
+import 'package:coui_web/src/base/styling.dart';
+import 'package:coui_web/src/base/ui_prefix_modifier.dart';
 
-/// Style configuration for Popover components.
-///
-/// Defines the visual styling options available for popover components,
-/// following DaisyUI's dropdown styling patterns (used for popovers).
-abstract class PopoverStyling {
-  /// The CSS class name for this style.
-  String get cssClass;
+/// Styling interface for Popover components.
+abstract interface class PopoverStyling implements Styling {}
 
-  /// The type of style this represents.
-  StyleType get type;
-}
-
-/// Concrete implementation of popover styles.
+/// Popover style class using Tailwind CSS.
 class PopoverStyle implements PopoverStyling {
-  /// Creates a [PopoverStyle].
-  const PopoverStyle(this.cssClass, {required this.type});
+  const PopoverStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
   @override
   final String cssClass;
 
   @override
   final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
+    return '$prefixesString$cssClass';
+  }
 }

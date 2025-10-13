@@ -1,24 +1,67 @@
-import 'package:coui_web/src/base/component_style.dart';
+import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
-import 'package:coui_web/src/components/layout/card/card.dart';
+import 'package:coui_web/src/base/variant_system.dart';
 
-/// Marker interface for any utility that can be passed to a [Card]'s `modifiers` list.
-abstract class _CardStyling implements Styling {}
+/// Styling interface for Card components.
+abstract interface class CardStyling implements Styling {}
 
-/// Public interface for CardStyling.
-typedef CardStyling = _CardStyling;
-
-/// Defines specific styling options for a [Card] component.
-/// Implements the [CardStyling] interface.
-class CardStyle extends ComponentStyle<CardStyle>
-    with Breakpoints<CardStyle>
-    implements CardStyling {
-  // Implements the CardModifier INTERFACE
-  const CardStyle(super.cssClass, {super.modifiers, required super.type});
+/// Card style class using Tailwind CSS variants.
+class CardStyle implements CardStyling {
+  const CardStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
   @override
-  CardStyle create(List<PrefixModifier> modifiers) {
-    return CardStyle(cssClass, modifiers: modifiers, type: type);
+  final String cssClass;
+
+  @override
+  final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
+    return '$prefixesString$cssClass';
   }
+}
+
+/// Card variant style using the new variant system.
+class CardVariantStyle implements CardStyling {
+  const CardVariantStyle({
+    required this.variant,
+    this.additionalClasses,
+  });
+
+  /// The card variant.
+  final CardVariant variant;
+
+  /// Additional custom classes.
+  final String? additionalClasses;
+
+  @override
+  String get cssClass {
+    return [
+      variant.classes,
+      additionalClasses,
+    ].where((c) => c != null && c.isNotEmpty).join(' ');
+  }
+
+  @override
+  StyleType get type => StyleType.layout;
+
+  @override
+  List<PrefixModifier>? get modifiers => null;
+
+  @override
+  String toString() => cssClass;
 }

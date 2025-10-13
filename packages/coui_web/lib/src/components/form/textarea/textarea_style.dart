@@ -1,36 +1,64 @@
-import 'package:coui_web/src/base/component_style.dart';
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
 
-/// A marker interface for any utility that can be passed to a [Textarea]'s `style` list.
-///
-/// This allows for type-safe application of styles for colors, sizes, and variants.
-abstract class _TextareaStyling implements Styling {}
+/// Styling interface for Textarea components.
+abstract interface class TextareaStyling implements Styling {}
 
-/// A marker interface for any utility that can be passed to a [Textarea]'s `style` list.
-///
-/// This allows for type-safe application of styles for colors, sizes, and variants.
-typedef TextareaStyling = _TextareaStyling;
+/// Textarea style class using Tailwind CSS.
+class TextareaStyle implements TextareaStyling {
+  const TextareaStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
-/// Defines specific styling options for a [Textarea] component.
-///
-/// This is the concrete implementation class for textarea-specific modifiers.
-/// It implements the [TextareaStyling] interface, making it a valid type for the
-/// `style` property of a [Textarea] component.
-class TextareaStyle extends ComponentStyle<TextareaStyle>
-    with Breakpoints<TextareaStyle>
-    implements TextareaStyling {
-  /// Constructs a [TextareaStyle].
-  ///
-  /// - [cssClass]: The core CSS class string for this modifier (e.g., "textarea-bordered").
-  /// - [type]: The [StyleType] categorizing this modifier.
-  /// - [modifiers]: An optional list of [PrefixModifier]s for responsive styling.
-  const TextareaStyle(super.cssClass, {super.modifiers, required super.type});
-
-  /// Creates a new instance of [TextareaStyle] with the provided modifiers.
   @override
-  TextareaStyle create(List<PrefixModifier> modifiers) {
-    return TextareaStyle(cssClass, modifiers: modifiers, type: type);
+  final String cssClass;
+
+  @override
+  final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+    return '$prefixesString$cssClass';
   }
+}
+
+/// Textarea variant style.
+class TextareaVariantStyle implements TextareaStyling {
+  const TextareaVariantStyle({
+    this.additionalClasses,
+  });
+
+  /// Additional custom classes.
+  final String? additionalClasses;
+
+  @override
+  String get cssClass {
+    const baseClasses =
+        'flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50';
+
+    return [
+      baseClasses,
+      additionalClasses,
+    ].where((c) => c != null && c.isNotEmpty).join(' ');
+  }
+
+  @override
+  StyleType get type => StyleType.form;
+
+  @override
+  List<PrefixModifier>? get modifiers => null;
+
+  @override
+  String toString() => cssClass;
 }

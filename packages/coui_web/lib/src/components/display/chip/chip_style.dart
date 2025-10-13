@@ -1,30 +1,65 @@
-import 'package:coui_web/src/base/component_style.dart';
 import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/styling.dart';
 import 'package:coui_web/src/base/ui_prefix_modifier.dart';
 
-/// Marker interface for any utility that can be passed to a Chip's `style` list.
-abstract class _ChipStyling implements Styling {}
+/// Styling interface for Chip components.
+abstract interface class ChipStyling implements Styling {}
 
-/// Public interface for ChipStyling.
-typedef ChipStyling = _ChipStyling;
-
-/// Represents component-specific utility classes for the Chip component.
-///
-/// These modifiers control the appearance and state of the chip, such as its
-/// color variant, size, and outline style.
-class ChipStyle extends ComponentStyle<ChipStyle>
-    with Breakpoints<ChipStyle>
-    implements ChipStyling {
-  /// Constructs a [ChipStyle].
-  ///
-  /// [cssClass]: The core CSS class string for this modifier (e.g., "badge-primary").
-  /// [type]: The [StyleType] categorizing this modifier.
-  /// [modifiers]: An optional list of [PrefixModifier]s already applied.
-  const ChipStyle(super.cssClass, {super.modifiers, required super.type});
+/// Chip style class using Tailwind CSS.
+class ChipStyle implements ChipStyling {
+  const ChipStyle(
+    this.cssClass, {
+    this.modifiers,
+    required this.type,
+  });
 
   @override
-  ChipStyle create(List<PrefixModifier> modifiers) {
-    return ChipStyle(cssClass, modifiers: modifiers, type: type);
+  final String cssClass;
+
+  @override
+  final StyleType type;
+
+  @override
+  final List<PrefixModifier>? modifiers;
+
+  @override
+  String toString() {
+    final currentModifiers = modifiers;
+    if (currentModifiers == null || currentModifiers.isEmpty) {
+      return cssClass;
+    }
+    final prefixesString = currentModifiers.map((m) => m.prefix).join();
+
+    return '$prefixesString$cssClass';
   }
+}
+
+/// Chip variant style.
+class ChipVariantStyle implements ChipStyling {
+  const ChipVariantStyle({
+    this.additionalClasses,
+  });
+
+  /// Additional custom classes.
+  final String? additionalClasses;
+
+  @override
+  String get cssClass {
+    const baseClasses =
+        'inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold transition-colors border bg-background text-foreground hover:bg-accent';
+
+    return [
+      baseClasses,
+      additionalClasses,
+    ].where((c) => c != null && c.isNotEmpty).join(' ');
+  }
+
+  @override
+  StyleType get type => StyleType.style;
+
+  @override
+  List<PrefixModifier>? get modifiers => null;
+
+  @override
+  String toString() => cssClass;
 }

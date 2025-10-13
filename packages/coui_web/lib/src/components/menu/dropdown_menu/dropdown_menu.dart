@@ -1,265 +1,214 @@
-import 'package:coui_web/src/base/style_type.dart';
-import 'package:coui_web/src/base/types.dart';
 import 'package:coui_web/src/base/ui_component.dart';
-import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/components/menu/dropdown_menu/dropdown_menu_style.dart';
 import 'package:jaspr/jaspr.dart';
 
-/// A dropdown menu component for selectable options.
-///
-/// The DropdownMenu component provides a menu of selectable items
-/// that appears when triggered. It follows DaisyUI's dropdown patterns
-/// and provides Flutter-compatible API.
-///
-/// Features:
-/// - Click or hover trigger modes
-/// - 4-directional positioning
-/// - Selectable menu items
-/// - Disabled items support
-/// - Menu styling with DaisyUI
+/// Callback signature for menu item selection.
+typedef MenuItemCallback = void Function();
+
+/// A dropdown menu component following shadcn-ui design patterns.
 ///
 /// Example:
 /// ```dart
 /// DropdownMenu(
-///   trigger: Button([text('Menu')]),
+///   trigger: Button.outline(child: text('Menu')),
 ///   items: [
-///     DropdownMenuItem(
-///       label: 'Option 1',
-///       onPressed: () => handleOption1(),
-///     ),
-///     DropdownMenuItem(
-///       label: 'Option 2',
-///       onPressed: () => handleOption2(),
-///     ),
-///     DropdownMenuItem(
-///       label: 'Disabled',
-///       disabled: true,
-///     ),
+///     DropdownMenuItem(label: 'Item 1', onSelect: () {}),
+///     DropdownMenuItem(label: 'Item 2', onSelect: () {}),
 ///   ],
-///   position: DropdownPosition.bottom,
 /// )
 /// ```
 class DropdownMenu extends UiComponent {
   /// Creates a DropdownMenu component.
   ///
-  /// - [trigger]: Trigger element for the dropdown.
-  /// - [items]: List of menu items.
-  /// - [open]: Whether the dropdown is open.
-  /// - [onChanged]: Callback when dropdown state changes (Flutter-compatible).
-  /// - [position]: Position of dropdown relative to trigger.
-  /// - [style]: List of [DropdownMenuStyling] instances for styling.
+  /// Parameters:
+  /// - [trigger]: Component that opens the menu
+  /// - [items]: List of menu items
   const DropdownMenu({
+    super.key,
+    required this.trigger,
+    required this.items,
     super.attributes,
-    super.child,
     super.classes,
     super.css,
     super.id,
-    required this.items,
-    super.key,
-    this.onChanged,
-    this.open = false,
-    this.position = DropdownPosition.bottom,
-    List<DropdownMenuStyling>? style,
-    super.tag = 'div',
-    required this.trigger,
-  }) : super(null, style: style);
+    super.tag = _divValue,
+  }) : super(null);
 
-  /// Trigger element for the dropdown.
+  /// Trigger component.
   final Component trigger;
 
-  /// List of menu items.
-  final List<DropdownMenuItem> items;
+  /// Menu items.
+  final List<Component> items;
 
-  /// Whether the dropdown is open.
-  final bool open;
-
-  /// Callback when dropdown state changes.
-  ///
-  /// Flutter-compatible callback.
-  /// Receives true when dropdown opens, false when it closes.
-  final BoolStateCallback? onChanged;
-
-  /// Position of dropdown relative to trigger.
-  final DropdownPosition position;
-
-  // --- Static Style Modifiers ---
-
-  /// Hover trigger. `dropdown-hover`.
-  static const hover = DropdownMenuStyle(
-    'dropdown-hover',
-    type: StyleType.state,
-  );
-
-  /// Open state. `dropdown-open`.
-  static const openState = DropdownMenuStyle(
-    'dropdown-open',
-    type: StyleType.state,
-  );
-
-  @override
-  String get baseClass => 'dropdown';
-
-  @override
-  void configureAttributes(UiComponentAttributes attributes) {
-    super.configureAttributes(attributes);
-
-    // Set ARIA attributes for accessibility
-    if (!userProvidedAttributes.containsKey('role')) {
-      attributes.addRole('menu');
-    }
-  }
-
-  @override
-  Component build(BuildContext context) {
-    final styles = _buildStyleClasses();
-
-    // Build menu items
-    final menuItems = <Component>[];
-    for (final item in items) {
-      menuItems.add(_buildMenuItem(item));
-    }
-
-    // Build dropdown content with menu
-    final dropdownContent = Component.element(
-      classes:
-          'dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52',
-      tag: 'div',
-      children: [
-        Component.element(tag: 'ul', children: menuItems),
-      ],
-    );
-
-    const emptyString = '';
-
-    return Component.element(
-      attributes: componentAttributes,
-      classes:
-          '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : emptyString}',
-      css: this.css,
-      id: id,
-      tag: tag,
-      children: [trigger, dropdownContent],
-    );
-  }
+  static const _divValue = 'div';
 
   @override
   DropdownMenu copyWith({
     Map<String, String>? attributes,
-    Component? child,
     String? classes,
     Styles? css,
     String? id,
-    List<DropdownMenuItem>? items,
-    Key? key,
-    BoolStateCallback? onChanged,
-    bool? open,
-    DropdownPosition? position,
-    List<DropdownMenuStyling>? style,
     String? tag,
     Component? trigger,
+    List<Component>? items,
+    Key? key,
   }) {
     return DropdownMenu(
-      attributes: attributes ?? userProvidedAttributes,
-      child: child ?? this.child,
-      classes: mergeClasses(this.classes, classes),
+      key: key ?? this.key,
+      trigger: trigger ?? this.trigger,
+      items: items ?? this.items,
+      classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      items: items ?? this.items,
-      key: key ?? this.key,
-      onChanged: onChanged ?? this.onChanged,
-      open: open ?? this.open,
-      position: position ?? this.position,
-      style: style,
       tag: tag ?? this.tag,
-      trigger: trigger ?? this.trigger,
     );
   }
 
-  List<String> _buildStyleClasses() {
-    final stylesList = <String>[];
-
-    // Add position class
-    stylesList.add(_positionClass);
-
-    // Add open state
-    if (open) {
-      stylesList.add(openState.cssClass);
-    }
-
-    // Add custom styles
-    final currentStyle = style;
-    if (currentStyle != null) {
-      for (final s in currentStyle) {
-        stylesList.add(s.cssClass);
-      }
-    }
-
-    return stylesList;
+  @override
+  Component build(BuildContext context) {
+    return div(
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      children: [
+        trigger,
+        // Menu content (controlled by JS or state management)
+        div(
+          classes:
+              'absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block',
+          child: div(
+            classes: 'py-1',
+            children: items,
+          ),
+        ),
+      ],
+    );
   }
 
-  String get _positionClass => switch (position) {
-        DropdownPosition.top => 'dropdown-top',
-        DropdownPosition.bottom => 'dropdown-bottom',
-        DropdownPosition.left => 'dropdown-left',
-        DropdownPosition.right => 'dropdown-right',
-      };
+  @override
+  String get baseClass => 'relative inline-block text-left';
 
-  static Component _buildMenuItem(DropdownMenuItem item) {
-    const emptyString = '';
-    final disabled = item.disabled;
-    final onPressed = item.onPressed;
-    final label = item.label;
-    final itemClasses = disabled ? 'disabled' : emptyString;
+  String _buildClasses() {
+    final classList = [baseClass];
 
-    final itemContent = Component.element(
-      classes: itemClasses,
-      events: !disabled && onPressed != null
-          ? {'click': (_) => onPressed()}
-          : null,
-      tag: 'a',
-      children: [Component.text(label)],
-    );
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
 
-    return Component.element(tag: 'li', children: [itemContent]);
+    return classList.join(' ');
   }
 }
 
-/// Individual dropdown menu item configuration.
-class DropdownMenuItem {
-  /// Creates a DropdownMenuItem.
-  ///
-  /// - [label]: Text label for the menu item.
-  /// - [onPressed]: Callback when item is selected.
-  /// - [disabled]: Whether the item is disabled.
+/// A dropdown menu item component.
+class DropdownMenuItem extends UiComponent {
+  /// Creates a DropdownMenuItem component.
   const DropdownMenuItem({
+    super.key,
     required this.label,
-    this.onPressed,
+    this.onSelect,
+    this.icon,
     this.disabled = false,
-  });
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _buttonValue,
+  }) : super(null);
 
-  /// Text label for the item.
+  /// Menu item label.
   final String label;
 
-  /// Callback when item is selected.
-  ///
-  /// Flutter-compatible void Function() callback.
-  final VoidCallback? onPressed;
+  /// Selection callback.
+  final MenuItemCallback? onSelect;
+
+  /// Optional icon.
+  final Component? icon;
 
   /// Whether the item is disabled.
   final bool disabled;
-}
 
-/// Position of the dropdown menu relative to trigger.
-enum DropdownPosition {
-  /// Dropdown appears below the trigger.
-  bottom,
+  static const _buttonValue = 'button';
 
-  /// Dropdown appears to the left of the trigger.
-  left,
+  @override
+  DropdownMenuItem copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    String? tag,
+    List<Component>? children,
+    String? label,
+    MenuItemCallback? onSelect,
+    Component? icon,
+    bool? disabled,
+    Key? key,
+  }) {
+    return DropdownMenuItem(
+      key: key ?? this.key,
+      label: label ?? this.label,
+      onSelect: onSelect ?? this.onSelect,
+      icon: icon ?? this.icon,
+      disabled: disabled ?? this.disabled,
+      children: children ?? this.children,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
+    );
+  }
 
-  /// Dropdown appears to the right of the trigger.
-  right,
+  @override
+  Component build(BuildContext context) {
+    final children = <Component>[];
 
-  /// Dropdown appears above the trigger.
-  top,
+    final currentIcon = icon;
+    if (currentIcon != null) {
+      children.add(currentIcon);
+    }
+
+    children.add(text(label));
+
+    return button(
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: {
+        ...componentAttributes,
+        'type': 'button',
+        'role': 'menuitem',
+        if (disabled) 'disabled': '',
+      },
+      events: _buildEvents(),
+      children: children,
+    );
+  }
+
+  @override
+  String get baseClass =>
+      'w-full text-left px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground disabled:opacity-50 disabled:pointer-events-none flex items-center gap-2';
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
+
+  Map<String, List<dynamic>> _buildEvents() {
+    final eventMap = <String, List<dynamic>>{};
+
+    final currentOnSelect = onSelect;
+    if (currentOnSelect != null && !disabled) {
+      eventMap['click'] = [
+        (event) => currentOnSelect(),
+      ];
+    }
+
+    return eventMap;
+  }
 }

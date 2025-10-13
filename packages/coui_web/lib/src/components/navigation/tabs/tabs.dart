@@ -1,236 +1,324 @@
-import 'package:coui_web/src/base/style_type.dart';
 import 'package:coui_web/src/base/ui_component.dart';
-import 'package:coui_web/src/base/ui_component_attributes.dart';
-import 'package:coui_web/src/components/navigation/tabs/tabs_style.dart';
 import 'package:jaspr/jaspr.dart';
 
-/// Callback signature for tab selection change events.
-typedef TabSelectionCallback = void Function(int index);
-
-/// A tab navigation component for organizing content into multiple panels.
-///
-/// The Tabs component provides a tabbed interface where users can switch
-/// between different content panels. It follows DaisyUI's tabs patterns
-/// and provides Flutter-compatible API.
-///
-/// Features:
-/// - Multiple tab styles (boxed, lifted, bordered)
-/// - Active tab indication
-/// - Keyboard navigation support
-/// - Flutter-style onChanged callback
-/// - Responsive design
+/// A tabs component for organizing content into selectable sections.
 ///
 /// Example:
 /// ```dart
 /// Tabs(
-///   selectedIndex: 0,
-///   onChanged: (index) => setState(() => currentTab = index),
-///   tabs: [
-///     Tab(label: 'Tab 1', content: [text('Content 1')]),
-///     Tab(label: 'Tab 2', content: [text('Content 2')]),
-///     Tab(label: 'Tab 3', content: [text('Content 3')]),
+///   defaultValue: 'tab1',
+///   children: [
+///     TabsList(
+///       children: [
+///         TabsTrigger(value: 'tab1', label: 'Tab 1'),
+///         TabsTrigger(value: 'tab2', label: 'Tab 2'),
+///       ],
+///     ),
+///     TabsContent(value: 'tab1', child: text('Content 1')),
+///     TabsContent(value: 'tab2', child: text('Content 2')),
 ///   ],
-///   style: [Tabs.boxed],
 /// )
 /// ```
 class Tabs extends UiComponent {
   /// Creates a Tabs component.
-  ///
-  /// - [tabs]: List of Tab configurations.
-  /// - [selectedIndex]: Index of the currently selected tab.
-  /// - [onChanged]: Callback when tab selection changes (Flutter-compatible).
-  /// - [style]: List of [TabsStyling] instances for styling.
-  const Tabs({
+  Tabs({
+    super.key,
+    required List<Component> children,
+    this.defaultValue,
     super.attributes,
-    super.child,
     super.classes,
     super.css,
     super.id,
-    super.key,
-    this.onChanged,
-    this.selectedIndex = 0,
-    List<TabsStyling>? style,
-    super.tag = 'div',
-    required this.tabs,
-  }) : super(null, style: style);
+    super.tag = _divValue,
+  }) : super(children);
 
-  /// List of tab configurations.
-  final List<Tab> tabs;
+  /// Default selected tab value.
+  final String? defaultValue;
 
-  /// Index of the currently selected tab.
-  final int selectedIndex;
-
-  /// Callback when tab selection changes.
-  ///
-  /// Flutter-compatible callback.
-  /// Receives the index of the newly selected tab.
-  final TabSelectionCallback? onChanged;
-
-  // --- Static Style Modifiers ---
-
-  /// Boxed style tabs. `tabs-boxed`.
-  static const boxed = TabsStyle('tabs-boxed', type: StyleType.style);
-
-  /// Lifted style tabs. `tabs-lifted`.
-  static const lifted = TabsStyle('tabs-lifted', type: StyleType.style);
-
-  /// Bordered style tabs. `tabs-bordered`.
-  static const bordered = TabsStyle('tabs-bordered', type: StyleType.style);
-
-  /// Large size. `tabs-lg`.
-  static const lg = TabsStyle('tabs-lg', type: StyleType.sizing);
-
-  /// Medium size. `tabs-md`.
-  static const md = TabsStyle('tabs-md', type: StyleType.sizing);
-
-  /// Small size. `tabs-sm`.
-  static const sm = TabsStyle('tabs-sm', type: StyleType.sizing);
-
-  /// Extra small size. `tabs-xs`.
-  static const xs = TabsStyle('tabs-xs', type: StyleType.sizing);
-
-  // HTML/ARIA attribute constants
-  static const _roleAttribute = 'role';
-  static const _tablistRole = 'tablist';
-
-  @override
-  String get baseClass => 'tabs';
-
-  @override
-  void configureAttributes(UiComponentAttributes attributes) {
-    super.configureAttributes(attributes);
-
-    // Set ARIA role for accessibility
-    if (!userProvidedAttributes.containsKey(_roleAttribute)) {
-      attributes.addRole(_tablistRole);
-    }
-  }
-
-  @override
-  Component build(BuildContext context) {
-    final styles = _buildStyleClasses();
-
-    // Build tab buttons
-    final tabButtons = <Component>[];
-    for (final (index, tab) in tabs.indexed) {
-      final isActive = index == selectedIndex;
-      tabButtons.add(_buildTabButton(tab, index, isActive));
-    }
-
-    // Build tab content
-    final tabContent = _tabContent;
-
-    const emptyString = '';
-
-    return Component.element(
-      tag: 'div',
-      classes: 'w-full',
-      children: [
-        // Tab buttons container
-        Component.element(
-          attributes: componentAttributes,
-          classes:
-              '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : emptyString}',
-          css: this.css,
-          id: id,
-          tag: tag,
-          children: tabButtons,
-        ),
-        // Tab content container
-        ?tabContent,
-      ],
-    );
-  }
+  static const _divValue = 'div';
 
   @override
   Tabs copyWith({
     Map<String, String>? attributes,
-    Component? child,
     String? classes,
     Styles? css,
     String? id,
-    Key? key,
-    TabSelectionCallback? onChanged,
-    int? selectedIndex,
-    List<TabsStyling>? style,
     String? tag,
-    List<Tab>? tabs,
+    String? defaultValue,
+    List<Component>? children,
+    Key? key,
   }) {
     return Tabs(
-      attributes: attributes ?? userProvidedAttributes,
-      child: child ?? this.child,
-      classes: mergeClasses(this.classes, classes),
+      key: key ?? this.key,
+      defaultValue: defaultValue ?? this.defaultValue,
+      children: children ?? this.children,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      key: key ?? this.key,
-      onChanged: onChanged ?? this.onChanged,
-      selectedIndex: selectedIndex ?? this.selectedIndex,
-      style: style,
       tag: tag ?? this.tag,
-      tabs: tabs ?? this.tabs,
     );
   }
 
-  List<String> _buildStyleClasses() {
-    final stylesList = <String>[];
-    final currentStyle = style;
-
-    if (currentStyle != null) {
-      for (final s in currentStyle) {
-        stylesList.add(s.cssClass);
-      }
-    }
-
-    return stylesList;
-  }
-
-  Component _buildTabButton(Tab tab, int index, bool isActive) {
-    final classNames = isActive ? 'tab tab-active' : 'tab';
-    final changed = onChanged;
-
+  @override
+  Component build(BuildContext context) {
     return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
       attributes: {
-        'aria-selected': isActive ? 'true' : 'false',
-        'role': 'tab',
-        'tabindex': isActive ? '0' : '-1',
+        ...componentAttributes,
+        if (defaultValue != null) 'data-value': defaultValue!,
       },
-      classes: classNames,
-      events: changed == null ? null : {'click': (_) => changed(index)},
-      tag: 'a',
-      children: [Component.text(tab.label)],
+      events: events,
+      children: children,
     );
   }
 
-  Component? get _tabContent {
-    if (selectedIndex >= 0 && selectedIndex < tabs.length) {
-      final tab = tabs[selectedIndex];
-      if (tab.content.isNotEmpty) {
-        return Component.element(
-          attributes: {'role': 'tabpanel'},
-          classes: 'p-4',
-          tag: 'div',
-          children: tab.content,
-        );
-      }
+  @override
+  String get baseClass => 'w-full';
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
     }
 
-    return null;
+    return classList.join(' ');
   }
 }
 
-/// Individual tab configuration.
-///
-/// Represents a single tab with its label and content.
-class Tab {
-  /// Creates a Tab.
-  ///
-  /// - [label]: Text label displayed on the tab button.
-  /// - [content]: Content components displayed when tab is active.
-  const Tab({required this.label, this.content = const []});
+/// Tabs list component (tab buttons container).
+class TabsList extends UiComponent {
+  /// Creates a TabsList component.
+  TabsList({
+    super.key,
+    required List<Component> children,
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _divValue,
+  }) : super(children);
 
-  /// Text label for the tab button.
+  static const _divValue = 'div';
+
+  @override
+  TabsList copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    String? tag,
+    List<Component>? children,
+    Key? key,
+  }) {
+    return TabsList(
+      key: key ?? this.key,
+      children: children ?? this.children,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
+    );
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: this.componentAttributes,
+      events: this.events,
+      children: children,
+    );
+  }
+
+  @override
+  String get baseClass =>
+      'inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground';
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
+}
+
+/// Tabs trigger component (tab button).
+class TabsTrigger extends UiComponent {
+  /// Creates a TabsTrigger component.
+  const TabsTrigger({
+    super.key,
+    required this.value,
+    required this.label,
+    this.isActive = false,
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _buttonValue,
+  }) : super(null);
+
+  /// Value identifier for this tab.
+  final String value;
+
+  /// Label text for the tab.
   final String label;
 
-  /// Content components for this tab panel.
-  final List<Component> content;
+  /// Whether this tab is active.
+  final bool isActive;
+
+  static const _buttonValue = 'button';
+
+  @override
+  TabsTrigger copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    String? tag,
+    Component? child,
+    bool? isActive,
+    String? value,
+    String? label,
+    Key? key,
+  }) {
+    return TabsTrigger(
+      key: key ?? this.key,
+      value: value ?? this.value,
+      label: label ?? this.label,
+      attributes: attributes ?? this.componentAttributes,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
+      child: child ?? this.child,
+      isActive: isActive ?? this.isActive,
+    );
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return Component.element(
+      tag: tag,
+      id: id,
+      classes: _buildClasses(),
+      styles: css,
+      attributes: {
+        ...componentAttributes,
+        'type': 'button',
+        'role': 'tab',
+        'data-value': value,
+        'data-state': isActive ? 'active' : 'inactive',
+      },
+      events: events,
+      child: text(label),
+    );
+  }
+
+  @override
+  String get baseClass =>
+      'inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm';
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
+}
+
+/// Tabs content component (tab panel).
+class TabsContent extends UiComponent {
+  /// Creates a TabsContent component.
+  TabsContent({
+    super.key,
+    required this.value,
+    Component? child,
+    this.isActive = false,
+    super.attributes,
+    super.classes,
+    super.css,
+    super.id,
+    super.tag = _divValue,
+  }) : super(null, child: child);
+
+  /// Value identifier for this content.
+  final String value;
+
+  /// Whether this content is active.
+  final bool isActive;
+
+  static const _divValue = 'div';
+
+  @override
+  TabsContent copyWith({
+    Map<String, String>? attributes,
+    String? classes,
+    Styles? css,
+    String? id,
+    String? tag,
+    Component? child,
+    bool? isActive,
+    String? value,
+    Key? key,
+  }) {
+    return TabsContent(
+      key: key ?? this.key,
+      classes: mergeClasses(classes, this.classes),
+      css: css ?? this.css,
+      id: id ?? this.id,
+      tag: tag ?? this.tag,
+      child: child ?? this.child,
+      isActive: isActive ?? this.isActive,
+      value: value ?? this.value,
+    );
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return isActive
+        ? Component.element(
+            tag: tag,
+            id: id,
+            classes: _buildClasses(),
+            styles: css,
+            attributes: {
+              ...componentAttributes,
+              'role': 'tabpanel',
+              'data-value': value,
+              'data-state': isActive ? 'active' : 'inactive',
+            },
+            events: events,
+            child: child,
+          )
+        : Component.fragment(children: []);
+  }
+
+  @override
+  String get baseClass =>
+      'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
+
+  String _buildClasses() {
+    final classList = [baseClass];
+
+    if (classes != null && classes!.isNotEmpty) {
+      classList.add(classes!);
+    }
+
+    return classList.join(' ');
+  }
 }
