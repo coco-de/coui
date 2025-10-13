@@ -22,8 +22,8 @@ export 'package:flutter/widgets.dart'
         Table,
         TableCell,
         TableRow;
-// bundle from gap
-export 'package:gap/gap.dart';
+// bundle from gap (hiding Gap to use our wrapper with named constructors)
+export 'package:gap/gap.dart' hide Gap;
 
 // bundle from https://pub.dev/packages/phonecodes
 export 'package:phonecodes/phonecodes.dart' show Countries, Country;
@@ -36,6 +36,7 @@ export 'src/collection.dart';
 export 'src/components/animation.dart';
 export 'src/components/async.dart';
 export 'src/components/chart/tracker.dart';
+export 'src/constants/spacing.dart';
 export 'src/components/control/button.dart'
     hide Toggle, ToggleController, ControlledToggle;
 export 'src/components/control/clickable.dart';
@@ -100,6 +101,7 @@ export 'src/components/layout/card_image.dart';
 export 'src/components/layout/collapsible.dart';
 export 'src/components/layout/dialog/alert_dialog.dart';
 export 'src/components/layout/focus_outline.dart';
+export 'src/components/layout/gap.dart';
 export 'src/components/layout/media_query.dart';
 export 'src/components/layout/outlined_container.dart';
 export 'src/components/layout/overflow_marquee.dart';

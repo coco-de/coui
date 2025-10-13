@@ -1,3 +1,13 @@
+## 0.0.45
+
+- Added named constructors to `Gap` widget:
+  - `Gap.xSmall()` - 4px gap
+  - `Gap.small()` - 8px gap
+  - `Gap.medium()` - 16px gap
+  - `Gap.large()` - 24px gap
+  - `Gap.xLarge()` - 32px gap
+- Added `Spacing` constants class for consistent spacing values across the application
+
 ## 0.0.44
 
 - Fix: Sortable onDragEnd not triggered when the drag failed

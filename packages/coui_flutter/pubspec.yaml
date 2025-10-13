@@ -1,6 +1,6 @@
 name: coui_flutter
 description: "Beautifully designed components from CoUI/UI is now available for Flutter"
-version: 0.0.44
+version: 0.0.45
 
 environment:
   sdk: '>=3.9.0 <4.0.0'
