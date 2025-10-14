@@ -14,24 +14,24 @@ class _TimePickerExample1State extends State<TimePickerExample1> {
     return Column(
       children: [
         TimePicker(
-          value: _value,
           mode: PromptMode.popover,
           onChanged: (value) {
             setState(() {
               _value = value ?? TimeOfDay.now();
             });
           },
+          value: _value,
         ),
         const Gap(16),
         TimePicker(
-          value: _value,
-          mode: PromptMode.dialog,
           dialogTitle: const Text('Select Time'),
+          mode: PromptMode.dialog,
           onChanged: (value) {
             setState(() {
               _value = value ?? TimeOfDay.now();
             });
           },
+          value: _value,
         ),
       ],
     );

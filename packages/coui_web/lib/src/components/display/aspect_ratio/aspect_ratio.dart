@@ -46,11 +46,6 @@ class AspectRatio extends UiComponent {
         .toStringAsFixed(_decimalPlaces);
 
     return div(
-      id: id,
-      classes: _buildClasses(),
-      styles: this.css,
-      attributes: this.componentAttributes,
-      events: this.events,
       children: [
         // Padding trick to maintain aspect ratio
         div(
@@ -60,10 +55,15 @@ class AspectRatio extends UiComponent {
         ),
         // Absolute positioned content
         div(
-          classes: 'absolute inset-0',
           child: child,
+          classes: 'absolute inset-0',
         ),
       ],
+      id: id,
+      classes: _buildClasses(),
+      styles: this.css,
+      attributes: this.componentAttributes,
+      events: this.events,
     );
   }
 

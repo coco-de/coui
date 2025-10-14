@@ -27,13 +27,13 @@ class _ContextMenuExample1State extends State<ContextMenuExample1> {
           child: Text('Back'),
         ),
         const MenuButton(
+          enabled: false,
           trailing: MenuShortcut(
             activator: SingleActivator(
               LogicalKeyboardKey.bracketRight,
               control: true,
             ),
           ),
-          enabled: false,
           child: Text('Forward'),
         ),
         const MenuButton(
@@ -62,13 +62,12 @@ class _ContextMenuExample1State extends State<ContextMenuExample1> {
         ),
         const MenuDivider(),
         MenuCheckbox(
-          value: showBookmarksBar,
+          autoClose: false,
           onChanged: (context, value) {
             setState(() {
               showBookmarksBar = value;
             });
           },
-          autoClose: false,
           trailing: const MenuShortcut(
             activator: SingleActivator(
               LogicalKeyboardKey.keyB,
@@ -76,40 +75,41 @@ class _ContextMenuExample1State extends State<ContextMenuExample1> {
               shift: true,
             ),
           ),
+          value: showBookmarksBar,
           child: const Text('Show Bookmarks Bar'),
         ),
         MenuCheckbox(
-          value: showFullUrls,
+          autoClose: false,
           onChanged: (context, value) {
             setState(() {
               showFullUrls = value;
             });
           },
-          autoClose: false,
+          value: showFullUrls,
           child: const Text('Show Full URLs'),
         ),
         const MenuDivider(),
         const MenuLabel(child: Text('People')),
         const MenuDivider(),
         MenuRadioGroup(
-          value: people,
           onChanged: (context, value) {
             setState(() {
               people = value;
             });
           },
+          value: people,
           children: const [
-            MenuRadio(value: 0, autoClose: false, child: Text('Pedro Duarte')),
-            MenuRadio(value: 1, autoClose: false, child: Text('Colm Tuite')),
+            MenuRadio(autoClose: false, value: 0, child: Text('Pedro Duarte')),
+            MenuRadio(autoClose: false, value: 1, child: Text('Colm Tuite')),
           ],
         ),
       ],
       child: DashedContainer(
         borderRadius: BorderRadius.circular(theme.radiusMd),
-        strokeWidth: 2,
         gap: 2,
+        strokeWidth: 2,
         child: const Text('Right click here').center(),
-      ).constrained(maxWidth: 300, maxHeight: 200),
+      ).constrained(maxHeight: 200, maxWidth: 300),
     );
   }
 }

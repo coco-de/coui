@@ -12,27 +12,27 @@ class FormattedInputTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'formatted_input',
       title: 'Formatted Input',
-      scale: 1.2,
       example: Card(
         child: const Column(
           children: [
             TextField(
-              placeholder: Text('(123) 456-7890'),
               initialValue: '1234567890',
+              placeholder: Text('(123) 456-7890'),
             ),
             Gap(16),
             TextField(
-              placeholder: Text('1234 5678 9012 3456'),
               initialValue: '1234567890123456',
+              placeholder: Text('1234 5678 9012 3456'),
             ),
             Gap(16),
             TextField(
-              placeholder: Text('MM/DD/YYYY'),
               initialValue: '12/25/2024',
+              placeholder: Text('MM/DD/YYYY'),
             ),
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.2,
     );
   }
 }

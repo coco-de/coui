@@ -19,11 +19,8 @@ class _ScaffoldExample1State extends State<ScaffoldExample1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      loadingProgressIndeterminate: true,
       headers: [
         AppBar(
-          title: const Text('Counter App'),
-          subtitle: const Text('A simple counter app'),
           leading: [
             OutlineButton(
               onPressed: () {
@@ -33,6 +30,8 @@ class _ScaffoldExample1State extends State<ScaffoldExample1> {
               child: const Icon(Icons.menu),
             ),
           ],
+          subtitle: const Text('A simple counter app'),
+          title: const Text('Counter App'),
           trailing: [
             OutlineButton(
               onPressed: () {
@@ -52,6 +51,7 @@ class _ScaffoldExample1State extends State<ScaffoldExample1> {
         ),
         const Divider(),
       ],
+      loadingProgressIndeterminate: true,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

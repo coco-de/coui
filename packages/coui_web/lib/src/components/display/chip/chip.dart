@@ -100,6 +100,7 @@ class Chip extends UiComponent {
     if (currentOnRemove != null) {
       children.add(
         Component.element(
+          child: text(_kCloseIcon),
           tag: 'button',
           classes:
               'ml-1 rounded-full hover:bg-accent-foreground/10 focus:outline-none',
@@ -110,7 +111,6 @@ class Chip extends UiComponent {
           events: {
             'click': (event) => currentOnRemove(),
           },
-          child: text(_kCloseIcon),
         ),
       );
     }

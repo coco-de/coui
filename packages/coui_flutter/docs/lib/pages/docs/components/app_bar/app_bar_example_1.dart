@@ -9,30 +9,30 @@ class AppBarExample1 extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: AppBar(
         header: const Text('This is Header'),
-        title: const Text('This is Title'),
-        subtitle: const Text('This is Subtitle'),
         leading: [
           OutlineButton(
-            density: ButtonDensity.icon,
             onPressed: () {
               // TODOS: will be implemented later.
             },
+            density: ButtonDensity.icon,
             child: const Icon(Icons.arrow_back),
           ),
         ],
+        subtitle: const Text('This is Subtitle'),
+        title: const Text('This is Title'),
         trailing: [
           OutlineButton(
-            density: ButtonDensity.icon,
             onPressed: () {
               // TODOS: will be implemented later.
             },
+            density: ButtonDensity.icon,
             child: const Icon(Icons.search),
           ),
           OutlineButton(
-            density: ButtonDensity.icon,
             onPressed: () {
               // TODOS: will be implemented later.
             },
+            density: ButtonDensity.icon,
             child: const Icon(Icons.more_vert),
           ),
         ],

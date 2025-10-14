@@ -57,8 +57,8 @@ class Table extends UiComponent {
     Key? key,
   }) {
     return Table(
-      key: key ?? this.key,
       children: children ?? this.children,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -123,12 +123,12 @@ class TableHeader extends UiComponent {
     Styles? css,
   }) {
     return TableHeader(
-      attributes: attributes ?? this.componentAttributes,
       children: children ?? this.children,
+      key: key ?? this.key,
+      attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      key: key ?? this.key,
       tag: tag ?? this.tag,
     );
   }
@@ -189,8 +189,8 @@ class TableBody extends UiComponent {
     Key? key,
   }) {
     return TableBody(
-      key: key ?? this.key,
       children: children ?? this.children,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -255,8 +255,8 @@ class TableRow extends UiComponent {
     String? tag,
   }) {
     return TableRow(
-      key: key ?? this.key,
       children: children ?? this.children,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -323,8 +323,8 @@ class TableHead extends UiComponent {
     String? tag,
   }) {
     return TableHead(
-      key: key ?? this.key,
       child: child ?? this.child,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -336,13 +336,13 @@ class TableHead extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
     );
   }
 
@@ -391,8 +391,8 @@ class TableCell extends UiComponent {
     String? tag,
   }) {
     return TableCell(
-      key: key ?? this.key,
       child: child ?? this.child,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -404,13 +404,13 @@ class TableCell extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
     );
   }
 

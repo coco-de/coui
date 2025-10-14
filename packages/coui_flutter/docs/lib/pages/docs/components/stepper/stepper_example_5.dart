@@ -18,8 +18,6 @@ class _StepperExample5State extends State<StepperExample5> {
       direction: Axis.horizontal,
       steps: [
         Step(
-          title: const Text('Step 1'),
-          icon: const StepNumber(icon: Icon(Icons.person)),
           contentBuilder: (context) {
             return StepContainer(
               actions: [
@@ -34,10 +32,10 @@ class _StepperExample5State extends State<StepperExample5> {
               child: const NumberedContainer(index: 1, height: 200),
             );
           },
+          icon: const StepNumber(icon: Icon(Icons.person)),
+          title: const Text('Step 1'),
         ),
         Step(
-          title: const Text('Step 2'),
-          icon: const StepNumber(icon: Icon(Icons.house_outlined)),
           contentBuilder: (context) {
             return StepContainer(
               actions: [
@@ -57,10 +55,10 @@ class _StepperExample5State extends State<StepperExample5> {
               child: const NumberedContainer(index: 2, height: 200),
             );
           },
+          icon: const StepNumber(icon: Icon(Icons.house_outlined)),
+          title: const Text('Step 2'),
         ),
         Step(
-          title: const Text('Step 3'),
-          icon: const StepNumber(icon: Icon(Icons.work_outline)),
           contentBuilder: (context) {
             return StepContainer(
               actions: [
@@ -80,6 +78,8 @@ class _StepperExample5State extends State<StepperExample5> {
               child: const NumberedContainer(index: 3, height: 200),
             );
           },
+          icon: const StepNumber(icon: Icon(Icons.work_outline)),
+          title: const Text('Step 3'),
         ),
       ],
     );

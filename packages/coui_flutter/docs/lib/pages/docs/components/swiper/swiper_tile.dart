@@ -14,12 +14,11 @@ class SwiperTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'swiper',
       title: 'Swiper',
-      scale: 1.2,
       example: Card(
         child: Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
           width: 300,
           height: 200,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
           child: Stack(
             children: [
               // Swiper content
@@ -46,69 +45,69 @@ class SwiperTile extends StatelessWidget implements IComponentPage {
                 bottom: 0,
                 child: Center(
                   child: Container(
-                    width: 32,
-                    height: 32,
                     decoration: BoxDecoration(
                       color: theme.colorScheme.background.withOpacity(0.8),
                       shape: BoxShape.circle,
                     ),
+                    width: 32,
+                    height: 32,
                     child: const Icon(Icons.chevron_left, size: 20),
                   ),
                 ),
               ),
               Positioned(
-                right: 8,
                 top: 0,
+                right: 8,
                 bottom: 0,
                 child: Center(
                   child: Container(
-                    width: 32,
-                    height: 32,
                     decoration: BoxDecoration(
                       color: theme.colorScheme.background.withOpacity(0.8),
                       shape: BoxShape.circle,
                     ),
+                    width: 32,
+                    height: 32,
                     child: const Icon(Icons.chevron_right, size: 20),
                   ),
                 ),
               ),
               // Dots indicator
               Positioned(
-                bottom: 16,
                 left: 0,
                 right: 0,
+                bottom: 16,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 8,
-                      height: 8,
                       decoration: BoxDecoration(
                         color: theme.colorScheme.primaryForeground,
                         shape: BoxShape.circle,
                       ),
+                      width: 8,
+                      height: 8,
                     ),
                     const Gap(4),
                     Container(
-                      width: 8,
-                      height: 8,
                       decoration: BoxDecoration(
                         color: theme.colorScheme.primaryForeground.withOpacity(
                           0.5,
                         ),
                         shape: BoxShape.circle,
                       ),
+                      width: 8,
+                      height: 8,
                     ),
                     const Gap(4),
                     Container(
-                      width: 8,
-                      height: 8,
                       decoration: BoxDecoration(
                         color: theme.colorScheme.primaryForeground.withOpacity(
                           0.5,
                         ),
                         shape: BoxShape.circle,
                       ),
+                      width: 8,
+                      height: 8,
                     ),
                   ],
                 ),
@@ -117,6 +116,7 @@ class SwiperTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

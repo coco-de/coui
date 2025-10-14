@@ -13,11 +13,10 @@ class TimelineAnimationTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'timeline_animation',
       title: 'Timeline Animation',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 280,
           padding: const EdgeInsets.all(16),
+          width: 280,
           child: Column(
             children: [
               const Text('Animated Timeline:').bold(),
@@ -27,38 +26,38 @@ class TimelineAnimationTile extends StatelessWidget implements IComponentPage {
                   Column(
                     children: [
                       Container(
-                        width: 12,
-                        height: 12,
                         decoration: BoxDecoration(
                           color: theme.colorScheme.primary,
                           shape: BoxShape.circle,
                         ),
+                        width: 12,
+                        height: 12,
                       ),
                       Container(
-                        width: 2,
-                        height: 40,
                         color: theme.colorScheme.primary,
+                        width: 2,
+                        height: 40,
                       ),
                       Container(
-                        width: 12,
-                        height: 12,
                         decoration: BoxDecoration(
                           color: theme.colorScheme.primary,
                           shape: BoxShape.circle,
                         ),
-                      ),
-                      Container(
-                        width: 2,
-                        height: 40,
-                        color: theme.colorScheme.muted,
-                      ),
-                      Container(
                         width: 12,
                         height: 12,
+                      ),
+                      Container(
+                        color: theme.colorScheme.muted,
+                        width: 2,
+                        height: 40,
+                      ),
+                      Container(
                         decoration: BoxDecoration(
                           color: theme.colorScheme.muted,
                           shape: BoxShape.circle,
                         ),
+                        width: 12,
+                        height: 12,
                       ),
                     ],
                   ),
@@ -87,6 +86,7 @@ class TimelineAnimationTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

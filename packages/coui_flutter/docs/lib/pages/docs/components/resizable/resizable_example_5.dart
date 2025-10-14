@@ -21,9 +21,9 @@ class _ResizableExample5State extends State<ResizableExample5> {
       child: ResizablePanel.horizontal(
         children: [
           ResizablePane.controlled(
-            minSize: 100,
             collapsedSize: 40,
             controller: controller,
+            minSize: 100,
             child: AnimatedBuilder(
               animation: controller,
               builder: (context, child) {
@@ -54,9 +54,9 @@ class _ResizableExample5State extends State<ResizableExample5> {
             ),
           ),
           ResizablePane.controlled(
-            minSize: 100,
             collapsedSize: 40,
             controller: controller2,
+            minSize: 100,
             child: AnimatedBuilder(
               animation: controller2,
               builder: (context, child) {

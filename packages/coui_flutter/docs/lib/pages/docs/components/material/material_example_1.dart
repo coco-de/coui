@@ -24,8 +24,8 @@ class _MaterialExample1State extends State<MaterialExample1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('My Material App'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Center(
         child: Column(
@@ -47,6 +47,7 @@ class _MaterialExample1State extends State<MaterialExample1> {
                     ),
                     const coui.Gap(16),
                     coui.PrimaryButton(
+                      child: const Text('Open Material Dialog'),
                       onPressed: () {
                         showDialog(
                           context: context,
@@ -66,32 +67,31 @@ class _MaterialExample1State extends State<MaterialExample1> {
                           },
                         );
                       },
-                      child: const Text('Open Material Dialog'),
                     ),
                     const coui.Gap(8),
                     coui.SecondaryButton(
+                      child: const Text('Open coui_flutter Dialog'),
                       onPressed: () {
                         coui.showDialog(
-                          context: context,
                           builder: (context) {
                             return coui.AlertDialog(
-                              title: const Text('Hello'),
-                              content: const Text(
-                                'This is coui_flutter dialog',
-                              ),
                               actions: [
                                 coui.PrimaryButton(
+                                  child: const Text('Close'),
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: const Text('Close'),
                                 ),
                               ],
+                              content: const Text(
+                                'This is coui_flutter dialog',
+                              ),
+                              title: const Text('Hello'),
                             );
                           },
+                          context: context,
                         );
                       },
-                      child: const Text('Open coui_flutter Dialog'),
                     ),
                   ],
                 ),
@@ -101,8 +101,8 @@ class _MaterialExample1State extends State<MaterialExample1> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
         tooltip: 'Increment',
+        onPressed: _incrementCounter,
         child: const Icon(Icons.add),
       ),
     );

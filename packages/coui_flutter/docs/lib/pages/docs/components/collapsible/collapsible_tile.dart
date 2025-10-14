@@ -12,7 +12,6 @@ class CollapsibleTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'collapsible',
       title: 'Collapsible',
-      reverse: true,
       example: Card(
         child: Collapsible(
           children: [
@@ -63,6 +62,7 @@ class CollapsibleTile extends StatelessWidget implements IComponentPage {
           ],
         ),
       ),
+      reverse: true,
     );
   }
 }

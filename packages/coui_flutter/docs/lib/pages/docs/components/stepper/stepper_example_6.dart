@@ -27,14 +27,13 @@ class _StepperExample6State extends State<StepperExample6> {
     return Column(
       children: [
         Wrap(
-          spacing: 8,
-          runSpacing: 8,
           alignment: WrapAlignment.center,
-          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 8,
           runAlignment: WrapAlignment.center,
+          runSpacing: 8,
+          crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             Toggle(
-              value: direction == Axis.horizontal,
               onChanged: (value) {
                 if (value) {
                   setState(() {
@@ -47,9 +46,9 @@ class _StepperExample6State extends State<StepperExample6> {
                 }
               },
               trailing: const Text('Horizontal'),
+              value: direction == Axis.horizontal,
             ),
             Toggle(
-              value: direction == Axis.vertical,
               onChanged: (value) {
                 if (value) {
                   setState(() {
@@ -62,35 +61,35 @@ class _StepperExample6State extends State<StepperExample6> {
                 }
               },
               trailing: const Text('Vertical'),
+              value: direction == Axis.vertical,
             ),
             const VerticalDivider().sized(height: 16),
             for (var i = 0; i < _variants.length; i++)
               Toggle(
-                value: _currentVariant == i,
                 onChanged: (value) {
                   setState(() {
                     _currentVariant = i;
                   });
                 },
                 trailing: Text(_variantNames[i]),
+                value: _currentVariant == i,
               ),
             const VerticalDivider().sized(height: 16),
             for (var i = 0; i < _stepSize.length; i++)
               Toggle(
-                value: _currentStepSize == i,
                 onChanged: (value) {
                   setState(() {
                     _currentStepSize = i;
                   });
                 },
                 trailing: Text(_stepSizeNames[i]),
+                value: _currentStepSize == i,
               ),
             const VerticalDivider().sized(height: 16),
             AnimatedBuilder(
               animation: controller,
               builder: (context, child) {
                 return Toggle(
-                  value: controller.value.stepStates[1] == StepState.failed,
                   onChanged: (value) {
                     if (value) {
                       controller.setStatus(1, StepState.failed);
@@ -99,6 +98,7 @@ class _StepperExample6State extends State<StepperExample6> {
                     }
                   },
                   trailing: const Text('Toggle Error'),
+                  value: controller.value.stepStates[1] == StepState.failed,
                 );
               },
             ),
@@ -109,10 +109,8 @@ class _StepperExample6State extends State<StepperExample6> {
           controller: controller,
           direction: direction,
           size: _stepSize[_currentStepSize],
-          variant: _variants[_currentVariant],
           steps: [
             Step(
-              title: const Text('Step 1'),
               contentBuilder: (context) {
                 return StepContainer(
                   actions: [
@@ -127,12 +125,9 @@ class _StepperExample6State extends State<StepperExample6> {
                   child: const NumberedContainer(index: 1, height: 200),
                 );
               },
+              title: const Text('Step 1'),
             ),
             Step(
-              title: const StepTitle(
-                title: Text('Step 2'),
-                subtitle: Text('Optional Step'),
-              ),
               contentBuilder: (context) {
                 return StepContainer(
                   actions: [
@@ -152,9 +147,12 @@ class _StepperExample6State extends State<StepperExample6> {
                   child: const NumberedContainer(index: 2, height: 200),
                 );
               },
+              title: const StepTitle(
+                subtitle: Text('Optional Step'),
+                title: Text('Step 2'),
+              ),
             ),
             Step(
-              title: const Text('Step 3'),
               contentBuilder: (context) {
                 return StepContainer(
                   actions: [
@@ -174,8 +172,10 @@ class _StepperExample6State extends State<StepperExample6> {
                   child: const NumberedContainer(index: 3, height: 200),
                 );
               },
+              title: const Text('Step 3'),
             ),
           ],
+          variant: _variants[_currentVariant],
         ),
       ],
     );

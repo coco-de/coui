@@ -92,8 +92,8 @@ class _InputHintFeatureState extends InputFeatureState<InputHintFeature> {
     _popoverController.show<void>(
       alignment: AlignmentDirectional.topCenter,
       anchorAlignment: AlignmentDirectional.bottomCenter,
-      builder: feature.popupBuilder,
       context: context,
+      builder: feature.popupBuilder,
     );
   }
 }
@@ -286,13 +286,13 @@ class _InputRevalidateFeatureState
                       start: 0,
                       end: 360,
                       duration: const Duration(seconds: 1),
+                      lerp: (a, b, t) => (a + (b - a) * t).round(),
                       builder: (context, value, child) {
                         return Transform.rotate(
                           angle: degToRad(value.toDouble()),
                           child: child,
                         );
                       },
-                      lerp: (a, b, t) => (a + (b - a) * t).round(),
                       child: feature.icon ?? const Icon(LucideIcons.refreshCw),
                     ),
                     density: ButtonDensity.compact,

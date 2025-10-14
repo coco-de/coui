@@ -23,13 +23,13 @@ class DataExample6State extends State<DataExample6> {
             Text('Current Value: $counter - Rebuild Count: $rebuildCount'),
             const Gap(24),
             Toggle(
-              value: toggle,
               onChanged: (value) {
                 setState(() {
                   toggle = value;
                 });
               },
               trailing: const Text('Toggle'),
+              value: toggle,
             ),
             const Gap(24),
             PrimaryButton(

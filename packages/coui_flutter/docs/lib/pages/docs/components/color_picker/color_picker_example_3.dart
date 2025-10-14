@@ -9,31 +9,31 @@ class ColorPickerExample3 extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         PrimaryButton(
+          child: const Text('Open Color Picker Popover'),
           onPressed: () {
             showColorPicker(
+              color: ColorDerivative.fromColor(Colors.blue),
               context: context,
               offset: const Offset(0, 8),
-              color: ColorDerivative.fromColor(Colors.blue),
               onColorChanged: (value) {
                 // Handle color change
               },
             );
           },
-          child: const Text('Open Color Picker Popover'),
         ),
         const Gap(16),
         PrimaryButton(
+          child: const Text('Open Color Picker Dialog'),
           onPressed: () {
             showColorPickerDialog(
+              color: ColorDerivative.fromColor(Colors.blue),
               context: context,
-              title: const Text('Select Color'),
               onColorChanged: (value) {
                 // Handle color change
               },
-              color: ColorDerivative.fromColor(Colors.blue),
+              title: const Text('Select Color'),
             );
           },
-          child: const Text('Open Color Picker Dialog'),
         ),
       ],
     );

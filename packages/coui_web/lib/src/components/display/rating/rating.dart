@@ -101,6 +101,7 @@ class Rating extends UiComponent {
     }
 
     return div(
+      children: stars,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
@@ -110,7 +111,6 @@ class Rating extends UiComponent {
         'aria-label': '$value out of $max stars',
       },
       events: this.events,
-      children: stars,
     );
   }
 
@@ -133,6 +133,7 @@ class Rating extends UiComponent {
     final sizeClass = _getSizeClass();
 
     return button(
+      child: text(isFilled ? _kFilledStar : _kEmptyStar),
       classes:
           '$sizeClass transition-colors ${isFilled ? 'text-yellow-400' : 'text-muted'} ${readonly ? 'cursor-default' : 'cursor-pointer hover:text-yellow-400'}',
       attributes: {
@@ -141,7 +142,6 @@ class Rating extends UiComponent {
         'aria-label': '$index stars',
       },
       events: _buildStarEvents(index),
-      child: text(isFilled ? _kFilledStar : _kEmptyStar),
     );
   }
 

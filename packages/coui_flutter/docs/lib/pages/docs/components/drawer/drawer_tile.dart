@@ -10,13 +10,12 @@ class DrawerTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return ComponentCard(
-      title: 'Drawer',
       name: 'drawer',
-      scale: 1,
+      title: 'Drawer',
       example: DrawerWrapper(
-        stackIndex: 0,
         position: OverlayPosition.bottom,
         size: const Size(300, 300),
+        stackIndex: 0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,7 +26,8 @@ class DrawerTile extends StatelessWidget implements IComponentPage {
             ).muted(),
           ],
         ).withPadding(horizontal: 32),
-      ).sized(width: 300, height: 300),
+      ).sized(height: 300, width: 300),
+      scale: 1,
     );
   }
 }

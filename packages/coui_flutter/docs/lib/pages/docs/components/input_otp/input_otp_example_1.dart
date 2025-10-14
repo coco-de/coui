@@ -16,6 +16,15 @@ class _InputOTPExample1State extends State<InputOTPExample1> {
       mainAxisSize: MainAxisSize.min,
       children: [
         InputOTP(
+          children: [
+            InputOTPChild.character(allowDigit: true),
+            InputOTPChild.character(allowDigit: true),
+            InputOTPChild.character(allowDigit: true),
+            InputOTPChild.separator,
+            InputOTPChild.character(allowDigit: true),
+            InputOTPChild.character(allowDigit: true),
+            InputOTPChild.character(allowDigit: true),
+          ],
           onChanged: (value) {
             setState(() {
               this.value = value.otpToString();
@@ -26,15 +35,6 @@ class _InputOTPExample1State extends State<InputOTPExample1> {
               submittedValue = value.otpToString();
             });
           },
-          children: [
-            InputOTPChild.character(allowDigit: true),
-            InputOTPChild.character(allowDigit: true),
-            InputOTPChild.character(allowDigit: true),
-            InputOTPChild.separator,
-            InputOTPChild.character(allowDigit: true),
-            InputOTPChild.character(allowDigit: true),
-            InputOTPChild.character(allowDigit: true),
-          ],
         ),
         gap(16),
         Text('Value: $value'),

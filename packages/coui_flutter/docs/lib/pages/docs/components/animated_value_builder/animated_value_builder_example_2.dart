@@ -18,35 +18,35 @@ class _AnimatedValueBuilderExample2State
     return Column(
       children: [
         AnimatedValueBuilder(
-          key: ValueKey(rebuildCount),
           value: colors[index],
-          initialValue: colors[index].withValues(alpha: 0),
           duration: const Duration(seconds: 1),
-          lerp: Color.lerp,
           builder: (context, value, child) {
-            return Container(width: 100, height: 100, color: value);
+            return Container(color: value, width: 100, height: 100);
           },
+          key: ValueKey(rebuildCount),
+          initialValue: colors[index].withValues(alpha: 0),
+          lerp: Color.lerp,
         ),
         const Gap(32),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             PrimaryButton(
+              child: const Text('Change Color'),
               onPressed: () {
                 setState(() {
                   index = (index + 1) % colors.length;
                 });
               },
-              child: const Text('Change Color'),
             ),
             const Gap(24),
             PrimaryButton(
+              child: const Text('Rebuild'),
               onPressed: () {
                 setState(() {
                   rebuildCount++;
                 });
               },
-              child: const Text('Rebuild'),
             ),
           ],
         ),

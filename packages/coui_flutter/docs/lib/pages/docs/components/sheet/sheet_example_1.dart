@@ -12,21 +12,21 @@ class _SheetExample1State extends State<SheetExample1> {
 
   void saveProfile() {
     showDialog(
-      context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Profile updated'),
-          content: Text('Content: ${controller.values}'),
           actions: [
             PrimaryButton(
+              child: const Text('Close'),
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Close'),
             ),
           ],
+          content: Text('Content: ${controller.values}'),
+          title: const Text('Profile updated'),
         );
       },
+      context: context,
     );
   }
 
@@ -45,11 +45,11 @@ class _SheetExample1State extends State<SheetExample1> {
               children: [
                 Expanded(child: const Text('Edit profile').large().medium()),
                 TextButton(
-                  density: ButtonDensity.icon,
-                  child: const Icon(Icons.close),
                   onPressed: () {
                     closeSheet(context);
                   },
+                  density: ButtonDensity.icon,
+                  child: const Icon(Icons.close),
                 ),
               ],
             ),
@@ -113,16 +113,16 @@ class _SheetExample1State extends State<SheetExample1> {
   @override
   Widget build(BuildContext context) {
     return PrimaryButton(
+      child: const Text('Open Sheet'),
       onPressed: () {
         openSheet(
-          context: context,
           builder: (context) {
             return buildSheet(context);
           },
+          context: context,
           position: OverlayPosition.end,
         );
       },
-      child: const Text('Open Sheet'),
     );
   }
 }

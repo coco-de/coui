@@ -14,8 +14,8 @@ class TreeTile extends StatelessWidget implements IComponentPage {
     return const ComponentCard(
       name: 'tree',
       title: 'Tree',
-      scale: 1.5,
       example: TreeExample1(),
+      scale: 1.5,
     );
   }
 }

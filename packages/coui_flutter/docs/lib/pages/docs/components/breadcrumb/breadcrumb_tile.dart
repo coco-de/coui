@@ -12,8 +12,8 @@ class BreadcrumbTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return const ComponentCard(
-      title: 'Breadcrumb',
       name: 'breadcrumb',
+      title: 'Breadcrumb',
       example: BreadcrumbExample1(),
     );
   }

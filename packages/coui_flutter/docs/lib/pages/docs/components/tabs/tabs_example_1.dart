@@ -16,16 +16,16 @@ class _TabsExample1State extends State<TabsExample1> {
       children: [
         Tabs(
           index: index,
-          children: const [
-            TabItem(child: Text('Tab 1')),
-            TabItem(child: Text('Tab 2')),
-            TabItem(child: Text('Tab 3')),
-          ],
           onChanged: (int value) {
             setState(() {
               index = value;
             });
           },
+          children: const [
+            TabItem(child: Text('Tab 1')),
+            TabItem(child: Text('Tab 2')),
+            TabItem(child: Text('Tab 3')),
+          ],
         ),
         const Gap(8),
         IndexedStack(

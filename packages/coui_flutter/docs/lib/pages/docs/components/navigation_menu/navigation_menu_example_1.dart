@@ -13,31 +13,31 @@ class NavigationMenuExample1 extends StatelessWidget {
             reverse: true,
             children: [
               NavigationMenuContent(
-                title: const Text('Introduction'),
                 content: const Text(
                   'Component library for Flutter based on Coui/UI design.',
                 ),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Introduction'),
               ),
               NavigationMenuContent(
-                title: const Text('Installation'),
                 content: const Text(
                   'How to install this package in your Flutter project.',
                 ),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Installation'),
               ),
               NavigationMenuContent(
-                title: const Text('Typography'),
                 content: const Text(
                   'Styles and usage of typography in this package.',
                 ),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Typography'),
               ),
               Clickable(
                 mouseCursor: const WidgetStatePropertyAll(
@@ -46,9 +46,9 @@ class NavigationMenuExample1 extends StatelessWidget {
                 child: Card(
                   borderRadius: theme.borderRadiusMd,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       const FlutterLogo(size: 32),
                       const Gap(16),
@@ -69,46 +69,46 @@ class NavigationMenuExample1 extends StatelessWidget {
           content: NavigationMenuContentList(
             children: [
               NavigationMenuContent(
-                title: const Text('Accordion'),
                 content: const Text('Accordion component for Flutter.'),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Accordion'),
               ),
               NavigationMenuContent(
-                title: const Text('Alert'),
                 content: const Text('Alert component for Flutter.'),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Alert'),
               ),
               NavigationMenuContent(
-                title: const Text('Alert Dialog'),
                 content: const Text('Alert Dialog component for Flutter.'),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Alert Dialog'),
               ),
               NavigationMenuContent(
-                title: const Text('Animation'),
                 content: const Text('Animation component for Flutter.'),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Animation'),
               ),
               NavigationMenuContent(
-                title: const Text('Avatar'),
                 content: const Text('Avatar component for Flutter.'),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Avatar'),
               ),
               NavigationMenuContent(
-                title: const Text('Badge'),
                 content: const Text('Badge component for Flutter.'),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Badge'),
               ),
             ],
           ),
@@ -120,35 +120,35 @@ class NavigationMenuExample1 extends StatelessWidget {
             children: [
               // latest news
               NavigationMenuContent(
-                title: const Text('Latest news'),
                 content: const Text('Stay updated with the latest news.'),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Latest news'),
               ),
               NavigationMenuContent(
-                title: const Text('Change log'),
                 content: const Text('View the change log of this package.'),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Change log'),
               ),
               NavigationMenuContent(
-                title: const Text('Contributors'),
                 content: const Text('List of contributors to this package.'),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                title: const Text('Contributors'),
               ),
             ],
           ),
           child: const Text('Blog'),
         ),
         NavigationMenuItem(
+          child: const Text('Documentation'),
           onPressed: () {
             // TODOS: will be implemented later.
           },
-          child: const Text('Documentation'),
         ),
       ],
     );

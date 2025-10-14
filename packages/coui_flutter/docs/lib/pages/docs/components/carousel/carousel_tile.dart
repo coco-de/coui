@@ -13,8 +13,8 @@ class CarouselTile extends StatelessWidget implements IComponentPage {
     return const ComponentCard(
       name: 'carousel',
       title: 'Carousel',
-      fit: true,
       example: SizedBox(width: 550, height: 200, child: CarouselExample1()),
+      fit: true,
     );
   }
 }

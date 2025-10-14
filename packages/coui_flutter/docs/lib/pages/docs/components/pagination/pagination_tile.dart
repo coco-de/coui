@@ -11,9 +11,8 @@ class PaginationTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return ComponentCard(
-      title: 'Pagination',
       name: 'pagination',
-      reverse: true,
+      title: 'Pagination',
       example: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,6 +23,7 @@ class PaginationTile extends StatelessWidget implements IComponentPage {
           ),
         ],
       ).gap(16),
+      reverse: true,
     );
   }
 }

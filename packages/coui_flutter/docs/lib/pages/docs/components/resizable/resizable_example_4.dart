@@ -61,9 +61,9 @@ class _ResizableExample4State extends State<ResizableExample4> {
                 ),
               ),
               ResizablePane.controlled(
+                collapsedSize: 20,
                 controller: controller5,
                 minSize: 80,
-                collapsedSize: 20,
                 child: const NumberedContainer(
                   index: 4,
                   height: 200,
@@ -79,6 +79,7 @@ class _ResizableExample4State extends State<ResizableExample4> {
           runSpacing: 16,
           children: [
             PrimaryButton(
+              child: const Text('Reset'),
               onPressed: () {
                 controller1.size = 80;
                 controller2.size = 80;
@@ -86,55 +87,54 @@ class _ResizableExample4State extends State<ResizableExample4> {
                 controller4.size = 80;
                 controller5.size = 80;
               },
-              child: const Text('Reset'),
             ),
             PrimaryButton(
+              child: const Text('Expand Panel 2'),
               onPressed: () {
                 controller3.tryExpandSize(20);
               },
-              child: const Text('Expand Panel 2'),
             ),
             PrimaryButton(
+              child: const Text('Shrink Panel 2'),
               onPressed: () {
                 controller3.tryExpandSize(-20);
               },
-              child: const Text('Shrink Panel 2'),
             ),
             PrimaryButton(
+              child: const Text('Expand Panel 1'),
               onPressed: () {
                 controller2.tryExpandSize(20);
               },
-              child: const Text('Expand Panel 1'),
             ),
             PrimaryButton(
+              child: const Text('Shrink Panel 1'),
               onPressed: () {
                 controller2.tryExpandSize(-20);
               },
-              child: const Text('Shrink Panel 1'),
             ),
             PrimaryButton(
+              child: const Text('Expand Panel 4'),
               onPressed: () {
                 controller5.tryExpandSize(20);
               },
-              child: const Text('Expand Panel 4'),
             ),
             PrimaryButton(
+              child: const Text('Shrink Panel 4'),
               onPressed: () {
                 controller5.tryExpandSize(-20);
               },
-              child: const Text('Shrink Panel 4'),
             ),
             PrimaryButton(
+              child: const Text('Collapse Panel 4'),
               onPressed: () {
                 controller5.tryCollapse();
               },
-              child: const Text('Collapse Panel 4'),
             ),
             PrimaryButton(
+              child: const Text('Expand Panel 4'),
               onPressed: () {
                 controller5.tryExpand();
               },
-              child: const Text('Expand Panel 4'),
             ),
           ],
         ),

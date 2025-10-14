@@ -931,11 +931,11 @@ class _FormattedObjectInputState<T> extends State<FormattedObjectInput<T>> {
       alignment: widget.popoverAlignment ?? AlignmentDirectional.topStart,
       anchorAlignment:
           widget.popoverAnchorAlignment ?? AlignmentDirectional.bottomStart,
+      context: context,
+      offset: widget.popoverOffset ?? (const Offset(0, 4) * theme.scaling),
       builder: (context) {
         return popupBuilder(context, _controller);
       },
-      context: context,
-      offset: widget.popoverOffset ?? (const Offset(0, 4) * theme.scaling),
     );
   }
 

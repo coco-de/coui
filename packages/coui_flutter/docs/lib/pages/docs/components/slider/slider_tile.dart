@@ -12,12 +12,12 @@ class SliderTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'slider',
       title: 'Slider',
+      example: Slider(
+        onChanged: (value) {},
+        value: const SliderValue.single(0.75),
+      ).sized(width: 100),
       center: true,
       scale: 2,
-      example: Slider(
-        value: const SliderValue.single(0.75),
-        onChanged: (value) {},
-      ).sized(width: 100),
     );
   }
 }

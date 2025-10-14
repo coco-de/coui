@@ -14,23 +14,23 @@ class _TrackerExample1State extends State<TrackerExample1> {
     for (int i = 0; i < 80; i++) {
       data.add(
         const TrackerData(
-          tooltip: Text('Tracker Fine'),
           level: TrackerLevel.fine,
+          tooltip: Text('Tracker Fine'),
         ),
       );
     }
     data[40] = data[35] = const TrackerData(
-      tooltip: Text('Tracker Warning'),
       level: TrackerLevel.warning,
+      tooltip: Text('Tracker Warning'),
     );
     data[60] = data[68] = data[72] = const TrackerData(
-      tooltip: Text('Tracker Critical'),
       level: TrackerLevel.critical,
+      tooltip: Text('Tracker Critical'),
     );
     for (int i = 8; i < 16; i++) {
       data[i] = const TrackerData(
-        tooltip: Text('Tracker Unknown'),
         level: TrackerLevel.unknown,
+        tooltip: Text('Tracker Unknown'),
       );
     }
     return Tracker(data: data);

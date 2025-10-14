@@ -394,6 +394,9 @@ class ControlledChipInput<T> extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return ChipInput(
           chipBuilder: chipBuilder,
@@ -418,9 +421,6 @@ class ControlledChipInput<T> extends StatelessWidget
           useChips: useChips,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }
@@ -542,7 +542,6 @@ class ChipInputState<T> extends State<ChipInput<T>>
         _suggestions.value.isNotEmpty) {
       _popoverController.show<void>(
         alignment: Alignment.topCenter,
-        builder: buildPopover,
         context: context,
         dismissBackdropFocus: false,
         handler: const PopoverOverlayHandler(),
@@ -550,6 +549,7 @@ class ChipInputState<T> extends State<ChipInput<T>>
         offset: Offset(0, Theme.of(context).scaling * 4),
         showDuration: Duration.zero,
         widthConstraint: PopoverConstraint.anchorFixedSize,
+        builder: buildPopover,
       );
     }
   }

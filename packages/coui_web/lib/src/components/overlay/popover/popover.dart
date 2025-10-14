@@ -54,11 +54,11 @@ class Popover extends UiComponent {
     Key? key,
   }) {
     return Popover(
+      children: children ?? this.children,
       key: key ?? this.key,
       trigger: trigger ?? this.trigger,
       content: content ?? this.content,
       side: side ?? this.side,
-      children: children ?? this.children,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -73,23 +73,23 @@ class Popover extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
-      id: id,
-      classes: _buildClasses(),
-      styles: this.css,
-      attributes: this.componentAttributes,
-      events: this.events,
       children: [
         trigger,
         // Popover content
         div(
+          child: content,
           classes: _buildPopoverClasses(),
           attributes: {
             'data-side': side.name,
             'role': 'dialog',
           },
-          child: content,
         ),
       ],
+      id: id,
+      classes: _buildClasses(),
+      styles: this.css,
+      attributes: this.componentAttributes,
+      events: this.events,
     );
   }
 

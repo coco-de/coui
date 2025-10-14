@@ -10,7 +10,7 @@ class LayoutPageExample2 extends StatelessWidget {
       child: Container(
         color: Colors.green,
         child: Container(color: Colors.blue, height: 20).withMargin(all: 16),
-      ).withMargin(top: 24, bottom: 12, horizontal: 16),
+      ).withMargin(bottom: 12, horizontal: 16, top: 24),
     );
   }
 }

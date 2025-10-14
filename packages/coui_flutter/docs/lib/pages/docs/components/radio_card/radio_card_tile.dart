@@ -12,7 +12,6 @@ class RadioCardTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'radio_card',
       title: 'Radio Card',
-      scale: 1.2,
       example: Card(
         child: Column(
           children: [
@@ -51,6 +50,7 @@ class RadioCardTile extends StatelessWidget implements IComponentPage {
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.2,
     );
   }
 }

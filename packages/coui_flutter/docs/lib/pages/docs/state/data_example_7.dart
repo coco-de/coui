@@ -50,12 +50,12 @@ class _InnerWidgetState extends State<InnerWidget> {
           Text('InnerWidget Rebuild Count: $innerRebuildCount'),
           const Gap(12),
           PrimaryButton(
+            child: const Text('Increment Counter'),
             onPressed: () {
               /// Use "find" instead of "of" to avoid unnecessary rebuilds.
               final data = Data.find<DataExample7State>(context);
               data.incrementCounter();
             },
-            child: const Text('Increment Counter'),
           ),
         ],
       ),

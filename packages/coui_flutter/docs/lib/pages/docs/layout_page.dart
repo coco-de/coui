@@ -42,8 +42,8 @@ class _LayoutPageState extends State<LayoutPage> {
         'Basic Layout': basicLayoutKey,
       },
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Text('Layout Page').h1(),
           const Text('Guide to layout in Coui Flutter.').lead(),

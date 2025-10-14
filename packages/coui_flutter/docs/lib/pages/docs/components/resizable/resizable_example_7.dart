@@ -34,8 +34,8 @@ class _ResizableExample7State extends State<ResizableExample7> {
             children: [
               for (int i = 0; i < _items.length; i++)
                 ResizablePane(
-                  key: ValueKey(_items[i].toARGB32()),
                   initialSize: 200,
+                  key: ValueKey(_items[i].toARGB32()),
                   minSize: 100,
                   child: Container(
                     color: _items[i],

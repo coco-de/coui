@@ -12,12 +12,12 @@ class PhoneInputTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'phone_input',
       title: 'Phone Input',
-      scale: 1.5,
       example: Card(
         child: const PhoneInput(
           initialValue: PhoneNumber(Country.indonesia, '81234567890'),
         ).withAlign(Alignment.topLeft),
       ).sized(height: 300),
+      scale: 1.5,
     );
   }
 }

@@ -86,44 +86,44 @@ class FormField extends UiComponent {
     final currentError = error;
 
     return div(
-      id: id,
-      classes: _buildClasses(),
-      styles: this.css,
-      attributes: this.componentAttributes,
-      events: this.events,
       children: [
         // Label
         if (currentLabel != null)
           Component.element(
-            tag: 'label',
-            classes:
-                'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
             child: Component.fragment(
               children: [
                 text(currentLabel),
                 if (required)
                   span(
-                    classes: 'text-destructive ml-1',
                     child: text('*'),
+                    classes: 'text-destructive ml-1',
                   ),
               ],
             ),
+            tag: 'label',
+            classes:
+                'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
           ),
         // Input
         if (currentChild != null) currentChild,
         // Description
         if (currentDescription != null && currentError == null)
           p(
-            classes: 'text-sm text-muted-foreground',
             child: text(currentDescription),
+            classes: 'text-sm text-muted-foreground',
           ),
         // Error
         if (currentError != null)
           p(
-            classes: 'text-sm text-destructive',
             child: text(currentError),
+            classes: 'text-sm text-destructive',
           ),
       ],
+      id: id,
+      classes: _buildClasses(),
+      styles: this.css,
+      attributes: this.componentAttributes,
+      events: this.events,
     );
   }
 
@@ -187,12 +187,12 @@ class Form extends UiComponent {
   @override
   Component build(BuildContext context) {
     return form(
+      children: children,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: componentAttributes,
       events: _buildEvents(),
-      children: children,
     );
   }
 

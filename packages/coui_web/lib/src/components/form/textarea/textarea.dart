@@ -112,21 +112,21 @@ class Textarea extends UiComponent {
   }) {
     return Textarea(
       key: key ?? this.key,
-      value: value ?? this.value,
       placeholder: placeholder ?? this.placeholder,
+      value: value ?? this.value,
       disabled: disabled ?? this.disabled,
-      required: required ?? this.required,
       rows: rows ?? this.rows,
       cols: cols ?? this.cols,
       onInput: onInput ?? this.onInput,
       onChange: onChange ?? this.onChange,
+      name: name ?? this.name,
+      maxLength: maxLength ?? this.maxLength,
+      required: required ?? this.required,
+      attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
       tag: tag ?? this.tag,
-      name: name ?? this.name,
-      maxLength: maxLength ?? this.maxLength,
-      attributes: attributes ?? this.componentAttributes,
     );
   }
 
@@ -176,13 +176,13 @@ class Textarea extends UiComponent {
     final currentValue = value;
 
     return Component.element(
+      child: currentValue == null ? null : text(currentValue),
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: currentValue != null ? text(currentValue) : null,
     );
   }
 

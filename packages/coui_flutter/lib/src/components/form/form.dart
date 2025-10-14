@@ -2387,6 +2387,7 @@ class FormField<T> extends StatelessWidget {
       key: key,
       validator: validator,
       child: FormEntryErrorBuilder(
+        modes: showErrors,
         builder: (context, error, child) {
           return ComponentTheme(
             data: FocusOutlineTheme(
@@ -2450,7 +2451,6 @@ class FormField<T> extends StatelessWidget {
             ),
           );
         },
-        modes: showErrors,
         child: child,
       ),
     );
@@ -2485,6 +2485,7 @@ class FormInline<T> extends StatelessWidget {
       key: key,
       validator: validator,
       child: FormEntryErrorBuilder(
+        modes: showErrors,
         builder: (context, error, child) {
           return IntrinsicWidth(
             child: Column(
@@ -2517,7 +2518,6 @@ class FormInline<T> extends StatelessWidget {
             ),
           );
         },
-        modes: showErrors,
         child: child,
       ),
     );
@@ -2561,6 +2561,7 @@ class FormTableLayout extends StatelessWidget {
                   key: rows[i].key,
                   validator: rows[i].validator,
                   child: FormEntryErrorBuilder(
+                    modes: rows[i].showErrors,
                     builder: (context, error, child) {
                       return ComponentTheme(
                         data: FocusOutlineTheme(
@@ -2608,7 +2609,6 @@ class FormTableLayout extends StatelessWidget {
                         ),
                       );
                     },
-                    modes: rows[i].showErrors,
                     child: rows[i].child,
                   ),
                 ).withPadding(top: i == 0 ? 0 : spacing),

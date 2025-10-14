@@ -37,7 +37,6 @@ class HoverCardTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'hover_card',
       title: 'Hover Card',
-      scale: 1,
       example: Stack(
         children: [
           Column(
@@ -47,22 +46,23 @@ class HoverCardTile extends StatelessWidget implements IComponentPage {
               const Gap(16),
               const Card(
                 child: Basic(
-                  leading: FlutterLogo(),
-                  title: Text('@flutter'),
                   content: Text(
                     'The Flutter SDK provides the tools to build beautiful apps for mobile, web, and desktop from a single codebase.',
                   ),
+                  leading: FlutterLogo(),
+                  title: Text('@flutter'),
                 ),
               ).sized(width: 300),
             ],
           ),
           Positioned(
-            top: 13,
             left: 160,
+            top: 13,
             child: CustomPaint(painter: CursorPainter()),
           ),
         ],
       ),
+      scale: 1,
     );
   }
 }

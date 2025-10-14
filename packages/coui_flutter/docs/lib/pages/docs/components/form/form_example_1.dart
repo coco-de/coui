@@ -18,42 +18,6 @@ class _FormExample1State extends State<FormExample1> {
     return SizedBox(
       width: 480,
       child: Form(
-        onSubmit: (context, values) {
-          // Get the values individually
-          String? username = _usernameKey[values];
-          String? password = _passwordKey[values];
-          String? confirmPassword = _confirmPasswordKey[values];
-          // or just encode the whole map to JSON directly
-          String json = jsonEncode(
-            values.map((key, value) {
-              return MapEntry(key.key, value);
-            }),
-          );
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: const Text('Form Values'),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Username: $username'),
-                    Text('Password: $password'),
-                    Text('Confirm Password: $confirmPassword'),
-                    Text('JSON: $json'),
-                  ],
-                ),
-                actions: [
-                  PrimaryButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Close'),
-                  ),
-                ],
-              );
-            },
-          );
-        },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -61,9 +25,9 @@ class _FormExample1State extends State<FormExample1> {
             FormTableLayout(
               rows: [
                 FormField(
+                  hint: const Text('This is your public display name'),
                   key: _usernameKey,
                   label: const Text('Username'),
-                  hint: const Text('This is your public display name'),
                   validator: const LengthValidator(min: 4),
                   child: const TextField(initialValue: 'sunarya-thito'),
                 ),
@@ -95,6 +59,42 @@ class _FormExample1State extends State<FormExample1> {
             ),
           ],
         ),
+        onSubmit: (context, values) {
+          // Get the values individually
+          String? username = _usernameKey[values];
+          String? password = _passwordKey[values];
+          String? confirmPassword = _confirmPasswordKey[values];
+          // or just encode the whole map to JSON directly
+          String json = jsonEncode(
+            values.map((key, value) {
+              return MapEntry(key.key, value);
+            }),
+          );
+          showDialog(
+            builder: (context) {
+              return AlertDialog(
+                actions: [
+                  PrimaryButton(
+                    child: const Text('Close'),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Username: $username'),
+                    Text('Password: $password'),
+                    Text('Confirm Password: $confirmPassword'),
+                    Text('JSON: $json'),
+                  ],
+                ),
+                title: const Text('Form Values'),
+              );
+            },
+            context: context,
+          );
+        },
       ),
     );
   }

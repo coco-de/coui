@@ -12,15 +12,14 @@ class AutocompleteTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'autocomplete',
       title: 'Autocomplete',
-      scale: 1.2,
       example: Card(
         child: Column(
           children: [
             const TextField(
-              placeholder: Text('Search fruits...'),
               features: [
                 InputFeature.trailing(Icon(LucideIcons.search)),
               ],
+              placeholder: Text('Search fruits...'),
             ),
             const Gap(8),
             OutlinedContainer(
@@ -54,6 +53,7 @@ class AutocompleteTile extends StatelessWidget implements IComponentPage {
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.2,
     );
   }
 }

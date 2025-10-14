@@ -12,12 +12,12 @@ class AlertTile extends StatelessWidget implements IComponentPage {
     return const ComponentCard(
       name: 'alert',
       title: 'Alert',
-      center: true,
       example: Alert(
+        content: Text('This is an alert.'),
         leading: Icon(Icons.info_outline),
         title: Text('Alert'),
-        content: Text('This is an alert.'),
       ),
+      center: true,
     );
   }
 }

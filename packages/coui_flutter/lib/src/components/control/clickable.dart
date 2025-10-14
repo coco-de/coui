@@ -648,6 +648,7 @@ class _ClickableState extends State<Clickable> {
                   return AnimatedValueBuilder(
                     value: widget.transform?.resolve(widgetStates),
                     duration: const Duration(milliseconds: 50),
+                    lerp: lerpMatrix4,
                     builder: (context, value, child) {
                       return Transform(
                         transform: value ?? Matrix4.identity(),
@@ -655,7 +656,6 @@ class _ClickableState extends State<Clickable> {
                         child: child,
                       );
                     },
-                    lerp: lerpMatrix4,
                     child: child,
                   );
                 },

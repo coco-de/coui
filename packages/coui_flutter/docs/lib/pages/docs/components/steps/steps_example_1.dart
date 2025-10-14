@@ -8,19 +8,19 @@ class StepsExample1 extends StatelessWidget {
     return const Steps(
       children: [
         StepItem(
-          title: Text('Create a project'),
           content: [
             Text('Create a new project in the project manager.'),
             Text('Add the required files to the project.'),
           ],
+          title: Text('Create a project'),
         ),
         StepItem(
-          title: Text('Add dependencies'),
           content: [Text('Add the required dependencies to the project.')],
+          title: Text('Add dependencies'),
         ),
         StepItem(
-          title: Text('Run the project'),
           content: [Text('Run the project in the project manager.')],
+          title: Text('Run the project'),
         ),
       ],
     );

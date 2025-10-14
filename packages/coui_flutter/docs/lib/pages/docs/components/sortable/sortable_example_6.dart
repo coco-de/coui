@@ -33,37 +33,32 @@ class _SortableExample6State extends State<SortableExample6> {
         // this builder is needed to access the context of the SortableLayer
         builder: (context) {
           return SortableDropFallback<int>(
-            onAccept: (value) {
-              setState(() {
-                names.add(names.removeAt(value.data));
-              });
-            },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 PrimaryButton(
+                  child: const Text('Reset'),
                   onPressed: () {
                     setState(() {
                       _reset();
                     });
                   },
-                  child: const Text('Reset'),
                 ),
                 for (int i = 0; i < names.length; i++)
                   Sortable<String>(
-                    key: ValueKey(i),
                     data: names[i],
                     // we only want user to drag the item from the handle,
                     // so we disable the drag on the item itself
                     enabled: false,
-                    onAcceptTop: (value) {
-                      setState(() {
-                        names.swapItem(value, i);
-                      });
-                    },
+                    key: ValueKey(i),
                     onAcceptBottom: (value) {
                       setState(() {
                         names.swapItem(value, i + 1);
+                      });
+                    },
+                    onAcceptTop: (value) {
+                      setState(() {
+                        names.swapItem(value, i);
                       });
                     },
                     onDropFailed: () {
@@ -90,6 +85,11 @@ class _SortableExample6State extends State<SortableExample6> {
                   ),
               ],
             ),
+            onAccept: (value) {
+              setState(() {
+                names.add(names.removeAt(value.data));
+              });
+            },
           );
         },
       ),

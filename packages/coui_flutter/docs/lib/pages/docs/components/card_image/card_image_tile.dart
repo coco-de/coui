@@ -13,18 +13,16 @@ class CardImageTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'card_image',
       title: 'Card Image',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 280,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
             border: Border.all(color: theme.colorScheme.border),
+            borderRadius: BorderRadius.circular(8),
           ),
+          width: 280,
           child: Column(
             children: [
               Container(
-                height: 160,
                 decoration: BoxDecoration(
                   color: theme.colorScheme.muted,
                   borderRadius: const BorderRadius.only(
@@ -32,6 +30,7 @@ class CardImageTile extends StatelessWidget implements IComponentPage {
                     topRight: Radius.circular(8),
                   ),
                 ),
+                height: 160,
                 child: Center(
                   child: Icon(
                     Icons.image,
@@ -55,19 +54,19 @@ class CardImageTile extends StatelessWidget implements IComponentPage {
                       children: [
                         Expanded(
                           child: OutlineButton(
+                            child: const Text('Cancel'),
                             onPressed: () {
                               // TODOS: will be implemented later.
                             },
-                            child: const Text('Cancel'),
                           ),
                         ),
                         const Gap(8),
                         Expanded(
                           child: PrimaryButton(
+                            child: const Text('Action'),
                             onPressed: () {
                               // TODOS: will be implemented later.
                             },
-                            child: const Text('Action'),
                           ),
                         ),
                       ],
@@ -79,6 +78,7 @@ class CardImageTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

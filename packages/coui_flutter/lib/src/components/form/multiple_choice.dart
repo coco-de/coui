@@ -176,6 +176,9 @@ class ControlledMultipleAnswer<T> extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter<Iterable<T>?>(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return MultipleAnswer<T>(
           allowUnselect: allowUnselect,
@@ -185,9 +188,6 @@ class ControlledMultipleAnswer<T> extends StatelessWidget
           child: child,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }
@@ -281,6 +281,9 @@ class ControlledMultipleChoice<T> extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter<T?>(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return MultipleChoice<T>(
           allowUnselect: allowUnselect,
@@ -290,9 +293,6 @@ class ControlledMultipleChoice<T> extends StatelessWidget
           child: child,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }

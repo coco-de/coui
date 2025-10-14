@@ -662,16 +662,6 @@ Future<T?> showDialog<T>({
     barrierColor: barrierColor ?? const Color.fromRGBO(0, 0, 0, 0),
     barrierDismissible: barrierDismissible,
     barrierLabel: barrierLabel,
-    builder: (context) {
-      return _DialogOverlayWrapper(
-        route: ModalRoute.of(context)! as DialogRoute<T>,
-        child: Builder(
-          builder: (context) {
-            return builder(context);
-          },
-        ),
-      );
-    },
     // context: context, // Removed in Flutter 3.35
     data: data,
     settings: routeSettings,
@@ -690,6 +680,16 @@ Future<T?> showDialog<T>({
     traversalEdgeBehavior:
         traversalEdgeBehavior ?? TraversalEdgeBehavior.closedLoop,
     useSafeArea: useSafeArea,
+    builder: (context) {
+      return _DialogOverlayWrapper(
+        route: ModalRoute.of(context)! as DialogRoute<T>,
+        child: Builder(
+          builder: (context) {
+            return builder(context);
+          },
+        ),
+      );
+    },
   );
 
   return navigatorState.push(dialogRoute);
@@ -836,6 +836,21 @@ class DialogOverlayHandler extends OverlayHandler {
           : Colors.transparent,
       barrierDismissible: barrierDismissable,
       barrierLabel: 'Dismiss',
+      // context: context, // Removed in Flutter 3.35
+      data: data,
+      themes: themes,
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return _buildCoUIDialogTransitions(
+          Alignment.center,
+          animation,
+          BorderRadius.zero,
+          child,
+          context,
+          false,
+          secondaryAnimation,
+        );
+      },
+      traversalEdgeBehavior: TraversalEdgeBehavior.closedLoop,
       builder: (context) {
         final theme = Theme.of(context);
         final surfaceOpacity = theme.surfaceOpacity;
@@ -867,21 +882,6 @@ class DialogOverlayHandler extends OverlayHandler {
                 child: child,
               );
       },
-      // context: context, // Removed in Flutter 3.35
-      data: data,
-      themes: themes,
-      transitionBuilder: (context, animation, secondaryAnimation, child) {
-        return _buildCoUIDialogTransitions(
-          Alignment.center,
-          animation,
-          BorderRadius.zero,
-          child,
-          context,
-          false,
-          secondaryAnimation,
-        );
-      },
-      traversalEdgeBehavior: TraversalEdgeBehavior.closedLoop,
     );
     navigatorState.push(dialogRoute);
 

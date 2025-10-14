@@ -185,8 +185,8 @@ class Input extends UiComponent {
     Styles? css,
   }) {
     return Input(
-      attributes: attributes ?? this.componentAttributes,
       children: children ?? this.children,
+      attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       disabled: disabled ?? this.disabled,
@@ -202,11 +202,11 @@ class Input extends UiComponent {
       pattern: pattern ?? this.pattern,
       placeholder: placeholder ?? this.placeholder,
       required: required ?? this.required,
+      variant: variant ?? _variant,
       tag: tag ?? this.tag,
       title: title ?? this.title,
       type: type ?? this.type,
       value: value ?? this.value,
-      variant: variant ?? _variant,
     );
   }
 

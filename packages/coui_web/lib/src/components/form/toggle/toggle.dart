@@ -63,10 +63,10 @@ class Toggle extends UiComponent {
     Key? key,
   }) {
     return Toggle(
+      child: child ?? this.child,
       key: key ?? this.key,
       checked: checked ?? this.checked,
       disabled: disabled ?? this.disabled,
-      child: child ?? this.child,
       onChanged: onChanged ?? this.onChanged,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
@@ -82,6 +82,13 @@ class Toggle extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: span(
+        classes:
+            'pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0',
+        attributes: {
+          'data-state': checked ? 'checked' : 'unchecked',
+        },
+      ),
       tag: tag,
       id: id,
       classes: _buildClasses(),
@@ -95,13 +102,6 @@ class Toggle extends UiComponent {
         if (disabled) 'disabled': '',
       },
       events: _buildEvents(),
-      child: span(
-        classes:
-            'pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0',
-        attributes: {
-          'data-state': checked ? 'checked' : 'unchecked',
-        },
-      ),
     );
   }
 

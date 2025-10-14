@@ -233,7 +233,6 @@ class _OverlayManagerLayerState extends State<OverlayManagerLayer>
       allowInvertVertical: allowInvertVertical,
       anchorAlignment: anchorAlignment,
       barrierDismissable: barrierDismissable,
-      builder: builder,
       clipBehavior: clipBehavior,
       consumeOutsideTaps: consumeOutsideTaps,
       context: context,
@@ -253,6 +252,7 @@ class _OverlayManagerLayerState extends State<OverlayManagerLayer>
       showDuration: showDuration,
       transitionAlignment: transitionAlignment,
       widthConstraint: widthConstraint,
+      builder: builder,
     );
   }
 
@@ -292,7 +292,6 @@ class _OverlayManagerLayerState extends State<OverlayManagerLayer>
       allowInvertVertical: allowInvertVertical,
       anchorAlignment: anchorAlignment,
       barrierDismissable: barrierDismissable,
-      builder: builder,
       clipBehavior: clipBehavior,
       consumeOutsideTaps: consumeOutsideTaps,
       context: context,
@@ -312,6 +311,7 @@ class _OverlayManagerLayerState extends State<OverlayManagerLayer>
       showDuration: showDuration,
       transitionAlignment: transitionAlignment,
       widthConstraint: widthConstraint,
+      builder: builder,
     );
   }
 
@@ -351,7 +351,6 @@ class _OverlayManagerLayerState extends State<OverlayManagerLayer>
       allowInvertVertical: allowInvertVertical,
       anchorAlignment: anchorAlignment,
       barrierDismissable: barrierDismissable,
-      builder: builder,
       clipBehavior: clipBehavior,
       consumeOutsideTaps: consumeOutsideTaps,
       context: context,
@@ -371,6 +370,7 @@ class _OverlayManagerLayerState extends State<OverlayManagerLayer>
       showDuration: showDuration,
       transitionAlignment: transitionAlignment,
       widthConstraint: widthConstraint,
+      builder: builder,
     );
   }
 

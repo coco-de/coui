@@ -155,6 +155,9 @@ class ControlledDatePicker extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return DatePicker(
           dialogTitle: dialogTitle,
@@ -171,9 +174,6 @@ class ControlledDatePicker extends StatelessWidget
           value: data.value,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }
@@ -245,9 +245,6 @@ class DatePicker extends StatelessWidget {
     );
 
     return ObjectFormField<DateTime>(
-      builder: (context, value) {
-        return Text(localizations.formatDateTime(value, showTime: false));
-      },
       dialogTitle: dialogTitle,
       editorBuilder: (context, handler) {
         return DatePickerDialog(
@@ -274,6 +271,9 @@ class DatePicker extends StatelessWidget {
       popoverPadding: resolvedPadding,
       trailing: const Icon(LucideIcons.calendarDays),
       value: value,
+      builder: (context, value) {
+        return Text(localizations.formatDateTime(value, showTime: false));
+      },
     );
   }
 }
@@ -345,11 +345,6 @@ class DateRangePicker extends StatelessWidget {
     final localizations = CoUILocalizations.of(context);
 
     return ObjectFormField<DateTimeRange>(
-      builder: (context, value) {
-        return Text(
-          '${localizations.formatDateTime(value.start, showTime: false)} - ${localizations.formatDateTime(value.end, showTime: false)}',
-        );
-      },
       dialogTitle: dialogTitle,
       editorBuilder: (context, handler) {
         final value = handler.value;
@@ -387,6 +382,11 @@ class DateRangePicker extends StatelessWidget {
       popoverPadding: popoverPadding,
       trailing: const Icon(LucideIcons.calendarRange),
       value: value,
+      builder: (context, value) {
+        return Text(
+          '${localizations.formatDateTime(value.start, showTime: false)} - ${localizations.formatDateTime(value.end, showTime: false)}',
+        );
+      },
     );
   }
 }

@@ -87,12 +87,12 @@ class ScrollArea extends UiComponent {
     finalStyles.addAll(styles);
 
     return div(
+      child: child,
       id: id,
       classes: _buildClasses(),
       styles: finalStyles,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
     );
   }
 

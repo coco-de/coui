@@ -12,11 +12,11 @@ class CircularProgressTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'circular_progress',
       title: 'Circular Progress',
-      center: true,
       example: Transform.scale(
         scale: 3,
         child: const CircularProgressIndicator(),
       ),
+      center: true,
     );
   }
 }

@@ -415,7 +415,6 @@ class _ResizableTableState extends State<ResizableTable> {
         final cell = row.cells[c];
         _cells.add(
           _FlattenedTableCell(
-            builder: cell.build,
             column: c,
             columnSpan: cell.columnSpan,
             dragNotifier: _dragNotifier,
@@ -425,6 +424,7 @@ class _ResizableTableState extends State<ResizableTable> {
             rowSpan: cell.rowSpan,
             selected: row.selected,
             tableCellThemeBuilder: row.buildDefaultTheme,
+            builder: cell.build,
           ),
         );
       }
@@ -1346,7 +1346,6 @@ class _FlattenedTableCell extends _TableCellData {
   @override
   _TableCellData shift(int column, int row) {
     return _FlattenedTableCell(
-      builder: builder,
       column: this.column + column,
       columnSpan: columnSpan,
       dragNotifier: dragNotifier,
@@ -1356,6 +1355,7 @@ class _FlattenedTableCell extends _TableCellData {
       rowSpan: rowSpan,
       selected: selected,
       tableCellThemeBuilder: tableCellThemeBuilder,
+      builder: builder,
     );
   }
 
@@ -1574,7 +1574,6 @@ class _TableState extends State<Table> {
         final cell = row.cells[c];
         _cells.add(
           _FlattenedTableCell(
-            builder: cell.build,
             column: c,
             columnSpan: cell.columnSpan,
             dragNotifier: null,
@@ -1584,6 +1583,7 @@ class _TableState extends State<Table> {
             rowSpan: cell.rowSpan,
             selected: row.selected,
             tableCellThemeBuilder: row.buildDefaultTheme,
+            builder: cell.build,
           ),
         );
       }

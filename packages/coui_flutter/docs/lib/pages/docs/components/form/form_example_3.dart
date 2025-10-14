@@ -20,29 +20,6 @@ class _FormExample3State extends State<FormExample3> {
     return SizedBox(
       width: 480,
       child: Form(
-        onSubmit: (context, values) {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: const Text('Form Values'),
-                content: Text(
-                  jsonEncode(
-                    values.map((key, value) {
-                      return MapEntry(key.key, value);
-                    }),
-                  ),
-                ),
-                actions: [
-                  PrimaryButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Close'),
-                  ),
-                ],
-              );
-            },
-          );
-        },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -50,9 +27,9 @@ class _FormExample3State extends State<FormExample3> {
             FormTableLayout(
               rows: [
                 FormField(
+                  hint: const Text('This is your public display name'),
                   key: _usernameKey,
                   label: const Text('Username'),
-                  hint: const Text('This is your public display name'),
                   validator: const LengthValidator(min: 4) &
                       ValidationMode(
                         ConditionalValidator((value) async {
@@ -68,11 +45,11 @@ class _FormExample3State extends State<FormExample3> {
                 FormField(
                   key: _passwordKey,
                   label: const Text('Password'),
-                  validator: const LengthValidator(min: 8),
                   showErrors: const {
                     FormValidationMode.submitted,
                     FormValidationMode.changed,
                   },
+                  validator: const LengthValidator(min: 8),
                   child: const TextField(obscureText: true),
                 ),
                 FormField<String>(
@@ -100,6 +77,29 @@ class _FormExample3State extends State<FormExample3> {
             ),
           ],
         ),
+        onSubmit: (context, values) {
+          showDialog(
+            builder: (context) {
+              return AlertDialog(
+                actions: [
+                  PrimaryButton(
+                    child: const Text('Close'),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
+                content: Text(
+                  jsonEncode(
+                    values.map((key, value) {
+                      return MapEntry(key.key, value);
+                    }),
+                  ),
+                ),
+                title: const Text('Form Values'),
+              );
+            },
+            context: context,
+          );
+        },
       ),
     );
   }

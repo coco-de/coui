@@ -10,13 +10,13 @@ class ToastTile extends StatelessWidget implements IComponentPage {
   Widget _buildToast() {
     return Card(
       child: Basic(
-        title: const Text('Event has been created'),
         subtitle: const Text('Sunday, July 07, 2024 at 12:00 PM'),
+        title: const Text('Event has been created'),
         trailing: PrimaryButton(
-          size: ButtonSize.small,
           onPressed: () {
             // TODOS: will be implemented later.
           },
+          size: ButtonSize.small,
           child: const Text('Undo'),
         ),
         trailingAlignment: Alignment.center,
@@ -27,10 +27,8 @@ class ToastTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return ComponentCard(
-      title: 'Toast',
       name: 'toast',
-      scale: 1.3,
-      reverseVertical: true,
+      title: 'Toast',
       example: Stack(
         children: [
           Transform.translate(
@@ -50,6 +48,8 @@ class ToastTile extends StatelessWidget implements IComponentPage {
           _buildToast(),
         ],
       ),
+      reverseVertical: true,
+      scale: 1.3,
     );
   }
 }

@@ -7,41 +7,41 @@ class ItemPickerExample1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PrimaryButton(
+      child: const Text('Show Item Picker'),
       onPressed: () {
         showItemPicker<int>(
           context,
-          title: const Text('Pick an item'),
-          items: ItemBuilder(
-            itemCount: 1000,
-            itemBuilder: (index) {
-              return index;
-            },
-          ),
           builder: (context, item) {
             return ItemPickerOption(
               value: item,
               child: Text(item.toString()).large,
             );
           },
+          items: ItemBuilder(
+            itemBuilder: (index) {
+              return index;
+            },
+            itemCount: 1000,
+          ),
+          title: const Text('Pick an item'),
         ).then((value) {
           if (value != null) {
             showToast(
-              context: context,
               builder: (context, overlay) {
                 return SurfaceCard(child: Text('You picked $value!'));
               },
+              context: context,
             );
           } else {
             showToast(
-              context: context,
               builder: (context, overlay) {
                 return const SurfaceCard(child: Text('You picked nothing!'));
               },
+              context: context,
             );
           }
         });
       },
-      child: const Text('Show Item Picker'),
     );
   }
 }

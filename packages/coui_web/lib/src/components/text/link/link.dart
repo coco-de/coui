@@ -72,8 +72,9 @@ class Link extends UiComponent {
   @override
   Component build(BuildContext context) {
     return a(
-      id: id,
+      child: child,
       href: href,
+      id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: {
@@ -84,7 +85,6 @@ class Link extends UiComponent {
         },
       },
       events: this.events,
-      child: child,
     );
   }
 

@@ -39,32 +39,12 @@ class _SortableExample1State extends State<SortableExample1> {
             Expanded(
               child: Card(
                 child: SortableDropFallback<String>(
-                  onAccept: (value) {
-                    setState(() {
-                      swapItemInLists(
-                        [invited, reserved],
-                        value,
-                        invited,
-                        invited.length,
-                      );
-                    });
-                  },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       for (int i = 0; i < invited.length; i++)
                         Sortable<String>(
                           data: invited[i],
-                          onAcceptTop: (value) {
-                            setState(() {
-                              swapItemInLists(
-                                [invited, reserved],
-                                value,
-                                invited,
-                                i,
-                              );
-                            });
-                          },
                           onAcceptBottom: (value) {
                             setState(() {
                               swapItemInLists(
@@ -72,6 +52,16 @@ class _SortableExample1State extends State<SortableExample1> {
                                 value,
                                 invited,
                                 i + 1,
+                              );
+                            });
+                          },
+                          onAcceptTop: (value) {
+                            setState(() {
+                              swapItemInLists(
+                                [invited, reserved],
+                                value,
+                                invited,
+                                i,
                               );
                             });
                           },
@@ -82,6 +72,16 @@ class _SortableExample1State extends State<SortableExample1> {
                         ),
                     ],
                   ),
+                  onAccept: (value) {
+                    setState(() {
+                      swapItemInLists(
+                        [invited, reserved],
+                        value,
+                        invited,
+                        invited.length,
+                      );
+                    });
+                  },
                 ),
               ),
             ),
@@ -89,32 +89,12 @@ class _SortableExample1State extends State<SortableExample1> {
             Expanded(
               child: Card(
                 child: SortableDropFallback<String>(
-                  onAccept: (value) {
-                    setState(() {
-                      swapItemInLists(
-                        [invited, reserved],
-                        value,
-                        reserved,
-                        reserved.length,
-                      );
-                    });
-                  },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       for (int i = 0; i < reserved.length; i++)
                         Sortable<String>(
                           data: reserved[i],
-                          onAcceptTop: (value) {
-                            setState(() {
-                              swapItemInLists(
-                                [invited, reserved],
-                                value,
-                                reserved,
-                                i,
-                              );
-                            });
-                          },
                           onAcceptBottom: (value) {
                             setState(() {
                               swapItemInLists(
@@ -125,6 +105,16 @@ class _SortableExample1State extends State<SortableExample1> {
                               );
                             });
                           },
+                          onAcceptTop: (value) {
+                            setState(() {
+                              swapItemInLists(
+                                [invited, reserved],
+                                value,
+                                reserved,
+                                i,
+                              );
+                            });
+                          },
                           child: OutlinedContainer(
                             padding: const EdgeInsets.all(12),
                             child: Center(child: Text(reserved[i].data)),
@@ -132,6 +122,16 @@ class _SortableExample1State extends State<SortableExample1> {
                         ),
                     ],
                   ),
+                  onAccept: (value) {
+                    setState(() {
+                      swapItemInLists(
+                        [invited, reserved],
+                        value,
+                        reserved,
+                        reserved.length,
+                      );
+                    });
+                  },
                 ),
               ),
             ),

@@ -7,9 +7,9 @@ class DropdownMenuExample1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlineButton(
+      child: const Text('Open'),
       onPressed: () {
         showDropdown(
-          context: context,
           builder: (context) {
             return const DropdownMenu(
               children: [
@@ -39,11 +39,11 @@ class DropdownMenuExample1 extends StatelessWidget {
               ],
             );
           },
+          context: context,
         ).future.then((_) {
           print('Closed');
         });
       },
-      child: const Text('Open'),
     );
   }
 }

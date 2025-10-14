@@ -19,19 +19,19 @@ class _AnimatedValueBuilderExample1State
         AnimatedValueBuilder(
           value: colors[index],
           duration: const Duration(seconds: 1),
-          lerp: Color.lerp,
           builder: (context, value, child) {
-            return Container(width: 100, height: 100, color: value);
+            return Container(color: value, width: 100, height: 100);
           },
+          lerp: Color.lerp,
         ),
         const Gap(32),
         PrimaryButton(
+          child: const Text('Change Color'),
           onPressed: () {
             setState(() {
               index = (index + 1) % colors.length;
             });
           },
-          child: const Text('Change Color'),
         ),
       ],
     );

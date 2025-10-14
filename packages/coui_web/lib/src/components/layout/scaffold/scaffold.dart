@@ -91,8 +91,8 @@ class Scaffold extends UiComponent {
       // Layout without sidebar
       children.add(
         div(
-          classes: 'flex-1',
           child: body,
+          classes: 'flex-1',
         ),
       );
     } else {
@@ -100,14 +100,14 @@ class Scaffold extends UiComponent {
       final currentSidebar = sidebar;
       children.add(
         div(
-          classes: 'flex flex-1',
           children: [
             currentSidebar,
             div(
-              classes: 'flex-1',
               child: body,
+              classes: 'flex-1',
             ),
           ],
+          classes: 'flex flex-1',
         ),
       );
     } // Add footer if provided
@@ -176,9 +176,9 @@ class AppBar extends UiComponent {
     Key? key,
   }) {
     return AppBar(
-      key: key ?? this.key,
       children: children ?? this.children,
       child: child ?? this.child,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -190,13 +190,13 @@ class AppBar extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
       children: children,
     );
   }
@@ -254,21 +254,22 @@ class Sidebar extends UiComponent {
     Styles? css,
   }) {
     return Sidebar(
-      attributes: attributes ?? this.componentAttributes,
-      child: child ?? this.child,
       children: children ?? this.children,
+      child: child ?? this.child,
+      key: key ?? this.key,
+      width: width ?? this.width,
+      attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      key: key ?? this.key,
       tag: tag ?? this.tag,
-      width: width ?? this.width,
     );
   }
 
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
@@ -277,7 +278,6 @@ class Sidebar extends UiComponent {
       },
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
       children: children,
     );
   }

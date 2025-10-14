@@ -80,6 +80,8 @@ class Toast extends UiComponent {
     Key? key,
   }) {
     return Toast(
+      children: children ?? this.children,
+      child: child ?? this.child,
       key: key ?? this.key,
       title: title ?? this.title,
       description: description ?? this.description,
@@ -90,8 +92,6 @@ class Toast extends UiComponent {
       css: css ?? this.css,
       id: id ?? this.id,
       tag: tag ?? this.tag,
-      children: children ?? this.children,
-      child: child ?? this.child,
     );
   }
 
@@ -111,24 +111,25 @@ class Toast extends UiComponent {
       children: [
         // Content
         div(
-          classes: 'grid gap-1',
           children: [
             // Title
             div(
-              classes: 'text-sm font-semibold',
               child: text(title),
+              classes: 'text-sm font-semibold',
             ),
             // Description
             if (description != null)
               div(
-                classes: 'text-sm opacity-90',
                 child: text(description),
+                classes: 'text-sm opacity-90',
               ),
           ],
+          classes: 'grid gap-1',
         ),
         // Close button
         if (onDismiss != null)
           Component.element(
+            child: text(_kCloseIcon),
             tag: 'button',
             classes:
                 'absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100',
@@ -139,7 +140,6 @@ class Toast extends UiComponent {
             events: {
               'click': (event) => onDismiss(),
             },
-            child: text(_kCloseIcon),
           ),
       ],
     );

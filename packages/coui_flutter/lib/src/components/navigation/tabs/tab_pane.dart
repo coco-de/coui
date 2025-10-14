@@ -422,6 +422,9 @@ class TabPaneState<T> extends State<TabPane<T>> {
                           child: ScrollableSortableLayer(
                             controller: _scrollController,
                             child: TabContainer(
+                              childBuilder: _childBuilder,
+                              onSelect: widget.onFocused,
+                              selected: widget.focused,
                               builder: (context, children) {
                                 return ListView.separated(
                                   scrollDirection: Axis.horizontal,
@@ -486,9 +489,6 @@ class TabPaneState<T> extends State<TabPane<T>> {
                                   clipBehavior: Clip.none,
                                 );
                               },
-                              childBuilder: _childBuilder,
-                              onSelect: widget.onFocused,
-                              selected: widget.focused,
                               children: _buildTabItems(),
                             ),
                           ),

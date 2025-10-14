@@ -21,36 +21,36 @@ class _CarouselExample3State extends State<CarouselExample3> {
           SizedBox(
             height: 200,
             child: Carousel(
-              transition: const CarouselTransition.fading(),
+              autoplaySpeed: const Duration(seconds: 1),
               controller: controller,
               draggable: false,
-              autoplaySpeed: const Duration(seconds: 1),
-              itemCount: 5,
+              duration: const Duration(seconds: 1),
               itemBuilder: (context, index) {
                 return NumberedContainer(index: index);
               },
-              duration: const Duration(seconds: 1),
+              itemCount: 5,
+              transition: const CarouselTransition.fading(),
             ),
           ),
           const Gap(8),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CarouselDotIndicator(itemCount: 5, controller: controller),
+              CarouselDotIndicator(controller: controller, itemCount: 5),
               const Spacer(),
               OutlineButton(
-                shape: ButtonShape.circle,
                 onPressed: () {
                   controller.animatePrevious(const Duration(milliseconds: 500));
                 },
+                shape: ButtonShape.circle,
                 child: const Icon(Icons.arrow_back),
               ),
               const Gap(8),
               OutlineButton(
-                shape: ButtonShape.circle,
                 onPressed: () {
                   controller.animateNext(const Duration(milliseconds: 500));
                 },
+                shape: ButtonShape.circle,
                 child: const Icon(Icons.arrow_forward),
               ),
             ],

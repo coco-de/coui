@@ -69,19 +69,9 @@ class Command extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
-      id: id,
-      classes: _buildClasses(),
-      styles: this.css,
-      attributes: {
-        ...this.componentAttributes,
-        'role': 'combobox',
-        'aria-expanded': 'true',
-      },
-      events: this.events,
       children: [
         // Search input
         div(
-          classes: 'flex items-center border-b px-3',
           child: input(
             classes:
                 'flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50',
@@ -91,17 +81,27 @@ class Command extends UiComponent {
               'aria-autocomplete': 'list',
             },
           ),
+          classes: 'flex items-center border-b px-3',
         ),
         // Items list
         div(
-          classes: 'max-h-[300px] overflow-y-auto overflow-x-hidden',
           children: items
               .map(
                 (item) => _buildCommandItem(item),
               )
               .toList(),
+          classes: 'max-h-[300px] overflow-y-auto overflow-x-hidden',
         ),
       ],
+      id: id,
+      classes: _buildClasses(),
+      styles: this.css,
+      attributes: {
+        ...this.componentAttributes,
+        'role': 'combobox',
+        'aria-expanded': 'true',
+      },
+      events: this.events,
     );
   }
 
@@ -122,6 +122,15 @@ class Command extends UiComponent {
 
   Component _buildCommandItem(CommandItem item) {
     return div(
+      children: [
+        if (item.icon != null) item.icon,
+        span(child: text(item.label)),
+        if (item.shortcut != null)
+          span(
+            child: text(item.shortcut),
+            classes: 'ml-auto text-xs tracking-widest text-muted-foreground',
+          ),
+      ],
       classes:
           'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
       attributes: {
@@ -129,20 +138,12 @@ class Command extends UiComponent {
         if (item.disabled) 'data-disabled': '',
       },
       events: _buildItemEvents(item),
-      children: [
-        if (item.icon != null) item.icon,
-        span(child: text(item.label)),
-        if (item.shortcut != null)
-          span(
-            classes: 'ml-auto text-xs tracking-widest text-muted-foreground',
-            child: text(item.shortcut),
-          ),
-      ],
     );
   }
 
   Map<String, List<dynamic>> _buildItemEvents(CommandItem item) {
     final currentOnSelect = onSelect;
+
     return currentOnSelect == null || item.disabled
         ? {}
         : {

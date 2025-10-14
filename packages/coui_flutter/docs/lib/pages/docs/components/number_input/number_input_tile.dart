@@ -12,7 +12,6 @@ class NumberInputTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'number_input',
       title: 'Number Input',
-      scale: 1.2,
       example: Card(
         child: Column(
           children: [
@@ -26,6 +25,7 @@ class NumberInputTile extends StatelessWidget implements IComponentPage {
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.2,
     );
   }
 }

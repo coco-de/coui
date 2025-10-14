@@ -41,8 +41,8 @@ class _TimelineAnimationExample1State extends State<TimelineAnimationExample1>
   void initState() {
     super.initState();
     controller = AnimationController(
-      vsync: this,
       duration: timelineMaxDuration([offsetTimeline, rotationTimeline]),
+      vsync: this,
     )..repeat();
   }
 
@@ -61,7 +61,7 @@ class _TimelineAnimationExample1State extends State<TimelineAnimationExample1>
           offset: offsetTimeline.transformWithController(controller),
           child: Transform.rotate(
             angle: rotationTimeline.transformWithController(controller),
-            child: Container(width: 50, height: 50, color: Colors.blue),
+            child: Container(color: Colors.blue, width: 50, height: 50),
           ),
         );
       },

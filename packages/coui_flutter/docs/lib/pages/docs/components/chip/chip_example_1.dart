@@ -11,50 +11,50 @@ class ChipExample1 extends StatelessWidget {
       children: [
         Chip(
           trailing: ChipButton(
+            child: const Icon(Icons.close),
             onPressed: () {
               // TODOS: will be implemented later.
             },
-            child: const Icon(Icons.close),
           ),
           child: const Text('Apple'),
         ),
         Chip(
           style: const ButtonStyle.primary(),
           trailing: ChipButton(
+            child: const Icon(Icons.close),
             onPressed: () {
               // TODOS: will be implemented later.
             },
-            child: const Icon(Icons.close),
           ),
           child: const Text('Banana'),
         ),
         Chip(
           style: const ButtonStyle.outline(),
           trailing: ChipButton(
+            child: const Icon(Icons.close),
             onPressed: () {
               // TODOS: will be implemented later.
             },
-            child: const Icon(Icons.close),
           ),
           child: const Text('Cherry'),
         ),
         Chip(
           style: const ButtonStyle.ghost(),
           trailing: ChipButton(
+            child: const Icon(Icons.close),
             onPressed: () {
               // TODOS: will be implemented later.
             },
-            child: const Icon(Icons.close),
           ),
           child: const Text('Durian'),
         ),
         Chip(
           style: const ButtonStyle.destructive(),
           trailing: ChipButton(
+            child: const Icon(Icons.close),
             onPressed: () {
               // TODOS: will be implemented later.
             },
-            child: const Icon(Icons.close),
           ),
           child: const Text('Elderberry'),
         ),

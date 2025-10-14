@@ -227,6 +227,9 @@ class ControlledStarRating extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return StarRating(
           activeColor: activeColor,
@@ -247,9 +250,6 @@ class ControlledStarRating extends StatelessWidget
           value: data.value,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }

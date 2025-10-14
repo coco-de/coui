@@ -16,21 +16,23 @@ class _WindowExample1State extends State<WindowExample1> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         OutlinedContainer(
-          height: 600, // for example purpose
+          // for example purpose
+          height: 600,
+          // for example purpose
           child: WindowNavigator(
-            key: navigatorKey,
             initialWindows: [
               Window(
                 bounds: const Rect.fromLTWH(0, 0, 200, 200),
-                title: const Text('Window 1'),
                 content: const RebuildCounter(),
+                title: const Text('Window 1'),
               ),
               Window(
                 bounds: const Rect.fromLTWH(200, 0, 200, 200),
-                title: const Text('Window 2'),
                 content: const RebuildCounter(),
+                title: const Text('Window 2'),
               ),
             ],
+            key: navigatorKey,
             child: const Center(child: Text('Desktop')),
           ),
         ),
@@ -40,10 +42,10 @@ class _WindowExample1State extends State<WindowExample1> {
             navigatorKey.currentState?.pushWindow(
               Window(
                 bounds: const Rect.fromLTWH(0, 0, 200, 200),
+                content: const RebuildCounter(),
                 title: Text(
                   'Window ${navigatorKey.currentState!.windows.length + 1}',
                 ),
-                content: const RebuildCounter(),
               ),
             );
           },

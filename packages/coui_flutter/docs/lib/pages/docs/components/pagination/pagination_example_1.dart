@@ -12,14 +12,14 @@ class _PaginationExample1State extends State<PaginationExample1> {
   @override
   Widget build(BuildContext context) {
     return Pagination(
-      page: page,
-      totalPages: 20,
+      maxPages: 3,
       onPageChanged: (value) {
         setState(() {
           page = value;
         });
       },
-      maxPages: 3,
+      page: page,
+      totalPages: 20,
     );
   }
 }

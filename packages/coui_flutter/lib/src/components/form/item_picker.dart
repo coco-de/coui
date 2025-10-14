@@ -133,7 +133,6 @@ class ItemPicker<T> extends StatelessWidget {
     final constraints = this.constraints;
 
     return ObjectFormField(
-      builder: builder,
       decorate: false,
       dialogTitle: title,
       editorBuilder: (context, handler) {
@@ -147,7 +146,6 @@ class ItemPicker<T> extends StatelessWidget {
               padding: EdgeInsets.zero,
               child: _InternalItemPicker<T>(
                 initialValue: handler.value,
-                builder: builder,
                 constraints: constraints,
                 items: items,
                 layout: layout,
@@ -155,6 +153,7 @@ class ItemPicker<T> extends StatelessWidget {
                   closeOverlay(context, value);
                 },
                 title: title,
+                builder: builder,
               ),
             ),
           );
@@ -164,7 +163,6 @@ class ItemPicker<T> extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: _InternalItemPicker<T>(
             initialValue: handler.value,
-            builder: builder,
             constraints: constraints,
             items: items,
             layout: layout,
@@ -172,6 +170,7 @@ class ItemPicker<T> extends StatelessWidget {
               closeOverlay(context, value);
             },
             title: title,
+            builder: builder,
           ),
         );
       },
@@ -179,6 +178,7 @@ class ItemPicker<T> extends StatelessWidget {
       onChanged: onChanged,
       placeholder: placeholder ?? const SizedBox.shrink(),
       value: value,
+      builder: builder,
     );
   }
 }
@@ -314,12 +314,13 @@ Future<T?> showItemPicker<T>(
   return showPopover<T>(
     alignment: alignment ?? AlignmentDirectional.topStart,
     anchorAlignment: anchorAlignment ?? AlignmentDirectional.bottomStart,
+    context: context,
+    offset: offset ?? Offset(0, theme.scaling * 8.0),
     builder: (context) {
       return SurfaceCard(
         padding: EdgeInsets.zero,
         child: _InternalItemPicker<T>(
           initialValue: initialValue,
-          builder: builder,
           constraints: constraints,
           items: items,
           layout: layout,
@@ -327,11 +328,10 @@ Future<T?> showItemPicker<T>(
             closeOverlay(context, value);
           },
           title: title,
+          builder: builder,
         ),
       );
     },
-    context: context,
-    offset: offset ?? Offset(0, theme.scaling * 8.0),
   ).future;
 }
 
@@ -386,11 +386,11 @@ class _InternalItemPicker<T> extends StatelessWidget {
                             theme.scaling,
             ),
             child: ItemPickerDialog<T>(
-              builder: builder,
               items: items,
               layout: layout,
               onChanged: onChanged,
               value: initialValue,
+              builder: builder,
             ),
           ),
         ),
@@ -409,6 +409,7 @@ Future<T?> showItemPickerDialog<T>(
   required Widget title,
 }) {
   return showDialog(
+    context: context,
     builder: (context) {
       final theme = Theme.of(context);
 
@@ -419,7 +420,6 @@ Future<T?> showItemPickerDialog<T>(
           padding: EdgeInsets.zero,
           child: _InternalItemPicker<T>(
             initialValue: initialValue,
-            builder: builder,
             constraints: constraints,
             items: items,
             layout: layout,
@@ -427,11 +427,11 @@ Future<T?> showItemPickerDialog<T>(
               closeOverlay(context, value);
             },
             title: title,
+            builder: builder,
           ),
         ),
       );
     },
-    context: context,
   );
 }
 

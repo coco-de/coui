@@ -11,11 +11,13 @@ class DialogTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return ComponentCard(
-      title: 'Dialog',
       name: 'dialog',
+      title: 'Dialog',
       example: AlertDialog(
+        actions: [
+          PrimaryButton(child: const Text('Save changes'), onPressed: () {}),
+        ],
         barrierColor: material.Colors.transparent,
-        title: const Text('Edit profile'),
         content: IntrinsicWidth(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -46,9 +48,7 @@ class DialogTile extends StatelessWidget implements IComponentPage {
             ],
           ),
         ),
-        actions: [
-          PrimaryButton(child: const Text('Save changes'), onPressed: () {}),
-        ],
+        title: const Text('Edit profile'),
       ),
     );
   }

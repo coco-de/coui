@@ -143,5 +143,5 @@ dart_code_metrics:
           - initialValue
         last:
           - builder
-          - child
           - children
+          - child

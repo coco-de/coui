@@ -48,36 +48,30 @@ class CodeBlock extends UiComponent {
     final lines = code.split('\n');
 
     return div(
-      id: id,
-      classes: _buildClasses(),
-      styles: this.css,
-      attributes: this.componentAttributes,
-      events: this.events,
       children: [
         // Header
         if (language != null)
           div(
-            classes:
-                'flex items-center justify-between border-b px-4 py-2 text-sm',
             children: [
               span(
-                classes: 'font-mono text-muted-foreground',
                 child: text(language),
+                classes: 'font-mono text-muted-foreground',
               ),
               button(
+                child: text('Copy'),
                 classes:
                     'rounded px-2 py-1 text-xs hover:bg-accent hover:text-accent-foreground',
                 attributes: {
                   'type': 'button',
                   'aria-label': 'Copy code',
                 },
-                child: text('Copy'),
               ),
             ],
+            classes:
+                'flex items-center justify-between border-b px-4 py-2 text-sm',
           ),
         // Code content
         pre(
-          classes: 'overflow-x-auto p-4',
           child: Component.element(
             tag: 'code',
             classes: 'relative rounded font-mono text-sm',
@@ -85,8 +79,14 @@ class CodeBlock extends UiComponent {
                 ? _buildLinesWithNumbers(lines)
                 : [text(code)],
           ),
+          classes: 'overflow-x-auto p-4',
         ),
       ],
+      id: id,
+      classes: _buildClasses(),
+      styles: this.css,
+      attributes: this.componentAttributes,
+      events: this.events,
     );
   }
 
@@ -132,15 +132,15 @@ class CodeBlock extends UiComponent {
     for (int i = 0; i < lines.length; i += 1) {
       components.add(
         div(
-          classes: 'flex',
           children: [
             span(
+              child: text((i + 1).toString()),
               classes:
                   'mr-4 inline-block w-8 text-right text-muted-foreground select-none',
-              child: text((i + 1).toString()),
             ),
             span(child: text(lines[i])),
           ],
+          classes: 'flex',
         ),
       );
     }
@@ -174,13 +174,13 @@ class InlineCode extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: text(code),
       tag: 'code',
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: text(code),
     );
   }
 
@@ -196,9 +196,9 @@ class InlineCode extends UiComponent {
     Key? key,
   }) {
     return InlineCode(
+      child: child ?? this.child,
       key: key ?? this.key,
       code: code ?? this.code,
-      child: child ?? this.child,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,

@@ -66,23 +66,23 @@ class DropdownMenu extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
+      children: [
+        trigger,
+        // Menu content (controlled by JS or state management)
+        div(
+          child: div(
+            children: items,
+            classes: 'py-1',
+          ),
+          classes:
+              'absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block',
+        ),
+      ],
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      children: [
-        trigger,
-        // Menu content (controlled by JS or state management)
-        div(
-          classes:
-              'absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block',
-          child: div(
-            classes: 'py-1',
-            children: items,
-          ),
-        ),
-      ],
     );
   }
 
@@ -146,12 +146,12 @@ class DropdownMenuItem extends UiComponent {
     Key? key,
   }) {
     return DropdownMenuItem(
+      children: children ?? this.children,
       key: key ?? this.key,
       label: label ?? this.label,
       onSelect: onSelect ?? this.onSelect,
       icon: icon ?? this.icon,
       disabled: disabled ?? this.disabled,
-      children: children ?? this.children,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -172,6 +172,7 @@ class DropdownMenuItem extends UiComponent {
     children.add(text(label));
 
     return button(
+      children: children,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
@@ -182,7 +183,6 @@ class DropdownMenuItem extends UiComponent {
         if (disabled) 'disabled': '',
       },
       events: _buildEvents(),
-      children: children,
     );
   }
 

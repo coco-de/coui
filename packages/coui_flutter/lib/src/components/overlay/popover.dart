@@ -114,6 +114,13 @@ class PopoverOverlayHandler extends OverlayHandler {
                   curve: isClosed.value
                       ? const Interval(0, 2 / 3)
                       : Curves.linear,
+                  onEnd: () {
+                    if (isClosed.value) {
+                      popoverEntry.remove();
+                      popoverEntry.dispose();
+                      animationCompleter.complete();
+                    }
+                  },
                   builder: (innerContext, animationValue, child) {
                     return PopoverOverlayWidget(
                       key: key,
@@ -124,7 +131,6 @@ class PopoverOverlayHandler extends OverlayHandler {
                       anchorContext: context,
                       anchorSize: anchorSize,
                       animation: AlwaysStoppedAnimation(animationValue),
-                      builder: builder,
                       data: data,
                       follow: follow,
                       heightConstraint: heightConstraint,
@@ -161,14 +167,8 @@ class PopoverOverlayHandler extends OverlayHandler {
                       themes: themes,
                       transitionAlignment: transitionAlignment,
                       widthConstraint: widthConstraint,
+                      builder: builder,
                     );
-                  },
-                  onEnd: () {
-                    if (isClosed.value) {
-                      popoverEntry.remove();
-                      popoverEntry.dispose();
-                      animationCompleter.complete();
-                    }
                   },
                 ),
               );
@@ -671,7 +671,6 @@ OverlayCompleter<T?> showPopover<T>({
     allowInvertVertical: allowInvertVertical,
     anchorAlignment: anchorAlignment,
     barrierDismissable: barrierDismissable,
-    builder: builder,
     clipBehavior: clipBehavior,
     consumeOutsideTaps: consumeOutsideTaps,
     context: context,
@@ -690,6 +689,7 @@ OverlayCompleter<T?> showPopover<T>({
     showDuration: showDuration,
     transitionAlignment: transitionAlignment,
     widthConstraint: widthConstraint,
+    builder: builder,
   );
 }
 
@@ -888,7 +888,6 @@ class PopoverController extends ChangeNotifier {
       allowInvertHorizontal: allowInvertHorizontal,
       allowInvertVertical: allowInvertVertical,
       anchorAlignment: anchorAlignment,
-      builder: builder,
       consumeOutsideTaps: consumeOutsideTaps,
       context: context,
       dismissBackdropFocus: dismissBackdropFocus,
@@ -905,6 +904,7 @@ class PopoverController extends ChangeNotifier {
       showDuration: showDuration,
       transitionAlignment: transitionAlignment,
       widthConstraint: widthConstraint,
+      builder: builder,
     );
     final popover = Popover._(res, key);
     _openPopovers.add(popover);

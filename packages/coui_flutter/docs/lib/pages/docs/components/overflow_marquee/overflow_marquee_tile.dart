@@ -13,30 +13,29 @@ class OverflowMarqueeTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'overflow_marquee',
       title: 'Overflow Marquee',
-      scale: 1.2,
       example: Card(
         child: Container(
+          padding: const EdgeInsets.all(16),
           width: 250,
           height: 120,
-          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
               const Text('Scrolling Text:').bold(),
               const Gap(16),
               Container(
-                width: 200,
-                height: 40,
                 decoration: BoxDecoration(
                   color: theme.colorScheme.muted,
                   borderRadius: BorderRadius.circular(8),
                 ),
+                width: 200,
+                height: 40,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Stack(
                     children: [
                       Container(
-                        width: double.infinity,
                         padding: const EdgeInsets.symmetric(vertical: 12),
+                        width: double.infinity,
                         child: const Center(
                           child: Text(
                             'This is a very long text that will scroll horizontally when it overflows the container width',
@@ -63,6 +62,7 @@ class OverflowMarqueeTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

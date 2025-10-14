@@ -1631,6 +1631,7 @@ class NavigationLabel extends StatelessWidget implements NavigationBarItem {
     return AnimatedValueBuilder(
       value: (data?.expanded ?? true) ? 1.0 : 0.0,
       duration: kDefaultDuration,
+      curve: Curves.easeInOut,
       builder: (context, value, child) {
         return SliverPersistentHeader(
           delegate: _NavigationLabelDelegate(
@@ -1657,7 +1658,6 @@ class NavigationLabel extends StatelessWidget implements NavigationBarItem {
           floating: floating,
         );
       },
-      curve: Curves.easeInOut,
       child: buildChild(context, data),
     );
   }

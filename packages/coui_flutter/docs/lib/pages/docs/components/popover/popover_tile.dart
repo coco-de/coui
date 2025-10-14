@@ -13,27 +13,27 @@ class PopoverTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'popover',
       title: 'Popover',
-      scale: 1,
       example: Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DatePicker(
-              value: DateTime.now(),
               mode: PromptMode.popover,
+              onChanged: (value) {},
               stateBuilder: (date) {
                 if (date.isAfter(DateTime.now())) {
                   return DateState.disabled;
                 }
                 return DateState.enabled;
               },
-              onChanged: (value) {},
+              value: DateTime.now(),
             ),
             const Gap(4),
             const CalendarExample2(),
           ],
         ),
       ),
+      scale: 1,
     );
   }
 }

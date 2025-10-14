@@ -26,19 +26,19 @@ class _DataExample15State extends State<DataExample15> {
           const InnerWidget(),
           const Gap(8),
           PrimaryButton(
+            child: const Text('Increment First Counter'),
             onPressed: () {
               setState(() {
                 firstCounter++;
               });
             },
-            child: const Text('Increment First Counter'),
           ),
           const Gap(4),
           PrimaryButton(
+            child: const Text('Increment Second Counter'),
             onPressed: () {
               secondCounter.value++;
             },
-            child: const Text('Increment Second Counter'),
           ),
           const Gap(8),
           Text('Build count: $buildCount').muted(),
@@ -104,11 +104,11 @@ class _LeafWidgetState extends State<LeafWidget> {
               ),
               const Gap(24),
               PrimaryButton(
+                child: const Icon(Icons.add),
                 onPressed: () {
                   model.value = model.value + 1;
                   // or model.data++ works too
                 },
-                child: const Icon(Icons.add),
               ),
             ],
           );

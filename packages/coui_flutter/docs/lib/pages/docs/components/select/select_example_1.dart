@@ -15,13 +15,11 @@ class _SelectExample1State extends State<SelectExample1> {
       itemBuilder: (context, item) {
         return Text(item);
       },
-      popupConstraints: const BoxConstraints(maxHeight: 300, maxWidth: 200),
       onChanged: (value) {
         setState(() {
           selectedValue = value;
         });
       },
-      value: selectedValue,
       placeholder: const Text('Select a fruit'),
       popup: (context) => const SelectPopup(
         items: SelectItemList(
@@ -32,6 +30,8 @@ class _SelectExample1State extends State<SelectExample1> {
           ],
         ),
       ),
+      popupConstraints: const BoxConstraints(maxWidth: 200, maxHeight: 300),
+      value: selectedValue,
     );
   }
 }

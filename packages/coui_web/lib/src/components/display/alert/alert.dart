@@ -80,10 +80,10 @@ class Alert extends UiComponent {
     Key? key,
   }) {
     return Alert(
-      key: key ?? this.key,
-      variant: variant ?? _variant,
       children: children ?? this.children,
       child: child ?? this.child,
+      key: key ?? this.key,
+      variant: variant ?? _variant,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -95,13 +95,13 @@ class Alert extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
       children: children,
     );
   }
@@ -161,8 +161,8 @@ class AlertTitle extends UiComponent {
     Key? key,
   }) {
     return AlertTitle(
-      key: key ?? this.key,
       titleChild: titleChild ?? this.titleChild,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -174,13 +174,13 @@ class AlertTitle extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: titleChild,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: titleChild,
     );
   }
 
@@ -230,8 +230,8 @@ class AlertDescription extends UiComponent {
     Key? key,
   }) {
     return AlertDescription(
-      key: key ?? this.key,
       descriptionChild: descriptionChild ?? this.descriptionChild,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -243,13 +243,13 @@ class AlertDescription extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: descriptionChild,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: descriptionChild,
     );
   }
 

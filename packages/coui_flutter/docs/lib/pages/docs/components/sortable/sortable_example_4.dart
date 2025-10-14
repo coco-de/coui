@@ -39,27 +39,22 @@ class _SortableExample4State extends State<SortableExample4> {
       child: SortableLayer(
         lock: true,
         child: SortableDropFallback<int>(
-          onAccept: (value) {
-            setState(() {
-              names.add(names.removeAt(value.data));
-            });
-          },
           child: ScrollableSortableLayer(
             controller: controller,
             child: ListView.builder(
               controller: controller,
               itemBuilder: (context, i) {
                 return Sortable<String>(
-                  key: ValueKey(i),
                   data: names[i],
-                  onAcceptTop: (value) {
-                    setState(() {
-                      names.swapItem(value, i);
-                    });
-                  },
+                  key: ValueKey(i),
                   onAcceptBottom: (value) {
                     setState(() {
                       names.swapItem(value, i + 1);
+                    });
+                  },
+                  onAcceptTop: (value) {
+                    setState(() {
+                      names.swapItem(value, i);
                     });
                   },
                   child: OutlinedContainer(
@@ -71,6 +66,11 @@ class _SortableExample4State extends State<SortableExample4> {
               itemCount: names.length,
             ),
           ),
+          onAccept: (value) {
+            setState(() {
+              names.add(names.removeAt(value.data));
+            });
+          },
         ),
       ),
     );

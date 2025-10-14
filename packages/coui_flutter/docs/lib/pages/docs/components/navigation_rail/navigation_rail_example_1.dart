@@ -18,13 +18,13 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
 
   NavigationItem _buildButton(String label, IconData icon) {
     return NavigationItem(
-      style: customButtonStyle
-          ? const ButtonStyle.muted(density: ButtonDensity.icon)
-          : null,
+      label: Text(label),
       selectedStyle: customButtonStyle
           ? const ButtonStyle.fixed(density: ButtonDensity.icon)
           : null,
-      label: Text(label),
+      style: customButtonStyle
+          ? const ButtonStyle.muted(density: ButtonDensity.icon)
+          : null,
       child: Icon(icon),
     );
   }
@@ -37,10 +37,10 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
         children: [
           NavigationRail(
             alignment: alignment,
-            labelType: labelType,
+            expanded: expanded,
             index: selected,
             labelPosition: labelPosition,
-            expanded: expanded,
+            labelType: labelType,
             onSelected: (index) {
               setState(() {
                 selected = index;
@@ -62,23 +62,21 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
           const VerticalDivider(),
           Expanded(
             child: Container(
-              color: Colors.primaries[Colors.primaries.length - selected - 1],
               padding: const EdgeInsets.all(24),
+              color: Colors.primaries[Colors.primaries.length - selected - 1],
               child: Card(
                 child: Wrap(
                   alignment: WrapAlignment.center,
-                  runAlignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  runSpacing: 8,
                   spacing: 8,
+                  runAlignment: WrapAlignment.center,
+                  runSpacing: 8,
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     Select<NavigationRailAlignment>(
-                      value: alignment,
                       itemBuilder:
                           (BuildContext context, NavigationRailAlignment item) {
-                            return Text(item.name);
-                          },
-                      popupWidthConstraint: PopoverConstraint.anchorFixedSize,
+                        return Text(item.name);
+                      },
                       onChanged: (value) {
                         if (value != null) {
                           setState(() {
@@ -97,16 +95,14 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
                           ],
                         ),
                       ),
+                      popupWidthConstraint: PopoverConstraint.anchorFixedSize,
+                      value: alignment,
                     ),
                     Select<NavigationLabelType>(
-                      value: labelType,
                       itemBuilder:
                           (BuildContext context, NavigationLabelType item) {
-                            return Text(item.name);
-                          },
-                      popupConstraints: BoxConstraints.tight(
-                        const Size(200, 200),
-                      ),
+                        return Text(item.name);
+                      },
                       onChanged: (value) {
                         if (value != null) {
                           setState(() {
@@ -125,13 +121,16 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
                           ],
                         ),
                       ),
+                      popupConstraints: BoxConstraints.tight(
+                        const Size(200, 200),
+                      ),
+                      value: labelType,
                     ),
                     Select<NavigationLabelPosition>(
-                      value: labelPosition,
                       itemBuilder:
                           (BuildContext context, NavigationLabelPosition item) {
-                            return Text(item.name);
-                          },
+                        return Text(item.name);
+                      },
                       onChanged: (value) {
                         if (value != null) {
                           setState(() {
@@ -150,27 +149,28 @@ class _NavigationRailExample1State extends State<NavigationRailExample1> {
                           ],
                         ),
                       ),
+                      value: labelPosition,
                     ),
                     Checkbox(
-                      state: customButtonStyle
-                          ? CheckboxState.checked
-                          : CheckboxState.unchecked,
                       onChanged: (value) {
                         setState(() {
                           customButtonStyle = value == CheckboxState.checked;
                         });
                       },
+                      state: customButtonStyle
+                          ? CheckboxState.checked
+                          : CheckboxState.unchecked,
                       trailing: const Text('Custom Button Style'),
                     ),
                     Checkbox(
-                      state: expanded
-                          ? CheckboxState.checked
-                          : CheckboxState.unchecked,
                       onChanged: (value) {
                         setState(() {
                           expanded = value == CheckboxState.checked;
                         });
                       },
+                      state: expanded
+                          ? CheckboxState.checked
+                          : CheckboxState.unchecked,
                       trailing: const Text('Expanded'),
                     ),
                   ],

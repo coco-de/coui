@@ -162,6 +162,8 @@ class ControlledSlider extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
       initialValue: initialValue,
+      controller: controller,
+      onChanged: onChanged,
       builder: (context, data) {
         return Slider(
           decreaseStep: decreaseStep,
@@ -177,8 +179,6 @@ class ControlledSlider extends StatelessWidget
           value: data.value,
         );
       },
-      controller: controller,
-      onChanged: onChanged,
     );
   }
 }
@@ -861,6 +861,8 @@ class _SliderState extends State<Slider>
     return AnimatedValueBuilder(
       value: widget.hintValue,
       duration: _dragging ? Duration.zero : kDefaultDuration,
+      curve: Curves.easeInOut,
+      lerp: SliderValue.lerp,
       builder: (context, hintValue, _) {
         final start = hintValue!.start;
         final end = hintValue.end;
@@ -890,8 +892,6 @@ class _SliderState extends State<Slider>
           ),
         );
       },
-      curve: Curves.easeInOut,
-      lerp: SliderValue.lerp,
     );
   }
 
@@ -926,6 +926,8 @@ class _SliderState extends State<Slider>
       duration: _dragging && widget.divisions == null
           ? Duration.zero
           : kDefaultDuration,
+      curve: Curves.easeInOut,
+      lerp: Offset.lerp,
       builder: (context, value, _) {
         final newStart = value!.dx;
         final newEnd = value.dy;
@@ -956,8 +958,6 @@ class _SliderState extends State<Slider>
           ),
         );
       },
-      curve: Curves.easeInOut,
-      lerp: Offset.lerp,
     );
   }
 
@@ -1010,6 +1010,8 @@ class _SliderState extends State<Slider>
       duration: _dragging && widget.divisions == null
           ? Duration.zero
           : kDefaultDuration,
+      curve: Curves.easeInOut,
+      lerp: lerpDouble,
       builder: (context, value, _) {
         return Positioned(
           left: value! * constraints.maxWidth - scaling * 8,
@@ -1072,8 +1074,6 @@ class _SliderState extends State<Slider>
           ),
         );
       },
-      curve: Curves.easeInOut,
-      lerp: lerpDouble,
     );
   }
 

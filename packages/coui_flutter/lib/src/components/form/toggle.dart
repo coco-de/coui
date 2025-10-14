@@ -161,6 +161,9 @@ class ControlledToggle extends StatelessWidget with ControlledComponent<bool> {
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return Toggle(
           activeColor: activeColor,
@@ -176,9 +179,6 @@ class ControlledToggle extends StatelessWidget with ControlledComponent<bool> {
           value: data.value,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }

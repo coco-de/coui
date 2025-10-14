@@ -11,10 +11,10 @@ class ResizableTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return const ComponentCard(
-      title: 'Resizable',
       name: 'resizable',
-      scale: 1,
+      title: 'Resizable',
       example: ResizableExample3(),
+      scale: 1,
     );
   }
 }

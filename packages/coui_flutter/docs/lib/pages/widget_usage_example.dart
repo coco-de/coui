@@ -25,8 +25,8 @@ class _WidgetUsageExampleState extends State<WidgetUsageExample> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (widget.title != null) Text(widget.title!).h2(),
         if (widget.title != null) const Gap(12),
@@ -111,26 +111,23 @@ class _CodeSnippetFutureBuilderState extends State<CodeSnippetFutureBuilder> {
           print(snapshot.error);
           print(snapshot.stackTrace);
           return CodeSnippet(
-            code:
-                'Error loading code\n${snapshot.error}\n${snapshot.stackTrace}',
-            mode: widget.mode,
             actions: [
               GhostButton(
-                density: ButtonDensity.icon,
                 onPressed: _refresh,
+                density: ButtonDensity.icon,
                 child: const Icon(Icons.refresh, size: 16),
               ),
             ],
+            code:
+                'Error loading code\n${snapshot.error}\n${snapshot.stackTrace}',
+            mode: widget.mode,
           );
         }
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.data == null) {
             return CodeSnippet(
-              code: 'No code found',
-              mode: widget.mode,
               actions: [
                 GhostButton(
-                  density: ButtonDensity.icon,
                   onPressed: () {
                     // open in new tab
                     String url =
@@ -138,17 +135,17 @@ class _CodeSnippetFutureBuilderState extends State<CodeSnippetFutureBuilder> {
                     // html.window.open(url, 'blank');
                     launchUrlString(url);
                   },
+                  density: ButtonDensity.icon,
                   child: const Icon(Icons.open_in_new, size: 16),
                 ),
               ],
+              code: 'No code found',
+              mode: widget.mode,
             );
           }
           return CodeSnippet(
-            code: snapshot.data!,
-            mode: widget.mode,
             actions: [
               GhostButton(
-                density: ButtonDensity.icon,
                 onPressed: () {
                   // open in new tab
                   //https://github.com/coco-de/coui/blob/main/packages/coui_flutter/docs/lib/pages/docs/layout_page/layout_page_example_1.dart
@@ -157,9 +154,12 @@ class _CodeSnippetFutureBuilderState extends State<CodeSnippetFutureBuilder> {
                   // html.window.open(url, 'blank');
                   launchUrlString(url);
                 },
+                density: ButtonDensity.icon,
                 child: const Icon(Icons.open_in_new, size: 16),
               ),
             ],
+            code: snapshot.data!,
+            mode: widget.mode,
           );
         } else {
           return Container(

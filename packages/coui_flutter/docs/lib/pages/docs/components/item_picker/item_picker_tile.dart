@@ -12,7 +12,6 @@ class ItemPickerTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'item_picker',
       title: 'Item Picker',
-      scale: 1.2,
       example: Card(
         child: Column(
           children: [
@@ -30,6 +29,7 @@ class ItemPickerTile extends StatelessWidget implements IComponentPage {
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.2,
     );
   }
 }

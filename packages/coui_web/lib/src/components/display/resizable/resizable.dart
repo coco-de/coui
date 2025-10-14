@@ -66,9 +66,9 @@ class Resizable extends UiComponent {
       // Add panel
       panels.add(
         div(
+          child: children[i],
           classes:
               'flex-1 ${isHorizontal ? 'resize-x' : 'resize-y'} overflow-auto border rounded p-2',
-          child: children[i],
         ),
       );
 
@@ -84,12 +84,12 @@ class Resizable extends UiComponent {
     }
 
     return div(
+      children: panels,
       id: id,
       classes: _buildClasses(isHorizontal),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      children: panels,
     );
   }
 

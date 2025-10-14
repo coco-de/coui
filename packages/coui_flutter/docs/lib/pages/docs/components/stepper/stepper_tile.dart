@@ -13,8 +13,8 @@ class StepperTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'stepper',
       title: 'Stepper',
+      example: const StepperExample2().sized(height: 500, width: 400),
       scale: 1,
-      example: const StepperExample2().sized(width: 400, height: 500),
     );
   }
 }

@@ -60,12 +60,12 @@ class Container extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
+      child: child,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
     );
   }
 

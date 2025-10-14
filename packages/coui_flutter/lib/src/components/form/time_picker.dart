@@ -230,6 +230,9 @@ class ControlledTimePicker extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return TimePicker(
           dialogTitle: dialogTitle,
@@ -245,9 +248,6 @@ class ControlledTimePicker extends StatelessWidget
           value: data.value,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }
@@ -292,15 +292,6 @@ class TimePicker extends StatelessWidget {
     final showSeconds = compTheme?.showSeconds ?? this.showSeconds;
 
     return ObjectFormField(
-      builder: (context, value) {
-        return Text(
-          localizations.formatTimeOfDay(
-            value,
-            showSeconds: showSeconds,
-            use24HourFormat: use24HourFormat,
-          ),
-        );
-      },
       dialogTitle: dialogTitle ?? compTheme?.dialogTitle,
       editorBuilder: (context, handler) {
         return TimePickerDialog(
@@ -322,6 +313,15 @@ class TimePicker extends StatelessWidget {
       popoverPadding: popoverPadding ?? compTheme?.popoverPadding,
       trailing: const Icon(Icons.access_time),
       value: value,
+      builder: (context, value) {
+        return Text(
+          localizations.formatTimeOfDay(
+            value,
+            showSeconds: showSeconds,
+            use24HourFormat: use24HourFormat,
+          ),
+        );
+      },
     );
   }
 }
@@ -630,9 +630,6 @@ class DurationPicker extends StatelessWidget {
     final localizations = CoUILocalizations.of(context);
 
     return ObjectFormField(
-      builder: (context, value) {
-        return Text(localizations.formatDuration(value));
-      },
       dialogTitle: dialogTitle,
       editorBuilder: (context, handler) {
         return DurationPickerDialog(
@@ -648,6 +645,9 @@ class DurationPicker extends StatelessWidget {
       placeholder: placeholder ?? Text(localizations.placeholderDurationPicker),
       trailing: const Icon(Icons.access_time),
       value: value,
+      builder: (context, value) {
+        return Text(localizations.formatDuration(value));
+      },
     );
   }
 }

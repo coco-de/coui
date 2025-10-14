@@ -26,21 +26,21 @@ class _DataExample11State extends State<DataExample11> {
           const InnerWidget(),
           const Gap(8),
           PrimaryButton(
+            child: const Text('Increment First Counter'),
             onPressed: () {
               setState(() {
                 firstCounter++;
               });
             },
-            child: const Text('Increment First Counter'),
           ),
           const Gap(4),
           PrimaryButton(
+            child: const Text('Increment Second Counter'),
             onPressed: () {
               setState(() {
                 secondCounter++;
               });
             },
-            child: const Text('Increment Second Counter'),
           ),
           const Gap(8),
           Text('Build count: $buildCount').muted(),

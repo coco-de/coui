@@ -86,12 +86,12 @@ class Select extends UiComponent {
     Key? key,
   }) {
     return Select(
+      onChange: onChange ?? this.onChanged,
       key: key ?? this.key,
       options: options ?? this.options,
       value: value ?? this.value,
-      placeholder: placeholder ?? this.placeholder,
       disabled: disabled ?? this.disabled,
-      onChange: onChange ?? this.onChanged,
+      placeholder: placeholder ?? this.placeholder,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
@@ -125,9 +125,9 @@ class Select extends UiComponent {
     if (currentPlaceholder != null) {
       optionComponents.add(
         Component.element(
+          child: text(currentPlaceholder),
           tag: 'option',
           attributes: {'value': '', 'disabled': '', 'selected': ''},
-          child: text(currentPlaceholder),
         ),
       );
     }
@@ -136,12 +136,12 @@ class Select extends UiComponent {
     for (final option in options) {
       optionComponents.add(
         Component.element(
+          child: text(option.label),
           tag: 'option',
           attributes: {
             'value': option.value,
             if (option.value == value) 'selected': '',
           },
-          child: text(option.label),
         ),
       );
     }

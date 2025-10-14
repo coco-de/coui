@@ -61,12 +61,12 @@ class Timeline extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
+      children: items.map((item) => _buildTimelineItem(item)).toList(),
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      children: items.map((item) => _buildTimelineItem(item)).toList(),
     );
   }
 
@@ -87,38 +87,38 @@ class Timeline extends UiComponent {
 
   static Component _buildTimelineItem(TimelineItem item) {
     return div(
-      classes: 'relative pl-12',
       children: [
         // Timeline marker
         div(
-          classes:
-              'absolute left-0 top-0 flex items-center justify-center w-10 h-10 rounded-full border-4 border-background bg-primary',
           child:
               item.icon ??
               div(classes: 'w-2 h-2 rounded-full bg-primary-foreground'),
+          classes:
+              'absolute left-0 top-0 flex items-center justify-center w-10 h-10 rounded-full border-4 border-background bg-primary',
         ),
         // Content
         div(
-          classes: 'flex flex-col gap-1',
           children: [
             if (item.timestamp != null)
               span(
-                classes: 'text-xs text-muted-foreground',
                 child: text(item.timestamp),
+                classes: 'text-xs text-muted-foreground',
               ),
             h3(
-              classes: 'font-semibold',
               child: text(item.title),
+              classes: 'font-semibold',
             ),
             if (item.description != null)
               p(
-                classes: 'text-sm text-muted-foreground',
                 child: text(item.description),
+                classes: 'text-sm text-muted-foreground',
               ),
             if (item.content != null) item.content,
           ],
+          classes: 'flex flex-col gap-1',
         ),
       ],
+      classes: 'relative pl-12',
     );
   }
 }

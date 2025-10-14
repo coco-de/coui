@@ -306,8 +306,8 @@ class WIPComponentCard extends StatelessWidget implements IComponentPage {
       child: ComponentCard(
         name: '-',
         title: title,
-        center: true,
         example: const PrimaryBadge(child: Text('Work in Progress')),
+        center: true,
       ),
     );
   }
@@ -355,7 +355,6 @@ class _ComponentCardState extends State<ComponentCard> {
     final theme = Theme.of(context);
     final componentsMode = Data.of<ComponentsMode>(context);
     return GestureDetector(
-      behavior: HitTestBehavior.translucent,
       onTap: componentsMode == ComponentsMode.normal
           ? null
           : () {
@@ -376,6 +375,7 @@ class _ComponentCardState extends State<ComponentCard> {
                 );
               });
             },
+      behavior: HitTestBehavior.translucent,
       child: Clickable(
         enabled: componentsMode == ComponentsMode.normal,
         mouseCursor: const WidgetStatePropertyAll(SystemMouseCursors.click),
@@ -394,12 +394,11 @@ class _ComponentCardState extends State<ComponentCard> {
             key: repaintKey,
             child: ExcludeFocus(
               child: SizedBox(
-                height: 200,
                 width: 250,
+                height: 200,
                 child: AnimatedValueBuilder(
                   value: _hovering ? 1.0 : 0.0,
                   duration: const Duration(milliseconds: 200),
-                  curve: Curves.easeInOut,
                   builder: (context, value, child) {
                     final borderColor = Color.lerp(
                       theme.colorScheme.border,
@@ -407,15 +406,14 @@ class _ComponentCardState extends State<ComponentCard> {
                       value,
                     );
                     return OutlinedContainer(
-                      clipBehavior: Clip.antiAlias,
                       borderColor: borderColor,
+                      clipBehavior: Clip.antiAlias,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Expanded(
                             child: IgnorePointer(
                               child: Container(
-                                clipBehavior: Clip.antiAlias,
                                 decoration: BoxDecoration(
                                   color: theme.colorScheme.accent,
                                   borderRadius: BorderRadius.only(
@@ -427,6 +425,7 @@ class _ComponentCardState extends State<ComponentCard> {
                                     ),
                                   ),
                                 ),
+                                clipBehavior: Clip.antiAlias,
                                 child: Transform.scale(
                                   scale: 1 + 0.3 * value,
                                   child: Transform.rotate(
@@ -452,6 +451,10 @@ class _ComponentCardState extends State<ComponentCard> {
                                             : Stack(
                                                 children: [
                                                   Positioned(
+                                                    left: !widget.reverse
+                                                        ? widget
+                                                            .horizontalOffset
+                                                        : null,
                                                     top: !widget.reverseVertical
                                                         ? widget.verticalOffset
                                                         : null,
@@ -462,10 +465,6 @@ class _ComponentCardState extends State<ComponentCard> {
                                                     bottom: widget
                                                             .reverseVertical
                                                         ? widget.verticalOffset
-                                                        : null,
-                                                    left: !widget.reverse
-                                                        ? widget
-                                                            .horizontalOffset
                                                         : null,
                                                     child: Transform.scale(
                                                       scale: widget.scale,
@@ -495,11 +494,12 @@ class _ComponentCardState extends State<ComponentCard> {
                           const Divider(),
                           Text(
                             widget.title,
-                          ).medium().withPadding(vertical: 12, horizontal: 16),
+                          ).medium().withPadding(horizontal: 16, vertical: 12),
                         ],
                       ),
                     );
                   },
+                  curve: Curves.easeInOut,
                 ),
               ),
             ),

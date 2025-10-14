@@ -13,15 +13,14 @@ class NavigationBarTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'navigation_bar',
       title: 'Navigation Bar',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 300,
-          height: 60,
           decoration: BoxDecoration(
             color: theme.colorScheme.muted,
             borderRadius: BorderRadius.circular(8),
           ),
+          width: 300,
+          height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -33,8 +32,8 @@ class NavigationBarTile extends StatelessWidget implements IComponentPage {
                   Text(
                     'Home',
                     style: TextStyle(
-                      fontSize: 12,
                       color: theme.colorScheme.primary,
+                      fontSize: 12,
                     ),
                   ),
                 ],
@@ -67,6 +66,7 @@ class NavigationBarTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

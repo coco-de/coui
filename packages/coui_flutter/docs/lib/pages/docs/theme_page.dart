@@ -132,8 +132,8 @@ class _ThemePageState extends State<ThemePage> {
             ],
           ).p(),
           GridView.count(
-            crossAxisCount: 4,
             shrinkWrap: true,
+            crossAxisCount: 4,
             children: colors.keys.map(buildGridTile).toList(),
           ).p(),
           const Text(
@@ -151,8 +151,8 @@ class _ThemePageState extends State<ThemePage> {
             ],
           ).p(),
           Wrap(
-            runSpacing: 8,
             spacing: 8,
+            runSpacing: 8,
             children:
                 colorSchemes.keys.map(buildPremadeColorSchemeButton).toList(),
           ).p(),
@@ -168,7 +168,9 @@ class _ThemePageState extends State<ThemePage> {
             ],
           ).p(),
           Slider(
-            value: SliderValue.single(radius),
+            divisions: 20,
+            max: 2,
+            min: 0,
             onChanged: (value) {
               setState(() {
                 radius = value.value;
@@ -177,9 +179,7 @@ class _ThemePageState extends State<ThemePage> {
                 }
               });
             },
-            min: 0,
-            max: 2,
-            divisions: 20,
+            value: SliderValue.single(radius),
           ).p(),
           const Text('Scaling').h2().anchored(scalingKey),
           const Row(
@@ -193,7 +193,9 @@ class _ThemePageState extends State<ThemePage> {
             ],
           ).p(),
           Slider(
-            value: SliderValue.single(scaling),
+            divisions: 20,
+            max: 1.5,
+            min: 0.5,
             onChanged: (value) {
               setState(() {
                 scaling = value.value;
@@ -202,16 +204,14 @@ class _ThemePageState extends State<ThemePage> {
                 }
               });
             },
-            min: 0.5,
-            max: 1.5,
-            divisions: 20,
+            value: SliderValue.single(scaling),
           ).p(),
           const Gap(16),
           const Alert(
-            leading: Icon(RadixIcons.infoCircled),
             content: Text(
               'This does not scale the entire app. Only coui_flutter components are affected.',
             ),
+            leading: Icon(RadixIcons.infoCircled),
           ),
           const Text('Surface opacity').h2().anchored(surfaceOpacityKey),
           const Row(
@@ -225,7 +225,9 @@ class _ThemePageState extends State<ThemePage> {
             ],
           ).p(),
           Slider(
-            value: SliderValue.single(surfaceOpacity),
+            divisions: 20,
+            max: 1,
+            min: 0,
             onChanged: (value) {
               setState(() {
                 surfaceOpacity = value.value;
@@ -234,9 +236,7 @@ class _ThemePageState extends State<ThemePage> {
                 }
               });
             },
-            min: 0,
-            max: 1,
-            divisions: 20,
+            value: SliderValue.single(surfaceOpacity),
           ).p(),
           const Text('Surface blur').h2().anchored(surfaceBlurKey),
           const Row(
@@ -250,7 +250,9 @@ class _ThemePageState extends State<ThemePage> {
             ],
           ).p(),
           Slider(
-            value: SliderValue.single(surfaceBlur),
+            divisions: 20,
+            max: 20,
+            min: 0,
             onChanged: (value) {
               setState(() {
                 surfaceBlur = value.value;
@@ -259,9 +261,7 @@ class _ThemePageState extends State<ThemePage> {
                 }
               });
             },
-            min: 0,
-            max: 20,
-            divisions: 20,
+            value: SliderValue.single(surfaceBlur),
           ).p(),
 
           const Text('Code').h2().anchored(codeKey),
@@ -335,6 +335,26 @@ class _ThemePageState extends State<ThemePage> {
     var scheme = colorSchemes[name]!;
     return !customColorScheme && scheme == colorScheme
         ? PrimaryButton(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: scheme.primary,
+                    border: Border.all(
+                      color: scheme.primaryForeground,
+                      width: 2,
+                      strokeAlign: BorderSide.strokeAlignOutside,
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                  width: 16,
+                  height: 16,
+                ),
+                const Gap(8),
+                Text(name),
+              ],
+            ),
             onPressed: () {
               setState(() {
                 colorScheme = scheme;
@@ -346,28 +366,28 @@ class _ThemePageState extends State<ThemePage> {
                 }
               });
             },
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 16,
-                  height: 16,
-                  decoration: BoxDecoration(
-                    color: scheme.primary,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: scheme.primaryForeground,
-                      width: 2,
-                      strokeAlign: BorderSide.strokeAlignOutside,
-                    ),
-                  ),
-                ),
-                const Gap(8),
-                Text(name),
-              ],
-            ),
           )
         : OutlineButton(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: scheme.primary,
+                    border: Border.all(
+                      color: scheme.primaryForeground,
+                      width: 2,
+                      strokeAlign: BorderSide.strokeAlignOutside,
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                  width: 16,
+                  height: 16,
+                ),
+                const Gap(8),
+                Text(name),
+              ],
+            ),
             onPressed: () {
               setState(() {
                 colorScheme = scheme;
@@ -379,26 +399,6 @@ class _ThemePageState extends State<ThemePage> {
                 }
               });
             },
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 16,
-                  height: 16,
-                  decoration: BoxDecoration(
-                    color: scheme.primary,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: scheme.primaryForeground,
-                      width: 2,
-                      strokeAlign: BorderSide.strokeAlignOutside,
-                    ),
-                  ),
-                ),
-                const Gap(8),
-                Text(name),
-              ],
-            ),
           );
   }
 
@@ -409,37 +409,15 @@ class _ThemePageState extends State<ThemePage> {
       child: Builder(
         builder: (context) {
           return GestureDetector(
-            onTap: () {
-              showColorPicker(
-                context: context,
-                color: ColorDerivative.fromColor(colors[name]!),
-                offset: const Offset(0, 8),
-                onColorChanged: (value) {
-                  setState(() {
-                    colors[name] = value.toColor();
-                    customColorScheme = true;
-                    if (applyDirectly) {
-                      MyAppState state = Data.of(context);
-                      state.changeColorScheme(
-                        ColorScheme.fromColors(
-                          colors: colors,
-                          brightness: colorScheme.brightness,
-                        ),
-                      );
-                    }
-                  });
-                },
-              );
-            },
             child: FocusableActionDetector(
               mouseCursor: SystemMouseCursors.click,
               child: FittedBox(
                 child: AnimatedContainer(
-                  duration: kDefaultDuration,
-                  width: 200,
-                  height: 200,
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(color: colors[name]),
+                  width: 200,
+                  height: 200,
+                  duration: kDefaultDuration,
                   child: Stack(
                     children: [
                       Text(
@@ -463,6 +441,28 @@ class _ThemePageState extends State<ThemePage> {
                 ),
               ),
             ),
+            onTap: () {
+              showColorPicker(
+                color: ColorDerivative.fromColor(colors[name]!),
+                context: context,
+                offset: const Offset(0, 8),
+                onColorChanged: (value) {
+                  setState(() {
+                    colors[name] = value.toColor();
+                    customColorScheme = true;
+                    if (applyDirectly) {
+                      MyAppState state = Data.of(context);
+                      state.changeColorScheme(
+                        ColorScheme.fromColors(
+                          brightness: colorScheme.brightness,
+                          colors: colors,
+                        ),
+                      );
+                    }
+                  });
+                },
+              );
+            },
           );
         },
       ),

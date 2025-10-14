@@ -176,6 +176,7 @@ class _SwitcherState extends State<Switcher> {
       AnimatedValueBuilder(
         value: _index,
         duration: _dragging ? Duration.zero : widget.duration,
+        curve: widget.curve,
         builder: (context, value, child) {
           final sourceChild = value.floor();
           final targetChild = value.ceil();
@@ -205,7 +206,6 @@ class _SwitcherState extends State<Switcher> {
             ],
           );
         },
-        curve: widget.curve,
       ),
     );
   }

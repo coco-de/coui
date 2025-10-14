@@ -143,6 +143,7 @@ class Hidden extends StatelessWidget {
       child: AnimatedValueBuilder(
         value: hidden ? 0.0 : 1.0,
         duration: durationValue,
+        curve: curveValue,
         builder: (context, value, child) {
           return _HiddenLayout(
             direction: directionValue,
@@ -154,7 +155,6 @@ class Hidden extends StatelessWidget {
             child: child,
           );
         },
-        curve: curveValue,
         child: child,
       ),
     );

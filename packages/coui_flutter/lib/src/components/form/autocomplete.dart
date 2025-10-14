@@ -335,6 +335,13 @@ class _AutoCompleteState extends State<AutoComplete> {
           themeValue: compTheme?.popoverAnchorAlignment,
           defaultValue: AlignmentDirectional.bottomStart,
         ),
+        context: context,
+        handler: const PopoverOverlayHandler(),
+        widthConstraint: styleValue(
+          widgetValue: widget.popoverWidthConstraint,
+          themeValue: compTheme?.popoverWidthConstraint,
+          defaultValue: PopoverConstraint.anchorFixedSize,
+        ),
         builder: (context) {
           final theme = Theme.of(context);
           final compTheme = ComponentTheme.maybeOf<AutoCompleteTheme>(context);
@@ -374,13 +381,6 @@ class _AutoCompleteState extends State<AutoComplete> {
             ),
           );
         },
-        context: context,
-        handler: const PopoverOverlayHandler(),
-        widthConstraint: styleValue(
-          widgetValue: widget.popoverWidthConstraint,
-          themeValue: compTheme?.popoverWidthConstraint,
-          defaultValue: PopoverConstraint.anchorFixedSize,
-        ),
       );
     }
   }

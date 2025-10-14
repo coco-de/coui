@@ -10,14 +10,12 @@ class SheetTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return ComponentCard(
-      title: 'Sheet',
       name: 'sheet',
-      verticalOffset: 0,
-      scale: 1,
+      title: 'Sheet',
       example: SheetWrapper(
         position: OverlayPosition.right,
-        stackIndex: 0,
         size: const Size(300, 300),
+        stackIndex: 0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,7 +26,9 @@ class SheetTile extends StatelessWidget implements IComponentPage {
             ).muted(),
           ],
         ).withPadding(horizontal: 32, vertical: 48),
-      ).sized(width: 300, height: 300),
+      ).sized(height: 300, width: 300),
+      verticalOffset: 0,
+      scale: 1,
     );
   }
 }

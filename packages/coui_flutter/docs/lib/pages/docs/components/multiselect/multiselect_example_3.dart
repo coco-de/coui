@@ -46,32 +46,31 @@ class _MultiSelectExample3State extends State<MultiSelectExample3> {
   @override
   Widget build(BuildContext context) {
     return MultiSelect<String>(
+      constraints: const BoxConstraints(minWidth: 200),
       itemBuilder: (context, item) {
         var color = _getColorByChip(item);
         return MultiSelectChip(
-          value: item,
           style: const ButtonStyle.primary().withBackgroundColor(
             color: color,
             hoverColor: color.withLuminance(0.3),
           ),
+          value: item,
           child: Text(item),
         );
       },
+      onChanged: (value) {
+        setState(() {
+          selectedValues = value;
+        });
+      },
+      placeholder: const Text('Select a fruit'),
       popup: (context) => SelectPopup.builder(
-        searchPlaceholder: const Text('Search fruit'),
-        emptyBuilder: (context) {
-          return const Center(child: Text('No fruit found'));
-        },
-        loadingBuilder: (context) {
-          return const Center(child: CircularProgressIndicator());
-        },
         builder: (context, searchQuery) async {
           final filteredFruits = searchQuery == null
               ? fruits.entries.toList()
               : _filteredFruits(searchQuery).toList();
           await Future.delayed(const Duration(milliseconds: 500));
           return SelectItemBuilder(
-            childCount: filteredFruits.isEmpty ? 0 : null,
             builder: (context, index) {
               final entry = filteredFruits[index % filteredFruits.length];
               return SelectGroup(
@@ -79,26 +78,27 @@ class _MultiSelectExample3State extends State<MultiSelectExample3> {
                 children: [
                   for (final value in entry.value)
                     SelectItemButton(
-                      value: value,
                       style: const ButtonStyle.ghost().withBackgroundColor(
                         hoverColor: _getColorByChip(value).withLuminance(0.3),
                       ),
+                      value: value,
                       child: Text(value),
                     ),
                 ],
               );
             },
+            childCount: filteredFruits.isEmpty ? 0 : null,
           );
         },
+        emptyBuilder: (context) {
+          return const Center(child: Text('No fruit found'));
+        },
+        loadingBuilder: (context) {
+          return const Center(child: CircularProgressIndicator());
+        },
+        searchPlaceholder: const Text('Search fruit'),
       ),
-      onChanged: (value) {
-        setState(() {
-          selectedValues = value;
-        });
-      },
-      constraints: const BoxConstraints(minWidth: 200),
       value: selectedValues,
-      placeholder: const Text('Select a fruit'),
     );
   }
 }

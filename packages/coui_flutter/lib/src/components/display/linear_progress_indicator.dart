@@ -292,6 +292,8 @@ class LinearProgressIndicator extends StatelessWidget {
               textDirection: directionality,
             ),
             duration: disableAnimationValue ? Duration.zero : kDefaultDuration,
+            curve: Curves.easeInOut,
+            lerp: _LinearProgressIndicatorProperties.lerp,
             builder: (context, value, child) {
               return CustomPaint(
                 painter: _LinearProgressIndicatorPainter(
@@ -308,8 +310,6 @@ class LinearProgressIndicator extends StatelessWidget {
                 ),
               );
             },
-            curve: Curves.easeInOut,
-            lerp: _LinearProgressIndicatorProperties.lerp,
           )
         : RepeatedAnimationBuilder(
             start: 0,
@@ -317,6 +317,7 @@ class LinearProgressIndicator extends StatelessWidget {
             duration: const Duration(
               milliseconds: _kIndeterminateLinearDuration,
             ),
+            lerp: (a, b, t) => (a + (b - a) * t).round(),
             builder: (context, value, child) {
               final start = _line1Tail.transform(value.toDouble());
               final end = _line1Head.transform(value.toDouble());
@@ -336,6 +337,7 @@ class LinearProgressIndicator extends StatelessWidget {
                   textDirection: directionality,
                 ),
                 duration: kDefaultDuration,
+                lerp: _LinearProgressIndicatorProperties.lerp,
                 builder: (context, prop, child) {
                   return CustomPaint(
                     painter: _LinearProgressIndicatorPainter(
@@ -354,10 +356,8 @@ class LinearProgressIndicator extends StatelessWidget {
                     ),
                   );
                 },
-                lerp: _LinearProgressIndicatorProperties.lerp,
               );
             },
-            lerp: (a, b, t) => (a + (b - a) * t).round(),
           );
 
     return RepaintBoundary(

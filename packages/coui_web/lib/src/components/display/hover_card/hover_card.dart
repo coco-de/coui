@@ -57,24 +57,24 @@ class HoverCard extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
-      id: id,
-      classes: _buildClasses(),
-      styles: this.css,
-      attributes: this.componentAttributes,
-      events: this.events,
       children: [
         // Trigger
         trigger,
         // Card content (shown on hover)
         div(
+          child: content,
           classes:
               'absolute z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity mt-2',
           attributes: {
             'role': 'dialog',
           },
-          child: content,
         ),
       ],
+      id: id,
+      classes: _buildClasses(),
+      styles: this.css,
+      attributes: this.componentAttributes,
+      events: this.events,
     );
   }
 

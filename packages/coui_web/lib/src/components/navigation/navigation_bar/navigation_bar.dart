@@ -60,14 +60,14 @@ class NavigationBar extends UiComponent {
     Styles? css,
   }) {
     return NavigationBar(
+      key: key ?? this.key,
+      items: items ?? this.items,
+      currentIndex: currentIndex ?? this.currentIndex,
+      onIndexChanged: onIndexChanged ?? this.onIndexChanged,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
-      currentIndex: currentIndex ?? this.currentIndex,
       id: id ?? this.id,
-      items: items ?? this.items,
-      key: key ?? this.key,
-      onIndexChanged: onIndexChanged ?? this.onIndexChanged,
       tag: tag ?? this.tag,
     );
   }
@@ -82,25 +82,26 @@ class NavigationBar extends UiComponent {
 
       navItems.add(
         button(
+          children: [
+            if (item.icon != null) item.icon,
+            if (item.label != null)
+              span(
+                child: text(item.label),
+                classes: 'text-xs',
+              ),
+          ],
           classes: _buildItemClasses(isActive),
           attributes: {
             'type': 'button',
             if (isActive) 'aria-current': 'page',
           },
           events: _buildItemEvents(i),
-          children: [
-            if (item.icon != null) item.icon,
-            if (item.label != null)
-              span(
-                classes: 'text-xs',
-                child: text(item.label),
-              ),
-          ],
         ),
       );
     }
 
     return nav(
+      children: navItems,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
@@ -109,7 +110,6 @@ class NavigationBar extends UiComponent {
         'aria-label': 'Main navigation',
       },
       events: this.events,
-      children: navItems,
     );
   }
 

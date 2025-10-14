@@ -46,9 +46,8 @@ class ContextMenuTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return ComponentCard(
-      title: 'Context Menu',
       name: 'context_menu',
-      scale: 1.2,
+      title: 'Context Menu',
       example: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -60,65 +59,65 @@ class ContextMenuTile extends StatelessWidget implements IComponentPage {
               children: [
                 Button(
                   style: const ButtonStyle.menu(),
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
                   trailing: const MenuShortcut(
                     activator: SingleActivator(
                       LogicalKeyboardKey.keyX,
                       control: true,
                     ),
                   ),
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   child: const Text('Cut'),
                 ),
                 Button(
                   style: const ButtonStyle.menu(),
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
                   trailing: const MenuShortcut(
                     activator: SingleActivator(
                       LogicalKeyboardKey.keyC,
                       control: true,
                     ),
                   ),
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   child: const Text('Copy'),
                 ),
                 Button(
                   style: const ButtonStyle.menu(),
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
                   trailing: const MenuShortcut(
                     activator: SingleActivator(
                       LogicalKeyboardKey.keyV,
                       control: true,
                     ),
                   ),
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   child: const Text('Paste'),
                 ),
                 const MenuDivider(),
                 Button(
                   style: const ButtonStyle.menu(),
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
                   trailing: const MenuShortcut(
                     activator: SingleActivator(LogicalKeyboardKey.delete),
                   ),
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   child: const Text('Delete'),
                 ),
                 Button(
                   style: const ButtonStyle.menu(),
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
                   trailing: const MenuShortcut(
                     activator: SingleActivator(
                       LogicalKeyboardKey.keyA,
                       control: true,
                     ),
                   ),
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   child: const Text('Select All'),
                 ),
               ],
@@ -126,6 +125,7 @@ class ContextMenuTile extends StatelessWidget implements IComponentPage {
           ),
         ],
       ),
+      scale: 1.2,
     );
   }
 }

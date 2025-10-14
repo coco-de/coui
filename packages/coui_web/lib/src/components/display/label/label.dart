@@ -72,16 +72,16 @@ class Label extends UiComponent {
     return Component.element(
       tag: 'label',
       id: id,
-      attributes: attrs,
       classes: _buildClasses(),
       styles: this.css,
+      attributes: attrs,
       events: this.events,
       children: [
         Component.text(this.text),
         if (required)
           span(
-            classes: 'text-destructive ml-1',
             child: Component.text('*'),
+            classes: 'text-destructive ml-1',
           ),
       ],
     );

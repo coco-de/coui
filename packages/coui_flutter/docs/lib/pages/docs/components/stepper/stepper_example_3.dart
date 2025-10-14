@@ -10,8 +10,8 @@ class StepperExample3 extends StatefulWidget {
 
 class _StepperExample3State extends State<StepperExample3> {
   final StepperController controller = StepperController(
-    stepStates: {1: StepState.failed},
     currentStep: 1,
+    stepStates: {1: StepState.failed},
   );
 
   @override
@@ -21,7 +21,6 @@ class _StepperExample3State extends State<StepperExample3> {
       direction: Axis.horizontal,
       steps: [
         Step(
-          title: const Text('Step 1'),
           contentBuilder: (context) {
             return const StepContainer(
               actions: [
@@ -31,9 +30,9 @@ class _StepperExample3State extends State<StepperExample3> {
               child: NumberedContainer(index: 1, height: 200),
             );
           },
+          title: const Text('Step 1'),
         ),
         Step(
-          title: const Text('Step 2'),
           contentBuilder: (context) {
             return const StepContainer(
               actions: [
@@ -43,9 +42,9 @@ class _StepperExample3State extends State<StepperExample3> {
               child: NumberedContainer(index: 2, height: 200),
             );
           },
+          title: const Text('Step 2'),
         ),
         Step(
-          title: const Text('Step 3'),
           contentBuilder: (context) {
             return const StepContainer(
               actions: [
@@ -55,6 +54,7 @@ class _StepperExample3State extends State<StepperExample3> {
               child: NumberedContainer(index: 3, height: 200),
             );
           },
+          title: const Text('Step 3'),
         ),
       ],
     );

@@ -21,29 +21,24 @@ class _SortableExample5State extends State<SortableExample5> {
     return SortableLayer(
       lock: true,
       child: SortableDropFallback<int>(
-        onAccept: (value) {
-          setState(() {
-            names.add(names.removeAt(value.data));
-          });
-        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             for (int i = 0; i < names.length; i++)
               Sortable<String>(
-                key: ValueKey(i),
                 data: names[i],
                 // we only want user to drag the item from the handle,
                 // so we disable the drag on the item itself
                 enabled: false,
-                onAcceptTop: (value) {
-                  setState(() {
-                    names.swapItem(value, i);
-                  });
-                },
+                key: ValueKey(i),
                 onAcceptBottom: (value) {
                   setState(() {
                     names.swapItem(value, i + 1);
+                  });
+                },
+                onAcceptTop: (value) {
+                  setState(() {
+                    names.swapItem(value, i);
                   });
                 },
                 child: OutlinedContainer(
@@ -59,6 +54,11 @@ class _SortableExample5State extends State<SortableExample5> {
               ),
           ],
         ),
+        onAccept: (value) {
+          setState(() {
+            names.add(names.removeAt(value.data));
+          });
+        },
       ),
     );
   }

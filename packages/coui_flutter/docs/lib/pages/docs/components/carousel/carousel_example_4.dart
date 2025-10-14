@@ -17,17 +17,17 @@ class _CarouselExample4State extends State<CarouselExample4> {
       width: 800,
       height: 200,
       child: Carousel(
-        transition: const CarouselTransition.sliding(gap: 24),
-        controller: controller,
-        draggable: false,
         autoplaySpeed: const Duration(seconds: 2),
+        controller: controller,
         curve: Curves.linear,
-        itemCount: 5,
-        sizeConstraint: const CarouselSizeConstraint.fixed(200),
+        draggable: false,
+        duration: Duration.zero,
         itemBuilder: (context, index) {
           return NumberedContainer(index: index);
         },
-        duration: Duration.zero,
+        itemCount: 5,
+        sizeConstraint: const CarouselSizeConstraint.fixed(200),
+        transition: const CarouselTransition.sliding(gap: 24),
       ),
     );
   }

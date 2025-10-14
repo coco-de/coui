@@ -14,7 +14,6 @@ class NumberTickerTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'number_ticker',
       title: 'Number Ticker',
-      scale: 1.2,
       example: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +21,6 @@ class NumberTickerTile extends StatelessWidget implements IComponentPage {
           RepeatedAnimationBuilder(
             start: 0.0,
             end: 1234567.0,
-            mode: RepeatMode.pingPong,
             duration: const Duration(seconds: 5),
             builder: (context, value, child) {
               return Text(
@@ -33,28 +31,30 @@ class NumberTickerTile extends StatelessWidget implements IComponentPage {
                 ),
               );
             },
+            mode: RepeatMode.pingPong,
           ),
           Transform.translate(
             offset: const Offset(0, -16),
             child: RepeatedAnimationBuilder(
               start: 1234567.0,
               end: 0.0,
-              mode: RepeatMode.pingPong,
               duration: const Duration(seconds: 5),
               builder: (context, value, child) {
                 return Text(
                   NumberFormat.compact().format(value),
                   style: TextStyle(
+                    color: theme.colorScheme.mutedForeground,
                     fontSize: 48,
                     fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.mutedForeground,
                   ),
                 );
               },
+              mode: RepeatMode.pingPong,
             ),
           ),
         ],
       ),
+      scale: 1.2,
     );
   }
 }

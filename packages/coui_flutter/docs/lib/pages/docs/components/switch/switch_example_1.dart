@@ -14,12 +14,12 @@ class _SwitchExample1State extends State<SwitchExample1> {
   Widget build(BuildContext context) {
     // ignore: deprecated_member_use
     return Switch(
-      value: value,
       onChanged: (value) {
         setState(() {
           this.value = value;
         });
       },
+      value: value,
     );
   }
 }

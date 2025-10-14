@@ -34,37 +34,37 @@ class _SwiperExample1State extends State<SwiperExample1> {
         return Container(
           constraints: const BoxConstraints(minWidth: 320, minHeight: 320),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               const Text('Hello!'),
               const Gap(24),
               PrimaryButton(
+                child: const Text('Close'),
                 onPressed: () {
                   openDrawer(
-                    context: context,
                     builder: (context) {
                       return ListView.separated(
-                        itemCount: 1000,
                         itemBuilder: (context, index) {
                           return Card(child: Text('Item $index'));
                         },
                         separatorBuilder: (context, index) {
                           return const Gap(8);
                         },
+                        itemCount: 1000,
                       );
                     },
+                    context: context,
                     position: OverlayPosition.bottom,
                   );
                 },
-                child: const Text('Close'),
               ),
             ],
           ),
         );
       },
-      position: _position,
       handler: _typeDrawer ? SwiperHandler.drawer : SwiperHandler.sheet,
+      position: _position,
       child: SizedBox(
         height: 500,
         child: Card(
@@ -86,22 +86,22 @@ class _SwiperExample1State extends State<SwiperExample1> {
                 ButtonGroup(
                   children: [
                     Toggle(
-                      value: _typeDrawer,
                       onChanged: (value) {
                         setState(() {
                           _typeDrawer = value;
                         });
                       },
                       trailing: const Text('Drawer'),
+                      value: _typeDrawer,
                     ),
                     Toggle(
-                      value: !_typeDrawer,
                       onChanged: (value) {
                         setState(() {
                           _typeDrawer = !value;
                         });
                       },
                       trailing: const Text('Sheet'),
+                      value: !_typeDrawer,
                     ),
                   ],
                 ),

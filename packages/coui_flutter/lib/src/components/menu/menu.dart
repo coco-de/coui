@@ -399,6 +399,15 @@ class _MenuButtonState extends State<MenuButton> {
         anchorAlignment: menuBarData == null
             ? Alignment.topRight
             : Alignment.bottomLeft,
+        consumeOutsideTaps: false,
+        context: context,
+        dismissBackdropFocus: false,
+        handler: MenuOverlayHandler(overlayManager),
+        offset: menuGroupData.subMenuOffset ?? compTheme?.subMenuOffset,
+        overlayBarrier: OverlayBarrier(
+          borderRadius: BorderRadius.circular(theme.radiusMd),
+        ),
+        regionGroupId: menuGroupData.regionGroupId,
         builder: (context) {
           final theme = Theme.of(context);
           final scaling = theme.scaling;
@@ -419,9 +428,6 @@ class _MenuButtonState extends State<MenuButton> {
               builder: (context, child) {
                 return MenuGroup(
                   autofocus: autofocus,
-                  builder: (context, children) {
-                    return MenuPopup(children: children);
-                  },
                   direction: menuGroupData.direction,
                   itemPadding: itemPadding,
                   onDismissed: menuGroupData.onDismissed,
@@ -430,21 +436,15 @@ class _MenuButtonState extends State<MenuButton> {
                   subMenuOffset:
                       compTheme?.subMenuOffset ??
                       const Offset(8, -4 + -1) * scaling,
+                  builder: (context, children) {
+                    return MenuPopup(children: children);
+                  },
                   children: _children.value,
                 );
               },
             ),
           );
         },
-        consumeOutsideTaps: false,
-        context: context,
-        dismissBackdropFocus: false,
-        handler: MenuOverlayHandler(overlayManager),
-        offset: menuGroupData.subMenuOffset ?? compTheme?.subMenuOffset,
-        overlayBarrier: OverlayBarrier(
-          borderRadius: BorderRadius.circular(theme.radiusMd),
-        ),
-        regionGroupId: menuGroupData.regionGroupId,
       );
     }
 
@@ -476,6 +476,7 @@ class _MenuButtonState extends State<MenuButton> {
         ),
       },
       child: SubFocus(
+        enabled: widget.enabled,
         builder: (context, subFocusState) {
           final hasFocus = subFocusState.isFocused && menuBarData == null;
 
@@ -587,7 +588,6 @@ class _MenuButtonState extends State<MenuButton> {
             ),
           );
         },
-        enabled: widget.enabled,
       ),
     );
   }
@@ -1000,7 +1000,6 @@ class MenuOverlayHandler extends OverlayHandler {
       allowInvertVertical: allowInvertVertical,
       anchorAlignment: anchorAlignment,
       barrierDismissable: barrierDismissable,
-      builder: builder,
       clipBehavior: clipBehavior,
       consumeOutsideTaps: consumeOutsideTaps,
       context: context,
@@ -1020,6 +1019,7 @@ class MenuOverlayHandler extends OverlayHandler {
       showDuration: showDuration,
       transitionAlignment: transitionAlignment,
       widthConstraint: widthConstraint,
+      builder: builder,
     );
   }
 }

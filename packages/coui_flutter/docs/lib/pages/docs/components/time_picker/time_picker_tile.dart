@@ -12,13 +12,13 @@ class TimePickerTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'time_picker',
       title: 'Time Picker',
-      scale: 1.2,
       example: Card(
         child: TimePickerDialog(
-          use24HourFormat: true,
           initialValue: TimeOfDay.now(),
+          use24HourFormat: true,
         ).withAlign(Alignment.topLeft),
       ).sized(height: 300),
+      scale: 1.2,
     );
   }
 }

@@ -18,7 +18,6 @@ class WebPreloaderPage extends StatelessWidget {
           Steps(
             children: [
               StepItem(
-                title: const Text('Creating a web directory'),
                 content: [
                   const Text(
                     'If you don\'t have a web directory, create one.',
@@ -31,20 +30,20 @@ class WebPreloaderPage extends StatelessWidget {
                     '* If you\'re using legacy flutter web, you need to upgrade it using the command above. ',
                   )
                       .thenButton(
+                        child: const Text('Click here for more information.'),
                         onPressed: () {
                           openInNewTab(
                             'https://docs.flutter.dev/platform-integration/web/initialization#upgrade-an-older-project',
                           );
                         },
-                        child: const Text('Click here for more information.'),
                       )
                       .italic()
                       .muted()
                       .withPadding(top: 8),
                 ],
+                title: const Text('Creating a web directory'),
               ),
               StepItem(
-                title: const Text('Adding a script'),
                 content: [
                   const Text(
                     'Next, select and copy one of these pre-made preloaders:',
@@ -62,9 +61,9 @@ class WebPreloaderPage extends StatelessWidget {
                     ],
                   ).li().p(),
                 ],
+                title: const Text('Adding a script'),
               ),
               StepItem(
-                title: const Text('Paste the script'),
                 content: [
                   const Text('Open your ')
                       .thenInlineCode('index.html')
@@ -88,9 +87,9 @@ class WebPreloaderPage extends StatelessWidget {
                     mode: 'javascript',
                   ).p(),
                 ],
+                title: const Text('Paste the script'),
               ),
               StepItem(
-                title: const Text('Run the app'),
                 content: [
                   const Text('Run the app using the following command:').p(),
                   const CodeSnippet(
@@ -98,26 +97,27 @@ class WebPreloaderPage extends StatelessWidget {
                     mode: 'shell',
                   ).p(),
                 ],
+                title: const Text('Run the app'),
               ),
             ],
           ),
           const Gap(32),
           Alert(
-            title: const Text('Contributing'),
-            leading: const Icon(Icons.info_outlined),
             content: const Text(
               'If you have a preloader that you want to share, please create a pull request under the ',
             )
                 .thenButton(
+                  child: const Text('web_loaders'),
                   onPressed: () {
                     launchUrlString(
                       'https://github.com/coco-de/coui/tree/master/web_loaders',
                     );
                   },
-                  child: const Text('web_loaders'),
                 )
                 .thenText(' directory.')
                 .p(),
+            leading: const Icon(Icons.info_outlined),
+            title: const Text('Contributing'),
           ),
         ],
       ),

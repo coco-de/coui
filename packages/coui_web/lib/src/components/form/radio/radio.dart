@@ -87,8 +87,8 @@ class Radio extends UiComponent {
       value: value ?? this.value,
       groupValue: groupValue ?? this.groupValue,
       disabled: disabled ?? this.disabled,
-      name: name ?? this.name,
       onChanged: onChanged ?? this.onChanged,
+      name: name ?? this.name,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -209,9 +209,9 @@ class RadioGroup extends UiComponent {
   }) {
     return RadioGroup(
       key: key ?? this.key,
+      children: children ?? this.children,
       groupValue: groupValue ?? this.groupValue,
       onChanged: onChanged ?? this.onChanged,
-      children: children ?? this.children,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,

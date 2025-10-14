@@ -18,16 +18,16 @@ class AccordionTile extends StatelessWidget implements IComponentPage {
           child: Accordion(
             items: [
               AccordionItem(
-                trigger: AccordionTrigger(child: Text('Accordion 1')),
                 content: Text('Content 1'),
+                trigger: AccordionTrigger(child: Text('Accordion 1')),
               ),
               AccordionItem(
-                trigger: AccordionTrigger(child: Text('Accordion 2')),
                 content: Text('Content 2'),
+                trigger: AccordionTrigger(child: Text('Accordion 2')),
               ),
               AccordionItem(
-                trigger: AccordionTrigger(child: Text('Accordion 3')),
                 content: Text('Content 3'),
+                trigger: AccordionTrigger(child: Text('Accordion 3')),
               ),
             ],
           ),

@@ -13,7 +13,6 @@ class SelectTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'select',
       title: 'Select',
-      scale: 1.2,
       example: Card(
         child: Align(
           alignment: Alignment.topLeft,
@@ -22,14 +21,14 @@ class SelectTile extends StatelessWidget implements IComponentPage {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Select<String>(
+                constraints: const BoxConstraints.tightFor(width: 300),
+                enabled: true,
                 itemBuilder: (context, item) {
                   return Text(item);
                 },
                 placeholder: const Text('Select a fruit'),
-                value: 'Apple',
-                enabled: true,
-                constraints: const BoxConstraints.tightFor(width: 300),
                 popup: (context) => const SelectPopup(),
+                value: 'Apple',
               ),
               Gap(8 * theme.scaling),
               const SizedBox(
@@ -53,6 +52,7 @@ class SelectTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ).sized(height: 300, width: 200),
+      scale: 1.2,
     );
   }
 }

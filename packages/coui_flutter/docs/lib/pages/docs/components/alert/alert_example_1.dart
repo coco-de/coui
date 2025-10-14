@@ -6,9 +6,9 @@ class AlertExample1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Alert(
-      title: Text('Alert title'),
       content: Text('This is alert content.'),
       leading: Icon(Icons.info_outline),
+      title: Text('Alert title'),
     );
   }
 }

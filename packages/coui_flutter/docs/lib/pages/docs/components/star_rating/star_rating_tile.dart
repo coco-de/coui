@@ -12,7 +12,6 @@ class StarRatingTile extends StatelessWidget implements IComponentPage {
     return const ComponentCard(
       name: 'star_rating',
       title: 'Star Rating',
-      scale: 1,
       example: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,6 +21,7 @@ class StarRatingTile extends StatelessWidget implements IComponentPage {
           StarRating(starSize: 64, value: 2.5),
         ],
       ),
+      scale: 1,
     );
   }
 }

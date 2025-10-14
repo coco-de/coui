@@ -26,9 +26,9 @@ class CommandExample1 extends StatelessWidget {
                 item.toLowerCase().contains(query.toLowerCase())) {
               resultItems.add(
                 CommandItem(
-                  title: Text(item),
                   leading: icons[item],
                   onTap: () {},
+                  title: Text(item),
                 ),
               );
             }
@@ -41,6 +41,6 @@ class CommandExample1 extends StatelessWidget {
           }
         }
       },
-    ).sized(width: 300, height: 300);
+    ).sized(height: 300, width: 300);
   }
 }

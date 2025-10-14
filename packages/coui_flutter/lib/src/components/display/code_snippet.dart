@@ -364,6 +364,8 @@ class _CodeSnippetState extends State<CodeSnippet> {
                       ) {
                         if (context.mounted) {
                           showToast(
+                            context: context,
+                            showDuration: const Duration(seconds: 2),
                             builder: (context, overlay) {
                               final localizations = CoUILocalizations.of(
                                 context,
@@ -376,8 +378,6 @@ class _CodeSnippetState extends State<CodeSnippet> {
                                 title: Text(localizations.toastSnippetCopied),
                               );
                             },
-                            context: context,
-                            showDuration: const Duration(seconds: 2),
                           );
                         }
                       });

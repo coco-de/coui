@@ -21,26 +21,21 @@ class _SortableExample2State extends State<SortableExample2> {
     return SortableLayer(
       lock: true,
       child: SortableDropFallback<int>(
-        onAccept: (value) {
-          setState(() {
-            names.add(names.removeAt(value.data));
-          });
-        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             for (int i = 0; i < names.length; i++)
               Sortable<String>(
-                key: ValueKey(i),
                 data: names[i],
-                onAcceptTop: (value) {
-                  setState(() {
-                    names.swapItem(value, i);
-                  });
-                },
+                key: ValueKey(i),
                 onAcceptBottom: (value) {
                   setState(() {
                     names.swapItem(value, i + 1);
+                  });
+                },
+                onAcceptTop: (value) {
+                  setState(() {
+                    names.swapItem(value, i);
                   });
                 },
                 child: OutlinedContainer(
@@ -50,6 +45,11 @@ class _SortableExample2State extends State<SortableExample2> {
               ),
           ],
         ),
+        onAccept: (value) {
+          setState(() {
+            names.add(names.removeAt(value.data));
+          });
+        },
       ),
     );
   }

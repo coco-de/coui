@@ -286,7 +286,6 @@ class _CoUIAppState extends State<CoUIApp> {
 
   Widget _builder(BuildContext context, Widget? child) {
     return CoUILayer(
-      builder: widget.builder,
       darkTheme: widget.darkTheme,
       enableScrollInterception: widget.enableScrollInterception,
       enableThemeAnimation: widget.enableThemeAnimation,
@@ -299,6 +298,7 @@ class _CoUIAppState extends State<CoUIApp> {
       theme: widget.theme,
       themeMode: widget.themeMode,
       tooltipHandler: widget.tooltipHandler,
+      builder: widget.builder,
       child: child,
     );
   }
@@ -313,7 +313,6 @@ class _CoUIAppState extends State<CoUIApp> {
             routerDelegate: widget.routerDelegate,
             routerConfig: widget.routerConfig,
             backButtonDispatcher: widget.backButtonDispatcher,
-            builder: _builder,
             title: widget.title,
             onGenerateTitle: widget.onGenerateTitle,
             textStyle: widget.theme.typography.sans.copyWith(
@@ -331,6 +330,7 @@ class _CoUIAppState extends State<CoUIApp> {
             shortcuts: widget.shortcuts,
             actions: widget.actions,
             restorationScopeId: widget.restorationScopeId,
+            builder: _builder,
           )
         : WidgetsApp(
             key: GlobalObjectKey(this),
@@ -344,13 +344,12 @@ class _CoUIAppState extends State<CoUIApp> {
             pageRouteBuilder:
                 <T>(RouteSettings settings, WidgetBuilder builder) {
                   return MaterialPageRoute<T>(
-                    builder: builder,
                     settings: settings,
+                    builder: builder,
                   );
                 },
             home: widget.home,
             routes: widget.routes!,
-            builder: _builder,
             title: widget.title,
             onGenerateTitle: widget.onGenerateTitle,
             textStyle: widget.theme.typography.sans.copyWith(
@@ -368,6 +367,7 @@ class _CoUIAppState extends State<CoUIApp> {
             shortcuts: widget.shortcuts,
             actions: widget.actions,
             restorationScopeId: widget.restorationScopeId,
+            builder: _builder,
           );
   }
 

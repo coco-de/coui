@@ -215,7 +215,6 @@ ToastOverlay showToast({
   assert(layer != null, 'No ToastLayer found in context');
 
   final entry = ToastEntry(
-    builder: builder,
     curve: curve,
     data: data,
     dismissible: dismissible,
@@ -224,6 +223,7 @@ ToastOverlay showToast({
     onClosed: onClosed,
     showDuration: showDuration,
     themes: themes,
+    builder: builder,
   );
 
   final result = layer!.addEntry(entry);
@@ -919,30 +919,44 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
                   initialValue: 0.0,
                   value: isClosing ? 0.0 : _closeDismissing ?? 0.0,
                   duration: kDefaultDuration,
+                  onEnd: (value) {
+                    if (value == -1.0 || value == 1.0) {
+                      widget.onClosed();
+                    }
+                  },
                   builder: (context, closeDismissingProgress, child) {
                     return AnimatedValueBuilder(
                       key: const ValueKey('toast-index-animation'),
                       initialValue: widget.index.toDouble(),
                       value: widget.index.toDouble(),
                       duration: widget.duration,
+                      curve: widget.curve,
                       builder: (context, indexProgress, child) {
                         return AnimatedValueBuilder(
                           key: const ValueKey('toast-showing-animation'),
                           initialValue: 0.0,
                           value: isClosing && !_dismissing ? 0.0 : 1.0,
                           duration: widget.duration,
+                          onEnd: (value) {
+                            if (value == 0.0 && isClosing) {
+                              widget.onClosed();
+                            }
+                          },
+                          curve: widget.curve,
                           builder: (context, showingProgress, child) {
                             return AnimatedValueBuilder(
                               key: const ValueKey('toast-visible-animation'),
                               initialValue: 0.0,
                               value: widget.visible ? 1.0 : 0.0,
                               duration: widget.duration,
+                              curve: widget.curve,
                               builder: (context, visibleProgress, child) {
                                 return AnimatedValueBuilder(
                                   key: const ValueKey('toast-expand-animation'),
                                   initialValue: 0.0,
                                   value: widget.expanded ? 1.0 : 0.0,
                                   duration: widget.expandingDuration,
+                                  curve: widget.expandingCurve,
                                   builder: (context, expandProgress, child) {
                                     return buildToast(
                                       closeDismissingProgress,
@@ -953,27 +967,13 @@ class _ToastEntryLayoutState extends State<ToastEntryLayout> {
                                       visibleProgress,
                                     );
                                   },
-                                  curve: widget.expandingCurve,
                                 );
                               },
-                              curve: widget.curve,
                             );
                           },
-                          onEnd: (value) {
-                            if (value == 0.0 && isClosing) {
-                              widget.onClosed();
-                            }
-                          },
-                          curve: widget.curve,
                         );
                       },
-                      curve: widget.curve,
                     );
-                  },
-                  onEnd: (value) {
-                    if (value == -1.0 || value == 1.0) {
-                      widget.onClosed();
-                    }
                   },
                 );
               },

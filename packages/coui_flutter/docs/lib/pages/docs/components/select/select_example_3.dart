@@ -38,26 +38,26 @@ class _SelectExample3State extends State<SelectExample3> {
   @override
   Widget build(BuildContext context) {
     return Select<String>(
+      constraints: const BoxConstraints(minWidth: 200),
       itemBuilder: (context, item) {
         return Text(item);
       },
+      onChanged: (value) {
+        setState(() {
+          selectedValue = value;
+        });
+      },
+      placeholder: const Text('Select a fruit'),
       popup: (context) => SelectPopup.builder(
-        searchPlaceholder: const Text('Search fruit'),
-        emptyBuilder: (context) {
-          return const Center(child: Text('No fruit found'));
-        },
-        loadingBuilder: (context) {
-          return const Center(child: CircularProgressIndicator());
-        },
         builder: (context, searchQuery) async {
           final filteredFruits = searchQuery == null
               ? fruits.entries.toList()
               : _filteredFruits(searchQuery).toList();
+
           /// Simulate a delay for loading.
           /// In a real-world scenario, you would fetch data from an API or database.
           await Future.delayed(const Duration(milliseconds: 500));
           return SelectItemBuilder(
-            childCount: filteredFruits.isEmpty ? 0 : null,
             builder: (context, index) {
               final entry = filteredFruits[index % filteredFruits.length];
               return SelectGroup(
@@ -68,17 +68,18 @@ class _SelectExample3State extends State<SelectExample3> {
                 ],
               );
             },
+            childCount: filteredFruits.isEmpty ? 0 : null,
           );
         },
+        emptyBuilder: (context) {
+          return const Center(child: Text('No fruit found'));
+        },
+        loadingBuilder: (context) {
+          return const Center(child: CircularProgressIndicator());
+        },
+        searchPlaceholder: const Text('Search fruit'),
       ),
-      onChanged: (value) {
-        setState(() {
-          selectedValue = value;
-        });
-      },
-      constraints: const BoxConstraints(minWidth: 200),
       value: selectedValue,
-      placeholder: const Text('Select a fruit'),
     );
   }
 }

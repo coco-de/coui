@@ -33,8 +33,8 @@ class _ColorPickerExample1State extends State<ColorPickerExample1> {
           const Gap(16),
           ColorInput(
             color: color,
-            mode: PromptMode.dialog,
             dialogTitle: const Text('Select Color'),
+            mode: PromptMode.dialog,
             onChanged: (value) {
               setState(() {
                 color = value;

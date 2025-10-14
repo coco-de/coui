@@ -6,10 +6,10 @@ class ButtonExample5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DestructiveButton(
+      child: const Text('Destructive'),
       onPressed: () {
         // TODOS: will be implemented later.
       },
-      child: const Text('Destructive'),
     );
   }
 }

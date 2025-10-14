@@ -67,6 +67,18 @@ class ContextMenu extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
+      children: [
+        triggerChild,
+        // Context menu (hidden by default, shown on contextmenu event)
+        div(
+          children: items,
+          classes:
+              'absolute z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md hidden',
+          attributes: {
+            'data-context-menu-content': '',
+          },
+        ),
+      ],
       id: id,
       classes: _buildClasses(),
       styles: this.css,
@@ -75,18 +87,6 @@ class ContextMenu extends UiComponent {
         'data-context-menu': '',
       },
       events: _buildEvents(),
-      children: [
-        triggerChild,
-        // Context menu (hidden by default, shown on contextmenu event)
-        div(
-          classes:
-              'absolute z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md hidden',
-          attributes: {
-            'data-context-menu-content': '',
-          },
-          children: items,
-        ),
-      ],
     );
   }
 
@@ -197,13 +197,14 @@ class ContextMenuItem extends UiComponent {
     if (currentShortcut != null) {
       children.add(
         span(
-          classes: 'ml-auto text-xs tracking-widest opacity-60',
           child: text(currentShortcut),
+          classes: 'ml-auto text-xs tracking-widest opacity-60',
         ),
       );
     }
 
     return div(
+      children: children,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
@@ -213,7 +214,6 @@ class ContextMenuItem extends UiComponent {
         if (disabled) 'data-disabled': '',
       },
       events: _buildEvents(),
-      children: children,
     );
   }
 

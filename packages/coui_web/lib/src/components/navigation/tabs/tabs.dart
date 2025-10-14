@@ -50,8 +50,8 @@ class Tabs extends UiComponent {
   }) {
     return Tabs(
       key: key ?? this.key,
-      defaultValue: defaultValue ?? this.defaultValue,
       children: children ?? this.children,
+      defaultValue: defaultValue ?? this.defaultValue,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -199,22 +199,23 @@ class TabsTrigger extends UiComponent {
     Key? key,
   }) {
     return TabsTrigger(
+      child: child ?? this.child,
       key: key ?? this.key,
       value: value ?? this.value,
       label: label ?? this.label,
+      isActive: isActive ?? this.isActive,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
       tag: tag ?? this.tag,
-      child: child ?? this.child,
-      isActive: isActive ?? this.isActive,
     );
   }
 
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: text(label),
       tag: tag,
       id: id,
       classes: _buildClasses(),
@@ -227,7 +228,6 @@ class TabsTrigger extends UiComponent {
         'data-state': isActive ? 'active' : 'inactive',
       },
       events: events,
-      child: text(label),
     );
   }
 
@@ -284,13 +284,13 @@ class TabsContent extends UiComponent {
   }) {
     return TabsContent(
       key: key ?? this.key,
+      value: value ?? this.value,
+      child: child ?? this.child,
+      isActive: isActive ?? this.isActive,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
       tag: tag ?? this.tag,
-      child: child ?? this.child,
-      isActive: isActive ?? this.isActive,
-      value: value ?? this.value,
     );
   }
 
@@ -298,6 +298,7 @@ class TabsContent extends UiComponent {
   Component build(BuildContext context) {
     return isActive
         ? Component.element(
+            child: child,
             tag: tag,
             id: id,
             classes: _buildClasses(),
@@ -309,7 +310,6 @@ class TabsContent extends UiComponent {
               'data-state': 'active',
             },
             events: events,
-            child: child,
           )
         : Component.fragment(children: []);
   }

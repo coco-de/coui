@@ -14,8 +14,8 @@ class CommandTile extends StatelessWidget implements IComponentPage {
     return const ComponentCard(
       name: 'command',
       title: 'Command',
-      scale: 1,
       example: CommandExample1(),
+      scale: 1,
     );
   }
 }

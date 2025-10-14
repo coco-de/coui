@@ -207,6 +207,9 @@ class TabList extends StatelessWidget {
     );
 
     return TabContainer(
+      childBuilder: _childBuilder,
+      onSelect: onChanged,
+      selected: index,
       builder: (context, children) {
         return Container(
           decoration: BoxDecoration(
@@ -217,9 +220,6 @@ class TabList extends StatelessWidget {
           child: Row(children: children),
         );
       },
-      childBuilder: _childBuilder,
-      onSelect: onChanged,
-      selected: index,
       children: children,
     );
   }

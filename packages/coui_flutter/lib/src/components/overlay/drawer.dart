@@ -191,6 +191,10 @@ DrawerOverlayCompleter<T?> openDrawerOverlay<T>({
     autoOpen: autoOpen,
     backdropBuilder: backdropBuilder,
     barrierDismissible: barrierDismissible,
+    context: context,
+    position: position,
+    transformBackdrop: transformBackdrop,
+    useSafeArea: useSafeArea,
     builder: (context, extraSize, padding, size, stackIndex) {
       return DrawerWrapper(
         borderRadius: borderRadius,
@@ -212,10 +216,6 @@ DrawerOverlayCompleter<T?> openDrawerOverlay<T>({
         ),
       );
     },
-    context: context,
-    position: position,
-    transformBackdrop: transformBackdrop,
-    useSafeArea: useSafeArea,
   );
 }
 
@@ -281,6 +281,10 @@ DrawerOverlayCompleter<T?> openSheetOverlay<T>({
     autoOpen: autoOpen,
     backdropBuilder: backdropBuilder,
     barrierDismissible: barrierDismissible,
+    context: context,
+    position: position,
+    transformBackdrop: transformBackdrop,
+    useSafeArea: false,
     builder: (context, extraSize, padding, size, stackIndex) {
       return SheetWrapper(
         position: position,
@@ -297,10 +301,6 @@ DrawerOverlayCompleter<T?> openSheetOverlay<T>({
         ),
       );
     },
-    context: context,
-    position: position,
-    transformBackdrop: transformBackdrop,
-    useSafeArea: false,
   );
 }
 
@@ -346,7 +346,6 @@ Future<T?> openDrawer<T>({
     barrierColor: barrierColor,
     barrierDismissible: barrierDismissible,
     borderRadius: borderRadius,
-    builder: builder,
     context: context,
     dragHandleSize: dragHandleSize,
     draggable: draggable,
@@ -357,6 +356,7 @@ Future<T?> openDrawer<T>({
     surfaceOpacity: surfaceOpacity,
     transformBackdrop: transformBackdrop,
     useSafeArea: useSafeArea,
+    builder: builder,
   ).future;
 }
 
@@ -394,11 +394,11 @@ Future<T?> openSheet<T>({
     backdropBuilder: backdropBuilder,
     barrierColor: barrierColor,
     barrierDismissible: barrierDismissible,
-    builder: builder,
     context: context,
     draggable: draggable,
     position: position,
     transformBackdrop: transformBackdrop,
+    builder: builder,
   ).future;
 }
 
@@ -1383,6 +1383,12 @@ DrawerOverlayCompleter<T?> openRawDrawer<T>({
       );
     },
     barrierDismissible: barrierDismissible,
+    completer: completer,
+    data: data,
+    modal: modal,
+    position: position,
+    themes: themes,
+    useSafeArea: useSafeArea,
     builder: (context, extraSize, padding, size, stackIndex) {
       return _DrawerOverlayWrapper(
         completer: completer,
@@ -1393,12 +1399,6 @@ DrawerOverlayCompleter<T?> openRawDrawer<T>({
         ),
       );
     },
-    completer: completer,
-    data: data,
-    modal: modal,
-    position: position,
-    themes: themes,
-    useSafeArea: useSafeArea,
   );
   final overlay = parentLayer!.overlay;
   overlay.addEntry(entry);
@@ -1513,7 +1513,6 @@ class DrawerOverlayState extends State<DrawerOverlay> {
         backdrop: child,
         backdropBuilder: entry.backdropBuilder,
         barrierBuilder: entry.barrierBuilder,
-        builder: entry.builder,
         completer: entry.completer,
         data: entry.data,
         modal: entry.modal,
@@ -1521,6 +1520,7 @@ class DrawerOverlayState extends State<DrawerOverlay> {
         stackIndex: index += 1,
         themes: entry.themes,
         useSafeArea: entry.useSafeArea,
+        builder: entry.builder,
       );
     }
 
@@ -1957,6 +1957,9 @@ class SheetOverlayHandler extends OverlayHandler {
   }) {
     return openRawDrawer<T>(
       barrierDismissible: barrierDismissable,
+      context: context,
+      position: this.position,
+      transformBackdrop: false,
       builder: (context, extraSize, padding, size, stackIndex) {
         return MultiModel(
           data: const [Model(#coui_flutter_sheet_overlay, true)],
@@ -1977,9 +1980,6 @@ class SheetOverlayHandler extends OverlayHandler {
           ),
         );
       },
-      context: context,
-      position: this.position,
-      transformBackdrop: false,
     );
   }
 

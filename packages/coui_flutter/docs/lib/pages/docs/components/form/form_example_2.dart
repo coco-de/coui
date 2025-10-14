@@ -20,44 +20,6 @@ class _FormExample2State extends State<FormExample2> {
     return SizedBox(
       width: 480,
       child: Form(
-        onSubmit: (context, values) {
-          // Get the values individually
-          String? username = _usernameKey[values];
-          String? password = _passwordKey[values];
-          String? confirmPassword = _confirmPasswordKey[values];
-          CheckboxState? agree = _agreeKey[values];
-          // or just encode the whole map to JSON directly
-          String json = jsonEncode(
-            values.map((key, value) {
-              return MapEntry(key.key, value);
-            }),
-          );
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: const Text('Form Values'),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Username: $username'),
-                    Text('Password: $password'),
-                    Text('Confirm Password: $confirmPassword'),
-                    Text('Agree: $agree'),
-                    Text('JSON: $json'),
-                  ],
-                ),
-                actions: [
-                  PrimaryButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Close'),
-                  ),
-                ],
-              );
-            },
-          );
-        },
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -66,59 +28,59 @@ class _FormExample2State extends State<FormExample2> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 FormField(
+                  hint: const Text('This is your public display name'),
                   key: _usernameKey,
                   label: const Text('Username'),
-                  hint: const Text('This is your public display name'),
-                  validator: const LengthValidator(min: 4),
                   showErrors: const {
                     FormValidationMode.changed,
                     FormValidationMode.submitted,
                   },
+                  validator: const LengthValidator(min: 4),
                   child: const TextField(),
                 ),
                 FormField(
                   key: _passwordKey,
                   label: const Text('Password'),
-                  validator: const LengthValidator(min: 8),
                   showErrors: const {
                     FormValidationMode.changed,
                     FormValidationMode.submitted,
                   },
+                  validator: const LengthValidator(min: 8),
                   child: const TextField(obscureText: true),
                 ),
                 FormField(
                   key: _confirmPasswordKey,
                   label: const Text('Confirm Password'),
-                  validator: CompareWith.equal(
-                    _passwordKey,
-                    message: 'Passwords do not match',
-                  ),
                   showErrors: const {
                     FormValidationMode.changed,
                     FormValidationMode.submitted,
                   },
+                  validator: CompareWith.equal(
+                    _passwordKey,
+                    message: 'Passwords do not match',
+                  ),
                   child: const TextField(obscureText: true),
                 ),
                 FormInline(
                   key: _agreeKey,
                   label: const Text('I agree to the terms and conditions'),
-                  validator: const CompareTo.equal(
-                    CheckboxState.checked,
-                    message: 'You must agree to the terms and conditions',
-                  ),
                   showErrors: const {
                     FormValidationMode.changed,
                     FormValidationMode.submitted,
                   },
+                  validator: const CompareTo.equal(
+                    CheckboxState.checked,
+                    message: 'You must agree to the terms and conditions',
+                  ),
                   child: Align(
                     alignment: AlignmentDirectional.centerEnd,
                     child: Checkbox(
-                      state: state,
                       onChanged: (value) {
                         setState(() {
                           state = value;
                         });
                       },
+                      state: state,
                     ),
                   ),
                 ),
@@ -135,6 +97,44 @@ class _FormExample2State extends State<FormExample2> {
             ),
           ],
         ),
+        onSubmit: (context, values) {
+          // Get the values individually
+          String? username = _usernameKey[values];
+          String? password = _passwordKey[values];
+          String? confirmPassword = _confirmPasswordKey[values];
+          CheckboxState? agree = _agreeKey[values];
+          // or just encode the whole map to JSON directly
+          String json = jsonEncode(
+            values.map((key, value) {
+              return MapEntry(key.key, value);
+            }),
+          );
+          showDialog(
+            builder: (context) {
+              return AlertDialog(
+                actions: [
+                  PrimaryButton(
+                    child: const Text('Close'),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                ],
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Username: $username'),
+                    Text('Password: $password'),
+                    Text('Confirm Password: $confirmPassword'),
+                    Text('Agree: $agree'),
+                    Text('JSON: $json'),
+                  ],
+                ),
+                title: const Text('Form Values'),
+              );
+            },
+            context: context,
+          );
+        },
       ),
     );
   }

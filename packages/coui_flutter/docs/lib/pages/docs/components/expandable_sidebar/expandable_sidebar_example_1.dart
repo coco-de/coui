@@ -14,8 +14,8 @@ class _ExpandableSidebarExample1State extends State<ExpandableSidebarExample1> {
 
   NavigationItem buildButton(String text, IconData icon) {
     return NavigationItem(
-      label: Text(text),
       alignment: Alignment.centerLeft,
+      label: Text(text),
       selectedStyle: const ButtonStyle.primaryIcon(),
       child: Icon(icon),
     );
@@ -39,12 +39,12 @@ class _ExpandableSidebarExample1State extends State<ExpandableSidebarExample1> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           NavigationRail(
-            backgroundColor: theme.colorScheme.card,
-            labelType: NavigationLabelType.expanded,
-            labelPosition: NavigationLabelPosition.end,
             alignment: NavigationRailAlignment.start,
+            backgroundColor: theme.colorScheme.card,
             expanded: expanded,
             index: selected,
+            labelPosition: NavigationLabelPosition.end,
+            labelType: NavigationLabelType.expanded,
             onSelected: (value) {
               setState(() {
                 selected = value;

@@ -21,8 +21,8 @@ class _ResizableExample6State extends State<ResizableExample6> {
             child: NumberedContainer(index: 0, height: 200, fill: false),
           ),
           ResizablePane(
-            minSize: 100,
             initialSize: 300,
+            minSize: 100,
             child: ResizablePanel.vertical(
               children: [
                 ResizablePane(
@@ -31,8 +31,8 @@ class _ResizableExample6State extends State<ResizableExample6> {
                   child: NumberedContainer(index: 1, fill: false),
                 ),
                 ResizablePane(
-                  minSize: 40,
                   initialSize: 120,
+                  minSize: 40,
                   child: ResizablePanel.horizontal(
                     children: [
                       ResizablePane.flex(

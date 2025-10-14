@@ -81,7 +81,7 @@ class _ComponentPageState extends State<ComponentPage> {
         continue;
       }
       remappedChildren.add(
-        PageItemWidget(onThisPage: onThisPage[title]!, key: key, child: child),
+        PageItemWidget(key: key, onThisPage: onThisPage[title]!, child: child),
       );
       i++;
     }
@@ -91,10 +91,10 @@ class _ComponentPageState extends State<ComponentPage> {
       navigationItems: [
         if (widget.component)
           TextButton(
-            density: ButtonDensity.compact,
             onPressed: () {
               context.pushNamed('components');
             },
+            density: ButtonDensity.compact,
             child: const Text('Components'),
           ),
       ],

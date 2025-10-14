@@ -14,24 +14,24 @@ class _DatePickerExample2State extends State<DatePickerExample2> {
     return Column(
       children: [
         DateRangePicker(
-          value: _value,
           mode: PromptMode.popover,
           onChanged: (value) {
             setState(() {
               _value = value;
             });
           },
+          value: _value,
         ),
         const Gap(16),
         DateRangePicker(
-          value: _value,
-          mode: PromptMode.dialog,
           dialogTitle: const Text('Select Date Range'),
+          mode: PromptMode.dialog,
           onChanged: (value) {
             setState(() {
               _value = value;
             });
           },
+          value: _value,
         ),
       ],
     );

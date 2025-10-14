@@ -49,11 +49,11 @@ class Breadcrumb extends UiComponent {
       key: key ?? this.key,
       items: items ?? this.items,
       separator: separator ?? this.separator,
+      attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
       tag: tag ?? this.tag,
-      attributes: attributes ?? this.componentAttributes,
     );
   }
 
@@ -67,8 +67,8 @@ class Breadcrumb extends UiComponent {
       if (i > 0) {
         children.add(
           span(
-            classes: 'mx-2 text-muted-foreground',
             child: text(separator),
+            classes: 'mx-2 text-muted-foreground',
           ),
         );
       }
@@ -77,6 +77,10 @@ class Breadcrumb extends UiComponent {
     }
 
     return nav(
+      child: ol(
+        children: children,
+        classes: 'flex items-center space-x-1',
+      ),
       id: id,
       classes: _buildClasses(),
       styles: this.css,
@@ -85,10 +89,6 @@ class Breadcrumb extends UiComponent {
         'aria-label': 'Breadcrumb',
       },
       events: events,
-      child: ol(
-        classes: 'flex items-center space-x-1',
-        children: children,
-      ),
     );
   }
 
@@ -168,25 +168,25 @@ class BreadcrumbItem extends UiComponent {
     final labelText = text(label);
 
     return li(
+      child: isActive || currentHref == null
+          ? span(
+              child: labelText,
+              classes: 'font-medium text-foreground',
+              attributes: {
+                if (isActive) 'aria-current': 'page',
+              },
+            )
+          : a(
+              child: labelText,
+              href: currentHref,
+              classes:
+                  'font-medium text-muted-foreground transition-colors hover:text-foreground',
+            ),
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: isActive || currentHref == null
-          ? span(
-              classes: 'font-medium text-foreground',
-              attributes: {
-                if (isActive) 'aria-current': 'page',
-              },
-              child: labelText,
-            )
-          : a(
-              href: currentHref,
-              classes:
-                  'font-medium text-muted-foreground transition-colors hover:text-foreground',
-              child: labelText,
-            ),
     );
   }
 

@@ -12,23 +12,25 @@ class AlertDialogTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'alert_dialog',
       title: 'Alert Dialog',
-      center: true,
       example: AlertDialog(
-        title: const Text('Alert Dialog'),
-        content: const Text('This is an alert dialog.'),
         actions: [
           SecondaryButton(
-              onPressed: () {
-                // TODOS: will be implemented later.
-              },
-              child: const Text('Cancel')),
+            child: const Text('Cancel'),
+            onPressed: () {
+              // TODOS: will be implemented later.
+            },
+          ),
           PrimaryButton(
-              onPressed: () {
-                // TODOS: will be implemented later.
-              },
-              child: const Text('OK')),
+            child: const Text('OK'),
+            onPressed: () {
+              // TODOS: will be implemented later.
+            },
+          ),
         ],
+        content: const Text('This is an alert dialog.'),
+        title: const Text('Alert Dialog'),
       ),
+      center: true,
     );
   }
 }

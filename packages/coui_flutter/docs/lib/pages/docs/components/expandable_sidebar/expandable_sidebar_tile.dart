@@ -13,20 +13,19 @@ class ExpandableSidebarTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'expandable_sidebar',
       title: 'Expandable Sidebar',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 250,
-          height: 300,
           decoration: BoxDecoration(
             color: theme.colorScheme.muted,
             borderRadius: BorderRadius.circular(8),
           ),
+          width: 250,
+          height: 300,
           child: Column(
             children: [
               Container(
-                height: 50,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
+                height: 50,
                 child: Row(
                   children: [
                     const Icon(Icons.menu),
@@ -74,6 +73,7 @@ class ExpandableSidebarTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

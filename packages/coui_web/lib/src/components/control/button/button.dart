@@ -440,28 +440,28 @@ class Button extends UiComponent {
     VoidCallback? onPressed,
   }) {
     return Button(
-      attributes: attributes ?? this.componentAttributes,
-      block: block ?? this.block,
+      disabled: disabled ?? this.enabled,
+      loading: loading ?? false,
       child: child ?? this.child,
+      key: key ?? this.key,
+      onPressed: onPressed ?? this.onPressed,
+      enabled: enabled ?? this.enabled,
+      leading: leading ?? this.leading,
+      trailing: trailing ?? this.trailing,
+      size: size ?? this.size,
+      shape: shape ?? this.shape,
+      variant: variant ?? this._variant,
+      htmlType: htmlType ?? this.htmlType,
+      role: role ?? this.role,
+      onHover: onHover ?? this.onHover,
+      onFocus: onFocus ?? this.onFocus,
+      wide: wide ?? this.wide,
+      block: block ?? this.block,
+      attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
-      disabled: disabled ?? this.enabled,
-      enabled: enabled ?? this.enabled,
-      htmlType: htmlType ?? this.htmlType,
       id: id ?? this.id,
-      key: key ?? this.key,
-      leading: leading ?? this.leading,
-      loading: loading ?? false,
-      onFocus: onFocus ?? this.onFocus,
-      onHover: onHover ?? this.onHover,
-      onPressed: onPressed ?? this.onPressed,
-      role: role ?? this.role,
-      shape: shape ?? this.shape,
-      size: size ?? this.size,
       tag: tag ?? this.tag,
-      trailing: trailing ?? this.trailing,
-      variant: variant ?? this._variant,
-      wide: wide ?? this.wide,
     );
   }
 
@@ -494,13 +494,13 @@ class Button extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: _content,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: _content,
     );
   }
 
@@ -569,8 +569,8 @@ class Button extends UiComponent {
     ].nonNulls.toList();
 
     return span(
-      classes: 'flex items-center gap-2',
       children: content,
+      classes: 'flex items-center gap-2',
     );
   }
 

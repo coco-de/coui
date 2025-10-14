@@ -15,9 +15,9 @@ class InputExample4 extends StatelessWidget {
           return !['sunarya-thito', 'septogeddon', 'admin'].contains(value);
         }, message: 'Username already taken'),
         child: const TextField(
-          placeholder: Text('Enter your username'),
-          initialValue: 'sunarya-thito',
           features: [InputFeature.revalidate()],
+          initialValue: 'sunarya-thito',
+          placeholder: Text('Enter your username'),
         ),
       ),
     );

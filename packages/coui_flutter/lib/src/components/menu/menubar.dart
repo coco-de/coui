@@ -274,6 +274,10 @@ class MenubarState extends State<Menubar> {
       data: this,
       child: MenuGroup(
         autofocus: false,
+        direction: Axis.vertical,
+        itemPadding: EdgeInsets.zero,
+        regionGroupId: this,
+        subMenuOffset: offset,
         builder: (context, children) {
           return IntrinsicHeight(
             child: Row(
@@ -283,10 +287,6 @@ class MenubarState extends State<Menubar> {
             ),
           ).medium();
         },
-        direction: Axis.vertical,
-        itemPadding: EdgeInsets.zero,
-        regionGroupId: this,
-        subMenuOffset: offset,
         children: widget.children,
       ),
     );

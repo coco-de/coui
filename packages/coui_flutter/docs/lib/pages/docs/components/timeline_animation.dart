@@ -11,8 +11,7 @@ class TimelineAnimationExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const ComponentPage(
       name: 'timeline_animation',
-      description:
-          'A timeline animation is a way of displaying a list of '
+      description: 'A timeline animation is a way of displaying a list of '
           'events in chronological order, sometimes described as a project '
           'artifact with animations.',
       displayName: 'Timeline Animation',

@@ -14,36 +14,36 @@ class _DatePickerExample1State extends State<DatePickerExample1> {
     return Column(
       children: [
         DatePicker(
-          value: _value,
           mode: PromptMode.popover,
+          onChanged: (value) {
+            setState(() {
+              _value = value;
+            });
+          },
           stateBuilder: (date) {
             if (date.isAfter(DateTime.now())) {
               return DateState.disabled;
             }
             return DateState.enabled;
           },
-          onChanged: (value) {
-            setState(() {
-              _value = value;
-            });
-          },
+          value: _value,
         ),
         const Gap(16),
         DatePicker(
-          value: _value,
-          mode: PromptMode.dialog,
           dialogTitle: const Text('Select Date'),
+          mode: PromptMode.dialog,
+          onChanged: (value) {
+            setState(() {
+              _value = value;
+            });
+          },
           stateBuilder: (date) {
             if (date.isAfter(DateTime.now())) {
               return DateState.disabled;
             }
             return DateState.enabled;
           },
-          onChanged: (value) {
-            setState(() {
-              _value = value;
-            });
-          },
+          value: _value,
         ),
       ],
     );

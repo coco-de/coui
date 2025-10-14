@@ -17,32 +17,32 @@ class _ToggleExample2State extends State<ToggleExample2> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Toggle(
-          value: flag == 0,
           onChanged: (v) {
             setState(() {
               flag = v ? 0 : -1;
             });
           },
           trailing: const Text('B').bold().center(),
-        ).sized(width: 40, height: 40),
+          value: flag == 0,
+        ).sized(height: 40, width: 40),
         Toggle(
-          value: flag == 1,
           onChanged: (v) {
             setState(() {
               flag = v ? 1 : -1;
             });
           },
           trailing: const Text('I').italic().center(),
-        ).sized(width: 40, height: 40),
+          value: flag == 1,
+        ).sized(height: 40, width: 40),
         Toggle(
-          value: flag == 2,
           onChanged: (v) {
             setState(() {
               flag = v ? 2 : -1;
             });
           },
           trailing: const Text('U').underline().center(),
-        ).sized(width: 40, height: 40),
+          value: flag == 2,
+        ).sized(height: 40, width: 40),
       ],
     ).gap(4);
   }

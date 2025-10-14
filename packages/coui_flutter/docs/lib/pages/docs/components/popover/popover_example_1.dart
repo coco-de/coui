@@ -7,14 +7,10 @@ class PopoverExample1 extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return PrimaryButton(
+      child: const Text('Open popover'),
       onPressed: () {
         showPopover(
-          context: context,
           alignment: Alignment.topCenter,
-          offset: const Offset(0, 8),
-          // Unless you have full opacity surface,
-          // you should explicitly set the overlay barrier.
-          overlayBarrier: OverlayBarrier(borderRadius: theme.borderRadiusLg),
           builder: (context) {
             return ModalContainer(
               child: SizedBox(
@@ -54,19 +50,23 @@ class PopoverExample1 extends StatelessWidget {
                       ),
                     ).withPadding(vertical: 16),
                     PrimaryButton(
+                      child: const Text('Submit'),
                       onPressed: () {
                         closeOverlay(context);
                       },
-                      child: const Text('Submit'),
                     ),
                   ],
                 ),
               ),
             );
           },
+          context: context,
+          offset: const Offset(0, 8),
+          // Unless you have full opacity surface,
+          // you should explicitly set the overlay barrier.
+          overlayBarrier: OverlayBarrier(borderRadius: theme.borderRadiusLg),
         );
       },
-      child: const Text('Open popover'),
     );
   }
 }

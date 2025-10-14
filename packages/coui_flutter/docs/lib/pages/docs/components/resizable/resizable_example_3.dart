@@ -14,9 +14,6 @@ class _ResizableExample3State extends State<ResizableExample3> {
     return OutlinedContainer(
       clipBehavior: Clip.antiAlias,
       child: ResizablePanel.horizontal(
-        draggerBuilder: (context) {
-          return const HorizontalResizableDragger();
-        },
         children: const [
           ResizablePane(
             initialSize: 80,
@@ -39,6 +36,9 @@ class _ResizableExample3State extends State<ResizableExample3> {
             child: NumberedContainer(index: 4, height: 200, fill: false),
           ),
         ],
+        draggerBuilder: (context) {
+          return const HorizontalResizableDragger();
+        },
       ),
     );
   }

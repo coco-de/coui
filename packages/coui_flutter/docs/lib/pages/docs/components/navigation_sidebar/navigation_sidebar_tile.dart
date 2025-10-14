@@ -13,20 +13,19 @@ class NavigationSidebarTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'navigation_sidebar',
       title: 'Navigation Sidebar',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 250,
-          height: 300,
           decoration: BoxDecoration(
             color: theme.colorScheme.muted,
             borderRadius: BorderRadius.circular(8),
           ),
+          width: 250,
+          height: 300,
           child: Column(
             children: [
               Container(
-                height: 60,
                 padding: const EdgeInsets.all(16),
+                height: 60,
                 child: Row(
                   children: [
                     const Icon(Icons.menu),
@@ -98,6 +97,7 @@ class NavigationSidebarTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

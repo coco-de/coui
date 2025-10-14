@@ -13,7 +13,6 @@ class DotIndicatorTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'dot_indicator',
       title: 'Dot Indicator',
-      scale: 1.2,
       example: Card(
         child: Column(
           children: [
@@ -23,48 +22,48 @@ class DotIndicatorTile extends StatelessWidget implements IComponentPage {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 12,
-                  height: 12,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.primary,
                     shape: BoxShape.circle,
                   ),
+                  width: 12,
+                  height: 12,
                 ),
                 const Gap(8),
                 Container(
-                  width: 8,
-                  height: 8,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.muted,
                     shape: BoxShape.circle,
                   ),
+                  width: 8,
+                  height: 8,
                 ),
                 const Gap(8),
                 Container(
-                  width: 8,
-                  height: 8,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.muted,
                     shape: BoxShape.circle,
                   ),
+                  width: 8,
+                  height: 8,
                 ),
                 const Gap(8),
                 Container(
-                  width: 8,
-                  height: 8,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.muted,
                     shape: BoxShape.circle,
                   ),
+                  width: 8,
+                  height: 8,
                 ),
                 const Gap(8),
                 Container(
-                  width: 8,
-                  height: 8,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.muted,
                     shape: BoxShape.circle,
                   ),
+                  width: 8,
+                  height: 8,
                 ),
               ],
             ),
@@ -73,6 +72,7 @@ class DotIndicatorTile extends StatelessWidget implements IComponentPage {
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.2,
     );
   }
 }

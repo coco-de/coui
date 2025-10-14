@@ -17,10 +17,6 @@ import 'package:jaspr/jaspr.dart';
 /// )
 /// ```
 class Gap extends UiComponent {
-  /// Creates a Gap component.
-  ///
-  static const _defaultGapSize = 4;
-
   /// Parameters:
   /// - [size]: Gap size in Tailwind spacing scale (0-96, 0.5, 1.5, 2.5, 3.5)
   const Gap({
@@ -35,6 +31,10 @@ class Gap extends UiComponent {
 
   /// Gap size in Tailwind spacing scale.
   final double size;
+
+  /// Creates a Gap component.
+  ///
+  static const _defaultGapSize = 4;
 
   static const _divValue = 'div';
 

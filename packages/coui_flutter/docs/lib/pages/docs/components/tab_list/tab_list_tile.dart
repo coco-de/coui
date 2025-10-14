@@ -12,9 +12,6 @@ class TabListTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'tab_list',
       title: 'Tab List',
-      scale: 1,
-      reverseVertical: true,
-      verticalOffset: 60,
       example: TabList(
         index: 0,
         onChanged: (value) {},
@@ -25,6 +22,9 @@ class TabListTile extends StatelessWidget implements IComponentPage {
           TabItem(child: Text('Settings')),
         ],
       ),
+      reverseVertical: true,
+      verticalOffset: 60,
+      scale: 1,
     );
   }
 }

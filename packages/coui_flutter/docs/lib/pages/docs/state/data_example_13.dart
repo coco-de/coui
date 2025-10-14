@@ -59,10 +59,10 @@ class _InnerWidgetState extends State<InnerWidget> {
               ),
               const Gap(24),
               PrimaryButton(
+                child: const Icon(Icons.add),
                 onPressed: () {
                   Model.change(context, #firstCounter, firstCounter + 1);
                 },
-                child: const Icon(Icons.add),
               ),
             ],
           ),
@@ -102,11 +102,11 @@ class _LeafWidgetState extends State<LeafWidget> {
           ),
           const Gap(24),
           PrimaryButton(
+            child: const Icon(Icons.add),
             onPressed: () {
               secondCounter.value = secondCounter.value + 1;
               // or secondCounter.data++ works too
             },
-            child: const Icon(Icons.add),
           ),
         ],
       ),

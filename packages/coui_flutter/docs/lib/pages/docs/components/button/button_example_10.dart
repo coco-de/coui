@@ -6,16 +6,16 @@ class ButtonExample10 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 8,
-      runSpacing: 8,
       alignment: WrapAlignment.center,
+      spacing: 8,
       runAlignment: WrapAlignment.center,
+      runSpacing: 8,
       children: [
         PrimaryButton(
-          size: ButtonSize.xSmall,
           onPressed: () {
             // TODOS: will be implemented later.
           },
+          size: ButtonSize.xSmall,
           child: const Text('Extra Small'),
         ),
         PrimaryButton(
@@ -26,24 +26,24 @@ class ButtonExample10 extends StatelessWidget {
           child: const Text('Small'),
         ),
         PrimaryButton(
-          size: ButtonSize.normal,
           onPressed: () {
             // TODOS: will be implemented later.
           },
+          size: ButtonSize.normal,
           child: const Text('Normal'),
         ),
         PrimaryButton(
-          size: ButtonSize.large,
           onPressed: () {
             // TODOS: will be implemented later.
           },
+          size: ButtonSize.large,
           child: const Text('Large'),
         ),
         PrimaryButton(
-          size: ButtonSize.xLarge,
           onPressed: () {
             // TODOS: will be implemented later.
           },
+          size: ButtonSize.xLarge,
           child: const Text('Extra Large'),
         ),
       ],

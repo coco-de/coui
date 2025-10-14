@@ -79,13 +79,13 @@ class _StateManagementPageState extends State<StateManagementPage> {
             child: DataExample1(),
           ).p(),
           const Alert(
-            leading: Icon(Icons.info_outline),
-            title: SelectableText(
-              'Did you notice the difference in the rebuild count?',
-            ),
             content: SelectableText(
               'The MostInnerWidget rebuilds when the data changes while the InnerWidget does not. '
               'This is because the InnerWidget is not listening to the data.',
+            ),
+            leading: Icon(Icons.info_outline),
+            title: SelectableText(
+              'Did you notice the difference in the rebuild count?',
             ),
           ).p(),
           const SelectableText('Setting Data Boundary').h3().p(),
@@ -156,11 +156,11 @@ class _StateManagementPageState extends State<StateManagementPage> {
             child: DataExample2(),
           ).p(),
           const Alert(
-            leading: Icon(Icons.info_outline),
-            title: SelectableText('Did you notice the root data?'),
             content: SelectableText(
               'It uses the data from the left most inner data, because parent can only take data from the first attached child.',
             ),
+            leading: Icon(Icons.info_outline),
+            title: SelectableText('Did you notice the root data?'),
           ).p(),
           const SelectableText('Setting DataMessenger Boundary').h3().p(),
           const SelectableText(
@@ -178,8 +178,7 @@ class _StateManagementPageState extends State<StateManagementPage> {
             'The MultiData widget allows you to pass multiple data to the children. Take a look at the following example:',
           ).p(),
           const CodeSnippet(
-            code:
-                'Data<int>.inherit(\n'
+            code: 'Data<int>.inherit(\n'
                 '\tdata: counter,\n'
                 '\tchild: Data<String>.inherit(\n'
                 '\t\tdata: name,\n'
@@ -194,8 +193,7 @@ class _StateManagementPageState extends State<StateManagementPage> {
             'You can avoid nesting by using the MultiData widget.',
           ).p(),
           const CodeSnippet(
-            code:
-                'MultiData(\n'
+            code: 'MultiData(\n'
                 '\tdataList: [\n'
                 '\t\tData<int>(counter),\n'
                 '\t\tData<String>(name),\n'

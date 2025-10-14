@@ -668,6 +668,11 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
             initialValue: 0.0,
             value: (_viewport?.closed ?? false) ? 0.0 : 1.0,
             duration: kDefaultDuration,
+            onEnd: (value) {
+              if (_viewport?.closed ?? false) {
+                _viewport?.navigator.removeWindow(_entry!);
+              }
+            },
             builder: (context, value, child) {
               return Transform.scale(
                 scale: (_viewport?.closed ?? false)
@@ -675,11 +680,6 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
                     : lerpDouble(0.9, 1.0, value)!,
                 child: Opacity(opacity: value, child: child),
               );
-            },
-            onEnd: (value) {
-              if (_viewport?.closed ?? false) {
-                _viewport?.navigator.removeWindow(_entry!);
-              }
             },
             child: windowClient,
           );
@@ -869,6 +869,8 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
             initialValue: maximized,
             value: maximized,
             duration: kDefaultDuration,
+            curve: Curves.easeInOut,
+            lerp: Rect.lerp,
             builder: (context, oldValue, newValue, t, child) {
               Rect rect = bounds;
               if (newValue != null) {
@@ -893,8 +895,6 @@ class _WindowWidgetState extends State<WindowWidget> with WindowHandle {
 
               return GroupPositioned.fromRect(rect: rect, child: child!);
             },
-            curve: Curves.easeInOut,
-            lerp: Rect.lerp,
             child: windowContainer,
           );
         },
@@ -1297,6 +1297,7 @@ class _WindowLayerGroup extends StatelessWidget {
                       duration: handle._hoveringTopSnapper.value
                           ? const Duration(milliseconds: 300)
                           : kDefaultDuration,
+                      curve: Curves.easeInOut,
                       builder: (context, value, child) {
                         return Transform.translate(
                           offset: Offset(
@@ -1669,7 +1670,6 @@ class _WindowLayerGroup extends StatelessWidget {
                           ),
                         );
                       },
-                      curve: Curves.easeInOut,
                     ),
                   ),
                 ),
@@ -2183,6 +2183,7 @@ class _BlurContainer extends StatelessWidget {
       initialValue: 0.0,
       value: 1.0,
       duration: kDefaultDuration,
+      curve: Curves.easeInOut,
       builder: (context, value, child) {
         return Opacity(
           opacity: value,
@@ -2206,7 +2207,6 @@ class _BlurContainer extends StatelessWidget {
           ),
         );
       },
-      curve: Curves.easeInOut,
     );
   }
 }

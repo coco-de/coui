@@ -79,30 +79,32 @@ class SwitchField extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
-      id: id,
-      classes: _buildClasses(),
-      styles: this.css,
-      attributes: this.componentAttributes,
-      events: this.events,
       children: [
         // Label and description
         div(
-          classes: 'space-y-0.5',
           children: [
             Component.element(
+              child: text(label),
               tag: 'label',
               classes: 'text-sm font-medium leading-none cursor-pointer',
-              child: text(label),
             ),
             if (description != null)
               p(
-                classes: 'text-sm text-muted-foreground',
                 child: text(description),
+                classes: 'text-sm text-muted-foreground',
               ),
           ],
+          classes: 'space-y-0.5',
         ),
         // Switch
         button(
+          child: span(
+            classes:
+                'pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0',
+            attributes: {
+              'data-state': checked ? 'checked' : 'unchecked',
+            },
+          ),
           classes: _buildSwitchClasses(),
           attributes: {
             'type': 'button',
@@ -112,15 +114,13 @@ class SwitchField extends UiComponent {
             if (disabled) 'disabled': '',
           },
           events: _buildEvents(),
-          child: span(
-            classes:
-                'pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0',
-            attributes: {
-              'data-state': checked ? 'checked' : 'unchecked',
-            },
-          ),
         ),
       ],
+      id: id,
+      classes: _buildClasses(),
+      styles: this.css,
+      attributes: this.componentAttributes,
+      events: this.events,
     );
   }
 
@@ -144,6 +144,7 @@ class SwitchField extends UiComponent {
 
   Map<String, List<dynamic>> _buildEvents() {
     final currentOnChanged = onChanged;
+
     return currentOnChanged == null || disabled
         ? {}
         : {

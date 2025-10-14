@@ -15,33 +15,33 @@ class CardImageExample1 extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: IntrinsicHeight(
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               for (int i = 0; i < 10; i++)
                 CardImage(
+                  image: Image.network('https://picsum.photos/200/300'),
                   onPressed: () {
                     showDialog(
-                      context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: const Text('Card Image'),
-                          content: const Text('You clicked on a card image.'),
                           actions: [
                             PrimaryButton(
+                              child: const Text('Close'),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: const Text('Close'),
                             ),
                           ],
+                          content: const Text('You clicked on a card image.'),
+                          title: const Text('Card Image'),
                         );
                       },
+                      context: context,
                     );
                   },
-                  image: Image.network('https://picsum.photos/200/300'),
-                  title: Text('Card Number ${i + 1}'),
                   subtitle: const Text('Lorem ipsum dolor sit amet'),
+                  title: Text('Card Number ${i + 1}'),
                 ),
             ],
           ).gap(8),

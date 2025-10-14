@@ -34,7 +34,6 @@ class _InstallationPageState extends State<InstallationPage> {
           Steps(
             children: [
               StepItem(
-                title: const Text('Creating a new Flutter project'),
                 content: [
                   const Text(
                     'Create a new Flutter project using the following command:',
@@ -44,9 +43,9 @@ class _InstallationPageState extends State<InstallationPage> {
                     mode: 'shell',
                   ).p(),
                 ],
+                title: const Text('Creating a new Flutter project'),
               ),
               StepItem(
-                title: const Text('Adding the dependency'),
                 content: [
                   const Text(
                     'Next, add the coui_flutter dependency to your project.',
@@ -56,9 +55,9 @@ class _InstallationPageState extends State<InstallationPage> {
                     mode: 'shell',
                   ).p(),
                 ],
+                title: const Text('Adding the dependency'),
               ),
               StepItem(
-                title: const Text('Importing the package'),
                 content: [
                   const Text(
                     'Now, you can import the package in your Dart code.',
@@ -68,9 +67,9 @@ class _InstallationPageState extends State<InstallationPage> {
                     mode: 'dart',
                   ).p(),
                 ],
+                title: const Text('Importing the package'),
               ),
               StepItem(
-                title: const Text('Adding the CouiApp widget'),
                 content: [
                   const Text(
                     'Add the CouiApp widget to your main function.',
@@ -93,13 +92,14 @@ void main() {
                     mode: 'dart',
                   ).p(),
                 ],
+                title: const Text('Adding the CouiApp widget'),
               ),
               StepItem(
-                title: const Text('Run the app'),
                 content: [
                   const Text('Run the app using the following command:').p(),
                   const CodeSnippet(code: 'flutter run', mode: 'shell').p(),
                 ],
+                title: const Text('Run the app'),
               ),
             ],
           ),
@@ -121,24 +121,24 @@ void main() {
           ).p(),
           const Text('See ')
               .thenButton(
+                child: const Text('this page'),
                 onPressed: () {
                   launchUrlString(
                     'https://dart.dev/tools/pub/dependencies#git-packages',
                   );
                 },
-                child: const Text('this page'),
               )
               .thenText(' for more information.')
               .p(),
           const Gap(16),
           const Alert(
-            destructive: true,
-            leading: Icon(Icons.warning),
-            title: Text('Warning'),
             content: Text(
               'Experimental versions may contain breaking changes and are not recommended for production use. '
               'This version is intended for testing and development purposes only.',
             ),
+            destructive: true,
+            leading: Icon(Icons.warning),
+            title: Text('Warning'),
           ),
         ],
       ),

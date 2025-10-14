@@ -13,9 +13,9 @@ class TrackerTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'tracker',
       title: 'Tracker',
-      scale: 2,
-      verticalOffset: 48,
       example: const TrackerExample1().sized(width: 500),
+      verticalOffset: 48,
+      scale: 2,
     );
   }
 }

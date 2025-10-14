@@ -39,7 +39,16 @@ class _ChipInputExample1State extends State<ChipInputExample1> {
   @override
   Widget build(BuildContext context) {
     return ChipInput<String>(
+      chipBuilder: (context, chip) {
+        return Text(chip);
+      },
+      chips: _chips,
       controller: _controller,
+      onChanged: (value) {
+        setState(() {
+          _chips = value;
+        });
+      },
       onSubmitted: (value) {
         setState(() {
           _chips.add(value);
@@ -47,22 +56,13 @@ class _ChipInputExample1State extends State<ChipInputExample1> {
           _controller.clear();
         });
       },
-      suggestions: _suggestions,
       onSuggestionChoosen: (index) {
         setState(() {
           _chips.add(_suggestions[index]);
           _controller.clear();
         });
       },
-      onChanged: (value) {
-        setState(() {
-          _chips = value;
-        });
-      },
-      chips: _chips,
-      chipBuilder: (context, chip) {
-        return Text(chip);
-      },
+      suggestions: _suggestions,
     );
   }
 }

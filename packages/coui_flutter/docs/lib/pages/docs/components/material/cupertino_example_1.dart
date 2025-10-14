@@ -31,8 +31,8 @@ class _CupertinoExample1State extends State<CupertinoExample1> {
             ),
             const coui.Gap(16),
             CupertinoButton.filled(
-              onPressed: () => setState(() => _counter++),
               child: const Icon(CupertinoIcons.add),
+              onPressed: () => setState(() => _counter++),
             ),
             const coui.Gap(64),
             coui.CoUIUI(
@@ -45,6 +45,7 @@ class _CupertinoExample1State extends State<CupertinoExample1> {
                     ),
                     const coui.Gap(16),
                     coui.PrimaryButton(
+                      child: const Text('Open Cupertino Dialog'),
                       onPressed: () {
                         showCupertinoDialog(
                           context: context,
@@ -64,32 +65,31 @@ class _CupertinoExample1State extends State<CupertinoExample1> {
                           },
                         );
                       },
-                      child: const Text('Open Cupertino Dialog'),
                     ),
                     const coui.Gap(8),
                     coui.SecondaryButton(
+                      child: const Text('Open coui_flutter Dialog'),
                       onPressed: () {
                         coui.showDialog(
-                          context: context,
                           builder: (context) {
                             return coui.AlertDialog(
-                              title: const Text('Hello'),
-                              content: const Text(
-                                'This is coui_flutter dialog',
-                              ),
                               actions: [
                                 coui.PrimaryButton(
+                                  child: const Text('Close'),
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  child: const Text('Close'),
                                 ),
                               ],
+                              content: const Text(
+                                'This is coui_flutter dialog',
+                              ),
+                              title: const Text('Hello'),
                             );
                           },
+                          context: context,
                         );
                       },
-                      child: const Text('Open coui_flutter Dialog'),
                     ),
                   ],
                 ),

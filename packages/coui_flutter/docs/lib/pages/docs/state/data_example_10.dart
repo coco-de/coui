@@ -33,11 +33,11 @@ class DataExample10State extends State<DataExample10> {
               valueListenable: toggle,
               builder: (context, value, child) {
                 return Toggle(
-                  value: value,
                   onChanged: (value) {
                     toggle.value = value;
                   },
                   trailing: const Text('Toggle'),
+                  value: value,
                 );
               },
             ),

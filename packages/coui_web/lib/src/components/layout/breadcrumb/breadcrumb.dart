@@ -77,12 +77,12 @@ class Breadcrumb extends UiComponent {
     const emptyString = '';
 
     return Component.element(
-      attributes: componentAttributes,
+      css: this.css,
+      tag: tag,
+      id: id,
       classes:
           '$combinedClasses${styles.isNotEmpty ? ' ${styles.join(' ')}' : emptyString}',
-      css: this.css,
-      id: id,
-      tag: tag,
+      attributes: componentAttributes,
       children: [
         Component.element(tag: 'ul', children: listItems),
       ],

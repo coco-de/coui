@@ -47,30 +47,30 @@ class TooltipTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'tooltip',
       title: 'Tooltip',
-      center: true,
-      scale: 1,
       example: Stack(
         children: [
           Column(
             children: [
               DestructiveButton(
-                leading: const Icon(material.Icons.delete),
-                child: const Text('Delete'),
                 onPressed: () {
                   // TODOS: will be implemented later.
                 },
+                leading: const Icon(material.Icons.delete),
+                child: const Text('Delete'),
               ),
               const Gap(4),
               const TooltipContainer(child: Text('Click to delete this item')),
             ],
           ),
           const Positioned(
-            top: 25,
             left: 100,
+            top: 25,
             child: CustomPaint(painter: CursorPainter()),
           ),
         ],
       ),
+      center: true,
+      scale: 1,
     );
   }
 }

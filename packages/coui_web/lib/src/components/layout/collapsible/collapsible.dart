@@ -79,6 +79,23 @@ class Collapsible extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
+      children: [
+        // Trigger with click handler
+        div(
+          child: trigger,
+          events: _buildTriggerEvents(),
+        ),
+        // Collapsible content
+        if (isOpen)
+          div(
+            child: content,
+            classes:
+                'overflow-hidden transition-all data-[state=open]:animate-in data-[state=closed]:animate-out',
+            attributes: {
+              'data-state': isOpen ? 'open' : 'closed',
+            },
+          ),
+      ],
       id: id,
       classes: _buildClasses(),
       styles: this.css,
@@ -87,23 +104,6 @@ class Collapsible extends UiComponent {
         'data-state': isOpen ? 'open' : 'closed',
       },
       events: this.events,
-      children: [
-        // Trigger with click handler
-        div(
-          events: _buildTriggerEvents(),
-          child: trigger,
-        ),
-        // Collapsible content
-        if (isOpen)
-          div(
-            classes:
-                'overflow-hidden transition-all data-[state=open]:animate-in data-[state=closed]:animate-out',
-            attributes: {
-              'data-state': isOpen ? 'open' : 'closed',
-            },
-            child: content,
-          ),
-      ],
     );
   }
 

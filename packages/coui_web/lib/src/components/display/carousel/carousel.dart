@@ -97,34 +97,26 @@ class Carousel extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
-      id: id,
-      classes: _buildClasses(),
-      styles: this.css,
-      attributes: {
-        ...this.componentAttributes,
-        'role': 'region',
-        'aria-label': 'Carousel',
-      },
-      events: this.events,
       children: [
         // Carousel items
         div(
+          children: items
+              .map(
+                (item) => div(
+                  child: item,
+                  classes: 'min-w-full',
+                ),
+              )
+              .toList(),
           classes: 'flex transition-transform duration-300',
           styles: {
             'transform':
                 'translateX(-${currentIndex * _percentageMultiplier}%)',
           },
-          children: items
-              .map(
-                (item) => div(
-                  classes: 'min-w-full',
-                  child: item,
-                ),
-              )
-              .toList(),
         ),
         // Navigation buttons
         button(
+          child: text(_kPrevIcon),
           classes:
               'absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-background/80 p-2 shadow-md hover:bg-background',
           attributes: {
@@ -132,9 +124,9 @@ class Carousel extends UiComponent {
             'aria-label': 'Previous slide',
           },
           events: _handlePrev(),
-          child: text(_kPrevIcon),
         ),
         button(
+          child: text(_kNextIcon),
           classes:
               'absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-background/80 p-2 shadow-md hover:bg-background',
           attributes: {
@@ -142,11 +134,9 @@ class Carousel extends UiComponent {
             'aria-label': 'Next slide',
           },
           events: _handleNext(),
-          child: text(_kNextIcon),
         ),
         // Indicators
         div(
-          classes: 'absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2',
           children: List.generate(
             items.length,
             (index) => button(
@@ -159,8 +149,18 @@ class Carousel extends UiComponent {
               events: _handleIndicator(index),
             ),
           ),
+          classes: 'absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2',
         ),
       ],
+      id: id,
+      classes: _buildClasses(),
+      styles: this.css,
+      attributes: {
+        ...this.componentAttributes,
+        'role': 'region',
+        'aria-label': 'Carousel',
+      },
+      events: this.events,
     );
   }
 

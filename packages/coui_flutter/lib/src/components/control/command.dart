@@ -37,6 +37,7 @@ Future<T?> showCommandDialog<T>({
   double? surfaceOpacity,
 }) {
   return showDialog(
+    context: context,
     builder: (context) {
       final theme = Theme.of(context);
       final scaling = theme.scaling;
@@ -52,18 +53,17 @@ Future<T?> showCommandDialog<T>({
           surfaceClip: ModalBackdrop.shouldClipSurface(surfaceOpacity),
           child: Command(
             autofocus: autofocus,
-            builder: builder,
             debounceDuration: debounceDuration,
             emptyBuilder: emptyBuilder,
             errorBuilder: errorBuilder,
             loadingBuilder: loadingBuilder,
             surfaceBlur: surfaceBlur,
             surfaceOpacity: surfaceOpacity,
+            builder: builder,
           ),
         ),
       );
     },
-    context: context,
   );
 }
 

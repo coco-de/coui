@@ -13,8 +13,8 @@ class DatePickerTile extends StatelessWidget implements IComponentPage {
     return const ComponentCard(
       name: 'date_picker',
       title: 'Date Picker',
-      horizontalOffset: 70,
       example: CalendarExample2(),
+      horizontalOffset: 70,
     );
   }
 }

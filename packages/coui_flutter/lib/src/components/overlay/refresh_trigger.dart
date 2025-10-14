@@ -255,6 +255,7 @@ class _DefaultRefreshIndicatorState extends State<DefaultRefreshIndicator> {
             initialValue: 0.0,
             value: 1.0,
             duration: const Duration(milliseconds: 300),
+            curve: const Interval(0.5, 1),
             builder: (context, value, _) {
               return CustomPaint(
                 painter: AnimatedCheckPainter(
@@ -264,7 +265,6 @@ class _DefaultRefreshIndicatorState extends State<DefaultRefreshIndicator> {
                 ),
               );
             },
-            curve: const Interval(0.5, 1),
           ),
         ),
       ],
@@ -602,6 +602,7 @@ class RefreshTriggerState extends State<RefreshTrigger>
             ? _minExtent
             : _currentExtent,
         duration: _scrolling ? Duration.zero : kDefaultDuration,
+        curve: _curve,
         builder: (context, animation) {
           return Stack(
             fit: StackFit.passthrough,
@@ -648,7 +649,6 @@ class RefreshTriggerState extends State<RefreshTrigger>
             ],
           );
         },
-        curve: _curve,
       ),
     );
   }

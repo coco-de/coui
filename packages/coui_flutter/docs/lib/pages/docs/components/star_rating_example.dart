@@ -11,8 +11,8 @@ class StarRatingExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const ComponentPage(
       name: 'star_rating',
-      displayName: 'Star Rating',
       description: 'A component for rating.',
+      displayName: 'Star Rating',
       children: [
         WidgetUsageExample(
           title: 'Example',

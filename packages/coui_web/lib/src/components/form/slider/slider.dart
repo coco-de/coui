@@ -89,18 +89,18 @@ class Slider extends UiComponent {
     Key? key,
   }) {
     return Slider(
+      onChange: onChange ?? this.onChanged,
       key: key ?? this.key,
       value: value ?? this.value,
       min: min ?? this.min,
       max: max ?? this.max,
       step: step ?? this.step,
       disabled: disabled ?? this.disabled,
-      onChange: onChange ?? this.onChanged,
+      onChanged: onChanged ?? this.onChanged,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
       tag: tag ?? this.tag,
-      onChanged: onChanged ?? this.onChanged,
     );
   }
 
@@ -120,8 +120,6 @@ class Slider extends UiComponent {
       children: [
         // Track
         div(
-          classes:
-              'relative h-2 w-full grow overflow-hidden rounded-full bg-secondary',
           children: [
             // Range (filled portion)
             div(
@@ -129,10 +127,13 @@ class Slider extends UiComponent {
               styles: {'width': '$percentage%'},
             ),
           ],
+          classes:
+              'relative h-2 w-full grow overflow-hidden rounded-full bg-secondary',
         ),
         // Native input for functionality
         Component.element(
           tag: _inputValue,
+          classes: 'absolute inset-0 w-full opacity-0 cursor-pointer',
           attributes: {
             'type': 'range',
             'min': min.toString(),
@@ -141,7 +142,6 @@ class Slider extends UiComponent {
             'value': value.toString(),
             if (disabled) 'disabled': '',
           },
-          classes: 'absolute inset-0 w-full opacity-0 cursor-pointer',
           events: _buildInputEvents(),
         ),
       ],

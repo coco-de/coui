@@ -11,15 +11,15 @@ class TextAreaTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return const ComponentCard(
-      title: 'Text Area',
       name: 'text_area',
-      scale: 1.2,
+      title: 'Text Area',
       example: Column(
         children: [
           Card(child: TextAreaExample3()),
           Card(child: TextAreaExample3()),
         ],
       ),
+      scale: 1.2,
     );
   }
 }

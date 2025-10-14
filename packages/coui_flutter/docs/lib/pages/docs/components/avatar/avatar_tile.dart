@@ -12,7 +12,6 @@ class AvatarTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'avatar',
       title: 'Avatar',
-      scale: 1.5,
       example: Card(
         child: Row(
           children: [
@@ -27,6 +26,7 @@ class AvatarTile extends StatelessWidget implements IComponentPage {
           ],
         ),
       ),
+      scale: 1.5,
     );
   }
 }

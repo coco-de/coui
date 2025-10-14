@@ -17,18 +17,6 @@ typedef PageChangeCallback = void Function(int page);
 /// )
 /// ```
 class Pagination extends UiComponent {
-  /// Previous page icon character code (U+2039 - ‹).
-  static const int _kPrevIconCode = 0x2039;
-
-  /// Next page icon character code (U+203A - ›).
-  static const int _kNextIconCode = 0x203A;
-
-  /// Previous page icon character.
-  static String get _kPrevIcon => String.fromCharCode(_kPrevIconCode);
-
-  /// Next page icon character.
-  static String get _kNextIcon => String.fromCharCode(_kNextIconCode);
-
   /// Creates a Pagination component.
   ///
   /// Parameters:
@@ -56,9 +44,21 @@ class Pagination extends UiComponent {
   /// Callback when page changes.
   final PageChangeCallback? onPageChanged;
 
+  /// Previous page icon character code (U+2039 - ‹).
+  static const _kPrevIconCode = 0x2039;
+
+  /// Next page icon character code (U+203A - ›).
+  static const _kNextIconCode = 0x203A;
+
   static const _maxVisiblePages = 7;
 
   static const _navValue = 'nav';
+
+  /// Previous page icon character.
+  static String get _kPrevIcon => String.fromCharCode(_kPrevIconCode);
+
+  /// Next page icon character.
+  static String get _kNextIcon => String.fromCharCode(_kNextIconCode);
 
   @override
   Pagination copyWith({
@@ -160,6 +160,7 @@ class Pagination extends UiComponent {
         : 'hover:bg-accent hover:text-accent-foreground';
 
     return Component.element(
+      child: text(label),
       tag: 'button',
       classes: '$baseClasses $activeClasses',
       attributes: {
@@ -173,7 +174,6 @@ class Pagination extends UiComponent {
               'click': (event) => onPageChanged(page),
             }
           : {},
-      child: text(label),
     );
   }
 
@@ -191,8 +191,8 @@ class Pagination extends UiComponent {
   /// Builds an ellipsis component for pagination.
   static Component _buildEllipsis() {
     return span(
-      classes: 'inline-flex items-center justify-center h-10 px-4',
       child: text('...'),
+      classes: 'inline-flex items-center justify-center h-10 px-4',
     );
   }
 }

@@ -14,20 +14,18 @@ class RefreshTriggerTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'refresh_trigger',
       title: 'Refresh Trigger',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 250,
-          height: 200,
           decoration: BoxDecoration(
             border: Border.all(color: theme.colorScheme.border),
             borderRadius: BorderRadius.circular(8),
           ),
+          width: 250,
+          height: 200,
           child: Column(
             children: [
               // Refresh indicator area
               Container(
-                height: 60,
                 decoration: BoxDecoration(
                   color: theme.colorScheme.muted,
                   borderRadius: const BorderRadius.only(
@@ -35,6 +33,7 @@ class RefreshTriggerTile extends StatelessWidget implements IComponentPage {
                     topRight: Radius.circular(8),
                   ),
                 ),
+                height: 60,
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -50,8 +49,8 @@ class RefreshTriggerTile extends StatelessWidget implements IComponentPage {
                       Text(
                         'Pull to refresh',
                         style: TextStyle(
-                          fontSize: 12,
                           color: theme.colorScheme.mutedForeground,
+                          fontSize: 12,
                         ),
                       ),
                     ],
@@ -67,12 +66,12 @@ class RefreshTriggerTile extends StatelessWidget implements IComponentPage {
                       const Text('Content List:').bold(),
                       const Gap(12),
                       Container(
-                        width: double.infinity,
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           color: theme.colorScheme.muted.withOpacity(0.5),
                           borderRadius: BorderRadius.circular(4),
                         ),
+                        width: double.infinity,
                         child: const Text(
                           'Item 1',
                           textAlign: TextAlign.center,
@@ -80,12 +79,12 @@ class RefreshTriggerTile extends StatelessWidget implements IComponentPage {
                       ),
                       const Gap(4),
                       Container(
-                        width: double.infinity,
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           color: theme.colorScheme.muted.withOpacity(0.5),
                           borderRadius: BorderRadius.circular(4),
                         ),
+                        width: double.infinity,
                         child: const Text(
                           'Item 2',
                           textAlign: TextAlign.center,
@@ -93,12 +92,12 @@ class RefreshTriggerTile extends StatelessWidget implements IComponentPage {
                       ),
                       const Gap(4),
                       Container(
-                        width: double.infinity,
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           color: theme.colorScheme.muted.withOpacity(0.5),
                           borderRadius: BorderRadius.circular(4),
                         ),
+                        width: double.infinity,
                         child: const Text(
                           'Item 3',
                           textAlign: TextAlign.center,
@@ -112,6 +111,7 @@ class RefreshTriggerTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

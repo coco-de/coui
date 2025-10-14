@@ -13,20 +13,18 @@ class WindowTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'window',
       title: 'Window',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 320,
-          height: 240,
           decoration: BoxDecoration(
             border: Border.all(color: theme.colorScheme.border),
             borderRadius: BorderRadius.circular(8),
           ),
+          width: 320,
+          height: 240,
           child: Column(
             children: [
               // Window title bar
               Container(
-                height: 40,
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
                   color: theme.colorScheme.muted,
@@ -35,34 +33,35 @@ class WindowTile extends StatelessWidget implements IComponentPage {
                     topRight: Radius.circular(8),
                   ),
                 ),
+                height: 40,
                 child: Row(
                   children: [
                     // Window controls
                     Container(
-                      width: 12,
-                      height: 12,
                       decoration: const BoxDecoration(
                         color: Colors.red,
                         shape: BoxShape.circle,
                       ),
+                      width: 12,
+                      height: 12,
                     ),
                     const Gap(6),
                     Container(
-                      width: 12,
-                      height: 12,
                       decoration: const BoxDecoration(
                         color: Colors.yellow,
                         shape: BoxShape.circle,
                       ),
+                      width: 12,
+                      height: 12,
                     ),
                     const Gap(6),
                     Container(
-                      width: 12,
-                      height: 12,
                       decoration: const BoxDecoration(
                         color: Colors.green,
                         shape: BoxShape.circle,
                       ),
+                      width: 12,
+                      height: 12,
                     ),
                     const Gap(16),
                     const Text('Window Title').medium(),
@@ -86,6 +85,7 @@ class WindowTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

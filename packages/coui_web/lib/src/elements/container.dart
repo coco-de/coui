@@ -68,15 +68,15 @@ class Container extends UiComponent {
   }) {
     return Container(
       children,
-      key: key ?? this.key,
       attributes: attributes ?? userProvidedAttributes,
+      child: child ?? this.child,
       classes: mergeClasses(this.classes, classes),
       css: css ?? this.css,
       id: id ?? this.id,
+      key: key ?? this.key,
       onClick: onClick ?? this.onClick,
       style: style ?? this.style,
       tag: tag ?? this.tag,
-      child: child ?? this.child,
     );
   }
 
@@ -125,11 +125,11 @@ class Container extends UiComponent {
 
     return Container(
       children ?? (child == null ? null : [child]),
-      key: key,
       attributes: attributes,
       classes: classes,
       css: css,
       id: id,
+      key: key,
       style: responsiveStyles.isNotEmpty ? responsiveStyles : null,
       tag: tag,
     );

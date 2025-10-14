@@ -11,9 +11,9 @@ class AlertExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const ComponentPage(
       name: 'alert',
-      displayName: 'Alert',
       description:
           'Alerts are used to communicate a state that affects the system.',
+      displayName: 'Alert',
       children: [
         WidgetUsageExample(
           title: 'Alert Example',
@@ -25,10 +25,10 @@ class AlertExample extends StatelessWidget {
           title: 'Alert Example with destructive',
           path: 'lib/pages/docs/components/alert/alert_example_2.dart',
           child: Alert(
-            title: Text('Alert title'),
             content: Text('This is alert content.'),
-            trailing: Icon(Icons.dangerous_outlined),
             destructive: true,
+            title: Text('Alert title'),
+            trailing: Icon(Icons.dangerous_outlined),
           ),
         ),
       ],

@@ -12,7 +12,6 @@ class RadioGroupTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'radio_group',
       title: 'Radio Group',
-      scale: 2,
       example: Card(
         child: RadioGroup<int>(
           value: 1,
@@ -26,6 +25,7 @@ class RadioGroupTile extends StatelessWidget implements IComponentPage {
           ).gap(4),
         ).sized(width: 300),
       ),
+      scale: 2,
     );
   }
 }

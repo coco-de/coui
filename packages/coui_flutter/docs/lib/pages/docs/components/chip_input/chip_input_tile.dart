@@ -12,7 +12,6 @@ class ChipInputTile extends StatelessWidget implements IComponentPage {
     return const ComponentCard(
       name: 'chip_input',
       title: 'Chip Input',
-      scale: 1,
       example: Card(
         child: SizedBox(
           width: 300,
@@ -32,6 +31,7 @@ class ChipInputTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1,
     );
   }
 }

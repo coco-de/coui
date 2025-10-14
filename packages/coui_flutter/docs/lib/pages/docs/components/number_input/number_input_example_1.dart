@@ -16,13 +16,13 @@ class _NumberInputExample1State extends State<NumberInputExample1> {
         SizedBox(
           width: 100,
           child: TextField(
+            features: const [InputFeature.spinner()],
             initialValue: value.toString(),
             onChanged: (value) {
               setState(() {
                 this.value = double.tryParse(value) ?? 0;
               });
             },
-            features: const [InputFeature.spinner()],
             submitFormatters: [TextInputFormatters.mathExpression()],
           ),
         ),

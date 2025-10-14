@@ -82,10 +82,10 @@ class Tooltip extends UiComponent {
         triggerChild,
         // Tooltip content (shown on hover via CSS)
         Component.element(
+          child: text(content),
           tag: 'span',
           classes:
               '${_buildTooltipClasses()} invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity',
-          child: text(content),
         ),
       ],
     );

@@ -12,8 +12,6 @@ class BadgeTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'badge',
       title: 'Badge',
-      center: true,
-      scale: 1.5,
       example: const Column(
         children: [
           PrimaryBadge(child: Text('Primary')),
@@ -21,6 +19,8 @@ class BadgeTile extends StatelessWidget implements IComponentPage {
           DestructiveBadge(child: Text('Destructive')),
         ],
       ).gap(8),
+      center: true,
+      scale: 1.5,
     );
   }
 }

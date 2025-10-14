@@ -14,10 +14,9 @@ class AnimatedValueBuilderTile extends StatelessWidget
     return ComponentCard(
       name: 'animated_value_builder',
       title: 'Animated Value Builder',
-      scale: 2,
       example: SizedBox(
-        height: 200,
         width: 200,
+        height: 200,
         child: Stack(
           fit: StackFit.passthrough,
           children: [
@@ -25,32 +24,33 @@ class AnimatedValueBuilderTile extends StatelessWidget
               child: RepeatedAnimationBuilder(
                 start: material.Colors.red,
                 end: material.Colors.blue,
-                lerp: material.Color.lerp,
                 duration: const Duration(seconds: 1),
-                mode: RepeatMode.pingPong,
                 builder: (context, value, child) {
                   return Container(color: value);
                 },
+                mode: RepeatMode.pingPong,
+                lerp: material.Color.lerp,
               ),
             ),
             Positioned(
-              top: 8,
               left: 16,
+              top: 8,
               child: RepeatedAnimationBuilder(
                 start: 0.0,
                 end: 1.0,
-                mode: RepeatMode.pingPong,
                 duration: const Duration(seconds: 1),
                 builder: (context, value, child) {
                   // 0.0 - 0.5 = 0
                   // 0.5 - 1.0 = 1
                   return Text(value.round().toString()).x3Large().bold();
                 },
+                mode: RepeatMode.pingPong,
               ),
             ),
           ],
         ),
       ),
+      scale: 2,
     );
   }
 }

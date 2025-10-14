@@ -29,7 +29,7 @@ class Figure extends UiComponent {
   });
 
   static const _emptyBaseClass = '';
-  
+
   @override
   String get baseClass => _emptyBaseClass;
 
@@ -51,14 +51,14 @@ class Figure extends UiComponent {
   }) {
     return Figure(
       children,
-      key: key ?? this.key,
       attributes: attributes ?? userProvidedAttributes,
+      child: child ?? this.child,
       classes: mergeClasses(this.classes, classes),
       css: css ?? this.css,
       id: id ?? this.id,
+      key: key ?? this.key,
       style: style ?? this.style,
       tag: tag ?? this.tag,
-      child: child ?? this.child,
     );
   }
 

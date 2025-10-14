@@ -200,12 +200,12 @@ abstract class UiComponent extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
-      attributes: componentAttributes,
-      classes: combinedClasses,
-      events: events,
-      id: id,
-      styles: css,
       tag: tag,
+      id: id,
+      classes: combinedClasses,
+      styles: css,
+      attributes: componentAttributes,
+      events: events,
       children: children,
     );
   }

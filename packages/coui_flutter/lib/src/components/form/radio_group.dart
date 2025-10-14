@@ -762,6 +762,9 @@ class ControlledRadioGroup<T> extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return RadioGroup(
           onChanged: data.onChanged,
@@ -769,9 +772,6 @@ class ControlledRadioGroup<T> extends StatelessWidget
           child: child,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }

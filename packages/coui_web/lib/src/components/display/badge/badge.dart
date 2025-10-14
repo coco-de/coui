@@ -122,9 +122,9 @@ class Badge extends UiComponent {
     Key? key,
   }) {
     return Badge(
+      child: child ?? this.child,
       key: key ?? this.key,
       variant: variant ?? _variant,
-      child: child ?? this.child,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -139,13 +139,13 @@ class Badge extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
     );
   }
 

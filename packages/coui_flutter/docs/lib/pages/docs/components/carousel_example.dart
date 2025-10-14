@@ -60,15 +60,15 @@ class NumberedContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      width: width,
-      height: height,
       decoration: BoxDecoration(
         color: fill
-            ? Colors.primaries[(Colors.primaries.length - 1 - index) %
-                  Colors.primaries.length]
+            ? Colors.primaries[
+                (Colors.primaries.length - 1 - index) % Colors.primaries.length]
             : null,
         borderRadius: theme.borderRadiusMd,
       ),
+      width: width,
+      height: height,
       child: Center(
         child: Text(
           index.toString(),

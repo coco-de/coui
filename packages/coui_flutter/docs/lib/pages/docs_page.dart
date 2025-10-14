@@ -397,7 +397,6 @@ class DocsPageState extends State<DocsPage> {
 
   void showSearchBar() {
     showCommandDialog(
-      context: context,
       builder: (context, query) async* {
         for (final section in sections) {
           final List<Widget> resultItems = [];
@@ -406,11 +405,11 @@ class DocsPageState extends State<DocsPage> {
                 page.title.toLowerCase().contains(query.toLowerCase())) {
               resultItems.add(
                 CommandItem(
-                  title: Text(page.title),
-                  trailing: Icon(section.icon),
                   onTap: () {
                     context.goNamed(page.name);
                   },
+                  title: Text(page.title),
+                  trailing: Icon(section.icon),
                 ),
               );
             }
@@ -425,6 +424,7 @@ class DocsPageState extends State<DocsPage> {
           }
         }
       },
+      context: context,
     );
   }
 
@@ -450,8 +450,6 @@ class DocsPageState extends State<DocsPage> {
         return PrimaryBadge(
           onPressed: () {
             showDropdown(
-              context: context,
-              offset: const Offset(0, 8) * Theme.of(context).scaling,
               builder: (context) {
                 return DropdownMenu(
                   children: [
@@ -474,11 +472,13 @@ class DocsPageState extends State<DocsPage> {
                   ],
                 );
               },
+              context: context,
+              offset: const Offset(0, 8) * Theme.of(context).scaling,
             );
           },
           style: const ButtonStyle.primary(
-            density: ButtonDensity.dense,
             size: ButtonSize.small,
+            density: ButtonDensity.dense,
           ).copyWith(
             decoration: (context, states, value) {
               return (value as BoxDecoration).copyWith(color: color);
@@ -509,6 +509,10 @@ class DocsPageState extends State<DocsPage> {
     var hasOnThisPage = onThisPage.isNotEmpty;
     return FocusableActionDetector(
       autofocus: true,
+      shortcuts: const {
+        SingleActivator(LogicalKeyboardKey.keyF, control: true):
+            OpenSearchCommandIntent(),
+      },
       actions: {
         OpenSearchCommandIntent: CallbackAction<OpenSearchCommandIntent>(
           onInvoke: (intent) {
@@ -516,10 +520,6 @@ class DocsPageState extends State<DocsPage> {
             return null;
           },
         ),
-      },
-      shortcuts: const {
-        SingleActivator(LogicalKeyboardKey.keyF, control: true):
-            OpenSearchCommandIntent(),
       },
       child: ClipRect(
         child: PageStorage(
@@ -537,21 +537,20 @@ class DocsPageState extends State<DocsPage> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             MediaQueryVisibility(
-                              minWidth: breakpointWidth,
                               alternateChild: AppBar(
+                                leading: [
+                                  GhostButton(
+                                    onPressed: () {
+                                      _openDrawer(context);
+                                    },
+                                    density: ButtonDensity.icon,
+                                    child: const Icon(Icons.menu),
+                                  ),
+                                ],
                                 padding: EdgeInsets.symmetric(
                                   vertical: 12 * theme.scaling,
                                   horizontal: 18 * theme.scaling,
                                 ),
-                                leading: [
-                                  GhostButton(
-                                    density: ButtonDensity.icon,
-                                    onPressed: () {
-                                      _openDrawer(context);
-                                    },
-                                    child: const Icon(Icons.menu),
-                                  ),
-                                ],
                                 trailing: [
                                   Semantics(
                                     link: true,
@@ -559,12 +558,12 @@ class DocsPageState extends State<DocsPage> {
                                       'https://github.com/coco-de/coui',
                                     ),
                                     child: GhostButton(
-                                      density: ButtonDensity.icon,
                                       onPressed: () {
                                         openInNewTab(
                                           'https://github.com/coco-de/coui',
                                         );
                                       },
+                                      density: ButtonDensity.icon,
                                       child: FaIcon(
                                         FontAwesomeIcons.github,
                                         color: theme
@@ -574,12 +573,12 @@ class DocsPageState extends State<DocsPage> {
                                   ),
                                   // pub.dev icon
                                   GhostButton(
-                                    density: ButtonDensity.icon,
                                     onPressed: () {
                                       openInNewTab(
                                         'https://pub.dev/packages/coui_flutter',
                                       );
                                     },
+                                    density: ButtonDensity.icon,
                                     child: ColorFiltered(
                                       // turns into white
                                       colorFilter: ColorFilter.mode(
@@ -620,17 +619,18 @@ class DocsPageState extends State<DocsPage> {
                                   ),
                                 ),
                               ),
+                              minWidth: breakpointWidth,
                               child: MediaQueryVisibility(
-                                minWidth: breakpointWidth2,
                                 alternateChild: _buildAppBar(
                                   padding.copyWith(
                                         top: 12,
-                                        bottom: 12,
                                         right: 32,
+                                        bottom: 12,
                                       ) *
                                       theme.scaling,
                                   theme,
                                 ),
+                                minWidth: breakpointWidth2,
                                 child: _buildAppBar(
                                   padding.copyWith(top: 12, bottom: 12) *
                                       theme.scaling,
@@ -644,9 +644,9 @@ class DocsPageState extends State<DocsPage> {
                       ),
                     ],
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         MediaQueryVisibility(
                           minWidth: breakpointWidth,
@@ -654,8 +654,8 @@ class DocsPageState extends State<DocsPage> {
                             child: SingleChildScrollView(
                               key: const PageStorageKey('sidebar'),
                               padding: EdgeInsets.only(
-                                    top: 32,
                                     left: 24 + padding.left,
+                                    top: 32,
                                     bottom: 32,
                                   ) *
                                   theme.scaling,
@@ -673,23 +673,23 @@ class DocsPageState extends State<DocsPage> {
                                     builder: (context) {
                                       var mq = MediaQuery.of(context);
                                       return SingleChildScrollView(
-                                        controller: scrollController,
-                                        clipBehavior: Clip.none,
                                         padding: !hasOnThisPage
                                             ? const EdgeInsets.symmetric(
-                                                      horizontal: 40,
                                                       vertical: 32,
+                                                      horizontal: 40,
                                                     ).copyWith(
                                                       right: padding.right + 32,
                                                     ) *
                                                     theme.scaling +
                                                 mq.padding
                                             : const EdgeInsets.symmetric(
-                                                      horizontal: 40,
                                                       vertical: 32,
+                                                      horizontal: 40,
                                                     ).copyWith(right: 24) *
                                                     theme.scaling +
                                                 mq.padding,
+                                        controller: scrollController,
+                                        clipBehavior: Clip.none,
                                         child: MediaQuery(
                                           data: mq.copyWith(
                                             padding: EdgeInsets.zero,
@@ -727,21 +727,21 @@ class DocsPageState extends State<DocsPage> {
                                     },
                                   )
                                 : Container(
-                                    clipBehavior: Clip.none,
                                     padding: !hasOnThisPage
                                         ? const EdgeInsets.symmetric(
-                                              horizontal: 40,
                                               vertical: 32,
+                                              horizontal: 40,
                                             ).copyWith(
                                               right: padding.right + 32,
                                               bottom: 0,
                                             ) *
                                             theme.scaling
                                         : const EdgeInsets.symmetric(
-                                              horizontal: 40,
                                               vertical: 32,
+                                              horizontal: 40,
                                             ).copyWith(right: 24, bottom: 0) *
                                             theme.scaling,
+                                    clipBehavior: Clip.none,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
@@ -803,7 +803,6 @@ class DocsPageState extends State<DocsPage> {
       // ),
       padding: padding,
       title: Basic(
-        leading: FlutterLogo(size: 32 * theme.scaling),
         content: Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -813,6 +812,7 @@ class DocsPageState extends State<DocsPage> {
             buildFlavorTag(),
           ],
         ),
+        leading: FlutterLogo(size: 32 * theme.scaling),
       ),
       trailing: [
         Align(
@@ -843,10 +843,10 @@ class DocsPageState extends State<DocsPage> {
         ),
         Gap(8 * theme.scaling),
         GhostButton(
-          density: ButtonDensity.icon,
           onPressed: () {
             openInNewTab('https://github.com/coco-de/coui');
           },
+          density: ButtonDensity.icon,
           child: FaIcon(
             FontAwesomeIcons.github,
             color: theme.colorScheme.secondaryForeground,
@@ -854,10 +854,10 @@ class DocsPageState extends State<DocsPage> {
         ),
         // pub.dev icon
         GhostButton(
-          density: ButtonDensity.icon,
           onPressed: () {
             openInNewTab('https://pub.dev/packages/coui_flutter');
           },
+          density: ButtonDensity.icon,
           child: ColorFiltered(
             // turns into white
             colorFilter: ColorFilter.mode(
@@ -875,11 +875,10 @@ class DocsPageState extends State<DocsPage> {
     final theme = Theme.of(context);
     final scaling = theme.scaling;
     openSheet(
-      context: context,
       builder: (context) {
         return Container(
-          constraints: const BoxConstraints(maxWidth: 400) * scaling,
           padding: const EdgeInsets.only(top: 32) * scaling,
+          constraints: const BoxConstraints(maxWidth: 400) * scaling,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -894,11 +893,11 @@ class DocsPageState extends State<DocsPage> {
                   buildFlavorTag(),
                   const Spacer(),
                   TextButton(
-                    density: ButtonDensity.icon,
-                    size: ButtonSize.small,
                     onPressed: () {
                       closeDrawer(context);
                     },
+                    size: ButtonSize.small,
+                    density: ButtonDensity.icon,
                     child: const Icon(Icons.close),
                   ),
                 ],
@@ -907,10 +906,10 @@ class DocsPageState extends State<DocsPage> {
               Expanded(
                 child: FocusTraversalGroup(
                   child: SingleChildScrollView(
+                    key: const PageStorageKey('sidebar'),
                     padding:
                         const EdgeInsets.only(left: 32, right: 32, bottom: 48) *
                             scaling,
-                    key: const PageStorageKey('sidebar'),
                     child: SidebarNav(
                       children: [
                         for (var section in sections)
@@ -928,25 +927,25 @@ class DocsPageState extends State<DocsPage> {
                                       if (page.tag ==
                                           CouiFeatureTag.workInProgress) {
                                         showDialog(
-                                          context: context,
                                           builder: (context) {
                                             return AlertDialog(
-                                              title: const Text(
-                                                'Work in Progress',
-                                              ),
-                                              content: const Text(
-                                                'This page is still under development. Please come back later.',
-                                              ),
                                               actions: [
                                                 PrimaryButton(
+                                                  child: const Text('Close'),
                                                   onPressed: () {
                                                     Navigator.of(context).pop();
                                                   },
-                                                  child: const Text('Close'),
                                                 ),
                                               ],
+                                              content: const Text(
+                                                'This page is still under development. Please come back later.',
+                                              ),
+                                              title: const Text(
+                                                'Work in Progress',
+                                              ),
                                             );
                                           },
+                                          context: context,
                                         );
                                         return;
                                       }
@@ -954,10 +953,10 @@ class DocsPageState extends State<DocsPage> {
                                     },
                                     selected: page.name == widget.name,
                                     child: Basic(
+                                      content: Text(page.title),
                                       trailing: page.tag?.buildBadge(context),
                                       trailingAlignment:
                                           AlignmentDirectional.centerStart,
-                                      content: Text(page.title),
                                     ),
                                   ),
                                 ),
@@ -972,6 +971,7 @@ class DocsPageState extends State<DocsPage> {
           ),
         );
       },
+      context: context,
       position: OverlayPosition.left,
     );
   }
@@ -1056,12 +1056,12 @@ class _DocsSecondarySidebarState extends State<_DocsSecondarySidebar> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      width: (widget.padding.right + 180) * theme.scaling,
       alignment: Alignment.topLeft,
+      width: (widget.padding.right + 180) * theme.scaling,
       child: FocusTraversalGroup(
         child: SingleChildScrollView(
           padding:
-              const EdgeInsets.only(top: 32, right: 24, bottom: 32, left: 24) *
+              const EdgeInsets.only(left: 24, top: 32, right: 24, bottom: 32) *
                   theme.scaling,
           child: SidebarNav(children: _sideChildren),
         ),
@@ -1122,17 +1122,17 @@ class _DocsSidebarButtonState extends State<_DocsSidebarButton> {
   Widget build(BuildContext context) {
     return Semantics(
       link: true,
-      label: widget.page.title,
       linkUrl: Uri.tryParse(
         'https://sunarya-thito.github.io/coui_flutter${_goRouterNamedLocation(context, widget.page.name)}',
       ),
+      label: widget.page.title,
       child: DocsNavigationButton(
-        onPressed: _onPressed,
-        selected: widget.page.name == widget.pageName,
         trailing: DefaultTextStyle.merge(
           style: const TextStyle(decoration: TextDecoration.none),
           child: widget.page.tag?.buildBadge(context) ?? const SizedBox(),
         ),
+        onPressed: _onPressed,
+        selected: widget.page.name == widget.pageName,
         child: Text(widget.page.title),
       ),
     );
@@ -1141,23 +1141,23 @@ class _DocsSidebarButtonState extends State<_DocsSidebarButton> {
   void _onPressed() {
     if (widget.page.tag == CouiFeatureTag.workInProgress) {
       showDialog(
-        context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('Work in Progress'),
-            content: const Text(
-              'This page is still under development. Please come back later.',
-            ),
             actions: [
               PrimaryButton(
+                child: const Text('Close'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text('Close'),
               ),
             ],
+            content: const Text(
+              'This page is still under development. Please come back later.',
+            ),
+            title: const Text('Work in Progress'),
           );
         },
+        context: context,
       );
       return;
     }

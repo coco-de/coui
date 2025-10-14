@@ -20,15 +20,16 @@ class _LinearProgressExample2State extends State<LinearProgressExample2> {
           mainAxisSize: MainAxisSize.min,
           children: [
             PrimaryButton(
+              child: const Text('Reset'),
               onPressed: () {
                 setState(() {
                   value = 0;
                 });
               },
-              child: const Text('Reset'),
             ),
             const Gap(24),
             PrimaryButton(
+              child: const Text('Increase'),
               onPressed: () {
                 if (value + 0.1 >= 1) {
                   return;
@@ -37,10 +38,10 @@ class _LinearProgressExample2State extends State<LinearProgressExample2> {
                   value += 0.1;
                 });
               },
-              child: const Text('Increase'),
             ),
             const Gap(24),
             PrimaryButton(
+              child: const Text('Decrease'),
               onPressed: () {
                 if (value - 0.1 <= 0) {
                   return;
@@ -49,7 +50,6 @@ class _LinearProgressExample2State extends State<LinearProgressExample2> {
                   value -= 0.1;
                 });
               },
-              child: const Text('Decrease'),
             ),
           ],
         ),

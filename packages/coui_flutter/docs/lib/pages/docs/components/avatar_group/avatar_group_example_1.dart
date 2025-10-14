@@ -11,20 +11,20 @@ class _AvatarGroupExample1State extends State<AvatarGroupExample1> {
   List<AvatarWidget> getAvatars() {
     return [
       Avatar(
-        initials: Avatar.getInitials('sunarya-thito'),
         backgroundColor: Colors.red,
+        initials: Avatar.getInitials('sunarya-thito'),
       ),
       Avatar(
-        initials: Avatar.getInitials('sunarya-thito'),
         backgroundColor: Colors.green,
+        initials: Avatar.getInitials('sunarya-thito'),
       ),
       Avatar(
-        initials: Avatar.getInitials('sunarya-thito'),
         backgroundColor: Colors.blue,
+        initials: Avatar.getInitials('sunarya-thito'),
       ),
       Avatar(
-        initials: Avatar.getInitials('sunarya-thito'),
         backgroundColor: Colors.yellow,
+        initials: Avatar.getInitials('sunarya-thito'),
       ),
     ];
   }

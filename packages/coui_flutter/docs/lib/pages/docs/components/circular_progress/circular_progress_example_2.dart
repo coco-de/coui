@@ -16,37 +16,37 @@ class _CircularProgressExample2State extends State<CircularProgressExample2> {
       mainAxisSize: MainAxisSize.min,
       children: [
         CircularProgressIndicator(
-          value: _progress.clamp(0, 100) / 100,
           size: 48,
+          value: _progress.clamp(0, 100) / 100,
         ),
         const Gap(48),
         Row(
           children: [
             DestructiveButton(
+              child: const Text('Reset'),
               onPressed: () {
                 setState(() {
                   _progress = 0;
                 });
               },
-              child: const Text('Reset'),
             ),
             const Gap(16),
             PrimaryButton(
+              child: const Text('Decrease by 10'),
               onPressed: () {
                 setState(() {
                   _progress -= 10;
                 });
               },
-              child: const Text('Decrease by 10'),
             ),
             const Gap(16),
             PrimaryButton(
+              child: const Text('Increase by 10'),
               onPressed: () {
                 setState(() {
                   _progress += 10;
                 });
               },
-              child: const Text('Increase by 10'),
             ),
           ],
         ),

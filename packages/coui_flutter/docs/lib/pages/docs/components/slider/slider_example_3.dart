@@ -15,14 +15,14 @@ class _SliderExample3State extends State<SliderExample3> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Slider(
-          max: 2,
           divisions: 10,
-          value: value,
+          max: 2,
           onChanged: (value) {
             setState(() {
               this.value = value;
             });
           },
+          value: value,
         ),
         const Gap(16),
         Text('Value: ${value.value}'),

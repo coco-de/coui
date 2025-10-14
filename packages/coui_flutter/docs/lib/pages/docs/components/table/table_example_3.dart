@@ -13,6 +13,11 @@ class _TableExample3State extends State<TableExample3> {
   TableCell buildCell(String text, [bool alignRight = false]) {
     final theme = Theme.of(context);
     return TableCell(
+      child: Container(
+        alignment: alignRight ? Alignment.topRight : null,
+        padding: const EdgeInsets.all(8),
+        child: Text(text),
+      ),
       theme: TableCellTheme(
         border: WidgetStatePropertyAll(
           Border.all(
@@ -21,11 +26,6 @@ class _TableExample3State extends State<TableExample3> {
           ),
         ),
       ),
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        alignment: alignRight ? Alignment.topRight : null,
-        child: Text(text),
-      ),
     );
   }
 
@@ -33,25 +33,22 @@ class _TableExample3State extends State<TableExample3> {
   Widget build(BuildContext context) {
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(context).copyWith(
-        dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
         overscroll: false,
+        dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
       ),
       child: SizedBox(
         height: 400,
         child: OutlinedContainer(
           child: ScrollableClient(
-            diagonalDragBehavior: DiagonalDragBehavior.free,
             builder: (context, offset, viewportSize, child) {
               return Table(
-                horizontalOffset: offset.dx,
-                verticalOffset: offset.dy,
-                viewportSize: viewportSize,
                 defaultColumnWidth: const FixedTableSize(150),
                 defaultRowHeight: const FixedTableSize(40),
                 frozenCells: const FrozenTableData(
-                  frozenRows: [TableRef(0), TableRef(3)],
                   frozenColumns: [TableRef(0), TableRef(2)],
+                  frozenRows: [TableRef(0), TableRef(3)],
                 ),
+                horizontalOffset: offset.dx,
                 rows: [
                   TableHeader(
                     cells: [
@@ -204,8 +201,11 @@ class _TableExample3State extends State<TableExample3> {
                     ],
                   ),
                 ],
+                verticalOffset: offset.dy,
+                viewportSize: viewportSize,
               );
             },
+            diagonalDragBehavior: DiagonalDragBehavior.free,
           ),
         ),
       ),

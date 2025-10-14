@@ -12,29 +12,29 @@ class CheckboxTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'checkbox',
       title: 'Checkbox',
-      scale: 1.8,
       example: Card(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Checkbox(
+              onChanged: (value) {},
               state: CheckboxState.checked,
               trailing: const Text('Checked'),
-              onChanged: (value) {},
             ),
             Checkbox(
+              onChanged: (value) {},
               state: CheckboxState.indeterminate,
               trailing: const Text('Indeterminate'),
-              onChanged: (value) {},
             ),
             Checkbox(
+              onChanged: (value) {},
               state: CheckboxState.unchecked,
               trailing: const Text('Unchecked'),
-              onChanged: (value) {},
             ),
           ],
         ).gap(4).sized(width: 300),
       ),
+      scale: 1.8,
     );
   }
 }

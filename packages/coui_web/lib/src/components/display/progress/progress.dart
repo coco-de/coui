@@ -77,16 +77,16 @@ class Progress extends UiComponent {
     );
 
     return Component.element(
+      child: div(
+        classes: ProgressVariant.indicator.classes,
+        styles: {'width': '$percentage%'},
+      ),
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: div(
-        classes: ProgressVariant.indicator.classes,
-        styles: {'width': '$percentage%'},
-      ),
     );
   }
 

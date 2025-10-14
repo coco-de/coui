@@ -207,9 +207,6 @@ class _TooltipState extends State<Tooltip> {
           _controller.show<void>(
             alignment: widget.alignment,
             anchorAlignment: widget.anchorAlignment,
-            builder: (context) {
-              return widget.tooltip(context);
-            },
             context: context,
             dismissBackdropFocus: false,
             handler: OverlayManagerAsTooltipOverlayHandler(
@@ -219,6 +216,9 @@ class _TooltipState extends State<Tooltip> {
             overlayBarrier: const OverlayBarrier(
               barrierColor: Colors.transparent,
             ),
+            builder: (context) {
+              return widget.tooltip(context);
+            },
           );
         } else {
           _controller.close();
@@ -271,7 +271,6 @@ class _InstantTooltipState extends State<InstantTooltip> {
         _controller.show<void>(
           alignment: widget.tooltipAlignment,
           anchorAlignment: widget.tooltipAnchorAlignment,
-          builder: widget.tooltipBuilder,
           context: context,
           dismissBackdropFocus: false,
           handler: OverlayManagerAsTooltipOverlayHandler(
@@ -283,6 +282,7 @@ class _InstantTooltipState extends State<InstantTooltip> {
             barrierColor: Colors.transparent,
           ),
           showDuration: Duration.zero,
+          builder: widget.tooltipBuilder,
         );
       },
       onExit: (event) {
@@ -336,7 +336,6 @@ class OverlayManagerAsTooltipOverlayHandler extends OverlayHandler {
       allowInvertHorizontal: allowInvertHorizontal,
       allowInvertVertical: allowInvertVertical,
       anchorAlignment: anchorAlignment,
-      builder: builder,
       clipBehavior: clipBehavior,
       context: context,
       dismissBackdropFocus: dismissBackdropFocus,
@@ -355,6 +354,7 @@ class OverlayManagerAsTooltipOverlayHandler extends OverlayHandler {
       showDuration: showDuration,
       transitionAlignment: transitionAlignment,
       widthConstraint: widthConstraint,
+      builder: builder,
     );
   }
 }
@@ -425,6 +425,13 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                   curve: isClosedValue
                       ? const Interval(0, 2 / 3)
                       : Curves.linear,
+                  onEnd: () {
+                    if (isClosedValue) {
+                      popoverEntry.remove();
+                      popoverEntry.dispose();
+                      animationCompleter.complete();
+                    }
+                  },
                   builder: (innerContext, animationValue, child) {
                     final theme = Theme.of(innerContext);
 
@@ -436,7 +443,6 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       anchorAlignment: resolvedAnchorAlignment,
                       anchorContext: context,
                       animation: AlwaysStoppedAnimation(animationValue),
-                      builder: builder,
                       data: data,
                       follow: false,
                       heightConstraint: heightConstraint,
@@ -472,14 +478,8 @@ class FixedTooltipOverlayHandler extends OverlayHandler {
                       themes: themes,
                       transitionAlignment: Alignment.center,
                       widthConstraint: widthConstraint,
+                      builder: builder,
                     );
-                  },
-                  onEnd: () {
-                    if (isClosedValue) {
-                      popoverEntry.remove();
-                      popoverEntry.dispose();
-                      animationCompleter.complete();
-                    }
                   },
                 );
               },

@@ -97,38 +97,38 @@ class Stat extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
+      children: [
+        // Label and icon
+        div(
+          children: [
+            p(
+              child: text(label),
+              classes: 'text-sm font-medium text-muted-foreground',
+            ),
+            if (icon != null) icon,
+          ],
+          classes: 'flex items-center justify-between',
+        ),
+        // Value
+        div(
+          child: text(value),
+          classes: 'text-2xl font-bold',
+        ),
+        // Change indicator
+        if (change != null && changeType != null)
+          div(
+            children: [
+              span(child: text(_getChangeIcon())),
+              span(child: text(change)),
+            ],
+            classes: 'flex items-center gap-1 text-xs ${_getChangeColor()}',
+          ),
+      ],
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      children: [
-        // Label and icon
-        div(
-          classes: 'flex items-center justify-between',
-          children: [
-            p(
-              classes: 'text-sm font-medium text-muted-foreground',
-              child: text(label),
-            ),
-            if (icon != null) icon,
-          ],
-        ),
-        // Value
-        div(
-          classes: 'text-2xl font-bold',
-          child: text(value),
-        ),
-        // Change indicator
-        if (change != null && changeType != null)
-          div(
-            classes: 'flex items-center gap-1 text-xs ${_getChangeColor()}',
-            children: [
-              span(child: text(_getChangeIcon())),
-              span(child: text(change)),
-            ],
-          ),
-      ],
     );
   }
 

@@ -309,6 +309,9 @@ class ControlledColorInput extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter<ColorDerivative>(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return ColorInput(
           allowPickFromScreen: allowPickFromScreen,
@@ -326,9 +329,6 @@ class ControlledColorInput extends StatelessWidget
           storage: storage,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }
@@ -1934,38 +1934,6 @@ class ColorInput extends StatelessWidget {
     );
 
     return ObjectFormField(
-      builder: (context, value) {
-        return !showLabel
-            ? Container(
-                decoration: BoxDecoration(
-                  color: value.toColor(),
-                  border: Border.all(color: theme.colorScheme.border),
-                  borderRadius: theme.borderRadiusSm,
-                ),
-              )
-            : IntrinsicHeight(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Flexible(
-                      child: Text(colorToHex(value.toColor(), showAlpha)),
-                    ),
-                    Gap(theme.scaling * 8),
-                    AspectRatio(
-                      aspectRatio: 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: value.toColor(),
-                          border: Border.all(color: theme.colorScheme.border),
-                          borderRadius: theme.borderRadiusSm,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-      },
       density: showLabel ? ButtonDensity.normal : ButtonDensity.iconDense,
       dialogActions: (innerContext, handler) {
         return [
@@ -2022,6 +1990,38 @@ class ColorInput extends StatelessWidget {
       popoverAnchorAlignment: popoverAnchorAlignment,
       popoverPadding: popoverPadding,
       value: color,
+      builder: (context, value) {
+        return !showLabel
+            ? Container(
+                decoration: BoxDecoration(
+                  color: value.toColor(),
+                  border: Border.all(color: theme.colorScheme.border),
+                  borderRadius: theme.borderRadiusSm,
+                ),
+              )
+            : IntrinsicHeight(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Flexible(
+                      child: Text(colorToHex(value.toColor(), showAlpha)),
+                    ),
+                    Gap(theme.scaling * 8),
+                    AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: value.toColor(),
+                          border: Border.all(color: theme.colorScheme.border),
+                          borderRadius: theme.borderRadiusSm,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+      },
     );
   }
 }
@@ -2121,6 +2121,7 @@ Future<ColorDerivative> showColorPickerDialog({
       return color;
     }
     final result = await showDialog<_ColorPickerDialogResult>(
+      context: context,
       builder: (context) {
         return _ColorPickerDialog(
           key: key,
@@ -2137,7 +2138,6 @@ Future<ColorDerivative> showColorPickerDialog({
           title: title,
         );
       },
-      context: context,
     );
     if (result == null) {
       return color;
@@ -2186,6 +2186,10 @@ Future<ColorDerivative> showColorPicker({
     final completer = showPopover<_ColorPickerDialogResult?>(
       alignment: alignment,
       anchorAlignment: anchorAlignment,
+      context: context,
+      heightConstraint: heightConstraint,
+      offset: offset,
+      widthConstraint: widthConstraint,
       builder: (innerContext) {
         return _ColorPickerPopup(
           allowPickFromScreen: allowPickFromScreen,
@@ -2201,10 +2205,6 @@ Future<ColorDerivative> showColorPicker({
           showAlpha: showAlpha,
         );
       },
-      context: context,
-      heightConstraint: heightConstraint,
-      offset: offset,
-      widthConstraint: widthConstraint,
     );
     final result = await completer.future;
     if (result == null) {

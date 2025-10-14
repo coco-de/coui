@@ -108,23 +108,23 @@ class _MenubarExample1State extends State<MenubarExample1> {
         MenuButton(
           subMenu: [
             MenuCheckbox(
-              value: _showBookmarksBar,
+              autoClose: false,
               onChanged: (context, value) {
                 setState(() {
                   _showBookmarksBar = value;
                 });
               },
-              autoClose: false,
+              value: _showBookmarksBar,
               child: const Text('Always Show Bookmarks Bar'),
             ),
             MenuCheckbox(
-              value: _showFullURLs,
+              autoClose: false,
               onChanged: (context, value) {
                 setState(() {
                   _showFullURLs = value;
                 });
               },
-              autoClose: false,
+              value: _showFullURLs,
               child: const Text('Always Show Full URLs'),
             ),
             const MenuDivider(),
@@ -158,20 +158,20 @@ class _MenubarExample1State extends State<MenubarExample1> {
         MenuButton(
           subMenu: [
             MenuRadioGroup<int>(
-              value: _selectedProfile,
               onChanged: (context, value) {
                 setState(() {
                   _selectedProfile = value;
                 });
               },
+              value: _selectedProfile,
               children: const [
-                MenuRadio<int>(value: 0, autoClose: false, child: Text('Andy')),
+                MenuRadio<int>(autoClose: false, value: 0, child: Text('Andy')),
                 MenuRadio<int>(
-                  value: 1,
                   autoClose: false,
+                  value: 1,
                   child: Text('Benoit'),
                 ),
-                MenuRadio<int>(value: 2, autoClose: false, child: Text('Luis')),
+                MenuRadio<int>(autoClose: false, value: 2, child: Text('Luis')),
               ],
             ),
             const MenuDivider(),

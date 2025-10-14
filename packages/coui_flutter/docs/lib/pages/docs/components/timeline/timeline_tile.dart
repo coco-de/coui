@@ -13,8 +13,8 @@ class TimelineTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'timeline',
       title: 'Timeline',
+      example: const TimelineExample1().sized(height: 800, width: 700),
       scale: 1,
-      example: const TimelineExample1().sized(width: 700, height: 800),
     );
   }
 }

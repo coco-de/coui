@@ -46,8 +46,8 @@ class _SwitcherExample1State extends State<SwitcherExample1> {
         gap(24),
         ClipRect(
           child: Switcher(
-            index: index,
             direction: directions[directionIndex % directions.length],
+            index: index,
             onIndexChanged: (index) {
               setState(() {
                 this.index = index;

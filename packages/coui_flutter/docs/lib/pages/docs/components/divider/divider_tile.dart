@@ -13,8 +13,8 @@ class DividerTile extends StatelessWidget implements IComponentPage {
     return const ComponentCard(
       name: 'divider',
       title: 'Divider',
-      scale: 1.2,
       example: Card(child: DividerExample3()),
+      scale: 1.2,
     );
   }
 }

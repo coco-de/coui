@@ -13,25 +13,24 @@ class NavigationRailTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'navigation_rail',
       title: 'Navigation Rail',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 80,
-          height: 300,
           decoration: BoxDecoration(
             color: theme.colorScheme.muted,
             borderRadius: BorderRadius.circular(8),
           ),
+          width: 80,
+          height: 300,
           child: Column(
             children: [
               const Gap(16),
               Container(
-                width: 40,
-                height: 40,
                 decoration: BoxDecoration(
                   color: theme.colorScheme.primary,
                   borderRadius: BorderRadius.circular(8),
                 ),
+                width: 40,
+                height: 40,
                 child: Icon(
                   Icons.home,
                   color: theme.colorScheme.primaryForeground,
@@ -39,38 +38,38 @@ class NavigationRailTile extends StatelessWidget implements IComponentPage {
               ),
               const Gap(16),
               Container(
-                width: 40,
-                height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                 ),
+                width: 40,
+                height: 40,
                 child: const Icon(Icons.search),
               ),
               const Gap(16),
               Container(
-                width: 40,
-                height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                 ),
+                width: 40,
+                height: 40,
                 child: const Icon(Icons.favorite),
               ),
               const Gap(16),
               Container(
-                width: 40,
-                height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                 ),
+                width: 40,
+                height: 40,
                 child: const Icon(Icons.settings),
               ),
               const Spacer(),
               Container(
-                width: 40,
-                height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                 ),
+                width: 40,
+                height: 40,
                 child: const Icon(Icons.person),
               ),
               const Gap(16),
@@ -78,6 +77,7 @@ class NavigationRailTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

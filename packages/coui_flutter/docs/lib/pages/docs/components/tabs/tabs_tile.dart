@@ -10,9 +10,8 @@ class TabsTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return ComponentCard(
-      title: 'Tabs',
       name: 'tabs',
-      scale: 1.2,
+      title: 'Tabs',
       example: Card(
         child: Column(
           children: [
@@ -49,6 +48,7 @@ class TabsTile extends StatelessWidget implements IComponentPage {
           ],
         ).gap(8),
       ),
+      scale: 1.2,
     );
   }
 }

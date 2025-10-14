@@ -6,9 +6,10 @@ class ButtonExample4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GhostButton(
-        onPressed: () {
-          // TODOS: will be implemented later.
-        },
-        child: const Text('Ghost'));
+      child: const Text('Ghost'),
+      onPressed: () {
+        // TODOS: will be implemented later.
+      },
+    );
   }
 }

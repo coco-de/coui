@@ -13,15 +13,14 @@ class AppBarTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'app_bar',
       title: 'App Bar',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 300,
-          height: 56,
           decoration: BoxDecoration(
             color: theme.colorScheme.primary,
             borderRadius: BorderRadius.circular(8),
           ),
+          width: 300,
+          height: 56,
           child: Row(
             children: [
               const Gap(16),
@@ -43,6 +42,7 @@ class AppBarTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

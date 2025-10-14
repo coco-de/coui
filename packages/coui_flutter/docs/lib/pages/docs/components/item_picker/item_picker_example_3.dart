@@ -32,52 +32,52 @@ class _ItemPickerExample3State extends State<ItemPickerExample3> {
   @override
   Widget build(BuildContext context) {
     return PrimaryButton(
+      child: const Text('Show Item Picker'),
       onPressed: () {
         showItemPickerDialog<NamedColor>(
           context,
-          items: ItemList(colors),
-          initialValue: colors[selectedColor],
-          title: const Text('Pick a color'),
           builder: (context, item) {
             return ItemPickerOption(
-              value: item,
+              label: Text(item.name),
               selectedStyle: const ButtonStyle.primary(
                 shape: ButtonShape.circle,
               ),
               style: const ButtonStyle.ghost(shape: ButtonShape.circle),
-              label: Text(item.name),
+              value: item,
               child: Container(
-                padding: const EdgeInsets.all(8),
-                width: 100,
-                height: 100,
                 alignment: Alignment.center,
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: item.color,
                   shape: BoxShape.circle,
                 ),
+                width: 100,
+                height: 100,
               ),
             );
           },
+          initialValue: colors[selectedColor],
+          items: ItemList(colors),
+          title: const Text('Pick a color'),
         ).then((value) {
           if (value != null) {
             selectedColor = colors.indexOf(value);
             showToast(
-              context: context,
               builder: (context, overlay) {
                 return SurfaceCard(child: Text('You picked ${value.name}!'));
               },
+              context: context,
             );
           } else {
             showToast(
-              context: context,
               builder: (context, overlay) {
                 return const SurfaceCard(child: Text('You picked nothing!'));
               },
+              context: context,
             );
           }
         });
       },
-      child: const Text('Show Item Picker'),
     );
   }
 }

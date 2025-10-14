@@ -56,19 +56,17 @@ class _ColorsPageState extends State<ColorsPage> {
 
   void _onTap(String name, ColorShades swatch, int shade) {
     showDialog(
-      context: context,
       builder: (context) {
         final theme = Theme.of(context);
         return AlertDialog(
-          title: Text(name),
-          leading: Container(
-            width: 96,
-            height: 112,
-            decoration: BoxDecoration(
-              color: swatch[shade],
-              borderRadius: theme.borderRadiusMd,
+          actions: [
+            PrimaryButton(
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-          ),
+          ],
           content: IntrinsicWidth(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -84,16 +82,18 @@ class _ColorsPageState extends State<ColorsPage> {
               ],
             ),
           ),
-          actions: [
-            PrimaryButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Close'),
+          leading: Container(
+            decoration: BoxDecoration(
+              color: swatch[shade],
+              borderRadius: theme.borderRadiusMd,
             ),
-          ],
+            width: 96,
+            height: 112,
+          ),
+          title: Text(name),
         );
       },
+      context: context,
     );
   }
 
@@ -124,14 +124,14 @@ class _ColorsPageState extends State<ColorsPage> {
                   child: Container(
                     decoration: BoxDecoration(
                       color: swatch[shade],
-                      borderRadius: theme.borderRadiusMd,
                       border: shade == 500
                           ? Border.all(
-                              width: 3,
                               color: theme.colorScheme.foreground,
+                              width: 3,
                               strokeAlign: BorderSide.strokeAlignOutside,
                             )
                           : null,
+                      borderRadius: theme.borderRadiusMd,
                     ),
                   ),
                 ),
@@ -175,23 +175,6 @@ class _ColorsPageState extends State<ColorsPage> {
                       mouseCursor: const WidgetStatePropertyAll(
                         SystemMouseCursors.click,
                       ),
-                      onPressed: () {
-                        showColorPicker(
-                          context: context,
-                          color: ColorDerivative.fromColor(swatch[shade]),
-                          offset: const Offset(0, 8),
-                          showAlpha: false,
-                          onColorChanged: (value) {
-                            setState(() {
-                              _customColor = ColorShades.shiftHSL(
-                                value.toHSLColor(),
-                                base: shade,
-                                500,
-                              );
-                            });
-                          },
-                        );
-                      },
                       onHover: (value) {
                         if (value) {
                           setState(() {
@@ -203,19 +186,36 @@ class _ColorsPageState extends State<ColorsPage> {
                           });
                         }
                       },
+                      onPressed: () {
+                        showColorPicker(
+                          color: ColorDerivative.fromColor(swatch[shade]),
+                          context: context,
+                          offset: const Offset(0, 8),
+                          onColorChanged: (value) {
+                            setState(() {
+                              _customColor = ColorShades.shiftHSL(
+                                value.toHSLColor(),
+                                500,
+                                base: shade,
+                              );
+                            });
+                          },
+                          showAlpha: false,
+                        );
+                      },
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: swatch[shade],
-                          borderRadius: theme.borderRadiusMd,
                           border: shade == 500
                               ? Border.all(
-                                  width: 3,
                                   color: theme.colorScheme.foreground,
+                                  width: 3,
                                   strokeAlign: BorderSide.strokeAlignOutside,
                                 )
                               : null,
+                          borderRadius: theme.borderRadiusMd,
                         ),
-                        alignment: Alignment.center,
                         child: Visibility(
                           visible: _hoverIndex == shade,
                           child: Icon(
@@ -279,8 +279,7 @@ class _ColorsPageState extends State<ColorsPage> {
       named['lightnessStepDown'] = 'lightnessStepDown: $_lightnessStepDown';
     }
     String baseColorHex = swatch[500].toHex();
-    String code =
-        'ColorShades.fromAccent(\n'
+    String code = 'ColorShades.fromAccent(\n'
         '  Color(0x$baseColorHex),\n';
     if (named.isNotEmpty) {
       code += '  ${named.values.join(',\n  ')}\n';
@@ -380,8 +379,8 @@ class _ColorsPageState extends State<ColorsPage> {
             ColorShades.fromAccentHSL(
               _customColor,
               hueShift: _hueShift,
-              lightnessStepUp: _lightnessStepDown,
               lightnessStepDown: _lightnessStepUp,
+              lightnessStepUp: _lightnessStepDown,
               saturationStepDown: _saturationStepDown,
               saturationStepUp: _saturationStepUp,
             ),
@@ -402,75 +401,75 @@ class _ColorsPageState extends State<ColorsPage> {
               key: const FormKey(#hueShift),
               label: const Text('Hue Shift'),
               child: Slider(
-                value: SliderValue.single(_hueShift.toDouble()),
-                min: -360,
-                max: 360,
                 divisions: 100,
+                max: 360,
+                min: -360,
                 onChanged: (value) {
                   setState(() {
                     _hueShift = value.value.toInt();
                   });
                 },
+                value: SliderValue.single(_hueShift.toDouble()),
               ),
             ),
             FormField<SliderValue>(
               key: const FormKey(#saturationStepUp),
               label: const Text('Saturation Step Up'),
               child: Slider(
-                value: SliderValue.single(_saturationStepUp.toDouble()),
-                min: 0,
-                max: 20,
                 divisions: 20,
+                max: 20,
+                min: 0,
                 onChanged: (value) {
                   setState(() {
                     _saturationStepUp = value.value.toInt();
                   });
                 },
+                value: SliderValue.single(_saturationStepUp.toDouble()),
               ),
             ),
             FormField<SliderValue>(
               key: const FormKey(#saturationStepDown),
               label: const Text('Saturation Step Down'),
               child: Slider(
-                value: SliderValue.single(_saturationStepDown.toDouble()),
-                min: 0,
-                max: 20,
                 divisions: 20,
+                max: 20,
+                min: 0,
                 onChanged: (value) {
                   setState(() {
                     _saturationStepDown = value.value.toInt();
                   });
                 },
+                value: SliderValue.single(_saturationStepDown.toDouble()),
               ),
             ),
             FormField<SliderValue>(
               key: const FormKey(#lightnessStepUp),
               label: const Text('Lightness Step Up'),
               child: Slider(
-                value: SliderValue.single(_lightnessStepUp.toDouble()),
-                min: 0,
-                max: 20,
                 divisions: 20,
+                max: 20,
+                min: 0,
                 onChanged: (value) {
                   setState(() {
                     _lightnessStepUp = value.value.toInt();
                   });
                 },
+                value: SliderValue.single(_lightnessStepUp.toDouble()),
               ),
             ),
             FormField<SliderValue>(
               key: const FormKey(#lightnessStepDown),
               label: const Text('Lightness Step Down'),
               child: Slider(
-                value: SliderValue.single(_lightnessStepDown.toDouble()),
-                min: 0,
-                max: 20,
                 divisions: 20,
+                max: 20,
+                min: 0,
                 onChanged: (value) {
                   setState(() {
                     _lightnessStepDown = value.value.toInt();
                   });
                 },
+                value: SliderValue.single(_lightnessStepDown.toDouble()),
               ),
             ),
             const Gap(16),
@@ -480,15 +479,11 @@ class _ColorsPageState extends State<ColorsPage> {
                 DestructiveButton(
                   onPressed: () {
                     showDialog(
-                      context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: const Text('Reset Options'),
-                          content: const Text(
-                            'Are you sure you want to reset the options?',
-                          ),
                           actions: [
                             PrimaryButton(
+                              child: const Text('Reset'),
                               onPressed: () {
                                 setState(() {
                                   _hueShift = _defaultHueShift;
@@ -501,17 +496,21 @@ class _ColorsPageState extends State<ColorsPage> {
                                 });
                                 Navigator.of(context).pop();
                               },
-                              child: const Text('Reset'),
                             ),
                             SecondaryButton(
+                              child: const Text('Cancel'),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: const Text('Cancel'),
                             ),
                           ],
+                          content: const Text(
+                            'Are you sure you want to reset the options?',
+                          ),
+                          title: const Text('Reset Options'),
                         );
                       },
+                      context: context,
                     );
                   },
                   leading: const Icon(Icons.restore),

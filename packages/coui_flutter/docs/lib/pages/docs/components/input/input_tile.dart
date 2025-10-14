@@ -13,15 +13,15 @@ class InputTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'input',
       title: 'Text Input',
-      scale: 2,
       example: Card(
         child: const TextField(
-          initialValue: 'Hello World',
           features: [
             InputFeature.leading(material.Icon(material.Icons.edit)),
           ],
-        ).sized(width: 250, height: 32),
+          initialValue: 'Hello World',
+        ).sized(height: 32, width: 250),
       ).sized(height: 400),
+      scale: 2,
     );
   }
 }

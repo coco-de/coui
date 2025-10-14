@@ -6,11 +6,11 @@ class TextAreaExample3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const TextArea(
-      initialValue: 'Hello, World!',
-      expandableWidth: true,
       expandableHeight: true,
-      initialWidth: 500,
+      expandableWidth: true,
       initialHeight: 300,
+      initialValue: 'Hello, World!',
+      initialWidth: 500,
     );
   }
 }

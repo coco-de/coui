@@ -11,8 +11,8 @@ class _TableExample1State extends State<TableExample1> {
   TableCell buildHeaderCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const EdgeInsets.all(8),
         alignment: alignRight ? Alignment.centerRight : null,
+        padding: const EdgeInsets.all(8),
         child: Text(text).muted().semiBold(),
       ),
     );
@@ -21,8 +21,8 @@ class _TableExample1State extends State<TableExample1> {
   TableCell buildCell(String text, [bool alignRight = false]) {
     return TableCell(
       child: Container(
-        padding: const EdgeInsets.all(8),
         alignment: alignRight ? Alignment.centerRight : null,
+        padding: const EdgeInsets.all(8),
         child: Text(text),
       ),
     );
@@ -99,7 +99,6 @@ class _TableExample1State extends State<TableExample1> {
         TableFooter(
           cells: [
             TableCell(
-              columnSpan: 4,
               child: Container(
                 padding: const EdgeInsets.all(8),
                 child: Row(
@@ -114,6 +113,7 @@ class _TableExample1State extends State<TableExample1> {
                   ],
                 ),
               ),
+              columnSpan: 4,
             ),
           ],
         ),

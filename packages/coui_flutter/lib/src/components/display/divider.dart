@@ -202,6 +202,7 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                           thickness: thickness.toDouble(),
                         ),
                         duration: kDefaultDuration,
+                        lerp: DividerProperties.lerp,
                         builder: (context, value, child) {
                           return CustomPaint(
                             painter: DividerPainter(
@@ -212,7 +213,6 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           );
                         },
-                        lerp: DividerProperties.lerp,
                       ),
                     ),
                   ),
@@ -228,6 +228,7 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                           thickness: thickness.toDouble(),
                         ),
                         duration: kDefaultDuration,
+                        lerp: DividerProperties.lerp,
                         builder: (context, value, child) {
                           return CustomPaint(
                             painter: DividerPainter(
@@ -238,7 +239,6 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           );
                         },
-                        lerp: DividerProperties.lerp,
                       ),
                     ),
                   ),
@@ -257,6 +257,7 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                 thickness: thickness.toDouble(),
               ),
               duration: kDefaultDuration,
+              lerp: DividerProperties.lerp,
               builder: (context, value, child) {
                 return CustomPaint(
                   painter: DividerPainter(
@@ -267,7 +268,6 @@ class Divider extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 );
               },
-              lerp: DividerProperties.lerp,
             ),
           );
   }
@@ -387,6 +387,7 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                           thickness: thickness ?? 1,
                         ),
                         duration: kDefaultDuration,
+                        lerp: DividerProperties.lerp,
                         builder: (context, value, child) {
                           return CustomPaint(
                             painter: VerticalDividerPainter(
@@ -397,7 +398,6 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           );
                         },
-                        lerp: DividerProperties.lerp,
                       ),
                     ),
                   ),
@@ -413,6 +413,7 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                           thickness: thickness ?? 1,
                         ),
                         duration: kDefaultDuration,
+                        lerp: DividerProperties.lerp,
                         builder: (context, value, child) {
                           return CustomPaint(
                             painter: VerticalDividerPainter(
@@ -423,7 +424,6 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           );
                         },
-                        lerp: DividerProperties.lerp,
                       ),
                     ),
                   ),
@@ -442,6 +442,7 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                 thickness: thickness ?? 1,
               ),
               duration: kDefaultDuration,
+              lerp: DividerProperties.lerp,
               builder: (context, value, child) {
                 return CustomPaint(
                   painter: VerticalDividerPainter(
@@ -452,7 +453,6 @@ class VerticalDivider extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 );
               },
-              lerp: DividerProperties.lerp,
             ),
           );
   }

@@ -13,20 +13,18 @@ class TabPaneTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'tab_pane',
       title: 'Tab Pane',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 300,
-          height: 200,
           decoration: BoxDecoration(
             border: Border.all(color: theme.colorScheme.border),
             borderRadius: BorderRadius.circular(8),
           ),
+          width: 300,
+          height: 200,
           child: Column(
             children: [
               // Tab headers
               Container(
-                height: 40,
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 decoration: BoxDecoration(
                   color: theme.colorScheme.muted,
@@ -35,12 +33,13 @@ class TabPaneTile extends StatelessWidget implements IComponentPage {
                     topRight: Radius.circular(8),
                   ),
                 ),
+                height: 40,
                 child: Row(
                   children: [
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
                         vertical: 8,
+                        horizontal: 16,
                       ),
                       decoration: BoxDecoration(
                         color: theme.colorScheme.primary,
@@ -57,8 +56,8 @@ class TabPaneTile extends StatelessWidget implements IComponentPage {
                     const Gap(4),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
                         vertical: 8,
+                        horizontal: 16,
                       ),
                       child: const Text(
                         'Tab 2',
@@ -68,8 +67,8 @@ class TabPaneTile extends StatelessWidget implements IComponentPage {
                     const Gap(4),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
                         vertical: 8,
+                        horizontal: 16,
                       ),
                       child: const Text(
                         'Tab 3',
@@ -90,6 +89,7 @@ class TabPaneTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

@@ -12,12 +12,12 @@ class _CheckboxExample2State extends State<CheckboxExample2> {
   @override
   Widget build(BuildContext context) {
     return Checkbox(
-      state: _state,
       onChanged: (value) {
         setState(() {
           _state = value;
         });
       },
+      state: _state,
       trailing: const Text('Remember me'),
       tristate: true,
     );

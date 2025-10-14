@@ -84,11 +84,11 @@ class DatePicker extends UiComponent {
   @override
   Component build(BuildContext context) {
     return input(
-      id: id,
+      placeholder: placeholder,
       type: InputType.date,
       value: value,
-      placeholder: placeholder,
       disabled: disabled,
+      id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: _buildAttributes(),

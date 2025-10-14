@@ -13,14 +13,13 @@ class TableTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'table',
       title: 'Table',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 400,
           decoration: BoxDecoration(
             border: Border.all(color: theme.colorScheme.border),
             borderRadius: BorderRadius.circular(8),
           ),
+          width: 400,
           child: Column(
             children: [
               // Header
@@ -52,8 +51,8 @@ class TableTile extends StatelessWidget implements IComponentPage {
                       flex: 1,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
                           vertical: 4,
+                          horizontal: 8,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.green.withOpacity(0.1),
@@ -79,8 +78,8 @@ class TableTile extends StatelessWidget implements IComponentPage {
                       flex: 1,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
                           vertical: 4,
+                          horizontal: 8,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.orange.withOpacity(0.1),
@@ -106,8 +105,8 @@ class TableTile extends StatelessWidget implements IComponentPage {
                       flex: 1,
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
                           vertical: 4,
+                          horizontal: 8,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.green.withOpacity(0.1),
@@ -126,6 +125,7 @@ class TableTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

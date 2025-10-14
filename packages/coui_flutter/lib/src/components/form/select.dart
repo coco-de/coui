@@ -247,6 +247,9 @@ class ControlledSelect<T> extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter<T?>(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return Select<T>(
           autoClosePopover: autoClosePopover,
@@ -272,9 +275,6 @@ class ControlledSelect<T> extends StatelessWidget
           valueSelectionPredicate: valueSelectionPredicate,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }
@@ -777,6 +777,15 @@ class SelectState<T> extends State<Select<T>>
                         .show<void>(
                           alignment: _popoverAlignment,
                           anchorAlignment: _popoverAnchorAlignment,
+                          context: context,
+                          offset: Offset(0, scaling * 8),
+                          overlayBarrier: OverlayBarrier(
+                            borderRadius: BorderRadius.circular(theme.radiusLg),
+                            padding:
+                                const EdgeInsets.symmetric(vertical: 8) *
+                                scaling,
+                          ),
+                          widthConstraint: widget.popupWidthConstraint,
                           builder: (context) {
                             return ConstrainedBox(
                               constraints:
@@ -809,15 +818,6 @@ class SelectState<T> extends State<Select<T>>
                               ),
                             );
                           },
-                          context: context,
-                          offset: Offset(0, scaling * 8),
-                          overlayBarrier: OverlayBarrier(
-                            borderRadius: BorderRadius.circular(theme.radiusLg),
-                            padding:
-                                const EdgeInsets.symmetric(vertical: 8) *
-                                scaling,
-                          ),
-                          widthConstraint: widget.popupWidthConstraint,
                         )
                         .then((value) {
                           _focusNode.requestFocus();
@@ -1352,8 +1352,16 @@ class _SelectPopupState<T> extends State<SelectPopup<T>>
                           listenable: _searchController,
                           builder: (context, _) {
                             return CachedValueWidget(
+                              value: _searchController.text.isEmpty
+                                  ? null
+                                  : _searchController.text,
                               builder: (context, searchQuery) {
                                 return FutureOrBuilder<SelectItemDelegate?>(
+                                  future: widget.builder == null
+                                      ? widget.items == null
+                                            ? SelectItemDelegate.empty
+                                            : widget.items!
+                                      : widget.builder!(context, searchQuery),
                                   builder: (context, snapshot) {
                                     if (snapshot.connectionState ==
                                         ConnectionState.waiting) {
@@ -1401,6 +1409,7 @@ class _SelectPopupState<T> extends State<SelectPopup<T>>
                                       final data = snapshot.data!;
 
                                       return CachedValueWidget(
+                                        value: data,
                                         builder: (context, data) {
                                           return Column(
                                             mainAxisSize: MainAxisSize.min,
@@ -1588,7 +1597,6 @@ class _SelectPopupState<T> extends State<SelectPopup<T>>
                                             ],
                                           );
                                         },
-                                        value: data,
                                       );
                                     }
                                     final emptyBuilder = widget.emptyBuilder
@@ -1607,16 +1615,8 @@ class _SelectPopupState<T> extends State<SelectPopup<T>>
                                           )
                                         : const SizedBox();
                                   },
-                                  future: widget.builder == null
-                                      ? widget.items == null
-                                            ? SelectItemDelegate.empty
-                                            : widget.items!
-                                      : widget.builder!(context, searchQuery),
                                 );
                               },
-                              value: _searchController.text.isEmpty
-                                  ? null
-                                  : _searchController.text,
                             );
                           },
                         ),

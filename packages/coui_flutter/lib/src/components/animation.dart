@@ -1119,8 +1119,8 @@ class _CrossFadedTransitionState extends State<CrossFadedTransition> {
       child: AnimatedValueBuilder(
         value: newChild,
         duration: widget.duration,
-        builder: _builder,
         lerp: _lerpWidget,
+        builder: _builder,
       ),
     );
   }

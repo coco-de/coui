@@ -14,13 +14,13 @@ class _ToggleExample1State extends State<ToggleExample1> {
   @override
   Widget build(BuildContext context) {
     return Toggle(
-      value: value,
       onChanged: (v) {
         setState(() {
           value = v;
         });
       },
       trailing: const Text('Toggle'),
+      value: value,
     );
   }
 }

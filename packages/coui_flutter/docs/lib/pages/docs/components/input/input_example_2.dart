@@ -11,8 +11,6 @@ class _InputExample2State extends State<InputExample2> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      initialValue: 'Hello World!',
-      placeholder: const Text('Search something...'),
       features: [
         InputFeature.leading(
           StatedWidget.builder(
@@ -27,12 +25,13 @@ class _InputExample2State extends State<InputExample2> {
           visibility: InputFeatureVisibility.textEmpty,
         ),
         InputFeature.clear(
-          visibility:
-              (InputFeatureVisibility.textNotEmpty &
+          visibility: (InputFeatureVisibility.textNotEmpty &
                   InputFeatureVisibility.focused) |
               InputFeatureVisibility.hovered,
         ),
       ],
+      initialValue: 'Hello World!',
+      placeholder: const Text('Search something...'),
     );
   }
 }

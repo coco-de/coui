@@ -330,6 +330,9 @@ class DashedContainer extends StatelessWidget {
         width: strokeWidth ?? (theme.scaling * 8),
       ),
       duration: kDefaultDuration,
+      lerp: (a, b, t) {
+        return DashedContainerProperties.lerp(context, a, b, t);
+      },
       builder: (context, value, child) {
         return CustomPaint(
           painter: DashedPainter(
@@ -341,9 +344,6 @@ class DashedContainer extends StatelessWidget {
           ),
           child: child,
         );
-      },
-      lerp: (a, b, t) {
-        return DashedContainerProperties.lerp(context, a, b, t);
       },
       child: child,
     );

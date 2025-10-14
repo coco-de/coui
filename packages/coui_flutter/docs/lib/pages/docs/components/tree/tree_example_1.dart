@@ -13,39 +13,39 @@ class _TreeExample1State extends State<TreeExample1> {
   bool recursiveSelection = false;
   List<TreeNode<String>> treeItems = [
     TreeItem(
-      data: 'Apple',
-      expanded: true,
       children: [
         TreeItem(
-          data: 'Red Apple',
           children: [
             TreeItem(data: 'Red Apple 1'),
             TreeItem(data: 'Red Apple 2'),
           ],
+          data: 'Red Apple',
         ),
         TreeItem(data: 'Green Apple'),
       ],
+      data: 'Apple',
+      expanded: true,
     ),
     TreeItem(
-      data: 'Banana',
       children: [
         TreeItem(data: 'Yellow Banana'),
         TreeItem(
-          data: 'Green Banana',
           children: [
             TreeItem(data: 'Green Banana 1'),
             TreeItem(data: 'Green Banana 2'),
             TreeItem(data: 'Green Banana 3'),
           ],
+          data: 'Green Banana',
         ),
       ],
+      data: 'Banana',
     ),
     TreeItem(
-      data: 'Cherry',
       children: [
         TreeItem(data: 'Red Cherry'),
         TreeItem(data: 'Green Cherry'),
       ],
+      data: 'Cherry',
     ),
     TreeItem(data: 'Date'),
     // Tree Root acts as a parent node with no data,
@@ -53,18 +53,18 @@ class _TreeExample1State extends State<TreeExample1> {
     TreeRoot(
       children: [
         TreeItem(
-          data: 'Elderberry',
           children: [
             TreeItem(data: 'Black Elderberry'),
             TreeItem(data: 'Red Elderberry'),
           ],
+          data: 'Elderberry',
         ),
         TreeItem(
-          data: 'Fig',
           children: [
             TreeItem(data: 'Green Fig'),
             TreeItem(data: 'Purple Fig'),
           ],
+          data: 'Fig',
         ),
       ],
     ),
@@ -77,34 +77,12 @@ class _TreeExample1State extends State<TreeExample1> {
       children: [
         OutlinedContainer(
           child: SizedBox(
-            height: 300,
             width: 250,
+            height: 300,
             child: TreeView(
-              expandIcon: expandIcon,
-              shrinkWrap: true,
-              recursiveSelection: recursiveSelection,
-              nodes: treeItems,
               branchLine: usePath ? BranchLine.path : BranchLine.line,
-              onSelectionChanged: TreeView.defaultSelectionHandler(treeItems, (
-                value,
-              ) {
-                setState(() {
-                  treeItems = value;
-                });
-              }),
               builder: (context, node) {
                 return TreeItemView(
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
-                  trailing: node.leaf
-                      ? Container(
-                          width: 16,
-                          height: 16,
-                          alignment: Alignment.center,
-                          child: const CircularProgressIndicator(),
-                        )
-                      : null,
                   leading: node.leaf
                       ? const Icon(BootstrapIcons.fileImage)
                       : Icon(
@@ -119,9 +97,31 @@ class _TreeExample1State extends State<TreeExample1> {
                       treeItems = value;
                     });
                   }),
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
+                  trailing: node.leaf
+                      ? Container(
+                          alignment: Alignment.center,
+                          width: 16,
+                          height: 16,
+                          child: const CircularProgressIndicator(),
+                        )
+                      : null,
                   child: Text(node.data),
                 );
               },
+              expandIcon: expandIcon,
+              nodes: treeItems,
+              onSelectionChanged: TreeView.defaultSelectionHandler(treeItems, (
+                value,
+              ) {
+                setState(() {
+                  treeItems = value;
+                });
+              }),
+              recursiveSelection: recursiveSelection,
+              shrinkWrap: true,
             ),
           ),
         ),
@@ -130,49 +130,46 @@ class _TreeExample1State extends State<TreeExample1> {
           mainAxisSize: MainAxisSize.min,
           children: [
             PrimaryButton(
+              child: const Text('Expand All'),
               onPressed: () {
                 setState(() {
                   treeItems = treeItems.expandAll();
                 });
               },
-              child: const Text('Expand All'),
             ),
             const Gap(8),
             PrimaryButton(
+              child: const Text('Collapse All'),
               onPressed: () {
                 setState(() {
                   treeItems = treeItems.collapseAll();
                 });
               },
-              child: const Text('Collapse All'),
             ),
           ],
         ),
         const Gap(8),
         Checkbox(
-          state: expandIcon ? CheckboxState.checked : CheckboxState.unchecked,
           onChanged: (value) {
             setState(() {
               expandIcon = value == CheckboxState.checked;
             });
           },
+          state: expandIcon ? CheckboxState.checked : CheckboxState.unchecked,
           trailing: const Text('Expand Icon'),
         ),
         const Gap(8),
         Checkbox(
-          state: usePath ? CheckboxState.checked : CheckboxState.unchecked,
           onChanged: (value) {
             setState(() {
               usePath = value == CheckboxState.checked;
             });
           },
+          state: usePath ? CheckboxState.checked : CheckboxState.unchecked,
           trailing: const Text('Use Path Branch Line'),
         ),
         const Gap(8),
         Checkbox(
-          state: recursiveSelection
-              ? CheckboxState.checked
-              : CheckboxState.unchecked,
           onChanged: (value) {
             setState(() {
               recursiveSelection = value == CheckboxState.checked;
@@ -181,6 +178,9 @@ class _TreeExample1State extends State<TreeExample1> {
               }
             });
           },
+          state: recursiveSelection
+              ? CheckboxState.checked
+              : CheckboxState.unchecked,
           trailing: const Text('Recursive Selection'),
         ),
       ],

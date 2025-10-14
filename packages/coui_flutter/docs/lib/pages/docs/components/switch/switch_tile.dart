@@ -12,10 +12,10 @@ class SwitchTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'switch',
       title: 'Switch',
-      scale: 2,
-      center: true,
       // ignore: deprecated_member_use
-      example: Switch(value: true, onChanged: (value) {}),
+      example: Switch(onChanged: (value) {}, value: true),
+      center: true,
+      scale: 2,
     );
   }
 }

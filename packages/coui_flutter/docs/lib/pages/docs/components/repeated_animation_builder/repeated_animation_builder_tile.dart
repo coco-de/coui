@@ -15,23 +15,23 @@ class RepeatedAnimationBuilderTile extends StatelessWidget
     return ComponentCard(
       name: 'repeated_animation_builder',
       title: 'Repeated Animation Builder',
-      scale: 2,
-      horizontalOffset: 80,
       example: RepeatedAnimationBuilder(
-        duration: const Duration(seconds: 1),
         start: 0.0,
         end: 90.0,
+        duration: const Duration(seconds: 1),
         builder: (context, value, child) {
           return Transform.rotate(
             angle: pi / 180 * value,
             child: Container(
+              color: material.Colors.red,
               width: 100,
               height: 100,
-              color: material.Colors.red,
             ),
           );
         },
       ),
+      horizontalOffset: 80,
+      scale: 2,
     );
   }
 }

@@ -114,6 +114,50 @@ class Calendar extends UiComponent {
     final displayMonth = selectedDate ?? now;
 
     return div(
+      children: [
+        // Header with month/year
+        div(
+          children: [
+            button(
+              child: text(_kPrevIcon),
+              classes:
+                  'inline-flex items-center justify-center rounded-md text-sm font-medium h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
+              attributes: {'type': 'button', 'aria-label': 'Previous month'},
+            ),
+            div(
+              child: text(
+                '${_monthNames[displayMonth.month - 1]} ${displayMonth.year}',
+              ),
+              classes: 'text-sm font-medium',
+            ),
+            button(
+              child: text(_kNextIcon),
+              classes:
+                  'inline-flex items-center justify-center rounded-md text-sm font-medium h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
+              attributes: {'type': 'button', 'aria-label': 'Next month'},
+            ),
+          ],
+          classes: 'flex items-center justify-between mb-4',
+        ),
+        // Weekday headers
+        div(
+          children: _weekDays
+              .map(
+                (day) => div(
+                  child: text(day),
+                  classes:
+                      'text-xs text-center font-medium text-muted-foreground py-2',
+                ),
+              )
+              .toList(),
+          classes: 'grid grid-cols-7 gap-1 mb-1',
+        ),
+        // Calendar grid
+        div(
+          children: _buildCalendarDays(displayMonth),
+          classes: 'grid grid-cols-7 gap-1',
+        ),
+      ],
       id: id,
       classes: _buildClasses(),
       styles: this.css,
@@ -123,50 +167,6 @@ class Calendar extends UiComponent {
         'aria-label': 'Calendar',
       },
       events: this.events,
-      children: [
-        // Header with month/year
-        div(
-          classes: 'flex items-center justify-between mb-4',
-          children: [
-            button(
-              classes:
-                  'inline-flex items-center justify-center rounded-md text-sm font-medium h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
-              attributes: {'type': 'button', 'aria-label': 'Previous month'},
-              child: text(_kPrevIcon),
-            ),
-            div(
-              classes: 'text-sm font-medium',
-              child: text(
-                '${_monthNames[displayMonth.month - 1]} ${displayMonth.year}',
-              ),
-            ),
-            button(
-              classes:
-                  'inline-flex items-center justify-center rounded-md text-sm font-medium h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
-              attributes: {'type': 'button', 'aria-label': 'Next month'},
-              child: text(_kNextIcon),
-            ),
-          ],
-        ),
-        // Weekday headers
-        div(
-          classes: 'grid grid-cols-7 gap-1 mb-1',
-          children: _weekDays
-              .map(
-                (day) => div(
-                  classes:
-                      'text-xs text-center font-medium text-muted-foreground py-2',
-                  child: text(day),
-                ),
-              )
-              .toList(),
-        ),
-        // Calendar grid
-        div(
-          classes: 'grid grid-cols-7 gap-1',
-          children: _buildCalendarDays(displayMonth),
-        ),
-      ],
     );
   }
 
@@ -208,6 +208,7 @@ class Calendar extends UiComponent {
 
       days.add(
         button(
+          child: text(day.toString()),
           classes: _buildDayClasses(isSelected),
           attributes: {
             'type': 'button',
@@ -215,7 +216,6 @@ class Calendar extends UiComponent {
             if (isSelected) 'aria-selected': 'true',
           },
           events: _handleDay(date),
-          child: text(day.toString()),
         ),
       );
     }

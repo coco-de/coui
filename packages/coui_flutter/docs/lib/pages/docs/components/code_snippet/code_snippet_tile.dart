@@ -14,10 +14,10 @@ class CodeSnippetTile extends StatelessWidget implements IComponentPage {
     return const ComponentCard(
       name: 'code_snippet',
       title: 'Code Snippet',
-      scale: 1.5,
+      example: CodeSnippetExample1(),
       reverse: true,
       reverseVertical: true,
-      example: CodeSnippetExample1(),
+      scale: 1.5,
     );
   }
 }

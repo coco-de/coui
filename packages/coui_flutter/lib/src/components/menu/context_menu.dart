@@ -548,6 +548,16 @@ Future<void> _showContextMenu(
         key: key,
         alignment: Alignment.topLeft,
         anchorAlignment: Alignment.topRight,
+        consumeOutsideTaps: false,
+        context: context,
+        dismissBackdropFocus: false,
+        follow: false,
+        overlayBarrier: OverlayBarrier(
+          barrierColor: const Color(0xB2000000),
+          borderRadius: BorderRadius.circular(theme.radiusMd),
+        ),
+        position: position + const Offset(8, 0),
+        regionGroupId: key,
         builder: (context) {
           return AnimatedBuilder(
             animation: children,
@@ -559,6 +569,16 @@ Future<void> _showContextMenu(
               return ConstrainedBox(
                 constraints: const BoxConstraints(minWidth: 192),
                 child: MenuGroup(
+                  direction: direction,
+                  itemPadding: isSheetOverlay
+                      ? const EdgeInsets.symmetric(horizontal: 8) *
+                            theme.scaling
+                      : EdgeInsets.zero,
+                  onDismissed: () {
+                    closeOverlay<void>(context);
+                  },
+                  regionGroupId: key,
+                  subMenuOffset: const Offset(8, -4),
                   builder: (context, children) {
                     final compTheme = ComponentTheme.maybeOf<ContextMenuTheme>(
                       context,
@@ -570,32 +590,12 @@ Future<void> _showContextMenu(
                       children: children,
                     );
                   },
-                  direction: direction,
-                  itemPadding: isSheetOverlay
-                      ? const EdgeInsets.symmetric(horizontal: 8) *
-                            theme.scaling
-                      : EdgeInsets.zero,
-                  onDismissed: () {
-                    closeOverlay<void>(context);
-                  },
-                  regionGroupId: key,
-                  subMenuOffset: const Offset(8, -4),
                   children: children.value,
                 ),
               );
             },
           );
         },
-        consumeOutsideTaps: false,
-        context: context,
-        dismissBackdropFocus: false,
-        follow: false,
-        overlayBarrier: OverlayBarrier(
-          barrierColor: const Color(0xB2000000),
-          borderRadius: BorderRadius.circular(theme.radiusMd),
-        ),
-        position: position + const Offset(8, 0),
-        regionGroupId: key,
       )
       .future;
 }
@@ -635,12 +635,20 @@ class ContextMenuPopup extends StatelessWidget {
           anchorContext: anchorContext,
           anchorSize: anchorSize,
           animation: animation,
+          follow: onTickFollow != null,
+          onTickFollow: onTickFollow,
+          position: position,
+          themes: themes,
           builder: (context) {
             final theme = Theme.of(context);
 
             return LimitedBox(
               maxWidth: theme.scaling * 192,
               child: MenuGroup(
+                direction: direction,
+                itemPadding: isSheetOverlay
+                    ? const EdgeInsets.symmetric(horizontal: 8) * theme.scaling
+                    : EdgeInsets.zero,
                 builder: (context, children) {
                   final compTheme = ComponentTheme.maybeOf<ContextMenuTheme>(
                     context,
@@ -652,18 +660,10 @@ class ContextMenuPopup extends StatelessWidget {
                     children: children,
                   );
                 },
-                direction: direction,
-                itemPadding: isSheetOverlay
-                    ? const EdgeInsets.symmetric(horizontal: 8) * theme.scaling
-                    : EdgeInsets.zero,
                 children: children,
               ),
             );
           },
-          follow: onTickFollow != null,
-          onTickFollow: onTickFollow,
-          position: position,
-          themes: themes,
         );
       },
     );

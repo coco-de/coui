@@ -50,29 +50,29 @@ class Kbd extends UiComponent {
       if (i > 0) {
         keyComponents.add(
           span(
-            classes: 'text-xs text-muted-foreground mx-0.5',
             child: text('+'),
+            classes: 'text-xs text-muted-foreground mx-0.5',
           ),
         );
       }
 
       keyComponents.add(
         Component.element(
+          child: text(keys[i]),
           tag: 'kbd',
           classes:
               'pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100',
-          child: text(keys[i]),
         ),
       );
     }
 
     return div(
+      children: keyComponents,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      children: keyComponents,
     );
   }
 

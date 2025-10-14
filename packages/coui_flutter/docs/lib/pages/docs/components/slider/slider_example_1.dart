@@ -12,12 +12,12 @@ class _SliderExample1State extends State<SliderExample1> {
   @override
   Widget build(BuildContext context) {
     return Slider(
-      value: value,
       onChanged: (value) {
         setState(() {
           this.value = value;
         });
       },
+      value: value,
     );
   }
 }

@@ -159,6 +159,9 @@ class Tabs extends StatelessWidget {
     );
 
     return TabContainer(
+      childBuilder: _childBuilder,
+      onSelect: onChanged,
+      selected: index,
       builder: (context, children) {
         return Container(
           padding: containerPadding,
@@ -177,9 +180,6 @@ class Tabs extends StatelessWidget {
           ),
         );
       },
-      childBuilder: _childBuilder,
-      onSelect: onChanged,
-      selected: index,
       children: children,
     );
   }

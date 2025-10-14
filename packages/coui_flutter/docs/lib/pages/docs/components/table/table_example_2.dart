@@ -11,6 +11,11 @@ class _TableExample2State extends State<TableExample2> {
   TableCell buildCell(String text, [bool alignRight = false]) {
     final theme = Theme.of(context);
     return TableCell(
+      child: Container(
+        alignment: alignRight ? Alignment.topRight : null,
+        padding: const EdgeInsets.all(8),
+        child: Text(text),
+      ),
       theme: TableCellTheme(
         border: WidgetStatePropertyAll(
           Border.all(
@@ -19,18 +24,13 @@ class _TableExample2State extends State<TableExample2> {
           ),
         ),
       ),
-      child: Container(
-        padding: const EdgeInsets.all(8),
-        alignment: alignRight ? Alignment.topRight : null,
-        child: Text(text),
-      ),
     );
   }
 
   final ResizableTableController controller = ResizableTableController(
     defaultColumnWidth: 150,
-    defaultRowHeight: 40,
     defaultHeightConstraint: const ConstrainedTableSize(min: 40),
+    defaultRowHeight: 40,
     defaultWidthConstraint: const ConstrainedTableSize(min: 80),
   );
 

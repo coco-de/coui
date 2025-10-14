@@ -75,12 +75,12 @@ class Grid extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
+      children: children,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      children: children,
     );
   }
 
@@ -163,12 +163,12 @@ class GridItem extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
+      child: child,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
     );
   }
 

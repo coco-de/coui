@@ -70,38 +70,38 @@ class EmptyState extends UiComponent {
   @override
   Component build(BuildContext context) {
     return div(
+      children: [
+        if (icon != null)
+          div(
+            child: icon,
+            classes:
+                'mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-muted',
+          ),
+        div(
+          children: [
+            h3(
+              child: text(title),
+              classes: 'text-lg font-semibold',
+            ),
+            if (description != null)
+              p(
+                child: text(description),
+                classes: 'text-sm text-muted-foreground max-w-sm',
+              ),
+          ],
+          classes: 'mt-4 space-y-2',
+        ),
+        if (action != null)
+          div(
+            child: action,
+            classes: 'mt-6',
+          ),
+      ],
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      children: [
-        if (icon != null)
-          div(
-            classes:
-                'mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-muted',
-            child: icon,
-          ),
-        div(
-          classes: 'mt-4 space-y-2',
-          children: [
-            h3(
-              classes: 'text-lg font-semibold',
-              child: text(title),
-            ),
-            if (description != null)
-              p(
-                classes: 'text-sm text-muted-foreground max-w-sm',
-                child: text(description),
-              ),
-          ],
-        ),
-        if (action != null)
-          div(
-            classes: 'mt-6',
-            child: action,
-          ),
-      ],
     );
   }
 

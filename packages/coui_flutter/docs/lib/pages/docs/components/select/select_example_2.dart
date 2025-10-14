@@ -38,11 +38,17 @@ class _SelectExample2State extends State<SelectExample2> {
   @override
   Widget build(BuildContext context) {
     return Select<String>(
+      constraints: const BoxConstraints(minWidth: 200),
       itemBuilder: (context, item) {
         return Text(item);
       },
+      onChanged: (value) {
+        setState(() {
+          selectedValue = value;
+        });
+      },
+      placeholder: const Text('Select a fruit'),
       popup: (context) => SelectPopup.builder(
-        searchPlaceholder: const Text('Search fruit'),
         builder: (context, searchQuery) {
           final filteredFruits = searchQuery == null
               ? fruits.entries
@@ -60,15 +66,9 @@ class _SelectExample2State extends State<SelectExample2> {
             ],
           );
         },
+        searchPlaceholder: const Text('Search fruit'),
       ),
-      onChanged: (value) {
-        setState(() {
-          selectedValue = value;
-        });
-      },
-      constraints: const BoxConstraints(minWidth: 200),
       value: selectedValue,
-      placeholder: const Text('Select a fruit'),
     );
   }
 }

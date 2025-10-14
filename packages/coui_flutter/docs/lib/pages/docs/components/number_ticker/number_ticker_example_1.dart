@@ -17,17 +17,17 @@ class _NumberTickerExample1State extends State<NumberTickerExample1> {
     return Column(
       children: [
         NumberTicker(
-          initialNumber: 0,
-          number: _number,
-          style: const TextStyle(fontSize: 32),
           formatter: (number) {
             return NumberFormat.compact().format(number);
           },
+          initialNumber: 0,
+          number: _number,
+          style: const TextStyle(fontSize: 32),
         ),
         const Gap(24),
         TextField(
-          initialValue: _number.toString(),
           controller: _controller,
+          initialValue: _number.toString(),
           onEditingComplete: () {
             int? number = int.tryParse(_controller.text);
             if (number != null) {

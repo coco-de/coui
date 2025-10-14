@@ -6,10 +6,10 @@ class ButtonExample11 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 8,
-      runSpacing: 8,
       alignment: WrapAlignment.center,
+      spacing: 8,
       runAlignment: WrapAlignment.center,
+      runSpacing: 8,
       children: [
         PrimaryButton(
           onPressed: () {

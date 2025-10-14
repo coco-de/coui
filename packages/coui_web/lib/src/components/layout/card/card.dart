@@ -80,10 +80,10 @@ class Card extends UiComponent {
     Key? key,
   }) {
     return Card(
+      children: children ?? this.children,
+      child: child ?? this.child,
       key: key ?? this.key,
       variant: variant ?? _variant,
-      child: child ?? this.child,
-      children: children ?? this.children,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -95,13 +95,13 @@ class Card extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
       children: children,
     );
   }
@@ -163,9 +163,9 @@ class CardHeader extends UiComponent {
     Key? key,
   }) {
     return CardHeader(
-      key: key ?? this.key,
       children: children ?? this.children,
       child: child ?? this.child,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -177,13 +177,13 @@ class CardHeader extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
       children: children,
     );
   }
@@ -235,8 +235,8 @@ class CardTitle extends UiComponent {
     Key? key,
   }) {
     return CardTitle(
-      key: key ?? this.key,
       titleChild: titleChild ?? this.titleChild,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -248,13 +248,13 @@ class CardTitle extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: titleChild,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: titleChild,
     );
   }
 
@@ -304,8 +304,8 @@ class CardDescription extends UiComponent {
     Key? key,
   }) {
     return CardDescription(
-      key: key ?? this.key,
       descriptionChild: descriptionChild ?? this.descriptionChild,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -317,13 +317,13 @@ class CardDescription extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: descriptionChild,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: descriptionChild,
     );
   }
 
@@ -375,9 +375,9 @@ class CardContent extends UiComponent {
     Key? key,
   }) {
     return CardContent(
-      key: key ?? this.key,
-      child: child ?? this.child,
       children: children ?? this.children,
+      child: child ?? this.child,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -389,13 +389,13 @@ class CardContent extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
       children: children,
     );
   }
@@ -448,9 +448,9 @@ class CardFooter extends UiComponent {
     Key? key,
   }) {
     return CardFooter(
-      key: key ?? this.key,
-      child: child ?? this.child,
       children: children ?? this.children,
+      child: child ?? this.child,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -462,13 +462,13 @@ class CardFooter extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
       children: children,
     );
   }

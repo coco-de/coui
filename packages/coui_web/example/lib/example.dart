@@ -8,15 +8,15 @@ void main() {
 
   runApp(
     Document(
-      body: const CoUIShowcase(),
+      title: 'CoUI Example - Component Showcase',
       head: [
         link(href: 'styles.css', rel: 'stylesheet'),
         meta(
-          content: 'width=device-width, initial-scale=1',
           name: 'viewport',
+          content: 'width=device-width, initial-scale=1',
         ),
       ],
-      title: 'CoUI Example - Component Showcase',
+      body: const CoUIShowcase(),
     ),
   );
 }
@@ -131,8 +131,8 @@ class CoUIShowcase extends StatelessComponent {
                     text('Built with ❤️ using CoUI • '),
                     a(
                       [text('View on GitHub')],
-                      classes: 'link link-primary',
                       href: 'https://github.com/PhilippHGerber/ui_components',
+                      classes: 'link link-primary',
                     ),
                   ],
                   classes: 'text-base-content/60',

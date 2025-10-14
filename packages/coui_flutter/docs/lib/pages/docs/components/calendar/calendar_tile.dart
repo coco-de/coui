@@ -12,11 +12,11 @@ class CalendarTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'calendar',
       title: 'Calendar',
-      scale: 1,
       example: Calendar(
-        view: CalendarView.now(),
         selectionMode: CalendarSelectionMode.none,
+        view: CalendarView.now(),
       ),
+      scale: 1,
     );
   }
 }

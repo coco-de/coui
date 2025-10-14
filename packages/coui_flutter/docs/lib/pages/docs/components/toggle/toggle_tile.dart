@@ -13,10 +13,10 @@ class ToggleTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'toggle',
       title: 'Toggle',
-      scale: 1.2,
       example: Card(
         child: const ToggleExample2().withAlign(Alignment.topLeft),
       ).sized(height: 300, width: 300),
+      scale: 1.2,
     );
   }
 }

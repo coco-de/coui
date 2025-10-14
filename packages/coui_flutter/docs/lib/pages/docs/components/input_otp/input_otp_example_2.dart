@@ -6,7 +6,6 @@ class InputOTPExample2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InputOTP(
-      initialValue: '123'.codeUnits,
       children: [
         InputOTPChild.character(allowDigit: true),
         InputOTPChild.character(allowDigit: true),
@@ -16,6 +15,7 @@ class InputOTPExample2 extends StatelessWidget {
         InputOTPChild.character(allowDigit: true),
         InputOTPChild.character(allowDigit: true),
       ],
+      initialValue: '123'.codeUnits,
     );
   }
 }

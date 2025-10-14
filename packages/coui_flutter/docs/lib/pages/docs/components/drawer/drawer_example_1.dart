@@ -20,8 +20,6 @@ class _DrawerExample1State extends State<DrawerExample1> {
   ];
   void open(BuildContext context, int count) {
     openDrawer(
-      context: context,
-      expands: true,
       builder: (context) {
         return Container(
           padding: const EdgeInsets.all(48),
@@ -35,23 +33,25 @@ class _DrawerExample1State extends State<DrawerExample1> {
                 ),
                 const Gap(16),
                 PrimaryButton(
+                  child: const Text('Open Another Drawer'),
                   onPressed: () {
                     open(context, count + 1);
                   },
-                  child: const Text('Open Another Drawer'),
                 ),
                 const Gap(8),
                 SecondaryButton(
+                  child: const Text('Close Drawer'),
                   onPressed: () {
                     closeOverlay(context);
                   },
-                  child: const Text('Close Drawer'),
                 ),
               ],
             ),
           ),
         );
       },
+      context: context,
+      expands: true,
       position: positions[count % positions.length],
     );
   }
@@ -59,10 +59,10 @@ class _DrawerExample1State extends State<DrawerExample1> {
   @override
   Widget build(BuildContext context) {
     return PrimaryButton(
+      child: const Text('Open Drawer'),
       onPressed: () {
         open(context, 0);
       },
-      child: const Text('Open Drawer'),
     );
   }
 }

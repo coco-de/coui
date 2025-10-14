@@ -12,7 +12,6 @@ class MultiselectTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'multiselect',
       title: 'Multiselect',
-      scale: 1.2,
       example: Card(
         child: Column(
           children: [
@@ -25,8 +24,8 @@ class MultiselectTile extends StatelessWidget implements IComponentPage {
                   child: Row(
                     children: [
                       Checkbox(
-                        state: CheckboxState.checked,
                         onChanged: (value) {},
+                        state: CheckboxState.checked,
                       ),
                       const Gap(12),
                       const Text('Option 1'),
@@ -38,8 +37,8 @@ class MultiselectTile extends StatelessWidget implements IComponentPage {
                   child: Row(
                     children: [
                       Checkbox(
-                        state: CheckboxState.unchecked,
                         onChanged: (value) {},
+                        state: CheckboxState.unchecked,
                       ),
                       const Gap(12),
                       const Text('Option 2'),
@@ -51,8 +50,8 @@ class MultiselectTile extends StatelessWidget implements IComponentPage {
                   child: Row(
                     children: [
                       Checkbox(
-                        state: CheckboxState.checked,
                         onChanged: (value) {},
+                        state: CheckboxState.checked,
                       ),
                       const Gap(12),
                       const Text('Option 3'),
@@ -64,6 +63,7 @@ class MultiselectTile extends StatelessWidget implements IComponentPage {
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.2,
     );
   }
 }

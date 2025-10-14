@@ -218,6 +218,9 @@ class _HoverCardState extends State<HoverCard> {
     _controller.show<void>(
       alignment: alignment,
       anchorAlignment: anchorAlignment,
+      context: context,
+      handler: handler,
+      offset: offset,
       builder: (context) {
         return MouseRegion(
           onEnter: (_) {
@@ -234,9 +237,6 @@ class _HoverCardState extends State<HoverCard> {
           child: widget.hoverBuilder(context),
         );
       },
-      context: context,
-      handler: handler,
-      offset: offset,
     );
   }
 

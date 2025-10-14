@@ -11,9 +11,8 @@ class InputOTPTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return ComponentCard(
-      title: 'Input OTP',
       name: 'input_otp',
-      scale: 1,
+      title: 'Input OTP',
       example: Column(
         children: [
           const Card(child: InputOTPExample2()),
@@ -22,7 +21,6 @@ class InputOTPTile extends StatelessWidget implements IComponentPage {
             offset: const Offset(-150, 0),
             child: Card(
               child: InputOTP(
-                initialValue: '123456'.codeUnits,
                 children: [
                   InputOTPChild.character(allowDigit: true, obscured: true),
                   InputOTPChild.character(allowDigit: true, obscured: true),
@@ -32,11 +30,13 @@ class InputOTPTile extends StatelessWidget implements IComponentPage {
                   InputOTPChild.character(allowDigit: true, obscured: true),
                   InputOTPChild.character(allowDigit: true, obscured: true),
                 ],
+                initialValue: '123456'.codeUnits,
               ),
             ),
           ),
         ],
       ),
+      scale: 1,
     );
   }
 }

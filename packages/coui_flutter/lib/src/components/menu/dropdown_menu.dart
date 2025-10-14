@@ -35,12 +35,6 @@ OverlayCompleter<T?> showDropdown<T>({
     allowInvertHorizontal: allowInvertHorizontal,
     allowInvertVertical: allowInvertVertical,
     anchorAlignment: anchorAlignment,
-    builder: (context) {
-      return Data.inherit(
-        data: DropdownMenuData(key),
-        child: builder(context),
-      );
-    },
     clipBehavior: clipBehavior,
     consumeOutsideTaps: consumeOutsideTaps,
     context: context,
@@ -60,6 +54,12 @@ OverlayCompleter<T?> showDropdown<T>({
     showDuration: showDuration,
     transitionAlignment: transitionAlignment,
     widthConstraint: widthConstraint,
+    builder: (context) {
+      return Data.inherit(
+        data: DropdownMenuData(key),
+        child: builder(context),
+      );
+    },
   );
 }
 
@@ -119,6 +119,15 @@ class _DropdownMenuState extends State<DropdownMenu> {
     return ConstrainedBox(
       constraints: const BoxConstraints(minWidth: 192),
       child: MenuGroup(
+        direction: Axis.vertical,
+        itemPadding: isSheetOverlay
+            ? const EdgeInsets.symmetric(horizontal: 8) * theme.scaling
+            : EdgeInsets.zero,
+        onDismissed: () {
+          closeOverlay<void>(context);
+        },
+        regionGroupId: Data.maybeOf<DropdownMenuData>(context)?.key,
+        subMenuOffset: const Offset(8, -4) * theme.scaling,
         builder: (context, children) {
           return MenuPopup(
             /// Does not need to check for theme.surfaceOpacity and theme.surfaceBlur.
@@ -129,15 +138,6 @@ class _DropdownMenuState extends State<DropdownMenu> {
             children: children,
           );
         },
-        direction: Axis.vertical,
-        itemPadding: isSheetOverlay
-            ? const EdgeInsets.symmetric(horizontal: 8) * theme.scaling
-            : EdgeInsets.zero,
-        onDismissed: () {
-          closeOverlay<void>(context);
-        },
-        regionGroupId: Data.maybeOf<DropdownMenuData>(context)?.key,
-        subMenuOffset: const Offset(8, -4) * theme.scaling,
         children: widget.children,
       ),
     );

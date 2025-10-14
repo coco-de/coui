@@ -18,12 +18,6 @@ class _StepperExample4State extends State<StepperExample4> {
       direction: Axis.vertical,
       steps: [
         Step(
-          title: const Text('Step 1'),
-          icon: StepNumber(
-            onPressed: () {
-              controller.jumpToStep(0);
-            },
-          ),
           contentBuilder: (context) {
             return StepContainer(
               actions: [
@@ -38,14 +32,14 @@ class _StepperExample4State extends State<StepperExample4> {
               child: const NumberedContainer(index: 1, height: 200),
             );
           },
-        ),
-        Step(
-          title: const Text('Step 2'),
           icon: StepNumber(
             onPressed: () {
-              controller.jumpToStep(1);
+              controller.jumpToStep(0);
             },
           ),
+          title: const Text('Step 1'),
+        ),
+        Step(
           contentBuilder: (context) {
             return StepContainer(
               actions: [
@@ -65,14 +59,14 @@ class _StepperExample4State extends State<StepperExample4> {
               child: const NumberedContainer(index: 2, height: 200),
             );
           },
-        ),
-        Step(
-          title: const Text('Step 3'),
           icon: StepNumber(
             onPressed: () {
-              controller.jumpToStep(2);
+              controller.jumpToStep(1);
             },
           ),
+          title: const Text('Step 2'),
+        ),
+        Step(
           contentBuilder: (context) {
             return StepContainer(
               actions: [
@@ -92,6 +86,12 @@ class _StepperExample4State extends State<StepperExample4> {
               child: const NumberedContainer(index: 3, height: 200),
             );
           },
+          icon: StepNumber(
+            onPressed: () {
+              controller.jumpToStep(2);
+            },
+          ),
+          title: const Text('Step 3'),
         ),
       ],
     );

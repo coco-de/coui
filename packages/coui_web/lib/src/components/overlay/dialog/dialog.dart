@@ -68,10 +68,10 @@ class Dialog extends UiComponent {
     Key? key,
   }) {
     return Dialog(
-      key: key ?? this.key,
-      open: open ?? this.open,
       children: children,
       child: child,
+      key: key ?? this.key,
+      open: open ?? this.open,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -92,10 +92,10 @@ class Dialog extends UiComponent {
               ),
               // Content wrapper
               Component.element(
+                child: child,
                 tag: _divValue,
                 classes: 'fixed inset-0 z-50 flex items-center justify-center',
                 children: children,
-                child: child,
               ),
             ],
           )
@@ -140,9 +140,9 @@ class DialogContent extends UiComponent {
     Key? key,
   }) {
     return DialogContent(
-      key: key ?? this.key,
       children: children ?? this.children,
       child: child ?? this.child,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -154,13 +154,13 @@ class DialogContent extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
       children: children,
     );
   }
@@ -223,9 +223,9 @@ class DialogHeader extends UiComponent {
     Key? key,
   }) {
     return DialogHeader(
-      key: key ?? this.key,
       children: children ?? this.children,
       child: child ?? this.child,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -237,13 +237,13 @@ class DialogHeader extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
       children: children,
     );
   }
@@ -297,9 +297,9 @@ class DialogFooter extends UiComponent {
     Key? key,
   }) {
     return DialogFooter(
-      key: key ?? this.key,
       children: children ?? this.children,
       child: child ?? this.child,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -311,13 +311,13 @@ class DialogFooter extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: child,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: child,
       children: children,
     );
   }
@@ -371,8 +371,8 @@ class DialogTitle extends UiComponent {
     Key? key,
   }) {
     return DialogTitle(
-      key: key ?? this.key,
       titleChild: titleChild ?? this.titleChild,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -384,13 +384,13 @@ class DialogTitle extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: titleChild,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: titleChild,
     );
   }
 
@@ -442,8 +442,8 @@ class DialogDescription extends UiComponent {
     Key? key,
   }) {
     return DialogDescription(
-      key: key ?? this.key,
       descriptionChild: descriptionChild ?? this.descriptionChild,
+      key: key ?? this.key,
       attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
@@ -455,13 +455,13 @@ class DialogDescription extends UiComponent {
   @override
   Component build(BuildContext context) {
     return Component.element(
+      child: descriptionChild,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: descriptionChild,
     );
   }
 

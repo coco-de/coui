@@ -13,20 +13,18 @@ class ScaffoldTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'scaffold',
       title: 'Scaffold',
-      scale: 1.2,
       example: Card(
         child: Container(
-          width: 300,
-          height: 400,
           decoration: BoxDecoration(
             border: Border.all(color: theme.colorScheme.border),
             borderRadius: BorderRadius.circular(8),
           ),
+          width: 300,
+          height: 400,
           child: Column(
             children: [
               // AppBar
               Container(
-                height: 56,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
                   color: theme.colorScheme.primary,
@@ -35,6 +33,7 @@ class ScaffoldTile extends StatelessWidget implements IComponentPage {
                     topRight: Radius.circular(8),
                   ),
                 ),
+                height: 56,
                 child: Row(
                   children: [
                     Icon(
@@ -61,7 +60,6 @@ class ScaffoldTile extends StatelessWidget implements IComponentPage {
               ),
               // Bottom Navigation
               Container(
-                height: 56,
                 decoration: BoxDecoration(
                   color: theme.colorScheme.muted,
                   borderRadius: const BorderRadius.only(
@@ -69,6 +67,7 @@ class ScaffoldTile extends StatelessWidget implements IComponentPage {
                     bottomRight: Radius.circular(8),
                   ),
                 ),
+                height: 56,
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -82,6 +81,7 @@ class ScaffoldTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.2,
     );
   }
 }

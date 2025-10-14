@@ -10,8 +10,8 @@ class ProgressTile extends StatelessWidget implements IComponentPage {
   @override
   Widget build(BuildContext context) {
     return ComponentCard(
-      title: 'Progress',
       name: 'progress',
+      title: 'Progress',
       example: const Progress(progress: 0.75).sized(width: 200),
       center: true,
     );

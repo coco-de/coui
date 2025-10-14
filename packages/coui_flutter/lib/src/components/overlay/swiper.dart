@@ -229,7 +229,6 @@ class DrawerSwiperHandler extends SwiperHandler {
       barrierColor: barrierColor,
       barrierDismissible: barrierDismissible ?? true,
       borderRadius: borderRadius,
-      builder: builder,
       context: context,
       dragHandleSize: dragHandleSize,
       draggable: draggable ?? true,
@@ -240,6 +239,7 @@ class DrawerSwiperHandler extends SwiperHandler {
       surfaceOpacity: surfaceOpacity,
       transformBackdrop: transformBackdrop ?? true,
       useSafeArea: useSafeArea ?? true,
+      builder: builder,
     );
   }
 }
@@ -284,11 +284,11 @@ class SheetSwiperHandler extends SwiperHandler {
       backdropBuilder: backdropBuilder,
       barrierColor: barrierColor,
       barrierDismissible: barrierDismissible ?? true,
-      builder: builder,
       context: context,
       draggable: draggable ?? false,
       position: position,
       transformBackdrop: transformBackdrop ?? false,
+      builder: builder,
     );
   }
 }
@@ -538,9 +538,6 @@ class _SwiperState extends State<Swiper> {
       barrierDismissible:
           widget.barrierDismissible ?? compTheme?.barrierDismissible,
       borderRadius: widget.borderRadius ?? compTheme?.borderRadius,
-      builder: (context) {
-        return KeyedSubtree(key: _key, child: widget.builder(context));
-      },
       context: context,
       dragHandleSize: widget.dragHandleSize ?? compTheme?.dragHandleSize,
       draggable: widget.draggable ?? compTheme?.draggable,
@@ -552,6 +549,9 @@ class _SwiperState extends State<Swiper> {
       transformBackdrop:
           widget.transformBackdrop ?? compTheme?.transformBackdrop,
       useSafeArea: widget.useSafeArea ?? compTheme?.useSafeArea,
+      builder: (context) {
+        return KeyedSubtree(key: _key, child: widget.builder(context));
+      },
     );
   }
 
@@ -562,21 +562,24 @@ class _SwiperState extends State<Swiper> {
 
     return switch (widget.position) {
       OverlayPosition.top || OverlayPosition.bottom => GestureDetector(
-          onVerticalDragStart: draggable ? _onDragStart : null,
-          onVerticalDragUpdate: draggable ? _onDrag : null,
-          onVerticalDragEnd: draggable ? _onDragEnd : null,
-          onVerticalDragCancel: _onDragCancel,
-          behavior: behavior,
-          child: child,
-        ),
-      OverlayPosition.left || OverlayPosition.right || OverlayPosition.start || OverlayPosition.end => GestureDetector(
-          onHorizontalDragStart: draggable ? _onDragStart : null,
-          onHorizontalDragUpdate: draggable ? _onDrag : null,
-          onHorizontalDragEnd: draggable ? _onDragEnd : null,
-          onHorizontalDragCancel: _onDragCancel,
-          behavior: behavior,
-          child: child,
-        ),
+        onVerticalDragStart: draggable ? _onDragStart : null,
+        onVerticalDragUpdate: draggable ? _onDrag : null,
+        onVerticalDragEnd: draggable ? _onDragEnd : null,
+        onVerticalDragCancel: _onDragCancel,
+        behavior: behavior,
+        child: child,
+      ),
+      OverlayPosition.left ||
+      OverlayPosition.right ||
+      OverlayPosition.start ||
+      OverlayPosition.end => GestureDetector(
+        onHorizontalDragStart: draggable ? _onDragStart : null,
+        onHorizontalDragUpdate: draggable ? _onDrag : null,
+        onHorizontalDragEnd: draggable ? _onDragEnd : null,
+        onHorizontalDragCancel: _onDragCancel,
+        behavior: behavior,
+        child: child,
+      ),
     };
   }
 

@@ -205,34 +205,34 @@ class MyAppState extends State<MyApp> {
   final List<GoRoute> routes = [
     GoRoute(
       path: '/',
-      builder: (context, state) => const IntroductionPage(),
       // builder: (context, state) => TestWidget(),
       name: 'introduction',
+      builder: (context, state) => const IntroductionPage(),
     ),
     GoRoute(
       path: '/installation',
-      builder: (context, state) => const InstallationPage(),
       name: 'installation',
+      builder: (context, state) => const InstallationPage(),
     ),
     GoRoute(
       path: '/theme',
-      builder: (context, state) => const ThemePage(),
       name: 'theme',
+      builder: (context, state) => const ThemePage(),
     ),
     GoRoute(
       path: '/typography',
-      builder: (context, state) => const TypographyPage(),
       name: 'typography',
+      builder: (context, state) => const TypographyPage(),
     ),
     GoRoute(
       path: '/layout',
-      builder: (context, state) => const LayoutPage(),
       name: 'layout',
+      builder: (context, state) => const LayoutPage(),
     ),
     GoRoute(
       path: '/external',
-      builder: (context, state) => const MaterialExample(),
       name: 'external',
+      builder: (context, state) => const MaterialExample(),
     ),
     GoRoute(
       path: '/web_preloader',
@@ -258,143 +258,143 @@ class MyAppState extends State<MyApp> {
       routes: [
         GoRoute(
           path: 'accordion',
-          builder: (context, state) => const AccordionExample(),
           name: 'accordion',
+          builder: (context, state) => const AccordionExample(),
         ),
         GoRoute(
           path: 'alert',
-          builder: (context, state) => const AlertExample(),
           name: 'alert',
+          builder: (context, state) => const AlertExample(),
         ),
         GoRoute(
           path: 'alert-dialog',
-          builder: (context, state) => const AlertDialogExample(),
           name: 'alert_dialog',
+          builder: (context, state) => const AlertDialogExample(),
         ),
         GoRoute(
           path: 'avatar',
-          builder: (context, state) => const AvatarExample(),
           name: 'avatar',
+          builder: (context, state) => const AvatarExample(),
         ),
         GoRoute(
           path: 'badge',
-          builder: (context, state) => const BadgeExample(),
           name: 'badge',
+          builder: (context, state) => const BadgeExample(),
         ),
         GoRoute(
           path: 'breadcrumb',
-          builder: (context, state) => const BreadcrumbExample(),
           name: 'breadcrumb',
+          builder: (context, state) => const BreadcrumbExample(),
         ),
         GoRoute(
           path: 'button',
-          builder: (context, state) => const ButtonExample(),
           name: 'button',
+          builder: (context, state) => const ButtonExample(),
         ),
         GoRoute(
           path: 'card',
-          builder: (context, state) => const CardExample(),
           name: 'card',
+          builder: (context, state) => const CardExample(),
         ),
         GoRoute(
           path: 'checkbox',
-          builder: (context, state) => const CheckboxExample(),
           name: 'checkbox',
+          builder: (context, state) => const CheckboxExample(),
         ),
         GoRoute(
           path: 'code-snippet',
-          builder: (context, state) => const CodeSnippetExample(),
           name: 'code_snippet',
+          builder: (context, state) => const CodeSnippetExample(),
         ),
         GoRoute(
           path: 'circular-progress',
-          builder: (context, state) => const CircularProgressExample(),
           name: 'circular_progress',
+          builder: (context, state) => const CircularProgressExample(),
         ),
         GoRoute(
           path: 'color-picker',
-          builder: (context, state) => const ColorPickerExample(),
           name: 'color_picker',
+          builder: (context, state) => const ColorPickerExample(),
         ),
         GoRoute(
           path: 'select',
-          builder: (context, state) => const SelectExample(),
           name: 'select',
+          builder: (context, state) => const SelectExample(),
         ),
         GoRoute(
           path: 'divider',
-          builder: (context, state) => const DividerExample(),
           name: 'divider',
+          builder: (context, state) => const DividerExample(),
         ),
         GoRoute(
           path: 'collapsible',
-          builder: (context, state) => const CollapsibleExample(),
           name: 'collapsible',
+          builder: (context, state) => const CollapsibleExample(),
         ),
         GoRoute(
           path: 'command',
-          builder: (context, state) => const CommandExample(),
           name: 'command',
+          builder: (context, state) => const CommandExample(),
         ),
         GoRoute(
           path: 'form',
-          builder: (context, state) => const FormExample(),
           name: 'form',
+          builder: (context, state) => const FormExample(),
         ),
         GoRoute(
           path: 'carousel',
-          builder: (context, state) => const CarouselExample(),
           name: 'carousel',
+          builder: (context, state) => const CarouselExample(),
         ),
         GoRoute(
           path: 'calendar',
-          builder: (context, state) => const CalendarExample(),
           name: 'calendar',
+          builder: (context, state) => const CalendarExample(),
         ),
         GoRoute(
           path: 'date_picker',
-          builder: (context, state) => const DatePickerExample(),
           name: 'date_picker',
+          builder: (context, state) => const DatePickerExample(),
         ),
         GoRoute(
           path: 'dialog',
-          builder: (context, state) => const DialogExample(),
           name: 'dialog',
+          builder: (context, state) => const DialogExample(),
         ),
         GoRoute(
           path: 'pagination',
-          builder: (context, state) => const PaginationExample(),
           name: 'pagination',
+          builder: (context, state) => const PaginationExample(),
         ),
         GoRoute(
           path: 'input',
-          builder: (context, state) => const InputExample(),
           name: 'input',
+          builder: (context, state) => const InputExample(),
         ),
         GoRoute(
           path: 'radio_group',
-          builder: (context, state) => const RadioGroupExample(),
           name: 'radio_group',
+          builder: (context, state) => const RadioGroupExample(),
         ),
         GoRoute(
           path: 'switch',
-          builder: (context, state) => const SwitchExample(),
           name: 'switch',
+          builder: (context, state) => const SwitchExample(),
         ),
         GoRoute(
           path: 'slider',
-          builder: (context, state) => const SliderExample(),
           name: 'slider',
+          builder: (context, state) => const SliderExample(),
         ),
         GoRoute(
           path: 'steps',
-          builder: (context, state) => const StepsExample(),
           name: 'steps',
+          builder: (context, state) => const StepsExample(),
         ),
         GoRoute(
           path: 'tab_list',
-          builder: (context, state) => const TabListExample(),
           name: 'tab_list',
+          builder: (context, state) => const TabListExample(),
         ),
         GoRoute(
           path: 'tooltip',
@@ -418,13 +418,13 @@ class MyAppState extends State<MyApp> {
         ),
         GoRoute(
           path: 'input_otp',
-          builder: (context, state) => const InputOTPExample(),
           name: 'input_otp',
+          builder: (context, state) => const InputOTPExample(),
         ),
         GoRoute(
           path: 'text_area',
-          builder: (context, state) => const TextAreaExample(),
           name: 'text_area',
+          builder: (context, state) => const TextAreaExample(),
         ),
         GoRoute(
           path: 'animated_value_builder',
@@ -511,8 +511,8 @@ class MyAppState extends State<MyApp> {
           },
         ),
         GoRoute(
-          name: 'hover_card',
           path: 'hover_card',
+          name: 'hover_card',
           builder: (context, state) {
             return const HoverCardExample();
           },
@@ -722,30 +722,30 @@ class MyAppState extends State<MyApp> {
         ),
         GoRoute(
           path: 'table',
-          builder: (context, state) => const TableExample(),
           name: 'table',
+          builder: (context, state) => const TableExample(),
         ),
         GoRoute(
           path: 'tab_pane',
-          builder: (context, state) => const TabPaneExample(),
           name: 'tab_pane',
+          builder: (context, state) => const TabPaneExample(),
         ),
         GoRoute(
           path: 'window',
-          builder: (context, state) => const WindowExample(),
           name: 'window',
+          builder: (context, state) => const WindowExample(),
         ),
         GoRoute(
           path: 'expandable_sidebar',
-          builder: (context, state) => const ExpandableSidebarExample(),
           name: 'expandable_sidebar',
+          builder: (context, state) => const ExpandableSidebarExample(),
         ),
         GoRoute(
           path: 'formatted_input',
+          name: 'formatted_input',
           builder: (context, state) {
             return const FormattedInputExample();
           },
-          name: 'formatted_input',
         ),
         GoRoute(
           path: 'swiper',
@@ -862,11 +862,10 @@ class MyAppState extends State<MyApp> {
     return Data.inherit(
       data: this,
       child: CoUIApp.router(
-        routerConfig: router,
         debugShowCheckedModeBanner: false,
-        title: 'coui/ui Flutter',
-        scaling: AdaptiveScaling(scaling),
         enableScrollInterception: true,
+        routerConfig: router,
+        scaling: AdaptiveScaling(scaling),
         // popoverHandler: DialogOverlayHandler(),
         theme: ThemeData(
           colorScheme: colorScheme,
@@ -874,6 +873,7 @@ class MyAppState extends State<MyApp> {
           surfaceBlur: surfaceBlur,
           surfaceOpacity: surfaceOpacity,
         ),
+        title: 'coui/ui Flutter',
       ),
     );
   }

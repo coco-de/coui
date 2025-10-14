@@ -51,8 +51,8 @@ class ResizableExample extends StatelessWidget {
           child: ResizableExample6(),
         ),
         WidgetUsageExample(
-          path: 'lib/pages/docs/components/resizable/resizable_example_7.dart',
           title: 'Dynamic Children Example',
+          path: 'lib/pages/docs/components/resizable/resizable_example_7.dart',
           child: ResizableExample7(),
         ),
       ],

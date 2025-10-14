@@ -17,12 +17,6 @@ typedef DrawerCloseCallback = void Function();
 /// )
 /// ```
 class Drawer extends UiComponent {
-  /// Close icon character code (U+00D7 - ×).
-  static const int _kCloseIconCode = 0x00D7;
-
-  /// Close icon character.
-  static String get _kCloseIcon => String.fromCharCode(_kCloseIconCode);
-
   /// Creates a Drawer component.
   ///
   /// Parameters:
@@ -52,7 +46,13 @@ class Drawer extends UiComponent {
   /// Drawer position.
   final DrawerSide side;
 
+  /// Close icon character code (U+00D7 - ×).
+  static const _kCloseIconCode = 0x00D7;
+
   static const _divValue = 'div';
+
+  /// Close icon character.
+  static String get _kCloseIcon => String.fromCharCode(_kCloseIconCode);
 
   @override
   Drawer copyWith({
@@ -68,15 +68,15 @@ class Drawer extends UiComponent {
     Styles? css,
   }) {
     return Drawer(
-      attributes: attributes ?? this.componentAttributes,
+      key: key ?? this.key,
+      isOpen: isOpen ?? this.isOpen,
+      onClose: onClose ?? this.onClose,
       child: child ?? this.child,
+      side: side ?? this.side,
+      attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
-      isOpen: isOpen ?? this.isOpen,
-      key: key ?? this.key,
-      onClose: onClose ?? this.onClose,
-      side: side ?? this.side,
       tag: tag ?? this.tag,
     );
   }
@@ -85,11 +85,6 @@ class Drawer extends UiComponent {
   Component build(BuildContext context) {
     return isOpen
         ? div(
-            id: id,
-            classes: _buildClasses(),
-            styles: this.css,
-            attributes: this.componentAttributes,
-            events: this.events,
             children: [
               // Overlay
               div(
@@ -99,21 +94,18 @@ class Drawer extends UiComponent {
               ),
               // Drawer content
               div(
-                classes: _drawerClasses,
-                attributes: {
-                  'role': 'dialog',
-                  'aria-modal': 'true',
-                },
                 children: [
                   // Header with close button
                   div(
-                    classes: 'flex items-center justify-between p-4 border-b',
                     children: [
                       span(
-                        classes: 'text-lg font-semibold',
                         child: text('Drawer'),
+                        classes: 'text-lg font-semibold',
                       ),
                       button(
+                        children: [
+                          text(_kCloseIcon),
+                        ],
                         classes:
                             'rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
                         attributes: {
@@ -121,20 +113,28 @@ class Drawer extends UiComponent {
                           'aria-label': 'Close',
                         },
                         events: _closeEvents,
-                        children: [
-                          text(_kCloseIcon),
-                        ],
                       ),
                     ],
+                    classes: 'flex items-center justify-between p-4 border-b',
                   ),
                   // Content
                   div(
-                    classes: 'p-4',
                     child: child,
+                    classes: 'p-4',
                   ),
                 ],
+                classes: _drawerClasses,
+                attributes: {
+                  'role': 'dialog',
+                  'aria-modal': 'true',
+                },
               ),
             ],
+            id: id,
+            classes: _buildClasses(),
+            styles: this.css,
+            attributes: this.componentAttributes,
+            events: this.events,
           )
         : Component.empty();
   }

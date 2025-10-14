@@ -53,16 +53,16 @@ class _AutoCompleteExample1State extends State<AutoCompleteExample1> {
       suggestions: _currentSuggestions,
       child: TextField(
         controller: _controller,
-        onChanged: _updateSuggestions,
         features: [
           InputFeature.trailing(
             const IconButton.text(
-              density: ButtonDensity.compact,
               icon: Icon(Icons.clear),
               onPressed: clearActiveTextInput,
+              density: ButtonDensity.compact,
             ),
           ),
         ],
+        onChanged: _updateSuggestions,
       ),
     );
   }

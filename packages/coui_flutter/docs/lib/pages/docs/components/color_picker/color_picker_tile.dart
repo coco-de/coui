@@ -13,13 +13,13 @@ class ColorPickerTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'color_picker',
       title: 'Color Picker',
-      reverse: true,
-      reverseVertical: true,
       example: Card(
         child: ColorPickerSet(
           color: ColorDerivative.fromColor(material.Colors.blue),
         ),
       ),
+      reverse: true,
+      reverseVertical: true,
     );
   }
 }

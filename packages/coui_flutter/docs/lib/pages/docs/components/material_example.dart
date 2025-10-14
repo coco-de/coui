@@ -13,37 +13,36 @@ class MaterialExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return ComponentPage(
       name: 'external',
-      component: false,
       description: 'You can use Material/Cupertino Widgets with coui_flutter.',
       displayName: 'Material/Cupertino Widgets',
+      component: false,
       children: [
         const Gap(24),
         Alert(
+          content: const Text(
+            'By default, Material/Cupertino Theme will follow coui_flutter theme. ',
+          ).thenButton(
+            child: const Text(
+              'Try changing the coui_flutter theme right here!',
+            ),
+            onPressed: () {
+              context.goNamed('theme');
+            },
+          ),
           leading: const Icon(Icons.info_outline),
           title: const Text('Note'),
-          content:
-              const Text(
-                'By default, Material/Cupertino Theme will follow coui_flutter theme. ',
-              ).thenButton(
-                onPressed: () {
-                  context.goNamed('theme');
-                },
-                child: const Text(
-                  'Try changing the coui_flutter theme right here!',
-                ),
-              ),
         ),
         WidgetUsageExample(
           title: 'Material Example',
           path: 'lib/pages/docs/components/material/material_example_1.dart',
           summarize: false,
-          child: const MaterialExample1().sized(width: 500, height: 900),
+          child: const MaterialExample1().sized(height: 900, width: 500),
         ),
         WidgetUsageExample(
           title: 'Cupertino Example',
           path: 'lib/pages/docs/components/material/cupertino_example_1.dart',
           summarize: false,
-          child: const CupertinoExample1().sized(width: 500, height: 900),
+          child: const CupertinoExample1().sized(height: 900, width: 500),
         ),
       ],
     );

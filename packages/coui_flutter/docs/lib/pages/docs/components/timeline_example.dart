@@ -11,8 +11,7 @@ class TimelineExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return const ComponentPage(
       name: 'timeline',
-      description:
-          'A timeline is a way of displaying a list of events in '
+      description: 'A timeline is a way of displaying a list of events in '
           'chronological order, sometimes described as a project artifact.',
       displayName: 'Timeline',
       children: [

@@ -6,13 +6,20 @@ class DialogExample1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PrimaryButton(
+      child: const Text('Edit Profile'),
       onPressed: () {
         showDialog(
-          context: context,
           builder: (context) {
             final FormController controller = FormController();
             return AlertDialog(
-              title: const Text('Edit profile'),
+              actions: [
+                PrimaryButton(
+                  child: const Text('Save changes'),
+                  onPressed: () {
+                    Navigator.of(context).pop(controller.values);
+                  },
+                ),
+              ],
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,8 +38,8 @@ class DialogExample1 extends StatelessWidget {
                             key: FormKey(#name),
                             label: Text('Name'),
                             child: TextField(
-                              initialValue: 'Thito Yalasatria Sunarya',
                               autofocus: true,
+                              initialValue: 'Thito Yalasatria Sunarya',
                             ),
                           ),
                           FormField<String>(
@@ -46,19 +53,12 @@ class DialogExample1 extends StatelessWidget {
                   ),
                 ],
               ),
-              actions: [
-                PrimaryButton(
-                  child: const Text('Save changes'),
-                  onPressed: () {
-                    Navigator.of(context).pop(controller.values);
-                  },
-                ),
-              ],
+              title: const Text('Edit profile'),
             );
           },
+          context: context,
         );
       },
-      child: const Text('Edit Profile'),
     );
   }
 }

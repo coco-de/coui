@@ -12,7 +12,6 @@ class ButtonTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'button',
       title: 'Button',
-      scale: 1.5,
       example: SizedBox(
         width: 250,
         child: Card(
@@ -21,25 +20,29 @@ class ButtonTile extends StatelessWidget implements IComponentPage {
             runSpacing: 16,
             children: [
               PrimaryButton(
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
-                  child: const Text('Primary')),
+                child: const Text('Primary'),
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
+              ),
               SecondaryButton(
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
-                  child: const Text('Secondary')),
+                child: const Text('Secondary'),
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
+              ),
               OutlineButton(
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
-                  child: const Text('Outline')),
+                child: const Text('Outline'),
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
+              ),
               GhostButton(
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
-                  child: const Text('Ghost')),
+                child: const Text('Ghost'),
+                onPressed: () {
+                  // TODOS: will be implemented later.
+                },
+              ),
               DestructiveButton(
                 child: const Text('Destructive'),
                 onPressed: () {
@@ -50,6 +53,7 @@ class ButtonTile extends StatelessWidget implements IComponentPage {
           ),
         ),
       ),
+      scale: 1.5,
     );
   }
 }

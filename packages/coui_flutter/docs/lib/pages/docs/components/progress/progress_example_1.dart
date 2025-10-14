@@ -16,21 +16,22 @@ class _ProgressExample1State extends State<ProgressExample1> {
       children: [
         SizedBox(
           width: 400,
-          child: Progress(progress: _progress.clamp(0, 100), min: 0, max: 100),
+          child: Progress(max: 100, min: 0, progress: _progress.clamp(0, 100)),
         ),
         const Gap(16),
         Row(
           children: [
             DestructiveButton(
+              child: const Text('Reset'),
               onPressed: () {
                 setState(() {
                   _progress = 0;
                 });
               },
-              child: const Text('Reset'),
             ),
             const Gap(16),
             PrimaryButton(
+              child: const Text('Decrease by 10'),
               onPressed: () {
                 if (_progress > 0) {
                   setState(() {
@@ -38,10 +39,10 @@ class _ProgressExample1State extends State<ProgressExample1> {
                   });
                 }
               },
-              child: const Text('Decrease by 10'),
             ),
             const Gap(16),
             PrimaryButton(
+              child: const Text('Increase by 10'),
               onPressed: () {
                 if (_progress < 100) {
                   setState(() {
@@ -49,7 +50,6 @@ class _ProgressExample1State extends State<ProgressExample1> {
                   });
                 }
               },
-              child: const Text('Increase by 10'),
             ),
           ],
         ),

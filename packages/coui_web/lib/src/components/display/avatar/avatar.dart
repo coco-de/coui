@@ -53,8 +53,8 @@ class Avatar extends UiComponent {
     return Avatar(
       key: key ?? this.key,
       src: src ?? this.src,
-      alt: alt ?? this.alt,
       fallback: fallback ?? this.fallback,
+      alt: alt ?? this.alt,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
@@ -86,9 +86,9 @@ class Avatar extends UiComponent {
       );
     } else if (currentFallback != null) {
       content = div(
+        child: text(currentFallback),
         classes:
             'flex h-full w-full items-center justify-center rounded-full bg-muted',
-        child: text(currentFallback),
       );
     } else {
       content = div(
@@ -98,13 +98,13 @@ class Avatar extends UiComponent {
     }
 
     return Component.element(
+      child: content,
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: content,
     );
   }
 

@@ -47,8 +47,8 @@ class Accordion extends UiComponent {
   }) {
     return Accordion(
       key: key ?? this.key,
-      attributes: attributes ?? this.componentAttributes,
       children: children ?? this.children,
+      attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
@@ -163,19 +163,19 @@ class AccordionItem extends UiComponent {
             text(title),
             // Chevron icon (placeholder - you'd use actual icon component)
             span(
-              classes: 'transition-transform duration-200',
               child: text(_kChevronIcon),
+              classes: 'transition-transform duration-200',
             ),
           ],
         ),
         // Content
         if (isOpen)
           div(
-            classes: 'overflow-hidden text-sm transition-all pb-4 pt-0',
             child: div(
-              classes: 'pt-0',
               child: content,
+              classes: 'pt-0',
             ),
+            classes: 'overflow-hidden text-sm transition-all pb-4 pt-0',
           ),
       ],
     );

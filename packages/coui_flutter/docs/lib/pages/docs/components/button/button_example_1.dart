@@ -6,9 +6,10 @@ class ButtonExample1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PrimaryButton(
-        onPressed: () {
-          // TODOS: will be implemented later.
-        },
-        child: const Text('Primary'));
+      child: const Text('Primary'),
+      onPressed: () {
+        // TODOS: will be implemented later.
+      },
+    );
   }
 }

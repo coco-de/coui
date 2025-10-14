@@ -12,7 +12,6 @@ class SortableTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'sortable',
       title: 'Sortable',
-      scale: 1.2,
       example: Card(
         child: Column(
           children: [
@@ -63,6 +62,7 @@ class SortableTile extends StatelessWidget implements IComponentPage {
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.2,
     );
   }
 }

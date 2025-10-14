@@ -11,29 +11,28 @@ class NavigationMenuTile extends StatelessWidget implements IComponentPage {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ComponentCard(
-      title: 'Navigation Menu',
       name: 'navigation_menu',
-      scale: 1,
+      title: 'Navigation Menu',
       example: Card(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             NavigationMenu(
               children: [
                 Button(
-                  onPressed: () {
-                    // TODOS: will be implemented later.
-                  },
                   style: const ButtonStyle.ghost().copyWith(
                     decoration: (context, states, value) {
                       return (value as BoxDecoration).copyWith(
-                        borderRadius: BorderRadius.circular(theme.radiusMd),
                         color: theme.colorScheme.muted.scaleAlpha(0.8),
+                        borderRadius: BorderRadius.circular(theme.radiusMd),
                       );
                     },
                   ),
                   trailing: const Icon(RadixIcons.chevronUp, size: 12),
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
                   child: const Text('Getting Started'),
                 ),
                 const NavigationMenuItem(
@@ -51,14 +50,14 @@ class NavigationMenuTile extends StatelessWidget implements IComponentPage {
                   children: [
                     Button(
                       style: ButtonVariance.ghost.copyWith(
-                        padding: (context, states, value) {
-                          return const EdgeInsets.all(12);
-                        },
                         decoration: (context, states, value) {
                           return (value as BoxDecoration).copyWith(
-                            borderRadius: BorderRadius.circular(theme.radiusMd),
                             color: theme.colorScheme.muted.scaleAlpha(0.8),
+                            borderRadius: BorderRadius.circular(theme.radiusMd),
                           );
+                        },
+                        padding: (context, states, value) {
+                          return const EdgeInsets.all(12);
                         },
                       ),
                       onPressed: () {
@@ -66,11 +65,11 @@ class NavigationMenuTile extends StatelessWidget implements IComponentPage {
                       },
                       alignment: Alignment.topLeft,
                       child: Basic(
-                        title: const Text('Installation').medium(),
                         content: const Text(
                           'How to install Coui/UI for Flutter',
                         ).muted(),
                         mainAxisAlignment: MainAxisAlignment.start,
+                        title: const Text('Installation').medium(),
                       ),
                     ).constrained(maxWidth: 16 * 16),
                   ],
@@ -80,6 +79,7 @@ class NavigationMenuTile extends StatelessWidget implements IComponentPage {
           ],
         ),
       ),
+      scale: 1,
     );
   }
 }

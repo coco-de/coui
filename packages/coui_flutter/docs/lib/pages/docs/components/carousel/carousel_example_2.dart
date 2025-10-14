@@ -19,10 +19,10 @@ class _CarouselExample2State extends State<CarouselExample2> {
         mainAxisSize: MainAxisSize.min,
         children: [
           OutlineButton(
-            shape: ButtonShape.circle,
             onPressed: () {
               controller.animatePrevious(const Duration(milliseconds: 500));
             },
+            shape: ButtonShape.circle,
             child: const Icon(Icons.arrow_upward),
           ),
           const Gap(24),
@@ -30,23 +30,23 @@ class _CarouselExample2State extends State<CarouselExample2> {
             child: SizedBox(
               width: 200,
               child: Carousel(
-                transition: const CarouselTransition.sliding(gap: 24),
                 alignment: CarouselAlignment.center,
                 controller: controller,
                 direction: Axis.vertical,
-                sizeConstraint: const CarouselFixedConstraint(200),
                 itemBuilder: (context, index) {
                   return NumberedContainer(index: index);
                 },
+                sizeConstraint: const CarouselFixedConstraint(200),
+                transition: const CarouselTransition.sliding(gap: 24),
               ),
             ),
           ),
           const Gap(24),
           OutlineButton(
-            shape: ButtonShape.circle,
             onPressed: () {
               controller.animateNext(const Duration(milliseconds: 500));
             },
+            shape: ButtonShape.circle,
             child: const Icon(Icons.arrow_downward),
           ),
         ],

@@ -292,10 +292,10 @@ class NumberTicker extends StatelessWidget {
         initialValue: initialNumber?.toDouble(),
         value: number.toDouble(),
         duration: duration,
+        curve: curve,
         builder: (context, value, child) {
           return Text(formatter!(value), style: textStyle);
         },
-        curve: curve,
       );
     }
 
@@ -303,10 +303,10 @@ class NumberTicker extends StatelessWidget {
       initialValue: initialNumber?.toDouble(),
       value: number.toDouble(),
       duration: duration,
+      curve: curve,
       builder: (context, value, child) {
         return builder!(context, value, child);
       },
-      curve: curve,
       child: child,
     );
   }

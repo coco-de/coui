@@ -47,9 +47,8 @@ class DropdownMenuTile extends StatelessWidget implements IComponentPage {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ComponentCard(
-      title: 'Dropdown Menu',
       name: 'dropdown_menu',
-      scale: 1,
+      title: 'Dropdown Menu',
       example: Stack(
         children: [
           Card(
@@ -57,10 +56,11 @@ class DropdownMenuTile extends StatelessWidget implements IComponentPage {
               mainAxisSize: MainAxisSize.min,
               children: [
                 OutlineButton(
-                    onPressed: () {
-                      // TODOS: will be implemented later.
-                    },
-                    child: const Text('Options')),
+                  child: const Text('Options'),
+                  onPressed: () {
+                    // TODOS: will be implemented later.
+                  },
+                ),
                 const Gap(8),
                 SizedBox(
                   width: 192,
@@ -99,28 +99,28 @@ class DropdownMenuTile extends StatelessWidget implements IComponentPage {
                       ),
                       Button(
                         style: const ButtonStyle.menu(),
-                        onPressed: () {
-                          // TODOS: will be implemented later.
-                        },
                         trailing: const MenuShortcut(
                           activator: SingleActivator(
                             LogicalKeyboardKey.keyC,
                             control: true,
                           ),
                         ),
+                        onPressed: () {
+                          // TODOS: will be implemented later.
+                        },
                         child: const Text('Copy'),
                       ),
                       Button(
                         style: const ButtonStyle.menu(),
-                        onPressed: () {
-                          // TODOS: will be implemented later.
-                        },
                         trailing: const MenuShortcut(
                           activator: SingleActivator(
                             LogicalKeyboardKey.keyV,
                             control: true,
                           ),
                         ),
+                        onPressed: () {
+                          // TODOS: will be implemented later.
+                        },
                         child: const Text('Paste'),
                       ),
                     ],
@@ -130,12 +130,13 @@ class DropdownMenuTile extends StatelessWidget implements IComponentPage {
             ),
           ),
           const Positioned(
-            top: 105,
             left: 170,
+            top: 105,
             child: CustomPaint(painter: CursorPainter()),
           ),
         ],
       ),
+      scale: 1,
     );
   }
 }

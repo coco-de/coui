@@ -13,28 +13,27 @@ class LinearProgressTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'linear_progress',
       title: 'Linear Progress',
-      scale: 1.2,
       example: Card(
         child: Column(
           children: [
             const Text('Loading Progress:').bold(),
             const Gap(16),
             Container(
-              width: 250,
-              height: 8,
               decoration: BoxDecoration(
                 color: theme.colorScheme.muted,
                 borderRadius: BorderRadius.circular(4),
               ),
+              width: 250,
+              height: 8,
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  width: 175, // 70% of 250
-                  height: 8,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.primary,
                     borderRadius: BorderRadius.circular(4),
                   ),
+                  width: 175, // 70% of 250
+                  height: 8,
                 ),
               ),
             ),
@@ -43,6 +42,7 @@ class LinearProgressTile extends StatelessWidget implements IComponentPage {
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.2,
     );
   }
 }

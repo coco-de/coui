@@ -12,7 +12,6 @@ class ChipTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'chip',
       title: 'Chip',
-      scale: 1.5,
       example: Card(
         child: Wrap(
           spacing: 8,
@@ -21,18 +20,19 @@ class ChipTile extends StatelessWidget implements IComponentPage {
             Chip(child: const Text('Default'), onPressed: () {}),
             Chip(
               leading: const Icon(LucideIcons.user),
-              child: const Text('With Icon'),
               onPressed: () {},
+              child: const Text('With Icon'),
             ),
             Chip(
-              trailing: const Icon(LucideIcons.x),
               onPressed: () {},
+              trailing: const Icon(LucideIcons.x),
               child: const Text('Removable'),
             ),
             const Chip(child: Text('Disabled')),
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.5,
     );
   }
 }

@@ -9,13 +9,8 @@ class AlertDialogExample1 extends StatelessWidget {
       child: const Text('Click Here'),
       onPressed: () {
         showDialog(
-          context: context,
           builder: (context) {
             return AlertDialog(
-              title: const Text('Alert title'),
-              content: const Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-              ),
               actions: [
                 OutlineButton(
                   child: const Text('Cancel'),
@@ -30,8 +25,13 @@ class AlertDialogExample1 extends StatelessWidget {
                   },
                 ),
               ],
+              content: const Text(
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+              ),
+              title: const Text('Alert title'),
             );
           },
+          context: context,
         );
       },
     );

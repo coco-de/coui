@@ -8,7 +8,6 @@ class InputExample3 extends StatelessWidget {
     return Column(
       children: [
         TextField(
-          placeholder: const Text('Enter your name'),
           features: [
             const InputFeature.clear(),
             InputFeature.hint(
@@ -21,14 +20,15 @@ class InputExample3 extends StatelessWidget {
             const InputFeature.copy(),
             const InputFeature.paste(),
           ],
+          placeholder: const Text('Enter your name'),
         ),
         const Gap(24),
         const TextField(
-          placeholder: Text('Enter your password'),
           features: [
             InputFeature.clear(visibility: InputFeatureVisibility.textNotEmpty),
             InputFeature.passwordToggle(mode: PasswordPeekMode.hold),
           ],
+          placeholder: Text('Enter your password'),
         ),
       ],
     );

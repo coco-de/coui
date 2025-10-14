@@ -12,36 +12,32 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ComponentCard(
-      title: 'Menubar',
       name: 'menubar',
-      scale: 1,
+      title: 'Menubar',
       example: Card(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             OutlinedContainer(
-              borderColor: theme.colorScheme.border,
               backgroundColor: theme.colorScheme.background,
+              borderColor: theme.colorScheme.border,
               borderRadius: theme.borderRadiusMd,
               child: Padding(
                 padding: const EdgeInsets.all(4),
                 child: IntrinsicHeight(
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Button(
+                        style: const ButtonStyle.menubar(),
                         onPressed: () {
                           // TODOS: will be implemented later.
                         },
-                        style: const ButtonStyle.menubar(),
                         child: const Text('File'),
                       ),
                       Button(
-                        onPressed: () {
-                          // TODOS: will be implemented later.
-                        },
                         style: const ButtonStyle.menubar().copyWith(
                           decoration: (context, states, value) {
                             return (value as BoxDecoration).copyWith(
@@ -52,20 +48,23 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
                             );
                           },
                         ),
+                        onPressed: () {
+                          // TODOS: will be implemented later.
+                        },
                         child: const Text('Edit'),
                       ),
                       Button(
+                        style: const ButtonStyle.menubar(),
                         onPressed: () {
                           // TODOS: will be implemented later.
                         },
-                        style: const ButtonStyle.menubar(),
                         child: const Text('View'),
                       ),
                       Button(
+                        style: const ButtonStyle.menubar(),
                         onPressed: () {
                           // TODOS: will be implemented later.
                         },
-                        style: const ButtonStyle.menubar(),
                         child: const Text('Help'),
                       ),
                     ],
@@ -81,15 +80,15 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
                 children: [
                   Button(
                     style: const ButtonStyle.menu(),
-                    onPressed: () {
-                      // TODOS: will be implemented later.
-                    },
                     trailing: const MenuShortcut(
                       activator: SingleActivator(
                         LogicalKeyboardKey.keyZ,
                         control: true,
                       ),
                     ),
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     child: const Text('Undo'),
                   ),
                   Button(
@@ -101,55 +100,55 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
                         );
                       },
                     ),
-                    onPressed: () {
-                      // TODOS: will be implemented later.
-                    },
                     trailing: const MenuShortcut(
                       activator: SingleActivator(
                         LogicalKeyboardKey.keyY,
                         control: true,
                       ),
                     ),
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     child: const Text('Redo'),
                   ),
                   const MenuDivider(),
                   Button(
                     style: const ButtonStyle.menu(),
-                    onPressed: () {
-                      // TODOS: will be implemented later.
-                    },
                     trailing: const MenuShortcut(
                       activator: SingleActivator(
                         LogicalKeyboardKey.keyX,
                         control: true,
                       ),
                     ),
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     child: const Text('Cut'),
                   ),
                   Button(
                     style: const ButtonStyle.menu(),
-                    onPressed: () {
-                      // TODOS: will be implemented later.
-                    },
                     trailing: const MenuShortcut(
                       activator: SingleActivator(
                         LogicalKeyboardKey.keyC,
                         control: true,
                       ),
                     ),
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     child: const Text('Copy'),
                   ),
                   Button(
                     style: const ButtonStyle.menu(),
-                    onPressed: () {
-                      // TODOS: will be implemented later.
-                    },
                     trailing: const MenuShortcut(
                       activator: SingleActivator(
                         LogicalKeyboardKey.keyV,
                         control: true,
                       ),
                     ),
+                    onPressed: () {
+                      // TODOS: will be implemented later.
+                    },
                     child: const Text('Paste'),
                   ),
                 ],
@@ -158,6 +157,7 @@ class MenubarTile extends StatelessWidget implements IComponentPage {
           ],
         ),
       ),
+      scale: 1,
     );
   }
 }

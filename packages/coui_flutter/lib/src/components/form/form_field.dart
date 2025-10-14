@@ -86,6 +86,7 @@ class ObjectFormFieldState<T> extends State<ObjectFormField<T>>
   void _showDialog([T? value]) {
     value ??= formValue;
     showDialog<ObjectFormFieldDialogResult<T>>(
+      context: context,
       builder: (context) {
         return _ObjectFormFieldDialog<T>(
           decorate: widget.decorate,
@@ -96,7 +97,6 @@ class ObjectFormFieldState<T> extends State<ObjectFormField<T>>
           value: value,
         );
       },
-      context: context,
     ).then((value) {
       if (mounted && value is ObjectFormFieldDialogResult<T>) {
         this.value = value.value;
@@ -111,6 +111,11 @@ class ObjectFormFieldState<T> extends State<ObjectFormField<T>>
     _popoverController.show<void>(
       alignment: widget.popoverAlignment ?? Alignment.topLeft,
       anchorAlignment: widget.popoverAnchorAlignment ?? Alignment.bottomLeft,
+      context: context,
+      offset: Offset(0, scaling * 8),
+      overlayBarrier: OverlayBarrier(
+        borderRadius: BorderRadius.circular(theme.radiusLg),
+      ),
       builder: (context) {
         return _ObjectFormFieldPopup<T>(
           decorate: widget.decorate,
@@ -125,11 +130,6 @@ class ObjectFormFieldState<T> extends State<ObjectFormField<T>>
           value: value,
         );
       },
-      context: context,
-      offset: Offset(0, scaling * 8),
-      overlayBarrier: OverlayBarrier(
-        borderRadius: BorderRadius.circular(theme.radiusLg),
-      ),
     );
   }
 

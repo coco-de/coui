@@ -14,18 +14,18 @@ class _SwitcherExample2State extends State<SwitcherExample2> {
   @override
   Widget build(BuildContext context) {
     return Switcher(
+      direction: AxisDirection.left,
       index: _isRegister ? 1 : 0,
       onIndexChanged: (index) {
         setState(() {
           _isRegister = index == 1;
         });
       },
-      direction: AxisDirection.left,
       children: [
         Container(
           key: const Key('login'),
-          width: 350,
           padding: const EdgeInsets.all(16),
+          width: 350,
           child: Form(
             controller: _loginController,
             child: Column(
@@ -35,38 +35,38 @@ class _SwitcherExample2State extends State<SwitcherExample2> {
                 FormField(
                   key: const TextFieldKey(#email),
                   label: const Text('Email'),
-                  validator: const EmailValidator() & const NotEmptyValidator(),
                   showErrors: const {
                     FormValidationMode.changed,
                     FormValidationMode.submitted,
                   },
+                  validator: const EmailValidator() & const NotEmptyValidator(),
                   child: TextField(
+                    autocorrect: false,
+                    enableSuggestions: false,
                     initialValue: _loginController.getValue(
                       const TextFieldKey(#email),
                     ),
                     keyboardType: TextInputType.emailAddress,
-                    autocorrect: false,
-                    enableSuggestions: false,
                   ),
                 ),
                 const FormField(
                   key: TextFieldKey(#password),
                   label: Text('Password'),
-                  validator: NotEmptyValidator(),
                   showErrors: {
                     FormValidationMode.changed,
                     FormValidationMode.submitted,
                   },
+                  validator: NotEmptyValidator(),
                   child: TextField(obscureText: true),
                 ),
                 const SubmitButton(child: Text('Login')),
                 const Text('Don\'t have an account? ').thenButton(
+                  child: const Text('Sign Up!'),
                   onPressed: () {
                     setState(() {
                       _isRegister = true;
                     });
                   },
-                  child: const Text('Sign Up!'),
                 ),
               ],
             ),
@@ -74,8 +74,8 @@ class _SwitcherExample2State extends State<SwitcherExample2> {
         ),
         Container(
           key: const Key('register-form'),
-          width: 350,
           padding: const EdgeInsets.all(16),
+          width: 350,
           child: Form(
             controller: _registerController,
             child: Column(
@@ -85,54 +85,54 @@ class _SwitcherExample2State extends State<SwitcherExample2> {
                 FormField(
                   key: const TextFieldKey(#email),
                   label: const Text('Email'),
-                  validator: const EmailValidator() & const NotEmptyValidator(),
                   showErrors: const {
                     FormValidationMode.changed,
                     FormValidationMode.submitted,
                   },
+                  validator: const EmailValidator() & const NotEmptyValidator(),
                   child: TextField(
+                    autocorrect: false,
+                    enableSuggestions: false,
                     initialValue: _registerController.getValue(
                       const TextFieldKey(#email),
                     ),
                     keyboardType: TextInputType.emailAddress,
-                    autocorrect: false,
-                    enableSuggestions: false,
                   ),
                 ),
                 const FormField(
                   key: TextFieldKey(#password),
                   label: Text('Password'),
-                  validator: LengthValidator(
-                    min: 6,
-                    message: 'Password must be at least 6 characters',
-                  ),
                   showErrors: {
                     FormValidationMode.changed,
                     FormValidationMode.submitted,
                   },
+                  validator: LengthValidator(
+                    message: 'Password must be at least 6 characters',
+                    min: 6,
+                  ),
                   child: TextField(obscureText: true),
                 ),
                 const FormField(
                   key: TextFieldKey(#confirmPassword),
                   label: Text('Confirm Password'),
-                  validator: CompareWith.equal(
-                    TextFieldKey(#password),
-                    message: 'Passwords do not match',
-                  ),
                   showErrors: {
                     FormValidationMode.changed,
                     FormValidationMode.submitted,
                   },
+                  validator: CompareWith.equal(
+                    TextFieldKey(#password),
+                    message: 'Passwords do not match',
+                  ),
                   child: TextField(obscureText: true),
                 ),
                 const SubmitButton(child: Text('Register')),
                 const Text('Already have an account? ').thenButton(
+                  child: const Text('Login!'),
                   onPressed: () {
                     setState(() {
                       _isRegister = false;
                     });
                   },
-                  child: const Text('Login!'),
                 ),
               ],
             ),

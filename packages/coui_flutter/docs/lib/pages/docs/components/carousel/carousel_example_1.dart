@@ -18,10 +18,10 @@ class _CarouselExample1State extends State<CarouselExample1> {
       child: Row(
         children: [
           OutlineButton(
-            shape: ButtonShape.circle,
             onPressed: () {
               controller.animatePrevious(const Duration(milliseconds: 500));
             },
+            shape: ButtonShape.circle,
             child: const Icon(Icons.arrow_back),
           ),
           const Gap(24),
@@ -29,25 +29,25 @@ class _CarouselExample1State extends State<CarouselExample1> {
             child: SizedBox(
               height: 200,
               child: Carousel(
-                // frameTransform: Carousel.fadingTransform,
-                transition: const CarouselTransition.sliding(gap: 24),
-                controller: controller,
-                sizeConstraint: const CarouselFixedConstraint(200),
                 autoplaySpeed: const Duration(seconds: 2),
-                itemCount: 5,
+                controller: controller,
+                duration: const Duration(seconds: 1),
                 itemBuilder: (context, index) {
                   return NumberedContainer(index: index);
                 },
-                duration: const Duration(seconds: 1),
+                itemCount: 5,
+                sizeConstraint: const CarouselFixedConstraint(200),
+                // frameTransform: Carousel.fadingTransform,
+                transition: const CarouselTransition.sliding(gap: 24),
               ),
             ),
           ),
           const Gap(24),
           OutlineButton(
-            shape: ButtonShape.circle,
             onPressed: () {
               controller.animateNext(const Duration(milliseconds: 500));
             },
+            shape: ButtonShape.circle,
             child: const Icon(Icons.arrow_forward),
           ),
         ],

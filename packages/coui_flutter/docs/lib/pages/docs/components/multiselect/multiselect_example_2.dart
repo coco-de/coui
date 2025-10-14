@@ -38,11 +38,17 @@ class _MultiSelectExample2State extends State<MultiSelectExample2> {
   @override
   Widget build(BuildContext context) {
     return MultiSelect<String>(
+      constraints: const BoxConstraints(minWidth: 200),
       itemBuilder: (context, item) {
         return MultiSelectChip(value: item, child: Text(item));
       },
+      onChanged: (value) {
+        setState(() {
+          selectedValues = value;
+        });
+      },
+      placeholder: const Text('Select a fruit'),
       popup: (context) => SelectPopup.builder(
-        searchPlaceholder: const Text('Search fruit'),
         builder: (context, searchQuery) {
           final filteredFruits = searchQuery == null
               ? fruits.entries
@@ -60,15 +66,9 @@ class _MultiSelectExample2State extends State<MultiSelectExample2> {
             ],
           );
         },
+        searchPlaceholder: const Text('Search fruit'),
       ),
-      onChanged: (value) {
-        setState(() {
-          selectedValues = value;
-        });
-      },
-      constraints: const BoxConstraints(minWidth: 200),
       value: selectedValues,
-      placeholder: const Text('Select a fruit'),
     );
   }
 }

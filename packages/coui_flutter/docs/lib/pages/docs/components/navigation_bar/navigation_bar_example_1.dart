@@ -18,13 +18,13 @@ class _NavigationBarExample1State extends State<NavigationBarExample1> {
 
   NavigationItem _buildButton(String label, IconData icon) {
     return NavigationItem(
-      style: customButtonStyle
-          ? const ButtonStyle.muted(density: ButtonDensity.icon)
-          : null,
+      label: Text(label),
       selectedStyle: customButtonStyle
           ? const ButtonStyle.fixed(density: ButtonDensity.icon)
           : null,
-      label: Text(label),
+      style: customButtonStyle
+          ? const ButtonStyle.muted(density: ButtonDensity.icon)
+          : null,
       child: Icon(icon),
     );
   }
@@ -32,22 +32,22 @@ class _NavigationBarExample1State extends State<NavigationBarExample1> {
   @override
   Widget build(BuildContext context) {
     return OutlinedContainer(
-      width: 500,
       height: 400,
+      width: 500,
       child: Scaffold(
         footers: [
           const Divider(),
           NavigationBar(
             alignment: alignment,
-            labelType: labelType,
             expanded: expanded,
             expands: expands,
+            index: selected,
+            labelType: labelType,
             onSelected: (index) {
               setState(() {
                 selected = index;
               });
             },
-            index: selected,
             children: [
               _buildButton('Home', BootstrapIcons.house),
               _buildButton('Explore', BootstrapIcons.compass),
@@ -58,23 +58,21 @@ class _NavigationBarExample1State extends State<NavigationBarExample1> {
           ),
         ],
         child: Container(
-          color: Colors.primaries[Colors.primaries.length - selected - 1],
           padding: const EdgeInsets.all(24),
+          color: Colors.primaries[Colors.primaries.length - selected - 1],
           child: Card(
             child: Wrap(
               alignment: WrapAlignment.center,
-              runAlignment: WrapAlignment.center,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              runSpacing: 8,
               spacing: 8,
+              runAlignment: WrapAlignment.center,
+              runSpacing: 8,
+              crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Select<NavigationBarAlignment>(
-                  value: alignment,
                   itemBuilder:
                       (BuildContext context, NavigationBarAlignment item) {
-                        return Text(item.name);
-                      },
-                  popupWidthConstraint: PopoverConstraint.anchorFixedSize,
+                    return Text(item.name);
+                  },
                   onChanged: (value) {
                     if (value != null) {
                       setState(() {
@@ -93,14 +91,14 @@ class _NavigationBarExample1State extends State<NavigationBarExample1> {
                       ],
                     ),
                   ),
+                  popupWidthConstraint: PopoverConstraint.anchorFixedSize,
+                  value: alignment,
                 ),
                 Select<NavigationLabelType>(
-                  value: labelType,
                   itemBuilder:
                       (BuildContext context, NavigationLabelType item) {
-                        return Text(item.name);
-                      },
-                  popupWidthConstraint: PopoverConstraint.anchorFixedSize,
+                    return Text(item.name);
+                  },
                   onChanged: (value) {
                     if (value != null) {
                       setState(() {
@@ -119,38 +117,39 @@ class _NavigationBarExample1State extends State<NavigationBarExample1> {
                       ],
                     ),
                   ),
+                  popupWidthConstraint: PopoverConstraint.anchorFixedSize,
+                  value: labelType,
                 ),
                 Checkbox(
-                  state: expands
-                      ? CheckboxState.checked
-                      : CheckboxState.unchecked,
                   onChanged: (value) {
                     setState(() {
                       expands = value == CheckboxState.checked;
                     });
                   },
+                  state:
+                      expands ? CheckboxState.checked : CheckboxState.unchecked,
                   trailing: const Text('Expands'),
                 ),
                 Checkbox(
-                  state: customButtonStyle
-                      ? CheckboxState.checked
-                      : CheckboxState.unchecked,
                   onChanged: (value) {
                     setState(() {
                       customButtonStyle = value == CheckboxState.checked;
                     });
                   },
+                  state: customButtonStyle
+                      ? CheckboxState.checked
+                      : CheckboxState.unchecked,
                   trailing: const Text('Custom Button Style'),
                 ),
                 Checkbox(
-                  state: expanded
-                      ? CheckboxState.checked
-                      : CheckboxState.unchecked,
                   onChanged: (value) {
                     setState(() {
                       expanded = value == CheckboxState.checked;
                     });
                   },
+                  state: expanded
+                      ? CheckboxState.checked
+                      : CheckboxState.unchecked,
                   trailing: const Text('Expanded'),
                 ),
               ],

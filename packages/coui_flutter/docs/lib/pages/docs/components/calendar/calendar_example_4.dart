@@ -22,39 +22,39 @@ class _CalendarExample4State extends State<CalendarExample4> {
             Row(
               children: [
                 OutlineButton(
-                  density: ButtonDensity.icon,
                   onPressed: () {
                     setState(() {
                       _view = _view.previous;
                     });
                   },
+                  density: ButtonDensity.icon,
                   child: const Icon(Icons.arrow_back).iconXSmall(),
                 ),
                 Text(
                   '${localizations.getMonth(_view.month)} ${_view.year}',
                 ).small().medium().center().expanded(),
                 OutlineButton(
-                  density: ButtonDensity.icon,
                   onPressed: () {
                     setState(() {
                       _view = _view.next;
                     });
                   },
+                  density: ButtonDensity.icon,
                   child: const Icon(Icons.arrow_forward).iconXSmall(),
                 ),
               ],
             ),
             const Gap(16),
             Calendar(
-              value: _value,
-              view: _view,
+              now: DateTime.now(),
               onChanged: (value) {
                 setState(() {
                   _value = value;
                 });
               },
-              now: DateTime.now(),
               selectionMode: CalendarSelectionMode.none,
+              value: _value,
+              view: _view,
             ),
           ],
         ),

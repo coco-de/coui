@@ -11,13 +11,13 @@ class _ToastExample1State extends State<ToastExample1> {
   Widget buildToast(BuildContext context, ToastOverlay overlay) {
     return SurfaceCard(
       child: Basic(
-        title: const Text('Event has been created'),
         subtitle: const Text('Sunday, July 07, 2024 at 12:00 PM'),
+        title: const Text('Event has been created'),
         trailing: PrimaryButton(
-          size: ButtonSize.small,
           onPressed: () {
             overlay.close();
           },
+          size: ButtonSize.small,
           child: const Text('Undo'),
         ),
         trailingAlignment: Alignment.center,
@@ -32,66 +32,66 @@ class _ToastExample1State extends State<ToastExample1> {
       runSpacing: 8,
       children: [
         PrimaryButton(
+          child: const Text('Show Bottom Left Toast'),
           onPressed: () {
             showToast(
-              context: context,
               builder: buildToast,
+              context: context,
               location: ToastLocation.bottomLeft,
             );
           },
-          child: const Text('Show Bottom Left Toast'),
         ),
         PrimaryButton(
+          child: const Text('Show Bottom Right Toast'),
           onPressed: () {
             showToast(
-              context: context,
               builder: buildToast,
+              context: context,
               location: ToastLocation.bottomRight,
             );
           },
-          child: const Text('Show Bottom Right Toast'),
         ),
         PrimaryButton(
+          child: const Text('Show Top Left Toast'),
           onPressed: () {
             showToast(
-              context: context,
               builder: buildToast,
+              context: context,
               location: ToastLocation.topLeft,
             );
           },
-          child: const Text('Show Top Left Toast'),
         ),
         PrimaryButton(
+          child: const Text('Show Top Right Toast'),
           onPressed: () {
             showToast(
-              context: context,
               builder: buildToast,
+              context: context,
               location: ToastLocation.topRight,
             );
           },
-          child: const Text('Show Top Right Toast'),
         ),
         // bottom center
         PrimaryButton(
+          child: const Text('Show Bottom Center Toast'),
           onPressed: () {
             showToast(
-              context: context,
               builder: buildToast,
+              context: context,
               location: ToastLocation.bottomCenter,
             );
           },
-          child: const Text('Show Bottom Center Toast'),
         ),
         // top center
         PrimaryButton(
+          child: const Text('Show Top Center Toast'),
           onPressed: () {
             showToast(
-              context: context,
               builder: buildToast,
+              context: context,
               location: ToastLocation.topCenter,
             );
           },
-          child: const Text('Show Top Center Toast'),
         ),
       ],
     );

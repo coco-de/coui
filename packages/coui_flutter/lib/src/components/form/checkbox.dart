@@ -347,6 +347,9 @@ class ControlledCheckbox extends StatelessWidget
   Widget build(BuildContext context) {
     return ControlledComponentAdapter<CheckboxState>(
       initialValue: initialValue,
+      controller: controller,
+      enabled: enabled,
+      onChanged: onChanged,
       builder: (context, data) {
         return Checkbox(
           activeColor: activeColor,
@@ -362,9 +365,6 @@ class ControlledCheckbox extends StatelessWidget
           tristate: tristate,
         );
       },
-      controller: controller,
-      enabled: enabled,
-      onChanged: onChanged,
     );
   }
 }
@@ -689,6 +689,10 @@ class _CheckboxState extends State<Checkbox>
                           initialValue: _shouldAnimate ? 0.0 : null,
                           value: 1.0,
                           duration: const Duration(milliseconds: 300),
+                          curve: const IntervalDuration(
+                            duration: Duration(milliseconds: 300),
+                            start: Duration(milliseconds: 175),
+                          ),
                           builder: (context, value, child) {
                             return CustomPaint(
                               painter: AnimatedCheckPainter(
@@ -698,10 +702,6 @@ class _CheckboxState extends State<Checkbox>
                               ),
                             );
                           },
-                          curve: const IntervalDuration(
-                            duration: Duration(milliseconds: 300),
-                            start: Duration(milliseconds: 175),
-                          ),
                         ),
                       ),
                     ),

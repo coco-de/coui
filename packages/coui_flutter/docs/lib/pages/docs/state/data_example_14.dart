@@ -26,17 +26,17 @@ class _DataExample14State extends State<DataExample14> {
           const InnerWidget(),
           const Gap(8),
           PrimaryButton(
+            child: const Text('Increment First Counter'),
             onPressed: () {
               firstCounter.value++;
             },
-            child: const Text('Increment First Counter'),
           ),
           const Gap(4),
           PrimaryButton(
+            child: const Text('Increment Second Counter'),
             onPressed: () {
               secondCounter.value++;
             },
-            child: const Text('Increment Second Counter'),
           ),
           const Gap(8),
           Text('Build count: $buildCount').muted(),

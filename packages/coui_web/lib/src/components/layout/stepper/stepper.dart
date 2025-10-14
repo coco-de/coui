@@ -16,14 +16,6 @@ import 'package:jaspr/jaspr.dart';
 /// )
 /// ```
 class Stepper extends UiComponent {
-  /// Creates a Stepper component.
-  ///
-  /// Checkmark icon character code (U+2713 - ✓).
-  static const int _kCheckIconCode = 0x2713;
-
-  /// Checkmark icon character.
-  static String get _kCheckIcon => String.fromCharCode(_kCheckIconCode);
-
   /// Parameters:
   /// - [steps]: List of steps
   /// - [currentStep]: Currently active step index
@@ -49,7 +41,15 @@ class Stepper extends UiComponent {
   /// Layout orientation.
   final StepperOrientation orientation;
 
+  /// Creates a Stepper component.
+  ///
+  /// Checkmark icon character code (U+2713 - ✓).
+  static const _kCheckIconCode = 0x2713;
+
   static const _divValue = 'div';
+
+  /// Checkmark icon character.
+  static String get _kCheckIcon => String.fromCharCode(_kCheckIconCode);
 
   @override
   Stepper copyWith({
@@ -88,19 +88,13 @@ class Stepper extends UiComponent {
 
       stepComponents.add(
         div(
-          classes: orientation == StepperOrientation.vertical
-              ? 'flex gap-4'
-              : 'flex flex-col items-center gap-2',
           children: [
             // Step indicator
             div(
-              classes: orientation == StepperOrientation.vertical
-                  ? 'flex flex-col items-center'
-                  : 'flex items-center gap-2',
               children: [
                 div(
-                  classes: _buildStepIndicatorClasses(isActive, isCompleted),
                   child: text(isCompleted ? _kCheckIcon : (i + 1).toString()),
+                  classes: _buildStepIndicatorClasses(isActive, isCompleted),
                 ),
                 if (i < steps.length - 1 &&
                     orientation == StepperOrientation.vertical)
@@ -108,28 +102,34 @@ class Stepper extends UiComponent {
                     classes: 'w-px h-8 bg-border',
                   ),
               ],
+              classes: orientation == StepperOrientation.vertical
+                  ? 'flex flex-col items-center'
+                  : 'flex items-center gap-2',
             ),
             // Step content
             div(
-              classes: 'flex-1',
               children: [
                 div(
-                  classes: 'font-medium',
                   child: text(step.label),
+                  classes: 'font-medium',
                 ),
                 if (step.description != null)
                   div(
-                    classes: 'text-sm text-muted-foreground',
                     child: text(step.description),
+                    classes: 'text-sm text-muted-foreground',
                   ),
                 if (isActive && step.content != null)
                   div(
-                    classes: 'mt-4',
                     child: step.content,
+                    classes: 'mt-4',
                   ),
               ],
+              classes: 'flex-1',
             ),
           ],
+          classes: orientation == StepperOrientation.vertical
+              ? 'flex gap-4'
+              : 'flex flex-col items-center gap-2',
         ),
       );
 
@@ -144,12 +144,12 @@ class Stepper extends UiComponent {
     }
 
     return div(
+      children: stepComponents,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      children: stepComponents,
     );
   }
 

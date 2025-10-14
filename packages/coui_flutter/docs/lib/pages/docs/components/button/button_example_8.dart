@@ -6,50 +6,50 @@ class ButtonExample8 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      runSpacing: 8,
       spacing: 8,
+      runSpacing: 8,
       children: [
         IconButton.primary(
+          icon: const Icon(Icons.add),
           onPressed: () {
             // TODOS: will be implemented later.
           },
           density: ButtonDensity.icon,
-          icon: const Icon(Icons.add),
         ),
         IconButton.secondary(
+          icon: const Icon(Icons.add),
           onPressed: () {
             // TODOS: will be implemented later.
           },
           density: ButtonDensity.icon,
-          icon: const Icon(Icons.add),
         ),
         IconButton.outline(
+          icon: const Icon(Icons.add),
           onPressed: () {
             // TODOS: will be implemented later.
           },
           density: ButtonDensity.icon,
-          icon: const Icon(Icons.add),
         ),
         IconButton.ghost(
+          icon: const Icon(Icons.add),
           onPressed: () {
             // TODOS: will be implemented later.
           },
           density: ButtonDensity.icon,
-          icon: const Icon(Icons.add),
         ),
         IconButton.text(
+          icon: const Icon(Icons.add),
           onPressed: () {
             // TODOS: will be implemented later.
           },
           density: ButtonDensity.icon,
-          icon: const Icon(Icons.add),
         ),
         IconButton.destructive(
+          icon: const Icon(Icons.add),
           onPressed: () {
             // TODOS: will be implemented later.
           },
           density: ButtonDensity.icon,
-          icon: const Icon(Icons.add),
         ),
       ],
     );

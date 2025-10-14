@@ -32,26 +32,23 @@ class _ItemPickerExample5State extends State<ItemPickerExample5> {
   @override
   Widget build(BuildContext context) {
     return ItemPicker<NamedColor>(
-      items: ItemList(colors),
-      mode: PromptMode.popover,
-      title: const Text('Pick a color'),
       builder: (context, item) {
         return ItemPickerOption(
-          value: item,
           label: Text(item.name),
-          style: const ButtonStyle.ghostIcon(shape: ButtonShape.circle),
           selectedStyle: const ButtonStyle.primary(shape: ButtonShape.circle),
+          style: const ButtonStyle.ghostIcon(shape: ButtonShape.circle),
+          value: item,
           child: Container(
-            constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
             decoration: BoxDecoration(
               color: item.color,
               shape: BoxShape.circle,
             ),
+            constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
           ),
         );
       },
-      value: colors[selectedColor],
-      placeholder: const Text('Pick a color'),
+      items: ItemList(colors),
+      mode: PromptMode.popover,
       onChanged: (value) {
         print('You picked $value!');
         if (value != null) {
@@ -60,6 +57,9 @@ class _ItemPickerExample5State extends State<ItemPickerExample5> {
           });
         }
       },
+      placeholder: const Text('Pick a color'),
+      title: const Text('Pick a color'),
+      value: colors[selectedColor],
     );
   }
 }

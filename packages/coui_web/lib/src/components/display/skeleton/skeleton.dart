@@ -55,11 +55,11 @@ class Skeleton extends UiComponent {
       key: key ?? this.key,
       width: width ?? this.width,
       height: height ?? this.height,
+      attributes: attributes ?? this.componentAttributes,
       classes: mergeClasses(classes, this.classes),
       css: css ?? this.css,
       id: id ?? this.id,
       tag: tag ?? this.tag,
-      attributes: attributes ?? this.componentAttributes,
     );
   }
 

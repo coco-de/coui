@@ -43,13 +43,16 @@ class _IconsPageState extends State<IconsPage> {
 
   void _onTap(String className, MapEntry<String, IconData> entry) {
     showDialog(
-      context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(
-            capitalizeWords(_separateByCamelCase(entry.key)).join(' '),
-          ),
-          leading: Icon(entry.value, size: 48),
+          actions: [
+            PrimaryButton(
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
           content: IntrinsicWidth(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -63,16 +66,13 @@ class _IconsPageState extends State<IconsPage> {
               ],
             ),
           ),
-          actions: [
-            PrimaryButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Close'),
-            ),
-          ],
+          leading: Icon(entry.value, size: 48),
+          title: Text(
+            capitalizeWords(_separateByCamelCase(entry.key)).join(' '),
+          ),
         );
       },
+      context: context,
     );
   }
 
@@ -131,13 +131,7 @@ class _IconsPageState extends State<IconsPage> {
               child: CustomScrollView(
                 slivers: [
                   SliverAppBar(
-                    pinned: true,
-                    backgroundColor: theme.colorScheme.background,
                     automaticallyImplyLeading: false,
-                    toolbarHeight: 36,
-                    collapsedHeight: 36,
-                    expandedHeight: 255,
-                    surfaceTintColor: theme.colorScheme.background,
                     flexibleSpace: Stack(
                       fit: StackFit.passthrough,
                       children: [
@@ -259,11 +253,11 @@ class _IconsPageState extends State<IconsPage> {
                                 ).gap(12).p(),
                                 const Gap(32),
                                 TextField(
+                                  controller: _controller,
                                   features: const [
                                     InputFeature.leading(Icon(Icons.search)),
                                   ],
                                   placeholder: const Text('Search icons'),
-                                  controller: _controller,
                                 ),
                               ],
                             ),
@@ -271,6 +265,12 @@ class _IconsPageState extends State<IconsPage> {
                         ),
                       ],
                     ),
+                    surfaceTintColor: theme.colorScheme.background,
+                    backgroundColor: theme.colorScheme.background,
+                    collapsedHeight: 36,
+                    expandedHeight: 255,
+                    pinned: true,
+                    toolbarHeight: 36,
                   ),
                   if (filteredRadixIcons.isNotEmpty) ...[
                     SliverPersistentHeader(
@@ -280,24 +280,24 @@ class _IconsPageState extends State<IconsPage> {
                     SliverPadding(
                       padding: const EdgeInsets.only(top: 16),
                       sliver: SliverGrid(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          var e = filteredRadixIcons[index];
+                          return Tooltip(
+                            tooltip: TooltipContainer(child: Text(e.key)),
+                            child: OutlineButton(
+                              child: Icon(e.value, size: 48),
+                              onPressed: () {
+                                _onTap('RadixIcons', e);
+                              },
+                            ),
+                          );
+                        }, childCount: filteredRadixIcons.length),
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 120,
                           mainAxisSpacing: 8,
                           crossAxisSpacing: 8,
                         ),
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          var e = filteredRadixIcons[index];
-                          return Tooltip(
-                            tooltip: TooltipContainer(child: Text(e.key)),
-                            child: OutlineButton(
-                              onPressed: () {
-                                _onTap('RadixIcons', e);
-                              },
-                              child: Icon(e.value, size: 48),
-                            ),
-                          );
-                        }, childCount: filteredRadixIcons.length),
                       ),
                     ),
                   ],
@@ -309,24 +309,24 @@ class _IconsPageState extends State<IconsPage> {
                     SliverPadding(
                       padding: const EdgeInsets.only(top: 16),
                       sliver: SliverGrid(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          var e = filteredBootstrapIcons[index];
+                          return Tooltip(
+                            tooltip: TooltipContainer(child: Text(e.key)),
+                            child: OutlineButton(
+                              child: Icon(e.value, size: 48),
+                              onPressed: () {
+                                _onTap('BootstrapIcons', e);
+                              },
+                            ),
+                          );
+                        }, childCount: filteredBootstrapIcons.length),
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 120,
                           mainAxisSpacing: 8,
                           crossAxisSpacing: 8,
                         ),
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          var e = filteredBootstrapIcons[index];
-                          return Tooltip(
-                            tooltip: TooltipContainer(child: Text(e.key)),
-                            child: OutlineButton(
-                              onPressed: () {
-                                _onTap('BootstrapIcons', e);
-                              },
-                              child: Icon(e.value, size: 48),
-                            ),
-                          );
-                        }, childCount: filteredBootstrapIcons.length),
                       ),
                     ),
                   ],
@@ -338,24 +338,24 @@ class _IconsPageState extends State<IconsPage> {
                     SliverPadding(
                       padding: const EdgeInsets.only(top: 16, bottom: 16),
                       sliver: SliverGrid(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          var e = filteredLucideIcons[index];
+                          return Tooltip(
+                            tooltip: TooltipContainer(child: Text(e.key)),
+                            child: OutlineButton(
+                              child: Icon(e.value, size: 48),
+                              onPressed: () {
+                                _onTap('LucideIcons', e);
+                              },
+                            ),
+                          );
+                        }, childCount: filteredLucideIcons.length),
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 120,
                           mainAxisSpacing: 8,
                           crossAxisSpacing: 8,
                         ),
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          var e = filteredLucideIcons[index];
-                          return Tooltip(
-                            tooltip: TooltipContainer(child: Text(e.key)),
-                            child: OutlineButton(
-                              onPressed: () {
-                                _onTap('LucideIcons', e);
-                              },
-                              child: Icon(e.value, size: 48),
-                            ),
-                          );
-                        }, childCount: filteredLucideIcons.length),
                       ),
                     ),
                   ],
@@ -384,8 +384,8 @@ class _Header extends SliverPersistentHeaderDelegate {
     return Container(
       color: theme.colorScheme.background,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(text).x3Large().semiBold(),
           const Gap(8),

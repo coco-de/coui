@@ -21,21 +21,16 @@ class _SortableExample3State extends State<SortableExample3> {
     return SortableLayer(
       lock: true,
       child: SortableDropFallback<int>(
-        onAccept: (value) {
-          setState(() {
-            names.add(names.removeAt(value.data));
-          });
-        },
         child: SizedBox(
           height: 50,
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               for (int i = 0; i < names.length; i++)
                 Sortable<String>(
-                  key: ValueKey(i),
                   data: names[i],
+                  key: ValueKey(i),
                   onAcceptLeft: (value) {
                     setState(() {
                       names.swapItem(value, i);
@@ -47,14 +42,19 @@ class _SortableExample3State extends State<SortableExample3> {
                     });
                   },
                   child: OutlinedContainer(
-                    width: 100,
                     padding: const EdgeInsets.all(12),
+                    width: 100,
                     child: Center(child: Text(names[i].data)),
                   ),
                 ),
             ],
           ),
         ),
+        onAccept: (value) {
+          setState(() {
+            names.add(names.removeAt(value.data));
+          });
+        },
       ),
     );
   }

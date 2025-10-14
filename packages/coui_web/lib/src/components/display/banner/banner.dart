@@ -90,24 +90,16 @@ class Banner extends UiComponent {
     final currentOnDismiss = onDismiss;
 
     return div(
-      id: id,
-      classes: '${_buildClasses()} $_variantClasses',
-      styles: this.css,
-      attributes: {
-        ...this.componentAttributes,
-        'role': 'banner',
-      },
-      events: this.events,
       children: [
         // Icon
         div(
-          classes: 'text-2xl',
           child: text(_variantIcon),
+          classes: 'text-2xl',
         ),
         // Message
         div(
-          classes: 'flex-1 text-sm font-medium',
           child: text(message),
+          classes: 'flex-1 text-sm font-medium',
         ),
         // Action
         currentAction,
@@ -115,6 +107,7 @@ class Banner extends UiComponent {
         currentOnDismiss == null
             ? null
             : button(
+                child: text(_kCloseIcon),
                 classes:
                     'rounded-full p-1 hover:bg-black/10 dark:hover:bg-white/10',
                 attributes: {
@@ -124,9 +117,16 @@ class Banner extends UiComponent {
                 events: {
                   'click': (event) => currentOnDismiss(),
                 },
-                child: text(_kCloseIcon),
               ),
       ].nonNulls.toList(),
+      id: id,
+      classes: '${_buildClasses()} $_variantClasses',
+      styles: this.css,
+      attributes: {
+        ...this.componentAttributes,
+        'role': 'banner',
+      },
+      events: this.events,
     );
   }
 

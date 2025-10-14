@@ -17,7 +17,7 @@ class SidebarSection extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        header.small().semiBold().withPadding(vertical: 4, horizontal: 8),
+        header.small().semiBold().withPadding(horizontal: 8, vertical: 4),
         const Gap(4),
         ...children,
       ],
@@ -50,8 +50,6 @@ class SidebarButton extends StatelessWidget {
     return Theme(
       data: data,
       child: Button(
-        onPressed: onPressed,
-        alignment: AlignmentDirectional.centerStart,
         style: ButtonVariance.text.copyWith(
           padding: (context, states, value) {
             return const EdgeInsets.symmetric(vertical: 4, horizontal: 8) *
@@ -63,6 +61,8 @@ class SidebarButton extends StatelessWidget {
             );
           },
         ),
+        onPressed: onPressed,
+        alignment: AlignmentDirectional.centerStart,
         child: child.small(),
       ),
     );
@@ -119,12 +119,12 @@ class _DocsNavigationButtonState extends State<DocsNavigationButton> {
     return Theme(
       data: data,
       child: Button(
-        onPressed: widget.onPressed,
-        alignment: AlignmentDirectional.centerStart,
         style: ButtonVariance.link.copyWith(
           padding: _padding,
           textStyle: _textStyle,
         ),
+        onPressed: widget.onPressed,
+        alignment: AlignmentDirectional.centerStart,
         child: Row(
           children: [
             widget.child.small(),
@@ -161,8 +161,8 @@ class _SidebarNavState extends State<SidebarNav> {
       constraints: const BoxConstraints(minWidth: 200),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: _children,
       ),
     );

@@ -13,7 +13,6 @@ class KeyboardDisplayTile extends StatelessWidget implements IComponentPage {
     return ComponentCard(
       name: 'keyboard_display',
       title: 'Keyboard Display',
-      scale: 1.2,
       example: Card(
         child: Column(
           children: [
@@ -24,13 +23,13 @@ class KeyboardDisplayTile extends StatelessWidget implements IComponentPage {
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
                     vertical: 4,
+                    horizontal: 8,
                   ),
                   decoration: BoxDecoration(
                     color: theme.colorScheme.muted,
-                    borderRadius: BorderRadius.circular(4),
                     border: Border.all(color: theme.colorScheme.border),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   child: const Text('Ctrl', style: TextStyle(fontSize: 12)),
                 ),
@@ -39,13 +38,13 @@ class KeyboardDisplayTile extends StatelessWidget implements IComponentPage {
                 const Gap(4),
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
                     vertical: 4,
+                    horizontal: 8,
                   ),
                   decoration: BoxDecoration(
                     color: theme.colorScheme.muted,
-                    borderRadius: BorderRadius.circular(4),
                     border: Border.all(color: theme.colorScheme.border),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   child: const Text('C', style: TextStyle(fontSize: 12)),
                 ),
@@ -59,13 +58,13 @@ class KeyboardDisplayTile extends StatelessWidget implements IComponentPage {
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
                     vertical: 4,
+                    horizontal: 8,
                   ),
                   decoration: BoxDecoration(
                     color: theme.colorScheme.muted,
-                    borderRadius: BorderRadius.circular(4),
                     border: Border.all(color: theme.colorScheme.border),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   child: const Text('Ctrl', style: TextStyle(fontSize: 12)),
                 ),
@@ -74,13 +73,13 @@ class KeyboardDisplayTile extends StatelessWidget implements IComponentPage {
                 const Gap(4),
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
                     vertical: 4,
+                    horizontal: 8,
                   ),
                   decoration: BoxDecoration(
                     color: theme.colorScheme.muted,
-                    borderRadius: BorderRadius.circular(4),
                     border: Border.all(color: theme.colorScheme.border),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   child: const Text('V', style: TextStyle(fontSize: 12)),
                 ),
@@ -91,6 +90,7 @@ class KeyboardDisplayTile extends StatelessWidget implements IComponentPage {
           ],
         ).withPadding(all: 16),
       ),
+      scale: 1.2,
     );
   }
 }

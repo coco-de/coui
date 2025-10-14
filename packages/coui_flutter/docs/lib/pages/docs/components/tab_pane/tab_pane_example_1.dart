@@ -39,9 +39,9 @@ class _TabPaneExample1State extends State<TabPaneExample1> {
         child: Label(
           leading: OutlinedContainer(
             backgroundColor: Colors.white,
-            width: 18,
-            height: 18,
             borderRadius: Theme.of(context).borderRadiusMd,
+            height: 18,
+            width: 18,
             child: Center(
               child: Text(
                 data.count.toString(),
@@ -50,14 +50,14 @@ class _TabPaneExample1State extends State<TabPaneExample1> {
             ),
           ),
           trailing: IconButton.ghost(
-            shape: ButtonShape.circle,
-            size: ButtonSize.xSmall,
             icon: const Icon(Icons.close),
             onPressed: () {
               setState(() {
                 tabs.remove(data);
               });
             },
+            size: ButtonSize.xSmall,
+            shape: ButtonShape.circle,
           ),
           child: Text(data.title),
         ),
@@ -68,12 +68,22 @@ class _TabPaneExample1State extends State<TabPaneExample1> {
   @override
   Widget build(BuildContext context) {
     return TabPane<MyTab>(
-      // children: tabs.map((e) => _buildTabItem(e)).toList(),
-      items: tabs,
+      focused: focused,
       itemBuilder: (context, item, index) {
         return _buildTabItem(item.data);
       },
-      focused: focused,
+      // children: tabs.map((e) => _buildTabItem(e)).toList(),
+      items: tabs,
+      leading: [
+        IconButton.secondary(
+          icon: const Icon(Icons.arrow_drop_down),
+          onPressed: () {
+            // TODOS: will be implemented later.
+          },
+          size: ButtonSize.small,
+          density: ButtonDensity.iconDense,
+        ),
+      ],
       onFocused: (value) {
         setState(() {
           focused = value;
@@ -84,21 +94,9 @@ class _TabPaneExample1State extends State<TabPaneExample1> {
           tabs = value;
         });
       },
-      leading: [
-        IconButton.secondary(
-          icon: const Icon(Icons.arrow_drop_down),
-          size: ButtonSize.small,
-          density: ButtonDensity.iconDense,
-          onPressed: () {
-            // TODOS: will be implemented later.
-          },
-        ),
-      ],
       trailing: [
         IconButton.ghost(
           icon: const Icon(Icons.add),
-          size: ButtonSize.small,
-          density: ButtonDensity.iconDense,
           onPressed: () {
             setState(() {
               int max = tabs.fold<int>(0, (previousValue, element) {
@@ -113,6 +111,8 @@ class _TabPaneExample1State extends State<TabPaneExample1> {
               );
             });
           },
+          size: ButtonSize.small,
+          density: ButtonDensity.iconDense,
         ),
       ],
       child: SizedBox(
