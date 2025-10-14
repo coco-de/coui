@@ -97,7 +97,7 @@ class SwitchField extends UiComponent {
             if (description != null)
               p(
                 classes: 'text-sm text-muted-foreground',
-                child: text(description!),
+                child: text(description),
               ),
           ],
         ),
@@ -130,8 +130,9 @@ class SwitchField extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

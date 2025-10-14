@@ -49,6 +49,23 @@ class NavigationMenuTheme {
   /// Offset for the popover relative to the trigger.
   final Offset? offset;
 
+  /// Returns a copy of this theme with the given fields replaced.
+  NavigationMenuTheme copyWith({
+    ValueGetter<double?>? surfaceOpacity,
+    ValueGetter<double?>? surfaceBlur,
+    ValueGetter<EdgeInsetsGeometry?>? margin,
+    ValueGetter<Offset?>? offset,
+  }) {
+    return NavigationMenuTheme(
+      margin: margin == null ? this.margin : margin(),
+      offset: offset == null ? this.offset : offset(),
+      surfaceBlur: surfaceBlur == null ? this.surfaceBlur : surfaceBlur(),
+      surfaceOpacity: surfaceOpacity == null
+          ? this.surfaceOpacity
+          : surfaceOpacity(),
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -605,13 +622,15 @@ class NavigationMenuState extends State<NavigationMenu> {
       allowInvertVertical: false,
       builder: buildPopover,
       context: context,
-      margin: requestMargin() ??
+      margin:
+          requestMargin() ??
           compTheme?.margin ??
           (const EdgeInsets.all(8) * scaling),
       modal: false,
       offset: compTheme?.offset ?? const Offset(0, 4) * scaling,
       onTickFollow: (value) {
-        value.margin = requestMargin() ??
+        value.margin =
+            requestMargin() ??
             compTheme?.margin ??
             (const EdgeInsets.all(8) * scaling);
       },
@@ -705,7 +724,7 @@ class NavigationMenuState extends State<NavigationMenu> {
                     left: 0,
                     top: 0,
                     child: Opacity(
-                      opacity: (value + 1 - currentIndex).clamp(0.0, 1.0),
+                      opacity: (1 + value - currentIndex).clamp(0.0, 1.0),
                       child: FractionalTranslation(
                         translation: Offset(-value + currentIndex - 1, 0),
                         child: buildContent(currentIndex - 1),
@@ -732,6 +751,7 @@ class NavigationMenuState extends State<NavigationMenu> {
 
               return OutlinedContainer(
                 borderRadius: theme.borderRadiusMd,
+                clipBehavior: Clip.antiAlias,
                 surfaceBlur: surfaceBlur,
                 surfaceOpacity: surfaceOpacity,
                 child: Stack(

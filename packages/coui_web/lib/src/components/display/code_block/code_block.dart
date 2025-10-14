@@ -62,7 +62,7 @@ class CodeBlock extends UiComponent {
             children: [
               span(
                 classes: 'font-mono text-muted-foreground',
-                child: text(language!),
+                child: text(language),
               ),
               button(
                 classes:
@@ -118,8 +118,9 @@ class CodeBlock extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -209,8 +210,9 @@ class InlineCode extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -43,7 +45,25 @@ class Stat extends UiComponent {
   /// Optional icon.
   final Component? icon;
 
+  /// Upward arrow icon character code (U+2191 - ↑).
+  static const _kUpArrowCode = 0x2191;
+
+  /// Downward arrow icon character code (U+2193 - ↓).
+  static const _kDownArrowCode = 0x2193;
+
+  /// Right arrow icon character code (U+2192 - →).
+  static const _kRightArrowCode = 0x2192;
+
   static const _divValue = 'div';
+
+  /// Upward arrow icon character.
+  static String get _kUpArrow => String.fromCharCode(_kUpArrowCode);
+
+  /// Downward arrow icon character.
+  static String get _kDownArrow => String.fromCharCode(_kDownArrowCode);
+
+  /// Right arrow icon character.
+  static String get _kRightArrow => String.fromCharCode(_kRightArrowCode);
 
   @override
   Stat copyWith({
@@ -91,7 +111,7 @@ class Stat extends UiComponent {
               classes: 'text-sm font-medium text-muted-foreground',
               child: text(label),
             ),
-            if (icon != null) icon!,
+            if (icon != null) icon,
           ],
         ),
         // Value
@@ -105,7 +125,7 @@ class Stat extends UiComponent {
             classes: 'flex items-center gap-1 text-xs ${_getChangeColor()}',
             children: [
               span(child: text(_getChangeIcon())),
-              span(child: text(change!)),
+              span(child: text(change)),
             ],
           ),
       ],
@@ -118,15 +138,19 @@ class Stat extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
   }
 
   String _getChangeColor() {
-    return switch (changeType!) {
+    final type = changeType;
+    if (type == null) return '';
+
+    return switch (type) {
       StatChangeType.positive => 'text-green-600',
       StatChangeType.negative => 'text-red-600',
       StatChangeType.neutral => 'text-muted-foreground',
@@ -134,10 +158,13 @@ class Stat extends UiComponent {
   }
 
   String _getChangeIcon() {
-    return switch (changeType!) {
-      StatChangeType.positive => '\u2191',
-      StatChangeType.negative => '\u2193',
-      StatChangeType.neutral => '\u2192',
+    final type = changeType;
+    if (type == null) return '';
+
+    return switch (type) {
+      StatChangeType.positive => _kUpArrow,
+      StatChangeType.negative => _kDownArrow,
+      StatChangeType.neutral => _kRightArrow,
     };
   }
 }

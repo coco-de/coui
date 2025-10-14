@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols, avoid-duplicate-cascades, prefer-moving-repeated-invocations-to-variable, prefer-extracting-common-initializers
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -15,6 +17,18 @@ typedef PageChangeCallback = void Function(int page);
 /// )
 /// ```
 class Pagination extends UiComponent {
+  /// Previous page icon character code (U+2039 - ‹).
+  static const int _kPrevIconCode = 0x2039;
+
+  /// Next page icon character code (U+203A - ›).
+  static const int _kNextIconCode = 0x203A;
+
+  /// Previous page icon character.
+  static String get _kPrevIcon => String.fromCharCode(_kPrevIconCode);
+
+  /// Next page icon character.
+  static String get _kNextIcon => String.fromCharCode(_kNextIconCode);
+
   /// Creates a Pagination component.
   ///
   /// Parameters:
@@ -78,7 +92,7 @@ class Pagination extends UiComponent {
     // Previous button
     pages.add(
       _buildPageButton(
-        label: '\u2039',
+        label: _kPrevIcon,
         page: currentPage - 1,
         enabled: currentPage > 1,
         ariaLabel: 'Previous page',
@@ -93,20 +107,21 @@ class Pagination extends UiComponent {
       }
     } else {
       // Show condensed version
-      pages
-        ..add(_buildPageButton(label: '1', page: 1))
-        ..add(text('...'))
-        ..add(
-          _buildPageButton(label: currentPage.toString(), page: currentPage),
-        )
-        ..add(text('...'))
-        ..add(_buildPageButton(label: totalPages.toString(), page: totalPages));
+      final ellipsis = _buildEllipsis();
+
+      pages.addAll([
+        _buildPageButton(label: '1', page: 1),
+        ellipsis,
+        _buildPageButton(label: currentPage.toString(), page: currentPage),
+        ellipsis,
+        _buildPageButton(label: totalPages.toString(), page: totalPages),
+      ]);
     }
 
     // Next button
     pages.add(
       _buildPageButton(
-        label: '\u203A',
+        label: _kNextIcon,
         page: currentPage + 1,
         enabled: currentPage < totalPages,
         ariaLabel: 'Next page',
@@ -155,7 +170,7 @@ class Pagination extends UiComponent {
       },
       events: enabled && onPageChanged != null
           ? {
-              'click': (event) => onPageChanged!(page),
+              'click': (event) => onPageChanged(page),
             }
           : {},
       child: text(label),
@@ -165,10 +180,19 @@ class Pagination extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
+  }
+
+  /// Builds an ellipsis component for pagination.
+  static Component _buildEllipsis() {
+    return span(
+      classes: 'inline-flex items-center justify-center h-10 px-4',
+      child: text('...'),
+    );
   }
 }

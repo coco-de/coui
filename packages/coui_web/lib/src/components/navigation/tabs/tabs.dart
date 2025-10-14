@@ -62,15 +62,18 @@ class Tabs extends UiComponent {
 
   @override
   Component build(BuildContext context) {
+    final attrs = <String, String>{...this.componentAttributes};
+    final value = defaultValue;
+    if (value != null) {
+      attrs['data-value'] = value;
+    }
+
     return Component.element(
       tag: tag,
       id: id,
       classes: _buildClasses(),
       styles: this.css,
-      attributes: {
-        ...this.componentAttributes,
-        if (defaultValue != null) 'data-value': defaultValue!,
-      },
+      attributes: attrs,
       events: events,
       children: children,
     );
@@ -82,8 +85,9 @@ class Tabs extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -146,8 +150,9 @@ class TabsList extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -233,8 +238,9 @@ class TabsTrigger extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -300,7 +306,7 @@ class TabsContent extends UiComponent {
               ...this.componentAttributes,
               'role': 'tabpanel',
               'data-value': value,
-              'data-state': isActive ? 'active' : 'inactive',
+              'data-state': 'active',
             },
             events: events,
             child: child,
@@ -315,8 +321,9 @@ class TabsContent extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

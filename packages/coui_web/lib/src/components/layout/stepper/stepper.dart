@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -16,6 +18,12 @@ import 'package:jaspr/jaspr.dart';
 class Stepper extends UiComponent {
   /// Creates a Stepper component.
   ///
+  /// Checkmark icon character code (U+2713 - ✓).
+  static const int _kCheckIconCode = 0x2713;
+
+  /// Checkmark icon character.
+  static String get _kCheckIcon => String.fromCharCode(_kCheckIconCode);
+
   /// Parameters:
   /// - [steps]: List of steps
   /// - [currentStep]: Currently active step index
@@ -92,7 +100,7 @@ class Stepper extends UiComponent {
               children: [
                 div(
                   classes: _buildStepIndicatorClasses(isActive, isCompleted),
-                  child: text(isCompleted ? '\u2713' : (i + 1).toString()),
+                  child: text(isCompleted ? _kCheckIcon : (i + 1).toString()),
                 ),
                 if (i < steps.length - 1 &&
                     orientation == StepperOrientation.vertical)
@@ -112,12 +120,12 @@ class Stepper extends UiComponent {
                 if (step.description != null)
                   div(
                     classes: 'text-sm text-muted-foreground',
-                    child: text(step.description!),
+                    child: text(step.description),
                   ),
                 if (isActive && step.content != null)
                   div(
                     classes: 'mt-4',
-                    child: step.content!,
+                    child: step.content,
                   ),
               ],
             ),
@@ -153,8 +161,9 @@ class Stepper extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

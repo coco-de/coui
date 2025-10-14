@@ -29,6 +29,12 @@ class AspectRatio extends UiComponent {
   /// Child component.
   final Component child;
 
+  static const _ratioBase = 1;
+
+  static const _percentageMultiplier = 100;
+
+  static const _decimalPlaces = 2;
+
   static const _divValue = 'div';
 
   @override
@@ -36,7 +42,8 @@ class AspectRatio extends UiComponent {
 
   @override
   Component build(BuildContext context) {
-    final paddingTop = (1 / ratio * 100).toStringAsFixed(2);
+    final paddingTop = (_ratioBase / ratio * _percentageMultiplier)
+        .toStringAsFixed(_decimalPlaces);
 
     return div(
       id: id,
@@ -86,8 +93,9 @@ class AspectRatio extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

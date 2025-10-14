@@ -113,15 +113,17 @@ class Alert extends UiComponent {
     final classList = <String>[];
 
     // Add variant classes from style
-    if (style != null) {
-      for (final s in style!) {
+    final currentStyle = style;
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
         classList.add(s.cssClass);
       }
     }
 
     // Add user classes
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -147,6 +149,7 @@ class AlertTitle extends UiComponent {
   static const _h5Value = 'h5';
 
   static const _baseClasses = 'mb-1 font-medium leading-none tracking-tight';
+
   @override
   AlertTitle copyWith({
     Map<String, String>? attributes,
@@ -187,8 +190,9 @@ class AlertTitle extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -214,6 +218,7 @@ class AlertDescription extends UiComponent {
   static const _divValue = 'div';
 
   static const _baseClasses = 'text-sm [&_p]:leading-relaxed';
+
   @override
   AlertDescription copyWith({
     Map<String, String>? attributes,
@@ -254,8 +259,9 @@ class AlertDescription extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

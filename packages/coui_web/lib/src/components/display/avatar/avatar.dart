@@ -73,13 +73,16 @@ class Avatar extends UiComponent {
 
     Component content;
     if (currentSrc != null) {
+      final attrs = {'src': currentSrc};
+      final currentAlt = alt;
+      if (currentAlt != null) {
+        attrs['alt'] = currentAlt;
+      }
+
       content = Component.element(
         tag: 'img',
         classes: 'aspect-square h-full w-full',
-        attributes: {
-          'src': currentSrc,
-          if (alt != null) 'alt': alt!,
-        },
+        attributes: attrs,
       );
     } else if (currentFallback != null) {
       content = div(
@@ -108,8 +111,9 @@ class Avatar extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

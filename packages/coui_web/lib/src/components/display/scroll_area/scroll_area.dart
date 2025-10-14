@@ -64,11 +64,13 @@ class ScrollArea extends UiComponent {
   Component build(BuildContext context) {
     final styles = <String, String>{};
 
-    if (height != null) {
-      styles['height'] = height!;
+    final currentHeight = height;
+    if (currentHeight != null) {
+      styles['height'] = currentHeight;
     }
-    if (maxHeight != null) {
-      styles['max-height'] = maxHeight!;
+    final currentMaxHeight = maxHeight;
+    if (currentMaxHeight != null) {
+      styles['max-height'] = currentMaxHeight;
     }
 
     // Add custom scrollbar styles
@@ -78,8 +80,9 @@ class ScrollArea extends UiComponent {
     });
 
     final finalStyles = <String, String>{};
-    if (this.css != null) {
-      finalStyles.addAll(this.css!);
+    final currentCss = this.css;
+    if (currentCss != null) {
+      finalStyles.addAll(currentCss);
     }
     finalStyles.addAll(styles);
 
@@ -102,8 +105,9 @@ class ScrollArea extends UiComponent {
       'scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent',
     ];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols, prefer-correct-handler-name
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -14,8 +16,6 @@ typedef DateSelectCallback = void Function(DateTime date);
 /// )
 /// ```
 class Calendar extends UiComponent {
-  /// Creates a Calendar component.
-  ///
   /// Parameters:
   /// - [selectedDate]: Currently selected date
   /// - [onDateSelected]: Callback when date is selected
@@ -46,6 +46,16 @@ class Calendar extends UiComponent {
   /// Maximum selectable date.
   final DateTime? maxDate;
 
+  /// Creates a Calendar component.
+  ///
+  /// Previous month icon character code (U+2039 - ‹).
+  static const _kPrevIconCode = 0x2039;
+
+  /// Next month icon character code (U+203A - ›).
+  static const _kNextIconCode = 0x203A;
+
+  static const _daysPerWeek = 7;
+
   static const _divValue = 'div';
 
   static const _weekDays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -64,6 +74,12 @@ class Calendar extends UiComponent {
     'November',
     'December',
   ];
+
+  /// Previous month icon character.
+  static String get _kPrevIcon => String.fromCharCode(_kPrevIconCode);
+
+  /// Next month icon character.
+  static String get _kNextIcon => String.fromCharCode(_kNextIconCode);
 
   @override
   Calendar copyWith({
@@ -116,7 +132,7 @@ class Calendar extends UiComponent {
               classes:
                   'inline-flex items-center justify-center rounded-md text-sm font-medium h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
               attributes: {'type': 'button', 'aria-label': 'Previous month'},
-              child: text('\u2039'),
+              child: text(_kPrevIcon),
             ),
             div(
               classes: 'text-sm font-medium',
@@ -128,7 +144,7 @@ class Calendar extends UiComponent {
               classes:
                   'inline-flex items-center justify-center rounded-md text-sm font-medium h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100',
               attributes: {'type': 'button', 'aria-label': 'Next month'},
-              child: text('\u203A'),
+              child: text(_kNextIcon),
             ),
           ],
         ),
@@ -160,8 +176,9 @@ class Calendar extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -170,23 +187,24 @@ class Calendar extends UiComponent {
   List<Component> _buildCalendarDays(DateTime month) {
     final firstDay = DateTime(month.year, month.month);
     final lastDay = DateTime(month.year, month.month + 1, 0);
-    final startOffset = firstDay.weekday % 7;
+    final startOffset = firstDay.weekday % _daysPerWeek;
 
     final days = <Component>[];
 
     // Empty cells before first day
-    for (var i = 0; i < startOffset; i++) {
+    for (int i = 0; i < startOffset; i += 1) {
       days.add(div(classes: 'h-9 w-9'));
     }
 
     // Days of the month
-    for (var day = 1; day <= lastDay.day; day++) {
+    final currentSelectedDate = selectedDate;
+    for (int day = 1; day <= lastDay.day; day += 1) {
       final date = DateTime(month.year, month.month, day);
       final isSelected =
-          selectedDate != null &&
-          date.year == selectedDate!.year &&
-          date.month == selectedDate!.month &&
-          date.day == selectedDate!.day;
+          currentSelectedDate != null &&
+          date.year == currentSelectedDate.year &&
+          date.month == currentSelectedDate.month &&
+          date.day == currentSelectedDate.day;
 
       days.add(
         button(
@@ -196,7 +214,7 @@ class Calendar extends UiComponent {
             'aria-label': date.toIso8601String(),
             if (isSelected) 'aria-selected': 'true',
           },
-          events: _buildDayEvents(date),
+          events: _handleDay(date),
           child: text(day.toString()),
         ),
       );
@@ -205,7 +223,7 @@ class Calendar extends UiComponent {
     return days;
   }
 
-  String _buildDayClasses(bool isSelected) {
+  static String _buildDayClasses(bool isSelected) {
     const base =
         'inline-flex items-center justify-center rounded-md text-sm h-9 w-9 p-0 font-normal hover:bg-accent hover:text-accent-foreground';
     final state = isSelected ? 'bg-primary text-primary-foreground' : '';
@@ -213,16 +231,15 @@ class Calendar extends UiComponent {
     return '$base $state';
   }
 
-  Map<String, List<dynamic>> _buildDayEvents(DateTime date) {
+  Map<String, List<dynamic>> _handleDay(DateTime date) {
     final callback = onDateSelected;
-    if (callback == null) {
-      return {};
-    }
 
-    return {
-      'click': [
-        (event) => callback(date),
-      ],
-    };
+    return callback == null
+        ? {}
+        : {
+            'click': [
+              (event) => callback(date),
+            ],
+          };
   }
 }

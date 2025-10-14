@@ -80,6 +80,11 @@ class FormField extends UiComponent {
 
   @override
   Component build(BuildContext context) {
+    final currentLabel = label;
+    final currentChild = child;
+    final currentDescription = description;
+    final currentError = error;
+
     return div(
       id: id,
       classes: _buildClasses(),
@@ -88,14 +93,14 @@ class FormField extends UiComponent {
       events: this.events,
       children: [
         // Label
-        if (label != null)
+        if (currentLabel != null)
           Component.element(
             tag: 'label',
             classes:
                 'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
             child: Component.fragment(
               children: [
-                text(label!),
+                text(currentLabel),
                 if (required)
                   span(
                     classes: 'text-destructive ml-1',
@@ -105,18 +110,18 @@ class FormField extends UiComponent {
             ),
           ),
         // Input
-        if (child != null) child!,
+        if (currentChild != null) currentChild,
         // Description
-        if (description != null && error == null)
+        if (currentDescription != null && currentError == null)
           p(
             classes: 'text-sm text-muted-foreground',
-            child: text(description!),
+            child: text(currentDescription),
           ),
         // Error
-        if (error != null)
+        if (currentError != null)
           p(
             classes: 'text-sm text-destructive',
-            child: text(error!),
+            child: text(currentError),
           ),
       ],
     );
@@ -128,8 +133,9 @@ class FormField extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -196,8 +202,9 @@ class Form extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

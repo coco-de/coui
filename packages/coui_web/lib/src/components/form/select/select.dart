@@ -121,12 +121,13 @@ class Select extends UiComponent {
     final optionComponents = <Component>[];
 
     // Add placeholder option if provided
-    if (placeholder != null) {
+    final currentPlaceholder = placeholder;
+    if (currentPlaceholder != null) {
       optionComponents.add(
         Component.element(
           tag: 'option',
           attributes: {'value': '', 'disabled': '', 'selected': ''},
-          child: text(placeholder!),
+          child: text(currentPlaceholder),
         ),
       );
     }
@@ -160,15 +161,17 @@ class Select extends UiComponent {
     final classList = <String>[];
 
     // Add variant classes from style
-    if (style != null) {
-      for (final s in style!) {
+    final currentStyle = style;
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
         classList.add(s.cssClass);
       }
     }
 
     // Add user classes
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

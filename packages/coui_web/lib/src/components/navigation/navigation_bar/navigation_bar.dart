@@ -89,11 +89,11 @@ class NavigationBar extends UiComponent {
           },
           events: _buildItemEvents(i),
           children: [
-            if (item.icon != null) item.icon!,
+            if (item.icon != null) item.icon,
             if (item.label != null)
               span(
                 classes: 'text-xs',
-                child: text(item.label!),
+                child: text(item.label),
               ),
           ],
         ),
@@ -120,8 +120,9 @@ class NavigationBar extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

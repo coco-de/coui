@@ -54,7 +54,7 @@ class Resizer {
 
   double _couldNotBorrow = 0;
 
-  bool attemptExpand(double delta, int direction, int index) {
+  bool attemptExpand(int index, int direction, double delta) {
     final item = items[index];
     final currentSize = item.newValue; // check
     final minSize = item.min;
@@ -132,7 +132,7 @@ class Resizer {
     return false;
   }
 
-  bool attemptCollapse(int direction, int index) {
+  bool attemptCollapse(int index, int direction) {
     if (index == 0) {
       direction = 1;
     } else if (index == items.length - 1) {
@@ -191,7 +191,7 @@ class Resizer {
     return false;
   }
 
-  bool attemptExpandCollapsed(int direction, int index) {
+  bool attemptExpandCollapsed(int index, int direction) {
     if (index == 0) {
       direction = 1;
     } else if (index == items.length - 1) {
@@ -286,8 +286,8 @@ class Resizer {
       return;
     }
 
-    final payOffLeft = _payOffLoanSize(delta, -1, index - 1);
-    final payOffRight = _payOffLoanSize(-delta, 1, index);
+    final payOffLeft = _payOffLoanSize(index - 1, -1, delta);
+    final payOffRight = _payOffLoanSize(index, 1, -delta);
 
     final payingBackLeft = _borrowSize(index - 1, -payOffLeft, 0, -1).givenSize;
     final payingBackRight = _borrowSize(
@@ -343,7 +343,7 @@ class Resizer {
     }
   }
 
-  double _payOffLoanSize(double delta, int direction, int index) {
+  double _payOffLoanSize(int index, int direction, double delta) {
     if (direction < 0) {
       for (int i = 0; i < index; i += 1) {
         final borrowedSize = items[i].newValue - items[i].value;

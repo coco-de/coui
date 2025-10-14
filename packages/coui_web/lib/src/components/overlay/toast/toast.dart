@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/components/overlay/toast/toast_style.dart';
 import 'package:jaspr/jaspr.dart';
@@ -51,10 +53,16 @@ class Toast extends UiComponent {
   /// Callback when toast is dismissed.
   final ToastDismissCallback? onDismiss;
 
+  /// Close icon character code (multiplication sign U+00D7).
+  static const _kCloseIconCode = 0x00D7;
+
   /// Internal variant reference.
   final ToastVariant _variant;
 
   static const _divValue = 'div';
+
+  /// Close icon character (multiplication sign).
+  static String get _kCloseIcon => String.fromCharCode(_kCloseIconCode);
 
   @override
   Toast copyWith({
@@ -114,7 +122,7 @@ class Toast extends UiComponent {
             if (description != null)
               div(
                 classes: 'text-sm opacity-90',
-                child: text(description!),
+                child: text(description),
               ),
           ],
         ),
@@ -129,9 +137,9 @@ class Toast extends UiComponent {
               'aria-label': 'Close',
             },
             events: {
-              'click': (event) => onDismiss!(),
+              'click': (event) => onDismiss(),
             },
-            child: text('\u00D7'),
+            child: text(_kCloseIcon),
           ),
       ],
     );
@@ -144,15 +152,17 @@ class Toast extends UiComponent {
     final classList = <String>[];
 
     // Add variant classes from style
-    if (style != null) {
-      for (final s in style!) {
+    final currentStyle = style;
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
         classList.add(s.cssClass);
       }
     }
 
     // Add user classes
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

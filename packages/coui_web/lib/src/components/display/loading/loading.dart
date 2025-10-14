@@ -9,8 +9,6 @@ import 'package:jaspr/jaspr.dart';
 /// Loading(size: 24) // Custom size
 /// ```
 class Loading extends UiComponent {
-  static const _defaultSpinnerSize = 16;
-
   /// Creates a Loading component.
   ///
   /// Parameters:
@@ -27,6 +25,8 @@ class Loading extends UiComponent {
 
   /// Size of the spinner in pixels.
   final int size;
+
+  static const _defaultSpinnerSize = 16;
 
   static const _divValue = 'div';
 
@@ -52,10 +52,6 @@ class Loading extends UiComponent {
   }
 
   @override
-  String get baseClass =>
-      'animate-spin rounded-full border-2 border-current border-t-transparent';
-
-  @override
   Component build(BuildContext context) {
     return Component.element(
       tag: tag,
@@ -70,11 +66,16 @@ class Loading extends UiComponent {
     );
   }
 
+  @override
+  String get baseClass =>
+      'animate-spin rounded-full border-2 border-current border-t-transparent';
+
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

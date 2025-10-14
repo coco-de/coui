@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -15,8 +17,6 @@ typedef RatingCallback = void Function(int rating);
 /// )
 /// ```
 class Rating extends UiComponent {
-  static const _defaultMaxRating = 5;
-
   /// Creates a Rating component.
   const Rating({
     super.key,
@@ -47,7 +47,21 @@ class Rating extends UiComponent {
   /// Size of rating stars.
   final RatingSize size;
 
+  /// Filled star icon character code (U+2605 - ★).
+  static const _kFilledStarCode = 0x2605;
+
+  /// Empty star icon character code (U+2606 - ☆).
+  static const _kEmptyStarCode = 0x2606;
+
+  static const _defaultMaxRating = 5;
+
   static const _divValue = 'div';
+
+  /// Filled star icon character.
+  static String get _kFilledStar => String.fromCharCode(_kFilledStarCode);
+
+  /// Empty star icon character.
+  static String get _kEmptyStar => String.fromCharCode(_kEmptyStarCode);
 
   @override
   Rating copyWith({
@@ -106,8 +120,9 @@ class Rating extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -126,7 +141,7 @@ class Rating extends UiComponent {
         'aria-label': '$index stars',
       },
       events: _buildStarEvents(index),
-      child: text(isFilled ? '\u2605' : '\u2606'),
+      child: text(isFilled ? _kFilledStar : _kEmptyStar),
     );
   }
 
@@ -143,7 +158,7 @@ class Rating extends UiComponent {
         ? {}
         : {
             'click': [
-              (event) => onChanged!(rating),
+              (event) => onChanged(rating),
             ],
           };
   }

@@ -34,6 +34,25 @@ class ResizableDraggerTheme {
   /// Icon color inside the dragger.
   final Color? iconColor;
 
+  /// Returns a copy of this theme with the given fields replaced.
+  ResizableDraggerTheme copyWith({
+    ValueGetter<Color?>? color,
+    ValueGetter<double?>? borderRadius,
+    ValueGetter<double?>? width,
+    ValueGetter<double?>? height,
+    ValueGetter<double?>? iconSize,
+    ValueGetter<Color?>? iconColor,
+  }) {
+    return ResizableDraggerTheme(
+      borderRadius: borderRadius == null ? this.borderRadius : borderRadius(),
+      color: color == null ? this.color : color(),
+      height: height == null ? this.height : height(),
+      iconColor: iconColor == null ? this.iconColor : iconColor(),
+      iconSize: iconSize == null ? this.iconSize : iconSize(),
+      width: width == null ? this.width : width(),
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -63,26 +82,32 @@ class HorizontalResizableDragger extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<ResizableDraggerTheme>(context);
     final color = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.color,
       defaultValue: theme.colorScheme.border,
     );
     final borderRadius = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.borderRadius,
       defaultValue: theme.radiusSm,
     );
     final width = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.width,
       defaultValue: 3 * 4 * scaling,
     );
     final height = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.height,
       defaultValue: 4 * 4 * scaling,
     );
     final iconSize = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.iconSize,
       defaultValue: 4 * 2.5 * scaling,
     );
     final iconColor = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.iconColor,
       defaultValue: null,
     );
@@ -92,10 +117,10 @@ class HorizontalResizableDragger extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(borderRadius ?? 0),
         ),
         width: width,
-        height: height.toDouble(),
+        height: height,
         child: Icon(
           RadixIcons.dragHandleDots2,
           size: iconSize,
@@ -117,26 +142,32 @@ class VerticalResizableDragger extends StatelessWidget {
     final scaling = theme.scaling;
     final compTheme = ComponentTheme.maybeOf<ResizableDraggerTheme>(context);
     final color = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.color,
       defaultValue: theme.colorScheme.border,
     );
     final borderRadius = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.borderRadius,
       defaultValue: theme.radiusSm,
     );
     final width = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.width,
       defaultValue: 4 * 4 * scaling,
     );
     final height = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.height,
       defaultValue: 3 * 4 * scaling,
     );
     final iconSize = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.iconSize,
       defaultValue: 4 * 2.5 * scaling,
     );
     final iconColor = styleValue(
+      widgetValue: null,
       themeValue: compTheme?.iconColor,
       defaultValue: null,
     );
@@ -146,10 +177,10 @@ class VerticalResizableDragger extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(borderRadius ?? 0),
         ),
         width: width,
-        height: height.toDouble(),
+        height: height,
         child: Transform.rotate(
           angle: pi / 2,
           child: Icon(
@@ -165,6 +196,8 @@ class VerticalResizableDragger extends StatelessWidget {
 
 /// A sibling of a resizable panel.
 enum PanelSibling {
+  before(-1),
+  after(1),
   both(0);
 
   final int direction;
@@ -497,9 +530,9 @@ class _ResizablePaneState extends State<ResizablePane> {
     final draggers = _panelState!.state.computeDraggers();
     final resizer = Resizer(draggers);
     final result = resizer.attemptExpand(
-      size,
-      direction.direction,
       _panelState!.index,
+      direction.direction,
+      size,
     );
     if (result) {
       _panelState!.state.updateDraggers(resizer.items);
@@ -545,11 +578,12 @@ class _ResizablePaneState extends State<ResizablePane> {
 }
 
 class _ResizablePanelData {
-  const _ResizablePanelData(this.index, this.state);
-
-  final int index;
+  const _ResizablePanelData(this.state, this.index);
 
   final _ResizablePanelState state;
+  final int index;
+
+  Axis get direction => state.widget.direction;
 
   void attach(ResizablePaneController controller) {
     state.attachController(controller);
@@ -684,6 +718,21 @@ class ResizablePanel extends StatefulWidget {
     return data.direction == Axis.horizontal
         ? const VerticalDivider()
         : const Divider();
+  }
+
+  /// Default builder for interactive drag handles between resizable panes.
+  ///
+  /// Creates appropriate dragger widgets based on the panel orientation:
+  /// - Horizontal panels get vertical draggers
+  /// - Vertical panels get horizontal draggers
+  ///
+  /// This is the default value for [draggerBuilder] when none is specified.
+  static Widget? defaultDraggerBuilder(BuildContext context) {
+    final data = Data.of<ResizableData>(context);
+
+    return data.direction == Axis.horizontal
+        ? const VerticalResizableDragger()
+        : const HorizontalResizableDragger();
   }
 
   /// The axis along which the panels are arranged and can be resized.
@@ -823,7 +872,7 @@ class _ResizablePanelState extends State<ResizablePanel> {
       children.add(
         Data<_ResizablePanelData>.inherit(
           key: widget.children[i].key,
-          data: _ResizablePanelData(i, this),
+          data: _ResizablePanelData(this, i),
           child: widget.children[i],
         ),
       );
@@ -1220,7 +1269,7 @@ class _ResizableLayoutChild
 }
 
 typedef _ResizableLayoutCallback =
-    void Function(double flexCount, double panelSize);
+    void Function(double panelSize, double flexCount);
 
 class _ResizableLayout extends MultiChildRenderObjectWidget {
   const _ResizableLayout({
@@ -1422,7 +1471,7 @@ class _RenderResizableLayout extends RenderBox
       final childParentData = child.parentData! as _ResizableLayoutParentData;
 
       /// Total offset = sum of sizes from 0 to index.
-      if (childParentData.isDragger ?? false || childParentData.index != null) {
+      if (childParentData.isDragger == true || childParentData.index != null) {
         double minExtent = 0;
         if (childParentData.index != null) {
           minExtent = dividerSizes[childParentData.index!];
@@ -1436,6 +1485,7 @@ class _RenderResizableLayout extends RenderBox
         draggerConstraints = direction == Axis.horizontal
             ? BoxConstraints(
                 minWidth: minExtent,
+                maxWidth: double.infinity,
                 minHeight: intrinsicCross,
                 maxHeight: intrinsicCross,
               )
@@ -1443,6 +1493,7 @@ class _RenderResizableLayout extends RenderBox
                 minWidth: intrinsicCross,
                 maxWidth: intrinsicCross,
                 minHeight: minExtent,
+                maxHeight: double.infinity,
               );
         child.layout(draggerConstraints, parentUsesSize: true);
         final draggerSize = child.size;
@@ -1569,7 +1620,7 @@ class _RenderResizableLayout extends RenderBox
     return direction == Axis.horizontal ? size.width : size.height;
   }
 
-  Offset _createOffset(double cross, double main) {
+  Offset _createOffset(double main, double cross) {
     return direction == Axis.horizontal
         ? Offset(main, cross)
         : Offset(cross, main);

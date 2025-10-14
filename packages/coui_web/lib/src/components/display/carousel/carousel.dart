@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols, prefer-correct-handler-name
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -17,8 +19,6 @@ typedef CarouselIndexCallback = void Function(int index);
 /// )
 /// ```
 class Carousel extends UiComponent {
-  static const _percentageMultiplier = 100;
-
   /// Creates a Carousel component.
   ///
   /// Parameters:
@@ -51,7 +51,21 @@ class Carousel extends UiComponent {
   /// Whether to auto-play.
   final bool autoPlay;
 
+  static const _percentageMultiplier = 100;
+
+  /// Previous slide icon character code (U+2039 - ‹).
+  static const _kPrevIconCode = 0x2039;
+
+  /// Next slide icon character code (U+203A - ›).
+  static const _kNextIconCode = 0x203A;
+
   static const _divValue = 'div';
+
+  /// Previous slide icon character.
+  static String get _kPrevIcon => String.fromCharCode(_kPrevIconCode);
+
+  /// Next slide icon character.
+  static String get _kNextIcon => String.fromCharCode(_kNextIconCode);
 
   @override
   Carousel copyWith({
@@ -117,8 +131,8 @@ class Carousel extends UiComponent {
             'type': 'button',
             'aria-label': 'Previous slide',
           },
-          events: _buildPrevEvents(),
-          child: text('\u2039'),
+          events: _handlePrev(),
+          child: text(_kPrevIcon),
         ),
         button(
           classes:
@@ -127,8 +141,8 @@ class Carousel extends UiComponent {
             'type': 'button',
             'aria-label': 'Next slide',
           },
-          events: _buildNextEvents(),
-          child: text('\u203A'),
+          events: _handleNext(),
+          child: text(_kNextIcon),
         ),
         // Indicators
         div(
@@ -142,7 +156,7 @@ class Carousel extends UiComponent {
                 'type': 'button',
                 'aria-label': 'Go to slide ${index + 1}',
               },
-              events: _buildIndicatorEvents(index),
+              events: _handleIndicator(index),
             ),
           ),
         ),
@@ -156,14 +170,15 @@ class Carousel extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
   }
 
-  Map<String, List<dynamic>> _buildPrevEvents() {
+  Map<String, List<dynamic>> _handlePrev() {
     final callback = onIndexChanged;
 
     return callback == null
@@ -180,7 +195,7 @@ class Carousel extends UiComponent {
           };
   }
 
-  Map<String, List<dynamic>> _buildNextEvents() {
+  Map<String, List<dynamic>> _handleNext() {
     final callback = onIndexChanged;
 
     return callback == null
@@ -197,7 +212,7 @@ class Carousel extends UiComponent {
           };
   }
 
-  Map<String, List<dynamic>> _buildIndicatorEvents(int index) {
+  Map<String, List<dynamic>> _handleIndicator(int index) {
     final callback = onIndexChanged;
 
     return callback == null

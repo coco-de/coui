@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols, prefer-correct-handler-name
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -15,6 +17,12 @@ typedef DrawerCloseCallback = void Function();
 /// )
 /// ```
 class Drawer extends UiComponent {
+  /// Close icon character code (U+00D7 - ×).
+  static const int _kCloseIconCode = 0x00D7;
+
+  /// Close icon character.
+  static String get _kCloseIcon => String.fromCharCode(_kCloseIconCode);
+
   /// Creates a Drawer component.
   ///
   /// Parameters:
@@ -87,11 +95,11 @@ class Drawer extends UiComponent {
               div(
                 classes:
                     'fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity',
-                events: _buildOverlayEvents(),
+                events: _overlayEvents,
               ),
               // Drawer content
               div(
-                classes: _buildDrawerClasses(),
+                classes: _drawerClasses,
                 attributes: {
                   'role': 'dialog',
                   'aria-modal': 'true',
@@ -112,9 +120,9 @@ class Drawer extends UiComponent {
                           'type': 'button',
                           'aria-label': 'Close',
                         },
-                        events: _buildCloseEvents(),
+                        events: _closeEvents,
                         children: [
-                          text('\u00D7'),
+                          text(_kCloseIcon),
                         ],
                       ),
                     ],
@@ -137,14 +145,15 @@ class Drawer extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
   }
 
-  String _buildDrawerClasses() {
+  String get _drawerClasses {
     const base =
         'fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out';
     final position = switch (side) {
@@ -157,7 +166,7 @@ class Drawer extends UiComponent {
     return '$base $position';
   }
 
-  Map<String, List<dynamic>> _buildOverlayEvents() {
+  Map<String, List<dynamic>> get _overlayEvents {
     final currentOnClose = onClose;
 
     return currentOnClose == null
@@ -169,7 +178,7 @@ class Drawer extends UiComponent {
           };
   }
 
-  Map<String, List<dynamic>> _buildCloseEvents() {
+  Map<String, List<dynamic>> get _closeEvents {
     final currentOnClose = onClose;
 
     return currentOnClose == null

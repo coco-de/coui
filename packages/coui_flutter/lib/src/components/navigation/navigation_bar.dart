@@ -90,6 +90,33 @@ class NavigationBarTheme {
 
   final EdgeInsetsGeometry? padding;
 
+  /// Returns a copy of this theme with the given fields replaced.
+  NavigationBarTheme copyWith({
+    ValueGetter<Color?>? backgroundColor,
+    ValueGetter<NavigationBarAlignment?>? alignment,
+    ValueGetter<Axis?>? direction,
+    ValueGetter<double?>? spacing,
+    ValueGetter<NavigationLabelType?>? labelType,
+    ValueGetter<NavigationLabelPosition?>? labelPosition,
+    ValueGetter<NavigationLabelSize?>? labelSize,
+    ValueGetter<EdgeInsetsGeometry?>? padding,
+  }) {
+    return NavigationBarTheme(
+      alignment: alignment == null ? this.alignment : alignment(),
+      backgroundColor: backgroundColor == null
+          ? this.backgroundColor
+          : backgroundColor(),
+      direction: direction == null ? this.direction : direction(),
+      labelPosition: labelPosition == null
+          ? this.labelPosition
+          : labelPosition(),
+      labelSize: labelSize == null ? this.labelSize : labelSize(),
+      labelType: labelType == null ? this.labelType : labelType(),
+      padding: padding == null ? this.padding : padding(),
+      spacing: spacing == null ? this.spacing : spacing(),
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     return other is NavigationBarTheme &&
@@ -914,7 +941,8 @@ class _NavigationSidebarState extends State<NavigationSidebar>
                                   resolvedPadding,
                                 ),
                                 sliver: e,
-                              ) as Widget;
+                              )
+                              as Widget;
                         })
                         .joinSeparator(SliverGap(widget.spacing ?? 0)),
                     SliverGap(_endPadding(direction, resolvedPadding)),

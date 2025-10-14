@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -47,16 +49,49 @@ class Banner extends UiComponent {
   /// Optional dismiss callback.
   final BannerDismissCallback? onDismiss;
 
+  /// Close icon character code (U+00D7 - ×).
+  static const _kCloseIconCode = 0x00D7;
+
+  /// Info icon character code (U+2139 - ℹ).
+  static const _kInfoIconCode = 0x2139;
+
+  /// Warning icon character code (U+26A0 - ⚠).
+  static const _kWarningIconCode = 0x26A0;
+
+  /// Error icon character code (U+2716 - ✖).
+  static const _kErrorIconCode = 0x2716;
+
+  /// Success icon character code (U+2713 - ✓).
+  static const _kSuccessIconCode = 0x2713;
+
   static const _divValue = 'div';
+
+  /// Close icon character.
+  static String get _kCloseIcon => String.fromCharCode(_kCloseIconCode);
+
+  /// Info icon character.
+  static String get _kInfoIcon => String.fromCharCode(_kInfoIconCode);
+
+  /// Warning icon character.
+  static String get _kWarningIcon => String.fromCharCode(_kWarningIconCode);
+
+  /// Error icon character.
+  static String get _kErrorIcon => String.fromCharCode(_kErrorIconCode);
+
+  /// Success icon character.
+  static String get _kSuccessIcon => String.fromCharCode(_kSuccessIconCode);
 
   @override
   String get baseClass => 'flex items-center gap-4 p-4 border-l-4';
 
   @override
   Component build(BuildContext context) {
+    final currentAction = action;
+    final currentOnDismiss = onDismiss;
+
     return div(
       id: id,
-      classes: '${_buildClasses()} ${_getVariantClasses()}',
+      classes: '${_buildClasses()} $_variantClasses',
       styles: this.css,
       attributes: {
         ...this.componentAttributes,
@@ -67,7 +102,7 @@ class Banner extends UiComponent {
         // Icon
         div(
           classes: 'text-2xl',
-          child: text(_getVariantIcon()),
+          child: text(_variantIcon),
         ),
         // Message
         div(
@@ -75,22 +110,23 @@ class Banner extends UiComponent {
           child: text(message),
         ),
         // Action
-        if (action != null) action!,
+        currentAction,
         // Dismiss button
-        if (onDismiss != null)
-          button(
-            classes:
-                'rounded-full p-1 hover:bg-black/10 dark:hover:bg-white/10',
-            attributes: {
-              'type': 'button',
-              'aria-label': 'Dismiss',
-            },
-            events: {
-              'click': (event) => onDismiss!(),
-            },
-            child: text('\u00D7'),
-          ),
-      ],
+        currentOnDismiss == null
+            ? null
+            : button(
+                classes:
+                    'rounded-full p-1 hover:bg-black/10 dark:hover:bg-white/10',
+                attributes: {
+                  'type': 'button',
+                  'aria-label': 'Dismiss',
+                },
+                events: {
+                  'click': (event) => currentOnDismiss(),
+                },
+                child: text(_kCloseIcon),
+              ),
+      ].nonNulls.toList(),
     );
   }
 
@@ -124,14 +160,15 @@ class Banner extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
   }
 
-  String _getVariantClasses() {
+  String get _variantClasses {
     return switch (variant) {
       BannerVariant.info =>
         'bg-blue-50 border-blue-500 text-blue-900 dark:bg-blue-950 dark:text-blue-100',
@@ -144,12 +181,12 @@ class Banner extends UiComponent {
     };
   }
 
-  String _getVariantIcon() {
+  String get _variantIcon {
     return switch (variant) {
-      BannerVariant.info => '\u2139',
-      BannerVariant.warning => '\u26A0',
-      BannerVariant.error => '\u2716',
-      BannerVariant.success => '\u2713',
+      BannerVariant.info => _kInfoIcon,
+      BannerVariant.warning => _kWarningIcon,
+      BannerVariant.error => _kErrorIcon,
+      BannerVariant.success => _kSuccessIcon,
     };
   }
 }

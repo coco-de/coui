@@ -70,11 +70,13 @@ class Skeleton extends UiComponent {
   Component build(BuildContext context) {
     final inlineStyles = <String, String>{};
 
-    if (width != null) {
-      inlineStyles['width'] = width!;
+    final currentWidth = width;
+    if (currentWidth != null) {
+      inlineStyles['width'] = currentWidth;
     }
-    if (height != null) {
-      inlineStyles['height'] = height!;
+    final currentHeight = height;
+    if (currentHeight != null) {
+      inlineStyles['height'] = currentHeight;
     }
 
     return Component.element(
@@ -91,15 +93,17 @@ class Skeleton extends UiComponent {
     final classList = <String>[];
 
     // Add variant classes from style
-    if (style != null) {
-      for (final s in style!) {
+    final currentStyle = style;
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
         classList.add(s.cssClass);
       }
     }
 
     // Add user classes
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

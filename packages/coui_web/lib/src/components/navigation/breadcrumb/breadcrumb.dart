@@ -102,8 +102,9 @@ class Breadcrumb extends UiComponent {
       classList.add(baseClass);
     }
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -164,6 +165,7 @@ class BreadcrumbItem extends UiComponent {
   @override
   Component build(BuildContext context) {
     final currentHref = href;
+    final labelText = text(label);
 
     return li(
       id: id,
@@ -177,13 +179,13 @@ class BreadcrumbItem extends UiComponent {
               attributes: {
                 if (isActive) 'aria-current': 'page',
               },
-              child: text(label),
+              child: labelText,
             )
           : a(
               href: currentHref,
               classes:
                   'font-medium text-muted-foreground transition-colors hover:text-foreground',
-              child: text(label),
+              child: labelText,
             ),
     );
   }
@@ -198,8 +200,9 @@ class BreadcrumbItem extends UiComponent {
       classList.add(baseClass);
     }
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

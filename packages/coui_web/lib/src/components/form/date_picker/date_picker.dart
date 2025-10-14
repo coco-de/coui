@@ -103,8 +103,9 @@ class DatePicker extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -115,11 +116,13 @@ class DatePicker extends UiComponent {
       ...componentAttributes,
     };
 
-    if (min != null) {
-      attrs['min'] = min!;
+    final currentMin = min;
+    if (currentMin != null) {
+      attrs['min'] = currentMin;
     }
-    if (max != null) {
-      attrs['max'] = max!;
+    final currentMax = max;
+    if (currentMax != null) {
+      attrs['max'] = currentMax;
     }
 
     return attrs;
@@ -130,12 +133,12 @@ class DatePicker extends UiComponent {
 
     if (onChanged != null) {
       eventMap['change'] = [
-        (event) {
+        (dynamic event) {
           final target = event.target;
           if (target != null) {
             final value = (target as dynamic).value as String?;
             if (value != null) {
-              onChanged!(value);
+              onChanged(value);
             }
           }
         },

@@ -117,6 +117,7 @@ class Textarea extends UiComponent {
       disabled: disabled ?? this.disabled,
       required: required ?? this.required,
       rows: rows ?? this.rows,
+      cols: cols ?? this.cols,
       onInput: onInput ?? this.onInput,
       onChange: onChange ?? this.onChange,
       classes: mergeClasses(classes, this.classes),
@@ -125,6 +126,7 @@ class Textarea extends UiComponent {
       tag: tag ?? this.tag,
       name: name ?? this.name,
       maxLength: maxLength ?? this.maxLength,
+      attributes: attributes ?? this.componentAttributes,
     );
   }
 
@@ -171,6 +173,8 @@ class Textarea extends UiComponent {
 
   @override
   Component build(BuildContext context) {
+    final currentValue = value;
+
     return Component.element(
       tag: tag,
       id: id,
@@ -178,7 +182,7 @@ class Textarea extends UiComponent {
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: value != null ? text(value!) : null,
+      child: currentValue != null ? text(currentValue) : null,
     );
   }
 
@@ -186,15 +190,17 @@ class Textarea extends UiComponent {
     final classList = <String>[];
 
     // Add variant classes from style
-    if (style != null) {
-      for (final s in style!) {
+    final currentStyle = style;
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
         classList.add(s.cssClass);
       }
     }
 
     // Add user classes
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

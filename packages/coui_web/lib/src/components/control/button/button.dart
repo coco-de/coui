@@ -493,8 +493,6 @@ class Button extends UiComponent {
 
   @override
   Component build(BuildContext context) {
-    final content = _buildContent();
-
     return Component.element(
       tag: tag,
       id: id,
@@ -502,7 +500,7 @@ class Button extends UiComponent {
       styles: this.css,
       attributes: this.componentAttributes,
       events: this.events,
-      child: content,
+      child: _content,
     );
   }
 
@@ -525,15 +523,17 @@ class Button extends UiComponent {
     final classList = <String>[];
 
     // Add variant classes from style
-    if (style != null) {
-      for (final s in style!) {
+    final currentStyle = style;
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
         classList.add(s.cssClass);
       }
     }
 
     // Add shape classes
-    if (shape != null) {
-      classList.add(_getShapeClass(shape!));
+    final currentShape = shape;
+    if (currentShape != null) {
+      classList.add(_getShapeClass(currentShape));
     }
 
     // Add wide/block classes
@@ -545,14 +545,15 @@ class Button extends UiComponent {
     }
 
     // Add user classes
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
   }
 
-  Component _buildContent() {
+  Component get _content {
     final currentLeading = leading;
     final currentTrailing = trailing;
 
@@ -562,10 +563,10 @@ class Button extends UiComponent {
 
     // Build content with leading and trailing
     final content = [
-      if (currentLeading != null) currentLeading,
+      currentLeading,
       child,
-      if (currentTrailing != null) currentTrailing,
-    ];
+      currentTrailing,
+    ].nonNulls.toList();
 
     return span(
       classes: 'flex items-center gap-2',

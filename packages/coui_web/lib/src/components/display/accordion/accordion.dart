@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -73,8 +75,9 @@ class Accordion extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -105,7 +108,13 @@ class AccordionItem extends UiComponent {
   /// Whether the item is open.
   final bool isOpen;
 
+  /// Chevron down icon character code (U+25BC - ▼).
+  static const _kChevronCode = 0x25BC;
+
   static const _divValue = 'div';
+
+  /// Chevron down icon character.
+  static String get _kChevronIcon => String.fromCharCode(_kChevronCode);
 
   @override
   AccordionItem copyWith({
@@ -155,7 +164,7 @@ class AccordionItem extends UiComponent {
             // Chevron icon (placeholder - you'd use actual icon component)
             span(
               classes: 'transition-transform duration-200',
-              child: text('\u25BC'),
+              child: text(_kChevronIcon),
             ),
           ],
         ),
@@ -178,8 +187,9 @@ class AccordionItem extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

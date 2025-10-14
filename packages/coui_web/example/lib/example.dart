@@ -45,19 +45,15 @@ class CoUIShowcase extends StatelessComponent {
               content: [
                 Alert(
                   [text('🎉 Welcome to CoUI! This is a success message.')],
-                  style: const [Alert.success],
                 ),
                 Alert(
                   [text('⚠️ Please check your input. This is a warning.')],
-                  style: const [Alert.warning],
                 ),
                 Alert(
                   [text('❌ Something went wrong. This is an error message.')],
-                  style: const [Alert.error],
                 ),
                 Alert(
                   [text("ℹ️ Here's some helpful information for you.")],
-                  style: const [Alert.info],
                 ),
               ],
               description: 'User notifications and feedback messages',
@@ -69,24 +65,16 @@ class CoUIShowcase extends StatelessComponent {
               content: [
                 div(
                   [
-                    Button(
-                      style: const [Button.primaryStyle],
+                    Button.primary(
                       child: text('Primary'),
                     ),
-                    Button(
-                      style: const [Button.secondaryStyle],
+                    Button.secondary(
                       child: text('Secondary'),
                     ),
-                    Button(
-                      style: const [Button.accentStyle],
-                      child: text('Accent'),
-                    ),
-                    Button(
-                      style: const [Button.outlineStyle],
+                    Button.outline(
                       child: text('Outline'),
                     ),
-                    Button(
-                      style: const [Button.ghostStyle],
+                    Button.ghost(
                       child: text('Ghost'),
                     ),
                   ],
@@ -102,14 +90,12 @@ class CoUIShowcase extends StatelessComponent {
               content: [
                 div(
                   [
-                    Input(
+                    Input.primary(
                       placeholder: 'Enter your email',
-                      style: const [Input.primary],
                       type: 'email',
                     ),
                     Input(
                       placeholder: 'Enter password',
-                      style: const [Input.bordered],
                       type: 'password',
                     ),
                   ],
@@ -125,11 +111,10 @@ class CoUIShowcase extends StatelessComponent {
               content: [
                 div(
                   [
-                    Badge([text('Primary')], style: const [Badge.primary]),
-                    Badge([text('Secondary')], style: const [Badge.secondary]),
-                    Badge([text('Accent')], style: const [Badge.accent]),
-                    Badge([text('Success')], style: const [Badge.success]),
-                    Badge([text('Error')], style: const [Badge.error]),
+                    Badge.primary(child: text('Primary')),
+                    Badge.secondary(child: text('Secondary')),
+                    Badge.outline(child: text('Outline')),
+                    Badge.destructive(child: text('Destructive')),
                   ],
                   classes: 'flex flex-wrap gap-2',
                 ),

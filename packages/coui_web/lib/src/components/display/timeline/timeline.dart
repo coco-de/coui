@@ -77,8 +77,9 @@ class Timeline extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -103,7 +104,7 @@ class Timeline extends UiComponent {
             if (item.timestamp != null)
               span(
                 classes: 'text-xs text-muted-foreground',
-                child: text(item.timestamp!),
+                child: text(item.timestamp),
               ),
             h3(
               classes: 'font-semibold',
@@ -112,9 +113,9 @@ class Timeline extends UiComponent {
             if (item.description != null)
               p(
                 classes: 'text-sm text-muted-foreground',
-                child: text(item.description!),
+                child: text(item.description),
               ),
-            if (item.content != null) item.content!,
+            if (item.content != null) item.content,
           ],
         ),
       ],

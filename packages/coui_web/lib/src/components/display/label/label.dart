@@ -63,13 +63,16 @@ class Label extends UiComponent {
 
   @override
   Component build(BuildContext context) {
+    final attrs = <String, String>{...this.componentAttributes};
+    final forAttr = htmlFor;
+    if (forAttr != null) {
+      attrs['for'] = forAttr;
+    }
+
     return Component.element(
       tag: 'label',
       id: id,
-      attributes: {
-        ...this.componentAttributes,
-        if (htmlFor != null) 'for': htmlFor!,
-      },
+      attributes: attrs,
       classes: _buildClasses(),
       styles: this.css,
       events: this.events,
@@ -91,8 +94,9 @@ class Label extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

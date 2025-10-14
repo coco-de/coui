@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-using-non-ascii-symbols
+
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:coui_web/src/components/display/chip/chip_style.dart';
 import 'package:jaspr/jaspr.dart';
@@ -47,7 +49,13 @@ class Chip extends UiComponent {
   /// Optional leading component.
   final Component? leading;
 
+  /// Close icon character code (U+00D7 - ×).
+  static const _kCloseIconCode = 0x00D7;
+
   static const _spanValue = 'span';
+
+  /// Close icon character.
+  static String get _kCloseIcon => String.fromCharCode(_kCloseIconCode);
 
   @override
   Chip copyWith({
@@ -73,9 +81,6 @@ class Chip extends UiComponent {
       tag: tag ?? this.tag,
     );
   }
-
-  @override
-  String get baseClass => '';
 
   @override
   Component build(BuildContext context) {
@@ -105,7 +110,7 @@ class Chip extends UiComponent {
           events: {
             'click': (event) => currentOnRemove(),
           },
-          child: text('\u00D7'),
+          child: text(_kCloseIcon),
         ),
       );
     }
@@ -121,19 +126,24 @@ class Chip extends UiComponent {
     );
   }
 
+  @override
+  String get baseClass => '';
+
   String _buildClasses() {
     final classList = <String>[];
 
     // Add variant classes from style
-    if (style != null) {
-      for (final s in style!) {
+    final currentStyle = style;
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
         classList.add(s.cssClass);
       }
     }
 
     // Add user classes
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

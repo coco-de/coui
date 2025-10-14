@@ -17,10 +17,6 @@ typedef SliderCallback = void Function(double value);
 /// )
 /// ```
 class Slider extends UiComponent {
-  static const _defaultMinValue = 0;
-  static const _defaultMaxValue = 100;
-  static const _percentageMultiplier = 100;
-
   /// Creates a Slider component.
   ///
   /// Parameters:
@@ -68,6 +64,12 @@ class Slider extends UiComponent {
   /// Callback when value changes.
   final SliderCallback? onChanged;
 
+  static const _defaultMinValue = 0;
+
+  static const _defaultMaxValue = 100;
+
+  static const _percentageMultiplier = 100;
+
   static const _divValue = 'div';
   static const _inputValue = 'input';
 
@@ -101,9 +103,6 @@ class Slider extends UiComponent {
       onChanged: onChanged ?? this.onChanged,
     );
   }
-
-  @override
-  String get baseClass => '';
 
   @override
   Component build(BuildContext context) {
@@ -149,19 +148,24 @@ class Slider extends UiComponent {
     );
   }
 
+  @override
+  String get baseClass => '';
+
   String _buildClasses() {
     final classList = <String>[];
 
     // Add variant classes from style
-    if (style != null) {
-      for (final s in style!) {
+    final currentStyle = style;
+    if (currentStyle != null) {
+      for (final s in currentStyle) {
         classList.add(s.cssClass);
       }
     }
 
     // Add user classes
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');

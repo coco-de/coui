@@ -99,20 +99,19 @@ class PopoverOverlayHandler extends OverlayHandler {
           child: ListenableBuilder(
             listenable: isClosed,
             builder: (innerContext, child) {
-              final isClosedValue = isClosed.value;
               return FocusScope(
                 autofocus: dismissBackdropFocus,
-                canRequestFocus: !isClosedValue,
+                canRequestFocus: !isClosed.value,
                 child: TweenAnimationBuilder<double>(
                   key: const ValueKey('popover-animation'),
                   tween: Tween(
                     begin: 0.0,
-                    end: isClosedValue ? 0.0 : 1.0,
+                    end: isClosed.value ? 0.0 : 1.0,
                   ),
-                  duration: isClosedValue
+                  duration: isClosed.value
                       ? (dismissDuration ?? const Duration(milliseconds: 100))
                       : (showDuration ?? kDefaultDuration),
-                  curve: isClosedValue
+                  curve: isClosed.value
                       ? const Interval(0, 2 / 3)
                       : Curves.linear,
                   builder: (innerContext, animationValue, child) {
@@ -165,7 +164,7 @@ class PopoverOverlayHandler extends OverlayHandler {
                     );
                   },
                   onEnd: () {
-                    if (isClosedValue) {
+                    if (isClosed.value) {
                       popoverEntry.remove();
                       popoverEntry.dispose();
                       animationCompleter.complete();

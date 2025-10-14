@@ -112,8 +112,9 @@ class Command extends UiComponent {
   String _buildClasses() {
     final classList = [baseClass];
 
-    if (classes != null && classes!.isNotEmpty) {
-      classList.add(classes!);
+    final currentClasses = classes;
+    if (currentClasses != null && currentClasses.isNotEmpty) {
+      classList.add(currentClasses);
     }
 
     return classList.join(' ');
@@ -129,12 +130,12 @@ class Command extends UiComponent {
       },
       events: _buildItemEvents(item),
       children: [
-        if (item.icon != null) item.icon!,
+        if (item.icon != null) item.icon,
         span(child: text(item.label)),
         if (item.shortcut != null)
           span(
             classes: 'ml-auto text-xs tracking-widest text-muted-foreground',
-            child: text(item.shortcut!),
+            child: text(item.shortcut),
           ),
       ],
     );
