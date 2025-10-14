@@ -142,5 +142,6 @@ dart_code_metrics:
           - onClick
           - initialValue
         last:
+          - builder
           - child
           - children

@@ -610,7 +610,6 @@ class NavigationMenuState extends State<NavigationMenu> {
   void _show(BuildContext context) {
     if (_popoverController.hasOpenPopover) {
       _popoverController.anchorContext = context;
-
       return;
     }
     final theme = Theme.of(context);
@@ -620,8 +619,8 @@ class NavigationMenuState extends State<NavigationMenu> {
       alignment: Alignment.topCenter,
       allowInvertHorizontal: false,
       allowInvertVertical: false,
-      builder: buildPopover,
       context: context,
+      hideDuration: const Duration(milliseconds: 100),
       margin:
           requestMargin() ??
           compTheme?.margin ??
@@ -635,6 +634,8 @@ class NavigationMenuState extends State<NavigationMenu> {
             (const EdgeInsets.all(8) * scaling);
       },
       regionGroupId: this,
+      showDuration: kDefaultDuration,
+      builder: buildPopover,
     );
   }
 
@@ -715,6 +716,7 @@ class NavigationMenuState extends State<NavigationMenu> {
           return AnimatedValueBuilder<double>(
             value: _activeIndex.value.toDouble(),
             duration: const Duration(milliseconds: 300),
+            curve: Curves.easeOutCubic,
             builder: (context, value, child) {
               final currentIndex = _activeIndex.value;
               final children = <Widget>[];
@@ -765,7 +767,6 @@ class NavigationMenuState extends State<NavigationMenu> {
                 ),
               );
             },
-            curve: Curves.easeOutCubic,
           );
         },
       ),
