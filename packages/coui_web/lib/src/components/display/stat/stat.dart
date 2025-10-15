@@ -105,7 +105,7 @@ class Stat extends UiComponent {
               child: text(label),
               classes: 'text-sm font-medium text-muted-foreground',
             ),
-            if (icon != null) icon,
+            ?icon,
           ],
           classes: 'flex items-center justify-between',
         ),
@@ -118,10 +118,10 @@ class Stat extends UiComponent {
         if (change != null && changeType != null)
           div(
             children: [
-              span(child: text(_getChangeIcon())),
+              span(child: text(_getChangeIcon)),
               span(child: text(change)),
             ],
-            classes: 'flex items-center gap-1 text-xs ${_getChangeColor()}',
+            classes: 'flex items-center gap-1 text-xs ${_getChangeColor}',
           ),
       ],
       id: id,
@@ -146,7 +146,7 @@ class Stat extends UiComponent {
     return classList.join(' ');
   }
 
-  String _getChangeColor() {
+  String get _getChangeColor {
     final type = changeType;
     if (type == null) return '';
 
@@ -157,7 +157,7 @@ class Stat extends UiComponent {
     };
   }
 
-  String _getChangeIcon() {
+  String get _getChangeIcon {
     final type = changeType;
     if (type == null) return '';
 

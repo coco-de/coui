@@ -68,9 +68,9 @@ class ScrollArea extends UiComponent {
     if (currentHeight != null) {
       styles['height'] = currentHeight;
     }
-    final currentMaxHeight = maxHeight;
-    if (currentMaxHeight != null) {
-      styles['max-height'] = currentMaxHeight;
+
+    if (maxHeight != null) {
+      styles['max-height'] = maxHeight;
     }
 
     // Add custom scrollbar styles

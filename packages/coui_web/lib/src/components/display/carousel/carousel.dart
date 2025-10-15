@@ -123,7 +123,7 @@ class Carousel extends UiComponent {
             'type': 'button',
             'aria-label': 'Previous slide',
           },
-          events: _handlePrev(),
+          events: _handlePrev,
         ),
         button(
           child: text(_kNextIcon),
@@ -133,7 +133,7 @@ class Carousel extends UiComponent {
             'type': 'button',
             'aria-label': 'Next slide',
           },
-          events: _handleNext(),
+          events: _handleNext,
         ),
         // Indicators
         div(
@@ -178,7 +178,7 @@ class Carousel extends UiComponent {
     return classList.join(' ');
   }
 
-  Map<String, List<dynamic>> _handlePrev() {
+  Map<String, List<dynamic>> get _handlePrev {
     final callback = onIndexChanged;
 
     return callback == null
@@ -195,7 +195,7 @@ class Carousel extends UiComponent {
           };
   }
 
-  Map<String, List<dynamic>> _handleNext() {
+  Map<String, List<dynamic>> get _handleNext {
     final callback = onIndexChanged;
 
     return callback == null

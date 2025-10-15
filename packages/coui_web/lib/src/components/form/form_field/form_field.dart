@@ -105,7 +105,7 @@ class FormField extends UiComponent {
                 'text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70',
           ),
         // Input
-        if (currentChild != null) currentChild,
+        if (currentChild != null) child,
         // Description
         if (currentDescription != null && currentError == null)
           p(

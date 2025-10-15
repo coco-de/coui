@@ -71,9 +71,9 @@ class Gap extends UiComponent {
   }
 
   @override
-  String get baseClass => _buildGapClass();
+  String get baseClass => _buildGapClass;
 
-  String _buildGapClass() {
+  String get _buildGapClass {
     // Convert size to Tailwind class
     // This is a simplified implementation
     final sizeStr = size == size.toInt()
@@ -108,7 +108,7 @@ class HGap extends Gap {
   });
 
   @override
-  String _buildGapClass() {
+  String get _buildGapClass {
     final sizeStr = size == size.toInt()
         ? size.toInt().toString()
         : size.toString();
@@ -130,7 +130,7 @@ class VGap extends Gap {
   });
 
   @override
-  String _buildGapClass() {
+  String get _buildGapClass {
     final sizeStr = size == size.toInt()
         ? size.toInt().toString()
         : size.toString();

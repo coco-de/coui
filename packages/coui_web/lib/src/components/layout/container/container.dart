@@ -71,7 +71,7 @@ class Container extends UiComponent {
 
   @override
   String get baseClass {
-    final maxWidthClass = _getMaxWidthClass();
+    final maxWidthClass = _getMaxWidthClass;
     final centerClass = centered ? 'mx-auto' : '';
 
     return 'w-full $maxWidthClass $centerClass px-4';
@@ -88,7 +88,7 @@ class Container extends UiComponent {
     return classList.join(' ');
   }
 
-  String _getMaxWidthClass() {
+  String get _getMaxWidthClass {
     return switch (maxWidth) {
       ContainerMaxWidth.sm => 'max-w-screen-sm',
       ContainerMaxWidth.md => 'max-w-screen-md',

@@ -88,7 +88,7 @@ class Grid extends UiComponent {
   String get baseClass {
     final gridClass = 'grid';
     final columnsClass = responsive
-        ? _getResponsiveColumns()
+        ? _getResponsiveColumns
         : 'grid-cols-$columns';
     final gapClass = 'gap-$gap';
 
@@ -106,7 +106,7 @@ class Grid extends UiComponent {
     return classList.join(' ');
   }
 
-  String _getResponsiveColumns() {
+  String get _getResponsiveColumns {
     // Responsive grid: 1 col on mobile, 2 on tablet, specified on desktop
     return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-$columns';
   }

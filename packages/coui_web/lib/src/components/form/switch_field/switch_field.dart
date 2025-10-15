@@ -105,7 +105,7 @@ class SwitchField extends UiComponent {
               'data-state': checked ? 'checked' : 'unchecked',
             },
           ),
-          classes: _buildSwitchClasses(),
+          classes: _buildSwitchClasses,
           attributes: {
             'type': 'button',
             'role': 'switch',
@@ -113,7 +113,7 @@ class SwitchField extends UiComponent {
             'data-state': checked ? 'checked' : 'unchecked',
             if (disabled) 'disabled': '',
           },
-          events: _buildEvents(),
+          events: _buildEvents,
         ),
       ],
       id: id,
@@ -138,11 +138,11 @@ class SwitchField extends UiComponent {
     return classList.join(' ');
   }
 
-  static String _buildSwitchClasses() {
+  static String get _buildSwitchClasses {
     return 'peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input';
   }
 
-  Map<String, List<dynamic>> _buildEvents() {
+  Map<String, List<dynamic>> get _buildEvents {
     final currentOnChanged = onChanged;
 
     return currentOnChanged == null || disabled

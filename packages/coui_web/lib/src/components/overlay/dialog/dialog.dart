@@ -82,9 +82,9 @@ class Dialog extends UiComponent {
 
   @override
   Component build(BuildContext context) {
-    return open
-        ? Component.fragment(
-            children: [
+    return Component.fragment(
+      children: open
+          ? [
               // Overlay
               Component.element(
                 tag: _divValue,
@@ -97,9 +97,9 @@ class Dialog extends UiComponent {
                 classes: 'fixed inset-0 z-50 flex items-center justify-center',
                 children: children,
               ),
-            ],
-          )
-        : Component.fragment(children: []);
+            ]
+          : [],
+    );
   }
 
   @override

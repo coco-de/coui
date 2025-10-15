@@ -129,16 +129,16 @@ class CodeBlock extends UiComponent {
   static List<Component> _buildLinesWithNumbers(List<String> lines) {
     final components = <Component>[];
 
-    for (int i = 0; i < lines.length; i += 1) {
+    for (final (index, item) in lines.indexed) {
       components.add(
         div(
           children: [
             span(
-              child: text((i + 1).toString()),
+              child: text((index + 1).toString()),
               classes:
                   'mr-4 inline-block w-8 text-right text-muted-foreground select-none',
             ),
-            span(child: text(lines[i])),
+            span(child: text(item)),
           ],
           classes: 'flex',
         ),

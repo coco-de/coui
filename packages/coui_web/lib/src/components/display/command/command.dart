@@ -123,7 +123,7 @@ class Command extends UiComponent {
   Component _buildCommandItem(CommandItem item) {
     return div(
       children: [
-        if (item.icon != null) item.icon,
+        ?item.icon,
         span(child: text(item.label)),
         if (item.shortcut != null)
           span(

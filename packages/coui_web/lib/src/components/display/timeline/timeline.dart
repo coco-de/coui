@@ -113,7 +113,7 @@ class Timeline extends UiComponent {
                 child: text(item.description),
                 classes: 'text-sm text-muted-foreground',
               ),
-            if (item.content != null) item.content,
+            ?item.content,
           ],
           classes: 'flex flex-col gap-1',
         ),

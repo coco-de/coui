@@ -76,14 +76,13 @@ class NavigationBar extends UiComponent {
   Component build(BuildContext context) {
     final navItems = <Component>[];
 
-    for (int i = 0; i < items.length; i += 1) {
-      final item = items[i];
-      final isActive = i == currentIndex;
+    for (final (index, item) in items.indexed) {
+      final isActive = index == currentIndex;
 
       navItems.add(
         button(
           children: [
-            if (item.icon != null) item.icon,
+            ?item.icon,
             if (item.label != null)
               span(
                 child: text(item.label),

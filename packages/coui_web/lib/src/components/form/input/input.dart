@@ -252,9 +252,8 @@ class Input extends UiComponent {
       attributes.add(_minlengthAttribute, currentMinLength.toString());
     }
 
-    final currentMaxLength = maxLength;
-    if (currentMaxLength != null) {
-      attributes.add(_maxlengthAttribute, currentMaxLength.toString());
+    if (maxLength != null) {
+      attributes.add(_maxlengthAttribute, maxLength.toString());
     }
 
     final currentMin = min;

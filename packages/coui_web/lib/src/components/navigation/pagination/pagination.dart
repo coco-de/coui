@@ -1,4 +1,4 @@
-// ignore_for_file: avoid-using-non-ascii-symbols, avoid-duplicate-cascades, prefer-moving-repeated-invocations-to-variable, prefer-extracting-common-initializers
+// ignore_for_file: avoid-using-non-ascii-symbols, avoid-duplicate-cascades, prefer-moving-repeated-invocations-to-variable, prefer-extracting-common-initializers, prefer-method-over-getter, avoid-duplicate-collection-elements
 
 import 'package:coui_web/src/base/ui_component.dart';
 import 'package:jaspr/jaspr.dart';
@@ -107,13 +107,12 @@ class Pagination extends UiComponent {
       }
     } else {
       // Show condensed version
-      final ellipsis = _buildEllipsis();
-
+      // ignore: prefer-moving-repeated-invocations-to-variable
       pages.addAll([
         _buildPageButton(label: '1', page: 1),
-        ellipsis,
+        _buildEllipsis,
         _buildPageButton(label: currentPage.toString(), page: currentPage),
-        ellipsis,
+        _buildEllipsis,
         _buildPageButton(label: totalPages.toString(), page: totalPages),
       ]);
     }
@@ -166,7 +165,7 @@ class Pagination extends UiComponent {
       attributes: {
         'type': 'button',
         if (!enabled) 'disabled': '',
-        if (ariaLabel != null) 'aria-label': ariaLabel,
+        'aria-label': ?ariaLabel,
         if (isActive) 'aria-current': 'page',
       },
       events: enabled && onPageChanged != null
@@ -189,7 +188,7 @@ class Pagination extends UiComponent {
   }
 
   /// Builds an ellipsis component for pagination.
-  static Component _buildEllipsis() {
+  static Component get _buildEllipsis {
     return span(
       child: text('...'),
       classes: 'inline-flex items-center justify-center h-10 px-4',

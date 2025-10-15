@@ -83,7 +83,7 @@ class Collapsible extends UiComponent {
         // Trigger with click handler
         div(
           child: trigger,
-          events: _buildTriggerEvents(),
+          events: _buildTriggerEvents,
         ),
         // Collapsible content
         if (isOpen)
@@ -121,7 +121,7 @@ class Collapsible extends UiComponent {
     return classList.join(' ');
   }
 
-  Map<String, List<dynamic>> _buildTriggerEvents() {
+  Map<String, List<dynamic>> get _buildTriggerEvents {
     final callback = onOpenChanged;
 
     return callback == null

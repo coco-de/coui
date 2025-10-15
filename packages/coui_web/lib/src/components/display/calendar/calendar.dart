@@ -198,8 +198,8 @@ class Calendar extends UiComponent {
 
     // Days of the month
     final currentSelectedDate = selectedDate;
-    for (int day = 1; day <= lastDay.day; day += 1) {
-      final date = DateTime(month.year, month.month, day);
+    for (int monthsDay = 1; monthsDay <= lastDay.day; monthsDay += 1) {
+      final date = DateTime(month.year, month.month, monthsDay);
       final isSelected =
           currentSelectedDate != null &&
           date.year == currentSelectedDate.year &&
@@ -208,7 +208,7 @@ class Calendar extends UiComponent {
 
       days.add(
         button(
-          child: text(day.toString()),
+          child: text(monthsDay.toString()),
           classes: _buildDayClasses(isSelected),
           attributes: {
             'type': 'button',

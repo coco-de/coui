@@ -130,7 +130,7 @@ class Rating extends UiComponent {
 
   Component _buildStar(int index) {
     final isFilled = index <= value;
-    final sizeClass = _getSizeClass();
+    final sizeClass = _getSizeClass;
 
     return button(
       child: text(isFilled ? _kFilledStar : _kEmptyStar),
@@ -145,7 +145,7 @@ class Rating extends UiComponent {
     );
   }
 
-  String _getSizeClass() {
+  String get _getSizeClass {
     return switch (size) {
       RatingSize.sm => 'text-sm',
       RatingSize.md => 'text-xl',

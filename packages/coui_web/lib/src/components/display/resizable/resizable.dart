@@ -62,18 +62,18 @@ class Resizable extends UiComponent {
     final isHorizontal = direction == ResizableDirection.horizontal;
     final panels = <Component>[];
 
-    for (int i = 0; i < children.length; i += 1) {
+    for (final (index, item) in children.indexed) {
       // Add panel
       panels.add(
         div(
-          child: children[i],
+          child: item,
           classes:
               'flex-1 ${isHorizontal ? 'resize-x' : 'resize-y'} overflow-auto border rounded p-2',
         ),
       );
 
       // Add separator between panels (except after last)
-      if (i < children.length - 1) {
+      if (index < children.length - 1) {
         panels.add(
           div(
             classes:

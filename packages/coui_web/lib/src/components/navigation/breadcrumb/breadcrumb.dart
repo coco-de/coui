@@ -61,10 +61,8 @@ class Breadcrumb extends UiComponent {
   Component build(BuildContext context) {
     final children = <Component>[];
 
-    for (int i = 0; i < items.length; i += 1) {
-      final item = items[i];
-
-      if (i > 0) {
+    for (final (index, item) in items.indexed) {
+      if (index > 0) {
         children.add(
           span(
             child: text(separator),

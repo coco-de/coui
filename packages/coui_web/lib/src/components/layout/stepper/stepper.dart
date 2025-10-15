@@ -81,10 +81,9 @@ class Stepper extends UiComponent {
   Component build(BuildContext context) {
     final stepComponents = <Component>[];
 
-    for (int i = 0; i < steps.length; i += 1) {
-      final step = steps[i];
-      final isActive = i == currentStep;
-      final isCompleted = i < currentStep;
+    for (final (index, step) in steps.indexed) {
+      final isActive = index == currentStep;
+      final isCompleted = index < currentStep;
 
       stepComponents.add(
         div(
@@ -93,10 +92,12 @@ class Stepper extends UiComponent {
             div(
               children: [
                 div(
-                  child: text(isCompleted ? _kCheckIcon : (i + 1).toString()),
+                  child: text(
+                    isCompleted ? _kCheckIcon : (index + 1).toString(),
+                  ),
                   classes: _buildStepIndicatorClasses(isActive, isCompleted),
                 ),
-                if (i < steps.length - 1 &&
+                if (index < steps.length - 1 &&
                     orientation == StepperOrientation.vertical)
                   div(
                     classes: 'w-px h-8 bg-border',
@@ -133,7 +134,7 @@ class Stepper extends UiComponent {
         ),
       );
 
-      if (i < steps.length - 1 &&
+      if (index < steps.length - 1 &&
           orientation == StepperOrientation.horizontal) {
         stepComponents.add(
           div(

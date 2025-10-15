@@ -46,8 +46,8 @@ class Kbd extends UiComponent {
   Component build(BuildContext context) {
     final keyComponents = <Component>[];
 
-    for (int i = 0; i < keys.length; i += 1) {
-      if (i > 0) {
+    for (final (index, item) in keys.indexed) {
+      if (index > 0) {
         keyComponents.add(
           span(
             child: text('+'),
@@ -58,7 +58,7 @@ class Kbd extends UiComponent {
 
       keyComponents.add(
         Component.element(
-          child: text(keys[i]),
+          child: text(item),
           tag: 'kbd',
           classes:
               'pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100',

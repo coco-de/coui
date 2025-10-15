@@ -78,7 +78,7 @@ class Popover extends UiComponent {
         // Popover content
         div(
           child: content,
-          classes: _buildPopoverClasses(),
+          classes: _buildPopoverClasses,
           attributes: {
             'data-side': side.name,
             'role': 'dialog',
@@ -104,7 +104,7 @@ class Popover extends UiComponent {
     return classList.join(' ');
   }
 
-  String _buildPopoverClasses() {
+  String get _buildPopoverClasses {
     const base =
         'z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none';
     final position = switch (side) {
