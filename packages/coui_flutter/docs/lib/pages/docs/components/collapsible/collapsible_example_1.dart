@@ -12,7 +12,7 @@ class CollapsibleExample1 extends StatelessWidget {
         ),
         OutlinedContainer(
           child: const Text(
-            '@sunarya-thito/coui_flutter',
+            '@coco-de/coui',
           ).small().mono().withPadding(horizontal: 16, vertical: 8),
         ).withPadding(top: 8),
         CollapsibleContent(

@@ -55,7 +55,7 @@ class WebPreloaderPage extends StatelessWidget {
                       Gap(8),
                       CodeSnippet(
                         code:
-                            '<script src="https://cdn.jsdelivr.net/gh/sunarya-thito/coui_flutter@latest/web_loaders/standard.js"></script>',
+                            '<script src="https://cdn.jsdelivr.net/gh/coco-de/coui@latest/web_loaders/standard.js"></script>',
                         mode: 'javascript',
                       ),
                     ],
@@ -78,7 +78,7 @@ class WebPreloaderPage extends StatelessWidget {
 <html>
   <head>
     ...
-    <script src="https://cdn.jsdelivr.net/gh/sunarya-thito/coui_flutter@latest/web_loaders/standard.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/coco-de/coui@latest/web_loaders/standard.js"></script>
     ...
   </head>
   ...

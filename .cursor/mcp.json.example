@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "coui-flutter": {
+      "command": "dart",
+      "args": [
+        "run",
+        "/Users/dongwoo/Development/cocode/uiux/coui/packages/coui_mcp/bin/coui_mcp.dart",
+        "--docs-path",
+        "/Users/dongwoo/Development/cocode/uiux/coui/docs"
+      ]
+    }
+  }
+}

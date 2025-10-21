@@ -20,7 +20,7 @@ class CollapsibleTile extends StatelessWidget implements IComponentPage {
             ),
             OutlinedContainer(
               child: const Text(
-                '@sunarya-thito/coui_flutter',
+                '@coco-de/coui',
               ).small().mono().withPadding(horizontal: 16, vertical: 8),
             ).withPadding(top: 8),
             CollapsibleContent(
@@ -42,7 +42,7 @@ class CollapsibleTile extends StatelessWidget implements IComponentPage {
             ).withPadding(top: 16),
             OutlinedContainer(
               child: const Text(
-                '@sunarya-thito/coui_flutter',
+                '@coco-de/coui',
               ).small().mono().withPadding(horizontal: 16, vertical: 8),
             ).withPadding(top: 8),
             CollapsibleContent(

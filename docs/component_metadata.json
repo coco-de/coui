@@ -1,0 +1,583 @@
+[
+  {
+    "name": "accordion",
+    "displayName": "Accordion",
+    "description": "An accordion is a vertically stacked list of items. ",
+    "exampleCount": 2,
+    "exampleFile": "accordion_example.dart"
+  },
+  {
+    "name": "alert",
+    "displayName": "Alert",
+    "description": "Alerts are used to communicate a state that affects the system.",
+    "exampleCount": 2,
+    "exampleFile": "alert_example.dart"
+  },
+  {
+    "name": "alert_dialog",
+    "displayName": "Alert Dialog",
+    "description": "An alert dialog informs the user about situations that require acknowledgement.",
+    "exampleCount": 2,
+    "exampleFile": "alert_dialog_example.dart"
+  },
+  {
+    "name": "animated_value_builder",
+    "displayName": "AnimatedValueBuilder",
+    "description": "AnimatedValueBuilder is a component that allows you to animate a value.",
+    "exampleCount": 3,
+    "exampleFile": "animated_value_builder_example.dart"
+  },
+  {
+    "name": "app_bar",
+    "displayName": "App Bar",
+    "description": "An app bar is a bar that appears at the top of the screen.",
+    "exampleCount": 2,
+    "exampleFile": "app_bar_example.dart"
+  },
+  {
+    "name": "autocomplete",
+    "displayName": "AutoComplete",
+    "description": "A text input with suggestions.",
+    "exampleCount": 2,
+    "exampleFile": "autocomplete_example.dart"
+  },
+  {
+    "name": "avatar",
+    "displayName": "Avatar",
+    "description": "Avatars are used to represent people or objects.",
+    "exampleCount": 4,
+    "exampleFile": "avatar_example.dart"
+  },
+  {
+    "name": "avatar_group",
+    "displayName": "Avatar Group",
+    "description": "Show a group of avatars.",
+    "exampleCount": 2,
+    "exampleFile": "avatar_group_example.dart"
+  },
+  {
+    "name": "badge",
+    "displayName": "Badge",
+    "description": "Badges are small status descriptors for UI elements.",
+    "exampleCount": 5,
+    "exampleFile": "badge_example.dart"
+  },
+  {
+    "name": "breadcrumb",
+    "displayName": "Breadcrumb",
+    "description": "Breadcrumbs are a secondary navigation scheme that reveals the user’s location in a website or web application.",
+    "exampleCount": 2,
+    "exampleFile": "breadcrumb_example.dart"
+  },
+  {
+    "name": "button",
+    "displayName": "Button",
+    "description": "Buttons allow users to take actions, and make choices, with a single tap.",
+    "exampleCount": 18,
+    "exampleFile": "button_example.dart"
+  },
+  {
+    "name": "calendar",
+    "displayName": "Calendar",
+    "description": "A widget that lets users select dates and date ranges.",
+    "exampleCount": 5,
+    "exampleFile": "calendar_example.dart"
+  },
+  {
+    "name": "card",
+    "displayName": "Card",
+    "description": "Cards are surfaces that display content and actions on a single topic.",
+    "exampleCount": 2,
+    "exampleFile": "card_example.dart"
+  },
+  {
+    "name": "card_image",
+    "displayName": "Card Image",
+    "description": "A card image is an interactive card that displays an image.",
+    "exampleCount": 2,
+    "exampleFile": "card_image_example.dart"
+  },
+  {
+    "name": "carousel",
+    "displayName": "Carousel",
+    "description": "A carousel slider widget, support infinite scroll and custom child widget.",
+    "exampleCount": 5,
+    "exampleFile": "carousel_example.dart"
+  },
+  {
+    "name": "checkbox",
+    "displayName": "Checkbox",
+    "description": "Checkboxes allow the user to select one or more items from a set.",
+    "exampleCount": 3,
+    "exampleFile": "checkbox_example.dart"
+  },
+  {
+    "name": "chip",
+    "displayName": "Chip",
+    "description": "A chip is a small, interactive element that represents an attribute, text, entity, or action.",
+    "exampleCount": 2,
+    "exampleFile": "chip_example.dart"
+  },
+  {
+    "name": "chip_input",
+    "displayName": "Chip Input",
+    "description": "A chip input is a text input that allows users to input multiple chips.",
+    "exampleCount": 2,
+    "exampleFile": "chip_input_example.dart"
+  },
+  {
+    "name": "circular_progress",
+    "displayName": "Circular Progress",
+    "description": "A circular progress indicator.",
+    "exampleCount": 3,
+    "exampleFile": "circular_progress_example.dart"
+  },
+  {
+    "name": "code_snippet",
+    "displayName": "Code Snippet",
+    "description": "A code snippet is a small piece of reusable code.",
+    "exampleCount": 2,
+    "exampleFile": "code_snippet_example.dart"
+  },
+  {
+    "name": "collapsible",
+    "displayName": "Collapsible",
+    "description": "A widget that can be expanded or collapsed.",
+    "exampleCount": 2,
+    "exampleFile": "collapsible_example.dart"
+  },
+  {
+    "name": "color_picker",
+    "displayName": "Color Picker",
+    "description": "A color picker is a widget that allows the user to pick a color.",
+    "exampleCount": 4,
+    "exampleFile": "color_picker_example.dart"
+  },
+  {
+    "name": "command",
+    "displayName": "Command",
+    "description": "A command is a component that allows you to search for items.",
+    "exampleCount": 2,
+    "exampleFile": "command_example.dart"
+  },
+  {
+    "name": "context_menu",
+    "displayName": "Context Menu",
+    "description": "A context menu is a menu in a graphical user interface that appears upon user interaction, such as a right-click mouse operation.",
+    "exampleCount": 2,
+    "exampleFile": "context_menu_example.dart"
+  },
+  {
+    "name": "date_picker",
+    "displayName": "Date Picker",
+    "description": "A widget that lets users select dates and date ranges.",
+    "exampleCount": 3,
+    "exampleFile": "date_picker_example.dart"
+  },
+  {
+    "name": "dialog",
+    "displayName": "Dialog",
+    "description": "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.",
+    "exampleCount": 2,
+    "exampleFile": "dialog_example.dart"
+  },
+  {
+    "name": "divider",
+    "displayName": "Divider",
+    "description": "A divider is a thin line that groups content in lists and layouts.",
+    "exampleCount": 4,
+    "exampleFile": "divider_example.dart"
+  },
+  {
+    "name": "dot_indicator",
+    "displayName": "Dot Indicator",
+    "description": "A widget that displays a series of dots to indicate the current index in a list of items.",
+    "exampleCount": 2,
+    "exampleFile": "dot_indicator_example.dart"
+  },
+  {
+    "name": "drawer",
+    "displayName": "Drawer",
+    "description": "A drawer is a panel that slides in from the edge of a screen.",
+    "exampleCount": 2,
+    "exampleFile": "drawer_example.dart"
+  },
+  {
+    "name": "dropdown_menu",
+    "displayName": "Dropdown Menu",
+    "description": "Dropdown menu is a menu that appears when you click a button or other control.",
+    "exampleCount": 2,
+    "exampleFile": "dropdown_menu_example.dart"
+  },
+  {
+    "name": "expandable_sidebar",
+    "displayName": "Expandable Sidebar",
+    "description": "A Navigation Rail that can be expanded or collapsed",
+    "exampleCount": 2,
+    "exampleFile": "expandable_sidebar_example.dart"
+  },
+  {
+    "name": "form",
+    "displayName": "Form",
+    "description": "A helper widget that makes it easy to validate forms.",
+    "exampleCount": 4,
+    "exampleFile": "form_example.dart"
+  },
+  {
+    "name": "formatted_input",
+    "displayName": "Formatted Input",
+    "description": "Text input with formatted parts.",
+    "exampleCount": 5,
+    "exampleFile": "formatted_input_example.dart"
+  },
+  {
+    "name": "hover_card",
+    "displayName": "Hover Card",
+    "description": "For sighted users to preview content available behind a link",
+    "exampleCount": 2,
+    "exampleFile": "hover_card_example.dart"
+  },
+  {
+    "name": "input",
+    "displayName": "Text Input",
+    "description": "A text input is a form field that allows users to enter text.",
+    "exampleCount": 5,
+    "exampleFile": "input_example.dart"
+  },
+  {
+    "name": "input_otp",
+    "displayName": "Input OTP",
+    "description": "Input OTP is a component that allows users to enter OTP code.",
+    "exampleCount": 5,
+    "exampleFile": "input_otp_example.dart"
+  },
+  {
+    "name": "item_picker",
+    "displayName": "Item Picker",
+    "description": "Item picker is a widget that allows you to pick an item from a list of items.",
+    "exampleCount": 6,
+    "exampleFile": "item_picker_example.dart"
+  },
+  {
+    "name": "keyboard_display",
+    "displayName": "Keyboard Display",
+    "description": "A widget that displays a keyboard key.",
+    "exampleCount": 2,
+    "exampleFile": "keyboard_display_example.dart"
+  },
+  {
+    "name": "linear_progress",
+    "displayName": "Linear Progress",
+    "description": "A widget that shows progress along a line.",
+    "exampleCount": 3,
+    "exampleFile": "linear_progress_example.dart"
+  },
+  {
+    "name": "material",
+    "displayName": "Material/Cupertino Widgets",
+    "description": "You can use Material/Cupertino Widgets with coui_flutter.",
+    "exampleCount": 2,
+    "exampleFile": "material_example.dart"
+  },
+  {
+    "name": "menubar",
+    "displayName": "Menubar",
+    "description": "A bar of buttons that provies quick access to common actions.",
+    "exampleCount": 2,
+    "exampleFile": "menubar_example.dart"
+  },
+  {
+    "name": "multiselect",
+    "displayName": "Multi Select",
+    "description": "A multi-select component that allows users to select multiple items from a list.",
+    "exampleCount": 4,
+    "exampleFile": "multiselect_example.dart"
+  },
+  {
+    "name": "navigation_bar",
+    "displayName": "Navigation Bar",
+    "description": "A widget that displays a bar with navigation buttons and labels.",
+    "exampleCount": 2,
+    "exampleFile": "navigation_bar_example.dart"
+  },
+  {
+    "name": "navigation_menu",
+    "displayName": "Navigation Menu",
+    "description": "Navigation menu is a component that provides a list of navigation items.",
+    "exampleCount": 2,
+    "exampleFile": "navigation_menu_example.dart"
+  },
+  {
+    "name": "navigation_rail",
+    "displayName": "Navigation Rail",
+    "description": "A widget that displays a rail with navigation buttons and labels.",
+    "exampleCount": 2,
+    "exampleFile": "navigation_rail_example.dart"
+  },
+  {
+    "name": "navigation_sidebar",
+    "displayName": "Navigation Sidebar",
+    "description": "A widget that displays a sidebar with navigation buttons and labels.",
+    "exampleCount": 2,
+    "exampleFile": "navigation_sidebar_example.dart"
+  },
+  {
+    "name": "number",
+    "displayName": "Number Ticker",
+    "description": "A widget that animates a number from an initial value to a final value.",
+    "exampleCount": 0,
+    "exampleFile": "number_example.dart"
+  },
+  {
+    "name": "number_input",
+    "displayName": "Number Input",
+    "description": "A number input field with buttons to increase or decrease the value.",
+    "exampleCount": 2,
+    "exampleFile": "number_input_example.dart"
+  },
+  {
+    "name": "overflow_marquee",
+    "displayName": "Overflow Marquee",
+    "description": "A widget that marquee its child when it overflows the available space.",
+    "exampleCount": 2,
+    "exampleFile": "overflow_marquee_example.dart"
+  },
+  {
+    "name": "pagination",
+    "displayName": "Pagination",
+    "description": "A pagination component is used to navigate through a series of pages.",
+    "exampleCount": 2,
+    "exampleFile": "pagination_example.dart"
+  },
+  {
+    "name": "phone_input",
+    "displayName": "Phone Input",
+    "description": "A widget that allows users to input phone numbers.",
+    "exampleCount": 2,
+    "exampleFile": "phone_input_example.dart"
+  },
+  {
+    "name": "popover",
+    "displayName": "Popover",
+    "description": "A floating message that appears when a user interacts with a target.",
+    "exampleCount": 2,
+    "exampleFile": "popover_example.dart"
+  },
+  {
+    "name": "progress",
+    "displayName": "Progress",
+    "description": "A visual indicator of an operation\\",
+    "exampleCount": 2,
+    "exampleFile": "progress_example.dart"
+  },
+  {
+    "name": "radio_card",
+    "displayName": "Radio Card",
+    "description": "A radio card is a card that can be selected.",
+    "exampleCount": 2,
+    "exampleFile": "radio_card_example.dart"
+  },
+  {
+    "name": "radio_group",
+    "displayName": "Radio Group",
+    "description": "A radio group is a group of radio buttons.",
+    "exampleCount": 2,
+    "exampleFile": "radio_group_example.dart"
+  },
+  {
+    "name": "refresh_trigger",
+    "displayName": "Refresh Trigger",
+    "description": "A trigger that can be used to refresh a list.",
+    "exampleCount": 2,
+    "exampleFile": "refresh_trigger_example.dart"
+  },
+  {
+    "name": "repeated_animation_builder",
+    "displayName": "RepeatedAnimationBuilder",
+    "description": "RepeatedAnimationBuilder is a component that allows you to animate a value repeatedly.",
+    "exampleCount": 4,
+    "exampleFile": "repeated_animation_builder_example.dart"
+  },
+  {
+    "name": "resizable",
+    "displayName": "Resizable",
+    "description": "A resizable pane widget, support resize child widget.",
+    "exampleCount": 8,
+    "exampleFile": "resizable_example.dart"
+  },
+  {
+    "name": "scaffold",
+    "displayName": "Scaffold",
+    "description": "A scaffold is a top-level container for a page.",
+    "exampleCount": 2,
+    "exampleFile": "scaffold_example.dart"
+  },
+  {
+    "name": "select",
+    "displayName": "Select",
+    "description": "A select component that allows you to select an item from a list of items.",
+    "exampleCount": 5,
+    "exampleFile": "select_example.dart"
+  },
+  {
+    "name": "sheet",
+    "displayName": "Sheet",
+    "description": "A sheet is a panel that slides in from the edge of a screen.",
+    "exampleCount": 2,
+    "exampleFile": "sheet_example.dart"
+  },
+  {
+    "name": "skeleton",
+    "displayName": "Skeleton",
+    "description": "Skeleton is a placeholder for content that hasn\\",
+    "exampleCount": 2,
+    "exampleFile": "skeleton_example.dart"
+  },
+  {
+    "name": "slider",
+    "displayName": "Slider",
+    "description": "A slider is a control for selecting a single value from a range of values.",
+    "exampleCount": 4,
+    "exampleFile": "slider_example.dart"
+  },
+  {
+    "name": "sortable",
+    "displayName": "Sortable",
+    "description": "A sortable is a way of displaying a list of items in ",
+    "exampleCount": 7,
+    "exampleFile": "sortable_example.dart"
+  },
+  {
+    "name": "star_rating",
+    "displayName": "Star Rating",
+    "description": "A component for rating.",
+    "exampleCount": 2,
+    "exampleFile": "star_rating_example.dart"
+  },
+  {
+    "name": "stepper",
+    "displayName": "Stepper",
+    "description": "A stepper is a fundamental part of material design ",
+    "exampleCount": 7,
+    "exampleFile": "stepper_example.dart"
+  },
+  {
+    "name": "steps",
+    "displayName": "Steps",
+    "description": "A series of steps for progress.",
+    "exampleCount": 2,
+    "exampleFile": "steps_example.dart"
+  },
+  {
+    "name": "swiper",
+    "displayName": "Swiper",
+    "description": "Enable swiping gestures to open a drawer or a sheet.",
+    "exampleCount": 2,
+    "exampleFile": "swiper_example.dart"
+  },
+  {
+    "name": "switch",
+    "displayName": "Switch",
+    "description": "A switch is a visual toggle between two mutually exclusive states — on and off.",
+    "exampleCount": 2,
+    "exampleFile": "switch_example.dart"
+  },
+  {
+    "name": "switcher",
+    "displayName": "Switcher",
+    "description": "A Switcher widget allows you to switch between different widgets with a transition effect.",
+    "exampleCount": 2,
+    "exampleFile": "switcher_example.dart"
+  },
+  {
+    "name": "tab_list",
+    "displayName": "Tab List",
+    "description": "A list of tabs for selecting a single item.",
+    "exampleCount": 2,
+    "exampleFile": "tab_list_example.dart"
+  },
+  {
+    "name": "tab_pane",
+    "displayName": "Tab Pane",
+    "description": "A chrome-like tab pane that allows you to switch between different tabs.",
+    "exampleCount": 2,
+    "exampleFile": "tab_pane_example.dart"
+  },
+  {
+    "name": "table",
+    "displayName": "Table",
+    "description": "A table displays data in a tabular format.",
+    "exampleCount": 4,
+    "exampleFile": "table_example.dart"
+  },
+  {
+    "name": "tabs",
+    "displayName": "Tabs",
+    "description": "A list of tabs for selecting a single item.",
+    "exampleCount": 2,
+    "exampleFile": "tabs_example.dart"
+  },
+  {
+    "name": "text_area",
+    "displayName": "TextArea",
+    "description": "TextArea is a component that allows users to enter multiple lines of text.",
+    "exampleCount": 4,
+    "exampleFile": "text_area_example.dart"
+  },
+  {
+    "name": "time_picker",
+    "displayName": "Time Picker",
+    "description": "Time picker is a component that allows users to pick a time.",
+    "exampleCount": 2,
+    "exampleFile": "time_picker_example.dart"
+  },
+  {
+    "name": "timeline",
+    "displayName": "Timeline",
+    "description": "A timeline is a way of displaying a list of events in ",
+    "exampleCount": 2,
+    "exampleFile": "timeline_example.dart"
+  },
+  {
+    "name": "toast",
+    "displayName": "Toast",
+    "description": "A toast is a non-modal, unobtrusive window element used to display brief, auto-expiring information to the user.",
+    "exampleCount": 2,
+    "exampleFile": "toast_example.dart"
+  },
+  {
+    "name": "toggle",
+    "displayName": "Toggle",
+    "description": "Toggle is a widget that can be used to switch between two states.",
+    "exampleCount": 3,
+    "exampleFile": "toggle_example.dart"
+  },
+  {
+    "name": "tooltip",
+    "displayName": "Tooltip",
+    "description": "A floating message that appears when a user interacts with a target.",
+    "exampleCount": 2,
+    "exampleFile": "tooltip_example.dart"
+  },
+  {
+    "name": "tracker",
+    "displayName": "Tracker",
+    "description": "Component for visualizing data related to monitoring",
+    "exampleCount": 2,
+    "exampleFile": "tracker_example.dart"
+  },
+  {
+    "name": "tree",
+    "displayName": "Tree",
+    "description": "A tree is a way of displaying a hierarchical list of items.",
+    "exampleCount": 2,
+    "exampleFile": "tree_example.dart"
+  },
+  {
+    "name": "window",
+    "displayName": "Window",
+    "description": "A window manager that allows you to create and manage windows.",
+    "exampleCount": 2,
+    "exampleFile": "window_example.dart"
+  }
+]
