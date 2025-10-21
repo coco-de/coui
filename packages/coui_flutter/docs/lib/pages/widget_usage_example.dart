@@ -72,9 +72,9 @@ class _CodeSnippetFutureBuilderState extends State<CodeSnippetFutureBuilder> {
   late Future<String> futureCode;
 
   void _refresh() {
-    //https://raw.githubusercontent.com/coco-de/coui/master/docs/lib/pages/docs/layout_page/layout_page_example_1.dart
+    //https://raw.githubusercontent.com/coco-de/coui/refs/heads/main/packages/coui_flutter/docs/lib/pages/docs/layout_page/layout_page_example_1.dart
     String url =
-        'https://raw.githubusercontent.com/coco-de/coui/master/docs/${widget.path}';
+        'https://raw.githubusercontent.com/coco-de/coui/refs/heads/main/packages/coui_flutter/docs/${widget.path}';
     futureCode =
         http.get(Uri.parse(url)).then((response) => response.body).then((code) {
       try {
