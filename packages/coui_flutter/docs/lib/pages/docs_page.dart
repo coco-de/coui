@@ -1113,7 +1113,7 @@ class _DocsSidebarButton extends StatefulWidget {
 String? _goRouterNamedLocation(BuildContext context, String name) {
   try {
     return '/#${GoRouter.of(context).namedLocation(name)}';
-  } catch (e) {}
+  } on Exception catch (e) {}
   return '';
 }
 

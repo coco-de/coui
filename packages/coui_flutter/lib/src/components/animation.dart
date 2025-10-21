@@ -345,7 +345,7 @@ class AnimatedValueBuilderState<T> extends State<AnimatedValueBuilder<T>>
 
     try {
       return (a as dynamic) + ((b as dynamic) - (a as dynamic)) * t as T;
-    } catch (e) {
+    } on Exception catch (e) {
       throw Exception(
         'Could not lerp $a and $b. You must provide a custom lerp function.',
       );
@@ -764,7 +764,7 @@ class _RepeatedAnimationBuilderState<T>
 
     try {
       return (a as dynamic) + ((b as dynamic) - (a as dynamic)) * t as T;
-    } catch (e) {
+    } on Exception catch (e) {
       throw Exception(
         'Could not lerp $a and $b. You must provide a custom lerp function.',
       );

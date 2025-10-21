@@ -24,7 +24,7 @@ class SimpleCouiServer {
         final request = json.decode(line) as Map<String, dynamic>;
         final response = await handleRequest(request);
         stdout.writeln(json.encode(response));
-      } catch (e) {
+      } on Exception catch (e) {
         stderr.writeln('Error processing request: $e');
       }
     }
@@ -44,7 +44,7 @@ class SimpleCouiServer {
         'id': id,
         'result': result,
       };
-    } catch (e) {
+    } on Exception catch (e) {
       return <String, dynamic>{
         'jsonrpc': '2.0',
         'id': id,
@@ -232,7 +232,7 @@ class SimpleCouiServer {
       component = components.firstWhere(
         (c) => (c['name'] as String).toLowerCase() == componentName,
       );
-    } catch (e) {
+    } on Exception catch (e) {
       component = null;
     }
 

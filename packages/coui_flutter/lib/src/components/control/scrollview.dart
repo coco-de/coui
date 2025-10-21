@@ -77,7 +77,7 @@ class _ScrollViewInterceptorState extends State<ScrollViewInterceptor>
     for (final path in result.path) {
       try {
         path.target.handleEvent(pointerScrollEvent, path);
-      } catch (e, s) {
+      } on Exception catch (e, s) {
         FlutterError.reportError(
           FlutterErrorDetails(
             exception: e,

@@ -204,7 +204,7 @@ class _MathExpressionFormatter extends TextInputFormatter {
       if (result is! num) {
         result = '';
       }
-    } catch (e) {
+    } on Exception catch (e) {
       result = '';
     }
     String resultText = result?.toString() ?? '';

@@ -79,7 +79,7 @@ class _CodeSnippetFutureBuilderState extends State<CodeSnippetFutureBuilder> {
         http.get(Uri.parse(url)).then((response) => response.body).then((code) {
       try {
         return widget.summarize ? _formatCode(code) : code;
-      } catch (e, stackTrace) {
+      } on Exception catch (e, stackTrace) {
         print(e);
         print(stackTrace);
         return code;
