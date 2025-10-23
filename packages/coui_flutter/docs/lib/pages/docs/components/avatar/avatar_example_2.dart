@@ -5,6 +5,6 @@ class AvatarExample2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Avatar(initials: Avatar.getInitials('sunarya-thito'), size: 64);
+    return Avatar(initials: Avatar.getInitials('coco-de'), size: 64);
   }
 }

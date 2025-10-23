@@ -7,7 +7,7 @@ class AvatarExample3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Avatar(
       badge: const AvatarBadge(color: Colors.green, size: 20),
-      initials: Avatar.getInitials('sunarya-thito'),
+      initials: Avatar.getInitials('coco-de'),
       size: 64,
     );
   }

@@ -10,7 +10,7 @@ class FormExample3 extends StatefulWidget {
 }
 
 class _FormExample3State extends State<FormExample3> {
-  final _dummyData = ['sunarya-thito', 'septogeddon', 'coui'];
+  final _dummyData = ['coco-de', 'septogeddon', 'coui'];
 
   final _usernameKey = const TextFieldKey('username');
   final _passwordKey = const TextFieldKey('password');
@@ -40,7 +40,7 @@ class _FormExample3State extends State<FormExample3> {
                         // only validate when the form is submitted
                         mode: {FormValidationMode.submitted},
                       ),
-                  child: const TextField(initialValue: 'sunarya-thito'),
+                  child: const TextField(initialValue: 'coco-de'),
                 ),
                 FormField(
                   key: _passwordKey,

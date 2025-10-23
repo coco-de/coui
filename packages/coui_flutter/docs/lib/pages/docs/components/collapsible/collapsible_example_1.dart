@@ -8,7 +8,7 @@ class CollapsibleExample1 extends StatelessWidget {
     return Collapsible(
       children: [
         const CollapsibleTrigger(
-          child: Text('@sunarya-thito starred 3 repositories'),
+          child: Text('@coco-de starred 3 repositories'),
         ),
         OutlinedContainer(
           child: const Text(

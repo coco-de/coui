@@ -17,19 +17,19 @@ class AvatarGroupTile extends StatelessWidget implements IComponentPage {
         children: [
           Avatar(
             backgroundColor: material.Colors.red,
-            initials: Avatar.getInitials('sunarya-thito'),
+            initials: Avatar.getInitials('coco-de'),
           ),
           Avatar(
             backgroundColor: material.Colors.green,
-            initials: Avatar.getInitials('sunarya-thito'),
+            initials: Avatar.getInitials('coco-de'),
           ),
           Avatar(
             backgroundColor: material.Colors.blue,
-            initials: Avatar.getInitials('sunarya-thito'),
+            initials: Avatar.getInitials('coco-de'),
           ),
           Avatar(
             backgroundColor: material.Colors.yellow,
-            initials: Avatar.getInitials('sunarya-thito'),
+            initials: Avatar.getInitials('coco-de'),
           ),
         ],
       ),

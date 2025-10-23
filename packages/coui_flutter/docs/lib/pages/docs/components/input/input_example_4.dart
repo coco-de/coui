@@ -12,11 +12,11 @@ class InputExample4 extends StatelessWidget {
         validator: ConditionalValidator((value) async {
           // simulate a network delay for example purpose
           await Future.delayed(const Duration(seconds: 1));
-          return !['sunarya-thito', 'septogeddon', 'admin'].contains(value);
+          return !['coco-de', 'septogeddon', 'admin'].contains(value);
         }, message: 'Username already taken'),
         child: const TextField(
           features: [InputFeature.revalidate()],
-          initialValue: 'sunarya-thito',
+          initialValue: 'coco-de',
           placeholder: Text('Enter your username'),
         ),
       ),

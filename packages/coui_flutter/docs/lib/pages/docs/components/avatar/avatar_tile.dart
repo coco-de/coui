@@ -16,13 +16,13 @@ class AvatarTile extends StatelessWidget implements IComponentPage {
         child: Row(
           children: [
             Avatar(
-              initials: Avatar.getInitials('sunarya-thito'),
+              initials: Avatar.getInitials('coco-de'),
               provider: const NetworkImage(
                 'https://avatars.githubusercontent.com/u/64018564?v=4',
               ),
             ),
             const Gap(16),
-            Avatar(initials: Avatar.getInitials('sunarya-thito')),
+            Avatar(initials: Avatar.getInitials('coco-de')),
           ],
         ),
       ),

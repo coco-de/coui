@@ -16,7 +16,7 @@ class CollapsibleTile extends StatelessWidget implements IComponentPage {
         child: Collapsible(
           children: [
             const CollapsibleTrigger(
-              child: Text('@sunarya-thito starred 3 repositories'),
+              child: Text('@coco-de starred 3 repositories'),
             ),
             OutlinedContainer(
               child: const Text(

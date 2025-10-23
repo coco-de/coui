@@ -457,7 +457,7 @@ class DocsPageState extends State<DocsPage> {
                       child: Text(getReleaseTagName()),
                       onPressed: (context) {
                         launchUrlString(
-                          'https://sunarya-thito.github.io/coui_flutter/',
+                          'https://coui.github.io/coui_flutter/',
                         );
                       },
                     ),
@@ -465,7 +465,7 @@ class DocsPageState extends State<DocsPage> {
                       child: const Text('Experimental'),
                       onPressed: (context) {
                         launchUrlString(
-                          'https://sunarya-thito.github.io/coui_flutter/experimental/',
+                          'https://coui.github.io/coui_flutter/experimental/',
                         );
                       },
                     ),
@@ -917,48 +917,61 @@ class DocsPageState extends State<DocsPage> {
                             header: Text(section.title),
                             children: [
                               for (var page in section.pages)
-                                Semantics(
-                                  link: true,
-                                  linkUrl: Uri.tryParse(
-                                    'https://sunarya-thito.github.io/coui_flutter${_goRouterNamedLocation(context, page.name)}',
-                                  ),
-                                  child: DocsNavigationButton(
-                                    onPressed: () {
-                                      if (page.tag ==
-                                          CouiFeatureTag.workInProgress) {
-                                        showDialog(
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              actions: [
-                                                PrimaryButton(
-                                                  child: const Text('Close'),
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                ),
-                                              ],
-                                              content: const Text(
-                                                'This page is still under development. Please come back later.',
-                                              ),
-                                              title: const Text(
-                                                'Work in Progress',
-                                              ),
+                                Builder(
+                                  builder: (context) {
+                                    final routeLocation =
+                                        _goRouterNamedLocation(
+                                            context, page.name);
+                                    final linkUrl = routeLocation != null
+                                        ? Uri.tryParse(
+                                            'https://coui.github.io/coui_flutter$routeLocation',
+                                          )
+                                        : null;
+                                    return Semantics(
+                                      link: linkUrl != null,
+                                      linkUrl: linkUrl,
+                                      child: DocsNavigationButton(
+                                        onPressed: () {
+                                          if (page.tag ==
+                                              CouiFeatureTag.workInProgress) {
+                                            showDialog(
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  actions: [
+                                                    PrimaryButton(
+                                                      child:
+                                                          const Text('Close'),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                  ],
+                                                  content: const Text(
+                                                    'This page is still under development. Please come back later.',
+                                                  ),
+                                                  title: const Text(
+                                                    'Work in Progress',
+                                                  ),
+                                                );
+                                              },
+                                              context: context,
                                             );
-                                          },
-                                          context: context,
-                                        );
-                                        return;
-                                      }
-                                      context.goNamed(page.name);
-                                    },
-                                    selected: page.name == widget.name,
-                                    child: Basic(
-                                      content: Text(page.title),
-                                      trailing: page.tag?.buildBadge(context),
-                                      trailingAlignment:
-                                          AlignmentDirectional.centerStart,
-                                    ),
-                                  ),
+                                            return;
+                                          }
+                                          context.goNamed(page.name);
+                                        },
+                                        selected: page.name == widget.name,
+                                        child: Basic(
+                                          content: Text(page.title),
+                                          trailing:
+                                              page.tag?.buildBadge(context),
+                                          trailingAlignment:
+                                              AlignmentDirectional.centerStart,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                             ],
                           ),
@@ -1113,8 +1126,10 @@ class _DocsSidebarButton extends StatefulWidget {
 String? _goRouterNamedLocation(BuildContext context, String name) {
   try {
     return '/#${GoRouter.of(context).namedLocation(name)}';
-  } on Exception catch (e) {}
-  return '';
+  } catch (e) {
+    // 라우트가 존재하지 않는 경우 (work in progress 페이지 등)
+    return null;
+  }
 }
 
 class _DocsSidebarButtonState extends State<_DocsSidebarButton> {
@@ -1123,7 +1138,7 @@ class _DocsSidebarButtonState extends State<_DocsSidebarButton> {
     return Semantics(
       link: true,
       linkUrl: Uri.tryParse(
-        'https://sunarya-thito.github.io/coui_flutter${_goRouterNamedLocation(context, widget.page.name)}',
+        'https://coui.github.io/coui_flutter${_goRouterNamedLocation(context, widget.page.name)}',
       ),
       label: widget.page.title,
       child: DocsNavigationButton(

@@ -148,7 +148,7 @@ class CollapsibleTheme {
 /// );
 /// ```
 ///
-/// For more information, visit: https://sunarya-thito.github.io/coui_flutter/#/components/collapsible
+/// For more information, visit: https://coui.github.io/coui_flutter/#/components/collapsible
 class Collapsible extends StatefulWidget {
   /// Creates a [Collapsible] widget with the specified children.
   ///
@@ -188,7 +188,7 @@ class Collapsible extends StatefulWidget {
   /// );
   /// ```
   ///
-  /// For more information, visit: https://sunarya-thito.github.io/coui_flutter/#/components/collapsible
+  /// For more information, visit: https://coui.github.io/coui_flutter/#/components/collapsible
   const Collapsible({
     required this.children,
     this.isExpanded,
