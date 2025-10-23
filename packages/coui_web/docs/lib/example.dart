@@ -8,12 +8,17 @@ void main() {
 
   runApp(
     Document(
-      title: 'CoUI Example - Component Showcase',
+      title: 'CoUI Web - Component Showcase',
       head: [
         link(href: 'styles.css', rel: 'stylesheet'),
         meta(
           name: 'viewport',
           content: 'width=device-width, initial-scale=1',
+        ),
+        meta(
+          name: 'description',
+          content:
+              'Type-safe component library for Jaspr - Component showcase and examples',
         ),
       ],
       body: const CoUIShowcase(),
@@ -32,11 +37,11 @@ class CoUIShowcase extends StatelessComponent {
         div(
           [
             h1(
-              [text('🎨 CoUI Component Showcase')],
+              [text('🎨 CoUI Web - Component Showcase')],
               classes: 'text-4xl font-bold text-center mb-2',
             ),
             p(
-              [text('Type-safe DaisyUI components for Jaspr')],
+              [text('Type-safe component library for Jaspr')],
               classes: 'text-center text-base-content/70 mb-12',
             ),
 
@@ -44,20 +49,14 @@ class CoUIShowcase extends StatelessComponent {
             _buildSection(
               content: [
                 Alert(
-                  [text('🎉 Welcome to CoUI! This is a success message.')],
+                  [text('🎉 Welcome to CoUI Web! This is a success message.')],
                 ),
-                Alert(
-                  [text('⚠️ Please check your input. This is a warning.')],
-                ),
-                Alert(
+                Alert.destructive(
                   [text('❌ Something went wrong. This is an error message.')],
-                ),
-                Alert(
-                  [text("ℹ️ Here's some helpful information for you.")],
                 ),
               ],
               description: 'User notifications and feedback messages',
-              title: 'Alert Components',
+              title: 'Alert',
             ),
 
             // Button Examples
@@ -65,27 +64,28 @@ class CoUIShowcase extends StatelessComponent {
               content: [
                 div(
                   [
-                    Button.primary(
-                      child: text('Primary'),
-                    ),
-                    Button.secondary(
-                      child: text('Secondary'),
-                    ),
-                    Button.outline(
-                      child: text('Outline'),
-                    ),
-                    Button.ghost(
-                      child: text('Ghost'),
-                    ),
+                    Button.primary(child: text('Primary')),
+                    Button.secondary(child: text('Secondary')),
+                    Button.outline(child: text('Outline')),
+                    Button.ghost(child: text('Ghost')),
+                    Button.destructive(child: text('Destructive')),
                   ],
                   classes: 'flex flex-wrap gap-2',
                 ),
+                div(
+                  [
+                    Button.primary(child: text('Small'), size: 'sm'),
+                    Button.primary(child: text('Medium')),
+                    Button.primary(child: text('Large'), size: 'lg'),
+                  ],
+                  classes: 'flex flex-wrap gap-2 mt-4',
+                ),
               ],
-              description: 'Interactive elements with various styles',
-              title: 'Button Components',
+              description: 'Interactive buttons with various styles and sizes',
+              title: 'Button',
             ),
 
-            // Input Examples
+            // Input & Form Examples
             _buildSection(
               content: [
                 div(
@@ -98,47 +98,380 @@ class CoUIShowcase extends StatelessComponent {
                       placeholder: 'Enter password',
                       type: 'password',
                     ),
+                    Textarea(
+                      placeholder: 'Enter your message here...',
+                      rows: 3,
+                    ),
                   ],
-                  classes: 'space-y-4',
+                  classes: 'space-y-4 max-w-md',
                 ),
               ],
-              description: 'Form inputs with validation',
-              title: 'Input Components',
+              description: 'Form inputs, textareas with validation',
+              title: 'Input & Textarea',
             ),
 
-            // Badge Examples
+            // Checkbox & Radio Examples
             _buildSection(
               content: [
                 div(
                   [
-                    Badge.primary(child: text('Primary')),
-                    Badge.secondary(child: text('Secondary')),
-                    Badge.outline(child: text('Outline')),
-                    Badge.destructive(child: text('Destructive')),
+                    div(
+                      [
+                        Checkbox(label: text('Accept terms and conditions')),
+                        Checkbox(label: text('Subscribe to newsletter')),
+                        Checkbox(label: text('Remember me'), checked: true),
+                      ],
+                      classes: 'space-y-2',
+                    ),
+                    div(
+                      [
+                        h3(
+                          [text('Radio Group Example')],
+                          classes: 'font-semibold mb-2',
+                        ),
+                        Radio(label: text('Option 1'), name: 'demo', value: '1'),
+                        Radio(
+                          checked: true,
+                          label: text('Option 2'),
+                          name: 'demo',
+                          value: '2',
+                        ),
+                        Radio(label: text('Option 3'), name: 'demo', value: '3'),
+                      ],
+                      classes: 'space-y-2 mt-4',
+                    ),
                   ],
-                  classes: 'flex flex-wrap gap-2',
+                  classes: 'space-y-4',
                 ),
               ],
-              description: 'Status indicators and labels',
-              title: 'Badge Components',
+              description: 'Checkboxes and radio buttons for user selection',
+              title: 'Checkbox & Radio',
+            ),
+
+            // Badge & Chip Examples
+            _buildSection(
+              content: [
+                div(
+                  [
+                    h3(
+                      [text('Badges')],
+                      classes: 'font-semibold mb-2',
+                    ),
+                    div(
+                      [
+                        Badge.primary(child: text('Primary')),
+                        Badge.secondary(child: text('Secondary')),
+                        Badge.outline(child: text('Outline')),
+                        Badge.destructive(child: text('Destructive')),
+                      ],
+                      classes: 'flex flex-wrap gap-2',
+                    ),
+                    h3(
+                      [text('Chips')],
+                      classes: 'font-semibold mb-2 mt-4',
+                    ),
+                    div(
+                      [
+                        Chip(text('Removable'), onClose: () {}),
+                        Chip(text('React'), onClose: () {}),
+                        Chip(text('Vue'), onClose: () {}),
+                        Chip(text('Angular'), onClose: () {}),
+                      ],
+                      classes: 'flex flex-wrap gap-2',
+                    ),
+                  ],
+                  classes: 'space-y-2',
+                ),
+              ],
+              description: 'Status indicators, labels, and removable tags',
+              title: 'Badge & Chip',
+            ),
+
+            // Card Example
+            _buildSection(
+              content: [
+                div(
+                  [
+                    Card(
+                      [
+                        CardHeader(
+                          [
+                            CardTitle([text('Card Title')]),
+                            CardDescription(
+                              [text('This is a card description')],
+                            ),
+                          ],
+                        ),
+                        CardContent(
+                          [
+                            text(
+                              'This is the main content area of the card. You can put any content here.',
+                            ),
+                          ],
+                        ),
+                        CardFooter(
+                          [
+                            Button.primary(child: text('Action')),
+                            Button.outline(child: text('Cancel')),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                  classes: 'max-w-md',
+                ),
+              ],
+              description: 'Container component with header, content, and footer',
+              title: 'Card',
+            ),
+
+            // Progress & Loading Examples
+            _buildSection(
+              content: [
+                div(
+                  [
+                    div(
+                      [
+                        p([text('Progress: 60%')], classes: 'mb-2'),
+                        Progress(value: 60),
+                      ],
+                      classes: 'mb-4',
+                    ),
+                    div(
+                      [
+                        p([text('Loading Spinner')], classes: 'mb-2'),
+                        Loading(),
+                      ],
+                      classes: 'mb-4',
+                    ),
+                    div(
+                      [
+                        p([text('Skeleton Loader')], classes: 'mb-2'),
+                        div(
+                          [
+                            Skeleton(height: '20px'),
+                            Skeleton(height: '20px', width: '80%'),
+                            Skeleton(height: '20px', width: '60%'),
+                          ],
+                          classes: 'space-y-2',
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+              description: 'Progress indicators, spinners, and skeleton loaders',
+              title: 'Progress & Loading',
+            ),
+
+            // Table Example
+            _buildSection(
+              content: [
+                div(
+                  [
+                    Table(
+                      [
+                        TableHeader(
+                          [
+                            TableRow(
+                              [
+                                TableHead([text('Name')]),
+                                TableHead([text('Email')]),
+                                TableHead([text('Role')]),
+                              ],
+                            ),
+                          ],
+                        ),
+                        TableBody(
+                          [
+                            TableRow(
+                              [
+                                TableCell([text('John Doe')]),
+                                TableCell([text('john@example.com')]),
+                                TableCell([Badge.primary(child: text('Admin'))]),
+                              ],
+                            ),
+                            TableRow(
+                              [
+                                TableCell([text('Jane Smith')]),
+                                TableCell([text('jane@example.com')]),
+                                TableCell([Badge.secondary(child: text('User'))]),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                  classes: 'overflow-x-auto',
+                ),
+              ],
+              description: 'Structured data display with headers and rows',
+              title: 'Table',
+            ),
+
+            // Tabs Example
+            _buildSection(
+              content: [
+                div(
+                  [
+                    Tabs(
+                      defaultValue: 'tab1',
+                      children: [
+                        TabsList(
+                          [
+                            TabsTrigger(value: 'tab1', child: text('Overview')),
+                            TabsTrigger(value: 'tab2', child: text('Analytics')),
+                            TabsTrigger(value: 'tab3', child: text('Settings')),
+                          ],
+                        ),
+                        TabsContent(
+                          value: 'tab1',
+                          child: div(
+                            [text('Overview content goes here...')],
+                            classes: 'p-4',
+                          ),
+                        ),
+                        TabsContent(
+                          value: 'tab2',
+                          child: div(
+                            [text('Analytics content goes here...')],
+                            classes: 'p-4',
+                          ),
+                        ),
+                        TabsContent(
+                          value: 'tab3',
+                          child: div(
+                            [text('Settings content goes here...')],
+                            classes: 'p-4',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+              description: 'Tabbed navigation for organizing content',
+              title: 'Tabs',
+            ),
+
+            // Breadcrumb Example
+            _buildSection(
+              content: [
+                div(
+                  [
+                    Breadcrumb(
+                      [
+                        BreadcrumbItem(text('Home'), href: '/'),
+                        BreadcrumbItem(text('Components'), href: '/components'),
+                        BreadcrumbItem(text('Breadcrumb'), current: true),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+              description: 'Navigation showing the current page location',
+              title: 'Breadcrumb',
+            ),
+
+            // Divider & Separator Example
+            _buildSection(
+              content: [
+                div(
+                  [
+                    div([text('Content above')], classes: 'mb-4'),
+                    Divider(),
+                    div([text('Content below')], classes: 'mt-4'),
+                    div(
+                      [
+                        text('Left side'),
+                        Separator.vertical(),
+                        text('Right side'),
+                      ],
+                      classes: 'flex gap-4 items-center mt-4',
+                    ),
+                  ],
+                ),
+              ],
+              description: 'Visual dividers for separating content',
+              title: 'Divider & Separator',
+            ),
+
+            // Avatar Example
+            _buildSection(
+              content: [
+                div(
+                  [
+                    Avatar(
+                      initials: 'JD',
+                      alt: 'John Doe',
+                    ),
+                    Avatar(
+                      initials: 'AB',
+                      alt: 'Alice Bob',
+                    ),
+                    Avatar(
+                      initials: 'XY',
+                      alt: 'X Y',
+                    ),
+                  ],
+                  classes: 'flex gap-2',
+                ),
+              ],
+              description: 'User profile images or initials',
+              title: 'Avatar',
+            ),
+
+            // Link Example
+            _buildSection(
+              content: [
+                div(
+                  [
+                    div([
+                      text('This is a '),
+                      Link(
+                        href: 'https://github.com/coco-de/coui',
+                        child: text('link to CoUI repository'),
+                      ),
+                      text(' on GitHub.'),
+                    ]),
+                    div([
+                      text('External link: '),
+                      Link(
+                        external: true,
+                        href: 'https://jaspr.dev',
+                        child: text('Jaspr Framework'),
+                      ),
+                    ], classes: 'mt-2'),
+                  ],
+                ),
+              ],
+              description: 'Hyperlinks for navigation',
+              title: 'Link',
             ),
 
             // Footer
             div(
               [
-                p(
+                Divider(),
+                div(
                   [
-                    text('Built with ❤️ using CoUI • '),
-                    a(
-                      [text('View on GitHub')],
-                      href: 'https://github.com/PhilippHGerber/ui_components',
-                      classes: 'link link-primary',
+                    p(
+                      [
+                        text('Built with ❤️ using CoUI Web • '),
+                        Link(
+                          external: true,
+                          href: 'https://github.com/coco-de/coui',
+                          child: text('View on GitHub'),
+                        ),
+                      ],
+                      classes: 'text-base-content/60',
                     ),
                   ],
-                  classes: 'text-base-content/60',
+                  classes: 'text-center mt-8',
                 ),
               ],
-              classes: 'text-center mt-16 pt-8 border-t border-base-300',
+              classes: 'mt-16 pt-8',
             ),
           ],
           classes: 'max-w-6xl mx-auto',
