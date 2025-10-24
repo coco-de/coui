@@ -1,0 +1,223 @@
+name: Deploy CoUI Docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/coui_web/**'
+      - 'packages/coui_flutter/**'
+      - '.github/workflows/deploy-docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.35.5'
+          channel: 'stable'
+
+      # Build CoUI Web Docs
+      - name: Get dependencies for coui_web
+        run: |
+          cd packages/coui_web
+          dart pub get
+
+      - name: Get dependencies for coui_web/docs
+        run: |
+          cd packages/coui_web/docs
+          dart pub get
+
+      - name: Build CoUI Web Jaspr site
+        run: |
+          cd packages/coui_web/docs
+          dart run jaspr build
+
+      # Build CoUI Flutter Docs
+      - name: Get dependencies for coui_flutter
+        run: |
+          cd packages/coui_flutter
+          flutter pub get
+
+      - name: Get dependencies for coui_flutter/docs
+        run: |
+          cd packages/coui_flutter/docs
+          flutter pub get
+
+      - name: Build CoUI Flutter web app
+        run: |
+          cd packages/coui_flutter/docs
+          flutter build web --release --base-href /flutter/
+
+      # Combine both builds
+      - name: Combine docs into single deployment
+        run: |
+          mkdir -p _site
+          # Copy CoUI Web docs to /web subdirectory
+          mkdir -p _site/web
+          cp -r packages/coui_web/docs/build/jaspr/* _site/web/
+          # Copy CoUI Flutter docs to /flutter subdirectory
+          mkdir -p _site/flutter
+          cp -r packages/coui_flutter/docs/build/web/* _site/flutter/
+
+      - name: Create index redirect page
+        run: |
+          cat > _site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>CoUI Documentation</title>
+            <style>
+              * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+              }
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+              }
+              .container {
+                max-width: 800px;
+                width: 100%;
+              }
+              h1 {
+                color: white;
+                text-align: center;
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+              }
+              p {
+                color: rgba(255,255,255,0.9);
+                text-align: center;
+                font-size: 1.2rem;
+                margin-bottom: 3rem;
+              }
+              .cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+              }
+              .card {
+                background: white;
+                border-radius: 12px;
+                padding: 2rem;
+                text-decoration: none;
+                color: inherit;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+              }
+              .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+              }
+              .card h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+                color: #667eea;
+              }
+              .card .desc {
+                color: #666;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+              }
+              .card .tech {
+                display: inline-block;
+                background: #f0f0f0;
+                padding: 0.4rem 0.8rem;
+                border-radius: 6px;
+                font-size: 0.9rem;
+                color: #667eea;
+                font-weight: 500;
+              }
+              .footer {
+                text-align: center;
+                margin-top: 3rem;
+                color: rgba(255,255,255,0.8);
+              }
+              .footer a {
+                color: white;
+                text-decoration: underline;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <h1>🎨 CoUI Documentation</h1>
+              <p>Type-safe component libraries for modern web and mobile development</p>
+
+              <div class="cards">
+                <a href="/web/" class="card">
+                  <h2>CoUI Web</h2>
+                  <p class="desc">
+                    Component library for Jaspr framework. Build beautiful web applications with type-safe, shadcn-inspired components.
+                  </p>
+                  <span class="tech">Dart + Jaspr</span>
+                </a>
+
+                <a href="/flutter/" class="card">
+                  <h2>CoUI Flutter</h2>
+                  <p class="desc">
+                    Comprehensive UI component library for Flutter. Create stunning cross-platform applications with ease.
+                  </p>
+                  <span class="tech">Flutter + Dart</span>
+                </a>
+              </div>
+
+              <div class="footer">
+                <p>Built with ❤️ | <a href="https://github.com/coco-de/coui" target="_blank">View on GitHub</a></p>
+              </div>
+            </div>
+          </body>
+          </html>
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
