@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:coui_flutter/coui_flutter.dart';
 import 'package:coui_flutter/src/components/form/file_input/file_input_directory.dart';
-import 'package:desktop_drop/desktop_drop.dart';
 import 'package:dir_picker/dir_picker.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:file_drop/file_drop.dart';
 
 /// A unified cross-platform file input / drop zone component.
 ///
@@ -167,26 +166,15 @@ class _FileInputState extends State<FileInput> {
   /// [FileInput.onFilesSelected] as [XFile] instances.
   Future<void> _pickFiles() async {
     final extensions = CoreFileInputAccept.extensions(widget.accept);
-    final hasExtensionFilter = extensions.isNotEmpty;
+    final types = extensions.isEmpty
+        ? const <XTypeGroup>[]
+        : [XTypeGroup(extensions: extensions)];
+    final files = widget.multiple
+        ? await openFiles(acceptedTypeGroups: types)
+        : [?await openFile(acceptedTypeGroups: types)];
 
-    final List<PlatformFile> result;
-    if (widget.multiple) {
-      result = await FilePicker.pickFiles(
-        type: hasExtensionFilter ? .custom : .any,
-        allowedExtensions: hasExtensionFilter ? extensions : null,
-      );
-    } else {
-      final file = await FilePicker.pickFile(
-        type: hasExtensionFilter ? .custom : .any,
-        allowedExtensions: hasExtensionFilter ? extensions : null,
-      );
-      result = [?file];
-    }
-
-    if (!mounted || result.isEmpty) return;
-
-    // The platform owns conversion, including browser blob URLs and lazy I/O.
-    _deliverFiles(result.map((file) => file.xFile).toList());
+    if (!mounted || files.isEmpty) return;
+    _deliverFiles(files);
   }
 
   void _handleHoverChanged(bool hovered) {
@@ -333,6 +321,7 @@ class _FileInputState extends State<FileInput> {
     // platforms without drop support (iOS), and `enable` follows
     // `enabled` so a disabled zone ignores drags entirely.
     return DropTarget(
+      acceptedKinds: const {DropItemKind.file, DropItemKind.directory},
       onDragEntered: (_) => handleDragEnter(),
       onDragExited: (_) => handleDragExit(),
       onDragDone: (details) => handleDrop(details.files),

@@ -1142,6 +1142,9 @@ class BiDirectionalConvert<A, B> {
         other.aToB == aToB &&
         other.bToA == bToA;
   }
+
+  @override
+  int get hashCode => Object.hash(aToB, bToA);
 }
 
 class ConvertedController<F, T> extends ChangeNotifier

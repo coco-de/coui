@@ -1,0 +1,132 @@
+name: Deploy docs
+
+on:
+  # Manual only: a full docs build is too expensive to run on every merge.
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish to GitHub Pages. Leave off to build and check only.
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_VERSION: '3.50.0'
+  JASPR_CLI_VERSION: '0.24.0-beta.1'
+
+jobs:
+  build-docs:
+    name: Build the docs site
+    if: github.repository == 'coco-de/coui'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+
+      # The CLI has to be on the same 0.N line as the `jaspr` dependency of
+      # docs_site.
+      - name: Install Jaspr CLI
+        run: |
+          dart pub global activate jaspr_cli "$JASPR_CLI_VERSION"
+          echo "$HOME/.pub-cache/bin" >> "$GITHUB_PATH"
+
+      - name: Install dependencies
+        working-directory: docs_site
+        run: dart pub get
+
+      - name: Resolve Flutter dependencies (for embedded previews)
+        working-directory: docs_site
+        run: flutter pub get
+
+      - name: Build static site with Flutter embedding
+        working-directory: docs_site
+        run: jaspr build
+
+      - name: Merge Flutter build artifacts into jaspr output
+        working-directory: docs_site
+        run: |
+          if [ -d build/flutter ]; then
+            cp -n build/flutter/main.dart.js build/jaspr/main.dart.js 2>/dev/null || true
+            cp -n build/flutter/flutter.js build/jaspr/flutter.js 2>/dev/null || true
+          else
+            echo "::warning::build/flutter directory not found"
+          fi
+
+      # The Jaspr CLI can report success after the build server failed and
+      # leave an incomplete site behind, so check the output before using it.
+      - name: Verify build output
+        working-directory: docs_site
+        run: |
+          set -e
+          cd build/jaspr
+          missing=0
+          for f in index.html main.client.dart.js main.dart.js flutter.js flutter_bootstrap.js widgetbook/index.html llms.txt; do
+            if [ ! -f "$f" ]; then
+              echo "::error::required file missing: $f"
+              missing=$((missing + 1))
+            fi
+          done
+          for d in images packages assets components; do
+            if [ ! -d "$d" ]; then
+              echo "::error::required directory missing: $d"
+              missing=$((missing + 1))
+            fi
+          done
+          parts=$(find . -maxdepth 1 -type f -name 'main.client.dart.js_*.part.js' | wc -l | tr -d ' ')
+          if [ "$parts" -lt 10 ]; then
+            echo "::error::expected 10+ jaspr client split parts, got $parts"
+            missing=$((missing + 1))
+          fi
+          # Every component document must have produced a page. A build that
+          # only generated the home page still exits successfully.
+          docs=$(find ../../../docs_core/content/components -maxdepth 1 -type f -name '*.md' ! -name '_*' | wc -l | tr -d ' ')
+          pages=$(find components -mindepth 2 -maxdepth 2 -type f -name index.html | wc -l | tr -d ' ')
+          if [ "$pages" -lt "$docs" ]; then
+            echo "::error::expected at least $docs component pages, got $pages"
+            missing=$((missing + 1))
+          fi
+          if [ "$missing" -gt 0 ]; then
+            echo "::error::Build output is incomplete ($missing issues); refusing to publish."
+            exit 1
+          fi
+          echo "Build output verified: $pages component pages, $parts split parts"
+
+      # With GitHub Actions as the Pages source, the domain that takes effect is
+      # the one in the repository's Pages settings; the file records it in the
+      # published site as well.
+      - name: Add CNAME
+        run: echo 'coui.cocode.im' > docs_site/build/jaspr/CNAME
+
+      - name: Upload Pages artifact
+        if: inputs.publish
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: docs_site/build/jaspr
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build-docs
+    if: inputs.publish && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

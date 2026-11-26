@@ -16,7 +16,8 @@ extension type const _Window(JSObject _) implements JSObject {
 
 @JS()
 extension type const _GlobalThis(JSObject _) implements JSObject {
-  external JSObject? get CoUIApp;
+  @JS('CoUIApp')
+  external JSObject? get couiApp;
 }
 
 @JS('Event')
@@ -40,7 +41,7 @@ extension type const _CoUIAppTheme._(JSObject _) implements JSObject {
 
 class CoUIFlutterPlatformImplementations {
   static bool get _isPreloaderAvailable {
-    return _window.globalThis.CoUIApp != null;
+    return _window.globalThis.couiApp != null;
   }
 
   static void onAppInitialized() {

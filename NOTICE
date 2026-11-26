@@ -2,8 +2,8 @@ CoUI
 Copyright (c) 2025-2026 Cocode Inc.
 
 This product includes software derived from third-party open source projects.
-Their copyright notices and license terms are reproduced below and in the
-LICENSE file of each package. Those terms continue to apply to the derived
+Attribution is listed below. The full third-party terms ship in
+packages/coui_flutter/NOTICE and packages/coui_web/LICENSE. Those terms continue to apply to the derived
 portions of this work.
 
 ================================================================================

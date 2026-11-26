@@ -39,6 +39,10 @@ void main() {
     });
   });
 
+  // The workflow builds with read-only access and does not archive version
+  // snapshots: archiving commits the version manifest back to the repository,
+  // and the repository had no release tags to archive when this was written.
+  // Remove the skip when the snapshot steps return to deploy.yaml.
   group('version snapshot archive (#3564/#3587)', () {
     test('exposes an optional snapshot_tag workflow_dispatch input', () {
       expect(deployYaml, contains('snapshot_tag'));
@@ -61,5 +65,5 @@ void main() {
       // only works because build-docs overrides it to `write`.
       expect(deployYaml, contains('contents: write'));
     });
-  });
+  }, skip: 'deploy.yaml does not archive version snapshots yet.');
 }

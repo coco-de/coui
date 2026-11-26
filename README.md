@@ -30,7 +30,7 @@ Improving CoUI itself? Start with [Contributing](CONTRIBUTING.md) or the
 Install the Flutter beta from pub.dev:
 
 ```sh
-flutter pub add 'coui_flutter:^0.194.2-beta.1'
+flutter pub add coui_flutter
 ```
 
 Set up your app:

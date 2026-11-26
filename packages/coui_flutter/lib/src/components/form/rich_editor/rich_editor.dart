@@ -5,14 +5,17 @@ import 'dart:async';
 import 'dart:math' show max;
 
 import 'package:coui_flutter/coui_flutter.dart';
-import 'package:coui_flutter/src/components/form/rich_editor/markdown/rich_editor_reactions.dart';
+import 'package:coui_flutter/src/components/form/rich_editor/markdown/markdown_document_codec.dart';
 import 'package:coui_flutter/src/components/form/rich_editor/rich_editor_document.dart';
 import 'package:coui_flutter/src/components/form/rich_editor/rich_editor_selection_toolbar.dart';
 import 'package:coui_flutter/src/components/form/rich_editor/rich_editor_toolbar.dart';
 import 'package:coui_flutter/src/util/input_focus_ring.dart';
-import 'package:file_picker/file_picker.dart' show FilePicker, FileType;
+import 'package:file_drop/file_drop.dart' show XTypeGroup, openFile;
+// QuillEditorConfig still takes the SDK's Material selection theme type.
+// ignore: deprecated_member_use
+import 'package:flutter/material.dart' show TextSelectionThemeData;
 import 'package:flutter/services.dart';
-import 'package:super_editor/super_editor.dart' as se;
+import 'package:flutter_quill/flutter_quill.dart' as quill;
 
 /// A WYSIWYG Markdown editor — the composer of a post or a comment.
 ///
@@ -181,7 +184,7 @@ class RichEditorState extends State<RichEditor> {
   RichEditorController? _ownController;
   FocusNode? _ownFocus;
   final _scroll = ScrollController();
-  final GlobalKey<State<StatefulWidget>> _layoutKey = GlobalKey();
+  final GlobalKey<quill.EditorState> _layoutKey = GlobalKey();
 
   /// The editing area — the part of the document that is in view.
   final GlobalKey _bodyKey = GlobalKey();
@@ -225,7 +228,7 @@ class RichEditorState extends State<RichEditor> {
 
   /// The selection Escape closed the toolbar on; it stays closed until the
   /// selection is another one.
-  se.DocumentSelection? _dismissedSelection;
+  TextSelection? _dismissedSelection;
 
   /// A pointer is down in the editing area — a selection is being dragged
   /// out, and the toolbar waits for the pointer to come up.
@@ -246,9 +249,6 @@ class RichEditorState extends State<RichEditor> {
   /// [RichEditorController.replacements] as last seen: a change means the
   /// content was replaced from outside, which is not the user removing it.
   int _replacements = 0;
-
-  /// [RichEditorController.embedCount] as last seen.
-  int _embeds = 0;
 
   /// The controller in use — the widget's, or one of the editor's own.
   RichEditorController get controller =>
@@ -279,7 +279,6 @@ class RichEditorState extends State<RichEditor> {
     );
     _configure();
     _replacements = controller.replacements;
-    _embeds = controller.embedCount;
     _images.sync(controller.imageUrls);
     controller.addListener(_onChange);
     _lastReported = controller.markdown;
@@ -302,12 +301,10 @@ class RichEditorState extends State<RichEditor> {
       (oldWidget.controller ?? _ownController)?.removeListener(_onChange);
       controller.addListener(_onChange);
       _lastReported = controller.markdown;
-      _documentStyle = null;
       // Another document: what was uploaded into the old one is not this
       // one's to delete.
       _images.reset();
       _replacements = controller.replacements;
-      _embeds = controller.embedCount;
       _images.sync(controller.imageUrls);
     }
     if (oldWidget.focusNode != widget.focusNode) {
@@ -357,17 +354,6 @@ class RichEditorState extends State<RichEditor> {
       _images.reset();
     }
     _images.sync(controller.imageUrls);
-    final embeds = controller.embedCount;
-    if (embeds != _embeds) {
-      _embeds = embeds;
-      // An image or rule gone or back is a block whose id may now stand for
-      // another kind of component (Backspace over an image leaves an empty
-      // paragraph under the same id). The selection layer reads the layout
-      // in the same frame, and when only it and the document are dirty it is
-      // built first and asks the old component about the new kind's position.
-      // Rebuilding from here updates the document first.
-      if (mounted) setState(() {});
-    }
     _scheduleSelectionToolbarSync();
     final onChanged = widget.onChanged;
     if (onChanged == null) return;
@@ -474,25 +460,17 @@ class RichEditorState extends State<RichEditor> {
   /// document is not laid out yet.
   Rect? _selectionAnchor() {
     final selection = controller.selection;
-    final Object? layout = _layoutKey.currentState;
+    final layout = _layoutKey.currentState?.renderEditor;
     final bodyBox = _bodyKey.currentContext?.findRenderObject();
     if (selection == null ||
-        layout is! se.DocumentLayout ||
+        layout is! quill.RenderEditor ||
+        !layout.attached ||
         bodyBox is! RenderBox ||
         !bodyBox.attached) {
       return null;
     }
-    final local = layout.getRectForSelection(
-      selection.base,
-      selection.extent,
-    );
-    if (local == null) return null;
-    // The document's own coordinates to the screen's — the layout knows how
-    // it is scrolled.
-    final selected = Rect.fromPoints(
-      layout.getGlobalOffsetFromDocumentOffset(local.topLeft),
-      layout.getGlobalOffsetFromDocumentOffset(local.bottomRight),
-    );
+    final selected = RichEditorDocumentStyle.selectionBounds(layout, selection);
+    if (selected == null) return null;
     final viewport = Rect.fromPoints(
       bodyBox.localToGlobal(Offset.zero),
       bodyBox.localToGlobal(bodyBox.size.bottomRight(Offset.zero)),
@@ -758,13 +736,7 @@ class RichEditorState extends State<RichEditor> {
         : await _defaultLinkDialog(current);
     if (!mounted) return;
     if (result != null && selection != null) {
-      controller.editor.execute([
-        se.ChangeSelectionRequest(
-          selection,
-          se.SelectionChangeType.placeCaret,
-          se.SelectionReason.userInteraction,
-        ),
-      ]);
+      controller.setSelection(selection);
       controller.setLink(result.isEmpty ? null : result);
     }
     focus();
@@ -783,10 +755,11 @@ class RichEditorState extends State<RichEditor> {
     // The anchor is taken, and the picker opened, before anything is
     // awaited: the web's picker opens only inside the click that asked for
     // it, and the caret may move while the file is on its way.
-    final anchor = controller.selection?.extent.nodeId;
-    final picked = await FilePicker.pickFile(
-      type: FileType.custom,
-      allowedExtensions: CoreRichEditorImage.extensions,
+    final anchor = controller.selectedLineId;
+    final picked = await openFile(
+      acceptedTypeGroups: const [
+        XTypeGroup(extensions: CoreRichEditorImage.extensions),
+      ],
     );
     if (!mounted || picked == null) return;
     final mimeType = CoreRichEditorImage.mimeTypeOf(picked.name);
@@ -794,7 +767,7 @@ class RichEditorState extends State<RichEditor> {
     // costs a read of the file only where it does not.
     final int size;
     try {
-      size = picked.lengthSync() ?? await picked.length();
+      size = await picked.length();
     } on Object {
       if (mounted) {
         _images.reject(picked.name, CoreRichEditorImageIssue.uploadFailed);
@@ -860,21 +833,18 @@ class RichEditorState extends State<RichEditor> {
 
   // ----------------------------------------------------------- keyboard
 
-  se.ExecutionInstruction _keys({
-    required se.SuperEditorContext editContext,
-    required KeyEvent keyEvent,
-  }) {
+  KeyEventResult? _handleKeys(KeyEvent keyEvent, quill.Node? _) {
     if (keyEvent is! KeyDownEvent && keyEvent is! KeyRepeatEvent) {
-      return se.ExecutionInstruction.continueExecution;
+      return null;
     }
     final keyboard = HardwareKeyboard.instance;
     final mod = _apple ? keyboard.isMetaPressed : keyboard.isControlPressed;
     final shift = keyboard.isShiftPressed;
     final alt = keyboard.isAltPressed;
     final key = keyEvent.logicalKey;
-    se.ExecutionInstruction run(void Function() action) {
+    KeyEventResult run(void Function() action) {
       action();
-      return se.ExecutionInstruction.haltExecution;
+      return KeyEventResult.handled;
     }
 
     // The toolbar over the selection: Escape closes it, Alt+F10 moves the
@@ -888,7 +858,7 @@ class RichEditorState extends State<RichEditor> {
       }
     }
     // Shift+Arrow grows the selection: the toolbar over it waits for the
-    // selection to hold still. The key itself is super_editor's.
+    // selection to hold still. Quill handles the selection movement.
     if (shift && !alt && _growsSelection(key)) _handleKeyboardSelection();
 
     if (mod) {
@@ -907,10 +877,23 @@ class RichEditorState extends State<RichEditor> {
           ? null
           : CoreRichEditorFormat.forKey(label, shift: shift, alt: alt);
       if (format != null) {
-        if (!_editable) return se.ExecutionInstruction.haltExecution;
+        if (!_editable) return KeyEventResult.handled;
         return run(() => _handleApply(format));
       }
-      if (alt) return se.ExecutionInstruction.continueExecution;
+      if (alt) return null;
+      // Keep the editor's shortcut contract when the engine has an
+      // additional binding for the same keystroke.
+      if (key == LogicalKeyboardKey.digit1 ||
+          key == LogicalKeyboardKey.digit2 ||
+          key == LogicalKeyboardKey.digit3 ||
+          key == LogicalKeyboardKey.digit0 ||
+          key == LogicalKeyboardKey.keyM ||
+          shift &&
+              (key == LogicalKeyboardKey.keyL ||
+                  key == LogicalKeyboardKey.keyO ||
+                  key == LogicalKeyboardKey.keyC)) {
+        return KeyEventResult.skipRemainingHandlers;
+      }
       switch (key) {
         case LogicalKeyboardKey.keyZ:
           return run(shift ? controller.redo : controller.undo);
@@ -924,22 +907,20 @@ class RichEditorState extends State<RichEditor> {
           return run(() => unawaited(_paste(plain: shift)));
         case LogicalKeyboardKey.enter || LogicalKeyboardKey.numpadEnter:
           final submit = widget.onSubmit;
-          if (submit == null) return se.ExecutionInstruction.continueExecution;
+          if (submit == null) return null;
           return run(() => submit(controller.markdown));
       }
-      return se.ExecutionInstruction.continueExecution;
+      return null;
     }
     if (key == LogicalKeyboardKey.tab && !mod && !alt) {
-      if (_inCode()) {
+      if (controller.inLiteralBlock) {
         if (!shift && _editable) {
-          controller.editor.execute([
-            const se.InsertPlainTextAtCaretRequest('  '),
-          ]);
+          controller.insertLiteral('  ');
         }
-        return se.ExecutionInstruction.haltExecution;
+        return KeyEventResult.handled;
       }
       if (_editable && controller.indentItems(outdent: shift)) {
-        return se.ExecutionInstruction.haltExecution;
+        return KeyEventResult.handled;
       }
       // Elsewhere Tab leaves the editor, like any other input.
       if (shift) {
@@ -947,18 +928,21 @@ class RichEditorState extends State<RichEditor> {
       } else {
         focusNode.nextFocus();
       }
-      return se.ExecutionInstruction.haltExecution;
+      return KeyEventResult.handled;
     }
     if ((key == LogicalKeyboardKey.enter ||
             key == LogicalKeyboardKey.numpadEnter) &&
         !mod &&
-        !shift &&
         !alt &&
-        _editable &&
-        _ruleOnEnter()) {
-      return se.ExecutionInstruction.haltExecution;
+        _editable) {
+      if (shift || controller.inLiteralBlock) {
+        return run(
+          () => controller.insertLiteral(MarkdownDocumentCodec.softBreak),
+        );
+      }
+      if (controller.insertRule()) return KeyEventResult.handled;
     }
-    return se.ExecutionInstruction.continueExecution;
+    return null;
   }
 
   /// The unshifted character of [key] as the shortcut table writes it.
@@ -987,69 +971,6 @@ class RichEditorState extends State<RichEditor> {
     PhysicalKeyboardKey.period => '.',
     _ => null,
   };
-
-  bool _inCode() {
-    final s = controller.selection;
-    if (s == null) return false;
-    return isCodeLike(controller.document.getNodeById(s.extent.nodeId));
-  }
-
-  /// `---` + Enter makes a rule.
-  bool _ruleOnEnter() {
-    final s = controller.selection;
-    if (s == null || !s.isCollapsed) return false;
-    final node = controller.document.getNodeById(s.extent.nodeId);
-    final p = s.extent.nodePosition;
-    if (!isPlainParagraph(node) || p is! se.TextNodePosition) return false;
-    final text = (node! as se.ParagraphNode).text.toPlainText();
-    if (p.offset != text.length) return false;
-    if (!controller.features.rules ||
-        !RegExp(r'^(---|\*\*\*|___)$').hasMatch(text)) {
-      return false;
-    }
-    final start = se.DocumentPosition(
-      nodeId: node.id,
-      nodePosition: const se.TextNodePosition(offset: 0),
-    );
-    controller.editor.execute([
-      se.DeleteContentRequest(
-        documentRange: se.DocumentRange(start: start, end: s.extent),
-      ),
-      se.InsertNodeAtIndexRequest(
-        nodeIndex: controller.document.getNodeIndexById(node.id),
-        newNode: se.HorizontalRuleNode(id: se.Editor.createNodeId()),
-      ),
-      se.ChangeSelectionRequest(
-        se.DocumentSelection.collapsed(position: start),
-        se.SelectionChangeType.placeCaret,
-        se.SelectionReason.userInteraction,
-      ),
-    ]);
-    return true;
-  }
-
-  /// super_editor's own bindings that the editor replaces (styles,
-  /// clipboard, indents) or leaves to the page (Esc). Its undo and redo
-  /// never run: [_keys] comes first and handles Mod+Z.
-  static final _removedActions = <se.SuperEditorKeyboardAction>{
-    se.cmdBToToggleBold,
-    se.cmdIToToggleItalics,
-    se.pasteWhenCmdVIsPressed,
-    se.copyWhenCmdCIsPressed,
-    se.cutWhenCmdXIsPressed,
-    se.tabToIndentParagraph,
-    se.shiftTabToUnIndentParagraph,
-    se.backspaceToUnIndentParagraph,
-    se.enterToUnIndentParagraph,
-    se.tabToIndentTask,
-    se.shiftTabToUnIndentTask,
-    se.collapseSelectionWhenEscIsPressed,
-  };
-
-  static final List<se.SuperEditorKeyboardAction> _imeActions = [
-    for (final a in se.defaultImeKeyboardActions)
-      if (!_removedActions.contains(a)) a,
-  ];
 
   // -------------------------------------------------------------- build
 
@@ -1123,10 +1044,10 @@ class RichEditorState extends State<RichEditor> {
                 base: base,
                 placeholder: area.placeholderTextStyle,
                 padding: area.padding,
+                onImagePressed: widget.enabled ? _handleImagePressed : null,
               ),
               selectionColor: area.selectionColor,
               caretColor: area.cursorColor,
-              caretWidth: area.cursorWidth,
             ),
           ),
         ),
@@ -1207,100 +1128,53 @@ class RichEditorState extends State<RichEditor> {
   /// The box and its toolbar as one region for [TapRegion.onTapOutside].
   String get _tapGroup => 'RichEditor#${identityHashCode(this)}';
 
-  RichEditorDocumentStyle? _documentStyle;
-  String? _documentHint;
-  late se.Stylesheet _stylesheet;
-  late List<se.ComponentBuilder> _builders;
+  void _handleImagePressed(int offset) {
+    // Let Quill handle the pointer event before applying the image edge.
+    scheduleMicrotask(() {
+      if (!mounted || !widget.enabled) return;
+      focusNode.requestFocus();
+      controller.setSelection(TextSelection.collapsed(offset: offset));
+    });
+  }
 
   Widget _editor(
     RichEditorDocumentStyle style, {
     required Color selectionColor,
     required Color caretColor,
-    required double caretWidth,
   }) {
-    // A new stylesheet restyles the whole document: only on chrome changes.
-    final previous = _documentStyle;
-    if (previous == null ||
-        previous.base != style.base ||
-        previous.placeholder != style.placeholder ||
-        previous.padding != style.padding ||
-        !identical(previous.resolved, style.resolved) &&
-            !_sameDocumentChrome(previous.resolved, style.resolved) ||
-        widget.placeholder != _documentHint) {
-      _documentStyle = style;
-      _documentHint = widget.placeholder;
-      _stylesheet = style.stylesheet();
-      _builders = style.componentBuilders(
-        controller.editor,
-        hint: widget.placeholder,
-      );
-    }
-    // Its own scroll view: super_editor scrolls the nearest vertical
-    // Scrollable, which must not be the dialog's or the page's.
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-      child: CustomScrollView(
-        controller: _scroll,
-        shrinkWrap: true,
-        slivers: [
-          se.SuperEditor(
-            editor: controller.editor,
-            focusNode: focusNode,
-            documentLayoutKey: _layoutKey,
-            inputSource: se.TextInputSource.ime,
-            // Several editors can be on screen (a dialog over a page).
-            inputRole: _tapGroup,
-            tapRegionGroupId: _tapGroup,
-            gestureMode: se.DocumentGestureMode.mouse,
-            selectionPolicies: const se.SuperEditorSelectionPolicies(
-              clearSelectionWhenEditorLosesFocus: false,
-              clearSelectionWhenImeConnectionCloses: false,
-            ),
-            stylesheet: _stylesheet,
-            componentBuilders: _builders,
-            selectionStyle: se.SelectionStyles(selectionColor: selectionColor),
-            // The selection outlives the focus (the toolbar acts on it), so
-            // the caret layer is only there while the editor is focused and
-            // editable. An empty layer takes its slot: super_editor never
-            // unmounts layers dropped from the end of the list.
-            documentOverlayBuilders: [
-              if (focusNode.hasFocus && _editable)
-                se.DefaultCaretOverlayBuilder(
-                  caretStyle: se.CaretStyle(
-                    width: caretWidth,
-                    color: caretColor,
-                  ),
-                )
-              else
-                const se.FunctionalSuperEditorLayerBuilder(_noCaret),
-            ],
-            keyboardActions: [_keys, ..._imeActions],
-            // Links don't open while editing.
-            contentTapDelegateFactories: const [],
+      child: quill.QuillEditor(
+        controller: controller.editor,
+        focusNode: focusNode,
+        scrollController: _scroll,
+        config: quill.QuillEditorConfig(
+          editorKey: _layoutKey,
+          padding: style.padding,
+          placeholder: widget.placeholder,
+          showCursor: focusNode.hasFocus && _editable,
+          enableInteractiveSelection: widget.enabled,
+          enableSelectionToolbar: false,
+          onTapOutsideEnabled: false,
+          // These hooks keep CoUI's existing shortcuts and autoformatting.
+          // ignore: experimental_member_use
+          onKeyPressed: _handleKeys,
+          showCodeBlockLineNumbers: false,
+          customStyles: style.styles,
+          textSpanBuilder: RichEditorDocumentStyle.textSpan,
+          // Uses CoUI spacing and the CoUI checklist control.
+          // ignore: experimental_member_use
+          customLeadingBlockBuilder: style.leading,
+          embedBuilders: style.embeds,
+          onLaunchUrl: (_) {},
+          textSelectionThemeData: TextSelectionThemeData(
+            cursorColor: caretColor,
+            selectionColor: selectionColor,
           ),
-        ],
+        ),
       ),
     );
   }
-
-  static bool _sameDocumentChrome(ResolvedRichEditor a, ResolvedRichEditor b) =>
-      a.blockSpacing == b.blockSpacing &&
-      a.linkColor == b.linkColor &&
-      a.codeTextStyle == b.codeTextStyle &&
-      a.codeBackgroundColor == b.codeBackgroundColor &&
-      a.codePadding == b.codePadding &&
-      a.quoteBarColor == b.quoteBarColor &&
-      a.quoteBarWidth == b.quoteBarWidth &&
-      a.quoteSpacing == b.quoteSpacing &&
-      a.quoteTextColor == b.quoteTextColor &&
-      a.ruleColor == b.ruleColor &&
-      a.completedTaskColor == b.completedTaskColor &&
-      a.heading1TextStyle == b.heading1TextStyle &&
-      a.heading2TextStyle == b.heading2TextStyle &&
-      a.heading3TextStyle == b.heading3TextStyle &&
-      a.imageBorderRadius == b.imageBorderRadius &&
-      a.imageMaxHeight == b.imageMaxHeight &&
-      a.imageBackgroundColor == b.imageBackgroundColor;
 
   // ------------------------------------------------------- upload rows
 
@@ -1552,7 +1426,3 @@ class _LinkDialogState extends State<_LinkDialog> {
 }
 
 /// The caret's layer in an editor without focus.
-se.ContentLayerWidget _noCaret(
-  BuildContext context,
-  se.SuperEditorContext _,
-) => const se.EmptyContentLayer();

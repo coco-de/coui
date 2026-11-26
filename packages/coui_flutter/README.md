@@ -21,7 +21,7 @@
 ## Installation
 
 ```sh
-flutter pub add 'coui_flutter:^0.194.2-beta.1'
+flutter pub add coui_flutter
 ```
 
 The package selects a compatible version of `coui_core` through pub. The
@@ -107,4 +107,5 @@ documentation comments originate from
 by Thito Yalasatria Sunarya, licensed under the BSD 3-Clause License.
 The implementations here have largely been rewritten.
 
-See [`NOTICE`](../../NOTICE) at the repository root for full attribution.
+CoUI Flutter is licensed under the [BSD 3-Clause License](LICENSE).
+The package [NOTICE](NOTICE) includes the third-party license terms.

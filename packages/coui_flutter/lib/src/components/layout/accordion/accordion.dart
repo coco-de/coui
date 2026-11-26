@@ -366,7 +366,7 @@ class _AccordionItemState extends State<AccordionItem>
             ),
             child: SizeTransition(
               sizeFactor: _curvedAnimation,
-              axisAlignment: -1,
+              alignment: Alignment.topCenter,
               child: Padding(
                 padding: .only(
                   left: contentPadding.left,

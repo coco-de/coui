@@ -100,6 +100,41 @@ void main() {
       expect(controller.markdown, '> item');
     });
 
+    test('native typing converts heading and bold Markdown', () {
+      final controller = RichEditorController()..moveCaretToEnd();
+      addTearDown(controller.dispose);
+      controller.editor.replaceText(
+        0,
+        0,
+        '## ',
+        const TextSelection.collapsed(offset: 3),
+      );
+      expect(controller.blockFormat, BlockFormat.heading2);
+      controller.editor.replaceText(
+        0,
+        0,
+        '**Title**',
+        const TextSelection.collapsed(offset: 9),
+      );
+      expect(controller.markdown, '## **Title**');
+    });
+
+    test('editing a block preserves adjacent source Markdown', () {
+      const original =
+          '__keep this markup__\n\n| left | right |\n| --- | --- |\n| a | b |\n\nlast';
+      final controller = RichEditorController(markdown: original)
+        ..moveCaretToEnd();
+      addTearDown(controller.dispose);
+      final at = controller.selection!.extentOffset;
+      controller.editor.replaceText(
+        at,
+        0,
+        'ed',
+        TextSelection.collapsed(offset: at + 2),
+      );
+      expect(controller.markdown, '${original}ed');
+    });
+
     test('unsafe link targets are refused', () {
       expect(CoreRichEditorContract.normalizeLink('javascript:alert(1)'), null);
       expect(

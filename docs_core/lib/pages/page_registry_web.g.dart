@@ -18,6 +18,7 @@ import 'command_search/command_search_web.dart' as command_search;
 import 'context_menu/context_menu_web.dart' as context_menu;
 import 'date_picker/date_picker_web.dart' as date_picker;
 import 'dialog/dialog_web.dart' as dialog;
+import 'drawer/drawer_web.dart' as drawer;
 import 'dropdown_menu/dropdown_menu_web.dart' as dropdown_menu;
 import 'fab/fab_web.dart' as fab;
 import 'fieldset/fieldset_web.dart' as fieldset;
@@ -41,6 +42,7 @@ import 'multi_answer_card/multi_answer_card_web.dart' as multi_answer_card;
 import 'multiple_choice/multiple_choice_web.dart' as multiple_choice;
 import 'navigation_bar/navigation_bar_web.dart' as navigation_bar;
 import 'navigation_bar_item/navigation_bar_item_web.dart' as navigation_bar_item;
+import 'navigation_menu/navigation_menu_web.dart' as navigation_menu;
 import 'number_input/number_input_web.dart' as number_input;
 import 'object_input/object_input_web.dart' as object_input;
 import 'option_item/option_item_web.dart' as option_item;
@@ -51,6 +53,7 @@ import 'popover/popover_web.dart' as popover;
 import 'popup/popup_web.dart' as popup;
 import 'radio_group/radio_group_web.dart' as radio_group;
 import 'range/range_web.dart' as range;
+import 'refresh_trigger/refresh_trigger_web.dart' as refresh_trigger;
 import 'rich_editor/rich_editor_web.dart' as rich_editor;
 import 'scrollbar/scrollbar_web.dart' as scrollbar;
 import 'select/select_web.dart' as select;
@@ -59,6 +62,7 @@ import 'sidebar/sidebar_web.dart' as sidebar;
 import 'slider/slider_web.dart' as slider;
 import 'sortable/sortable_web.dart' as sortable;
 import 'star_rating/star_rating_web.dart' as star_rating;
+import 'swiper/swiper_web.dart' as swiper;
 import 'switch_field/switch_field_web.dart' as switch_field;
 import 'switcher/switcher_web.dart' as switcher;
 import 'tab_pane/tab_pane_web.dart' as tab_pane;
@@ -71,6 +75,7 @@ import 'time_picker/time_picker_web.dart' as time_picker;
 import 'toast/toast_web.dart' as toast;
 import 'toggle/toggle_web.dart' as toggle;
 import 'toggle_group/toggle_group_web.dart' as toggle_group;
+import 'toolbar_group/toolbar_group_web.dart' as toolbar_group;
 import 'tooltip/tooltip_web.dart' as tooltip;
 import 'validated/validated_web.dart' as validated;
 import 'validator_hint/validator_hint_web.dart' as validator_hint;
@@ -90,6 +95,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (context_menu.propPreview case final builder?) 'context-menu': builder,
   if (date_picker.propPreview case final builder?) 'date-picker': builder,
   if (dialog.propPreview case final builder?) 'dialog': builder,
+  if (drawer.propPreview case final builder?) 'drawer': builder,
   if (dropdown_menu.propPreview case final builder?) 'dropdown-menu': builder,
   if (fab.propPreview case final builder?) 'fab': builder,
   if (fieldset.propPreview case final builder?) 'fieldset': builder,
@@ -113,6 +119,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (multiple_choice.propPreview case final builder?) 'multiple-choice': builder,
   if (navigation_bar.propPreview case final builder?) 'navigation-bar': builder,
   if (navigation_bar_item.propPreview case final builder?) 'navigation-bar-item': builder,
+  if (navigation_menu.propPreview case final builder?) 'navigation-menu': builder,
   if (number_input.propPreview case final builder?) 'number-input': builder,
   if (object_input.propPreview case final builder?) 'object-input': builder,
   if (option_item.propPreview case final builder?) 'option-item': builder,
@@ -123,6 +130,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (popup.propPreview case final builder?) 'popup': builder,
   if (radio_group.propPreview case final builder?) 'radio-group': builder,
   if (range.propPreview case final builder?) 'range': builder,
+  if (refresh_trigger.propPreview case final builder?) 'refresh-trigger': builder,
   if (rich_editor.propPreview case final builder?) 'rich-editor': builder,
   if (scrollbar.propPreview case final builder?) 'scrollbar': builder,
   if (select.propPreview case final builder?) 'select': builder,
@@ -131,6 +139,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (slider.propPreview case final builder?) 'slider': builder,
   if (sortable.propPreview case final builder?) 'sortable': builder,
   if (star_rating.propPreview case final builder?) 'star-rating': builder,
+  if (swiper.propPreview case final builder?) 'swiper': builder,
   if (switch_field.propPreview case final builder?) 'switch-field': builder,
   if (switcher.propPreview case final builder?) 'switcher': builder,
   if (tab_pane.propPreview case final builder?) 'tab-pane': builder,
@@ -143,6 +152,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (toast.propPreview case final builder?) 'toast': builder,
   if (toggle.propPreview case final builder?) 'toggle': builder,
   if (toggle_group.propPreview case final builder?) 'toggle-group': builder,
+  if (toolbar_group.propPreview case final builder?) 'toolbar-group': builder,
   if (tooltip.propPreview case final builder?) 'tooltip': builder,
   if (validated.propPreview case final builder?) 'validated': builder,
   if (validator_hint.propPreview case final builder?) 'validator-hint': builder,
@@ -163,6 +173,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...context_menu.demos,
   ...date_picker.demos,
   ...dialog.demos,
+  ...drawer.demos,
   ...dropdown_menu.demos,
   ...fab.demos,
   ...fieldset.demos,
@@ -186,6 +197,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...multiple_choice.demos,
   ...navigation_bar.demos,
   ...navigation_bar_item.demos,
+  ...navigation_menu.demos,
   ...number_input.demos,
   ...object_input.demos,
   ...option_item.demos,
@@ -196,6 +208,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...popup.demos,
   ...radio_group.demos,
   ...range.demos,
+  ...refresh_trigger.demos,
   ...rich_editor.demos,
   ...scrollbar.demos,
   ...select.demos,
@@ -204,6 +217,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...slider.demos,
   ...sortable.demos,
   ...star_rating.demos,
+  ...swiper.demos,
   ...switch_field.demos,
   ...switcher.demos,
   ...tab_pane.demos,
@@ -216,6 +230,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...toast.demos,
   ...toggle.demos,
   ...toggle_group.demos,
+  ...toolbar_group.demos,
   ...tooltip.demos,
   ...validated.demos,
   ...validator_hint.demos,

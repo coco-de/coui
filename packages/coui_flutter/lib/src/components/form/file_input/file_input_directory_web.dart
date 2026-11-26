@@ -5,8 +5,8 @@ library;
 import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
 
-import 'package:cross_file/cross_file.dart';
 import 'package:dir_picker/dir_picker.dart';
+import 'package:file_drop/file_drop.dart' show XFile;
 import 'package:web/web.dart' as web;
 
 /// Whether the browser offers the File System Access directory picker.

@@ -38,7 +38,7 @@ Dart로 웹 페이지를 만듭니다.
 프로젝트 폴더에서 아래 명령어를 실행합니다.
 
 ```bash
-flutter pub add 'coui_flutter:^0.194.2-beta.1'
+flutter pub add coui_flutter
 ```
 
   </Step>

@@ -7,6 +7,7 @@ on:
       - '**/pubspec.yaml'
       - 'pubspec.lock'
       - '.github/workflows/public-ci.yml'
+      - 'codecov.yml'
   push:
     branches: [main]
     paths:
@@ -14,14 +15,15 @@ on:
       - '**/pubspec.yaml'
       - 'pubspec.lock'
       - '.github/workflows/public-ci.yml'
-
-permissions:
-  contents: read
+      - 'codecov.yml'
 
 jobs:
   packages:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -33,12 +35,45 @@ jobs:
 
       - name: Test Core tokens and button contracts
         working-directory: packages/coui_core
-        run: dart test test/token_scale_test.dart test/button_style_test.dart
+        run: >-
+          dart test --coverage-path=../../.dart_tool/coverage/coui_core.lcov
+          test/token_scale_test.dart test/button_style_test.dart
 
-      - name: Test the Flutter button
+      - name: Test Flutter controls and file handling
         working-directory: packages/coui_flutter
-        run: flutter test test/components/control/button_test.dart
+        run: >-
+          flutter test --coverage --coverage-path=../../.dart_tool/coverage/coui_flutter.lcov
+          test/components/control/button_test.dart
+          test/components/form/rich_editor*_test.dart
+          test/components/file_input_test.dart
+          test/components/layout/tree_test.dart
+          test/components/layout/tree_presentation_test.dart
 
       - name: Test the Jaspr button
         working-directory: packages/coui_web
-        run: dart test test/components/control/button_test.dart
+        run: >-
+          dart test --coverage-path=../../.dart_tool/coverage/coui_web.lcov
+          test/components/control/button_test.dart
+
+      - name: Make LCOV paths repository-relative
+        run: |
+          workspace_prefix="SF:$(pwd -P)/"
+          for package in coui_core coui_flutter coui_web; do
+            report=".dart_tool/coverage/$package.lcov"
+            awk -v prefix="$workspace_prefix" -v package="$package" '
+              /^SF:lib\// { sub(/^SF:/, "SF:packages/" package "/") }
+              index($0, prefix) == 1 { $0 = "SF:" substr($0, length(prefix) + 1) }
+              { print }
+            ' "$report" > "$report.tmp"
+            mv "$report.tmp" "$report"
+          done
+
+      - name: Upload package coverage to Codecov
+        if: github.repository == 'coco-de/coui'
+        continue-on-error: true
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
+        with:
+          use_oidc: true
+          disable_search: true
+          fail_ci_if_error: true
+          files: .dart_tool/coverage/coui_core.lcov,.dart_tool/coverage/coui_flutter.lcov,.dart_tool/coverage/coui_web.lcov

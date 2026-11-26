@@ -1,5 +1,5 @@
 import 'package:coui_flutter/coui_flutter.dart';
-import 'package:desktop_drop/desktop_drop.dart';
+import 'package:file_drop/file_drop.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_test/flutter_test.dart';
 

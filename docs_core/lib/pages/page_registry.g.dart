@@ -17,6 +17,7 @@ import 'command_search/command_search_page.dart' as command_search;
 import 'context_menu/context_menu_page.dart' as context_menu;
 import 'date_picker/date_picker_page.dart' as date_picker;
 import 'dialog/dialog_page.dart' as dialog;
+import 'drawer/drawer_page.dart' as drawer;
 import 'dropdown_menu/dropdown_menu_page.dart' as dropdown_menu;
 import 'fab/fab_page.dart' as fab;
 import 'fieldset/fieldset_page.dart' as fieldset;
@@ -40,6 +41,7 @@ import 'multi_answer_card/multi_answer_card_page.dart' as multi_answer_card;
 import 'multiple_choice/multiple_choice_page.dart' as multiple_choice;
 import 'navigation_bar/navigation_bar_page.dart' as navigation_bar;
 import 'navigation_bar_item/navigation_bar_item_page.dart' as navigation_bar_item;
+import 'navigation_menu/navigation_menu_page.dart' as navigation_menu;
 import 'number_input/number_input_page.dart' as number_input;
 import 'object_input/object_input_page.dart' as object_input;
 import 'option_item/option_item_page.dart' as option_item;
@@ -50,6 +52,7 @@ import 'popover/popover_page.dart' as popover;
 import 'popup/popup_page.dart' as popup;
 import 'radio_group/radio_group_page.dart' as radio_group;
 import 'range/range_page.dart' as range;
+import 'refresh_trigger/refresh_trigger_page.dart' as refresh_trigger;
 import 'rich_editor/rich_editor_page.dart' as rich_editor;
 import 'scrollbar/scrollbar_page.dart' as scrollbar;
 import 'select/select_page.dart' as select;
@@ -58,6 +61,7 @@ import 'sidebar/sidebar_page.dart' as sidebar;
 import 'slider/slider_page.dart' as slider;
 import 'sortable/sortable_page.dart' as sortable;
 import 'star_rating/star_rating_page.dart' as star_rating;
+import 'swiper/swiper_page.dart' as swiper;
 import 'switch_field/switch_field_page.dart' as switch_field;
 import 'switcher/switcher_page.dart' as switcher;
 import 'tab_pane/tab_pane_page.dart' as tab_pane;
@@ -70,6 +74,7 @@ import 'time_picker/time_picker_page.dart' as time_picker;
 import 'toast/toast_page.dart' as toast;
 import 'toggle/toggle_page.dart' as toggle;
 import 'toggle_group/toggle_group_page.dart' as toggle_group;
+import 'toolbar_group/toolbar_group_page.dart' as toolbar_group;
 import 'tooltip/tooltip_page.dart' as tooltip;
 import 'validated/validated_page.dart' as validated;
 import 'validator_hint/validator_hint_page.dart' as validator_hint;
@@ -89,6 +94,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (context_menu.playground case final spec?) context_menu.slug: spec,
   if (date_picker.playground case final spec?) date_picker.slug: spec,
   if (dialog.playground case final spec?) dialog.slug: spec,
+  if (drawer.playground case final spec?) drawer.slug: spec,
   if (dropdown_menu.playground case final spec?) dropdown_menu.slug: spec,
   if (fab.playground case final spec?) fab.slug: spec,
   if (fieldset.playground case final spec?) fieldset.slug: spec,
@@ -112,6 +118,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (multiple_choice.playground case final spec?) multiple_choice.slug: spec,
   if (navigation_bar.playground case final spec?) navigation_bar.slug: spec,
   if (navigation_bar_item.playground case final spec?) navigation_bar_item.slug: spec,
+  if (navigation_menu.playground case final spec?) navigation_menu.slug: spec,
   if (number_input.playground case final spec?) number_input.slug: spec,
   if (object_input.playground case final spec?) object_input.slug: spec,
   if (option_item.playground case final spec?) option_item.slug: spec,
@@ -122,6 +129,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (popup.playground case final spec?) popup.slug: spec,
   if (radio_group.playground case final spec?) radio_group.slug: spec,
   if (range.playground case final spec?) range.slug: spec,
+  if (refresh_trigger.playground case final spec?) refresh_trigger.slug: spec,
   if (rich_editor.playground case final spec?) rich_editor.slug: spec,
   if (scrollbar.playground case final spec?) scrollbar.slug: spec,
   if (select.playground case final spec?) select.slug: spec,
@@ -130,6 +138,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (slider.playground case final spec?) slider.slug: spec,
   if (sortable.playground case final spec?) sortable.slug: spec,
   if (star_rating.playground case final spec?) star_rating.slug: spec,
+  if (swiper.playground case final spec?) swiper.slug: spec,
   if (switch_field.playground case final spec?) switch_field.slug: spec,
   if (switcher.playground case final spec?) switcher.slug: spec,
   if (tab_pane.playground case final spec?) tab_pane.slug: spec,
@@ -142,6 +151,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (toast.playground case final spec?) toast.slug: spec,
   if (toggle.playground case final spec?) toggle.slug: spec,
   if (toggle_group.playground case final spec?) toggle_group.slug: spec,
+  if (toolbar_group.playground case final spec?) toolbar_group.slug: spec,
   if (tooltip.playground case final spec?) tooltip.slug: spec,
   if (validated.playground case final spec?) validated.slug: spec,
   if (validator_hint.playground case final spec?) validator_hint.slug: spec,
@@ -162,6 +172,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (context_menu.sizeSpec case final spec?) context_menu.slug: spec,
   if (date_picker.sizeSpec case final spec?) date_picker.slug: spec,
   if (dialog.sizeSpec case final spec?) dialog.slug: spec,
+  if (drawer.sizeSpec case final spec?) drawer.slug: spec,
   if (dropdown_menu.sizeSpec case final spec?) dropdown_menu.slug: spec,
   if (fab.sizeSpec case final spec?) fab.slug: spec,
   if (fieldset.sizeSpec case final spec?) fieldset.slug: spec,
@@ -185,6 +196,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (multiple_choice.sizeSpec case final spec?) multiple_choice.slug: spec,
   if (navigation_bar.sizeSpec case final spec?) navigation_bar.slug: spec,
   if (navigation_bar_item.sizeSpec case final spec?) navigation_bar_item.slug: spec,
+  if (navigation_menu.sizeSpec case final spec?) navigation_menu.slug: spec,
   if (number_input.sizeSpec case final spec?) number_input.slug: spec,
   if (object_input.sizeSpec case final spec?) object_input.slug: spec,
   if (option_item.sizeSpec case final spec?) option_item.slug: spec,
@@ -195,6 +207,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (popup.sizeSpec case final spec?) popup.slug: spec,
   if (radio_group.sizeSpec case final spec?) radio_group.slug: spec,
   if (range.sizeSpec case final spec?) range.slug: spec,
+  if (refresh_trigger.sizeSpec case final spec?) refresh_trigger.slug: spec,
   if (rich_editor.sizeSpec case final spec?) rich_editor.slug: spec,
   if (scrollbar.sizeSpec case final spec?) scrollbar.slug: spec,
   if (select.sizeSpec case final spec?) select.slug: spec,
@@ -203,6 +216,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (slider.sizeSpec case final spec?) slider.slug: spec,
   if (sortable.sizeSpec case final spec?) sortable.slug: spec,
   if (star_rating.sizeSpec case final spec?) star_rating.slug: spec,
+  if (swiper.sizeSpec case final spec?) swiper.slug: spec,
   if (switch_field.sizeSpec case final spec?) switch_field.slug: spec,
   if (switcher.sizeSpec case final spec?) switcher.slug: spec,
   if (tab_pane.sizeSpec case final spec?) tab_pane.slug: spec,
@@ -215,6 +229,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (toast.sizeSpec case final spec?) toast.slug: spec,
   if (toggle.sizeSpec case final spec?) toggle.slug: spec,
   if (toggle_group.sizeSpec case final spec?) toggle_group.slug: spec,
+  if (toolbar_group.sizeSpec case final spec?) toolbar_group.slug: spec,
   if (tooltip.sizeSpec case final spec?) tooltip.slug: spec,
   if (validated.sizeSpec case final spec?) validated.slug: spec,
   if (validator_hint.sizeSpec case final spec?) validator_hint.slug: spec,
