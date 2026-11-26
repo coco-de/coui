@@ -43,9 +43,9 @@ import 'package:coui_flutter/coui_flutter.dart';
 import 'package:docs_core/internal/preview/scenes.dart' show docsScenePrefix;
 import 'package:docs_core/markdown/repo_root.dart' show findRepoRoot;
 import 'package:docs_core/previews/flutter_registry.dart';
-import 'package:flutter/material.dart' as material;
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart' as material;
 import 'package:syntax_highlight_lite/syntax_highlight_lite.dart' as hl;
 
 import '../../../../tool/parity/src/manifest/capture_probes.dart';
@@ -59,6 +59,7 @@ import 'box_padding_paired.dart';
 import 'box_padding_preview_receipts.dart';
 import 'capture_body_probe.dart';
 import 'capture_host.dart';
+import 'capture_localizations.dart';
 import 'capture_motion_host.dart';
 import 'chrome_node_probe.dart';
 import 'flutter_property_snapshot.dart';
@@ -405,7 +406,7 @@ Future<void> _captureEntry(WidgetTester tester, ParityMatrixEntry entry) async {
       // is what keeps the three trees from drifting apart again.
       content = pinnedWidthBox(pin, child: content);
     }
-    return Theme(
+    final app = Theme(
       data: styledTheme,
       child: Directionality(
         textDirection: .ltr,
@@ -518,6 +519,7 @@ Future<void> _captureEntry(WidgetTester tester, ParityMatrixEntry entry) async {
         ),
       ),
     );
+    return captureLocalizations(child: app);
   }
 
   final rootFinder = find.byKey(rootKey);
