@@ -24,17 +24,8 @@ import '../model/box_observation_source_spec.dart';
 import '../model/matrix_entry.dart';
 import 'ssr_source_identity.dart';
 
-/// Unregistered prototype: the Example's outer allocation, never Text ink,
-/// glyphs, spans, line boxes or an inner swatch.
-/// No central source list uses it.
-const kTextShowcaseSourcePrototype = BoxObservationSourceSpec(
-  schemaVersion: 1,
-  logicalUnitId: 'classic-text-showcase-generated-padding-host',
-  quantityId: BoxObservationSourceSpec.quantity,
-  nativeAdapterId: 'classic-text-showcase-outer-padding-v1',
-  webAdapterId: 'classic-text-showcase-outer-padding-v1',
-);
-
+/// The exact declared Example's outer allocation, never Text ink, spans or
+/// line boxes. The original declaration children remain opaque boundaries.
 const _kExampleTypes = <String, Type>{
   'typography-display': TextTypographyDisplayExample,
   'typography-headline': TextTypographyHeadlineExample,
@@ -53,22 +44,37 @@ const _kExampleTypes = <String, Type>{
   'rich': TextRichExample,
 };
 
-/// Observes one original registry mount. This prototype is not backend dispatch
-/// and does not change the current unknown-source entries or their eligibility.
+/// Observes one original registry mount. Production requires an exact declared
+/// source. An undeclared entry never borrows source authority.
 class TextShowcaseSsrSource implements CurrentSsrBoxSource {
   TextShowcaseSsrSource._(this.entry, this.exampleType);
 
-  factory TextShowcaseSsrSource.prototypeForEntry(MatrixEntry entry) {
-    final type = _kExampleTypes[entry.variant];
-    if (entry.component != 'text' ||
-        type == null ||
+  static TextShowcaseSsrSource? forEntry(MatrixEntry entry) {
+    const expected = BoxObservationSourceSpec.textShowcaseOuterPadding;
+    final closed =
+        entry.component == 'text' && _kExampleTypes.containsKey(entry.variant);
+    final claims = entry.probes.where(
+      (probe) =>
+          probe.boxObservationSource?.logicalUnitId == expected.logicalUnitId,
+    );
+    if (claims.isEmpty && !closed) return null;
+    if (claims.isEmpty &&
+        entry.probes.every(
+          (probe) => probe.boxObservationSource == null,
+        )) {
+      return null;
+    }
+    if (!closed ||
         !const ['light', 'dark'].contains(entry.theme.name) ||
         entry.probes.length != 1 ||
         entry.probes.single.role != 'root' ||
-        entry.probes.single.boxObservationSource != null) {
-      throw StateError('TEXT_SHOWCASE_PROTOTYPE_RECIPE_CHANGED');
+        entry.probes.single.boxObservationSource != expected) {
+      throw StateError('TEXT_SHOWCASE_DECLARED_SOURCE_CHANGED');
     }
-    return TextShowcaseSsrSource._(entry, type);
+    return TextShowcaseSsrSource._(
+      entry,
+      _kExampleTypes[entry.variant]!,
+    );
   }
 
   final MatrixEntry entry;
@@ -115,12 +121,13 @@ class TextShowcaseSsrSource implements CurrentSsrBoxSource {
     }
     _bound ??= current;
     return {
-      'kind': 'canonical-ssr-text-showcase-prototype-v1',
+      'kind': 'canonical-ssr-text-showcase-v1',
       'entryKey': entry.key,
-      'source': kTextShowcaseSourcePrototype.toJson(),
+      'source': BoxObservationSourceSpec.textShowcaseOuterPadding.toJson(),
       'currentRaw': {
-        'kind': 'current-text-showcase-raw-prototype-v1',
-        'logicalUnitId': kTextShowcaseSourcePrototype.logicalUnitId,
+        'kind': 'current-text-showcase-raw-v1',
+        'logicalUnitId':
+            BoxObservationSourceSpec.textShowcaseOuterPadding.logicalUnitId,
         'rawSlotCount': current.raw.length,
         // A Component.empty() is still a supplied declaration and has a slot.
         // Its zero DOM frontier is recorded in slots, not omitted from raw.
@@ -368,9 +375,13 @@ void _matchNodes(List<dom.Node> actual, List<Object?> expected) {
   }
 }
 
-/// Standalone prototype only. A future backend would add its actual URL as the
-/// seventh receipt field; no backend or central resolver imports this script.
-String get textShowcaseBoxSourceResolverPrototypeScript =>
+/// This requirement is a descriptor, not evidence of a mounted producer.
+String? requiredTextShowcaseSsrKind(MatrixEntry entry) =>
+    TextShowcaseSsrSource.forEntry(entry) == null
+    ? null
+    : 'canonical-ssr-text-showcase-v1';
+
+String get textShowcaseBoxSourceResolverScript =>
     '''
 (layoutRoot, source, receipt) => {
   const fail = error => ({error});
@@ -379,10 +390,10 @@ String get textShowcaseBoxSourceResolverPrototypeScript =>
     expected.every(key => Object.hasOwn(value,key));
   const same = (a,b) => keys(a,Object.keys(b)) &&
     Object.keys(b).every(key => a[key] === b[key]);
-  if (!same(source,${jsonEncode(kTextShowcaseSourcePrototype.toJson())}))
-    return fail('TEXT_SHOWCASE_PROTOTYPE_SOURCE_CHANGED');
+  if (!same(source,${jsonEncode(BoxObservationSourceSpec.textShowcaseOuterPadding.toJson())}))
+    return fail('TEXT_SHOWCASE_DECLARED_SOURCE_CHANGED');
   if (!keys(receipt,['kind','entryKey','source','currentRaw','completeRawSlotCount','rawOrderFromPublicProducerLists','harnessURL']) ||
-      receipt.kind !== 'canonical-ssr-text-showcase-prototype-v1' ||
+      receipt.kind !== 'canonical-ssr-text-showcase-v1' ||
       typeof receipt.entryKey !== 'string' || receipt.entryKey.length === 0 ||
       !same(receipt.source,source) || receipt.rawOrderFromPublicProducerLists !== true ||
       typeof location === 'undefined' || receipt.harnessURL !== location.href)
@@ -399,7 +410,7 @@ String get textShowcaseBoxSourceResolverPrototypeScript =>
     return fail('TEXT_SHOWCASE_CANONICAL_ROOT_CHANGED');
   const raw = receipt.currentRaw;
   if (!keys(raw,['kind','logicalUnitId','rawSlotCount','slotPresence','opaqueSlots','owner','actualOwnerMarkup']) ||
-      raw.kind !== 'current-text-showcase-raw-prototype-v1' ||
+      raw.kind !== 'current-text-showcase-raw-v1' ||
       raw.logicalUnitId !== source.logicalUnitId ||
       !Number.isInteger(raw.rawSlotCount) || raw.rawSlotCount < 0 ||
       receipt.completeRawSlotCount !== raw.rawSlotCount ||
@@ -470,17 +481,29 @@ String get textShowcaseBoxSourceResolverPrototypeScript =>
 }
 ''';
 
-/// Records current CSS only after the standalone binding succeeds. It neither
-/// supplies defaults nor compares quantities or grants source-complete status.
-String get textShowcasePaddingCssPrototypeScript =>
+/// The wrapper binds only the exact declared selectors, never foreign content.
+String get textShowcaseRequestBindingScript =>
     '''
-(layoutRoot, source, receipt) => {
-  const bound = ($textShowcaseBoxSourceResolverPrototypeScript)(layoutRoot,source,receipt);
-  if (bound.error) return bound;
-  const css = getComputedStyle(bound.paddingSource);
-  const paddingCss = [css.paddingTop,css.paddingRight,css.paddingBottom,css.paddingLeft];
-  if (!bound.validateCurrentBinding()) return {error:'TEXT_SHOWCASE_BINDING_CHANGED_DURING_CSS_READ'};
-  return {status:'prototype-observed',paddingCss,
-    ownerIsLayoutRoot:bound.paddingSource === layoutRoot,authority:bound.authority};
+(request) => {
+  const source=request.source;
+  const claims=request.requiredCurrentSsrKind==='canonical-ssr-text-showcase-v1' ||
+    source?.logicalUnitId===${jsonEncode(BoxObservationSourceSpec.textShowcaseOuterPadding.logicalUnitId)} ||
+    source?.webAdapterId===${jsonEncode(BoxObservationSourceSpec.textShowcaseOuterPadding.webAdapterId)};
+  if(!claims || !request.requested) return {applied:false};
+  if(request.requiredCurrentSsrKind!=='canonical-ssr-text-showcase-v1') return {error:'MISSING_TEXT_SHOWCASE_REQUIREMENT'};
+  if(typeof request.selector!=='string' || !request.selector || typeof request.layoutSelector!=='string' || !request.layoutSelector)
+    return {error:'TEXT_SHOWCASE_SOURCE_SELECTOR_REQUIRED'};
+  let fields,roots;
+  try {fields=Array.from(document.querySelectorAll(request.selector));roots=Array.from(document.querySelectorAll(request.layoutSelector));}
+  catch(error){return {error:'TEXT_SHOWCASE_INVALID_SELECTOR'};}
+  if(fields.length!==1 || roots.length!==1 || fields[0]!==roots[0]) return {error:'TEXT_SHOWCASE_UNIQUE_DECLARED_OWNER_REQUIRED'};
+  const bound=($textShowcaseBoxSourceResolverScript)(roots[0],source,request.currentSsrSource);
+  if(bound.error) return bound;
+  const receipt=request.currentSsrSource,selector=request.selector,layoutSelector=request.layoutSelector;
+  const validateCurrentBinding=()=>request.source===source && request.currentSsrSource===receipt &&
+    request.requested===true && request.requiredCurrentSsrKind==='canonical-ssr-text-showcase-v1' &&
+    request.selector===selector && request.layoutSelector===layoutSelector && bound.validateCurrentBinding();
+  if(!validateCurrentBinding()) return {error:'TEXT_SHOWCASE_REQUEST_BINDING_CHANGED'};
+  return {...bound,applied:true,validateCurrentBinding};
 }
 ''';

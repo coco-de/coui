@@ -12,6 +12,7 @@ import 'package:jaspr/server.dart' hide Document;
 import 'package:jaspr_test/jaspr_test.dart' show TestComponentsBinding;
 import 'package:test/test.dart';
 
+import '../../src/model/box_observation_source_spec.dart';
 import '../../src/model/matrix_entry.dart';
 import '../../src/model/probe_spec.dart';
 import '../../src/web/ssr_render.dart';
@@ -50,7 +51,9 @@ MatrixEntry _entry(String variant, {String theme = 'light'}) =>
       'probes': [
         rootProbeSpec(
           key: 'text-$variant-$theme-defaultStyle',
-          flutterClassName: 'unregistered-prototype',
+          flutterClassName: 'closed-text-showcase',
+          boxObservationSource:
+              BoxObservationSourceSpec.textShowcaseOuterPadding,
         ).toJson(),
       ],
     });
@@ -95,7 +98,7 @@ Future<({Map<String, Object?> capture, Map<String, Object?> receipt})> _actual(
   coui.ThemeData? innerTheme,
 }) async {
   final entry = _entry(variant, theme: theme);
-  final source = TextShowcaseSsrSource.prototypeForEntry(entry);
+  final source = TextShowcaseSsrSource.forEntry(entry)!;
   var builds = 0;
   var observations = 0;
   Map<String, Object?>? receipt;
@@ -155,6 +158,19 @@ global.getComputedStyle=owner=>{
 };
 ''';
 
+// Unit-only CSS harness. Production dispatch uses the existing common sampler.
+String get _paddingCssUnitScript =>
+    '''
+(layoutRoot, source, receipt) => {
+  const bound=($textShowcaseBoxSourceResolverScript)(layoutRoot,source,receipt);
+  if(bound.error) return bound;
+  const css=getComputedStyle(bound.paddingSource);
+  const paddingCss=[css.paddingTop,css.paddingRight,css.paddingBottom,css.paddingLeft];
+  if(!bound.validateCurrentBinding()) return {error:'TEXT_SHOWCASE_BINDING_CHANGED_DURING_CSS_READ'};
+  return {status:'unit-observed',paddingCss,ownerIsLayoutRoot:bound.paddingSource===layoutRoot,authority:bound.authority};
+}
+''';
+
 Future<Map<String, Object?>> _resolve(
   Map<String, Object?> capture,
   Map<String, Object?> receipt, {
@@ -164,9 +180,9 @@ Future<Map<String, Object?>> _resolve(
       '''
 $_kRuntime
 const capture=node(${jsonEncode(capture)}),root=capture.children[0];
-const receipt=${jsonEncode(receipt)},source=${jsonEncode(kTextShowcaseSourcePrototype.toJson())};
+const receipt=${jsonEncode(receipt)},source=${jsonEncode(BoxObservationSourceSpec.textShowcaseOuterPadding.toJson())};
 $mutation
-const result=($textShowcasePaddingCssPrototypeScript)(root,source,receipt);
+const result=($_paddingCssUnitScript)(root,source,receipt);
 console.log(JSON.stringify({result,cssReads}));
 ''';
   final result = await Process.run(
@@ -185,8 +201,11 @@ void main() {
       test('$variant/$theme original mounted outer declaration', () async {
         final actual = await _actual(variant, theme: theme);
         final receipt = actual.receipt;
-        expect(receipt['kind'], 'canonical-ssr-text-showcase-prototype-v1');
-        expect(receipt['source'], kTextShowcaseSourcePrototype.toJson());
+        expect(receipt['kind'], 'canonical-ssr-text-showcase-v1');
+        expect(
+          receipt['source'],
+          BoxObservationSourceSpec.textShowcaseOuterPadding.toJson(),
+        );
         expect(receipt['rawOrderFromPublicProducerLists'], true);
         final raw = receipt['currentRaw']! as Map;
         final slots = raw['opaqueSlots']! as List;
@@ -198,7 +217,7 @@ void main() {
         expect(raw['actualOwnerMarkup'], startsWith('<div'));
         final resolved = await _resolve(actual.capture, receipt);
         expect(resolved['cssReads'], 1);
-        expect((resolved['result']! as Map)['status'], 'prototype-observed');
+        expect((resolved['result']! as Map)['status'], 'unit-observed');
         expect((resolved['result']! as Map)['ownerIsLayoutRoot'], true);
         // A genuine current zero is retained, rather than used as an absence
         // declaration or replaced by a guessed positive allocation.
@@ -234,7 +253,7 @@ void main() {
 
   test('declared empty Fragment cannot hide newly injected output', () async {
     final entry = _entry('colors-status');
-    final source = TextShowcaseSsrSource.prototypeForEntry(entry);
+    final source = TextShowcaseSsrSource.forEntry(entry)!;
     div? capture;
     await renderComponentBodyHtml(
       coui.CoUIWeb(
@@ -283,7 +302,7 @@ void main() {
         const [registry],
         attributes: {'data-parity-key': entry.key},
       );
-      final held = TextShowcaseSsrSource.prototypeForEntry(entry)
+      final held = TextShowcaseSsrSource.forEntry(entry)!
         ..recordBuild(registry, capture);
       late void Function(coui.ThemeData) setTheme;
       // The production SSR binding intentionally supports no later frames.
@@ -308,7 +327,7 @@ void main() {
           await pumpEventQueue();
           expect(currentSsrIdentityElement(root, registry), same(example));
           expect(() => held.observe(root), throwsStateError);
-          final fresh = TextShowcaseSsrSource.prototypeForEntry(entry)
+          final fresh = TextShowcaseSsrSource.forEntry(entry)!
             ..recordBuild(registry, capture);
           expect(fresh.observe(root)['entryKey'], entry.key);
         } finally {
@@ -329,7 +348,7 @@ void main() {
     for (final atCapture in [false, true]) {
       test('actual undeclared $text at capture=$atCapture rejects', () async {
         final entry = _entry('modifiers');
-        final source = TextShowcaseSsrSource.prototypeForEntry(entry);
+        final source = TextShowcaseSsrSource.forEntry(entry)!;
         div? capture;
         await renderComponentBodyHtml(
           coui.CoUIWeb(
@@ -373,7 +392,7 @@ void main() {
 
   test('whole foreign subtree content is opaque', () async {
     final entry = _entry('modifiers');
-    final source = TextShowcaseSsrSource.prototypeForEntry(entry);
+    final source = TextShowcaseSsrSource.forEntry(entry)!;
     div? capture;
     await renderComponentBodyHtml(
       coui.CoUIWeb(
@@ -411,7 +430,7 @@ void main() {
 
   test('duplicate raw declarations are rejected before omission', () async {
     final entry = _entry('modifiers');
-    final source = TextShowcaseSsrSource.prototypeForEntry(entry);
+    final source = TextShowcaseSsrSource.forEntry(entry)!;
     div? capture;
     await renderComponentBodyHtml(
       coui.CoUIWeb(
@@ -441,7 +460,7 @@ void main() {
   for (final scenario in ['wrong-example', 'wrong-key', 'detached']) {
     test('$scenario has no original capture authority', () async {
       final entry = _entry('wrap');
-      final source = TextShowcaseSsrSource.prototypeForEntry(entry);
+      final source = TextShowcaseSsrSource.forEntry(entry)!;
       await expectLater(
         renderComponentBodyHtml(
           coui.CoUIWeb(
@@ -457,11 +476,11 @@ void main() {
 
   test('unreviewed recipes cannot obtain a recorder', () {
     expect(
-      () => TextShowcaseSsrSource.prototypeForEntry(_entry('default')),
+      () => TextShowcaseSsrSource.forEntry(_entry('default')),
       throwsStateError,
     );
     final entry = _entry('wrap');
-    final source = TextShowcaseSsrSource.prototypeForEntry(entry);
+    final source = TextShowcaseSsrSource.forEntry(entry)!;
     const original = TextModifiersExample();
     const capture = div([original]);
     source.recordBuild(original, capture);
