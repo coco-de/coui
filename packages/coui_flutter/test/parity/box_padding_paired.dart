@@ -14,6 +14,7 @@ import 'box_padding_display_parameter_units.dart';
 import 'box_padding_explicit_content_inset_units.dart';
 import 'box_padding_extended_component_units.dart';
 import 'box_padding_form_collection_units.dart';
+import 'box_padding_framed_collection_units.dart';
 import 'box_padding_inline_host_units.dart';
 import 'box_padding_layout_host_units.dart';
 import 'box_padding_loading_host_units.dart';
@@ -984,6 +985,27 @@ Map<String, Object?> _observe(
           'sourceReaderId': binding.readerId,
           'declaredAbsenceKind': binding.absenceKind,
         };
+      case 'mockup-device-generated-body-frame-content-inset-v1':
+      case 'join-generated-strip-layout-host-v1':
+      case 'table-generated-grid-content-inset-v1':
+        final binding = bindFramedCollectionBoxSource(
+          captureRoot: captureRoot,
+          registryResult: registryResult,
+          source: source,
+        );
+        if (binding == null) {
+          throw const BoxObservationError(
+            'MISSING_FRAMED_COLLECTION_SOURCE',
+            'No current framed collection construction describes this unit.',
+          );
+        }
+        final current = _readFramedCollectionBinding(
+          binding,
+          resultElement,
+          source,
+        );
+        observation = current.observation;
+        sourceBindingProvenance = current.provenance;
       case 'docs-stage-current-container-v1':
       case 'whole-doc-card-frame-v1':
       case 'docs-size-preview-frame-v1':
@@ -1005,6 +1027,23 @@ Map<String, Object?> _observe(
       case 'chip-generated-frame-v1':
       case 'app-bar-solid-content-inset-v1':
       case 'empty-state-generated-content-inset-v1':
+        if (source.nativeAdapterId == 'mockup-browser-generated-frame-v1') {
+          final framed = bindFramedCollectionBoxSource(
+            captureRoot: captureRoot,
+            registryResult: registryResult,
+            source: source,
+          );
+          if (framed != null) {
+            final current = _readFramedCollectionBinding(
+              framed,
+              resultElement,
+              source,
+            );
+            observation = current.observation;
+            sourceBindingProvenance = current.provenance;
+            break;
+          }
+        }
         final componentSource = BoxObservationSourceSpec.componentFrames
             .contains(
               source,
@@ -1167,6 +1206,88 @@ Map<String, Object?> _observe(
       'reason': '$error',
     };
   }
+}
+
+({BoxPaddingObservation observation, Map<String, Object?> provenance})
+_readFramedCollectionBinding(
+  FramedCollectionBoxSourceBinding binding,
+  Element resultElement,
+  BoxObservationSourceSpec source,
+) {
+  if (!identical(binding.registryResultElement, resultElement) ||
+      !identical(binding.scope.producer, resultElement) ||
+      binding.authority.isEmpty) {
+    throw const BoxObservationError(
+      'MISMATCHED_FRAMED_COLLECTION_SOURCE',
+      'The current binding must retain its exact registry and producer.',
+    );
+  }
+  binding.scope
+    ..requireOwned(binding.fieldUnitElement)
+    ..requireOwned(binding.paddingSource)
+    ..requireOwned(binding.frameSource);
+  if (!BoxProducerScope.contains(
+        binding.fieldUnitElement,
+        binding.frameSource,
+      ) ||
+      !BoxProducerScope.contains(
+        binding.frameSource,
+        binding.paddingSource,
+      )) {
+    throw const BoxObservationError(
+      'MISMATCHED_FRAMED_COLLECTION_BOUNDARIES',
+      'The actual field must own the frame and its padding source.',
+    );
+  }
+  final expected = switch (source.nativeAdapterId) {
+    'mockup-device-generated-body-frame-content-inset-v1' ||
+    'join-generated-strip-layout-host-v1' => (
+      'framed-collection-declared-absence-v1',
+      PaddingQuantityKind.declaredNoOwnPadding,
+    ),
+    'table-generated-grid-content-inset-v1' => (
+      'framed-table-border-content-v1',
+      PaddingQuantityKind.declaredOuterEdgeInsetWithinBorder,
+    ),
+    'mockup-browser-generated-frame-v1' => (
+      'outlined-content-v1',
+      PaddingQuantityKind.frameworkOwnParameter,
+    ),
+    _ => throw const BoxObservationError(
+      'UNSUPPORTED_FRAMED_COLLECTION_READER',
+      'No current framed collection reader matches this closed source.',
+    ),
+  };
+  if (binding.readerId != expected.$1) {
+    throw const BoxObservationError(
+      'UNSUPPORTED_FRAMED_COLLECTION_READER',
+      'The binding reader must match the declared source operation.',
+    );
+  }
+  binding.validateExistingCurrentBinding();
+  final observed = expected.$1 == 'framed-collection-declared-absence-v1'
+      ? binding.readDeclaredAbsence()
+      : binding.readActualPadding();
+  binding.scope.requireOwned(observed.owner);
+  if (!identical(observed.owner, binding.paddingSource) ||
+      !identical(observed.producer, resultElement) ||
+      !identical(observed.frameOwner, binding.frameSource) ||
+      observed.quantity != expected.$2) {
+    throw const BoxObservationError(
+      'MISMATCHED_FRAMED_COLLECTION_OBSERVATION',
+      'The current observation must retain its actual owner, frame and kind.',
+    );
+  }
+  return (
+    observation: observed,
+    provenance: {
+      'sourceBindingAuthority': binding.authority,
+      'fieldUnitElement': identityHashCode(binding.fieldUnitElement),
+      'declaredPaddingSourceElement': identityHashCode(binding.paddingSource),
+      'declaredFrameSourceElement': identityHashCode(binding.frameSource),
+      'sourceReaderId': binding.readerId,
+    },
+  );
 }
 
 Element _singleChild(Element element) {

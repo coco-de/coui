@@ -55,6 +55,7 @@ void requireCaptureProbes({
               source,
             ) ||
             BoxObservationSourceSpec.visualValueFrames.contains(source) ||
+            BoxObservationSourceSpec.framedCollectionFrames.contains(source) ||
             BoxObservationSourceSpec.documentationBubbleFrames.contains(
               source,
             )) &&
@@ -142,6 +143,16 @@ BoxObservationSourceSpec? _componentBoxSource(
     BoxObservationSourceSpec.numberTickerTextLayoutHost,
   ('skeleton', 'text') => BoxObservationSourceSpec.skeletonTextLinesLayoutHost,
   ('countdown', 'default') => BoxObservationSourceSpec.countdownValueLayoutHost,
+  ('mockup', 'phone' || 'tablet' || 'landscape') ||
+  (
+    'mockup-device',
+    'default' || 'flat',
+  ) => BoxObservationSourceSpec.mockupDeviceBodyFrame,
+  ('mockup', 'browser' || 'app') => BoxObservationSourceSpec.mockupBrowserFrame,
+  ('join', 'default' || 'input' || 'vertical') =>
+    BoxObservationSourceSpec.joinStripLayoutHost,
+  ('table', 'default' || 'resizable') =>
+    BoxObservationSourceSpec.tableGridContentInset,
   ('theme-controller', 'default') =>
     BoxObservationSourceSpec.themeControllerOptionGridLayoutHost,
   ('tracker', 'default') =>

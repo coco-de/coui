@@ -32,6 +32,7 @@ import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'data_overlay_ssr_source.dart';
 import 'element_capture.dart';
+import 'framed_collection_ssr_source.dart';
 import 'navigation_trigger_ssr_source.dart';
 import 'offline_tailwind_harness.dart';
 import 'runtime_capture.dart';
@@ -236,7 +237,8 @@ Future<String> renderCaptureBodyHtml(
 }) async {
   final sourceRecorder = onCurrentBoxSource == null
       ? null
-      : NavigationTriggerSsrSource.forEntry(entry) ??
+      : FramedCollectionSsrSource.forEntry(entry) ??
+            NavigationTriggerSsrSource.forEntry(entry) ??
             DataOverlaySsrSource.forEntry(entry) ??
             VisualValueSsrSource.forEntry(entry);
   Map<String, Object?>? sourceWitness;
@@ -439,6 +441,9 @@ Future<WebCaptureResult> captureWebEntry({
     entry,
     additiveBoxObservations: additiveBoxObservations,
   );
+  final requiredCurrentSsrKind = additiveBoxObservations
+      ? requiredFramedCollectionSsrKind(entry)
+      : null;
   Map<String, Object?>? currentSsrSource;
   final harnessFile = await prepareWebCaptureHarness(
     entry: entry,
@@ -632,6 +637,7 @@ Future<WebCaptureResult> captureWebEntry({
                 'requested': probe.fields.contains(PropertyField.paddingPx),
                 'currentClientBoxSource': ?currentClientBoxSource,
                 'source': probe.boxObservationSource?.toJson(),
+                'requiredCurrentSsrKind': ?requiredCurrentSsrKind,
                 'currentSsrSource': currentSsrSource == null
                     ? null
                     : {

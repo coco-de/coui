@@ -900,6 +900,38 @@ class BoxObservationSourceSpec {
     countdownValueLayoutHost,
   ];
 
+  static const mockupDeviceBodyFrame = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'mockup-device-generated-body-frame-content-inset',
+    quantityId: quantity,
+    nativeAdapterId: 'mockup-device-generated-body-frame-content-inset-v1',
+    webAdapterId: 'mockup-device-generated-body-frame-content-inset-v1',
+  );
+
+  static const joinStripLayoutHost = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'join-generated-strip-layout-host',
+    quantityId: quantity,
+    nativeAdapterId: 'join-generated-strip-layout-host-v1',
+    webAdapterId: 'join-generated-strip-layout-host-v1',
+  );
+
+  static const tableGridContentInset = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'table-generated-grid-content-inset',
+    quantityId: quantity,
+    nativeAdapterId: 'table-generated-grid-content-inset-v1',
+    webAdapterId: 'table-generated-grid-content-inset-v1',
+  );
+
+  // Browser keeps its existing mockupBrowserFrame tuple and reader.
+  // These declarations alone do not register recipes or grant source authority.
+  static const List<BoxObservationSourceSpec> framedCollectionFrames = [
+    mockupDeviceBodyFrame,
+    joinStripLayoutHost,
+    tableGridContentInset,
+  ];
+
   String? get validationError {
     if (schemaVersion != 1) return 'UNSUPPORTED_BOX_SOURCE_VERSION';
     if (quantityId != quantity) return 'UNSUPPORTED_BOX_QUANTITY';
@@ -932,6 +964,7 @@ class BoxObservationSourceSpec {
       ...dataOverlayLayoutFrames,
       ...navigationTriggerParameterFrames,
       ...visualValueFrames,
+      ...framedCollectionFrames,
     ]) {
       if (logicalUnitId == supported.logicalUnitId &&
           nativeAdapterId == supported.nativeAdapterId &&
