@@ -25,6 +25,11 @@
 /// re-entering, a gap in the hover region), and counting catches all of
 /// them.
 ///
+/// The target is the **real** component in the page's playground, marked
+/// with `data-docs-live` ([kDocsLiveComponentAttribute]). Beside it the
+/// playground draws a picture of the open state, which has no trigger state
+/// and no panel to watch.
+///
 /// Nothing here reads a pixel: presence and attributes are the same
 /// answer on any rasteriser, so a hosted Linux runner and a macOS machine
 /// agree.
@@ -32,6 +37,8 @@ library;
 
 import 'dart:convert';
 
+import 'package:docs_core/shared/preview_panel_id.dart'
+    show kDocsLiveComponentAttribute;
 import 'package:puppeteer/puppeteer.dart' as pptr;
 
 import 'docs_page.dart';
@@ -68,30 +75,34 @@ class OscillationProbeSpec {
     required this.component,
     required this.triggerSelector,
     required this.panelSelector,
-    this.variant = 'default',
   });
 
   /// docs_site component slug — the page is `/components/<component>/`.
   final String component;
 
-  /// Which LivePreview on the page, by variant — the Web pane is
-  /// `#web-<component>-<variant>`.
-  final String variant;
-
-  /// CSS selector, inside the Web pane, of the trigger the pointer rests
-  /// on. Its `aria-expanded` is watched alongside the panel.
+  /// CSS selector, inside the live component, of the trigger the pointer
+  /// rests on. Its `aria-expanded` is watched alongside the panel.
   final String triggerSelector;
 
-  /// CSS selector, inside the Web pane, of the panel the trigger opens. A
-  /// portaled panel is still inside the pane: every `CoUIWeb` root mounts
-  /// its own overlay layers, so the lookup never reaches another preview.
+  /// CSS selector, inside [paneSelector], of the panel the trigger opens. A
+  /// portaled panel is outside the component but still inside its
+  /// playground: the playground's `CoUIWeb` root mounts its own overlay
+  /// layers, so the lookup never reaches another preview.
   final String panelSelector;
 
-  /// The Web pane's id on the docs page.
-  String get paneId => 'web-$component-$variant';
+  /// The page's real component — the element carrying
+  /// [kDocsLiveComponentAttribute] with this slug.
+  String get liveSelector => '[$kDocsLiveComponentAttribute="$component"]';
 
-  /// [triggerSelector], scoped to the pane.
-  String get scopedTriggerSelector => '#$paneId $triggerSelector';
+  /// The playground that holds the live component: what is observed, and
+  /// where the panel is looked up.
+  String get paneSelector => '.docs-playground:has($liveSelector)';
+
+  /// [triggerSelector], relative to the pane.
+  String get paneTriggerSelector => '$liveSelector $triggerSelector';
+
+  /// [paneTriggerSelector], scoped to the pane.
+  String get scopedTriggerSelector => '$paneSelector $paneTriggerSelector';
 }
 
 /// The hover-opened panels the nightly probe rests on.
@@ -102,8 +113,8 @@ class OscillationProbeSpec {
 const kOscillationProbeSpecs = <OscillationProbeSpec>[
   OscillationProbeSpec(
     component: 'navigation-menu',
-    // The first trigger that owns a panel — link triggers carry no
-    // `aria-expanded`, so this lands on "Products".
+    // The first trigger that owns a panel — link and action triggers carry
+    // no `aria-expanded`.
     triggerSelector: 'button[aria-expanded]',
     panelSelector: '[id^="co-navigation-menu-panel-"]',
   ),
@@ -287,14 +298,16 @@ Future<OscillationObservation> _observe(
     attempts++;
     if (!landed) {
       final paneFound = await page.evaluate<bool>(
-        '(id) => !!document.getElementById(id)',
-        args: [spec.paneId],
+        '(sel) => !!document.querySelector(sel)',
+        args: [spec.paneSelector],
       );
       if (!paneFound) {
         return OscillationObservation(
           opened: false,
           openAttempts: attempts,
-          problem: 'no `#${spec.paneId}` on /components/${spec.component}/',
+          problem:
+              'no playground with a live `${spec.liveSelector}` on '
+              '/components/${spec.component}/',
         );
       }
       // The pane is there but the trigger is not laid out yet — keep
@@ -321,15 +334,16 @@ Future<OscillationObservation> _observe(
       openAttempts: attempts,
       problem: triggerFound
           ? null
-          : 'no `${spec.triggerSelector}` with an area in `#${spec.paneId}`',
+          : 'no `${spec.triggerSelector}` with an area in the live '
+                '`${spec.liveSelector}`',
     );
   }
 
   // Stage 2 — the pointer stays exactly where stage 1 left it.
   await page.evaluate<void>(
     '''
-(paneId, triggerSelector, panelSelector) => {
-  const pane = document.getElementById(paneId);
+(paneSelector, triggerSelector, panelSelector) => {
+  const pane = document.querySelector(paneSelector);
   const trigger = pane.querySelector(triggerSelector);
   const panelPresent = () => !!pane.querySelector(panelSelector);
   const start = performance.now();
@@ -361,7 +375,7 @@ Future<OscillationObservation> _observe(
   });
   window.__couiOscillationProbe = state;
 }''',
-    args: [spec.paneId, spec.triggerSelector, spec.panelSelector],
+    args: [spec.paneSelector, spec.paneTriggerSelector, spec.panelSelector],
   );
   await Future<void>.delayed(hold);
   final json = await page.evaluate<String>(
@@ -387,9 +401,9 @@ Future<OscillationObservation> _observe(
 
 Future<bool> _panelPresent(pptr.Page page, OscillationProbeSpec spec) =>
     page.evaluate<bool>(
-      '(paneId, sel) => { const pane = document.getElementById(paneId); '
+      '(paneSel, sel) => { const pane = document.querySelector(paneSel); '
       'return !!pane && !!pane.querySelector(sel); }',
-      args: [spec.paneId, spec.panelSelector],
+      args: [spec.paneSelector, spec.panelSelector],
     );
 
 /// How a self-test fixture behaves under a resting pointer.
@@ -426,8 +440,8 @@ String oscillationFixtureHtml(OscillationFixture fixture) {
     .steady || .oscillating =>
       '''
 <script>
-  const pane = document.getElementById('${kOscillationFixtureSpec.paneId}');
-  const trigger = pane.querySelector('button');
+  const pane = document.querySelector('.docs-playground');
+  const trigger = document.getElementById('fixture-trigger');
   let panel = null;
   const open = () => {
     if (panel) return;
@@ -453,11 +467,18 @@ String oscillationFixtureHtml(OscillationFixture fixture) {
 </script>''',
   };
 
+  // Shaped like the docs page: a picture with a trigger of its own, then
+  // the live component, whose panel is mounted outside it. A probe that
+  // reached the picture would never open anything, and the steady fixture
+  // would fail.
   return '''
 <!doctype html>
 <html><body style="margin:0">
-<div id="${kOscillationFixtureSpec.paneId}" style="padding:200px">
-  <button aria-expanded="false" style="width:120px;height:40px">Open</button>
+<div class="docs-playground" style="padding:200px">
+  <div><button aria-expanded="true" style="width:120px;height:40px">Picture</button></div>
+  <nav $kDocsLiveComponentAttribute="${kOscillationFixtureSpec.component}">
+    <button id="fixture-trigger" aria-expanded="false" style="width:120px;height:40px">Open</button>
+  </nav>
 </div>
 $script
 </body></html>''';

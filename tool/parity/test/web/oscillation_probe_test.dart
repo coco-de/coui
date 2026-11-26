@@ -7,15 +7,70 @@
 //   * a run in which nothing happened — the panel never opened — is a
 //     failure, not a pass (the whole point of the probe's first stage);
 //   * any state change under a resting pointer fails;
-//   * every spec points at a docs page that renders its pane, and at a
+//   * every spec points at a docs page that renders its pane — the page's
+//     playground, server rendered, holds the live component — and at a
 //     trigger and panel the component actually emits.
 import 'dart:io';
 
+import 'package:docs_core/internal/preview/scenes.dart';
+import 'package:docs_core/internal/preview/web_scene.dart';
 import 'package:docs_core/shared/component_catalog.dart';
+import 'package:html/dom.dart' as dom;
+import 'package:html/parser.dart' as html_parser;
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 import '../../src/web/oscillation_probe.dart';
+import '../../src/web/ssr_render.dart';
+
+/// The elements [spec] would resolve on its page: the page's own
+/// `<Playground>` tags, read by the parser the docs site uses, server
+/// rendered the way the site renders them, then searched for the live
+/// component inside the playground. `problem` says why there is nothing to
+/// search.
+Future<({String? problem, List<dom.Element> live})> _renderedLive(
+  String repoRoot,
+  OscillationProbeSpec spec,
+) async {
+  final page = File(
+    p.join(
+      repoRoot,
+      'docs_core',
+      'content',
+      'components',
+      '${spec.component}.md',
+    ),
+  );
+  if (!page.existsSync()) {
+    return (problem: 'no ${page.path}', live: <dom.Element>[]);
+  }
+  final playgrounds = [
+    for (final scene in visibleDocsScenes(
+      page.readAsStringSync(),
+      sourcePath: page.path,
+    ))
+      if (scene.tag == 'Playground' &&
+          scene.attributes['component'] == spec.component)
+        scene,
+  ];
+  if (playgrounds.isEmpty) {
+    return (
+      problem: 'no <Playground component="${spec.component}" /> on the page',
+      live: <dom.Element>[],
+    );
+  }
+  final live = <dom.Element>[];
+  for (final scene in playgrounds) {
+    final document = html_parser.parse(
+      await renderComponentToDocumentHtml(renderWebScene(scene)),
+    );
+    for (final pane in document.querySelectorAll('.docs-playground')) {
+      live.addAll(pane.querySelectorAll(spec.liveSelector));
+    }
+  }
+
+  return (problem: null, live: live);
+}
 
 void main() {
   final repoRoot = Directory.current.path;
@@ -86,11 +141,11 @@ void main() {
     test('a structural problem is reported as itself', () {
       const observation = OscillationObservation(
         opened: false,
-        problem: 'no `#web-x-default` on /components/x/',
+        problem: 'no playground with a live `x` on /components/x/',
       );
       expect(
         oscillationFailures(observation),
-        ['no `#web-x-default` on /components/x/'],
+        ['no playground with a live `x` on /components/x/'],
       );
     });
   });
@@ -98,13 +153,27 @@ void main() {
   group('oscillation probe self-test fixtures', () {
     test('every fixture renders the pane and trigger the spec looks for', () {
       for (final fixture in OscillationFixture.values) {
-        final html = oscillationFixtureHtml(fixture);
+        final document = html_parser.parse(oscillationFixtureHtml(fixture));
+        final live = document.querySelectorAll(
+          '.docs-playground ${kOscillationFixtureSpec.liveSelector}',
+        );
+        expect(live, hasLength(1), reason: fixture.name);
+        final trigger = live.single.querySelector(
+          kOscillationFixtureSpec.triggerSelector,
+        );
         expect(
-          html,
-          contains('id="${kOscillationFixtureSpec.paneId}"'),
+          trigger?.attributes['aria-expanded'],
+          'false',
           reason: fixture.name,
         );
-        expect(html, contains('aria-expanded="false"'), reason: fixture.name);
+        // As on the docs page, a picture with a trigger of its own sits
+        // outside the live element — the self-test fails a probe that
+        // reaches it.
+        expect(
+          document.querySelectorAll('.docs-playground button[aria-expanded]'),
+          hasLength(2),
+          reason: fixture.name,
+        );
       }
     });
 
@@ -130,7 +199,7 @@ void main() {
       expect(names.toSet(), hasLength(names.length), reason: '$names');
     });
 
-    test('every spec points at a docs page that renders its pane', () {
+    test('every spec points at a docs page that renders its pane', () async {
       final slugs = {for (final entry in kDocsComponentEntries) entry.slug};
       final problems = <String>[];
       for (final spec in kOscillationProbeSpecs) {
@@ -138,49 +207,32 @@ void main() {
           problems.add('${spec.component}: not in the docs catalog');
           continue;
         }
-        final page = File(
-          p.join(
-            repoRoot,
-            'docs_core',
-            'content',
-            'components',
-            '${spec.component}.md',
-          ),
-        );
-        if (!page.existsSync()) {
-          problems.add('${spec.component}: no ${page.path}');
+        final rendered = await _renderedLive(repoRoot, spec);
+        final problem = rendered.problem;
+        if (problem != null) {
+          problems.add('${spec.component}: $problem');
           continue;
         }
-        final rendersPane =
-            RegExp(
-              '<LivePreview component="${RegExp.escape(spec.component)}"'
-              '([^>]*)/>',
-            ).allMatches(page.readAsStringSync()).any((match) {
-              final attributes = match.group(1)!;
-              final variants = RegExp(
-                'variants="([^"]*)"',
-              ).firstMatch(attributes)?.group(1);
-              if (variants != null) {
-                return variants
-                    .split(',')
-                    .map((v) => v.trim())
-                    .contains(
-                      spec.variant,
-                    );
-              }
-              final variant = RegExp(
-                'variant="([^"]*)"',
-              ).firstMatch(attributes)?.group(1);
-              return (variant ?? 'default') == spec.variant;
-            });
-        if (!rendersPane) {
-          problems.add('${spec.component}: no pane #${spec.paneId}');
+        // Exactly one: the probe takes the first match, so a second would
+        // make that choice without saying so.
+        if (rendered.live.length != 1) {
+          problems.add(
+            '${spec.component}: ${rendered.live.length} elements match '
+            '${spec.liveSelector} in the page playground',
+          );
+          continue;
+        }
+        if (rendered.live.single.querySelector(spec.triggerSelector) == null) {
+          problems.add(
+            '${spec.component}: no ${spec.triggerSelector} in the live '
+            '${spec.liveSelector}',
+          );
         }
       }
       expect(problems, isEmpty, reason: problems.join('\n'));
     });
 
-    test('the navigation-menu spec matches what the component emits', () {
+    test('the navigation-menu spec matches what the component emits', () async {
       // The selectors are strings the browser resolves at night; a rename
       // in the component would otherwise surface as a stage-1 failure a day
       // later instead of here.
@@ -206,6 +258,14 @@ void main() {
       expect(source, contains("_panelId = '$panelPrefix"));
       expect(spec.triggerSelector, contains('aria-expanded'));
       expect(source, contains("'aria-expanded': isOpen ?"));
+
+      // The mark is on the component itself, not on the picture of its open
+      // state: the live element is the component's own `<nav>`.
+      final rendered = await _renderedLive(repoRoot, spec);
+      expect(rendered.live, hasLength(1), reason: rendered.problem);
+      final live = rendered.live.single;
+      expect(live.localName, 'nav');
+      expect(live.id, startsWith('co-navigation-menu-'));
     });
   });
 }
