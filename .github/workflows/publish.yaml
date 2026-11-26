@@ -42,6 +42,11 @@ jobs:
             echo "::error::Expected pub-$package-v$version for packages/$package"
             exit 1
           fi
+          changelog="packages/$package/CHANGELOG.md"
+          if [ "$(wc -c < "$changelog")" -gt 262144 ]; then
+            echo "::error::$changelog exceeds the pub.dev limit of 256 KiB"
+            exit 1
+          fi
           echo "name=$package" >> "$GITHUB_OUTPUT"
 
   publish:
