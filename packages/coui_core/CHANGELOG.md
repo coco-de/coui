@@ -15,6 +15,13 @@ Earlier releases are available in the [changelog archive](https://github.com/coc
 - Add `CoreStrokeWidth.hairlineAt` and `CoreSurfaceGeometryConstraint.hairline` / `atDevicePixelRatio`: the hairline step draws one pixel wide below a 2x screen on both platforms, as the Web's `--coui-stroke-width-0_5` already did (#6131).
 - Add the optional `NumberInput.errorText` contract so validation messages are distinct from normal descriptions.
 
+## [0.192.1](https://github.com/coco-de/coui/compare/coui_core-v0.192.0...coui_core-v0.192.1) (2026-11-26)
+
+
+### 버그 수정
+
+* **release:** keep pub.dev changelogs within size limit ([#1](https://github.com/coco-de/coui/issues/1)) ([8d9d917](https://github.com/coco-de/coui/commit/8d9d9178270bd15f704aa0205bd11f56bcfdff79))
+
 ## [0.192.0](https://github.com/coco-de/coui/compare/coui_core-v0.191.0...coui_core-v0.192.0) (2026-11-24)
 
 

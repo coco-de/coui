@@ -1,5 +1,21 @@
 Earlier releases are available in the [changelog archive](https://github.com/coco-de/coui/blob/main/docs/changelog/coui_flutter.md).
 
+## [0.196.0](https://github.com/coco-de/coui/compare/coui_flutter-v0.195.0...coui_flutter-v0.196.0) (2026-11-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **flutter:** RichEditor selections use Flutter TextSelection. FileInput and Tree use the XFile exported by coui_flutter.
+
+### 기능
+
+* **flutter:** migrate rich editing and file handling ([#20](https://github.com/coco-de/coui/issues/20)) ([17ac11b](https://github.com/coco-de/coui/commit/17ac11b277fa055c88d8a6ea22823fb7027ef63f))
+
+
+### 버그 수정
+
+* **release:** keep pub.dev changelogs within size limit ([#1](https://github.com/coco-de/coui/issues/1)) ([8d9d917](https://github.com/coco-de/coui/commit/8d9d9178270bd15f704aa0205bd11f56bcfdff79))
+
 ## 0.195.0
 
 - RichEditor now uses Flutter Quill for editing, preserving the Markdown value,

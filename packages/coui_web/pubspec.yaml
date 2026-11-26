@@ -1,6 +1,6 @@
 name: coui_web
 description: "CoUI components for Jaspr with shared design tokens, type-safe theming, and a matching component API for Flutter."
-version: 0.192.0
+version: 0.192.1
 homepage: https://github.com/coco-de/coui
 repository: https://github.com/coco-de/coui/tree/main/packages/coui_web
 issue_tracker: https://github.com/coco-de/coui/issues
