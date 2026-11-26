@@ -26,7 +26,11 @@
   "packages": {
     "packages/coui": { "component": "coui" },
     "packages/coui_core": { "component": "coui_core" },
-    "packages/coui_flutter": { "component": "coui_flutter" },
+    "packages/coui_flutter": {
+      "component": "coui_flutter",
+      "//extra-files": "Rewrite the version after the Dart updater, which treats the prerelease suffix as build metadata.",
+      "extra-files": [{ "type": "generic", "path": "pubspec.yaml" }]
+    },
     "packages/coui_i10n": { "component": "coui_i10n" },
     "packages/coui_lints": { "component": "coui_lints" },
     "packages/coui_mcp": { "component": "coui_mcp" },
