@@ -17,7 +17,9 @@ import 'package:flutter/widgets.dart'
         FadeTransition,
         Flexible,
         Focus,
+        FocusNode,
         IgnorePointer,
+        InheritedNotifier,
         KeyedSubtree,
         Opacity,
         Padding,
@@ -371,7 +373,45 @@ Element _swap(Element producer, BoxProducerScope scope) {
   if (children.length != 2) throw _changed('the two mounted Swap slots');
   final raw = [input.offContent, input.onContent];
   for (var i = 0; i < 2; i++) {
-    final opacity = _child(stacks, children[i], direct: false);
+    final inactive = i == 0 ? input.checked : !input.checked;
+    var slot = _child(stacks, children[i], direct: false);
+    _concrete(slot, IgnorePointer);
+    scope.requireOwned(slot);
+    final pointer = slot.widget as IgnorePointer;
+    if (pointer.ignoring != inactive) {
+      throw _changed('the checked-selected pointer participation');
+    }
+    slot = _child(slot, pointer.child);
+    _concrete(slot, ExcludeFocus);
+    scope.requireOwned(slot);
+    final exclusion = slot.widget as ExcludeFocus;
+    if (exclusion.excluding != inactive) {
+      throw _changed('the checked-selected focus participation');
+    }
+    final focusChild = exclusion.child;
+    final focus = _only(slot);
+    _concrete(focus, Focus);
+    scope.requireOwned(focus);
+    final focusWidget = focus.widget as Focus;
+    if (!identical(focusWidget.child, focusChild) ||
+        focusWidget.canRequestFocus ||
+        !focusWidget.skipTraversal ||
+        focusWidget.includeSemantics ||
+        focusWidget.descendantsAreFocusable != !inactive) {
+      throw _changed('the exact ExcludeFocus framework operation');
+    }
+    // ExcludeFocus builds Focus(includeSemantics: false), whose sole public
+    // inherited forwarding seat retains exactly this same child. No private
+    // type, State, descendant search or alternative wrapper is accepted.
+    final inherited = _only(focus);
+    scope.requireOwned(inherited);
+    final inheritedWidget = inherited.widget;
+    if (inheritedWidget is! InheritedNotifier<FocusNode> ||
+        inheritedWidget.notifier == null ||
+        !identical(inheritedWidget.child, focusChild)) {
+      throw _changed('the exact Focus inherited child forwarding');
+    }
+    final opacity = _child(inherited, focusChild);
     _concrete(opacity, Opacity);
     scope.requireOwned(opacity);
     if (!identical((opacity.widget as Opacity).child, raw[i])) {
