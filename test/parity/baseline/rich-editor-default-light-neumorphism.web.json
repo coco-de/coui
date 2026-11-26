@@ -1,0 +1,69 @@
+{
+  "key": "rich-editor-default-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-rich-editor-ssr-4>*,#co-rich-editor-ssr-4 li>p,#co-rich-editor-ssr-4 blockquote>*{margin:0 0 var(--coui-space-6) 0}#co-rich-editor-ssr-4>*:last-child,#co-rich-editor-ssr-4 blockquote>*:last-child,#co-rich-editor-ssr-4 li>p:last-child{margin-bottom:0}#co-rich-editor-ssr-4 h1{font-size:var(--coui-text-title-large-size);line-height:var(--coui-text-title-large-line-height);font-weight:var(--coui-text-title-large-weight);letter-spacing:var(--coui-text-title-large-tracking);font-family:var(--coui-text-title-large-family)}#co-rich-editor-ssr-4 h2{font-size:var(--coui-text-title-medium-size);line-height:var(--coui-text-title-medium-line-height);font-weight:var(--coui-text-title-medium-weight);letter-spacing:var(--coui-text-title-medium-tracking);font-family:var(--coui-text-title-medium-family)}#co-rich-editor-ssr-4 h3,#co-rich-editor-ssr-4 h4,#co-rich-editor-ssr-4 h5,#co-rich-editor-ssr-4 h6{font-size:var(--coui-text-title-small-size);line-height:var(--coui-text-title-small-line-height);font-weight:var(--coui-text-title-small-weight);letter-spacing:var(--coui-text-title-small-tracking);font-family:var(--coui-text-title-small-family)}#co-rich-editor-ssr-4 ul{list-style:disc;padding-inline-start:var(--coui-space-24)}#co-rich-editor-ssr-4 ol{list-style:decimal;padding-inline-start:var(--coui-space-24)}#co-rich-editor-ssr-4 ul ul,#co-rich-editor-ssr-4 ol ul{list-style:circle}#co-rich-editor-ssr-4 li{list-style:inherit}#co-rich-editor-ssr-4 li>ul,#co-rich-editor-ssr-4 li>ol{margin:0}#co-rich-editor-ssr-4 li:has(>input[type=checkbox]:first-child){list-style:none;margin-inline-start:calc(-1 * var(--coui-space-24))}#co-rich-editor-ssr-4 li>input[type=checkbox]:first-child{margin:0;margin-inline-end:var(--coui-space-8);vertical-align:middle;cursor:pointer}#co-rich-editor-ssr-4 li:has(>input[type=checkbox]:first-child:checked){color:rgb(var(--coui-on-surface-variant));text-decoration:line-through}#co-rich-editor-ssr-4[contenteditable=false] input[type=checkbox]{pointer-events:none}#co-rich-editor-ssr-4 blockquote{border-inline-start:var(--coui-stroke-width-3) solid rgb(var(--coui-outline-variant));padding-inline-start:var(--coui-space-10);color:rgb(var(--coui-on-surface-variant))}#co-rich-editor-ssr-4 code{font-size:var(--coui-text-code-sm-size);line-height:var(--coui-text-code-sm-line-height);font-weight:var(--coui-text-code-sm-weight);letter-spacing:var(--coui-text-code-sm-tracking);font-family:var(--coui-text-code-sm-family);background-color:rgb(var(--coui-surface-container-high));border-radius:var(--coui-radius-4) var(--coui-radius-4) var(--coui-radius-4) var(--coui-radius-4);padding:0 var(--coui-space-4)}#co-rich-editor-ssr-4 pre{background-color:rgb(var(--coui-surface-container-high));border-radius:var(--coui-radius-4) var(--coui-radius-4) var(--coui-radius-4) var(--coui-radius-4);padding:var(--coui-space-8) var(--coui-space-10) var(--coui-space-8) var(--coui-space-10);overflow-x:auto;white-space:pre}#co-rich-editor-ssr-4 pre code{padding:0;background:none}#co-rich-editor-ssr-4 img{display:inline-block;vertical-align:bottom;max-width:100%;max-height:12.0rem;border-radius:var(--coui-radius-8) var(--coui-radius-8) var(--coui-radius-8) var(--coui-radius-8);background-color:rgb(var(--coui-surface-container))}#co-rich-editor-ssr-4 img[data-unavailable]{min-width:12.0rem;min-height:6.0rem}#co-rich-editor-ssr-4 a{color:rgb(var(--coui-link));text-decoration:underline;text-decoration-color:rgb(var(--coui-link))}#co-rich-editor-ssr-4 hr{border:0;border-top:var(--coui-stroke-width-1) solid rgb(var(--coui-outline-variant))}#co-rich-editor-ssr-4 strong,#co-rich-editor-ssr-4 b{font-weight:bold}#co-rich-editor-ssr-4 em,#co-rich-editor-ssr-4 i{font-style:italic}#co-rich-editor-ssr-4 del,#co-rich-editor-ssr-4 s,#co-rich-editor-ssr-4 strike{text-decoration:line-through}#co-rich-editor-ssr-4[data-empty]::before{content:attr(data-placeholder);color:rgb(var(--coui-placeholder));pointer-events:none;position:absolute;inset-inline:0;padding-inline:inherit}\n              \n              \n                \n                  \n                    \n                      \n                        \n                          \n                            \n                              \n                                Text\n                              \n                            \n                          \n                        \n                      \n                      \n                        \n                        \n                          \n                        \n                        \n                        \n                          \n                            \n                              \n                                \n                                  \n                                \n                              \n                            \n                          \n                          \n                            \n                              \n                                \n                                  \n                                \n                              \n                            \n                          \n                          \n                            \n                              \n                                \n                                  \n                                \n                              \n                            \n                          \n                          \n                            \n                              \n                                \n                                  \n                                \n                              \n                            \n                          \n                          \n                            \n                              \n                                \n                                  \n                                \n                              \n                            \n                          \n                        \n                      \n                      \n                        \n                        \n                          \n                        \n                        \n                        \n                          \n                            \n                              \n                                \n                                  \n                                \n                              \n                            \n                          \n                          \n                            \n                              \n                                \n                                  \n                                \n                              \n                            \n                          \n                          \n                            \n                              \n                                \n                                  \n                                \n                              \n                            \n                          \n                        \n                      \n                      \n                        \n                        \n                          \n                        \n                        \n                        \n                          \n                            \n                              \n                                \n                                  \n                                \n                              \n                            \n                          \n                        \n                      \n                    \n                  \n                  \n                  \n                    리뷰 메모좋아요! 작은 수정 두 가지만 부탁해요.툴바 그룹 이름 바꾸기빠진 툴팁 추가하기CI가 통과하면 배포해 주세요.",
+    "layout": {
+      "width": 800,
+      "height": 194.1875,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 194.1875
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "13px",
+      "lineHeight": "18px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(113, 114, 115)",
+      "borderRightColor": "rgb(113, 114, 115)",
+      "borderBottomColor": "rgb(113, 114, 115)",
+      "borderLeftColor": "rgb(113, 114, 115)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "10px",
+      "borderTopRightRadius": "10px",
+      "borderBottomRightRadius": "10px",
+      "borderBottomLeftRadius": "10px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 194.1875
+    }
+  }
+}

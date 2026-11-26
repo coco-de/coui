@@ -1,0 +1,749 @@
+key,before_status,after_status,flutter_size,web_size,parity_diff_ratio,parity_dimension_mismatch,flutter_before_after_pixels,web_before_after_pixels
+button-primary-light-defaultStyle,fail,fail,"[56, 40]","[56, 40]",0.08571428571428572,,0,0
+button-primary-dark-defaultStyle,fail,fail,"[56, 40]","[56, 40]",0.07366071428571429,,0,0
+button-secondary-light-defaultStyle,fail,fail,"[56, 40]","[56, 40]",0.05758928571428571,,0,0
+button-secondary-dark-defaultStyle,fail,fail,"[56, 40]","[56, 40]",0.06383928571428571,,0,0
+button-tonal-light-defaultStyle,pass,pass,"[44, 40]","[44, 40]",0.044886363636363634,,0,0
+button-tonal-dark-defaultStyle,pass,pass,"[44, 40]","[44, 40]",0.048863636363636366,,0,0
+button-outline-light-defaultStyle,fail,fail,"[70, 40]","[70, 40]",0.06607142857142857,,0,0
+button-outline-dark-defaultStyle,fail,fail,"[70, 40]","[70, 40]",0.08857142857142856,,0,0
+button-ghost-light-defaultStyle,fail,fail,"[68, 40]","[68, 40]",0.07536764705882353,,0,0
+button-ghost-dark-defaultStyle,fail,fail,"[68, 40]","[68, 40]",0.08933823529411765,,0,0
+button-plain-light-defaultStyle,fail,fail,"[36, 40]","[36, 40]",0.14791666666666667,,0,0
+button-plain-dark-defaultStyle,fail,fail,"[36, 40]","[36, 40]",0.17569444444444443,,0,0
+button-card-light-defaultStyle,fail,fail,"[58, 40]","[58, 40]",0.05344827586206897,,0,0
+button-card-dark-defaultStyle,fail,fail,"[58, 40]","[58, 40]",0.06293103448275862,,0,0
+button-destructive-light-defaultStyle,pass,pass,"[56, 40]","[56, 40]",0.048214285714285716,,0,0
+button-destructive-dark-defaultStyle,fail,fail,"[56, 40]","[56, 40]",0.060714285714285714,,0,0
+button-cast-motion-light-defaultStyle,fail,fail,"[243, 40]","[243, 40]",0.09598765432098766,,0,0
+button-cast-motion-dark-defaultStyle,fail,fail,"[243, 40]","[243, 40]",0.08559670781893004,,0,0
+command-default-light-defaultStyle,pass,pass,"[800, 373]","[800, 373]",0.011306970509383379,,0,0
+command-default-dark-defaultStyle,pass,pass,"[800, 373]","[800, 373]",0.011554959785522788,,0,0
+command-dialog-light-defaultStyle,fail,fail,"[83, 40]","[83, 40]",0.08855421686746988,,0,0
+command-dialog-dark-defaultStyle,fail,fail,"[83, 40]","[83, 40]",0.10421686746987951,,0,0
+command-scrollable-light-defaultStyle,pass,pass,"[800, 363]","[800, 363]",0.009397382920110192,,0,0
+command-scrollable-dark-defaultStyle,pass,pass,"[800, 363]","[800, 363]",0.009851928374655648,,0,0
+command-empty-light-defaultStyle,pass,pass,"[800, 283]","[800, 283]",0.004774734982332156,,0,0
+command-empty-dark-defaultStyle,pass,pass,"[800, 283]","[800, 283]",0.005627208480565371,,0,0
+fab-default-light-defaultStyle,pass,pass,"[56, 56]","[56, 56]",0.01403061224489796,,0,0
+fab-default-dark-defaultStyle,pass,pass,"[56, 56]","[56, 56]",0.018494897959183673,,0,0
+hover-default-light-defaultStyle,pass,pass,"[111, 61]","[111, 61]",0.02525476295968099,,0,0
+hover-default-dark-defaultStyle,pass,pass,"[111, 61]","[111, 61]",0.03426377196869,,0,0
+hover-fade-light-defaultStyle,pass,pass,"[111, 61]","[111, 61]",0.02525476295968099,,0,0
+hover-fade-dark-defaultStyle,pass,pass,"[111, 61]","[111, 61]",0.03426377196869,,0,0
+hover-shadow-light-defaultStyle,pass,pass,"[111, 61]","[111, 61]",0.02525476295968099,,0,0
+hover-shadow-dark-defaultStyle,pass,pass,"[111, 61]","[111, 61]",0.03426377196869,,0,0
+theme-controller-default-light-defaultStyle,pass,pass,"[228, 64]","[228, 64]",0.04063870614035088,,0,0
+theme-controller-default-dark-defaultStyle,pass,pass,"[228, 64]","[228, 64]",0.04084429824561404,,0,0
+filter-default-light-defaultStyle,fail,fail,"[214, 40]","[214, 40]",0.060397196261682246,,0,0
+filter-default-dark-defaultStyle,fail,fail,"[214, 40]","[214, 40]",0.05560747663551402,,0,0
+filter-disabled-light-defaultStyle,pass,pass,"[214, 92]","[214, 92]",0.03641812271434376,,0,0
+filter-disabled-dark-defaultStyle,pass,pass,"[214, 92]","[214, 92]",0.036011783827712314,,0,0
+toggle-group-default-light-defaultStyle,fail,fail,"[98, 40]","[98, 40]",0.07448979591836735,,0,0
+toggle-group-default-dark-defaultStyle,fail,fail,"[98, 40]","[98, 40]",0.07831632653061224,,0,0
+toggle-group-vertical-light-defaultStyle,fail,fail,"[44, 60]","[44, 60]",0.09924242424242424,,0,0
+toggle-group-vertical-dark-defaultStyle,fail,fail,"[44, 60]","[44, 60]",0.09924242424242424,,0,0
+toggle-group-disabled-light-defaultStyle,fail,fail,"[183, 92]","[183, 92]",0.05844618674269423,,0,0
+toggle-group-disabled-dark-defaultStyle,fail,fail,"[183, 92]","[183, 92]",0.05927773818009028,,0,0
+command-search-default-light-defaultStyle,pass,pass,"[320, 40]","[320, 40]",0.022109375,,0,0
+command-search-default-dark-defaultStyle,pass,pass,"[320, 40]","[320, 40]",0.02484375,,0,0
+text-field-default-light-defaultStyle,pass,pass,"[800, 40]","[800, 40]",0.00459375,,0,0
+text-field-default-dark-defaultStyle,pass,pass,"[800, 40]","[800, 40]",0.0064375,,0,0
+text-field-error-light-defaultStyle,pass,pass,"[800, 64]","[800, 64]",0.0071484375,,0,0
+text-field-error-dark-defaultStyle,pass,pass,"[800, 64]","[800, 64]",0.0108984375,,0,0
+text-area-default-light-defaultStyle,pass,pass,"[800, 110]","[800, 110]",0.000965909090909091,,0,0
+text-area-default-dark-defaultStyle,pass,pass,"[800, 110]","[800, 110]",0.0016363636363636363,,0,0
+text-area-footer-light-defaultStyle,pass,pass,"[800, 133]","[800, 133]",0.002612781954887218,,0,0
+text-area-footer-dark-defaultStyle,pass,pass,"[800, 133]","[800, 133]",0.0033270676691729323,,0,0
+rich-editor-default-light-defaultStyle,pass,pass,"[800, 194]","[800, 194]",0.008157216494845361,,0,0
+rich-editor-default-dark-defaultStyle,pass,pass,"[800, 194]","[800, 194]",0.017248711340206186,,0,0
+rich-editor-image-light-defaultStyle,pass,pass,"[800, 151]","[800, 151]",0.006125827814569536,,0,0
+rich-editor-image-dark-defaultStyle,pass,pass,"[800, 151]","[800, 151]",0.017574503311258278,,0,0
+rich-editor-max-length-light-defaultStyle,pass,pass,"[800, 123]","[800, 123]",0.004197154471544715,,0,0
+rich-editor-max-length-dark-defaultStyle,pass,pass,"[800, 123]","[800, 123]",0.017449186991869918,,0,0
+rich-editor-no-toolbar-light-defaultStyle,pass,pass,"[800, 82]","[800, 82]",0.02516768292682927,,0,0
+rich-editor-no-toolbar-dark-defaultStyle,pass,pass,"[800, 82]","[800, 82]",0.03059451219512195,,0,0
+select-suffix-light-defaultStyle,pass,pass,"[800, 40]","[800, 40]",0.00059375,,0,0
+select-suffix-dark-defaultStyle,pass,pass,"[800, 40]","[800, 40]",0.0033125,,0,0
+checkbox-default-light-defaultStyle,fail,fail,"[75, 21]","[75, 21]",0.13333333333333333,,0,0
+checkbox-default-dark-defaultStyle,fail,fail,"[75, 21]","[75, 21]",0.19365079365079366,,0,0
+checkbox-checked-light-defaultStyle,fail,fail,"[60, 21]","[60, 21]",0.05634920634920635,,0,0
+checkbox-checked-dark-defaultStyle,fail,fail,"[60, 21]","[60, 21]",0.2150793650793651,,0,0
+checkbox-indeterminate-light-defaultStyle,fail,fail,"[75, 21]","[75, 21]",0.12063492063492064,,0,0
+checkbox-indeterminate-dark-defaultStyle,fail,fail,"[75, 21]","[75, 21]",0.16063492063492063,,0,0
+checkbox-disabled-light-defaultStyle,pass,pass,"[60, 21]","[60, 21]",0.0,,0,0
+checkbox-disabled-dark-defaultStyle,pass,pass,"[60, 21]","[60, 21]",0.0007936507936507937,,0,0
+toggle-default-light-defaultStyle,pass,pass,"[95, 21]","[95, 21]",0.04661654135338346,,0,0
+toggle-default-dark-defaultStyle,fail,fail,"[95, 21]","[95, 21]",0.11929824561403508,,0,0
+toggle-on-light-defaultStyle,fail,fail,"[95, 21]","[95, 21]",0.10827067669172932,,0,0
+toggle-on-dark-defaultStyle,fail,fail,"[95, 21]","[95, 21]",0.15588972431077694,,0,0
+toggle-disabled-light-defaultStyle,pass,pass,"[95, 21]","[95, 21]",0.002506265664160401,,0,0
+toggle-disabled-dark-defaultStyle,pass,pass,"[95, 21]","[95, 21]",0.037092731829573934,,0,0
+slider-default-light-defaultStyle,pass,pass,"[800, 32]","[800, 32]",0.0,,0,0
+slider-default-dark-defaultStyle,pass,pass,"[800, 32]","[800, 32]",0.0,,0,0
+date-picker-default-light-defaultStyle,pass,pass,"[256, 40]","[256, 40]",0.008984375,,0,0
+date-picker-default-dark-defaultStyle,pass,pass,"[256, 40]","[256, 40]",0.0162109375,,0,0
+time-picker-default-light-defaultStyle,pass,pass,"[256, 40]","[256, 40]",0.00712890625,,0,0
+time-picker-default-dark-defaultStyle,pass,pass,"[256, 40]","[256, 40]",0.01220703125,,0,0
+color-picker-default-light-defaultStyle,pass,pass,"[144, 40]","[144, 40]",0.0125,,0,0
+color-picker-default-dark-defaultStyle,pass,pass,"[144, 40]","[144, 40]",0.043402777777777776,,0,0
+autocomplete-default-light-defaultStyle,pass,pass,"[800, 40]","[800, 40]",0.00265625,,0,0
+autocomplete-default-dark-defaultStyle,pass,pass,"[800, 40]","[800, 40]",0.00471875,,0,0
+input-otp-default-light-defaultStyle,pass,pass,"[302, 40]","[302, 40]",0.0011589403973509935,,0,0
+input-otp-default-dark-defaultStyle,pass,pass,"[302, 40]","[302, 40]",0.0012417218543046358,,0,0
+input-otp-lg-light-defaultStyle,pass,pass,"[400, 56]","[400, 56]",0.00026785714285714287,,0,0
+input-otp-lg-dark-defaultStyle,pass,pass,"[400, 56]","[400, 56]",0.00026785714285714287,,0,0
+input-otp-editable-light-defaultStyle,pass,pass,"[302, 40]","[302, 40]",0.011506622516556292,,0,0
+input-otp-editable-dark-defaultStyle,pass,pass,"[302, 40]","[302, 40]",0.011175496688741722,,0,0
+radio-group-default-light-defaultStyle,fail,fail,"[60, 79]","[60, 79]",0.0580168776371308,,0,0
+radio-group-default-dark-defaultStyle,fail,fail,"[60, 79]","[60, 79]",0.1550632911392405,,0,0
+radio-group-card-light-defaultStyle,fail,fail,"[800, 208]","[800, 207]",,800x208 vs 800x207,0,0
+radio-group-card-dark-defaultStyle,fail,fail,"[800, 208]","[800, 207]",,800x208 vs 800x207,0,0
+multiple-choice-default-light-defaultStyle,fail,fail,"[150, 32]","[150, 32]",0.08125,,0,0
+multiple-choice-default-dark-defaultStyle,fail,fail,"[150, 32]","[150, 32]",0.096875,,0,0
+star-rating-default-light-defaultStyle,fail,fail,"[136, 24]","[136, 24]",0.07536764705882353,,0,0
+star-rating-default-dark-defaultStyle,fail,fail,"[136, 24]","[136, 24]",0.06801470588235294,,0,0
+range-default-light-defaultStyle,pass,pass,"[800, 16]","[800, 16]",0.000625,,0,0
+range-default-dark-defaultStyle,pass,pass,"[800, 16]","[800, 16]",0.000703125,,0,0
+item-picker-default-light-defaultStyle,pass,pass,"[800, 267]","[800, 267]",0.0015589887640449437,,0,0
+item-picker-default-dark-defaultStyle,pass,pass,"[800, 267]","[800, 267]",0.004386704119850187,,0,0
+multi-answer-card-default-light-defaultStyle,fail,fail,"[800, 122]","[800, 121]",,800x122 vs 800x121,0,0
+multi-answer-card-default-dark-defaultStyle,fail,fail,"[800, 122]","[800, 121]",,800x122 vs 800x121,0,0
+option-item-default-light-defaultStyle,pass,pass,"[800, 51]","[800, 51]",0.006176470588235294,,0,0
+option-item-default-dark-defaultStyle,pass,pass,"[800, 51]","[800, 51]",0.007622549019607843,,0,0
+option-item-multiple-light-defaultStyle,fail,fail,"[800, 73]","[800, 72]",,800x73 vs 800x72,0,0
+option-item-multiple-dark-defaultStyle,fail,fail,"[800, 73]","[800, 72]",,800x73 vs 800x72,0,0
+option-item-disabled-light-defaultStyle,fail,fail,"[800, 73]","[800, 72]",,800x73 vs 800x72,0,0
+option-item-disabled-dark-defaultStyle,fail,fail,"[800, 73]","[800, 72]",,800x73 vs 800x72,0,0
+option-list-default-light-defaultStyle,fail,fail,"[800, 153]","[800, 152]",,800x153 vs 800x152,0,0
+option-list-default-dark-defaultStyle,fail,fail,"[800, 153]","[800, 152]",,800x153 vs 800x152,0,0
+bottom-sheet-default-light-defaultStyle,fail,fail,"[800, 348]","[800, 346]",,800x348 vs 800x346,0,0
+bottom-sheet-default-dark-defaultStyle,fail,fail,"[800, 348]","[800, 346]",,800x348 vs 800x346,0,0
+bottom-sheet-close-light-defaultStyle,fail,fail,"[800, 201]","[800, 200]",,800x201 vs 800x200,0,0
+bottom-sheet-close-dark-defaultStyle,fail,fail,"[800, 201]","[800, 200]",,800x201 vs 800x200,0,0
+formatted-input-default-light-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.004036458333333334,,0,0
+formatted-input-default-dark-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.004270833333333333,,0,0
+formatted-input-korean-phone-light-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.0037760416666666667,,0,0
+formatted-input-korean-phone-dark-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.004036458333333334,,0,0
+formatted-input-credit-card-light-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.004791666666666666,,0,0
+formatted-input-credit-card-dark-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.0048177083333333336,,0,0
+formatted-input-date-light-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.003125,,0,0
+formatted-input-date-dark-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.0030729166666666665,,0,0
+formatted-input-verify-light-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.016171875,,0,0
+formatted-input-verify-dark-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.0178125,,0,0
+number-input-default-light-defaultStyle,fail,fail,"[138, 124]","[138, 123]",,138x124 vs 138x123,0,0
+number-input-default-dark-defaultStyle,fail,fail,"[138, 124]","[138, 123]",,138x124 vs 138x123,0,0
+number-input-sizes-light-defaultStyle,pass,pass,"[138, 144]","[138, 144]",0.00030193236714975844,,0,0
+number-input-sizes-dark-defaultStyle,pass,pass,"[138, 144]","[138, 144]",0.0036231884057971015,,0,0
+number-input-filled-light-defaultStyle,pass,pass,"[114, 64]","[114, 64]",0.01644736842105263,,0,0
+number-input-filled-dark-defaultStyle,pass,pass,"[114, 64]","[114, 64]",0.0200109649122807,,0,0
+number-input-error-light-defaultStyle,pass,pass,"[114, 88]","[114, 88]",0.024421850079744817,,0,0
+number-input-error-dark-defaultStyle,fail,fail,"[114, 88]","[114, 88]",0.06449362041467305,,0,0
+number-input-disabled-light-defaultStyle,pass,pass,"[114, 64]","[114, 64]",0.013980263157894737,,0,0
+number-input-disabled-dark-defaultStyle,pass,pass,"[114, 64]","[114, 64]",0.014665570175438597,,0,0
+object-input-default-light-defaultStyle,pass,pass,"[138, 48]","[138, 48]",0.04498792270531401,,0,0
+object-input-default-dark-defaultStyle,pass,pass,"[138, 48]","[138, 48]",0.04559178743961353,,0,0
+phone-input-default-light-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.02859375,,0,0
+phone-input-default-dark-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.026328125,,0,0
+chip-input-default-light-defaultStyle,pass,pass,"[800, 42]","[800, 42]",0.008095238095238095,,0,0
+chip-input-default-dark-defaultStyle,pass,pass,"[800, 42]","[800, 42]",0.010386904761904762,,0,0
+switch-field-default-light-defaultStyle,fail,fail,"[800, 39]","[800, 38]",,800x39 vs 800x38,0,0
+switch-field-default-dark-defaultStyle,fail,fail,"[800, 39]","[800, 38]",,800x39 vs 800x38,0,0
+drag-default-light-defaultStyle,pass,pass,"[119, 114]","[119, 114]",0.019460415745245468,,0,0
+drag-default-dark-defaultStyle,pass,pass,"[119, 114]","[119, 114]",0.03759398496240601,,0,0
+drag-board-light-defaultStyle,fail,fail,"[364, 122]","[364, 121]",,364x122 vs 364x121,0,0
+drag-board-dark-defaultStyle,fail,fail,"[364, 122]","[364, 121]",,364x122 vs 364x121,0,0
+drag-overlay-light-defaultStyle,pass,pass,"[178, 72]","[178, 72]",0.004759675405742822,,0,0
+drag-overlay-dark-defaultStyle,fail,fail,"[178, 72]","[178, 72]",0.05454119850187266,,0,0
+sortable-default-light-defaultStyle,pass,pass,"[800, 160]","[800, 160]",0.00521875,,0,0
+sortable-default-dark-defaultStyle,pass,pass,"[800, 160]","[800, 160]",0.005578125,,0,0
+fieldset-default-light-defaultStyle,pass,pass,"[256, 184]","[256, 184]",0.004840353260869565,,0,0
+fieldset-default-dark-defaultStyle,pass,pass,"[256, 184]","[256, 184]",0.006050441576086957,,0,0
+file-input-default-light-defaultStyle,fail,fail,"[201, 224]","[201, 223]",,201x224 vs 201x223,186,0
+file-input-default-dark-defaultStyle,fail,fail,"[201, 224]","[201, 223]",,201x224 vs 201x223,395,0
+form-default-light-defaultStyle,pass,pass,"[800, 220]","[800, 220]",0.004789772727272728,,0,0
+form-default-dark-defaultStyle,pass,pass,"[800, 220]","[800, 220]",0.005159090909090909,,0,0
+form-label-default-light-defaultStyle,fail,fail,"[44, 18]","[44, 18]",0.2222222222222222,,0,0
+form-label-default-dark-defaultStyle,fail,fail,"[44, 18]","[44, 18]",0.25126262626262624,,0,0
+form-field-default-light-defaultStyle,pass,pass,"[320, 94]","[320, 94]",0.014095744680851063,,0,0
+form-field-default-dark-defaultStyle,pass,pass,"[320, 94]","[320, 94]",0.022805851063829787,,0,0
+formatter-default-light-defaultStyle,pass,pass,"[280, 40]","[280, 40]",0.006875,,0,0
+formatter-default-dark-defaultStyle,pass,pass,"[280, 40]","[280, 40]",0.012142857142857143,,0,0
+validated-default-light-defaultStyle,pass,pass,"[320, 64]","[320, 64]",0.00751953125,,0,0
+validated-default-dark-defaultStyle,pass,pass,"[320, 64]","[320, 64]",0.019970703125,,0,0
+validator-hint-default-light-defaultStyle,fail,fail,"[182, 18]","[182, 18]",0.11843711843711843,,0,0
+validator-hint-default-dark-defaultStyle,fail,fail,"[182, 18]","[182, 18]",0.19017094017094016,,0,0
+avatar-default-light-defaultStyle,pass,pass,"[32, 32]","[32, 32]",0.0458984375,,0,0
+avatar-default-dark-defaultStyle,pass,pass,"[32, 32]","[32, 32]",0.04296875,,0,0
+avatar-rounded-light-defaultStyle,pass,pass,"[32, 32]","[32, 32]",0.0458984375,,0,0
+avatar-rounded-dark-defaultStyle,pass,pass,"[32, 32]","[32, 32]",0.04296875,,0,0
+badge-default-light-defaultStyle,fail,fail,"[37, 24]","[37, 24]",0.10022522522522523,,0,0
+badge-default-dark-defaultStyle,fail,fail,"[37, 24]","[37, 24]",0.09121621621621621,,0,0
+badge-tones-light-defaultStyle,fail,fail,"[279, 24]","[279, 24]",0.11006571087216248,,0,0
+badge-tones-dark-defaultStyle,fail,fail,"[279, 24]","[279, 24]",0.10842293906810035,,0,0
+badge-variants-light-defaultStyle,fail,fail,"[136, 24]","[136, 24]",0.14950980392156862,,0,0
+badge-variants-dark-defaultStyle,fail,fail,"[136, 24]","[136, 24]",0.15992647058823528,,0,0
+badge-status-light-defaultStyle,fail,fail,"[350, 24]","[351, 24]",,350x24 vs 351x24,0,0
+badge-status-dark-defaultStyle,fail,fail,"[350, 24]","[351, 24]",,350x24 vs 351x24,0,0
+badge-count-light-defaultStyle,fail,fail,"[131, 20]","[131, 20]",0.16793893129770993,,0,0
+badge-count-dark-defaultStyle,fail,fail,"[131, 20]","[131, 20]",0.15954198473282444,,0,0
+badge-dot-light-defaultStyle,pass,pass,"[108, 8]","[108, 8]",0.0,,0,0
+badge-dot-dark-defaultStyle,pass,pass,"[108, 8]","[108, 8]",0.0,,0,0
+tag-default-light-defaultStyle,fail,fail,"[49, 24]","[49, 24]",0.09863945578231292,,0,0
+tag-default-dark-defaultStyle,fail,fail,"[49, 24]","[49, 24]",0.11904761904761904,,0,0
+tag-colors-light-defaultStyle,fail,fail,"[411, 24]","[411, 24]",0.11993106244931062,,0,0
+tag-colors-dark-defaultStyle,fail,fail,"[411, 24]","[411, 24]",0.12672343876723438,,0,0
+tag-bold-light-defaultStyle,fail,fail,"[393, 24]","[393, 24]",0.16136556403731978,,0,0
+tag-bold-dark-defaultStyle,fail,fail,"[393, 24]","[393, 24]",0.15913910093299408,,0,0
+tag-sizes-light-defaultStyle,fail,fail,"[163, 24]","[163, 24]",0.15030674846625766,,0,0
+tag-sizes-dark-defaultStyle,fail,fail,"[163, 24]","[163, 24]",0.1656441717791411,,0,0
+progress-default-light-defaultStyle,pass,pass,"[800, 6]","[800, 6]",0.0004166666666666667,,0,0
+progress-default-dark-defaultStyle,pass,pass,"[800, 6]","[800, 6]",0.0004166666666666667,,0,0
+progress-tone-light-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.0005208333333333333,,0,0
+progress-tone-dark-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.00026041666666666666,,0,0
+progress-labelled-light-defaultStyle,pass,pass,"[800, 58]","[800, 58]",0.009030172413793103,,0,0
+progress-labelled-dark-defaultStyle,pass,pass,"[800, 58]","[800, 58]",0.012672413793103448,,0,0
+progress-segments-light-defaultStyle,pass,pass,"[800, 30]","[800, 30]",0.007166666666666667,,0,0
+progress-segments-dark-defaultStyle,pass,pass,"[800, 30]","[800, 30]",0.009541666666666667,,0,0
+progress-indeterminate-light-defaultStyle,pass,pass,"[800, 6]","[800, 6]",0.0,,0,0
+progress-indeterminate-dark-defaultStyle,pass,pass,"[800, 6]","[800, 6]",0.0,,0,0
+progress-radial-light-defaultStyle,fail,fail,"[64, 64]","[64, 64]",0.07275390625,,0,0
+progress-radial-dark-defaultStyle,fail,fail,"[64, 64]","[64, 64]",0.074462890625,,0,0
+calendar-none-light-defaultStyle,pass,pass,"[224, 280]","[224, 280]",0.01485969387755102,,0,0
+calendar-none-dark-defaultStyle,pass,pass,"[224, 280]","[224, 280]",0.033864795918367344,,0,0
+calendar-single-light-defaultStyle,pass,pass,"[224, 280]","[224, 280]",0.01485969387755102,,0,0
+calendar-single-dark-defaultStyle,pass,pass,"[224, 280]","[224, 280]",0.033864795918367344,,0,0
+calendar-multi-light-defaultStyle,pass,pass,"[224, 280]","[224, 280]",0.01485969387755102,,0,0
+calendar-multi-dark-defaultStyle,pass,pass,"[224, 280]","[224, 280]",0.033864795918367344,,0,0
+calendar-range-light-defaultStyle,pass,pass,"[464, 280]","[464, 280]",0.01487838669950739,,0,0
+calendar-range-dark-defaultStyle,pass,pass,"[464, 280]","[464, 280]",0.03339747536945813,,0,0
+calendar-markers-light-defaultStyle,pass,pass,"[464, 280]","[464, 280]",0.015370997536945813,,0,0
+calendar-markers-dark-defaultStyle,pass,pass,"[464, 280]","[464, 280]",0.03389008620689655,,0,0
+banner-default-light-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.008940972222222222,,0,0
+banner-default-dark-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.00796875,,0,0
+banner-info-light-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.02015625,,0,0
+banner-info-dark-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.018472222222222223,,0,0
+banner-warning-light-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.01546875,,0,0
+banner-warning-dark-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.01638888888888889,,0,0
+banner-destructive-light-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.025034722222222222,,0,0
+banner-destructive-dark-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.025607638888888888,,0,0
+banner-success-light-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.024965277777777777,,0,0
+banner-success-dark-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.021076388888888888,,0,0
+banner-solid-light-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.03333333333333333,,0,0
+banner-solid-dark-defaultStyle,pass,pass,"[800, 72]","[800, 72]",0.016961805555555556,,0,0
+carousel-default-light-defaultStyle,pass,pass,"[800, 155]","[800, 155]",0.0024193548387096775,,0,0
+carousel-default-dark-defaultStyle,pass,pass,"[800, 155]","[800, 155]",0.002435483870967742,,0,0
+carousel-banner-light-defaultStyle,pass,pass,"[800, 112]","[800, 112]",0.0049330357142857145,,0,0
+carousel-banner-dark-defaultStyle,pass,pass,"[800, 112]","[800, 112]",0.010625,,0,0
+carousel-banner-default-light-defaultStyle,pass,pass,"[800, 88]","[800, 88]",0.009630681818181818,,0,0
+carousel-banner-default-dark-defaultStyle,pass,pass,"[800, 88]","[800, 88]",0.017428977272727273,,0,0
+carousel-banner-md-light-defaultStyle,pass,pass,"[800, 112]","[800, 112]",0.0032589285714285715,,0,0
+carousel-banner-md-dark-defaultStyle,pass,pass,"[800, 112]","[800, 112]",0.011339285714285715,,0,0
+chat-default-light-defaultStyle,fail,fail,"[800, 151]","[800, 150]",,800x151 vs 800x150,0,0
+chat-default-dark-defaultStyle,fail,fail,"[800, 151]","[800, 150]",,800x151 vs 800x150,0,0
+chat-neutral-light-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.012819767441860466,,0,0
+chat-neutral-dark-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.01441860465116279,,0,0
+chat-plain-light-defaultStyle,fail,fail,"[800, 78]","[800, 77]",,800x78 vs 800x77,0,0
+chat-plain-dark-defaultStyle,fail,fail,"[800, 78]","[800, 77]",,800x78 vs 800x77,0,0
+chat-primary-light-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.01438953488372093,,0,0
+chat-primary-dark-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.01252906976744186,,0,0
+chat-secondary-light-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.014941860465116278,,0,0
+chat-secondary-dark-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.012877906976744185,,0,0
+chat-accent-light-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.015203488372093022,,0,0
+chat-accent-dark-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.013488372093023256,,0,0
+chat-info-light-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.016017441860465116,,0,0
+chat-info-dark-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.012645348837209303,,0,0
+chat-success-light-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.01578488372093023,,0,0
+chat-success-dark-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.011715116279069767,,0,0
+chat-warning-light-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.015726744186046512,,0,0
+chat-warning-dark-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.012151162790697674,,0,0
+chat-error-light-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.01561046511627907,,0,0
+chat-error-dark-defaultStyle,pass,pass,"[800, 43]","[800, 43]",0.012558139534883722,,0,0
+chat-tail-corner-light-defaultStyle,fail,fail,"[800, 134]","[800, 133]",,800x134 vs 800x133,0,0
+chat-tail-corner-dark-defaultStyle,fail,fail,"[800, 134]","[800, 133]",,800x134 vs 800x133,0,0
+chat-tail-top-light-defaultStyle,fail,fail,"[800, 115]","[800, 114]",,800x115 vs 800x114,0,0
+chat-tail-top-dark-defaultStyle,fail,fail,"[800, 115]","[800, 114]",,800x115 vs 800x114,0,0
+chip-selected-light-defaultStyle,fail,fail,"[172, 76]","[172, 76]",0.07451040391676866,,0,0
+chip-selected-dark-defaultStyle,fail,fail,"[172, 76]","[172, 76]",0.08369033047735618,,0,0
+chip-variant-light-defaultStyle,fail,fail,"[220, 223]","[220, 222]",,220x223 vs 220x222,0,0
+chip-variant-dark-defaultStyle,fail,fail,"[220, 223]","[220, 222]",,220x223 vs 220x222,0,0
+chip-shape-light-defaultStyle,fail,fail,"[223, 32]","[223, 32]",0.0795964125560538,,0,0
+chip-shape-dark-defaultStyle,fail,fail,"[223, 32]","[223, 32]",0.07945627802690583,,0,0
+chip-removable-light-defaultStyle,fail,fail,"[95, 32]","[95, 32]",0.10328947368421053,,0,0
+chip-removable-dark-defaultStyle,fail,fail,"[95, 32]","[95, 32]",0.09868421052631579,,0,0
+chip-disabled-light-defaultStyle,fail,fail,"[59, 32]","[59, 32]",0.05508474576271186,,0,0
+chip-disabled-dark-defaultStyle,fail,fail,"[59, 32]","[59, 32]",0.06091101694915254,,0,0
+chip-cast-motion-light-defaultStyle,fail,fail,"[216, 32]","[216, 32]",0.09852430555555555,,0,0
+chip-cast-motion-dark-defaultStyle,fail,fail,"[216, 32]","[216, 32]",0.10908564814814815,,0,0
+chip-prefix-light-defaultStyle,fail,fail,"[214, 32]","[214, 32]",0.09608644859813084,,0,0
+chip-prefix-dark-defaultStyle,fail,fail,"[214, 32]","[214, 32]",0.09594042056074767,,0,0
+chip-group-default-light-defaultStyle,fail,fail,"[261, 32]","[261, 32]",0.09207375478927203,,0,0
+chip-group-default-dark-defaultStyle,fail,fail,"[261, 32]","[261, 32]",0.09482758620689655,,0,0
+chip-group-scroll-light-defaultStyle,fail,fail,"[555, 32]","[555, 32]",0.09549549549549549,,0,0
+chip-group-scroll-dark-defaultStyle,fail,fail,"[555, 32]","[555, 32]",0.10703828828828829,,0,0
+code-diff-default-light-defaultStyle,pass,pass,"[800, 189]","[800, 189]",0.026686507936507935,,0,0
+code-diff-default-dark-defaultStyle,pass,pass,"[800, 189]","[800, 189]",0.04488095238095238,,0,0
+diff-default-light-defaultStyle,pass,pass,"[800, 450]","[800, 450]",0.0,,0,0
+diff-default-dark-defaultStyle,pass,pass,"[800, 450]","[800, 450]",2.777777777777778e-06,,0,0
+diff-text-light-defaultStyle,pass,pass,"[800, 450]","[800, 450]",0.0018416666666666666,,0,0
+diff-text-dark-defaultStyle,pass,pass,"[800, 450]","[800, 450]",0.001738888888888889,,0,0
+code-snippet-default-light-defaultStyle,fail,fail,"[219, 83]","[216, 83]",,219x83 vs 216x83,0,0
+code-snippet-default-dark-defaultStyle,fail,fail,"[219, 83]","[216, 83]",,219x83 vs 216x83,0,0
+divider-default-light-defaultStyle,pass,pass,"[800, 1]","[800, 1]",0.0,,0,0
+divider-default-dark-defaultStyle,pass,pass,"[800, 1]","[800, 1]",0.0,,0,0
+divider-vertical-light-defaultStyle,pass,pass,"[1, 32]","[1, 32]",0.0,,0,0
+divider-vertical-dark-defaultStyle,pass,pass,"[1, 32]","[1, 32]",0.0,,0,0
+divider-with-child-light-defaultStyle,pass,pass,"[800, 18]","[800, 18]",0.009097222222222222,,0,0
+divider-with-child-dark-defaultStyle,pass,pass,"[800, 18]","[800, 18]",0.009027777777777777,,0,0
+dot-indicator-default-light-defaultStyle,pass,pass,"[88, 24]","[88, 24]",0.007575757575757576,,0,0
+dot-indicator-default-dark-defaultStyle,pass,pass,"[88, 24]","[88, 24]",0.014204545454545454,,0,0
+dot-indicator-vertical-light-defaultStyle,pass,pass,"[24, 56]","[24, 56]",0.0,,0,0
+dot-indicator-vertical-dark-defaultStyle,pass,pass,"[24, 56]","[24, 56]",0.0,,0,0
+dot-indicator-passive-light-defaultStyle,pass,pass,"[56, 24]","[56, 24]",0.002976190476190476,,0,0
+dot-indicator-passive-dark-defaultStyle,pass,pass,"[56, 24]","[56, 24]",0.008928571428571428,,0,0
+empty-state-default-light-defaultStyle,pass,pass,"[800, 240]","[800, 240]",0.0015260416666666666,,0,0
+empty-state-default-dark-defaultStyle,pass,pass,"[800, 240]","[800, 240]",0.004848958333333334,,0,0
+empty-state-large-light-defaultStyle,pass,pass,"[800, 240]","[800, 240]",0.007859375,,0,0
+empty-state-large-dark-defaultStyle,pass,pass,"[800, 240]","[800, 240]",0.011380208333333334,,0,0
+empty-state-failure-light-defaultStyle,pass,pass,"[800, 262]","[800, 262]",0.005104961832061068,,0,0
+empty-state-failure-dark-defaultStyle,pass,pass,"[800, 262]","[800, 262]",0.010014312977099237,,0,0
+empty-state-success-light-defaultStyle,pass,pass,"[800, 240]","[800, 240]",0.0033541666666666668,,0,0
+empty-state-success-dark-defaultStyle,pass,pass,"[800, 240]","[800, 240]",0.005848958333333334,,0,0
+indicator-default-light-defaultStyle,fail,fail,"[32, 32]","[32, 32]",0.0546875,,0,0
+indicator-default-dark-defaultStyle,pass,pass,"[32, 32]","[32, 32]",0.0439453125,,0,0
+indicator-bottom-start-light-defaultStyle,fail,fail,"[32, 32]","[32, 32]",0.0546875,,0,0
+indicator-bottom-start-dark-defaultStyle,pass,pass,"[32, 32]","[32, 32]",0.046875,,0,0
+kbd-single-light-defaultStyle,fail,fail,"[31, 20]","[32, 21]",,31x20 vs 32x21,0,0
+kbd-single-dark-defaultStyle,fail,fail,"[31, 20]","[32, 21]",,31x20 vs 32x21,0,0
+kbd-default-light-defaultStyle,fail,fail,"[55, 20]","[57, 21]",,55x20 vs 57x21,0,0
+kbd-default-dark-defaultStyle,fail,fail,"[55, 20]","[57, 21]",,55x20 vs 57x21,0,0
+kbd-combo-light-defaultStyle,fail,fail,"[94, 20]","[97, 21]",,94x20 vs 97x21,0,0
+kbd-combo-dark-defaultStyle,fail,fail,"[94, 20]","[97, 21]",,94x20 vs 97x21,0,0
+kbd-four-light-defaultStyle,fail,fail,"[101, 20]","[105, 21]",,101x20 vs 105x21,0,0
+kbd-four-dark-defaultStyle,fail,fail,"[101, 20]","[105, 21]",,101x20 vs 105x21,0,0
+label-default-light-defaultStyle,fail,fail,"[36, 20]","[36, 20]",0.21388888888888888,,0,0
+label-default-dark-defaultStyle,fail,fail,"[36, 20]","[36, 20]",0.33055555555555555,,0,0
+label-required-light-defaultStyle,fail,fail,"[47, 20]","[47, 20]",0.1829787234042553,,0,0
+label-required-dark-defaultStyle,fail,fail,"[47, 20]","[47, 20]",0.275531914893617,,0,0
+label-with-icon-light-defaultStyle,fail,fail,"[58, 20]","[58, 20]",0.13275862068965516,,0,0
+label-with-icon-dark-defaultStyle,fail,fail,"[58, 20]","[58, 20]",0.20603448275862069,,0,0
+label-disabled-light-defaultStyle,fail,fail,"[36, 20]","[36, 20]",0.11666666666666667,,0,0
+label-disabled-dark-defaultStyle,fail,fail,"[36, 20]","[36, 20]",0.1638888888888889,,0,0
+number-ticker-default-light-defaultStyle,fail,fail,"[50, 28]","[50, 28]",0.07071428571428572,,0,0
+number-ticker-default-dark-defaultStyle,fail,fail,"[50, 28]","[50, 28]",0.12785714285714286,,0,0
+aspect-ratio-box-default-light-defaultStyle,pass,pass,"[280, 158]","[280, 158]",0.008092224231464738,,0,0
+aspect-ratio-box-default-dark-defaultStyle,pass,pass,"[280, 158]","[280, 158]",0.010013562386980108,,0,0
+skeleton-default-light-defaultStyle,pass,pass,"[200, 76]","[200, 76]",0.0,,0,0
+skeleton-default-dark-defaultStyle,pass,pass,"[200, 76]","[200, 76]",0.0,,0,0
+skeleton-circle-light-defaultStyle,pass,pass,"[48, 48]","[48, 48]",0.0,,0,0
+skeleton-circle-dark-defaultStyle,pass,pass,"[48, 48]","[48, 48]",0.0,,0,0
+skeleton-text-light-defaultStyle,pass,pass,"[800, 60]","[800, 60]",0.0,,0,0
+skeleton-text-dark-defaultStyle,pass,pass,"[800, 60]","[800, 60]",0.0,,0,0
+loading-region-default-light-defaultStyle,pass,pass,"[200, 76]","[200, 76]",0.0,,0,0
+loading-region-default-dark-defaultStyle,pass,pass,"[200, 76]","[200, 76]",0.0,,0,0
+stat-default-light-defaultStyle,fail,fail,"[800, 176]","[800, 175]",,800x176 vs 800x175,0,0
+stat-default-dark-defaultStyle,fail,fail,"[800, 176]","[800, 175]",,800x176 vs 800x175,0,0
+stat-outlined-light-defaultStyle,fail,fail,"[800, 176]","[800, 175]",,800x176 vs 800x175,0,0
+stat-outlined-dark-defaultStyle,fail,fail,"[800, 176]","[800, 175]",,800x176 vs 800x175,0,0
+stat-empty-light-defaultStyle,fail,fail,"[800, 148]","[800, 147]",,800x148 vs 800x147,0,0
+stat-empty-dark-defaultStyle,fail,fail,"[800, 148]","[800, 147]",,800x148 vs 800x147,0,0
+status-default-light-defaultStyle,pass,pass,"[12, 12]","[12, 12]",0.006944444444444444,,0,0
+status-default-dark-defaultStyle,pass,pass,"[12, 12]","[12, 12]",0.027777777777777776,,0,0
+status-success-light-defaultStyle,pass,pass,"[12, 12]","[12, 12]",0.027777777777777776,,0,0
+status-success-dark-defaultStyle,pass,pass,"[12, 12]","[12, 12]",0.0,,0,0
+status-warning-light-defaultStyle,pass,pass,"[12, 12]","[12, 12]",0.027777777777777776,,0,0
+status-warning-dark-defaultStyle,pass,pass,"[12, 12]","[12, 12]",0.020833333333333332,,0,0
+status-error-light-defaultStyle,pass,pass,"[12, 12]","[12, 12]",0.013888888888888888,,0,0
+status-error-dark-defaultStyle,pass,pass,"[12, 12]","[12, 12]",0.027777777777777776,,0,0
+countdown-default-light-defaultStyle,fail,fail,"[41, 45]","[41, 45]",0.1013550135501355,,0,0
+countdown-default-dark-defaultStyle,fail,fail,"[41, 45]","[41, 45]",0.0975609756097561,,0,0
+description-card-default-light-defaultStyle,pass,pass,"[800, 167]","[800, 167]",0.012926646706586827,,0,0
+description-card-default-dark-defaultStyle,pass,pass,"[800, 167]","[800, 167]",0.015089820359281437,,0,0
+description-card-filled-light-defaultStyle,pass,pass,"[800, 165]","[800, 165]",0.013128787878787879,,0,0
+description-card-filled-dark-defaultStyle,pass,pass,"[800, 165]","[800, 165]",0.01412878787878788,,0,0
+description-card-ghost-light-defaultStyle,pass,pass,"[800, 119]","[800, 119]",0.014894957983193277,,0,0
+description-card-ghost-dark-defaultStyle,pass,pass,"[800, 119]","[800, 119]",0.017752100840336134,,0,0
+description-card-vertical-light-defaultStyle,fail,fail,"[800, 296]","[800, 294]",,800x296 vs 800x294,0,0
+description-card-vertical-dark-defaultStyle,fail,fail,"[800, 296]","[800, 294]",,800x296 vs 800x294,0,0
+description-card-space-between-light-defaultStyle,pass,pass,"[800, 193]","[800, 193]",0.007318652849740932,,0,0
+description-card-space-between-dark-defaultStyle,pass,pass,"[800, 193]","[800, 193]",0.008374352331606218,,0,0
+description-card-placeholder-light-defaultStyle,pass,pass,"[800, 200]","[800, 200]",0.00913125,,0,0
+description-card-placeholder-dark-defaultStyle,pass,pass,"[800, 200]","[800, 200]",0.01099375,,0,0
+loading-default-light-defaultStyle,pass,pass,"[16, 16]","[16, 16]",0.0,,0,0
+loading-default-dark-defaultStyle,pass,pass,"[16, 16]","[16, 16]",0.0,,0,0
+loading-dots-light-defaultStyle,pass,pass,"[16, 16]","[16, 16]",0.0,,0,0
+loading-dots-dark-defaultStyle,pass,pass,"[16, 16]","[16, 16]",0.0,,0,0
+loading-bar-light-defaultStyle,pass,pass,"[32, 2]","[32, 2]",0.0,,0,0
+loading-bar-dark-defaultStyle,pass,pass,"[32, 2]","[32, 2]",0.0,,0,0
+loading-pulse-light-defaultStyle,fail,fail,"[16, 16]","[16, 16]",0.0546875,,0,0
+loading-pulse-dark-defaultStyle,fail,fail,"[16, 16]","[16, 16]",0.0625,,0,0
+hover-gallery-default-light-defaultStyle,pass,pass,"[800, 300]","[800, 300]",0.0,,0,0
+hover-gallery-default-dark-defaultStyle,pass,pass,"[800, 300]","[800, 300]",0.0,,0,0
+validation-badge-default-light-defaultStyle,fail,fail,"[73, 24]","[73, 24]",0.10331050228310502,,0,0
+validation-badge-default-dark-defaultStyle,fail,fail,"[73, 24]","[73, 24]",0.08789954337899543,,0,0
+validation-badge-pending-light-defaultStyle,fail,fail,"[89, 24]","[89, 24]",0.1104868913857678,,0,0
+validation-badge-pending-dark-defaultStyle,fail,fail,"[89, 24]","[89, 24]",0.10674157303370786,,0,0
+validation-badge-invalid-light-defaultStyle,fail,fail,"[76, 24]","[76, 24]",0.13212719298245615,,0,0
+validation-badge-invalid-dark-defaultStyle,fail,fail,"[76, 24]","[76, 24]",0.13267543859649122,,0,0
+validation-badge-medium-light-defaultStyle,fail,fail,"[118, 28]","[118, 28]",0.14588377723970944,,0,0
+validation-badge-medium-dark-defaultStyle,fail,fail,"[118, 28]","[118, 28]",0.11016949152542373,,0,0
+tracker-default-light-defaultStyle,pass,pass,"[800, 32]","[800, 32]",0.0275,,0,0
+tracker-default-dark-defaultStyle,pass,pass,"[800, 32]","[800, 32]",0.02,,0,0
+category-breakdown-default-light-defaultStyle,pass,pass,"[800, 176]","[800, 176]",0.009723011363636364,,0,0
+category-breakdown-default-dark-defaultStyle,pass,pass,"[800, 176]","[800, 176]",0.01684659090909091,,0,0
+category-breakdown-donut-light-defaultStyle,pass,pass,"[800, 160]","[800, 160]",0.017265625,,0,0
+category-breakdown-donut-dark-defaultStyle,pass,pass,"[800, 160]","[800, 160]",0.025265625,,0,0
+trend-chart-default-light-defaultStyle,pass,pass,"[800, 417]","[800, 417]",0.013540167865707433,,0,0
+trend-chart-default-dark-defaultStyle,pass,pass,"[800, 417]","[800, 417]",0.01415767386091127,,0,0
+trend-chart-bar-light-defaultStyle,pass,pass,"[800, 185]","[800, 185]",0.007932432432432433,,0,0
+trend-chart-bar-dark-defaultStyle,pass,pass,"[800, 185]","[800, 185]",0.008101351351351352,,0,0
+mockup-phone-light-defaultStyle,pass,pass,"[320, 675]","[320, 675]",0.00837037037037037,,0,0
+mockup-phone-dark-defaultStyle,pass,pass,"[320, 675]","[320, 675]",0.007875,,0,0
+mockup-tablet-light-defaultStyle,pass,pass,"[320, 454]","[320, 454]",0.012169603524229074,,0,0
+mockup-tablet-dark-defaultStyle,pass,pass,"[320, 454]","[320, 454]",0.012906112334801762,,0,0
+mockup-landscape-light-defaultStyle,fail,fail,"[320, 157]","[320, 156]",,320x157 vs 320x156,0,0
+mockup-landscape-dark-defaultStyle,fail,fail,"[320, 157]","[320, 156]",,320x157 vs 320x156,0,0
+mockup-browser-light-defaultStyle,pass,pass,"[380, 200]","[380, 200]",0.0062763157894736845,,0,0
+mockup-browser-dark-defaultStyle,pass,pass,"[380, 200]","[380, 200]",0.016460526315789474,,0,0
+mockup-code-light-defaultStyle,pass,pass,"[800, 95]","[800, 95]",0.013131578947368421,,0,0
+mockup-code-dark-defaultStyle,pass,pass,"[800, 95]","[800, 95]",0.013855263157894737,,0,0
+mockup-app-light-defaultStyle,pass,pass,"[800, 65]","[800, 65]",0.0016346153846153845,,0,0
+mockup-app-dark-defaultStyle,pass,pass,"[800, 65]","[800, 65]",0.03669230769230769,,0,0
+mockup-browser-default-light-defaultStyle,pass,pass,"[380, 200]","[380, 200]",0.0062763157894736845,,0,0
+mockup-browser-default-dark-defaultStyle,pass,pass,"[380, 200]","[380, 200]",0.016460526315789474,,0,0
+mockup-code-default-light-defaultStyle,pass,pass,"[800, 95]","[800, 95]",0.013131578947368421,,0,0
+mockup-code-default-dark-defaultStyle,pass,pass,"[800, 95]","[800, 95]",0.013855263157894737,,0,0
+mockup-code-tones-light-defaultStyle,pass,pass,"[800, 170]","[800, 170]",0.022676470588235294,,0,0
+mockup-code-tones-dark-defaultStyle,pass,pass,"[800, 170]","[800, 170]",0.024051470588235296,,0,0
+mockup-device-default-light-defaultStyle,pass,pass,"[320, 675]","[320, 675]",0.00837037037037037,,0,0
+mockup-device-default-dark-defaultStyle,pass,pass,"[320, 675]","[320, 675]",0.007875,,0,0
+mockup-device-flat-light-defaultStyle,pass,pass,"[256, 496]","[256, 496]",0.0001102570564516129,,0,0
+mockup-device-flat-dark-defaultStyle,pass,pass,"[256, 496]","[256, 496]",0.0014097152217741936,,0,0
+mockup-device-screen-brightness-light-defaultStyle,pass,pass,"[304, 536]","[304, 536]",0.004658042026708563,,0,0
+mockup-device-screen-brightness-dark-defaultStyle,pass,pass,"[304, 536]","[304, 536]",0.004651904948939513,,0,0
+timeline-default-light-defaultStyle,fail,fail,"[800, 92]","[800, 91]",,800x92 vs 800x91,0,0
+timeline-default-dark-defaultStyle,fail,fail,"[800, 92]","[800, 91]",,800x92 vs 800x91,0,0
+swap-default-light-defaultStyle,pass,pass,"[24, 21]","[24, 21]",0.025793650793650792,,0,0
+swap-default-dark-defaultStyle,fail,fail,"[24, 21]","[24, 21]",0.2777777777777778,,0,0
+swap-rotate-light-defaultStyle,pass,pass,"[24, 21]","[24, 21]",0.025793650793650792,,0,0
+swap-rotate-dark-defaultStyle,fail,fail,"[24, 21]","[24, 21]",0.2777777777777778,,0,0
+swap-flip-light-defaultStyle,pass,pass,"[24, 21]","[24, 21]",0.025793650793650792,,0,0
+swap-flip-dark-defaultStyle,fail,fail,"[24, 21]","[24, 21]",0.2777777777777778,,0,0
+disclosure-badge-default-light-defaultStyle,fail,fail,"[58, 23]","[58, 23]",0.17091454272863568,,0,0
+disclosure-badge-default-dark-defaultStyle,fail,fail,"[58, 23]","[58, 23]",0.22038980509745126,,0,0
+disclosure-badge-commitment-light-defaultStyle,fail,fail,"[79, 23]","[79, 23]",0.15410016510731975,,0,0
+disclosure-badge-commitment-dark-defaultStyle,fail,fail,"[79, 23]","[79, 23]",0.18932305998899285,,0,0
+disclosure-badge-private-light-defaultStyle,fail,fail,"[78, 23]","[78, 23]",0.2084726867335563,,0,0
+disclosure-badge-private-dark-defaultStyle,fail,fail,"[78, 23]","[78, 23]",0.22686733556298774,,0,0
+accordion-default-light-defaultStyle,fail,fail,"[247, 198]","[247, 198]",0.07174988753936122,,0,0
+accordion-default-dark-defaultStyle,fail,fail,"[247, 198]","[247, 198]",0.08757616652353495,,0,0
+collapsible-default-light-defaultStyle,pass,pass,"[169, 90]","[169, 90]",0.020907297830374753,,0,0
+collapsible-default-dark-defaultStyle,fail,fail,"[169, 90]","[169, 90]",0.06995397764628535,,0,0
+disclosure-default-light-defaultStyle,pass,pass,"[800, 90]","[800, 90]",0.008013888888888888,,0,0
+disclosure-default-dark-defaultStyle,pass,pass,"[800, 90]","[800, 90]",0.023680555555555555,,0,0
+disclosure-group-light-defaultStyle,pass,pass,"[800, 212]","[800, 212]",0.00558372641509434,,0,0
+disclosure-group-dark-defaultStyle,pass,pass,"[800, 212]","[800, 212]",0.023172169811320753,,0,0
+disclosure-chain-light-defaultStyle,pass,pass,"[800, 115]","[800, 115]",0.012206521739130435,,0,0
+disclosure-chain-dark-defaultStyle,pass,pass,"[800, 115]","[800, 115]",0.021978260869565218,,0,0
+card-default-light-defaultStyle,pass,pass,"[236, 146]","[236, 146]",0.024204782911539355,,0,0
+card-default-dark-defaultStyle,pass,pass,"[236, 146]","[236, 146]",0.04733573252844207,,0,0
+card-filled-light-defaultStyle,pass,pass,"[256, 94]","[256, 94]",0.03540558510638298,,0,0
+card-filled-dark-defaultStyle,pass,pass,"[256, 94]","[256, 94]",0.040018284574468085,,0,0
+card-elevated-light-defaultStyle,pass,pass,"[256, 94]","[256, 94]",0.030792885638297872,,0,0
+card-elevated-dark-defaultStyle,pass,pass,"[256, 94]","[256, 94]",0.042760970744680854,,0,0
+card-image-default-light-defaultStyle,pass,pass,"[240, 215]","[240, 215]",0.006356589147286822,,0,0
+card-image-default-dark-defaultStyle,pass,pass,"[240, 215]","[240, 215]",0.009883720930232558,,0,0
+table-default-light-defaultStyle,pass,pass,"[800, 136]","[800, 136]",0.012757352941176471,,0,0
+table-default-dark-defaultStyle,pass,pass,"[800, 136]","[800, 136]",0.014963235294117647,,0,0
+table-resizable-light-defaultStyle,pass,pass,"[800, 168]","[800, 168]",0.010632440476190476,,0,0
+table-resizable-dark-defaultStyle,pass,pass,"[800, 168]","[800, 168]",0.01236607142857143,,0,0
+table-scrollable-light-defaultStyle,pass,pass,"[800, 320]","[800, 320]",0.0345625,,0,0
+table-scrollable-dark-defaultStyle,pass,pass,"[800, 320]","[800, 320]",0.0379375,,0,0
+stepper-default-light-defaultStyle,pass,pass,"[800, 52]","[800, 52]",0.03221153846153846,,0,0
+stepper-default-dark-defaultStyle,pass,pass,"[800, 52]","[800, 52]",0.03408653846153846,,0,0
+stepper-vertical-light-defaultStyle,fail,fail,"[106, 175]","[106, 175]",0.0554177897574124,,0,0
+stepper-vertical-dark-defaultStyle,fail,fail,"[106, 175]","[106, 175]",0.07886792452830188,,0,0
+stepper-disabled-light-defaultStyle,pass,pass,"[800, 52]","[800, 52]",0.008533653846153845,,0,0
+stepper-disabled-dark-defaultStyle,pass,pass,"[800, 52]","[800, 52]",0.011995192307692307,,0,0
+steps-default-light-defaultStyle,fail,fail,"[188, 264]","[188, 264]",0.058772566086395875,,0,0
+steps-default-dark-defaultStyle,fail,fail,"[188, 264]","[188, 264]",0.07198984526112186,,0,0
+steps-horizontal-light-defaultStyle,pass,pass,"[800, 62]","[800, 62]",0.02596774193548387,,0,0
+steps-horizontal-dark-defaultStyle,pass,pass,"[800, 62]","[800, 62]",0.028729838709677418,,0,0
+steps-list-light-defaultStyle,pass,pass,"[280, 128]","[280, 128]",0.0400390625,,0,0
+steps-list-dark-defaultStyle,pass,pass,"[280, 128]","[280, 128]",0.045731026785714286,,0,0
+step-item-default-light-defaultStyle,pass,pass,"[280, 128]","[280, 128]",0.0400390625,,0,0
+step-item-default-dark-defaultStyle,pass,pass,"[280, 128]","[280, 128]",0.045731026785714286,,0,0
+tree-default-light-defaultStyle,pass,pass,"[800, 140]","[800, 140]",0.007375,,0,0
+tree-default-dark-defaultStyle,pass,pass,"[800, 140]","[800, 140]",0.008821428571428572,,0,0
+tree-selected-light-defaultStyle,pass,pass,"[800, 112]","[800, 112]",0.006908482142857142,,0,0
+tree-selected-dark-defaultStyle,pass,pass,"[800, 112]","[800, 112]",0.00830357142857143,,0,0
+tree-trailing-light-defaultStyle,pass,pass,"[800, 168]","[800, 168]",0.011272321428571428,,0,0
+tree-trailing-dark-defaultStyle,pass,pass,"[800, 168]","[800, 168]",0.01240327380952381,,0,0
+resizable-default-light-defaultStyle,pass,pass,"[800, 200]","[800, 200]",0.00035,,0,0
+resizable-default-dark-defaultStyle,pass,pass,"[800, 200]","[800, 200]",0.00198125,,0,0
+scroll-area-default-light-defaultStyle,pass,pass,"[260, 180]","[260, 180]",0.017777777777777778,,0,0
+scroll-area-default-dark-defaultStyle,fail,fail,"[260, 180]","[260, 180]",0.055427350427350426,,0,0
+fade-scroll-default-light-defaultStyle,pass,pass,"[76, 200]","[76, 200]",0.02598684210526316,,0,0
+fade-scroll-default-dark-defaultStyle,pass,pass,"[76, 200]","[76, 200]",0.04868421052631579,,0,0
+fade-scroll-horizontal-light-defaultStyle,fail,fail,"[800, 21]","[800, 21]",0.060892857142857144,,0,0
+fade-scroll-horizontal-dark-defaultStyle,fail,fail,"[800, 21]","[800, 21]",0.12047619047619047,,0,0
+fade-scroll-with-scrollbar-light-defaultStyle,pass,pass,"[76, 200]","[76, 200]",0.02598684210526316,,0,0
+fade-scroll-with-scrollbar-dark-defaultStyle,pass,pass,"[76, 200]","[76, 200]",0.04868421052631579,,0,0
+scrollable-client-default-light-defaultStyle,pass,pass,"[800, 320]","[800, 320]",0.0035625,,0,0
+scrollable-client-default-dark-defaultStyle,pass,pass,"[800, 320]","[800, 320]",0.00814453125,,0,0
+overflow-marquee-default-light-defaultStyle,fail,fail,"[240, 21]","[240, 21]",0.0630952380952381,,0,0
+overflow-marquee-default-dark-defaultStyle,fail,fail,"[240, 21]","[240, 21]",0.20218253968253969,,0,0
+stack-layout-default-light-defaultStyle,pass,pass,"[160, 96]","[160, 96]",0.007356770833333333,,0,0
+stack-layout-default-dark-defaultStyle,pass,pass,"[160, 96]","[160, 96]",0.016861979166666666,,0,0
+stage-container-default-light-defaultStyle,pass,pass,"[800, 80]","[800, 80]",0.00309375,,0,0
+stage-container-default-dark-defaultStyle,pass,pass,"[800, 80]","[800, 80]",0.00815625,,0,0
+window-default-light-defaultStyle,pass,pass,"[800, 648]","[800, 648]",0.0014583333333333334,,0,0
+window-default-dark-defaultStyle,pass,pass,"[800, 648]","[800, 648]",0.0021064814814814813,,0,0
+window-panel-default-light-defaultStyle,pass,pass,"[320, 79]","[320, 79]",0.012183544303797469,,0,0
+window-panel-default-dark-defaultStyle,pass,pass,"[320, 79]","[320, 79]",0.023061708860759495,,0,0
+draggable-panel-default-light-defaultStyle,pass,pass,"[360, 360]","[360, 360]",0.0077083333333333335,,0,0
+draggable-panel-default-dark-defaultStyle,pass,pass,"[360, 360]","[360, 360]",0.008179012345679013,,0,0
+draggable-panel-outside-light-defaultStyle,pass,pass,"[360, 360]","[360, 360]",0.0001080246913580247,,0,0
+draggable-panel-outside-dark-defaultStyle,pass,pass,"[360, 360]","[360, 360]",0.0013040123456790123,,0,0
+join-default-light-defaultStyle,pass,pass,"[125, 40]","[125, 40]",0.0228,,0,0
+join-default-dark-defaultStyle,pass,pass,"[125, 40]","[125, 40]",0.0248,,0,0
+join-vertical-light-defaultStyle,pass,pass,"[44, 120]","[44, 120]",0.029734848484848486,,0,0
+join-vertical-dark-defaultStyle,pass,pass,"[44, 120]","[44, 120]",0.026325757575757575,,0,0
+basic-default-light-defaultStyle,fail,fail,"[295, 67]","[295, 66]",,295x67 vs 295x66,0,0
+basic-default-dark-defaultStyle,fail,fail,"[295, 67]","[295, 66]",,295x67 vs 295x66,0,0
+frame-default-light-defaultStyle,pass,pass,"[133, 58]","[133, 58]",0.021778584392014518,,0,0
+frame-default-dark-defaultStyle,pass,pass,"[133, 58]","[133, 58]",0.031371532278973296,,0,0
+frame-column-light-defaultStyle,fail,fail,"[71, 111]","[71, 111]",0.05481537875904073,,0,0
+frame-column-dark-defaultStyle,fail,fail,"[71, 111]","[71, 111]",0.06496637482552975,,0,0
+frame-dashed-light-defaultStyle,pass,pass,"[154, 73]","[154, 73]",0.043853406867105496,,0,0
+frame-dashed-dark-defaultStyle,fail,fail,"[154, 73]","[154, 73]",0.05221490837929194,,0,0
+frame-elevated-light-defaultStyle,pass,pass,"[224, 78]","[224, 78]",0.02918956043956044,,0,0
+frame-elevated-dark-defaultStyle,fail,fail,"[224, 78]","[224, 78]",0.06507554945054946,,0,0
+hidden-default-light-defaultStyle,pass,pass,"[141, 105]","[141, 105]",0.03282674772036474,,0,0
+hidden-default-dark-defaultStyle,pass,pass,"[141, 105]","[141, 105]",0.04343127321850726,,0,0
+listing-default-light-defaultStyle,pass,pass,"[800, 137]","[800, 137]",0.006724452554744525,,0,0
+listing-default-dark-defaultStyle,pass,pass,"[800, 137]","[800, 137]",0.02166970802919708,,0,0
+swipe-actions-default-light-defaultStyle,fail,fail,"[221, 43]","[221, 43]",0.056508471009155,,0,0
+swipe-actions-default-dark-defaultStyle,fail,fail,"[221, 43]","[221, 43]",0.08576239082395033,,0,0
+swipe-actions-scope-light-defaultStyle,fail,fail,"[800, 87]","[800, 86]",,800x87 vs 800x86,0,0
+swipe-actions-scope-dark-defaultStyle,fail,fail,"[800, 87]","[800, 86]",,800x87 vs 800x86,0,0
+gap-default-light-defaultStyle,fail,fail,"[98, 40]","[98, 40]",0.05433673469387755,,0,0
+gap-default-dark-defaultStyle,fail,fail,"[98, 40]","[98, 40]",0.05790816326530612,,0,0
+gap-max-light-defaultStyle,pass,pass,"[800, 40]","[800, 40]",0.0069375,,0,0
+gap-max-dark-defaultStyle,pass,pass,"[800, 40]","[800, 40]",0.00728125,,0,0
+gap-sliver-light-defaultStyle,pass,pass,"[800, 160]","[800, 160]",0.0013671875,,0,0
+gap-sliver-dark-defaultStyle,pass,pass,"[800, 160]","[800, 160]",0.00553125,,0,0
+mask-default-light-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.00537109375,,0,0
+mask-default-dark-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.00634765625,,0,0
+mask-circle-light-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.011474609375,,0,0
+mask-circle-dark-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.014404296875,,0,0
+mask-heart-light-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.012451171875,,0,0
+mask-heart-dark-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.01416015625,,0,0
+mask-hexagon-light-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.00537109375,,0,0
+mask-hexagon-dark-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.007080078125,,0,0
+mask-star-light-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.009033203125,,0,0
+mask-star-dark-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.0107421875,,0,0
+mask-triangle-light-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.015625,,0,0
+mask-triangle-dark-defaultStyle,pass,pass,"[64, 64]","[64, 64]",0.015625,,0,0
+media-query-default-light-defaultStyle,pass,pass,"[800, 45]","[800, 45]",0.0021666666666666666,,0,0
+media-query-default-dark-defaultStyle,pass,pass,"[800, 45]","[800, 45]",0.010972222222222222,,0,0
+breakpoint-default-light-defaultStyle,pass,pass,"[800, 53]","[800, 53]",0.03139150943396227,,0,0
+breakpoint-default-dark-defaultStyle,pass,pass,"[800, 53]","[800, 53]",0.034693396226415096,,0,0
+responsive-container-default-light-defaultStyle,pass,pass,"[640, 74]","[640, 74]",0.018074324324324324,,0,0
+responsive-container-default-dark-defaultStyle,fail,fail,"[640, 74]","[640, 74]",0.07225506756756757,,0,0
+responsive-grid-default-light-defaultStyle,pass,pass,"[800, 191]","[800, 191]",0.0009685863874345549,,0,0
+responsive-grid-default-dark-defaultStyle,pass,pass,"[800, 191]","[800, 191]",0.004725130890052356,,0,0
+responsive-grid-span-light-defaultStyle,pass,pass,"[800, 138]","[800, 138]",0.0014764492753623188,,0,0
+responsive-grid-span-dark-defaultStyle,pass,pass,"[800, 138]","[800, 138]",0.006340579710144928,,0,0
+responsive-row-column-default-light-defaultStyle,pass,pass,"[800, 78]","[800, 78]",0.004294871794871795,,0,0
+responsive-row-column-default-dark-defaultStyle,pass,pass,"[800, 78]","[800, 78]",0.008157051282051282,,0,0
+responsive-row-column-desktop-light-defaultStyle,fail,fail,"[78, 258]","[78, 259]",,78x258 vs 78x259,0,0
+responsive-row-column-desktop-dark-defaultStyle,fail,fail,"[78, 258]","[78, 259]",,78x258 vs 78x259,0,0
+scaffold-default-light-defaultStyle,pass,pass,"[800, 384]","[800, 384]",0.004280598958333334,,0,0
+scaffold-default-dark-defaultStyle,pass,pass,"[800, 384]","[800, 384]",0.004993489583333333,,0,0
+page-header-default-light-defaultStyle,pass,pass,"[800, 89]","[800, 89]",0.023707865168539326,,0,0
+page-header-default-dark-defaultStyle,pass,pass,"[800, 89]","[800, 89]",0.026938202247191012,,0,0
+panel-header-default-light-defaultStyle,pass,pass,"[800, 40]","[800, 40]",0.0209375,,0,0
+panel-header-default-dark-defaultStyle,pass,pass,"[800, 40]","[800, 40]",0.02390625,,0,0
+bottom-action-bar-default-light-defaultStyle,pass,pass,"[800, 165]","[800, 165]",0.00856060606060606,,0,0
+bottom-action-bar-default-dark-defaultStyle,pass,pass,"[800, 165]","[800, 165]",0.011272727272727273,,0,0
+bottom-action-bar-horizontal-light-defaultStyle,pass,pass,"[800, 81]","[800, 81]",0.01191358024691358,,0,0
+bottom-action-bar-horizontal-dark-defaultStyle,pass,pass,"[800, 81]","[800, 81]",0.013101851851851852,,0,0
+bottom-action-bar-scaffold-light-defaultStyle,pass,pass,"[800, 384]","[800, 384]",0.021764322916666665,,0,0
+bottom-action-bar-scaffold-dark-defaultStyle,pass,pass,"[800, 384]","[800, 384]",0.022913411458333335,,0,0
+app-bar-default-light-defaultStyle,pass,pass,"[800, 64]","[800, 64]",0.00681640625,,0,0
+app-bar-default-dark-defaultStyle,pass,pass,"[800, 64]","[800, 64]",0.007734375,,0,0
+app-bar-compact-light-defaultStyle,pass,pass,"[800, 56]","[800, 56]",0.006584821428571429,,0,0
+app-bar-compact-dark-defaultStyle,pass,pass,"[800, 56]","[800, 56]",0.006540178571428572,,0,0
+app-bar-medium-light-defaultStyle,pass,pass,"[800, 112]","[800, 112]",0.01572544642857143,,0,0
+app-bar-medium-dark-defaultStyle,pass,pass,"[800, 112]","[800, 112]",0.015948660714285714,,0,0
+app-bar-dense-light-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.010130208333333333,,0,0
+app-bar-dense-dark-defaultStyle,pass,pass,"[800, 48]","[800, 48]",0.011796875,,0,0
+app-bar-prominent-light-defaultStyle,pass,pass,"[800, 56]","[800, 56]",0.010446428571428572,,0,0
+app-bar-prominent-dark-defaultStyle,pass,pass,"[800, 56]","[800, 56]",0.011830357142857142,,0,0
+app-bar-centered-light-defaultStyle,pass,pass,"[800, 64]","[800, 64]",0.01546875,,0,0
+app-bar-centered-dark-defaultStyle,pass,pass,"[800, 64]","[800, 64]",0.016796875,,0,0
+app-bar-text-light-defaultStyle,pass,pass,"[800, 64]","[800, 64]",0.00921875,,0,0
+app-bar-text-dark-defaultStyle,pass,pass,"[800, 64]","[800, 64]",0.01052734375,,0,0
+dock-default-light-defaultStyle,pass,pass,"[800, 64]","[800, 64]",0.0115234375,,0,0
+dock-default-dark-defaultStyle,pass,pass,"[800, 64]","[800, 64]",0.01103515625,,0,0
+tabs-default-light-defaultStyle,pass,pass,"[126, 77]","[126, 77]",0.04710368996083282,,0,0
+tabs-default-dark-defaultStyle,fail,fail,"[126, 77]","[126, 77]",0.0999793856936714,,0,0
+tabs-line-light-defaultStyle,pass,pass,"[800, 77]","[800, 77]",0.00814935064935065,,0,0
+tabs-line-dark-defaultStyle,pass,pass,"[800, 77]","[800, 77]",0.017012987012987014,,0,0
+tabs-badge-light-defaultStyle,fail,fail,"[284, 77]","[284, 77]",0.07097128223888788,,0,0
+tabs-badge-dark-defaultStyle,fail,fail,"[284, 77]","[284, 77]",0.0752698006219133,,0,0
+tabs-closable-light-defaultStyle,pass,pass,"[353, 77]","[353, 77]",0.03793090761929289,,0,0
+tabs-closable-dark-defaultStyle,pass,pass,"[353, 77]","[353, 77]",0.04087414002428167,,0,0
+tab-pane-default-light-defaultStyle,pass,pass,"[800, 107]","[800, 107]",0.006331775700934579,,0,0
+tab-pane-default-dark-defaultStyle,pass,pass,"[800, 107]","[800, 107]",0.008738317757009346,,0,0
+tab-pane-editor-strip-light-defaultStyle,fail,fail,"[800, 36]","[800, 36]",0.0809375,,0,0
+tab-pane-editor-strip-dark-defaultStyle,fail,fail,"[800, 36]","[800, 36]",0.07892361111111111,,0,0
+navigation-bar-default-light-defaultStyle,pass,pass,"[800, 80]","[800, 80]",0.01271875,,0,0
+navigation-bar-default-dark-defaultStyle,pass,pass,"[800, 80]","[800, 80]",0.011625,,0,0
+navigation-bar-rail-light-defaultStyle,pass,pass,"[81, 224]","[81, 224]",0.010141093474426807,,0,0
+navigation-bar-rail-dark-defaultStyle,pass,pass,"[81, 224]","[81, 224]",0.010361552028218694,,0,0
+navigation-bar-sidebar-light-defaultStyle,fail,fail,"[187, 309]","[188, 309]",,187x309 vs 188x309,0,0
+navigation-bar-sidebar-dark-defaultStyle,fail,fail,"[187, 309]","[188, 309]",,187x309 vs 188x309,0,0
+navigation-bar-item-default-light-defaultStyle,pass,pass,"[240, 166]","[240, 166]",0.021009036144578313,,0,0
+navigation-bar-item-default-dark-defaultStyle,pass,pass,"[240, 166]","[240, 166]",0.023418674698795182,,0,0
+navigation-bar-item-drawer-light-defaultStyle,fail,fail,"[131, 40]","[131, 40]",0.0732824427480916,,0,0
+navigation-bar-item-drawer-dark-defaultStyle,fail,fail,"[131, 40]","[131, 40]",0.07729007633587787,,0,0
+sidebar-default-light-defaultStyle,pass,pass,"[248, 640]","[248, 640]",0.023727318548387097,,0,0
+sidebar-default-dark-defaultStyle,pass,pass,"[248, 640]","[248, 640]",0.02716733870967742,,0,0
+sidebar-two-pane-light-defaultStyle,pass,pass,"[304, 640]","[304, 640]",0.00425061677631579,,0,0
+sidebar-two-pane-dark-defaultStyle,pass,pass,"[304, 640]","[304, 640]",0.004970189144736842,,0,0
+sidebar-collapsed-light-defaultStyle,pass,pass,"[64, 400]","[64, 400]",0.0147265625,,0,0
+sidebar-collapsed-dark-defaultStyle,pass,pass,"[64, 400]","[64, 400]",0.013828125,,0,0
+breadcrumb-default-light-defaultStyle,fail,fail,"[180, 25]","[180, 25]",0.060444444444444446,,0,0
+breadcrumb-default-dark-defaultStyle,fail,fail,"[180, 25]","[180, 25]",0.09933333333333333,,0,0
+pagination-default-light-defaultStyle,pass,pass,"[316, 36]","[316, 36]",0.008790436005625879,,0,0
+pagination-default-dark-defaultStyle,pass,pass,"[316, 36]","[316, 36]",0.011251758087201125,,0,0
+switcher-default-light-defaultStyle,pass,pass,"[256, 152]","[256, 152]",0.02017372532894737,,0,0
+switcher-default-dark-defaultStyle,pass,pass,"[256, 152]","[256, 152]",0.022332442434210526,,0,0
+menu-default-light-defaultStyle,pass,pass,"[240, 204]","[240, 204]",0.018075980392156864,,0,0
+menu-default-dark-defaultStyle,pass,pass,"[240, 204]","[240, 204]",0.017116013071895426,,0,0
+menu-item-default-light-defaultStyle,pass,pass,"[280, 36]","[280, 36]",0.015277777777777777,,0,0
+menu-item-default-dark-defaultStyle,pass,pass,"[280, 36]","[280, 36]",0.020634920634920634,,0,0
+menu-item-critical-light-defaultStyle,pass,pass,"[280, 36]","[280, 36]",0.010714285714285714,,0,0
+menu-item-critical-dark-defaultStyle,pass,pass,"[280, 36]","[280, 36]",0.014583333333333334,,0,0
+menu-item-description-light-defaultStyle,pass,pass,"[280, 68]","[280, 68]",0.03203781512605042,,0,0
+menu-item-description-dark-defaultStyle,pass,pass,"[280, 68]","[280, 68]",0.04007352941176471,,0,0
+context-menu-default-light-defaultStyle,pass,pass,"[204, 55]","[204, 55]",0.011497326203208556,,0,0
+context-menu-default-dark-defaultStyle,fail,fail,"[204, 55]","[204, 55]",0.0785204991087344,,0,0
+context-menu-lift-light-defaultStyle,pass,pass,"[140, 55]","[140, 55]",0.03792207792207792,,0,0
+context-menu-lift-dark-defaultStyle,pass,pass,"[140, 55]","[140, 55]",0.04792207792207792,,0,0
+dropdown-menu-default-light-defaultStyle,fail,fail,"[85, 40]","[85, 40]",0.09588235294117647,,0,0
+dropdown-menu-default-dark-defaultStyle,fail,fail,"[85, 40]","[85, 40]",0.08176470588235295,,0,0
+menubar-default-light-defaultStyle,fail,fail,"[152, 48]","[152, 48]",0.054276315789473686,,0,0
+menubar-default-dark-defaultStyle,fail,fail,"[152, 48]","[152, 48]",0.06853070175438597,,0,0
+toolbar-group-default-light-defaultStyle,pass,pass,"[112, 65]","[112, 65]",0.04519230769230769,,0,0
+toolbar-group-default-dark-defaultStyle,fail,fail,"[112, 65]","[112, 65]",0.11565934065934066,,0,0
+navigation-menu-default-light-defaultStyle,fail,fail,"[254, 40]","[254, 40]",0.07765748031496063,,0,0
+navigation-menu-default-dark-defaultStyle,fail,fail,"[254, 40]","[254, 40]",0.08828740157480315,,0,0
+dialog-default-light-defaultStyle,fail,fail,"[107, 40]","[107, 40]",0.11238317757009346,,0,0
+dialog-default-dark-defaultStyle,fail,fail,"[107, 40]","[107, 40]",0.10116822429906543,,0,0
+drawer-default-light-defaultStyle,fail,fail,"[85, 40]","[85, 40]",0.1038235294117647,,0,0
+drawer-default-dark-defaultStyle,fail,fail,"[85, 40]","[85, 40]",0.09176470588235294,,0,0
+hover-card-default-light-defaultStyle,fail,fail,"[38, 21]","[38, 21]",0.14160401002506265,,0,0
+hover-card-default-dark-defaultStyle,fail,fail,"[38, 21]","[38, 21]",0.31453634085213034,,0,0
+popover-default-light-defaultStyle,fail,fail,"[97, 40]","[97, 40]",0.09458762886597938,,0,0
+popover-default-dark-defaultStyle,fail,fail,"[97, 40]","[97, 40]",0.10283505154639175,,0,0
+toast-default-light-defaultStyle,fail,fail,"[800, 70]","[800, 69]",,800x70 vs 800x69,0,0
+toast-default-dark-defaultStyle,fail,fail,"[800, 70]","[800, 69]",,800x70 vs 800x69,0,0
+toast-destructive-light-defaultStyle,fail,fail,"[800, 70]","[800, 69]",,800x70 vs 800x69,0,0
+toast-destructive-dark-defaultStyle,fail,fail,"[800, 70]","[800, 69]",,800x70 vs 800x69,0,0
+toast-no-icon-light-defaultStyle,fail,fail,"[800, 70]","[800, 69]",,800x70 vs 800x69,0,0
+toast-no-icon-dark-defaultStyle,fail,fail,"[800, 70]","[800, 69]",,800x70 vs 800x69,0,0
+tooltip-default-light-defaultStyle,fail,fail,"[58, 40]","[58, 40]",0.06939655172413793,,0,0
+tooltip-default-dark-defaultStyle,fail,fail,"[58, 40]","[58, 40]",0.08103448275862069,,0,0
+swiper-default-light-defaultStyle,pass,pass,"[800, 256]","[800, 256]",0.0094482421875,,0,0
+swiper-default-dark-defaultStyle,pass,pass,"[800, 256]","[800, 256]",0.009501953125,,0,0
+swiper-sheet-light-defaultStyle,pass,pass,"[800, 256]","[800, 256]",0.0094482421875,,0,0
+swiper-sheet-dark-defaultStyle,pass,pass,"[800, 256]","[800, 256]",0.009501953125,,0,0
+refresh-trigger-default-light-defaultStyle,pass,pass,"[800, 258]","[800, 258]",0.005939922480620155,,0,0
+refresh-trigger-default-dark-defaultStyle,pass,pass,"[800, 258]","[800, 258]",0.006438953488372093,,0,0
+alert-default-light-defaultStyle,fail,fail,"[800, 66]","[800, 65]",,800x66 vs 800x65,0,0
+alert-default-dark-defaultStyle,fail,fail,"[800, 66]","[800, 65]",,800x66 vs 800x65,0,0
+alert-info-light-defaultStyle,fail,fail,"[800, 66]","[800, 65]",,800x66 vs 800x65,0,0
+alert-info-dark-defaultStyle,fail,fail,"[800, 66]","[800, 65]",,800x66 vs 800x65,0,0
+alert-success-light-defaultStyle,fail,fail,"[800, 66]","[800, 65]",,800x66 vs 800x65,0,0
+alert-success-dark-defaultStyle,fail,fail,"[800, 66]","[800, 65]",,800x66 vs 800x65,0,0
+alert-warning-light-defaultStyle,fail,fail,"[800, 66]","[800, 65]",,800x66 vs 800x65,0,0
+alert-warning-dark-defaultStyle,fail,fail,"[800, 66]","[800, 65]",,800x66 vs 800x65,0,0
+alert-destructive-light-defaultStyle,fail,fail,"[800, 66]","[800, 65]",,800x66 vs 800x65,0,0
+alert-destructive-dark-defaultStyle,fail,fail,"[800, 66]","[800, 65]",,800x66 vs 800x65,0,0
+alert-inline-light-defaultStyle,pass,pass,"[800, 44]","[800, 44]",0.012926136363636364,,0,0
+alert-inline-dark-defaultStyle,pass,pass,"[800, 44]","[800, 44]",0.015482954545454546,,0,0
+alert-text-only-light-defaultStyle,fail,fail,"[800, 144]","[800, 142]",,800x144 vs 800x142,0,0
+alert-text-only-dark-defaultStyle,fail,fail,"[800, 144]","[800, 142]",,800x144 vs 800x142,0,0
+icon-default-light-defaultStyle,pass,pass,"[28, 28]","[28, 28]",0.0,,0,0
+icon-default-dark-defaultStyle,pass,pass,"[28, 28]","[28, 28]",0.0,,0,0
+icon-search-light-defaultStyle,fail,fail,"[28, 28]","[28, 28]",0.06887755102040816,,0,0
+icon-search-dark-defaultStyle,fail,fail,"[28, 28]","[28, 28]",0.07525510204081633,,0,0
+icon-favorite-light-defaultStyle,pass,pass,"[28, 28]","[28, 28]",0.0,,0,0
+icon-favorite-dark-defaultStyle,pass,pass,"[28, 28]","[28, 28]",0.0,,0,0
+text-typography-display-light-defaultStyle,fail,fail,"[243, 175]","[243, 174]",,243x175 vs 243x174,0,0
+text-typography-display-dark-defaultStyle,fail,fail,"[243, 175]","[243, 174]",,243x175 vs 243x174,0,0
+text-typography-headline-light-defaultStyle,fail,fail,"[253, 166]","[253, 166]",0.05724082099147578,,0,0
+text-typography-headline-dark-defaultStyle,fail,fail,"[253, 166]","[253, 166]",0.07405114529263299,,0,0
+text-typography-title-light-defaultStyle,fail,fail,"[138, 123]","[138, 124]",,138x123 vs 138x124,0,0
+text-typography-title-dark-defaultStyle,fail,fail,"[138, 123]","[138, 124]",,138x123 vs 138x124,0,0
+text-typography-body-light-defaultStyle,fail,fail,"[117, 191]","[117, 190]",,117x191 vs 117x190,0,0
+text-typography-body-dark-defaultStyle,fail,fail,"[117, 191]","[117, 190]",,117x191 vs 117x190,0,0
+text-typography-weight-light-defaultStyle,pass,pass,"[135, 198]","[135, 198]",0.020650953984287318,,0,0
+text-typography-weight-dark-defaultStyle,fail,fail,"[135, 198]","[135, 198]",0.07119341563786008,,0,0
+text-typography-primitive-light-defaultStyle,pass,pass,"[188, 258]","[188, 258]",0.03356424212436088,,0,0
+text-typography-primitive-dark-defaultStyle,fail,fail,"[188, 258]","[188, 258]",0.05803645060201221,,0,0
+text-colors-brand-light-defaultStyle,pass,pass,"[98, 111]","[98, 111]",0.044585401728258874,,0,0
+text-colors-brand-dark-defaultStyle,fail,fail,"[98, 111]","[98, 111]",0.05157198014340871,,0,0
+text-colors-status-light-defaultStyle,fail,fail,"[260, 190]","[260, 191]",,260x190 vs 260x191,0,0
+text-colors-status-dark-defaultStyle,fail,fail,"[260, 190]","[260, 191]",,260x190 vs 260x191,0,0
+text-colors-surface-light-defaultStyle,pass,pass,"[167, 270]","[167, 270]",0.013506320691949434,,0,0
+text-colors-surface-dark-defaultStyle,pass,pass,"[167, 270]","[167, 270]",0.022821024617431802,,0,0
+text-modifiers-light-defaultStyle,fail,fail,"[107, 170]","[107, 170]",0.07185266630016493,,0,0
+text-modifiers-dark-defaultStyle,fail,fail,"[107, 170]","[107, 170]",0.1080263881253436,,0,0
+text-wrap-light-defaultStyle,fail,fail,"[800, 237]","[800, 238]",,800x237 vs 800x238,0,0
+text-wrap-dark-defaultStyle,fail,fail,"[800, 237]","[800, 238]",,800x237 vs 800x238,0,0
+text-keep-all-light-defaultStyle,pass,pass,"[232, 150]","[232, 150]",0.04031609195402299,,0,0
+text-keep-all-dark-defaultStyle,fail,fail,"[232, 150]","[232, 150]",0.08362068965517241,,0,0
+text-textstyle-light-defaultStyle,fail,fail,"[200, 141]","[200, 140]",,200x141 vs 200x140,0,0
+text-textstyle-dark-defaultStyle,fail,fail,"[200, 141]","[200, 140]",,200x141 vs 200x140,0,0
+text-opacity-light-defaultStyle,pass,pass,"[166, 198]","[166, 198]",0.017494219301448215,,0,0
+text-opacity-dark-defaultStyle,pass,pass,"[166, 198]","[166, 198]",0.04086041134233905,,0,0
+text-rich-light-defaultStyle,pass,pass,"[256, 53]","[256, 53]",0.039652122641509434,,0,0
+text-rich-dark-defaultStyle,fail,fail,"[256, 53]","[256, 53]",0.06419516509433962,,0,0
+selectable-text-default-light-defaultStyle,fail,fail,"[203, 21]","[200, 21]",,203x21 vs 200x21,0,0
+selectable-text-default-dark-defaultStyle,fail,fail,"[203, 21]","[200, 21]",,203x21 vs 200x21,0,0
+selectable-text-styled-light-defaultStyle,fail,fail,"[255, 27]","[252, 27]",,255x27 vs 252x27,0,0
+selectable-text-styled-dark-defaultStyle,fail,fail,"[255, 27]","[252, 27]",,255x27 vs 252x27,0,0
+text-block-default-light-defaultStyle,pass,pass,"[360, 84]","[360, 84]",0.026554232804232806,,0,0
+text-block-default-dark-defaultStyle,fail,fail,"[360, 84]","[360, 84]",0.08039021164021164,,0,0
+link-default-light-defaultStyle,fail,fail,"[68, 21]","[68, 21]",0.27310924369747897,,0,0
+link-default-dark-defaultStyle,fail,fail,"[68, 21]","[68, 21]",0.2913165266106443,,0,0
+link-muted-light-defaultStyle,fail,fail,"[51, 21]","[51, 21]",0.28291316526610644,,0,0
+link-muted-dark-defaultStyle,fail,fail,"[51, 21]","[51, 21]",0.3062558356676004,,0,0
+link-underline-light-defaultStyle,fail,fail,"[84, 21]","[84, 21]",0.3356009070294785,,0,0
+link-underline-dark-defaultStyle,fail,fail,"[84, 21]","[84, 21]",0.3701814058956916,,0,0
+link-external-light-defaultStyle,fail,fail,"[55, 21]","[55, 21]",0.28484848484848485,,0,0
+link-external-dark-defaultStyle,fail,fail,"[55, 21]","[55, 21]",0.32727272727272727,,0,0
+definition-list-default-light-defaultStyle,fail,fail,"[90, 139]","[90, 139]",0.1270183852917666,,0,0
+definition-list-default-dark-defaultStyle,fail,fail,"[90, 139]","[90, 139]",0.14084732214228618,,0,0
+definition-list-columns-light-defaultStyle,fail,fail,"[800, 102]","[800, 103]",,800x102 vs 800x103,0,0
+definition-list-columns-dark-defaultStyle,fail,fail,"[800, 102]","[800, 103]",,800x102 vs 800x103,0,0
+definition-list-inline-light-defaultStyle,fail,fail,"[382, 18]","[382, 18]",0.2699243746364165,,0,0
+definition-list-inline-dark-defaultStyle,fail,fail,"[382, 18]","[382, 18]",0.2747236765561373,,0,0
+clickable-default-light-defaultStyle,pass,pass,"[138, 61]","[138, 61]",0.024233784746970778,,0,0
+clickable-default-dark-defaultStyle,pass,pass,"[138, 61]","[138, 61]",0.04526015680684248,,0,0
+focus-outline-default-light-defaultStyle,pass,pass,"[123, 61]","[123, 61]",0.022657603625216582,,0,0
+focus-outline-default-dark-defaultStyle,pass,pass,"[123, 61]","[123, 61]",0.03558576569372251,,0,0
+outlined-container-default-light-defaultStyle,pass,pass,"[121, 55]","[121, 55]",0.03305785123966942,,0,0
+outlined-container-default-dark-defaultStyle,fail,fail,"[121, 55]","[121, 55]",0.05138993238166792,,0,0
+subfocus-default-light-defaultStyle,pass,pass,"[177, 199]","[177, 199]",0.00681372966527553,,0,0
+subfocus-default-dark-defaultStyle,pass,pass,"[177, 199]","[177, 199]",0.021803934928881698,,0,0
+scrollview-default-light-defaultStyle,pass,pass,"[260, 160]","[260, 160]",0.011658653846153846,,0,0
+scrollview-default-dark-defaultStyle,pass,pass,"[260, 160]","[260, 160]",0.028629807692307694,,0,0
+popup-default-light-defaultStyle,pass,pass,"[128, 119]","[128, 119]",0.009716386554621849,,0,0
+popup-default-dark-defaultStyle,pass,pass,"[128, 119]","[128, 119]",0.036830357142857144,,0,0
+scrollbar-default-light-defaultStyle,pass,pass,"[240, 160]","[240, 160]",0.012369791666666666,,0,0
+scrollbar-default-dark-defaultStyle,fail,fail,"[240, 160]","[240, 160]",0.056979166666666664,,0,0

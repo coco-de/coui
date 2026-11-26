@@ -1,0 +1,86 @@
+{
+  "_comment": [
+    "Shared typography tier vectors. Read by coui_core (CoreTypography.atTier,",
+    "CoreBreakpoint.forWidth and the Figma token export), coui_flutter (the",
+    "text the theme draws at each viewport width) and coui_web (the variables",
+    "the stylesheet restates per tier) tests, so a tier that drifts on one",
+    "platform fails against the same numbers the others produce.",
+    "",
+    "Written by hand, not generated: a table read back from the code it checks",
+    "cannot fail when that code is wrong.",
+    "",
+    "roles: the size (logical px) and tracking (em) each role draws at under",
+    "CoreTypography.coui in each tier. The six heading roles step down below",
+    "desktop — display 8px per tier, headline 4px — and the mobile",
+    "headline-small, at 16px, tracks on the step below 20px. title-large,",
+    "body-medium and code-sm stand for the roles that keep one size at every",
+    "width.",
+    "",
+    "widths: the tier a viewport width in logical px resolves to. 768 and 1024",
+    "are the first widths of tablet and desktop; 767 and 1023 the last of the",
+    "tier below."
+  ],
+  "roles": [
+    {
+      "role": "display-large",
+      "mobile": { "size": 36, "trackingEm": -0.02 },
+      "tablet": { "size": 44, "trackingEm": -0.02 },
+      "desktop": { "size": 52, "trackingEm": -0.02 }
+    },
+    {
+      "role": "display-medium",
+      "mobile": { "size": 32, "trackingEm": -0.02 },
+      "tablet": { "size": 40, "trackingEm": -0.02 },
+      "desktop": { "size": 48, "trackingEm": -0.02 }
+    },
+    {
+      "role": "display-small",
+      "mobile": { "size": 28, "trackingEm": -0.02 },
+      "tablet": { "size": 36, "trackingEm": -0.02 },
+      "desktop": { "size": 44, "trackingEm": -0.02 }
+    },
+    {
+      "role": "headline-large",
+      "mobile": { "size": 24, "trackingEm": -0.02 },
+      "tablet": { "size": 28, "trackingEm": -0.02 },
+      "desktop": { "size": 32, "trackingEm": -0.02 }
+    },
+    {
+      "role": "headline-medium",
+      "mobile": { "size": 20, "trackingEm": -0.02 },
+      "tablet": { "size": 24, "trackingEm": -0.02 },
+      "desktop": { "size": 28, "trackingEm": -0.02 }
+    },
+    {
+      "role": "headline-small",
+      "mobile": { "size": 16, "trackingEm": -0.01 },
+      "tablet": { "size": 20, "trackingEm": -0.02 },
+      "desktop": { "size": 24, "trackingEm": -0.02 }
+    },
+    {
+      "role": "title-large",
+      "mobile": { "size": 20, "trackingEm": -0.02 },
+      "tablet": { "size": 20, "trackingEm": -0.02 },
+      "desktop": { "size": 20, "trackingEm": -0.02 }
+    },
+    {
+      "role": "body-medium",
+      "mobile": { "size": 14, "trackingEm": -0.01 },
+      "tablet": { "size": 14, "trackingEm": -0.01 },
+      "desktop": { "size": 14, "trackingEm": -0.01 }
+    },
+    {
+      "role": "code-sm",
+      "mobile": { "size": 12, "trackingEm": 0 },
+      "tablet": { "size": 12, "trackingEm": 0 },
+      "desktop": { "size": 12, "trackingEm": 0 }
+    }
+  ],
+  "widths": [
+    { "width": 0, "tier": "mobile" },
+    { "width": 767, "tier": "mobile" },
+    { "width": 768, "tier": "tablet" },
+    { "width": 1023, "tier": "tablet" },
+    { "width": 1024, "tier": "desktop" }
+  ]
+}

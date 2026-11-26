@@ -1,0 +1,9 @@
+# 배럴이 export 하지만 문서 카탈로그에 페이지가 없는 컴포넌트 디렉터리.
+# Ratchet: net-new 항목은 CI 를 깨뜨린다. 이 목록은 줄어들기만 한다.
+#
+# 여기 없는 두 부류는 애초에 대상이 아니다:
+#  - `infra/` · `locale/` 카테고리 — 가드가 경로 규칙으로 뺀다 (목록이 아니라 규칙).
+#  - 이름만 갈리고 페이지는 있는 것 (stacks → stack-layout 류) — 가드 안 NAME_MAP.
+#
+# image_properties — 위젯이 0개다. coui_core 데이터 모델에 붙는 extension 뿐.
+image_properties

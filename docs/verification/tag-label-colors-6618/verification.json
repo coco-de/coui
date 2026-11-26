@@ -1,0 +1,347 @@
+{
+  "issue": 6618,
+  "originalReferenceSource": "54417c107f87b6444291c9f71eff5b90540c706f",
+  "functionalSource": "54417 plus exact frozen Web style and permanent test, subsequently committed9f04",
+  "runtimeSource": "9f04db9e46dc03bd0b05b3fc5091c2d94a4695a9",
+  "ownSourcePathsSHA256": {
+    "packages/coui_web/lib/src/components/display/tag/tag_style.dart": "1d7851ff0aa78fa2fc2e97bc5cbdd1b0ef1c456478ce9f82b1ecc28c78d030ea",
+    "tool/parity/test/web/tag_label_color_test.dart": "9ed4fa926e635d6d735e92902d136d6ff4b0a3f1858b2e58bb6129561de226c7"
+  },
+  "scope": "Condition two existing Web foreground emission fragments when nested label color is explicit. Widget/DOM/Text/Icon/IconTheme/Core/defaults/public signatures/Resolved/shared helpers unchanged.",
+  "contractReassessment": "Existing Web raw label already colors root/Text/currentColor Icon together. Token restoration follows that same Web contract. Earlier mixed-child HOLD was an unverified risk, reassessed with actual original raw and matching-color controls; Native IconTheme asymmetry is not changed.",
+  "tests": {
+    "sameOriginalTag8Before": {
+      "pass": 6,
+      "fail": 2
+    },
+    "sameImmutableTag8Candidate": {
+      "pass": 8,
+      "fail": 0
+    },
+    "newPermanentMixed8": 8,
+    "existingWebTagAndStyle": 33,
+    "existingCoreTagStyle": 34,
+    "actualCombinedNewAndExisting": 75,
+    "logicalOverlapNotSummed": true,
+    "fatalTouched2Exit": 0,
+    "formatExit": 0,
+    "NativeOriginalPublicMixed": {
+      "source": "54417",
+      "cases": 16,
+      "pass": 16,
+      "measurement": "actual RenderParagraph color and actual SvgPicture ColorFilter in public CoUIApp; no private helper or PNG numeric comparison"
+    }
+  },
+  "actualBrowser": {
+    "browser": "Root-owned Ego26/p1 managed Chrome156",
+    "observations": 60,
+    "composition": "original26+candidate26+original matching raw4+candidate matching raw4",
+    "tokenAndAlphaThemeCasesRestored": 4,
+    "rawEquivalent4RootTextIconAndSVGNumericPaintExact": true,
+    "unchangedControlPairs": 14,
+    "explicitAmbientIconExplicitTextCallerCSSImportantIDPreserved": true,
+    "normalClassPriority": "Original foreground inline defeats ordinary class; candidate label token wins natural cascade. Argument order does not promise caller class priority.",
+    "NativeIconAsymmetryChangedOrDeclaredMatched": false,
+    "screenshotsRetained": 2
+  },
+  "defaultSSR": {
+    "defaultWholeBodyByteExact": true,
+    "foregroundOnlyWholeBodyByteExact": true,
+    "existingRawLabelWholeBodyByteExact": true,
+    "all13WholeBodiesIdenticalClaim": false
+  },
+  "canonical": {
+    "source": "9f04db9e46dc03bd0b05b3fc5091c2d94a4695a9",
+    "actualALL": 40,
+    "actualDefault": 8,
+    "freshNativeJSONPNG": 8,
+    "freshWebJSONPNG": 8,
+    "NativeNoRoot": 0,
+    "NativeHiddenRunnerHooksExcluded": 3,
+    "NativeCaptureSeconds": 9.128572375,
+    "WebCaptureSeconds": 9.752672,
+    "currentSourceTracked": 25154,
+    "historicalCaptureReuse": 0,
+    "historical566Comparison": {
+      "files": 32,
+      "all32ByteExact": true,
+      "all16PNG_RGBAExact": true,
+      "all16JSONByRoleExact": true,
+      "pixelAndPropertyKeyRoleVerdictsExact": true,
+      "completePropertyDiff8RolesExact": true
+    }
+  },
+  "scopedReports": {
+    "source": "9f04db9e46dc03bd0b05b3fc5091c2d94a4695a9",
+    "decoder": "Existing unmodified source9f04 reporter; separate unmerged ICC work6620 is not used.",
+    "baselineSource": "54417c107f87b6444291c9f71eff5b90540c706f",
+    "realGitBaselineBlobs": 32,
+    "allowlistUnchanged": true,
+    "actualResults": {
+      "baseline": {
+        "exit": 1,
+        "counts": {
+          "pass": 2,
+          "fail": 6,
+          "infra": 0,
+          "skipped": 0
+        },
+        "seconds": 4.541161208
+      },
+      "pixel": {
+        "exit": 1,
+        "counts": {
+          "pass": 0,
+          "fail": 8,
+          "infra": 0,
+          "skipped": 0
+        },
+        "seconds": 4.336386707999999
+      },
+      "property": {
+        "exit": 1,
+        "counts": {
+          "pass": 6,
+          "fail": 2,
+          "infra": 0,
+          "skipped": 0
+        },
+        "seconds": 4.263575833000001
+      }
+    },
+    "actualBeforeRegressionCommandRerun": false,
+    "criteriaBaselineAllowlistPromotions": 0,
+    "defaultFailureReductionClaim": false
+  },
+  "documentationBuild": {
+    "source": "9f04db9e46dc03bd0b05b3fc5091c2d94a4695a9",
+    "exit": 0,
+    "seconds": 101.33160562500001,
+    "actualRoutes": 361,
+    "JasprHTML": 363,
+    "HTMLIncludingFlutter": 365,
+    "outputHashedFiles": 5044,
+    "representativeHTML": 3,
+    "allTrackedExact": 25154,
+    "actual232AllFieldsRootsGraphLockExact": true,
+    "rawConfigURISpellingChanges": [
+      "coui_workspace",
+      "coui_widgetbook",
+      "docs_app",
+      "docs_core",
+      "docs_site",
+      "coui",
+      "coui_core",
+      "coui_flutter",
+      "coui_i10n",
+      "coui_lints",
+      "coui_mcp",
+      "coui_web"
+    ],
+    "automaticRootExamplePubPreflightObserved": true,
+    "observedPubPreflightLines": [
+      "[FLUTTER] Resolving dependencies in `/Users/minhyeok/orca/workspaces/coui/tag-label-ownership-20261123`...",
+      "[FLUTTER] Got dependencies in `/Users/minhyeok/orca/workspaces/coui/tag-label-ownership-20261123`!",
+      "[FLUTTER] Got dependencies in `../packages/coui_flutter/example`."
+    ],
+    "directWorkerProjectPub": 0,
+    "totalPubZeroClaim": false,
+    "portClosed": true,
+    "wholeBuildReclaimed": true
+  },
+  "ownedSSRReload": {
+    "source": "9f04db9e46dc03bd0b05b3fc5091c2d94a4695a9",
+    "actualLoadedTagStyleLibraries": 1,
+    "reloadSourcesSuccess": true,
+    "HTTPBefore": 200,
+    "HTTPAfter": 200,
+    "publicTagCases": 6,
+    "actualOwnersEachResponse": 18,
+    "allOwnerClassesStylesExact": true,
+    "wholeBodySHAExact": false,
+    "actualVMExit": 0,
+    "seconds": 4.004215833,
+    "sourceInvariant": true,
+    "ports": [
+      {
+        "port": 51107,
+        "closed": true
+      },
+      {
+        "port": 51114,
+        "closed": true
+      }
+    ],
+    "pidClosed": true,
+    "jobboxClosedAndReclaimed": true,
+    "scope": "Owned server Dart VM reload, not browser-client or Native-app hot reload."
+  },
+  "preservedSetupCorrections": [
+    "Original launcher newline serialization failed before runtime spawn.",
+    "Original mixed generator used a nonexported Dom name; public Component.element recovery reran only generator/harness, not Native16 or originalTag8.",
+    "Candidate launcher ownership path needed one extra parent before job spawn.",
+    "Docs cleanup-wrapper PNG magic literal syntax failed before cleanup/build.",
+    "Missing temporary MASTER pointer failed before Jaspr/Pub; existing same pinned CLI024/81 bound by ownership jobRunner absolute parent. Global pointer/config unchanged.",
+    "Exactly one actual Jaspr build; both pre-build wrapper exits and empty setup folder are preserved.",
+    "Candidate raw4 inherited productChanges:0 described generator behavior; separate correction records generatorMutatesProductFiles:false and one frozen product patch, preserving original manifest and observations."
+  ],
+  "cleanup": {
+    "sourceCompilerBootstrapSpill": 0,
+    "generatedHTMLCASUnlinked": 60,
+    "generatedHTMLBytesReclaimed": 1219519670,
+    "sourceBodiesAndActualObservationsRetained": true,
+    "RootPNG2Retained": true,
+    "allOwnedNativeDocsSSRReportsJobsClosedAndReclaimed": true
+  },
+  "limits": [
+    "Native and Web have intentionally different default Icon inheritance mechanisms; no new cross-platform Icon-color equality policy is introduced.",
+    "Matching raw/token assertions use actual Web computed owner and SVG paint values. Native raw alpha/ARGB precision or arbitrary cross-platform screenshot RGBA equivalence is not claimed.",
+    "Existing default8 pixel/property differences remain; no static failure reduction or full-library audit is claimed.",
+    "Historical full566 Web data is the retained actual first795+manual43 set; no new before-default capture or before-regression command is claimed.",
+    "Normal utility class ordering is not a universal caller-wins guarantee.",
+    "Raw untouched original fixtures and previously rejected candidate remain preserved as historical evidence."
+  ],
+  "artifactRoot": "weever-tag-label-ownership-1mjkbt2f",
+  "refs": [
+    {
+      "label": "original-handoff",
+      "artifactRelativePath": "evidence/original-handoff.json",
+      "sha256": "99b1a88c8748eda6d8e3cc025ba27accb2569bc31014b3b30a47f052afac6448"
+    },
+    {
+      "label": "source-contract-reassessment",
+      "artifactRelativePath": "evidence/source-contract-note.json",
+      "sha256": "8c49a76f4ed9c0a1b4184494a78fd20d87ce88c682779002f7021f1a46b5dbdc"
+    },
+    {
+      "label": "actual-Native16",
+      "artifactRelativePath": "evidence/Native/observed.json",
+      "sha256": "5c24966cc74a430e75d1ac414335accc5f2eea392ee5de057c235d614004d62e"
+    },
+    {
+      "label": "immutable-current-Tag8",
+      "artifactRelativePath": "evidence/web-original8-protocol.json",
+      "sha256": "f4e36f4f8e81cb114641612f3f5ed6155a11c301a9f1c7bf0a42d3203dc6a970"
+    },
+    {
+      "label": "candidate-test-static",
+      "artifactRelativePath": "evidence/candidate/handoff.json",
+      "sha256": "99eed35ea5f48a0cee6c303e466053345fe229e76222e227817796401330ab71"
+    },
+    {
+      "label": "actual-suite-counts",
+      "artifactRelativePath": "evidence/candidate/actual-suite-counts.json",
+      "sha256": "20f1a59ec3eb0a93e36492f53b020a4bc58a2df658a304aa521ae816934d0891"
+    },
+    {
+      "label": "source-API",
+      "artifactRelativePath": "evidence/candidate/api-source-proof.json",
+      "sha256": "054bdb7fefcfe4bdb6834d33769f120a83601a54d497f91d6c1c236f44eb0aac"
+    },
+    {
+      "label": "committed-source",
+      "artifactRelativePath": "evidence/candidate/committed-source-freeze.json",
+      "sha256": "ecdbaceefdd07a1021d728a33cf784184b3ab2bcc8fa08e3532a40b9ec65f181"
+    },
+    {
+      "label": "actual-browser60-comparison",
+      "artifactRelativePath": "evidence/Root/actual-tag-comparison.json",
+      "sha256": "a5439b4773f8c1c85294cdd99cfeffd90e85dfe9e4d3acd66ccff10e384a13d9"
+    },
+    {
+      "label": "actual-original26",
+      "artifactRelativePath": "evidence/Root/original-actual26.json",
+      "sha256": "6b5bf4413a8b308c4fbc373a1e4e2d00f6b0d4712e1ec9433d24f388a914e0a6"
+    },
+    {
+      "label": "actual-candidate26",
+      "artifactRelativePath": "evidence/Root/candidate-actual.json",
+      "sha256": "b3d0ef2e809d72c909aeb6f47ad8d81b361c3c4ddb20b114b5841130cf7116f2"
+    },
+    {
+      "label": "actual-original-raw4",
+      "artifactRelativePath": "evidence/Root/original-raw4-actual.json",
+      "sha256": "419afecc2b498e95899b2b7ab21278346a29f27bef623ef562040c4581319095"
+    },
+    {
+      "label": "actual-candidate-raw4",
+      "artifactRelativePath": "evidence/Root/candidate-raw4-actual.json",
+      "sha256": "ec4ccb2e5a177e7e93c0d26dc3fcc8f7ed6e4ea086d1d04c5e1acd917e6ce2b1"
+    },
+    {
+      "label": "raw4-metadata-correction",
+      "artifactRelativePath": "evidence/candidate/raw4-metadata-correction.json",
+      "sha256": "ed9a91636b2c75bc5bb54bcdb9d35d0390594ec091cf5d5e07891a69f0eadad9"
+    },
+    {
+      "label": "default-and-raw-SSR-byte-controls",
+      "artifactRelativePath": "evidence/candidate/mixed13-whole-SSR-comparison.json",
+      "sha256": "d6bf37a903031bb5d7e9198a92e2738f84bec79c9866085980065acd2c7c52ed"
+    },
+    {
+      "label": "fresh-Native8",
+      "artifactRelativePath": "evidence/Native/canonical-final/handoff.json",
+      "sha256": "ffa4e1f8080a961cf35fb5fd61abe591006dd287fd70cc5a61fd65f07ad3f81d"
+    },
+    {
+      "label": "fresh-Web8",
+      "artifactRelativePath": "evidence/canonical-web-final/exit.json",
+      "sha256": "b44ef85cfd4ed6e6c6b0dfd24cecc20a80fdde652758cd584a7c19e0f2168fb4"
+    },
+    {
+      "label": "actual-scoped-reports",
+      "artifactRelativePath": "evidence/reports-final/summary.json",
+      "sha256": "6e7032e26b08df30bcddc00bfe7347cd3e38979dce57383e45ffdb1f235e2397"
+    },
+    {
+      "label": "real-Git-baseline32",
+      "artifactRelativePath": "evidence/reports-final/inputs.json",
+      "sha256": "b2cdd37e6c86ca8d9636cd96579d840951410f34f84bd00baa90380ef5a288fd"
+    },
+    {
+      "label": "reports-owned-EOF",
+      "artifactRelativePath": "evidence/reports-exit.json",
+      "sha256": "58ee5e69fc3d63a85ade3fa0bde5062e51fbc5df2561df975ce869e3c52688b8"
+    },
+    {
+      "label": "docs-actual-build",
+      "artifactRelativePath": "evidence/docs/docs-final/final-proof.json",
+      "sha256": "708373d23ac23419a1f1ded30854f829418de3c024cf82c79ed9f6498bea6de7"
+    },
+    {
+      "label": "docs-source-final",
+      "artifactRelativePath": "evidence/docs/docs-final/source-final.json",
+      "sha256": "71304ccc7c94b30ffb4ac967ae6c3f326eb0be6a58d391e8791d4c3e210abd02"
+    },
+    {
+      "label": "docs-output-index",
+      "artifactRelativePath": "evidence/docs/docs-final/output-index.json",
+      "sha256": "23c6305eca702399ae7a272d4fd5e914d53e9f846afb2bd86c683f62fa920395"
+    },
+    {
+      "label": "docs-cli-binding-setup-recovery",
+      "artifactRelativePath": "evidence/docs/same-cli-absolute-binding.json",
+      "sha256": "5084da858b535ce5a96d435ed52be3ac3303d2033174959128014c5f4a6dad81"
+    },
+    {
+      "label": "SSR-actual-reload",
+      "artifactRelativePath": "evidence/owned-ssr-reload/ssr-reload-proof.json",
+      "sha256": "8bb616a82ecc7e40a64fbc9bd0fbb32dde168c745ead69536db3a6ed629dd75c"
+    },
+    {
+      "label": "SSR-VM-responses",
+      "artifactRelativePath": "evidence/owned-ssr-reload/vm-responses.json",
+      "sha256": "82d244bb72d3ba19274298093fdd1822fba1b8991a56019940e792f4920fa650"
+    },
+    {
+      "label": "SSR-owned-EOF",
+      "artifactRelativePath": "evidence/owned-ssr-reload/jobbox-exit.json",
+      "sha256": "2e4e154dd3838859d1764c2d8e465fc9248d93ea40c50ffdfabc23adf265f442"
+    },
+    {
+      "label": "generated60-HTML-CAS-cleanup",
+      "artifactRelativePath": "evidence/browser-generated-cleanup.json",
+      "sha256": "9e71df35766a40f75a30fa5f2b31a0dab5a9c8206d204ee9a02ba52df90ea83a"
+    }
+  ]
+}

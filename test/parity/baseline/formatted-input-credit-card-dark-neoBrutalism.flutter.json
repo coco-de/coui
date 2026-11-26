@@ -1,0 +1,69 @@
+{
+  "key": "formatted-input-credit-card-dark-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "formatted-input-credit-card-dark-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "shadowBlurUnit": "css-radius",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 19.5,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 147,
+        "g": 149,
+        "b": 150,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 22,
+        "g": 23,
+        "b": 24,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 244,
+        "g": 245,
+        "b": 247,
+        "a": 1.0
+      },
+      "borderWidthPx": 4.0,
+      "borderRadiusPx": [
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [
+        {
+          "offsetX": 4.0,
+          "offsetY": 4.0,
+          "blur": 0.0,
+          "spread": 0.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1.0
+          }
+        }
+      ],
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 48.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

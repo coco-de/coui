@@ -1,0 +1,45 @@
+{
+  "key": "button-docs-v2-a6403a8e1f82da5c9275abc7260c8f08-dark-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "button-docs-v2-a6403a8e1f82da5c9275abc7260c8f08-dark-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSizePx": null,
+      "lineHeightPx": null,
+      "letterSpacingPx": null,
+      "color": null,
+      "backgroundColor": {
+        "r": 42,
+        "g": 43,
+        "b": 44,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        16.0,
+        16.0,
+        16.0,
+        16.0
+      ],
+      "paddingPx": [
+        24.0,
+        24.0,
+        24.0,
+        24.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 140.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

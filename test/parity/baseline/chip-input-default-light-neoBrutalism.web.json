@@ -1,0 +1,75 @@
+{
+  "key": "chip-input-default-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "Flutter\n                \n                #co-button-63nhh8:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-63nhh8:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n              \n              \n                Dart\n                \n                #co-button-7fza3i:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-7fza3i:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}",
+    "layout": {
+      "width": 800,
+      "height": 49,
+      "direction": "row",
+      "innerPaddingLeft": "10px",
+      "innerPaddingRight": "10px",
+      "children": [
+        {
+          "x": 14,
+          "y": 10,
+          "width": 83.71875,
+          "height": 29
+        },
+        {
+          "x": 103.71875,
+          "y": 10,
+          "width": 71.65625,
+          "height": 29
+        },
+        {
+          "x": 181.375,
+          "y": 10,
+          "width": 600.625,
+          "height": 29
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "12px",
+      "lineHeight": "17px",
+      "letterSpacing": "-0.12px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(31, 32, 33)",
+      "borderRightColor": "rgb(31, 32, 33)",
+      "borderBottomColor": "rgb(31, 32, 33)",
+      "borderLeftColor": "rgb(31, 32, 33)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "6px",
+      "paddingRight": "14px",
+      "paddingBottom": "6px",
+      "paddingLeft": "10px",
+      "outlineWidth": "2px",
+      "outlineStyle": "solid",
+      "outlineColor": "rgba(0, 0, 0, 0)",
+      "outlineOffset": "2px",
+      "boxShadow": "rgb(0, 0, 0) 4px 4px 0px 0px",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 49
+    }
+  }
+}

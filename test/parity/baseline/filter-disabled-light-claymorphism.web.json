@@ -1,0 +1,75 @@
+{
+  "key": "filter-disabled-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "SvelteSvelte\n                    \n                  \n                  \n                    \n                      VueVue\n                    \n                  \n                  \n                    \n                      ReactReact\n                    \n                  \n                  \n                    \n                      \n                    \n                    \n                      \n                        #co-button-gltj5o:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-gltj5o:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n                      \n                      \n                        \n                      \n                    \n                  \n                \n              \n              \n              \n                \n                  \n                    \n                      SvelteSvelte\n                    \n                  \n                  \n                    \n                      VueVue\n                    \n                  \n                  \n                    \n                      ReactReact\n                    \n                  \n                  \n                    \n                      \n                    \n                    \n                      \n                        #co-button-8t4b2k:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-8t4b2k:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}",
+    "layout": {
+      "width": 214.375,
+      "height": 92,
+      "direction": "column",
+      "innerPaddingLeft": "4px",
+      "innerPaddingRight": "4px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 214.375,
+          "height": 40
+        },
+        {
+          "x": 0,
+          "y": 40,
+          "width": 214.375,
+          "height": 12
+        },
+        {
+          "x": 0,
+          "y": 52,
+          "width": 214.375,
+          "height": 40
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 214.375,
+      "heightPx": 92
+    }
+  }
+}

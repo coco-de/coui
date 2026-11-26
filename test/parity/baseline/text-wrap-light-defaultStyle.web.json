@@ -1,0 +1,69 @@
+{
+  "key": "text-wrap-light-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "overflow / maxLines\n                컨테이너 폭을 넘으면 말줄임표로 잘려야 하는 긴 문장이에요. 다람쥐 헌 쳇바퀴에 타고파, 다람쥐 헌 쳇바퀴에 타고파, 말줄임표가 보일 때까지 같은 문장을 되풀이해요.\n                maxLines 2 로 줄 수를 제한한 긴 문장이에요. 다람쥐 헌 쳇바퀴에 타고파, 다람쥐 헌 쳇바퀴에 타고파, 둘째 줄에서 줄 수 제한이 걸리면 말줄임표로 잘려요.\n              \n              \n                textAlign\n                가운데 정렬\n                끝 정렬",
+    "layout": {
+      "width": 800,
+      "height": 237,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 16,
+          "y": 16,
+          "width": 768,
+          "height": 101
+        },
+        {
+          "x": 16,
+          "y": 141,
+          "width": 768,
+          "height": 80
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "16px",
+      "lineHeight": "22px",
+      "letterSpacing": "-0.16px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 237
+    }
+  }
+}

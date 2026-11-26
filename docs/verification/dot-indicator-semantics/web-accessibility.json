@@ -1,0 +1,23 @@
+[
+  {
+    "role": "tablist",
+    "name": "Page navigation"
+  },
+  {
+    "role": "group",
+    "name": "Item 2 of 3"
+  },
+  {
+    "role": "tab",
+    "name": "Go to item 1"
+  },
+  {
+    "role": "tab",
+    "name": "Go to item 2"
+  },
+  {
+    "role": "tab",
+    "name": "Go to item 3"
+  }
+]
+

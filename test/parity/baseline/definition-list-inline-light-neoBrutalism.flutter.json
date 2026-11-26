@@ -1,0 +1,34 @@
+{
+  "key": "definition-list-inline-light-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "definition-list-inline-light-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 18.2,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 115,
+        "g": 116,
+        "b": 118,
+        "a": 1.0
+      },
+      "backgroundColor": null,
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": null,
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 385.16,
+      "heightPx": 18.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

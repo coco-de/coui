@@ -1,0 +1,1746 @@
+{
+  "widgetbook": {
+    "common": {
+      "increment_progress": "진행률 증가",
+      "selected_tab": "선택된 탭: {index}",
+      "current_page": "현재 페이지: {page}",
+      "total_pages": "전체 페이지: {count}",
+      "page_of": "{current}페이지 / {total}",
+      "hover_over_icon": "아이콘 위에 마우스를 올려보세요",
+      "counter": "카운터: {count}",
+      "selected_rows": "선택된 행: {count}",
+      "value": "값: {value}",
+      "selected_cells": "선택된 셀: {count}"
+    },
+    "loading": {
+      "indeterminate": "무한 로딩",
+      "with_value": "값 포함 ({percent}%)",
+      "custom_size": "사용자 정의 크기",
+      "custom_height": "사용자 정의 높이",
+      "circular_progress": "원형 진행률",
+      "linear_progress": "선형 진행률"
+    },
+    "tabs": {
+      "home": "홈",
+      "profile": "프로필",
+      "settings": "설정",
+      "overview": "개요",
+      "details": "상세",
+      "history": "히스토리",
+      "overview_content": "개요 콘텐츠",
+      "details_content": "상세 콘텐츠",
+      "history_content": "히스토리 콘텐츠",
+      "general_info": "항목에 대한 일반 정보",
+      "specifications": "상세 사양 및 속성",
+      "timeline": "변경 및 업데이트 타임라인"
+    },
+    "pagination": {
+      "show_skip_to_first": "처음으로 건너뛰기 표시",
+      "show_skip_to_last": "마지막으로 건너뛰기 표시",
+      "hide_previous_on_first": "첫 페이지에서 이전 숨기기",
+      "hide_next_on_last": "마지막 페이지에서 다음 숨기기",
+      "max_visible_pages": "최대 표시 페이지 수"
+    },
+    "tooltip": {
+      "helpful_message": "도움이 되는 툴팁 메시지입니다",
+      "tooltip_above": "위쪽 툴팁",
+      "tooltip_below": "아래쪽 툴팁",
+      "tooltip_left": "왼쪽 툴팁",
+      "tooltip_right": "오른쪽 툴팁",
+      "top": "위",
+      "bottom": "아래",
+      "left": "왼쪽",
+      "right": "오른쪽"
+    },
+    "radio": {
+      "small": "작게",
+      "medium": "중간",
+      "large": "크게"
+    },
+    "card": {
+      "card_content": "카드 콘텐츠",
+      "gradient_card": "그라데이션 카드",
+      "custom_decoration": "커스텀 데코레이션이 적용된 카드"
+    },
+    "alert": {
+      "title": "알림 제목",
+      "message": "알림 메시지입니다."
+    },
+    "accordion": {
+      "what_is_coui": "CoUI Flutter란?",
+      "what_is_coui_answer": "CoUI Flutter는 일관된 디자인 패턴으로 현대적이고 접근성 높은 Flutter 애플리케이션을 구축하기 위해 설계된 종합 UI 컴포넌트 라이브러리입니다.",
+      "how_to_install": "어떻게 설치하나요?",
+      "how_to_install_answer": "pubspec.yaml 의존성에 coui_flutter를 추가하고 flutter pub get을 실행하여 패키지를 설치하세요.",
+      "is_customizable": "커스터마이징이 가능한가요?",
+      "is_customizable_answer": "네! CoUI Flutter는 ThemeData를 통해 색상, 타이포그래피, 간격 등을 커스터마이징할 수 있는 포괄적인 테마 지원을 제공합니다.",
+      "getting_started": "시작하기",
+      "getting_started_answer": "패키지를 설치하고 프로젝트에 가져오는 것으로 시작하세요. 자세한 설정 방법은 문서를 참조하세요.",
+      "features_expanded": "기능 (기본 확장됨)",
+      "features_answer": "CoUI Flutter는 버튼, 폼, 다이얼로그, 네비게이션 컴포넌트 등을 포함합니다. 모든 컴포넌트는 접근성과 테마를 고려하여 설계되었습니다.",
+      "support": "지원",
+      "support_answer": "질문이나 지원이 필요하면 GitHub 저장소를 방문하거나 docs.coui.dev에서 문서를 확인하세요."
+    },
+    "skeleton": {
+      "skeleton_enabled": "스켈레톤 활성화:",
+      "title_text": "제목입니다",
+      "description_text": "긴 설명 텍스트입니다",
+      "short_text": "짧은 텍스트",
+      "without_skeleton": "스켈레톤 없이:",
+      "with_skeleton": "스켈레톤 포함:",
+      "user_name": "사용자 이름",
+      "user_email": "user@example.com",
+      "article_title": "기사 제목",
+      "posted_date": "2024년 1월 1일 게시",
+      "bio_description": "일상을 기록하는 개발자입니다",
+      "show_content": "콘텐츠 표시",
+      "show_loading": "로딩 표시",
+      "article_content": "이것은 기사 내용의 예시입니다. 로딩 중일 때 스켈레톤으로 대체됩니다."
+    },
+    "toast": {
+      "success": "성공",
+      "operation_completed": "작업이 성공적으로 완료되었습니다",
+      "show_toast": "토스트 표시",
+      "toast_at": "{location}에 토스트",
+      "top_left": "왼쪽 상단",
+      "top_center": "상단 중앙",
+      "top_right": "오른쪽 상단",
+      "bottom_left": "왼쪽 하단",
+      "bottom_center": "하단 중앙",
+      "bottom_right": "오른쪽 하단"
+    },
+    "chip": {
+      "chip": "칩"
+    },
+    "checkbox": {
+      "accept_terms": "이용약관에 동의합니다",
+      "tristate": "세 가지 상태"
+    },
+    "toggle": {
+      "toggle": "토글"
+    },
+    "dialog": {
+      "basic_dialog": "기본 다이얼로그",
+      "basic_title": "기본 다이얼로그",
+      "basic_content": "제목과 내용이 있는 간단한 다이얼로그입니다.",
+      "simple_dialog_content": "제목과 내용이 있는 간단한 다이얼로그입니다.",
+      "show_basic": "기본 표시",
+      "show_basic_dialog": "기본 다이얼로그 표시",
+      "confirm_action": "작업 확인",
+      "confirm_title": "확인",
+      "confirm_content": "정말 이 작업을 수행하시겠습니까?",
+      "confirm_action_content": "정말 이 작업을 수행하시겠습니까? 이 작업은 취소할 수 없습니다.",
+      "cancel": "취소",
+      "confirm": "확인",
+      "show_confirmation": "확인 표시",
+      "show_confirmation_dialog": "확인 다이얼로그 표시",
+      "warning": "경고",
+      "warning_title": "경고",
+      "warning_content": "이 작업은 데이터에 영향을 미칠 수 있습니다. 신중하게 진행하세요.",
+      "dismiss": "닫기",
+      "show_warning": "경고 표시",
+      "show_warning_dialog": "경고 다이얼로그 표시"
+    },
+    "popover": {
+      "popover_content": "팝오버 콘텐츠",
+      "content_title": "팝오버 제목",
+      "content_description": "사용자 정의 가능한 콘텐츠가 있는 팝오버입니다.",
+      "customizable_content": "사용자 정의 가능한 콘텐츠가 있는 팝오버입니다.",
+      "show_popover": "팝오버 표시",
+      "popover_at": "{position}에 팝오버",
+      "top": "상단",
+      "bottom": "하단",
+      "left": "왼쪽",
+      "right": "오른쪽"
+    },
+    "text_field": {
+      "enter_name": "이름을 입력하세요",
+      "type_here": "여기에 입력하세요"
+    },
+    "button": {
+      "primary_button": "기본 버튼",
+      "secondary_button": "보조 버튼",
+      "dashed_button": "파일 업로드",
+      "upload_file": "파일 업로드"
+    },
+    "command": {
+      "placeholder": "명령어 검색...",
+      "item": "항목",
+      "category_recent": "최근 항목",
+      "category_actions": "작업",
+      "recent_item_1": "최근 파일 1",
+      "recent_item_2": "최근 파일 2",
+      "action_new": "새로 만들기",
+      "action_open": "열기",
+      "action_save": "저장"
+    },
+    "fab": {
+      "default_tooltip": "추가",
+      "actions_tooltip": "메뉴 열기",
+      "mini_tooltip": "작은 FAB",
+      "fan_tooltip": "팬 메뉴",
+      "body_text": "FAB 버튼을 클릭해보세요",
+      "action_edit": "편집",
+      "action_edit_tooltip": "편집",
+      "action_share": "공유",
+      "action_share_tooltip": "공유",
+      "action_delete": "삭제",
+      "action_delete_tooltip": "삭제",
+      "action_camera": "카메라",
+      "action_gallery": "갤러리",
+      "action_video": "비디오",
+      "action_audio": "오디오"
+    },
+    "table": {
+      "name": "이름",
+      "email": "이메일",
+      "role": "역할",
+      "john_doe": "홍길동",
+      "john_email": "hong@example.com",
+      "developer": "개발자",
+      "jane_smith": "김영희",
+      "jane_email": "kim@example.com",
+      "designer": "디자이너",
+      "bob_johnson": "이철수",
+      "bob_email": "lee@example.com",
+      "manager": "매니저",
+      "select": "선택",
+      "product": "제품",
+      "price": "가격",
+      "stock": "재고",
+      "laptop": "노트북",
+      "mouse": "마우스",
+      "keyboard": "키보드"
+    },
+    "switch": {
+      "switch": "스위치"
+    },
+    "switch_component": {
+      "switch_label": "스위치 라벨"
+    },
+    "select": {
+      "apple": "사과",
+      "banana": "바나나",
+      "cherry": "체리",
+      "date": "대추",
+      "choose_size": "크기를 선택하세요",
+      "small": "작게",
+      "medium": "중간",
+      "large": "크게",
+      "extra_large": "아주 크게",
+      "citrus_fruits": "감귤류",
+      "orange": "오렌지",
+      "lemon": "레몬",
+      "grapefruit": "자몽",
+      "berries": "베리류",
+      "strawberry": "딸기",
+      "blueberry": "블루베리",
+      "raspberry": "라즈베리"
+    },
+    "breadcrumb": {
+      "home": "홈",
+      "products": "제품",
+      "electronics": "전자제품",
+      "smartphones": "스마트폰",
+      "documents": "문서",
+      "projects": "프로젝트",
+      "current_folder": "현재 폴더",
+      "current_path": "현재 경로: {path}"
+    },
+    "badge": {
+      "primary": "기본",
+      "secondary": "보조",
+      "outline": "외곽선",
+      "destructive": "위험",
+      "featured": "추천",
+      "more": "더보기",
+      "verified": "인증됨",
+      "error": "오류",
+      "click_me": "클릭하세요",
+      "clickable": "클릭 가능"
+    },
+    "themePreview": {
+      "title": "테마 미리보기",
+      "description": "모든 테마 토큰과 컴포넌트 스타일의 종합적인 개요",
+      "color_palette": "색상 팔레트",
+      "brand_colors": "브랜드 색상",
+      "base_colors": "기본 색상",
+      "status_colors": "상태 색상",
+      "buttons": "버튼",
+      "primary_button": "Primary",
+      "secondary_button": "Secondary",
+      "outline_button": "Outline",
+      "ghost_button": "Ghost",
+      "destructive_button": "Destructive",
+      "disabled_button": "비활성화",
+      "cards": "카드",
+      "card_title": "카드 제목",
+      "card_description": "샘플 카드 설명입니다.",
+      "surface_card": "Surface 카드",
+      "filled_variant": "배경이 있는 filled 스타일",
+      "form_elements": "폼 요소",
+      "text_input_placeholder": "텍스트를 입력하세요...",
+      "checkbox_checked": "선택됨",
+      "checkbox_unchecked": "선택 안됨",
+      "toggle_on": "켜짐",
+      "toggle_off": "꺼짐",
+      "alerts": "알림",
+      "info_alert": "정보 알림",
+      "info_alert_message": "안내 메시지입니다.",
+      "error_alert": "오류 알림",
+      "error_alert_message": "문제가 발생했습니다.",
+      "badges_chips": "배지 & 칩",
+      "primary_badge": "Primary",
+      "secondary_badge": "Secondary",
+      "outline_badge": "Outline",
+      "destructive_badge": "Destructive",
+      "chip_example": "즐겨찾기",
+      "typography": "타이포그래피",
+      "heading_1": "제목 1",
+      "heading_2": "제목 2",
+      "heading_3": "제목 3",
+      "heading_4": "제목 4",
+      "body_text": "일반 두께의 본문 텍스트입니다.",
+      "small_text": "캡션용 작은 텍스트입니다.",
+      "muted_text": "부가 정보를 위한 흐린 텍스트입니다.",
+      "bold_text": "강조를 위한 굵은 텍스트입니다.",
+      "spacing_radius": "간격 & 둥글기",
+      "border_radius": "테두리 둥글기",
+      "loading_states": "로딩 상태",
+      "component_demos": "컴포넌트 데모",
+      "component_demos_desc": "테마 설정을 활용한 다양한 컴포넌트 데모",
+      "preview": "미리보기",
+      "more": "더보기",
+      "shoes": "신발",
+      "bags": "가방",
+      "hoodies": "후드티",
+      "accessories": "액세서리",
+      "sales_volume_text": "판매량",
+      "charts": "차트",
+      "details": "상세",
+      "pm_zoomcall": "줌 회의",
+      "pm_talking": "대화 중",
+      "search_for_events": "이벤트 검색",
+      "show_all_day_events": "종일 이벤트 표시",
+      "team_sync_meeting": "팀 동기화 회의",
+      "weekly_product_review": "주간 제품 리뷰",
+      "one_hour": "1시간",
+      "tab_1": "탭 1",
+      "tab_2": "탭 2",
+      "tab_3": "탭 3",
+      "tab_content_2": "탭 2 콘텐츠",
+      "recent_orders": "최근 주문",
+      "name_charlie": "찰리",
+      "send": "보내기",
+      "name_howard": "하워드",
+      "failed": "실패",
+      "name_fiona": "피오나",
+      "in_progress": "진행 중",
+      "name_nick": "닉",
+      "completed": "완료됨",
+      "name_amanda": "아만다",
+      "install_command": "설치 명령어",
+      "installing": "설치 중",
+      "done": "완료",
+      "page_score": "페이지 점수",
+      "all_good": "모두 양호",
+      "new_messages": "{count}개의 새 메시지",
+      "verification_completed": "인증 완료",
+      "click_to_verify": "클릭하여 인증",
+      "access_denied": "접근 거부됨",
+      "support": "지원",
+      "price_range": "가격 범위",
+      "slider_value": "슬라이더 값",
+      "sale": "세일",
+      "n_reviews": "{count}개 리뷰",
+      "price_amount": "{amount}원",
+      "characters_remaining": "{count}자 남음",
+      "name_on_card": "카드 소유자명",
+      "accept_terms_without_reading": "약관을 읽지 않고 동의합니다",
+      "access_tokens": "액세스 토큰",
+      "add_comments": "댓글 추가",
+      "add_context": "컨텍스트 추가",
+      "add_files": "파일 추가",
+      "add_more_later": "나중에 더 추가",
+      "admin_panel": "관리자 패널",
+      "all_sources": "모든 소스",
+      "all_transactions_secure": "모든 거래 안전함",
+      "allow_wallpaper_tint": "배경화면 틴트 허용",
+      "anakin": "아나킨",
+      "analytics": "분석",
+      "api_access": "API 접근",
+      "archive": "보관",
+      "auto": "자동",
+      "billing_address": "청구 주소",
+      "billing_address_desc": "결제에 사용되는 주소",
+      "box_radius": "박스 둥글기",
+      "buy_now": "지금 구매",
+      "cancel": "취소",
+      "card_number": "카드 번호",
+      "card_number_desc": "신용카드 번호",
+      "card_number_placeholder": "0000 0000 0000 0000",
+      "comments": "댓글",
+      "compute_env": "컴퓨팅 환경",
+      "create_account": "계정 만들기",
+      "create_account_desc": "새 계정을 만드세요",
+      "current_theme": "현재 테마",
+      "cvv": "CVV",
+      "cvv_placeholder": "123",
+      "dark": "다크",
+      "databases": "데이터베이스",
+      "december_revenue": "12월 매출",
+      "delivered": "배송됨",
+      "draft": "임시 저장",
+      "enable": "활성화",
+      "field_radius": "필드 둥글기",
+      "find": "찾기",
+      "hello_message": "안녕하세요!",
+      "high_ground": "고지",
+      "how_hear_about_us": "저희를 어떻게 알게 되셨나요?",
+      "hp_chamber_of_servers": "서버의 비밀",
+      "hp_deathly_frameworks": "프레임워크의 유물",
+      "hp_elixir_of_phoenix": "피닉스의 영약",
+      "hp_goblet_of_firebase": "파이어베이스의 성배",
+      "hp_half_deployed_app": "반쯤 배포된 앱",
+      "hp_prisoner_of_azure": "애저의 포로",
+      "hp_sorcerers_stack": "마법사의 스택",
+      "invite_desc": "팀원을 초대하세요",
+      "john_doe": "홍길동",
+      "kenobi": "케노비",
+      "kubernetes": "쿠버네티스",
+      "light": "라이트",
+      "loading_tab": "탭 로딩 중",
+      "messages": "메시지",
+      "min_value": "최소값",
+      "mode": "모드",
+      "month": "월",
+      "month_placeholder": "MM",
+      "monthly": "월간",
+      "nike_shoes": "나이키 신발",
+      "no_team_members": "팀원이 없습니다",
+      "number_of_gpus": "GPU 개수",
+      "or_login": "또는 로그인",
+      "other": "기타",
+      "password": "비밀번호",
+      "password_weak": "비밀번호가 취약합니다",
+      "payment_method": "결제 수단",
+      "per_month": "월당",
+      "post_placeholder": "게시물을 작성하세요...",
+      "priority_support": "우선 지원",
+      "processing_request": "요청 처리 중",
+      "products": "제품",
+      "publish": "게시",
+      "referral": "추천",
+      "register": "등록",
+      "report": "보고서",
+      "revenue_amount": "매출액",
+      "revenue_trend": "매출 추세",
+      "same_as_shipping": "배송 주소와 동일",
+      "search": "검색",
+      "search_engine": "검색 엔진",
+      "selector_radius": "선택자 둥글기",
+      "send_invite": "초대 보내기",
+      "send_message_placeholder": "메시지를 입력하세요...",
+      "settings": "설정",
+      "snooze": "다시 알림",
+      "social_media": "소셜 미디어",
+      "star_rating": "별점",
+      "starter_plan": "스타터 플랜",
+      "submit": "제출",
+      "subscribe_spam": "스팸 수신 동의",
+      "syncing": "동기화 중",
+      "two_factor_auth": "2단계 인증",
+      "underestimate_power": "힘을 과소평가하지 마세요",
+      "unlimited_projects": "무제한 프로젝트",
+      "updating": "업데이트 중",
+      "username": "사용자 이름",
+      "users": "사용자",
+      "virtual_machine": "가상 머신",
+      "wallpaper_tinting": "배경화면 틴팅",
+      "write_post": "게시물 작성",
+      "year": "년",
+      "year_placeholder": "YYYY",
+      "yearly": "연간",
+      "you": "당신"
+    },
+    "chat": {
+      "hello": "안녕하세요! 어떻게 지내세요?",
+      "doing_great": "잘 지내요, 감사합니다!",
+      "nice_weather": "오늘 날씨가 좋네요!",
+      "yes_beautiful": "네, 정말 아름답네요!",
+      "sender": "발신자",
+      "receiver": "수신자"
+    },
+    "multiple_choice": {
+      "option_a": "Option A",
+      "option_b": "Option B",
+      "option_c": "Option C",
+      "option_d": "Option D",
+      "selected_value": "선택: {value}",
+      "selected_values": "선택: {values}"
+    },
+    "formatted_input": {
+      "date_format": "날짜 형식 (MM/DD/YYYY)",
+      "time_format": "시간 형식 (HH:MM)",
+      "current_value": "현재 값: {value}"
+    },
+    "swiper": {
+      "swipe_hint": "스와이프하거나 탭하여 열기",
+      "overlay_content": "오버레이 콘텐츠",
+      "close": "닫기"
+    }
+  },
+  "docs": {
+    "common": {
+      "app_name": "coui_flutter",
+      "search_documentation": "문서 검색...",
+      "docs": "문서",
+      "components": "컴포넌트",
+      "close": "닫기",
+      "on_this_page": "이 페이지 목차",
+      "work_in_progress_title": "개발 중",
+      "work_in_progress_message": "이 페이지는 아직 개발 중입니다. 나중에 다시 방문해주세요.",
+      "add": "추가",
+      "reset": "초기화",
+      "prev": "이전",
+      "next": "다음",
+      "finish": "완료",
+      "open": "열기",
+      "disabled": "비활성",
+      "refresh": "새로고침",
+      "rebuild": "다시 빌드",
+      "change_color": "색상 변경"
+    },
+    "badges": {
+      "new": "새로운",
+      "updated": "업데이트됨",
+      "wip": "개발 중",
+      "experimental": "실험적"
+    },
+    "flavors": {
+      "local": "로컬",
+      "experimental": "실험적",
+      "unknown": "알 수 없음"
+    },
+    "navigation": {
+      "getting_started": "시작하기",
+      "animation": "애니메이션",
+      "control": "컨트롤",
+      "disclosure": "공개",
+      "display": "표시",
+      "feedback": "피드백",
+      "form": "폼",
+      "layout": "레이아웃",
+      "navigation": "네비게이션",
+      "overlay": "오버레이",
+      "utility": "유틸리티",
+      "my_account": "내 계정",
+      "profile": "프로필",
+      "settings": "설정",
+      "team": "팀",
+      "new_team": "새 팀",
+      "billing": "결제",
+      "api": "API",
+      "log_out": "로그아웃",
+      "support": "지원",
+      "invite_users": "사용자 초대",
+      "more": "더보기",
+      "github": "GitHub",
+      "note": "노트",
+      "message": "메시지",
+      "keyboard_shortcuts": "키보드 단축키"
+    },
+    "pages": {
+      "introduction": {
+        "title": "소개",
+        "description": "coui_flutter 시작하기",
+        "lead": "Coui/UI의 아름답게 디자인된 컴포넌트를 이제 Flutter에서 사용할 수 있습니다.",
+        "welcome_paragraph_1": "coui_flutter는 Flutter 데스크톱 및 웹 애플리케이션을 위해 특별히 설계된 다양하고 포괄적인 UI 컴포넌트 세트입니다. 크로스 플랫폼 앱 구축을 위한 Flutter의 인기가 높아짐에 따라 데스크톱 및 웹 인터페이스의 고유한 디자인 요구 사항을 강조하는 툴킷의 필요성을 인식했습니다.",
+        "welcome_paragraph_2": "이 패키지는 현대적인 데스크톱 및 웹 디자인 원칙에 부합하는 광범위한 사용자 정의 가능하고 반응형 컴포넌트를 제공합니다. 정교한 비즈니스 애플리케이션, 세련된 대시보드 또는 생산성 도구를 구축하든 우리의 컴포넌트는 전문적이고 세련된 UI를 빠르고 효율적으로 만드는 데 도움이 되도록 설계되었습니다.",
+        "features": "주요 기능",
+        "features_list": {
+          "components_count": "84개의 컴포넌트 및 계속 증가 중!",
+          "material_cupertino": "Material 및 Cupertino 위젯을 지원하며 테마가 현재 coui_flutter 테마에 맞게 조정됩니다.",
+          "premade_themes": "Coui/UI의 사전 제작된 테마.",
+          "platform_support": "모바일, 웹 및 데스크톱 플랫폼 지원.",
+          "middle_drag": "중간 드래그 스크롤 지원.",
+          "typography_extensions": "타이포그래피를 위한 다양한 위젯 확장.",
+          "webassembly": "더 나은 성능을 위한 WebAssembly 지원."
+        },
+        "notes": "참고사항",
+        "notes_paragraph_1": "이 패키지는 아직 개발 중이며 향후 변경 사항이 있을 수 있습니다. 프로덕션에서 이 패키지를 사용할 때는 주의하십시오.",
+        "notes_paragraph_2": "이 패키지는 Coui/UI와 제휴하지 않습니다. 이 패키지는 커뮤니티 주도 프로젝트입니다.",
+        "faq": "자주 묻는 질문",
+        "faq_gorouter_q": "GoRouter를 지원하나요?",
+        "faq_gorouter_a": "네, 지원합니다. coui_flutter와 함께 GoRouter를 사용할 수 있습니다.",
+        "faq_usage_q": "내 프로젝트에서 사용할 수 있나요?",
+        "faq_usage_a": "네! 개인 및 상업 프로젝트에 무료로 사용할 수 있습니다. 저작자 표시 불필요.",
+        "faq_material_q": "Material/Cupertino 위젯과 함께 사용할 수 있나요?",
+        "faq_material_a_1": "물론입니다!",
+        "faq_material_a_2": "이 페이지를 참조하세요!",
+        "faq_style_q": "어떤 스타일을 사용할지 설정할 수 있나요? (Default/New York)",
+        "faq_style_a_1": "안타깝게도 할 수 없습니다. 이 패키지는 New York 스타일만 지원합니다. 하지만 Coui/UI의 기본 스타일을 원한다면",
+        "faq_style_a_2": "이 패키지",
+        "faq_style_a_3": "를 추천합니다. 제작자:",
+        "links": "링크",
+        "link_github": "Github: ",
+        "link_pubdev": "pub.dev: ",
+        "link_discord": "Discord: "
+      },
+      "installation": {
+        "title": "설치",
+        "description": "프로젝트에 coui_flutter 설치 및 구성하기",
+        "stable_version": "안정 버전",
+        "experimental_version": "실험 버전",
+        "step1_title": "새 Flutter 프로젝트 생성",
+        "step1_content": "다음 명령어를 사용하여 새 Flutter 프로젝트를 생성하세요:",
+        "step2_title": "의존성 추가",
+        "step2_content": "다음으로, 프로젝트에 coui_flutter 의존성을 추가하세요.",
+        "step3_title": "패키지 가져오기",
+        "step3_content": "이제 Dart 코드에서 패키지를 가져올 수 있습니다.",
+        "step4_title": "CouiApp 위젯 추가",
+        "step4_content": "main 함수에 CouiApp 위젯을 추가하세요.",
+        "step5_title": "앱 실행",
+        "step5_content": "다음 명령어를 사용하여 앱을 실행하세요:",
+        "experimental_intro": "실험 버전은 GitHub에서 사용할 수 있습니다.",
+        "experimental_usage": "실험 버전을 사용하려면 pubspec.yaml 파일에서 버전 번호 대신 git을 사용하세요:",
+        "see_page": "참조: ",
+        "this_page": "이 페이지",
+        "for_more_info": " 자세한 정보.",
+        "warning_title": "경고",
+        "warning_content": "실험 버전에는 호환성을 깨는 변경 사항이 포함될 수 있으며 프로덕션 사용을 권장하지 않습니다. 이 버전은 테스트 및 개발 목적으로만 사용됩니다."
+      },
+      "theme": {
+        "title": "테마",
+        "description": "앱의 모양과 느낌을 커스터마이징하세요",
+        "custom_color_scheme": "사용자 정의 색 구성표",
+        "custom_color_scheme_desc": "사용자 정의 색 구성표를 사용하여 앱의 모양과 느낌을 커스터마이징할 수 있습니다.",
+        "premade_color_schemes": "사전 제작된 색 구성표",
+        "premade_color_schemes_desc": "사전 제작된 색 구성표를 사용하여 앱의 모양과 느낌을 커스터마이징할 수 있습니다.",
+        "radius": "반경",
+        "radius_desc": "반경을 변경하여 앱이 얼마나 둥글게 보이는지 커스터마이징할 수 있습니다.",
+        "scaling": "크기 조정",
+        "scaling_desc": "크기 조정을 변경하여 coui_flutter 컴포넌트의 스케일을 커스터마이징할 수 있습니다.",
+        "scaling_alert": "전체 앱을 확대/축소하지 않습니다. coui_flutter 컴포넌트만 영향을 받습니다.",
+        "surface_opacity": "표면 불투명도",
+        "surface_opacity_desc": "표면 불투명도를 변경하여 표면의 불투명도를 커스터마이징할 수 있습니다.",
+        "surface_blur": "표면 블러",
+        "surface_blur_desc": "표면 블러를 변경하여 표면의 블러를 커스터마이징할 수 있습니다.",
+        "code": "코드",
+        "code_desc": "다음 코드를 사용하여 색 구성표를 적용하세요."
+      },
+      "typography": {
+        "title": "타이포그래피",
+        "description": "디자인과 콘텐츠를 가능한 한 명확하고 효율적으로 표현하기 위해 타이포그래피를 사용하세요.",
+        "headline1": "헤드라인 1",
+        "headline2": "헤드라인 2",
+        "headline3": "헤드라인 3",
+        "headline4": "헤드라인 4",
+        "paragraph": "단락",
+        "blockquote": "인용구",
+        "list": "목록",
+        "inline_code": "인라인 코드",
+        "lead": "리드",
+        "large_text": "큰 텍스트",
+        "small_text": "작은 텍스트",
+        "muted_text": "회색 텍스트",
+        "sans": "Sans",
+        "mono": "Mono",
+        "extra_small": "아주 작은",
+        "small": "작은",
+        "base": "기본",
+        "large": "큰",
+        "extra_large": "아주 큰",
+        "extra_2x_large": "아주 2배 큰",
+        "extra_3x_large": "아주 3배 큰",
+        "extra_4x_large": "아주 4배 큰",
+        "extra_5x_large": "아주 5배 큰",
+        "extra_6x_large": "아주 6배 큰",
+        "extra_7x_large": "아주 7배 큰",
+        "extra_8x_large": "아주 8배 큰",
+        "extra_9x_large": "아주 9배 큰",
+        "thin": "얇은",
+        "extra_light": "아주 가벼운",
+        "light": "가벼운",
+        "normal": "일반",
+        "medium": "중간",
+        "semi_bold": "세미 볼드",
+        "bold": "볼드",
+        "extra_bold": "아주 볼드",
+        "black": "블랙",
+        "italic": "이탤릭"
+      },
+      "layout": {
+        "title": "레이아웃",
+        "description": "Coui Flutter의 레이아웃 가이드",
+        "padding": "패딩",
+        "margin": "마진",
+        "center": "센터",
+        "gapped_column": "간격이 있는 Column",
+        "gapped_row": "간격이 있는 Row",
+        "separated_column": "구분된 Column",
+        "separated_row": "구분된 Row",
+        "basic_layout": "기본 레이아웃"
+      },
+      "web_preloader": {
+        "title": "웹 프리로더",
+        "description": "Flutter가 웹 애플리케이션을 로드하는 방법을 커스터마이징하세요",
+        "step1_title": "웹 디렉토리 생성",
+        "step1_content": "웹 디렉토리가 없다면 생성하세요.",
+        "step1_note": "* 레거시 Flutter 웹을 사용 중이라면 위 명령어를 사용하여 업그레이드해야 합니다. ",
+        "step1_button": "자세한 정보는 여기를 클릭하세요.",
+        "step2_title": "스크립트 추가",
+        "step2_content": "다음으로, 다음 사전 제작된 프리로더 중 하나를 선택하고 복사하세요:",
+        "step2_standard": "표준 프리로더",
+        "step3_title": "스크립트 붙여넣기",
+        "step3_content_1": "당신의 ",
+        "step3_content_2": " 파일을 열고 ",
+        "step3_content_3": " 태그 안에 스크립트를 붙여넣으세요.",
+        "step3_example": "예를 들어:",
+        "step4_title": "앱 실행",
+        "step4_content": "다음 명령어를 사용하여 앱을 실행하세요:",
+        "alert_title": "기여하기",
+        "alert_content_1": "공유하고 싶은 프리로더가 있다면 ",
+        "alert_button": "web_loaders",
+        "alert_content_2": " 디렉토리에 풀 리퀘스트를 생성하세요."
+      },
+      "components_list": {
+        "title": "컴포넌트",
+        "description": "Coui/UI의 아름답게 디자인된 컴포넌트가 이제 Flutter에서 사용 가능합니다.",
+        "work_in_progress": "작업 중",
+        "animation": "애니메이션",
+        "disclosure": "공개",
+        "feedback": "피드백",
+        "forms": "양식",
+        "layout": "레이아웃",
+        "navigation": "네비게이션",
+        "surfaces": "표면",
+        "data_display": "데이터 표시",
+        "utilities": "유틸리티"
+      },
+      "icons": {
+        "title": "아이콘",
+        "description": "아이콘 시스템",
+        "use_this_code": "이 아이콘을 표시하려면 다음 코드를 사용하세요:",
+        "search_icons": "아이콘 검색",
+        "radix_icons": "Radix 아이콘",
+        "bootstrap_icons": "Bootstrap 아이콘",
+        "lucide_icons": "Lucide 아이콘",
+        "hero_icons": "Hero 아이콘"
+      },
+      "colors": {
+        "title": "색상",
+        "description": "색상 팔레트",
+        "use_this_code": "이 색상을 표시하려면 다음 코드를 사용하세요:",
+        "color_and_colorshades": "Color 및 ColorShades/ColorSwatch 상수",
+        "predefined_colors": "미리 정의된 색상",
+        "generate_color": "색상 생성",
+        "hue_shift": "색조 이동",
+        "saturation_step_up": "채도 증가 단계",
+        "saturation_step_down": "채도 감소 단계",
+        "lightness_step_up": "밝기 증가 단계",
+        "lightness_step_down": "밝기 감소 단계",
+        "cancel": "취소",
+        "reset_options": "옵션 초기화",
+        "reset_confirmation": "옵션을 초기화하시겠습니까?"
+      },
+      "external": {
+        "title": "Material/Cupertino",
+        "description": "Flutter 기본 위젯"
+      },
+      "state": {
+        "title": "상태 관리",
+        "description": "coui_flutter에서 상태를 관리하는 포괄적인 가이드입니다.",
+        "intro_1": "Flutter에서는 모든 것이 위젯이며, 데이터가 저장되는 곳도 마찬가지입니다.",
+        "intro_2": "내부적으로 coui_flutter는 자체 상태 관리 시스템을 가지고 있습니다. 이미 상태 관리 시스템을 사용하고 있다면 coui_flutter와 함께 계속 사용할 수 있습니다.",
+        "passing_data_to_children": "자식에게 데이터 전달하기",
+        "passing_data_desc": "Data 위젯을 사용하여 자식에게 데이터를 전달할 수 있습니다. 데이터에 발생하는 모든 변경 사항은 자식을 다시 빌드하게 합니다.",
+        "rebuild_difference_title": "리빌드 횟수의 차이를 눈치채셨나요?",
+        "rebuild_difference_content": "MostInnerWidget은 데이터가 변경될 때 다시 빌드되지만 InnerWidget은 그렇지 않습니다. 이는 InnerWidget이 데이터를 수신하지 않기 때문입니다.",
+        "setting_data_boundary": "데이터 경계 설정",
+        "setting_data_boundary_desc": "자식이 데이터에 액세스할 수 없도록 경계를 설정할 수 있습니다.",
+        "data_methods_vs": "Data.maybeOf/Data.of vs Data.maybeFind/Data.find",
+        "data_methods_desc_1": " 및 ",
+        "data_methods_desc_2": "은(는) 데이터를 수신하고 데이터가 변경될 때 위젯을 다시 빌드합니다. 반면에 ",
+        "data_methods_desc_3": "은(는) 데이터를 수신하지 않고 데이터만 반환합니다.",
+        "data_find_usage": "은(는) onPressed, onLongPressed 등 메서드가 한 번 호출되는 곳에서 사용하기 좋습니다. ",
+        "data_of_usage": "은(는) 데이터가 변경될 때 위젯을 다시 빌드해야 하는 build 메서드 내에서 사용하기 좋습니다.",
+        "getting_data_from_child": "자식으로부터 데이터 가져오기",
+        "getting_data_desc_1": " 메서드를 사용하여 자식으로부터 데이터를 가져올 수 있습니다. 이 메서드는 데이터에 발생하는 변경 사항을 수신하지 않습니다. ",
+        "getting_data_desc_2": "자식 데이터를 수신하면 무한 리빌드 루프가 발생할 수 있습니다. 데이터를 수신해야 하는 경우 부모 위젯으로 이동하세요.",
+        "root_data_title": "루트 데이터를 눈치채셨나요?",
+        "root_data_content": "왼쪽의 가장 안쪽 데이터의 데이터를 사용합니다. 부모는 첫 번째로 연결된 자식에서만 데이터를 가져올 수 있기 때문입니다.",
+        "setting_messenger_boundary": "DataMessenger 경계 설정",
+        "setting_messenger_boundary_desc": "특정 부모로부터 자식 데이터를 얻을 수 없도록 경계를 설정할 수 있습니다.",
+        "multidata_widget": "MultiData 위젯",
+        "multidata_desc": "MultiData 위젯을 사용하면 자식에게 여러 데이터를 전달할 수 있습니다. 다음 예제를 살펴보세요:",
+        "multidata_avoid_nesting": "MultiData 위젯을 사용하여 중첩을 피할 수 있습니다.",
+        "example": "예제",
+        "passing_state_as_controller": "컨트롤러로 상태 전달하기",
+        "passing_state_controller_desc": "상태를 컨트롤러로 자식에게 전달할 수 있습니다. 이렇게 하면 자식 위젯에서 부모 위젯의 메서드를 호출할 수 있습니다.",
+        "databuilder": "DataBuilder",
+        "databuilder_desc": "DataBuilder 위젯을 사용하여 데이터가 변경될 때 위젯을 다시 빌드할 수 있습니다. 이는 전체 위젯을 다시 빌드하는 것을 피합니다.",
+        "datanotifier": "DataNotifier",
+        "datanotifier_desc": "DataNotifier를 사용하면 ValueListenable에서 자식에게 값을 전달할 수 있습니다.",
+        "example_with_multidata": "MultiData를 사용한 예제",
+        "passing_object_as_data": "객체를 데이터로 전달하기",
+        "passing_object_desc": "객체를 데이터로 전달할 때 고려해야 할 몇 가지 사항이 있습니다:",
+        "override_equals_hashcode": "1. == 및 hashCode 재정의",
+        "override_equals_desc": "이전 객체가 새 객체와 같지 않을 때 자식에게 알림이 전송됩니다. == 및 hashCode를 재정의하지 않으면 필드 값이 동일하더라도 객체가 인스턴스화될 때마다 항상 다른 것으로 간주됩니다.",
+        "use_distinctdata": "2. DistinctData 사용",
+        "use_distinctdata_desc": "DistinctData는 특정 필드가 변경될 때 자식에게 알릴 수 있는 mixin입니다.",
+        "passing_mutable_object": "3. 가변 객체를 자식에게 전달하기",
+        "passing_mutable_object_desc": "자식에게 불변 객체를 전달하는 것이 좋습니다. 가변 객체(예: List, Map, Set, Widget State)는 객체 참조가 변경되지 않기 때문에 객체가 변경될 때 자식에게 알리지 않습니다. ",
+        "passing_variable_to_children": "자식에게 변수 전달하기",
+        "passing_variable_desc": "자식에게 변수를 전달하려면 Model 위젯을 사용할 수 있습니다. Data 위젯과 비슷하지만 타입에 엄격하고 레이블이 지정됩니다.",
+        "change_variable_from_children": "자식에서 변수 변경하기",
+        "change_variable_desc": "자식에서 모델 값을 변경하는 2가지 방법이 있습니다:",
+        "modelnotifier": "ModelNotifier",
+        "modelnotifier_desc": "ModelNotifier를 사용하면 ValueNotifier에서 자식에게 값을 전달할 수 있습니다. 부모 위젯에서 setState를 사용할 필요가 없습니다.",
+        "modellistenable": "ModelListenable",
+        "modellistenable_desc": "ModelListenable은 읽기 전용 ModelNotifier입니다. 자식은 값을 수신만 할 수 있습니다. 값을 변경하려고 하면 오류가 발생합니다.",
+        "modelbuilder": "ModelBuilder",
+        "modelbuilder_desc": "ModelBuilder는 값이 변경될 때 위젯을 수신하고 다시 빌드합니다. DataBuilder와 비슷하지만 타입에 엄격하고 레이블이 지정됩니다."
+      }
+    },
+    "components": {
+      "accordion": {
+        "display_name": "아코디언",
+        "description": "아코디언은 수직으로 쌓인 항목 목록입니다. 각 항목을 '확장' 또는 '축소'하여 해당 항목과 관련된 콘텐츠를 표시할 수 있습니다.",
+        "examples": {
+          "basic": "아코디언 예제"
+        }
+      },
+      "alert": {
+        "display_name": "알림",
+        "description": "알림은 시스템에 영향을 미치는 상태를 전달하는 데 사용됩니다.",
+        "examples": {
+          "basic": "알림 예제",
+          "destructive": "위험 알림 예제"
+        },
+        "title": "알림 제목",
+        "content": "알림 내용입니다."
+      },
+      "empty_state": {
+        "display_name": "빈 상태",
+        "description": "콘텐츠가 없을 때 사용자에게 안내 메시지와 선택적 액션을 표시하는 컴포넌트입니다.",
+        "examples": {
+          "basic": "기본 빈 상태",
+          "compact": "컴팩트 빈 상태",
+          "with_action": "액션이 있는 빈 상태"
+        },
+        "no_data": "데이터가 없습니다",
+        "no_data_description": "표시할 데이터가 아직 없습니다.",
+        "no_results": "검색 결과 없음",
+        "no_results_description": "검색 조건을 조정해 보세요.",
+        "no_files": "파일이 없습니다",
+        "no_files_description": "파일을 업로드하여 시작하세요.",
+        "upload_files": "파일 업로드"
+      },
+      "fade_scroll": {
+        "display_name": "페이드 스크롤",
+        "description": "스크롤 가능한 콘텐츠의 가장자리에 페이드 효과를 적용하여 더 많은 콘텐츠가 있음을 시각적으로 표시합니다.",
+        "examples": {
+          "vertical": "수직 페이드 스크롤",
+          "horizontal": "수평 페이드 스크롤"
+        }
+      },
+      "validation_badge": {
+        "display_name": "유효성 배지",
+        "description": "폼 필드의 유효성 검사 결과를 시각적으로 표시하는 배지 컴포넌트입니다.",
+        "examples": {
+          "states": "유효성 상태",
+          "from_bool": "Boolean 기반 생성",
+          "sizes": "크기 변형"
+        },
+        "valid_label": "유효",
+        "invalid_label": "무효",
+        "pending_label": "대기 중",
+        "min_length": "8자 이상",
+        "has_number": "숫자 포함",
+        "has_special": "특수문자 포함",
+        "extra_small": "아주 작음",
+        "small": "작음",
+        "medium": "보통"
+      },
+      "banner": {
+        "display_name": "배너",
+        "description": "배너는 중요한 공지사항이나 시스템 메시지를 눈에 띄게 표시하는 컴포넌트입니다.",
+        "examples": {
+          "basic": "기본 배너",
+          "variants": "배너 변형",
+          "with_action": "액션이 있는 배너"
+        },
+        "content": "중요한 배너 메시지입니다."
+      },
+      "alert_dialog": {
+        "display_name": "알림 다이얼로그",
+        "description": "알림 다이얼로그는 사용자의 주의가 필요한 중요한 정보를 표시합니다.",
+        "examples": {
+          "basic": "알림 다이얼로그 예제"
+        },
+        "click_here": "여기를 클릭하세요",
+        "alert_title": "알림 제목",
+        "alert_content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      "animated_value_builder": {
+        "display_name": "애니메이션 값 빌더",
+        "description": "값 변경 시 애니메이션을 자동으로 적용하는 빌더입니다.",
+        "examples": {
+          "basic": "애니메이션 값 빌더 예제"
+        }
+      },
+      "app_bar": {
+        "display_name": "앱 바",
+        "description": "앱 바는 앱의 상단에 표시되는 기본 네비게이션 요소입니다.",
+        "examples": {
+          "basic": "앱 바 예제"
+        }
+      },
+      "fab": {
+        "display_name": "FAB",
+        "description": "화면에 떠 있는 동작 버튼으로, 주요 작업을 빠르게 수행할 수 있습니다. 선택적으로 스피드 다이얼 패턴을 지원합니다.",
+        "examples": {
+          "basic": "기본 FAB",
+          "sizes": "크기 변형",
+          "speed_dial": "스피드 다이얼"
+        },
+        "edit": "수정",
+        "share": "공유",
+        "delete": "삭제"
+      },
+      "hover": {
+        "display_name": "호버",
+        "description": "마우스 커서의 호버 상태를 추적하는 유틸리티 위젯입니다. 호버 효과를 쉽게 구현할 수 있습니다.",
+        "examples": {
+          "basic": "기본 호버",
+          "activity": "호버 액티비티"
+        },
+        "hovered": "호버됨",
+        "not_hovered": "호버 안됨",
+        "active": "활성",
+        "inactive": "비활성"
+      },
+      "scrollbar": {
+        "display_name": "스크롤바",
+        "description": "스크롤 가능한 콘텐츠에 커스텀 스크롤바를 표시합니다.",
+        "examples": {
+          "basic": "기본 스크롤바"
+        }
+      },
+      "autocomplete": {
+        "display_name": "자동완성",
+        "description": "사용자 입력에 따라 제안을 표시하는 입력 필드입니다.",
+        "examples": {
+          "basic": "자동완성 예제"
+        }
+      },
+      "avatar": {
+        "display_name": "아바타",
+        "description": "사용자 또는 엔티티를 나타내는 이미지 또는 아이콘입니다.",
+        "examples": {
+          "basic": "아바타 예제"
+        }
+      },
+      "avatar_group": {
+        "display_name": "아바타 그룹",
+        "description": "여러 아바타를 함께 표시합니다.",
+        "examples": {
+          "basic": "아바타 그룹 예제"
+        }
+      },
+      "badge": {
+        "display_name": "배지",
+        "description": "상태 또는 알림 수를 표시하는 작은 라벨입니다.",
+        "examples": {
+          "basic": "배지 예제"
+        },
+        "primary": "기본",
+        "secondary": "보조",
+        "outline": "테두리",
+        "destructive": "위험"
+      },
+      "breadcrumb": {
+        "display_name": "브레드크럼",
+        "description": "브레드크럼은 웹사이트 또는 웹 애플리케이션에서 사용자의 위치를 나타내는 보조 네비게이션 체계입니다.",
+        "examples": {
+          "basic": "브레드크럼 예제"
+        },
+        "home": "홈",
+        "components": "컴포넌트"
+      },
+      "button": {
+        "display_name": "버튼",
+        "description": "버튼을 사용하면 사용자가 한 번의 탭으로 작업을 수행하고 선택을 할 수 있습니다.",
+        "examples": {
+          "primary": "기본 버튼 예제",
+          "secondary": "보조 버튼 예제",
+          "outline": "테두리 버튼 예제",
+          "ghost": "고스트 버튼 예제",
+          "destructive": "위험 버튼 예제",
+          "link": "링크 버튼 예제",
+          "text": "텍스트 버튼 예제",
+          "disabled": "비활성 버튼 예제",
+          "icon": "아이콘 버튼 예제",
+          "icon_with_label": "라벨이 있는 아이콘 버튼 예제",
+          "size": "버튼 크기 예제",
+          "density": "버튼 밀도 예제",
+          "shape": "버튼 모양 예제",
+          "group": "버튼 그룹 예제",
+          "stated": "상태 버튼 예제",
+          "card": "카드 버튼 예제",
+          "custom": "커스텀 버튼 예제"
+        },
+        "primary": "기본",
+        "secondary": "보조",
+        "outlined": "테두리",
+        "ghost": "고스트",
+        "destructive": "위험",
+        "link": "링크",
+        "outline": "외곽선",
+        "text": "텍스트",
+        "extra_small": "엑스트라 스몰",
+        "small": "스몰",
+        "normal": "노멀",
+        "large": "라지",
+        "extra_large": "엑스트라 라지",
+        "save": "저장",
+        "cancel": "취소",
+        "close": "닫기",
+        "submit": "제출",
+        "edit_profile": "프로필 수정",
+        "save_changes": "변경사항 저장",
+        "undo": "실행 취소",
+        "compact": "Compact",
+        "dense": "Dense",
+        "comfortable": "Comfortable",
+        "icon": "Icon",
+        "icon_comfortable": "Icon Comfortable",
+        "rectangle": "Rectangle",
+        "add": "Add",
+        "focused": "Focused",
+        "hovered": "Hovered",
+        "pressed": "Pressed",
+        "text_button": "Text Button",
+        "custom_button": "Custom Button"
+      },
+      "calendar": {
+        "display_name": "캘린더",
+        "description": "날짜를 선택하고 표시하는 캘린더 컴포넌트입니다.",
+        "examples": {
+          "basic": "캘린더 예제"
+        }
+      },
+      "card": {
+        "display_name": "카드",
+        "description": "설명",
+        "examples": {
+          "basic": "카드 예제"
+        },
+        "create_project": "프로젝트 만들기",
+        "deploy_description": "원클릭으로 새 프로젝트를 배포하세요",
+        "name": "이름",
+        "name_placeholder": "프로젝트 이름",
+        "description_placeholder": "프로젝트 설명",
+        "deploy": "배포"
+      },
+      "card_image": {
+        "display_name": "이미지 카드",
+        "description": "이미지가 포함된 카드 컴포넌트입니다.",
+        "examples": {
+          "basic": "이미지 카드 예제"
+        },
+        "card_image_title": "카드 이미지",
+        "card_clicked": "카드 이미지를 클릭했습니다",
+        "card_number": "카드 번호 {n}",
+        "lorem_ipsum": "Lorem ipsum dolor sit amet"
+      },
+      "carousel": {
+        "display_name": "캐러셀",
+        "description": "여러 항목을 슬라이드로 표시하는 컴포넌트입니다.",
+        "examples": {
+          "basic": "캐러셀 예제"
+        }
+      },
+      "checkbox": {
+        "display_name": "체크박스",
+        "description": "체크박스를 사용하면 사용자가 목록에서 하나 이상의 항목을 선택할 수 있습니다.",
+        "examples": {
+          "basic": "체크박스 예제"
+        },
+        "remember_me": "기억하기"
+      },
+      "chip": {
+        "display_name": "칩",
+        "description": "칩은 속성, 선택사항 또는 작업을 나타내는 작은 요소입니다.",
+        "examples": {
+          "basic": "칩 예제"
+        },
+        "apple": "사과",
+        "banana": "바나나",
+        "cherry": "체리",
+        "durian": "두리안",
+        "elderberry": "엘더베리"
+      },
+      "chip_input": {
+        "display_name": "칩 입력",
+        "description": "여러 값을 칩 형태로 입력할 수 있는 입력 필드입니다.",
+        "examples": {
+          "basic": "칩 입력 예제"
+        }
+      },
+      "circular_progress": {
+        "display_name": "원형 진행률",
+        "description": "원형 진행 표시기입니다.",
+        "examples": {
+          "basic": "원형 진행률 예제"
+        },
+        "increase_by_10": "10 증가",
+        "decrease_by_10": "10 감소"
+      },
+      "code_snippet": {
+        "display_name": "코드 스니펫",
+        "description": "코드를 표시하는 컴포넌트입니다.",
+        "examples": {
+          "basic": "코드 스니펫 예제"
+        }
+      },
+      "collapsible": {
+        "display_name": "접을 수 있는",
+        "description": "접거나 펼칠 수 있는 콘텐츠 컨테이너입니다.",
+        "examples": {
+          "basic": "접을 수 있는 예제"
+        },
+        "starred_repositories": "@coco-de가 3개의 저장소에 별표를 지정했습니다",
+        "collapse_all": "모두 축소",
+        "expand_all": "모두 확장",
+        "expand_icon": "아이콘 확장",
+        "use_path_branch": "경로 분기선 사용",
+        "recursive_selection": "재귀적 선택"
+      },
+      "color_picker": {
+        "display_name": "색상 선택기",
+        "description": "색상을 선택할 수 있는 컴포넌트입니다.",
+        "examples": {
+          "basic": "색상 선택기 예제"
+        },
+        "pick_color": "색상 선택",
+        "color_label": "색상: {color}",
+        "select_color": "색상 선택",
+        "open_color_picker_popover": "색상 선택기 팝오버 열기",
+        "open_color_picker_dialog": "색상 선택기 다이얼로그 열기"
+      },
+      "command": {
+        "display_name": "커맨드",
+        "description": "커맨드는 항목을 검색할 수 있는 컴포넌트입니다.",
+        "examples": {
+          "basic": "커맨드 예제"
+        }
+      },
+      "context_menu": {
+        "display_name": "컨텍스트 메뉴",
+        "description": "우클릭 또는 길게 누르기로 표시되는 메뉴입니다.",
+        "examples": {
+          "basic": "컨텍스트 메뉴 예제"
+        }
+      },
+      "date_picker": {
+        "display_name": "날짜 선택기",
+        "description": "날짜를 선택할 수 있는 입력 필드입니다.",
+        "examples": {
+          "basic": "날짜 선택기 예제"
+        },
+        "select_date": "날짜 선택",
+        "select_date_range": "날짜 범위 선택"
+      },
+      "dialog": {
+        "display_name": "다이얼로그",
+        "description": "다이얼로그는 앱의 나머지 부분 위에 표시되는 모달 창입니다.",
+        "examples": {
+          "basic": "다이얼로그 예제"
+        },
+        "edit_profile_title": "프로필 수정",
+        "edit_profile_description": "여기서 프로필을 변경하세요. 완료되면 저장을 클릭하세요.",
+        "name_label": "이름",
+        "username_label": "사용자명",
+        "hello": "안녕하세요",
+        "material_dialog_content": "Material 다이얼로그입니다",
+        "cupertino_dialog_content": "Cupertino 다이얼로그입니다",
+        "alert_title": "알림 제목",
+        "click_here": "여기를 클릭하세요",
+        "ok": "확인",
+        "open_material_dialog": "Material 다이얼로그 열기",
+        "open_cupertino_dialog": "Cupertino 다이얼로그 열기",
+        "open_coui_dialog": "COUI 다이얼로그 열기"
+      },
+      "divider": {
+        "display_name": "구분선",
+        "description": "콘텐츠를 시각적으로 구분하는 선입니다.",
+        "examples": {
+          "basic": "구분선 예제"
+        },
+        "item_1": "항목 1",
+        "item_2": "항목 2",
+        "item_3": "항목 3",
+        "divider": "구분선"
+      },
+      "dot_indicator": {
+        "display_name": "점 표시기",
+        "description": "현재 위치를 점으로 표시하는 인디케이터입니다.",
+        "examples": {
+          "basic": "점 표시기 예제"
+        }
+      },
+      "drawer": {
+        "display_name": "드로어",
+        "description": "화면 가장자리에서 슬라이드되는 패널입니다.",
+        "examples": {
+          "basic": "드로어 예제"
+        },
+        "open_drawer": "드로어 열기",
+        "close_drawer": "드로어 닫기",
+        "open_another_drawer": "다른 드로어 열기",
+        "drawer_at": "드로어 {count}번 at {position}"
+      },
+      "dropdown_menu": {
+        "display_name": "드롭다운 메뉴",
+        "description": "선택 가능한 옵션 목록을 표시하는 메뉴입니다.",
+        "examples": {
+          "basic": "드롭다운 메뉴 예제"
+        }
+      },
+      "expandable_sidebar": {
+        "display_name": "확장 가능한 사이드바",
+        "description": "확장 및 축소가 가능한 사이드바입니다.",
+        "examples": {
+          "basic": "확장 가능한 사이드바 예제"
+        }
+      },
+      "form": {
+        "display_name": "폼",
+        "description": "폼 유효성 검사를 쉽게 만드는 도우미 위젯입니다.",
+        "examples": {
+          "table_layout": "폼 예제 (테이블 레이아웃)",
+          "column_layout": "폼 예제 (컬럼 레이아웃)",
+          "validation_mode": "유효성 검사 모드 예제"
+        },
+        "username_label": "사용자명",
+        "username_hint": "공개적으로 표시될 이름입니다",
+        "password_label": "비밀번호",
+        "confirm_password_label": "비밀번호 확인",
+        "passwords_do_not_match": "비밀번호가 일치하지 않습니다",
+        "agree_terms": "이용약관에 동의합니다",
+        "must_agree_terms": "이용약관에 동의해야 합니다",
+        "form_values_title": "폼 값",
+        "register": "등록",
+        "username_already_taken": "사용자명이 이미 사용 중입니다",
+        "email": "이메일",
+        "username_display": "사용자명: {value}",
+        "password_display": "비밀번호: {value}",
+        "confirm_password_display": "비밀번호 확인: {value}",
+        "agree_display": "동의: {value}",
+        "json_display": "JSON: {value}",
+        "submitted_value_display": "제출된 값: {value}",
+        "login": "로그인",
+        "sign_up": "회원가입",
+        "dont_have_account": "계정이 없으신가요?",
+        "already_have_account": "이미 계정이 있으신가요?"
+      },
+      "formatted_input": {
+        "display_name": "포맷 입력",
+        "description": "특정 형식에 맞춰 입력되는 텍스트 필드입니다.",
+        "examples": {
+          "basic": "포맷 입력 예제"
+        }
+      },
+      "hover_card": {
+        "display_name": "호버 카드",
+        "description": "호버 시 표시되는 카드입니다.",
+        "examples": {
+          "basic": "호버 카드 예제"
+        },
+        "flutter_handle": "@flutter",
+        "flutter_username": "Flutter",
+        "flutter_description": "Flutter SDK는 단일 코드베이스에서 모바일, 웹, 데스크톱용 아름다운 앱을 빌드할 수 있는 도구를 제공합니다."
+      },
+      "input": {
+        "display_name": "입력",
+        "description": "텍스트 입력 필드입니다.",
+        "examples": {
+          "basic": "입력 예제"
+        },
+        "enter_name": "이름을 입력하세요",
+        "enter_username": "사용자명을 입력하세요",
+        "username_already_taken": "사용자명이 이미 사용 중입니다",
+        "hello_world": "안녕하세요, 세계!",
+        "search_something": "검색할 내용을 입력하세요...",
+        "email": "이메일",
+        "password": "비밀번호를 입력하세요",
+        "username_hint": "사용자명 입력란입니다"
+      },
+      "input_otp": {
+        "display_name": "OTP 입력",
+        "description": "일회용 비밀번호를 입력하는 필드입니다.",
+        "examples": {
+          "basic": "OTP 입력 예제"
+        }
+      },
+      "item_picker": {
+        "display_name": "항목 선택기",
+        "description": "목록에서 항목을 선택할 수 있는 컴포넌트입니다.",
+        "examples": {
+          "basic": "항목 선택기 예제"
+        }
+      },
+      "keyboard_display": {
+        "display_name": "키보드 표시",
+        "description": "키보드 단축키를 표시하는 컴포넌트입니다.",
+        "examples": {
+          "basic": "키보드 표시 예제"
+        }
+      },
+      "linear_progress": {
+        "display_name": "선형 진행률",
+        "description": "선형 진행 표시기입니다.",
+        "examples": {
+          "basic": "선형 진행률 예제"
+        },
+        "increase": "증가",
+        "decrease": "감소"
+      },
+      "material": {
+        "display_name": "Material/Cupertino",
+        "description": "Flutter의 기본 Material 및 Cupertino 위젯을 사용하는 방법입니다.",
+        "examples": {
+          "basic": "Material/Cupertino 예제"
+        },
+        "my_material_app": "내 Material 앱",
+        "my_cupertino_app": "내 Cupertino 앱",
+        "you_pushed_button": "버튼을 {count}번 눌렀습니다",
+        "open_material_dialog": "Material 다이얼로그 열기",
+        "open_cupertino_dialog": "Cupertino 다이얼로그 열기",
+        "open_coui_dialog": "COUI 다이얼로그 열기"
+      },
+      "menubar": {
+        "display_name": "메뉴바",
+        "description": "수평 메뉴 바입니다.",
+        "examples": {
+          "basic": "메뉴바 예제"
+        },
+        "file": "파일",
+        "edit": "편집",
+        "new_tab": "새 탭",
+        "new_window": "새 창",
+        "new_incognito_window": "새 시크릿 창",
+        "email_link": "이메일 링크",
+        "messages": "메시지",
+        "notes": "노트",
+        "share": "공유",
+        "print": "인쇄",
+        "save_and_exit": "저장 후 종료",
+        "discard_and_exit": "취소 후 종료",
+        "exit": "종료",
+        "undo": "실행 취소",
+        "redo": "다시 실행"
+      },
+      "multiselect": {
+        "display_name": "다중 선택",
+        "description": "여러 항목을 선택할 수 있는 컴포넌트입니다.",
+        "examples": {
+          "basic": "다중 선택 예제"
+        }
+      },
+      "navigation_bar": {
+        "display_name": "네비게이션 바",
+        "description": "하단 네비게이션 바입니다.",
+        "examples": {
+          "basic": "네비게이션 바 예제"
+        }
+      },
+      "navigation_menu": {
+        "display_name": "네비게이션 메뉴",
+        "description": "네비게이션 메뉴 컴포넌트입니다.",
+        "examples": {
+          "basic": "네비게이션 메뉴 예제"
+        }
+      },
+      "navigation_rail": {
+        "display_name": "네비게이션 레일",
+        "description": "측면 네비게이션 레일입니다.",
+        "examples": {
+          "basic": "네비게이션 레일 예제"
+        }
+      },
+      "navigation_sidebar": {
+        "display_name": "네비게이션 사이드바",
+        "description": "네비게이션 사이드바 컴포넌트입니다.",
+        "examples": {
+          "basic": "네비게이션 사이드바 예제"
+        }
+      },
+      "number_input": {
+        "display_name": "숫자 입력",
+        "description": "숫자를 입력하는 필드입니다.",
+        "examples": {
+          "basic": "숫자 입력 예제"
+        },
+        "value": "값: {value}"
+      },
+      "number_ticker": {
+        "display_name": "숫자 티커",
+        "description": "숫자가 변경될 때 애니메이션을 표시합니다.",
+        "examples": {
+          "basic": "숫자 티커 예제"
+        }
+      },
+      "overflow_marquee": {
+        "display_name": "오버플로우 마키",
+        "description": "텍스트가 넘칠 때 자동으로 스크롤됩니다.",
+        "examples": {
+          "basic": "오버플로우 마키 예제"
+        }
+      },
+      "pagination": {
+        "display_name": "페이지네이션",
+        "description": "페이지를 탐색하는 컴포넌트입니다.",
+        "examples": {
+          "basic": "페이지네이션 예제"
+        }
+      },
+      "phone_input": {
+        "display_name": "전화번호 입력",
+        "description": "전화번호를 입력하는 필드입니다.",
+        "examples": {
+          "basic": "전화번호 입력 예제"
+        }
+      },
+      "popover": {
+        "display_name": "팝오버",
+        "description": "요소 위에 표시되는 팝업입니다.",
+        "examples": {
+          "basic": "팝오버 예제"
+        },
+        "dimensions": "크기",
+        "set_dimensions": "레이어의 크기를 설정하세요",
+        "width": "너비",
+        "max_width": "최대 너비",
+        "height": "높이",
+        "max_height": "최대 높이",
+        "open_popover": "팝오버 열기",
+        "submit": "제출"
+      },
+      "progress": {
+        "display_name": "진행률",
+        "description": "진행 상태를 표시합니다.",
+        "examples": {
+          "basic": "진행률 예제"
+        }
+      },
+      "radio_card": {
+        "display_name": "라디오 카드",
+        "description": "카드 형태의 라디오 버튼입니다.",
+        "examples": {
+          "basic": "라디오 카드 예제"
+        }
+      },
+      "radio_group": {
+        "display_name": "라디오 그룹",
+        "description": "라디오 버튼 그룹입니다.",
+        "examples": {
+          "basic": "라디오 그룹 예제"
+        },
+        "option_1": "옵션 1",
+        "option_2": "옵션 2",
+        "option_3": "옵션 3",
+        "selected": "선택됨"
+      },
+      "refresh_trigger": {
+        "display_name": "새로고침 트리거",
+        "description": "당겨서 새로고침 기능을 제공합니다.",
+        "examples": {
+          "basic": "새로고침 트리거 예제"
+        },
+        "pull_me": "당겨주세요",
+        "refresh": "새로고침"
+      },
+      "repeated_animation_builder": {
+        "display_name": "반복 애니메이션 빌더",
+        "description": "애니메이션을 반복하는 빌더입니다.",
+        "examples": {
+          "basic": "반복 애니메이션 빌더 예제"
+        }
+      },
+      "resizable": {
+        "display_name": "크기 조절 가능",
+        "description": "크기를 조절할 수 있는 컨테이너입니다.",
+        "examples": {
+          "basic": "크기 조절 가능 예제"
+        }
+      },
+      "scaffold": {
+        "display_name": "스캐폴드",
+        "description": "스캐폴드는 페이지의 최상위 컨테이너입니다.",
+        "examples": {
+          "basic": "스캐폴드 예제"
+        }
+      },
+      "select": {
+        "display_name": "선택",
+        "description": "옵션 목록에서 항목을 선택할 수 있습니다.",
+        "examples": {
+          "basic": "선택 예제"
+        },
+        "placeholder": "과일을 선택하세요",
+        "search_fruit": "과일 검색",
+        "no_fruit_found": "과일을 찾을 수 없습니다",
+        "apple": "사과",
+        "banana": "바나나",
+        "cherry": "체리",
+        "lemon": "레몬",
+        "tomato": "토마토",
+        "red_apple": "빨간 사과",
+        "green_apple": "초록 사과",
+        "yellow_banana": "노란 바나나",
+        "brown_banana": "갈색 바나나",
+        "yellow_lemon": "노란 레몬",
+        "green_lemon": "초록 레몬",
+        "red": "빨강",
+        "green": "초록",
+        "yellow": "노랑",
+        "brown": "갈색"
+      },
+      "sheet": {
+        "display_name": "시트",
+        "description": "하단에서 올라오는 시트입니다.",
+        "examples": {
+          "basic": "시트 예제"
+        }
+      },
+      "skeleton": {
+        "display_name": "스켈레톤",
+        "description": "로딩 중 표시되는 스켈레톤 화면입니다.",
+        "examples": {
+          "basic": "스켈레톤 예제"
+        }
+      },
+      "slider": {
+        "display_name": "슬라이더",
+        "description": "값을 슬라이드하여 선택할 수 있습니다.",
+        "examples": {
+          "basic": "슬라이더 예제"
+        },
+        "value_single": "값: {value}",
+        "value_range": "값: {start} - {end}"
+      },
+      "sortable": {
+        "display_name": "정렬 가능",
+        "description": "드래그하여 항목을 정렬할 수 있습니다.",
+        "examples": {
+          "basic": "정렬 가능 예제"
+        }
+      },
+      "star_rating": {
+        "display_name": "별점",
+        "description": "별점을 선택할 수 있습니다.",
+        "examples": {
+          "basic": "별점 예제"
+        }
+      },
+      "stepper": {
+        "display_name": "스테퍼",
+        "description": "단계별 프로세스를 표시합니다.",
+        "examples": {
+          "basic": "스테퍼 예제"
+        },
+        "step_1": "1단계",
+        "step_2": "2단계",
+        "step_3": "3단계",
+        "step_n": "단계 {n}",
+        "optional_step": "선택적 단계",
+        "horizontal": "가로",
+        "vertical": "세로",
+        "toggle_error": "오류 전환",
+        "circle": "원형",
+        "circle_alt": "원형 대체",
+        "line": "선형",
+        "small": "작게",
+        "medium": "중간",
+        "large": "크게"
+      },
+      "steps": {
+        "display_name": "단계",
+        "description": "진행 상황을 단계로 표시합니다.",
+        "examples": {
+          "basic": "단계 예제"
+        }
+      },
+      "swiper": {
+        "display_name": "스와이퍼",
+        "description": "스와이프 가능한 컴포넌트입니다.",
+        "examples": {
+          "basic": "스와이퍼 예제"
+        }
+      },
+      "switch": {
+        "display_name": "스위치",
+        "description": "켜기/끄기 스위치입니다.",
+        "examples": {
+          "basic": "스위치 예제"
+        }
+      },
+      "switcher": {
+        "display_name": "전환기",
+        "description": "여러 뷰 간에 전환할 수 있습니다.",
+        "examples": {
+          "basic": "전환기 예제"
+        },
+        "switch_direction": "방향 전환",
+        "next_item": "다음 항목"
+      },
+      "tab_container": {
+        "display_name": "탭 컨테이너",
+        "description": "탭 선택 상태와 커스텀 렌더링을 관리하는 기본 컨테이너입니다.",
+        "examples": {
+          "basic": "탭 컨테이너 예제"
+        }
+      },
+      "tab_list": {
+        "display_name": "탭 목록",
+        "description": "탭 목록 컴포넌트입니다.",
+        "examples": {
+          "basic": "탭 목록 예제"
+        }
+      },
+      "tab_pane": {
+        "display_name": "탭 패널",
+        "description": "탭 패널 컴포넌트입니다.",
+        "examples": {
+          "basic": "탭 패널 예제"
+        }
+      },
+      "table": {
+        "display_name": "테이블",
+        "description": "데이터를 테이블 형식으로 표시합니다.",
+        "examples": {
+          "basic": "테이블 예제"
+        },
+        "invoice": "송장",
+        "status": "상태",
+        "method": "방법",
+        "amount": "금액",
+        "total": "합계",
+        "paid": "지불됨",
+        "pending": "대기 중",
+        "unpaid": "미지불",
+        "credit_card": "신용 카드",
+        "paypal": "PayPal",
+        "bank_transfer": "은행 송금"
+      },
+      "tabs": {
+        "display_name": "탭",
+        "description": "탭을 사용하여 콘텐츠를 구성합니다.",
+        "examples": {
+          "basic": "탭 예제"
+        },
+        "tab_1": "탭 1",
+        "tab_2": "탭 2",
+        "tab_3": "탭 3",
+        "tab_n": "탭 {n}"
+      },
+      "text_area": {
+        "display_name": "텍스트 영역",
+        "description": "여러 줄의 텍스트를 입력할 수 있습니다.",
+        "examples": {
+          "basic": "텍스트 영역 예제"
+        },
+        "hello_world": "안녕하세요, 세계!"
+      },
+      "time_picker": {
+        "display_name": "시간 선택기",
+        "description": "시간을 선택할 수 있습니다.",
+        "examples": {
+          "basic": "시간 선택기 예제"
+        },
+        "select_time": "시간 선택"
+      },
+      "timeline": {
+        "display_name": "타임라인",
+        "description": "이벤트를 타임라인으로 표시합니다.",
+        "examples": {
+          "basic": "타임라인 예제"
+        }
+      },
+      "timeline_animation": {
+        "display_name": "타임라인 애니메이션",
+        "description": "타임라인 기반 애니메이션입니다.",
+        "examples": {
+          "basic": "타임라인 애니메이션 예제"
+        }
+      },
+      "toast": {
+        "display_name": "토스트",
+        "description": "짧은 메시지를 표시하는 알림입니다.",
+        "examples": {
+          "basic": "토스트 예제"
+        },
+        "event_created": "이벤트가 생성되었습니다",
+        "event_date": "2024년 7월 7일 일요일 오후 12:00",
+        "show_bottom_left": "왼쪽 하단 토스트 표시",
+        "show_bottom_right": "오른쪽 하단 토스트 표시",
+        "show_top_left": "왼쪽 상단 토스트 표시",
+        "show_top_right": "오른쪽 상단 토스트 표시",
+        "show_bottom_center": "하단 중앙 토스트 표시",
+        "show_top_center": "상단 중앙 토스트 표시"
+      },
+      "toggle": {
+        "display_name": "토글",
+        "description": "옵션 간에 토글할 수 있습니다.",
+        "examples": {
+          "basic": "토글 예제"
+        },
+        "toggle": "토글"
+      },
+      "tooltip": {
+        "display_name": "툴팁",
+        "description": "요소에 대한 추가 정보를 표시합니다.",
+        "examples": {
+          "basic": "툴팁 예제"
+        },
+        "this_is_tooltip": "툴팁입니다.",
+        "hover_over_me": "마우스를 올려보세요"
+      },
+      "tracker": {
+        "display_name": "트래커",
+        "description": "진행 상황을 추적합니다.",
+        "examples": {
+          "basic": "트래커 예제"
+        },
+        "fine": "양호",
+        "warning": "경고",
+        "critical": "위험",
+        "unknown": "알 수 없음",
+        "tracker_fine": "트래커 양호",
+        "tracker_warning": "트래커 경고",
+        "tracker_critical": "트래커 위험",
+        "tracker_unknown": "트래커 알 수 없음"
+      },
+      "tree": {
+        "display_name": "트리",
+        "description": "계층 구조 데이터를 트리 형식으로 표시합니다.",
+        "examples": {
+          "basic": "트리 예제"
+        }
+      },
+      "window": {
+        "display_name": "윈도우",
+        "description": "데스크톱 스타일의 윈도우입니다.",
+        "examples": {
+          "basic": "윈도우 예제"
+        },
+        "window_1": "윈도우 1",
+        "window_2": "윈도우 2",
+        "desktop": "데스크톱",
+        "add_window": "윈도우 추가"
+      }
+    }
+  }
+}

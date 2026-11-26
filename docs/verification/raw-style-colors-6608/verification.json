@@ -1,0 +1,350 @@
+{
+  "status": "Completed scoped verification. Existing default pixel/property differences remain; actual exits are retained.",
+  "issue": 6608,
+  "candidateCommit": "baf7ee47570df22b4d2e55876d28760e09e55273",
+  "originalSource": "566b1c55ae2a0ff6dfd5b73d787ef0fc5e2b475f",
+  "functionalSource": "9424d111c93eb8fc9d8079677827bad48011854b plus exact frozen3 files subsequently committed baf7",
+  "original22": {
+    "before": {
+      "pass": 14,
+      "fail": 8,
+      "suiteActualExits": [
+        1,
+        1
+      ]
+    },
+    "after": {
+      "pass": 22,
+      "fail": 0,
+      "suiteActualExits": [
+        0,
+        0
+      ]
+    },
+    "unchangedFixtures": true
+  },
+  "newRepoTests": 21,
+  "existingRelatedTests": 61,
+  "fatalInfosExit": 0,
+  "formatExit": 0,
+  "wholeSSRControlsByteExact": 12,
+  "freshNative": {
+    "source": "baf7ee47570df22b4d2e55876d28760e09e55273",
+    "allManifest": 56,
+    "defaultManifest": 12,
+    "matrixPass": 12,
+    "json": 12,
+    "png": 12,
+    "noRootStructural": 2,
+    "historical566FilesByteExact": 24,
+    "actualCaptureExit": 0
+  },
+  "limits": [
+    "No new Core/Native/public API/default/precision/criteria changes in this task.",
+    "Web alpha serialization remains existing two-decimal policy; actual raw Native/Web RGBA identity is not claimed.",
+    "LiveCSS31 is custom public caller verification, not canonical whole-library parity or screenshot evidence.",
+    "Normal utility class argument order does not promise cascade priority; component value wins in these actual controls.",
+    "Token important-class observed color is non-discriminating because primary and tertiary both resolve to42,43,44; raw important and caller-ID controls are discriminating.",
+    "All14 computed control values match, but raw caller border inline declaration ordering changed; do not claim entire observed object byte identity.",
+    "No attribution to historical default228 failures or whole834/838 parity improvement.",
+    "Scoped reports retain own-baseline4P/8F, crosspixel6P/6F, property4P/6F/2 structural skips; all actual report exits1, infra0.",
+    "All48 default raw files and before/after parity matrices remain unchanged; custom raw-color fixes are not claimed to reduce historical default pixel failures.",
+    "The before full566 Web reference is its retained actual first795+manual43 dataset, not a fabricated fresh before feature run."
+  ],
+  "refs": [
+    {
+      "label": "original22-plan",
+      "artifactRelativePath": "evidence/combined-original-review-plan.json",
+      "sha256": "6d7deed93631b87dd0cb8a4721888ba5734221de21b119bb00e35b3cbc12ca5f"
+    },
+    {
+      "label": "candidate-functional",
+      "artifactRelativePath": "evidence/implementation/candidate-handoff.json",
+      "sha256": "8c8bd8d5ef87f28cf7f1153ccff79394a7685f77e8a8f4e8f7ad381a23659111"
+    },
+    {
+      "label": "candidate-functional-index",
+      "artifactRelativePath": "evidence/implementation/artifact-index.json",
+      "sha256": "755c638990d7119c70f36b0ebbae66d7349c14f3579e63a1a79ae8fdd2d610a6"
+    },
+    {
+      "label": "fresh-native12",
+      "artifactRelativePath": "evidence/implementation/native-canonical-after/native-handoff.json",
+      "sha256": "9af0e6b73b3bec9790ddb40ed326c73b43174d96fd0957ca3867db1089145346"
+    },
+    {
+      "label": "fresh-native12-index",
+      "artifactRelativePath": "evidence/implementation/native-canonical-after/artifact-index.json",
+      "sha256": "547f8717da41d9fbb5fcf139db2704a307d3cc2ccf7a2ef037352c03fef576f7"
+    },
+    {
+      "label": "default-token-SSR",
+      "artifactRelativePath": "evidence/implementation/default-token-SSR-comparison.json",
+      "sha256": "7de1f2b0ca52f53c9d35f964aadc54aab857ed25ecb9ce51dd80f82a0cf52d8f"
+    },
+    {
+      "label": "live-css31",
+      "artifactRelativePath": "evidence/live-css/after/final-summary.json",
+      "sha256": "2a1eaac53de00e48c1504ccd49b81704ccb090ddb492b32b96e6aabdb6b8246f"
+    },
+    {
+      "label": "live-css-index",
+      "artifactRelativePath": "evidence/live-css/after/artifact-index.json",
+      "sha256": "6f21e12fdcf106053e4528d58a047a43c64a8915b82c8ecbfa3e1041b3369709"
+    },
+    {
+      "label": "live-css-controls",
+      "artifactRelativePath": "evidence/live-css/after/controls-readback-addendum.json",
+      "sha256": "67c572aefe22cca79d06e0bc4f87986fdc1f48ae8aac62ecc07a7c97d305d0b3"
+    },
+    {
+      "label": "docs-build",
+      "artifactRelativePath": "evidence/Root/docs-candidate/final-proof.json",
+      "sha256": "881147851a47a49d5848ce0459433e8f9262a22ed451f7c5df5a216bf46e6b34"
+    },
+    {
+      "label": "docs-metadata",
+      "artifactRelativePath": "evidence/Root/docs-candidate/metadata-proof.json",
+      "sha256": "772eb21d32cdb7fcee72dc401441c26114ecf8aaeaa0b35084f7ddffe9fe161b"
+    },
+    {
+      "label": "docs-exit",
+      "artifactRelativePath": "evidence/Root/docs-candidate/exit.json",
+      "sha256": "b629537280f7540f398285403be444fc703635c3e97db642edbe135146196002"
+    },
+    {
+      "label": "docs-output-index",
+      "artifactRelativePath": "evidence/Root/docs-candidate/output-index.json",
+      "sha256": "82a1a430ae51b290cf89fdad3ec31aceaf891d0a839e2fc435939a13e91f3d56"
+    },
+    {
+      "label": "docs-source-final",
+      "artifactRelativePath": "evidence/Root/docs-candidate/source-final.json",
+      "sha256": "d471c1e99381986d51c31d702f6f216559af760e340c4dff81d8c08b82d613ea"
+    },
+    {
+      "label": "docs-uri-proof-correction",
+      "artifactRelativePath": "evidence/Root/docs-candidate/uri-proof-setup-note.json",
+      "sha256": "0aad34dd44b3979c139d6970d5356249e9e22ce057696ed8745246e9f9419630"
+    },
+    {
+      "label": "live-css-final-index-including-controls-addendum",
+      "artifactRelativePath": "evidence/live-css/after/final-index.json",
+      "sha256": "3219ce35ffe9340ff79c77bfd0b5d015c2cf3970406510a5b3ed0a397d02078e",
+      "refs": 29
+    },
+    {
+      "label": "canonical-Web12",
+      "artifactRelativePath": "evidence/canonical-web-after/final-handoff.json",
+      "sha256": "f2c32505403528f28c386675d5ba0a54b926f4c4eed8a5b529413b1d4b781023"
+    },
+    {
+      "label": "canonical-Web12-index",
+      "artifactRelativePath": "evidence/canonical-web-after/final-index.json",
+      "sha256": "ea4732f1b2ea441c92b26847e389ac7f5b94a32e4f2b850d428a22bbafb267c1"
+    },
+    {
+      "label": "official-scoped-reports",
+      "artifactRelativePath": "evidence/Root/scoped-reports/summary.json",
+      "sha256": "c746800218a2362f3aa00fe40483a6876e4cce9025e5669900d68e04524b1555"
+    },
+    {
+      "label": "official-scoped-inputs",
+      "artifactRelativePath": "evidence/Root/scoped-reports/inputs.json",
+      "sha256": "71b3c5a2c8e89d254e2c2cbe0b3c54740f82322370f26509f06d553d955ebfda"
+    },
+    {
+      "label": "official-before-after-matrices",
+      "artifactRelativePath": "evidence/Root/scoped-reports/actual-before-parity-subset-comparison.json",
+      "sha256": "4ad13e32a44c477195f4f20d96842af8718ae0f790e69ddf8b3c830153368604"
+    },
+    {
+      "label": "owned-bootstrap-cleanup",
+      "artifactRelativePath": "evidence/implementation/owned-bootstrap-cleanup.json",
+      "sha256": "58f7ba07c71086ac6a739d3570f91e4268c3d3eb0e342ae39337b657703d85d9"
+    },
+    {
+      "label": "SSR-reload",
+      "artifactRelativePath": "evidence/implementation/owned-ssr-reload/ssr-reload-proof.json",
+      "sha256": "7fdc2f987d6b773248cbf694663db5b16fde68327f11dfafa5a2ed4d84d79642"
+    },
+    {
+      "label": "SSR-VM-responses",
+      "artifactRelativePath": "evidence/implementation/owned-ssr-reload/vm-responses.json",
+      "sha256": "674384922f07119fd4d8d2e0cf6ab9549c7053c02cec23f157e4f4b015b72fa5"
+    },
+    {
+      "label": "SSR-owned-entry",
+      "artifactRelativePath": "evidence/implementation/owned-ssr-reload/serve.dart",
+      "sha256": "98fb158644676c8e17c7f48ff110993643e5de8a3bafb5d27d25e5fa2dfe5fad"
+    },
+    {
+      "label": "SSR-jobbox-EOF",
+      "artifactRelativePath": "evidence/implementation/owned-ssr-reload/jobbox-exit.json",
+      "sha256": "884eb9af40323aea2dcd3f70204307ea19076b040e648671ffbbe8dd13d865f2"
+    }
+  ],
+  "actualLiveCSS": {
+    "source": "baf7ee47570df22b4d2e55876d28760e09e55273",
+    "browser": "EgoLite Space19/p1 actual Chrome156",
+    "cases": 31,
+    "owners": 34,
+    "observerActualExit": 0,
+    "observerSeconds": 17.642826375000002,
+    "CommandOriginal5ComputedOmissionsFixed": true,
+    "rawSelection3ActualPseudoColors": true,
+    "rawRootOnlyCSSOMNoDescendantWildcard": true,
+    "richDescendantInheritsRaw": true,
+    "nestedOwnersKeepOwnValues": true,
+    "all14ComputedColorStyleWidthGeometryControlsExact": true,
+    "inlineOrderingOnlyDelta": true,
+    "normalCallerClasses": "component selection colour remains; class argument order not a promised CSS priority",
+    "importantRawCallerClass": "actual raw18,85,170 becomes primary42,43,44; emittedCSS priority important",
+    "importantTokenLimitation": "primary and tertiary both42,43,44 in Theme.coui, so this computed colour alone cannot discriminate which won; CSSOM records actual important declaration",
+    "callerIDRulesWin": true,
+    "environmentRestoredExact": true,
+    "screenshots": 0,
+    "canonicalParityClaim": false
+  },
+  "documentationBuild": {
+    "source": "baf7ee47570df22b4d2e55876d28760e09e55273",
+    "actualExit": 0,
+    "actualCLISeconds": 97.971450833,
+    "routes": 361,
+    "JasprHTML": 363,
+    "FlutterHTML": 2,
+    "outputHashes": 5044,
+    "representativeHTML": 3,
+    "trackedBytesModesExact": 25142,
+    "actual232AllFieldsPhysicalRootsGraphLockExact": true,
+    "configURISpellingChangesOnly": 19,
+    "automaticRootExamplePubPreflightObserved": true,
+    "directWorkerProjectPub": 0,
+    "totalPubZeroClaim": false,
+    "initialProofLiteralURIAssertionCorrection": "Root preserved uri-proof-setup-note.json; physical decoded roots and package fields verified; no second docs build claimed.",
+    "portClosed": true,
+    "wholeBuildReclaimed": true
+  },
+  "sourcePaths": [
+    "packages/coui_web/lib/src/components/control/command/command_style.dart",
+    "packages/coui_web/lib/src/components/text/selectable/selectable_style.dart",
+    "tool/parity/test/web/raw_style_color_test.dart"
+  ],
+  "canonicalWeb": {
+    "source": "baf7ee47570df22b4d2e55876d28760e09e55273",
+    "captureExit": 0,
+    "captureSeconds": 22.527425375,
+    "ALLSourceDerived": 56,
+    "defaultSourceDerived": 12,
+    "freshJSON": 12,
+    "freshPNG": 12,
+    "beforeSource": "566b1c55ae2a0ff6dfd5b73d787ef0fc5e2b475f",
+    "PNGBytesAndRGBAExactToBefore": 12,
+    "wholeJSONAndByRoleAndLayoutExactToBefore": 12,
+    "rawChangedFieldPaths": {},
+    "actualCleanupWholeObservationExact": 12,
+    "currentBrowser": "same native Ego19/p1 Chrome156; managed raster GPU/software not established",
+    "sourceMetadataConsumersEOF": true,
+    "historicalCaptureReusedInFreshAfter": 0
+  },
+  "scopedReports": {
+    "source": "baf7ee47570df22b4d2e55876d28760e09e55273",
+    "baseline48BlobsExact5669424Candidate": true,
+    "same48RawBeforeAfterBytes": true,
+    "beforeParityAlreadyMeasuredInFull566": true,
+    "actualBeforeRegressionCommandRerun": false,
+    "actualResults": {
+      "baseline": {
+        "actualExit": 1,
+        "seconds": 4.857976541999999,
+        "keyCounts": {
+          "pass": 4,
+          "fail": 8,
+          "infra": 0,
+          "skipped": 0
+        }
+      },
+      "pixel": {
+        "actualExit": 1,
+        "seconds": 4.493862084,
+        "keyCounts": {
+          "pass": 6,
+          "fail": 6,
+          "infra": 0,
+          "skipped": 0
+        }
+      },
+      "property": {
+        "actualExit": 1,
+        "seconds": 4.352849083999999,
+        "keyCounts": {
+          "pass": 4,
+          "fail": 6,
+          "infra": 0,
+          "skipped": 2
+        }
+      }
+    },
+    "ownBaselinePlatformCounts": {
+      "Native": {
+        "pass": 12,
+        "fail": 0
+      },
+      "Web": {
+        "pass": 4,
+        "fail": 8
+      }
+    },
+    "propertySkippedAreStructuralNoRoot": 2,
+    "criteriaAllowlistPromotionChanges": 0,
+    "beforeAndAfterParityMatricesExact": "See actual-before-parity-subset-comparison.json, selected12 from actual full566; not a new before run."
+  },
+  "ownedSSRReload": {
+    "source": "baf7ee47570df22b4d2e55876d28760e09e55273",
+    "targetStyleLibraries": [
+      {
+        "type": "@Library",
+        "fixedId": true,
+        "id": "libraries/@548465209",
+        "name": "",
+        "uri": "package:coui_web/src/components/control/command/command_style.dart"
+      },
+      {
+        "type": "@Library",
+        "fixedId": true,
+        "id": "libraries/@854027287",
+        "name": "",
+        "uri": "package:coui_web/src/components/text/selectable/selectable_style.dart"
+      }
+    ],
+    "HTTPBefore": 200,
+    "HTTPAfter": 200,
+    "actualControlsBefore": 6,
+    "actualControlsAfter": 6,
+    "sixControlClassAndCSSValuesExact": true,
+    "reloadSourcesSuccess": true,
+    "productTestHelperLockBeforeAfterExact": true,
+    "ports": [
+      {
+        "port": 51574,
+        "closed": true
+      },
+      {
+        "port": 51591,
+        "closed": true
+      }
+    ],
+    "pidClosed": true,
+    "actualExit": 0,
+    "seconds": 4.276485708,
+    "jobboxReclaimed": true,
+    "scope": "Actual owned server-side Dart VM reload, not browser client or Native app hot reload."
+  },
+  "ownedGeneratedBootstrapCleanup": {
+    "count": 4,
+    "receipt": "evidence/implementation/owned-bootstrap-cleanup.json",
+    "policy": "Exact owned test-compiler URI evidence, bytes preserved, lsof0 and SHA/mtime CAS unlink after job EOF. No candidate file mutation. Future related source-compiler tests use owned shadows."
+  },
+  "artifactRoot": "weever-raw-style-original-pqay393r",
+  "sourceBindingNote": "Repository paths and exact commits identify code; artifact-relative paths plus content SHA identify evidence after WT retirement. Raw original fixtures remain immutable and may reference the retired full566 helper; do not rerun those old absolute imports."
+}

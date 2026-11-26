@@ -1,0 +1,38 @@
+{
+  "key": "mockup-app-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "13px",
+      "lineHeight": "19.5px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(180, 181, 182)",
+      "backgroundColor": "rgb(31, 32, 33)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "14px",
+      "borderTopRightRadius": "14px",
+      "borderBottomRightRadius": "14px",
+      "borderBottomLeftRadius": "14px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "color(srgb 0 0 0 / 0.5) 0px 24px 64px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 65
+    }
+  }
+}

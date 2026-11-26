@@ -1,0 +1,73 @@
+{
+  "key": "progress-indeterminate-dark-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "initial-frame",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "@keyframes co-progress-ssr-1r-progress { 0% { transform: translateX(-100%); } 100% { transform: translateX(285.71%); } } #co-progress-ssr-1r .co-progress-indeterminate { width: 35.00%; animation: co-progress-ssr-1r-progress var(--coui-duration-1500) var(--easing-ease-in-out) infinite; }",
+    "layout": {
+      "width": 800,
+      "height": 6,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": -280,
+          "y": 0,
+          "width": 280,
+          "height": 6
+        }
+      ]
+    },
+    "animationTimes": [
+      0
+    ],
+    "animationStates": [
+      "paused"
+    ],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSize": null,
+      "lineHeight": null,
+      "letterSpacing": null,
+      "color": null,
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "9999px",
+      "borderTopRightRadius": "9999px",
+      "borderBottomRightRadius": "9999px",
+      "borderBottomLeftRadius": "9999px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 6
+    }
+  }
+}

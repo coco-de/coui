@@ -1,0 +1,31 @@
+import 'package:coui_core/coui_core.dart';
+
+/// Existing Core key/value inputs shared by real browser and Native controls.
+final coreOpacityCases = <String, double>{
+  CoreOpacity.scale.opacity0: CoreOpacity.opacity0,
+  CoreOpacity.scale.opacity3: CoreOpacity.opacity3,
+  CoreOpacity.scale.opacity5: CoreOpacity.opacity5,
+  CoreOpacity.scale.opacity8: CoreOpacity.opacity8,
+  CoreOpacity.scale.opacity10: CoreOpacity.opacity10,
+  CoreOpacity.scale.opacity12: CoreOpacity.opacity12,
+  CoreOpacity.scale.opacity15: CoreOpacity.opacity15,
+  CoreOpacity.scale.opacity16: CoreOpacity.opacity16,
+  CoreOpacity.scale.opacity20: CoreOpacity.opacity20,
+  CoreOpacity.scale.opacity25: CoreOpacity.opacity25,
+  CoreOpacity.scale.opacity30: CoreOpacity.opacity30,
+  CoreOpacity.scale.opacity40: CoreOpacity.opacity40,
+  CoreOpacity.scale.opacity50: CoreOpacity.opacity50,
+  CoreOpacity.scale.opacity60: CoreOpacity.opacity60,
+  CoreOpacity.scale.opacity70: CoreOpacity.opacity70,
+  CoreOpacity.scale.opacity75: CoreOpacity.opacity75,
+  CoreOpacity.scale.opacity80: CoreOpacity.opacity80,
+  CoreOpacity.scale.opacity85: CoreOpacity.opacity85,
+  CoreOpacity.scale.opacity90: CoreOpacity.opacity90,
+  CoreOpacity.scale.opacity95: CoreOpacity.opacity95,
+  CoreOpacity.scale.opacity100: CoreOpacity.opacity100,
+  CoreOpacity.scale.disabled: CoreOpacity.disabled,
+  CoreOpacity.scale.hover: CoreOpacity.hover,
+  CoreOpacity.scale.focus: CoreOpacity.focus,
+  CoreOpacity.scale.pressed: CoreOpacity.pressed,
+  CoreOpacity.scale.scrim: CoreOpacity.scrim,
+};

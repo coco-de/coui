@@ -1,0 +1,56 @@
+# 리더가 라우팅에 실패한 Dart 필드 수 (G10 의 `untokenized` 칸).
+#
+# 값이 Core 에 있는데 exporter 가 그 값 모양을 못 읽어 JSON 에 싣지 못한 필드다.
+# 부재 결정도 폐기도 아니고 **리더 버그**이며, 고치는 방법은 리더에 그 모양의 AST
+# 지원을 넣는 것이다(`CoreTextStyle` 의 비-const 생성, private file-local const,
+# nested `CoreXxxStyle` 슬롯 안의 dispatch 엔트리 등).
+#
+# 왜 별도 파일인가: "누락"과 합치면 한쪽이 줄면서 다른 쪽이 늘어도 통과한다.
+#
+# 왜 이 게이트가 늦었는가: 이 수는 exporter 의 stderr 안내문 한 줄로만 존재했고
+# 세는 것이 없었다. 그래서 조용히 늘었다 — 한 세션 안에서 13 → 21 로 갔는데
+# 아무도 몰랐고, JSON 이 필드 이름을 싣지 않아 "22개(전 21)" 식 보고밖에
+# 불가능했다. 이름을 실어야 회귀가 지목된다.
+#
+# 2026-08-10: 15
+#
+# 2026-08-10: 4. 리더 세 구멍을 메운 결과다 —
+#   · role 없는 `CoreTextStyle(color: …)` (bare 생성자라 owner 가 null 이고, 앞선
+#     `owner != 'CoreTextStyle'` 검사에서 먼저 걸렸다) → 6건
+#   · qualified `Duration.zero` (dot 단축형만 처리했다) → 2건
+#   · `double.infinity` → `{unbounded: true}`. 값이 없는 게 아니라 "상한 없음" 이고,
+#     칠할 숫자가 없으니 `v` 를 두지 않는다 → 3건
+#
+# 남은 4: nested `CoreXxxStyle` 슬롯(chip.closeButtonStyle · menu.submenuStyle),
+# `Core*BorderStyle` enum 2건, 그리고 text_area 의 이름 충돌 —
+# `CoreTextStyle? errorStyle`(에러 텍스트)과
+# `CoreTextAreaVariantStyle defaultErrorStyle`(에러 variant chrome)이 같은 이름을
+# 쓴다. 리더가 이름으로 짝지어 타입 불일치를 만나는 것이고, 리더 구멍이 아니라
+# 1:1 매핑 룰 위반이다(core/layer-mapping.md). Core rename 이 답이며 public
+# 심볼이라 deprecation 창을 거친다.
+#
+# 2026-08-10: 3. 위 text_area 이름 충돌을 Core rename 으로 해소했다 —
+# variant chrome 이 `defaultNormalVariant` / `defaultErrorVariant` 가 되어
+# (`CoreTextFieldStyle` 와 같은 철자) `default<Field>` 짝이 참이 됐다. 옛 이름은
+# `@Deprecated` 별칭으로 남아 있고, 리더는 `@Deprecated` default 를 건너뛰므로
+# 라우팅을 시도하지 않는다 — 대신 이름이 같은 `errorStyle` 필드가 그 창 동안
+# `deprecated` 칸으로 세어진다(8 → 9). 별칭이 제거되면 그 필드는 `absent`
+# (kind `text`) 로 옮겨간다. 어느 칸이든 실리는 값은 없다 — Core 에 에러 *텍스트*
+# 의 default 가 애초에 없고, 두 플랫폼 resolver 가 서로 다른 base role 에
+# 얹으므로 공유 default 를 두는 것은 한쪽 렌더를 바꾸는 일이다(별건).
+#
+# 남은 3 은 전부 리더가 모델링하지 않는 타입이다 — nested `CoreXxxStyle` 슬롯
+# (chip.closeButtonStyle · menu.submenuStyle)과 `Core*BorderStyle` enum. 이름
+# 충돌은 남아 있지 않으므로, 이 수를 더 내리는 일은 리더에 그 두 타입 지원을
+# 넣는 것이다.
+#
+# 2026-09-21: 1. 위 셋(chip.closeButtonStyle · menu.submenuStyle · `Core*BorderStyle`
+# enum)은 리더가 그 타입들을 읽게 되면서 전부 닫혔다. 지금 세어지는 1 은 그 셋이
+# 아니다 — `dock.indicatorSpring`(`CoreMorphSpring?`, reason `unresolvable-value`)
+# 이고, 이 값이 3 으로 남아 있던 동안 그 여유 밑으로 들어왔다. 가드는 매 실행
+# 초록이었다. 이 파일이 위에 적은 그대로다: 이름을 실어야 회귀가 지목된다.
+# 슬랙은 다음 net-new 의 자리다 — 그래서 실측에 맞춘다.
+#
+# 남은 1 의 결론은 둘 중 하나다: 리더에 `CoreMorphSpring` 라우팅을 넣거나, 스프링은
+# 모션이라 정적 캔버스에 자세가 없으므로 부재 선언으로 옮긴다.
+1

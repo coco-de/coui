@@ -1,0 +1,164 @@
+{
+  "issue": 6625,
+  "base": "4c28aaaeeb84fac3008bfa913b8971a682294412",
+  "executionRevision": "base plus candidate source/test hashes; not a later commit execution",
+  "filesSHA256": {
+    "tool/parity/src/diff/property_diff.dart": "5c80e3552dff79c40abf99d852dbbc5575aba1b15c6609ef823e082683a04f84",
+    "tool/parity/src/diff/pruned_pair_verifier.dart": "99357e406b4ae6c6e175cf7877e110e3aff3009f27f08e2ffd8d7ef2ebc24d0b",
+    "tool/parity/test/diff/padding_comparison_test.dart": "7ceb62597e37905c8b6e154483fed8528545ab4005b460643bd9b63865ca8850",
+    "tool/parity/test/diff/property_diff_test.dart": "90f36900ea9aa26bac51d40ebc5623a499149893448267cba46f246fa02c85d8",
+    "tool/parity/test/diff/pruned_pair_verifier_test.dart": "05fc5e42db539711ffb7f9d59e2ae311b21503c06a59dabe636a6740c4a53d45"
+  },
+  "results": {
+    "originalFinal15": {
+      "pass": 4,
+      "fail": 11
+    },
+    "candidateSame15": {
+      "pass": 15,
+      "fail": 0
+    },
+    "existing39Pass": true,
+    "relatedComparatorReport53Pass": true,
+    "candidateTotalPass": 107,
+    "candidateFail": 0,
+    "formatExit": 0,
+    "fatalInfosExit": 0,
+    "finalFormatNoDrift": {
+      "exit": 0,
+      "changedFiles": 0,
+      "actualHead": "e20f2680a86f681c791e129571be3a125c744a88"
+    },
+    "originalCandidateFormatAppliedChangeBefore107": 1
+  },
+  "compatibility": {
+    "reconcilePlatformsSignatureAndDefault": true,
+    "eitherFlagUsesCapturedPadding": true,
+    "pxTolerance": 0.5,
+    "otherToleranceAndGatesUnchanged": true,
+    "existingNullZeroAndExpectedTokenSemantics": true
+  },
+  "historical566PaddingProjection": {
+    "roles": 196,
+    "rawExactEqual": 120,
+    "oldMatches": 10,
+    "newMatches": 120,
+    "mismatchToMatch": 120,
+    "matchToMismatch": 10,
+    "freshCapture": false,
+    "fullReport": false,
+    "productImprovementCount": false
+  },
+  "sourceChanges": "Comparator arithmetic deletion; caller documentation; regression tests only",
+  "productionCoreAPIDefaultProducerNormalizerProbeCriteriaBaselineAllowlistChange": 0,
+  "metadata": {
+    "packages": 232,
+    "ownRootsRebound": 12,
+    "externalRootsUnchanged": 220,
+    "graphBytesOrderEdgesAndLockUnchanged": true,
+    "pubgetInstallDownload": 0
+  },
+  "runtime0": true,
+  "browserActions": 0,
+  "artifactRoot": "/Users/minhyeok/orca/artifacts/coui/weever-padding-compare-6625-oairhvdy",
+  "proofRefs": [
+    {
+      "path": "evidence/metadata/binding.json",
+      "sha256": "4d1f10bca7a691c7e445340cd315cd223f53d08cd261fd79f4324d2eeabdfdb8"
+    },
+    {
+      "path": "evidence/original/summary.json",
+      "sha256": "fb43db48e306e2dc6d6d21611ad64de0ef90628f79111a263c2c72676a53003b"
+    },
+    {
+      "path": "evidence/original-final/summary.json",
+      "sha256": "4acdaab080613bd988f73ea90792d19994976aa9e762d3e1a004add9af1112c4"
+    },
+    {
+      "path": "evidence/original-final/fixture.dart",
+      "sha256": "7ceb62597e37905c8b6e154483fed8528545ab4005b460643bd9b63865ca8850"
+    },
+    {
+      "path": "evidence/candidate-source-freeze.json",
+      "sha256": "82452dda67d8fdb85006843c8b45c9530e7fad4009a4f75693c3468f99b7683b"
+    },
+    {
+      "path": "evidence/candidate/summary.json",
+      "sha256": "4eacc0cc559eceea6c8aa17ee6528fc278da699307eb4b0c13ebd019ac110619"
+    },
+    {
+      "path": "evidence/candidate/analysis-exit.json",
+      "sha256": "6245fc849a68f365e81733ebce77d171c5555dd5437694c70293f4161831d4c9"
+    },
+    {
+      "path": "evidence/candidate/format-exit.json",
+      "sha256": "011a2d0f7b90a4b65b35b3cee8ee856a5cf73ea8d3d7270a4d3fce260d435a66"
+    },
+    {
+      "path": "evidence/existing566-padding-binding.json",
+      "sha256": "5b0980411fd55b35cdcc71f11e237bb2485533900b904d60c4c63fb9b88d7c07"
+    },
+    {
+      "path": "evidence/existing566-padding-recheck.json",
+      "sha256": "03b5924b075cc9667d0125677f8c1af910857888363a9db3c18a8aa0f94e8f2e"
+    },
+    {
+      "path": "evidence/final-format-exit.json",
+      "sha256": "06cf5ac01dcb4390a2da4a76cf89c4e2a2df88ac15a21b74b49b24ec2f439a8d"
+    },
+    {
+      "path": "evidence/Root/padding-resident-reload/source-binding.json",
+      "sha256": "0833e13451ec88d9af990e7316e9c0a4e036326f50efb0528dfea6da32e1d0b7"
+    },
+    {
+      "path": "evidence/Root/padding-resident-reload/execution.json",
+      "sha256": "dd216c49f060826a5311413c7480d376873eed3202bf4cd5e8f4007a2d92f3fd"
+    },
+    {
+      "path": "evidence/Root/padding-resident-reload/before.json",
+      "sha256": "49b34b8f21f180544179c25b8be2bcab4c6475802376c4b32bc3a821c755c8a8"
+    },
+    {
+      "path": "evidence/Root/padding-resident-reload/after.json",
+      "sha256": "28b615b6d736f29c5e0cc00a518c37eac8626b41ef8223a77741c8de9c49084e"
+    },
+    {
+      "path": "evidence/Root/padding-resident-reload/reload-response.json",
+      "sha256": "bb92d9179ab9ed9e2a6aeee8921c8c23fd9df810f684b9ae8ca45e28a7175525"
+    },
+    {
+      "path": "evidence/integrated-source-binding.json",
+      "sha256": "29a94a0e262b5c9f727b1f14b31cec9db6aab4ffc56b473d70dece02e2903a62"
+    },
+    {
+      "path": "evidence/integrated/summary.json",
+      "sha256": "f63916b67af5e842c742ae5242fca0536f653dcf3fd7b69d907453fe0e19a599"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-web-core-production-audit-20261124.x60m62j8/padding-comparator-source-runtime-peer.json",
+      "sha256": "a6880cd3a3755ed6aa90e1e035e78e0192789e35fbd4283bdace9ec96be71a45"
+    }
+  ],
+  "ownedToolVMReload": {
+    "actualSource": "4c28 plus uncommitted candidate freeze",
+    "success": true,
+    "seconds": 0.347569625,
+    "samePIDStateInputObjects": true,
+    "criteriaUnchanged": true,
+    "equalObservedFalseToTrue": true,
+    "real7vs8TrueToFalse": true,
+    "samePlatformTrueToTrue": true,
+    "portsClosed": 2,
+    "FlutterOrBrowserReloadClaim": false
+  },
+  "codeCommit": "e20f2680a86f681c791e129571be3a125c744a88",
+  "integratedCodeHead": "89b18e7c852365bc79c0f067f55199b62f4b153b",
+  "integratedMain": "f68351d813b6bf0249c2e86877acc062c2848434",
+  "integration": {
+    "own5AndMetadataExact": true,
+    "newDecoderRelatedChecksPass": 59,
+    "failed": 0,
+    "actualExecutionHead": "89b18e7c852365bc79c0f067f55199b62f4b153b",
+    "earlier107AndVMRelabelled": false
+  }
+}

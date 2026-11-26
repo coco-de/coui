@@ -1,0 +1,287 @@
+{
+  "issue": 6560,
+  "sourceBase": "6f8a71731a141adf0dff938e6dcdf665f6b15a35",
+  "verifiedCodeHead": "5f0137db0042dee3b0c5aa67106e4cbcb0b186b9",
+  "originalSource": "37f4507479d7775d2c93cbc1e43ba52f4b1e5064",
+  "productSHA256": "81f3ebed85be5bb8fd98a271eb3158cd473d99c71b4d56dbef22b78ab0dd8354",
+  "scope": "exact Duration.zero endpoint and existing idle custom-builder compatibility; private NumberTicker State only",
+  "ownPublicAPICoreStyleDefaultDependencyBaselineCriterionChanges": 0,
+  "originalZero": {
+    "source": "37f4507479",
+    "finalAttempt": 4,
+    "actualFailedTests": 3,
+    "candidateSameFixturePassed": 3,
+    "callCountIsContract": false
+  },
+  "idleCompatibility": {
+    "originalB04SSR": "200/idle:100.0",
+    "initial0be6CandidateSSR": 500,
+    "negative3ActualFailedTests": 2,
+    "finalSameFixturePassed": 2,
+    "finalFixtureIgnores": 0,
+    "clientScope": "optimized CSR mount and same-value parent refresh; not hydration"
+  },
+  "functional": {
+    "NativeOriginalAuthority": 4,
+    "NativeExisting": 31,
+    "NativeActualSource": "37f4507479; executed Native/Core inputs remain exact",
+    "WebFinalRegression": 5,
+    "WebExisting": 11,
+    "WebActualExecution": "b32a6936 working tree with exact final81f3 and same6 fixtures; byteexact to b3add and integrated5f",
+    "newUpstreamDocsIntegrated": 12,
+    "fatalFiles": 7,
+    "fatalExit": 0,
+    "formatFiles": 7,
+    "formatChanged": 0
+  },
+  "docs": {
+    "actualSource": "5f0137db0042dee3b0c5aa67106e4cbcb0b186b9",
+    "exit": 0,
+    "seconds": 107.101254084,
+    "routes": 361,
+    "JasprHTML": 363,
+    "FlutterHTML": 2,
+    "trackedSourceExact": 24996,
+    "generatedFileHashRows": 5046,
+    "representativeHTMLRetained": 3,
+    "wholeBuildCopyRetained": false,
+    "automaticFlutterPubPreflightObserved": true,
+    "directWorkerPubCommands": 0,
+    "internalSolverDownloadCount": "not measured",
+    "packageTuplesRootsGraphEdges": 232,
+    "configGraphLockRawExact": true
+  },
+  "capture": {
+    "actualSource": "b3addf04847795ba4c319b29bd58162de0e0c0e8",
+    "Native": 2,
+    "Web": 2,
+    "rawFiles": 8,
+    "reuseWithinDataset": 0,
+    "NoRoot": 0,
+    "allComponentStyleDescriptors": 8,
+    "defaultDescriptors": 2,
+    "all8FilesExactToHistoricalF065": true,
+    "integratedInputClosureExact": true,
+    "relabeledFreshAtIntegratedHead": false
+  },
+  "reports": {
+    "regression": {
+      "actualExit": 1,
+      "counts": {
+        "pass": 1,
+        "fail": 1,
+        "infra": 0,
+        "skipped": 0
+      }
+    },
+    "pixel": {
+      "actualExit": 1,
+      "counts": {
+        "pass": 0,
+        "fail": 2,
+        "infra": 0,
+        "skipped": 0
+      }
+    },
+    "property": {
+      "actualExit": 0,
+      "counts": {
+        "pass": 2,
+        "fail": 0,
+        "infra": 0,
+        "skipped": 0
+      }
+    },
+    "historical-control": {
+      "actualExit": 1,
+      "counts": {
+        "pass": 1,
+        "fail": 1,
+        "infra": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "regressionFailure": "Native dark remains FAIL with unchanged Git6f8 baseline/allowlist/criterion; historicalf065 original8 with the same inputs produces the identical matrix. No waiver or baseline promotion.",
+  "reload": {
+    "actualSource": "b3addf04847795ba4c319b29bd58162de0e0c0e8",
+    "actualLoadedNumberTickerLibrary": true,
+    "VMreloadSourcesSuccess": true,
+    "HTTPBeforeAfter": [
+      200,
+      200
+    ],
+    "targetRoots": 2,
+    "suppliedChild": true,
+    "firstFormatter": 200,
+    "firstBuilder": 100,
+    "HTMLSHAEqual": false,
+    "clientHotReloadClaim": false,
+    "sourceEditedBetweenRequests": false
+  },
+  "environment": {
+    "Flutter": "3.50.0 existing FVM absolute commands",
+    "Dart": "3.14.0",
+    "JasprCLI": "0.24.0-beta.1 isolated81package tool config",
+    "Chrome": "150.0.7871.24 existing cached executable",
+    "packageCount": 232,
+    "globalAuthOrSDKSwitches": 0,
+    "SDKBrowserDownloads": 0
+  },
+  "preservedAttempts": [
+    "original zero attempts1/2 and fatal-only3; finalformatted/linted original4",
+    "initial0be6 candidate and b32 successful docs are historical, not final compatibility evidence",
+    "idle fixture preflight attempts1/2, final plainText negative3; no ignore remains",
+    "Root idle proof first constructor compile failure then actualoriginal-vs-candidate SSR result",
+    "docs first source-count setup assertion; corrected actualGit counts; all build/reload/capture logs retained"
+  ],
+  "overallFullParityComplete": false,
+  "lastFullSource": "f065aa96ae52d7c54862c611adb77095694a1f32",
+  "lastFullPixelPassFail": [
+    606,
+    228
+  ],
+  "lastFullNotRelabeledCurrentMain": true,
+  "artifacts": [
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Native/native-zero-handoff.json",
+      "sha256": "a093a94551de3614726420783af8469215e9ffd6e8332261c8d10e65d4246afb",
+      "bytes": 10597
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Native/existing-suites/existing-native-handoff.json",
+      "sha256": "a4db44d863131a8e5be486282b246d924383fc3db747725a9321b5f62de96a83",
+      "bytes": 7329
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/original-final-handoff.json",
+      "sha256": "95bb7371ec84a3c3d5c66fb140059f5525be9d3f088366c74ec8dc2a7961f531",
+      "bytes": 3681
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/idle-negative-attempt3/exit.json",
+      "sha256": "4c0bcb4148b669a062ac7e02c3ca8fc283b28d9d0f0ac4e64152923d3cba8720",
+      "bytes": 1642
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Root/idle-builder-original-candidate2/observations.json",
+      "sha256": "9ce3698ef08f8064457a63e71b7b1512b1df1ef7c8a3c62cd870fae0cca2ac66",
+      "bytes": 809
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/workguard-product-freeze.json",
+      "sha256": "fea3b0fc21f4a71b4ab5323add161454075509d781ab0c0c31c152bddb1ad035",
+      "bytes": 4574
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Native/native-capture-final2/native-final2-handoff.json",
+      "sha256": "190ae33595f922f0e35378b7f9c651b165d0b50c0311bfe00973d8deaefc612b",
+      "bytes": 8277
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/final-summary-b3add.json",
+      "sha256": "f3262dab7c5df1789f62616c42694d7fc042beb1ed0027c375fb75459b8ed8e1",
+      "bytes": 2347
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/artifact-index-b3add.json",
+      "sha256": "f593511da929a2e593e3f3e8aeff75bae9e3997853d108e9e8c3c5a19745fc85",
+      "bytes": 5017
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Native/owned-ssr-reload/ssr-final-handoff.json",
+      "sha256": "d8bb6517eacd82ab6733635ea9ee81edf315fa931c6c1d4ba9773bbdcddf2aaf",
+      "bytes": 9236
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Root/public-surface-proof.json",
+      "sha256": "5b1c4e8ac9d244d5131d99496dc8657aeaa4b026c5866f5a99aaab55265bff9c",
+      "bytes": 1307
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Root/integrated-source-proof.json",
+      "sha256": "f30a6e6a7a425b586c6d059b224c3151d32546860e52416c74cd457cd22d267f",
+      "bytes": 1726
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Root/scoped-reports/inputs.json",
+      "sha256": "e26862cb8c9ea30756e712c449be39d62596843c634baaffcb16763d88cf3a8c",
+      "bytes": 5890
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Root/scoped-reports/regression-report.json",
+      "sha256": "ab6d9af700e249d2ad97659e70effe783d4d0d9e9a32bc0cb62d0baa9af854d6",
+      "bytes": 593
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Root/scoped-reports/pixel-report.json",
+      "sha256": "3c366e6976038fee93c5735d23bc92838364731cf1724b230ee860d7da607bdd",
+      "bytes": 593
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Root/scoped-reports/property-report.json",
+      "sha256": "4f3aa1fa2f08d94c50f1aed832cd9d49a68b7a9f4fff929dccd571c3a61aace2",
+      "bytes": 8134
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Root/scoped-reports/historical-control-report.json",
+      "sha256": "9dbb0c6f71dea4a2fa4b740302b46c38284cce2e749c2367b7f23e5a0228ad8c",
+      "bytes": 593
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Root/scoped-reports/summary.json",
+      "sha256": "bc9918996cfaa60cd838a4fae7771e3bd066b12ba6a95605f93ed27f2819a6bb",
+      "bytes": 7324
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Review/zero-original-final-binding.json",
+      "sha256": "16a1d7859e5d11b308360ea399861cc6882ca44bc49070d9e410c075093f969d",
+      "bytes": 6601
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Review/zero-idle-theme-compatibility-addendum-v6.json",
+      "sha256": "f4e567d40f4719db898ca3338bdeaf75dfb946b6da3389c9178b43317089e287",
+      "bytes": 5966
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Review/zero-workguard-final-binding.json",
+      "sha256": "41a6fa9a3b10e9acbd9c34e5f77ace4a242ada9ffa56aa5246a4e4f0faf68f03",
+      "bytes": 8522
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/docs-integrated/exit.json",
+      "sha256": "de80387e9e24a993258edc1ba3e2ee6e76a33e77bb8f50f8323800721070cd9f",
+      "bytes": 637
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/docs-integrated/metadata-proof.json",
+      "sha256": "a203e2c3ffade4449a2521b2e419564091af55e248a78a9f317844449f30c62f",
+      "bytes": 70455
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/docs-integrated/source-final.json",
+      "sha256": "32a89df9c3f02b9f78a2813e76a3f066c86535bfc8c212e99387cab46a94b2b3",
+      "bytes": 5227163
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/docs-integrated/output-index.json",
+      "sha256": "6eb8af93a4ffee6e6fb3bb82dd41dcc1e982f94d2332c944724ef65c2f53cd26",
+      "bytes": 970693
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/integrated-layout-tests/exit.json",
+      "sha256": "c0f39d953f591f791bc63e60b9325fa958abf78a98697e4851a0cd675992e337",
+      "bytes": 718
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/final-summary-integrated.json",
+      "sha256": "432ea13d78b6fac6f22b42be1c89bb7a5c26e4781afdf2980669401dec3b02d2",
+      "bytes": 2213
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-zero-7mu53og3/evidence/Web/artifact-index-integrated.json",
+      "sha256": "c7859f3897af8b41cb1d38e4aa2c79cd2289b6a8d6add41bff6d248f04813df8",
+      "bytes": 4862
+    }
+  ]
+}

@@ -1,0 +1,1254 @@
+{
+  "issue": 6439,
+  "parent": 6131,
+  "base": "f27dc733a85fb1af499112a4ebf8affab58674f9",
+  "productHead": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+  "worktree": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree",
+  "finalProofPhase": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility",
+  "priorRawProofPhase": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s",
+  "readOnlyAuditPhase": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-next234-readonly-20261119.qwoqg90n",
+  "cause": "Raw CoreLoadingStyle.color became unsupported text-#hex / bg-#hex classes instead of actual paint.",
+  "fix": "Preserve original CoreColor.toString token classes; use existing emitColor inline values only for raw colors, on actual spinner/dots/bar/pulse paint slots.",
+  "rejectedCheckpoint": {
+    "head": "12afa6c0482944da2a353faaedc9c8789e761e20",
+    "reason": "Direct emitColor on tokens changed original round() opacity classes to toInt() classes. Independent review caught this before PR/merge. All original evidence retained.",
+    "fixedBy": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5"
+  },
+  "protection": {
+    "base": "f27dc733a85fb1af499112a4ebf8affab58674f9",
+    "source": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+    "api": {
+      "classAndImportsByteExact": true,
+      "resolverSignatureExact": true,
+      "resolveLoadingCssByteExact": true,
+      "styleSha256": "530b48bf143c1d80df8346afa4ce75532f7b572d7ecc9980b4fd13b6977211e5"
+    },
+    "trackedOriginal": 22549,
+    "changedExisting": [
+      "packages/coui_web/lib/src/components/display/loading/loading_style.dart"
+    ],
+    "addedTests": [
+      "packages/coui_web/test/components/display/loading_color_test.dart",
+      "tool/parity/test/web/loading_color_probe_test.dart"
+    ],
+    "allOtherTrackedBytesAndModesExact": true,
+    "packageConfigTuples": 232,
+    "packageConfigTuplesStillExact": true,
+    "publicApiCoreNativeOriginalMdCssJsLocksCriteriaBaselineSkipFieldsSdkChanges": 0
+  },
+  "validationLedger": {
+    "unit-suites": {
+      "argv": [
+        "dart",
+        "test",
+        "test/components/display/loading_test.dart",
+        "test/components/display/loading_color_test.dart",
+        "--concurrency=1",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree/packages/coui_web",
+      "pid": 40763,
+      "exit": 0,
+      "seconds": 1.308031625,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/unit-suites.log"
+    },
+    "web-color-geometry-motion": {
+      "argv": [
+        "dart",
+        "test",
+        "tool/parity/test/web/loading_color_probe_test.dart",
+        "tool/parity/test/web/loading_spinner_geometry_test.dart",
+        "tool/parity/test/web/primitive_loading_zero_motion_test.dart",
+        "--concurrency=1",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree",
+      "pid": 41255,
+      "exit": 0,
+      "seconds": 5.4018185,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/web-color-geometry-motion.log"
+    },
+    "fatal-source-corrected": {
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/coui_web/lib/src/components/display/loading/loading_style.dart",
+        "packages/coui_web/test/components/display/loading_color_test.dart",
+        "tool/parity/test/web/loading_color_probe_test.dart"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree",
+      "pid": 42204,
+      "exit": 0,
+      "seconds": 28.104622417,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/fatal-source-corrected.log"
+    },
+    "format-source-final": {
+      "argv": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/coui_web/lib/src/components/display/loading/loading_style.dart",
+        "packages/coui_web/test/components/display/loading_color_test.dart",
+        "tool/parity/test/web/loading_color_probe_test.dart"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree",
+      "pid": 42150,
+      "exit": 0,
+      "seconds": 0.32803675000000004,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/format-source-final.log"
+    },
+    "contracts": {
+      "argv": [
+        "bash",
+        "scripts/guards/resolver/verify_contracts.sh"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree",
+      "pid": 43637,
+      "exit": 0,
+      "seconds": 83.73949424999999,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/contracts.log"
+    },
+    "canonical-default8": {
+      "argv": [
+        "dart",
+        "run",
+        "tool/parity/capture_web.dart",
+        "--manifest=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/manifest-loading8.json",
+        "--out=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/captured-default8",
+        "--keep-harness"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree",
+      "pid": 43698,
+      "exit": 0,
+      "seconds": 11.621709375,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/canonical-default8.log"
+    },
+    "token-browser-owner": {
+      "argv": [
+        "dart",
+        "--packages=.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/browser-token-grid.dart",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree",
+      "pid": 47158,
+      "exit": 0,
+      "seconds": 7.914731167,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/token-browser-owner.log"
+    },
+    "render-raw-e69": {
+      "argv": [
+        "dart",
+        "--packages=.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/render-grid.dart",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/raw-e69-grid"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree",
+      "pid": 47828,
+      "exit": 0,
+      "seconds": 3.843895625,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/render-raw-e69.log"
+    },
+    "docsBuild": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/tmp/weever-6345-optimized-20261117/cli-tool/.dart_tool/package_config.json",
+        "/Users/minhyeok/.pub-cache/hosted/pub.dev/jaspr_cli-0.24.0-beta.1/bin/jaspr.dart",
+        "build",
+        "--optimize=2",
+        "--port=61772"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree/docs_site",
+      "sourceHead": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+      "port": 61772,
+      "started": 1795026140.041343,
+      "pid": 43515,
+      "exit": 0,
+      "remainingOwnedGroupTerminated": false,
+      "groupClosed": true,
+      "finished": 1795026227.10925,
+      "trackedCount": 22551,
+      "trackedDeltas": [],
+      "headAfter": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+      "statusAfter": ""
+    },
+    "docsUi": {
+      "serverArgv": [
+        "python3",
+        "-m",
+        "http.server",
+        "62800",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree/docs_site/build/jaspr"
+      ],
+      "pid": 47367,
+      "port": 62800,
+      "sourceHead": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+      "browserArgv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/docs-ui.dart",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility",
+        "http://127.0.0.1:62800"
+      ],
+      "exit": 0,
+      "serverClosed": true,
+      "portClosed": true
+    },
+    "debugReload": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--enable-vm-service=0/127.0.0.1",
+        "--disable-service-auth-codes",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/debug-server.dart"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/worktree",
+      "sourceHead": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+      "sourceSha256": "530b48bf143c1d80df8346afa4ce75532f7b572d7ecc9980b4fd13b6977211e5",
+      "pid": 44655,
+      "httpPort": 62111,
+      "vmUrl": "http://127.0.0.1:62059",
+      "reload": {
+        "result": {
+          "type": "ReloadReport",
+          "success": true,
+          "details": {
+            "finalLibraryCount": 2226,
+            "receivedLibraryCount": 0,
+            "receivedLibrariesBytes": 0,
+            "receivedClassesCount": 0,
+            "receivedProceduresCount": 0,
+            "savedLibraryCount": 2226,
+            "loadedLibraryCount": 0
+          }
+        }
+      },
+      "beforeAfterHtmlExact": true,
+      "close": {
+        "status": 200,
+        "body": "closed"
+      },
+      "exit": 0,
+      "pidClosed": true,
+      "httpClosed": true,
+      "vmClosed": true
+    }
+  },
+  "counts": {
+    "newUnit": 32,
+    "existingLoadingUnit": 15,
+    "unitTotal": 47,
+    "chromeTests": 5,
+    "originalRawNegative": 16,
+    "originalControlsPositive": 8,
+    "actualWebColorRowsPerState": 48,
+    "actualUnchangedNativeRows": 48,
+    "actualBeforeColorMatch": 28,
+    "actualBeforeColorDifferent": 20,
+    "actualAfterColorMatch": 48,
+    "actualAfterColorDifferent": 0,
+    "fractionalTokenBaseFinalPairsExact": 24,
+    "rejectedTokenClassesDifferent": 24,
+    "rejectedComputedRowsDifferent": 8,
+    "officialDefaultLoadingFreshWeb": 8,
+    "docsOptimizedRoutes": 359,
+    "actualDocsUiRows": 4
+  },
+  "raw48FinalBinding": {
+    "source": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+    "rows": 48,
+    "html": {
+      "light": {
+        "bytes": 590886,
+        "sha256": "ae664fa44aaf40cb2131ca7d08ff038667b9c8341aa65f4afcc49720e7f80f0e",
+        "exact12afa": true
+      },
+      "dark": {
+        "bytes": 590885,
+        "sha256": "813ad7e155aa8fc6086605dd259a3efcf64af53062ccb88d5b74ad5997512a01",
+        "exact12afa": true
+      }
+    },
+    "binding": "Existing actual raw/default/token48 and Native48 results are reused, not recaptured, after final SSR HTML byte equality."
+  },
+  "tokenCompatibility": {
+    "base": "f27dc733a",
+    "rejectedCheckpoint": "12afa6c0482944da2a353faaedc9c8789e761e20",
+    "finalProductHead": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+    "baseFinalExact24": 24,
+    "rejectedClassDiff24": 24,
+    "rejectedComputedDiff": 8,
+    "pageErrors": [],
+    "pairs": [
+      {
+        "theme": "light",
+        "id": "token005-spinner",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/1"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/0"
+        ],
+        "baseFinalComputed": [
+          "rgb(1, 2, 3)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(155, 98, 0, 0)"
+        ],
+        "rejectedComputedDiffers": true
+      },
+      {
+        "theme": "light",
+        "id": "token005-dots",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "bg-warning/1 co-loading-dot",
+          "bg-warning/1 co-loading-dot",
+          "bg-warning/1 co-loading-dot"
+        ],
+        "rejected12afaClasses": [
+          "bg-warning/0 co-loading-dot",
+          "bg-warning/0 co-loading-dot",
+          "bg-warning/0 co-loading-dot"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(155, 98, 0, 0)",
+          "rgba(155, 98, 0, 0)",
+          "rgba(155, 98, 0, 0)"
+        ],
+        "rejectedComputedDiffers": true
+      },
+      {
+        "theme": "light",
+        "id": "token005-bar",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute top-0 left-0 h-full bg-warning/1 co-loading-bar"
+        ],
+        "rejected12afaClasses": [
+          "absolute top-0 left-0 h-full bg-warning/0 co-loading-bar"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(155, 98, 0, 0)"
+        ],
+        "rejectedComputedDiffers": true
+      },
+      {
+        "theme": "light",
+        "id": "token005-pulse",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 bg-warning/1 co-loading-halo",
+          "bg-warning/1 relative"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 bg-warning/0 co-loading-halo",
+          "bg-warning/0 relative"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(155, 98, 0, 0)",
+          "rgba(155, 98, 0, 0)"
+        ],
+        "rejectedComputedDiffers": true
+      },
+      {
+        "theme": "light",
+        "id": "token29-spinner",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/29"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/28"
+        ],
+        "baseFinalComputed": [
+          "rgb(1, 2, 3)"
+        ],
+        "rejected12afaComputed": [
+          "rgb(1, 2, 3)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "light",
+        "id": "token29-dots",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "bg-warning/29 co-loading-dot",
+          "bg-warning/29 co-loading-dot",
+          "bg-warning/29 co-loading-dot"
+        ],
+        "rejected12afaClasses": [
+          "bg-warning/28 co-loading-dot",
+          "bg-warning/28 co-loading-dot",
+          "bg-warning/28 co-loading-dot"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "light",
+        "id": "token29-bar",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute top-0 left-0 h-full bg-warning/29 co-loading-bar"
+        ],
+        "rejected12afaClasses": [
+          "absolute top-0 left-0 h-full bg-warning/28 co-loading-bar"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "light",
+        "id": "token29-pulse",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 bg-warning/29 co-loading-halo",
+          "bg-warning/29 relative"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 bg-warning/28 co-loading-halo",
+          "bg-warning/28 relative"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "light",
+        "id": "token625-spinner",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/63"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/62"
+        ],
+        "baseFinalComputed": [
+          "rgb(1, 2, 3)"
+        ],
+        "rejected12afaComputed": [
+          "rgb(1, 2, 3)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "light",
+        "id": "token625-dots",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "bg-warning/63 co-loading-dot",
+          "bg-warning/63 co-loading-dot",
+          "bg-warning/63 co-loading-dot"
+        ],
+        "rejected12afaClasses": [
+          "bg-warning/62 co-loading-dot",
+          "bg-warning/62 co-loading-dot",
+          "bg-warning/62 co-loading-dot"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "light",
+        "id": "token625-bar",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute top-0 left-0 h-full bg-warning/63 co-loading-bar"
+        ],
+        "rejected12afaClasses": [
+          "absolute top-0 left-0 h-full bg-warning/62 co-loading-bar"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "light",
+        "id": "token625-pulse",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 bg-warning/63 co-loading-halo",
+          "bg-warning/63 relative"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 bg-warning/62 co-loading-halo",
+          "bg-warning/62 relative"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "dark",
+        "id": "token005-spinner",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/1"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/0"
+        ],
+        "baseFinalComputed": [
+          "rgb(1, 2, 3)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(233, 169, 28, 0)"
+        ],
+        "rejectedComputedDiffers": true
+      },
+      {
+        "theme": "dark",
+        "id": "token005-dots",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "bg-warning/1 co-loading-dot",
+          "bg-warning/1 co-loading-dot",
+          "bg-warning/1 co-loading-dot"
+        ],
+        "rejected12afaClasses": [
+          "bg-warning/0 co-loading-dot",
+          "bg-warning/0 co-loading-dot",
+          "bg-warning/0 co-loading-dot"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(233, 169, 28, 0)",
+          "rgba(233, 169, 28, 0)",
+          "rgba(233, 169, 28, 0)"
+        ],
+        "rejectedComputedDiffers": true
+      },
+      {
+        "theme": "dark",
+        "id": "token005-bar",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute top-0 left-0 h-full bg-warning/1 co-loading-bar"
+        ],
+        "rejected12afaClasses": [
+          "absolute top-0 left-0 h-full bg-warning/0 co-loading-bar"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(233, 169, 28, 0)"
+        ],
+        "rejectedComputedDiffers": true
+      },
+      {
+        "theme": "dark",
+        "id": "token005-pulse",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 bg-warning/1 co-loading-halo",
+          "bg-warning/1 relative"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 bg-warning/0 co-loading-halo",
+          "bg-warning/0 relative"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(233, 169, 28, 0)",
+          "rgba(233, 169, 28, 0)"
+        ],
+        "rejectedComputedDiffers": true
+      },
+      {
+        "theme": "dark",
+        "id": "token29-spinner",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/29"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/28"
+        ],
+        "baseFinalComputed": [
+          "rgb(1, 2, 3)"
+        ],
+        "rejected12afaComputed": [
+          "rgb(1, 2, 3)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "dark",
+        "id": "token29-dots",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "bg-warning/29 co-loading-dot",
+          "bg-warning/29 co-loading-dot",
+          "bg-warning/29 co-loading-dot"
+        ],
+        "rejected12afaClasses": [
+          "bg-warning/28 co-loading-dot",
+          "bg-warning/28 co-loading-dot",
+          "bg-warning/28 co-loading-dot"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "dark",
+        "id": "token29-bar",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute top-0 left-0 h-full bg-warning/29 co-loading-bar"
+        ],
+        "rejected12afaClasses": [
+          "absolute top-0 left-0 h-full bg-warning/28 co-loading-bar"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "dark",
+        "id": "token29-pulse",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 bg-warning/29 co-loading-halo",
+          "bg-warning/29 relative"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 bg-warning/28 co-loading-halo",
+          "bg-warning/28 relative"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "dark",
+        "id": "token625-spinner",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/63"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 co-loading-spinner text-warning/62"
+        ],
+        "baseFinalComputed": [
+          "rgb(1, 2, 3)"
+        ],
+        "rejected12afaComputed": [
+          "rgb(1, 2, 3)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "dark",
+        "id": "token625-dots",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "bg-warning/63 co-loading-dot",
+          "bg-warning/63 co-loading-dot",
+          "bg-warning/63 co-loading-dot"
+        ],
+        "rejected12afaClasses": [
+          "bg-warning/62 co-loading-dot",
+          "bg-warning/62 co-loading-dot",
+          "bg-warning/62 co-loading-dot"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "dark",
+        "id": "token625-bar",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute top-0 left-0 h-full bg-warning/63 co-loading-bar"
+        ],
+        "rejected12afaClasses": [
+          "absolute top-0 left-0 h-full bg-warning/62 co-loading-bar"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      },
+      {
+        "theme": "dark",
+        "id": "token625-pulse",
+        "baseFinalWholeRecordExact": true,
+        "baseClasses": [
+          "absolute inset-0 bg-warning/63 co-loading-halo",
+          "bg-warning/63 relative"
+        ],
+        "rejected12afaClasses": [
+          "absolute inset-0 bg-warning/62 co-loading-halo",
+          "bg-warning/62 relative"
+        ],
+        "baseFinalComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejected12afaComputed": [
+          "rgba(0, 0, 0, 0)",
+          "rgba(0, 0, 0, 0)"
+        ],
+        "rejectedComputedDiffers": false
+      }
+    ],
+    "scope": "Existing Web token rounding compatibility; no claim of Native fractional-alpha parity. Unsupported Tailwind modifier behavior remains exactly as base."
+  },
+  "officialDefault8": {
+    "source": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+    "oldSource": "12afa6c0482944da2a353faaedc9c8789e761e20",
+    "old12afaExactToRetained555": true,
+    "rows": [
+      {
+        "key": "loading-default-light-defaultStyle",
+        "pngByteExact12afa": true,
+        "jsonByteExact12afa": true
+      },
+      {
+        "key": "loading-default-dark-defaultStyle",
+        "pngByteExact12afa": true,
+        "jsonByteExact12afa": true
+      },
+      {
+        "key": "loading-dots-light-defaultStyle",
+        "pngByteExact12afa": true,
+        "jsonByteExact12afa": true
+      },
+      {
+        "key": "loading-dots-dark-defaultStyle",
+        "pngByteExact12afa": true,
+        "jsonByteExact12afa": true
+      },
+      {
+        "key": "loading-bar-light-defaultStyle",
+        "pngByteExact12afa": true,
+        "jsonByteExact12afa": true
+      },
+      {
+        "key": "loading-bar-dark-defaultStyle",
+        "pngByteExact12afa": true,
+        "jsonByteExact12afa": true
+      },
+      {
+        "key": "loading-pulse-light-defaultStyle",
+        "pngByteExact12afa": true,
+        "jsonByteExact12afa": true
+      },
+      {
+        "key": "loading-pulse-dark-defaultStyle",
+        "pngByteExact12afa": true,
+        "jsonByteExact12afa": true
+      }
+    ]
+  },
+  "actualDocsUi": {
+    "rows": [
+      {
+        "theme": "light",
+        "role": "status",
+        "label": "로딩 중",
+        "width": 16,
+        "height": 16,
+        "visible": true,
+        "sweep": "rgb(42, 43, 44)",
+        "animations": [
+          {
+            "state": "running",
+            "currentTime": 575.0340001761913,
+            "duration": 1000
+          }
+        ],
+        "docsShell": 1
+      },
+      {
+        "refreshTheme": "light",
+        "expected": "light"
+      },
+      {
+        "theme": "dark",
+        "role": "status",
+        "label": "로딩 중",
+        "width": 16,
+        "height": 16,
+        "visible": true,
+        "sweep": "rgb(244, 245, 246)",
+        "animations": [
+          {
+            "state": "running",
+            "currentTime": 441.7299998775125,
+            "duration": 1000
+          }
+        ],
+        "docsShell": 1
+      },
+      {
+        "refreshTheme": "dark",
+        "expected": "dark"
+      }
+    ],
+    "runtimeErrors": [],
+    "failedRequests": [],
+    "browserCloseAwaited": true
+  },
+  "nativeCaptionProof": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/native-caption-only-proof.json",
+  "colorComparison": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/actual-color-comparison.json",
+  "selectedEvidence": {
+    "count": 8,
+    "images": {
+      "before-light-grid.png": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/before-light-grid.png",
+        "sha256": "ed77f548cd40cd07894e1807863aa20ad86bd99b5aa04d040d965fe35bba9114",
+        "size": [
+          808,
+          616
+        ],
+        "visuallyInspected": true,
+        "capturedAt": "12afa counterexample phase / unchanged Native source",
+        "finalBinding": "raw48 HTML byte exact at e69; Native source unchanged"
+      },
+      "after-light-grid.png": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/after-light-grid.png",
+        "sha256": "74ce15b4dcbecfa4edd1661861c14de67195f7a4c223053226038effeba34915",
+        "size": [
+          808,
+          616
+        ],
+        "visuallyInspected": true,
+        "capturedAt": "12afa counterexample phase / unchanged Native source",
+        "finalBinding": "raw48 HTML byte exact at e69; Native source unchanged"
+      },
+      "native-light-grid.png": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/native-light-grid.png",
+        "sha256": "667b5e9d4dfece433b9145d375d044b03e23159537bb1f594a612fc4372ad01c",
+        "size": [
+          800,
+          600
+        ],
+        "visuallyInspected": true,
+        "capturedAt": "12afa counterexample phase / unchanged Native source",
+        "finalBinding": "raw48 HTML byte exact at e69; Native source unchanged"
+      },
+      "before-dark-grid.png": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/before-dark-grid.png",
+        "sha256": "f8ee5beb2e59ef76c732d2ff3c70e6f0190efddbfd6ed39c08a0a863ea6ee16f",
+        "size": [
+          808,
+          616
+        ],
+        "visuallyInspected": true,
+        "capturedAt": "12afa counterexample phase / unchanged Native source",
+        "finalBinding": "raw48 HTML byte exact at e69; Native source unchanged"
+      },
+      "after-dark-grid.png": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/after-dark-grid.png",
+        "sha256": "2fca1cca80167a981e16a634d299ff8cac17e58a0abf3f0b9f22f6d4fc1556b0",
+        "size": [
+          808,
+          616
+        ],
+        "visuallyInspected": true,
+        "capturedAt": "12afa counterexample phase / unchanged Native source",
+        "finalBinding": "raw48 HTML byte exact at e69; Native source unchanged"
+      },
+      "native-dark-grid.png": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/native-dark-grid.png",
+        "sha256": "24ea7abf5870bf77d9c0f9a3be65f4c20d28f81af93edb369ae38a66d38db490",
+        "size": [
+          800,
+          600
+        ],
+        "visuallyInspected": true,
+        "capturedAt": "12afa counterexample phase / unchanged Native source",
+        "finalBinding": "raw48 HTML byte exact at e69; Native source unchanged"
+      },
+      "final-light-grid.png": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/final-light-grid.png",
+        "sha256": "51208390d551a84e64de030503a3478d188fb135a5a2528cbdff33e3e622aeb9",
+        "size": [
+          808,
+          600
+        ],
+        "capturedAt": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+        "visuallyInspected": true,
+        "samePngAsViewedPriorOwnerMetadataRun": true
+      },
+      "final-dark-grid.png": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/final-dark-grid.png",
+        "sha256": "3900aa2c38c65cd20dd98b434d90eca149dfa426db9f4b6c7e859b183c71690f",
+        "size": [
+          808,
+          600
+        ],
+        "capturedAt": "e69dc3b61999793ad2d4e12abcc8121ce08fe2a5",
+        "visuallyInspected": true,
+        "samePngAsViewedPriorOwnerMetadataRun": true
+      }
+    },
+    "noPixelEdits": true,
+    "noUpload": true,
+    "maxEight": true
+  },
+  "cleanup": {
+    "ownedProcesses": [
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/browser-grid-api-corrected-process.json",
+        "pid": 24428,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/contracts-process.json",
+        "pid": 27838,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/canonical-default8-process.json",
+        "pid": 26716,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/loading-suites-corrected-process.json",
+        "pid": 20913,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/build-process.json",
+        "pid": 28584,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/fatal-corrected-process.json",
+        "pid": 26991,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/after-render-process.json",
+        "pid": 21564,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/format-corrected-process.json",
+        "pid": 20884,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/format-const-process.json",
+        "pid": 27812,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/format-final-source-process.json",
+        "pid": 25709,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/browser-grid-corrected-process.json",
+        "pid": 23896,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/format-initial-process.json",
+        "pid": 20541,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/pub-get-process.json",
+        "pid": 18107,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/native-colors-process.json",
+        "pid": 23641,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/fatal-source-process.json",
+        "pid": 26166,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/native-caption-family-process.json",
+        "pid": 31047,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/final-unit-suites-process.json",
+        "pid": 25737,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/browser-grid-process.json",
+        "pid": 23361,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/format-check-process.json",
+        "pid": 27690,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/format-final-check-process.json",
+        "pid": 33604,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/native-colors-readable-font-process.json",
+        "pid": 30006,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/web-color-geometry-motion-process.json",
+        "pid": 26165,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/before-render-process.json",
+        "pid": 20102,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/negative-color-tests-process.json",
+        "pid": 19318,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/loading-suites-process.json",
+        "pid": 20570,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/render-raw-e69-process.json",
+        "pid": 47828,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/contracts-process.json",
+        "pid": 43637,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/canonical-default8-process.json",
+        "pid": 43698,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/build-process.json",
+        "pid": 43515,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/render-token-checkpoint12afa-process.json",
+        "pid": 41056,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/unit-suites-process.json",
+        "pid": 40763,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/render-token-final-process.json",
+        "pid": 41092,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/token-browser-owner-process.json",
+        "pid": 47158,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/fatal-source-process.json",
+        "pid": 40985,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/format-source-process.json",
+        "pid": 40736,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/render-token-base-process.json",
+        "pid": 41007,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/format-source-final-process.json",
+        "pid": 42150,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/render-raw-final-process.json",
+        "pid": 41128,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/fatal-source-corrected-process.json",
+        "pid": 42204,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/web-color-geometry-motion-process.json",
+        "pid": 41255,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/browser-owner.json",
+        "pid": 25172,
+        "closed": true
+      },
+      {
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-loading-raw-color-20261119.89z0oz8s/token-compatibility/browser-owner.json",
+        "pid": 47225,
+        "closed": true
+      }
+    ],
+    "docsBuildGroupClosed": true,
+    "docsUiServerPortClosed": true,
+    "vmPortClosed": true,
+    "debugHttpPortClosed": true,
+    "ownedBrowserCloseAwaited": true,
+    "repositoryStatus": "",
+    "disk": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk3s5   460Gi   410Gi    14Gi    97%    6.1M  145M    4%   /System/Volumes/Data\n"
+  },
+  "limits": [
+    "Last complete816 remains Web555/Native309: pixel582/234. No current-main/full816 recapture and no Loading.pulse2 default-failure reduction claim.",
+    "Raw/default/token48 observations and Native48 are explicitly reused after final SSR HTML byte equality and unchanged Native source. Token24 pairs, canonicalWeb8, docs359, actualdocsUI4 and ownedreload are checked on final e69.",
+    "Color comparison is paint-color evidence in RGBA8, not whole-image/whole-property parity. Alpha-zero RGB payloads stay in original raw; invisible paint is distinguished only in temporary evidence comparison. No official comparator/normalizer changes.",
+    "Some original fractional Tailwind modifier behavior is unsupported; final preserves base classes/computed output exactly. No global serializer or opacity policy change.",
+    "Initial compile/import/API/lint/formatter/witness/VMendpoint errors, initial Ahem captions, transition-state reads and rejected12afa evidence remain preserved, excluded from final passes.",
+    "Final Native captions use existing font loader and CoreFontFamily.sans; resolved48 and shape48 regions are exact to initial runs.",
+    "No publicCoUIAPI/Core/Native/default/design/originalMD/productCSSJS/baseline/skip/fields/criteria/dependency/lock/SDK changes. Existing7 non-enforced contract warnings remain.",
+    "Read-only Tabs raw hover/pressed candidate remains separate and unmodified.",
+    "No push/PR/upload/merge performed; Root owns these actions."
+  ],
+  "rootIntegration": {
+    "main": "6ec4d2078eb9dd3844febec56b41493be54fae91",
+    "source": "16e8ff076e838055224665eec2f27a10b68d71ea",
+    "workerProductAndTestsUnchanged": true,
+    "freshLoadingUnitTests": 47,
+    "freshBrowserTests": 5,
+    "docsRoutes": 359,
+    "docsSeconds": 74.71,
+    "trackedPaths": 22557,
+    "trackedDeltas": [],
+    "native48RelabelledFresh": false,
+    "full816RelabelledFresh": false,
+    "receipts": [
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6439-integration-20261119.2fchzm9a/integration-source.json",
+        "sha256": "78559aa9243158e1cbc7ff91a56e7e44fa4a2ce312a5295d999e23a1b9a60f8d"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6439-integration-20261119.2fchzm9a/build-process.json",
+        "sha256": "0545fe503af8cf6f7eb840b592f2938386e78ddccf6ffd44c59dcf8b2efa67af"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6439-integration-20261119.2fchzm9a/loading-unit-exit.json",
+        "sha256": "7d112e46afe48e9614927ea5d81583d489eb12b763684f6560b617c66d931930"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6439-integration-20261119.2fchzm9a/loading-browser-exit.json",
+        "sha256": "9fbdf38f8d6bfb74269c834bd7868ad1a0514db47e59b06bec187262f8d17d8c"
+      }
+    ]
+  }
+}

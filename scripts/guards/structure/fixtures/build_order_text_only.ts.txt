@@ -1,0 +1,6 @@
+// e.build(page, lk) in a line comment
+/* and e.build(targetPage, lk)
+   in a block comment */
+const a = generate.indexOf('node = await e.build(targetPage, lk)');
+const b = "entry.build(page, lk)";
+const c = `x.build(page, lk)`;

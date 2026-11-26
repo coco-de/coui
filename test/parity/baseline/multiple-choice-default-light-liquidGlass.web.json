@@ -1,0 +1,75 @@
+{
+  "key": "multiple-choice-default-light-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": ":where(.co-chip-body){--co-chip-state-fill:initial;}.co-chip-sl-2kg9z2:hover>.co-chip-body{--co-chip-state-fill:var(--co-chip-hover-fill);}.co-chip-sl-2kg9z2:focus-visible>.co-chip-body{--co-chip-state-fill:var(--co-chip-focus-fill);}.co-chip-sl-2kg9z2:active>.co-chip-body{--co-chip-state-fill:var(--co-chip-pressed-fill);}\n                  \n                  작음\n                \n              \n              \n                \n                  \n                    :where(.co-chip-body){--co-chip-state-fill:initial;}.co-chip-sl-6vd6gm:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-primary-container)) 3%, rgb(var(--coui-primary-container)));}.co-chip-sl-6vd6gm:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-primary-container)) 8%, rgb(var(--coui-primary-container)));}.co-chip-sl-6vd6gm:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-primary-container)) 12%, rgb(var(--coui-primary-container)));}\n                  \n                  보통\n                \n              \n              \n                \n                  \n                    :where(.co-chip-body){--co-chip-state-fill:initial;}.co-chip-sl-2kg9z2:hover>.co-chip-body{--co-chip-state-fill:var(--co-chip-hover-fill);}.co-chip-sl-2kg9z2:focus-visible>.co-chip-body{--co-chip-state-fill:var(--co-chip-focus-fill);}.co-chip-sl-2kg9z2:active>.co-chip-body{--co-chip-state-fill:var(--co-chip-pressed-fill);}\n                  \n                  큼",
+    "layout": {
+      "width": 149.546875,
+      "height": 32,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 48.21875,
+          "height": 32
+        },
+        {
+          "x": 56.21875,
+          "y": 0,
+          "width": 48.21875,
+          "height": 32
+        },
+        {
+          "x": 112.4375,
+          "y": 0,
+          "width": 37.109375,
+          "height": 32
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "13px",
+      "lineHeight": "18px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 149.546875,
+      "heightPx": 32
+    }
+  }
+}

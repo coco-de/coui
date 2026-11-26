@@ -1,0 +1,102 @@
+{
+  "key": "text-field-docs-v2-d7cfc94d46cf84c2732d74b946df3e6d-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Card",
+      "attributes": {
+        "demo": "text-field/related-select",
+        "title": "Select"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "text-field/related-select",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/text-field.md:Cards[61]:Card[1]"
+      ],
+      "anatomyParts": [],
+      "cardBody": [
+        {
+          "tag": "p",
+          "attributes": {},
+          "children": [
+            {
+              "text": "정해진 선택지에서 하나를 고릅니다.",
+              "raw": false
+            }
+          ]
+        }
+      ],
+      "cardIndex": 0,
+      "captureUnit": "whole-card",
+      "nativeCardAttributes": {
+        "demo": "text-field/related-select",
+        "title": "Select"
+      },
+      "nativeCardBody": "\n정해진 선택지에서 하나를 고릅니다.\n"
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-text-field-33-fieldbox:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%));}\n                              \n                              \n                                \n                                  \n                                  \n                                \n                              \n                            \n                          \n                        \n                      \n                    \n                    Select\n                    정해진 선택지에서 하나를 고릅니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 228.390625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(31, 32, 33)",
+      "borderRightColor": "rgb(31, 32, 33)",
+      "borderBottomColor": "rgb(31, 32, 33)",
+      "borderLeftColor": "rgb(31, 32, 33)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 228.390625
+    }
+  }
+}

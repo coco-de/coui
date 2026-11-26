@@ -1,0 +1,38 @@
+{
+  "key": "progress-default-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSize": null,
+      "lineHeight": null,
+      "letterSpacing": null,
+      "color": null,
+      "backgroundColor": "rgb(237, 238, 240)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "9999px",
+      "borderTopRightRadius": "9999px",
+      "borderBottomRightRadius": "9999px",
+      "borderBottomLeftRadius": "9999px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 6
+    }
+  }
+}

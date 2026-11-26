@@ -1,0 +1,81 @@
+{
+  "key": "step-item-default-dark-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "의존성 설치\n                \n                12초\n              \n              \n                \n                \n                테스트 실행\n                \n                41초\n              \n              \n                \n                \n                배포\n                \n                대기 중\n              \n              \n                \n                  \n                \n                \n                린트\n                \n                exit 1",
+    "layout": {
+      "width": 280,
+      "height": 128,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 280,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 32,
+          "width": 280,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 64,
+          "width": 280,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 96,
+          "width": 280,
+          "height": 32
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 280,
+      "heightPx": 128
+    }
+  }
+}

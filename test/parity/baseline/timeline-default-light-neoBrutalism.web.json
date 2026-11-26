@@ -1,0 +1,63 @@
+{
+  "key": "timeline-default-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "오전 10:00\n                  \n                  \n                    \n                    \n                  \n                  \n                  \n                    주문 접수\n                  \n                \n                \n                  오전 11:30\n                  \n                  \n                    \n                    \n                  \n                  \n                  \n                    처리 중\n                  \n                \n                \n                  오후 2:00\n                  \n                  \n                    \n                  \n                  \n                  \n                    발송 완료",
+    "layout": {
+      "width": 800,
+      "height": 92,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 92
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "13px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "9999px",
+      "borderTopRightRadius": "9999px",
+      "borderBottomRightRadius": "9999px",
+      "borderBottomLeftRadius": "9999px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 92
+    }
+  }
+}

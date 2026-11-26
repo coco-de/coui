@@ -1,0 +1,13 @@
+include: ../../analysis_options.yaml
+
+analyzer:
+  exclude:
+    - 'example/**'
+    - 'docs/**'
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**

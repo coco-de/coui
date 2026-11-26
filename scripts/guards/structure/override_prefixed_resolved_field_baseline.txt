@@ -1,0 +1,13 @@
+# ratchet 기준값 — `Resolved*` 클래스 필드 중 `override[A-Z]` 로 시작하는
+# 이름의 수. `code-style/naming.md` 가 "resolved 필드는 이미 fallback 적용된
+# 최종 값이라 미해결 상태를 이름에 남기면 안 된다" 고 금지하는 그 패턴이다.
+#
+# `coui_lints` 의 `avoid_override_prefixed_resolved_field` 룰(#4942)이
+# 잡는 패턴인데 INFO severity 라 `--fatal-warnings` 를 통과하고, 실측
+# (2026-09-17)으로는 이 SDK 의 CLI `dart analyze` 에 coui_lints 진단이
+# severity 와 무관하게 아예 뜨지 않는다(9 룰 전부 0건). 그래서 이 가드가
+# 유일한 그물이다.
+#
+# 오늘 baseline 은 0 — `Resolved*` 클래스 356개 / 필드 선언 2804줄을 손으로
+# 훑어 확인했다(text_field/select/button/popover 재발 방지 이후 전부 정리됨).
+0

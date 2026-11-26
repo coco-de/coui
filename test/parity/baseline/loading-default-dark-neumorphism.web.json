@@ -1,0 +1,79 @@
+{
+  "key": "loading-default-dark-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "initial-frame",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "@keyframes co-loading-ssr-7-spinner { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } #co-loading-ssr-7 .co-loading-spinner { animation: co-loading-ssr-7-spinner var(--coui-duration-1000) var(--easing-linear) infinite; }",
+    "layout": {
+      "width": 16,
+      "height": 16,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 16,
+          "height": 16
+        }
+      ]
+    },
+    "animationTimes": [
+      0
+    ],
+    "animationStates": [
+      "paused"
+    ],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSize": null,
+      "lineHeight": null,
+      "letterSpacing": null,
+      "color": null,
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 16,
+      "heightPx": 16
+    }
+  }
+}

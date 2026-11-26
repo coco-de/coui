@@ -1,0 +1,65 @@
+# Dropdown Menu Examples
+
+This document contains example code for the dropdown_menu component.
+
+## Table of Contents
+
+- [Example 1: Basic Example](#example-1)
+
+## Example 1
+
+**Basic Example**
+
+```dart
+// ignore_for_file: avoid_print
+import 'package:coui_flutter/coui_flutter.dart';
+
+class DropdownMenuExample1 extends StatelessWidget {
+  const DropdownMenuExample1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlineButton(
+      child: const Text('Open'),
+      onPressed: () {
+        showDropdown(
+          builder: (context) {
+            return const DropdownMenu(
+              children: [
+                MenuLabel(child: Text('My Account')),
+                MenuDivider(),
+                MenuButton(child: Text('Profile')),
+                MenuButton(child: Text('Billing')),
+                MenuButton(child: Text('Settings')),
+                MenuButton(child: Text('Keyboard shortcuts')),
+                MenuDivider(),
+                MenuButton(child: Text('Team')),
+                MenuButton(
+                  subMenu: [
+                    MenuButton(child: Text('Email')),
+                    MenuButton(child: Text('Message')),
+                    MenuDivider(),
+                    MenuButton(child: Text('More...')),
+                  ],
+                  child: Text('Invite users'),
+                ),
+                MenuButton(child: Text('New Team')),
+                MenuDivider(),
+                MenuButton(child: Text('GitHub')),
+                MenuButton(child: Text('Support')),
+                MenuButton(enabled: false, child: Text('API')),
+                MenuButton(child: Text('Log out')),
+              ],
+            );
+          },
+          context: context,
+        ).future.then((_) {
+          print('Closed');
+        });
+      },
+    );
+  }
+}
+
+```
+

@@ -1,0 +1,54 @@
+# G10 baseline (#3996) — `contracts/*/*_style.dart` 의 nullable 인스턴스 필드
+# 중 `tools/figma-token-sync/src/data/components.json` 의 해당 컴포넌트
+# 서브트리(fields / variants.* / sizes.*) 어디에도 키로 등장하지 않는 개수.
+#
+# 이 숫자가 곧 "Dart 에 선언됐지만 캔버스에 도달하지 못한 필드" 수다.
+# ratchet: 내려가는 것만 허용. 늘리는 PR 은 선언만 늘리고 exporter 가 그것을
+# 실어내지 않는 상태를 만드는 것이다.
+#
+# 분류별 카운트는 리포트로만 낸다(`--report`) — 분류 규칙이 정교해지면
+# 카테고리 경계가 움직이므로 고정 대상은 총합 하나다.
+#
+# 2026-08-06 (--update): Dart nullable 필드 1527 중 누락 427. empty-value=81 nested-slot=149 no-default=155 static-final=42
+#
+# 2026-08-06 (--update): Dart nullable 필드 1526 중 누락 420. empty-value=75 nested-slot=148 no-default=155 static-final=42
+#
+# 2026-08-06 (--update): Dart nullable 필드 1526 중 누락 387. empty-value=75 nested-slot=148 no-default=155 static-final=9
+#
+# 2026-08-06 (--update): Dart nullable 필드 1526 중 누락 310. empty-value=75 nested-slot=10 no-default=219 static-final=6
+#
+# 2026-08-06 (--update): Dart nullable 필드 1526 중 누락 300. empty-value=75 nested-slot=10 no-default=209 static-final=6
+#
+# 2026-08-06 (--update): Dart nullable 필드 1526 중 누락 242. empty-value=67 nested-slot=7 no-default=162 static-final=6
+#
+# 2026-08-07 (--update): Dart nullable 필드 1526 중 누락 208. empty-value=33 nested-slot=7 no-default=162 static-final=6
+#
+# 2026-08-07 (--update): Dart nullable 필드 1526 중 누락 168. nested-slot=7 no-default=161
+#
+# 남은 168 은 리더가 더 내릴 수 없다. 무엇으로 이루어졌는지 실제로 세어보면:
+#
+#   · 157 은 그 flat 필드에 `default<Field>` 선언이 Dart 에 없다. 다만 그
+#     157 이 전부 "값이 어디에도 없다" 는 뜻은 아니다 — 69 는 그 컴포넌트가
+#     variant/size 테이블을 갖고 있고, 테이블 쪽 필드명이 flat 쪽과 달라
+#     (`CoreToggleStyle.trackActiveColor` ↔ `CoreToggleVariantStyle.activeTrack`)
+#     이 가드의 이름 매칭이 못 잇는 경우가 섞여 있다. 그 값은 JSON 에 도달해
+#     있고 빌더가 테이블 이름으로 읽는다. 나머지 92 는 테이블조차 없어
+#     정말로 값이 없는 쪽이다.
+#   · 7 은 nested-slot.
+#   · 4 는 `mockup/` 한 디렉터리에 Style 클래스가 다섯 개라 이 가드의
+#     슬러그별 grep 이 형제 클래스의 default 를 같은 슬러그로 센 것이다.
+#
+# 어느 쪽이든 리더가 고칠 것은 남지 않았다. 이 숫자를 더 내리려면
+# `CoreXxxStyle` 에 default 를 추가하거나(디자인 결정) flat↔테이블 이름을
+# 맞추는(Core API 변경) PR 이어야 한다.
+#
+# 2026-08-07 (--update): Dart nullable 필드 1526 중 누락 161. empty-value=3 nested-slot=7 no-default=151
+#
+# 2026-08-10 (--update): Dart nullable 필드 1526 중 누락 159. empty-value=6 nested-slot=10 no-default=143
+#
+# 2026-08-10 (--update): Dart nullable 필드 1526 중 누락 28. absent-declared=131 empty-value=6 nested-slot=10 no-default=12
+#
+# 2026-08-10 (--update): Dart nullable 필드 1526 중 누락 13. absent-declared=131 deprecated=8 untokenized=15 empty-value=1 no-default=12
+#
+# 2026-08-10 (--update): Dart nullable 필드 1526 중 누락 1. absent-declared=134 deprecated=8 untokenized=15 empty-value=1
+0

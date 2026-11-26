@@ -1,0 +1,484 @@
+{
+  "issue": 6131,
+  "date": "2026-11-16",
+  "status": "branch verification; not merged; overall parity incomplete",
+  "source": {
+    "sourceSha": "5e426634e76cf31671fd3431fc2fba7f21c05701",
+    "startedAt": "2026-11-16T05:20:53.458969+00:00",
+    "captureSourceSha256": {
+      "packages/coui_flutter/lib/src/components/layout/frame/frame.dart": "46174d5a68331b6cd07fea50997ed6836aa6a891725c9ed57e88f04c85e9abf1",
+      "tool/parity/src/web/computed_style_probe.dart": "8ae20d30f353812cc33929c069e31e60a009dbab6f3efb01a6f24088a1aca20b"
+    },
+    "manifestSha256": {
+      "final-manifest.json": "ce2e93ebfa4892d3375f065b4203c3990d2fd4096f37144580c440120c78a707",
+      "final-styles-manifest.json": "299e69f37016d8c5922fdfda19a3279366ba0a2bc2e909fe9e5e411c6d409ba4"
+    },
+    "incomingMain": "#6314 documentation wording + TextBlock chain label on both platforms; source changes attributed separately"
+  },
+  "pixelThresholds": {
+    "parity": 0.05,
+    "regression": 0.001,
+    "channelDelta": 32,
+    "dimensionMismatch": "fail"
+  },
+  "pixelBefore": {
+    "pass": 460,
+    "fail": 288,
+    "infra": 0,
+    "skipped": 0
+  },
+  "pixelAfter": {
+    "pass": 462,
+    "fail": 286,
+    "infra": 0,
+    "skipped": 0
+  },
+  "resolvedKeys": [
+    "frame-dashed-light-defaultStyle",
+    "frame-dashed-dark-defaultStyle"
+  ],
+  "newFailKeys": [],
+  "probeCount": 760,
+  "platformPngCount": 1520,
+  "exactPixelUnchanged": 1518,
+  "pixelChanged": [
+    {
+      "key": "frame-dashed-light-defaultStyle",
+      "probe": "root",
+      "platform": "flutter",
+      "passed": false,
+      "dimensionMismatch": null,
+      "diffPixels": 707,
+      "totalPixels": 11242,
+      "maxChannelDelta": 134
+    },
+    {
+      "key": "frame-dashed-dark-defaultStyle",
+      "probe": "root",
+      "platform": "flutter",
+      "passed": false,
+      "dimensionMismatch": null,
+      "diffPixels": 709,
+      "totalPixels": 11242,
+      "maxChannelDelta": 140
+    }
+  ],
+  "afterBaselinePlatformCells": {
+    "pass": 1367,
+    "fail": 129,
+    "firstCapture": 24
+  },
+  "styles": {
+    "frame": {
+      "keys": 32,
+      "before": {
+        "pass": 13,
+        "fail": 19
+      },
+      "after": {
+        "pass": 16,
+        "fail": 16
+      },
+      "beforeBaseline": {
+        "pass": 64
+      },
+      "afterBaseline": {
+        "pass": 56,
+        "fail": 8
+      },
+      "newFailKeys": []
+    },
+    "code-snippet": {
+      "keys": 10,
+      "before": {
+        "fail": 10
+      },
+      "after": {
+        "fail": 10
+      },
+      "beforeBaseline": {
+        "pass": 11,
+        "fail": 9
+      },
+      "afterBaseline": {
+        "pass": 11,
+        "fail": 9
+      },
+      "newFailKeys": []
+    }
+  },
+  "frameDashedStyleResults": [
+    {
+      "key": "frame-dashed-light-defaultStyle",
+      "before": {
+        "status": "fail",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 1050,
+        "totalPixels": 11242,
+        "diffRatio": 0.09339975093399751,
+        "maxChannelDelta": 134
+      },
+      "after": {
+        "status": "pass",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 384,
+        "totalPixels": 11242,
+        "diffRatio": 0.03415762319871909,
+        "maxChannelDelta": 87
+      }
+    },
+    {
+      "key": "frame-dashed-light-neoBrutalism",
+      "before": {
+        "status": "fail",
+        "aSize": [
+          158,
+          77
+        ],
+        "bSize": [
+          158,
+          77
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 1383,
+        "totalPixels": 12166,
+        "diffRatio": 0.1136774617787276,
+        "maxChannelDelta": 218
+      },
+      "after": {
+        "status": "fail",
+        "aSize": [
+          158,
+          77
+        ],
+        "bSize": [
+          158,
+          77
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 1837,
+        "totalPixels": 12166,
+        "diffRatio": 0.15099457504520797,
+        "maxChannelDelta": 218
+      }
+    },
+    {
+      "key": "frame-dashed-light-claymorphism",
+      "before": {
+        "status": "fail",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 928,
+        "totalPixels": 11242,
+        "diffRatio": 0.08254758939690447,
+        "maxChannelDelta": 134
+      },
+      "after": {
+        "status": "fail",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 791,
+        "totalPixels": 11242,
+        "diffRatio": 0.07036114570361146,
+        "maxChannelDelta": 134
+      }
+    },
+    {
+      "key": "frame-dashed-light-neumorphism",
+      "before": {
+        "status": "fail",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 1101,
+        "totalPixels": 11242,
+        "diffRatio": 0.09793631026507739,
+        "maxChannelDelta": 178
+      },
+      "after": {
+        "status": "pass",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 524,
+        "totalPixels": 11242,
+        "diffRatio": 0.04661092332325209,
+        "maxChannelDelta": 87
+      }
+    },
+    {
+      "key": "frame-dashed-dark-defaultStyle",
+      "before": {
+        "status": "fail",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 1144,
+        "totalPixels": 11242,
+        "diffRatio": 0.10176125244618395,
+        "maxChannelDelta": 153
+      },
+      "after": {
+        "status": "pass",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 480,
+        "totalPixels": 11242,
+        "diffRatio": 0.04269702899839886,
+        "maxChannelDelta": 153
+      }
+    },
+    {
+      "key": "frame-dashed-dark-neoBrutalism",
+      "before": {
+        "status": "fail",
+        "aSize": [
+          158,
+          77
+        ],
+        "bSize": [
+          158,
+          77
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 1827,
+        "totalPixels": 12166,
+        "diffRatio": 0.15017261219792866,
+        "maxChannelDelta": 236
+      },
+      "after": {
+        "status": "fail",
+        "aSize": [
+          158,
+          77
+        ],
+        "bSize": [
+          158,
+          77
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 2275,
+        "totalPixels": 12166,
+        "diffRatio": 0.18699654775604144,
+        "maxChannelDelta": 236
+      }
+    },
+    {
+      "key": "frame-dashed-dark-claymorphism",
+      "before": {
+        "status": "fail",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 1023,
+        "totalPixels": 11242,
+        "diffRatio": 0.09099804305283757,
+        "maxChannelDelta": 153
+      },
+      "after": {
+        "status": "fail",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 891,
+        "totalPixels": 11242,
+        "diffRatio": 0.07925636007827788,
+        "maxChannelDelta": 153
+      }
+    },
+    {
+      "key": "frame-dashed-dark-neumorphism",
+      "before": {
+        "status": "fail",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 1195,
+        "totalPixels": 11242,
+        "diffRatio": 0.10629781177726383,
+        "maxChannelDelta": 187
+      },
+      "after": {
+        "status": "fail",
+        "aSize": [
+          154,
+          73
+        ],
+        "bSize": [
+          154,
+          73
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 670,
+        "totalPixels": 11242,
+        "diffRatio": 0.059597936310265075,
+        "maxChannelDelta": 153
+      }
+    }
+  ],
+  "webMetadataChangedKeys": 36,
+  "webMetadataChangedFields": [
+    "color",
+    "fontFamily",
+    "fontSize",
+    "fontWeight",
+    "letterSpacing",
+    "lineHeight"
+  ],
+  "propertyDiagnostic": {
+    "before": {
+      "pass": 260,
+      "fail": 414,
+      "infra": 12,
+      "skipped": 62
+    },
+    "after": {
+      "pass": 270,
+      "fail": 404,
+      "infra": 12,
+      "skipped": 62
+    },
+    "improvedFieldCount": 93,
+    "newFieldMismatchCount": 2,
+    "newFieldMismatches": [
+      {
+        "key": "command-empty-light-defaultStyle",
+        "role": "root",
+        "field": "color",
+        "before": {
+          "field": "color",
+          "matches": true,
+          "flutter": "NormalizedColor(r:115, g:116, b:118, a:1.0)",
+          "web": "NormalizedColor(r:115, g:116, b:118, a:1.0)",
+          "token": null,
+          "tokenDivergence": "notChecked"
+        },
+        "after": {
+          "field": "color",
+          "matches": false,
+          "flutter": "NormalizedColor(r:115, g:116, b:118, a:1.0)",
+          "web": "NormalizedColor(r:31, g:32, b:33, a:1.0)",
+          "token": null,
+          "tokenDivergence": "notChecked"
+        }
+      },
+      {
+        "key": "command-empty-dark-defaultStyle",
+        "role": "root",
+        "field": "color",
+        "before": {
+          "field": "color",
+          "matches": true,
+          "flutter": "NormalizedColor(r:147, g:149, b:150, a:1.0)",
+          "web": "NormalizedColor(r:147, g:149, b:150, a:1.0)",
+          "token": null,
+          "tokenDivergence": "notChecked"
+        },
+        "after": {
+          "field": "color",
+          "matches": false,
+          "flutter": "NormalizedColor(r:147, g:149, b:150, a:1.0)",
+          "web": "NormalizedColor(r:244, g:245, b:246, a:1.0)",
+          "token": null,
+          "tokenDivergence": "notChecked"
+        }
+      }
+    ],
+    "infraSkippedUnchanged": true,
+    "structuralSkippedUnchanged": true
+  },
+  "checks": {
+    "flutterFrameTests": 17,
+    "chromeProbeTests": 29,
+    "webFrameContractTests": 7,
+    "embeddedFlutterSnippetClasses": 5,
+    "embeddedWebSnippetClasses": 5,
+    "analyze": "No issues found!",
+    "format": "6 files, 0 changed",
+    "jasprBuildRoutes": 357,
+    "apiDeclarationSha256": "32236a8369df36dd9d2d074d69fbb1f00123373ed2e9189258155d0689635237"
+  },
+  "noChanges": [
+    "public API declarations",
+    "Core tokens/defaults",
+    "Web component source",
+    "Figma component data",
+    "baselines",
+    "allowlists",
+    "pixel thresholds",
+    "capture image transforms"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "key": "form-field-default-dark-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "form-field-default-dark-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 18.2,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 180,
+        "g": 181,
+        "b": 182,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 22,
+        "g": 23,
+        "b": 24,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 64,
+        "g": 65,
+        "b": 67,
+        "a": 1.0
+      },
+      "borderWidthPx": 1.0,
+      "borderRadiusPx": [
+        24.0,
+        24.0,
+        24.0,
+        24.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 320.0,
+      "heightPx": 94.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

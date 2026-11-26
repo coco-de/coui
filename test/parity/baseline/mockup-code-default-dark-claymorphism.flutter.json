@@ -1,0 +1,54 @@
+{
+  "key": "mockup-code-default-dark-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "mockup-code-default-dark-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Geist Mono",
+      "fontWeight": 400,
+      "fontSizePx": 12.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": 0.0,
+      "color": {
+        "r": 180,
+        "g": 181,
+        "b": 182,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 31,
+        "g": 32,
+        "b": 33,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "paddingPx": [
+        10.0,
+        16.0,
+        10.0,
+        16.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [],
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 95.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

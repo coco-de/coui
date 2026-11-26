@@ -1,0 +1,81 @@
+{
+  "key": "kbd-four-dark-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "⌃⇧⌘4",
+    "layout": {
+      "width": 104.515625,
+      "height": 21,
+      "direction": "row",
+      "innerPaddingLeft": "6px",
+      "innerPaddingRight": "6px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 22.28125,
+          "height": 21
+        },
+        {
+          "x": 26.28125,
+          "y": 0,
+          "width": 25.015625,
+          "height": 21
+        },
+        {
+          "x": 55.296875,
+          "y": 0,
+          "width": 24.34375,
+          "height": 21
+        },
+        {
+          "x": 83.640625,
+          "y": 0,
+          "width": 20.875,
+          "height": 21
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "11px",
+      "lineHeight": "15px",
+      "letterSpacing": "-0.11px",
+      "color": "rgb(180, 181, 182)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 104.515625,
+      "heightPx": 21
+    }
+  }
+}

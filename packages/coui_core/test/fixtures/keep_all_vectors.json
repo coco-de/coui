@@ -1,0 +1,291 @@
+{
+  "_comment": [
+    "Shared keep-all (CSS word-break: keep-all) vectors. Read by coui_core",
+    "(CoreKeepAll), coui_flutter (Text.keepAll), coui_web (Text.keepAll) and",
+    "the Chrome probe in tool/parity — a change to which pairs stay together",
+    "fails on every platform at once.",
+    "",
+    "joins: `expected` is the Flutter display string — a U+2060 WORD JOINER",
+    "(escaped \\u2060) wherever keep-all removes a break opportunity. The Web",
+    "never changes the string; Chrome's own keep-all removes the same",
+    "opportunities (the Chrome probe checks every row).",
+    "",
+    "lines: the same text laid out at one width in Pretendard Regular, with",
+    "and without keep-all, on both platforms. Trailing spaces are trimmed —",
+    "they hang past the line end on both. `keepAllFlutter` overrides",
+    "`keepAll` for Flutter only where the two line breakers knowingly",
+    "differ, and `difference` says how."
+  ],
+  "joins": [
+    {
+      "name": "korean sentence — joined inside each word, never across a space",
+      "input": "리포머 심화 플로우와 회복 스트레칭",
+      "expected": "리\u2060포\u2060머 심\u2060화 플\u2060로\u2060우\u2060와 회\u2060복 스\u2060트\u2060레\u2060칭"
+    },
+    {
+      "name": "punctuation keeps its break opportunity",
+      "input": "안녕하세요, 반갑습니다.",
+      "expected": "안\u2060녕\u2060하\u2060세\u2060요, 반\u2060갑\u2060습\u2060니\u2060다."
+    },
+    {
+      "name": "latin glued to hangul joins at the seam only",
+      "input": "iPhone케이스",
+      "expected": "iPhone\u2060케\u2060이\u2060스"
+    },
+    {
+      "name": "latin word on its own is untouched",
+      "input": "iPhone15 케이스",
+      "expected": "iPhone15 케\u2060이\u2060스"
+    },
+    {
+      "name": "digits join to the hangul unit after them",
+      "input": "2026년 10월 14일",
+      "expected": "2026\u2060년 10\u2060월 14\u2060일"
+    },
+    {
+      "name": "a grouped number stays with its unit",
+      "input": "5,000원",
+      "expected": "5,000\u2060원"
+    },
+    {
+      "name": "a percent sign keeps its break opportunity",
+      "input": "50%할인",
+      "expected": "50%할\u2060인"
+    },
+    {
+      "name": "hyphen keeps its break opportunity",
+      "input": "Wi-Fi비번",
+      "expected": "Wi-Fi\u2060비\u2060번"
+    },
+    {
+      "name": "brackets keep their break opportunities",
+      "input": "(주)회사",
+      "expected": "(주)회\u2060사"
+    },
+    {
+      "name": "latin word followed by a particle",
+      "input": "CoUI를",
+      "expected": "CoUI\u2060를"
+    },
+    {
+      "name": "greek letter next to hangul",
+      "input": "α가",
+      "expected": "α\u2060가"
+    },
+    {
+      "name": "latin only — nothing to join",
+      "input": "Hello world",
+      "expected": "Hello world"
+    },
+    {
+      "name": "empty",
+      "input": "",
+      "expected": ""
+    },
+    {
+      "name": "single syllable",
+      "input": "가",
+      "expected": "가"
+    },
+    {
+      "name": "a word longer than any line is still one unit",
+      "input": "가나다라마바사아자차카타파하",
+      "expected": "가\u2060나\u2060다\u2060라\u2060마\u2060바\u2060사\u2060아\u2060자\u2060차\u2060카\u2060타\u2060파\u2060하"
+    },
+    {
+      "name": "hangul compatibility jamo",
+      "input": "ㅋㅋㅋ",
+      "expected": "ㅋ\u2060ㅋ\u2060ㅋ"
+    },
+    {
+      "name": "han ideographs",
+      "input": "東京大学",
+      "expected": "東\u2060京\u2060大\u2060学"
+    },
+    {
+      "name": "hangul and han in one word",
+      "input": "한국語",
+      "expected": "한\u2060국\u2060語"
+    },
+    {
+      "name": "japanese without spaces",
+      "input": "日本語の文章",
+      "expected": "日\u2060本\u2060語\u2060の\u2060文\u2060章"
+    },
+    {
+      "name": "ideographic punctuation keeps its break opportunity",
+      "input": "漢字、仮名。",
+      "expected": "漢\u2060字、仮\u2060名。"
+    },
+    {
+      "name": "prolonged sound mark is a kana letter",
+      "input": "コーヒー",
+      "expected": "コ\u2060ー\u2060ヒ\u2060ー"
+    },
+    {
+      "name": "small kana",
+      "input": "ちょっと",
+      "expected": "ち\u2060ょ\u2060っ\u2060と"
+    },
+    {
+      "name": "digit next to an ideograph",
+      "input": "3月",
+      "expected": "3\u2060月"
+    },
+    {
+      "name": "fullwidth latin letters and digits",
+      "input": "ＡＢＣ１２３",
+      "expected": "Ａ\u2060Ｂ\u2060Ｃ\u2060１\u2060２\u2060３"
+    },
+    {
+      "name": "an existing word joiner is not doubled",
+      "input": "가\u2060나다",
+      "expected": "가\u2060나\u2060다"
+    },
+    {
+      "name": "line feed is never joined across",
+      "input": "가나\n다라",
+      "expected": "가\u2060나\n다\u2060라"
+    },
+    {
+      "name": "line separator is never joined across",
+      "input": "가나\u2028다라",
+      "expected": "가\u2060나\u2028다\u2060라"
+    },
+    {
+      "name": "tab keeps its break opportunity",
+      "input": "가\t나",
+      "expected": "가\t나"
+    },
+    {
+      "name": "an explicit zero-width space stays a break opportunity",
+      "input": "가\u200b나",
+      "expected": "가\u200b나"
+    },
+    {
+      "name": "a no-break space is left alone",
+      "input": "가\u00a0나",
+      "expected": "가\u00a0나"
+    },
+    {
+      "name": "emoji keep their break opportunities",
+      "input": "좋아요\ud83d\udc4d최고",
+      "expected": "좋\u2060아\u2060요\ud83d\udc4d최\u2060고"
+    },
+    {
+      "name": "a combining mark stands for the letter it sits on",
+      "input": "가\u0308나",
+      "expected": "가\u0308\u2060나"
+    },
+    {
+      "name": "a second combining mark is a mark, not a letter, to Chromium",
+      "input": "가\u0308\u0301나",
+      "expected": "가\u0308\u0301나"
+    },
+    {
+      "name": "a syllable built from conjoining jamo is never split",
+      "input": "\u1100\u1161\u1102\u1161",
+      "expected": "\u1100\u1161\u2060\u1102\u1161"
+    },
+    {
+      "name": "a variation selector in the BMP stands for its ideograph",
+      "input": "漢\ufe00字",
+      "expected": "漢\ufe00\u2060字"
+    },
+    {
+      "name": "a supplementary variation selector is a surrogate to Chromium — the break stays",
+      "input": "葛\udb40\udd00城",
+      "expected": "葛\udb40\udd00城"
+    },
+    {
+      "name": "supplementary-plane ideographs keep their break opportunities — Chromium reads one code unit a side",
+      "input": "\ud840\udc00\ud840\udc01",
+      "expected": "\ud840\udc00\ud840\udc01"
+    },
+    {
+      "name": "dictionary-broken scripts are left to the line breaker",
+      "input": "한ไทย",
+      "expected": "한ไทย"
+    }
+  ],
+  "lines": [
+    {
+      "name": "the reported title — 스트레칭 no longer splits at the line end",
+      "text": "리포머 심화 플로우와 회복 스트레칭",
+      "fontSize": 16,
+      "width": 215,
+      "normal": [
+        "리포머 심화 플로우와 회복 스트레",
+        "칭"
+      ],
+      "keepAll": [
+        "리포머 심화 플로우와 회복",
+        "스트레칭"
+      ]
+    },
+    {
+      "name": "punctuation stays with its word",
+      "text": "오늘 수업은 취소되었습니다. 다음 주에 다시 예약해 주세요.",
+      "fontSize": 16,
+      "width": 170,
+      "normal": [
+        "오늘 수업은 취소되었습니",
+        "다. 다음 주에 다시 예약해",
+        "주세요."
+      ],
+      "keepAll": [
+        "오늘 수업은",
+        "취소되었습니다. 다음 주에",
+        "다시 예약해 주세요."
+      ]
+    },
+    {
+      "name": "digits stay with the unit after them",
+      "text": "iPhone 15 Pro 전용 케이스 2개 세트 할인",
+      "fontSize": 16,
+      "width": 195,
+      "normal": [
+        "iPhone 15 Pro 전용 케이스 2",
+        "개 세트 할인"
+      ],
+      "keepAll": [
+        "iPhone 15 Pro 전용 케이스",
+        "2개 세트 할인"
+      ]
+    },
+    {
+      "name": "a word wider than the line breaks inside it",
+      "text": "가나다라마바사아자차카타파하",
+      "fontSize": 16,
+      "width": 120,
+      "normal": [
+        "가나다라마바사아",
+        "자차카타파하"
+      ],
+      "keepAll": [
+        "가나다라마바사아",
+        "자차카타파하"
+      ]
+    },
+    {
+      "name": "a word wider than the line, after other text on the line",
+      "text": "가 나다라마바사아자차카타파하",
+      "fontSize": 16,
+      "width": 120,
+      "normal": [
+        "가 나다라마바사아",
+        "자차카타파하"
+      ],
+      "keepAll": [
+        "가",
+        "나다라마바사아자",
+        "차카타파하"
+      ],
+      "keepAllFlutter": [
+        "가 나다라마바사아",
+        "자차카타파하"
+      ],
+      "difference": "Chrome moves an over-long word to a fresh line before breaking inside it (overflow-wrap: anywhere breaks only where a line has no other opportunity). Flutter's line breaker may start breaking it on the current line instead."
+    }
+  ]
+}

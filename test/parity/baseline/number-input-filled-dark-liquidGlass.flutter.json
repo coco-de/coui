@@ -1,0 +1,54 @@
+{
+  "key": "number-input-filled-dark-liquidGlass",
+  "byRole": {
+    "root": {
+      "key": "number-input-filled-dark-liquidGlass",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 18.2,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 180,
+        "g": 181,
+        "b": 182,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 42,
+        "g": 43,
+        "b": 44,
+        "a": 0.6
+      },
+      "borderColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderWidthPx": 1.0,
+      "borderRadiusPx": [
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 114.0,
+      "heightPx": 64.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

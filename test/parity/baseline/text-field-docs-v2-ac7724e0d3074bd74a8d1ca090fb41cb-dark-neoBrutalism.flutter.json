@@ -1,0 +1,69 @@
+{
+  "key": "text-field-docs-v2-ac7724e0d3074bd74a8d1ca090fb41cb-dark-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "text-field-docs-v2-ac7724e0d3074bd74a8d1ca090fb41cb-dark-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "shadowBlurUnit": "css-radius",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 22,
+        "g": 23,
+        "b": 24,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 65,
+        "g": 35,
+        "b": 31,
+        "a": 1.0
+      },
+      "borderWidthPx": 4.0,
+      "borderRadiusPx": [
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [
+        {
+          "offsetX": 4.0,
+          "offsetY": 4.0,
+          "blur": 0.0,
+          "spread": 0.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1.0
+          }
+        }
+      ],
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 234.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

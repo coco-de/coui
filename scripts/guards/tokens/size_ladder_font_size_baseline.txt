@@ -1,0 +1,14 @@
+# Core contract `defaultsBySize` 안에서 텍스트 슬롯을 역할이 아니라
+# `fontSize:` 로 적은 항목의 수 (check_size_ladder_uses_roles.sh).
+#
+# 왜 이 수인가 — 실측: 두 컴포넌트(Checkbox · RadioGroup)의 라벨/설명 사다리가
+# `CoreTextStyle(fontSize: CoreFontSize.sN)` 로 크기만 덮고 있어, 큰 크기에서
+# default 역할(더 작은 크기용)의 em 자간이 새 크기에 곱해진다. 같은 사다리를
+# 역할로 적은 컴포넌트와 같은 픽셀 크기에서 자간이 갈린다.
+#
+# 줄이는 방향만 허용 — 각 항목을 그 크기의 역할로 바꾸면 그만큼 내린다.
+# 역할이 없는 크기가 남으면 그건 역할을 추가하거나 사다리를 재검토하는
+# 디자인 결정이지, 이 숫자를 올릴 근거가 아니다.
+#
+# 값을 올리는 것은 완화다 — 그 diff 가 리뷰 대상이다.
+18

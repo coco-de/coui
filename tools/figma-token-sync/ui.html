@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      /* 고정 라이트 테마 + 블랙 primary — Figma 앱 테마를 따르지 않는다.
+         (다크에서도 항상 라이트로 렌더되는 것이 의도) */
+      :root {
+        color-scheme: light;
+        --bg: #ffffff;
+        --bg-subtle: #f4f4f5;
+        --bg-hover: #e9e9eb;
+        --border: #e4e4e7;
+        --text: #18181b;
+        --text-secondary: #71717a;
+        --text-tertiary: #a1a1aa;
+        --primary: #111111;
+        --primary-hover: #000000;
+        --on-primary: #ffffff;
+        --danger: #dc2626;
+        --danger-hover: #b91c1c;
+        --on-danger: #ffffff;
+        --text-danger: #dc2626;
+        --text-warning: #b45309;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        font: 12px/1.5 Inter, -apple-system, sans-serif;
+        margin: 0;
+        padding: 12px;
+        color: var(--text);
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow: hidden;
+        max-width: 100%;
+      }
+      /* 좁은 패널(400px)에서 어떤 자식도 가로 스크롤을 만들지 않게. */
+      nav.tabs, main, footer, .group, .row { min-width: 0; }
+      main { overflow-x: hidden; }
+      p.hint, details p { overflow-wrap: break-word; }
+
+      /* ── Tabs ───────────────────────────────────────────────────── */
+      nav.tabs {
+        display: flex;
+        gap: 2px;
+        padding: 2px;
+        background: var(--bg-subtle);
+        border-radius: 8px;
+        flex: none;
+      }
+      nav.tabs button {
+        flex: 1;
+        min-width: 0;
+        font: inherit;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 6px 2px;
+        border: none;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      nav.tabs button:hover:not(.active) {
+        background: var(--bg-hover);
+        color: var(--text);
+      }
+      nav.tabs button.active {
+        background: var(--bg);
+        color: var(--text);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      }
+
+      /* ── Panels ─────────────────────────────────────────────────── */
+      main {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+      }
+      main > section { display: none; }
+      main > section.active { display: block; }
+
+      section h2 {
+        font-size: 12px;
+        font-weight: 700;
+        margin: 0 0 4px;
+      }
+      .group { margin-bottom: 16px; }
+      .group:last-child { margin-bottom: 4px; }
+
+      p.hint {
+        margin: 0 0 8px;
+        color: var(--text-secondary);
+      }
+      p.hint.danger { color: var(--text-danger); }
+
+      details {
+        margin: -4px 0 8px;
+      }
+      details summary {
+        font-size: 11px;
+        color: var(--text-tertiary);
+        cursor: pointer;
+        user-select: none;
+        list-style: none;
+      }
+      details summary::before { content: '▸ '; }
+      details[open] summary::before { content: '▾ '; }
+      details summary::-webkit-details-marker { display: none; }
+      details p {
+        margin: 6px 0 0;
+        padding: 8px 10px;
+        border-radius: 6px;
+        background: var(--bg-subtle);
+        color: var(--text-secondary);
+      }
+
+      /* ── Controls ───────────────────────────────────────────────── */
+      textarea {
+        width: 100%;
+        height: 120px;
+        resize: vertical;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 11px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 8px;
+        background: var(--bg-subtle);
+        color: var(--text);
+      }
+      .row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+      .row:last-child { margin-bottom: 0; }
+      input[type="text"],
+      select {
+        font: inherit;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 6px 8px;
+        background: var(--bg-subtle);
+        color: var(--text);
+      }
+      input[type="file"] { font: inherit; font-size: 11px; }
+      button {
+        font: inherit;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 14px;
+        cursor: pointer;
+        background: var(--primary);
+        color: var(--on-primary);
+      }
+      button.secondary {
+        background: var(--bg-subtle);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+      button.danger {
+        background: var(--danger);
+        color: var(--on-danger);
+      }
+      /* CTA hover는 본문(main) 버튼에만 — 탭 버튼과 #4526 트리의 펼치기
+         버튼(.section-toggle)은 CTA 가 아니라 자기 hover 를 따로 갖는다.
+         제외하지 않으면 이 규칙의 :not() 4개짜리 specificity 가
+         `.section-toggle:hover` 를 이겨서 `--primary-hover`(순검정)가
+         칠해진다 — 실측 확인된 버그.
+
+         `.plain` 은 그 예외를 늘릴 때 쓰는 마커다. 클래스를 하나씩 :not() 에
+         덧붙이면 이 체인이 새 버튼마다 길어지고, 빠뜨린 버튼은 조용히 검게
+         칠해진다 — `.section-toggle` 이 겪은 그 버그가 매번 반복된다. */
+      main button:not(:disabled):not(.secondary):not(.danger):not(.section-toggle):not(.plain):hover {
+        background: var(--primary-hover);
+      }
+      /* `.plain` 은 선언을 갖지 않는 순수 마커다. 여기에 공통 바탕(배경·패딩)을
+         얹으면 `main button.plain`(0,2,1)이 각 버튼의 클래스 규칙(0,1,0)을
+         이겨서, 자기 모양을 가진 버튼일수록 더 깨진다. `.section-toggle` 처럼
+         각 버튼이 자기 스타일을 온전히 선언한다. */
+      main button.secondary:not(:disabled):hover { background: var(--bg-hover); }
+      main button.danger:not(:disabled):hover { background: var(--danger-hover); }
+      button:disabled { opacity: 0.5; cursor: default; }
+
+      .checks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 10px;
+        margin: 8px 0;
+      }
+      .checks label { white-space: nowrap; }
+
+      /* ── 소비 파일 점검 목록 (관리 탭) ─────────────────────────── */
+      .audit-list { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+      .audit-row {
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 6px 8px;
+        cursor: pointer;
+        background: var(--bg);
+        overflow-wrap: anywhere;
+      }
+      .audit-row:hover, .audit-row:focus-visible { background: var(--bg-hover); outline: none; }
+      .audit-head { font-weight: 600; }
+      .audit-row.warn .audit-head { color: var(--text-warning); }
+      .audit-sub { color: var(--text-secondary); font-size: 11px; margin-top: 2px; }
+      .audit-pages { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+      .audit-pages button.secondary { padding: 2px 6px; font-size: 10px; font-weight: 500; }
+      /* 다른 명령이 도는 동안 목록은 눌리지 않는다 — 선택은 현재 페이지를 옮기고,
+         Generate 는 새 노드를 현재 페이지에 만든다. */
+      .audit-list.busy { pointer-events: none; opacity: 0.55; }
+
+      /* ── Section cards (컴포넌트 탭) ───────────────────────────── */
+      .select-all-row {
+        margin: 8px 0 6px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--border);
+      }
+      .select-all-row label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        user-select: none;
+      }
+      .section-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin: 0 0 8px;
+      }
+      .section-card {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 10px;
+        cursor: pointer;
+        user-select: none;
+        background: var(--bg);
+      }
+      .section-card:hover { background: var(--bg-subtle); }
+      .section-card:has(input:checked) {
+        border-color: var(--primary);
+        background: var(--bg-subtle);
+      }
+      .section-card input { margin: 2px 0 0; flex: none; }
+      .section-card-text { min-width: 0; }
+      .section-card-name {
+        display: block;
+        font-weight: 600;
+      }
+      .section-card-desc {
+        display: block;
+        font-size: 11px;
+        color: var(--text-secondary);
+        overflow-wrap: break-word;
+      }
+      /* ── #4526 컴포넌트 트리 — 섹션 아래 개별 컴포넌트 체크박스 ────── */
+      .section-group { display: flex; flex-direction: column; }
+      .section-card { align-items: center; }
+      /* 텍스트 블록 자체가 펼치기 트리거 — 작은 버튼 하나에 클릭을 몰아넣지
+         않고, 이름/설명을 누르는 자연스러운 동작을 가장 넓은 타깃으로 쓴다. */
+      .section-card-text { cursor: pointer; border-radius: 6px; padding: 2px 4px; margin: -2px -4px; }
+      .section-card-text:hover { background: var(--bg-subtle); }
+      .section-toggle {
+        flex: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 26px;
+        height: 26px;
+        border: none;
+        border-radius: 6px;
+        background: var(--bg-subtle);
+        cursor: pointer;
+        color: var(--text-secondary);
+        transition: transform 0.15s, background 0.15s, color 0.15s;
+      }
+      .section-toggle:hover { background: var(--border); }
+      .section-toggle svg {
+        /* min-width/flex-shrink:0 — `.section-toggle` 는 flex 컨테이너라
+           svg 도 그 flex item 이다. width:14px 단독으로는(속성으로 줘도)
+           실측 결과 0×14 로 찌그러졌다 — 크로미움이 이 조합에서 SVG 의
+           flex-basis 를 content-size 로 다시 계산하다 너비를 놓치는
+           경우로 보인다. min-width 는 그 재계산과 무관하게 바닥값을
+           강제해서 고쳐진다(실측 확인됨). */
+        width: 14px;
+        height: 14px;
+        min-width: 14px;
+        min-height: 14px;
+        flex-shrink: 0;
+        transform: rotate(0deg);
+        transition: transform 0.15s;
+      }
+      .section-group.expanded .section-toggle svg { transform: rotate(90deg); }
+      .component-list {
+        display: none;
+        flex-direction: column;
+        gap: 2px;
+        margin: 4px 0 0 28px;
+        padding-left: 8px;
+        border-left: 1px solid var(--border);
+      }
+      .section-group.expanded .component-list { display: flex; }
+      .component-card {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 6px;
+        border-radius: 6px;
+        cursor: pointer;
+        user-select: none;
+        font-size: 11px;
+      }
+      .component-card:hover { background: var(--bg-subtle); }
+      .component-card input { margin: 0; flex: none; }
+
+      /* ── 컴포넌트 검색 ─────────────────────────────────────────────
+         134개가 10개 섹션에 접힌 채 들어 있어, 이름 하나를 찾으려면 섹션을
+         차례로 펼쳐 훑어야 했다("매번 이름이 어디있나 찾기 힘들어").
+         검색은 선택을 건드리지 않는다 — 보기 필터일 뿐이라, 필터에 가려진
+         체크는 그대로 살아 있고 아래 선택 요약이 그것까지 센다. */
+      /* 검색창은 스크롤을 따라온다 — 이 탭은 설명 문단과 실행 옵션이 위에
+         쌓여 있어 목록을 훑는 동안 입력창이 화면 밖으로 나간다. 찾기 어렵다는
+         불편을 풀려고 넣은 것이 정작 매번 위로 스크롤해야 닿으면 소용없다.
+         `main` 이 스크롤 컨테이너라 그 위쪽 가장자리에 붙는다. */
+      .component-search-bar {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: var(--bg);
+        padding: 2px 0 8px;
+        margin: 0 0 8px;
+        /* 목록이 이 바 밑으로 지나가므로 경계가 없으면 반쯤 가려진 섹션 카드가
+           깨진 렌더처럼 읽힌다. */
+        border-bottom: 1px solid var(--border);
+      }
+      .component-search { position: relative; }
+      .component-search input {
+        width: 100%;
+        padding: 7px 30px 7px 30px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font: inherit;
+        color: var(--text);
+        background: var(--bg);
+      }
+      .component-search input:focus { outline: none; border-color: var(--primary); }
+      .component-search .search-icon {
+        position: absolute;
+        left: 9px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        color: var(--text-tertiary);
+        pointer-events: none;
+      }
+      .component-search .search-clear {
+        position: absolute;
+        right: 7px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        padding: 0;
+        border-radius: 5px;
+        background: transparent;
+        color: var(--text-tertiary);
+        font-weight: 400;
+        cursor: pointer;
+        line-height: 1;
+      }
+      .component-search .search-clear:hover { background: var(--bg-subtle); color: var(--text); }
+      .component-search.has-query .search-clear { display: flex; }
+      .search-count {
+        margin: 4px 0 0;
+        font-size: 11px;
+        color: var(--text-secondary);
+      }
+      /* 검색 전에는 고정 바가 입력창 높이만 차지하도록 — 빈 <p> 의 margin 이
+         남으면 목록 위에 설명 없는 여백이 붙는다. */
+      .search-count:empty { display: none; }
+      .search-count.none { color: var(--text-warning); }
+      /* 검색 중에는 사용자가 손으로 접어둔 상태(.expanded)를 건드리지 않고
+         일치한 섹션만 펼쳐 보인다 — 검색어를 지우면 접힘 상태가 그대로
+         돌아온다. 클래스를 토글하는 대신 CSS 로 덮는 이유가 그것이다. */
+      .section-list.searching .section-group { display: none; }
+      .section-list.searching .section-group.has-match { display: flex; }
+      .section-list.searching .section-group.has-match .component-list { display: flex; }
+      .section-list.searching .component-card.no-match { display: none; }
+
+      /* ── 선택 요약 ────────────────────────────────────────────────
+         섹션이 접혀 있으면 무엇을 골랐는지 화면에 남지 않는다. 반영 버튼
+         바로 위에 두는 것은 "지금 무엇을 실행하려는가" 가 결정되는 자리가
+         거기이기 때문. 칩을 누르면 그 하나가 빠진다 — 잘못 누른 것을
+         빼려고 다시 트리에서 찾아 헤매지 않도록. */
+      .selection-summary {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 10px;
+        margin: 0 0 8px;
+        background: var(--bg-subtle);
+      }
+      .selection-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .selection-count { font-weight: 600; }
+      .selection-count.empty { font-weight: 400; color: var(--text-secondary); }
+      .selection-clear {
+        padding: 2px 6px;
+        border-radius: 5px;
+        background: transparent;
+        color: var(--text-secondary);
+        font-weight: 400;
+      }
+      .selection-clear:hover { background: var(--bg-hover); color: var(--text); }
+      .selection-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 7px;
+        max-height: 78px;
+        overflow-y: auto;
+      }
+      .selection-chips:empty { display: none; }
+      .selection-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 2px 5px 2px 8px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 11px;
+        font-weight: 400;
+        cursor: pointer;
+      }
+      .selection-chip:hover { border-color: var(--primary); }
+      .selection-chip .x { color: var(--text-tertiary); font-size: 13px; line-height: 1; }
+      .selection-chip:hover .x { color: var(--text); }
+
+      /* ── Footer: progress + log ─────────────────────────────────── */
+      footer {
+        flex: none;
+        border-top: 1px solid var(--border);
+        padding-top: 8px;
+      }
+      #progress-wrap { display: none; margin-bottom: 8px; }
+      #progress-wrap.active { display: block; }
+      #progress-track {
+        height: 4px;
+        border-radius: 2px;
+        background: var(--bg-subtle);
+        overflow: hidden;
+      }
+      #progress-bar {
+        height: 100%;
+        width: 0%;
+        background: var(--primary);
+        transition: width 120ms ease-out;
+      }
+      #progress-label {
+        margin: 4px 0 0;
+        font-size: 11px;
+        color: var(--text-secondary);
+      }
+      pre#log {
+        margin: 0;
+        min-height: 34px;
+        max-height: 120px;
+        overflow: auto;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 11px;
+        white-space: pre-wrap;
+        color: var(--text-secondary);
+      }
+      pre#log:empty::before {
+        content: '실행 결과가 여기에 표시됩니다.';
+        opacity: 0.6;
+      }
+      pre#log.error { color: var(--text-danger); }
+      pre#log.warn { color: var(--text-warning); }
+    </style>
+  </head>
+  <body>
+    <nav class="tabs">
+      <button data-tab="tokens" class="active">토큰</button>
+      <button data-tab="components">컴포넌트</button>
+      <button data-tab="brand">브랜드</button>
+      <button data-tab="manage">관리</button>
+    </nav>
+
+    <main>
+      <!-- ── 토큰 ─────────────────────────────────────────────────── -->
+      <section data-tab="tokens" class="active">
+        <div class="group">
+          <h2>변수로 가져오기</h2>
+          <p class="hint"><code>build/tokens.figma.json</code>을 붙여넣거나 파일로 선택해 Import 합니다.</p>
+          <details>
+            <summary>자세히</summary>
+            <p>재실행해도 기존 변수를 갱신할 뿐 중복 생성되지 않습니다.</p>
+          </details>
+          <textarea id="json" placeholder='{ "collections": [ ... ] }'></textarea>
+          <div class="row">
+            <input id="file" type="file" accept="application/json,.json" />
+          </div>
+          <div class="row">
+            <button id="import">변수로 가져오기</button>
+            <button id="check-drift" class="secondary">드리프트 점검</button>
+            <button id="clear" class="secondary">지우기</button>
+          </div>
+          <p class="hint">"드리프트 점검"은 <strong>아무것도 바꾸지 않고</strong> 위 JSON 과
+          이 파일의 변수를 대조만 합니다 — 누락(빌더가 throw 하는 원인) · 값 불일치(조용히
+          틀리게 렌더되는 원인) · 라이브 전용(코드가 모르는 변수)을 각각 나눠 보고합니다.</p>
+        </div>
+
+        <div class="group">
+          <h2>소비 프로젝트 컬렉션 오버라이드</h2>
+          <p class="hint">활성화된 변수 라이브러리에서 필요한 CoUI 컬렉션만 골라 이 파일의
+          확장 컬렉션으로 자동 생성합니다. 원본에 새 변수가 추가되면 계속 상속하고,
+          이 파일에서는 바꾼 값만 저장됩니다.</p>
+          <details>
+            <summary>자세히</summary>
+            <p>라이브러리 컴포넌트가 이미 참조하는 변수를 실제로 덮어쓰려면 Figma의
+            <strong>Extended Variable Collection</strong>이 필요합니다. 같은 이름의 일반
+            로컬 컬렉션을 복사해도 기존 바인딩에는 적용되지 않습니다. Figma는 이 기능을
+            Enterprise 플랜 기능으로 안내하지만 그 밖의 플랜에서도 만들어질 수 있습니다 — 거부되면
+            그 이유를 알립니다. 먼저 Assets에서 CoUI 라이브러리를 활성화하세요.</p>
+          </details>
+          <div class="section-list" id="override-collection-list">
+            <p class="hint">라이브러리 컬렉션을 불러오는 중…</p>
+          </div>
+          <div class="row">
+            <button id="create-collection-overrides">선택 컬렉션 생성</button>
+            <button id="refresh-override-collections" class="secondary">새로고침</button>
+          </div>
+          <div class="row">
+            <button id="resync-collection-overrides" class="secondary">이름으로 다시 맞추기</button>
+          </div>
+          <p class="hint">"다시 맞추기"는 이 파일의 확장 컬렉션마다 덮어쓰기가 없는 변수를 이름으로
+          다시 채웁니다. 브랜드 탭에서 만든 코드 브랜드의 확장은 브랜드 값 표로, 그 밖의 확장은
+          이름과 타입이 같은 로컬 변수의 별칭을 모든 모드에 넣고, 짝이 없는 변수는 로그에 적습니다.
+          라이브러리 컴포넌트를 넣은 뒤나 파일을 다시 연 뒤에 돌리세요 — 다시 열면 이 파일이
+          쓰지 않던 라이브러리 변수가 덮어쓰기와 함께 정리되고, 다시 들어온 변수는 덮어쓰기
+          없이 CoUI 기본값으로 칠해집니다.</p>
+        </div>
+
+        <div class="group">
+          <h2>팔레트 생성</h2>
+          <p class="hint">8개 HSL 입력(<code>color_palette.json</code>)으로 CoUI Primitive 64색을 제자리에서 다시 칠합니다.</p>
+          <details>
+            <summary>자세히</summary>
+            <p><code>PrimitiveColors.generate</code>의 8개 입력값으로 파일 전체를
+            다시 테마 적용합니다 (<code>h</code> 0–360, <code>s</code>/<code>l</code> 0–100).
+            변수를 <strong>추가하지 않습니다</strong>: 64개 Primitive 색상을 제자리에서
+            다시 칠할 뿐이라 Semantic과 모든 컴포넌트가 그대로 따라갑니다. 로그에
+            바로 붙여넣을 수 있는 Dart 코드 스니펫이 출력됩니다. 먼저
+            <em>변수로 가져오기</em>를 실행하세요.</p>
+          </details>
+          <textarea id="palette-json" placeholder='{ "neutral": { "h": 220 }, "primary": { "h": 210, "s": 80, "l": 50 }, … }'></textarea>
+          <div class="row">
+            <button id="generate-palette">팔레트 생성</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 컴포넌트 ─────────────────────────────────────────────── -->
+      <section data-tab="components">
+        <div class="group">
+          <h2>컴포넌트</h2>
+          <p class="hint">Import된 변수에 바인딩해 CoUI 컴포넌트를 캔버스에 반영합니다 — 변수 Import <em>이후에</em> 실행하세요.</p>
+          <details>
+            <summary>자세히</summary>
+            <p>섹션 구분은 docs 사이트(coui.cocode.im/components-overview)의
+            그룹과 동일합니다. 반영·전체 새로 생성 모두 노드를 지우고 다시 만들지
+            않습니다 — <strong>이름으로 찾아 그 자리에서 다시 그리는 것</strong>이라
+            컴포넌트의 id/key가 보존되고, 이미 배치한 인스턴스가 따라옵니다. 더 이상
+            만들어지지 않는 멤버는 지우지 않고 거부합니다(유령은
+            <em>폐기된 컴포넌트 제거</em>). 섹션 사이에 의존성이 있어(예: Form 의 입력
+            컴포넌트들이 Icon·Control 의 부품을 사용) <strong>처음 채울 때는
+            전체 새로 생성</strong>을 쓰고, 그 뒤부터 섹션을 나눠
+            <em>컴포넌트 반영</em>으로 재실행하세요.</p>
+          </details>
+          <!-- #4038 (C5) — 섹션 스코프. 기본은 전부 해제: 사용자가 고른
+               것만 실행하고, 전부 체크(= 전체 선택)면 sections 미전송으로
+               전체 실행과 동일해진다. -->
+          <div class="row select-all-row">
+            <label><input type="checkbox" id="section-all" /> 전체 선택</label>
+          </div>
+          <!-- 체크는 "얼마나 옮겨도 되나" 만 정한다. 이번 실행이 만든 페이지는
+               체크와 무관하게 제 섹션 자리에 놓인다 — 그러지 않으면 새 페이지가
+               파일 끝에 쌓인다. 체크하면 플러그인 페이지(❖ 컴포넌트 · 섹션
+               헤더)를 계획 순서로 맞추되 이미 맞는 줄은 그대로 두고, 디자이너가 둔 디바이더
+               · 강등 메모 · 시안 페이지는 옮기지 않는다(`pageOrderMoves`).
+               기본은 해제 — 평소 반영이 파일 배치를 바꾸지 않는 쪽. -->
+          <div class="row select-all-row">
+            <label
+              ><input type="checkbox" id="reorder-pages" /> 페이지 순서
+              정리</label
+            >
+          </div>
+          <p class="hint">
+            체크하면 ❖ 컴포넌트 페이지와 섹션 헤더를 문서 사이트 카탈로그 순서로
+            맞춘다 — 이미 순서가 맞는 페이지는 두고, 헤더는 자기 블록 첫 페이지
+            바로 위에 둔다. 직접 만든 디바이더 · 강등 메모 · 시안 페이지는 움직이지
+            않는다. 이미 맞는 파일에서는 아무것도 옮기지 않는다. 체크하지 않아도
+            새로 만든 페이지(빠진 섹션 헤더 포함)는 맨 끝이 아니라 제 섹션에 놓인다.
+          </p>
+          <!-- 해시는 레시피에 대해 정직하다. 캔버스가 레시피를 거치지 않고
+               틀어졌을 때 — 손으로 고친 멤버, 중간에 끊긴 실행, 히스토리에서
+               되돌린 파일 — 해시는 "건너뜀" 이라 말하고 그 말은 맞는데 캔버스는
+               여전히 틀려 있다. 전체를 다시 그리지 않고 그 컴포넌트만 고치는
+               길이 이것이다.
+
+               실행이 끝나면 자동으로 해제된다: 이건 모드가 아니라 일회성
+               처방이고, 켜진 채로 남으면 이후 모든 실행이 조용히 비싸진다. -->
+          <div class="row select-all-row">
+            <label
+              ><input type="checkbox" id="force-rebuild" /> 변경 없어도 다시
+              그리기</label
+            >
+          </div>
+          <p class="hint">
+            선택한 컴포넌트를 <strong>레시피가 그대로여도</strong> 다시 그린다.
+            캔버스가 코드와 어긋났는데 <em>반영</em>이 "변경 없음"으로 건너뛸 때
+            쓴다. 실행이 끝나면 자동으로 해제된다.
+          </p>
+          <!-- 손 편집 보존 (designer-parity.ts). 제자리 재활용은 디자이너가
+               세트를 직접 고쳐 둔 것을 흔적 없이 지운다. 그래서 다시 그리기
+               직전에 캔버스 지문을 지난 실행 것과 대조해, 다르면 그 그림을
+               `(리디자인 · 시각)` 으로 옆에 보존하고 그것을 대조 기준으로
+               쓴다 — 리디자인은 원본 옆 사본에서 하는 것이 절차지만, 세트를
+               직접 고친 경우에도 그 편집이 사라지지 않게 하는 사고 대비다. 두 번째 체크는 지문이 없는(이 기능 이전에
+               그려진) 세트의 처분 — 그때는 손이 닿았는지 알 수 없어 뜬 것이
+               기준이 될 수 없고 `(이전 · 시각)` 백업으로만 남는다. 첫 전체
+               실행에서 세트 수만큼 프레임이 생기는 비용과, 그 실행이 지우는
+               손 편집을 아무도 못 보는 비용 사이의 선택이라 사람이 정한다. -->
+          <div class="row select-all-row">
+            <label
+              ><input type="checkbox" id="preserve-hand-edits" checked /> 덮어쓰기 전
+              손 편집 보존</label
+            >
+            <label
+              ><input type="checkbox" id="snapshot-unfingerprinted" /> 지문 없는
+              세트도 보존(첫 실행)</label
+            >
+          </div>
+          <div class="row select-all-row">
+            <label
+              ><input type="checkbox" id="reassemble-off-page" /> 재조립 동안
+              다른 페이지 열어두기 (실험)</label
+            >
+          </div>
+          <p class="hint">
+            멤버를 세트에 되붙이는 동안 현재 페이지를 다른 페이지로 옮긴다 —
+            열린 페이지의 세트에 붙일 때마다 렌더러가 갱신된다는 가설의 실험.
+            켜고 끈 두 실행의 ⏱ <code>finish</code> 를 비교한다(켠 실행은
+            <code>페이지 밖</code> 으로 표시). 효과가 없으면 이 옵션은 사라진다.
+          </p>
+          <p class="hint">
+            <strong>리디자인은 원본 옆 사본에서 한다</strong> — 세트를 ⌘D 로 복제해
+            같은 페이지 최상위에 <code>&lt;이름&gt;(리디자인)</code> 으로 두면 그것과
+            새로 그린 세트를 값으로 대조해 차이를 로그에 낸다(<code>⇄</code>). 이 줄이
+            "차이 없음" 이면 대조가 읽는 값(색 · 크기 · 보더 · 글자 · 아이콘 · 패딩 ·
+            간격)은 사본과 같다 — 효과 · 정렬 · 컴포넌트 속성은 따로 확인한다
+            (docs/contributing/design-collaboration.md 3장).
+            세트를 직접 고친 경우의 보존은 사고 대비다 — 다시 그릴 세트에 지난 실행 뒤
+            손이 닿았으면 그 그림을 <code>&lt;이름&gt; (리디자인 · 시각)</code>
+            프레임으로 오른쪽에 남기고, 손 사본이 없을 때만 그것을 기준으로 삼는다.
+            감지가 모든 편집을 잡는다는 보장은 없다.
+            <br />
+            지문이 <strong>없어</strong> 손이 닿았는지 판단할 수 없었던 세트는
+            <code>&lt;이름&gt; (이전 · 시각)</code> 백업만 남기고
+            <strong>대조하지 않는다</strong> — 그것은 어제의 생성본이지 리디자인의
+            의도가 아니다(백업은 세트당 하나, 손 편집 보존본은 지우지 않는다).
+            전체 결과는 <code>designer-parity-*.json</code> 으로도 내려온다 — 로그는
+            세트당 14 줄에서 잘리지만 파일은 잘리지 않는다.
+            <strong>지문은 다시 그린 세트에만 남는다</strong> — 기존 파일에서 보존을
+            전 세트에 켜려면 아래 두 번째 체크를 켜고 <em>전체 새로 생성</em>을 한 번
+            돌려야 한다. 그 전까지 아직 한 번도 다시 그려지지 않은 세트는 손 편집
+            여부를 알 수 없어 개수만 보고된다.
+          </p>
+          <!-- #4526 — section shells are rendered by JS from the `registry`
+               message (list of every REGISTRY entry, one source with
+               generate.ts's own section resolution), not hand-authored here.
+               A static list here would be a second copy of REGISTRY's name
+               set, and the two would drift the moment a component is added
+               or renamed — exactly the class of bug `componentPageNameOf`'s
+               own comments warn about for the page-name/section question. -->
+          <!-- 이름으로 찾기. 134개가 10개 섹션에 접혀 있어 어느 섹션에 있는지
+               모르면 차례로 펼쳐 훑어야 했다. 섹션 이름도 같이 매칭하므로
+               "form" 을 치면 Form 섹션이 통째로 열린다. -->
+          <div class="component-search-bar">
+          <div class="component-search" id="component-search-wrap">
+            <span class="search-icon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+              </svg>
+            </span>
+            <input
+              id="component-search"
+              type="text"
+              autocomplete="off"
+              placeholder="컴포넌트 검색 — 이름 또는 섹션"
+            />
+            <button type="button" class="search-clear plain" id="component-search-clear" aria-label="검색어 지우기">×</button>
+          </div>
+          <p class="search-count" id="component-search-count"></p>
+          </div>
+          <div class="section-list" id="section-scope">
+            <p class="hint" id="section-scope-loading">컴포넌트 목록을 불러오는 중…</p>
+          </div>
+          <!-- 반영 버튼 바로 위 — 무엇을 실행하려는지가 결정되는 자리. 검색으로
+               가려진 선택도 여기 그대로 세어진다(검색은 보기 필터일 뿐). -->
+          <div class="selection-summary">
+            <div class="selection-head">
+              <span class="selection-count empty" id="selection-count">선택 없음</span>
+              <button type="button" class="selection-clear plain" id="selection-clear" style="display: none">
+                모두 해제
+              </button>
+            </div>
+            <div class="selection-chips" id="selection-chips"></div>
+          </div>
+          <div class="row">
+            <button id="generate">컴포넌트 반영</button>
+            <button id="designer-parity" class="secondary">리디자인 대조</button>
+            <button id="theme" class="secondary">테마 프리뷰</button>
+          </div>
+          <p class="hint">
+            선택한 컴포넌트 중 <strong>레시피가 바뀐 것만</strong> 골라 지금 코드대로
+            제자리에서 다시 그린다. 노드 id/key 는 유지되므로 이미 배치한 인스턴스는
+            따라온다. 해시는 레시피만 본다 — 캔버스가 틀렸는데 레시피가 그대로면
+            건너뛴다. 그때는 위 <em>변경 없어도 다시 그리기</em> 또는 아래
+            <em>전체 새로 생성</em>을 쓴다.
+          </p>
+          <!-- 낡은 세트 보기 (stale-sets.ts) — 읽기 전용, 선택 불필요. 머지·빌드가
+               끝나도 캔버스는 그 세트를 다시 그리기 전까지 옛 코드다. 레지스트리
+               전 엔트리의 `coui-content-hash` 를 지금 코드와 대조해 어느 세트가
+               뒤졌는지만 센다 — 답을 얻으려고 그릴 필요가 없게. -->
+          <div class="row">
+            <button id="stale-sets" class="secondary">낡은 세트 보기</button>
+          </div>
+          <p class="hint">
+            그리지 않는다. 선택과 무관하게 레지스트리 전 엔트리의 캔버스 해시를
+            지금 코드와 대조해, 다음 <em>반영</em>이 다시 그릴 세트만 센다.
+          </p>
+          <!-- 고아 노드 보기 (orphan-nodes.ts) — 읽기 전용, 선택 불필요. 빌더가
+               만들었지만 어디에도 붙이지 않은 조각은 페이지 직계 (0,0) 에 남고,
+               세트 밖이라 렌더에 영향이 없어 아무 로그도 그 사실을 말하지 않는다.
+               실제로 21 개가 일곱 컴포넌트에 걸쳐 그렇게 쌓여 있었고 찾은 방법은
+               사람이 페이지를 손으로 훑는 것이었다. 세기만 하고 지우지 않는다. -->
+          <div class="row">
+            <button id="orphan-nodes" class="secondary">고아 노드 보기</button>
+          </div>
+          <p class="hint">
+            그리지도 지우지도 않는다. 모든 페이지의 직계 자식 중 세트·docs
+            프레임·디자이너 사본이 아니면서 <em>원점에 떠 있는</em> 것만 센다 —
+            어디에도 붙인 적이 없다는 신호다. 같은 줄이 <em>컴포넌트 반영</em>
+            끝에도 붙는다.
+          </p>
+          <!-- 겹친 형제 보기 (overlapping-siblings.ts) — 읽기 전용, 선택 불필요.
+               오래 열려 있던 탭이 늦게 다시 연결되면 멀티플레이어 병합이 그때의
+               쓰기를 삭제 없이 더해, 변형 안에 옛 세션의 자식이 같은 이름으로 한
+               벌 더 들어간다. 렌더는 살짝 겹쳐 보일 뿐이라 아무 로그도 말하지
+               않았고, 13 세트 486 노드를 찾은 것은 디자이너의 눈이었다. 세기만
+               하고 지우지 않는다. -->
+          <div class="row">
+            <button id="overlapping-siblings" class="secondary">겹친 형제 보기</button>
+          </div>
+          <p class="hint">
+            그리지도 지우지도 않는다. 세트 변형마다 <em>같은 이름의 직계 자식</em>이
+            다른 세션의 id 대역으로 한 벌 더 있는 것만 센다 — 같은 세션이 만든
+            반복(<code>item</code> × 4)은 빠진다. 페이지 직계의 잔해는 고아 노드
+            보기가, 중첩 인스턴스의 프로퍼티는 재생성만이 본다. 같은 줄이
+            <em>컴포넌트 반영</em> 끝에도 붙는다.
+          </p>
+          <!-- 프로퍼티 orphan 보기 (orphan-props.ts) — 읽기 전용, 선택 불필요.
+               선언만 되고 어느 노드도 참조하지 않는 프로퍼티는 패널에 손잡이로
+               보이는데 토글해도 아무 일이 없다. 빌더가 만드는 것은 CI 가 막고,
+               여기서 보는 것은 캔버스에 손으로 붙은 것이다. 세기만 한다. -->
+          <div class="row">
+            <button id="orphan-props" class="secondary">프로퍼티 orphan 보기</button>
+          </div>
+          <p class="hint">
+            그리지도 고치지도 않는다. 모든 페이지의 세트·컴포넌트가 선언한
+            프로퍼티(변형 축 제외) 중 <em>어느 노드도 참조하지 않는</em> 것을 센다.
+            기대값은 0 이다. 정의를 읽을 수 없는 세트는 따로 한 줄로 나온다.
+          </p>
+          <!-- 해시가 볼 수 없는 상태를 위한 별도 버튼. 손으로 고친 멤버, 중간에
+               끊긴 실행, 버전 히스토리에서 되돌린 파일 — 레시피는 그대로라
+               해시는 "건너뜀" 이라고 정직하게 말하는데 캔버스는 틀려 있다.
+               `컴포넌트 반영` 과 나란히 두지 않고 분리한 것은 비용이 다르기
+               때문이다: 이쪽은 선택과 무관하게 전 컴포넌트를 다시 그리고 페이지
+               순서까지 정리한다. 노드는 여전히 제자리 재활용이다. -->
+          <div class="row">
+            <button id="generate-all" class="secondary">전체 새로 생성</button>
+          </div>
+          <p class="hint">
+            선택·해시와 <strong>무관하게</strong> 모든 컴포넌트를 제자리에서 다시
+            그린다 — 노드를 지우고 새로 만들지 않으므로 id/key 는 유지된다. 페이지
+            순서 정리도 켠 채로 돈다(❖ 페이지 · 섹션 헤더만 옮기고 직접 만든
+            디바이더는 그대로). 새 문서를 처음 채울 때, 또는 레시피는 그대로여서
+            <em>반영</em>이 건너뛸 때 쓴다. 오래 걸린다.
+          </p>
+        </div>
+      </section>
+
+      <!-- ── 브랜드 ───────────────────────────────────────────────── -->
+      <section data-tab="brand">
+        <div class="group">
+          <h2>브랜드 확장 컬렉션</h2>
+          <p class="hint">CoUI 의 색 컬렉션(<code>Semantic/ Color · CoUI</code>)을 이 파일의 확장 컬렉션으로 열고, 코드 브랜드의 값을 덮어쓰기로 채웁니다. 화면과 컴포넌트의 연결은 CoUI 변수 그대로이고 값만 확장 컬렉션이 덮습니다.</p>
+          <details>
+            <summary>자세히</summary>
+            <p>브랜드 값의 정본은 코드(<code>export_figma_tokens.dart</code> 의 브랜드 목록)입니다.
+            이 플러그인 빌드에 든 표가 그 값이고, 표는 브랜드가 CoUI 와 <strong>다른 값만</strong>
+            담아 나머지는 CoUI 를 따라갑니다. Figma 가 플랜을 이유로 확장 컬렉션을 거부하면
+            그 이유를 알리고, 먼저 Assets 에서 CoUI 라이브러리를 활성화해야 합니다. 값을 채운 뒤에는
+            선택한 레이어(선택이 없으면 현재 페이지)가 그 브랜드 모드를 쓰도록 모드를 옮깁니다 —
+            확장은 그 모드를 쓰는 화면에만 칠해집니다. 이미 만든 브랜드는 컬렉션을
+            다시 만들지 않고 값만 다시 채웁니다. 파일을 다시 열면 이 파일이 쓰지 않는 변수의
+            덮어쓰기가 정리되므로, 컴포넌트를 넣은 뒤 토큰 탭의 <em>이름으로 다시 맞추기</em>를
+            돌리세요.</p>
+          </details>
+          <div class="row">
+            <select id="brand-extension-select" style="flex: 1;">
+              <option value="" disabled selected>브랜드를 찾는 중…</option>
+            </select>
+            <button id="apply-brand-extension">브랜드 확장 컬렉션 만들기</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>고정폭 글의 한글을 본문 서체로</h2>
+          <p class="hint">선택한 프레임(선택이 없으면 현재 페이지 전체)의 고정폭(Geist Mono) 글에서 한글 구간만 본문 서체(Pretendard)로 칠합니다. 글을 고쳐 쓰면 다시 돌리세요.</p>
+          <details>
+            <summary>자세히</summary>
+            <p>Geist Mono 에는 한글이 없어, 앱과 웹은 한글을 본문 서체로 대신 그립니다.
+            Figma 는 대신할 글꼴을 고를 수 없어 이 명령이 한글 구간의 글꼴과
+            <code>fontFamily</code> 변수만 본문 서체로 바꿉니다. 크기 · 행간 · 자간은
+            건드리지 않습니다. 다른 고정폭 서체로 쓴 글은 바꾸지 않고 목록으로 알려줍니다.
+            텍스트 스타일이 붙은 글은 칠한 구간이 스타일에서 갈라질 수 있습니다.
+            Cmd/Ctrl+Z 로 되돌릴 수 있습니다.</p>
+          </details>
+          <div class="row">
+            <button id="mono-hangul" class="secondary">한글 구간 칠하기</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 관리 ─────────────────────────────────────────────────── -->
+      <section data-tab="manage">
+        <!-- 소비 파일 점검 (consumer-audit.ts) — 읽기 전용. CoUI 를 쓰는 제품 화면
+             파일의 글자 중 코드로 옮길 때 CoUI 역할과 갈라질 것을 목록으로 보여 준다.
+             다른 점검은 라이브러리 파일과 저장소 안만 본다 — 소비 파일은 이것 말고
+             아무도 보지 않는다. 항목을 누르면 선택하고 화면을 옮길 뿐, 노드는
+             바꾸지 않는다. 같은 목록에 「가져온 사본 중복」(library-copies.ts)과
+             「옛 브랜드 컬렉션」(brand-collections.ts)이 온다 — 그것을 고치는 「옛 사본
+             다시 연결」과 「옛 브랜드 컬렉션 다시 연결」만 문서를 바꾼다. -->
+        <div class="group">
+          <h2>소비 파일 점검</h2>
+          <p class="hint">제품 화면 파일에서 돌립니다. 보이는 글자 중 코드로 옮길 때 CoUI 와 갈라지는 것을 같은 값끼리 묶어 보여 주고, 같은 라이브러리 변수를 두 번 가져온 옛 사본과 옛 브랜드 컬렉션에 묶인 곳을 파일 전체에서 찾습니다. 점검은 아무것도 바꾸지 않습니다 — 항목을 누르면 그 노드를 선택하고 화면을 옮깁니다.</p>
+          <details>
+            <summary>자세히</summary>
+            <p><strong>덮어쓰기</strong> — CoUI 컴포넌트 안 글자의 모양을 인스턴스에서
+            바꿨습니다. <strong>역할에 없는 조합</strong> — 크기 · 행간 · 자간 · 글꼴 중
+            하나라도 역할과 다릅니다(가장 가까운 역할을 함께 보여 줍니다).
+            <strong>스타일 없음</strong> — 값은 역할과 같은데 역할에 연결돼 있지 않습니다.
+            <strong>로컬 스타일</strong> — CoUI 라이브러리가 아닌 텍스트 스타일입니다.
+            CoUI 스타일, 역할 변수에 묶고 굵기만 바꾼 글자, 고정폭 글 안에서 본문 서체로
+            칠한 한글, 덮어쓰지 않은 컴포넌트 안 글자는 통과입니다. 크기는 글자가 그려지는
+            타이포 모드(Mobile · Tablet · Desktop)의 값과 견줍니다. 주석처럼 점검할 필요
+            없는 레이어는 이름을 적어 건너뜁니다(그 아래 글자 수는 따로 세고, 찾지 못한
+            이름은 로그에 적습니다). 적은 이름은 이 컴퓨터에 기억해 다음에 다시 채웁니다.</p>
+            <p><strong>가져온 사본 중복</strong> — 이 파일이 같은 라이브러리 변수를 두 번
+            가져와 사본이 둘입니다. 옛 사본에 묶인 레이어는 라이브러리가 바뀌어도 옛 값으로
+            남고, 사본이 둘인 변수는 확장 컬렉션에서 덮어쓸 수 없습니다. 범위와 상관없이
+            파일 전체를 보고, 옛 사본마다 그것을 참조하는 노드 · 스타일 · 별칭의 수와 현재
+            사본과의 모드별 값 차이를 보여 줍니다.</p>
+            <p><strong>옛 브랜드 컬렉션</strong> — 화면이 브랜드마다 따로 게시되던 라이브러리
+            컬렉션(<code>Semantic/ Color · &lt;브랜드&gt;</code>)에 묶여 있습니다. 브랜드 확장
+            컬렉션은 <code>Semantic/ Color · CoUI</code> 변수만 덮으므로 그 자리는 브랜드 값이
+            바뀌어도 따라오지 않습니다. 변수마다 그것을 참조하는 곳의 수와 같은 이름의 CoUI
+            변수(짝)가 있는지를 보여 줍니다. 브랜드 원시값(<code>color/&lt;브랜드&gt;/…</code>)에
+            직접 묶인 곳은 따로 셉니다.</p>
+          </details>
+          <div class="row">
+            <select id="consumer-audit-scope">
+              <option value="page" selected>현재 페이지</option>
+              <option value="all">모든 페이지</option>
+            </select>
+            <input id="consumer-audit-skip" type="text" style="flex: 1; min-width: 0;" placeholder="건너뛸 레이어 이름 (쉼표로 구분)" />
+          </div>
+          <div class="row">
+            <button id="consumer-audit" class="secondary">소비 파일 점검</button>
+            <button id="rebind-library-copies" class="secondary">옛 사본 다시 연결</button>
+            <button id="rebind-old-brand-collections" class="secondary">옛 브랜드 컬렉션 다시 연결</button>
+          </div>
+          <p class="hint">"옛 사본 다시 연결"은 문서를 바꿉니다 — 모든 페이지에서 옛 사본을 참조하는
+          채움 · 선 · 효과 · 그 밖의 필드와 로컬 스타일 · 로컬 별칭을 현재 사본으로 옮깁니다.
+          라이브러리 컴포넌트 안에서 덮어쓰지 않은 자리는 건드리지 않습니다. 끝나면 파일을 닫았다가
+          다시 열어 옛 사본을 정리하고, 토큰 탭의 "다시 맞추기"를 돌립니다.</p>
+          <p class="hint">"옛 브랜드 컬렉션 다시 연결"도 문서를 바꿉니다 — 모든 페이지에서 옛 브랜드
+          컬렉션의 변수를 참조하는 곳을 같은 이름의 <code>Semantic/ Color · CoUI</code> 변수로 옮깁니다.
+          범위는 "옛 사본 다시 연결"과 같습니다. 짝이 없는 이름과 브랜드 원시값에 직접 묶인 곳은
+          옮기지 않고 로그에 적습니다. 끝나면 파일을 닫았다가 다시 열고, 토큰 탭의 "이름으로 다시
+          맞추기"를 돌립니다.</p>
+          <div id="consumer-audit-result" class="audit-list"></div>
+        </div>
+
+        <div class="group">
+          <h2>Dart 코드 내보내기</h2>
+          <p class="hint">로컬 Variable 전체를 <code>figma_tokens.g.dart</code>로 내보냅니다 — Figma 수정분을 <code>coui_core</code>로 되돌릴 때 사용.</p>
+          <div class="row">
+            <button id="dart" class="secondary">토큰 내보내기 (.dart + .json 다운로드)</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>검증</h2>
+          <p class="hint">⚠ 개발용 자체 점검이며 CI가 아닙니다.</p>
+          <details>
+            <summary>자세히</summary>
+            <p>mint-by-name (#3737)이 실제로 identity를 보존하는지 확인합니다.
+            "identity 멱등성"은 Generate Components를 두 번 실행해 두 실행
+            사이에 어떤 컴포넌트의 <code>id</code>/<code>key</code>도 바뀌지
+            않았는지 검사합니다(빠름). "reset 완전성"은 임시 페이지에서 항목
+            하나(비워두면 전체 — 느림, 수 분 소요)를 두 번 빌드해, 새로 만든
+            노드와 재사용된 노드 사이의 PNG와 바인딩된 변수를 비교합니다.</p>
+          </details>
+          <div class="row">
+            <input id="verify-entry" type="text" style="flex: 1;" placeholder="항목 이름 (비워두면 전체 — 느림)" />
+          </div>
+          <div class="row">
+            <button id="verify-identity" class="secondary">identity 멱등성</button>
+            <button id="verify-reset" class="secondary">reset 완전성</button>
+            <button id="verify-fidelity" class="secondary">충실도</button>
+            <button id="export-fidelity" class="secondary">충실도 → .json</button>
+            <button id="export-structure" class="secondary">구조 → .json</button>
+            <button id="export-pixel-print" class="secondary">픽셀 → .json</button>
+          </div>
+          <p class="hint">"충실도 → .json"은 "충실도"와 같은 검사를 돌린 뒤 결과를
+          파일로 내려받습니다 — 로그는 창을 닫으면 사라지지만 파일은 남습니다.
+          "구조 → .json"은 전 페이지의 노드 구조·기하(id·이름·타입·x/y/w/h)를 한 파일로
+          내려받습니다 — <code>reverse/incoming/</code> 에 커밋하면 구조 드리프트
+          대조(Channel A)의 입력이 됩니다.
+          "픽셀 → .json"은 플러그인이 그린 세트·컴포넌트마다 PNG 를 내보내 해시를
+          적습니다(수 분 소요) — 두 실행 뒤에 하나씩 받아
+          <code>npm run pixel:diff -- A.json B.json</code> 으로 견주면 그림이
+          달라진 세트가 나옵니다.</p>
+          <details>
+            <summary>내려받은 파일은 어디에 두나요?</summary>
+            <p><strong>레포 checkout 이 없다면</strong> — 대개 이 경우입니다 —
+            파일을 그대로 엔지니어에게 전달하세요(Slack 이든 이슈 첨부든
+            상관없습니다). 넣을 자리와 커밋은 받은 쪽이 처리합니다.</p>
+            <p><strong>checkout 이 있다면</strong>
+            <code>tools/figma-token-sync/reverse/incoming/</code> 에 넣고
+            <code>main</code> 에서 브랜치를 따 커밋한 뒤 PR 을 올리세요 —
+            커밋되지 않은 파일은 자동화가 읽지 못합니다.</p>
+            <p><strong>한 번 실행 = 파일 하나입니다.</strong> 여러 개가 쌓이면
+            파일명이 가장 뒤인 하나만 읽히고 나머지는 조용히 버려지니, 새로
+            내보냈으면 이전 파일은 지우세요.</p>
+          </details>
+        </div>
+
+        <div class="group">
+          <h2>성능 프로브</h2>
+          <p class="hint">임시 페이지에 합성 세트(64 · 256 · 972 멤버, 멤버당 노드 15)를 만들어 세트 안·밖 호출 비용을 잰 뒤 전부 지웁니다 — 큰 문서에서는 수 분이 걸립니다. 결과는 표 한 장과 H1/H2 판정 한 줄.</p>
+          <details>
+            <summary>자세히</summary>
+            <p>Generate 의 ⏱ 줄은 실제 실행에서 역산한 추정입니다. 이 프로브는
+            같은 호출을 <em>격리해서</em> 20회씩 재고 중앙값을 냅니다: 세트 안
+            노드와 loose 멤버의 fills 쓰기, 직전 읽기가 있는·없는 속성 참조 쓰기,
+            직전 쓰기가 있는·없는 <code>.visible</code> 읽기, 재조립의 append 와
+            그 뒤 <code>variantProperties</code> 읽기, 2멤버 세트 스테이징 왕복,
+            텍스트 스타일 부착, 세트가 현재 페이지일 때와 아닐 때의 append.
+            표 끝의 판정은 "쓰기가 세트 크기에 비례"(H1) 와 "쓰기 뒤 읽기가
+            재유도"(H2) 중 표가 지지하는 쪽을 말합니다. 실제 빌더는 쓰지
+            않으며 문서 인덱스도 건드리지 않습니다.</p>
+          </details>
+          <div class="row">
+            <button id="perf-probe" class="secondary">성능 프로브</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <h2>마지막 단계</h2>
+          <p class="hint">생성이 로그 없이 멈췄을 때 — 플러그인을 다시 열고 누르면, 그 실행이 문서에 마지막으로 남긴 위치와 그 뒤로 지난 시간, 그리고 큰 세트가 25콤보마다 남긴 성장 발자국(어느 구간이 콤보가 갈수록 비싸지는지)을 보여줍니다. 실행 중에 누르면 다음 틱에 답합니다 — 세트 재조립·속성 바인딩처럼 await 가 없는 구간에서는 그 구간이 끝난 뒤에 답합니다.</p>
+          <div class="row">
+            <button id="read-last-step" class="secondary">마지막 단계 읽기</button>
+          </div>
+          <p class="hint" id="last-step-result"></p>
+          <p class="hint" id="last-growth-result"></p>
+        </div>
+
+        <div class="group">
+          <h2>폐기된 컴포넌트 제거</h2>
+          <p class="hint danger">⚠ Generate 가 지우지 않는 유령(phantoms)을 제거합니다 — <code>RETIRED</code> 세트와 <code>RETIRED_VARIANTS</code> 멤버. 플러그인으로는 되돌릴 수 없습니다. 항상 먼저 dry-run 하세요. 로그의 <em>Retire phantoms</em> 가 이 버튼입니다.</p>
+          <details>
+            <summary>자세히</summary>
+            <p>Generate 는 영구 컴포넌트·배리언트를 스스로 삭제하지
+            않습니다(#3737). 축이 줄어 캔버스에만 남은 멤버(S-a)와 레지스트리에서
+            빠진 세트는 이 명시적 동작으로만 폐기됩니다. 목록은 coui_core 삭제가
+            아니라 <code>src/renames.ts</code> 의 RETIRED / RETIRED_VARIANTS 입니다.</p>
+          </details>
+          <div class="row">
+            <button id="retire-dry-run" class="secondary">폐기 대상 dry-run</button>
+            <button id="retire-execute" class="danger">폐기된 컴포넌트 제거</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div id="progress-wrap">
+        <div id="progress-track"><div id="progress-bar"></div></div>
+        <p id="progress-label"></p>
+      </div>
+      <pre id="log"></pre>
+    </footer>
+
+    <script>
+      // ── Tabs ──────────────────────────────────────────────────────
+      const tabButtons = Array.from(document.querySelectorAll('nav.tabs button'));
+      const panels = Array.from(document.querySelectorAll('main > section'));
+      tabButtons.forEach((btn) => {
+        btn.onclick = () => {
+          tabButtons.forEach((b) => b.classList.toggle('active', b === btn));
+          panels.forEach((p) =>
+            p.classList.toggle('active', p.dataset.tab === btn.dataset.tab),
+          );
+        };
+      });
+
+      // ── Command wiring (element ids unchanged — code.ts 그대로) ──
+      const ta = document.getElementById('json');
+      const logEl = document.getElementById('log');
+      const progressWrap = document.getElementById('progress-wrap');
+      const progressBar = document.getElementById('progress-bar');
+      const progressLabel = document.getElementById('progress-label');
+      // #4836 — true once this run's first `logTail` has landed, so that
+      // tick clears the busy placeholder instead of appending after it, and
+      // `done` (when it only carries the summary tail, see code.ts) appends
+      // rather than replacing what streaming already put here. Reset once
+      // `done` arrives, ready for whichever button starts the next run.
+      let sawStreamedLog = false;
+      const buttons = [
+        'import', 'check-drift', 'clear', 'generate', 'generate-all', 'theme', 'generate-palette', 'dart',
+        'apply-brand-extension', 'mono-hangul', 'create-collection-overrides', 'refresh-override-collections', 'resync-collection-overrides',
+        'verify-identity', 'verify-reset', 'verify-fidelity', 'export-fidelity', 'export-structure', 'export-pixel-print',
+        'retire-dry-run', 'retire-execute', 'designer-parity', 'stale-sets', 'orphan-nodes', 'orphan-props', 'overlapping-siblings', 'rebind-library-copies', 'rebind-old-brand-collections', 'perf-probe',
+        'consumer-audit',
+      ].map((id) => document.getElementById(id));
+      const brandSelect = document.getElementById('brand-extension-select');
+
+      function requestBrands() {
+        parent.postMessage({ pluginMessage: { type: 'list-brands' } }, '*');
+      }
+      requestBrands();
+
+      function requestRegistry() {
+        parent.postMessage({ pluginMessage: { type: 'list-registry' } }, '*');
+      }
+      requestRegistry();
+
+      function requestOverrideCollections() {
+        parent.postMessage({ pluginMessage: { type: 'list-override-collections' } }, '*');
+      }
+      requestOverrideCollections();
+
+      // 소비 파일 점검에서 지난번에 적은 건너뛸 이름 — 답은 `consumer-audit-skip`.
+      parent.postMessage({ pluginMessage: { type: 'consumer-audit-read-skip' } }, '*');
+
+      function renderOverrideCollections(collections) {
+        const list = document.getElementById('override-collection-list');
+        list.innerHTML = '';
+        if (!collections.length) {
+          const empty = document.createElement('p');
+          empty.className = 'hint';
+          empty.textContent = '사용 가능한 변수 라이브러리가 없습니다 — Assets에서 CoUI 라이브러리를 활성화하세요.';
+          list.appendChild(empty);
+          return;
+        }
+        collections.forEach((collection) => {
+          const row = document.createElement('label');
+          row.className = 'component-card';
+          const box = document.createElement('input');
+          box.type = 'checkbox';
+          box.className = 'override-collection-box';
+          box.value = collection.key;
+          box.disabled = collection.extended;
+          const label = document.createElement('span');
+          label.textContent = collection.libraryName + ' / ' + collection.name +
+            (collection.extended ? ' — 생성됨' : '');
+          row.appendChild(box);
+          row.appendChild(label);
+          list.appendChild(row);
+        });
+      }
+
+      let uiBusy = false;
+      function setBusy(busy) {
+        uiBusy = busy;
+        buttons.forEach((b) => (b.disabled = busy));
+        // 소비 파일 점검 목록도 막는다 — 항목을 누르면 현재 페이지가 옮겨지는데,
+        // 도는 명령(Generate 같은)은 새 노드를 현재 페이지에 만든다.
+        const auditBox = document.getElementById('consumer-audit-result');
+        auditBox.classList.toggle('busy', busy);
+        auditBox.inert = busy;
+      }
+
+      // ── #4526 컴포넌트 트리 — 전체 선택 ↔ 섹션 ↔ 개별 컴포넌트 3단 동기화 ──
+      //
+      // 손으로 쓴 섹션 카드 10개가 REGISTRY 이름 목록의 두 번째 사본이 되는
+      // 걸 피하려고, 카드/설명은 아래 SECTION_META(사람이 쓴 한 줄 요약만)를
+      // 쓰고 실제 컴포넌트 체크박스는 code.ts 가 보내는 `registry` 메시지
+      // (generate.ts의 section 판정과 같은 함수를 씀 — 두 번째 판정이 아님)
+      // 로만 그린다.
+      const SECTION_META = {
+        Control: 'Button · Command · FAB · Filter 등 핵심 조작 컴포넌트',
+        Form: 'TextField · Checkbox · Select · DatePicker · Slider 등 입력/폼',
+        Display: 'Badge · Avatar · Chip · Calendar · Progress · Skeleton 등 표시 요소',
+        Layout: 'Card · Table · Accordion · Window · Dock 등 레이아웃/컨테이너',
+        Navigation: 'Tabs · Breadcrumb · Pagination · NavigationBar 등 내비게이션',
+        Menu: 'Menu · DropdownMenu · ContextMenu · Menubar 등 메뉴',
+        Overlay: 'Dialog · Toast · Tooltip · Popover · Drawer 등 오버레이',
+        Icon: 'Icon — 다른 섹션 대부분이 의존하는 아이콘',
+        Text: 'Link · TextBlock · SelectableText 등 텍스트',
+        Infra: 'Clickable · FocusOutline · Popup 등 내부 공용 부품',
+      };
+      const sectionAll = document.getElementById('section-all');
+      let allComponentBoxes = []; // 매 registry 렌더마다 새로 채움
+
+      // ── 검색 ─────────────────────────────────────────────────────
+      const searchWrap = document.getElementById('component-search-wrap');
+      const searchInput = document.getElementById('component-search');
+      const searchCount = document.getElementById('component-search-count');
+      const scopeEl = document.getElementById('section-scope');
+
+      // 필터는 체크박스를 건드리지 않는다 — 보기만 바꾼다. 그래서 검색으로
+      // 가려진 선택도 살아 있고, 아래 요약이 그것까지 센다. 사용자가 접어둔
+      // 섹션(.expanded)도 그대로 두고 CSS 로만 덮으므로, 검색어를 지우면
+      // 원래 접힘 상태가 돌아온다.
+      function applyComponentFilter() {
+        const q = searchInput.value.trim().toLowerCase();
+        searchWrap.classList.toggle('has-query', q.length > 0);
+        scopeEl.classList.toggle('searching', q.length > 0);
+        if (!q) {
+          scopeEl
+            .querySelectorAll('.component-card.no-match')
+            .forEach((el) => el.classList.remove('no-match'));
+          scopeEl
+            .querySelectorAll('.section-group.has-match')
+            .forEach((el) => el.classList.remove('has-match'));
+          searchCount.textContent = '';
+          searchCount.classList.remove('none');
+          return;
+        }
+        let total = 0;
+        scopeEl.querySelectorAll('.section-group').forEach((group) => {
+          // 섹션 이름이 걸리면 그 섹션은 통째로 보인다 — "form" 을 쳤을 때
+          // Form 의 컴포넌트가 이름에 form 을 안 가졌다고 사라지면 안 된다.
+          const sectionHit = (group.dataset.section || '').toLowerCase().includes(q);
+          let hits = 0;
+          group.querySelectorAll('.component-card').forEach((row) => {
+            const hit = sectionHit || (row.dataset.name || '').toLowerCase().includes(q);
+            row.classList.toggle('no-match', !hit);
+            if (hit) hits += 1;
+          });
+          group.classList.toggle('has-match', hits > 0);
+          total += hits;
+        });
+        searchCount.textContent =
+          total === 0 ? '일치하는 컴포넌트가 없습니다' : total + '개 일치';
+        searchCount.classList.toggle('none', total === 0);
+      }
+
+      searchInput.addEventListener('input', applyComponentFilter);
+      document.getElementById('component-search-clear').addEventListener('click', () => {
+        searchInput.value = '';
+        applyComponentFilter();
+        searchInput.focus();
+      });
+
+      // ── 선택 요약 ────────────────────────────────────────────────
+      const selCount = document.getElementById('selection-count');
+      const selChips = document.getElementById('selection-chips');
+      const selClear = document.getElementById('selection-clear');
+
+      function renderSelectionSummary() {
+        const picked = allComponentBoxes.filter((b) => b.checked);
+        const total = allComponentBoxes.length;
+        selChips.innerHTML = '';
+        if (picked.length === 0) {
+          selCount.textContent = '선택 없음';
+          selCount.classList.add('empty');
+          selClear.style.display = 'none';
+          return;
+        }
+        selCount.classList.remove('empty');
+        selCount.textContent =
+          picked.length === total
+            ? '전체 ' + total + '개 선택'
+            : picked.length + '개 선택 / ' + total + '개';
+        selClear.style.display = '';
+        picked.forEach((box) => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'selection-chip plain';
+          chip.title = box.dataset.section + ' · 클릭하면 선택 해제';
+          const label = document.createElement('span');
+          label.textContent = box.value;
+          const x = document.createElement('span');
+          x.className = 'x';
+          x.textContent = '×';
+          chip.appendChild(label);
+          chip.appendChild(x);
+          // 체크만 끄고 change 를 직접 쏜다 — 섹션 tri-state 역전파와 요약
+          // 재렌더가 이미 그 핸들러에 있어서, 여기서 다시 구현하면 두 번째
+          // 사본이 된다.
+          chip.addEventListener('click', () => {
+            box.checked = false;
+            box.dispatchEvent(new Event('change'));
+          });
+          selChips.appendChild(chip);
+        });
+      }
+
+      selClear.addEventListener('click', () => {
+        allComponentBoxes.forEach((b) => { b.checked = false; });
+        scopeEl.querySelectorAll('.section-box').forEach((b) => {
+          b.checked = false;
+          b.indeterminate = false;
+        });
+        syncSectionAll();
+      });
+
+      function syncSectionAll() {
+        if (allComponentBoxes.length === 0) {
+          sectionAll.checked = false;
+          sectionAll.indeterminate = false;
+          renderSelectionSummary();
+          return;
+        }
+        const checkedCount = allComponentBoxes.filter((b) => b.checked).length;
+        sectionAll.checked = checkedCount === allComponentBoxes.length;
+        sectionAll.indeterminate = checkedCount > 0 && checkedCount < allComponentBoxes.length;
+        renderSelectionSummary();
+      }
+
+      function renderComponentTree(entries) {
+        const scope = document.getElementById('section-scope');
+        scope.innerHTML = '';
+        const bySection = new Map();
+        entries.forEach((e) => {
+          if (!bySection.has(e.section)) bySection.set(e.section, []);
+          bySection.get(e.section).push(e.name);
+        });
+        allComponentBoxes = [];
+        bySection.forEach((names, section) => {
+          const group = document.createElement('div');
+          group.className = 'section-group';
+          // 검색이 읽는 값 — 체크박스가 아니라 행/그룹에 둔다(필터는 보이기만
+          // 바꾸므로 체크 상태와 섞이면 안 된다).
+          group.dataset.section = section;
+
+          const card = document.createElement('label');
+          card.className = 'section-card';
+          const sectionBox = document.createElement('input');
+          sectionBox.type = 'checkbox';
+          sectionBox.className = 'section-box';
+          sectionBox.value = section;
+          const text = document.createElement('span');
+          text.className = 'section-card-text';
+          const nameEl = document.createElement('span');
+          nameEl.className = 'section-card-name';
+          nameEl.textContent = section;
+          const descEl = document.createElement('span');
+          descEl.className = 'section-card-desc';
+          descEl.textContent = SECTION_META[section] || names.length + '개 컴포넌트';
+          text.appendChild(nameEl);
+          text.appendChild(descEl);
+          const toggle = document.createElement('button');
+          toggle.type = 'button';
+          toggle.className = 'section-toggle';
+          // Lucide `chevron-right`와 같은 획 — 텍스트 글리프(▸)는 폰트에 따라
+          // 작고 희미해 보여 눈에 안 띈다는 지적을 받았다. SVG 는 지정한
+          // 크기(14px)로 항상 또렷하게 그려진다.
+          //
+          // width/height 속성 필수 — viewBox 만 주고 CSS `width: 14px` 에
+          // 맡기면 flex 컨테이너 안에서 0×14 로 찌그러진다(실측: CSS 쪽에
+          // `!important` 를 걸어도 그대로 0 — flex item 의 자동 크기 계산이
+          // SVG 의 percentage 기본 width("auto"→100%) 를 정의된 크기 없이
+          // 풀다가 생기는 문제라, CSS 가 아니라 SVG 자신의 attribute 로
+          // 확정 크기를 줘야 고쳐진다).
+          toggle.innerHTML =
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+            'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+            '<polyline points="9 18 15 12 9 6"/></svg>';
+          toggle.setAttribute('aria-label', '펼치기/접기');
+          card.appendChild(sectionBox);
+          card.appendChild(text);
+          card.appendChild(toggle);
+
+          const list = document.createElement('div');
+          list.className = 'component-list';
+
+          const componentBoxes = [];
+          names.forEach((name) => {
+            const row = document.createElement('label');
+            row.className = 'component-card';
+            row.dataset.name = name;
+            const box = document.createElement('input');
+            box.type = 'checkbox';
+            box.className = 'component-box';
+            box.value = name;
+            box.dataset.section = section;
+            const label = document.createElement('span');
+            label.textContent = name;
+            row.appendChild(box);
+            row.appendChild(label);
+            list.appendChild(row);
+            componentBoxes.push(box);
+            allComponentBoxes.push(box);
+          });
+
+          // 섹션 박스 → 그 섹션의 전 컴포넌트로 전파, 컴포넌트 → 섹션 박스로
+          // tri-state 역전파. 기존 "전체 선택 ↔ 섹션" 동기화와 같은 구조를
+          // 한 단 더 아래로.
+          sectionBox.addEventListener('change', () => {
+            componentBoxes.forEach((b) => { b.checked = sectionBox.checked; });
+            syncSectionAll();
+          });
+          componentBoxes.forEach((b) => {
+            b.addEventListener('change', () => {
+              const checkedCount = componentBoxes.filter((x) => x.checked).length;
+              sectionBox.checked = checkedCount === componentBoxes.length;
+              sectionBox.indeterminate = checkedCount > 0 && checkedCount < componentBoxes.length;
+              syncSectionAll();
+            });
+          });
+
+          // 펼치기/접기 타깃은 둘 — 화살표 버튼(작지만 또렷한 아이콘)과
+          // 이름/설명 텍스트 블록(훨씬 넓은 영역, "이름을 누르면 펼쳐진다"는
+          // 자연스러운 기대에 맞춤). 섹션 전체 체크/해제는 체크박스 자체를
+          // 눌러야만 일어나게, 두 핸들러 모두 preventDefault + stopPropagation
+          // 로 label 의 기본 forward-to-checkbox 동작을 막는다.
+          const toggleExpanded = (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            group.classList.toggle('expanded');
+          };
+          toggle.addEventListener('click', toggleExpanded);
+          text.addEventListener('click', toggleExpanded);
+
+          group.appendChild(card);
+          group.appendChild(list);
+          scope.appendChild(group);
+        });
+        syncSectionAll();
+        // 트리를 다시 그리면 필터가 붙어 있던 클래스가 사라진다 — 검색어가
+        // 남아 있으면 다시 적용해야 화면이 입력창과 어긋나지 않는다.
+        applyComponentFilter();
+      }
+
+      sectionAll.addEventListener('change', () => {
+        allComponentBoxes.forEach((b) => { b.checked = sectionAll.checked; });
+        document.querySelectorAll('.section-box').forEach((b) => {
+          b.checked = sectionAll.checked;
+          b.indeterminate = false;
+        });
+        // 이 핸들러는 상태를 직접 다 맞추므로 syncSectionAll 을 부르지 않는다 —
+        // 그래서 요약은 여기서 따로 갱신해야 한다.
+        renderSelectionSummary();
+      });
+
+      document.getElementById('file').addEventListener('change', (e) => {
+        const f = e.target.files[0];
+        if (!f) return;
+        const r = new FileReader();
+        r.onload = () => { ta.value = r.result; };
+        r.readAsText(f);
+      });
+
+      document.getElementById('import').onclick = () => {
+        logEl.classList.remove('error');
+        logEl.textContent = '가져오는 중…';
+        setBusy(true);
+        parent.postMessage(
+          { pluginMessage: { type: 'import', json: ta.value } },
+          '*',
+        );
+      };
+      document.getElementById('check-drift').onclick = () => {
+        // Same textarea as Import, and the same guard: an empty paste would
+        // otherwise report every live variable as "라이브 전용" — a wall of
+        // false positives that reads exactly like a real finding.
+        if (!ta.value.trim()) {
+          logEl.classList.remove('error');
+          logEl.classList.add('warn');
+          logEl.textContent =
+            'build/tokens.figma.json 을 먼저 붙여넣거나 파일로 선택하세요 — 대조할 대상이 없습니다.';
+          return;
+        }
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '드리프트 점검 중…';
+        setBusy(true);
+        parent.postMessage(
+          { pluginMessage: { type: 'check-drift', json: ta.value } },
+          '*',
+        );
+      };
+      document.getElementById('clear').onclick = () => {
+        ta.value = '';
+        logEl.textContent = '';
+      };
+      document.getElementById('generate').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '컴포넌트 반영 중…';
+        progressWrap.classList.add('active');
+        progressBar.style.width = '0%';
+        progressLabel.textContent = '시작하는 중…';
+        setBusy(true);
+        // #4526 — 전부 체크면 entryNames 미전송(전체 실행), 일부만 체크면 그
+        // 컴포넌트들만(섹션이 아니라 정확히 그 이름들 — 섹션을 체크해
+        // 딸려온 것도 여기선 이미 개별 컴포넌트 체크박스로 풀려 있다).
+        // 0개 체크는 전체와 동의어로 두지 않고 막는다(무의미).
+        const picked = allComponentBoxes.filter((b) => b.checked).map((b) => b.value);
+        if (picked.length === 0) {
+          logEl.classList.add('warn');
+          logEl.textContent =
+            '컴포넌트를 1개 이상 선택하세요 — 전부 생성하려면 "전체 선택"을 체크하세요.';
+          progressWrap.classList.remove('active');
+          setBusy(false);
+          return;
+        }
+        const entryNames = picked.length === allComponentBoxes.length ? undefined : picked;
+        // Always sent explicitly — the plugin side defaults to `true` for
+        // programmatic callers, and a UI that only sent the flag when set
+        // would silently inherit that default here.
+        const reorderPages = document.getElementById('reorder-pages').checked;
+        // Same reasoning as `reorderPages` — always sent, so the plugin's own
+        // default for programmatic callers is never inherited here by accident.
+        const force = document.getElementById('force-rebuild').checked;
+        const preserveHandEdits = document.getElementById('preserve-hand-edits').checked;
+        const snapshotUnfingerprinted = document.getElementById(
+          'snapshot-unfingerprinted',
+        ).checked;
+        parent.postMessage(
+          {
+            pluginMessage: {
+              type: 'generate',
+              entryNames,
+              reorderPages,
+              force,
+              preserveHandEdits,
+              snapshotUnfingerprinted,
+              reassembleOffPage: document.getElementById('reassemble-off-page').checked,
+            },
+          },
+          '*',
+        );
+      };
+      // 리디자인 대조 — 그리지 않고 읽기만. 체크한 세트(전부 체크면 전부)와
+      // 같은 페이지의 리디자인 기준(손 사본 또는 손 편집 보존본)을 값으로
+      // 대조해 차이를 낸다. 전체
+      // 결과는 `designer-parity-file` 로 뒤따라 내려온다.
+      document.getElementById('designer-parity').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        // `반영` 과 같은 가드 — 0개 체크로 보내면 빈 목록이 "선택한 세트에
+        // 리디자인 기준이 없다" 로 돌아와 원인(선택 0개)을 가린다.
+        const picked = allComponentBoxes.filter((b) => b.checked).map((b) => b.value);
+        if (picked.length === 0) {
+          logEl.classList.add('warn');
+          logEl.textContent =
+            '컴포넌트를 1개 이상 선택하세요 — 전부 대조하려면 "전체 선택"을 체크하세요.';
+          return;
+        }
+        logEl.textContent = '리디자인 대조 중…';
+        setBusy(true);
+        const entryNames = picked.length === allComponentBoxes.length ? undefined : picked;
+        parent.postMessage({ pluginMessage: { type: 'designer-parity', entryNames } }, '*');
+      };
+      // 낡은 세트 보기 — 읽기 전용, 선택과 무관하게 레지스트리 전체를 센다.
+      // 체크 가드가 없는 이유: 질문이 "선택한 것이 낡았나" 가 아니라 "캔버스 중
+      // 무엇이 낡았나" 이고, 그 답은 전체를 봐야만 나온다.
+      document.getElementById('stale-sets').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '낡은 세트 세는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'stale-sets' } }, '*');
+      };
+      // 고아 노드 보기 — 읽기 전용, 선택과 무관하게 전 페이지를 센다.
+      // `낡은 세트 보기` 와 같은 이유로 체크 가드가 없다: 질문이 "선택한 것이
+      // 흘렸나" 가 아니라 "이 문서에 무엇이 떠 있나" 이고, 그 답은 전체를 봐야
+      // 나온다.
+      document.getElementById('orphan-nodes').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '고아 노드 세는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'orphan-nodes' } }, '*');
+      };
+      // 겹친 형제 보기 — 읽기 전용, 선택과 무관하게 전 컴포넌트 페이지를 센다.
+      // 같은 이유로 체크 가드가 없다: 질문이 "이 문서의 세트에 옛 노드가 끼었나" 다.
+      document.getElementById('overlapping-siblings').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '겹친 형제 세는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'overlapping-siblings' } }, '*');
+      };
+      // 프로퍼티 orphan 보기 — 읽기 전용, 선택과 무관하게 전 페이지를 센다.
+      // 같은 이유로 체크 가드가 없다: 질문이 "이 문서에 죽은 손잡이가 있나" 다.
+      document.getElementById('orphan-props').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '프로퍼티 orphan 세는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'orphan-props' } }, '*');
+      };
+      // 전체 새로 생성 — 선택도 해시도 보지 않는다. `entryNames` 미전송(전 범위),
+      // `force`(해시 스킵 무시), `reorderPages`(페이지 정리). 셋을 한 버튼에 묶은
+      // 것은 이 셋이 하나의 의도이기 때문이다: "이 파일을 코드와 처음부터 맞춰라".
+      // 체크박스 조합으로 같은 일을 하게 두면 그 조합을 매번 기억해야 하고, 셋 중
+      // 하나를 빠뜨린 실행은 성공한 것처럼 보인다.
+      document.getElementById('generate-all').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '전체 새로 생성 중… (오래 걸립니다)';
+        progressWrap.classList.add('active');
+        progressBar.style.width = '0%';
+        progressLabel.textContent = '시작하는 중…';
+        setBusy(true);
+        parent.postMessage(
+          {
+            pluginMessage: {
+              type: 'generate',
+              entryNames: undefined,
+              reorderPages: true,
+              force: true,
+              preserveHandEdits: document.getElementById('preserve-hand-edits').checked,
+              snapshotUnfingerprinted: document.getElementById('snapshot-unfingerprinted')
+                .checked,
+              reassembleOffPage: document.getElementById('reassemble-off-page').checked,
+            },
+          },
+          '*',
+        );
+      };
+      document.getElementById('theme').onclick = () => {
+        logEl.classList.remove('error');
+        logEl.textContent = '테마 프리뷰 생성 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'theme-preview' } }, '*');
+      };
+      document.getElementById('generate-palette').onclick = () => {
+        const paletteJson = document.getElementById('palette-json').value.trim();
+        if (!paletteJson) {
+          logEl.classList.add('error');
+          logEl.textContent = '오류: 먼저 color_palette.json 을 붙여넣으세요.';
+          return;
+        }
+        logEl.classList.remove('error');
+        logEl.textContent = '팔레트 다시 칠하는 중…';
+        setBusy(true);
+        parent.postMessage(
+          { pluginMessage: { type: 'generate-palette', paletteJson } },
+          '*',
+        );
+      };
+      document.getElementById('dart').onclick = () => {
+        logEl.classList.remove('error');
+        logEl.textContent = '토큰 내보내는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'export-dart' } }, '*');
+      };
+      document.getElementById('refresh-override-collections').onclick = () => {
+        requestOverrideCollections();
+      };
+      document.getElementById('create-collection-overrides').onclick = () => {
+        const collectionKeys = Array.from(
+          document.querySelectorAll('.override-collection-box:checked'),
+        ).map((box) => box.value);
+        if (!collectionKeys.length) {
+          logEl.classList.add('warn');
+          logEl.textContent = '오버라이드할 컬렉션을 1개 이상 선택하세요.';
+          return;
+        }
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '선택한 컬렉션의 오버라이드를 생성 중…';
+        setBusy(true);
+        parent.postMessage(
+          { pluginMessage: { type: 'create-collection-overrides', collectionKeys } },
+          '*',
+        );
+      };
+      // 이름으로 다시 맞추기 — 선택과 무관하게 이 파일의 확장 컬렉션 전부.
+      document.getElementById('resync-collection-overrides').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '확장 컬렉션의 빈 덮어쓰기를 이름으로 다시 채우는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'resync-collection-overrides' } }, '*');
+      };
+      document.getElementById('apply-brand-extension').onclick = () => {
+        const brandName = brandSelect.value;
+        if (!brandName) {
+          logEl.classList.add('warn');
+          logEl.textContent = '브랜드를 먼저 선택하세요.';
+          return;
+        }
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '"' + brandName + '" 브랜드 확장 컬렉션을 만들고 값을 채우는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'apply-brand-extension', brandName } }, '*');
+      };
+      // 소비 파일 점검 — 읽기 전용. 범위(현재 페이지 / 모든 페이지)와 건너뛸 이름만
+      // 넘긴다. 결과는 `consumer-audit-result` 로 오고, 목록은 로그가 아니라 관리
+      // 탭의 칸에 그린다 — 로그는 다음 명령이 덮는데, 목록은 고치는 동안 계속 눌러
+      // 볼 것이기 때문이다.
+      document.getElementById('consumer-audit').onclick = () => {
+        const scope = document.getElementById('consumer-audit-scope').value;
+        const skipNames = document
+          .getElementById('consumer-audit-skip')
+          .value.split(',')
+          .map((n) => n.trim())
+          .filter((n) => n !== '');
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent =
+          (scope === 'all' ? '모든 페이지의 글자를 읽는 중…' : '현재 페이지의 글자를 읽는 중…') +
+          ' 가져온 사본 중복과 옛 브랜드 컬렉션은 파일 전체를 본다 (큰 파일은 수십 초)';
+        document.getElementById('consumer-audit-result').innerHTML = '';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'consumer-audit', scope, skipNames } }, '*');
+      };
+      // 옛 사본 다시 연결 — 문서를 바꾼다. 점검 목록은 비운다: 옮긴 뒤에는 옛 상태의 목록이다.
+      document.getElementById('rebind-library-copies').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '모든 페이지에서 옛 사본의 참조를 현재 사본으로 옮기는 중… (큰 파일은 수십 초)';
+        document.getElementById('consumer-audit-result').innerHTML = '';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'rebind-library-copies' } }, '*');
+      };
+      // 옛 브랜드 컬렉션 다시 연결 — 문서를 바꾼다. 점검 목록은 비운다(위와 같은 까닭).
+      document.getElementById('rebind-old-brand-collections').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent =
+          '모든 페이지에서 옛 브랜드 컬렉션의 참조를 같은 이름의 CoUI 변수로 옮기는 중… (큰 파일은 수십 초)';
+        document.getElementById('consumer-audit-result').innerHTML = '';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'rebind-old-brand-collections' } }, '*');
+      };
+
+      // 항목 하나 — 누르면 그 페이지의 노드를 선택한다. 여러 페이지에 걸친 항목은
+      // 페이지마다 칩을 두고, 줄 자체는 가장 많은 페이지로 간다.
+      function selectAuditPage(page) {
+        if (uiBusy) return;
+        parent.postMessage(
+          { pluginMessage: { type: 'consumer-audit-select', pageId: page.pageId, ids: page.ids } },
+          '*',
+        );
+      }
+
+      function auditRow(g) {
+        const row = document.createElement('div');
+        row.className = 'audit-row' + (g.warn ? ' warn' : '');
+        row.setAttribute('role', 'button');
+        row.tabIndex = 0;
+        const head = document.createElement('div');
+        head.className = 'audit-head';
+        head.textContent = g.label + ' ×' + g.runs + ' — ' + g.signature;
+        row.appendChild(head);
+        if (g.action) {
+          const action = document.createElement('div');
+          action.className = 'audit-sub';
+          action.textContent = g.action;
+          row.appendChild(action);
+        }
+        const where = g.where.map((w) => w.name + ' ' + w.count).join(' · ') +
+          (g.whereRest > 0 ? ' · 외 ' + g.whereRest + '곳' : '');
+        const meta = document.createElement('div');
+        meta.className = 'audit-sub';
+        meta.textContent = (g.sample ? '“' + g.sample + '” · ' : '') + where;
+        row.appendChild(meta);
+        if (g.pages.length > 1) {
+          const chips = document.createElement('div');
+          chips.className = 'audit-pages';
+          g.pages.forEach((p) => {
+            const chip = document.createElement('button');
+            chip.className = 'secondary';
+            chip.textContent = p.pageName + ' ' + p.count;
+            chip.onclick = (event) => {
+              event.stopPropagation();
+              selectAuditPage(p);
+            };
+            chips.appendChild(chip);
+          });
+          row.appendChild(chips);
+        }
+        // 노드가 없는 줄도 있다 — 스타일 · 별칭만 옛 사본을 참조하는 가져온 사본 중복.
+        const go = () => {
+          if (g.pages.length > 0) selectAuditPage(g.pages[0]);
+        };
+        row.onclick = go;
+        row.onkeydown = (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            go();
+          }
+        };
+        return row;
+      }
+
+      function renderConsumerAudit(groups, familyUnknown) {
+        const box = document.getElementById('consumer-audit-result');
+        box.innerHTML = '';
+        const warn = groups.filter((g) => g.warn);
+        const pass = groups.filter((g) => !g.warn);
+        if (warn.length === 0) {
+          const ok = document.createElement('p');
+          ok.className = 'hint';
+          ok.textContent = familyUnknown
+            ? '경고 없음 — 다만 본문 서체를 읽지 못해 글꼴은 비교하지 않았습니다(로그 참고).'
+            : '경고 없음 — 이 범위의 글자는 전부 CoUI 역할로 옮겨집니다.';
+          box.appendChild(ok);
+        }
+        warn.forEach((g) => box.appendChild(auditRow(g)));
+        if (pass.length > 0) {
+          const details = document.createElement('details');
+          const summary = document.createElement('summary');
+          const total = pass.reduce((n, g) => n + g.runs, 0);
+          summary.textContent = '통과 · 대상 아님 ' + total + ' (' + pass.length + '줄)';
+          details.appendChild(summary);
+          const list = document.createElement('div');
+          list.className = 'audit-list';
+          pass.forEach((g) => list.appendChild(auditRow(g)));
+          details.appendChild(list);
+          box.appendChild(details);
+        }
+      }
+
+      document.getElementById('mono-hangul').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '고정폭 글의 한글 구간을 칠하는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'mono-hangul' } }, '*');
+      };
+      document.getElementById('verify-identity').onclick = () => {
+        const entryName = document.getElementById('verify-entry').value;
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = entryName
+          ? '"' + entryName + '" 항목의 identity 멱등성 검증 중 (generate 2회 실행)…'
+          : '전 범위 identity 멱등성 검증 중 (generate 2회 실행) — 매우 오래 걸립니다…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'verify-identity', entryName } }, '*');
+      };
+      document.getElementById('verify-reset').onclick = () => {
+        const entryName = document.getElementById('verify-entry').value;
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = entryName
+          ? '"' + entryName + '" 항목의 reset 완전성 검증 중…'
+          : '전체 항목의 reset 완전성 검증 중 — 수 분이 걸릴 수 있습니다…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'verify-reset', entryName } }, '*');
+      };
+      document.getElementById('verify-fidelity').onclick = () => {
+        const entryName = document.getElementById('verify-entry').value;
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = entryName
+          ? '"' + entryName + '" 이 components.json 과 일치하는지 캔버스를 읽는 중…'
+          : '캔버스를 읽어 components.json 과 대조하는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'verify-fidelity', entryName } }, '*');
+      };
+      document.getElementById('export-fidelity').onclick = () => {
+        const entryName = document.getElementById('verify-entry').value;
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = entryName
+          ? '"' + entryName + '" 을 검사해 리포트 파일을 만드는 중…'
+          : '전체를 검사해 리포트 파일을 만드는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'export-fidelity', entryName } }, '*');
+      };
+      document.getElementById('export-structure').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '전 페이지의 구조를 읽어 스냅샷 파일을 만드는 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'export-structure' } }, '*');
+      };
+      document.getElementById('export-pixel-print').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '생성된 세트마다 PNG 를 내보내 픽셀 지문을 만드는 중… (수 분 소요)';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'export-pixel-print' } }, '*');
+      };
+      document.getElementById('retire-dry-run').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '폐기 대상 컴포넌트 확인 중 (dry run — 아무것도 제거되지 않음)…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'retire-dry-run' } }, '*');
+      };
+      document.getElementById('retire-execute').onclick = () => {
+        if (!confirm('이 파일에서 폐기된 컴포넌트를 제거할까요? 플러그인으로는 되돌릴 수 없습니다 (Figma 자체의 Cmd/Ctrl+Z 실행 취소 기록은 그대로 적용됩니다).')) {
+          return;
+        }
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '폐기된 컴포넌트 제거 중…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'retire-execute' } }, '*');
+      };
+
+      // Not in `buttons`: a read changes nothing, and the moment it exists for —
+      // a long run that looks stuck — is exactly when every button there is
+      // disabled.
+      document.getElementById('perf-probe').onclick = () => {
+        logEl.classList.remove('error', 'warn');
+        logEl.textContent = '성능 프로브 실행 중 — 합성 세트 64 · 256 · 972 를 만들고 호출당 20회씩 잽니다. 수 분이 걸릴 수 있습니다…';
+        setBusy(true);
+        progressWrap.classList.add('active');
+        parent.postMessage({ pluginMessage: { type: 'perf-probe' } }, '*');
+      };
+      document.getElementById('read-last-step').onclick = () => {
+        document.getElementById('last-step-result').textContent = '읽는 중…';
+        parent.postMessage({ pluginMessage: { type: 'read-last-step' } }, '*');
+      };
+
+      function formatAge(ms) {
+        const s = Math.max(0, Math.round(ms / 1000));
+        if (s < 60) return s + '초';
+        const m = Math.floor(s / 60);
+        if (m < 60) return m + '분 ' + (s % 60) + '초';
+        return Math.floor(m / 60) + '시간 ' + (m % 60) + '분';
+      }
+
+      function renderLastStep(record, growth) {
+        // The growth footprint beside the step — the `⏱ … 세부` line as of the
+        // last few combos before a realm died. Empty when no big builder ran.
+        const growthEl = document.getElementById('last-growth-result');
+        if (!growth || !growth.raw) {
+          growthEl.textContent = '';
+        } else if (growth.markedAt == null) {
+          growthEl.textContent = '성장 발자국: ' + growth.raw;
+        } else {
+          growthEl.textContent =
+            '성장 발자국 (' + formatAge(growth.ageMs) + ' 전): ' + growth.step;
+        }
+        const el = document.getElementById('last-step-result');
+        if (!record || !record.raw) {
+          el.textContent = '기록 없음 — 이 문서에는 아직 남은 단계가 없습니다.';
+        } else if (record.markedAt == null) {
+          el.textContent = '시각을 읽을 수 없는 기록: ' + record.raw;
+        } else {
+          el.textContent =
+            record.step + ' — ' + formatAge(record.ageMs) + ' 전 (' +
+            new Date(record.markedAt).toLocaleString() + ')';
+        }
+      }
+
+      function downloadFile(name, content) {
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      }
+
+      onmessage = (event) => {
+        const msg = event.data.pluginMessage;
+        if (!msg) return;
+        if (msg.type === 'progress') {
+          const pct = msg.total ? Math.round((msg.index / msg.total) * 100) : 0;
+          progressBar.style.width = pct + '%';
+          // `sub` rides on one kind of message: an entry whose builder
+          // reports its own inner progress (`reportSubProgressAndYield` —
+          // Button and Chip, hundreds of members each). Every other entry
+          // finishes fast enough that this stays absent and the label reads
+          // exactly as it always has.
+          const subText = msg.sub ? ' [' + msg.sub.current + '/' + msg.sub.total + ']' : '';
+          progressLabel.textContent =
+            msg.index + '/' + msg.total + ' — ' + msg.name + subText + ' (' + msg.elapsedMs + 'ms)';
+          // The log, streamed — lines added since the previous message. This
+          // is for the run that never reaches 'done' — which used to leave
+          // nothing here — as much as for the one that does: 'done' now only
+          // appends what streaming hasn't shown yet (#4836), so this is where
+          // most of the panel's content actually comes from.
+          if (msg.logTail && msg.logTail.length) {
+            logEl.textContent = sawStreamedLog
+              ? logEl.textContent + '\n' + msg.logTail.join('\n')
+              : msg.logTail.join('\n'); // first tick — replace the busy placeholder
+            sawStreamedLog = true;
+          }
+          return; // busy state / final log unaffected — 'done' still follows
+        }
+        if (msg.type === 'brands') {
+          // Dropdown refresh — arrives at load and after every 'done', so it
+          // must not touch busy state or the log.
+          const prev = brandSelect.value;
+          brandSelect.innerHTML = '';
+          if (!msg.names.length) {
+            const opt = document.createElement('option');
+            opt.value = '';
+            opt.disabled = true;
+            opt.selected = true;
+            opt.textContent = '이 빌드에 든 코드 브랜드가 없습니다';
+            brandSelect.appendChild(opt);
+          }
+          msg.names.forEach((name) => {
+            const opt = document.createElement('option');
+            opt.value = name;
+            opt.textContent = name;
+            if (name === prev) opt.selected = true;
+            brandSelect.appendChild(opt);
+          });
+          return;
+        }
+        if (msg.type === 'registry') {
+          // #4526 — 트리 렌더. brands와 마찬가지로 busy/log 건드리지 않음
+          // (컴포넌트 생성 실행과 무관하게 로드 시 1회만 옴).
+          renderComponentTree(msg.entries);
+          return;
+        }
+        if (msg.type === 'override-collections') {
+          renderOverrideCollections(msg.collections || []);
+          return;
+        }
+        if (msg.type === 'consumer-audit-skip') {
+          // 로드 때 한 번 — 바쁨 상태와 로그는 건드리지 않는다. 그사이 사용자가 적기
+          // 시작했으면 덮지 않는다.
+          const skipInput = document.getElementById('consumer-audit-skip');
+          if (skipInput.value.trim() === '' && (msg.skipNames || []).length > 0) {
+            skipInput.value = msg.skipNames.join(', ');
+          }
+          return;
+        }
+        if (msg.type === 'last-step') {
+          // A read — it may arrive while a run is still going, so like the list
+          // replies it leaves busy state and the log alone.
+          renderLastStep(msg.record, msg.growth);
+          return;
+        }
+        setBusy(false);
+        progressWrap.classList.remove('active');
+        if (msg.type === 'done') {
+          logEl.classList.remove('error', 'warn');
+          // #4836 — `msg.tail` means this `done` carries only what streaming
+          // hadn't shown yet (the "Done." summary and everything after it —
+          // see code.ts's `generate` handler), not the whole run's log, so it
+          // appends onto what `logTail` already wrote instead of replacing
+          // it. Every other command still sends its one and only `log` here
+          // and gets the original full-replace.
+          if (msg.tail) {
+            if (msg.log.length) logEl.textContent += '\n' + msg.log.join('\n');
+            if (msg.hasWarning) logEl.classList.add('warn');
+          } else {
+            logEl.textContent = msg.log.join('\n');
+            if (msg.log.some((line) => line.startsWith('⚠'))) logEl.classList.add('warn');
+          }
+          sawStreamedLog = false; // fresh for whichever button starts the next run
+          // A one-off remedy, not a mode — left checked it would make every
+          // later run silently pay for a rebuild nobody asked for, and the
+          // only symptom is that things got slow.
+          document.getElementById('force-rebuild').checked = false;
+          requestBrands(); // an Import may have added/renamed a brand
+          requestOverrideCollections();
+        } else if (msg.type === 'dart-files') {
+          logEl.classList.remove('error');
+          const files = msg.files || [];
+          // 같은 tick 에 a.click() 을 연속으로 부르면 브라우저가 그것을 한 번의
+          // 다운로드로 접는다. 실측(#4631 최초 사용): .dart + .json 두 개를
+          // forEach 로 내렸더니 **두 번째만** 저장되고 첫 번째는 조용히
+          // 사라졌다 — 그런데 아래 로그는 두 이름을 다 적고 있었으므로 받은
+          // 것처럼 보였다. 간격을 두어 각각을 개별 다운로드로 만든다.
+          files.forEach(function (f, i) {
+            setTimeout(function () { downloadFile(f.name, f.content); }, i * 400);
+          });
+          const names = files.map((f) => f.name).join(', ');
+          logEl.textContent =
+            (Array.isArray(msg.log) ? msg.log.join('\n') + '\n' : '') +
+            '⬇ 저장 요청 ' + files.length + '개: ' + names +
+            (files.length > 1
+              ? '\n⚠️ 다운로드 폴더에 ' + files.length + '개가 모두 있는지 확인하세요 — 브라우저가 다중 다운로드를 막으면 일부만 저장됩니다.'
+              : '');
+        } else if (msg.type === 'consumer-audit-result') {
+          // 요약은 로그에, 항목은 관리 탭의 목록에. 경고가 있으면 로그를 경고색으로.
+          logEl.classList.remove('error', 'warn');
+          logEl.textContent = msg.log.join('\n');
+          if (msg.log.some((line) => line.startsWith('⚠'))) logEl.classList.add('warn');
+          renderConsumerAudit(msg.groups || [], msg.familyUnknown === true);
+        } else if (msg.type === 'fidelity-file') {
+          // One file, not a list — there is exactly one report per run, and the
+          // busy state is already cleared above with every other terminal message.
+          logEl.classList.remove('error');
+          downloadFile(msg.name, msg.content);
+          logEl.textContent =
+            (Array.isArray(msg.log) ? msg.log.join('\n') + '\n' : '') +
+            '⬇ 다운로드: ' + msg.name;
+        } else if (msg.type === 'designer-parity-file') {
+          // 리디자인 대조 전체 결과 — 항상 `done` 뒤에 따라온다. 로그는 이미
+          // `done` 이 그렸으므로 여기서는 덮지 않고 다운로드 줄만 덧붙인다.
+          // 첨부된 링크로도 남긴다: 브라우저가 자동 다운로드를 막으면 이것이
+          // 파일을 받는 유일한 길이다.
+          downloadFile(msg.name, msg.content);
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(
+            new Blob([msg.content], { type: 'application/json;charset=utf-8' }),
+          );
+          link.download = msg.name;
+          link.textContent = '⬇ 대조 결과 JSON: ' + msg.name;
+          logEl.appendChild(document.createTextNode('\n'));
+          logEl.appendChild(link);
+        } else if (msg.type === 'error') {
+          logEl.classList.add('error');
+          logEl.textContent = '오류: ' + msg.message;
+          sawStreamedLog = false; // a run that streamed lines and then threw — fresh for the next one
+        }
+      };
+    </script>
+  </body>
+</html>

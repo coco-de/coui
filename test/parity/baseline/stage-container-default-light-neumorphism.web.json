@@ -1,0 +1,63 @@
+{
+  "key": "stage-container-default-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "client-settled",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "왼쪽: 88, 오른쪽: 88",
+    "layout": {
+      "width": 800,
+      "height": 80,
+      "direction": "row",
+      "innerPaddingLeft": "88px",
+      "innerPaddingRight": "88px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 80
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(71, 72, 74)",
+      "borderRightColor": "rgb(71, 72, 74)",
+      "borderBottomColor": "rgb(71, 72, 74)",
+      "borderLeftColor": "rgb(71, 72, 74)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "16px",
+      "borderTopRightRadius": "16px",
+      "borderBottomRightRadius": "16px",
+      "borderBottomLeftRadius": "16px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 80
+    }
+  }
+}

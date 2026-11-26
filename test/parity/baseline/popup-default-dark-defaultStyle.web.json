@@ -1,0 +1,38 @@
+{
+  "key": "popup-default-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(64, 65, 67)",
+      "borderRightColor": "rgb(64, 65, 67)",
+      "borderBottomColor": "rgb(64, 65, 67)",
+      "borderLeftColor": "rgb(64, 65, 67)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "12px",
+      "borderTopRightRadius": "12px",
+      "borderBottomRightRadius": "12px",
+      "borderBottomLeftRadius": "12px",
+      "paddingTop": "15px",
+      "paddingRight": "15px",
+      "paddingBottom": "15px",
+      "paddingLeft": "15px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "color(srgb 0 0 0 / 0.5) 0px 16px 40px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 128,
+      "heightPx": 119
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "_comment": "G10 (#4030) — axis-coverage ratchet baseline. 오직 줄어들 수만 있다: 완전 커버된 컴포넌트는 이 목록에서 빠져야 selftest 가 통과한다(stale 실패). 프로젝트 #4002 성공 판정 = 이 목록이 [] 가 되는 것. #4037 (C4b) 에서 마지막 19종(Slider·Fieldset·FileInput·InputOtp·PhoneInput·FormattedInput·ChipInput·Autocomplete·Range·StarRating·MultipleChoice·ItemPicker·ObjectInput·ColorPicker·DatePicker·TimePicker·Sortable·CardImage·DraggablePanel)이 4축 variant set 으로 승격되며 [] 에 도달했다 — 이제 이 목록에 항목이 다시 생기는 것은 회귀다. — 예외 하나(2026-09-09): Select 는 `disabled > error > hover`(Carbon 우선순위, Select 코드 인계 통합본 2026-09-09 §4)로 `Variant=error × Enabled=false` 멤버를 일부러 그리지 않는다(캔버스 27 = 30 − 3). 비활성 트리거는 검증 상태와 무관하게 비활성 3색을 그리므로 그 멤버는 `defaultVariant × disabled` 와 같은 그림을 다른 이름으로 낼 뿐이다. 분모(Variant × Enabled)가 이 접힘을 표현할 수 없어 여기 적는다 — 회귀가 아니라 결정.",
+  "uncovered": [
+    "Select"
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "_comment": [
+    "Shared vectors for the rubber band of a Drawer panel dragged past its dock.",
+    "Read by coui_core (CoreDrawerRubberBand, CoreCubicBezier.transform), coui_flutter (real drags on",
+    "all four sides, the sheet and the backdrop variants), coui_web (the markup the entry emits, and the",
+    "same arithmetic) and a real-Chrome probe of the Web drawer, so a rule that changes on one platform",
+    "fails on the others. Computed outside Dart, so the table is the oracle rather than a copy of the code.",
+    "UNITS. Distances are logical pixels. A PULL is how far the pointer has carried the panel along its",
+    "slide axis, signed by the edge the panel hides behind: positive toward that edge, negative toward the",
+    "viewport centre (further open than fully open). Times are milliseconds.",
+    "constants: the Core defaults the rows are computed with (reach is a fraction of the panel extent).",
+    "stretch.cases: overshoot is how far past the dock the pointer is (px); extent is the panel's length",
+    "on its slide axis; stretch is how far the far edge has moved out (the docked edge never moves);",
+    "scale is (extent + stretch) / extent, the scale about the docked edge.",
+    "pose.cases: the pose for a pull. slide is the distance moved toward the hiding edge, stretch the",
+    "distance the far edge has moved out; at most one is non-zero.",
+    "inverse.cases: overshootOf(stretch, extent).",
+    "settle: a displacement of `from` px on its way back to the dock. offset is what is left atMs after",
+    "the release: from * (1 - easing(atMs / durationMs)). The same curve is a CSS cubic-bezier on the Web",
+    "and a Cubic on Flutter, so the samples are what a browser and a framework both have to draw.",
+    "gestures: a drag on a panel `extent` px long. steps are the pulls the pointer passes through, one",
+    "move each, over durationMs at constant pace; holdMs, when present, is a rest before the lift.",
+    "pose is where the panel is drawn at the last step. dismisses is what the release does. settle, when",
+    "present, is the displacement left atMs after a release that did not dismiss. The speeds keep a wide",
+    "margin either side of the 400 px/s a flick needs: a probe on a loaded machine delivers its events",
+    "late, which can only make a flick slower."
+  ],
+  "constants": {
+    "reach": 0.1,
+    "tension": 0.55,
+    "settleMs": 300,
+    "easing": {"x1": 0.0, "y1": 0.0, "x2": 0.58, "y2": 1.0}
+  },
+  "stretch": {
+    "cases": [
+      {"name": "no overshoot is no stretch", "overshoot": 0, "extent": 300, "stretch": 0, "scale": 1.0},
+      {"name": "a pixel past the dock follows at the tension", "overshoot": 1, "extent": 300, "stretch": 0.5401, "scale": 1.0018},
+      {"name": "ten pixels past the dock", "overshoot": 10, "extent": 300, "stretch": 4.6479, "scale": 1.015493},
+      {"name": "thirty pixels past the dock", "overshoot": 30, "extent": 300, "stretch": 10.6452, "scale": 1.035484},
+      {"name": "sixty pixels past the dock", "overshoot": 60, "extent": 300, "stretch": 15.7143, "scale": 1.052381},
+      {"name": "a hundred pixels past the dock", "overshoot": 100, "extent": 300, "stretch": 19.4118, "scale": 1.064706},
+      {"name": "two hundred pixels past the dock", "overshoot": 200, "extent": 300, "stretch": 23.5714, "scale": 1.078571},
+      {"name": "four hundred pixels past the dock", "overshoot": 400, "extent": 300, "stretch": 26.4, "scale": 1.088},
+      {"name": "a thousand pixels stays under the limit", "overshoot": 1000, "extent": 300, "stretch": 28.4483, "scale": 1.094828},
+      {"name": "a pointer that has not passed the dock does not stretch", "overshoot": -5, "extent": 300, "stretch": 0, "scale": 1.0},
+      {"name": "a panel with no extent does not stretch", "overshoot": 80, "extent": 0, "stretch": 0, "scale": 1},
+      {"name": "a side drawer 256 long", "overshoot": 50, "extent": 256, "stretch": 13.258, "scale": 1.051789},
+      {"name": "a tall sheet 600 long", "overshoot": 100, "extent": 600, "stretch": 28.6957, "scale": 1.047826},
+      {"name": "a short panel 120 long", "overshoot": 40, "extent": 120, "stretch": 7.7647, "scale": 1.064706}
+    ]
+  },
+  "pose": {
+    "cases": [
+      {"name": "the dock", "pull": 0, "extent": 300, "slide": 0, "stretch": 0},
+      {"name": "a pull toward the hiding edge slides one for one", "pull": 40, "extent": 300, "slide": 40, "stretch": 0},
+      {"name": "a pull past half the panel is still one for one", "pull": 200, "extent": 300, "slide": 200, "stretch": 0},
+      {"name": "a pull the other way stretches", "pull": -40, "extent": 300, "slide": 0, "stretch": 12.6923},
+      {"name": "a long pull the other way is held under the limit", "pull": -500, "extent": 300, "slide": 0, "stretch": 27.0492},
+      {"name": "a pull on a panel with no extent stays at the dock", "pull": -40, "extent": 0, "slide": 0, "stretch": 0}
+    ]
+  },
+  "inverse": {
+    "cases": [
+      {"stretch": 0, "extent": 300, "overshoot": 0},
+      {"stretch": 5, "extent": 300, "overshoot": 10.9091},
+      {"stretch": 15, "extent": 300, "overshoot": 54.5455},
+      {"stretch": 25, "extent": 300, "overshoot": 272.7273},
+      {"stretch": 29, "extent": 300, "overshoot": 1581.8182},
+      {"stretch": 10, "extent": 256, "overshoot": 29.8368}
+    ]
+  },
+  "settle": {
+    "durationMs": 300,
+    "cases": [
+      {
+        "from": 20,
+        "samples": [[0, 20], [30, 16.7886], [60, 13.8327], [90, 11.0963], [120, 8.5824], [150, 6.3071], [180, 4.2972], [210, 2.5915], [240, 1.2456], [270, 0.3405], [300, 0]]
+      },
+      {
+        "from": 80,
+        "samples": [[0, 80], [30, 67.1542], [60, 55.3307], [90, 44.3851], [120, 34.3296], [150, 25.2285], [180, 17.1889], [210, 10.3661], [240, 4.9826], [270, 1.3621], [300, 0]]
+      }
+    ]
+  },
+  "gestures": {
+    "extent": 300,
+    "threshold": 0.5,
+    "cases": [
+      {
+        "name": "a slow pull past the dock stretches the far edge",
+        "steps": [-20, -40, -60],
+        "durationMs": 600,
+        "pose": {"slide": 0, "stretch": 15.7143},
+        "dismisses": false,
+        "settle": [[0, 15.7143], [60, 10.8685], [150, 4.9556], [240, 0.9787], [300, 0]]
+      },
+      {
+        "name": "a long pull past the dock stays under the limit",
+        "steps": [-100, -300, -600],
+        "durationMs": 900,
+        "pose": {"slide": 0, "stretch": 27.5},
+        "dismisses": false,
+        "settle": [[0, 27.5], [60, 19.0199], [150, 8.6723], [240, 1.7128], [300, 0]]
+      },
+      {
+        "name": "a quick fling in the open direction never dismisses",
+        "steps": [-120],
+        "durationMs": 60,
+        "pose": {"slide": 0, "stretch": 20.625},
+        "dismisses": false,
+        "settle": [[0, 20.625], [60, 14.2649], [150, 6.5042], [240, 1.2846], [300, 0]]
+      },
+      {
+        "name": "pulling back toward the dock lets the edge in",
+        "steps": [-60, -20],
+        "durationMs": 800,
+        "pose": {"slide": 0, "stretch": 8.0488},
+        "dismisses": false,
+        "settle": [[0, 8.0488], [60, 5.5668], [150, 2.5382], [240, 0.5013], [300, 0]]
+      },
+      {
+        "name": "crossing the dock hands the drag to the slide",
+        "steps": [-30, 0, 40],
+        "durationMs": 800,
+        "pose": {"slide": 40, "stretch": 0},
+        "dismisses": false,
+        "settle": [[0, 40], [60, 27.6654], [150, 12.6143], [240, 2.4913], [300, 0]]
+      },
+      {
+        "name": "a slow pull past half the panel after a stretch dismisses",
+        "steps": [-40, 190],
+        "durationMs": 1800,
+        "pose": {"slide": 190, "stretch": 0},
+        "dismisses": true
+      },
+      {
+        "name": "the stretch is not forgotten when the pointer turns back",
+        "steps": [-60, 120],
+        "durationMs": 1800,
+        "pose": {"slide": 120, "stretch": 0},
+        "dismisses": false,
+        "settle": [[0, 120], [60, 82.9961], [150, 37.8428], [240, 7.4738], [300, 0]]
+      },
+      {
+        "name": "a flick toward the hiding edge right after a stretch dismisses",
+        "steps": [-40, 40],
+        "durationMs": 60,
+        "pose": {"slide": 40, "stretch": 0},
+        "dismisses": true
+      },
+      {
+        "name": "a stretch held still before the lift is released all the same",
+        "steps": [-60],
+        "durationMs": 300,
+        "holdMs": 200,
+        "pose": {"slide": 0, "stretch": 15.7143},
+        "dismisses": false,
+        "settle": [[0, 15.7143], [60, 10.8685], [150, 4.9556], [240, 0.9787], [300, 0]]
+      }
+    ]
+  }
+}

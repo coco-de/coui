@@ -1,0 +1,81 @@
+{
+  "key": "trend-chart-default-dark-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "구독자\n                  \n                    12,480명\n                  \n                  \n                    ↑\n                    +11.4%\n                  \n                \n              \n              \n                \n                  \n                    \n                      .co-chip-sl-1ssey0:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgba(0, 0, 0, 0.00));}\n                    \n                    7일\n                  \n                \n                \n                  \n                    \n                      .co-chip-sl-d6ci5m:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 3%, rgb(var(--coui-inverse-surface)));}.co-chip-sl-d6ci5m:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 8%, rgb(var(--coui-inverse-surface)));}.co-chip-sl-d6ci5m:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 12%, rgb(var(--coui-inverse-surface)));}\n                    \n                    30일\n                  \n                \n                \n                  \n                    \n                      .co-chip-sl-1ssey0:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgba(0, 0, 0, 0.00));}\n                    \n                    12개월\n                  \n                \n              \n              \n                \n                  \n                    14000\n                    12000\n                    10000\n                    8000\n                  \n                   \n                \n                \n                  \n                    \n                    \n                    \n                    \n                    \n                      \n                    \n                    \n                      \n                    \n                    \n                    \n                      \n                        \n                      \n                      \n                        \n                      \n                      \n                        \n                      \n                      \n                        \n                      \n                      \n                        \n                      \n                      \n                        \n                      \n                    \n                  \n                  \n                    4월\n                    6월\n                    9월\n                  \n                \n              \n              \n                \n                  \n                \n                목표 12,000명",
+    "layout": {
+      "width": 800,
+      "height": 423,
+      "direction": "column",
+      "innerPaddingLeft": "24px",
+      "innerPaddingRight": "24px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 152
+        },
+        {
+          "x": 0,
+          "y": 164,
+          "width": 800,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 208,
+          "width": 800,
+          "height": 185
+        },
+        {
+          "x": 0,
+          "y": 405,
+          "width": 800,
+          "height": 18
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(180, 181, 182)",
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(244, 245, 247)",
+      "borderRightColor": "rgb(244, 245, 247)",
+      "borderBottomColor": "rgb(244, 245, 247)",
+      "borderLeftColor": "rgb(244, 245, 247)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "20px",
+      "paddingRight": "24px",
+      "paddingBottom": "20px",
+      "paddingLeft": "24px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgb(0, 0, 0) 4px 4px 0px 0px",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 423
+    }
+  }
+}

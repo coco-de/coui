@@ -1,0 +1,69 @@
+{
+  "key": "toggle-group-vertical-dark-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "toggle-group-vertical-dark-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 18.2,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 42,
+        "g": 43,
+        "b": 44,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 244,
+        "g": 245,
+        "b": 247,
+        "a": 1.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "paddingPx": [
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [
+        {
+          "offsetX": 4.0,
+          "offsetY": 4.0,
+          "blur": 0.0,
+          "spread": 0.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1.0
+          }
+        }
+      ],
+      "opacity": 1.0,
+      "widthPx": 44.21,
+      "heightPx": 60.0
+    }
+  },
+  "settled": true,
+  "captureNotes": [
+    "flutterFinder byType:ToggleGroup 이 tester.allWidgets 에 없음 — 레지스트리가 예상과 다른 서브트리를 반환했을 수 있다 (변형된 variant 처리·GlobalKey 잔존 등 조용한 오캡처의 1차 탐지기)."
+  ]
+}

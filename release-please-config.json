@@ -1,0 +1,35 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "dart",
+
+  "//bump-minor-pre-major": "0.x 에서 breaking 커밋이 1.0.0 을 만들지 않게 한다. 1.0 은 \"API 가 안정됐다\" 는 선언이고, 그 선언은 의도해서 내려야지 `!` 커밋 하나가 대신 내려서는 안 된다. 이 값이 있으면 breaking → minor(0.128 → 0.129) 라서 deprecation 창을 마이너 단위로 셀 수 있다.",
+  "bump-minor-pre-major": true,
+
+  "//": "패키지별 독립 버전. 단, separate-pull-requests=false(기본) 로 릴리즈를 한 커밋에 묶어 형제 패키지 태그가 항상 같은 커밋을 가리키게 한다 — 소비 측(kobic)이 형제 패키지를 서로 다른 커밋 조합으로 받는 사고를 구조적으로 차단.",
+  "separate-pull-requests": false,
+  "include-component-in-tag": true,
+
+  "changelog-sections": [
+    { "type": "feat",     "section": "기능" },
+    { "type": "fix",      "section": "버그 수정" },
+    { "type": "perf",     "section": "성능" },
+    { "type": "revert",   "section": "되돌림" },
+    { "type": "refactor", "section": "리팩터링" },
+    { "type": "docs",     "section": "문서" },
+    { "type": "build",    "section": "빌드",   "hidden": true },
+    { "type": "ci",       "section": "CI",     "hidden": true },
+    { "type": "test",     "section": "테스트", "hidden": true },
+    { "type": "style",    "section": "스타일", "hidden": true },
+    { "type": "chore",    "section": "기타",   "hidden": true }
+  ],
+
+  "packages": {
+    "packages/coui": { "component": "coui" },
+    "packages/coui_core": { "component": "coui_core" },
+    "packages/coui_flutter": { "component": "coui_flutter" },
+    "packages/coui_i10n": { "component": "coui_i10n" },
+    "packages/coui_lints": { "component": "coui_lints" },
+    "packages/coui_mcp": { "component": "coui_mcp" },
+    "packages/coui_web": { "component": "coui_web" }
+  }
+}

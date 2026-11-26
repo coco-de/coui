@@ -1,0 +1,39 @@
+{
+  "key": "object-input-default-dark-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "15px",
+      "lineHeight": "normal",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(147, 149, 150)",
+      "backgroundColor": "rgba(22, 23, 24, 0.6)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "12px",
+      "borderTopRightRadius": "12px",
+      "borderBottomRightRadius": "12px",
+      "borderBottomLeftRadius": "12px",
+      "paddingTop": "0px",
+      "paddingRight": "14px",
+      "paddingBottom": "0px",
+      "paddingLeft": "14px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 138.4375,
+      "heightPx": 48
+    }
+  }
+}

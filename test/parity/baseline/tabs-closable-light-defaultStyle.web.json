@@ -1,0 +1,75 @@
+{
+  "key": "tabs-closable-light-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "main.dart#co-button-d2dljp:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-d2dljp:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n                app.dart#co-button-6fg9od:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-6fg9od:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n                theme.dart#co-button-30rwq9:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-30rwq9:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n              \n              \n              편집 중: main.dart",
+    "layout": {
+      "width": 353.234375,
+      "height": 77,
+      "direction": "column",
+      "innerPaddingLeft": "2px",
+      "innerPaddingRight": "2px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 353.234375,
+          "height": 40
+        },
+        {
+          "x": 0,
+          "y": 40,
+          "width": 353.234375,
+          "height": 16
+        },
+        {
+          "x": 0,
+          "y": 56,
+          "width": 104.234375,
+          "height": 21
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(244, 245, 246)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "8px",
+      "borderTopRightRadius": "8px",
+      "borderBottomRightRadius": "8px",
+      "borderBottomLeftRadius": "8px",
+      "paddingTop": "2px",
+      "paddingRight": "2px",
+      "paddingBottom": "2px",
+      "paddingLeft": "2px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 353.234375,
+      "heightPx": 77
+    }
+  }
+}

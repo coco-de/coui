@@ -1,0 +1,82 @@
+{
+  "key": "dialog-docs-v2-f2dd7bc2a50e0e0f187f6384905076b0-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Preview",
+      "attributes": {
+        "demo": "dialog/placement-stacked"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "dialog/placement-stacked",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/actions/cocodeui-macstudio-kentrosaurus/_work/coui/coui/docs_core/content/components/dialog.md:Preview[56]"
+      ],
+      "anatomyParts": []
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "나가기 전에 저장할까요?\n                    \n                    \n                    저장하지 않은 변경 사항이 있어요.\n                    \n                    \n                      \n                        \n                          \n                            #co-button-ssr-6u:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-6u:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                          \n                          저장하지 않고 나가기\n                        \n                      \n                      \n                        저장",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 281
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "15px",
+      "lineHeight": "22.5px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(244, 245, 246)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "24px",
+      "borderTopRightRadius": "24px",
+      "borderBottomRightRadius": "24px",
+      "borderBottomLeftRadius": "24px",
+      "paddingTop": "32px",
+      "paddingRight": "24px",
+      "paddingBottom": "32px",
+      "paddingLeft": "24px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 281
+    }
+  }
+}

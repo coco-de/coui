@@ -1,0 +1,38 @@
+{
+  "key": "validation-badge-invalid-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "12px",
+      "lineHeight": "16.8px",
+      "letterSpacing": "-0.12px",
+      "color": "rgb(184, 28, 30)",
+      "backgroundColor": "rgb(255, 241, 238)",
+      "borderTopColor": "rgba(215, 30, 34, 0.2)",
+      "borderRightColor": "rgba(215, 30, 34, 0.2)",
+      "borderBottomColor": "rgba(215, 30, 34, 0.2)",
+      "borderLeftColor": "rgba(215, 30, 34, 0.2)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "20px",
+      "borderTopRightRadius": "20px",
+      "borderBottomRightRadius": "20px",
+      "borderBottomLeftRadius": "20px",
+      "paddingTop": "0px",
+      "paddingRight": "8px",
+      "paddingBottom": "0px",
+      "paddingLeft": "8px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 75.828125,
+      "heightPx": 24
+    }
+  }
+}

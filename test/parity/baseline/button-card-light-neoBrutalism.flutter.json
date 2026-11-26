@@ -1,0 +1,54 @@
+{
+  "key": "button-card-light-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "button-card-light-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 19.6,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 31,
+        "g": 32,
+        "b": 33,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 31,
+        "g": 32,
+        "b": 33,
+        "a": 1.0
+      },
+      "borderWidthPx": 4.0,
+      "borderRadiusPx": [
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "paddingPx": [
+        4.0,
+        16.0,
+        4.0,
+        16.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 63.92,
+      "heightPx": 40.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

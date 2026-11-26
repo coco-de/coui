@@ -1,0 +1,326 @@
+{
+  "issue": 6543,
+  "base": "6882d1d41c872b6285b5f12d169b5c3d9b21f59a",
+  "validatedBeforeCommit": true,
+  "sourceFreeze": {
+    "baseHead": "6882d1d41c872b6285b5f12d169b5c3d9b21f59a",
+    "files": [
+      {
+        "path": "packages/coui_web/lib/src/components/form/color_picker/color_picker.dart",
+        "sha256": "6b5e09539b9906250be061340880cbe8f6b6322a8f886f02e4d4b39701a3cabf",
+        "mode": 420
+      },
+      {
+        "path": "packages/coui_web/test/browser/fixtures/color_picker_support_probe.dart",
+        "sha256": "f85f48d07e327c968e1da325c35c5abeeb10f1ee85578f741286b17d477563d2",
+        "mode": 420
+      },
+      {
+        "path": "packages/coui_web/test/browser/fixtures/color_picker_support_probe.client.dart",
+        "sha256": "46c79582f78258c2a556f2d4b2ecab99579e96ee30129a1bf854fc0f515ff17b",
+        "mode": 420
+      },
+      {
+        "path": "tool/parity/test/web/color_picker_support_test.dart",
+        "sha256": "6fc2539b922c008224b5021c48d46684f02db512b5297e0903e66cee6923a14e",
+        "mode": 420
+      },
+      {
+        "path": "packages/coui_web/CHANGELOG.md",
+        "sha256": "d82c52ae77b11b7376f4e987e28b0b88503cf65d46ca46b8702399790c0e3a99",
+        "mode": 420
+      }
+    ],
+    "trackedDiff": [
+      "packages/coui_web/CHANGELOG.md",
+      "packages/coui_web/lib/src/components/form/color_picker/color_picker.dart"
+    ],
+    "publicColorPickerPrefixByteExact": true,
+    "constructorCopyWithCoreStyleDomHelpersUnchanged": true,
+    "sourceCopies": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6543-color-picker-support-20261123.5pi2r6go/source-freeze",
+    "metadata": {
+      ".dart_tool/package_config.json": "2d55bdc586a30704b8ef4170b8b9c52894c86f4981a4a0de6d2c6fe46f21a7ab",
+      ".dart_tool/package_graph.json": "337afba050fc641f8b140023c921f9acf4d76268455a92b95744ce9a59372bd6",
+      "pubspec.lock": "41866c70f556da2de00cf26ccd7997db6925bc36f9f33b1e9244d4333ea307b3"
+    },
+    "noCommitPushRemoteActions": true
+  },
+  "actualBrowserTests": {
+    "candidateFinal": {
+      "passed": 5,
+      "seconds": 14.8769
+    },
+    "originalAbsentLD": {
+      "expectedFailures": 2,
+      "seconds": 17.51
+    },
+    "originalSupportedFinalControl": {
+      "passed": 1,
+      "seconds": 12.59
+    }
+  },
+  "existingTests": {
+    "core": 20,
+    "webAndParity": 20,
+    "newTotalWithBrowser": 45
+  },
+  "analyzeFatalInfos": {
+    "exit": 0,
+    "scope": "4 changed Dart files",
+    "preservedPriorLintFailures": true
+  },
+  "format": {
+    "exit": 0,
+    "scope": "4 changed Dart files"
+  },
+  "canonicalCapture": {
+    "newWeb": 6,
+    "reusedNative": 6,
+    "NativeReuseSourceClosure": 5401,
+    "nativeAssetBindings": 14,
+    "webPNGAndRGBAAndByRoleExactToFull6882": 6,
+    "wholeRawJSONExact": 4,
+    "rawTwoInlineDelta": "only captureContext.text auto-generated scoped CSS ID; no criteria/probe/normalizer change",
+    "pixel": {
+      "pass": 4,
+      "fail": 2,
+      "infra": 0,
+      "exit": 1
+    },
+    "property": {
+      "pass": 4,
+      "fail": 2,
+      "infra": 0,
+      "exit": 1
+    },
+    "ownBaseline": {
+      "basis": "Git6882 committed baseline blobs, actual new unmodified regression run",
+      "baselineGitSource": "6882d1d41c872b6285b5f12d169b5c3d9b21f59a",
+      "runHead": "3da6a643cffe94bf12c861c0a8103310d1880a82",
+      "keys": 6,
+      "images": 12,
+      "passKeys": 6,
+      "failKeys": 0,
+      "exit": 0,
+      "seconds": 6.75,
+      "WebPNGAndRGBAExact": 6,
+      "NativePNGAndRGBADifferButPassExistingCriteria": 6,
+      "thresholdChanges": false,
+      "baselineInputs": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6543-color-picker-support-20261123.5pi2r6go/committed-baseline-comparison/baseline-inputs.json",
+      "baselineInputsSHA256": "627819e094fe02450c185c4dfe2ba2840f70605181f9c09356d95f3ba478b67e",
+      "reportSHA256": "b0f7aa148783cc346ca3f15ee9ecfb5e1d29f57f0790b536c7cfce00a23571f8"
+    },
+    "freshMainBeforeAfterControl": {
+      "keys": 6,
+      "images": 12,
+      "passKeys": 6,
+      "failKeys": 0,
+      "exit": 0,
+      "basis": "outside baseline copied from fresh full6882 captures"
+    }
+  },
+  "docsBuild": {
+    "actual": true,
+    "exit": 0,
+    "seconds": 143.143343959,
+    "routes": 361,
+    "HTML": 363,
+    "cliVersion": "0.24.0-beta.1",
+    "toolConfigNewOfflineSolve": true,
+    "historicalCLIConfigIdentical": false,
+    "toolPackages": {
+      "weever_docs_cli_tool": "0.0.0",
+      "jaspr_cli": "0.24.0-beta.1",
+      "pub_updater": "0.6.0",
+      "http": "1.6.0",
+      "file": "7.0.1",
+      "path": "1.9.1",
+      "dart_data_home": "0.1.1",
+      "cli_util": "0.6.0",
+      "cli_completion": "0.6.0",
+      "args": "2.7.0",
+      "ansi_styles": "0.3.2+1",
+      "ffi": "2.2.0",
+      "equatable": "2.1.0",
+      "shelf_static": "1.2.0",
+      "shelf_proxy": "1.0.5",
+      "shelf": "1.4.3",
+      "http_parser": "4.1.2",
+      "collection": "1.19.1",
+      "stream_channel": "2.1.4",
+      "typed_data": "1.4.0",
+      "string_scanner": "1.4.1",
+      "pub_semver": "2.2.1",
+      "mason": "0.1.3",
+      "checked_yaml": "2.0.4",
+      "logging": "1.3.0",
+      "io": "1.1.0",
+      "html": "0.15.7",
+      "csslib": "1.0.2",
+      "glob": "2.2.0",
+      "frontend_server_client": "4.2.0",
+      "browser_launcher": "1.2.0",
+      "webkit_inspection_protocol": "1.2.1",
+      "async": "2.13.1",
+      "process": "5.0.6",
+      "web": "1.1.2",
+      "mason_logger": "0.3.6",
+      "mime": "2.1.0",
+      "convert": "3.1.2",
+      "stack_trace": "1.12.2",
+      "pool": "1.5.3",
+      "crypto": "3.0.8",
+      "package_config": "3.0.0",
+      "platform": "3.2.0",
+      "win32": "6.4.0",
+      "ffi_leak_tracker": "0.1.2",
+      "yaml": "3.1.4",
+      "watcher": "1.2.1",
+      "build_daemon": "4.1.7",
+      "web_socket_channel": "3.0.3",
+      "shelf_web_socket": "3.0.0",
+      "web_socket": "1.0.1",
+      "stream_transform": "2.1.2",
+      "http_multi_server": "3.2.3",
+      "built_collection": "5.1.2",
+      "json_annotation": "4.12.0",
+      "source_span": "1.10.2",
+      "term_glyph": "1.2.2",
+      "vm_service": "15.4.0",
+      "meta": "1.19.0",
+      "dwds": "27.2.1",
+      "vm_service_interface": "2.0.1",
+      "sse": "4.2.0",
+      "source_maps": "0.10.14",
+      "dds": "5.4.0",
+      "dtd": "4.0.0",
+      "devtools_shared": "13.1.0",
+      "dds_service_extensions": "2.1.0",
+      "dap": "1.4.0",
+      "dart_service_protocol_shared": "0.0.3",
+      "json_rpc_2": "4.1.0",
+      "extension_discovery": "2.1.1",
+      "yaml_edit": "2.2.4",
+      "mustache_template": "2.0.6",
+      "built_value": "8.13.0",
+      "fixnum": "1.1.1",
+      "analyzer": "14.7.0",
+      "_fe_analyzer_shared": "111.0.0",
+      "archive": "4.7.1",
+      "posix": "6.5.4",
+      "unified_analytics": "8.4.0",
+      "clock": "1.1.3"
+    },
+    "toolResolvedLockSHA256": "bc19f959e4a931559958ae9f206ac2a92141de2f367141a3907aa39869b44ddc",
+    "automaticProjectPubPreflight": true,
+    "manualProjectPubCommand": false,
+    "internalSolverAndDownloadCountsMeasured": false,
+    "projectResolvedIdentityDelta": 0
+  },
+  "runtime": {
+    "SDK": "Flutter3.50.0 existing FVM absolute commands",
+    "Dart": "3.14.0",
+    "Chrome": "150.0.7871.24",
+    "SSRVMReload": {
+      "success": true,
+      "milliseconds": 376.6,
+      "loadedLibraryCount": 28,
+      "notClientHotReload": true
+    }
+  },
+  "sourceContract": {
+    "publicAPIChange": false,
+    "CoreStyleDefaultsTokenChanges": false,
+    "initialSSRAndFirstClientPreserved": true,
+    "newGeometryPlaceholders": false,
+    "existingHandlerGuardPreserved": true
+  },
+  "limitations": [
+    "Supported Web eyedropper32px versus unsupported Native comparison26px stays a legitimate6px difference; no parity-reduction claim.",
+    "API-absent observations use a controlled owned Chromium realm; no real Firefox/Safari/native OS picker sampling claim.",
+    "Queued-dispose checks disposed5State objects/console0; pinned Jaspr retains17DOM inputs; no DOMcleanup claim.",
+    "Original pointer/refocus selectionreset reproduced separately; property-only controls preserve strict2..4 selection.",
+    "Existing disabled-keyboard and pending OS-picker await/disposal behavior are separate, unmodified boundaries.",
+    "Build regenerated ignored package config/graph bytes;232names/versions/realroots remain same; original/generated metadata preserved."
+  ],
+  "evidence": {
+    "outsidePhase": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6543-color-picker-support-20261123.5pi2r6go",
+    "sourceFreezeSHA": "dcc774b3812725977bd6028fc14a2835a614472964778451e02613ae177b7bb5",
+    "independentSourceSHA": "fb2cb73c3411776f786af862d32ea3c2d806fc24cd845e14a359707e6aef1e57",
+    "independentFinalTestsSHA": "d3c7c2250fbb5b2bf2b410c855585fa78226f1c90fc9362496ed4e24452703e1",
+    "selectedSixUnmodifiedImages": {
+      "images": [
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6543-color-picker-support-20261123.5pi2r6go/original-final-negative/browser/light-false-default.png",
+          "name": "original-final-negative/browser/light-false-default.png",
+          "bytes": 38464,
+          "sha256": "b37526b62c702d4543f328c1c4710dd563b8783a4d2955bc96210d467b409568",
+          "RootViewedUnmodified": true,
+          "axis": "Web",
+          "nativeAndFigmaNotClaimed": true
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6543-color-picker-support-20261123.5pi2r6go/candidate-final/browser/light-false-default.png",
+          "name": "candidate-final/browser/light-false-default.png",
+          "bytes": 37956,
+          "sha256": "29643265df97b9375677a1e528077d22b947b76bff55f371b95cef68cf75a42b",
+          "RootViewedUnmodified": true,
+          "axis": "Web",
+          "nativeAndFigmaNotClaimed": true
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6543-color-picker-support-20261123.5pi2r6go/candidate-final/browser/light-true-default.png",
+          "name": "candidate-final/browser/light-true-default.png",
+          "bytes": 38464,
+          "sha256": "b37526b62c702d4543f328c1c4710dd563b8783a4d2955bc96210d467b409568",
+          "RootViewedUnmodified": true,
+          "axis": "Web",
+          "nativeAndFigmaNotClaimed": true
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6543-color-picker-support-20261123.5pi2r6go/original-final-negative/browser/dark-false-default.png",
+          "name": "original-final-negative/browser/dark-false-default.png",
+          "bytes": 38135,
+          "sha256": "43198ed05d0d58a69b15420a5809b51476e45bcbaf64962f36a96b1b016494f3",
+          "RootViewedUnmodified": true,
+          "axis": "Web",
+          "nativeAndFigmaNotClaimed": true
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6543-color-picker-support-20261123.5pi2r6go/candidate-final/browser/dark-false-default.png",
+          "name": "candidate-final/browser/dark-false-default.png",
+          "bytes": 37640,
+          "sha256": "ab64db0806c138c68bc07bae884788094812f2d0d1c8df2c10058aa0a2892e77",
+          "RootViewedUnmodified": true,
+          "axis": "Web",
+          "nativeAndFigmaNotClaimed": true
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6543-color-picker-support-20261123.5pi2r6go/candidate-final/browser/dark-true-default.png",
+          "name": "candidate-final/browser/dark-true-default.png",
+          "bytes": 38135,
+          "sha256": "43198ed05d0d58a69b15420a5809b51476e45bcbaf64962f36a96b1b016494f3",
+          "RootViewedUnmodified": true,
+          "axis": "Web",
+          "nativeAndFigmaNotClaimed": true
+        }
+      ],
+      "count": 6,
+      "max8": true,
+      "unsupportedIsControlledOwnRealmAbsence": "notFirefoxSafariDeviceRun",
+      "noImageProcessing": true
+    }
+  },
+  "metadataAfterBuild": {
+    "proof": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6543-color-picker-support-20261123.5pi2r6go/metadata-after-docs-proof.json",
+    "sha256": "acd4e6f5c52c511a8d62bf1eddd8693ec12b4e1c1e0e9b6eda9b32d3203a6eed",
+    "all232NameVersionEffectiveRootsAndGraphEdgesExact": true,
+    "rawConfigGraphBytesRegenerated": true,
+    "lockBytesUnchanged": true
+  },
+  "mainIntegration": {
+    "source": "b1966d742da9a5c9749dfb63f27fef5015c6a3f6",
+    "onlyUpstreamProcessRuleDocs": true,
+    "validatedFiveRuntimeTestFilesByteExact": true
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "key": "link-external-light-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "link-external-light-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 15.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.15,
+      "color": {
+        "r": 0,
+        "g": 94,
+        "b": 178,
+        "a": 1.0
+      },
+      "backgroundColor": null,
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": null,
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 54.77,
+      "heightPx": 21.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

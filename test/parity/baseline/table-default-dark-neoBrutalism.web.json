@@ -1,0 +1,75 @@
+{
+  "key": "table-default-dark-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "이름\n                상태\n                역할\n              \n              \n                김코드\n                \n                  활성\n                \n                관리자\n              \n              \n                이코드\n                \n                  비활성\n                \n                사용자",
+    "layout": {
+      "width": 800,
+      "height": 142,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "13px",
+      "lineHeight": "18px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(147, 149, 150)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "2px",
+      "borderTopRightRadius": "2px",
+      "borderBottomRightRadius": "2px",
+      "borderBottomLeftRadius": "2px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgb(0, 0, 0) 4px 4px 0px 0px",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 142
+    }
+  }
+}

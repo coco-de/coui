@@ -1,0 +1,63 @@
+{
+  "key": "fab-default-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "",
+    "layout": {
+      "width": 56,
+      "height": 56,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 56,
+          "height": 56
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSize": null,
+      "lineHeight": null,
+      "letterSpacing": null,
+      "color": null,
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "9999px",
+      "borderTopRightRadius": "9999px",
+      "borderBottomRightRadius": "9999px",
+      "borderBottomLeftRadius": "9999px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "2px",
+      "outlineStyle": "solid",
+      "outlineColor": "rgba(0, 0, 0, 0)",
+      "outlineOffset": "2px",
+      "boxShadow": "rgba(255, 255, 255, 0) 0px 0px 0px 2px, color(srgb 0 0 0 / 0.125) 0px 16px 80px 0px, color(srgb 0 0 0 / 0.125) 0px -16px 80px 0px",
+      "opacity": "1",
+      "widthPx": 56,
+      "heightPx": 56
+    }
+  }
+}

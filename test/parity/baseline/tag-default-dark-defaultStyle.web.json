@@ -1,0 +1,38 @@
+{
+  "key": "tag-default-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "12px",
+      "lineHeight": "16.8px",
+      "letterSpacing": "-0.12px",
+      "color": "rgb(196, 199, 203)",
+      "backgroundColor": "rgb(44, 47, 51)",
+      "borderTopColor": "rgb(75, 79, 84)",
+      "borderRightColor": "rgb(75, 79, 84)",
+      "borderBottomColor": "rgb(75, 79, 84)",
+      "borderLeftColor": "rgb(75, 79, 84)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "6px",
+      "borderTopRightRadius": "6px",
+      "borderBottomRightRadius": "6px",
+      "borderBottomLeftRadius": "6px",
+      "paddingTop": "0px",
+      "paddingRight": "8px",
+      "paddingBottom": "0px",
+      "paddingLeft": "8px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 48.765625,
+      "heightPx": 24
+    }
+  }
+}

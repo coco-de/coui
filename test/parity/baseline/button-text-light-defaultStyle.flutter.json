@@ -1,0 +1,47 @@
+{
+  "key": "button-text-light-defaultStyle",
+  "byRole": {
+    "root": {
+      "key": "button-text-light-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 22.4,
+      "letterSpacingPx": 0.0,
+      "color": {
+        "r": 24,
+        "g": 25,
+        "b": 27,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        8.0,
+        8.0,
+        8.0,
+        8.0
+      ],
+      "paddingPx": [
+        8.0,
+        16.0,
+        8.0,
+        16.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": null
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

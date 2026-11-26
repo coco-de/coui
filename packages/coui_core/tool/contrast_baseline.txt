@@ -1,0 +1,268 @@
+# WCAG contrast violations accepted as of the last --update.
+# Net-new entries fail CI; this list may only shrink.
+#
+# Every entry sits under a `##` category header carrying a
+# `# reason:` — bare debt with no reason is exactly what this
+# file used to be, and what #3458 replaced. `--update`
+# preserves a category's reason lines for any entry that
+# survives the run; a newly-added entry lands with no reason
+# and needs one written by hand before it should be trusted.
+
+## Scrollbar thumb in CoUI high-contrast light (UI line bar, 4.5:1) — a recorded exception, not debt
+# reason: the thumb is the page ink at half strength, which measures 3.95:1
+# on the page and on the panel fill in this mode. That clears the component
+# bar (WCAG 1.4.11, 3:1) and misses the raised 4.5:1 the mode holds UI lines
+# to. It is accepted by design decision, because the two ways to close it
+# both cost more than the gap: a component does not read whether high
+# contrast is on (the theme axis applies at the token-resolution seat and
+# nowhere else), and the way to give this one thumb an opaque ink in this
+# mode is a slot of its own — which Web cannot express as "alpha in light,
+# opaque here", since its colour variables hold the RGB triplet only — and
+# which would also give up what the translucent ink buys: a thumb that stays
+# one step darker than whatever it sits on, grey containers and panels
+# included. These entries leave when colour variables can carry alpha or
+# the mode can state an opaque thumb; they do not leave by loosening the
+# bar. The high-contrast dark table meets 4.5:1 on both tones (5.28, 4.73).
+coui high-contrast light scrollbar/thumb on surface rest (>=4.5)
+coui high-contrast light scrollbar/thumb on surface-bright rest (>=4.5)
+
+## Syntax colours under the standard mapping — pending decision, not accepted by design
+# reason: keyword, type and string read the same brand-less tones in every
+# brand, chosen to clear 4.5:1 on CoUI's tones (4.55 at their lowest, light
+# on `surfaceContainerHigh`). A brand on the standard mapping fills its
+# containers from its own neutral and status ramps, which run darker in light
+# and lighter in the dark status containers: on the audit palette the light
+# tones fall to 3.62:1 on `surfaceContainerHigh` and the dark keyword to
+# 3.52:1 on `warningContainer`. High contrast keeps the normal tones, so the
+# high-contrast schemes repeat the same misses. The fix is either per-mapping
+# syntax tones or containers that leave room for them, a decision for the
+# brands that inherit this mapping. These entries leave when it lands.
+standard dark syntaxKeyword on successContainer (>=4.5)
+standard dark syntaxKeyword on warningContainer (>=4.5)
+standard high-contrast dark syntaxKeyword on successContainer (>=4.5)
+standard high-contrast dark syntaxKeyword on warningContainer (>=4.5)
+standard high-contrast light syntaxKeyword on errorContainer (>=4.5)
+standard high-contrast light syntaxKeyword on surfaceContainer (>=4.5)
+standard high-contrast light syntaxKeyword on surfaceContainerHigh (>=4.5)
+standard high-contrast light syntaxString on errorContainer (>=4.5)
+standard high-contrast light syntaxString on surfaceContainer (>=4.5)
+standard high-contrast light syntaxString on surfaceContainerHigh (>=4.5)
+standard high-contrast light syntaxType on errorContainer (>=4.5)
+standard high-contrast light syntaxType on infoContainer (>=4.5)
+standard high-contrast light syntaxType on surfaceContainer (>=4.5)
+standard high-contrast light syntaxType on surfaceContainerHigh (>=4.5)
+standard light syntaxKeyword on errorContainer (>=4.5)
+standard light syntaxKeyword on surfaceContainer (>=4.5)
+standard light syntaxKeyword on surfaceContainerHigh (>=4.5)
+standard light syntaxString on errorContainer (>=4.5)
+standard light syntaxString on surfaceContainer (>=4.5)
+standard light syntaxString on surfaceContainerHigh (>=4.5)
+standard light syntaxType on errorContainer (>=4.5)
+standard light syntaxType on infoContainer (>=4.5)
+standard light syntaxType on surfaceContainer (>=4.5)
+standard light syntaxType on surfaceContainerHigh (>=4.5)
+
+## RadioGroup card selected tile description under the state-layer wash — a recorded exception, not debt
+# reason: a `card` tile lays the halo's ink (`onSurface`) at the hover (8%)
+# and pressed (16%) weights over its whole face, and the description is the
+# second text tier (`onSurfaceVariant`) on that face. The selected tile's
+# face is `primaryContainer` (the designer's choice, #5634), which sits closer
+# to the description's ink than the resting `surface` does. The title
+# (`onSurface`) keeps its margin under both washes, and the description
+# clears 4.5:1 at rest on both faces in every scheme (5.64 light, 5.04 dark
+# on the selected tile in CoUI). Under the wash it measures 4.12:1 (light) /
+# 3.25:1 (dark) pressed and 4.03:1 (dark) hovered on the selected tile in
+# CoUI. The standard mapping joined the same class with the selected-face
+# gap contract (#6202): on the audited palette it moves `primaryContainer`
+# one step away from the page in both modes (gap 1.19 → 1.34 light,
+# 1.24 → 1.81 dark), and the description under the wash then measures
+# 4.41:1 (light) / 3.61:1 (dark) pressed and 4.49:1 (dark) hovered. The
+# contract's own text conditions on the face — `onPrimaryContainer` 4.5:1,
+# `primaryText` 3:1 — pass there, and the description clears 4.5:1 at rest.
+# The high-contrast schemes clear it. The wash
+# is the weight every radio presses at and the description's tier is what
+# separates it from the title, so closing the gap means a lighter wash or a
+# louder description on the selected face, and either blurs what it
+# separates. Accepted pending the design decision recorded in #5634 (the
+# hover entry is new with the `primaryContainer` face). These entries leave
+# when the tile's wash, its selected face or the description's ink is
+# restated.
+coui dark radio-group/card description on selected tile hover (>=4.5)
+coui dark radio-group/card description on selected tile pressed (>=4.5)
+coui light radio-group/card description on selected tile pressed (>=4.5)
+standard dark radio-group/card description on selected tile hover (>=4.5)
+standard dark radio-group/card description on selected tile pressed (>=4.5)
+standard light radio-group/card description on selected tile pressed (>=4.5)
+
+## Third text tier on grey containers and under the table hover wash in CoUI light — a recorded exception, not debt
+# reason: `onSurfaceSubtle` is stated one step below the second text tier so
+# that metadata, subtitles and column headers read weaker than the content
+# beside them, and that hierarchy and a 4.5:1 floor cannot both hold on every
+# container tone. In light it measures 4.45:1 on `surfaceContainerLow` (a
+# definition list's terms, and a navigation bar's group title — the bar's
+# face is that tone in every mode), 4.26:1 on `surfaceContainer` (a card
+# subtitle on a filled card, a definition list on a card, a filled stat's
+# description footnote, a progress bar's caption on a filled card, and a step
+# list's trailing note — a duration, a count — on the card a run is reported
+# in, for every status but a failed one, whose note reads in the error
+# family's text ink), and 4.38:1 for a table column header under the 3% row
+# hover wash. Each is a named design decision: the tier keeps its step rather
+# than darkening toward the second tier, and the page-ground and
+# floating-panel faces it is mostly drawn on clear 4.5:1 in every mode. These
+# entries leave when the tier is restated darker in light or those faces stop
+# hosting it.
+coui light onSurfaceSubtle on surfaceContainer (>=4.5)
+coui light onSurfaceSubtle on surfaceContainerLow (>=4.5)
+coui light progress/caption on surface-container rest (>=4.5)
+coui light stat/filled description (>=4.5)
+coui light step-item/current trailing on surface-container (>=4.5)
+coui light step-item/done trailing on surface-container (>=4.5)
+coui light step-item/todo trailing on surface-container (>=4.5)
+coui light table/header hover (>=4.5)
+
+## Badge warning line and dot under the standard mapping — pending decision, not accepted by design
+# reason: an outlined badge's line and the dot form paint the tone's own
+# colour on the page, and the standard mapping's light `warning` is a light
+# fill by design (the same reason it was retired as page text): on the audit
+# palette it measures 1.82:1 on the page and the panel, 1.67:1 on the chrome
+# rung and 1.48:1 on a card, under the 3:1 a UI mark owes. CoUI's own light
+# warning clears it (4.30 at its lowest). The fix is either a darker light
+# warning in the standard mapping or a separate line/dot slot for status
+# marks; these entries leave when that decision lands.
+standard light badge/warning dot on surface rest (>=3.0)
+standard light badge/warning dot on surface-bright rest (>=3.0)
+standard light badge/warning dot on surface-container rest (>=3.0)
+standard light badge/warning dot on surface-container-low rest (>=3.0)
+standard light badge/warning outlined line on surface rest (>=3.0)
+standard light badge/warning outlined line on surface-bright rest (>=3.0)
+standard light badge/warning outlined line on surface-container rest (>=3.0)
+standard light badge/warning outlined line on surface-container-low rest (>=3.0)
+
+## Progress warning fill under the standard mapping — pending decision, not accepted by design
+# reason: a warning bar fills with the tone's own colour on the neutral
+# track (`surfaceContainerHigh`), and the standard mapping's light `warning`
+# is a light fill by design — the same slot the Badge warning line and dot
+# above miss with. On the audit palette it measures 1.28:1 on the track,
+# under the 3:1 a progress mark owes. CoUI's own light warning clears it
+# (4.05). The fix is the decision named for the Badge entries — a darker
+# light warning in the standard mapping or a separate slot for status marks;
+# this entry leaves when it lands.
+standard light progress/warning fill on track rest (>=3.0)
+
+## MenuItem critical label on its active fill under the standard mapping — pending decision, not accepted by design
+# reason: a critical row's hover, focus and press fill the row with
+# `errorContainer` and keep every ink at rest (designer decision
+# 2026-11-05, #6012), so the label stays `error` on that fill. The standard
+# mapping's light `error` measures 3.82:1 on its light `errorContainer`,
+# under the 4.5:1 a label owes. CoUI's own palette clears it (4.55). The fix
+# is a darker light `error` or a lighter `errorContainer` in the standard
+# mapping (#6043); these entries leave when it lands.
+standard light menu-item/critical label hover (>=4.5)
+standard light menu-item/critical label pressed (>=4.5)
+
+## NavigationBar unselected destinations on onSurfaceSubtle — a recorded exception, not debt
+# reason: the unselected label and icon take `onSurfaceSubtle`, a step
+# quieter than the selected destination, so the current place reads at a
+# glance (the unselected Tabs take the same tone). On the bar's chrome tier
+# that tone measures 4.45:1 at rest in CoUI light and drops to 3.8–4.4:1
+# under the hover / focus / pressed wash (CoUI light and dark, and the
+# standard mapping in light). The designer accepted the gap (#5740): the
+# unselected destinations are secondary captions beside a selected one that
+# clears 4.5:1, every pair stays above 3:1, and the high-contrast tables
+# meet 4.5:1 throughout. These entries leave if the unselected tone moves
+# back up a step; they do not leave by loosening the bar.
+coui dark navigation-bar/icon focus (>=4.5)
+coui dark navigation-bar/icon pressed (>=4.5)
+coui dark navigation-bar/label focus (>=4.5)
+coui dark navigation-bar/label pressed (>=4.5)
+coui light navigation-bar/bar icon focus (>=4.5)
+coui light navigation-bar/bar icon hover (>=4.5)
+coui light navigation-bar/bar icon pressed (>=4.5)
+coui light navigation-bar/bar label focus (>=4.5)
+coui light navigation-bar/bar label hover (>=4.5)
+coui light navigation-bar/bar label pressed (>=4.5)
+coui light navigation-bar/icon focus (>=4.5)
+coui light navigation-bar/icon hover (>=4.5)
+coui light navigation-bar/icon pressed (>=4.5)
+coui light navigation-bar/icon rest (>=4.5)
+coui light navigation-bar/label focus (>=4.5)
+coui light navigation-bar/label hover (>=4.5)
+coui light navigation-bar/label pressed (>=4.5)
+coui light navigation-bar/label rest (>=4.5)
+standard light navigation-bar/icon focus (>=4.5)
+standard light navigation-bar/icon pressed (>=4.5)
+standard light navigation-bar/label focus (>=4.5)
+standard light navigation-bar/label pressed (>=4.5)
+
+## A brand registered by one colour inherits CoUI's recorded exceptions — a recorded exception, not debt
+# reason: `CoreBrand.fromColor` reads every shared slot through CoUI's own
+# mapping, so each entry below is the same pair, at the same tone step, as a
+# `coui` entry already recorded above (the NavigationBar unselected
+# destinations, the third text tier, the RadioGroup state washes,
+# the Stat description), and measures what the `coui` entry measures. The
+# two dark RadioGroup entries are the exception in value only: the selected
+# tile is the brand's container there, and it measures higher than CoUI's
+# (4.28 / 3.56 against 3.99 / 3.16). Fixing the CoUI entry fixes these with
+# it; the brand adds no pair of its own.
+brand dark navigation-bar/icon focus (>=4.5)
+brand dark navigation-bar/icon pressed (>=4.5)
+brand dark navigation-bar/label focus (>=4.5)
+brand dark navigation-bar/label pressed (>=4.5)
+brand dark radio-group/card description on selected tile hover (>=4.5)
+brand dark radio-group/card description on selected tile pressed (>=4.5)
+brand light navigation-bar/bar icon focus (>=4.5)
+brand light navigation-bar/bar icon hover (>=4.5)
+brand light navigation-bar/bar icon pressed (>=4.5)
+brand light navigation-bar/bar label focus (>=4.5)
+brand light navigation-bar/bar label hover (>=4.5)
+brand light navigation-bar/bar label pressed (>=4.5)
+brand light navigation-bar/icon focus (>=4.5)
+brand light navigation-bar/icon hover (>=4.5)
+brand light navigation-bar/icon pressed (>=4.5)
+brand light navigation-bar/icon rest (>=4.5)
+brand light navigation-bar/label focus (>=4.5)
+brand light navigation-bar/label hover (>=4.5)
+brand light navigation-bar/label pressed (>=4.5)
+brand light navigation-bar/label rest (>=4.5)
+brand light onSurfaceSubtle on surfaceContainer (>=4.5)
+brand light onSurfaceSubtle on surfaceContainerLow (>=4.5)
+brand light progress/caption on surface-container rest (>=4.5)
+brand light radio-group/card description on selected tile pressed (>=4.5)
+brand light stat/filled description (>=4.5)
+brand light step-item/current trailing on surface-container (>=4.5)
+brand light step-item/done trailing on surface-container (>=4.5)
+brand light step-item/todo trailing on surface-container (>=4.5)
+brand light table/header hover (>=4.5)
+
+## NavigationBar selected label under the standard mapping — a recorded exception, not debt
+# reason: the selected destination paints a whole-tile face in
+# `surfaceContainerHigh` and its label in `primary`, Bold (#6358). On CoUI's
+# own tones and on `fromColor` brands the pair clears 4.5:1 in every state,
+# and both high-contrast schemes clear it too. A brand on the standard mapping
+# fills `surfaceContainerHigh` from its own neutral ramp, which runs darker in
+# light, so the label drops to 3.26:1 at rest, 3.08 on hover and 2.81 under
+# the focus and pressed layers; in dark only focus and pressed miss (4.35).
+# It is accepted by design decision: selection is not carried by colour
+# alone — the label is Bold where unselected labels stay Medium, and the
+# tile face marks the destination — and the alternative, an `onSurface`
+# label, gives up the decision that selection reads as `primary` ink.
+# The bottom bar's `color` indicator paints no face (#6393): its selected
+# label sits on the bar's own `surface`, and only under the focus and pressed
+# layers does it miss (3.95) — the same layers the resting bar label misses
+# under.
+# These entries leave if the standard mapping's container tones change or
+# the selected ink does; they do not leave by loosening the bar.
+standard dark navigation-bar/label selected focus (>=4.5)
+standard dark navigation-bar/label selected pressed (>=4.5)
+standard dark navigation-bar/sidebar label selected focus (>=4.5)
+standard dark navigation-bar/sidebar label selected pressed (>=4.5)
+standard light navigation-bar/bar label selected focus (>=4.5)
+standard light navigation-bar/bar label selected pressed (>=4.5)
+standard light navigation-bar/label selected (>=4.5)
+standard light navigation-bar/label selected focus (>=4.5)
+standard light navigation-bar/label selected hover (>=4.5)
+standard light navigation-bar/label selected pressed (>=4.5)
+standard light navigation-bar/sidebar label selected (>=4.5)
+standard light navigation-bar/sidebar label selected focus (>=4.5)
+standard light navigation-bar/sidebar label selected hover (>=4.5)
+standard light navigation-bar/sidebar label selected pressed (>=4.5)

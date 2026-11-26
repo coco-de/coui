@@ -1,0 +1,6 @@
+tags:
+  perf:
+    description: >-
+      Wall-clock cost measurements. Load-sensitive, so they are excluded from
+      the blocking `test:dart` run and executed by `test:perf` in a
+      non-required CI job.

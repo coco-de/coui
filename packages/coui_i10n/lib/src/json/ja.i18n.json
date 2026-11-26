@@ -1,0 +1,1464 @@
+{
+  "widgetbook": {
+    "common": {
+      "increment_progress": "進捗を増加させる",
+      "selected_tab": "選択されたタブ: {index}",
+      "current_page": "現在のページ: {page}",
+      "total_pages": "全ページ: {count}",
+      "page_of": "{current}ページ / {total}",
+      "hover_over_icon": "アイコンの上にカーソルを合わせてください",
+      "counter": "カウンター: {count}",
+      "selected_rows": "選択された行: {count}",
+      "value": "値: {value}",
+      "selected_cells": "選択されたセル: {count}"
+    },
+    "loading": {
+      "indeterminate": "無限ローディング",
+      "with_value": "値を含む ({percent}%)",
+      "custom_size": "カスタムサイズ",
+      "custom_height": "カスタム高さ",
+      "circular_progress": "円形進捗",
+      "linear_progress": "線形進捗"
+    },
+    "tabs": {
+      "home": "ホーム",
+      "profile": "プロフィール",
+      "settings": "設定",
+      "overview": "概要",
+      "details": "詳細",
+      "history": "履歴",
+      "overview_content": "概要コンテンツ",
+      "details_content": "詳細コンテンツ",
+      "history_content": "履歴コンテンツ",
+      "general_info": "項目に関する一般情報",
+      "specifications": "詳細仕様と属性",
+      "timeline": "変更と更新のタイムライン"
+    },
+    "pagination": {
+      "show_skip_to_first": "最初にスキップを表示",
+      "show_skip_to_last": "最後にスキップを表示",
+      "hide_previous_on_first": "最初のページで前を隠す",
+      "hide_next_on_last": "最後のページで次を隠す",
+      "max_visible_pages": "最大表示ページ数"
+    },
+    "tooltip": {
+      "helpful_message": "役立つツールチップメッセージです",
+      "tooltip_above": "上のツールチップ",
+      "tooltip_below": "下のツールチップ",
+      "tooltip_left": "左のツールチップ",
+      "tooltip_right": "右のツールチップ",
+      "top": "上",
+      "bottom": "下",
+      "left": "左",
+      "right": "右"
+    },
+    "radio": {
+      "small": "小さい",
+      "medium": "中くらい",
+      "large": "大きい"
+    },
+    "card": {
+      "card_content": "カードコンテンツ",
+      "gradient_card": "グラデーションカード",
+      "custom_decoration": "カスタムデコレーション付きカード"
+    },
+    "alert": {
+      "title": "通知タイトル",
+      "message": "通知メッセージです。"
+    },
+    "accordion": {
+      "what_is_coui": "CoUI Flutterとは？",
+      "what_is_coui_answer": "CoUI Flutterは、一貫したデザインパターンで現代的でアクセスしやすいFlutterアプリケーションを構築するために設計された包括的なUIコンポーネントライブラリです。",
+      "how_to_install": "どのようにインストールしますか？",
+      "how_to_install_answer": "pubspec.yamlの依存関係にcoui_flutterを追加し、flutter pub getを実行してパッケージをインストールしてください。",
+      "is_customizable": "カスタマイズ可能ですか？",
+      "is_customizable_answer": "はい！ CoUI Flutterは、ThemeDataを通じて色、タイポグラフィ、間隔などをカスタマイズできる包括的なテーマサポートを提供します。",
+      "getting_started": "始め方",
+      "getting_started_answer": "パッケージをインストールし、プロジェクトに取り込むことから始めてください。詳細な設定方法はドキュメントを参照してください。",
+      "features_expanded": "機能（基本機能を拡張）",
+      "features_answer": "CoUI Flutterには、ボタン、フォーム、ダイアログ、ナビゲーションコンポーネントなどが含まれています。すべてのコンポーネントは、アクセシビリティとテーマを考慮して設計されています。",
+      "support": "サポート",
+      "support_answer": "質問やサポートが必要な場合は、GitHubリポジトリを訪れるか、docs.coui.devでドキュメントを確認してください。"
+    },
+    "skeleton": {
+      "skeleton_enabled": "スケルトン有効化:",
+      "title_text": "タイトルです",
+      "description_text": "長い説明テキストです",
+      "short_text": "短いテキスト",
+      "without_skeleton": "スケルトンなし:",
+      "with_skeleton": "スケルトン含む:",
+      "user_name": "ユーザー名",
+      "user_email": "user@example.com",
+      "article_title": "記事タイトル",
+      "posted_date": "2024年1月1日掲載",
+      "bio_description": "日常を記録する開発者です",
+      "show_content": "コンテンツを表示",
+      "show_loading": "ローディングを表示",
+      "article_content": "これは記事内容の例です。ローディング中にスケルトンで置き換えられます。"
+    },
+    "toast": {
+      "success": "成功",
+      "operation_completed": "作業が成功裏に完了しました",
+      "show_toast": "トーストを表示",
+      "toast_at": "{location}にトースト",
+      "top_left": "左上",
+      "top_center": "上中央",
+      "top_right": "右上",
+      "bottom_left": "左下",
+      "bottom_center": "下中央",
+      "bottom_right": "右下"
+    },
+    "chip": {
+      "chip": "チップ"
+    },
+    "checkbox": {
+      "accept_terms": "利用規約に同意します",
+      "tristate": "三つの状態"
+    },
+    "toggle": {
+      "toggle": "トグル"
+    },
+    "dialog": {
+      "basic_dialog": "基本ダイアログ",
+      "basic_title": "基本ダイアログ",
+      "basic_content": "タイトルと内容があるシンプルなダイアログです。",
+      "simple_dialog_content": "タイトルと内容のあるシンプルなダイアログです。",
+      "show_basic": "基本表示",
+      "show_basic_dialog": "基本ダイアログを表示",
+      "confirm_action": "アクションを確認",
+      "confirm_title": "確認",
+      "confirm_content": "本当にこの操作を行いますか？",
+      "confirm_action_content": "本当にこのアクションを実行しますか？ このアクションはキャンセルできません。",
+      "cancel": "キャンセル",
+      "confirm": "確認",
+      "show_confirmation": "確認表示",
+      "show_confirmation_dialog": "確認ダイアログを表示",
+      "warning": "警告",
+      "warning_title": "警告",
+      "warning_content": "このアクションはデータに影響を与える可能性があります。慎重に進めてください。",
+      "dismiss": "閉じる",
+      "show_warning": "警告表示",
+      "show_warning_dialog": "警告ダイアログを表示"
+    },
+    "popover": {
+      "popover_content": "ポップオーバーコンテンツ",
+      "content_title": "ポップオーバータイトル",
+      "content_description": "カスタマイズ可能なコンテンツを持つポップオーバーです。",
+      "customizable_content": "カスタマイズ可能なコンテンツを持つポップオーバーです。",
+      "show_popover": "ポップオーバーを表示",
+      "popover_at": "{position}にポップオーバー",
+      "top": "上",
+      "bottom": "下",
+      "left": "左",
+      "right": "右"
+    },
+    "text_field": {
+      "enter_name": "名前を入力してください",
+      "type_here": "ここに入力してください"
+    },
+    "button": {
+      "primary_button": "基本ボタン",
+      "secondary_button": "補助ボタン",
+      "dashed_button": "ファイルアップロード",
+      "upload_file": "ファイルアップロード"
+    },
+    "table": {
+      "name": "名前",
+      "email": "メール",
+      "role": "役割",
+      "john_doe": "ジョンドー",
+      "john_email": "hong@example.com",
+      "developer": "開発者",
+      "jane_smith": "ジェーンスミス",
+      "jane_email": "kim@example.com",
+      "designer": "デザイナー",
+      "bob_johnson": "ボブジョンソン",
+      "bob_email": "lee@example.com",
+      "manager": "マネージャー",
+      "select": "選択",
+      "product": "製品",
+      "price": "価格",
+      "stock": "在庫",
+      "laptop": "ノートパソコン",
+      "mouse": "マウス",
+      "keyboard": "キーボード"
+    },
+    "switch": {
+      "switch": "スイッチ"
+    },
+    "switch_component": {
+      "switch_label": "スイッチラベル"
+    },
+    "select": {
+      "apple": "リンゴ",
+      "banana": "バナナ",
+      "cherry": "さくらんぼ",
+      "date": "デーツ",
+      "choose_size": "サイズを選択してください",
+      "small": "小さい",
+      "medium": "中くらい",
+      "large": "大きい",
+      "extra_large": "特大"
+    },
+    "breadcrumb": {
+      "home": "ホーム",
+      "products": "製品",
+      "electronics": "電子製品",
+      "smartphones": "スマートフォン",
+      "documents": "文書",
+      "projects": "プロジェクト",
+      "current_folder": "現在のフォルダー",
+      "current_path": "現在のパス: {path}"
+    },
+    "badge": {
+      "primary": "基本",
+      "secondary": "補助",
+      "outline": "外枠",
+      "destructive": "危険",
+      "featured": "おすすめ",
+      "more": "もっと見る",
+      "verified": "認証済み",
+      "error": "エラー",
+      "click_me": "クリックしてください",
+      "clickable": "クリック可能"
+    },
+    "themePreview": {
+      "title": "テーマプレビュー",
+      "description": "すべてのテーマトークンとコンポーネントスタイルの包括的な概要",
+      "color_palette": "カラーパレット",
+      "brand_colors": "ブランドカラー",
+      "base_colors": "基本カラー",
+      "status_colors": "ステータスカラー",
+      "buttons": "ボタン",
+      "primary_button": "プライマリ",
+      "secondary_button": "セカンダリ",
+      "outline_button": "アウトライン",
+      "ghost_button": "ゴースト",
+      "destructive_button": "破壊的",
+      "disabled_button": "無効",
+      "cards": "カード",
+      "card_title": "カードタイトル",
+      "card_description": "サンプルカードの説明です。",
+      "surface_card": "サーフェスカード",
+      "filled_variant": "背景のあるフィルドスタイル",
+      "form_elements": "フォーム要素",
+      "text_input_placeholder": "テキストを入力してください...",
+      "checkbox_checked": "選択済み",
+      "checkbox_unchecked": "選択されていない",
+      "toggle_on": "オン",
+      "toggle_off": "オフ",
+      "alerts": "アラート",
+      "info_alert": "情報アラート",
+      "info_alert_message": "ガイダンスメッセージです。",
+      "error_alert": "エラーアラート",
+      "error_alert_message": "問題が発生しました。",
+      "badges_chips": "バッジ & チップ",
+      "primary_badge": "プライマリ",
+      "secondary_badge": "セカンダリ",
+      "outline_badge": "アウトライン",
+      "destructive_badge": "破壊的",
+      "chip_example": "お気に入り",
+      "typography": "タイポグラフィ",
+      "heading_1": "見出し 1",
+      "heading_2": "見出し 2",
+      "heading_3": "見出し 3",
+      "heading_4": "見出し 4",
+      "body_text": "通常の太さの本文テキストです。",
+      "small_text": "キャプション用の小さなテキストです。",
+      "muted_text": "副次情報用の薄いテキストです。",
+      "bold_text": "強調のための太字テキストです。",
+      "spacing_radius": "間隔 & 丸み",
+      "border_radius": "ボーダーの丸み",
+      "loading_states": "ローディング状態"
+    },
+    "chat": {
+      "hello": "こんにちは！お元気ですか？",
+      "doing_great": "元気です、ありがとう！",
+      "nice_weather": "今日はいい天気ですね！",
+      "yes_beautiful": "はい、きれいですね！",
+      "sender": "送信者",
+      "receiver": "受信者"
+    },
+    "multiple_choice": {
+      "option_a": "Option A",
+      "option_b": "Option B",
+      "option_c": "Option C",
+      "option_d": "Option D",
+      "selected_value": "選択: {value}",
+      "selected_values": "選択: {values}"
+    },
+    "formatted_input": {
+      "date_format": "日付形式 (MM/DD/YYYY)",
+      "time_format": "時間形式 (HH:MM)",
+      "current_value": "現在の値: {value}"
+    },
+    "swiper": {
+      "swipe_hint": "スワイプまたはタップして開く",
+      "overlay_content": "オーバーレイコンテンツ",
+      "close": "閉じる"
+    }
+  },
+  "docs": {
+    "common": {
+      "app_name": "coui_flutter",
+      "search_documentation": "ドキュメントを検索...",
+      "docs": "ドキュメント",
+      "components": "コンポーネント",
+      "close": "閉じる",
+      "on_this_page": "このページの目次",
+      "work_in_progress_title": "開発中",
+      "work_in_progress_message": "このページはまだ開発中です。後で再訪してください。",
+      "add": "追加",
+      "reset": "リセット",
+      "prev": "前へ",
+      "next": "次へ",
+      "finish": "完了",
+      "open": "開く",
+      "disabled": "無効",
+      "refresh": "更新",
+      "rebuild": "再構築",
+      "change_color": "色の変更"
+    },
+    "badges": {
+      "new": "新しい",
+      "updated": "更新済み",
+      "wip": "作成中",
+      "experimental": "実験的"
+    },
+    "flavors": {
+      "local": "ローカル",
+      "experimental": "実験的",
+      "unknown": "不明"
+    },
+    "navigation": {
+      "getting_started": "始める",
+      "animation": "アニメーション",
+      "control": "コントロール",
+      "disclosure": "開示",
+      "display": "表示",
+      "feedback": "フィードバック",
+      "form": "フォーム",
+      "layout": "レイアウト",
+      "navigation": "ナビゲーション",
+      "overlay": "オーバーレイ",
+      "utility": "ユーティリティ",
+      "my_account": "私のアカウント",
+      "profile": "プロフィール",
+      "settings": "設定",
+      "team": "チーム",
+      "new_team": "新しいチーム",
+      "billing": "請求",
+      "api": "API",
+      "log_out": "ログアウト",
+      "support": "サポート",
+      "invite_users": "ユーザーを招待",
+      "more": "もっと見る",
+      "github": "GitHub",
+      "note": "ノート",
+      "message": "メッセージ",
+      "keyboard_shortcuts": "キーボードショートカット"
+    },
+    "pages": {
+      "introduction": {
+        "title": "紹介",
+        "description": "coui_flutterを始める",
+        "lead": "Coui/UIの美しくデザインされたコンポーネントがFlutterで使用できるようになりました。",
+        "welcome_paragraph_1": "coui_flutterは、Flutterデスクトップとウェブアプリケーションのために特別に設計された多様で包括的なUIコンポーネントセットです。クロスプラットフォームアプリの構築が増加する中で、デスクトップとウェブインターフェースの独自のデザイン要件を強調するツールキットの必要性を認識しました。",
+        "welcome_paragraph_2": "このパッケージは、現代的なデスクトップおよびウェブデザイン原則に合った幅広いカスタマイズ可能でレスポンシブなコンポーネントを提供します。洗練されたビジネスアプリケーション、スタイリッシュなダッシュボード、または生産性ツールを構築する際に、私たちのコンポーネントはプロフェッショナルで洗練されたUIを迅速かつ効率的に作成するために設計されています。",
+        "features": "主な機能",
+        "features_list": {
+          "components_count": "84のコンポーネントがあり、さらに増加中！",
+          "material_cupertino": "MaterialおよびCupertinoウィジェットをサポートし、テーマは現在coui_flutterテーマに合わせて調整されています。",
+          "premade_themes": "Coui/UIのプレミadeテーマ。",
+          "platform_support": "モバイル、ウェブ、デスクトッププラットフォームのサポート。",
+          "middle_drag": "中間ドラッグスクロールをサポート。",
+          "typography_extensions": "タイポグラフィ用のさまざまなウィジェット拡張。",
+          "webassembly": "パフォーマンス向上のためのWebAssemblyサポート。"
+        },
+        "notes": "注意事項",
+        "notes_paragraph_1": "このパッケージはまだ開発中であり、今後変更がある可能性があります。本番環境でこのパッケージを使用する際は注意してください。",
+        "notes_paragraph_2": "このパッケージはCoui/UIとは提携していません。このパッケージはコミュニティ主導のプロジェクトです。",
+        "faq": "よくある質問",
+        "faq_gorouter_q": "GoRouterをサポートしていますか？",
+        "faq_gorouter_a": "はい、サポートしています。coui_flutterと一緒にGoRouterを使用できます。",
+        "faq_usage_q": "私のプロジェクトで使用できますか？",
+        "faq_usage_a": "はい！個人および商業プロジェクトに無料で使用できます。著作権表示は不要です。",
+        "faq_material_q": "Material/Cupertinoウィジェットと一緒に使用できますか？",
+        "faq_material_a_1": "もちろんです！",
+        "faq_material_a_2": "このページをご覧ください！",
+        "faq_style_q": "どのスタイルを使用するか設定できますか？ (Default/New York)",
+        "faq_style_a_1": "残念ながらできません。このパッケージはNew Yorkスタイルのみをサポートしています。しかし、一度Coui/UIの基本スタイルが必要な場合は、",
+        "faq_style_a_2": "このパッケージ",
+        "faq_style_a_3": "をお勧めします。制作者：",
+        "links": "リンク",
+        "link_github": "Github: ",
+        "link_pubdev": "pub.dev: ",
+        "link_discord": "Discord: "
+      },
+      "installation": {
+        "title": "インストール",
+        "description": "プロジェクトにcoui_flutterをインストールする",
+        "stable_version": "安定版",
+        "experimental_version": "実験版",
+        "step1_title": "新しいFlutterプロジェクトを作成",
+        "step1_content": "次のコマンドを使用して新しいFlutterプロジェクトを作成します:",
+        "step2_title": "依存関係の追加",
+        "step2_content": "次に、プロジェクトにcoui_flutterの依存関係を追加します。",
+        "step3_title": "パッケージのインポート",
+        "step3_content": "これで、Dartコードでパッケージをインポートできます。",
+        "step4_title": "CouiAppウィジェットの追加",
+        "step4_content": "main関数にCouiAppウィジェットを追加します。",
+        "step5_title": "アプリの実行",
+        "step5_content": "次のコマンドを使用してアプリを実行します:",
+        "experimental_intro": "実験版はGitHubで利用できます。",
+        "experimental_usage": "実験版を使用するには、pubspec.yamlファイルでバージョン番号の代わりにgitを使用します:",
+        "see_page": "参照: ",
+        "this_page": "このページ",
+        "for_more_info": " 詳細情報。",
+        "warning_title": "警告",
+        "warning_content": "実験版には互換性を壊す変更が含まれている可能性があり、プロダクションでの使用は推奨されません。このバージョンはテストおよび開発目的でのみ使用されます。"
+      },
+      "theme": {
+        "title": "テーマ",
+        "description": "テーマのカスタマイズ",
+        "custom_color_scheme": "カスタムカラースキーム",
+        "custom_color_scheme_desc": "カスタムカラースキームを使用してアプリの外観をカスタマイズできます。",
+        "premade_color_schemes": "プレメイドカラースキーム",
+        "premade_color_schemes_desc": "プレメイドカラースキームを使用してアプリの外観をカスタマイズできます。",
+        "radius": "半径",
+        "radius_desc": "半径を変更してアプリがどれだけ丸く見えるかをカスタマイズできます。",
+        "scaling": "スケーリング",
+        "scaling_desc": "スケーリングを変更してcoui_flutterコンポーネントのサイズをカスタマイズできます。",
+        "scaling_alert": "全体のアプリを拡大/縮小しません。coui_flutterコンポーネントのみに影響があります。",
+        "surface_opacity": "表面の不透明度",
+        "surface_opacity_desc": "表面の不透明度を変更して表面の不透明度をカスタマイズできます。",
+        "surface_blur": "表面のぼかし",
+        "surface_blur_desc": "表面のぼかしを変更して表面のぼかしをカスタマイズできます。",
+        "code": "コード",
+        "code_desc": "次のコードを使用してカラースキームを適用してください。"
+      },
+      "typography": {
+        "title": "タイポグラフィ",
+        "description": "テキストスタイル",
+        "headline1": "見出し1",
+        "headline2": "見出し2",
+        "headline3": "見出し3",
+        "headline4": "見出し4",
+        "paragraph": "段落",
+        "blockquote": "引用",
+        "list": "リスト",
+        "inline_code": "インラインコード",
+        "lead": "リード",
+        "large_text": "大きなテキスト",
+        "small_text": "小さなテキスト",
+        "muted_text": "グレーのテキスト",
+        "sans": "サンセリフ",
+        "mono": "モノスペース",
+        "extra_small": "非常に小さい",
+        "small": "小さい",
+        "base": "基本",
+        "large": "大きい",
+        "extra_large": "非常に大きい",
+        "extra_2x_large": "非常に2倍の大きさ",
+        "extra_3x_large": "非常に3倍の大きさ",
+        "extra_4x_large": "非常に4倍の大きさ",
+        "extra_5x_large": "非常に5倍の大きさ",
+        "extra_6x_large": "非常に6倍の大きさ",
+        "extra_7x_large": "非常に7倍の大きさ",
+        "extra_8x_large": "非常に8倍の大きさ",
+        "extra_9x_large": "非常に9倍の大きさ",
+        "thin": "細い",
+        "extra_light": "非常に軽い",
+        "light": "軽い",
+        "normal": "通常",
+        "medium": "中間",
+        "semi_bold": "セミボールド",
+        "bold": "ボールド",
+        "extra_bold": "非常にボールド",
+        "black": "ブラック",
+        "italic": "イタリック"
+      },
+      "layout": {
+        "title": "レイアウト",
+        "description": "ページレイアウトの構成",
+        "padding": "パディング",
+        "margin": "マージン",
+        "center": "センター",
+        "gapped_column": "間隔のあるカラム",
+        "gapped_row": "間隔のある行",
+        "separated_column": "分離されたカラム",
+        "separated_row": "分離された行",
+        "basic_layout": "基本レイアウト"
+      },
+      "web_preloader": {
+        "title": "ウェブプレローダー",
+        "description": "ウェブローディング画面",
+        "step1_title": "ウェブディレクトリを作成",
+        "step1_content": "ウェブディレクトリがない場合は作成してください。",
+        "step1_note": "* レガシーFlutterウェブを使用している場合は、上記のコマンドを使用してアップグレードする必要があります。",
+        "step1_button": "詳細情報はこちらをクリックしてください。",
+        "step2_title": "スクリプトを追加",
+        "step2_content": "次に、次のプリメイドのプリローダーのいずれかを選択し、コピーしてください:",
+        "step2_standard": "標準プリローダー",
+        "step3_title": "スクリプトを貼り付け",
+        "step3_content_1": "あなたの",
+        "step3_content_2": "ファイルを開き、",
+        "step3_content_3": "タグ内にスクリプトを貼り付けてください。",
+        "step3_example": "例えば:",
+        "step4_title": "アプリを実行",
+        "step4_content": "次のコマンドを使用してアプリを実行してください。",
+        "alert_title": "貢献する",
+        "alert_content_1": "共有したいプリローダーがある場合は、",
+        "alert_button": "web_loaders",
+        "alert_content_2": "ディレクトリにプルリクエストを作成してください。"
+      },
+      "components_list": {
+        "title": "コンポーネント",
+        "description": "再利用可能なコンポーネントのリスト",
+        "work_in_progress": "作業中",
+        "animation": "アニメーション",
+        "disclosure": "開示",
+        "feedback": "フィードバック",
+        "forms": "フォーム",
+        "layout": "レイアウト",
+        "navigation": "ナビゲーション",
+        "surfaces": "表面",
+        "data_display": "データ表示",
+        "utilities": "ユーティリティ"
+      },
+      "icons": {
+        "title": "アイコン",
+        "description": "アイコンシステム",
+        "use_this_code": "このアイコンを表示するには、次のコードを使用してください：",
+        "search_icons": "アイコン検索",
+        "radix_icons": "Radixアイコン",
+        "bootstrap_icons": "Bootstrapアイコン",
+        "lucide_icons": "Lucideアイコン"
+      },
+      "colors": {
+        "title": "色",
+        "description": "カラーパレット",
+        "use_this_code": "この色を表示するには、次のコードを使用してください：",
+        "color_and_colorshades": "ColorおよびColorShades/ColorSwatch定数",
+        "predefined_colors": "あらかじめ定義された色",
+        "generate_color": "色を生成",
+        "hue_shift": "色相シフト",
+        "saturation_step_up": "彩度増加ステップ",
+        "saturation_step_down": "彩度減少ステップ",
+        "lightness_step_up": "明度増加ステップ",
+        "lightness_step_down": "明度減少ステップ",
+        "cancel": "キャンセル",
+        "reset_options": "オプションをリセット",
+        "reset_confirmation": "オプションをリセットしますか？"
+      },
+      "external": {
+        "title": "Material/Cupertino",
+        "description": "Flutterの基本ウィジェット"
+      },
+      "state": {
+        "title": "状態管理",
+        "description": "状態管理パターン",
+        "intro_1": "Flutterでは、すべてがウィジェットであり、データが保存される場所も同じです。",
+        "intro_2": "内部的にcoui_flutterは独自の状態管理システムを持っています。すでに状態管理システムを使用している場合は、coui_flutterと共に使用し続けることができます。",
+        "passing_data_to_children": "子にデータを渡す",
+        "passing_data_desc": "Dataウィジェットを使用して、子にデータを渡すことができます。データで発生するすべての変更は、子を再構築します。",
+        "rebuild_difference_title": "再構築回数の違いに気づきましたか？",
+        "rebuild_difference_content": "MostInnerWidgetはデータが変更されると再構築されますが、InnerWidgetはそうではありません。これはInnerWidgetがデータを受信していないからです。",
+        "setting_data_boundary": "データ境界の設定",
+        "setting_data_boundary_desc": "子がデータにアクセスできないように境界を設定できます。",
+        "data_methods_vs": "Data.maybeOf/Data.of vs Data.maybeFind/Data.find",
+        "data_methods_desc_1": "と",
+        "data_methods_desc_2": "はデータを受信し、データが変更されるとウィジェットを再構築します。一方、",
+        "data_methods_desc_3": "はデータを受信せず、データのみを返します。",
+        "data_find_usage": "はonPressed、onLongPressedなどのメソッドが一度だけ呼び出される場所で使用するのに適しています。",
+        "data_of_usage": "はデータが変更されるとウィジェットを再構築する必要があるbuildメソッド内で使用するのに適しています。",
+        "getting_data_from_child": "子からデータを取得",
+        "getting_data_desc_1": "メソッドを使用して子からデータを取得できます。このメソッドはデータで発生する変更を受信しません。",
+        "getting_data_desc_2": "子のデータを受信すると、無限再構築ループが発生する可能性があります。データを受信する必要がある場合は、親ウィジェットに移動してください。",
+        "root_data_title": "ルートデータに気づきましたか？",
+        "root_data_content": "左側の最も内側のデータのデータを使用します。親は最初に接続された子からのみデータを取得できるためです。",
+        "setting_messenger_boundary": "DataMessenger境界の設定",
+        "setting_messenger_boundary_desc": "特定の親から子データを取得できないように境界を設定できます。",
+        "multidata_widget": "MultiDataウィジェット",
+        "multidata_desc": "MultiDataウィジェットを使用すると、子に複数のデータを渡すことができます。次の例を見てください：",
+        "multidata_avoid_nesting": "MultiDataウィジェットを使用してネストを回避できます。",
+        "example": "例",
+        "passing_state_as_controller": "コントローラとして状態を渡す",
+        "passing_state_controller_desc": "状態をコントローラとして子に渡すことができます。これにより、子ウィジェットから親ウィジェットのメソッドを呼び出すことができます。",
+        "databuilder": "DataBuilder",
+        "databuilder_desc": "DataBuilderウィジェットを使用すると、データが変更されるとウィジェットを再構築できます。これは、全体のウィジェットを再構築するのを避けます。",
+        "datanotifier": "DataNotifier",
+        "datanotifier_desc": "DataNotifierを使用すると、ValueListenableから子に値を渡すことができます。",
+        "example_with_multidata": "MultiDataを使用した例",
+        "passing_object_as_data": "オブジェクトをデータとして渡す",
+        "passing_object_desc": "オブジェクトをデータとして渡すときに考慮すべき事項がいくつかあります：",
+        "override_equals_hashcode": "1. ==とhashCodeのオーバーライド",
+        "override_equals_desc": "前のオブジェクトが新しいオブジェクトと異なるとき、子に通知が送信されます。==とhashCodeをオーバーライドしない場合、フィールドの値が同じであっても、オブジェクトはインスタンス化されるたびに常に異なるものと見なされます。",
+        "use_distinctdata": "2. DistinctDataを使用",
+        "use_distinctdata_desc": "DistinctDataは特定のフィールドが変更されたときに子に通知できるミックスインです。",
+        "passing_mutable_object": "3. 可変オブジェクトを子に渡す",
+        "passing_mutable_object_desc": "子に不変のオブジェクトを渡す方が良いです。可変オブジェクト（例：List、Map、Set、Widget State）はオブジェクト参照が変更されないため、オブジェクトが変更されても子に通知されません。",
+        "passing_variable_to_children": "子に変数を渡す",
+        "passing_variable_desc": "子に変数を渡すには、Modelウィジェットを使用できます。Dataウィジェットに似ていますが、タイプが厳密でラベル付けされています。",
+        "change_variable_from_children": "子で変数を変更",
+        "change_variable_desc": "子でモデル値を変更する方法が2つあります：",
+        "modelnotifier": "ModelNotifier",
+        "modelnotifier_desc": "ModelNotifierを使用すると、ValueNotifierから子に値を渡すことができます。親ウィジェットでsetStateを使う必要はありません。",
+        "modellistenable": "ModelListenable",
+        "modellistenable_desc": "ModelListenableは読み取り専用のModelNotifierです。子は値を受信することのみができます。値を変更しようとするとエラーが発生します。",
+        "modelbuilder": "ModelBuilder",
+        "modelbuilder_desc": "ModelBuilderは値が変更されるとウィジェットを受信し、再構築します。DataBuilderに似ていますが、タイプが厳密でラベル付けされています。"
+      }
+    },
+    "components": {
+      "accordion": {
+        "display_name": "アコーディオン",
+        "description": "アコーディオンは、縦に積み上げられた項目のリストです。各項目を「展開」または「折りたたむ」ことで、その項目に関連するコンテンツを表示できます。",
+        "examples": {
+          "basic": "アコーディオンの例"
+        }
+      },
+      "alert": {
+        "display_name": "アラート",
+        "description": "アラートは、システムに影響を与える状態を伝えるために使用されます。",
+        "examples": {
+          "basic": "アラートの例",
+          "destructive": "危険アラートの例"
+        },
+        "title": "アラートのタイトル",
+        "content": "アラートの内容です。"
+      },
+      "alert_dialog": {
+        "display_name": "アラートダイアログ",
+        "description": "アラートダイアログは、ユーザーの注意を必要とする重要な情報を表示します。",
+        "examples": {
+          "basic": "アラートダイアログの例"
+        },
+        "click_here": "ここをクリックしてください",
+        "alert_title": "アラートのタイトル",
+        "alert_content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      "animated_value_builder": {
+        "display_name": "アニメーション値ビルダー",
+        "description": "値変更時にアニメーションを自動的に適用するビルダーです。",
+        "examples": {
+          "basic": "アニメーション値ビルダーの例"
+        }
+      },
+      "app_bar": {
+        "display_name": "アプリバー",
+        "description": "アプリバーは、アプリの上部に表示される基本的なナビゲーション要素です。",
+        "examples": {
+          "basic": "アプリバーの例"
+        }
+      },
+      "autocomplete": {
+        "display_name": "オートコンプリート",
+        "description": "ユーザーの入力に応じて提案を表示する入力フィールドです。",
+        "examples": {
+          "basic": "オートコンプリートの例"
+        }
+      },
+      "avatar": {
+        "display_name": "アバター",
+        "description": "ユーザーまたはエンティティを表す画像またはアイコンです。",
+        "examples": {
+          "basic": "アバターの例"
+        }
+      },
+      "avatar_group": {
+        "display_name": "アバターグループ",
+        "description": "複数のアバターをまとめて表示します。",
+        "examples": {
+          "basic": "アバターグループの例"
+        }
+      },
+      "badge": {
+        "display_name": "バッジ",
+        "description": "状態または通知の数を表示する小さなラベルです。",
+        "examples": {
+          "basic": "バッジの例"
+        },
+        "primary": "プライマリ",
+        "secondary": "セカンダリ",
+        "outline": "アウトライン",
+        "destructive": "破壊的"
+      },
+      "breadcrumb": {
+        "display_name": "ブレッドクラム",
+        "description": "ブレッドクラムは、ウェブサイトやウェブアプリケーションにおけるユーザーの位置を示す補助的なナビゲーションシステムです。",
+        "examples": {
+          "basic": "ブレッドクラムの例"
+        },
+        "home": "ホーム",
+        "components": "コンポーネント"
+      },
+      "button": {
+        "display_name": "ボタン",
+        "description": "ボタンを使用すると、ユーザーが1回タップでアクションを実行し、選択できます。",
+        "examples": {
+          "primary": "プライマリボタンの例",
+          "secondary": "セカンダリボタンの例",
+          "outline": "アウトラインボタンの例",
+          "ghost": "ゴーストボタンの例",
+          "destructive": "危険ボタンの例",
+          "link": "リンクボタンの例",
+          "text": "テキストボタンの例",
+          "disabled": "無効ボタンの例",
+          "icon": "アイコンボタンの例",
+          "icon_with_label": "ラベル付きアイコンボタンの例",
+          "size": "ボタンサイズの例",
+          "density": "ボタン密度の例",
+          "shape": "ボタン形状の例",
+          "group": "ボタングループの例",
+          "stated": "状態ボタンの例",
+          "card": "カードボタンの例",
+          "custom": "カスタムボタンの例"
+        },
+        "primary": "プライマリ",
+        "secondary": "セカンダリ",
+        "outlined": "アウトライン",
+        "ghost": "ゴースト",
+        "destructive": "破壊的",
+        "link": "リンク",
+        "outline": "外枠",
+        "text": "テキスト",
+        "extra_small": "エクストラスモール",
+        "small": "スモール",
+        "normal": "ノーマル",
+        "large": "ラージ",
+        "extra_large": "エクストララージ",
+        "save": "保存",
+        "cancel": "キャンセル",
+        "close": "閉じる",
+        "submit": "提出",
+        "edit_profile": "プロフィールを編集",
+        "save_changes": "変更を保存",
+        "undo": "元に戻す",
+        "compact": "コンパクト",
+        "dense": "密",
+        "comfortable": "快適",
+        "icon": "アイコン",
+        "icon_comfortable": "アイコン快適",
+        "rectangle": "長方形",
+        "add": "追加",
+        "focused": "フォーカス",
+        "hovered": "ホバー",
+        "pressed": "押された",
+        "text_button": "テキストボタン",
+        "custom_button": "カスタムボタン"
+      },
+      "calendar": {
+        "display_name": "カレンダー",
+        "description": "日付を選択して表示するカレンダーコンポーネントです。",
+        "examples": {
+          "basic": "カレンダーの例"
+        }
+      },
+      "card": {
+        "display_name": "カード",
+        "description": "説明",
+        "examples": {
+          "basic": "カードの例"
+        },
+        "create_project": "プロジェクトを作成",
+        "deploy_description": "ワンクリックで新しいプロジェクトをデプロイします",
+        "name": "名前",
+        "name_placeholder": "プロジェクト名",
+        "description_placeholder": "プロジェクトの説明",
+        "deploy": "デプロイ"
+      },
+      "card_image": {
+        "display_name": "画像カード",
+        "description": "画像を含むカードコンポーネントです。",
+        "examples": {
+          "basic": "画像カードの例"
+        },
+        "card_image_title": "カード画像",
+        "card_clicked": "カード画像がクリックされました",
+        "card_number": "カード番号 {n}",
+        "lorem_ipsum": "Lorem ipsum dolor sit amet"
+      },
+      "carousel": {
+        "display_name": "カルーセル",
+        "description": "複数の項目をスライドで表示するコンポーネントです。",
+        "examples": {
+          "basic": "カルーセルの例"
+        }
+      },
+      "checkbox": {
+        "display_name": "チェックボックス",
+        "description": "チェックボックスを使用すると、ユーザーがリストから1つ以上の項目を選択できます。",
+        "examples": {
+          "basic": "チェックボックスの例"
+        },
+        "remember_me": "覚えておいて"
+      },
+      "chip": {
+        "display_name": "チップ",
+        "description": "チップは属性、選択肢、またはアクションを示す小さな要素です。",
+        "examples": {
+          "basic": "チップの例"
+        },
+        "apple": "リンゴ",
+        "banana": "バナナ",
+        "cherry": "さくらんぼ",
+        "durian": "ドリアン",
+        "elderberry": "エルダーベリー"
+      },
+      "chip_input": {
+        "display_name": "チップ入力",
+        "description": "複数の値をチップ形式で入力できる入力フィールドです。",
+        "examples": {
+          "basic": "チップ入力の例"
+        }
+      },
+      "circular_progress": {
+        "display_name": "円形の進捗",
+        "description": "円形の進捗インジケーターです。",
+        "examples": {
+          "basic": "円形の進捗の例"
+        },
+        "increase_by_10": "10増加",
+        "decrease_by_10": "10減少"
+      },
+      "code_snippet": {
+        "display_name": "コードスニペット",
+        "description": "コードを表示するコンポーネントです。",
+        "examples": {
+          "basic": "コードスニペットの例"
+        }
+      },
+      "collapsible": {
+        "display_name": "折りたたみ可能",
+        "description": "折りたたむまたは展開できるコンテンツコンテナです。",
+        "examples": {
+          "basic": "折りたたみ可能の例"
+        },
+        "starred_repositories": "@coco-deが3つのリポジトリに星を付けました",
+        "collapse_all": "すべて折りたたむ",
+        "expand_all": "すべて展開する",
+        "expand_icon": "アイコンを展開",
+        "use_path_branch": "パスとブランチを使用",
+        "recursive_selection": "再帰的選択"
+      },
+      "color_picker": {
+        "display_name": "カラーセレクター",
+        "description": "色を選択できるコンポーネントです。",
+        "examples": {
+          "basic": "カラーセレクターの例"
+        },
+        "pick_color": "色を選択",
+        "color_label": "色: {color}",
+        "select_color": "色を選択",
+        "open_color_picker_popover": "カラーセレクターポップオーバーを開く",
+        "open_color_picker_dialog": "カラーセレクターダイアログを開く"
+      },
+      "command": {
+        "display_name": "コマンド",
+        "description": "項目を検索できるコンポーネントです。",
+        "examples": {
+          "basic": "コマンドの例"
+        }
+      },
+      "context_menu": {
+        "display_name": "コンテキストメニュー",
+        "description": "右クリックまたは長押しで表示されるメニューです。",
+        "examples": {
+          "basic": "コンテキストメニューの例"
+        }
+      },
+      "date_picker": {
+        "display_name": "日付選択",
+        "description": "日付を選択できる入力フィールドです。",
+        "examples": {
+          "basic": "日付選択の例"
+        },
+        "select_date": "日付を選択",
+        "select_date_range": "日付範囲を選択"
+      },
+      "dialog": {
+        "display_name": "ダイアログ",
+        "description": "ダイアログは、アプリの他の部分の上に表示されるモーダルウィンドウです。",
+        "examples": {
+          "basic": "ダイアログの例"
+        },
+        "edit_profile_title": "プロフィールを編集",
+        "edit_profile_description": "ここでプロフィールを変更してください。完了したら保存をクリックしてください。",
+        "name_label": "名前",
+        "username_label": "ユーザー名",
+        "hello": "こんにちは",
+        "material_dialog_content": "マテリアルダイアログです",
+        "cupertino_dialog_content": "クパチーノダイアログです",
+        "alert_title": "アラートのタイトル",
+        "click_here": "ここをクリックしてください",
+        "ok": "確認",
+        "open_material_dialog": "マテリアルダイアログを開く",
+        "open_cupertino_dialog": "クパチーノダイアログを開く",
+        "open_coui_dialog": "COUIダイアログを開く"
+      },
+      "divider": {
+        "display_name": "区切り線",
+        "description": "コンテンツを視覚的に区分けする線です。",
+        "examples": {
+          "basic": "区切り線の例"
+        },
+        "item_1": "アイテム1",
+        "item_2": "アイテム2",
+        "item_3": "アイテム3",
+        "divider": "区切り線"
+      },
+      "dot_indicator": {
+        "display_name": "ドットインジケーター",
+        "description": "現在位置を点で示すインジケーターです。",
+        "examples": {
+          "basic": "ドットインジケーターの例"
+        }
+      },
+      "drawer": {
+        "display_name": "ドロワー",
+        "description": "画面の端からスライドするパネルです。",
+        "examples": {
+          "basic": "ドロワーの例"
+        },
+        "open_drawer": "ドロワーを開く",
+        "close_drawer": "ドロワーを閉じる",
+        "open_another_drawer": "別のドロワーを開く",
+        "drawer_at": "ドロワー {count} 番目 at {position}"
+      },
+      "dropdown_menu": {
+        "display_name": "ドロップダウンメニュー",
+        "description": "選択可能なオプションのリストを表示するメニューです。",
+        "examples": {
+          "basic": "ドロップダウンメニューの例"
+        }
+      },
+      "expandable_sidebar": {
+        "display_name": "拡張可能なサイドバー",
+        "description": "展開及び折りたたみ可能なサイドバーです。",
+        "examples": {
+          "basic": "拡張可能なサイドバーの例"
+        }
+      },
+      "form": {
+        "display_name": "フォーム",
+        "description": "フォームのバリデーションを容易に作成できるヘルパーウィジェットです。",
+        "examples": {
+          "table_layout": "フォームの例 (テーブルレイアウト)",
+          "column_layout": "フォームの例 (カラムレイアウト)",
+          "validation_mode": "バリデーションモードの例"
+        },
+        "username_label": "ユーザー名",
+        "username_hint": "公開される名前です",
+        "password_label": "パスワード",
+        "confirm_password_label": "パスワードの確認",
+        "passwords_do_not_match": "パスワードが一致しません",
+        "agree_terms": "利用規約に同意します",
+        "must_agree_terms": "利用規約に同意する必要があります",
+        "form_values_title": "フォーム値",
+        "register": "登録",
+        "username_already_taken": "ユーザー名はすでに使用されています",
+        "email": "メール",
+        "username_display": "ユーザー名: {value}",
+        "password_display": "パスワード: {value}",
+        "confirm_password_display": "パスワードの確認: {value}",
+        "agree_display": "同意: {value}",
+        "json_display": "JSON: {value}",
+        "submitted_value_display": "提出された値: {value}",
+        "login": "ログイン",
+        "sign_up": "サインアップ",
+        "dont_have_account": "アカウントをお持ちでないですか？",
+        "already_have_account": "すでにアカウントをお持ちですか？"
+      },
+      "formatted_input": {
+        "display_name": "フォーマット入力",
+        "description": "特定の形式で入力されるテキストフィールドです。",
+        "examples": {
+          "basic": "フォーマット入力の例"
+        }
+      },
+      "hover_card": {
+        "display_name": "ホバーカード",
+        "description": "ホバー時に表示されるカードです。",
+        "examples": {
+          "basic": "ホバーカードの例"
+        },
+        "flutter_handle": "@flutter",
+        "flutter_username": "Flutter",
+        "flutter_description": "Flutter SDKは、単一のコードベースからモバイル、ウェブ、デスクトップ用の美しいアプリを構築できるツールを提供します。"
+      },
+      "input": {
+        "display_name": "入力",
+        "description": "テキスト入力フィールドです。",
+        "examples": {
+          "basic": "入力の例"
+        },
+        "enter_name": "名前を入力してください",
+        "enter_username": "ユーザー名を入力してください",
+        "username_already_taken": "ユーザー名はすでに使用されています",
+        "hello_world": "こんにちは世界！",
+        "search_something": "何かを検索...",
+        "email": "メールアドレス",
+        "password": "パスワードを入力してください",
+        "username_hint": "これはあなたのユーザー名用です"
+      },
+      "input_otp": {
+        "display_name": "OTP入力",
+        "description": "一回限りのパスワードを入力するフィールドです。",
+        "examples": {
+          "basic": "OTP入力の例"
+        }
+      },
+      "item_picker": {
+        "display_name": "アイテムピッカー",
+        "description": "リストからアイテムを選択できるコンポーネントです。",
+        "examples": {
+          "basic": "アイテムピッカーの例"
+        }
+      },
+      "keyboard_display": {
+        "display_name": "キーボード表示",
+        "description": "キーボードショートカットを表示するコンポーネントです。",
+        "examples": {
+          "basic": "キーボード表示の例"
+        }
+      },
+      "linear_progress": {
+        "display_name": "線形進捗",
+        "description": "線形進捗インジケーターです。",
+        "examples": {
+          "basic": "線形進捗の例"
+        },
+        "increase": "増加",
+        "decrease": "減少"
+      },
+      "material": {
+        "display_name": "Material/Cupertino",
+        "description": "Flutterの基本MaterialおよびCupertinoウィジェットを使用する方法です。",
+        "examples": {
+          "basic": "Material/Cupertinoの例"
+        },
+        "my_material_app": "私のMaterialアプリ",
+        "my_cupertino_app": "私のCupertinoアプリ",
+        "you_pushed_button": "ボタンを{count}回押しました",
+        "open_material_dialog": "マテリアルダイアログを開く",
+        "open_cupertino_dialog": "クパチーノダイアログを開く",
+        "open_coui_dialog": "COUIダイアログを開く"
+      },
+      "menubar": {
+        "display_name": "メニューバー",
+        "description": "水平メニューバーです。",
+        "examples": {
+          "basic": "メニューバーの例"
+        },
+        "file": "ファイル",
+        "edit": "編集",
+        "new_tab": "新しいタブ",
+        "new_window": "新しいウィンドウ",
+        "new_incognito_window": "新しいシークレットウィンドウ",
+        "email_link": "メールリンク",
+        "messages": "メッセージ",
+        "notes": "ノート",
+        "share": "共有",
+        "print": "印刷",
+        "save_and_exit": "保存後に終了",
+        "discard_and_exit": "破棄後に終了",
+        "exit": "終了",
+        "undo": "元に戻す",
+        "redo": "やり直し"
+      },
+      "multiselect": {
+        "display_name": "マルチセレクト",
+        "description": "複数の項目を選択できるコンポーネントです。",
+        "examples": {
+          "basic": "マルチセレクトの例"
+        }
+      },
+      "navigation_bar": {
+        "display_name": "ナビゲーションバー",
+        "description": "下部ナビゲーションバーです。",
+        "examples": {
+          "basic": "ナビゲーションバーの例"
+        }
+      },
+      "navigation_menu": {
+        "display_name": "ナビゲーションメニュー",
+        "description": "ナビゲーションメニューコンポーネントです。",
+        "examples": {
+          "basic": "ナビゲーションメニューの例"
+        }
+      },
+      "navigation_rail": {
+        "display_name": "ナビゲーションレール",
+        "description": "側面ナビゲーションレールです。",
+        "examples": {
+          "basic": "ナビゲーションレールの例"
+        }
+      },
+      "navigation_sidebar": {
+        "display_name": "ナビゲーションサイドバー",
+        "description": "ナビゲーションサイドバーコンポーネントです。",
+        "examples": {
+          "basic": "ナビゲーションサイドバーの例"
+        }
+      },
+      "number_input": {
+        "display_name": "数値入力",
+        "description": "数値を入力するフィールドです。",
+        "examples": {
+          "basic": "数値入力の例"
+        },
+        "value": "値: {value}"
+      },
+      "number_ticker": {
+        "display_name": "数値ティッカー",
+        "description": "数値が変更されるときにアニメーションを表示します。",
+        "examples": {
+          "basic": "数値ティッカーの例"
+        }
+      },
+      "overflow_marquee": {
+        "display_name": "オーバーフローマーキー",
+        "description": "テキストがオーバーフローするときに自動でスクロールします。",
+        "examples": {
+          "basic": "オーバーフローマーキーの例"
+        }
+      },
+      "pagination": {
+        "display_name": "ページネーション",
+        "description": "ページをナビゲートするコンポーネントです。",
+        "examples": {
+          "basic": "ページネーションの例"
+        }
+      },
+      "phone_input": {
+        "display_name": "電話番号入力",
+        "description": "電話番号を入力するフィールドです。",
+        "examples": {
+          "basic": "電話番号入力の例"
+        }
+      },
+      "popover": {
+        "display_name": "ポップオーバー",
+        "description": "要素の上に表示されるポップアップです。",
+        "examples": {
+          "basic": "ポップオーバーの例"
+        },
+        "dimensions": "サイズ",
+        "set_dimensions": "レイヤーのサイズを設定してください",
+        "width": "幅",
+        "max_width": "最大幅",
+        "height": "高さ",
+        "max_height": "最大高さ",
+        "open_popover": "ポップオーバーを開く",
+        "submit": "提出"
+      },
+      "progress": {
+        "display_name": "進捗",
+        "description": "進行状況を表示します。",
+        "examples": {
+          "basic": "進捗の例"
+        }
+      },
+      "radio_card": {
+        "display_name": "ラジオカード",
+        "description": "カード形式のラジオボタンです。",
+        "examples": {
+          "basic": "ラジオカードの例"
+        }
+      },
+      "radio_group": {
+        "display_name": "ラジオグループ",
+        "description": "ラジオボタンのグループです。",
+        "examples": {
+          "basic": "ラジオグループの例"
+        },
+        "option_1": "オプション1",
+        "option_2": "オプション2",
+        "option_3": "オプション3",
+        "selected": "選択中"
+      },
+      "refresh_trigger": {
+        "display_name": "リフレッシュトリガー",
+        "description": "引っ張ってリフレッシュ機能を提供します。",
+        "examples": {
+          "basic": "リフレッシュトリガーの例"
+        },
+        "pull_me": "引っ張ってください",
+        "refresh": "リフレッシュ"
+      },
+      "repeated_animation_builder": {
+        "display_name": "リピートアニメーションビルダー",
+        "description": "アニメーションを繰り返すビルダーです。",
+        "examples": {
+          "basic": "リピートアニメーションビルダーの例"
+        }
+      },
+      "resizable": {
+        "display_name": "リサイズ可能",
+        "description": "サイズを変更できるコンテナです。",
+        "examples": {
+          "basic": "リサイズ可能の例"
+        }
+      },
+      "scaffold": {
+        "display_name": "スキャフォールド",
+        "description": "スキャフォールドはページの最上位コンテナです。",
+        "examples": {
+          "basic": "スキャフォールドの例"
+        }
+      },
+      "select": {
+        "display_name": "選択",
+        "description": "オプションリストから項目を選択できます。",
+        "examples": {
+          "basic": "選択の例"
+        },
+        "placeholder": "果物を選択してください",
+        "search_fruit": "果物を検索",
+        "no_fruit_found": "果物が見つかりません",
+        "apple": "リンゴ",
+        "banana": "バナナ",
+        "cherry": "サクランボ",
+        "lemon": "レモン",
+        "tomato": "トマト",
+        "red_apple": "赤いリンゴ",
+        "green_apple": "緑のリンゴ",
+        "yellow_banana": "黄色いバナナ",
+        "brown_banana": "茶色のバナナ",
+        "yellow_lemon": "黄色いレモン",
+        "green_lemon": "緑のレモン",
+        "red": "赤",
+        "green": "緑",
+        "yellow": "黄",
+        "brown": "茶色"
+      },
+      "sheet": {
+        "display_name": "シート",
+        "description": "下から上がってくるシートです。",
+        "examples": {
+          "basic": "シートの例"
+        }
+      },
+      "skeleton": {
+        "display_name": "スケルトン",
+        "description": "読み込み中に表示されるスケルトン画面です。",
+        "examples": {
+          "basic": "スケルトンの例"
+        }
+      },
+      "slider": {
+        "display_name": "スライダー",
+        "description": "値をスライドして選択できます。",
+        "examples": {
+          "basic": "スライダーの例"
+        },
+        "value_single": "値: {value}",
+        "value_range": "値: {start} - {end}"
+      },
+      "sortable": {
+        "display_name": "ソート可能",
+        "description": "ドラッグして項目をソートできます。",
+        "examples": {
+          "basic": "ソート可能の例"
+        }
+      },
+      "star_rating": {
+        "display_name": "星評価",
+        "description": "星評価を選択できます。",
+        "examples": {
+          "basic": "星評価の例"
+        }
+      },
+      "stepper": {
+        "display_name": "ステッパー",
+        "description": "段階的プロセスを表示します。",
+        "examples": {
+          "basic": "ステッパーの例"
+        },
+        "step_1": "ステップ1",
+        "step_2": "ステップ2",
+        "step_3": "ステップ3",
+        "step_n": "ステップ {n}",
+        "optional_step": "オプションのステップ",
+        "horizontal": "水平",
+        "vertical": "垂直",
+        "toggle_error": "エラーを切り替え",
+        "circle": "円形",
+        "circle_alt": "円形代替",
+        "line": "線形",
+        "small": "小",
+        "medium": "中",
+        "large": "大"
+      },
+      "steps": {
+        "display_name": "ステップ",
+        "description": "進行状況をステップで表示します。",
+        "examples": {
+          "basic": "ステップの例"
+        }
+      },
+      "swiper": {
+        "display_name": "スワイパー",
+        "description": "スワイプ可能なコンポーネントです。",
+        "examples": {
+          "basic": "スワイパーの例"
+        }
+      },
+      "switch": {
+        "display_name": "スイッチ",
+        "description": "オン/オフのスイッチです。",
+        "examples": {
+          "basic": "スイッチの例"
+        }
+      },
+      "switcher": {
+        "display_name": "スイッチャー",
+        "description": "複数のビュー間で切り替え可能です。",
+        "examples": {
+          "basic": "スイッチャーの例"
+        },
+        "switch_direction": "方向切り替え",
+        "next_item": "次の項目"
+      },
+      "tab_list": {
+        "display_name": "タブリスト",
+        "description": "タブリストコンポーネントです。",
+        "examples": {
+          "basic": "タブリストの例"
+        }
+      },
+      "tab_pane": {
+        "display_name": "タブパネル",
+        "description": "タブパネルコンポーネントです。",
+        "examples": {
+          "basic": "タブパネルの例"
+        }
+      },
+      "table": {
+        "display_name": "テーブル",
+        "description": "データをテーブル形式で表示します。",
+        "examples": {
+          "basic": "テーブルの例"
+        },
+        "invoice": "請求書",
+        "status": "状態",
+        "method": "方法",
+        "amount": "金額",
+        "total": "合計",
+        "paid": "支払い済み",
+        "pending": "保留中",
+        "unpaid": "未払い",
+        "credit_card": "クレジットカード",
+        "paypal": "PayPal",
+        "bank_transfer": "銀行振込"
+      },
+      "tabs": {
+        "display_name": "タブ",
+        "description": "タブを使用してコンテンツを構成します。",
+        "examples": {
+          "basic": "タブの例"
+        },
+        "tab_1": "タブ1",
+        "tab_2": "タブ2",
+        "tab_3": "タブ3",
+        "tab_n": "タブ {n}"
+      },
+      "text_area": {
+        "display_name": "テキストエリア",
+        "description": "複数行のテキストを入力できます。",
+        "examples": {
+          "basic": "テキストエリアの例"
+        },
+        "hello_world": "こんにちは、世界！"
+      },
+      "time_picker": {
+        "display_name": "時間選択",
+        "description": "時間を選択できます。",
+        "examples": {
+          "basic": "時間選択の例"
+        },
+        "select_time": "時間を選択"
+      },
+      "timeline": {
+        "display_name": "タイムライン",
+        "description": "イベントをタイムラインで表示します。",
+        "examples": {
+          "basic": "タイムラインの例"
+        }
+      },
+      "timeline_animation": {
+        "display_name": "タイムラインアニメーション",
+        "description": "タイムラインベースのアニメーションです。",
+        "examples": {
+          "basic": "タイムラインアニメーションの例"
+        }
+      },
+      "toast": {
+        "display_name": "トースト",
+        "description": "短いメッセージを表示する通知です。",
+        "examples": {
+          "basic": "トーストの例"
+        },
+        "event_created": "イベントが作成されました",
+        "event_date": "2024年7月7日(日)午後12:00",
+        "show_bottom_left": "左下トーストを表示",
+        "show_bottom_right": "右下トーストを表示",
+        "show_top_left": "左上トーストを表示",
+        "show_top_right": "右上トーストを表示",
+        "show_bottom_center": "下中央トーストを表示",
+        "show_top_center": "上中央トーストを表示"
+      },
+      "toggle": {
+        "display_name": "トグル",
+        "description": "オプション間でトグルできます。",
+        "examples": {
+          "basic": "トグルの例"
+        },
+        "toggle": "トグル"
+      },
+      "tooltip": {
+        "display_name": "ツールチップ",
+        "description": "要素に関する追加情報を表示します。",
+        "examples": {
+          "basic": "ツールチップの例"
+        },
+        "this_is_tooltip": "これはツールチップです。",
+        "hover_over_me": "マウスを上に乗せてください"
+      },
+      "tracker": {
+        "display_name": "トラッカー",
+        "description": "進行状況を追跡します。",
+        "examples": {
+          "basic": "トラッカーの例"
+        },
+        "fine": "良好",
+        "warning": "警告",
+        "critical": "危険",
+        "unknown": "不明",
+        "tracker_fine": "トラッカー良好",
+        "tracker_warning": "トラッカー警告",
+        "tracker_critical": "トラッカー危険",
+        "tracker_unknown": "トラッカー不明"
+      },
+      "tree": {
+        "display_name": "ツリー",
+        "description": "階層データをツリー形式で表示します。",
+        "examples": {
+          "basic": "ツリーの例"
+        }
+      },
+      "window": {
+        "display_name": "ウィンドウ",
+        "description": "デスクトップスタイルのウィンドウです。",
+        "examples": {
+          "basic": "ウィンドウの例"
+        },
+        "window_1": "ウィンドウ1",
+        "window_2": "ウィンドウ2",
+        "desktop": "デスクトップ",
+        "add_window": "ウィンドウを追加"
+      }
+    }
+  }
+}

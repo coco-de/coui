@@ -1,0 +1,49 @@
+{
+  "key": "button-plain-dark-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "button-plain-dark-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 19.6,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 180,
+        "g": 181,
+        "b": 182,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "paddingPx": [
+        8.0,
+        0.0,
+        8.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 35.88,
+      "heightPx": 40.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

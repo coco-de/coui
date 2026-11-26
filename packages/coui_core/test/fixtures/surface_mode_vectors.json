@@ -1,0 +1,95 @@
+{
+  "_comment": [
+    "Shared vectors for the terms of the glass material an app can state per mode.",
+    "Read by coui_core (CoreSurfaceTuning.applyTo and the token / bevel collapse), coui_flutter",
+    "(applySurfaceStyle for a light and a dark base theme, and what the theme hands out for each)",
+    "and coui_web (the stylesheet's light rule, its dark restatements, and the numbers the",
+    "per-element runtime is told), so a rule that changes on one platform fails the others.",
+    "preset: what the shipped liquidGlass states before any tuning - one saturation and one",
+    "light angle for both modes, and the default refraction law.",
+    "tuning: the fields of CoreSurfaceTuning the case states; absent fields are not stated.",
+    "saturation / lightAngle: what a surface draws with in each mode afterwards - the chroma",
+    "multiplier of the backdrop pass, and the degrees clockwise from the top the edge light",
+    "comes from. refractionModel: the law the rim bends by.",
+    "A single statement (surfaceSaturation, lightAngle) is about both modes and replaces any dark",
+    "statement the preset has; a dark statement (…InDarkMode) alone leaves light as the preset",
+    "has it; stating both gives light the first and dark the second."
+  ],
+  "preset": {
+    "style": "liquidGlass",
+    "saturation": 1.6,
+    "lightAngle": -45,
+    "refractionModel": "snell"
+  },
+  "cases": [
+    {
+      "name": "a tuning that states nothing",
+      "tuning": {},
+      "saturation": {"light": 1.6, "dark": 1.6},
+      "lightAngle": {"light": -45, "dark": -45},
+      "refractionModel": "snell"
+    },
+    {
+      "name": "one lift for both modes",
+      "tuning": {"surfaceSaturation": 1.3},
+      "saturation": {"light": 1.3, "dark": 1.3},
+      "lightAngle": {"light": -45, "dark": -45},
+      "refractionModel": "snell"
+    },
+    {
+      "name": "a dark lift alone",
+      "tuning": {"surfaceSaturationInDarkMode": 1.9},
+      "saturation": {"light": 1.6, "dark": 1.9},
+      "lightAngle": {"light": -45, "dark": -45},
+      "refractionModel": "snell"
+    },
+    {
+      "name": "a lift for each mode",
+      "tuning": {"surfaceSaturation": 1.3, "surfaceSaturationInDarkMode": 1.9},
+      "saturation": {"light": 1.3, "dark": 1.9},
+      "lightAngle": {"light": -45, "dark": -45},
+      "refractionModel": "snell"
+    },
+    {
+      "name": "one light for both modes",
+      "tuning": {"lightAngle": -30},
+      "saturation": {"light": 1.6, "dark": 1.6},
+      "lightAngle": {"light": -30, "dark": -30},
+      "refractionModel": "snell"
+    },
+    {
+      "name": "a dark light alone",
+      "tuning": {"lightAngleInDarkMode": -60},
+      "saturation": {"light": 1.6, "dark": 1.6},
+      "lightAngle": {"light": -45, "dark": -60},
+      "refractionModel": "snell"
+    },
+    {
+      "name": "a light for each mode",
+      "tuning": {"lightAngle": -30, "lightAngleInDarkMode": -60},
+      "saturation": {"light": 1.6, "dark": 1.6},
+      "lightAngle": {"light": -30, "dark": -60},
+      "refractionModel": "snell"
+    },
+    {
+      "name": "a law alone",
+      "tuning": {"refractionModel": "paraxial"},
+      "saturation": {"light": 1.6, "dark": 1.6},
+      "lightAngle": {"light": -45, "dark": -45},
+      "refractionModel": "paraxial"
+    },
+    {
+      "name": "everything at once",
+      "tuning": {
+        "surfaceSaturation": 1.3,
+        "surfaceSaturationInDarkMode": 1.9,
+        "lightAngle": -30,
+        "lightAngleInDarkMode": -60,
+        "refractionModel": "paraxial"
+      },
+      "saturation": {"light": 1.3, "dark": 1.9},
+      "lightAngle": {"light": -30, "dark": -60},
+      "refractionModel": "paraxial"
+    }
+  ]
+}

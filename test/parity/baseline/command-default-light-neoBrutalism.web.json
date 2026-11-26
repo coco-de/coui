@@ -1,0 +1,87 @@
+{
+  "key": "command-default-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#coui-command-2 .co-command-row:hover > .co-command-wash{background-color:rgb(var(--coui-on-surface) / 3%);}#coui-command-2 .co-command-row:active > .co-command-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n              \n              \n                \n                  \n                \n                \n                \n                  \n                    \n                      \n                        \n                      \n                    \n                  \n                \n              \n              \n                \n                  \n                    \n                      :where(.co-chip-body){--co-chip-state-fill:initial;}.co-chip-sl-6vd6gm:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-primary-container)) 3%, rgb(var(--coui-primary-container)));}.co-chip-sl-6vd6gm:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-primary-container)) 8%, rgb(var(--coui-primary-container)));}.co-chip-sl-6vd6gm:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-primary-container)) 12%, rgb(var(--coui-primary-container)));}\n                    \n                    All\n                  \n                \n                \n                  \n                    \n                      :where(.co-chip-body){--co-chip-state-fill:initial;}.co-chip-sl-2kg9z2:hover>.co-chip-body{--co-chip-state-fill:var(--co-chip-hover-fill);}.co-chip-sl-2kg9z2:focus-visible>.co-chip-body{--co-chip-state-fill:var(--co-chip-focus-fill);}.co-chip-sl-2kg9z2:active>.co-chip-body{--co-chip-state-fill:var(--co-chip-pressed-fill);}\n                    \n                    작업\n                  \n                \n                \n                  \n                    \n                      :where(.co-chip-body){--co-chip-state-fill:initial;}.co-chip-sl-2kg9z2:hover>.co-chip-body{--co-chip-state-fill:var(--co-chip-hover-fill);}.co-chip-sl-2kg9z2:focus-visible>.co-chip-body{--co-chip-state-fill:var(--co-chip-focus-fill);}.co-chip-sl-2kg9z2:active>.co-chip-body{--co-chip-state-fill:var(--co-chip-pressed-fill);}\n                    \n                    페이지\n                  \n                \n              \n              \n              \n                추천\n                \n                  \n                    \n                    \n                      \n                    \n                    \n                    캘린더\n                  \n                \n                \n                  \n                    \n                    \n                    \n                    이모지 검색\n                  \n                \n                \n                  \n                    \n                    \n                    \n                    계산기\n                  \n                \n                \n                설정\n                \n                  \n                    \n                    \n                    \n                    \n                      계정\n                      프로필\n                    \n                    \n                    ⌘P\n                  \n                \n                \n                  \n                    \n                    \n                    \n                    결제\n                    \n                    ⌘B",
+    "layout": {
+      "width": 800,
+      "height": 403,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 4,
+          "y": 4,
+          "width": 792,
+          "height": 40
+        },
+        {
+          "x": 4,
+          "y": 44,
+          "width": 792,
+          "height": 48
+        },
+        {
+          "x": 4,
+          "y": 92,
+          "width": 792,
+          "height": 4
+        },
+        {
+          "x": 4,
+          "y": 96,
+          "width": 792,
+          "height": 303
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(115, 116, 118)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(31, 32, 33)",
+      "borderRightColor": "rgb(31, 32, 33)",
+      "borderBottomColor": "rgb(31, 32, 33)",
+      "borderLeftColor": "rgb(31, 32, 33)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 403
+    }
+  }
+}

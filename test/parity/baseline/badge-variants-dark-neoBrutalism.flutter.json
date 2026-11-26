@@ -1,0 +1,34 @@
+{
+  "key": "badge-variants-dark-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "badge-variants-dark-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 12.0,
+      "lineHeightPx": 16.8,
+      "letterSpacingPx": -0.12,
+      "color": {
+        "r": 22,
+        "g": 23,
+        "b": 24,
+        "a": 1.0
+      },
+      "backgroundColor": null,
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": null,
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 141.51,
+      "heightPx": 25.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

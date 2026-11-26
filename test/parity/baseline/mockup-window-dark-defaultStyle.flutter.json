@@ -1,0 +1,54 @@
+{
+  "key": "mockup-window-dark-defaultStyle",
+  "byRole": {
+    "root": {
+      "key": "mockup-window-dark-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 16.0,
+      "lineHeightPx": 25.6,
+      "letterSpacingPx": 0.0,
+      "color": {
+        "r": 252,
+        "g": 252,
+        "b": 253,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 24,
+        "g": 25,
+        "b": 27,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 174,
+        "g": 175,
+        "b": 178,
+        "a": 1.0
+      },
+      "borderWidthPx": 1.0,
+      "borderRadiusPx": [
+        16.0,
+        16.0,
+        16.0,
+        16.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": null
+    }
+  },
+  "settled": true,
+  "captureNotes": [
+    "flutterFinder byType:Mockup 이 tester.allWidgets 에 없음 — 레지스트리가 예상과 다른 서브트리를 반환했을 수 있다 (변형된 variant 처리·GlobalKey 잔존 등 조용한 오캡처의 1차 탐지기)."
+  ]
+}

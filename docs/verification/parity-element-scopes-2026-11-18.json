@@ -1,0 +1,3518 @@
+{
+  "source": {
+    "head": "719e26cb033c1d86c655488aeb467a08a1fb3dc0",
+    "tree": "394a349e688ee795f25b525dba91e23a5ec46f34",
+    "base": "6d81740ae3272e60baf1d23c909b8b83e9d8db36",
+    "workerFrozenSource": "821a6b66",
+    "workerWholeTreeEqual": true,
+    "ownPaths": [
+      "packages/coui_web/lib/src/components/control/button/button.dart",
+      "packages/coui_web/lib/src/components/control/command_search/command_search.dart",
+      "packages/coui_web/lib/src/components/display/badge/badge.dart",
+      "packages/coui_web/lib/src/components/display/progress/progress.dart",
+      "packages/coui_web/lib/src/components/form/chip_input/chip_input.dart",
+      "packages/coui_web/lib/src/components/form/option_item/option_item.dart",
+      "packages/coui_web/lib/src/components/layout/disclosure/disclosure.dart",
+      "packages/coui_web/lib/src/components/menu/menu_item/menu_item.dart",
+      "packages/coui_web/lib/src/components/navigation/breadcrumb/breadcrumb.dart",
+      "packages/coui_web/lib/src/components/navigation/pagination/pagination.dart",
+      "packages/coui_web/lib/src/components/navigation/sidebar_header/sidebar_header.dart",
+      "packages/coui_web/lib/src/components/navigation/sidebar_item/sidebar_item.dart",
+      "packages/coui_web/lib/src/components/navigation/sidebar_rail_item/sidebar_rail_item.dart",
+      "packages/coui_web/lib/src/components/navigation/sidebar_search/sidebar_search.dart",
+      "packages/coui_web/lib/src/util/element_scope.dart",
+      "packages/coui_web/pubspec.yaml",
+      "packages/coui_web/test/components/menu/menu_item_test.dart",
+      "tool/parity/test/fixtures/element_scope_cases.dart",
+      "tool/parity/test/web/element_scope_test.dart",
+      "tool/parity/test/web/navigation_element_scope_test.dart"
+    ],
+    "status": ""
+  },
+  "rootVerification": {
+    "tests": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "test",
+        "--concurrency=2",
+        "tool/parity/test/web/element_scope_test.dart",
+        "tool/parity/test/web/navigation_element_scope_test.dart",
+        "tool/parity/test/web/stateful_scope_identity_test.dart",
+        "tool/parity/test/web/fade_scroll_timeline_test.dart",
+        "tool/parity/test/web/navigation_caption_gap_ownership_test.dart",
+        "packages/coui_web/test/components/fade_scroll_first_paint_test.dart",
+        "packages/coui_web/test/components/fade_scroll_selection_test.dart",
+        "--reporter=expanded"
+      ],
+      "exit": 0,
+      "seconds": 108.2599685,
+      "sourceUnchanged": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6403-integration-20261118.3fqvczia/final-combined/tests-exit.json",
+      "sha256": "d0cd919c7a55b77636397ef554f36f2224b1cd2ab12ff1266ef0ffaae7ea7569"
+    },
+    "contracts": {
+      "args": [
+        "bash",
+        "scripts/guards/resolver/verify_contracts.sh"
+      ],
+      "exit": 0,
+      "seconds": 111.78339545899999,
+      "sourceUnchanged": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6403-integration-20261118.3fqvczia/final-combined/contracts-exit.json",
+      "sha256": "e39984da8b7666825224a26d1aea76d02cff3022933401d3a523589829aaae0c"
+    },
+    "analyze": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/coui_web/lib/src/components/control/button/button.dart",
+        "packages/coui_web/lib/src/components/control/command_search/command_search.dart",
+        "packages/coui_web/lib/src/components/display/badge/badge.dart",
+        "packages/coui_web/lib/src/components/display/progress/progress.dart",
+        "packages/coui_web/lib/src/components/form/chip_input/chip_input.dart",
+        "packages/coui_web/lib/src/components/form/option_item/option_item.dart",
+        "packages/coui_web/lib/src/components/layout/disclosure/disclosure.dart",
+        "packages/coui_web/lib/src/components/menu/menu_item/menu_item.dart",
+        "packages/coui_web/lib/src/components/navigation/breadcrumb/breadcrumb.dart",
+        "packages/coui_web/lib/src/components/navigation/pagination/pagination.dart",
+        "packages/coui_web/lib/src/components/navigation/sidebar_header/sidebar_header.dart",
+        "packages/coui_web/lib/src/components/navigation/sidebar_item/sidebar_item.dart",
+        "packages/coui_web/lib/src/components/navigation/sidebar_rail_item/sidebar_rail_item.dart",
+        "packages/coui_web/lib/src/components/navigation/sidebar_search/sidebar_search.dart",
+        "packages/coui_web/lib/src/util/element_scope.dart",
+        "packages/coui_web/test/components/menu/menu_item_test.dart",
+        "tool/parity/test/fixtures/element_scope_cases.dart",
+        "tool/parity/test/web/element_scope_test.dart",
+        "tool/parity/test/web/navigation_element_scope_test.dart"
+      ],
+      "exit": 0,
+      "seconds": 39.158215375,
+      "sourceUnchanged": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6403-integration-20261118.3fqvczia/final-combined/analyze-exit.json",
+      "sha256": "d3d953ef745cf222abb153cd47879998e225feebc0d4be3a649949f08ac6f2a8"
+    },
+    "format": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/coui_web/lib/src/components/control/button/button.dart",
+        "packages/coui_web/lib/src/components/control/command_search/command_search.dart",
+        "packages/coui_web/lib/src/components/display/badge/badge.dart",
+        "packages/coui_web/lib/src/components/display/progress/progress.dart",
+        "packages/coui_web/lib/src/components/form/chip_input/chip_input.dart",
+        "packages/coui_web/lib/src/components/form/option_item/option_item.dart",
+        "packages/coui_web/lib/src/components/layout/disclosure/disclosure.dart",
+        "packages/coui_web/lib/src/components/menu/menu_item/menu_item.dart",
+        "packages/coui_web/lib/src/components/navigation/breadcrumb/breadcrumb.dart",
+        "packages/coui_web/lib/src/components/navigation/pagination/pagination.dart",
+        "packages/coui_web/lib/src/components/navigation/sidebar_header/sidebar_header.dart",
+        "packages/coui_web/lib/src/components/navigation/sidebar_item/sidebar_item.dart",
+        "packages/coui_web/lib/src/components/navigation/sidebar_rail_item/sidebar_rail_item.dart",
+        "packages/coui_web/lib/src/components/navigation/sidebar_search/sidebar_search.dart",
+        "packages/coui_web/lib/src/util/element_scope.dart",
+        "packages/coui_web/test/components/menu/menu_item_test.dart",
+        "tool/parity/test/fixtures/element_scope_cases.dart",
+        "tool/parity/test/web/element_scope_test.dart",
+        "tool/parity/test/web/navigation_element_scope_test.dart"
+      ],
+      "exit": 0,
+      "seconds": 0.49693466599999997,
+      "sourceUnchanged": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6403-integration-20261118.3fqvczia/final-combined/format-exit.json",
+      "sha256": "90055225a3b7d05de520f8ea1cf77f6ff93dfd3cdce6b37a66addbda2816d3cc"
+    }
+  },
+  "rootTestCount": 36,
+  "rootTestsNotSummedWithWorkerRuns": true,
+  "independentSourceReview": {
+    "source": "719e26cb033c1d86c655488aeb467a08a1fb3dc0",
+    "tree": "394a349e688ee795f25b525dba91e23a5ec46f34",
+    "mode": "read-only source review; no additional execution",
+    "blockers": [],
+    "findings": [
+      "Jaspr StatelessElement passes the owning Element as BuildContext.",
+      "Expando<int> adds no strong Element registry or observer.",
+      "Separate ssr/web namespaces preserve separate static SSR owners.",
+      "Seven id scopes preserve explicit-ID precedence, seven class scopes preserve Clickable ID and style/class order.",
+      "Public fourteen constructors/fields, const markers, barrels, Core/Native/defaults and held Dot/Join unchanged.",
+      "ChipInput inferred keyboard-event type equals existing UiKeyboardEventHandler; CoreBorderRadius.zero equals the prior numeric zero.",
+      "meta declaration already resolved through Jaspr, html dev-only."
+    ]
+  },
+  "workerRaw": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local",
+  "schemaVersion": 1,
+  "date": "2026-11-18",
+  "issues": [
+    6403,
+    6131,
+    6417
+  ],
+  "pr": 6419,
+  "scope": {
+    "changedWidgetTypes": 14,
+    "helperInternalNotExported": true,
+    "heldTypes": [
+      "DotIndicator",
+      "Join"
+    ],
+    "publicApiChanges": 0,
+    "coreNativeDefaultComparatorChanges": 0,
+    "privateGeneratedIdAndCssSelectorChanges": true,
+    "explicitCallerIdPrecedencePreserved": true,
+    "observedHydrationFocusLimitation": "Initial delayed attach loses focus both before and after; post-client focus survives parent rebuild. Reorder/remount focus not certified."
+  },
+  "workerSourceBinding": {
+    "actualExecutionSource": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+    "actualExecutionTree": "394a349e688ee795f25b525dba91e23a5ec46f34",
+    "afterActualMainMergeHead": "dd3ec460a79cfdc3e1ebc36ff018cff09e7a8187",
+    "afterActualMainMergeTree": "394a349e688ee795f25b525dba91e23a5ec46f34",
+    "originMain": "6d81740ae3272e60baf1d23c909b8b83e9d8db36",
+    "originMainTree": "4fd38458c89f4429045bf417580c70f769ad44f6",
+    "rootValidatedUnmergedHead": "06865e2cf8c988094b87793a5350a3d28dbebd0d",
+    "wholeTreeExact": true,
+    "productionSourceDelta": [],
+    "note": "Existing821 executions bound to actual-main merged dd3 by exact whole tree; not relabelled as fresh reruns."
+  },
+  "workerApi": {
+    "graphs": [
+      {
+        "package": "coui_core",
+        "before": 931,
+        "after": 931,
+        "same": true
+      },
+      {
+        "package": "coui_flutter",
+        "before": 1351,
+        "after": 1351,
+        "same": true
+      },
+      {
+        "package": "coui_web",
+        "before": 1296,
+        "after": 1296,
+        "same": true
+      }
+    ],
+    "rows": [
+      {
+        "path": "packages/coui_web/lib/src/components/control/button/button.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/control/command_search/command_search.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/display/badge/badge.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/display/progress/progress.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/chip_input/chip_input.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/option_item/option_item.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/layout/disclosure/disclosure.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/menu/menu_item/menu_item.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/breadcrumb/breadcrumb.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/pagination/pagination.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/sidebar_header/sidebar_header.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/sidebar_item/sidebar_item.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/sidebar_rail_item/sidebar_rail_item.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/sidebar_search/sidebar_search.dart",
+        "exported": true,
+        "publicShapesSame": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/util/element_scope.dart",
+        "newInternal": true,
+        "exported": false,
+        "internalAnnotation": true
+      }
+    ],
+    "errors": [],
+    "method": "Function bodies and comments omitted; declaration shapes include parameter defaults, field initializers, annotations and class headers. Supported export closure traverses conditional exports."
+  },
+  "dependencies": {
+    "packageEntries": 232,
+    "allRootUriVersionLanguageEntriesSame": true,
+    "allLockHashesSame": true,
+    "locks": {
+      "pubspec.lock": "3503684b485aa82c20d5aae09870e92c44a1b5d579173114470266f34187be82",
+      "packages/coui_flutter/example/pubspec.lock": "d940f2a351e15254e989092ff9c86a1db3e255b34578efd76644266d482d3d92"
+    }
+  },
+  "workerTests": {
+    "chrome": 12,
+    "existingUnitFiles": 28,
+    "uniqueExistingUnits": 472,
+    "uniqueWorkerTests": 484,
+    "root36ReportedSeparately": true,
+    "initialUnitKernelENOSPC": "439 passed then two file load failures; original retained, all28 files472 later passed separately",
+    "strictChangedDartFiles": 19,
+    "fatalInfos": 0,
+    "formatChanged": 0
+  },
+  "manifest": {
+    "head": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+    "tree": "394a349e688ee795f25b525dba91e23a5ec46f34",
+    "sourceLabel": "Local integration of unmerged6413 final+maince6+14scope; not latest-main execution",
+    "allEntries": 3404,
+    "defaultEntries": 734,
+    "uniqueComponents": 163,
+    "commonEntriesExact": 732,
+    "removedKeys": [
+      "button-card-dark-defaultStyle",
+      "button-card-light-defaultStyle",
+      "button-cast-motion-dark-defaultStyle",
+      "button-cast-motion-light-defaultStyle",
+      "button-destructive-dark-defaultStyle",
+      "button-destructive-light-defaultStyle",
+      "button-ghost-dark-defaultStyle",
+      "button-ghost-light-defaultStyle",
+      "button-outline-dark-defaultStyle",
+      "button-outline-light-defaultStyle",
+      "button-plain-dark-defaultStyle",
+      "button-plain-light-defaultStyle",
+      "button-primary-dark-defaultStyle",
+      "button-primary-light-defaultStyle",
+      "button-secondary-dark-defaultStyle",
+      "button-secondary-light-defaultStyle",
+      "button-tonal-dark-defaultStyle",
+      "button-tonal-light-defaultStyle",
+      "text-field-error-dark-defaultStyle",
+      "text-field-error-light-defaultStyle"
+    ],
+    "newKeys": [
+      "button-default-dark-defaultStyle",
+      "button-default-light-defaultStyle"
+    ],
+    "coverageDeltaSource": "upstream6416; not classified as fixes/passes",
+    "shards": [
+      245,
+      245,
+      244
+    ],
+    "manifestSha256": "b01b360425f92c3887dcfe70086a2565597d8d03b7fd4fd0e85bca2f794c30b5",
+    "resolvedEntries": 232,
+    "allResolvedEntriesSame": true
+  },
+  "captureIntegrity": {
+    "freshNativeKeys": 734,
+    "freshWebKeys": 734,
+    "nativePNG": 746,
+    "webPNG": 746,
+    "pngs": 1492,
+    "jsons": 1468,
+    "missing": [],
+    "initialWebENOSPC": 19,
+    "sameSourceRetrySuccess": 19,
+    "retryKeys": [
+      "chat-neutral-dark-defaultStyle",
+      "chat-primary-light-defaultStyle",
+      "chat-secondary-dark-defaultStyle",
+      "chat-info-light-defaultStyle",
+      "chat-success-dark-defaultStyle",
+      "chat-error-light-defaultStyle",
+      "carousel-banner-dark-defaultStyle",
+      "carousel-banner-md-light-defaultStyle",
+      "chat-default-dark-defaultStyle",
+      "chat-plain-light-defaultStyle",
+      "chat-primary-dark-defaultStyle",
+      "chat-accent-light-defaultStyle",
+      "chat-info-dark-defaultStyle",
+      "carousel-banner-md-dark-defaultStyle",
+      "chat-neutral-light-defaultStyle",
+      "chat-secondary-light-defaultStyle",
+      "chat-accent-dark-defaultStyle",
+      "chat-warning-dark-defaultStyle",
+      "chat-tail-corner-light-defaultStyle"
+    ],
+    "allDecoded": true
+  },
+  "captureRetry": {
+    "reason": "initial ENOSPC only; originals preserved",
+    "keys": [
+      "chat-neutral-dark-defaultStyle",
+      "chat-primary-light-defaultStyle",
+      "chat-secondary-dark-defaultStyle",
+      "chat-info-light-defaultStyle",
+      "chat-success-dark-defaultStyle",
+      "chat-error-light-defaultStyle",
+      "carousel-banner-dark-defaultStyle",
+      "carousel-banner-md-light-defaultStyle",
+      "chat-default-dark-defaultStyle",
+      "chat-plain-light-defaultStyle",
+      "chat-primary-dark-defaultStyle",
+      "chat-accent-light-defaultStyle",
+      "chat-info-dark-defaultStyle",
+      "carousel-banner-md-dark-defaultStyle",
+      "chat-neutral-light-defaultStyle",
+      "chat-secondary-light-defaultStyle",
+      "chat-accent-dark-defaultStyle",
+      "chat-warning-dark-defaultStyle",
+      "chat-tail-corner-light-defaultStyle"
+    ],
+    "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+    "retryOutput": "web-retry19",
+    "spaceAfterAutomaticRunnerCleanup": "5.3GiB",
+    "agentDeletedFiles": 0
+  },
+  "commands": {
+    "native": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "--concurrency=1",
+        "--tags",
+        "parity",
+        "test/parity/flutter_capture_matrix_test.dart"
+      ],
+      "cwd": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/packages/coui_flutter",
+      "env": {
+        "PARITY_MANIFEST": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/manifest.json",
+        "PARITY_OUT": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/native"
+      }
+    },
+    "web-0": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/.dart_tool/package_config.json",
+        "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/tool/parity/capture_web.dart",
+        "--manifest=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/web-shard-0.json",
+        "--out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/web-0"
+      ],
+      "cwd": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever",
+      "env": {}
+    },
+    "web-1": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/.dart_tool/package_config.json",
+        "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/tool/parity/capture_web.dart",
+        "--manifest=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/web-shard-1.json",
+        "--out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/web-1"
+      ],
+      "cwd": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever",
+      "env": {}
+    },
+    "web-2": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/.dart_tool/package_config.json",
+        "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/tool/parity/capture_web.dart",
+        "--manifest=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/web-shard-2.json",
+        "--out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/web-2"
+      ],
+      "cwd": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever",
+      "env": {}
+    },
+    "web-retry19": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/.dart_tool/package_config.json",
+        "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/tool/parity/capture_web.dart",
+        "--manifest=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/web-retry19-manifest.json",
+        "--out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/web-retry19"
+      ],
+      "cwd": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever",
+      "env": {}
+    },
+    "pixel-report": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/.dart_tool/package_config.json",
+        "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/tool/parity/report.dart",
+        "--manifest=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/manifest.json",
+        "--captured=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured",
+        "--signal=pixel",
+        "--mode=parity",
+        "--out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/pixel-diff",
+        "--comment-out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/pixel-comment.md",
+        "--vrt-out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/pixel-vrt.md",
+        "--report-json=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/pixel-report.json"
+      ],
+      "cwd": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever",
+      "env": {}
+    },
+    "property-report": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/.dart_tool/package_config.json",
+        "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/tool/parity/report.dart",
+        "--manifest=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/manifest.json",
+        "--captured=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured",
+        "--signal=property",
+        "--mode=parity",
+        "--out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/property-diff",
+        "--comment-out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/property-comment.md",
+        "--vrt-out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/property-vrt.md",
+        "--report-json=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/property-report.json"
+      ],
+      "cwd": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever",
+      "env": {}
+    },
+    "residual-repeat": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/.dart_tool/package_config.json",
+        "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/tool/parity/capture_web.dart",
+        "--manifest=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/residual-repeat-manifest.json",
+        "--out=/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/residual-repeat"
+      ],
+      "cwd": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever",
+      "env": {}
+    }
+  },
+  "reportExitCodes": {
+    "pixel": 1,
+    "property": 1
+  },
+  "pixel": {
+    "pass": 559,
+    "fail": 175,
+    "infra": 0,
+    "skipped": 0
+  },
+  "property": {
+    "pass": 404,
+    "fail": 272,
+    "infra": 12,
+    "skipped": 46
+  },
+  "matrixDelta": {
+    "pixel": {
+      "beforeCounts": {
+        "pass": 572,
+        "fail": 180,
+        "infra": 0,
+        "skipped": 0
+      },
+      "afterCounts": {
+        "pass": 559,
+        "fail": 175,
+        "infra": 0,
+        "skipped": 0
+      },
+      "commonKeys": 732,
+      "commonChanged": [],
+      "removed": [
+        {
+          "key": "button-card-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-card-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-cast-motion-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-cast-motion-light-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "button-destructive-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-destructive-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-ghost-dark-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "button-ghost-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-outline-dark-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "button-outline-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-plain-dark-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "button-plain-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-primary-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-primary-light-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "button-secondary-dark-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "button-secondary-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-tonal-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-tonal-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "text-field-error-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "text-field-error-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        }
+      ],
+      "added": [
+        {
+          "key": "button-default-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-default-light-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        }
+      ],
+      "commonPropertyDiffRows": 0,
+      "commonPropertyDiffRowsChanged": []
+    },
+    "property": {
+      "beforeCounts": {
+        "pass": 416,
+        "fail": 278,
+        "infra": 12,
+        "skipped": 46
+      },
+      "afterCounts": {
+        "pass": 404,
+        "fail": 272,
+        "infra": 12,
+        "skipped": 46
+      },
+      "commonKeys": 732,
+      "commonChanged": [],
+      "removed": [
+        {
+          "key": "button-card-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-card-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-cast-motion-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-cast-motion-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-destructive-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-destructive-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-ghost-dark-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "button-ghost-light-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "button-outline-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-outline-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-plain-dark-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "button-plain-light-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "button-primary-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-primary-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-secondary-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-secondary-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-tonal-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-tonal-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "text-field-error-dark-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        },
+        {
+          "key": "text-field-error-light-defaultStyle",
+          "status": "fail",
+          "roles": {
+            "root": "fail"
+          }
+        }
+      ],
+      "added": [
+        {
+          "key": "button-default-dark-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        },
+        {
+          "key": "button-default-light-defaultStyle",
+          "status": "pass",
+          "roles": {
+            "root": "pass"
+          }
+        }
+      ],
+      "commonPropertyDiffRows": 686,
+      "commonPropertyDiffRowsChanged": []
+    }
+  },
+  "rawCommonDelta": {
+    "beforeActualSource": "c122d8ad61c9b8644070ee8be9845004604ac858 BOTHfresh",
+    "afterActualSource": "821a6b66b16b6422e04d70ca14c1e2371c9af433 fresh734+19sameSourceinfraretry",
+    "commonKeys": 732,
+    "commonPNGs": 1488,
+    "pngBytesSame": 1487,
+    "pngRGBASame": 1487,
+    "commonJSON": 1464,
+    "jsonBytesSame": 1339,
+    "jsonChangedPaths": {
+      "/captureContext/text": 125
+    }
+  },
+  "initialRawResidual": [
+    {
+      "file": "command-empty-dark-defaultStyle.web.png",
+      "bytesSame": false,
+      "rgbaSame": false,
+      "beforeSize": [
+        800,
+        283
+      ],
+      "afterSize": [
+        800,
+        283
+      ],
+      "changedPixels": 9,
+      "maxChannelDelta": 202,
+      "bbox": [
+        41,
+        17,
+        42,
+        26
+      ]
+    }
+  ],
+  "narrowSameSourceRepeat": {
+    "sourceHead": "821/dd3 exacttree394",
+    "paths": {
+      "c122": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6404-integration-20261118.h0_a3h5u/matrix/captured/command-empty-dark-defaultStyle.web.png",
+      "initial821": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured/command-empty-dark-defaultStyle.web.png",
+      "repeatSameSource": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/residual-repeat/command-empty-dark-defaultStyle.web.png"
+    },
+    "comparisons": [
+      {
+        "a": "c122",
+        "b": "initial821",
+        "changedPixels": 9,
+        "maxChannel": 202
+      },
+      {
+        "a": "c122",
+        "b": "repeatSameSource",
+        "changedPixels": 0,
+        "maxChannel": 0
+      },
+      {
+        "a": "initial821",
+        "b": "repeatSameSource",
+        "changedPixels": 9,
+        "maxChannel": 202
+      }
+    ],
+    "sourceOrCSSOverrides": 0,
+    "note": "Residual retained; no baseline substitution or threshold change."
+  },
+  "latestBeforeAfter": {
+    "beforeSource": "06865e2cf8c988094b87793a5350a3d28dbebd0d immutableWeb+identicalCore/docs_core",
+    "afterSource": "821a6b66b16b6422e04d70ca14c1e2371c9af433 freshfull734subset",
+    "keys": 58,
+    "pngByteSame": 58,
+    "pngRGBAEqual": 58,
+    "jsonByteSame": 36,
+    "jsonChangedPaths": {
+      "/captureContext/text": 22
+    }
+  },
+  "historicalBeforeAfter": {
+    "head": "d324e07d534017c281b983d22da9358544016091",
+    "tree": "2649cc0228bf46b807b82469a33d817c5c0c8561",
+    "base": "e2d2dbf21ab7e6ae3c05389f11b271dc7ef39889",
+    "officialDefaultKeys": 74,
+    "pngByteRGBAExact": 74,
+    "jsonByteExact": 42,
+    "jsonOnlyTextDiff": 32
+  },
+  "docs": {
+    "build": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/tmp/weever-6345-optimized-20261117/cli-tool/.dart_tool/package_config.json",
+        "/Users/minhyeok/.pub-cache/hosted/pub.dev/jaspr_cli-0.24.0-beta.1/bin/jaspr.dart",
+        "build",
+        "--port",
+        "63535"
+      ],
+      "cwd": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/docs_site",
+      "env": {},
+      "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+      "started": "2026-11-18T08:09:19.481301+00:00",
+      "runnerPid": 79612,
+      "childPid": 79629,
+      "processGroup": 79629,
+      "exit": 0,
+      "elapsedSeconds": 106.180829,
+      "finished": "2026-11-18T08:11:07.668136+00:00",
+      "observedPids": 78
+    },
+    "sanity": {
+      "actualGeneratedRoutes": 359,
+      "actualUniqueGeneratedRoutes": 359,
+      "routes": [
+        "/",
+        "/blocks/footer",
+        "/blocks/hero",
+        "/blocks",
+        "/principles",
+        "/overview",
+        "/changelog",
+        "/live-preview-poc",
+        "/components-overview",
+        "/accessibility",
+        "/getting-started",
+        "/components/trend-chart",
+        "/components/radio-group",
+        "/components/color-picker",
+        "/components/text",
+        "/components/hover-card",
+        "/components/frame",
+        "/components/label",
+        "/components/stack-layout",
+        "/components/stat",
+        "/components/accordion",
+        "/components/text-area",
+        "/components/category-breakdown",
+        "/components/scaffold",
+        "/components/filter",
+        "/components/focus-outline",
+        "/components/swipe-actions",
+        "/components/outlined-container",
+        "/components/tracker",
+        "/components/diff",
+        "/components/breakpoint",
+        "/components/navigation-menu",
+        "/components/toast",
+        "/components/fab",
+        "/components/slider",
+        "/components/calendar",
+        "/components/menu",
+        "/components/validated",
+        "/components/aspect-ratio-box",
+        "/components/card",
+        "/components/basic",
+        "/components/scrollview",
+        "/components/star-rating",
+        "/components/chat",
+        "/components/carousel",
+        "/components/form",
+        "/components/button",
+        "/components/mockup",
+        "/components/description-card",
+        "/components/banner",
+        "/components/text-block",
+        "/components/refresh-trigger",
+        "/components/command-search",
+        "/components/scroll-area",
+        "/components/tab-pane",
+        "/components/navigation-bar-item",
+        "/components/carousel-banner",
+        "/components/input-otp",
+        "/components/countdown",
+        "/components/option-list",
+        "/components/stage-container",
+        "/components/alert",
+        "/components/validation-badge",
+        "/components/scrollable-client",
+        "/components/scrollbar",
+        "/components/status",
+        "/components/phone-input",
+        "/components/tag",
+        "/components/checkbox",
+        "/components/switch-field",
+        "/components/mockup-browser",
+        "/components/form-field",
+        "/components/popover",
+        "/components/pagination",
+        "/components/progress",
+        "/components/fieldset",
+        "/components/select",
+        "/components/theme-controller",
+        "/components/object-input",
+        "/components/gap",
+        "/components/mockup-code",
+        "/components/navigation-bar",
+        "/components/table",
+        "/components/resizable",
+        "/components/responsive-row-column",
+        "/components/item-picker",
+        "/components/hover",
+        "/components/toolbar-group",
+        "/components/mockup-device",
+        "/components/autocomplete",
+        "/components/draggable-panel",
+        "/components/rich-editor",
+        "/components/text-field",
+        "/components/multiple-choice",
+        "/components/context-menu",
+        "/components/timeline",
+        "/components/bottom-sheet",
+        "/components/step-item",
+        "/components/command",
+        "/components/option-item",
+        "/components/drawer",
+        "/components/dialog",
+        "/components/tabs",
+        "/components/responsive-grid",
+        "/components/fade-scroll",
+        "/components/window",
+        "/components/time-picker",
+        "/components/sidebar",
+        "/components/stepper",
+        "/components/menubar",
+        "/components/mask",
+        "/components/steps",
+        "/components/toggle",
+        "/components/disclosure-badge",
+        "/components/icon",
+        "/components/link",
+        "/components/overflow-marquee",
+        "/components/loading",
+        "/components/swiper",
+        "/components/file-input",
+        "/components/formatter",
+        "/components/page-header",
+        "/components/breadcrumb",
+        "/components/multi-answer-card",
+        "/components/code-snippet",
+        "/components/tree",
+        "/components/listing",
+        "/components/clickable",
+        "/components/selectable-text",
+        "/components/panel-header",
+        "/components/dock",
+        "/components/number-input",
+        "/components/menu-item",
+        "/components/definition-list",
+        "/components/responsive-container",
+        "/components/date-picker",
+        "/components/window-panel",
+        "/components/switcher",
+        "/components/avatar",
+        "/components/card-image",
+        "/components/popup",
+        "/components/join",
+        "/components/toggle-group",
+        "/components/loading-region",
+        "/components/tooltip",
+        "/components/media-query",
+        "/components/subfocus",
+        "/components/dropdown-menu",
+        "/components/badge",
+        "/components/drag",
+        "/components/kbd",
+        "/components/collapsible",
+        "/components/validator-hint",
+        "/components/hover-gallery",
+        "/components/code-diff",
+        "/components/chip",
+        "/components/swap",
+        "/components/chip-input",
+        "/components/skeleton",
+        "/components/indexed-switcher",
+        "/components/hidden",
+        "/components/empty-state",
+        "/components/dot-indicator",
+        "/components/sortable",
+        "/components/number-ticker",
+        "/components/formatted-input",
+        "/components/app-bar",
+        "/components/chip-group",
+        "/components/indicator",
+        "/components/disclosure",
+        "/components/range",
+        "/components/divider",
+        "/components/form-label",
+        "/components/bottom-action-bar",
+        "/guides/surface-styles",
+        "/guides/shape",
+        "/guides/animation",
+        "/guides/mcp",
+        "/guides/effect",
+        "/guides/glossary",
+        "/guides/colors",
+        "/guides/state",
+        "/guides/theming",
+        "/guides/layering",
+        "/guides/typography",
+        "/guides/cross-platform",
+        "/guides/icons",
+        "/guides/layout",
+        "/guides/figma-library",
+        "/guides/design-sources",
+        "/contributing",
+        "/tokens/overview",
+        "/components/footer",
+        "/guides/installation",
+        "/embed/hero",
+        "/embed/footer",
+        "/embed/button",
+        "/embed/command",
+        "/embed/fab",
+        "/embed/hover",
+        "/embed/theme-controller",
+        "/embed/filter",
+        "/embed/toggle-group",
+        "/embed/command-search",
+        "/embed/text-field",
+        "/embed/text-area",
+        "/embed/rich-editor",
+        "/embed/select",
+        "/embed/checkbox",
+        "/embed/toggle",
+        "/embed/slider",
+        "/embed/date-picker",
+        "/embed/time-picker",
+        "/embed/color-picker",
+        "/embed/autocomplete",
+        "/embed/input-otp",
+        "/embed/radio-group",
+        "/embed/multiple-choice",
+        "/embed/star-rating",
+        "/embed/range",
+        "/embed/item-picker",
+        "/embed/multi-answer-card",
+        "/embed/option-item",
+        "/embed/option-list",
+        "/embed/bottom-sheet",
+        "/embed/formatted-input",
+        "/embed/number-input",
+        "/embed/object-input",
+        "/embed/phone-input",
+        "/embed/chip-input",
+        "/embed/switch-field",
+        "/embed/drag",
+        "/embed/sortable",
+        "/embed/fieldset",
+        "/embed/file-input",
+        "/embed/form",
+        "/embed/form-label",
+        "/embed/form-field",
+        "/embed/formatter",
+        "/embed/validated",
+        "/embed/validator-hint",
+        "/embed/avatar",
+        "/embed/badge",
+        "/embed/tag",
+        "/embed/progress",
+        "/embed/calendar",
+        "/embed/banner",
+        "/embed/carousel",
+        "/embed/carousel-banner",
+        "/embed/chat",
+        "/embed/chip",
+        "/embed/chip-group",
+        "/embed/code-diff",
+        "/embed/diff",
+        "/embed/code-snippet",
+        "/embed/divider",
+        "/embed/dot-indicator",
+        "/embed/empty-state",
+        "/embed/indicator",
+        "/embed/kbd",
+        "/embed/label",
+        "/embed/number-ticker",
+        "/embed/aspect-ratio-box",
+        "/embed/skeleton",
+        "/embed/loading-region",
+        "/embed/stat",
+        "/embed/status",
+        "/embed/countdown",
+        "/embed/description-card",
+        "/embed/loading",
+        "/embed/hover-gallery",
+        "/embed/validation-badge",
+        "/embed/tracker",
+        "/embed/category-breakdown",
+        "/embed/trend-chart",
+        "/embed/mockup",
+        "/embed/mockup-browser",
+        "/embed/mockup-code",
+        "/embed/mockup-device",
+        "/embed/timeline",
+        "/embed/swap",
+        "/embed/disclosure-badge",
+        "/embed/accordion",
+        "/embed/collapsible",
+        "/embed/disclosure",
+        "/embed/card",
+        "/embed/card-image",
+        "/embed/table",
+        "/embed/stepper",
+        "/embed/steps",
+        "/embed/step-item",
+        "/embed/tree",
+        "/embed/resizable",
+        "/embed/scroll-area",
+        "/embed/fade-scroll",
+        "/embed/scrollable-client",
+        "/embed/overflow-marquee",
+        "/embed/stack-layout",
+        "/embed/stage-container",
+        "/embed/window",
+        "/embed/window-panel",
+        "/embed/draggable-panel",
+        "/embed/join",
+        "/embed/basic",
+        "/embed/frame",
+        "/embed/hidden",
+        "/embed/listing",
+        "/embed/swipe-actions",
+        "/embed/gap",
+        "/embed/mask",
+        "/embed/media-query",
+        "/embed/breakpoint",
+        "/embed/responsive-container",
+        "/embed/responsive-grid",
+        "/embed/responsive-row-column",
+        "/embed/scaffold",
+        "/embed/page-header",
+        "/embed/panel-header",
+        "/embed/bottom-action-bar",
+        "/embed/app-bar",
+        "/embed/dock",
+        "/embed/tabs",
+        "/embed/tab-pane",
+        "/embed/navigation-bar",
+        "/embed/navigation-bar-item",
+        "/embed/sidebar",
+        "/embed/breadcrumb",
+        "/embed/pagination",
+        "/embed/switcher",
+        "/embed/indexed-switcher",
+        "/embed/menu",
+        "/embed/menu-item",
+        "/embed/context-menu",
+        "/embed/dropdown-menu",
+        "/embed/menubar",
+        "/embed/toolbar-group",
+        "/embed/navigation-menu",
+        "/embed/dialog",
+        "/embed/drawer",
+        "/embed/hover-card",
+        "/embed/popover",
+        "/embed/toast",
+        "/embed/tooltip",
+        "/embed/swiper",
+        "/embed/refresh-trigger",
+        "/embed/alert",
+        "/embed/icon",
+        "/embed/text",
+        "/embed/selectable-text",
+        "/embed/text-block",
+        "/embed/link",
+        "/embed/definition-list",
+        "/embed/clickable",
+        "/embed/focus-outline",
+        "/embed/outlined-container",
+        "/embed/subfocus",
+        "/embed/scrollview",
+        "/embed/popup",
+        "/embed/scrollbar"
+      ],
+      "deployWorkflowCopies": [
+        {
+          "file": "main.dart.js",
+          "source": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/docs_site/build/flutter/main.dart.js",
+          "sha256": "46b1492fa46f889a5d3d4dda2cb7e2d6006cfef41ccad3ed014810c353199e5f"
+        },
+        {
+          "file": "flutter.js",
+          "source": "/Users/minhyeok/Library/Application Support/orca/codex-accounts/489ac597-7712-4cc5-943e-fe308d2ac1c7/home/worktrees/046d/weever/docs_site/build/flutter/flutter.js",
+          "sha256": "d2e7708f08b4a5b2a1bcd9671d2ff96f07daa0fd58e847d073d4e4ebff96f98f"
+        }
+      ],
+      "requiredFilesPresent": [
+        "index.html",
+        "main.client.dart.js",
+        "main.dart.js",
+        "flutter.js",
+        "flutter_bootstrap.js",
+        "widgetbook/index.html",
+        "llms.txt"
+      ],
+      "requiredDirectoriesPresent": [
+        "images",
+        "packages",
+        "assets"
+      ]
+    },
+    "runtimeSource": {
+      "head": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+      "tree": "394a349e688ee795f25b525dba91e23a5ec46f34",
+      "boundHead": "dd3ec460a79cfdc3e1ebc36ff018cff09e7a8187",
+      "sourceLabel": "Actual build from local821; subsequent actual-main merge dd3 has exact same tree"
+    },
+    "legacyRoutes": 10,
+    "legacyRecords": 118,
+    "v2Routes": 2,
+    "v2FinalRecords": 20,
+    "distinctCompletedRecords": 138,
+    "runtimeErrors": 0,
+    "finalActionFailures": 0,
+    "initialFixtureErrors": 2,
+    "diagnostic": {
+      "initialErrors": "initial-docs-runtime.json",
+      "reason": "textContent of a CSS scope owner includes its style node. Choice controls expose aria-label; flag first visible label is separate from styled Toggle.",
+      "replacement": "Read actual public aria-label for size choice and explicit label node for flag row; retain all geometry/value/error/disabled assertions.",
+      "productChanges": 0
+    },
+    "v2Final": {
+      "passed": true,
+      "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+      "chrome": "Chrome/150.0.7871.24",
+      "runtimeErrors": [],
+      "actionFailures": []
+    },
+    "finalSummary": {
+      "actualBuildSource": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+      "boundAfterActualMainMerge": "dd3ec460a79cfdc3e1ebc36ff018cff09e7a8187",
+      "tree": "394a349e688ee795f25b525dba91e23a5ec46f34",
+      "uniqueRoutes": 12,
+      "legacyRoutes": 10,
+      "legacyValidRecords": 118,
+      "actualV2Routes": [
+        "button",
+        "text-field"
+      ],
+      "v2ValidRecords": 20,
+      "validRecords": 138,
+      "lightDarkRefresh": true,
+      "productRuntimeErrors": [],
+      "initialV2FixtureFailures": [
+        {
+          "component": "button",
+          "error": "Evaluation failed: TypeError: Cannot read properties of undefined (reading 'click')\n    at __puppeteer_evaluation_script__:1:119",
+          "stack": "#0      ExecutionContext._evaluateInternal (package:puppeteer/src/page/execution_context.dart:189:11)\n<asynchronous suspension>\n#1      ExecutionContext.evaluate (package:puppeteer/src/page/execution_context.dart:80:20)\n<asynchronous suspension>\n#2      main.v2 (file:///tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-runtime/verify-docs.dart:131:5)\n<asynchronous suspension>\n#3      main (file:///tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-runtime/verify-docs.dart:150:163)\n<asynchronous suspension>\n"
+        },
+        {
+          "component": "text-field",
+          "error": "Evaluation failed: Error: No flag 오류\n    at __puppeteer_evaluation_script__:1:144",
+          "stack": "#0      ExecutionContext._evaluateInternal (package:puppeteer/src/page/execution_context.dart:189:11)\n<asynchronous suspension>\n#1      ExecutionContext.evaluate (package:puppeteer/src/page/execution_context.dart:80:20)\n<asynchronous suspension>\n#2      main.v2Flag (file:///tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-runtime/verify-docs.dart:123:4)\n<asynchronous suspension>\n#3      main.v2 (file:///tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-runtime/verify-docs.dart:138:86)\n<asynchronous suspension>\n#4      main (file:///tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-runtime/verify-docs.dart:150:163)\n<asynchronous suspension>\n"
+        }
+      ],
+      "initialDiagnosticsPreserved": true,
+      "v2Checks": "public aria-labelled size control changes/restores Button geometry; disabled/re-enabled; TextField actual typing/error/removal/disabled/value+DOM identity; both themes and dark refresh",
+      "browserClosed": true
+    }
+  },
+  "evidence": {
+    "assets": [
+      {
+        "id": 762565982,
+        "name": "pr6419-badge-default-light-defaultStyle.flutter.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6419-badge-default-light-defaultStyle.flutter.png",
+        "source": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured/badge-default-light-defaultStyle.flutter.png",
+        "sha256": "a7a16925a2d894dfeb0b78594338453b1b705340fecfcd9064ddb4c7bcddf085",
+        "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+        "viewed": true,
+        "edited": false
+      },
+      {
+        "id": 762566033,
+        "name": "pr6419-badge-default-light-defaultStyle.web.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6419-badge-default-light-defaultStyle.web.png",
+        "source": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured/badge-default-light-defaultStyle.web.png",
+        "sha256": "aa9959b2ff7ecacfb802c55ae2620fb642ccf5975c0fbf7ff026eb8532ad08e2",
+        "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+        "viewed": true,
+        "edited": false
+      },
+      {
+        "id": 762566088,
+        "name": "pr6419-badge-default-dark-defaultStyle.flutter.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6419-badge-default-dark-defaultStyle.flutter.png",
+        "source": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured/badge-default-dark-defaultStyle.flutter.png",
+        "sha256": "b77f266d8cbefe3b3ab89545ac811cdcde5d19926da4235f44175566137bbf6d",
+        "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+        "viewed": true,
+        "edited": false
+      },
+      {
+        "id": 762566140,
+        "name": "pr6419-badge-default-dark-defaultStyle.web.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6419-badge-default-dark-defaultStyle.web.png",
+        "source": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured/badge-default-dark-defaultStyle.web.png",
+        "sha256": "9bbcc0990abe7fe746951742b144c5190ba0e911ddab218ba8aa007267d2ae0d",
+        "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+        "viewed": true,
+        "edited": false
+      },
+      {
+        "id": 762566171,
+        "name": "pr6419-sidebar-default-light-defaultStyle.flutter.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6419-sidebar-default-light-defaultStyle.flutter.png",
+        "source": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured/sidebar-default-light-defaultStyle.flutter.png",
+        "sha256": "0a66063569af52aa1a6f266b44ea0ff0760ab5c96f14776beffbbfb9c2cb8e59",
+        "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+        "viewed": true,
+        "edited": false
+      },
+      {
+        "id": 762566212,
+        "name": "pr6419-sidebar-default-light-defaultStyle.web.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6419-sidebar-default-light-defaultStyle.web.png",
+        "source": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured/sidebar-default-light-defaultStyle.web.png",
+        "sha256": "3571066b2f48acbd7828e5e33b0e4f263c393a752fc9fa5335d18f182439d984",
+        "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+        "viewed": true,
+        "edited": false
+      },
+      {
+        "id": 762566281,
+        "name": "pr6419-sidebar-default-dark-defaultStyle.flutter.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6419-sidebar-default-dark-defaultStyle.flutter.png",
+        "source": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured/sidebar-default-dark-defaultStyle.flutter.png",
+        "sha256": "30e740c56031f44447da7dccf76a09911f12563f83b959a97cf07ea454dc9693",
+        "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+        "viewed": true,
+        "edited": false
+      },
+      {
+        "id": 762566327,
+        "name": "pr6419-sidebar-default-dark-defaultStyle.web.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6419-sidebar-default-dark-defaultStyle.web.png",
+        "source": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/captured/sidebar-default-dark-defaultStyle.web.png",
+        "sha256": "ed8756312221e16deb5ac12f809ddf2ad6163f7c668ec7a5262b9dff98b98f26",
+        "sourceHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+        "viewed": true,
+        "edited": false
+      }
+    ],
+    "privateUnpublishedReleaseId": 431249100,
+    "expiresDays": 3,
+    "pngEdits": 0,
+    "pngCommitted": 0,
+    "selection": "Fresh Native/Web Badge and Sidebar default light/dark; max8."
+  },
+  "rawReceipts": [
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/commands.json",
+      "sha256": "3913271576abe20683223cf1e9b17715b467d6acf11f25eee1b363cc76205038"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/manifest-binding.json",
+      "sha256": "63f07161ddb1fb51d8f7c5e07d1d910e3b52cd78c7632628731ae1e72eae398c"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/capture-integrity.json",
+      "sha256": "920b0b5dcc66db04b5faf530ea4da1995cb480e64e018759162811561fd737b7"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/before14-binding.json",
+      "sha256": "8cbf518cb896e91a31850999d24adb13e3fb835b55008e90a1909b40e1a0bc9c"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/latest-default58-comparison.json",
+      "sha256": "e97c6eaeacf0882f5f2ecae954499023c5be4a33a0f7449bb27665260aa0d331"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/raw-common-vs-c122.json",
+      "sha256": "f3f593135108da1c4d65f56046f7d3e60740901df4c11292275e5a35f032ea42"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/residual-repeat-comparison.json",
+      "sha256": "52b669b1045cbf84b81449b0cff421f6592050314305ad9bcc8c576dfc57d415"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/api-export-contract.json",
+      "sha256": "d7de6c9ac795c7b493df7b72f72db714a74c1d049b656b35fae7d320bd288fbd"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-exit.json",
+      "sha256": "f4415cc142d4dd386d490d3d9c18a1f92c01c82c9c7236ec7f9102fc4b749c45"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-build-sanity.json",
+      "sha256": "cdcc00c51da0c91444ebc78e6ffe41e109ff8179ff65b0bc5d4020092ee7f863"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-runtime/initial-docs-runtime.json",
+      "sha256": "30f44f8c3449ee4516fd2eb227998e168f91ca1d2aa0d4fe184d29d6096ca5b2"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-runtime/docs-runtime.json",
+      "sha256": "72eae17c16f950308af2027f9cfc86ba4b37c8a7c022a485ba5fec61c6444683"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-runtime/selector-diagnostic.json",
+      "sha256": "bb1eb93d95bf46cda58bd8c488e08a97f1129e2fc0a43291a8e07b6adc51f123"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/source-after.json",
+      "sha256": "28922966f6c9e56fc37afb0e1fb02b254d7ab6258e1f646c62f5a3dd79836ded"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/cleanup-final.json",
+      "sha256": "2b4c940be0bff7583ab578c7bcbeb8d08d5d17d468da18a5dffda21f2677ae5c"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/docs-runtime-summary.json",
+      "sha256": "52fcf80066b080948045ac4c4cb968951ce0d2de0ac5f30753d1104a79bc408b"
+    },
+    {
+      "path": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/debug-runtime/reload.json",
+      "sha256": "12d9e9b00c954a871e855bc5eca67c5027efa40abaeadd85bf54ceb3b36723ee"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/final-summary.json",
+      "sha256": "dd3860a7210c6214e6dde8e480ed878e48165656fe840e4bec02812ad02c531f"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/runtime-summary.json",
+      "sha256": "f0657877eb062b57efc0bdba5a62fbf3345cb2e2370ee3184e48519ed32e48ef"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/final-source-binding.json",
+      "sha256": "349b6d0cdd7278785ecb014526f3b7cbb90f9f9f68ff2c6bee7a299e8ffdc3cf"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/source-after.json",
+      "sha256": "8a1ff92608e75dd0077aba6801121d240eace3be977929cb07bc2e211ff9275b"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/cleanup-final.json",
+      "sha256": "488a64eb5308e0b03c9d27f46075254d443834da21e928bf3cbddf521e474bc0"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/capture-reuse-binding.json",
+      "sha256": "764f389b660d9d6815c9785bbcdcc93726adf619063261980cb1c61bea2a3e0e"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/native-background-proof.json",
+      "sha256": "8454ad03963e9abfd2c9515409b5e112adf2d0b116ae0d6abc11251173b328eb"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/build-sanity.json",
+      "sha256": "5adfaa1f09b11747d097458e76249cf311b40970b8e524e8bac144b28029e06a"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/js-bundle-delta.json",
+      "sha256": "43d2e192ffc2d3115a66f352401118fb454956077da9a6431bb0227f2c226757"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/docs-exit.json",
+      "sha256": "73edd9e0a350e190056ad2eddd1fe7d1497f3a15ed64095d82334580d5b32292"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/runtime/docs-runtime.json",
+      "sha256": "54a4381465c4ac2c8338191a5d039c256547e8b0324cdd32dfe6af0e972f032d"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/runtime-retry/docs-runtime.json",
+      "sha256": "5ef9421c647c640740caf988c364105b02494022272ac2a45890caab7aa20f16"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/debug-runtime/reload.json",
+      "sha256": "33fc36f8508ec2cbad022c9296fbd35692eb4d0fdd69c06cd44e9057f594c0f7"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/initial-native-background-error.json",
+      "sha256": "2b3473705263311458fb80791f05754fa1e71dc239900e0e50787cc8f295d24d"
+    },
+    {
+      "path": "/tmp/weever-6403-docs6420-20261118.yb70x8gm/native-background-error.json",
+      "sha256": "2b3473705263311458fb80791f05754fa1e71dc239900e0e50787cc8f295d24d"
+    }
+  ],
+  "limitations": [
+    "Overall parity incomplete; official reports exit1.",
+    "Removed20/new2 coverage is upstream6416 and open6417, never counted as fixes or previous passes.",
+    "DotIndicator/Join are held under public nonconst and fatal lint constraints, never forced skipped or changed.",
+    "Initial raw command-empty-dark9px residual kept despite identical-source repeat matching old capture; cause not conclusively assigned.",
+    "No new designer approval, Figma canvas generation, all-engines/AT certification, full manual CI or deployment claim.",
+    "No general partial-hydration or document-wide DOM ID uniqueness claim."
+  ],
+  "sourceAfter": {
+    "actualExecutedHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+    "finalBoundHead": "dd3ec460a79cfdc3e1ebc36ff018cff09e7a8187",
+    "tree": "394a349e688ee795f25b525dba91e23a5ec46f34",
+    "trackedFilesCompared": 22492,
+    "hashDeltas": [],
+    "status": "",
+    "packageEntries": 232,
+    "allPackageEntriesSame": true,
+    "allTrackedLocksAndGeneratedSame": true
+  },
+  "cleanup": {
+    "portsClosed": {
+      "65077": true,
+      "63535": true,
+      "51658": true,
+      "51650": true,
+      "49194": true,
+      "65481": true
+    },
+    "docsObservedOwnedPids": 78,
+    "docsObservedPidsStillLive": {},
+    "allCaptureAndReportRunnersAwaited": true,
+    "originalENOSPCLogsRetained": true,
+    "agentDeletedFiles": 0,
+    "browser12TestsClosed": true,
+    "optimizedDocsBrowsersClosed": true,
+    "ownDebugAppsClosed": true,
+    "otherSessionAppsOrCacheTouched": false,
+    "gitClean": true
+  },
+  "ownedDebugReload": {
+    "sourceHead": "dd3ec460a79cfdc3e1ebc36ff018cff09e7a8187",
+    "tree": "394a349e688ee795f25b525dba91e23a5ec46f34",
+    "entry": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local/debug-runtime/server.dart",
+    "vmService": "http://127.0.0.1:51650/",
+    "httpPort": 51658,
+    "beforeHTTP": 200,
+    "afterHTTP": 200,
+    "publicRendererWitnesses": [
+      "badge",
+      "progress",
+      "button",
+      "chip-input",
+      "disclosure",
+      "pagination",
+      "sidebar_item",
+      "sidebar_search",
+      "sidebar_header",
+      "sidebar_rail_item",
+      "menu_item",
+      "breadcrumb",
+      "option_item",
+      "command_search"
+    ],
+    "reloadSources": {
+      "result": {
+        "type": "ReloadReport",
+        "success": true,
+        "details": {
+          "finalLibraryCount": 2226,
+          "receivedLibraryCount": 0,
+          "receivedLibrariesBytes": 0,
+          "receivedClassesCount": 0,
+          "receivedProceduresCount": 0,
+          "savedLibraryCount": 2226,
+          "loadedLibraryCount": 0
+        }
+      }
+    },
+    "closeResponse": "closed",
+    "otherAppsTouched": false
+  },
+  "latestMainIntegration": {
+    "source": {
+      "actualDocsBuildRuntimeHead": "3756912de966917cc7529f1d94ac3b7bbe8fd6cc",
+      "actualDocsBuildRuntimeTree": "4247ba5a0ca476eede5778c7df63f1afbdcc1906",
+      "finalBoundHead": "2e0b025167394861d9e96f3dabe5a806b5e20ff8",
+      "finalBoundTree": "3b39bc418914c7af921b7aa2976d9b85c8a45a00",
+      "rootE8": "e8dcc787fdb26cfeaf37185265f8ff63ddc779ab",
+      "rootTreeExact": true,
+      "upstream6418BaselineDelta": [
+        "test/parity/baseline/toast-default-dark-claymorphism.flutter.json",
+        "test/parity/baseline/toast-default-dark-claymorphism.flutter.png",
+        "test/parity/baseline/toast-default-dark-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-default-dark-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-default-dark-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-default-dark-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-default-dark-neumorphism.flutter.json",
+        "test/parity/baseline/toast-default-dark-neumorphism.flutter.png",
+        "test/parity/baseline/toast-default-light-claymorphism.flutter.json",
+        "test/parity/baseline/toast-default-light-claymorphism.flutter.png",
+        "test/parity/baseline/toast-default-light-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-default-light-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-default-light-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-default-light-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-default-light-neumorphism.flutter.json",
+        "test/parity/baseline/toast-default-light-neumorphism.flutter.png",
+        "test/parity/baseline/toast-destructive-dark-claymorphism.flutter.json",
+        "test/parity/baseline/toast-destructive-dark-claymorphism.flutter.png",
+        "test/parity/baseline/toast-destructive-dark-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-destructive-dark-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-destructive-dark-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-destructive-dark-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-destructive-dark-neumorphism.flutter.json",
+        "test/parity/baseline/toast-destructive-dark-neumorphism.flutter.png",
+        "test/parity/baseline/toast-destructive-light-claymorphism.flutter.json",
+        "test/parity/baseline/toast-destructive-light-claymorphism.flutter.png",
+        "test/parity/baseline/toast-destructive-light-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-destructive-light-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-destructive-light-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-destructive-light-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-destructive-light-neumorphism.flutter.json",
+        "test/parity/baseline/toast-destructive-light-neumorphism.flutter.png",
+        "test/parity/baseline/toast-no-icon-dark-claymorphism.flutter.json",
+        "test/parity/baseline/toast-no-icon-dark-claymorphism.flutter.png",
+        "test/parity/baseline/toast-no-icon-dark-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-no-icon-dark-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-no-icon-dark-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-no-icon-dark-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-no-icon-dark-neumorphism.flutter.json",
+        "test/parity/baseline/toast-no-icon-dark-neumorphism.flutter.png",
+        "test/parity/baseline/toast-no-icon-light-claymorphism.flutter.json",
+        "test/parity/baseline/toast-no-icon-light-claymorphism.flutter.png",
+        "test/parity/baseline/toast-no-icon-light-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-no-icon-light-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-no-icon-light-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-no-icon-light-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-no-icon-light-neumorphism.flutter.json",
+        "test/parity/baseline/toast-no-icon-light-neumorphism.flutter.png"
+      ],
+      "upstreamBaselineFileCount": 48,
+      "renderInputPrefixes": [
+        "docs_site",
+        "docs_core",
+        "packages",
+        "tool/parity",
+        "tool/browser_launch.dart",
+        "pubspec.yaml",
+        "pubspec.lock",
+        ".fvmrc"
+      ],
+      "renderAndCaptureInputDelta": [],
+      "docsAreActual375FreshExplicitReuseAfterBaselineOnlyMerge": true,
+      "full734AndBefore58ArePrevious821ExplicitReuseOnly": true,
+      "paritySignalDoesNotUseChangedStoredToastBaselines": true
+    },
+    "summary": {
+      "actualNewDocsSource": "3756912de966917cc7529f1d94ac3b7bbe8fd6cc",
+      "actualNewDocsTree": "4247ba5a0ca476eede5778c7df63f1afbdcc1906",
+      "finalBoundHead": "2e0b025167394861d9e96f3dabe5a806b5e20ff8",
+      "finalBoundTree": "3b39bc418914c7af921b7aa2976d9b85c8a45a00",
+      "rootE8TreeExact": true,
+      "upstream6420VisualDocsChanges": [
+        "PreviewApp background surfaceContainer→surface in light playground",
+        "docs-playground-stage tile→card",
+        "anatomy default container marker right→left"
+      ],
+      "newDocsActualBuild": {
+        "cli": "0.24.0-beta.1",
+        "SDK": "Flutter3.50/Dart3.14",
+        "exit": 0,
+        "seconds": 84.541793458,
+        "uniqueRoutes": 359,
+        "oldBuildPreservedBytes": 272067229,
+        "hybridClientBundlesChanged": true
+      },
+      "runtime": {
+        "uniqueCompletedRoutes": 12,
+        "validRecords": 138,
+        "completeInitialRoutesRecords": 120,
+        "narrowChipTfRetryRecords": 18,
+        "actualWebSurfaceObservations": 18,
+        "v2RecordsIncludingHTTP": 20,
+        "anatomyRows": 12,
+        "initialRuntimeErrorsPreserved": 1,
+        "initialActionFailuresPreserved": 2,
+        "retryRuntimeErrors": 0,
+        "retryActionFailures": 0,
+        "fontReadinessRequestsCompleted200": 3,
+        "initialFontCancellationNotAssertedProven": true
+      },
+      "actualNativeEmbed": {
+        "mode": "real hybridFlutter active2frames/secondaryButton/platformBoth",
+        "themes": 2,
+        "rawPNGs": 2,
+        "surfacePixelsMatchCore": true,
+        "lightRGBA": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "darkRGBA": [
+          22,
+          23,
+          24,
+          255
+        ],
+        "foregroundNonSurfacePixelsEach": 5612,
+        "runtimeErrors": 0,
+        "requestFailures": 0
+      },
+      "ownedSSRReload": {
+        "success": true,
+        "HTTPBeforeAfter": 200,
+        "publicRendererWitnesses": 14,
+        "receipt": "debug-runtime/reload.json"
+      },
+      "captureReuse": {
+        "oldActualCaptureHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+        "full734": "explicitReuseNotFresh",
+        "before58": "explicitReuseNotFresh",
+        "captureInputDelta": 0,
+        "manifest734KeyRoleFieldExact": true,
+        "upstream6418StoredToastBaselineDeltaFiles": 48,
+        "noNewCaptureOrComparisonFixClaim": true,
+        "ownBaselineRegressionDisabledInModeParity": true
+      },
+      "sourceHash": {
+        "preBaselineMergeTrackedUnchanged": 22494,
+        "afterMergeOnlyBaseline48": true,
+        "packages": 232,
+        "allPackageEntriesAndLocksSame": true
+      },
+      "cleanup": {
+        "closedPorts": {
+          "58533": true,
+          "57297": true,
+          "59895": true,
+          "59817": true
+        },
+        "buildOwnedObservedPids": 67,
+        "ownedPidsStillLive": {},
+        "allOwnBrowsersClosed": true,
+        "allOwnDebugAppsClosed": true,
+        "allRunnerSessionsAwaited": true,
+        "oldBuildPreservedRename": true,
+        "agentFileDeletions": 0,
+        "otherSessionOrGlobalCacheTouched": false,
+        "githubOperationsThisPhase": 0,
+        "gitClean": true
+      },
+      "limits": "Initial129-run FontManifest fetch error/Chip dark reload timeout and erroneous TF semantic-container assumption retained. Narrow retry uses original timeout, actual2warmframes+finishedHTTP200 assets and all4 authored TF selectors; no fake manifest/filtering/scene omission/product edits. Native initial explicit-role selector diagnostic also retained; proper accessibility role reads actual native button."
+    },
+    "runtime": {
+      "actualSource": "3756912de966917cc7529f1d94ac3b7bbe8fd6cc",
+      "actualTree": "4247ba5a0ca476eede5778c7df63f1afbdcc1906",
+      "uniqueCompletedRoutes": 12,
+      "validRecords": 138,
+      "completedInitialRoutes": 10,
+      "completedInitialRecords": 120,
+      "narrowRetryRoutes": [
+        "chip-input",
+        "text-field"
+      ],
+      "narrowRetryRecords": 18,
+      "v2RecordsIncludingHTTP": 20,
+      "actualWebSurfaceColorObservations": 18,
+      "actualAuthoredAnatomyResizeRows": 12,
+      "initialRunPassed": false,
+      "initialRunRecords": 129,
+      "initialRuntimeErrors": [
+        "Evaluation failed: Error: Flutter Web engine failed to complete HTTP request to fetch \"assets/FontManifest.json\": TypeError: Failed to fetch\n\n    at Object.eyn (http://127.0.0.1:58533/main.client.dart.js_30.part.js:10:19)\n    at Object.bNx (http://127.0.0.1:58533/main.client.dart.js_30.part.js:6:14)\n    at bDn.$2 (http://127.0.0.1:58533/main.client.dart.js_46.part.js:1734:12)\n    at ceJ.a1n (http://127.0.0.1:58533/main.client.dart.js:25740:19)\n    at wk.bwY (http://127.0.0.1:58533/main.client.dart.js:25055:18)\n    at czb.$0 (http://127.0.0.1:58533/main.client.dart.js:25255:37)\n    at Object.UG (http://127.0.0.1:58533/main.client.dart.js:6206:78)\n    at bs.ly (http://127.0.0.1:58533/main.client.dart.js:25151:3)\n    at as8.xj (http://127.0.0.1:58533/main.client.dart.js:24718:13)\n    at Object.ap (http://127.0.0.1:58533/main.client.dart.js:6059:11)"
+      ],
+      "initialActionFailures": [
+        {
+          "component": "chip-input",
+          "error": "TimeoutException: waiting for selector \".preview-web\" failed: timeout 30000ms exceeded",
+          "stack": ""
+        },
+        {
+          "component": "text-field",
+          "error": "Bad state: Actual default-side container marker is present",
+          "stack": "#0      require (file:///tmp/weever-6403-docs6420-20261118.yb70x8gm/runtime/verify-docs.dart:13:44)\n#1      main.anatomy (file:///tmp/weever-6403-docs6420-20261118.yb70x8gm/runtime/verify-docs.dart:134:5)\n<asynchronous suspension>\n#2      main (file:///tmp/weever-6403-docs6420-20261118.yb70x8gm/runtime/verify-docs.dart:162:189)\n<asynchronous suspension>\n"
+        }
+      ],
+      "retryPassed": true,
+      "retryRuntimeErrors": [],
+      "retryActionFailures": [],
+      "fontLimitation": "Original request had no per-request timeline; cancellation during reload plausible, not proven. Exists/HTTP200. Same-source narrow retry waits real2warmframes and completed FontManifest requests; no filtering/fake manifest/timeout increase/product modification.",
+      "textFieldAuthoredSpecs": [
+        "label@left",
+        "div:has(> input)@left",
+        "input@right",
+        "p@left"
+      ],
+      "buttonDefaultContainerSide": "left",
+      "nativeBackgroundProof": "native-background-proof.json",
+      "anatomyRecords": [
+        {
+          "component": "button",
+          "theme": "light",
+          "viewport": 1440,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "container",
+                  "side": ""
+                },
+                {
+                  "what": "leading",
+                  "side": ""
+                },
+                {
+                  "what": "label",
+                  "side": ""
+                },
+                {
+                  "what": "trailing",
+                  "side": ""
+                }
+              ],
+              "rootTag": "BUTTON",
+              "root": {
+                "left": 670.65625,
+                "right": 813.34375,
+                "top": 1281.6875,
+                "bottom": 1329.6875
+              },
+              "markers": [
+                {
+                  "spec": {
+                    "what": "container",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 636.65625,
+                    "right": 656.65625,
+                    "top": 1295.6875,
+                    "bottom": 1315.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "leading",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 689.65625,
+                    "right": 709.65625,
+                    "top": 1262.6875,
+                    "bottom": 1282.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 732,
+                    "right": 752,
+                    "top": 1260.6875,
+                    "bottom": 1280.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "trailing",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 774.34375,
+                    "right": 794.34375,
+                    "top": 1262.6875,
+                    "bottom": 1282.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "button",
+          "theme": "light",
+          "viewport": 1100,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "container",
+                  "side": ""
+                },
+                {
+                  "what": "leading",
+                  "side": ""
+                },
+                {
+                  "what": "label",
+                  "side": ""
+                },
+                {
+                  "what": "trailing",
+                  "side": ""
+                }
+              ],
+              "rootTag": "BUTTON",
+              "root": {
+                "left": 610.65625,
+                "right": 753.34375,
+                "top": 1384.6875,
+                "bottom": 1432.6875
+              },
+              "markers": [
+                {
+                  "spec": {
+                    "what": "container",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 576.65625,
+                    "right": 596.65625,
+                    "top": 1398.6875,
+                    "bottom": 1418.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "leading",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 629.65625,
+                    "right": 649.65625,
+                    "top": 1365.6875,
+                    "bottom": 1385.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 672,
+                    "right": 692,
+                    "top": 1363.6875,
+                    "bottom": 1383.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "trailing",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 714.34375,
+                    "right": 734.34375,
+                    "top": 1365.6875,
+                    "bottom": 1385.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "button",
+          "theme": "light",
+          "viewport": 1440,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "container",
+                  "side": ""
+                },
+                {
+                  "what": "leading",
+                  "side": ""
+                },
+                {
+                  "what": "label",
+                  "side": ""
+                },
+                {
+                  "what": "trailing",
+                  "side": ""
+                }
+              ],
+              "rootTag": "BUTTON",
+              "root": {
+                "left": 670.65625,
+                "right": 813.34375,
+                "top": 1281.6875,
+                "bottom": 1329.6875
+              },
+              "markers": [
+                {
+                  "spec": {
+                    "what": "container",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 636.65625,
+                    "right": 656.65625,
+                    "top": 1295.6875,
+                    "bottom": 1315.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "leading",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 689.65625,
+                    "right": 709.65625,
+                    "top": 1262.6875,
+                    "bottom": 1282.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 732,
+                    "right": 752,
+                    "top": 1260.6875,
+                    "bottom": 1280.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "trailing",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 774.34375,
+                    "right": 794.34375,
+                    "top": 1262.6875,
+                    "bottom": 1282.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "button",
+          "theme": "dark",
+          "viewport": 1440,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "container",
+                  "side": ""
+                },
+                {
+                  "what": "leading",
+                  "side": ""
+                },
+                {
+                  "what": "label",
+                  "side": ""
+                },
+                {
+                  "what": "trailing",
+                  "side": ""
+                }
+              ],
+              "rootTag": "BUTTON",
+              "root": {
+                "left": 670.65625,
+                "right": 813.34375,
+                "top": 1281.6875,
+                "bottom": 1329.6875
+              },
+              "markers": [
+                {
+                  "spec": {
+                    "what": "container",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 636.65625,
+                    "right": 656.65625,
+                    "top": 1295.6875,
+                    "bottom": 1315.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "leading",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 689.65625,
+                    "right": 709.65625,
+                    "top": 1262.6875,
+                    "bottom": 1282.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 732,
+                    "right": 752,
+                    "top": 1260.6875,
+                    "bottom": 1280.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "trailing",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 774.34375,
+                    "right": 794.34375,
+                    "top": 1262.6875,
+                    "bottom": 1282.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "button",
+          "theme": "dark",
+          "viewport": 1100,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "container",
+                  "side": ""
+                },
+                {
+                  "what": "leading",
+                  "side": ""
+                },
+                {
+                  "what": "label",
+                  "side": ""
+                },
+                {
+                  "what": "trailing",
+                  "side": ""
+                }
+              ],
+              "rootTag": "BUTTON",
+              "root": {
+                "left": 610.65625,
+                "right": 753.34375,
+                "top": 1384.6875,
+                "bottom": 1432.6875
+              },
+              "markers": [
+                {
+                  "spec": {
+                    "what": "container",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 576.65625,
+                    "right": 596.65625,
+                    "top": 1398.6875,
+                    "bottom": 1418.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "leading",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 629.65625,
+                    "right": 649.65625,
+                    "top": 1365.6875,
+                    "bottom": 1385.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 672,
+                    "right": 692,
+                    "top": 1363.6875,
+                    "bottom": 1383.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "trailing",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 714.34375,
+                    "right": 734.34375,
+                    "top": 1365.6875,
+                    "bottom": 1385.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "button",
+          "theme": "dark",
+          "viewport": 1440,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "container",
+                  "side": ""
+                },
+                {
+                  "what": "leading",
+                  "side": ""
+                },
+                {
+                  "what": "label",
+                  "side": ""
+                },
+                {
+                  "what": "trailing",
+                  "side": ""
+                }
+              ],
+              "rootTag": "BUTTON",
+              "root": {
+                "left": 670.65625,
+                "right": 813.34375,
+                "top": 1281.6875,
+                "bottom": 1329.6875
+              },
+              "markers": [
+                {
+                  "spec": {
+                    "what": "container",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 636.65625,
+                    "right": 656.65625,
+                    "top": 1295.6875,
+                    "bottom": 1315.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "leading",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 689.65625,
+                    "right": 709.65625,
+                    "top": 1262.6875,
+                    "bottom": 1282.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 732,
+                    "right": 752,
+                    "top": 1260.6875,
+                    "bottom": 1280.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "trailing",
+                    "side": ""
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-top",
+                  "ariaHidden": "true",
+                  "box": {
+                    "left": 774.34375,
+                    "right": 794.34375,
+                    "top": 1262.6875,
+                    "bottom": 1282.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "text-field",
+          "theme": "light",
+          "viewport": 1440,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "label",
+                  "side": "left"
+                },
+                {
+                  "what": "div:has(> input)",
+                  "side": "left"
+                },
+                {
+                  "what": "input",
+                  "side": "right"
+                },
+                {
+                  "what": "p",
+                  "side": "left"
+                }
+              ],
+              "rootTag": "DIV",
+              "markers": [
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "LABEL",
+                  "targetText": "이메일",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1216.6875,
+                    "bottom": 1234.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1215.6875,
+                    "bottom": 1235.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "div:has(> input)",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "DIV",
+                  "targetText": "\n                                \n                              ",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1240.6875,
+                    "bottom": 1280.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1250.6875,
+                    "bottom": 1270.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "input",
+                    "side": "right"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-right",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "INPUT",
+                  "targetText": "",
+                  "target": {
+                    "left": 655,
+                    "right": 829,
+                    "top": 1250.1875,
+                    "bottom": 1271.1875
+                  },
+                  "box": {
+                    "left": 843,
+                    "right": 863,
+                    "top": 1250.6875,
+                    "bottom": 1270.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "p",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "P",
+                  "targetText": "업무용 이메일을 권장합니다.",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1286.6875,
+                    "bottom": 1304.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1285.6875,
+                    "bottom": 1305.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "text-field",
+          "theme": "light",
+          "viewport": 1100,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "label",
+                  "side": "left"
+                },
+                {
+                  "what": "div:has(> input)",
+                  "side": "left"
+                },
+                {
+                  "what": "input",
+                  "side": "right"
+                },
+                {
+                  "what": "p",
+                  "side": "left"
+                }
+              ],
+              "rootTag": "DIV",
+              "markers": [
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "LABEL",
+                  "targetText": "이메일",
+                  "target": {
+                    "left": 594,
+                    "right": 770,
+                    "top": 1319.6875,
+                    "bottom": 1337.6875
+                  },
+                  "box": {
+                    "left": 560,
+                    "right": 580,
+                    "top": 1318.6875,
+                    "bottom": 1338.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "div:has(> input)",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "DIV",
+                  "targetText": "\n                                \n                              ",
+                  "target": {
+                    "left": 594,
+                    "right": 770,
+                    "top": 1343.6875,
+                    "bottom": 1383.6875
+                  },
+                  "box": {
+                    "left": 560,
+                    "right": 580,
+                    "top": 1353.6875,
+                    "bottom": 1373.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "input",
+                    "side": "right"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-right",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "INPUT",
+                  "targetText": "",
+                  "target": {
+                    "left": 595,
+                    "right": 769,
+                    "top": 1353.1875,
+                    "bottom": 1374.1875
+                  },
+                  "box": {
+                    "left": 783,
+                    "right": 803,
+                    "top": 1353.6875,
+                    "bottom": 1373.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "p",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "P",
+                  "targetText": "업무용 이메일을 권장합니다.",
+                  "target": {
+                    "left": 594,
+                    "right": 770,
+                    "top": 1389.6875,
+                    "bottom": 1407.6875
+                  },
+                  "box": {
+                    "left": 560,
+                    "right": 580,
+                    "top": 1388.6875,
+                    "bottom": 1408.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "text-field",
+          "theme": "light",
+          "viewport": 1440,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "label",
+                  "side": "left"
+                },
+                {
+                  "what": "div:has(> input)",
+                  "side": "left"
+                },
+                {
+                  "what": "input",
+                  "side": "right"
+                },
+                {
+                  "what": "p",
+                  "side": "left"
+                }
+              ],
+              "rootTag": "DIV",
+              "markers": [
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "LABEL",
+                  "targetText": "이메일",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1216.6875,
+                    "bottom": 1234.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1215.6875,
+                    "bottom": 1235.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "div:has(> input)",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "DIV",
+                  "targetText": "\n                                \n                              ",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1240.6875,
+                    "bottom": 1280.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1250.6875,
+                    "bottom": 1270.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "input",
+                    "side": "right"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-right",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "INPUT",
+                  "targetText": "",
+                  "target": {
+                    "left": 655,
+                    "right": 829,
+                    "top": 1250.1875,
+                    "bottom": 1271.1875
+                  },
+                  "box": {
+                    "left": 843,
+                    "right": 863,
+                    "top": 1250.6875,
+                    "bottom": 1270.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "p",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "P",
+                  "targetText": "업무용 이메일을 권장합니다.",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1286.6875,
+                    "bottom": 1304.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1285.6875,
+                    "bottom": 1305.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "text-field",
+          "theme": "dark",
+          "viewport": 1440,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "label",
+                  "side": "left"
+                },
+                {
+                  "what": "div:has(> input)",
+                  "side": "left"
+                },
+                {
+                  "what": "input",
+                  "side": "right"
+                },
+                {
+                  "what": "p",
+                  "side": "left"
+                }
+              ],
+              "rootTag": "DIV",
+              "markers": [
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "LABEL",
+                  "targetText": "이메일",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1216.6875,
+                    "bottom": 1234.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1215.6875,
+                    "bottom": 1235.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "div:has(> input)",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "DIV",
+                  "targetText": "\n                                \n                              ",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1240.6875,
+                    "bottom": 1280.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1250.6875,
+                    "bottom": 1270.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "input",
+                    "side": "right"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-right",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "INPUT",
+                  "targetText": "",
+                  "target": {
+                    "left": 655,
+                    "right": 829,
+                    "top": 1250.1875,
+                    "bottom": 1271.1875
+                  },
+                  "box": {
+                    "left": 843,
+                    "right": 863,
+                    "top": 1250.6875,
+                    "bottom": 1270.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "p",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "P",
+                  "targetText": "업무용 이메일을 권장합니다.",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1286.6875,
+                    "bottom": 1304.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1285.6875,
+                    "bottom": 1305.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "text-field",
+          "theme": "dark",
+          "viewport": 1100,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "label",
+                  "side": "left"
+                },
+                {
+                  "what": "div:has(> input)",
+                  "side": "left"
+                },
+                {
+                  "what": "input",
+                  "side": "right"
+                },
+                {
+                  "what": "p",
+                  "side": "left"
+                }
+              ],
+              "rootTag": "DIV",
+              "markers": [
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "LABEL",
+                  "targetText": "이메일",
+                  "target": {
+                    "left": 594,
+                    "right": 770,
+                    "top": 1319.6875,
+                    "bottom": 1337.6875
+                  },
+                  "box": {
+                    "left": 560,
+                    "right": 580,
+                    "top": 1318.6875,
+                    "bottom": 1338.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "div:has(> input)",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "DIV",
+                  "targetText": "\n                                \n                              ",
+                  "target": {
+                    "left": 594,
+                    "right": 770,
+                    "top": 1343.6875,
+                    "bottom": 1383.6875
+                  },
+                  "box": {
+                    "left": 560,
+                    "right": 580,
+                    "top": 1353.6875,
+                    "bottom": 1373.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "input",
+                    "side": "right"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-right",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "INPUT",
+                  "targetText": "",
+                  "target": {
+                    "left": 595,
+                    "right": 769,
+                    "top": 1353.1875,
+                    "bottom": 1374.1875
+                  },
+                  "box": {
+                    "left": 783,
+                    "right": 803,
+                    "top": 1353.6875,
+                    "bottom": 1373.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "p",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "P",
+                  "targetText": "업무용 이메일을 권장합니다.",
+                  "target": {
+                    "left": 594,
+                    "right": 770,
+                    "top": 1389.6875,
+                    "bottom": 1407.6875
+                  },
+                  "box": {
+                    "left": 560,
+                    "right": 580,
+                    "top": 1388.6875,
+                    "bottom": 1408.6875
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "text-field",
+          "theme": "dark",
+          "viewport": 1440,
+          "stages": [
+            {
+              "specs": [
+                {
+                  "what": "label",
+                  "side": "left"
+                },
+                {
+                  "what": "div:has(> input)",
+                  "side": "left"
+                },
+                {
+                  "what": "input",
+                  "side": "right"
+                },
+                {
+                  "what": "p",
+                  "side": "left"
+                }
+              ],
+              "rootTag": "DIV",
+              "markers": [
+                {
+                  "spec": {
+                    "what": "label",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "LABEL",
+                  "targetText": "이메일",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1216.6875,
+                    "bottom": 1234.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1215.6875,
+                    "bottom": 1235.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "div:has(> input)",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "DIV",
+                  "targetText": "\n                                \n                              ",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1240.6875,
+                    "bottom": 1280.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1250.6875,
+                    "bottom": 1270.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "input",
+                    "side": "right"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-right",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "INPUT",
+                  "targetText": "",
+                  "target": {
+                    "left": 655,
+                    "right": 829,
+                    "top": 1250.1875,
+                    "bottom": 1271.1875
+                  },
+                  "box": {
+                    "left": 843,
+                    "right": 863,
+                    "top": 1250.6875,
+                    "bottom": 1270.6875
+                  }
+                },
+                {
+                  "spec": {
+                    "what": "p",
+                    "side": "left"
+                  },
+                  "hidden": false,
+                  "classes": "docs-anatomy-marker is-left",
+                  "ariaHidden": "true",
+                  "targetPresent": true,
+                  "targetTag": "P",
+                  "targetText": "업무용 이메일을 권장합니다.",
+                  "target": {
+                    "left": 654,
+                    "right": 830,
+                    "top": 1286.6875,
+                    "bottom": 1304.6875
+                  },
+                  "box": {
+                    "left": 620,
+                    "right": 640,
+                    "top": 1285.6875,
+                    "bottom": 1305.6875
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "actualNativeBackground": {
+      "actualSource": "3756912de966917cc7529f1d94ac3b7bbe8fd6cc",
+      "actualWidget": "Hybrid FlutterEmbedView PreviewApp, active after2frames, secondaryButton",
+      "mode": "normal publicplatformBoth; actualcanvasrawscreenshot; no image edits",
+      "rows": [
+        {
+          "theme": "light",
+          "embedId": "flutter-playground-button-1",
+          "active": true,
+          "loader": 0,
+          "width": 269,
+          "height": 200,
+          "stageBackground": "rgb(255, 255, 255)",
+          "coreSurface": "255 255 255",
+          "views": [
+            {
+              "tag": "FLUTTER-VIEW",
+              "rect": [
+                269,
+                200
+              ]
+            }
+          ],
+          "canvas": [
+            {
+              "width": 269,
+              "height": 200
+            }
+          ],
+          "iframeCount": 0,
+          "file": "/private/tmp/weever-6403-docs6420-20261118.yb70x8gm/native-light.png",
+          "rawPngSha256": "bc9ee99696f47aadf4aa775ef8b63885275bb0a389c9cb240787e882ed48d268",
+          "size": [
+            269,
+            201
+          ],
+          "cornerPixel": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "expectedCoreSurface": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "nonSurfacePixels": 5612,
+          "surfacePixelMatch": true
+        },
+        {
+          "theme": "dark",
+          "embedId": "flutter-playground-button-1",
+          "active": true,
+          "loader": 0,
+          "width": 269,
+          "height": 200,
+          "stageBackground": "rgb(22, 23, 24)",
+          "coreSurface": "22 23 24",
+          "views": [
+            {
+              "tag": "FLUTTER-VIEW",
+              "rect": [
+                269,
+                200
+              ]
+            }
+          ],
+          "canvas": [
+            {
+              "width": 269,
+              "height": 200
+            }
+          ],
+          "iframeCount": 0,
+          "file": "/private/tmp/weever-6403-docs6420-20261118.yb70x8gm/native-dark.png",
+          "rawPngSha256": "15f0166499152e6801704e85625c22390f50b2326312d9f6acd23d4a02fcb717",
+          "size": [
+            269,
+            201
+          ],
+          "cornerPixel": [
+            22,
+            23,
+            24,
+            255
+          ],
+          "expectedCoreSurface": [
+            22,
+            23,
+            24,
+            255
+          ],
+          "nonSurfacePixels": 5612,
+          "surfacePixelMatch": true
+        }
+      ],
+      "runtimeErrors": [],
+      "requestFailures": []
+    },
+    "sourceAfter": {
+      "actualDocsHead": "3756912de966917cc7529f1d94ac3b7bbe8fd6cc",
+      "finalHead": "2e0b025167394861d9e96f3dabe5a806b5e20ff8",
+      "finalTree": "3b39bc418914c7af921b7aa2976d9b85c8a45a00",
+      "comparedTracked": 22494,
+      "preBaselineMergeHashDeltas": [],
+      "postBaselineMergeOnlyExpected48": [
+        "test/parity/baseline/toast-default-dark-claymorphism.flutter.json",
+        "test/parity/baseline/toast-default-dark-claymorphism.flutter.png",
+        "test/parity/baseline/toast-default-dark-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-default-dark-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-default-dark-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-default-dark-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-default-dark-neumorphism.flutter.json",
+        "test/parity/baseline/toast-default-dark-neumorphism.flutter.png",
+        "test/parity/baseline/toast-default-light-claymorphism.flutter.json",
+        "test/parity/baseline/toast-default-light-claymorphism.flutter.png",
+        "test/parity/baseline/toast-default-light-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-default-light-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-default-light-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-default-light-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-default-light-neumorphism.flutter.json",
+        "test/parity/baseline/toast-default-light-neumorphism.flutter.png",
+        "test/parity/baseline/toast-destructive-dark-claymorphism.flutter.json",
+        "test/parity/baseline/toast-destructive-dark-claymorphism.flutter.png",
+        "test/parity/baseline/toast-destructive-dark-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-destructive-dark-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-destructive-dark-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-destructive-dark-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-destructive-dark-neumorphism.flutter.json",
+        "test/parity/baseline/toast-destructive-dark-neumorphism.flutter.png",
+        "test/parity/baseline/toast-destructive-light-claymorphism.flutter.json",
+        "test/parity/baseline/toast-destructive-light-claymorphism.flutter.png",
+        "test/parity/baseline/toast-destructive-light-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-destructive-light-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-destructive-light-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-destructive-light-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-destructive-light-neumorphism.flutter.json",
+        "test/parity/baseline/toast-destructive-light-neumorphism.flutter.png",
+        "test/parity/baseline/toast-no-icon-dark-claymorphism.flutter.json",
+        "test/parity/baseline/toast-no-icon-dark-claymorphism.flutter.png",
+        "test/parity/baseline/toast-no-icon-dark-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-no-icon-dark-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-no-icon-dark-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-no-icon-dark-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-no-icon-dark-neumorphism.flutter.json",
+        "test/parity/baseline/toast-no-icon-dark-neumorphism.flutter.png",
+        "test/parity/baseline/toast-no-icon-light-claymorphism.flutter.json",
+        "test/parity/baseline/toast-no-icon-light-claymorphism.flutter.png",
+        "test/parity/baseline/toast-no-icon-light-defaultStyle.flutter.json",
+        "test/parity/baseline/toast-no-icon-light-defaultStyle.flutter.png",
+        "test/parity/baseline/toast-no-icon-light-liquidGlass.flutter.json",
+        "test/parity/baseline/toast-no-icon-light-liquidGlass.flutter.png",
+        "test/parity/baseline/toast-no-icon-light-neumorphism.flutter.json",
+        "test/parity/baseline/toast-no-icon-light-neumorphism.flutter.png"
+      ],
+      "renderAndCaptureInputDelta": [],
+      "allTrackedLocksAndGeneratedUnchanged": true,
+      "packageEntries": 232,
+      "allEntriesSame": true,
+      "clean": true
+    },
+    "cleanup": {
+      "closedPorts": {
+        "58533": true,
+        "57297": true,
+        "59895": true,
+        "59817": true
+      },
+      "buildOwnedObservedPids": 67,
+      "ownedPidsStillLive": {},
+      "allOwnBrowsersClosed": true,
+      "allOwnDebugAppsClosed": true,
+      "allRunnerSessionsAwaited": true,
+      "oldBuildPreservedRename": true,
+      "agentFileDeletions": 0,
+      "otherSessionOrGlobalCacheTouched": false,
+      "githubOperationsThisPhase": 0,
+      "gitClean": true
+    },
+    "captureReuse": {
+      "oldActualProducerHead": "821a6b66b16b6422e04d70ca14c1e2371c9af433",
+      "oldBoundHead": "dd3ec460a79cfdc3e1ebc36ff018cff09e7a8187",
+      "newDocsHead": "3756912de966917cc7529f1d94ac3b7bbe8fd6cc",
+      "newDocsTree": "4247ba5a0ca476eede5778c7df63f1afbdcc1906",
+      "allDelta": [
+        "docs/verification/parity-element-scopes-2026-11-18.json",
+        "docs/verification/parity-element-scopes-2026-11-18.md",
+        "docs_site/lib/widgets/preview_app.dart",
+        "docs_site/web/docs-shell.css",
+        "docs_site/web/docs-shell.js"
+      ],
+      "captureInputPrefixesChecked": [
+        "packages/coui_core",
+        "packages/coui_flutter",
+        "packages/coui_web",
+        "docs_core",
+        "tool/parity",
+        "tool/browser_launch.dart",
+        "pubspec.lock",
+        "pubspec.yaml",
+        ".fvmrc"
+      ],
+      "captureProducerDelta": [],
+      "authoritativeManifestKeysRolesFieldsExact": true,
+      "defaultKeys": 734,
+      "all734And58AreExplicitReuseNotNewCapture": true,
+      "actualNativePreviewAppBackgroundAndDocsCSSJSChanged": true,
+      "priorArtifact": "/tmp/weever-6403-combined14-20261118.9pnlpg4y/final-local",
+      "reusedFull": "captured/",
+      "reusedBaseline58": "before14-captured58/",
+      "reuseReason": "No package/Core/Native/docs_core/catalog/probe/producer/SDK/lock input delta; docs_site preview_app compiled embedded app is separate from parity Native producer; docs-shell CSS/JS not loaded by offline parity host."
+    },
+    "rootProductHead": "e8dcc787fdb26cfeaf37185265f8ff63ddc779ab",
+    "main": "9f041ba37c87adfbeb28f2cdce7298fa4a7100d1",
+    "own20SourceBlobsSameAs719": true,
+    "root36NotRerunAtNewHead": "The only later source deltas are docs_site3 and stored Toastbaseline48, which direct tests/capture producers do not consume as render inputs. Root719 execution remains labelled719."
+  },
+  "negativeOriginals": {
+    "navigation": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-nav-local-key-audit-20261118.a9dxt6ix/permanent-before34c.log",
+    "primitives": "/tmp/weever-6131-stateless-keyscope-20261118.9x73t_46",
+    "helperBefore": "minimal-negative-before34.log",
+    "fourConsumersBefore": "followup4-negative.log"
+  }
+}

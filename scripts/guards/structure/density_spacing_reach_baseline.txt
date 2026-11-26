@@ -1,0 +1,22 @@
+# Spacing-named values that reach `* scaling` without the theme density,
+# on purpose. Read by check_density_spacing_reach.sh. Net-new ones fail CI;
+# the count may only shrink.
+#
+# Each is geometry a component draws, not spacing it lays out:
+#
+#   display/mockup_device/mockup_device_style.dart — the three `gapAfter`
+#     products. A device mockup's status bar is a replica: its gaps are the
+#     device's own lengths scaled to the mockup, and a density that moved
+#     them would redraw the device rather than re-space the app around it.
+#
+#   display/trend_chart/trend_chart_style.dart — `barSpacing`. It sets the
+#     width of each bar inside its plot slot (`slot - barSpacing`); moving it
+#     would redraw the data, not the layout around the chart.
+#
+#   layout/tree/tree_style.dart — the leaf row's chevron slot, read from the
+#     `chevronPlaceholderGapStyle` Core field. The field is named like a gap,
+#     but the slot holds the chevron's place on a row that has none: it is
+#     the glyph's width. Moved by the density, it would shift every leaf row
+#     against its parent siblings by the difference between a spacing rung
+#     and the chevron beside it.
+5

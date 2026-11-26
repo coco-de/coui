@@ -1,0 +1,9 @@
+name: coui
+description: CoUI cross-platform UI component library — skills and documentation.
+version: 0.2.0
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+resolution: workspace

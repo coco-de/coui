@@ -1,0 +1,246 @@
+{
+  "_comment": [
+    "Shared vectors for how a released drag on a Drawer is judged.",
+    "Read by coui_core (CoreDragVelocityTracker, CoreDrawerContract.dismissesOnRelease),",
+    "coui_flutter (a real drag on the bottom sheet), coui_web (the same chain the pointer",
+    "handler runs) and a real-Chrome probe of the Web drawer, so a rule that changes on one",
+    "platform fails on the other.",
+    "UNITS. Every velocity is logical pixels per SECOND. A browser stamps events in",
+    "milliseconds and its deltas are per millisecond, so a speed of 1.2 px/ms is 1200 px/s.",
+    "tracker.cases: samples are [timeMs, positionPx] along one axis, in the order a pointer",
+    "reports them (the press, then each move; the lift is not a sample). pxPerSec is the signed",
+    "velocity (positive = position growing) as of readAtMs — the moment the question is asked,",
+    "which for a release is the lift — or as of the last sample when readAtMs is absent. A stroke",
+    "whose newest sample follows a silence longer than stoppedGapMs reports 0 (the pointer had",
+    "stopped), and so does a read more than stoppedGapMs after the newest sample.",
+    "release.cases: dragDistance is how far the panel moved toward the edge it hides behind",
+    "(negative = back toward the docked edge); velocity is signed the same way (positive =",
+    "toward that edge); velocityThreshold, where absent, is the contract default (400 px/s).",
+    "gestures: an end-to-end drag on a bottom sheet whose panel is `extent` px tall, moving",
+    "`travel` px toward the edge over `durationMs` at constant speed (so the speed is",
+    "travel/durationMs*1000 px/s), then, when `holdMs` is present, holding still for `holdMs`",
+    "before the lift. `dismisses` is what the sheet does on release. The speeds",
+    "keep a wide margin either side of the 400 px/s threshold: a probe on a loaded machine",
+    "dispatches its events late, which can only make a flick slower."
+  ],
+  "tracker": {
+    "horizonMs": 100,
+    "stoppedGapMs": 40,
+    "cases": [
+      {
+        "name": "a steady flick at 1.2 px/ms is 1200 px/s",
+        "samples": [[0, 0], [10, 12], [20, 24], [30, 36], [40, 48], [50, 60]],
+        "pxPerSec": 1200
+      },
+      {
+        "name": "a slow drag at 0.2 px/ms is 200 px/s",
+        "samples": [[0, 0], [16, 3.2], [32, 6.4], [48, 9.6], [64, 12.8]],
+        "pxPerSec": 200
+      },
+      {
+        "name": "moving toward smaller positions is negative",
+        "samples": [[0, 100], [10, 88], [20, 76], [30, 64]],
+        "pxPerSec": -1200
+      },
+      {
+        "name": "two samples are a direction",
+        "samples": [[0, 0], [20, 10]],
+        "pxPerSec": 500
+      },
+      {
+        "name": "one sample is no direction",
+        "samples": [[0, 0]],
+        "pxPerSec": 0
+      },
+      {
+        "name": "samples at one instant are no direction",
+        "samples": [[0, 0], [0, 10]],
+        "pxPerSec": 0
+      },
+      {
+        "name": "a jittery stroke is its trend, not its last step",
+        "samples": [[0, 0], [10, 14], [20, 20], [30, 34], [40, 40]],
+        "pxPerSec": 1000
+      },
+      {
+        "name": "only the last 100 ms count, the boundary sample included",
+        "samples": [
+          [0, 0], [20, 2], [40, 4], [60, 6], [80, 8], [100, 10],
+          [120, 30], [140, 50], [160, 70], [180, 90], [200, 110]
+        ],
+        "pxPerSec": 1000
+      },
+      {
+        "name": "a long silence before the newest sample is a stop, not a fling",
+        "samples": [[0, 0], [10, 12], [20, 24], [30, 36], [230, 36]],
+        "pxPerSec": 0
+      },
+      {
+        "name": "a lift 30 ms after the last move is still a flick",
+        "samples": [[0, 0], [10, 12], [20, 24], [30, 36]],
+        "readAtMs": 60,
+        "pxPerSec": 1200
+      },
+      {
+        "name": "a lift exactly at the stopped gap is still a flick",
+        "samples": [[0, 0], [10, 12], [20, 24], [30, 36]],
+        "readAtMs": 70,
+        "pxPerSec": 1200
+      },
+      {
+        "name": "a lift just past the stopped gap is a stop, not a fling",
+        "samples": [[0, 0], [10, 12], [20, 24], [30, 36]],
+        "readAtMs": 71,
+        "pxPerSec": 0
+      },
+      {
+        "name": "a long hold before the lift is not a fling",
+        "samples": [[0, 0], [10, 12], [20, 24], [30, 36]],
+        "readAtMs": 230,
+        "pxPerSec": 0
+      },
+      {
+        "name": "a pause in the middle forgets the motion before it",
+        "samples": [[0, 0], [10, 30], [20, 60], [100, 60], [110, 61], [120, 62]],
+        "pxPerSec": 100
+      },
+      {
+        "name": "a clock that has run for hours loses no precision",
+        "samples": [
+          [3600000, 0], [3600010, 12], [3600020, 24], [3600030, 36]
+        ],
+        "pxPerSec": 1200
+      },
+      {
+        "name": "an out-of-order sample is dropped, not reordered",
+        "samples": [[0, 0], [10, 12], [5, 99], [20, 24], [30, 36]],
+        "pxPerSec": 1200
+      }
+    ]
+  },
+  "release": {
+    "cases": [
+      {
+        "name": "exactly the threshold share of the panel dismisses",
+        "dragDistance": 150, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 0, "dismisses": true
+      },
+      {
+        "name": "a pixel short of the threshold share snaps back",
+        "dragDistance": 149, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 0, "dismisses": false
+      },
+      {
+        "name": "the share is the panel's, not the screen's",
+        "dragDistance": 150, "panelExtent": 800, "threshold": 0.5,
+        "velocity": 0, "dismisses": false
+      },
+      {
+        "name": "a drag back toward the docked edge never dismisses",
+        "dragDistance": -200, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 0, "dismisses": false
+      },
+      {
+        "name": "a panel with no extent has covered nothing",
+        "dragDistance": 40, "panelExtent": 0, "threshold": 0.5,
+        "velocity": 0, "dismisses": false
+      },
+      {
+        "name": "a zero threshold is met by any release",
+        "dragDistance": 40, "panelExtent": 0, "threshold": 0,
+        "velocity": 0, "dismisses": true
+      },
+      {
+        "name": "a short drag released as a flick dismisses",
+        "dragDistance": 40, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 1500, "dismisses": true
+      },
+      {
+        "name": "exactly the velocity threshold is a flick",
+        "dragDistance": 40, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 400, "dismisses": true
+      },
+      {
+        "name": "a pixel per second under the velocity threshold is not",
+        "dragDistance": 40, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 399, "dismisses": false
+      },
+      {
+        "name": "a short slow drag snaps back",
+        "dragDistance": 120, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 60, "dismisses": false
+      },
+      {
+        "name": "a long drag at rest dismisses exactly as before speed existed",
+        "dragDistance": 200, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 0, "dismisses": true
+      },
+      {
+        "name": "a speed away from the edge never dismisses",
+        "dragDistance": 40, "panelExtent": 300, "threshold": 0.5,
+        "velocity": -1500, "dismisses": false
+      },
+      {
+        "name": "a long drag released moving back still dismisses by distance",
+        "dragDistance": 200, "panelExtent": 300, "threshold": 0.5,
+        "velocity": -800, "dismisses": true
+      },
+      {
+        "name": "speed with nothing moved is not a throw",
+        "dragDistance": 0, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 2000, "dismisses": false
+      },
+      {
+        "name": "speed from a panel pulled back past its dock is not a throw",
+        "dragDistance": -10, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 2000, "dismisses": false
+      },
+      {
+        "name": "a caller's own velocity threshold replaces the default",
+        "dragDistance": 40, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 250, "velocityThreshold": 200, "dismisses": true
+      },
+      {
+        "name": "the same speed under the default threshold does not",
+        "dragDistance": 40, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 250, "dismisses": false
+      },
+      {
+        "name": "0.5 px/ms is 500 px/s and dismisses",
+        "dragDistance": 40, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 500, "dismisses": true
+      },
+      {
+        "name": "0.3 px/ms is 300 px/s and does not",
+        "dragDistance": 40, "panelExtent": 300, "threshold": 0.5,
+        "velocity": 300, "dismisses": false
+      }
+    ]
+  },
+  "gestures": {
+    "extent": 300,
+    "threshold": 0.5,
+    "cases": [
+      {
+        "name": "a short quick flick dismisses although it covers well under half",
+        "travel": 120, "durationMs": 60, "dismisses": true
+      },
+      {
+        "name": "a short slow drag snaps back",
+        "travel": 120, "durationMs": 1200, "dismisses": false
+      },
+      {
+        "name": "a long slow drag dismisses by distance",
+        "travel": 200, "durationMs": 1600, "dismisses": true
+      },
+      {
+        "name": "a quick flick toward the docked edge does nothing",
+        "travel": -150, "durationMs": 60, "dismisses": false
+      },
+      {
+        "name": "a quick flick held still before the lift snaps back",
+        "travel": 120, "durationMs": 60, "holdMs": 200, "dismisses": false
+      }
+    ]
+  }
+}

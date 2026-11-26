@@ -1,0 +1,69 @@
+{
+  "key": "command-dialog-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "메뉴 열기",
+    "layout": {
+      "width": 83.125,
+      "height": 40,
+      "direction": "row",
+      "innerPaddingLeft": "16px",
+      "innerPaddingRight": "16px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 83.125,
+          "height": 40
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "10px",
+      "borderTopRightRadius": "10px",
+      "borderBottomRightRadius": "10px",
+      "borderBottomLeftRadius": "10px",
+      "paddingTop": "8px",
+      "paddingRight": "16px",
+      "paddingBottom": "8px",
+      "paddingLeft": "16px",
+      "outlineWidth": "2px",
+      "outlineStyle": "solid",
+      "outlineColor": "rgba(0, 0, 0, 0)",
+      "outlineOffset": "2px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 83.125,
+      "heightPx": 40
+    }
+  }
+}

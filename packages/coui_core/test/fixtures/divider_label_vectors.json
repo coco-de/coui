@@ -1,0 +1,849 @@
+{
+  "_comment": [
+    "Shared vectors for where a labelled Divider puts its label and its two line segments.",
+    "Read by coui_core (the closed form of the layout rule), coui_flutter (the rendered Divider)",
+    "and a real-Chrome probe of the Web markup, so a change on one platform fails the other.",
+    "All lengths are along the divider's main axis, in logical px on Flutter and CSS px on the Web.",
+    "Positions are measured from the box's start edge in reading order: the left edge in ltr and",
+    "the right edge in rtl for a horizontal divider, the top edge for a vertical one (a vertical",
+    "divider ignores the text direction, so its cases hold in both).",
+    "Inputs: box (the divider's own length), label (the child's own length), childPadding (the",
+    "padding on each side of the child along the axis), indent and endIndent (the insets of the",
+    "line at its start and its end), alignment (a CoreDividerChildAlignment name).",
+    "Expected: labelCentre, the centre of the child; lines, the two painted segments in reading",
+    "order as {start, end}, or null where the segment has no length; overflow, whether the child",
+    "with its padding needs more than the box.",
+    "directions, where a case states it, narrows the text directions the case holds in. A child",
+    "wider than the box overflows: Flutter reports it, and its Row then anchors the children at",
+    "the physical left edge in rtl as well as in ltr (nothing is left to distribute), where CSS",
+    "anchors them at the start edge. So those cases are held in ltr only.",
+    "intrinsic: rows for a horizontal divider whose parent takes its width from its content",
+    "(Flutter IntrinsicWidth, CSS shrink-to-fit). There the box has no length of its own to share,",
+    "so each weighted segment is as long as its inset allows the other to be: the box is the child",
+    "with its padding plus the larger inset twice for the default alignment, and the child stays",
+    "centred. width is the divider's own length."
+  ],
+  "directions": [
+    "ltr",
+    "rtl"
+  ],
+  "tolerance": {
+    "flutter": 0.01,
+    "web": 0.5
+  },
+  "crossExtent": 20,
+  "cases": [
+    {
+      "name": "centre, indent 0 / endIndent 0, child padding 8",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 0,
+      "endIndent": 0,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 0,
+          "end": 128
+        },
+        {
+          "start": 192,
+          "end": 320
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 16 / endIndent 16, child padding 8",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 16,
+      "endIndent": 16,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 16,
+          "end": 128
+        },
+        {
+          "start": 192,
+          "end": 304
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 24 / endIndent 8, child padding 8",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 24,
+          "end": 128
+        },
+        {
+          "start": 192,
+          "end": 312
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 8 / endIndent 24, child padding 8",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 8,
+      "endIndent": 24,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 8,
+          "end": 128
+        },
+        {
+          "start": 192,
+          "end": 296
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 0 / endIndent 40, child padding 8",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 0,
+      "endIndent": 40,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 0,
+          "end": 128
+        },
+        {
+          "start": 192,
+          "end": 280
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 40 / endIndent 0, child padding 8",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 40,
+      "endIndent": 0,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 40,
+          "end": 128
+        },
+        {
+          "start": 192,
+          "end": 320
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 0 / endIndent 0, child padding 0",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 0,
+      "indent": 0,
+      "endIndent": 0,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 0,
+          "end": 136
+        },
+        {
+          "start": 184,
+          "end": 320
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 16 / endIndent 16, child padding 0",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 0,
+      "indent": 16,
+      "endIndent": 16,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 16,
+          "end": 136
+        },
+        {
+          "start": 184,
+          "end": 304
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 24 / endIndent 8, child padding 0",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 0,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 24,
+          "end": 136
+        },
+        {
+          "start": 184,
+          "end": 312
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 8 / endIndent 24, child padding 0",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 0,
+      "indent": 8,
+      "endIndent": 24,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 8,
+          "end": 136
+        },
+        {
+          "start": 184,
+          "end": 296
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 0 / endIndent 40, child padding 0",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 0,
+      "indent": 0,
+      "endIndent": 40,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 0,
+          "end": 136
+        },
+        {
+          "start": 184,
+          "end": 280
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 40 / endIndent 0, child padding 0",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 0,
+      "indent": 40,
+      "endIndent": 0,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 40,
+          "end": 136
+        },
+        {
+          "start": 184,
+          "end": 320
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 0 / endIndent 0, child padding 24",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 24,
+      "indent": 0,
+      "endIndent": 0,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 0,
+          "end": 112
+        },
+        {
+          "start": 208,
+          "end": 320
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 16 / endIndent 16, child padding 24",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 24,
+      "indent": 16,
+      "endIndent": 16,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 16,
+          "end": 112
+        },
+        {
+          "start": 208,
+          "end": 304
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 24 / endIndent 8, child padding 24",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 24,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 24,
+          "end": 112
+        },
+        {
+          "start": 208,
+          "end": 312
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 8 / endIndent 24, child padding 24",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 24,
+      "indent": 8,
+      "endIndent": 24,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 8,
+          "end": 112
+        },
+        {
+          "start": 208,
+          "end": 296
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 0 / endIndent 40, child padding 24",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 24,
+      "indent": 0,
+      "endIndent": 40,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 0,
+          "end": 112
+        },
+        {
+          "start": 208,
+          "end": 280
+        }
+      ]
+    },
+    {
+      "name": "centre, indent 40 / endIndent 0, child padding 24",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 24,
+      "indent": 40,
+      "endIndent": 0,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 160,
+      "lines": [
+        {
+          "start": 40,
+          "end": 112
+        },
+        {
+          "start": 208,
+          "end": 320
+        }
+      ]
+    },
+    {
+      "name": "start, indent 24 / endIndent 8, child padding 8",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "start",
+      "overflow": false,
+      "labelCentre": 56,
+      "lines": [
+        null,
+        {
+          "start": 88,
+          "end": 312
+        }
+      ]
+    },
+    {
+      "name": "start, indent 8 / endIndent 24, child padding 8",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 8,
+      "endIndent": 24,
+      "alignment": "start",
+      "overflow": false,
+      "labelCentre": 40,
+      "lines": [
+        null,
+        {
+          "start": 72,
+          "end": 296
+        }
+      ]
+    },
+    {
+      "name": "end, indent 24 / endIndent 8, child padding 8",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "end",
+      "overflow": false,
+      "labelCentre": 280,
+      "lines": [
+        {
+          "start": 24,
+          "end": 248
+        },
+        null
+      ]
+    },
+    {
+      "name": "end, indent 8 / endIndent 24, child padding 8",
+      "orientation": "horizontal",
+      "box": 320,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 8,
+      "endIndent": 24,
+      "alignment": "end",
+      "overflow": false,
+      "labelCentre": 264,
+      "lines": [
+        {
+          "start": 8,
+          "end": 232
+        },
+        null
+      ]
+    },
+    {
+      "name": "a label that fits the box but not the insets, indent 24 / endIndent 8",
+      "orientation": "horizontal",
+      "box": 100,
+      "label": 80,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 50,
+      "lines": [
+        null,
+        null
+      ]
+    },
+    {
+      "name": "a label that fits the box but not the insets, indent 0 / endIndent 40",
+      "orientation": "horizontal",
+      "box": 100,
+      "label": 80,
+      "childPadding": 8,
+      "indent": 0,
+      "endIndent": 40,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 50,
+      "lines": [
+        {
+          "start": 0,
+          "end": 2
+        },
+        null
+      ]
+    },
+    {
+      "name": "a segment narrower than its own inset, indent 40 / endIndent 0",
+      "orientation": "horizontal",
+      "box": 128,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 40,
+      "endIndent": 0,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 64,
+      "lines": [
+        null,
+        {
+          "start": 96,
+          "end": 128
+        }
+      ]
+    },
+    {
+      "name": "a segment narrower than its own inset, indent 24 / endIndent 8",
+      "orientation": "horizontal",
+      "box": 128,
+      "label": 48,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 64,
+      "lines": [
+        {
+          "start": 24,
+          "end": 32
+        },
+        {
+          "start": 96,
+          "end": 120
+        }
+      ]
+    },
+    {
+      "name": "a label wider than the box, indent 24 / endIndent 8",
+      "orientation": "horizontal",
+      "box": 100,
+      "label": 120,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "center",
+      "directions": [
+        "ltr"
+      ],
+      "overflow": true,
+      "labelCentre": 68,
+      "lines": [
+        null,
+        null
+      ]
+    },
+    {
+      "name": "a label wider than the box, indent 0 / endIndent 40",
+      "orientation": "horizontal",
+      "box": 100,
+      "label": 120,
+      "childPadding": 8,
+      "indent": 0,
+      "endIndent": 40,
+      "alignment": "center",
+      "directions": [
+        "ltr"
+      ],
+      "overflow": true,
+      "labelCentre": 68,
+      "lines": [
+        null,
+        null
+      ]
+    },
+    {
+      "name": "vertical centre, indent 0 / endIndent 0",
+      "orientation": "vertical",
+      "box": 200,
+      "label": 24,
+      "childPadding": 8,
+      "indent": 0,
+      "endIndent": 0,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 100,
+      "lines": [
+        {
+          "start": 0,
+          "end": 80
+        },
+        {
+          "start": 120,
+          "end": 200
+        }
+      ]
+    },
+    {
+      "name": "vertical centre, indent 16 / endIndent 16",
+      "orientation": "vertical",
+      "box": 200,
+      "label": 24,
+      "childPadding": 8,
+      "indent": 16,
+      "endIndent": 16,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 100,
+      "lines": [
+        {
+          "start": 16,
+          "end": 80
+        },
+        {
+          "start": 120,
+          "end": 184
+        }
+      ]
+    },
+    {
+      "name": "vertical centre, indent 24 / endIndent 8",
+      "orientation": "vertical",
+      "box": 200,
+      "label": 24,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 100,
+      "lines": [
+        {
+          "start": 24,
+          "end": 80
+        },
+        {
+          "start": 120,
+          "end": 192
+        }
+      ]
+    },
+    {
+      "name": "vertical centre, indent 8 / endIndent 24",
+      "orientation": "vertical",
+      "box": 200,
+      "label": 24,
+      "childPadding": 8,
+      "indent": 8,
+      "endIndent": 24,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 100,
+      "lines": [
+        {
+          "start": 8,
+          "end": 80
+        },
+        {
+          "start": 120,
+          "end": 176
+        }
+      ]
+    },
+    {
+      "name": "vertical centre, indent 0 / endIndent 40",
+      "orientation": "vertical",
+      "box": 200,
+      "label": 24,
+      "childPadding": 8,
+      "indent": 0,
+      "endIndent": 40,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 100,
+      "lines": [
+        {
+          "start": 0,
+          "end": 80
+        },
+        {
+          "start": 120,
+          "end": 160
+        }
+      ]
+    },
+    {
+      "name": "vertical centre, indent 40 / endIndent 0",
+      "orientation": "vertical",
+      "box": 200,
+      "label": 24,
+      "childPadding": 8,
+      "indent": 40,
+      "endIndent": 0,
+      "alignment": "center",
+      "overflow": false,
+      "labelCentre": 100,
+      "lines": [
+        {
+          "start": 40,
+          "end": 80
+        },
+        {
+          "start": 120,
+          "end": 200
+        }
+      ]
+    },
+    {
+      "name": "vertical start, indent 24 / endIndent 8",
+      "orientation": "vertical",
+      "box": 200,
+      "label": 24,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "start",
+      "overflow": false,
+      "labelCentre": 44,
+      "lines": [
+        null,
+        {
+          "start": 64,
+          "end": 192
+        }
+      ]
+    },
+    {
+      "name": "vertical end, indent 24 / endIndent 8",
+      "orientation": "vertical",
+      "box": 200,
+      "label": 24,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "end",
+      "overflow": false,
+      "labelCentre": 172,
+      "lines": [
+        {
+          "start": 24,
+          "end": 152
+        },
+        null
+      ]
+    }
+  ],
+  "intrinsic": [
+    {
+      "name": "centre, no insets",
+      "label": 48,
+      "childPadding": 8,
+      "indent": 0,
+      "endIndent": 0,
+      "alignment": "center",
+      "width": 64
+    },
+    {
+      "name": "centre, indent 24 / endIndent 8",
+      "label": 48,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "center",
+      "width": 112
+    },
+    {
+      "name": "centre, indent 8 / endIndent 24",
+      "label": 48,
+      "childPadding": 8,
+      "indent": 8,
+      "endIndent": 24,
+      "alignment": "center",
+      "width": 112
+    },
+    {
+      "name": "centre, indent 40 / endIndent 0",
+      "label": 48,
+      "childPadding": 8,
+      "indent": 40,
+      "endIndent": 0,
+      "alignment": "center",
+      "width": 144
+    },
+    {
+      "name": "start, indent 24 / endIndent 8",
+      "label": 48,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "start",
+      "width": 96
+    },
+    {
+      "name": "end, indent 24 / endIndent 8",
+      "label": 48,
+      "childPadding": 8,
+      "indent": 24,
+      "endIndent": 8,
+      "alignment": "end",
+      "width": 96
+    }
+  ]
+}

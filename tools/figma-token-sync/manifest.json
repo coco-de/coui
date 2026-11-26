@@ -1,0 +1,20 @@
+{
+  "name": "CoUI Token Sync",
+  "id": "1669604125692023711",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": [
+    "figma"
+  ],
+  "documentAccess": "dynamic-page",
+  "permissions": [
+    "teamlibrary",
+    "currentuser"
+  ],
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ]
+  }
+}

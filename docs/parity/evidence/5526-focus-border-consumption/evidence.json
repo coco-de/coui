@@ -1,0 +1,426 @@
+{
+  "status": "FINAL mainbb: fresh docs and canonical capture; prior actual functional tests and browser observations retain their execution source",
+  "issue": 5526,
+  "source": {
+    "originalNativeAndWeb": "00440fcd74fb7d7b629ba443b1eb5199ebd77835",
+    "actualWebCandidateAndNewTest": "c6be9f74f5fb40908cabfd382f1e195ca5f75247",
+    "testCommittedHead": "5ed35840a669422d53a235c18ce303be81bedf46",
+    "actualNewTestWasUntrackedAtC6be": true,
+    "source5": [
+      {
+        "path": "packages/coui_web/lib/src/internal/input_focus_border_paint.dart",
+        "sha256": "7986ed522289ae4cc4bab7502a836d9ed0c429cfa084408d406e86264c134668",
+        "bytes": 630
+      },
+      {
+        "path": "packages/coui_web/lib/src/base/theme_config.dart",
+        "sha256": "2f58b40427ec81f5d7b6624b851132ae35768ff2bb4e38b2d33c1e53bf3f9046",
+        "bytes": 201582
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/text_field/text_field_style.dart",
+        "sha256": "0618555f0164a3b5a401f9f3935ad92fe5c7ce7a81ca8af1d6b9f46fd6ab5020",
+        "bytes": 61786
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/text_area/text_area_style.dart",
+        "sha256": "6af129f24d1243249b8c92a8a81aa286e2c9f80275fe82e3938da29558f4534f",
+        "bytes": 58553
+      },
+      {
+        "path": "tool/parity/test/web/input_focus_border_protocol_test.dart",
+        "sha256": "90e7edf87594efdc053348326a866eee379d8f4a972fe5167dcddf6f9540e211",
+        "bytes": 11483
+      }
+    ],
+    "currentIntegratedHead": "3c2876a0becdfc1f17c8b60072b809abf84eab2c",
+    "currentMain": "bb8611a41b2551f9322253f1a7fa195a9a4e61bd",
+    "targetSource5ExactTo5ed": true,
+    "newMainChangedPaths": [
+      "docs_core/content/components/page-header.md",
+      "docs_site/web/docs-shell.css",
+      "packages/coui_core/lib/src/component/contracts/page_header/page_header_style.dart",
+      "packages/coui_core/test/page_panel_header_style_test.dart",
+      "packages/coui_flutter/test/components/layout/page_header_test.dart",
+      "tools/figma-token-sync/src/components/layout.ts",
+      "tools/figma-token-sync/src/data/components.json"
+    ]
+  },
+  "WebOriginal24": {
+    "enabled20": 20,
+    "correct": 2,
+    "incorrectFocusedStroke": 18,
+    "disabledFocusControls": 4
+  },
+  "Web64": {
+    "cases": 64,
+    "casePASS": 64,
+    "caseFAIL": 0,
+    "beforeStates": 132,
+    "afterStates": 132,
+    "restStrokeUnchanged": 64,
+    "changedCases": 42,
+    "changedStrokeStates": 44,
+    "otherOwnerPaintOrGeometryDiffs": []
+  },
+  "caller": {
+    "controls": 18,
+    "unchanged": 14,
+    "inlineNormalOrIDCorrectedFocusOverOwnRest": 4,
+    "noAllBehaviorUnchangedClaim": true
+  },
+  "hover8": {
+    "reusedExistingPublicFixtures": 4,
+    "executions": 8,
+    "states": 24,
+    "newUniqueFixtures": 0,
+    "stateControlPASS": 8,
+    "candidateFocusedContractPASS": 4,
+    "originalFocusedContractFAIL": 4
+  },
+  "NativeReference": {
+    "uniqueOriginalPublicCases": 40,
+    "NativeCandidateRun": false,
+    "oldTAObserverErrorsRetained": true
+  },
+  "newFunctionalSSR": {
+    "pass": 42,
+    "fail": 0,
+    "fatalExit": 0,
+    "formatChangedFiles": 0,
+    "browserEquivalentClaim": false
+  },
+  "canonical": {
+    "actualDescriptors": "TF source VariantRow defaultVariant docs-v2-4e5e183be0f441c6f8f3ceb731d0e5dc L/D and TA default L/D",
+    "sameBackendBeforeAfter": [
+      {
+        "key": "text-area-default-dark-defaultStyle",
+        "JSONbyteExact": true,
+        "PNGbyteExact": true
+      },
+      {
+        "key": "text-area-default-light-defaultStyle",
+        "JSONbyteExact": true,
+        "PNGbyteExact": true
+      },
+      {
+        "key": "text-field-docs-v2-4e5e183be0f441c6f8f3ceb731d0e5dc-light-defaultStyle",
+        "JSONbyteExact": true,
+        "PNGbyteExact": true
+      },
+      {
+        "key": "text-field-docs-v2-4e5e183be0f441c6f8f3ceb731d0e5dc-dark-defaultStyle",
+        "JSONbyteExact": true,
+        "PNGbyteExact": true
+      }
+    ],
+    "baselinePassed": 4,
+    "baselineFailed": 4,
+    "TFrowsPass": 4,
+    "TArowsFail": 4,
+    "TAfailurePixelsLightDark": [
+      540,
+      523
+    ],
+    "criteriaChannel": 32,
+    "criteriaRatio": 0.001,
+    "compareCLIExit": 1,
+    "infra": 0,
+    "waivers": 0,
+    "fullVRTOrCrossplatformPassClaim": false,
+    "latestFreshCaptureSource": "3c2876a0becdfc1f17c8b60072b809abf84eab2c",
+    "latestFreshCaptureCLIExit": 0,
+    "latestFreshCaptureCLISeconds": 9.957716583,
+    "latestCaptureAndGitBaselineByteExactToPriorInputs": true,
+    "comparatorRerunOnLatestHead": false,
+    "priorActualVerdictReusedByByteIdentity": true
+  },
+  "knownUnresolved": [
+    "TextArea raw resting border emission is unchanged",
+    "TextArea noFooter disabled tint is unchanged",
+    "No complete family or global convention certificate",
+    "Web packed-alpha CSS .50 and Native128/255 remain separate existing precision paths"
+  ],
+  "pending": {},
+  "refs": [
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/browser-actual-32/original24-verdict.json",
+      "sha256": "25b8d0c7258dbf52b0bee0ef8d58f01cd79fca8d8cfe38822609aea0ecc24b69",
+      "bytes": 11138
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/browser-actual-32/candidate64-verdict.json",
+      "sha256": "692b22e7a6d4194ee53d20f0cd3a32ecfde7a60639bce2f1b807e3d89abb712e",
+      "bytes": 18672
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/browser-actual-32/hover8-verdict.json",
+      "sha256": "ded8adf18474af49f8dc21845b2a05426473b66bd6ad3bcbbbdf4118366570e5",
+      "bytes": 1653
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/browser-actual-32/hover-observer-addendum.json",
+      "sha256": "e834a282c73a5f6cdafe26ff15aee5086d83ae0d89cf8b2ca3a1833cb8ce6e1f",
+      "bytes": 466
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/browser-actual-32/candidate24.json",
+      "sha256": "5053748bac0c744c07be94ec98e8eb56089a4dd103c1f758b13cd4b56839a8d3",
+      "bytes": 828935
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/browser-actual-32/candidate-other40.json",
+      "sha256": "1f958151c71edb738f46538797ebfd8305696b25200b1a152f7a1228d74da0a4",
+      "bytes": 1407417
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/browser-actual-32/original24.json",
+      "sha256": "530a8738a22468d600211e14ffc1f62c9dac78c19643a3a0d927f06b3f6cab53",
+      "bytes": 803586
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/browser-actual-32/original-priority16.json",
+      "sha256": "1951a094279303550dc104c12e18881d5ba170a7e9a7c98045e5218a96ad9afa",
+      "bytes": 513589
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/browser-actual-32/original-caller-state18.json",
+      "sha256": "d33a0343f9f683e4b09c5106376f19e5e343cac8b126aaf91ec78e0c0ad7b981",
+      "bytes": 658564
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/browser-actual-32/original-caller-inline6.json",
+      "sha256": "4cd8240925d949e9ffedf9e05210e19ed5d483e806c2403ae70e23bc4d954296",
+      "bytes": 192348
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/canonical-default4/web-only-report.json",
+      "sha256": "f752c2d29b40017e4222a044fce07aa03dfcdf6d420b93d8b8ba661cc77c3123",
+      "bytes": 8096
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/canonical-default4/compare-inputs.json",
+      "sha256": "85ba5cff3f17f9f273da7d21250a454ff2b70095d57d0ed63df0641f83763aa2",
+      "bytes": 10047
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/canonical-default4/compare-helper-provenance.json",
+      "sha256": "f5f6e592e0a5dfe34494993f9e1e92303b23e75fa7ba21475e6b6d7c0c91f4c0",
+      "bytes": 544
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/canonical-default4/original/execution.json",
+      "sha256": "2b49b8f1c290b9ac3870c2365b29d9ffaa965a744b756a2b0e42888434b94a12",
+      "bytes": 4741
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/canonical-default4/current/execution.json",
+      "sha256": "c46983dae77a83e7854710b7f795c6cfd16b9b3f913138d6ec62531f9b84d14d",
+      "bytes": 5017
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Web/new-functional-test-final/handoff.json",
+      "sha256": "9bd77f369a0698515aa073efbdb3a01ddb0993c3aec768f6c01639fc8783a4ce",
+      "bytes": 670
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Web/new-functional-test-final/binding.json",
+      "sha256": "ba30ce5c3a6557315e2f9c87e9347bcfe68ed3448bc3ad565ac5f284b1c8d66c",
+      "bytes": 1029
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Web/candidate-public64/artifact-binding.json",
+      "sha256": "93e309334897b4d7da23bd8103945de00430e22b2002d2e9555bed106c082f5b",
+      "bytes": 16487
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Web/candidate-public64/producer-copy-mapping.json",
+      "sha256": "72b4bed3477ac7c0a882a29101b4a5c266f9aa0d8b7a4bbcdd11a65c776719ef",
+      "bytes": 1840
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Web/original-inline6-canonical4/actual-domain.json",
+      "sha256": "697fe2a0b84534231990f4fadc614d298ce04d21b24648fd54fe0c3e0aa5981e",
+      "bytes": 2921
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Review/focus5526-preimplementation-contract-peer.json",
+      "sha256": "2b65bf63f1fa9e75b55dc97bd915f72d00fe1ce3b70cd6604a56c709403273bc",
+      "bytes": 6273
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/postpatch-tests-attempt1/summary.json",
+      "sha256": "cdba7f215284d13a85484511afa85e13ae12be713d16cea1de257f06a44da721",
+      "bytes": 59820
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/postpatch-tests-attempt1/source-invariance.json",
+      "sha256": "4d55aa7a27fd716ecb277ce29f5003b85c458989ac4622832c2ef98b858332af",
+      "bytes": 157
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/postpatch-tests-attempt1/union-exit.json",
+      "sha256": "34ded66d772616e27c54510ee3bc9ae166add39c16d1ef977870c4f93dc1fabd",
+      "bytes": 5483
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/guards/execution.json",
+      "sha256": "9e03c42be484d9e363d70cc0cb58fc173ca717fad1ab7dcd0289dbb0915b4f20",
+      "bytes": 955
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/postpatch-final-proof.json",
+      "sha256": "74f780421df5f59672685689bfdfc8c45b7af9e2e8a05c3467913bb1db21dac5",
+      "bytes": 2018
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/postpatch-final-index.json",
+      "sha256": "160a5ed9ba7371a13c30a7e876b6cdb2a9858ffb6e7585689eef56e624daafd5",
+      "bytes": 4944
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/docs-candidate-attempt1/exit.json",
+      "sha256": "5d065a827b88f92214e98801c2d9965a99f9746a7132ad0c8daf51c75ba1708f",
+      "bytes": 660
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/docs-candidate-attempt1/metadata-proof.json",
+      "sha256": "c08aaf5d36055ac79a2c79f9befa4cd37dda12ab468869756fa8bbc664f2e59d",
+      "bytes": 1182
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/docs-candidate-attempt1/output-index.json",
+      "sha256": "f6963c6dd95a2c29589b80c15ae6cac2b6959efa00e1de5dca1a946025f9501c",
+      "bytes": 970502
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/docs-candidate-mainbb-final-proof.json",
+      "sha256": "b28402b5871eaafd8600afb116739791f9f8d3f3cd69370a9e6bf0a96b152aa1",
+      "bytes": 1764
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/docs-candidate-mainbb-final-index.json",
+      "sha256": "be884aa7e3ce74a8d5453c1c23477ba2f6d801db95c13a858d0ad8b386d94577",
+      "bytes": 3888
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/mainbb-integration-impact.json",
+      "sha256": "e718bd1b0e24e5ff15187acd9f7bdb7589b714747b0061f0b675409c637a55f4",
+      "bytes": 1344
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/canonical-default4/mainbb-capture-equivalence.json",
+      "sha256": "3a67a6e3c41246dca08878867d868a98e6c10404ef5c893b919f33b04fce6295",
+      "bytes": 2116
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Review/focus5526-actual64-hover-canonical-peer.json",
+      "sha256": "bf3acc9f9b66c225df78f7e5b94794e71e83e3c328218421a37a2ff00b668f7c",
+      "bytes": 8419
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Review/focus5526-mainbb-bridge-peer.json",
+      "sha256": "807308c212b21a5c76d5d99a66c8e8ddef9622bfc42a601572fb352d071c133e",
+      "bytes": 4523
+    }
+  ],
+  "integratedTests": {
+    "source": "5ed35840a669422d53a235c18ce303be81bedf46",
+    "files": 23,
+    "pass": 344,
+    "fail": 0,
+    "skip": 0,
+    "loadErrors": 0,
+    "childSeconds": 83.383007208,
+    "includesNew42": true,
+    "new42MustNotBeAddedAgain": true,
+    "fatalExit": 0,
+    "formatExit": 0
+  },
+  "guards": {
+    "source": "c6be9f74f5fb40908cabfd382f1e195ca5f75247",
+    "focusRingExit": 0,
+    "webResolverExit": 0,
+    "existingWebResolverViolations": 37,
+    "netNew": 0,
+    "logBaseline33LiteralRetained": true,
+    "globalConventionCleanClaim": false
+  },
+  "pipeline23Complete": true,
+  "build": {
+    "issue": 5526,
+    "executedSource": "3c2876a0becdfc1f17c8b60072b809abf84eab2c",
+    "scope": "Fresh docs-only execution after normal mainbb integration; existing test closure unchanged by Root integration proof",
+    "actualCLIExit": 0,
+    "actualCLISeconds": 113.889727,
+    "actualObserverAndWrapperExit": 0,
+    "elapsedIncludingPostchecksSeconds": 123.05021287499999,
+    "wrapperExitReceipt": "Observed functions.write_stdin session52426 completion exit_code0; not a separate observer command",
+    "routes": [
+      361,
+      361
+    ],
+    "outputHashRows": 5044,
+    "HTML": 365,
+    "JasprHTML": 363,
+    "FlutterHTML": 2,
+    "representativeHTML": 3,
+    "wholeTrackedSource": 25196,
+    "wholeTrackedSourceBytesModeLinksExact": true,
+    "sharedConfigGraphLockRawExact": true,
+    "ownShadow232AllFieldsPhysicalRootsGraphLockExact": true,
+    "ownedPubspecCopies": 13,
+    "usedPackageSourceTrees": 256,
+    "usedPackageSourcesAndDomainExact": true,
+    "registryMetadataExact": false,
+    "registryMetadataChangeAttribution": "Unmeasured automatic mechanism; no package-source/domain drift. No automatic-fetch/download or total-pub0 claim.",
+    "workerDirectPubCommands": 0,
+    "cleanup": {
+      "port": {
+        "port": 62323,
+        "closed": true,
+        "sourceHEAD": "3c2876a0becdfc1f17c8b60072b809abf84eab2c"
+      },
+      "officialReclaimLine": "job-scope: focus-border-docs-mainbb.0cj1z0 reclaimed=520220KB procs_stopped=0 verify=ok",
+      "boxAbsent": true,
+      "compiledBuildAndCacheRetained": false
+    },
+    "runtimeSourceMetadataWTReaderEOF": true,
+    "unitOrNativeReruns": 0,
+    "historicalTestResult": "344P/23files source5ed35840 remains original actual execution, not a3c rerun",
+    "historicalNativeResult": "40unique references source00440, no new Native test/capture",
+    "browserCalls": 0
+  },
+  "cleanup": {
+    "port": {
+      "port": 62323,
+      "closed": true,
+      "sourceHEAD": "3c2876a0becdfc1f17c8b60072b809abf84eab2c"
+    },
+    "officialReclaimLine": "job-scope: focus-border-docs-mainbb.0cj1z0 reclaimed=520220KB procs_stopped=0 verify=ok",
+    "boxAbsent": true,
+    "compiledBuildAndCacheRetained": false
+  },
+  "permanentDocsRootGO": true,
+  "historicalBuild5ed": {
+    "CLISeconds": 139.23888025,
+    "postchecksInclusiveSeconds": 187.521156542,
+    "packet": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/final5526/evidence.json",
+    "packetSHA": "fc34f4666a0b8ab7a3512ca6334d903ad49b7e42687c1dc1cbd79d6f561e0733",
+    "notRelabelledAsNewExecution": true
+  },
+  "ownPRPublicAPI_Core_Default_Deps_Criteria_BaselineChanges": 0,
+  "laterMain1dIntegration": {
+    "source": "a5a6b6f76e89e32d11df90ee9bcb4b50b5ff118d",
+    "main": "1d820587ce435f38bb5c7556c8c712a75a13bdce",
+    "incomingPaths": 13,
+    "targetDart5ExactTo5ed": true,
+    "newCanonical4CLISeconds": 9.107693625,
+    "newCanonical4CLIExit": 0,
+    "PNG_JSON_GitBaselineByteExact": true,
+    "old344AndDocs3cNotRelabelled": true,
+    "freshFullSnapshotSource": "a5a6b6f76e89e32d11df90ee9bcb4b50b5ff118d",
+    "proof": "/Users/minhyeok/orca/artifacts/coui/weever-focus-border-consumption-5526-qa9xejz3/evidence/Root/canonical-default4/main1d-capture-equivalence.json",
+    "proofSHA256": "9436c6fd56cd4534034a3d6c414dfd08e0a8f53073dfe73386a696b66877cf52"
+  }
+}

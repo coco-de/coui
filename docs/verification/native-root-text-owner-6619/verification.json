@@ -1,0 +1,199 @@
+{
+  "issue": 6619,
+  "codeCommit": "d80fb03bdf3ada82439089d8e99ffbff5bc70097",
+  "integratedRuntimeClosure": "c9e4442eedd9165fdf2487e3ec6205f0cbcca07f",
+  "runtimeSources": {
+    "NativeTestsAndCaptures": "Frozen six-file uncommitted candidate atDabd, exact code bytes at d80/c9e",
+    "WebComparison2": "Actual Root Ego26/156 fresh2 atc9e",
+    "reports": "Actual currentc9e unmodified reporter/decoder/criteria against Git49622 baseline8+allowlist"
+  },
+  "original": {
+    "new14Pass": 10,
+    "new14Fail": 4,
+    "existing10Pass": 10,
+    "fixtureSHA256": "58c0cf7088f71f9d8bbd13851c52644c99c28cb94763143a820062cb3b69d1ba"
+  },
+  "candidate": {
+    "same14Pass": 14,
+    "existing10Pass": 10,
+    "protocolStateFocusCallback7Pass": 7,
+    "total31Pass": 31,
+    "postPassEquivalentLintDeltaPreserved": true
+  },
+  "analysis": {
+    "newIssues": 0,
+    "actualFatalExit": 1,
+    "originalIdenticalMaterialInfo": 1,
+    "sameSDKBaselineConfirmed": true,
+    "formatExit": 0
+  },
+  "NativeBeforeAfter2": {
+    "PNG2ByteExact": true,
+    "sizeCRCInflatedScanlinesExact": true,
+    "onlyJSONDelta": "/byRole/root/fontWeight:500->400",
+    "actualPaint400Unchanged": true
+  },
+  "NativeResidentHotReload": {
+    "officialFlutterTesterDevice": true,
+    "fullRestart": false,
+    "machineCode": 0,
+    "librariesReloaded": 414,
+    "librariesTotal": 3756,
+    "reportedMilliseconds": 1044,
+    "appMenubarButtonStateSame": true,
+    "paintAndSizeSame": true,
+    "all5DisposalConditionsTrue": true,
+    "ownedPortsClosed": 2,
+    "priorDirectTestVMReloadFailurePreserved": true,
+    "preparedColdRestartNeverExecuted": true
+  },
+  "reportsEachBeforeAndAfter": {
+    "pixelRegression": {
+      "actualExit": 0,
+      "keysPass": 2,
+      "keysFail": 0,
+      "baselineImagesActuallyCompared": 4,
+      "imagePass": 4,
+      "firstCapture": 0
+    },
+    "pixelParity": {
+      "actualExit": 0,
+      "pass": 2,
+      "fail": 0
+    },
+    "property": {
+      "actualExit": 1,
+      "pass": 0,
+      "fail": 2
+    },
+    "infra": 0,
+    "skip": 0,
+    "fontWeightMismatches": {
+      "before": 2,
+      "after": 0
+    },
+    "paddingMismatches": {
+      "before": 2,
+      "after": 2,
+      "NativeNormalized": [
+        4,
+        3,
+        4,
+        3
+      ],
+      "WebNormalized": [
+        3,
+        3,
+        3,
+        3
+      ]
+    }
+  },
+  "invariants": {
+    "CorePublicAPIBarrelsResolvedDefaultsPaintChange": 0,
+    "criterionNormalizerBaselineAllowlistChange": 0,
+    "232ConfigGraphLockRawExact": true,
+    "source6ExactAtIntegratedHead": true,
+    "browserActionsByImplementer": 0,
+    "JasprBuild": "N/A: Root-reviewed Native/tool-only axis; no Web/Core/docs_site change",
+    "fullParityOrAllPaddingFixClaim": false
+  },
+  "proofRefs": [
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/final-index.json",
+      "SHA256": "2fe2f47432ae870271137328bc44a8c733985c6fab85cd9a563cff96ba79aa51"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/integrated-source-freeze.json",
+      "SHA256": "6a8ebc667921ae31137dac84e59a2710d67376710199bf2f3245ac290d5e7720"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/public-api-proof.json",
+      "SHA256": "68811bc89fc672167c124a8973e190ca21048311f5a4f9b3be93f8af58eb6a2f"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/canonical-comparison.json",
+      "SHA256": "62da940e85febc9ec842a02c24f668c756521411e8e776c18a1e71162f05543f"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/final-analysis/source-freeze.json",
+      "SHA256": "bd046c52b74b4fa763017059a18fa159d2760080dcd12f357e1fa2cbe42a7fda"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/native-resident-attempt1/resident-reload-proof.json",
+      "SHA256": "74bc12b87e4c083c5ba368b0635721b1dbb67bcd687aff4531410cf67a5ecef7"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/native-resident-attempt1/before.json",
+      "SHA256": "17c23dd07af2c5b89abef4ae982bab9bead7d92d07470f86fd8db207047f8175"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/native-resident-attempt1/after.json",
+      "SHA256": "f87ec93f7a58253b1b519b1ef92622239b8302d10530b4f5c82fe84c05bb8d25"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/native-resident-attempt1/disposal.json",
+      "SHA256": "5de1f641069007803e2f1d10918e5dc89a0df7e4a85be6ef88a6b63c8a7016a6"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/canonical-web-final/input-binding.json",
+      "SHA256": "bb874bd021e905d3b67ae6356235f2191e0cc56adb5062c69d903039536dfcf4"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/canonical-web-final/capture-exit.json",
+      "SHA256": "a3bfa86396ed7b577ad089d13be2e29424b8bdd2f6e91a673bee629f1a74b1b3"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/baseline-binding.json",
+      "SHA256": "ae53f2cb61c417de9ec84f9e7b56924bcb26cf31363033b44060a3cb49fdfee9"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/before/pixel-regression/exit.json",
+      "SHA256": "d8ec19e303eb283a166d73a83e3e76bed6f3d7c0daad33d703a3b762f0090793"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/before/pixel-regression/report.json",
+      "SHA256": "d05d1aa6dda702e0a4c3207aabf539a090ab2cfe03060699eb408010f13d4a6a"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/before/pixel-parity/exit.json",
+      "SHA256": "4c46b5d2fc93ca2e4aff1d81b082ad5003965188d5c64231cdfd20bfeb3861c4"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/before/pixel-parity/report.json",
+      "SHA256": "ab3339ce5119fa52f9a0606ab53fadeebfbd3e434c636f410b725142d552de68"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/before/property/exit.json",
+      "SHA256": "a49da6a8a8c8ea32d8e8cfdee5ab51f2566baea452d008ac09fa87a115472d68"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/before/property/report.json",
+      "SHA256": "c1bd7abb171318f5e311004ad58a8b2e5a5b5ae693f4548e519978cd62d7ab6c"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/after/pixel-regression/exit.json",
+      "SHA256": "266728ae41d501978fe3af26bd32ddf2f73098cd3bb0fd8dc7e48dd3fe831f8a"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/after/pixel-regression/report.json",
+      "SHA256": "ed23eddedcbe14453662539523953b8f2ffb16f9aac2c91feed7acee35578eac"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/after/pixel-parity/exit.json",
+      "SHA256": "362f7567812109e02fec0212726887ae8680aab41de705e01e1312e5b95f3b6c"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/after/pixel-parity/report.json",
+      "SHA256": "ab3339ce5119fa52f9a0606ab53fadeebfbd3e434c636f410b725142d552de68"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/after/property/exit.json",
+      "SHA256": "273bf5d80fbc686edee7b6c2a18e8b84a987b144a0a0f3ff78f2d75f1df26caa"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-native-owner-contract-lqbu2t51/evidence/scoped-reports/after/property/report.json",
+      "SHA256": "2a47514bd63255d7a72290c5455290eedaf390d328062136e7ac23dcea7961f1"
+    }
+  ]
+}

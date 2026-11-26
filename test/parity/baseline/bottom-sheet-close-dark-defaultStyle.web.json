@@ -1,0 +1,75 @@
+{
+  "key": "bottom-sheet-close-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "필터\n                  \n                    \n                      \n                    \n                  \n                \n              \n              \n              \n                \n                  \n                    \n                      \n                        .co-option-item-ssr-2w:active > .co-option-item-wash{background-color:rgb(var(--coui-surface-container-high));z-index:-1;}\n                      \n                      \n                      \n                        무료 배송\n                        \n                        3만원 이상 주문\n                      \n                      \n                        \n                          .co-checkbox-sl-5hzo6q .co-checkbox-box::before{content:\"\";position:absolute;inset:calc(-0.25rem - var(--coui-stroke-width-1_5));border-radius:var(--coui-radius-8) var(--coui-radius-8) var(--coui-radius-8) var(--coui-radius-8);background-color:rgb(var(--coui-on-surface) / 0%);pointer-events:none;transition:background-color var(--coui-duration-300) var(--easing-ease-in-out);}.co-checkbox-sl-5hzo6q:hover .co-checkbox-box::before{background-color:rgb(var(--coui-on-surface) / 8%);}.co-checkbox-sl-5hzo6q:active .co-checkbox-box::before{background-color:rgb(var(--coui-on-surface) / 16%);}.co-checkbox-sl-5hzo6q .co-checkbox-box{outline-color:transparent;}:where(.co-checkbox-sl-5hzo6q .co-checkbox-box){outline-style:solid;}.co-checkbox-sl-5hzo6q:focus-visible .co-checkbox-box{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(4.0px - var(--coui-stroke-width-2));}\n                        \n                      \n                    \n                    \n                      \n                        .co-option-item-ssr-2x:active > .co-option-item-wash{background-color:rgb(var(--coui-surface-container-high));z-index:-1;}\n                      \n                      \n                      \n                        오늘 도착\n                      \n                      \n                        \n                          .co-checkbox-sl-5hzo6q .co-checkbox-box::before{content:\"\";position:absolute;inset:calc(-0.25rem - var(--coui-stroke-width-1_5));border-radius:var(--coui-radius-8) var(--coui-radius-8) var(--coui-radius-8) var(--coui-radius-8);background-color:rgb(var(--coui-on-surface) / 0%);pointer-events:none;transition:background-color var(--coui-duration-300) var(--easing-ease-in-out);}.co-checkbox-sl-5hzo6q:hover .co-checkbox-box::before{background-color:rgb(var(--coui-on-surface) / 8%);}.co-checkbox-sl-5hzo6q:active .co-checkbox-box::before{background-color:rgb(var(--coui-on-surface) / 16%);}.co-checkbox-sl-5hzo6q .co-checkbox-box{outline-color:transparent;}:where(.co-checkbox-sl-5hzo6q .co-checkbox-box){outline-style:solid;}.co-checkbox-sl-5hzo6q:focus-visible .co-checkbox-box{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(4.0px - var(--coui-stroke-width-2));}",
+    "layout": {
+      "width": 800,
+      "height": 208,
+      "direction": "column",
+      "innerPaddingLeft": "20px",
+      "innerPaddingRight": "20px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 60
+        },
+        {
+          "x": 0,
+          "y": 60,
+          "width": 800,
+          "height": 1
+        },
+        {
+          "x": 0,
+          "y": 61,
+          "width": 800,
+          "height": 147
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "20px",
+      "lineHeight": "28px",
+      "letterSpacing": "-0.4px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "24px",
+      "borderTopRightRadius": "24px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 208
+    }
+  }
+}

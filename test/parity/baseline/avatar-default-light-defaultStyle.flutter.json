@@ -1,0 +1,56 @@
+{
+  "key": "avatar-default-light-defaultStyle",
+  "byRole": {
+    "root": {
+      "key": "avatar-default-light-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "root",
+      "shadowBlurUnit": "css-radius",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 18.2,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 42,
+        "g": 43,
+        "b": 44,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 228,
+        "g": 230,
+        "b": 231,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        9999.0,
+        9999.0,
+        9999.0,
+        9999.0
+      ],
+      "paddingPx": [
+        7.0,
+        11.56,
+        7.0,
+        11.56
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [],
+      "opacity": 1.0,
+      "widthPx": 32.0,
+      "heightPx": 32.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

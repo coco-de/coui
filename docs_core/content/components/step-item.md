@@ -1,0 +1,354 @@
+---
+title: StepItem
+description: 진행 단계 한 줄 — 상태 글리프 · 이름 · 오른쪽 글, Steps 의 list 변형이 쌓는 행
+category: layout
+platforms: [flutter, web]
+related: [steps, stepper, status]
+tags: [steps, progress, status, list]
+---
+
+# StepItem
+
+`StepItem` 은 진행 단계 목록의 **행 하나**입니다. 단계가 지금 어디에 있는지를
+글리프 하나(완료 · 진행 중 · 대기 · 실패)와 색으로 말하고, 단계 이름을 한
+줄로, 걸린 시간이나 사유 같은 짧은 글을 행 끝에 붙입니다.
+
+`Steps(variant: list)` 가 이 행을 세로로 쌓습니다. 행을 하나씩 놓아야 하는
+화면(실행 기록, 배포 로그 카드)을 위해 단독으로도 공개되어 있고, Figma 의
+`StepItem` 세트와 1:1 로 이어집니다.
+
+## Live Preview
+
+<LivePreview component="step-item" />
+
+## 사용 시기 (When to Use)
+
+**이 컴포넌트를 사용하세요:**
+- 파이프라인·설치·배포처럼 단계마다 **상태(완료/진행/대기/실패)** 와 짧은 결과(`12s`, `exit 1`)를 한 줄씩 보고할 때
+- `Steps(variant: list)` 의 행을 직접 놓거나 다른 목록 안에 끼워야 할 때
+
+**대신 다른 컴포넌트를 사용하세요:**
+- **[Steps](/components/steps)**: 단계를 번호 원과 연결선으로 보여 주는 진행 표시 (`numbered`), 또는 이 행의 목록(`list`)
+- **[Stepper](/components/stepper)**: 사용자가 단계를 눌러 이동하는 입력 흐름. `Stepper` 의
+  데이터 클래스 `CoreStepItem` 과 이름이 비슷하지만 **다른 것**입니다 — 이 행은 단계가
+  어디에 있는지만 보고하고, 누를 수 없습니다
+- **[Status](/components/status)**: 단계 목록이 아니라 하나의 상태 점
+
+## 기본 사용법 (Basic Usage)
+
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+```dart
+StepItem(
+  title: '테스트 실행',
+  status: CoreStepStatus.current,
+  trailing: '41초',
+)
+```
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+```dart
+StepItem(
+  title: '테스트 실행',
+  status: CoreStepStatus.current,
+  trailing: '41초',
+)
+```
+
+  </TabItem>
+</Tabs>
+
+## 해부 (Anatomy)
+
+행은 시작부터 끝까지 세 칸입니다.
+
+```text
+[ 글리프 ]  [ 이름 …… ]  [ 오른쪽 글 ]
+```
+
+- **글리프** — `status` 가 정합니다. 완료 `circle-check`, 진행 중 `circle-dot`,
+  대기 `circle`, 실패 `circle-x`. 같은 원 계열 넷이라 한눈에 한 세트로 읽히고
+  안쪽 표시(체크 · 점 · 없음 · 가위표)로만 갈립니다. 글리프는 상태의 정체성이라
+  **바꿀 슬롯이 없습니다** — 색은 스타일 값이지만 모양은 아닙니다.
+- **이름** — `title`. 한 줄이고 남는 폭을 모두 차지하며, 길면 **말줄임표로 끊깁니다**
+  (줄바꿈하지 않습니다 — 행의 높이는 행 자신의 것입니다).
+- **오른쪽 글** — `trailing`. 걸린 시간 · 개수 · 사유처럼 짧은 글입니다. 자기 폭을 지키며
+  행 **끝**에 붙습니다 (오른쪽-왼쪽 로케일에서는 시작 쪽). `null` 이면 아무것도 그리지
+  않고, 이름과의 간격도 함께 사라집니다.
+
+연결선도 번호도 없습니다 — 번호 원과 연결선은 `Steps(variant: numbered)` 의 몫입니다.
+
+## 상태 (Status)
+
+`status` 는 글리프와 세 글(글리프 · 이름 · 오른쪽 글)의 색을 정합니다. 기본값은 가장 조용한
+`todo` — 아직 닿지 않은 단계입니다.
+
+| `status` | 글리프 | 글리프 색 | 이름 색 | 오른쪽 글 색 |
+|----------|--------|-----------|---------|--------------|
+| `done` | `circle-check` | `success` | `onSurface` | `onSurfaceSubtle` |
+| `current` | `circle-dot` | `primary` | `onSurface` | `onSurfaceSubtle` |
+| `todo` (기본) | `circle` | `outline` | `onSurfaceVariant` | `onSurfaceSubtle` |
+| `failed` | `circle-x` | `error` | `onSurface` | `onErrorContainer` |
+
+- 실패한 단계의 오른쪽 글은 **왜 실패했는지**를 말하므로 오류 계열의 글자 색
+  (`onErrorContainer`)입니다. `error` 자체는 카드 면 위에서 4.5:1 에 못 미칩니다.
+- 대기 단계는 이름도 한 단 물러납니다(`onSurfaceVariant`). 아직 아무 일도 없었다는 뜻입니다.
+- 색만으로 구분하지 않습니다. 네 글리프의 모양이 서로 다르고, 그것이 상태의 정답입니다.
+
+## Props / Parameters
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `title` | `String` | 필수 | 단계 이름. 한 줄이고 길면 말줄임표로 끊깁니다 |
+| `status` | `CoreStepStatus` | `CoreStepStatus.defaultStatus`(`todo`) | 단계가 지금 어디에 있는지. 글리프와 색을 정합니다 |
+| `trailing` | `String?` | `null` | 행 끝의 짧은 글(걸린 시간 · 개수 · 사유). `null` 이면 칸 자체가 없습니다 |
+| `stepItemStyle` | `CoreStepItemStyle?` | `null` | 겉모습을 바꾸는 값 묶음 (아래 표 참고) |
+
+`title` 과 `trailing` 은 문자열입니다 — 슬롯(`W`)이 아닙니다. 행은 글자 한 줄이 계약이고,
+다른 내용이 필요한 목록은 `Menu` 나 `Listing` 의 몫입니다.
+
+## 스타일 시스템 (Style System)
+
+`StepItem` 의 겉모습은 전부 `CoreStepItemStyle` 슬롯 하나로 바꿉니다.
+`Steps(variant: list)` 가 이 행을 쌓을 때도 같은 슬롯을 통해 override 를 전달합니다
+(`CoreStepsStyle.stepItemStyle`).
+
+<a id="시맨틱-vs-스타일"></a>
+
+### 파라미터와 스타일
+
+- **시맨틱**: 위젯 파라미터로 직접 (`status`)
+- **데이터**: `title`, `trailing`
+- **겉모습 (색 · 크기 · 간격)**: `CoreStepItemStyle` 한 곳으로 (높이, padding, 간격, 아이콘 · 텍스트 스타일과 색)
+
+### 행의 치수와 `defaultsByStatus`
+
+행의 치수와 타이포는 상태와 무관한 `default*` 상수이고, 상태가 바꾸는 것(글리프 · 이름 · 오른쪽 글의
+**색**)은 `CoreStepItemStyle.defaultsByStatus` 의 한 줄입니다. 값 타입이 `CoreStepItemStyle` 자체라서
+각 줄의 필드가 곧 호출자가 덮을 슬롯입니다.
+
+| 칸 | 값 |
+|----|----|
+| 최소 높이 | 32 — 행 자신의 높이입니다(컨트롤 사다리의 단이 아닙니다) |
+| padding | 위아래 6 · 좌우 0 — 호스트(카드 · 페이지 열)의 안쪽 여백에 행이 붙습니다 |
+| 글리프 · 이름 간격 | 10 |
+| 이름 · 오른쪽 글 간격 | 10 |
+| 글리프 | 16 |
+| 이름 | `labelLarge` (14 · 500) |
+| 오른쪽 글 | `labelSmall` (12 · 500) |
+
+이름 한 줄은 14 × 1.4 = 19.6 이 정수 픽셀로 올라 20 이고, 6 + 20 + 6 = 32 로 한 줄 행은 최소 높이에 꼭 맞아서 한 줄 행들은 정확히 이 간격으로 쌓입니다.
+최소 높이는 컨트롤 사다리의 단이 아니므로 **밀도(`CoreDensity`)가 옮기지 않지만**, padding 과 간격은
+간격 토큰이라 밀도를 따라 움직입니다 (compact 4 / 8, spacious 8 / 12).
+
+<a id="resolve-chain"></a>
+
+### 값이 정해지는 순서
+
+```text
+CoreStepItemStyle.default* + defaultsByStatus[status]   // 기본값
+  → CoreStepItemTheme.style                              // 프로젝트 공통
+  → CoreStepItemTheme.statusStyles[status]               // 프로젝트 · 상태별
+  → CoreStepsStyle.stepItemStyle                         // Steps 가 쌓을 때의 부모 슬롯
+  → widget.stepItemStyle                                 // 인스턴스별
+```
+
+`status` 는 위젯에서 곧바로 옵니다 — 테마는 각 상태가 어떻게 **보이는지**만 답하고, 어느 상태인지는
+답하지 않습니다.
+
+<!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
+
+### `CoreStepItemStyle` 필드
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| `minHeight` | `double?` | Minimum row height (logical px). Falls back to [defaultMinHeight]. |
+| `padding` | `CoreEdgeInsets?` | Content insets. Falls back to [defaultPadding]. |
+| `iconTitleGapStyle` | `CoreGapStyle?` | Gap between the glyph and the title. Merged on top of [defaultIconTitleGapStyle]. |
+| `titleTrailingGapStyle` | `CoreGapStyle?` | Gap between the title and the trailing note. Merged on top of [defaultTitleTrailingGapStyle]. |
+| `iconStyle` | `CoreIconStyle?` | Style of the status glyph — size and colour. Merged on top of [defaultIconStyle] and the status row. |
+| `titleStyle` | `CoreTextStyle?` | Title typography and colour. Merged on top of [defaultTitleStyle] and the status row. |
+| `trailingStyle` | `CoreTextStyle?` | Trailing-note typography and colour. Merged on top of [defaultTrailingStyle] and the status row. |
+
+<!-- STYLE_TABLE:END -->
+
+### 빠른 오버라이드 (Chain)
+
+이미 만든 `StepItem` 인스턴스에 스타일을 빠르게 덧붙이고 싶다면 `withStyle` 체인을 쓸 수 있습니다. 생성자의 style 슬롯 인자와 동일하게 동작하지만, 이미 구성된 위젯 위에서 바로 이어 쓸 수 있습니다.
+
+<!-- CHAIN_SNIPPET:BEGIN — auto-generated by `dart run tool/generate_chain_artifacts.dart` (write mode). Do not hand-edit between these markers; edit the chain example sources (`*_chain_example.dart` / `*_code.dart`) and regenerate. -->
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+```dart
+class StepItemChainExample extends StatelessWidget {
+  const StepItemChainExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: CoreLayout.layout280,
+      child:
+          const StepItem(
+            title: '테스트 실행',
+            status: CoreStepStatus.current,
+            trailing: '41초',
+          ).withStyle(
+            const CoreStepItemStyle(
+              padding: CoreEdgeInsets.symmetric(vertical: CoreSpace.space10),
+              iconTitleGapStyle: CoreGapStyle(size: CoreSpace.space16),
+              titleStyle: CoreTextStyle(
+                color: CoreColor.token(CoreColors.primary),
+              ),
+            ),
+          ),
+    );
+  }
+}
+```
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+```dart
+class StepItemChainExample extends StatelessComponent {
+  const StepItemChainExample({super.key});
+
+  @override
+  Component build(BuildContext context) {
+    return div(
+      [
+        const StepItem(
+          title: '테스트 실행',
+          status: CoreStepStatus.current,
+          trailing: '41초',
+        ).withStyle(
+          const CoreStepItemStyle(
+            padding: CoreEdgeInsets.symmetric(vertical: CoreSpace.space10),
+            iconTitleGapStyle: CoreGapStyle(size: CoreSpace.space16),
+            titleStyle: CoreTextStyle(
+              color: CoreColor.token(CoreColors.primary),
+            ),
+          ),
+        ),
+      ],
+      classes: 'w-${CoreLayout.scale.layout280}',
+    );
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
+<!-- CHAIN_SNIPPET:END -->
+
+## 동작 스펙 (Behavior)
+
+### 한 줄
+
+- 이름은 한 줄이고, 남는 폭을 차지한 채 길면 말줄임표로 끊깁니다.
+- 오른쪽 글은 자기 폭을 지키며 행 끝에 고정됩니다. 이름이 길어져도 오른쪽 글이 밀려나거나 잘리지 않습니다.
+- 행은 **받은 폭을 전부 채웁니다.** 폭을 정하는 것은 호스트(`Steps` 의 열, 카드, 페이지 열)입니다.
+
+### 세로 크기
+
+- 최소 32. 한 줄 행은 위아래 padding 과 한 줄 높이(20)를 더하면 32 라 정확히 32 에 앉습니다.
+- spacious 밀도에서는 padding 이 커져 32 를 넘길 수 있습니다 — 최소 높이는 그대로이고 행이 자랍니다.
+
+### 상태는 위젯이 정합니다
+
+- `status` 가 글리프를 고르고, `defaultsByStatus` 가 색을 고릅니다. 위젯은 색을 계산하지 않습니다.
+- 행은 누를 수 없고 hover · focus 상태도 없습니다 — 단계가 어디에 있는지 **보고**할 뿐입니다.
+
+## 사용 가이드라인 (Usage Guidelines)
+
+### ✅ Do
+
+<Callout type="tip">
+
+**상태는 `status` 로, 결과는 `trailing` 으로**
+
+```dart
+StepItem(title: '린트', status: CoreStepStatus.failed, trailing: 'exit 1')
+```
+
+실패한 단계는 글리프의 모양(`circle-x`)과 색(`error`)이 함께 말하고, 오른쪽 글이 이유를 덧붙입니다.
+
+</Callout>
+
+---
+
+### ❌ Don't
+
+<Callout type="warning">
+
+**상태를 이름 글자나 색으로만 흉내 내지 않기**
+
+```dart
+// ❌ 글리프가 상태를 말하지 못하고 색만 다르다
+StepItem(title: '린트 (실패)').withStyle(
+  const CoreStepItemStyle(
+    iconStyle: CoreIconStyle(color: CoreColor.token(CoreColors.error)),
+  ),
+)
+```
+
+색만 바꾸면 색 강제 모드에서 상태가 사라집니다. 상태를 `status` 로 주면 글리프 모양이 함께 바뀝니다.
+
+</Callout>
+
+## 접근성 (Accessibility)
+
+### 역할
+
+행 하나는 **글자 그대로 읽히는 텍스트**입니다 — 자체 역할을 내보내지 않습니다. `Steps(variant: list)` 안에서는
+목록(`list`)의 항목(`listitem`)으로 표시되고, **진행 중인 단계**는 Web 에서 `aria-current="step"`,
+Flutter 에서 `selected` 로 표시됩니다 — 같은 뜻의 신호이지만 리더가 읽는 문구는 플랫폼마다 다릅니다(아래 `알려진 제약` 참조).
+
+### 키보드
+
+처리하는 키가 없습니다. 행은 누를 수 없고 포커스를 받지 않습니다.
+
+### 스크린 리더
+
+이름과 오른쪽 글은 문자열이라 그대로 읽힙니다. **상태는 글리프의 모양과 색으로만 전달되고, 아직 읽어 주는
+문구가 없습니다** — 글리프 아이콘은 이름을 내보내지 않습니다. 상태 낭독은 두 플랫폼의 로컬라이제이션에
+문구를 추가해야 하는 별도 작업입니다. 당장은 `title` 이나 `trailing` 에 상태가 드러나는 문구를 담으면
+두 플랫폼 모두 평범한 텍스트로 읽어 줍니다.
+
+### 포커스 관리
+
+**진입 · 이탈 · 트랩 모두 없습니다.** 행에는 포커스 가능한 노드가 없어(Flutter 에 `Focus` 없음, Web 에 `tabindex`
+없음) 어느 플랫폼에서도 탭 순서의 정지점이 되지 않습니다. `status` 가 바뀌어도 포커스는 움직이지 않습니다.
+
+### 알려진 제약
+
+- **진행 중인 행의 신호가 플랫폼마다 다릅니다** — Flutter `selected` vs Web `aria-current="step"`. 두 플랫폼에서 리더가 읽는 문구가 같지 않습니다.
+- **상태 낭독이 없습니다** — 위에서 본 대로 글리프 모양과 색뿐입니다.
+- **라이트 모드에서 카드 위 오른쪽 글은 4.26:1 입니다.** 세 번째 텍스트 단계(`onSurfaceSubtle`)가
+  `surfaceContainer` 위에서 4.5:1 에 못 미칩니다 — 기록된 설계 예외이며(`contrast_baseline.txt`),
+  페이지 면 위와 다크 모드는 4.5:1 을 넘습니다. 실패한 단계의 오른쪽 글은 오류 계열 글자 색이라 해당하지 않습니다.
+- **다크 모드에서 `surfaceContainer` 와 `surfaceBright` 는 같은 값입니다.** 다이얼로그나 팝업 면
+  위에 카드를 한 겹 더 얹으면 두 면이 구분되지 않습니다.
+
+> 전역 축(동작 줄이기 · 고대비 · 색 강제 모드 · 시맨틱 역할 · 최소 터치 타겟)은 [접근성](/accessibility) 페이지가 한 곳에서 다룹니다.
+
+## 크로스 플랫폼 차이점 (Platform Differences)
+
+| 항목 | Flutter | Web |
+|------|---------|-----|
+| 클래스명 | `StepItem` | `StepItem` |
+| 렌더링 | `ConstrainedBox` + `Padding` + `Row` + `Icon` + `Gap` + `Text` | `<div>`(flex) + `Icon` + `Gap` + `<span>` |
+| 폭 | 받은 폭을 채웁니다 | `w-full` — 받은 폭을 채웁니다 |
+| 말줄임 | `maxLines: 1`, `overflow: ellipsis` | `truncate` (한 줄, `text-overflow: ellipsis`) |
+| 목록 항목 표시 | `Steps` 가 행을 `CoUISemantics`(listItem)로 감쌉니다 | `Steps` 가 `attributes` 로 `role="listitem"` 을 통과시킵니다 |
+| 테마 | `CoreStepItemTheme` | `CoreStepItemTheme` |
+
+## 관련 컴포넌트 (Related Components)
+
+- **[Steps](/components/steps)**: 이 행을 세로로 쌓는 목록(`variant: list`) 또는 번호 원과 연결선(`numbered`)
+- **[Stepper](/components/stepper)**: 사용자가 눌러 이동하는 입력 흐름 — 데이터 클래스 `CoreStepItem` 은 이 컴포넌트와 별개입니다
+- **[Status](/components/status)**: 하나의 상태 점

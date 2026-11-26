@@ -1,0 +1,18 @@
+# docs_site 와 동일한 완화 룰 — 이 패키지의 코드는 docs_site 에서 이사한
+# 기존 코드라, 이동이 룰 베이스라인을 바꾸지 않게 한다 (강화는 별도 작업).
+include: package:lints/recommended.yaml
+
+analyzer:
+  exclude:
+    - build/**
+    - .dart_tool/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
+
+formatter:
+  page_width: 120
+  trailing_commas: preserve

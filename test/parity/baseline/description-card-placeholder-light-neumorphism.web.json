@@ -1,0 +1,63 @@
+{
+  "key": "description-card-placeholder-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "빈 항목\n                  \n                  \n                  \n                  \n                  \n                    \n                      이름\n                      \n                      김코드\n                    \n                    \n                    \n                      전화번호\n                      \n                      정보 없음\n                    \n                    \n                    \n                      이메일\n                      \n                      정보 없음\n                    \n                    \n                    \n                      주소\n                      \n                      서울 강남구",
+    "layout": {
+      "width": 800,
+      "height": 227,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 17,
+          "y": 17,
+          "width": 766,
+          "height": 193
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "15px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(113, 114, 115)",
+      "borderRightColor": "rgb(113, 114, 115)",
+      "borderBottomColor": "rgb(113, 114, 115)",
+      "borderLeftColor": "rgb(113, 114, 115)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "16px",
+      "borderTopRightRadius": "16px",
+      "borderBottomRightRadius": "16px",
+      "borderBottomLeftRadius": "16px",
+      "paddingTop": "16px",
+      "paddingRight": "16px",
+      "paddingBottom": "16px",
+      "paddingLeft": "16px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 227
+    }
+  }
+}

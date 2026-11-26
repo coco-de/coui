@@ -1,0 +1,38 @@
+{
+  "key": "formatted-input-default-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "13px",
+      "lineHeight": "normal",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(115, 116, 118)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(113, 114, 115)",
+      "borderRightColor": "rgb(113, 114, 115)",
+      "borderBottomColor": "rgb(113, 114, 115)",
+      "borderLeftColor": "rgb(113, 114, 115)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "12px",
+      "borderTopRightRadius": "12px",
+      "borderBottomRightRadius": "12px",
+      "borderBottomLeftRadius": "12px",
+      "paddingTop": "0px",
+      "paddingRight": "14px",
+      "paddingBottom": "0px",
+      "paddingLeft": "14px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 48
+    }
+  }
+}

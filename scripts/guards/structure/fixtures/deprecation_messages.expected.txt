@@ -1,0 +1,5 @@
+Use Foo (the new one) instead (since 0.130).
+Renamed to Bar (see the docs) because it's clearer (since 0.131).
+No marker (still a violation).
+Commented (since 0.132).
+kMessage

@@ -1,0 +1,61 @@
+{
+  "identifier": "coui-component-library",
+  "displayName": "CoUI Component Library",
+  "url": "https://www.figma.com/design/9FgsLhiWz0aLsVqcoI6nYJ/CoUI---Cocode-Design-System-v1.0",
+  "updatedAt": "2026-09-07",
+  "note": "정본 라이브러리 URL. A-5 (private org plugin 배포)는 미결 — 개발모드에서 figma.fileKey 는 undefined 이므로 플러그인은 identifier 를 문서 root pluginData 스탬프와 대조해 경고만 한다(진행은 막지 않음). 이 정본을 다른 파일로 옮기려면 이 값들만 바꾸면 된다 — 플러그인/exporter 코드 변경 0. pages 는 문서 슬러그 → Figma 페이지(`❖ Name`) node-id. hyphen 형식. exporter 는 identifier/displayName/url 만 읽고 이 맵은 무시한다. id 는 tools/figma-token-sync/reverse/baseline.structure.json 의 canvas 노드에서 확인한 것만 — 없으면 nodeId 를 생략하고 문서에는 파일 URL + 페이지 이름만 적는다. 가짜 id 금지. `_Docs / Header|Properties|Examples` 프레임은 여기에 두지 않는다.",
+  "pages": {
+    "avatar": {
+      "name": "❖ Avatar",
+      "nodeId": "2467-151690"
+    },
+    "badge": {
+      "name": "❖ Badge",
+      "nodeId": "2467-123907"
+    },
+    "button": {
+      "name": "❖ Button",
+      "nodeId": "2467-96798"
+    },
+    "card": {
+      "name": "❖ Card",
+      "nodeId": "2467-147191"
+    },
+    "checkbox": {
+      "name": "❖ Checkbox",
+      "nodeId": "2467-115579"
+    },
+    "dialog": {
+      "name": "❖ Dialog",
+      "nodeId": "2467-93374"
+    },
+    "number-input": {
+      "name": "❖ NumberInput"
+    },
+    "select": {
+      "name": "❖ Select",
+      "nodeId": "2467-138690"
+    },
+    "sidebar": {
+      "name": "❖ Sidebar"
+    },
+    "tabs": {
+      "name": "❖ Tabs",
+      "nodeId": "2467-93104"
+    },
+    "tag": {
+      "name": "❖ Tag"
+    },
+    "text-field": {
+      "name": "❖ TextField",
+      "nodeId": "2467-112640"
+    },
+    "toggle": {
+      "name": "❖ Toggle",
+      "nodeId": "2467-90830"
+    },
+    "toggle-group": {
+      "name": "❖ ToggleGroup"
+    }
+  }
+}

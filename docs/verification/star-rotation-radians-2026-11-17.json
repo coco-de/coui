@@ -1,0 +1,66 @@
+{
+  "base": "45db75a9de944bc9eb8f2311ad81f7e98b628d0c",
+  "sourceSha256": "a6f54f63b990979db25d1edd7936f854309495a025954f4b3a3011a5a60aad3d",
+  "publicDeclarationsSha256": "b81ec92ac51ca249cdfbb68fda3129d78137bdabcefdb23dbfa99c69b41a04cd",
+  "contract": {
+    "unit": "radians",
+    "document": "docs_core/content/components/star-rating.md",
+    "webImplementation": "CoreStarPath.generatePoints startAngle + rotation",
+    "nativeSDKUnit": "degrees",
+    "beforePiOver2Degrees": 1.5707963267948966,
+    "afterPiOver2Degrees": 90,
+    "defaultRotationUnchanged": 0
+  },
+  "tests": {
+    "nativeTotal": 38,
+    "newRotationCases": 8,
+    "oldSourceRotationFailures": 6,
+    "oldSourceZeroControlsPassed": 2,
+    "webTotal": 16,
+    "fixtureNative": 1
+  },
+  "analyze": {
+    "beforeInfos": 15,
+    "afterInfos": 15,
+    "newDiagnostics": 0,
+    "newTestDiagnostics": 0,
+    "ignoresAdded": 0
+  },
+  "related": {
+    "keys": 8,
+    "crossPlatformPass": 0,
+    "crossPlatformFail": 8,
+    "beforeAfterRasters": 16,
+    "changedRasters": 0,
+    "ownBaselinePass": 16,
+    "ownBaselineDifferences": 0
+  },
+  "defaultMatrix": {
+    "lastFull": "#6330",
+    "pass": 461,
+    "fail": 287,
+    "fresh748InThisChange": false
+  },
+  "runtime": {
+    "ownedTarget": "temporary star_preview.dart in an independent headless Chrome Flutter debug app",
+    "hotReload": "succeeded",
+    "runtimeErrors": 0,
+    "stoppedAfterVerification": true
+  },
+  "designerReference": {
+    "url": "https://www.figma.com/design/9FgsLhiWz0aLsVqcoI6nYJ/CoUI---Cocode-Design-System-v1.0?node-id=8049-478",
+    "inspectedNode": "8049:286",
+    "profile": "24px filled Lucide star instance; vector inset about2px and1.5px stroke",
+    "canvasMutations": 0,
+    "scope": "Existing default-profile disagreement with mathematical Native/Web paths remains; this fix preserves zero/default profile and does not claim exact Figma equality."
+  },
+  "policies": {
+    "DPR": 1,
+    "parity": 0.05,
+    "regression": 0.001,
+    "channelDelta": 32,
+    "dimensionsFail": true,
+    "baselinePromoted": false
+  },
+  "provenance": "Fresh Native/Web catalog8 before; fresh Native8 after; unchanged Web reused. Custom Native zero/pi-over-two light/dark before/after and matching explicit-filled Web reference. Original unfilled Web fixture was corrected before accepted evidence; it is not counted as a product difference."
+}

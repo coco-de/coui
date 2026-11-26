@@ -1,0 +1,104 @@
+{
+  "key": "button-docs-v2-1b63de6d7b75edaad6f28a9d63467140-dark-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Card",
+      "attributes": {
+        "demo": "button/do-one-primary",
+        "eyebrow": "이렇게 하세요",
+        "tone": "do"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "button/do-one-primary",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/button.md:Cards[44]:Card[1]"
+      ],
+      "anatomyParts": [],
+      "cardBody": [
+        {
+          "tag": "p",
+          "attributes": {},
+          "children": [
+            {
+              "text": "한 영역에는 primary를 하나만 둡니다.",
+              "raw": false
+            }
+          ]
+        }
+      ],
+      "cardIndex": 0,
+      "captureUnit": "whole-card",
+      "nativeCardAttributes": {
+        "demo": "button/do-one-primary",
+        "eyebrow": "이렇게 하세요",
+        "tone": "do"
+      },
+      "nativeCardBody": "\n한 영역에는 primary를 하나만 둡니다.\n"
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-button-ssr-11:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-11:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                          \n                          취소\n                        \n                        저장하기\n                      \n                    \n                    이렇게 하세요\n                    한 영역에는 primary를 하나만 둡니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 225.890625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(29, 47, 33)",
+      "borderRightColor": "rgb(29, 47, 33)",
+      "borderBottomColor": "rgb(29, 47, 33)",
+      "borderLeftColor": "rgb(29, 47, 33)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "16px",
+      "borderTopRightRadius": "16px",
+      "borderBottomRightRadius": "16px",
+      "borderBottomLeftRadius": "16px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(180, 181, 182)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 225.890625
+    }
+  }
+}

@@ -1,0 +1,35 @@
+import 'package:coui_core/coui_core.dart';
+import 'package:test/test.dart';
+
+void main() {
+  group('CoreStarState.forIndex', () {
+    // 값은 그대로 두고 채움만 가까운 반 단계로 맞춘다: 4.3 → 4.5, 4.2 → 4.0.
+    List<CoreStarState> row(double value) => [
+      for (var i = 0; i < 5; i++) CoreStarState.forIndex(value, i),
+    ];
+
+    test('4.3 snaps to 4.5 stars', () {
+      expect(row(4.3), [
+        CoreStarState.filled,
+        CoreStarState.filled,
+        CoreStarState.filled,
+        CoreStarState.filled,
+        CoreStarState.half,
+      ]);
+    });
+
+    test('4.2 snaps down to 4 stars', () {
+      expect(row(4.2), [
+        CoreStarState.filled,
+        CoreStarState.filled,
+        CoreStarState.filled,
+        CoreStarState.filled,
+        CoreStarState.empty,
+      ]);
+    });
+
+    test('4.8 snaps up to 5 stars', () {
+      expect(row(4.8), everyElement(CoreStarState.filled));
+    });
+  });
+}

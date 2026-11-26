@@ -1,0 +1,172 @@
+{
+  "_comment": [
+    "Shared vectors for how a floating panel is held to the viewport (CoreOverlayFit).",
+    "Read by coui_core (availableExtent and fit), coui_flutter (the popover engine's",
+    "height cap and where it places an over-tall panel) and a real-Chrome probe of the",
+    "Web panel CSS, so a change on one platform fails the other.",
+    "All lengths are along one axis (the vertical one, which is the only one a list",
+    "needs), in logical px on Flutter and CSS px on the Web.",
+    "Inputs: viewport, paddingBefore and paddingAfter (what the platform's collision keeps",
+    "the panel away from), start (where the panel's near edge sits before fitting) and",
+    "extent (how far the panel extends, its natural height).",
+    "Expected: room (availableExtent) and fit: the start and extent after fitting, and whether",
+    "the panel was capped. A capped panel takes the whole room and starts at paddingBefore;",
+    "one that fits is left as it is."
+  ],
+  "cases": [
+    {
+      "name": "a panel that fits keeps its place and size",
+      "viewport": 480,
+      "paddingBefore": 8,
+      "paddingAfter": 8,
+      "start": 100,
+      "extent": 200,
+      "room": 464,
+      "fit": {
+        "start": 100,
+        "extent": 200,
+        "capped": false
+      }
+    },
+    {
+      "name": "a panel exactly as tall as the room fits and is not capped",
+      "viewport": 480,
+      "paddingBefore": 8,
+      "paddingAfter": 8,
+      "start": 8,
+      "extent": 464,
+      "room": 464,
+      "fit": {
+        "start": 8,
+        "extent": 464,
+        "capped": false
+      }
+    },
+    {
+      "name": "a panel a pixel over the room takes the room and starts at the near padding",
+      "viewport": 480,
+      "paddingBefore": 8,
+      "paddingAfter": 8,
+      "start": 100,
+      "extent": 465,
+      "room": 464,
+      "fit": {
+        "start": 8,
+        "extent": 464,
+        "capped": true
+      }
+    },
+    {
+      "name": "thirty menu rows in a phone-sized viewport",
+      "viewport": 480,
+      "paddingBefore": 8,
+      "paddingAfter": 8,
+      "start": 52,
+      "extent": 1080,
+      "room": 464,
+      "fit": {
+        "start": 8,
+        "extent": 464,
+        "capped": true
+      }
+    },
+    {
+      "name": "the system bars take their share of the room",
+      "viewport": 844,
+      "paddingBefore": 55,
+      "paddingAfter": 42,
+      "start": 200,
+      "extent": 900,
+      "room": 747,
+      "fit": {
+        "start": 55,
+        "extent": 747,
+        "capped": true
+      }
+    },
+    {
+      "name": "a short panel near the far padding is not moved",
+      "viewport": 480,
+      "paddingBefore": 8,
+      "paddingAfter": 8,
+      "start": 460,
+      "extent": 20,
+      "room": 464,
+      "fit": {
+        "start": 460,
+        "extent": 20,
+        "capped": false
+      }
+    },
+    {
+      "name": "paddings that leave no room cap any panel to nothing",
+      "viewport": 100,
+      "paddingBefore": 60,
+      "paddingAfter": 60,
+      "start": 10,
+      "extent": 40,
+      "room": 0,
+      "fit": {
+        "start": 60,
+        "extent": 0,
+        "capped": true
+      }
+    },
+    {
+      "name": "an empty panel is never capped",
+      "viewport": 100,
+      "paddingBefore": 60,
+      "paddingAfter": 60,
+      "start": 10,
+      "extent": 0,
+      "room": 0,
+      "fit": {
+        "start": 10,
+        "extent": 0,
+        "capped": false
+      }
+    },
+    {
+      "name": "a fractional viewport gives a fractional room",
+      "viewport": 667.5,
+      "paddingBefore": 8.5,
+      "paddingAfter": 8.5,
+      "start": 20,
+      "extent": 700,
+      "room": 650.5,
+      "fit": {
+        "start": 8.5,
+        "extent": 650.5,
+        "capped": true
+      }
+    },
+    {
+      "name": "no padding gives the whole viewport",
+      "viewport": 400,
+      "paddingBefore": 0,
+      "paddingAfter": 0,
+      "start": 0,
+      "extent": 500,
+      "room": 400,
+      "fit": {
+        "start": 0,
+        "extent": 400,
+        "capped": true
+      }
+    },
+    {
+      "name": "an unequal pair of paddings places the cap at the near one",
+      "viewport": 600,
+      "paddingBefore": 100,
+      "paddingAfter": 20,
+      "start": 300,
+      "extent": 800,
+      "room": 480,
+      "fit": {
+        "start": 100,
+        "extent": 480,
+        "capped": true
+      }
+    }
+  ]
+}

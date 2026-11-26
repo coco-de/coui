@@ -1,0 +1,82 @@
+{
+  "key": "button-docs-v2-a6403a8e1f82da5c9275abc7260c8f08-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Preview",
+      "attributes": {
+        "demo": "button/a11y-icon-name"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "button/a11y-icon-name",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/button.md:Preview[64]"
+      ],
+      "anatomyParts": []
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-button-ssr-1k:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-1k:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                      \n                      \n                        \n                      \n                    \n                    \n                      aria-label=\"항목 추가\"\n                      아이콘만 있는 버튼은 웹에서 aria-label로 이름을 지정합니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 140
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "\"Geist Mono\", Pretendard, monospace",
+      "fontWeight": "400",
+      "fontSize": "13px",
+      "lineHeight": "22.1px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "16px",
+      "borderTopRightRadius": "16px",
+      "borderBottomRightRadius": "16px",
+      "borderBottomLeftRadius": "16px",
+      "paddingTop": "32px",
+      "paddingRight": "24px",
+      "paddingBottom": "32px",
+      "paddingLeft": "24px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(180, 181, 182)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 140
+    }
+  }
+}

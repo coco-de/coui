@@ -1,0 +1,63 @@
+{
+  "key": "sidebar-two-pane-dark-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "C\n                    \n                  \n                  \n                  \n                    \n                      \n                        \n                          \n                            .co-sidebar-rail-item-5m85ff:hover > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-rail-item-5m85ff:focus-visible > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-rail-item-5m85ff:active > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                          \n                          \n                          \n                            \n                          \n                        \n                      \n                    \n                    \n                      \n                        \n                          \n                            .co-sidebar-rail-item-6ej258:hover > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-rail-item-6ej258:focus-visible > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-rail-item-6ej258:active > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                          \n                          \n                          \n                        \n                      \n                    \n                    \n                      \n                        \n                          \n                            .co-sidebar-rail-item-d03qeg:hover > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-rail-item-d03qeg:focus-visible > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-rail-item-d03qeg:active > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                          \n                          \n                          \n                            \n                          \n                          \n                        \n                      \n                    \n                  \n                  \n                    \n                      \n                        \n                          .co-sidebar-rail-item-4vuvgv:hover > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-rail-item-4vuvgv:focus-visible > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-rail-item-4vuvgv:active > .co-sidebar-rail-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                        \n                        \n                        \n                          \n                        \n                      \n                    \n                  \n                \n                \n                  \n                    \n                      작업 보드\n                      \n                        \n                          \n                        \n                      \n                    \n                    \n                      \n                        .co-sidebar-search-felfql:hover > .co-sidebar-search-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-search-felfql:focus-visible > .co-sidebar-search-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-search-felfql:active > .co-sidebar-search-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                      \n                      \n                      \n                        \n                      \n                      검색\n                    \n                  \n                  \n                    \n                      \n                        .co-sidebar-item-cdzr59:hover > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-item-cdzr59:focus-visible > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-item-cdzr59:active > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                      \n                      \n                      \n                        \n                      \n                      내 작업\n                    \n                    \n                      \n                        .co-sidebar-item-736bx1:hover > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-item-736bx1:focus-visible > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-item-736bx1:active > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                      \n                      \n                      \n                        \n                      \n                      이번 주\n                    \n                    \n                      보드\n                    \n                    \n                      \n                        .co-sidebar-item-60ecpb:hover > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-item-60ecpb:focus-visible > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-item-60ecpb:active > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                      \n                      \n                      \n                        \n                      \n                      디자인",
+    "layout": {
+      "width": 304,
+      "height": 640,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 304,
+          "height": 640
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "13px",
+      "lineHeight": "18px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 304,
+      "heightPx": 640
+    }
+  }
+}

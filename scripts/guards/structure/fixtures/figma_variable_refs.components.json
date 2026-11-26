@@ -1,0 +1,22 @@
+{
+  "components": [
+    {
+      "fields": {
+        "plain": { "ref": "Primitives/space/4" },
+        "brandFolded": { "ref": "Semantic/color/primary" },
+        "firstBrandOnly": { "ref": "Semantic/color/only-coui" },
+        "lastBrandOnly": { "ref": "Semantic/color/only-demo" },
+        "honestNull": { "ref": null },
+        "dangling": { "ref": "Primitives/radius/99" },
+        "empty": { "ref": "" },
+        "noSlash": { "ref": "NoSlash" }
+      }
+    },
+    {
+      "notUnderRef": {
+        "fallback": "Primitives/space/8",
+        "nested": ["Component/ghost/1", "Component/icon-size/16"]
+      }
+    }
+  ]
+}

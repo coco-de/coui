@@ -1,0 +1,194 @@
+{
+  "base": "98e68ffe6e4daa3450ac95eafae36809b6f9f6b8",
+  "previousPr": 6328,
+  "previousPrMergeTree": "0225433ebcc151bedad5b99814a4eba6230a8303",
+  "previousPrHead": "d494b45a7ba9b8eea98517dc46bd5ed7e1402585",
+  "previousPrReleaseRun": 43990637960,
+  "previousPrReleaseResult": "success",
+  "releasePrStillOpen": 6329,
+  "source": {
+    "path": "packages/coui_web/lib/src/components/form/file_input/file_input_style.dart",
+    "beforeSha256": "8e659e6a962c7d1af74d51c305c6bd4257a0748815de6d4dc327ef45b1e4664f",
+    "afterSha256": "688ccbf5437037303412a6051e023cc3f516ce8e7ba256b598c9af6c8cc18be2",
+    "declarationCheck": "packages/coui_web/lib/src/components/form/file_input/file_input_style.dart declarations identical: 200ae934581792ad432c0d23ba826c3020a639ee727d5aca95c757d700f84bed"
+  },
+  "tests": {
+    "web": 40,
+    "webConstraintSubset": 16,
+    "negativeControlSubset": 11,
+    "negativeControlFailed": 9,
+    "negativeControlPassed": 2,
+    "flutter": 44,
+    "flutterConstraintSubset": 8,
+    "jasprRoutes": 357
+  },
+  "default": {
+    "keys": 748,
+    "before": {
+      "fail": 287,
+      "pass": 461
+    },
+    "after": {
+      "fail": 287,
+      "pass": 461
+    },
+    "changedRasters": 0,
+    "platformProbes": 1520,
+    "pixelInfraFinal": 0,
+    "pixelSkippedFinal": 0,
+    "ownBaseline": {
+      "pass": 1361,
+      "fail": 135,
+      "firstCapture": 24
+    }
+  },
+  "related": {
+    "keys": 10,
+    "before": {
+      "fail": 10
+    },
+    "after": {
+      "fail": 10
+    },
+    "platformProbes": 20,
+    "changedRasters": 0
+  },
+  "captureRetry": {
+    "key": "accordion-default-light-defaultStyle",
+    "initialWebCaptureExit": 2,
+    "initialFailedKeys": 1,
+    "sameKeySameConditionsRetryExit": 0,
+    "timeoutOrPolicyChanged": false
+  },
+  "fixtureBefore": [
+    {
+      "theme": "light",
+      "geometry": [
+        {
+          "id": "wide",
+          "hostWidth": 600,
+          "zoneWidth": 138.453125,
+          "zoneHeight": 223.09375
+        },
+        {
+          "id": "disabled",
+          "hostWidth": 320,
+          "zoneWidth": 138.453125,
+          "zoneHeight": 257.28125
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "geometry": [
+        {
+          "id": "wide",
+          "hostWidth": 600,
+          "zoneWidth": 138.453125,
+          "zoneHeight": 223.09375
+        },
+        {
+          "id": "disabled",
+          "hostWidth": 320,
+          "zoneWidth": 138.453125,
+          "zoneHeight": 257.28125
+        }
+      ]
+    }
+  ],
+  "fixtureAfter": [
+    {
+      "theme": "light",
+      "geometry": [
+        {
+          "id": "wide",
+          "hostWidth": 600,
+          "zoneWidth": 600,
+          "zoneHeight": 223.09375
+        },
+        {
+          "id": "disabled",
+          "hostWidth": 320,
+          "zoneWidth": 320,
+          "zoneHeight": 257.28125
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "geometry": [
+        {
+          "id": "wide",
+          "hostWidth": 600,
+          "zoneWidth": 600,
+          "zoneHeight": 223.09375
+        },
+        {
+          "id": "disabled",
+          "hostWidth": 320,
+          "zoneWidth": 320,
+          "zoneHeight": 257.28125
+        }
+      ]
+    }
+  ],
+  "releaseProbe": {
+    "releaseUrl": "/embed/file-input/",
+    "layout": [
+      {
+        "viewport": 900,
+        "hostWidth": 600,
+        "zoneWidth": 600,
+        "zoneHeight": 223.09375,
+        "left": 0,
+        "outline": "rgba(0, 0, 0, 0)",
+        "outlineWidth": "2px",
+        "transition": "0.1s",
+        "dash": "6px, 4px"
+      },
+      {
+        "viewport": 480,
+        "hostWidth": 448,
+        "zoneWidth": 448,
+        "zoneHeight": 223.09375,
+        "left": 0,
+        "outline": "rgba(0, 0, 0, 0)",
+        "outlineWidth": "2px",
+        "transition": "0.1s",
+        "dash": "6px, 4px"
+      }
+    ],
+    "hydratedDrag": {
+      "hostWidth": 448,
+      "zoneWidth": 448,
+      "dash": "none",
+      "focused": true
+    },
+    "dragLeaveRestored": true,
+    "pageErrors": [
+      "Evaluation failed: Error\n    at Object.y (http://127.0.0.1:54759/main.client.dart.js:716:20)\n    at http://127.0.0.1:54759/main.client.dart.js:12073:15\n    at d2X.a (http://127.0.0.1:54759/main.client.dart.js:2366:64)\n    at d2X.$2 (http://127.0.0.1:54759/main.client.dart.js:7481:14)\n    at d0G.$1 (http://127.0.0.1:54759/main.client.dart.js:7475:21)\n    at bkU.Ug (http://127.0.0.1:54759/main.client.dart.js:8256:25)\n    at cx9.$0 (http://127.0.0.1:54759/main.client.dart.js:7801:11)\n    at Object.Ud (http://127.0.0.1:54759/main.client.dart.js:2489:40)\n    at br.DF (http://127.0.0.1:54759/main.client.dart.js:7695:3)\n    at cx1.$0 (http://127.0.0.1:54759/main.client.dart.js:7760:13)"
+    ],
+    "errorDetails": [
+      {
+        "message": "No implementation found for method entered on channel desktop_drop",
+        "stack": "\n    at Object.y (http://127.0.0.1:54759/main.client.dart.js:716:20)\n    at http://127.0.0.1:54759/main.client.dart.js:12073:15\n    at d2X.a (http://127.0.0.1:54759/main.client.dart.js:2366:64)\n    at d2X.$2 (http://127.0.0.1:54759/main.client.dart.js:7481:14)\n    at d0G.$1 (http://127.0.0.1:54759/main.client.dart.js:7475:21)\n    at bkU.Ug (http://127.0.0.1:54759/main.client.dart.js:8256:25)\n    at cx9.$0 (http://127.0.0.1:54759/main.client.dart.js:7801:11)\n    at Object.Ud (http://127.0.0.1:54759/main.client.dart.js:2489:40)\n    at br.DF (http://127.0.0.1:54759/main.client.dart.js:7695:3)\n    at cx1.$0 (http://127.0.0.1:54759/main.client.dart.js:7760:13)"
+      }
+    ]
+  },
+  "unchanged": [
+    "Core/default/resolver values",
+    "Flutter library",
+    "public constructor/field/function declarations",
+    "Web widget callbacks and DOM shape",
+    "parity thresholds/normalizer/baseline/allowlist",
+    "docs examples and Figma data"
+  ],
+  "thresholds": {
+    "parity": 0.05,
+    "regression": 0.001,
+    "channelDelta": 32,
+    "DPR": 1,
+    "dimensionMismatchFails": true
+  },
+  "captureProvenance": "Before: fresh Flutter/Web on merged main. After: fresh Web; unchanged Flutter captures reused. Diagnostic before Web fixture recorded during the explicit layout-class mutation control; accepted source hash restored before after captures/build."
+}

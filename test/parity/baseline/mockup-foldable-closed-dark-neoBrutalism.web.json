@@ -1,0 +1,63 @@
+{
+  "key": "mockup-foldable-closed-dark-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "9:41\n                              \n                                \n                                  \n                                \n                                \n                                  \n                                \n                              \n                            \n                          \n                        \n                      \n                    \n                  \n                \n                \n                  \n                    \n                      \n                      \n                      \n                      \n                      \n                        \n                          \n                            \n                              \n                              \n                                9:41\n                                \n                                  \n                                    \n                                  \n                                  \n                                    \n                                  \n                                \n                              \n                            \n                          \n                        \n                      \n                    \n                    \n                    \n                  \n                \n                \n                  \n                \n                \n                  \n                    \n                      \n                      \n                      \n                      \n                      \n                        \n                          \n                            \n                              \n                              \n                                9:41\n                                \n                                  \n                                    \n                                  \n                                  \n                                    \n                                  \n                                \n                              \n                            \n                          \n                        \n                      \n                    \n                    \n                    \n                  \n                \n                \n                  \n                \n                \n                  \n                    \n                    \n                      \n                        \n                          \n                            \n                              앱 화면\n                            \n                            \n                              \n                              9:41",
+    "layout": {
+      "width": 800,
+      "height": 338.25,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 160,
+          "y": 0,
+          "width": 480,
+          "height": 338.25
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "7.648px",
+      "lineHeight": "11px",
+      "letterSpacing": "-0.07648px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 338.25
+    }
+  }
+}

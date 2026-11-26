@@ -1,0 +1,56 @@
+{
+  "key": "dialog-docs-v2-9a7501d7b2da8dcc4fcd8829c71c3958-light-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "dialog-docs-v2-9a7501d7b2da8dcc4fcd8829c71c3958-light-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "shadowBlurUnit": "css-radius",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 31,
+        "g": 32,
+        "b": 33,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 233,
+        "g": 248,
+        "b": 235,
+        "a": 1.0
+      },
+      "borderWidthPx": 1.0,
+      "borderRadiusPx": [
+        24.0,
+        24.0,
+        24.0,
+        24.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [],
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 326.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

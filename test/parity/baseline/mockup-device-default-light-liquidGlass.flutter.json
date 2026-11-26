@@ -1,0 +1,83 @@
+{
+  "key": "mockup-device-default-light-liquidGlass",
+  "byRole": {
+    "root": {
+      "key": "mockup-device-default-light-liquidGlass",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 31,
+        "g": 32,
+        "b": 33,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderWidthPx": 1.0,
+      "borderRadiusPx": [
+        24.0,
+        24.0,
+        24.0,
+        24.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 320.0,
+      "heightPx": 674.67
+    },
+    "stage": {
+      "key": "mockup-device-default-light-liquidGlass",
+      "platform": "flutter",
+      "probeRole": "stage",
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSizePx": null,
+      "lineHeightPx": null,
+      "letterSpacingPx": null,
+      "color": null,
+      "backgroundColor": null,
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": null,
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": null,
+      "widthPx": 800.0,
+      "heightPx": 674.67
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": [],
+  "bodyBounds": {
+    "left": 240.0,
+    "top": 0,
+    "width": 320.0,
+    "height": 674.6666666666666
+  }
+}

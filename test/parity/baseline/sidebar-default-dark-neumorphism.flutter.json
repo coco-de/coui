@@ -1,0 +1,55 @@
+{
+  "key": "sidebar-default-dark-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "sidebar-default-dark-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 18.2,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 22,
+        "g": 23,
+        "b": 24,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "paddingPx": [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 248.0,
+      "heightPx": 640.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

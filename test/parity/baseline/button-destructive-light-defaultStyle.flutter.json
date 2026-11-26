@@ -1,0 +1,49 @@
+{
+  "key": "button-destructive-light-defaultStyle",
+  "byRole": {
+    "root": {
+      "key": "button-destructive-light-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 19.6,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 184,
+        "g": 28,
+        "b": 30,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 255,
+        "g": 241,
+        "b": 238,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "paddingPx": [
+        8.0,
+        16.0,
+        8.0,
+        16.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 55.92,
+      "heightPx": 40.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

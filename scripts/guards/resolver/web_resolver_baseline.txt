@@ -1,0 +1,39 @@
+# Web resolver guard violations standing when the gate first ran to completion (#6038),
+# line numbers dropped. Each is API work — promote a default to a Style field, wire a
+# contract field on both platforms, or move a Resolved scalar into chrome. The five
+# CoreRichEditorStyle document-geometry defaults wait on Flutter reading them (#6069).
+# Net-new lines fail; a fixed line must be removed, so this list only shrinks.
+C  display/status/status_style.dart  ResolvedStatus.hasBar [bool]
+C  form/multi_answer_card/multi_answer_card_style.dart  ResolvedMultiAnswerCard.checkboxSize [CoreComponentSize]
+C  form/object_input/object_input_style.dart  ResolvedObjectInput.fieldInputSize [CoreComponentSize]
+C  form/object_input/object_input_style.dart  ResolvedObjectInput.fieldInputVariant [CoreTextFieldVariant]
+# ResolvedAppBar.railGroupSpacing shipped in coui_web 0.190.1 and is exported; it is deprecated (since 0.190) in favour of the railGroup chrome slot and leaves with that window.
+C  layout/app_bar/app_bar_style.dart  ResolvedAppBar.railGroupSpacing [String]
+D  control/filter/filter_style.dart  CoreToggleGroupStyle.defaultItemSpacing  (override 'itemSpacing' 존재하나 merged.itemSpacing 미참조)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultArcSweepDegrees  (override 'arcSweepDegrees' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultBarFillRatio  (override 'barFillRatio' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultBarHeightRatio  (override 'barHeightRatio' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultBarLengthRatio  (override 'barLengthRatio' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultDotSizeRatio  (override 'dotSizeRatio' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultPulseDotRatio  (override 'pulseDotRatio' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultPulseHaloAlpha  (override 'pulseHaloAlpha' 없음→contract 필드 승격 필요)
+D  form/multi_answer_card/multi_answer_card_style.dart  CoreMultiAnswerCardStyle.defaultCheckboxSize  (override 'checkboxSize' 없음→contract 필드 승격 필요)
+D  form/object_input/object_input_style.dart  CoreObjectInputStyle.defaultFieldInputSize  (override 'fieldInputSize' 없음→contract 필드 승격 필요)
+D  form/object_input/object_input_style.dart  CoreObjectInputStyle.defaultFieldInputVariant  (override 'fieldInputVariant' 없음→contract 필드 승격 필요)
+D  form/rich_editor/rich_editor_style.dart  CoreRichEditorStyle.defaultCodeBorderRadius  (override 'codeBorderRadius' 없음→contract 필드 승격 필요)
+D  form/rich_editor/rich_editor_style.dart  CoreRichEditorStyle.defaultInlineCodeInset  (override 'inlineCodeInset' 없음→contract 필드 승격 필요)
+D  form/rich_editor/rich_editor_style.dart  CoreRichEditorStyle.defaultRuleWidth  (override 'ruleWidth' 없음→contract 필드 승격 필요)
+D  form/rich_editor/rich_editor_style.dart  CoreRichEditorStyle.defaultTaskCheckboxSpacing  (override 'taskCheckboxSpacing' 없음→contract 필드 승격 필요)
+D  form/rich_editor/rich_editor_style.dart  CoreTextAreaStyle.defaultErrorTextColor  (override 'errorTextColor' 존재하나 merged.errorTextColor 미참조)
+D  form/star_rating/star_rating_style.dart  CoreStarRatingStyle.defaultDisabledTextColor  (override 'disabledTextColor' 없음→contract 필드 승격 필요)
+D  form/star_rating/star_rating_style.dart  CoreStarRatingStyle.defaultSize  (override 'size' 없음→contract 필드 승격 필요)
+D  overlay/drawer/drawer_style.dart  CoreDrawerStyle.defaultSheetPanelBorderWidth  (override 'sheetPanelBorderWidth' 없음→contract 필드 승격 필요)
+D  overlay/drawer/drawer_style.dart  CoreDrawerStyle.defaultSidePanelBorderRadius  (override 'sidePanelBorderRadius' 없음→contract 필드 승격 필요)
+E  date_picker  'placeholderColor'  ★복구대상(Flutter 반영O)
+E  date_picker  'valueTypography'  ★복구대상(Flutter 반영O)
+E  multiple_choice  'chipStyle'  (Flutter도 미반영)
+E  multiple_choice  'clickableStyle'  (Flutter도 미반영)
+E  multiple_choice  'transitionDuration'  (Flutter도 미반영)
+E  star_rating  'focusBorderColor'  (Flutter도 미반영)
+E  star_rating  'focusBorderWidth'  (Flutter도 미반영)
+F  navigation/navigation_bar/navigation_bar_style.dart  [class-drop ? ''] inline 으로

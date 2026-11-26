@@ -1,0 +1,1419 @@
+{
+  "finalWebSource": "97a036d82c1abb59708b1530651782c113bd5ab4",
+  "web": "inline-owner-final/original52.json",
+  "nativeActualSource": "ad1ba78e9dc2f7c33b8f5dd41c511cac4b312d38",
+  "nativeActualFile": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-selected-state-audit-20261119.g3ai3m2f/native-records.json",
+  "reuseProof": "native-reuse-closure.json",
+  "nativeFreshRun": false,
+  "newlyObservedNativeCases": 0,
+  "comparison": "Actual settled CSS colour vs actual Native decorated owner colour. CSS values rounded to8-bit only for reporting, no raster/pixel/parity criteria change.",
+  "rows": [
+    {
+      "theme": "light",
+      "webCase": "toggle-token-true",
+      "nativeCase": "toggle-token-base",
+      "selected": true,
+      "state": "hover",
+      "webCss": "color(srgb 0.881373 0.705882 0.712745)",
+      "webRgbaRounded": [
+        225,
+        180,
+        182,
+        255
+      ],
+      "nativeActualArgb": "ffe1b4b6",
+      "nativeActualRgba": [
+        225,
+        180,
+        182,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-token-true",
+      "nativeCase": "toggle-token-base",
+      "selected": true,
+      "state": "pressed",
+      "webCss": "color(srgb 0.868627 0.509804 0.519608)",
+      "webRgbaRounded": [
+        221,
+        130,
+        133,
+        255
+      ],
+      "nativeActualArgb": "ffde8285",
+      "nativeActualRgba": [
+        222,
+        130,
+        133,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-token-false",
+      "nativeCase": "toggle-token-base",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.881373 0.705882 0.712745)",
+      "webRgbaRounded": [
+        225,
+        180,
+        182,
+        255
+      ],
+      "nativeActualArgb": "ffe1b4b6",
+      "nativeActualRgba": [
+        225,
+        180,
+        182,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-token-false",
+      "nativeCase": "toggle-token-base",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.868627 0.509804 0.519608)",
+      "webRgbaRounded": [
+        221,
+        130,
+        133,
+        255
+      ],
+      "nativeActualArgb": "ffde8285",
+      "nativeActualRgba": [
+        222,
+        130,
+        133,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-raw-true",
+      "nativeCase": "toggle-raw-base",
+      "selected": true,
+      "state": "hover",
+      "webCss": "color(srgb 0.167647 0.360784 0.308824)",
+      "webRgbaRounded": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "nativeActualArgb": "ff2b5c4f",
+      "nativeActualRgba": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-raw-true",
+      "nativeCase": "toggle-raw-base",
+      "selected": true,
+      "state": "pressed",
+      "webCss": "color(srgb 0.135294 0.454902 0.284314)",
+      "webRgbaRounded": [
+        34,
+        116,
+        73,
+        255
+      ],
+      "nativeActualArgb": "ff237449",
+      "nativeActualRgba": [
+        35,
+        116,
+        73,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-raw-false",
+      "nativeCase": "toggle-raw-base",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.167647 0.360784 0.308824)",
+      "webRgbaRounded": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "nativeActualArgb": "ff2b5c4f",
+      "nativeActualRgba": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-raw-false",
+      "nativeCase": "toggle-raw-base",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.135294 0.454902 0.284314)",
+      "webRgbaRounded": [
+        34,
+        116,
+        73,
+        255
+      ],
+      "nativeActualArgb": "ff237449",
+      "nativeActualRgba": [
+        35,
+        116,
+        73,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-alpha-true",
+      "nativeCase": "toggle-alpha-base",
+      "selected": true,
+      "state": "hover",
+      "webCss": "color(srgb 0.456651 0.207199 0.253521 / 0.626471)",
+      "webRgbaRounded": [
+        116,
+        53,
+        65,
+        160
+      ],
+      "nativeActualArgb": "a0743541",
+      "nativeActualRgba": [
+        116,
+        53,
+        65,
+        160
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-alpha-true",
+      "nativeCase": "toggle-alpha-base",
+      "selected": true,
+      "state": "pressed",
+      "webCss": "color(srgb 0.628198 0.16745 0.200174 / 0.75098)",
+      "webRgbaRounded": [
+        160,
+        43,
+        51,
+        191
+      ],
+      "nativeActualArgb": "c0a02b33",
+      "nativeActualRgba": [
+        160,
+        43,
+        51,
+        192
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-alpha-false",
+      "nativeCase": "toggle-alpha-base",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.456651 0.207199 0.253521 / 0.626471)",
+      "webRgbaRounded": [
+        116,
+        53,
+        65,
+        160
+      ],
+      "nativeActualArgb": "a0743541",
+      "nativeActualRgba": [
+        116,
+        53,
+        65,
+        160
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "toggle-alpha-false",
+      "nativeCase": "toggle-alpha-base",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.628198 0.16745 0.200174 / 0.75098)",
+      "webRgbaRounded": [
+        160,
+        43,
+        51,
+        191
+      ],
+      "nativeActualArgb": "c0a02b33",
+      "nativeActualRgba": [
+        160,
+        43,
+        51,
+        192
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-raw-true",
+      "nativeCase": "chip-raw-base",
+      "selected": true,
+      "state": "hover",
+      "webCss": "color(srgb 0.167647 0.360784 0.308824)",
+      "webRgbaRounded": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "nativeActualArgb": "ff2b5c4f",
+      "nativeActualRgba": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-raw-true",
+      "nativeCase": "chip-raw-base",
+      "selected": true,
+      "state": "pressed",
+      "webCss": "color(srgb 0.135294 0.454902 0.284314)",
+      "webRgbaRounded": [
+        34,
+        116,
+        73,
+        255
+      ],
+      "nativeActualArgb": "ff237449",
+      "nativeActualRgba": [
+        35,
+        116,
+        73,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-raw-false",
+      "nativeCase": "chip-raw-base",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.167647 0.360784 0.308824)",
+      "webRgbaRounded": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "nativeActualArgb": "ff2b5c4f",
+      "nativeActualRgba": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-raw-false",
+      "nativeCase": "chip-raw-base",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.135294 0.454902 0.284314)",
+      "webRgbaRounded": [
+        34,
+        116,
+        73,
+        255
+      ],
+      "nativeActualArgb": "ff237449",
+      "nativeActualRgba": [
+        35,
+        116,
+        73,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-alpha-true",
+      "nativeCase": "chip-alpha-base",
+      "selected": true,
+      "state": "hover",
+      "webCss": "color(srgb 0.456651 0.207199 0.253521 / 0.626471)",
+      "webRgbaRounded": [
+        116,
+        53,
+        65,
+        160
+      ],
+      "nativeActualArgb": "a0743541",
+      "nativeActualRgba": [
+        116,
+        53,
+        65,
+        160
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-alpha-true",
+      "nativeCase": "chip-alpha-base",
+      "selected": true,
+      "state": "pressed",
+      "webCss": "color(srgb 0.628198 0.16745 0.200174 / 0.75098)",
+      "webRgbaRounded": [
+        160,
+        43,
+        51,
+        191
+      ],
+      "nativeActualArgb": "c0a02b33",
+      "nativeActualRgba": [
+        160,
+        43,
+        51,
+        192
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-alpha-false",
+      "nativeCase": "chip-alpha-base",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.456651 0.207199 0.253521 / 0.626471)",
+      "webRgbaRounded": [
+        116,
+        53,
+        65,
+        160
+      ],
+      "nativeActualArgb": "a0743541",
+      "nativeActualRgba": [
+        116,
+        53,
+        65,
+        160
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-alpha-false",
+      "nativeCase": "chip-alpha-base",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.628198 0.16745 0.200174 / 0.75098)",
+      "webRgbaRounded": [
+        160,
+        43,
+        51,
+        191
+      ],
+      "nativeActualArgb": "c0a02b33",
+      "nativeActualRgba": [
+        160,
+        43,
+        51,
+        192
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-transparent-default",
+      "nativeCase": "chip-default",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.121569 0.12549 0.129412 / 0.03)",
+      "webRgbaRounded": [
+        31,
+        32,
+        33,
+        8
+      ],
+      "nativeActualArgb": "081f2021",
+      "nativeActualRgba": [
+        31,
+        32,
+        33,
+        8
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-transparent-default",
+      "nativeCase": "chip-default",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.121569 0.12549 0.129412 / 0.12)",
+      "webRgbaRounded": [
+        31,
+        32,
+        33,
+        31
+      ],
+      "nativeActualArgb": "1f1f2021",
+      "nativeActualRgba": [
+        31,
+        32,
+        33,
+        31
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-transparent-token",
+      "nativeCase": "chip-token-ink",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.843137 0.117647 0.133333 / 0.25)",
+      "webRgbaRounded": [
+        215,
+        30,
+        34,
+        64
+      ],
+      "nativeActualArgb": "40d71e22",
+      "nativeActualRgba": [
+        215,
+        30,
+        34,
+        64
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-transparent-token",
+      "nativeCase": "chip-token-ink",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.843137 0.117647 0.133333 / 0.5)",
+      "webRgbaRounded": [
+        215,
+        30,
+        34,
+        128
+      ],
+      "nativeActualArgb": "80d71e22",
+      "nativeActualRgba": [
+        215,
+        30,
+        34,
+        128
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-transparent-raw",
+      "nativeCase": "chip-raw-ink",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.0705882 0.643137 0.235294 / 0.25)",
+      "webRgbaRounded": [
+        18,
+        164,
+        60,
+        64
+      ],
+      "nativeActualArgb": "4012a43c",
+      "nativeActualRgba": [
+        18,
+        164,
+        60,
+        64
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "light",
+      "webCase": "chip-transparent-raw",
+      "nativeCase": "chip-raw-ink",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.0705882 0.643137 0.235294 / 0.5)",
+      "webRgbaRounded": [
+        18,
+        164,
+        60,
+        128
+      ],
+      "nativeActualArgb": "8012a43c",
+      "nativeActualRgba": [
+        18,
+        164,
+        60,
+        128
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-token-true",
+      "nativeCase": "toggle-token-base",
+      "selected": true,
+      "state": "hover",
+      "webCss": "color(srgb 0.438235 0.339216 0.334314)",
+      "webRgbaRounded": [
+        112,
+        87,
+        85,
+        255
+      ],
+      "nativeActualArgb": "ff705755",
+      "nativeActualRgba": [
+        112,
+        87,
+        85,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-token-true",
+      "nativeCase": "toggle-token-base",
+      "selected": true,
+      "state": "pressed",
+      "webCss": "color(srgb 0.62549 0.423529 0.405882)",
+      "webRgbaRounded": [
+        159,
+        108,
+        103,
+        255
+      ],
+      "nativeActualArgb": "ffa06c68",
+      "nativeActualRgba": [
+        160,
+        108,
+        104,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-token-false",
+      "nativeCase": "toggle-token-base",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.438235 0.339216 0.334314)",
+      "webRgbaRounded": [
+        112,
+        87,
+        85,
+        255
+      ],
+      "nativeActualArgb": "ff705755",
+      "nativeActualRgba": [
+        112,
+        87,
+        85,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-token-false",
+      "nativeCase": "toggle-token-base",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.62549 0.423529 0.405882)",
+      "webRgbaRounded": [
+        159,
+        108,
+        103,
+        255
+      ],
+      "nativeActualArgb": "ffa06c68",
+      "nativeActualRgba": [
+        160,
+        108,
+        104,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-raw-true",
+      "nativeCase": "toggle-raw-base",
+      "selected": true,
+      "state": "hover",
+      "webCss": "color(srgb 0.167647 0.360784 0.308824)",
+      "webRgbaRounded": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "nativeActualArgb": "ff2b5c4f",
+      "nativeActualRgba": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-raw-true",
+      "nativeCase": "toggle-raw-base",
+      "selected": true,
+      "state": "pressed",
+      "webCss": "color(srgb 0.135294 0.454902 0.284314)",
+      "webRgbaRounded": [
+        34,
+        116,
+        73,
+        255
+      ],
+      "nativeActualArgb": "ff237449",
+      "nativeActualRgba": [
+        35,
+        116,
+        73,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-raw-false",
+      "nativeCase": "toggle-raw-base",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.167647 0.360784 0.308824)",
+      "webRgbaRounded": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "nativeActualArgb": "ff2b5c4f",
+      "nativeActualRgba": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-raw-false",
+      "nativeCase": "toggle-raw-base",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.135294 0.454902 0.284314)",
+      "webRgbaRounded": [
+        34,
+        116,
+        73,
+        255
+      ],
+      "nativeActualArgb": "ff237449",
+      "nativeActualRgba": [
+        35,
+        116,
+        73,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-alpha-true",
+      "nativeCase": "toggle-alpha-base",
+      "selected": true,
+      "state": "hover",
+      "webCss": "color(srgb 0.519249 0.396557 0.419405 / 0.626471)",
+      "webRgbaRounded": [
+        132,
+        101,
+        107,
+        160
+      ],
+      "nativeActualArgb": "a084656b",
+      "nativeActualRgba": [
+        132,
+        101,
+        107,
+        160
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-alpha-true",
+      "nativeCase": "toggle-alpha-base",
+      "selected": true,
+      "state": "pressed",
+      "webCss": "color(srgb 0.732637 0.483377 0.476937 / 0.75098)",
+      "webRgbaRounded": [
+        187,
+        123,
+        122,
+        191
+      ],
+      "nativeActualArgb": "c0bb7b7a",
+      "nativeActualRgba": [
+        187,
+        123,
+        122,
+        192
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-alpha-false",
+      "nativeCase": "toggle-alpha-base",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.519249 0.396557 0.419405 / 0.626471)",
+      "webRgbaRounded": [
+        132,
+        101,
+        107,
+        160
+      ],
+      "nativeActualArgb": "a084656b",
+      "nativeActualRgba": [
+        132,
+        101,
+        107,
+        160
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "toggle-alpha-false",
+      "nativeCase": "toggle-alpha-base",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.732637 0.483377 0.476937 / 0.75098)",
+      "webRgbaRounded": [
+        187,
+        123,
+        122,
+        191
+      ],
+      "nativeActualArgb": "c0bb7b7a",
+      "nativeActualRgba": [
+        187,
+        123,
+        122,
+        192
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-raw-true",
+      "nativeCase": "chip-raw-base",
+      "selected": true,
+      "state": "hover",
+      "webCss": "color(srgb 0.167647 0.360784 0.308824)",
+      "webRgbaRounded": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "nativeActualArgb": "ff2b5c4f",
+      "nativeActualRgba": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-raw-true",
+      "nativeCase": "chip-raw-base",
+      "selected": true,
+      "state": "pressed",
+      "webCss": "color(srgb 0.135294 0.454902 0.284314)",
+      "webRgbaRounded": [
+        34,
+        116,
+        73,
+        255
+      ],
+      "nativeActualArgb": "ff237449",
+      "nativeActualRgba": [
+        35,
+        116,
+        73,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-raw-false",
+      "nativeCase": "chip-raw-base",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.167647 0.360784 0.308824)",
+      "webRgbaRounded": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "nativeActualArgb": "ff2b5c4f",
+      "nativeActualRgba": [
+        43,
+        92,
+        79,
+        255
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-raw-false",
+      "nativeCase": "chip-raw-base",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.135294 0.454902 0.284314)",
+      "webRgbaRounded": [
+        34,
+        116,
+        73,
+        255
+      ],
+      "nativeActualArgb": "ff237449",
+      "nativeActualRgba": [
+        35,
+        116,
+        73,
+        255
+      ],
+      "delta": [
+        -1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-alpha-true",
+      "nativeCase": "chip-alpha-base",
+      "selected": true,
+      "state": "hover",
+      "webCss": "color(srgb 0.519249 0.396557 0.419405 / 0.626471)",
+      "webRgbaRounded": [
+        132,
+        101,
+        107,
+        160
+      ],
+      "nativeActualArgb": "a084656b",
+      "nativeActualRgba": [
+        132,
+        101,
+        107,
+        160
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-alpha-true",
+      "nativeCase": "chip-alpha-base",
+      "selected": true,
+      "state": "pressed",
+      "webCss": "color(srgb 0.732637 0.483377 0.476937 / 0.75098)",
+      "webRgbaRounded": [
+        187,
+        123,
+        122,
+        191
+      ],
+      "nativeActualArgb": "c0bb7b7a",
+      "nativeActualRgba": [
+        187,
+        123,
+        122,
+        192
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-alpha-false",
+      "nativeCase": "chip-alpha-base",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.519249 0.396557 0.419405 / 0.626471)",
+      "webRgbaRounded": [
+        132,
+        101,
+        107,
+        160
+      ],
+      "nativeActualArgb": "a084656b",
+      "nativeActualRgba": [
+        132,
+        101,
+        107,
+        160
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-alpha-false",
+      "nativeCase": "chip-alpha-base",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.732637 0.483377 0.476937 / 0.75098)",
+      "webRgbaRounded": [
+        187,
+        123,
+        122,
+        191
+      ],
+      "nativeActualArgb": "c0bb7b7a",
+      "nativeActualRgba": [
+        187,
+        123,
+        122,
+        192
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-transparent-default",
+      "nativeCase": "chip-default",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.956863 0.960784 0.964706 / 0.03)",
+      "webRgbaRounded": [
+        244,
+        245,
+        246,
+        8
+      ],
+      "nativeActualArgb": "08f4f5f6",
+      "nativeActualRgba": [
+        244,
+        245,
+        246,
+        8
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-transparent-default",
+      "nativeCase": "chip-default",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.956863 0.960784 0.964706 / 0.12)",
+      "webRgbaRounded": [
+        244,
+        245,
+        246,
+        31
+      ],
+      "nativeActualArgb": "1ff4f5f6",
+      "nativeActualRgba": [
+        244,
+        245,
+        246,
+        31
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-transparent-token",
+      "nativeCase": "chip-token-ink",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 1 0.592157 0.54902 / 0.25)",
+      "webRgbaRounded": [
+        255,
+        151,
+        140,
+        64
+      ],
+      "nativeActualArgb": "40ff978c",
+      "nativeActualRgba": [
+        255,
+        151,
+        140,
+        64
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-transparent-token",
+      "nativeCase": "chip-token-ink",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 1 0.592157 0.54902 / 0.5)",
+      "webRgbaRounded": [
+        255,
+        151,
+        140,
+        128
+      ],
+      "nativeActualArgb": "80ff978c",
+      "nativeActualRgba": [
+        255,
+        151,
+        140,
+        128
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-transparent-raw",
+      "nativeCase": "chip-raw-ink",
+      "selected": false,
+      "state": "hover",
+      "webCss": "color(srgb 0.0705882 0.643137 0.235294 / 0.25)",
+      "webRgbaRounded": [
+        18,
+        164,
+        60,
+        64
+      ],
+      "nativeActualArgb": "4012a43c",
+      "nativeActualRgba": [
+        18,
+        164,
+        60,
+        64
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "theme": "dark",
+      "webCase": "chip-transparent-raw",
+      "nativeCase": "chip-raw-ink",
+      "selected": false,
+      "state": "pressed",
+      "webCss": "color(srgb 0.0705882 0.643137 0.235294 / 0.5)",
+      "webRgbaRounded": [
+        18,
+        164,
+        60,
+        128
+      ],
+      "nativeActualArgb": "8012a43c",
+      "nativeActualRgba": [
+        18,
+        164,
+        60,
+        128
+      ],
+      "delta": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "count": 52,
+  "exact8bitRows": 32,
+  "maxAbsoluteChannelDelta": 1
+}

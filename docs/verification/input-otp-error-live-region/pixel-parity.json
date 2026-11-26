@@ -1,0 +1,82 @@
+[
+  {
+    "case": "false-false-false",
+    "size": [
+      400,
+      40
+    ],
+    "rgbaIdentical": true,
+    "beforePngSha256": "e8de70f285e0cac4de4a08dfac42f677dc5316d982e41b77aef18ca4addc4330",
+    "afterPngSha256": "e8de70f285e0cac4de4a08dfac42f677dc5316d982e41b77aef18ca4addc4330"
+  },
+  {
+    "case": "false-false-true",
+    "size": [
+      400,
+      62
+    ],
+    "rgbaIdentical": true,
+    "beforePngSha256": "f233ecd143a9438e1e22c24de8647c2f7bdb99acf9adbf60ea7308419082480b",
+    "afterPngSha256": "f233ecd143a9438e1e22c24de8647c2f7bdb99acf9adbf60ea7308419082480b"
+  },
+  {
+    "case": "false-true-false",
+    "size": [
+      400,
+      40
+    ],
+    "rgbaIdentical": true,
+    "beforePngSha256": "ae5a768d19024793bc0222e0e3a21196513cca9ee28ef60f8c0763a1f53dcad5",
+    "afterPngSha256": "ae5a768d19024793bc0222e0e3a21196513cca9ee28ef60f8c0763a1f53dcad5"
+  },
+  {
+    "case": "false-true-true",
+    "size": [
+      400,
+      62
+    ],
+    "rgbaIdentical": true,
+    "beforePngSha256": "e3d9779ac38cb4cb4302db97abddbbb57f4efc762f2c408ea467e6b8e987ba9c",
+    "afterPngSha256": "e3d9779ac38cb4cb4302db97abddbbb57f4efc762f2c408ea467e6b8e987ba9c"
+  },
+  {
+    "case": "true-false-false",
+    "size": [
+      400,
+      40
+    ],
+    "rgbaIdentical": true,
+    "beforePngSha256": "cc8db4ba71d826181f113d9dd1e07b50b0d259f989d1a2b83e800ffbd17a25db",
+    "afterPngSha256": "cc8db4ba71d826181f113d9dd1e07b50b0d259f989d1a2b83e800ffbd17a25db"
+  },
+  {
+    "case": "true-false-true",
+    "size": [
+      400,
+      62
+    ],
+    "rgbaIdentical": true,
+    "beforePngSha256": "a4493b698925fce097aa3922d9984f0acb8ae5108489aeb10ff75da0c6eb097f",
+    "afterPngSha256": "a4493b698925fce097aa3922d9984f0acb8ae5108489aeb10ff75da0c6eb097f"
+  },
+  {
+    "case": "true-true-false",
+    "size": [
+      400,
+      40
+    ],
+    "rgbaIdentical": true,
+    "beforePngSha256": "5b38dbd0c58911689db4d6aded89e940c621d728eef674b6befb934b51839a3f",
+    "afterPngSha256": "5b38dbd0c58911689db4d6aded89e940c621d728eef674b6befb934b51839a3f"
+  },
+  {
+    "case": "true-true-true",
+    "size": [
+      400,
+      62
+    ],
+    "rgbaIdentical": true,
+    "beforePngSha256": "5f4f260b7f749b5cebbc166facfe58a459d0af2b1ccde1ef0e1c22d8c4865c4a",
+    "afterPngSha256": "5f4f260b7f749b5cebbc166facfe58a459d0af2b1ccde1ef0e1c22d8c4865c4a"
+  }
+]

@@ -1,0 +1,365 @@
+key,text,occurrence,flutter_font_family,web_font_family,flutter_font_size,web_font_size,flutter_font_weight,web_font_weight,flutter_line_height_px,web_line_height_px,flutter_letter_spacing,web_letter_spacing,flutter_paragraph_height,web_text_element_height,font_tuple_equal
+radio-group-card-light-defaultStyle,Basic,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+radio-group-card-light-defaultStyle,개인 프로젝트에 알맞아요,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+radio-group-card-light-defaultStyle,Pro,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+radio-group-card-light-defaultStyle,성장하는 팀에 알맞아요,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+radio-group-card-light-defaultStyle,Enterprise,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+radio-group-card-light-defaultStyle,고급 보안과 지원을 제공해요,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+radio-group-card-dark-defaultStyle,Basic,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+radio-group-card-dark-defaultStyle,개인 프로젝트에 알맞아요,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+radio-group-card-dark-defaultStyle,Pro,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+radio-group-card-dark-defaultStyle,성장하는 팀에 알맞아요,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+radio-group-card-dark-defaultStyle,Enterprise,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+radio-group-card-dark-defaultStyle,고급 보안과 지원을 제공해요,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+multi-answer-card-default-light-defaultStyle,운동을 꾸준히 해요,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+multi-answer-card-default-light-defaultStyle,아침을 챙겨 먹어요,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+multi-answer-card-default-dark-defaultStyle,운동을 꾸준히 해요,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+multi-answer-card-default-dark-defaultStyle,아침을 챙겨 먹어요,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+option-item-multiple-light-defaultStyle,무료 배송,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+option-item-multiple-light-defaultStyle,3만원 이상 주문,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+option-item-multiple-dark-defaultStyle,무료 배송,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+option-item-multiple-dark-defaultStyle,3만원 이상 주문,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+option-item-disabled-light-defaultStyle,품절된 옵션,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+option-item-disabled-light-defaultStyle,재고가 없어요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+option-item-disabled-dark-defaultStyle,품절된 옵션,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+option-item-disabled-dark-defaultStyle,재고가 없어요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+option-list-default-light-defaultStyle,최신순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+option-list-default-light-defaultStyle,인기순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+option-list-default-light-defaultStyle,낮은 가격순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+option-list-default-dark-defaultStyle,최신순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+option-list-default-dark-defaultStyle,인기순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+option-list-default-dark-defaultStyle,낮은 가격순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-default-light-defaultStyle,정렬,1,Pretendard,"Pretendard, system-ui, sans-serif",20.0,20px,600,600,28.0,28px,-0.4,-0.4px,28.0,24,True
+bottom-sheet-default-light-defaultStyle,목록을 어떻게 볼지 골라요,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-default-light-defaultStyle,최신순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-default-light-defaultStyle,인기순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-default-light-defaultStyle,낮은 가격순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-default-light-defaultStyle,적용하기,1,Pretendard,"Pretendard, system-ui, sans-serif",16.0,16px,500,500,22.4,22.4px,-0.16,-0.16px,22.0,22.390625,True
+bottom-sheet-default-dark-defaultStyle,정렬,1,Pretendard,"Pretendard, system-ui, sans-serif",20.0,20px,600,600,28.0,28px,-0.4,-0.4px,28.0,24,True
+bottom-sheet-default-dark-defaultStyle,목록을 어떻게 볼지 골라요,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-default-dark-defaultStyle,최신순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-default-dark-defaultStyle,인기순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-default-dark-defaultStyle,낮은 가격순,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-default-dark-defaultStyle,적용하기,1,Pretendard,"Pretendard, system-ui, sans-serif",16.0,16px,500,500,22.4,22.4px,-0.16,-0.16px,22.0,22.390625,True
+bottom-sheet-close-light-defaultStyle,필터,1,Pretendard,"Pretendard, system-ui, sans-serif",20.0,20px,600,600,28.0,28px,-0.4,-0.4px,28.0,24,True
+bottom-sheet-close-light-defaultStyle,무료 배송,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-close-light-defaultStyle,3만원 이상 주문,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+bottom-sheet-close-light-defaultStyle,오늘 도착,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-close-dark-defaultStyle,필터,1,Pretendard,"Pretendard, system-ui, sans-serif",20.0,20px,600,600,28.0,28px,-0.4,-0.4px,28.0,24,True
+bottom-sheet-close-dark-defaultStyle,무료 배송,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+bottom-sheet-close-dark-defaultStyle,3만원 이상 주문,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+bottom-sheet-close-dark-defaultStyle,오늘 도착,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+number-input-default-light-defaultStyle,인원,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+number-input-default-light-defaultStyle,최대 8명까지 예약할 수 있어요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,40.0,34.5,True
+number-input-default-dark-defaultStyle,인원,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+number-input-default-dark-defaultStyle,최대 8명까지 예약할 수 있어요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,40.0,34.5,True
+switch-field-default-light-defaultStyle,알림 받기,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+switch-field-default-light-defaultStyle,푸시 알림을 받아요.,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+switch-field-default-dark-defaultStyle,알림 받기,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+switch-field-default-dark-defaultStyle,푸시 알림을 받아요.,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+drag-board-light-defaultStyle,할 일,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+drag-board-light-defaultStyle,명세 작성,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+drag-board-light-defaultStyle,PR 리뷰,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+drag-board-light-defaultStyle,진행 중,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+drag-board-light-defaultStyle,버그 수정,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+drag-board-dark-defaultStyle,할 일,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+drag-board-dark-defaultStyle,명세 작성,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+drag-board-dark-defaultStyle,PR 리뷰,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+drag-board-dark-defaultStyle,진행 중,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+drag-board-dark-defaultStyle,버그 수정,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+file-input-default-light-defaultStyle,Drop files here,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+file-input-default-light-defaultStyle,"PNG, JPG, PDF · 최대 10MB",1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+file-input-default-light-defaultStyle,Browse files,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+file-input-default-dark-defaultStyle,Drop files here,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+file-input-default-dark-defaultStyle,"PNG, JPG, PDF · 최대 10MB",1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+file-input-default-dark-defaultStyle,Browse files,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+chat-default-light-defaultStyle,C,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,600,600,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chat-default-light-defaultStyle,이코드,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+chat-default-light-defaultStyle,오늘 점심 뭐 먹을까요?,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-default-light-defaultStyle,오전 11:30,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+chat-default-light-defaultStyle,회사 앞 국숫집 어때요?,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-default-light-defaultStyle,오전 11:31,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+chat-default-dark-defaultStyle,C,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,600,600,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chat-default-dark-defaultStyle,이코드,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+chat-default-dark-defaultStyle,오늘 점심 뭐 먹을까요?,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-default-dark-defaultStyle,오전 11:30,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+chat-default-dark-defaultStyle,회사 앞 국숫집 어때요?,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-default-dark-defaultStyle,오전 11:31,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+chat-plain-light-defaultStyle,이번 주말에 뭐 해요?,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-plain-light-defaultStyle,등산 가려고요. 같이 갈래요?,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-plain-dark-defaultStyle,이번 주말에 뭐 해요?,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-plain-dark-defaultStyle,등산 가려고요. 같이 갈래요?,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-tail-corner-light-defaultStyle,C,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,600,600,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chat-tail-corner-light-defaultStyle,오후 3시 픽업은 그대로인가요?,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-tail-corner-light-defaultStyle,오후 2:10,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+chat-tail-corner-light-defaultStyle,"네, 역에서 봬요.",1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-tail-corner-light-defaultStyle,오후 2:14,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+chat-tail-corner-dark-defaultStyle,C,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,600,600,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chat-tail-corner-dark-defaultStyle,오후 3시 픽업은 그대로인가요?,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-tail-corner-dark-defaultStyle,오후 2:10,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+chat-tail-corner-dark-defaultStyle,"네, 역에서 봬요.",1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-tail-corner-dark-defaultStyle,오후 2:14,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,400,400,18.0,18px,-0.12,-0.12px,18.0,14,True
+chat-tail-top-light-defaultStyle,박코드,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+chat-tail-top-light-defaultStyle,방금 출발했어요. 10분 뒤에 도착해요.,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-tail-top-light-defaultStyle,천천히 와요!,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-tail-top-dark-defaultStyle,박코드,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+chat-tail-top-dark-defaultStyle,방금 출발했어요. 10분 뒤에 도착해요.,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chat-tail-top-dark-defaultStyle,천천히 와요!,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,18,True
+chip-variant-light-defaultStyle,outlined,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,16.796875,True
+chip-variant-light-defaultStyle,전체,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-light-defaultStyle,전체,2,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-light-defaultStyle,전체,3,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-light-defaultStyle,디자인,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-light-defaultStyle,디자인,2,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-light-defaultStyle,디자인,3,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-light-defaultStyle,개발,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-light-defaultStyle,개발,2,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-light-defaultStyle,개발,3,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-light-defaultStyle,filled,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,16.796875,True
+chip-variant-light-defaultStyle,회색 바탕 위에서는 outlined,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,16.796875,True
+chip-variant-dark-defaultStyle,outlined,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,16.796875,True
+chip-variant-dark-defaultStyle,전체,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-dark-defaultStyle,전체,2,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-dark-defaultStyle,전체,3,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-dark-defaultStyle,디자인,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-dark-defaultStyle,디자인,2,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-dark-defaultStyle,디자인,3,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-dark-defaultStyle,개발,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-dark-defaultStyle,개발,2,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-dark-defaultStyle,개발,3,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+chip-variant-dark-defaultStyle,filled,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,16.796875,True
+chip-variant-dark-defaultStyle,회색 바탕 위에서는 outlined,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,16.796875,True
+stat-default-light-defaultStyle,총매출,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+stat-default-light-defaultStyle,"4,523만",1,Pretendard,"Pretendard, system-ui, sans-serif",32.0,32px,700,700,44.8,44.8px,-0.64,-0.64px,45.0,38,True
+stat-default-light-defaultStyle,원,1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,500,500,25.2,25.2px,-0.18,-0.18px,25.0,21,True
+stat-default-light-defaultStyle,↑,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+stat-default-light-defaultStyle,+20.1%,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+stat-default-light-defaultStyle,환불 전 금액,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+stat-default-dark-defaultStyle,총매출,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+stat-default-dark-defaultStyle,"4,523만",1,Pretendard,"Pretendard, system-ui, sans-serif",32.0,32px,700,700,44.8,44.8px,-0.64,-0.64px,45.0,38,True
+stat-default-dark-defaultStyle,원,1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,500,500,25.2,25.2px,-0.18,-0.18px,25.0,21,True
+stat-default-dark-defaultStyle,↑,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+stat-default-dark-defaultStyle,+20.1%,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+stat-default-dark-defaultStyle,환불 전 금액,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+stat-outlined-light-defaultStyle,총매출,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+stat-outlined-light-defaultStyle,"4,523만",1,Pretendard,"Pretendard, system-ui, sans-serif",32.0,32px,700,700,44.8,44.8px,-0.64,-0.64px,45.0,38,True
+stat-outlined-light-defaultStyle,원,1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,500,500,25.2,25.2px,-0.18,-0.18px,25.0,21,True
+stat-outlined-light-defaultStyle,↑,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+stat-outlined-light-defaultStyle,+20.1%,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+stat-outlined-light-defaultStyle,환불 전 금액,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+stat-outlined-dark-defaultStyle,총매출,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+stat-outlined-dark-defaultStyle,"4,523만",1,Pretendard,"Pretendard, system-ui, sans-serif",32.0,32px,700,700,44.8,44.8px,-0.64,-0.64px,45.0,38,True
+stat-outlined-dark-defaultStyle,원,1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,500,500,25.2,25.2px,-0.18,-0.18px,25.0,21,True
+stat-outlined-dark-defaultStyle,↑,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+stat-outlined-dark-defaultStyle,+20.1%,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,15,True
+stat-outlined-dark-defaultStyle,환불 전 금액,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+stat-empty-light-defaultStyle,총매출,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+stat-empty-light-defaultStyle,—,1,Pretendard,"Pretendard, system-ui, sans-serif",32.0,32px,700,700,44.8,44.8px,-0.64,-0.64px,45.0,38,True
+stat-empty-light-defaultStyle,아직 집계 전이에요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+stat-empty-dark-defaultStyle,총매출,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+stat-empty-dark-defaultStyle,—,1,Pretendard,"Pretendard, system-ui, sans-serif",32.0,32px,700,700,44.8,44.8px,-0.64,-0.64px,45.0,38,True
+stat-empty-dark-defaultStyle,아직 집계 전이에요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+description-card-vertical-light-defaultStyle,식물 관리,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,21.0,21px,-0.15,-0.15px,21.0,18,True
+description-card-vertical-light-defaultStyle,품종,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+description-card-vertical-light-defaultStyle,몬스테라 델리시오사,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+description-card-vertical-light-defaultStyle,물 주기,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+description-card-vertical-light-defaultStyle,7일마다,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+description-card-vertical-light-defaultStyle,빛,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+description-card-vertical-light-defaultStyle,밝은 간접광,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+description-card-vertical-light-defaultStyle,온도,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+description-card-vertical-light-defaultStyle,18°C – 27°C,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+description-card-vertical-dark-defaultStyle,식물 관리,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,500,500,21.0,21px,-0.15,-0.15px,21.0,18,True
+description-card-vertical-dark-defaultStyle,품종,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+description-card-vertical-dark-defaultStyle,몬스테라 델리시오사,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+description-card-vertical-dark-defaultStyle,물 주기,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+description-card-vertical-dark-defaultStyle,7일마다,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+description-card-vertical-dark-defaultStyle,빛,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+description-card-vertical-dark-defaultStyle,밝은 간접광,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+description-card-vertical-dark-defaultStyle,온도,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,16,True
+description-card-vertical-dark-defaultStyle,18°C – 27°C,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+mockup-phone-light-defaultStyle,앱 화면,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,625.3532338308457,16,True
+mockup-phone-light-defaultStyle,9:41,1,Pretendard,"Pretendard, system-ui, sans-serif",5.731343283582089,5.73134px,600,600,8.023880597014925,8.02388px,-0.057313432835820896,-0.0573134px,8.0,6,True
+mockup-phone-dark-defaultStyle,앱 화면,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,625.3532338308457,16,True
+mockup-phone-dark-defaultStyle,9:41,1,Pretendard,"Pretendard, system-ui, sans-serif",5.731343283582089,5.73134px,600,600,8.023880597014925,8.02388px,-0.057313432835820896,-0.0573134px,8.0,6,True
+mockup-tablet-light-defaultStyle,앱 화면,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,412.9249737932412,16,True
+mockup-tablet-light-defaultStyle,9:41,1,Pretendard,"Pretendard, system-ui, sans-serif",5.014925373134328,5.01493px,500,500,7.0208955223880585,7.0209px,-0.05014925373134328,-0.0501493px,7.0,6,True
+mockup-tablet-light-defaultStyle,오전,1,Pretendard,"Pretendard, system-ui, sans-serif",5.014925373134328,5.01493px,500,500,7.0208955223880585,7.0209px,-0.05014925373134328,-0.0501493px,7.0,6,True
+mockup-tablet-light-defaultStyle,4월 1일 수요일,1,Pretendard,"Pretendard, system-ui, sans-serif",5.014925373134328,5.01493px,500,500,7.0208955223880585,7.0209px,-0.05014925373134328,-0.0501493px,7.0,6,True
+mockup-tablet-light-defaultStyle,100%,1,Pretendard,"Pretendard, system-ui, sans-serif",5.014925373134328,5.01493px,500,500,7.0208955223880585,7.0209px,-0.05014925373134328,-0.0501493px,7.0,6,True
+mockup-tablet-dark-defaultStyle,앱 화면,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,412.9249737932412,16,True
+mockup-tablet-dark-defaultStyle,9:41,1,Pretendard,"Pretendard, system-ui, sans-serif",5.014925373134328,5.01493px,500,500,7.0208955223880585,7.0209px,-0.05014925373134328,-0.0501493px,7.0,6,True
+mockup-tablet-dark-defaultStyle,오전,1,Pretendard,"Pretendard, system-ui, sans-serif",5.014925373134328,5.01493px,500,500,7.0208955223880585,7.0209px,-0.05014925373134328,-0.0501493px,7.0,6,True
+mockup-tablet-dark-defaultStyle,4월 1일 수요일,1,Pretendard,"Pretendard, system-ui, sans-serif",5.014925373134328,5.01493px,500,500,7.0208955223880585,7.0209px,-0.05014925373134328,-0.0501493px,7.0,6,True
+mockup-tablet-dark-defaultStyle,100%,1,Pretendard,"Pretendard, system-ui, sans-serif",5.014925373134328,5.01493px,500,500,7.0208955223880585,7.0209px,-0.05014925373134328,-0.0501493px,7.0,6,True
+mockup-landscape-light-defaultStyle,앱 화면,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,132.8111248019715,16,True
+mockup-landscape-dark-defaultStyle,앱 화면,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,132.8111248019715,16,True
+mockup-device-default-light-defaultStyle,앱 화면,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,625.3532338308457,16,True
+mockup-device-default-light-defaultStyle,9:41,1,Pretendard,"Pretendard, system-ui, sans-serif",5.731343283582089,5.73134px,600,600,8.023880597014925,8.02388px,-0.057313432835820896,-0.0573134px,8.0,6,True
+mockup-device-default-dark-defaultStyle,앱 화면,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,625.3532338308457,16,True
+mockup-device-default-dark-defaultStyle,9:41,1,Pretendard,"Pretendard, system-ui, sans-serif",5.731343283582089,5.73134px,600,600,8.023880597014925,8.02388px,-0.057313432835820896,-0.0573134px,8.0,6,True
+mockup-device-flat-light-defaultStyle,앱 화면,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,480.0,16,True
+mockup-device-flat-dark-defaultStyle,앱 화면,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,480.0,16,True
+timeline-default-light-defaultStyle,오전 10:00,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+timeline-default-light-defaultStyle,주문 접수,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+timeline-default-light-defaultStyle,오전 11:30,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+timeline-default-light-defaultStyle,처리 중,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+timeline-default-light-defaultStyle,오후 2:00,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+timeline-default-light-defaultStyle,발송 완료,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+timeline-default-dark-defaultStyle,오전 10:00,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+timeline-default-dark-defaultStyle,주문 접수,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+timeline-default-dark-defaultStyle,오전 11:30,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+timeline-default-dark-defaultStyle,처리 중,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+timeline-default-dark-defaultStyle,오후 2:00,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+timeline-default-dark-defaultStyle,발송 완료,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+basic-default-light-defaultStyle,사용자 프로필,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,600,600,21.0,21px,-0.15,-0.15px,21.0,21,True
+basic-default-light-defaultStyle,계정 설정을 관리해요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+basic-default-light-defaultStyle,alice@example.com 계정으로 로그인했어요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+basic-default-dark-defaultStyle,사용자 프로필,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,600,600,21.0,21px,-0.15,-0.15px,21.0,21,True
+basic-default-dark-defaultStyle,계정 설정을 관리해요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+basic-default-dark-defaultStyle,alice@example.com 계정으로 로그인했어요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+swipe-actions-scope-light-defaultStyle,고정,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-light-defaultStyle,고정,2,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-light-defaultStyle,삭제,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-light-defaultStyle,삭제,2,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-light-defaultStyle,보관,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-light-defaultStyle,보관,2,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-light-defaultStyle,주간 보고서,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,600,600,21.0,21px,-0.15,-0.15px,21.0,21,True
+swipe-actions-scope-light-defaultStyle,이번 주 진행 상황을 정리했어요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+swipe-actions-scope-light-defaultStyle,디자인 리뷰 초대,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,600,600,21.0,21px,-0.15,-0.15px,21.0,21,True
+swipe-actions-scope-light-defaultStyle,"내일 오후 2시, 3층 회의실",1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+swipe-actions-scope-dark-defaultStyle,고정,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-dark-defaultStyle,고정,2,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-dark-defaultStyle,삭제,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-dark-defaultStyle,삭제,2,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-dark-defaultStyle,보관,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-dark-defaultStyle,보관,2,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,14,True
+swipe-actions-scope-dark-defaultStyle,주간 보고서,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,600,600,21.0,21px,-0.15,-0.15px,21.0,21,True
+swipe-actions-scope-dark-defaultStyle,이번 주 진행 상황을 정리했어요,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+swipe-actions-scope-dark-defaultStyle,디자인 리뷰 초대,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,600,600,21.0,21px,-0.15,-0.15px,21.0,21,True
+swipe-actions-scope-dark-defaultStyle,"내일 오후 2시, 3층 회의실",1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+responsive-container-default-light-defaultStyle,"이 내용은 가운데에 놓이고 ""sm"" 브레이크포인트(640 px)에서 폭이 멈춰요. 미리보기 크기를 바꿔도 컨테이너는 좌우 여백을 같게 둔 채 최대 폭 안에 머물러요.",1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,42.0,37,True
+responsive-container-default-dark-defaultStyle,"이 내용은 가운데에 놓이고 ""sm"" 브레이크포인트(640 px)에서 폭이 멈춰요. 미리보기 크기를 바꿔도 컨테이너는 좌우 여백을 같게 둔 채 최대 폭 안에 머물러요.",1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,42.0,37,True
+responsive-row-column-desktop-light-defaultStyle,"1,204",1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,600,600,25.2,25.2px,-0.18,-0.18px,25.0,25.1875,True
+responsive-row-column-desktop-light-defaultStyle,조회수,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+responsive-row-column-desktop-light-defaultStyle,86,1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,600,600,25.2,25.2px,-0.18,-0.18px,25.0,25.1875,True
+responsive-row-column-desktop-light-defaultStyle,좋아요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+responsive-row-column-desktop-light-defaultStyle,12,1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,600,600,25.2,25.2px,-0.18,-0.18px,25.0,25.1875,True
+responsive-row-column-desktop-light-defaultStyle,댓글,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+responsive-row-column-desktop-dark-defaultStyle,"1,204",1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,600,600,25.2,25.2px,-0.18,-0.18px,25.0,25.1875,True
+responsive-row-column-desktop-dark-defaultStyle,조회수,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+responsive-row-column-desktop-dark-defaultStyle,86,1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,600,600,25.2,25.2px,-0.18,-0.18px,25.0,25.1875,True
+responsive-row-column-desktop-dark-defaultStyle,좋아요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+responsive-row-column-desktop-dark-defaultStyle,12,1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,600,600,25.2,25.2px,-0.18,-0.18px,25.0,25.1875,True
+responsive-row-column-desktop-dark-defaultStyle,댓글,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+toast-default-light-defaultStyle,저장했어요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+toast-default-light-defaultStyle,변경 사항을 저장했어요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+toast-default-dark-defaultStyle,저장했어요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+toast-default-dark-defaultStyle,변경 사항을 저장했어요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+toast-destructive-light-defaultStyle,저장하지 못했어요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+toast-destructive-light-defaultStyle,문제가 생겼어요. 다시 시도해 주세요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+toast-destructive-dark-defaultStyle,저장하지 못했어요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+toast-destructive-dark-defaultStyle,문제가 생겼어요. 다시 시도해 주세요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+toast-no-icon-light-defaultStyle,저장했어요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+toast-no-icon-light-defaultStyle,변경 사항을 저장했어요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+toast-no-icon-dark-defaultStyle,저장했어요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+toast-no-icon-dark-defaultStyle,변경 사항을 저장했어요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-default-light-defaultStyle,확인이 필요해요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-default-light-defaultStyle,결제 수단을 다시 확인해 주세요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-default-dark-defaultStyle,확인이 필요해요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-default-dark-defaultStyle,결제 수단을 다시 확인해 주세요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-info-light-defaultStyle,정보,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-info-light-defaultStyle,새로운 업데이트가 있습니다.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-info-dark-defaultStyle,정보,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-info-dark-defaultStyle,새로운 업데이트가 있습니다.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-success-light-defaultStyle,저장 완료,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-success-light-defaultStyle,변경 사항이 성공적으로 저장되었습니다.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-success-dark-defaultStyle,저장 완료,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-success-dark-defaultStyle,변경 사항이 성공적으로 저장되었습니다.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-warning-light-defaultStyle,주의,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-warning-light-defaultStyle,이 작업은 되돌릴 수 없습니다.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-warning-dark-defaultStyle,주의,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-warning-dark-defaultStyle,이 작업은 되돌릴 수 없습니다.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-destructive-light-defaultStyle,오류 발생,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-destructive-light-defaultStyle,요청을 처리하는 중 문제가 발생했습니다.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-destructive-dark-defaultStyle,오류 발생,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-destructive-dark-defaultStyle,요청을 처리하는 중 문제가 발생했습니다.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-text-only-light-defaultStyle,송금 완료,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-text-only-light-defaultStyle,10분 안에 입금돼요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-text-only-light-defaultStyle,오후 4시에 환율이 바뀌어요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-text-only-light-defaultStyle,그 전에 보내면 지금 환율이 적용돼요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-text-only-dark-defaultStyle,송금 완료,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-text-only-dark-defaultStyle,10분 안에 입금돼요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+alert-text-only-dark-defaultStyle,오후 4시에 환율이 바뀌어요,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,19.599999999999998,19.6px,-0.14,-0.14px,20.0,16,True
+alert-text-only-dark-defaultStyle,그 전에 보내면 지금 환율이 적용돼요.,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,15,True
+text-typography-display-light-defaultStyle,Display L,1,Pretendard,"Pretendard, system-ui, sans-serif",52.0,52px,700,700,72.8,72.8px,-1.04,-1.04px,73.0,72.796875,True
+text-typography-display-light-defaultStyle,Display S,1,Pretendard,"Pretendard, system-ui, sans-serif",44.0,44px,700,700,61.599999999999994,61.6px,-0.88,-0.88px,62.0,61.59375,True
+text-typography-display-dark-defaultStyle,Display L,1,Pretendard,"Pretendard, system-ui, sans-serif",52.0,52px,700,700,72.8,72.8px,-1.04,-1.04px,73.0,72.796875,True
+text-typography-display-dark-defaultStyle,Display S,1,Pretendard,"Pretendard, system-ui, sans-serif",44.0,44px,700,700,61.599999999999994,61.6px,-0.88,-0.88px,62.0,61.59375,True
+text-typography-title-light-defaultStyle,Title Large,1,Pretendard,"Pretendard, system-ui, sans-serif",20.0,20px,600,600,28.0,28px,-0.4,-0.4px,28.0,28,True
+text-typography-title-light-defaultStyle,Title Medium,1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,600,600,25.2,25.2px,-0.18,-0.18px,25.0,25.1875,True
+text-typography-title-light-defaultStyle,Title Small,1,Pretendard,"Pretendard, system-ui, sans-serif",16.0,16px,600,600,22.4,22.4px,-0.16,-0.16px,22.0,22.390625,True
+text-typography-title-dark-defaultStyle,Title Large,1,Pretendard,"Pretendard, system-ui, sans-serif",20.0,20px,600,600,28.0,28px,-0.4,-0.4px,28.0,28,True
+text-typography-title-dark-defaultStyle,Title Medium,1,Pretendard,"Pretendard, system-ui, sans-serif",18.0,18px,600,600,25.2,25.2px,-0.18,-0.18px,25.0,25.1875,True
+text-typography-title-dark-defaultStyle,Title Small,1,Pretendard,"Pretendard, system-ui, sans-serif",16.0,16px,600,600,22.4,22.4px,-0.16,-0.16px,22.0,22.390625,True
+text-typography-body-light-defaultStyle,Body Large,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,22.5,True
+text-typography-body-light-defaultStyle,Body Medium,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-typography-body-light-defaultStyle,Body Small,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+text-typography-body-light-defaultStyle,Label Large,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+text-typography-body-light-defaultStyle,Label Medium,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-typography-body-light-defaultStyle,Label Small,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,16.796875,True
+text-typography-body-dark-defaultStyle,Body Large,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,400,400,22.5,22.5px,-0.15,-0.15px,23.0,22.5,True
+text-typography-body-dark-defaultStyle,Body Medium,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-typography-body-dark-defaultStyle,Body Small,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+text-typography-body-dark-defaultStyle,Label Large,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,500,500,19.599999999999998,19.6px,-0.14,-0.14px,20.0,19.59375,True
+text-typography-body-dark-defaultStyle,Label Medium,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-typography-body-dark-defaultStyle,Label Small,1,Pretendard,"Pretendard, system-ui, sans-serif",12.0,12px,500,500,16.799999999999997,16.8px,-0.12,-0.12px,17.0,16.796875,True
+text-colors-status-light-defaultStyle,상태 색 — 채움마다 짝이 되는 전경색,1,Pretendard,"Pretendard, system-ui, sans-serif",16.0,16px,600,600,22.4,22.4px,-0.16,-0.16px,22.0,22.390625,True
+text-colors-status-light-defaultStyle,오류 채움,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-light-defaultStyle,오류 컨테이너,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-light-defaultStyle,성공 채움,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-light-defaultStyle,성공 컨테이너,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-light-defaultStyle,경고 채움,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-light-defaultStyle,경고 컨테이너,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-light-defaultStyle,정보 채움,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-light-defaultStyle,정보 컨테이너,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-dark-defaultStyle,상태 색 — 채움마다 짝이 되는 전경색,1,Pretendard,"Pretendard, system-ui, sans-serif",16.0,16px,600,600,22.4,22.4px,-0.16,-0.16px,22.0,22.390625,True
+text-colors-status-dark-defaultStyle,오류 채움,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-dark-defaultStyle,오류 컨테이너,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-dark-defaultStyle,성공 채움,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-dark-defaultStyle,성공 컨테이너,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-dark-defaultStyle,경고 채움,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-dark-defaultStyle,경고 컨테이너,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-dark-defaultStyle,정보 채움,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-colors-status-dark-defaultStyle,정보 컨테이너,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+text-wrap-light-defaultStyle,overflow / maxLines,1,Pretendard,"Pretendard, system-ui, sans-serif",16.0,16px,600,600,22.4,22.4px,-0.16,-0.16px,22.0,22.390625,True
+text-wrap-light-defaultStyle,"컨테이너 폭을 넘으면 말줄임표로 잘려야 하는 긴 문장이에요. 다람쥐 헌 쳇바퀴에 타고파, 다람쥐 헌 쳇바퀴에 타고파, 말줄임표가 보일 때까지 같은 문장을 되풀이해요.",1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-wrap-light-defaultStyle,"maxLines 2 로 줄 수를 제한한 긴 문장이에요. 다람쥐 헌 쳇바퀴에 타고파, 다람쥐 헌 쳇바퀴에 타고파, 둘째 줄에서 줄 수 제한이 걸리면 말줄임표로 잘려요.",1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,42.0,42,True
+text-wrap-light-defaultStyle,textAlign,1,Pretendard,"Pretendard, system-ui, sans-serif",16.0,16px,600,600,22.4,22.4px,-0.16,-0.16px,22.0,22.390625,True
+text-wrap-light-defaultStyle,가운데 정렬,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-wrap-light-defaultStyle,끝 정렬,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-wrap-dark-defaultStyle,overflow / maxLines,1,Pretendard,"Pretendard, system-ui, sans-serif",16.0,16px,600,600,22.4,22.4px,-0.16,-0.16px,22.0,22.390625,True
+text-wrap-dark-defaultStyle,"컨테이너 폭을 넘으면 말줄임표로 잘려야 하는 긴 문장이에요. 다람쥐 헌 쳇바퀴에 타고파, 다람쥐 헌 쳇바퀴에 타고파, 말줄임표가 보일 때까지 같은 문장을 되풀이해요.",1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-wrap-dark-defaultStyle,"maxLines 2 로 줄 수를 제한한 긴 문장이에요. 다람쥐 헌 쳇바퀴에 타고파, 다람쥐 헌 쳇바퀴에 타고파, 둘째 줄에서 줄 수 제한이 걸리면 말줄임표로 잘려요.",1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,42.0,42,True
+text-wrap-dark-defaultStyle,textAlign,1,Pretendard,"Pretendard, system-ui, sans-serif",16.0,16px,600,600,22.4,22.4px,-0.16,-0.16px,22.0,22.390625,True
+text-wrap-dark-defaultStyle,가운데 정렬,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-wrap-dark-defaultStyle,끝 정렬,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-textstyle-light-defaultStyle,bodyLarge + semiBold,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,600,600,22.5,22.5px,-0.15,-0.15px,23.0,22.5,True
+text-textstyle-light-defaultStyle,bodyMedium + primary,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-textstyle-light-defaultStyle,bodySmall + error + underline,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+text-textstyle-light-defaultStyle,s14 + semiBold + primary,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-textstyle-dark-defaultStyle,bodyLarge + semiBold,1,Pretendard,"Pretendard, system-ui, sans-serif",15.0,15px,600,600,22.5,22.5px,-0.15,-0.15px,23.0,22.5,True
+text-textstyle-dark-defaultStyle,bodyMedium + primary,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,400,400,21.0,21px,-0.14,-0.14px,21.0,21,True
+text-textstyle-dark-defaultStyle,bodySmall + error + underline,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,400,400,19.5,19.5px,-0.13,-0.13px,20.0,19.5,True
+text-textstyle-dark-defaultStyle,s14 + semiBold + primary,1,Pretendard,"Pretendard, system-ui, sans-serif",14.0,14px,600,600,21.0,21px,-0.14,-0.14px,21.0,21,True
+definition-list-columns-light-defaultStyle,상호,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-light-defaultStyle,주식회사 코코드,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-light-defaultStyle,대표,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-light-defaultStyle,한동우,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-light-defaultStyle,사업자등록번호,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-light-defaultStyle,000-00-00000,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-dark-defaultStyle,상호,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-dark-defaultStyle,주식회사 코코드,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-dark-defaultStyle,대표,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-dark-defaultStyle,한동우,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-dark-defaultStyle,사업자등록번호,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True
+definition-list-columns-dark-defaultStyle,000-00-00000,1,Pretendard,"Pretendard, system-ui, sans-serif",13.0,13px,500,500,18.2,18.2px,-0.13,-0.13px,18.0,18.1875,True

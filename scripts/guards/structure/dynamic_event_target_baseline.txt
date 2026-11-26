@@ -1,0 +1,19 @@
+# ratchet 기준값 — 워크스페이스 전체(analyzer exclude 를 뺀 범위) 안
+# `dynamic event` 파라미터 / `(x as dynamic).property` 캐스트 수.
+#
+# `coui_lints` 의 `avoid_dynamic_event_target` 룰(#4942)이 잡는 패턴이다 —
+# `web-specifics.md` 가 적는 dart2js mangling 함정(release 빌드에서만 desync,
+# debug serve 는 정상이라 안 보임)을 막는 유일한 룰인데 INFO severity 라
+# `--fatal-warnings` 를 통과하고, 실측(2026-09-17)으로는 이 SDK 의 CLI
+# `dart analyze` 에 coui_lints 진단이 severity 와 무관하게 아예 뜨지 않는다
+# (9 룰 전부 0건). 그래서 이 가드가 유일한 그물이다.
+#
+# 오늘의 2건은 빚이 아니라 룰 자기 자신의 소스
+# (packages/coui_lints/lib/src/rules/avoid_dynamic_event_target_rule.dart)
+# 안, LintCode 의 description/arguments **문자열 리터럴**이다 — 그 문자열이
+# 위반 형태를 사람이 읽을 말로 설명하다 보니 스스로를 잡는다. AST 룰은
+# StringLiteral 안 텍스트를 SimpleFormalParameter/AsExpression 으로 보지
+# 않으므로 이 두 줄을 절대 방문하지 않는다 — 즉 진짜 룰 기준으로는 0건이고,
+# grep 이 텍스트만 보다 보니 생기는 FP 둘이다. 한 파일에 몰려 있어
+# 파일 단위로 격리한다.
+2

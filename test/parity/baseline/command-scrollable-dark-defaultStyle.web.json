@@ -1,0 +1,81 @@
+{
+  "key": "command-scrollable-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#coui-command-15 .co-command-row:hover > .co-command-wash{background-color:rgb(var(--coui-on-surface) / 3%);}#coui-command-15 .co-command-row:active > .co-command-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n              \n              \n                \n                  \n                \n                \n                \n                  \n                    \n                      \n                        \n                      \n                    \n                  \n                \n              \n              \n              \n                페이지\n                \n                  \n                    \n                    페이지 1\n                  \n                \n                \n                  \n                    \n                    페이지 2\n                  \n                \n                \n                  \n                    \n                    페이지 3\n                  \n                \n                \n                  \n                    \n                    페이지 4\n                  \n                \n                \n                  \n                    \n                    페이지 5\n                  \n                \n                \n                  \n                    \n                    페이지 6\n                  \n                \n                \n                  \n                    \n                    페이지 7\n                  \n                \n                \n                  \n                    \n                    페이지 8\n                  \n                \n                \n                  \n                    \n                    페이지 9\n                  \n                \n                \n                  \n                    \n                    페이지 10\n                  \n                \n                \n                  \n                    \n                    페이지 11\n                  \n                \n                \n                  \n                    \n                    페이지 12\n                  \n                \n                \n                  \n                    \n                    페이지 13\n                  \n                \n                \n                  \n                    \n                    페이지 14\n                  \n                \n                \n                  \n                    \n                    페이지 15\n                  \n                \n                \n                  \n                    \n                    페이지 16\n                  \n                \n                \n                  \n                    \n                    페이지 17\n                  \n                \n                \n                  \n                    \n                    페이지 18\n                  \n                \n                \n                  \n                    \n                    페이지 19\n                  \n                \n                \n                  \n                    \n                    페이지 20\n                  \n                \n                \n                  \n                    \n                    페이지 21\n                  \n                \n                \n                  \n                    \n                    페이지 22\n                  \n                \n                \n                  \n                    \n                    페이지 23\n                  \n                \n                \n                  \n                    \n                    페이지 24",
+    "layout": {
+      "width": 800,
+      "height": 363,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "width": 798,
+          "height": 40
+        },
+        {
+          "x": 1,
+          "y": 41,
+          "width": 798,
+          "height": 1
+        },
+        {
+          "x": 1,
+          "y": 42,
+          "width": 798,
+          "height": 320
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(147, 149, 150)",
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(64, 65, 67)",
+      "borderRightColor": "rgb(64, 65, 67)",
+      "borderBottomColor": "rgb(64, 65, 67)",
+      "borderLeftColor": "rgb(64, 65, 67)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "12px",
+      "borderTopRightRadius": "12px",
+      "borderBottomRightRadius": "12px",
+      "borderBottomLeftRadius": "12px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 363
+    }
+  }
+}

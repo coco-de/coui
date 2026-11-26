@@ -1,0 +1,82 @@
+{
+  "key": "dialog-docs-v2-d0b8147b60e3c37ff5bb5fb25d87ecae-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Preview",
+      "attributes": {
+        "demo": "dialog/with-icon"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "dialog/with-icon",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/actions/cocodeui-macstudio-kentrosaurus/_work/coui/coui/docs_core/content/components/dialog.md:Preview[19]"
+      ],
+      "anatomyParts": []
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "경고\n                      \n                      \n                        \n                          \n                        \n                      \n                    \n                    \n                    이 작업은 되돌릴 수 없어요.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 177
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "15px",
+      "lineHeight": "22.5px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(244, 245, 246)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "24px",
+      "borderTopRightRadius": "24px",
+      "borderBottomRightRadius": "24px",
+      "borderBottomLeftRadius": "24px",
+      "paddingTop": "32px",
+      "paddingRight": "24px",
+      "paddingBottom": "32px",
+      "paddingLeft": "24px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 177
+    }
+  }
+}

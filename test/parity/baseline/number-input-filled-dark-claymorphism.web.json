@@ -1,0 +1,38 @@
+{
+  "key": "number-input-filled-dark-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "13px",
+      "lineHeight": "18.2px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(180, 181, 182)",
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(42, 43, 44)",
+      "borderRightColor": "rgb(42, 43, 44)",
+      "borderBottomColor": "rgb(42, 43, 44)",
+      "borderLeftColor": "rgb(42, 43, 44)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "20px",
+      "borderTopRightRadius": "20px",
+      "borderBottomRightRadius": "20px",
+      "borderBottomLeftRadius": "20px",
+      "paddingTop": "3px",
+      "paddingRight": "4px",
+      "paddingBottom": "3px",
+      "paddingLeft": "4px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 114,
+      "heightPx": 64.1875
+    }
+  }
+}

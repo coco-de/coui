@@ -1,0 +1,1350 @@
+/* 문서 사이트의 셸 — 헤더 · 사이드바 · 본문 · 문서 블록.
+ *
+ * 값이 오는 곳
+ * - 색 · 간격 · 모서리 · 선 굵기 · 글자 역할은 킷의 `--coui-*` 변수다. 그래서
+ *   다크 모드, 서페이스 스타일, 밀도, 대비 높이기가 이 시트를 고치지 않고
+ *   문서에 닿는다.
+ * - 시간과 곡선은 `site_motion.dart` 가 문서 요소에 선언한
+ *   `--site-duration-*` · `--site-easing-*` 다. 이 시트는 시간을 적지 않는다 —
+ *   동작 줄이기가 킷의 변수를 0 으로 줄이면 여기의 전환도 같이 0 이 된다.
+ * - 면과 글자의 역할은 아래 `--site-*` 한 곳에 적고, 규칙들은 역할만 읽는다.
+ *
+ * 폭(사이드바 · 본문 · 목차)만 이 시트가 정한 길이다 — 킷의 스케일에 없는
+ * 지면의 치수라서다.
+ */
+
+/* ── 역할 ─────────────────────────────────────────────────────── */
+.docs {
+  --site-page: var(--coui-surface);
+  --site-tile: var(--coui-surface-container);
+  --site-inset: var(--coui-surface);
+  --site-select: var(--coui-surface-container-high);
+  --site-card: var(--coui-surface);
+  --site-line: var(--coui-outline-subtle);
+  --site-line-strong: var(--coui-outline-variant);
+  --site-ink: var(--coui-on-surface);
+  --site-ink-muted: var(--coui-on-surface-variant);
+  --site-ink-subtle: var(--coui-on-surface-subtle);
+  /* 지금 자리를 가리키는 표지의 색. 킷에 이 색의 토큰이 없어 사이트가
+     갖는다 — 바꾸려면 이 줄(과 아래 어두운 쪽) 하나다. */
+  --site-accent: 22 116 99;
+  --site-header-height: var(--coui-size-64);
+  --site-sidebar-width: 16.5rem;
+  --site-article-width: 59.75rem;
+  --site-toc-width: 13.75rem;
+  --site-article-gutter: var(--coui-space-64);
+  min-height: 100vh;
+  background: rgb(var(--site-page));
+  color: rgb(var(--site-ink));
+  font-family: var(--coui-font-family-sans);
+  -webkit-font-smoothing: antialiased;
+}
+[data-theme='dark'] .docs {
+  --site-page: var(--coui-surface-container-lowest);
+  --site-tile: var(--coui-surface);
+  --site-inset: var(--coui-surface-container-low);
+  --site-select: var(--coui-surface-container);
+  --site-accent: 91 224 200;
+}
+/* 대비를 높여 달라는 요청에서는 표지도 본문색이다 — 색 하나에 기대지 않는다. */
+@media (prefers-contrast: more) {
+  .docs, [data-theme='dark'] .docs { --site-accent: var(--coui-on-surface); }
+}
+
+/* ── 함께 쓰는 조각 ───────────────────────────────────────────── */
+.site-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.site-box-link {
+  color: inherit;
+  text-decoration: none;
+  outline: var(--coui-ring-width) solid transparent;
+  outline-offset: var(--coui-ring-offset);
+}
+.site-box-link:focus-visible { outline-color: rgb(var(--coui-focus-ring)); }
+.site-arrow {
+  display: inline-block;
+  transition:
+    opacity var(--site-duration-fast) var(--site-easing-move),
+    transform var(--site-duration-fast) var(--site-easing-feedback);
+}
+a:is(:hover, :focus-visible) > .site-arrow { transform: translateX(var(--coui-space-4)); }
+/* cocode 마크 — Figma에서 내보낸 SVG를 테마 색으로 칠한다. */
+.site-mark {
+  display: block;
+  flex: none;
+  width: 26.71px;
+  height: var(--coui-size-16);
+  background-color: rgb(var(--site-ink));
+  -webkit-mask: url('/images/cocode-mark.svg') center / contain no-repeat;
+  mask: url('/images/cocode-mark.svg') center / contain no-repeat;
+}
+/* 쌓임 순서는 킷의 단계(`--z-*`)다. 킷의 컴포넌트는 본문 층(`--z-0`)에서
+   시작하므로 — 히어로의 내용, 표의 고정 칸 — 셸이 자기 숫자를 쓰면 스크롤된
+   본문이 헤더 위로 올라온다. */
+.docs-skip-link {
+  position: fixed;
+  top: var(--coui-space-8);
+  left: var(--coui-space-16);
+  /* 헤더 위 — 포커스를 받았을 때만 보인다. */
+  z-index: var(--z-90);
+  padding: var(--coui-space-10) var(--coui-space-16);
+  border-radius: var(--coui-radius-8);
+  background: rgb(var(--site-ink));
+  color: rgb(var(--site-page));
+  transform: translateY(-200%);
+}
+.docs-skip-link:focus { transform: none; }
+
+/* ── 헤더 ─────────────────────────────────────────────────────── */
+.site-gnb {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-20);
+  border-bottom: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+  background: rgb(var(--site-page) / 86%);
+}
+/* 흐림은 헤더가 아니라 이 층이 갖는다. `backdrop-filter` 를 가진 상자는 그
+   안의 `position: fixed` 자손의 기준 상자가 된다 — 헤더가 직접 가지면 검색
+   팔레트가 화면이 아니라 헤더 높이 안에 갇힌다. */
+.site-gnb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  -webkit-backdrop-filter: blur(var(--coui-space-12));
+  backdrop-filter: blur(var(--coui-space-12));
+  pointer-events: none;
+}
+.site-gnb-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--coui-space-8);
+  height: calc(var(--site-header-height) - var(--coui-stroke-width-1));
+  padding-inline: var(--coui-space-32);
+}
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--coui-space-10);
+  margin-inline-end: var(--coui-space-32);
+  border-radius: var(--coui-radius-8);
+  white-space: nowrap;
+}
+/* 킷의 `Button` 이 자기 `display` 를 클래스로 갖는다 — 그것을 이기려고 한 단 더 짚는다. */
+.site-gnb .site-menu-button { display: none; }
+.site-tabs > ul {
+  display: flex;
+  align-items: center;
+  gap: var(--coui-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.site-tab { position: relative; }
+/* 탭의 글자는 알약 위에 놓이고, 좁아져도 두 줄로 접히지 않는다. */
+.site-tab > a { position: relative; white-space: nowrap; }
+.site-tab-pill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--coui-radius-8);
+  background: rgb(var(--site-select));
+}
+.site-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--coui-space-10);
+  margin-inline-start: auto;
+  min-width: 0;
+}
+/* island 는 자기 `CoUIWeb` 래퍼(`w-full`)를 낸다. 도구 줄에서는 내용만큼만
+   차지해야 옆의 도구를 밀어내지 않는다. */
+.site-tools > .coui-root { flex: 0 0 auto; width: auto; min-width: 0; }
+/* 킷의 검색 상자는 자기 폭을 클래스(`w-full`)로 갖는다 — 한 단 더 짚어 이긴다. */
+.site-tools .docs-search-trigger { width: 15rem; }
+.site-tools .theme-toggle { flex: 0 0 auto; }
+/* The search component writes the glyph display inline. */
+@media (min-width: 1152px) {
+  .site-tools .docs-search-trigger > :is(svg, iconify-icon) { display: none !important; }
+}
+
+/* 서페이스 스타일 고르기.
+   이 도구는 다섯 프리셋 어디서나 알아볼 수 있어야 한다 — 마음에 안 드는
+   프리셋에서 빠져나올 때 겨누는 유일한 자리다. 그래서 면과 글자는 프리셋이
+   다시 쓰지 않는 색(`on-surface` · `on-surface-variant` · `surface` ·
+   `surface-bright`)만 읽고, 모서리는 토큰이 아니라 길이로 적는다(프리셋이
+   반경 토큰을 굽는다). 테두리만은 이웃(검색 · 테마 토글)과 같은
+   `outline-subtle` 이다 — 프리셋이 그 색을 바꾸지만, 바뀌는 것은 선의
+   색뿐이라 도구는 여전히 알아볼 수 있다.
+
+   값은 옆의 킷 컴포넌트와 같다: 트리거는 outline 버튼의 상태 층(hover 3 ·
+   눌림 12, `CoreStateLayer.subtle`), 판은 `Popup`(surface-bright · 모서리
+   12 · 안쪽 여백 6), 항목은 메뉴 항목의 hover 8 이다. */
+.surface-style-switcher { position: relative; display: inline-flex; min-width: 0; }
+.surface-style-switcher button {
+  border: 0;
+  background: transparent;
+  color: rgb(var(--coui-on-surface-variant));
+  font-size: var(--coui-text-label-medium-size);
+  font-weight: 500;
+  line-height: var(--coui-text-label-medium-line-height);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--site-duration-fast) var(--site-easing-move),
+    color var(--site-duration-fast) var(--site-easing-move);
+}
+.surface-style-switcher [data-style-trigger] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--coui-space-8);
+  height: var(--coui-size-36);
+  padding-inline: var(--coui-space-12) var(--coui-space-10);
+  border: var(--coui-stroke-width-1) solid rgb(var(--coui-outline-subtle));
+  border-radius: 0.625rem;
+  max-width: 100%;
+  background: rgb(var(--coui-surface));
+}
+.surface-style-switcher [data-style-trigger]:hover {
+  background:
+    linear-gradient(rgb(var(--coui-on-surface) / 3%), rgb(var(--coui-on-surface) / 3%)),
+    rgb(var(--coui-surface));
+  color: rgb(var(--coui-on-surface));
+}
+.surface-style-switcher [data-style-trigger]:active {
+  background:
+    linear-gradient(rgb(var(--coui-on-surface) / 12%), rgb(var(--coui-on-surface) / 12%)),
+    rgb(var(--coui-surface));
+}
+.surface-style-switcher [data-style-current] { overflow: hidden; text-overflow: ellipsis; }
+.surface-style-caret { flex-shrink: 0; color: rgb(var(--coui-on-surface-subtle)); font-size: var(--coui-text-label-xs-size); line-height: 1; }
+.surface-style-panel {
+  position: absolute;
+  top: calc(100% + var(--coui-space-4));
+  right: 0;
+  z-index: var(--z-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--coui-space-2);
+  min-width: 100%;
+  padding: var(--coui-space-6);
+  border: var(--coui-stroke-width-1) solid rgb(var(--coui-outline-subtle));
+  border-radius: 0.75rem;
+  background: rgb(var(--coui-surface-bright));
+  box-shadow: var(--shadow-lg);
+}
+/* `hidden` 이 위의 `display: flex` 를 이겨야 패널이 닫힌다. */
+.surface-style-panel[hidden] { display: none; }
+/* 판 모서리 12 − 여백 6 = 항목 모서리 6 (같은 중심). */
+.surface-style-panel button {
+  padding: var(--coui-space-6) var(--coui-space-10);
+  border-radius: 0.375rem;
+  color: rgb(var(--coui-on-surface));
+  text-align: start;
+}
+.surface-style-panel button:hover { background: rgb(var(--coui-on-surface) / 8%); }
+/* 지금 스타일은 색만이 아니라 굵기와 채움으로 표시한다 — 킷 메뉴 항목의
+   선택 상태와 같은 채움이다. */
+.surface-style-panel button[aria-pressed='true'] {
+  background: rgb(var(--coui-on-surface));
+  color: rgb(var(--coui-surface));
+  font-weight: 600;
+}
+.surface-style-switcher button:focus-visible {
+  outline: var(--coui-ring-width) solid rgb(var(--coui-focus-ring));
+  outline-offset: var(--coui-ring-offset);
+}
+
+/* 지난 버전의 문서 — 스냅샷이 있을 때만 그려진다. */
+.version-switcher { position: relative; }
+.version-switcher > summary {
+  display: inline-flex;
+  align-items: center;
+  height: var(--coui-size-36);
+  padding: 0 var(--coui-space-12);
+  border: var(--coui-stroke-width-1) solid rgb(var(--site-line-strong));
+  border-radius: var(--coui-radius-8);
+  color: rgb(var(--site-ink-muted));
+  font-size: var(--coui-text-label-medium-size);
+  list-style: none;
+  cursor: pointer;
+}
+.version-switcher > summary::-webkit-details-marker { display: none; }
+.version-switcher > nav {
+  position: absolute;
+  top: calc(100% + var(--coui-space-4));
+  right: 0;
+  z-index: var(--z-10);
+  display: flex;
+  flex-direction: column;
+  min-width: 10rem;
+  padding: var(--coui-space-4);
+  border: var(--coui-stroke-width-1) solid rgb(var(--site-line-strong));
+  border-radius: var(--coui-radius-8);
+  background: rgb(var(--site-card));
+  box-shadow: var(--shadow-lg);
+}
+.version-switcher-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--coui-space-12);
+  padding: var(--coui-space-6) var(--coui-space-8);
+  border-radius: var(--coui-radius-6);
+  color: rgb(var(--site-ink));
+  font-size: var(--coui-text-label-medium-size);
+  text-decoration: none;
+}
+.version-switcher-item:hover { background: rgb(var(--site-tile)); }
+.version-switcher-date { color: rgb(var(--site-ink-subtle)); font-size: var(--coui-text-label-small-size); }
+
+/* ── 뼈대 ─────────────────────────────────────────────────────── */
+.docs-frame {
+  display: grid;
+  grid-template-columns: var(--site-sidebar-width) minmax(0, 1fr);
+  align-items: start;
+}
+/* 본문과 목차의 자리는 목차가 있든 없든 같다 — 목차 없는 페이지에서 본문이
+   옆으로 밀리지 않는다. */
+#docs-shell main {
+  display: grid;
+  grid-template-columns: minmax(0, var(--site-article-width)) var(--site-toc-width);
+  justify-content: center;
+  align-items: start;
+  min-width: 0;
+  outline: none;
+}
+.docs-article {
+  min-width: 0;
+  padding: var(--coui-space-48) var(--site-article-gutter) var(--coui-space-120);
+}
+.docs-head { margin-bottom: var(--coui-space-56); }
+.docs-head img { max-width: 100%; margin-top: var(--coui-space-24); border-radius: var(--coui-radius-12); }
+
+/* ── 사이드바 · 서랍 ──────────────────────────────────────────────
+   한 요소가 두 역할을 한다. 좁은 폭에서는 헤더의 메뉴 버튼이 여는
+   서랍(`popover`)이고, 넓은 폭에서는 본문 옆의 사이드바다. 서랍이 기본
+   모양이고, 넓은 폭의 규칙이 그 요소를 평범한 상자로 되돌린다 — 그때
+   `popover` 속성은 아무 일도 하지 않는다. */
+.site-drawer {
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  background: rgb(var(--site-page));
+  color: rgb(var(--site-ink));
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--site-line-strong)) transparent;
+}
+.site-drawer:popover-open {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: min(20rem, 88vw);
+  height: 100dvh;
+  max-height: none;
+  padding: var(--coui-space-16) var(--coui-space-16) var(--coui-space-32);
+  border-inline-end: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+  overflow-y: auto;
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--site-duration-normal) var(--site-easing-enter),
+    transform var(--site-duration-moderate) var(--site-easing-enter),
+    overlay var(--site-duration-moderate) allow-discrete,
+    display var(--site-duration-moderate) allow-discrete;
+}
+@starting-style {
+  .site-drawer:popover-open { opacity: 0; transform: translateX(calc(var(--coui-space-24) * -1)); }
+}
+.site-drawer::backdrop {
+  background: rgb(var(--coui-scrim) / 0%);
+  transition:
+    background-color var(--site-duration-normal) var(--site-easing-move),
+    overlay var(--site-duration-normal) allow-discrete,
+    display var(--site-duration-normal) allow-discrete;
+}
+.site-drawer:popover-open::backdrop { background: rgb(var(--coui-scrim) / 40%); }
+@starting-style {
+  .site-drawer:popover-open::backdrop { background: rgb(var(--coui-scrim) / 0%); }
+}
+.site-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--coui-space-12);
+  margin-bottom: var(--coui-space-16);
+}
+.site-drawer-head .site-brand { margin-inline-end: 0; }
+.site-drawer-tabs > ul { display: grid; gap: var(--coui-space-2); margin: 0; padding: 0; list-style: none; }
+.docs-sidebar .site-drawer-tabs {
+  margin-bottom: var(--coui-space-24);
+  padding-bottom: var(--coui-space-16);
+  border-bottom: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+}
+.site-drawer-tab {
+  display: grid;
+  gap: var(--coui-space-2);
+  padding: var(--coui-space-10) var(--coui-space-12);
+  border-radius: var(--coui-radius-8);
+  transition: background-color var(--site-duration-fast) var(--site-easing-move);
+}
+.site-drawer-tab:hover, .site-drawer-tab[aria-current] { background: rgb(var(--site-tile)); }
+@media (min-width: 1024px) {
+  .docs-sidebar, .docs-sidebar:popover-open {
+    position: sticky;
+    inset: auto;
+    top: var(--site-header-height);
+    display: block;
+    width: auto;
+    height: calc(100dvh - var(--site-header-height));
+    padding: var(--coui-space-32) var(--coui-space-16) var(--coui-space-48);
+    border-inline-end: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+    overflow-y: auto;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  /* 넓은 폭에서는 헤더가 로고와 탭을 이미 갖고 있다. */
+  .docs-sidebar :is(.site-drawer-head, .site-drawer-tabs) { display: none; }
+}
+.docs-nav-group + .docs-nav-group { margin-top: var(--coui-space-28); }
+/* 묶음의 이름은 제목 요소다(리더가 묶음 사이를 건너뛴다). 크기와 줄 높이는
+   그 안의 킷 `Text` 역할이 정한다 — 제목 요소의 기본 크기를 물려주지 않는다. */
+.docs-nav-title, .toc-title {
+  font-size: var(--coui-text-label-small-size);
+  font-weight: var(--coui-text-label-medium-weight);
+  line-height: var(--coui-text-label-small-line-height);
+  color: rgb(var(--site-ink-subtle));
+}
+.docs-nav-title {
+  margin: 0 0 var(--coui-space-8);
+  padding-inline: var(--coui-space-12);
+}
+.docs-nav ul {
+  display: grid;
+  gap: var(--coui-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.docs-nav-item {
+  position: relative;
+  border-radius: var(--coui-radius-8);
+  transition: background-color var(--site-duration-fast) var(--site-easing-move);
+}
+.docs-nav-item:hover { background: rgb(var(--site-tile)); }
+.docs-nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--coui-space-8);
+  min-height: var(--coui-size-32);
+  padding: var(--coui-space-4) var(--coui-space-12);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+/* 지금 페이지의 표지 — 면과 그 왼쪽의 막대. 줄과 따로 있는 상자라, 페이지를
+   옮길 때 브라우저가 옛 자리에서 새 자리로 이어 그린다(아래 페이지 전환). */
+.docs-nav-mark {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--coui-radius-8);
+  background: rgb(var(--site-select));
+}
+.docs-nav-mark::before {
+  content: '';
+  position: absolute;
+  inset-block: calc(50% - var(--coui-space-8));
+  inset-inline-start: 0;
+  width: var(--coui-stroke-width-3);
+  border-radius: var(--coui-radius-2);
+  background: rgb(var(--site-accent));
+}
+
+/* ── 이 페이지에서 ────────────────────────────────────────────── */
+.docs-toc {
+  position: sticky;
+  top: var(--site-header-height);
+  max-height: calc(100dvh - var(--site-header-height));
+  padding: var(--coui-space-56) var(--coui-space-24) var(--coui-space-32) var(--coui-space-8);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--site-line-strong)) transparent;
+}
+/* 이름은 눈금과 같은 세로선에서 시작하고, 링크의 글자는 눈금에서 한 칸 물러난다. */
+.toc-title { margin: 0 0 var(--coui-space-12); }
+:is(.toc-rail, .docs-mobile-toc) :is(.toc-list, .toc-sub) {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.toc-link {
+  position: relative;
+  display: block;
+  /* 깊이는 링크가 아니라 글자를 들여 쓴다 — 표지는 링크의 가장자리에서
+     재므로, 어느 깊이에서나 같은 세로선 위에 놓인다. */
+  padding: var(--coui-space-6) 0 var(--coui-space-6) calc(var(--coui-space-14) + var(--toc-depth, 0) * var(--coui-space-12));
+  color: rgb(var(--site-ink-subtle));
+  font-size: var(--coui-text-body-small-size);
+  line-height: var(--coui-text-label-medium-line-height);
+  text-decoration: none;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  transition: color var(--site-duration-fast) var(--site-easing-move);
+}
+.toc-link--sub { font-size: var(--coui-text-label-small-size); }
+.toc-link:hover { color: rgb(var(--site-ink)); }
+.toc-link.is-active { color: rgb(var(--site-ink)); font-weight: var(--coui-text-label-medium-weight); }
+/* 줄마다 자기 눈금이 있고, 읽고 있는 줄의 눈금 위로 표지가 자란다. 다음
+   구획으로 넘어가면 앞의 표지가 줄어드는 동안 다음 것이 자라서, 자리가
+   바뀌는 것이 보인다. */
+.toc-link::before, .toc-link::after {
+  content: '';
+  position: absolute;
+  inset-block: var(--coui-space-6);
+  inset-inline-start: 0;
+  width: var(--coui-stroke-width-2);
+  border-radius: var(--coui-radius-2);
+}
+.toc-link::before { background: rgb(var(--site-line)); }
+.toc-link::after {
+  background: rgb(var(--site-accent));
+  transform: scaleY(0);
+  transition: transform var(--site-duration-normal) var(--site-easing-move);
+}
+.toc-link.is-active::after { transform: none; }
+.docs-mobile-toc { display: none; }
+
+/* ── 이전 · 다음 ──────────────────────────────────────────────────
+   있는 카드만 그린다 — 하나뿐이면 그 카드가 줄을 채운다(Figma `Doc/Pager`). */
+.docs-pager {
+  display: flex;
+  gap: var(--coui-space-16);
+  margin-top: var(--coui-space-56);
+}
+.docs-pager-card {
+  display: grid;
+  flex: 1 1 0;
+  min-width: 0;
+  gap: var(--coui-space-4);
+  padding: var(--coui-space-18) var(--coui-space-20);
+  border: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+  border-radius: var(--coui-radius-14);
+  background: rgb(var(--site-card));
+  transition:
+    border-color var(--site-duration-fast) var(--site-easing-move),
+    background-color var(--site-duration-fast) var(--site-easing-move);
+}
+.docs-pager-card:is(:hover, :focus-visible) { border-color: rgb(var(--site-line-strong)); }
+.docs-pager-card--next { justify-items: end; text-align: end; }
+.docs-pager-label { color: rgb(var(--site-ink-subtle)); }
+.docs-pager-title { word-break: keep-all; }
+
+/* ── 본문 ─────────────────────────────────────────────────────────
+   `jaspr_content` 의 산문 규칙과 같은 경계(`not-content`)를 지킨다 — 이
+   규칙들이 라이브 프리뷰나 그 밖의 island 를 다시 꾸미면 안 된다. */
+#docs-shell .content {
+  color: rgb(var(--site-ink-muted));
+  font-size: var(--coui-text-body-large-size);
+  line-height: var(--coui-text-body-large-line-height);
+  letter-spacing: var(--coui-text-body-large-tracking);
+}
+#docs-shell .content > :first-child { margin-top: 0; }
+#docs-shell .content :where(h2, h3, h4, p, ul, ol, li, a, code, strong, table, th, td):not(:where(.not-content, .not-content *)) {
+  color: inherit;
+}
+#docs-shell .content :where(h2, h3, h4):not(:where(.not-content, .not-content *)) {
+  color: rgb(var(--site-ink));
+  scroll-margin-top: calc(var(--site-header-height) + var(--coui-space-24));
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+/* 옛 제목의 주소를 지키는 빈 앵커(`<a id>`)도 제목과 같은 자리에 멈춘다 —
+   없으면 옛 주소로 온 독자는 제목이 헤더 밑에 가려진 채로 도착한다. */
+#docs-shell .content :where(a[id]:empty):not(:where(.not-content, .not-content *)) {
+  scroll-margin-top: calc(var(--site-header-height) + var(--coui-space-24));
+}
+/* 구획 머리 — 제목, 그 아래 한 줄 설명, 그다음 내용(Figma `Doc/Section Header`). */
+#docs-shell .content :where(h2):not(:where(.not-content, .not-content *)) {
+  margin: var(--coui-space-56) 0 var(--coui-space-8);
+  padding: 0;
+  border: 0;
+  font-size: var(--coui-text-headline-medium-size);
+  font-weight: var(--coui-text-headline-medium-weight);
+  line-height: var(--coui-text-headline-medium-line-height);
+  letter-spacing: var(--coui-text-headline-medium-tracking);
+}
+/* 구획의 첫 블록은 머리에서 한 단 떨어진다 — 설명이 있든 없든. 블록끼리는
+   그보다 좁다(아래 블록들의 `margin`). */
+#docs-shell .content > h2 + :not(p, h3, h4),
+#docs-shell .content > h2 + p + :not(p, h2, h3, h4) { margin-top: var(--coui-space-24); }
+#docs-shell .content :where(h3):not(:where(.not-content, .not-content *)) {
+  margin: var(--coui-space-36) 0 var(--coui-space-8);
+  font-size: var(--coui-text-title-large-size);
+  font-weight: var(--coui-text-title-large-weight);
+  line-height: var(--coui-text-title-large-line-height);
+  letter-spacing: var(--coui-text-title-large-tracking);
+}
+#docs-shell .content :where(h4):not(:where(.not-content, .not-content *)) {
+  margin: var(--coui-space-24) 0 var(--coui-space-8);
+  font-size: var(--coui-text-title-small-size);
+  font-weight: var(--coui-text-title-small-weight);
+  line-height: var(--coui-text-title-small-line-height);
+  letter-spacing: var(--coui-text-title-small-tracking);
+}
+/* 제목 옆의 `#` — 다가가거나 포커스가 왔을 때만 보인다. */
+#docs-shell .content :where(h2, h3, h4) > a[href*='#'] {
+  margin-inline-start: var(--coui-space-8);
+  color: rgb(var(--site-ink-subtle));
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity var(--site-duration-fast) var(--site-easing-move);
+}
+#docs-shell .content :where(h2, h3, h4):hover > a[href*='#'],
+#docs-shell .content :where(h2, h3, h4) > a[href*='#']:focus-visible { opacity: 1; }
+#docs-shell .content :where(p):not(:where(.not-content, .not-content *)) {
+  margin: 0 0 var(--coui-space-16);
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+#docs-shell .content :where(strong):not(:where(.not-content, .not-content *)) {
+  color: rgb(var(--site-ink));
+  font-weight: 600;
+}
+#docs-shell .content :where(a):not(:where(.not-content, .not-content *)) {
+  color: rgb(var(--site-ink));
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--site-accent));
+  text-decoration-thickness: var(--coui-stroke-width-1);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color var(--site-duration-fast) var(--site-easing-move);
+}
+#docs-shell .content :where(a):not(:where(.not-content, .not-content *)):hover { text-decoration-color: currentColor; }
+#docs-shell .content :where(ul, ol):not(:where(.not-content, .not-content *)) {
+  margin: 0 0 var(--coui-space-16);
+  padding-inline-start: var(--coui-space-20);
+}
+#docs-shell .content :where(li):not(:where(.not-content, .not-content *)) {
+  margin: var(--coui-space-4) 0;
+  padding: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+#docs-shell .content :where(ul > li):not(:where(.not-content, .not-content *))::marker { color: rgb(var(--site-ink-subtle)); }
+#docs-shell .content :where(li > :is(ul, ol)):not(:where(.not-content, .not-content *)) { margin: var(--coui-space-4) 0 0; }
+/* 순서 있는 목록 — 두 자리 번호가 글자 앞 칸에 놓인다. 번호는 브라우저의
+   `list-item` 카운터를 읽으므로 `start` 로 시작한 목록도 맞는다. */
+#docs-shell .content :where(ol):not(:where(.not-content, .not-content *)) {
+  padding-inline-start: 0;
+  list-style: none;
+}
+#docs-shell .content :where(ol > li):not(:where(.not-content, .not-content *)) {
+  position: relative;
+  margin: var(--coui-space-10) 0;
+  padding-inline-start: var(--coui-space-28);
+  color: rgb(var(--site-ink));
+}
+#docs-shell .content :where(ol > li):not(:where(.not-content, .not-content *))::before {
+  content: counter(list-item, decimal-leading-zero);
+  position: absolute;
+  inset-inline-start: 0;
+  color: rgb(var(--site-ink-subtle));
+  font-size: var(--coui-text-label-medium-size);
+  font-weight: var(--coui-text-label-medium-weight);
+  font-variant-numeric: tabular-nums;
+}
+#docs-shell .content :where(hr):not(:where(.not-content, .not-content *)) {
+  margin: var(--coui-space-48) 0;
+  border: 0;
+  border-top: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+}
+#docs-shell .content :where(img):not(:where(.not-content, .not-content *)) {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--coui-radius-12);
+}
+#docs-shell .content :where(:not(pre) > code):not(:where(.not-content, .not-content *)) {
+  padding: 0.125em 0.375em;
+  border-radius: var(--coui-radius-4);
+  background: rgb(var(--site-tile));
+  color: rgb(var(--site-ink));
+  font-family: var(--coui-font-family-mono);
+  font-size: 0.875em;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+#docs-shell .content :where(code):not(:where(.not-content, .not-content *))::before,
+#docs-shell .content :where(code):not(:where(.not-content, .not-content *))::after { content: none; }
+
+/* 노트 — 본문 옆에 놓는 한두 문장. 마크다운의 인용(`>`)과 `<DesignNote>`
+   가 이 상자다. 제목은 `<DesignNote title>` 만 갖는다. */
+#docs-shell .content :where(blockquote):not(:where(.not-content, .not-content *)),
+.design-note {
+  margin: var(--coui-space-16) 0;
+  padding: var(--coui-space-18) var(--coui-space-20);
+  border: 0;
+  border-radius: var(--coui-radius-12);
+  background: rgb(var(--site-tile));
+  color: rgb(var(--site-ink-muted));
+  font-size: var(--coui-text-body-medium-size);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--coui-text-body-medium-line-height);
+  quotes: none;
+}
+.design-note { display: grid; gap: var(--coui-space-6); min-width: 0; }
+/* 본문의 `strong` 규칙(본문색)보다 한 단 높게 — 경고 노트의 제목이 경고색을 지킨다. */
+#docs-shell .design-note > .design-note-title { color: rgb(var(--site-ink)); }
+.design-note-body > :first-child { margin-top: 0; }
+.design-note-body > :last-child { margin-bottom: 0; }
+#docs-shell .content .design-note-body :where(p) { margin-bottom: var(--coui-space-8); }
+/* 경고 — 지금 그대로 믿으면 안 되는 것. 제목의 글이 종류를 말하고, 면과
+   제목의 색이 거든다. 본문은 다른 노트와 같은 글자색이다. */
+.design-note.design-note-warning { background: rgb(var(--coui-warning-container)); }
+#docs-shell .design-note-warning > .design-note-title { color: rgb(var(--coui-on-warning-container)); }
+/* 점선 — 아직 정해지지 않은 것. */
+.design-note.design-note-outlined {
+  border: var(--coui-stroke-width-1) dashed rgb(var(--site-line-strong));
+  background: transparent;
+}
+#docs-shell .content :where(blockquote > :last-child):not(:where(.not-content, .not-content *)) { margin-bottom: 0; }
+#docs-shell .content :where(blockquote p):not(:where(.not-content, .not-content *))::before,
+#docs-shell .content :where(blockquote p):not(:where(.not-content, .not-content *))::after { content: none; }
+#docs-shell .content :where(blockquote code):not(:where(.not-content, .not-content *)) { background: rgb(var(--site-select)); }
+
+/* 콜아웃 — 종류마다 킷의 상태 컨테이너 색을 읽는다. 색만이 아니라 앞의
+   아이콘이 종류를 말한다. */
+#docs-shell .content .callout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--coui-space-12);
+  margin: var(--coui-space-24) 0;
+  padding: var(--coui-space-16) var(--coui-space-20);
+  border: 0;
+  border-radius: var(--coui-radius-12);
+  background: rgb(var(--site-tile));
+  color: rgb(var(--site-ink-muted));
+  font-size: var(--coui-text-body-medium-size);
+  line-height: 1.65;
+}
+#docs-shell .content .callout > span:first-child { display: inline-flex; flex: 0 0 auto; margin-top: var(--coui-space-2); color: rgb(var(--site-ink-subtle)); }
+#docs-shell .content .callout > span:last-child { flex: 1 1 auto; min-width: 0; }
+#docs-shell .content .callout > span:last-child > :last-child { margin-bottom: 0; }
+#docs-shell .content .callout-info { background: rgb(var(--coui-info-container)); }
+#docs-shell .content .callout-info > span:first-child { color: rgb(var(--coui-on-info-container)); }
+#docs-shell .content .callout-success { background: rgb(var(--coui-success-container)); }
+#docs-shell .content .callout-success > span:first-child { color: rgb(var(--coui-on-success-container)); }
+#docs-shell .content .callout-warning { background: rgb(var(--coui-warning-container)); }
+#docs-shell .content .callout-warning > span:first-child { color: rgb(var(--coui-on-warning-container)); }
+#docs-shell .content .callout-error { background: rgb(var(--coui-error-container)); }
+#docs-shell .content .callout-error > span:first-child { color: rgb(var(--coui-on-error-container)); }
+
+/* 표 — 선만 있고 면은 없다. 넓은 표는 페이지가 아니라 자기 상자 안에서
+   옆으로 스크롤한다. 첫 열은 이름이라 본문색 · 라벨 굵기다. */
+.docs-table { margin: var(--coui-space-16) 0; overflow-x: auto; }
+#docs-shell .content :where(table):not(:where(.not-content, .not-content *)) {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: var(--coui-text-body-medium-size);
+  line-height: var(--coui-text-body-medium-line-height);
+}
+#docs-shell .content :where(th, td):not(:where(.not-content, .not-content *)) {
+  padding: var(--coui-space-14) var(--coui-space-24) var(--coui-space-14) 0;
+  border: 0;
+  border-bottom: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+  background: none;
+  text-align: start;
+  vertical-align: middle;
+}
+/* 머리칸은 라벨 역할(label-medium) — 문서 페이지의 표 머리줄이 모두 이 역할이다
+   (Figma 02 · 03 · 05 · 06 의 `Table > Header`). */
+#docs-shell .content :where(th):not(:where(.not-content, .not-content *)) {
+  padding-block: var(--coui-space-10);
+  color: rgb(var(--site-ink-subtle));
+  font-size: var(--coui-text-label-medium-size);
+  font-weight: var(--coui-text-label-medium-weight);
+  line-height: var(--coui-text-label-medium-line-height);
+  white-space: nowrap;
+}
+#docs-shell .content :where(td:first-child):not(:where(.not-content, .not-content *)) {
+  color: rgb(var(--site-ink));
+  font-weight: var(--coui-text-label-medium-weight);
+}
+#docs-shell .content :where(tbody tr:last-child td):not(:where(.not-content, .not-content *)) { border-bottom: 0; }
+#docs-shell .content :where(:is(th, td):last-child):not(:where(.not-content, .not-content *)) { padding-inline-end: 0; }
+/* 이름 · 값 표 — 머리줄이 없으니 위에도 선을 긋고, 이름 열은 폭을 정해 둔다
+   (`DocsTableExtension`). */
+#docs-shell .content .docs-table--plain :where(tr:first-child td) { border-top: var(--coui-stroke-width-1) solid rgb(var(--site-line)); }
+#docs-shell .content .docs-table--plain :where(td:first-child) { width: var(--coui-space-144); font-size: var(--coui-text-label-xl-size); }
+#docs-shell .content .docs-table--plain :where(td:not(:first-child)) { font-size: var(--coui-text-body-large-size); }
+/* 표 안의 코드는 글자 사이에서 끊지 않는다. 본문 코드의
+   `overflow-wrap: anywhere` 는 칸이 줄어들 수 있는 폭을 한 글자로 만들어,
+   표가 필드 · 타입 열을 `backgrou|ndColor` 처럼 쪼갠다. 이름이 들어가지 않을
+   만큼 좁으면 표가 자기 상자 안에서 옆으로 스크롤한다(위). */
+#docs-shell .content :where(table code):not(:where(.not-content, .not-content *)) {
+  padding: 0;
+  background: none;
+  font-size: var(--coui-text-code-md-size);
+  overflow-wrap: normal;
+}
+
+/* 코드 — 이름표와 복사, 그 아래 코드(Figma `Doc/Code`). 두 밝기 모두 어두운
+   면이다. 코드 자체는 킷의 `CodeSnippet` 이 그리므로, 이 상자는 킷의 면 ·
+   글자 슬롯을 어두운 원시값으로 바꿔 내려 준다 — 면이 그 슬롯이라 킷은 계속
+   그 면 위의 글자로 그리고, 구문 색 슬롯도 같은 밝은 글자색으로 접는다
+   (시안의 코드는 한 색이다). */
+.docs-code:not(.docs-code--plain) {
+  --coui-surface-container-low: var(--coui-neutral-950);
+  --coui-on-surface: var(--coui-neutral-300);
+  --coui-on-surface-variant: var(--coui-neutral-300);
+  --coui-on-surface-subtle: var(--coui-neutral-500);
+  --coui-syntax-keyword: var(--coui-neutral-300);
+  --coui-syntax-type: var(--coui-neutral-300);
+  --coui-syntax-function: var(--coui-neutral-300);
+  --coui-syntax-string: var(--coui-neutral-300);
+  margin: var(--coui-space-16) 0;
+  border-radius: var(--coui-radius-14);
+  background: rgb(var(--coui-neutral-950));
+  color: rgb(var(--coui-neutral-300));
+  overflow: hidden;
+}
+.docs-code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--coui-space-12);
+  padding: var(--coui-space-16) var(--coui-space-20) 0;
+  color: rgb(var(--coui-neutral-500));
+  /* 줄 높이는 이름표 역할의 줄 상자 하나다 — 본문의 줄 높이를 물려받으면
+     인라인 글자의 바깥 줄이 그만큼 늘어난다. */
+  line-height: 1;
+}
+/* 복사는 밑줄 글자다 — 버튼의 면과 여백을 쓰지 않는다(여백은 버튼 스타일이
+   0 으로 적는다). 누르는 자리는 크기 행의 높이(24)를 지키되, 위아래를 줄과
+   겹쳐 이름표 줄의 높이는 글자의 줄 높이 그대로다. */
+.docs-code [data-docs-copy] {
+  margin-block: calc(var(--coui-space-4) * -1);
+  margin-inline-start: auto;
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-position: from-font;
+}
+/* 맨 코드 — 카드 안의 펜스. 면도 여백도 없이 둘레 글자처럼 놓인다. */
+.docs-code--plain { margin: var(--coui-space-8) 0; }
+
+/* 탭 — 플랫폼마다 다른 코드를 한 자리에 둔다.
+   역할과 상태는 서버가 낸 속성이다(`DocsTabs`). 시트는 그 속성을 읽어
+   그릴 뿐이고, 탭을 바꾸는 것은 `docs-shell.js` 다. 글자의 크기 · 굵기는
+   킷의 `Text` 역할이 싣는다. */
+/* 특이도를 낮게 둔다 — 구획 머리 바로 아래면 위의 첫 블록 간격이 이긴다. */
+.docs-tabs { margin: var(--coui-space-16) 0; }
+#docs-shell .content .docs-tabs > [role="tablist"] {
+  display: flex;
+  gap: var(--coui-space-4);
+  margin: 0 0 var(--coui-space-12);
+  border-bottom: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+}
+#docs-shell .content .docs-tabs > [role="tablist"] > [role="tab"] {
+  /* flex: 줄의 높이는 글자 역할의 것 하나다. 인라인으로 두면 버튼 자신의
+     줄 높이가 줄 상자를 키운다. */
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 calc(var(--coui-stroke-width-1) * -1);
+  padding: var(--coui-space-8) var(--coui-space-12);
+  border: 0;
+  border-bottom: var(--coui-stroke-width-2) solid transparent;
+  border-radius: 0;
+  background: none;
+  color: rgb(var(--site-ink-subtle));
+  cursor: pointer;
+  transition:
+    color var(--site-duration-fast) var(--site-easing-move),
+    border-color var(--site-duration-fast) var(--site-easing-move);
+}
+#docs-shell .content .docs-tabs > [role="tablist"] > [role="tab"]:hover { color: rgb(var(--site-ink)); }
+#docs-shell .content .docs-tabs > [role="tablist"] > [role="tab"][aria-selected="true"] {
+  border-bottom-color: rgb(var(--site-ink));
+  color: rgb(var(--site-ink));
+}
+#docs-shell .content .docs-tabs > [role="tablist"] > [role="tab"]:focus-visible,
+#docs-shell .content .docs-tabs > [role="tabpanel"]:focus-visible {
+  outline: var(--coui-ring-width) solid rgb(var(--coui-focus-ring));
+  outline-offset: calc(var(--coui-ring-width) * -1);
+}
+#docs-shell .content .docs-tabs > [role="tabpanel"][hidden] { display: none; }
+#docs-shell .content .docs-tabs .docs-code { margin-top: 0; }
+/* 스크립트가 없는 문서에서는 탭을 바꿀 길이 없다 — 모든 패널을 이어서
+   보이고, 탭 막대 대신 패널마다 자기 이름을 단다. */
+@media (scripting: none) {
+  #docs-shell .content .docs-tabs > [role="tablist"] { display: none; }
+  #docs-shell .content .docs-tabs > [role="tabpanel"][hidden] { display: block; }
+  #docs-shell .content .docs-tabs > [role="tabpanel"]::before {
+    content: attr(aria-label);
+    display: block;
+    margin: var(--coui-space-16) 0 var(--coui-space-8);
+    color: rgb(var(--site-ink-subtle));
+    font-size: var(--coui-text-label-large-size);
+    font-weight: var(--coui-text-label-large-weight);
+    line-height: var(--coui-text-label-large-line-height);
+  }
+}
+
+/* 카드 묶음 — 나란히 놓는 짧은 설명들. 링크가 있으면 카드 전체가 링크다.
+   모양은 면 카드(`filled`), 선 카드(`outlined`), 숫자 카드(`--stat`), 미리보기를
+   단 카드(`--preview`)다. */
+.docs-cards {
+  display: grid;
+  grid-template-columns: repeat(var(--docs-cards-columns, 3), minmax(0, 1fr));
+  gap: var(--coui-space-16);
+  margin: var(--coui-space-16) 0;
+}
+.docs-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--coui-space-8);
+  min-width: 0;
+  padding: var(--coui-space-24);
+  border: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+  border-radius: var(--coui-radius-16);
+  background: rgb(var(--site-card));
+  transition:
+    border-color var(--site-duration-fast) var(--site-easing-move),
+    background-color var(--site-duration-fast) var(--site-easing-move);
+}
+a.docs-card:is(:hover, :focus-visible) { border-color: rgb(var(--site-line-strong)); background: rgb(var(--site-tile)); }
+/* 이름표의 서체는 그 안의 킷 `Text` 역할이 정한다(순번은 고정폭, 권장 · 금지는 본문 서체). */
+.docs-card-eyebrow { color: rgb(var(--site-ink-subtle)); }
+.docs-card-head { display: flex; align-items: center; justify-content: space-between; gap: var(--coui-space-8); }
+.docs-card-body {
+  color: rgb(var(--site-ink-muted));
+  font-size: var(--coui-text-body-medium-size);
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.docs-card-body > :first-child { margin-top: 0; }
+.docs-card-body > :last-child { margin-bottom: 0; }
+.docs-card-body :where(p) { margin: 0 0 var(--coui-space-8); }
+.docs-card-body :where(code) {
+  padding: 0.125em 0.375em;
+  border-radius: var(--coui-radius-4);
+  background: rgb(var(--site-tile));
+  color: rgb(var(--site-ink));
+  font-family: var(--coui-font-family-mono);
+  font-size: 0.875em;
+}
+/* 본문의 목록 — 가운뎃점으로 짧게 늘어놓는다. */
+.docs-card-body :where(ul) { display: grid; gap: var(--coui-space-4); margin: 0 0 var(--coui-space-8); padding: 0; list-style: none; }
+.docs-card-body :where(ul > li) { position: relative; padding-inline-start: var(--coui-space-12); }
+.docs-card-body :where(ul > li)::before { content: '·'; position: absolute; inset-inline-start: 0; color: rgb(var(--site-ink-subtle)); }
+.docs-card-body .docs-code { margin: var(--coui-space-8) 0; }
+.docs-card-more { display: inline-flex; align-items: center; gap: var(--coui-space-6); margin-top: auto; color: rgb(var(--site-ink)); }
+/* 링크는 밑줄이 말한다 — 미리보기 카드만 화살표를 단다. */
+.docs-card:not(.docs-card--preview) .docs-card-more {
+  text-decoration: underline;
+  text-decoration-thickness: from-font;
+  text-underline-position: from-font;
+}
+.docs-card--preview .docs-card-more { padding-top: var(--coui-space-8); }
+a.docs-card:is(:hover, :focus-visible) .site-arrow { transform: translateX(var(--coui-space-4)); }
+
+/* 면 카드 — 페이지의 첫 줄을 이끄는 카드(Figma 개요 · 색상 원칙). */
+.docs-card--filled { gap: var(--coui-space-10); border-radius: var(--coui-radius-20); background: rgb(var(--site-tile)); }
+a.docs-card--filled:is(:hover, :focus-visible) { background: rgb(var(--site-select)); }
+/* 선 카드 — 묶음 안의 이름과 짧은 목록. */
+.docs-card--outlined { padding: var(--coui-space-20); border-radius: var(--coui-radius-12); background: transparent; }
+/* 숫자 카드 — 큰 숫자, 그 아래 이름과 설명. */
+.docs-card--stat { gap: var(--coui-space-6); }
+.docs-card-value { display: block; }
+
+/* 권장 · 금지 — 종류는 글자 이름표가 말하고, 색은 그것을 거든다. 문서
+   페이지의 카드는 이름표의 색이, 미리보기 카드는 무대 아래 선이 거든다. */
+.docs-card--do:not(.docs-card--preview) .docs-card-eyebrow { color: rgb(var(--coui-success)); }
+.docs-card--dont:not(.docs-card--preview) .docs-card-eyebrow { color: rgb(var(--coui-error)); }
+.docs-card--preview.docs-card--do { border-color: rgb(var(--coui-success-container)); }
+.docs-card--preview.docs-card--dont { border-color: rgb(var(--coui-error-container)); }
+.docs-card--preview.docs-card--do .docs-card-eyebrow { color: rgb(var(--coui-on-success-container)); }
+.docs-card--preview.docs-card--dont .docs-card-eyebrow { color: rgb(var(--coui-on-error-container)); }
+
+/* 미리보기 무대 — 판 가운데에 컴포넌트를 놓는다(Figma `Doc/Stage`).
+   `<Preview>` · `<VariantRow>` · `<SizeSpec>` · 미리보기를 단 카드가 같이 쓴다.
+   바탕은 카드 흰색이고 경계는 옅은 선이다 — 회색 타일이면 같은 회색으로 채운
+   컴포넌트(트랙 · filled 입력 · 비활성 면)가 사라진다. 선은 `outline` 이다 —
+   `border` 는 무대 상자를 기준으로 놓는 구조 번호를 선 폭만큼 밀어낸다. */
+.docs-stage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--coui-space-16);
+  min-width: 0;
+  min-height: 140px;
+  margin: var(--coui-space-20) 0;
+  padding: var(--coui-space-32) var(--coui-space-24);
+  border-radius: var(--coui-radius-16);
+  background: rgb(var(--site-card));
+  outline: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+  outline-offset: calc(var(--coui-stroke-width-1) * -1);
+}
+.docs-stage--240 { min-height: 240px; }
+.docs-stage--340 { min-height: 340px; }
+.docs-stage--hug { min-height: 0; }
+.docs-stage--compact { min-height: 88px; margin: 0; padding: var(--coui-space-24) var(--coui-space-16); }
+.docs-stage--row { align-items: flex-end; gap: var(--coui-space-24) var(--coui-space-32); }
+
+/* Variant 행 — 왼쪽 무대, 오른쪽 이름과 설명. 행 사이는 가는 선. */
+.docs-variant-row {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--coui-space-24);
+  padding: var(--coui-space-16) 0;
+  border-bottom: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+}
+.docs-variant-name { color: rgb(var(--site-ink)); font-family: var(--coui-font-family-mono); font-size: var(--coui-text-body-medium-size); }
+.docs-variant-body { margin-top: var(--coui-space-6); color: rgb(var(--site-ink-muted)); font-size: var(--coui-text-body-medium-size); line-height: 1.6; word-break: keep-all; }
+.docs-variant-body > :first-child { margin-top: 0; }
+.docs-variant-body > :last-child { margin-bottom: 0; }
+
+/* 크기 무대 — 아래 끝을 맞춰 크기 사다리가 한눈에 보인다. */
+.docs-size-spec { margin: var(--coui-space-20) 0; }
+.docs-size-spec > .docs-stage { margin: 0 0 var(--coui-space-16); }
+#docs-shell .docs-size-item { display: flex; flex-direction: column; align-items: center; gap: var(--coui-space-12); margin: 0; }
+.docs-size-item figcaption { color: rgb(var(--site-ink-subtle)); font-size: var(--coui-text-label-small-size); }
+
+/* 미리보기를 단 카드 — 무대가 카드 위쪽을 채우고, 글은 그 아래. */
+.docs-card--preview { gap: 0; padding: 0; overflow: hidden; }
+/* 카드가 바깥 선을 이미 그린다 — 무대는 글과 나누는 아래 선만 갖는다. */
+.docs-card--preview > .docs-stage { margin: 0; border-radius: 0; outline: 0; border-bottom: var(--coui-stroke-width-1) solid rgb(var(--site-line)); }
+.docs-card--preview > :not(.docs-stage) { padding-inline: var(--coui-space-20); }
+.docs-card--preview > .docs-card-eyebrow,
+.docs-card--preview > .docs-card-head { padding-top: var(--coui-space-16); }
+.docs-card--preview > :last-child { padding-bottom: var(--coui-space-20); }
+.docs-card--preview.docs-card--do > .docs-stage { border-bottom: var(--coui-stroke-width-2) solid rgb(var(--coui-success)); }
+.docs-card--preview.docs-card--dont > .docs-stage { border-bottom: var(--coui-stroke-width-2) solid rgb(var(--coui-error)); }
+
+/* ── v2 head: platforms · source links ───────────────────────── */
+.docs-head-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--coui-space-12); margin-top: var(--coui-space-20); }
+.docs-head-platforms { display: flex; flex-wrap: wrap; gap: var(--coui-space-8); margin: 0; padding: 0; list-style: none; }
+.docs-head-platforms li { padding: var(--coui-space-4) var(--coui-space-10); border: var(--coui-stroke-width-1) solid rgb(var(--site-line-strong)); border-radius: var(--coui-radius-6); color: rgb(var(--site-ink)); font-size: var(--coui-text-label-medium-size); }
+.docs-head-links { display: flex; flex-wrap: wrap; gap: var(--coui-space-20); }
+.docs-head-links a { color: rgb(var(--site-ink)); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── Playground ──────────────────────────────────────────────── */
+.docs-playground { margin: var(--coui-space-20) 0; border: var(--coui-stroke-width-1) solid rgb(var(--site-line)); border-radius: var(--coui-radius-16); overflow: hidden; }
+.docs-playground-main { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; }
+/* 컨트롤이 없는 플레이그라운드 — 컨트롤 열 없이 무대가 폭을 다 쓴다. */
+.docs-playground-main.is-bare { grid-template-columns: minmax(0, 1fr); }
+/* 카드 바탕이다 — 회색 타일이면 같은 회색으로 채운 variant(secondary)가 사라진다. */
+.docs-playground-stage { position: relative; display: flex; flex-direction: column; min-height: 22rem; padding: var(--coui-space-16); background: rgb(var(--site-card)); }
+.docs-playground-platforms { align-self: flex-start; }
+.docs-playground-panes { flex: 1; display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; }
+.docs-playground-panes.is-both { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--coui-space-16); }
+.docs-playground-pane { display: flex; align-items: center; justify-content: center; min-width: 0; min-height: 12rem; }
+.docs-playground-pane.is-flutter { align-items: stretch; flex-direction: column; justify-content: center; }
+.docs-playground-pane.is-hidden { display: none; }
+/* 입력창처럼 폭을 채우는 컴포넌트가 무대 끝까지 늘어나지 않게 — Figma 무대의 미리보기 폭. */
+.docs-playground-pane:not(.is-flutter) > * { max-width: 20rem; }
+.docs-playground-controls { display: flex; flex-direction: column; gap: var(--coui-space-16); padding: var(--coui-space-20) var(--coui-space-16); border-left: var(--coui-stroke-width-1) solid rgb(var(--site-line)); background: rgb(var(--site-card)); }
+.docs-playground-control { display: flex; flex-direction: column; gap: var(--coui-space-8); }
+.docs-playground-control.is-flag { flex-direction: row; align-items: center; justify-content: space-between; }
+.docs-playground-inner > .docs-code { margin: 0; border-top: var(--coui-stroke-width-1) solid rgb(var(--site-line)); border-radius: 0; }
+
+/* ── Anatomy ─────────────────────────────────────────────────── */
+.docs-anatomy { margin: var(--coui-space-20) 0; }
+.docs-anatomy-stage { position: relative; margin: 0 0 var(--coui-space-16); }
+.docs-anatomy-marker { position: absolute; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 9999px; background: rgb(var(--site-ink)); color: rgb(var(--site-page)); font-size: var(--coui-text-label-small-size); font-weight: 600; transform: translate(-50%, -50%); }
+.docs-anatomy-marker::after { content: ''; position: absolute; background: rgb(var(--site-ink-subtle)); }
+.docs-anatomy-marker.is-top::after { top: 20px; left: 50%; width: 1px; height: 10px; }
+.docs-anatomy-marker.is-right::after { right: 20px; top: 50%; width: 14px; height: 1px; }
+.docs-anatomy-marker.is-left::after { left: 20px; top: 50%; width: 14px; height: 1px; }
+.docs-anatomy-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--coui-space-12); }
+.docs-anatomy-item { padding: var(--coui-space-16); border: var(--coui-stroke-width-1) solid rgb(var(--site-line)); border-radius: var(--coui-radius-12); }
+.docs-anatomy-item-head { display: flex; align-items: center; gap: var(--coui-space-8); margin-bottom: var(--coui-space-8); }
+.docs-anatomy-number { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 9999px; background: rgb(var(--site-ink)); color: rgb(var(--site-page)); font-size: var(--coui-text-label-small-size); font-weight: 600; }
+.docs-anatomy-item-head code { color: rgb(var(--site-ink)); font-family: var(--coui-font-family-mono); }
+.docs-anatomy-item-body { color: rgb(var(--site-ink-muted)); font-size: var(--coui-text-body-small-size); line-height: 1.6; word-break: keep-all; }
+.docs-anatomy-item-body p { margin: 0; }
+
+/* ── Note · Split ────────────────────────────────────────────── */
+.docs-note { display: flex; gap: var(--coui-space-12); margin: var(--coui-space-16) 0; padding: var(--coui-space-12) var(--coui-space-16); border-radius: var(--coui-radius-12); background: rgb(var(--site-tile)); color: rgb(var(--site-ink-muted)); font-size: var(--coui-text-body-small-size); line-height: 1.6; }
+.docs-note { align-items: baseline; }
+.docs-note > strong { flex: none; color: rgb(var(--site-ink)); }
+/* 본문의 문단 규칙이 노트 안까지 글자를 키우면 '참고' 와 높이 · 기준선이 갈린다. */
+#docs-shell .docs-note > .docs-note-body, #docs-shell .docs-note > .docs-note-body :where(p, li) { font-size: inherit; line-height: inherit; }
+.docs-note-body > :first-child { margin-top: 0; }
+.docs-note-body > :last-child { margin-bottom: 0; }
+.docs-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--coui-space-16); margin: var(--coui-space-16) 0; }
+.docs-split > * { margin: 0; min-width: 0; }
+
+/* ── Demos (scenes drawn around kit components) ──────────────── */
+.docs-demo-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--coui-space-8); }
+.docs-demo-dialog { display: flex; flex-direction: column; gap: var(--coui-space-20); width: min(100%, 22rem); padding: var(--coui-space-20); border-radius: var(--coui-radius-16); background: rgb(var(--site-card)); box-shadow: var(--shadow-lg); }
+.docs-demo-dialog-text { display: flex; flex-direction: column; gap: var(--coui-space-6); }
+.docs-demo-dialog-actions { display: flex; justify-content: flex-end; gap: var(--coui-space-8); }
+.docs-demo-phone { display: flex; flex-direction: column; justify-content: space-between; gap: var(--coui-space-24); width: 13.75rem; height: 17.5rem; padding: var(--coui-space-16); border-radius: var(--coui-radius-24); background: rgb(var(--site-card)); box-shadow: 0 0 0 1px rgb(var(--site-line)); }
+.docs-demo-phone-lines { display: flex; flex-direction: column; gap: var(--coui-space-8); }
+.docs-demo-phone-lines span { display: block; height: 8px; border-radius: 9999px; background: rgb(var(--site-select)); }
+.docs-demo-order { display: flex; flex-direction: column; gap: var(--coui-space-12); width: 100%; }
+.docs-demo-order ol { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--coui-space-24); margin: 0; padding: 0; list-style: none; counter-reset: none; }
+.docs-demo-order li { position: relative; display: flex; flex-direction: column; gap: var(--coui-space-6); min-height: 4.5rem; padding: var(--coui-space-12); border-radius: var(--coui-radius-8); background: rgb(var(--site-card)); color: rgb(var(--site-ink)); font-size: var(--coui-text-label-medium-size); font-weight: 600; word-break: keep-all; }
+.docs-demo-order li > span { color: rgb(var(--site-ink-subtle)); font-weight: 400; }
+.docs-demo-order li.is-strong { background: rgb(var(--site-ink)); color: rgb(var(--site-page)); }
+.docs-demo-order li.is-strong > span { color: rgb(var(--site-page) / 0.7); }
+.docs-demo-order li:not(:last-child)::after { content: '→'; position: absolute; right: calc(-1 * var(--coui-space-24) + 6px); top: 50%; transform: translateY(-50%); color: rgb(var(--site-ink-subtle)); font-weight: 400; }
+.docs-demo-states { display: grid; grid-template-columns: 5rem repeat(5, minmax(0, 1fr)); align-items: center; justify-items: center; gap: var(--coui-space-20) var(--coui-space-12); width: 100%; }
+.docs-demo-states > :nth-child(6n + 1) { justify-self: start; }
+.docs-demo-states > * { white-space: nowrap; }
+.docs-demo-states > code { color: rgb(var(--site-ink)); font-family: var(--coui-font-family-mono); }
+/* 실제 포커스 링과 같은 모양 — 버튼 요소 자신에 outline 을 그려, 링의
+   둥글기가 버튼 모서리 + 간격에서 나온다(킷의 링도 outline 이다). */
+.docs-demo-focus { display: inline-flex; }
+#docs-shell .docs-demo-focus > * { outline: var(--coui-ring-width) solid rgb(var(--coui-focus-ring)); outline-offset: var(--coui-ring-offset); }
+.docs-demo-field-states { display: grid; grid-template-columns: repeat(5, max-content); gap: var(--coui-space-12) var(--coui-space-12); justify-items: center; }
+.docs-demo-field-states > span { white-space: nowrap; }
+.docs-demo-stack { display: flex; flex-direction: column; align-items: flex-start; gap: var(--coui-space-8); width: 12rem; }
+.docs-demo-stack > :first-child { align-self: stretch; }
+.docs-demo-caption { display: flex; align-items: center; gap: var(--coui-space-16); }
+.docs-demo-caption code { display: block; margin-bottom: var(--coui-space-4); color: rgb(var(--site-ink)); font-family: var(--coui-font-family-mono); font-size: var(--coui-text-body-small-size); }
+
+/* 단계 — 번호, 제목, 그 아래 설명. 짧은 절차는 촘촘하고, 따라 하기
+   (`--large`)는 단계마다 코드 · 미리보기를 품어 넉넉하다. */
+.docs-steps {
+  display: grid;
+  gap: var(--coui-space-20);
+  margin: var(--coui-space-16) 0;
+  padding: 0;
+  list-style: none;
+}
+.docs-steps--large { gap: var(--coui-space-40); }
+.docs-step {
+  display: grid;
+  grid-template-columns: var(--coui-size-24) minmax(0, 1fr);
+  column-gap: var(--coui-space-14);
+  align-items: start;
+}
+.docs-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--coui-size-24);
+  height: var(--coui-size-24);
+  border-radius: var(--coui-radius-9999);
+  background: rgb(var(--coui-primary));
+  color: rgb(var(--coui-on-primary));
+}
+.docs-step-main { min-width: 0; }
+.docs-step-title { display: flex; align-items: center; min-height: var(--coui-size-24); margin-bottom: var(--coui-space-4); }
+.docs-steps--large .docs-step-title { margin-bottom: var(--coui-space-8); }
+.docs-steps:not(.docs-steps--large) .docs-step-body { font-size: var(--coui-text-body-medium-size); line-height: var(--coui-text-body-medium-line-height); }
+/* 본문 문단 규칙(`#docs-shell .content :where(p)…`)이 id 특이도로 이기므로
+   같은 특이도에서 끝 여백을 지운다 — 그러지 않으면 단계 사이가 문단 여백만큼 벌어진다. */
+#docs-shell .docs-step-body > :first-child { margin-top: 0; }
+#docs-shell .docs-step-body > :last-child { margin-bottom: 0; }
+
+/* ── 문서 도구 ─────────────────────────────────────────────────────
+   카탈로그 · 테마 도구 · 프리뷰 — 킷의 컴포넌트가 그리고, 이 규칙은 그
+   자리만 잡는다. */
+.catalog-tools { display: grid; gap: var(--coui-space-16); margin-bottom: var(--coui-space-32); }
+.catalog-categories, .site-theme-tool-actions, .site-theme-platforms { display: flex; flex-wrap: wrap; align-items: center; gap: var(--coui-space-8); }
+.catalog-result-bar { display: flex; justify-content: space-between; align-items: center; gap: var(--coui-space-12); }
+.catalog-tools p { margin: 0; }
+.catalog-categories [aria-pressed='true'], .site-theme-platforms [aria-pressed='true'] { outline: var(--coui-ring-width) solid rgb(var(--coui-focus-ring)); outline-offset: var(--coui-ring-offset); }
+.showcase-card[hidden], .showcase-group[hidden], .catalog-empty[hidden] { display: none; }
+.site-theme-tools { margin-bottom: var(--coui-space-24); }
+.site-theme-tools > summary, .preview-code-summary { cursor: pointer; padding: var(--coui-space-12) 0; }
+.site-theme-tools-content pre { margin: var(--coui-space-16) 0; padding: var(--coui-space-16); overflow-x: auto; background: rgb(var(--coui-surface-container)); color: rgb(var(--coui-on-surface)); border-radius: var(--coui-radius-8); font-family: var(--coui-font-family-mono); font-size: var(--coui-text-code-sm-size); line-height: 1.6; }
+.site-theme-tools-content [data-theme-status] { margin: var(--coui-space-8) 0 0; overflow-wrap: anywhere; }
+.preview-variant-controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--coui-space-12); margin-bottom: var(--coui-space-16); min-width: 0; }
+.preview-variant-tabs { overflow-x: auto; max-width: 100%; padding: var(--coui-space-4); }
+.preview-variant-tabs > * { min-width: max-content; }
+.preview-code-summary { padding-inline: var(--coui-space-16); color: rgb(var(--coui-on-surface-variant)); font-size: var(--coui-text-body-medium-size); }
+/* 프리뷰의 코드 패널은 어두운 면이다(highlight.js 의 어두운 팔레트). 본문의
+   글자색을 물려받으면 칠해지지 않은 글자가 그 면에 묻힌다. */
+#docs-shell .content .preview-code pre { color: rgb(231 234 235); }
+/* 코드가 갤러리를 넓히지 않고 그 안에서 스크롤한다. */
+#docs-shell .variant-gallery { grid-template-columns: repeat(auto-fit, minmax(min(100%, 18.75rem), 1fr)); }
+#docs-shell .variant-gallery--stacked,
+#docs-shell .preview-container--stacked { grid-template-columns: minmax(0, 1fr); }
+#docs-shell .variant-gallery-item { min-width: 0; }
+#docs-shell .component-source-links .source-link { color: rgb(var(--site-ink-muted)); border-color: rgb(var(--site-line)); }
+
+/* ── 포커스 ───────────────────────────────────────────────────── */
+.docs :is(.toc-link, .docs-mobile-toc > summary, .docs-skip-link, .site-drawer-tab, .version-switcher > summary, .version-switcher-item):focus-visible,
+#docs-shell .content :where(a):not(:where(.not-content, .not-content *)):focus-visible {
+  outline: var(--coui-ring-width) solid rgb(var(--coui-focus-ring));
+  outline-offset: var(--coui-ring-offset);
+  border-radius: var(--coui-radius-4);
+}
+
+/* ── 페이지 전환 ──────────────────────────────────────────────────
+   문서에서 문서로 옮길 때의 화면 전환은 킷의 앱 루트가 문서 머리에 싣는다 —
+   새 문서가 살짝 올라오며 나타나고, 뒤로 가면 떠나는 문서가 내려가며
+   사라진다. 사이트는 그 위에 이름 붙은 상자만 더한다. 머리글과 사이드바는
+   문서마다 같아서 새 본문이 올라오는 동안 제자리에 머물고, 지금 탭의 알약과
+   사이드바의 표지는 옛 자리에서 새 자리로 미끄러진다. 머리글과 사이드바의
+   이름은 전환이 도는 동안에만 준다 — 이름을 가진 상자는 그 안의 흐림이 상자
+   바깥을 읽지 못하게 막아서, 늘 주면 머리글의 흐림이 꺼진다(Chrome 에서 잼).
+   움직임을 줄여 달라는 요청에서는 이 전환을 아예 켜지 않는다. */
+@media (prefers-reduced-motion: no-preference) {
+  .site-tab-pill { view-transition-name: site-tab-pill; }
+  .docs-nav-mark { view-transition-name: docs-nav-mark; }
+  html:active-view-transition .site-gnb { view-transition-name: site-gnb; }
+  html:active-view-transition .docs-sidebar { view-transition-name: docs-sidebar; }
+  ::view-transition-group(site-tab-pill),
+  ::view-transition-group(docs-nav-mark) {
+    animation-duration: var(--site-duration-normal);
+    animation-timing-function: var(--site-easing-move);
+  }
+  /* 미끄러지는 동안 알약과 표지는 머리글 · 사이드바의 스냅숏 위층에 그려진다 —
+     전환 중의 층 순서는 문서 안의 순서가 아니라 이름 붙은 상자의 순서라, 그대로
+     두면 면이 지나가는 줄의 글자를 덮는다. 면을 그 아래의 그림과 섞어서 글자가
+     면 위에 남게 한다: 라이트에서는 면이 배경보다 어두우니 어두운 쪽을, 다크에서는
+     밝으니 밝은 쪽을 고른다. 글자는 두 경우 모두 면보다 진해서 그대로 보인다. */
+  ::view-transition-group(site-tab-pill),
+  ::view-transition-group(docs-nav-mark) { mix-blend-mode: darken; }
+  html[data-theme='dark']::view-transition-group(site-tab-pill),
+  html[data-theme='dark']::view-transition-group(docs-nav-mark) { mix-blend-mode: lighten; }
+}
+
+/* ── 등장 ─────────────────────────────────────────────────────────
+   본문의 묶음(카드 · 단계)은 화면에 들어올 때 차례로 올라온다. 숨김은
+   스크립트가 그 묶음을 맡았을 때(`.is-armed`)에만 걸리고, 스크립트는 아직
+   화면 아래에 있는 묶음만 맡는다 — 스크립트가 없거나 실패한 문서, 그리고
+   처음부터 보이던 묶음은 숨겨지는 순간이 없다. 한 묶음의 총합은 순번의
+   상한(`--site-stagger-last`)이 지킨다. */
+[data-docs-reveal].is-armed > * {
+  opacity: 0;
+  transform: translateY(var(--coui-space-12));
+}
+[data-docs-reveal].is-armed.is-in > * {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--site-duration-moderate) var(--site-easing-enter),
+    transform var(--site-duration-moderate) var(--site-easing-enter);
+  transition-delay: calc(min(var(--i, 0), var(--site-stagger-last)) * var(--site-stagger-step));
+}
+
+/* ── 폭 ───────────────────────────────────────────────────────── */
+@media (max-width: 1279px) {
+  .docs { --site-article-gutter: var(--coui-space-40); }
+  #docs-shell main { grid-template-columns: minmax(0, var(--site-article-width)); }
+  .docs-toc { display: none; }
+  .docs-mobile-toc {
+    display: block;
+    margin-bottom: var(--coui-space-32);
+    padding: 0 var(--coui-space-16);
+    border: var(--coui-stroke-width-1) solid rgb(var(--site-line));
+    border-radius: var(--coui-radius-12);
+  }
+  .docs-mobile-toc > summary {
+    padding: var(--coui-space-12) 0;
+    color: rgb(var(--site-ink));
+    font-size: var(--coui-text-label-large-size);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .docs-mobile-toc .toc-list { margin-bottom: var(--coui-space-12); }
+  .site-tools .docs-search-trigger { width: 12rem; }
+}
+/* 탭 다섯과 도구가 한 줄에 들어가지 않는 폭 — 검색은 돋보기만 남긴다.
+   이름은 `aria-label` 이 그대로 말한다. */
+@media (max-width: 1151px) {
+  .site-tools .docs-search-trigger {
+    width: var(--coui-size-36);
+    justify-content: center;
+    padding-inline: 0 !important;
+  }
+  .site-tools .docs-search-trigger > :not(svg, iconify-icon, .co-sidebar-search-wash, style) { display: none; }
+}
+@media (max-width: 1023px) {
+  .site-gnb-inner { padding-inline: var(--coui-space-16); }
+  .site-gnb .site-menu-button { display: inline-flex; }
+  .site-tabs { display: none; }
+  .site-brand { margin-inline-end: 0; }
+  .docs-frame { grid-template-columns: minmax(0, 1fr); }
+  .docs-nav-link { min-height: var(--coui-size-44); }
+  .docs-mobile-toc .toc-link { display: flex; align-items: center; min-height: var(--coui-size-44); }
+  .docs-mobile-toc .toc-link::before, .docs-mobile-toc .toc-link::after { inset-block: var(--coui-space-12); }
+  .docs-cards { grid-template-columns: repeat(min(var(--docs-cards-columns, 3), 2), minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .docs { --site-article-gutter: var(--coui-space-20); }
+  .docs-article { padding-top: var(--coui-space-32); padding-bottom: var(--coui-space-80); }
+  .docs-head { margin-bottom: var(--coui-space-40); }
+  .surface-style-switcher [data-style-trigger] { max-width: min(6.5rem, 100%); }
+  .docs-cards { grid-template-columns: minmax(0, 1fr); }
+  /* 좁은 폭 — 무대가 행 위로 올라가고, 크기 무대는 줄을 바꾼다. */
+  .docs-variant-row { grid-template-columns: minmax(0, 1fr); gap: var(--coui-space-12); }
+  .docs-playground-main { grid-template-columns: minmax(0, 1fr); }
+  .docs-playground-controls { border-left: 0; border-top: var(--coui-stroke-width-1) solid rgb(var(--site-line)); }
+  .docs-playground-panes.is-both { grid-template-columns: minmax(0, 1fr); }
+  .docs-split { grid-template-columns: minmax(0, 1fr); }
+  .docs-demo-order ol { grid-template-columns: minmax(0, 1fr); gap: var(--coui-space-12); }
+  .docs-demo-order li:not(:last-child)::after { content: none; }
+  .docs-demo-states { grid-template-columns: 4rem repeat(5, max-content); justify-items: start; width: max-content; }
+  .docs-stage:has(> .docs-demo-field-states) { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; }
+  .docs-stage:has(> .docs-demo-states) { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; }
+  .docs-playground-stage { min-height: 14rem; }
+  .docs-stage { padding: var(--coui-space-24) var(--coui-space-16); }
+  .docs-pager { grid-template-columns: minmax(0, 1fr); }
+  .docs-pager > span:empty { display: none; }
+}
+
+/* ── 색 강제 · 인쇄 ───────────────────────────────────────────── */
+/* 색을 강제하는 모드에서는 면과 막대가 사라진다 — 지금 자리는 밑줄이 말한다. */
+@media (forced-colors: active) {
+  .docs-nav-item[data-current] .docs-nav-link,
+  .site-tab[data-current] > a,
+  .toc-link.is-active { text-decoration: underline; }
+}
+@media print {
+  .site-gnb, .site-drawer, .docs-toc, .docs-mobile-toc, .docs-pager, .docs-skip-link { display: none; }
+  .docs-frame, #docs-shell main { display: block; }
+  .docs-article { padding: 0; }
+  [data-docs-reveal].is-armed > * { opacity: 1; transform: none; transition: none; }
+}
+
+/* Component families in the sidebar keep the parent link and disclosure distinct. */
+.docs-nav-family summary {
+  display: flex;
+  align-items: center;
+  gap: var(--coui-space-4);
+  padding-inline-end: var(--coui-space-8);
+  border-radius: var(--coui-radius-8);
+  cursor: pointer;
+  list-style: none;
+}
+.docs-nav-family summary::-webkit-details-marker { display: none; }
+.docs-nav-family summary:hover { background: rgb(var(--site-tile)); }
+.docs-nav-family summary > .docs-nav-family-root { position: relative; flex: 1; min-width: 0; }
+.docs-nav-family summary > iconify-icon { flex: none; }
+.docs-nav-family details[open] > summary > iconify-icon { transform: rotate(90deg); }
+.docs-nav-family details > ul { margin-inline-start: var(--coui-space-12); }
+.docs-nav-family-title { flex: 1; padding: var(--coui-space-6) var(--coui-space-12); }
+.docs-nav .docs-nav-overview { margin-block-end: var(--coui-space-24); }
+
+@media (max-width: 360px) {
+  .site-gnb-inner { padding-inline: var(--coui-space-8); }
+  .site-gnb-inner, .site-tools { gap: var(--coui-space-4); }
+  .version-switcher > summary { padding-inline: var(--coui-space-6); }
+}
+
+@media (forced-colors: active) {
+  .site-mark { forced-color-adjust: none; background-color: CanvasText; }
+  .site-brand .site-mark { background-color: LinkText; }
+}

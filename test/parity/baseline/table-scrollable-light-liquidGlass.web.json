@@ -1,0 +1,63 @@
+{
+  "key": "table-scrollable-light-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-scrollable-client-1::-webkit-scrollbar { width: var(--coui-stroke-width-8); height: var(--coui-stroke-width-8); }\n                  #co-scrollable-client-1::-webkit-scrollbar-track { background: rgb(var(--coui-surface-container)); border-radius: 0.25rem; }\n                  #co-scrollable-client-1::-webkit-scrollbar-thumb { background: rgb(var(--coui-on-surface) / 50%); border-radius: 0.25rem; }\n                  #co-scrollable-client-1::-webkit-scrollbar-corner { background: transparent; }\n                  #co-scrollable-client-1{outline-color:transparent;}:where(#co-scrollable-client-1){outline-style:solid;}#co-scrollable-client-1:focus-visible{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(4.0px - var(--coui-stroke-width-2));}\n                \n                \n                  \n                    1열\n                    2열\n                    3열\n                    4열\n                    5열\n                    6열\n                  \n                  \n                    1행 · 1열\n                    1행 · 2열\n                    1행 · 3열\n                    1행 · 4열\n                    1행 · 5열\n                    1행 · 6열\n                  \n                  \n                    2행 · 1열\n                    2행 · 2열\n                    2행 · 3열\n                    2행 · 4열\n                    2행 · 5열\n                    2행 · 6열\n                  \n                  \n                    3행 · 1열\n                    3행 · 2열\n                    3행 · 3열\n                    3행 · 4열\n                    3행 · 5열\n                    3행 · 6열\n                  \n                  \n                    4행 · 1열\n                    4행 · 2열\n                    4행 · 3열\n                    4행 · 4열\n                    4행 · 5열\n                    4행 · 6열\n                  \n                  \n                    5행 · 1열\n                    5행 · 2열\n                    5행 · 3열\n                    5행 · 4열\n                    5행 · 5열\n                    5행 · 6열\n                  \n                  \n                    6행 · 1열\n                    6행 · 2열\n                    6행 · 3열\n                    6행 · 4열\n                    6행 · 5열\n                    6행 · 6열\n                  \n                  \n                    7행 · 1열\n                    7행 · 2열\n                    7행 · 3열\n                    7행 · 4열\n                    7행 · 5열\n                    7행 · 6열\n                  \n                  \n                    8행 · 1열\n                    8행 · 2열\n                    8행 · 3열\n                    8행 · 4열\n                    8행 · 5열\n                    8행 · 6열\n                  \n                  \n                    9행 · 1열\n                    9행 · 2열\n                    9행 · 3열\n                    9행 · 4열\n                    9행 · 5열\n                    9행 · 6열\n                  \n                  \n                    10행 · 1열\n                    10행 · 2열\n                    10행 · 3열\n                    10행 · 4열\n                    10행 · 5열\n                    10행 · 6열\n                  \n                  \n                    11행 · 1열\n                    11행 · 2열\n                    11행 · 3열\n                    11행 · 4열\n                    11행 · 5열\n                    11행 · 6열\n                  \n                  \n                    12행 · 1열\n                    12행 · 2열\n                    12행 · 3열\n                    12행 · 4열\n                    12행 · 5열\n                    12행 · 6열",
+    "layout": {
+      "width": 800,
+      "height": 320,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 320
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "13px",
+      "lineHeight": "18px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(115, 116, 118)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "8px",
+      "borderTopRightRadius": "8px",
+      "borderBottomRightRadius": "8px",
+      "borderBottomLeftRadius": "8px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 320
+    }
+  }
+}

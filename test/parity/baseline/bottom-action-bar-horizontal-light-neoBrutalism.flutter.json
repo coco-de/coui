@@ -1,0 +1,55 @@
+{
+  "key": "bottom-action-bar-horizontal-light-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "bottom-action-bar-horizontal-light-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 16.0,
+      "lineHeightPx": 22.4,
+      "letterSpacingPx": -0.16,
+      "color": {
+        "r": 31,
+        "g": 32,
+        "b": 33,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 31,
+        "g": 32,
+        "b": 33,
+        "a": 1.0
+      },
+      "borderWidthPx": 4.0,
+      "borderRadiusPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 84.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

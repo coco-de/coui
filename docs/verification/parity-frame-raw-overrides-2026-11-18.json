@@ -1,0 +1,41 @@
+{
+  "issue": 6428,
+  "main": "3a85986a93e563c7b7ce033fc2c745f370de7453",
+  "productCommit": "8d9757637",
+  "validatedSourceHead": "49ea0ff2c449c504f022152e8694139e2e18b2bb",
+  "scope": [
+    "Web Frame clip priority",
+    "Web Frame in-domain fractional origin/image position"
+  ],
+  "apiChanged": false,
+  "coreNativeOrDesignDefaultsChanged": false,
+  "callerCssPriorityChanged": false,
+  "defaultRegisteredLightDarkFrames": 8,
+  "defaultPngAndRgbaExactBeforeAfter": true,
+  "tests": {
+    "new": 18,
+    "allWebFrame": 38,
+    "fatalDiagnostics": 0,
+    "formatChanges": 0,
+    "fullContractExit": 0,
+    "existingContractWarnings": 7
+  },
+  "docsO2Build": {
+    "exit": 0,
+    "seconds": 95.4,
+    "trackedDeltas": [],
+    "head": "49ea0ff2c449c504f022152e8694139e2e18b2bb"
+  },
+  "actualOwnedSsrVmReloadSucceeded": true,
+  "legacy174ReductionClaimed": false,
+  "outOfRangeClampChanged": false,
+  "existingRtlAlignmentInterpretationChanged": false,
+  "existingLimitations": [
+    "RTL Native AlignmentDirectional vs Web physical percentage interpretation is not repaired; 26 noncenter rows record that existing difference.",
+    "18 RTL clip PNG pairs have different temporary parent placement: Native physical topLeft versus Web normal-flow start. Resolved clip policy agrees in all 36 rows; strict PNG equality is claimed for the 18 LTR rows only.",
+    "Image+fill composition has an existing independent defect: Web omits background-color when backgroundImage is present; before/after source behavior is unchanged. Both raw image-position branches and the discrepancy are retained, without patching or concealing the fill.",
+    "The existing out-of-range Web clamp is retained; Native accepts such values but Core documents the supported normalized domain as -1..1."
+  ],
+  "evidenceRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6428-frame-proof-20261118.nul4o_xg",
+  "selectedRawImages": "selected-evidence8.json"
+}

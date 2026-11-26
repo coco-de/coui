@@ -1,0 +1,777 @@
+{
+  "issue": 6443,
+  "source": {
+    "base": "bad8ebdc8d2c512d216f00c98cb2064f97d51333",
+    "product": "774e80bd837bcf2d0e528214c22265e6b0fcf6be",
+    "branch": "fix/6443-element-roving-owner-20261119"
+  },
+  "scope": "stateless Tabs/ToggleGroup automatic roving owner IDs only; existing Element-scope helper; explicit IDs win",
+  "publicApiChanged": false,
+  "coreNativeChanged": false,
+  "designValuesChanged": false,
+  "callerCssChanged": false,
+  "structuralDomChanged": false,
+  "tests": {
+    "newRegressionTests": 4,
+    "oldSourceFails": 4,
+    "currentSourcePasses": 4,
+    "existingRelatedTestsPass": 160,
+    "ssrTargets": 30,
+    "beforeUnique": 24,
+    "afterUnique": 30,
+    "actualOptimizedKeyboardRows": 56,
+    "beforeCrossGroupFocusErrors": 10,
+    "afterFocusErrors": 0,
+    "afterActivationErrors": 0,
+    "keys": [
+      "ArrowRight",
+      "ArrowLeft",
+      "Home",
+      "End",
+      "ArrowDown/ArrowUp (ToggleGroup)",
+      "Enter",
+      "Space"
+    ],
+    "explicitGroups": 4,
+    "rebuild": "same Element retains owner when configuration/value changes",
+    "keyedRemount": "new Element gets new owner"
+  },
+  "checks": {
+    "fatalOwnedFiles": 5,
+    "fatalIssues": 0,
+    "formatFiles": 5,
+    "formatChanged": 0,
+    "contractsExit": 0,
+    "existingMetaWarnings": 7
+  },
+  "reload": {
+    "httpBefore": 200,
+    "httpAfter": 200,
+    "success": true,
+    "receivedLibraries": 0,
+    "newRequestNewElements": true,
+    "bothResponsesTargets": 30,
+    "bothResponsesUnique": 30,
+    "htmlByteExact": false,
+    "pidHttpVmClosed": true
+  },
+  "docsBuild": {
+    "status": "PASS_FRESH_RETRY",
+    "source": "774e80bd837bcf2d0e528214c22265e6b0fcf6be",
+    "pages": 359,
+    "optimize": 2,
+    "exit": 0,
+    "seconds": 104.232,
+    "trackedCount": 22560,
+    "trackedHashModeDeltas": [],
+    "gitClean": true,
+    "ownedGroupClosed": true,
+    "initialFailure": "ENOSPC snapshot and partial source-after JSON retained; not a pass"
+  },
+  "limits": [
+    "ToggleGroup public constructor still declares const, but the unchanged items.length assertion makes actual const invocation fail constant evaluation; repeated final configuration is tested instead. Tabs is actual repeated const.",
+    "Explicit duplicate caller IDs remain caller-owned; no rewrite of caller IDs.",
+    "Menu/Select/TabPane State-owned IDs untouched.",
+    "No fresh full816/full3814, native rendering, pixel parity or remaining234 reduction claim.",
+    "No assumption of server/client automatic ID equality or equality between new SSR requests. Element lifetime, not config identity, defines ownership.",
+    "Initial failures are preserved independently; the successful docs retry is fresh at product774e.",
+    "Explicit IDs and caller attributes are not normalized or rewritten; caller-supplied duplicate/reserved-name collisions are not resolved."
+  ],
+  "proofReferences": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/base.json",
+      "sha256": "a6ec2825653fd1a3fab65e95ddb085d6f3744d626eae4d6d62adc3fa8df37598",
+      "bytes": 332
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/pub-get.json",
+      "sha256": "a9e88e5502ef6c5e0cf55cb114d825bce7b82dcacbddaed5379fe73b1c367882",
+      "bytes": 371
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/source-protection.json",
+      "sha256": "9c594527334b1d2e9d093d302602e6a486a6e8d93de43c1966e429d0246dd07f",
+      "bytes": 1786
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/regression-summary.json",
+      "sha256": "cacf6283f56cdcda32d165e560677559e77305fd951bb9c149e1f8e386f78b83",
+      "bytes": 13794
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/before-package-config.json",
+      "sha256": "6ddffc23957d68db7621efbc21d5d70f4c032ab14e1854bf940624167d42ed94",
+      "bytes": 45489
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/before-browser-test.log",
+      "sha256": "a5336bda07d41f2573bdd64edca4295fa9723231b57f339feed8322fc7aaaef5",
+      "bytes": 5518
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/final-browser-receipt.json",
+      "sha256": "3a3bf50aae5f255911698cb25c46a1ef351b2574406943c181851812909d0682",
+      "bytes": 385
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/final-browser.log",
+      "sha256": "2c859348140b20092f270ad07aaec5f4b516da81579ed5a947401d20d10a98c8",
+      "bytes": 418
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/unit.log",
+      "sha256": "a86861e44868e60a8f1f56d13828c965e629b3535ad1a75ef5f96d8fa357a19e",
+      "bytes": 24173
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/fatal.log",
+      "sha256": "91f14706c39c12a0d3f56d0b82cb5680a90c6fc328981d9338c5d4de88724b03",
+      "bytes": 146
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/contracts-receipt.json",
+      "sha256": "ed2c79745ad6e5bdf5c9fc2e59e828685c50d0353b668b5ecc277c81e88b11b2",
+      "bytes": 280
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/contracts.log",
+      "sha256": "a9d58bb68c3d274bcfdbf8226416662d76385c999de2c75b11ae60d6fb98e3d7",
+      "bytes": 2553
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/format-receipt.json",
+      "sha256": "75096e9daf32bca0267448c03192eef28ef8926f7400da006e1fd37fa5788fb9",
+      "bytes": 717
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/format.log",
+      "sha256": "dd4701be149ea0ea302dbc675dbbc55acbd35bd19cd68e84799b1e14498e2d78",
+      "bytes": 47
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/debug-reload-proof.json",
+      "sha256": "4d94c21d403fa1675eb796b31de03f6efcbf84c63fde39ab5e5a4875c3336537",
+      "bytes": 97963
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/reload-proof.py",
+      "sha256": "5a2bbb1a106073c0f9195929a74a2fed8bd0ad3bbd117d5ce72f66e41686fd5d",
+      "bytes": 3142
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/debug-server.dart",
+      "sha256": "d54132f10798ba6dc77478b6e02fb0d2abd64d6031c5ee11b74fa5324f5857e2",
+      "bytes": 863
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/source-after-enospc-compact.json",
+      "sha256": "195e33ae49dec20aa061e4ed1629c1a8eef0ab93648a700829aace75d6f9efac",
+      "bytes": 261
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/enospc-cleanup.json",
+      "sha256": "9fb548a9d471c01705a46d3ed555dc722e6fedc3668176f6bc5c203e8105de9a",
+      "bytes": 475
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/docs-build.log",
+      "sha256": "e4e316e7af8c1307bd84c8b2d2bb5499ff2992554c1d4c69f34dfa56ee9b53dd",
+      "bytes": 11110
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/build-source-after.partial.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/docs-retry/build-process.json",
+      "sha256": "752aaf3615b4fdbb8c8ba2e80c8f0cbe7243444809f493c2bcf8cffbf0ae01cf",
+      "bytes": 807
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/docs-retry/docs-build.log",
+      "sha256": "c29fd871f94f70ef0e9663b420f1ac45378d4c3eab0ccd7776cf26a6e2457a62",
+      "bytes": 33139
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/docs-retry/build-source-before.json",
+      "sha256": "ed57060edaba1fbe8a68bae70dc4349e550d8a78483595e9c1333ae925d42086",
+      "bytes": 4666192
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/docs-retry/build-source-after.json",
+      "sha256": "ed57060edaba1fbe8a68bae70dc4349e550d8a78483595e9c1333ae925d42086",
+      "bytes": 4666192
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/docs-ui-records.json",
+      "sha256": "fa4a082b164f360d02728d4f47155c121ecf00ee964353b4d5b9abe72f68048e",
+      "bytes": 1721
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/docs-ui-owner.json",
+      "sha256": "fea25ff70a185d0b97b50bd15fab8c7432e8ccb49f8ac718aa3b92a90bd47724",
+      "bytes": 892
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/paint-preservation/comparison.json",
+      "sha256": "9c6ec31a4764befc1ff39cf49640b41e18b20ecdd150f0d1cb245a24328b7bd6",
+      "bytes": 1991
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/paint-preservation/owner.json",
+      "sha256": "51b62b983b5f50704555b5bed4cb28b8af7f20001c993ca3fb50c5e07d0dccb4",
+      "bytes": 598
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/initial-const-assert-test.log",
+      "sha256": "850aa97535059d71bf94c93819829abf73b60e33fe7946945b3b678af6078f3e",
+      "bytes": 3979
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/initial-fatal.log",
+      "sha256": "46d29323b95c730227856bd7d0c2a3028d82d5e361da4881f2fc95868a584249",
+      "bytes": 1923
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/initial-docs-ui-escaping.log",
+      "sha256": "c94fadd9a2ee2c6b40a1bdde1fe50c1e3908719b477031e24eb1d4ac80e60a8f",
+      "bytes": 5881
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/initial-docs-ui-escaping-owner.json",
+      "sha256": "6bc290a39a16ad44c8f5615ad295d9202e2bce9cf35b0ee120c0ac5085aa9179",
+      "bytes": 894
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/before-browser/browser.json",
+      "sha256": "53fa3a68c3b7221af8ab2b273d9f412e2e8ec7d51d9d339ba84bc6442739092a",
+      "bytes": 55
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/before-browser/cleanup.json",
+      "sha256": "d5a8cf2e74f9c5458e1c97ed852a240f66c98c782ff80a9bf447247a3fcb69f5",
+      "bytes": 128
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/before-browser/ssr-owners.json",
+      "sha256": "1d4e881c2a9af38954655de89c5f6e5a0d7b4e5774952b872a9d5cd955da2352",
+      "bytes": 1064
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/before-browser/tabs-keys.json",
+      "sha256": "37fd9a5fc8a70cf404f32625550c9705a53775982136d8ffbf02c7fad5a420e9",
+      "bytes": 9150
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/before-browser/toggle-keys.json",
+      "sha256": "cd8f25562c2e70a12b77fa1ed06806c7b44f88b8dc49966d052807adc18ff072",
+      "bytes": 23336
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/before-browser/lifetime.json",
+      "sha256": "48a0ed421fbec022fb5e955c4035c5080992edbad584ba604f0e2f5f596baf1c",
+      "bytes": 3543
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/before-browser/compilation.json",
+      "sha256": "5ed8545e40820a2ef2c1a210cd85fdf0dcd99f799843c198b7180b4121ca4cd2",
+      "bytes": 160
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/before-browser/work.json",
+      "sha256": "a60e3336581ec2eea2047284b665851c309edbb7fea0520497300f7349fbc44c",
+      "bytes": 89
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/final-browser/browser.json",
+      "sha256": "61aaf8b821ce548c8f12397b8b9bb6c332d1ba4acbaa5beffc543caca4a9ec6e",
+      "bytes": 55
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/final-browser/cleanup.json",
+      "sha256": "01ebb712b0f5fd7d95ca365c074e6e91342de4bc37e0ee2914eafb6db38836e2",
+      "bytes": 128
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/final-browser/ssr-owners.json",
+      "sha256": "929b88ff3180cdfbed6b2715f44fd9924930c5ab69d249572c24072ddfeb4973",
+      "bytes": 1046
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/final-browser/tabs-keys.json",
+      "sha256": "55d34875432b02d236d0b078cc27c79c1102bf60a91bebca958a58aed9e7faa2",
+      "bytes": 9128
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/final-browser/toggle-keys.json",
+      "sha256": "f7de05fd4bb06cc6d9bbafba73f0e364d600b094adcb6a1b4fb7db5162f8f658",
+      "bytes": 23312
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/final-browser/lifetime.json",
+      "sha256": "8879d4ca646edf329e7a8d3815fe1501dfdf302faf77f3faddd2006084d6daec",
+      "bytes": 3492
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/final-browser/compilation.json",
+      "sha256": "b81e3d026efca0ba4356bb69a512f368568d17a3566002de337fd554e68e9f51",
+      "bytes": 160
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/final-browser/work.json",
+      "sha256": "ffc3c8c54218645c898a95e4e28ba21a514a720bc4eff5e14a1d6d94be20785e",
+      "bytes": 89
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/coui-roving-owner-VeGWBh/ssr.html",
+      "sha256": "091897b8299084072652c9733d015cb5f37ef719ac08418a49681ae48a1bcf80",
+      "bytes": 602124
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/coui-roving-owner-VeGWBh/hydrated.html",
+      "sha256": "77f4f66904a5cfa7185deaaa3ed3f18155cab6071ed818f201965978c2744eaa",
+      "bytes": 602163
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/coui-roving-owner-VeGWBh/client.js",
+      "sha256": "d4b5dc8f9ee58178b247b9b043de5a01741f4531a8ae840330f1a4b4301f6909",
+      "bytes": 195619
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/coui-roving-owner-bE65OY/ssr.html",
+      "sha256": "1c9fe946a866b991612b9f70de6c3647783270a58e4707261311c88a2e3906ac",
+      "bytes": 602106
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/coui-roving-owner-bE65OY/hydrated.html",
+      "sha256": "81c0f158f01426f3fb9a982e115e6e008bb2bf3791b2cae814088cd6a83cc3ab",
+      "bytes": 602145
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/coui-roving-owner-bE65OY/client.js",
+      "sha256": "2a54eafbd97d91dc91a20e3d69970b9cd2bce3c1c812c1d0532109a1e4075374",
+      "bytes": 195976
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/paint-preservation/after-dark-hydrated.png",
+      "sha256": "772704f95770acf7215ef289e1558d790bb1ab208fa8257c65ac69e0a613b989",
+      "bytes": 29426
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/paint-preservation/after-dark-ssr.png",
+      "sha256": "5cb0c43451bf7d473a2b63415c49b5215307db27af0d06edb3063843a4015c34",
+      "bytes": 29574
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/paint-preservation/after-light-hydrated.png",
+      "sha256": "abcbc3914ec38241316b7784b061267a8d76d234128a0ffc41c96e5640ef92e8",
+      "bytes": 29514
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/paint-preservation/after-light-ssr.png",
+      "sha256": "31716bf352bede52bb3a717b324dca19da3e03538dc24a4a7dfdd45c95b43313",
+      "bytes": 29649
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/paint-preservation/before-dark-hydrated.png",
+      "sha256": "772704f95770acf7215ef289e1558d790bb1ab208fa8257c65ac69e0a613b989",
+      "bytes": 29426
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/paint-preservation/before-dark-ssr.png",
+      "sha256": "5cb0c43451bf7d473a2b63415c49b5215307db27af0d06edb3063843a4015c34",
+      "bytes": 29574
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/paint-preservation/before-light-hydrated.png",
+      "sha256": "abcbc3914ec38241316b7784b061267a8d76d234128a0ffc41c96e5640ef92e8",
+      "bytes": 29514
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/paint-preservation/before-light-ssr.png",
+      "sha256": "31716bf352bede52bb3a717b324dca19da3e03538dc24a4a7dfdd45c95b43313",
+      "bytes": 29649
+    }
+  ],
+  "builtSite": {
+    "routes": [
+      "/components/tabs/",
+      "/components/toggle-group/"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "refreshRecordsIncluded": true,
+    "records": 8,
+    "clientMarkersObserved": true,
+    "runtimeErrors": 0,
+    "consoleErrors": 0,
+    "failedRequests": 0,
+    "browserServerPidPortsClosed": true
+  },
+  "paintPreservation": {
+    "scope": "same authored initial fixture, before bad8 copied package vs after774e; light/dark x SSR/O2",
+    "pairs": 4,
+    "originalPngFiles": 8,
+    "pngByteExactPairs": 4,
+    "rgbaExactPairs": 4,
+    "computedGeometrySemanticsRoleRows": 120,
+    "allRoleRowsExact": true,
+    "canonicalMatrix": false,
+    "imageFilesEdited": false
+  },
+  "initialNegatives": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/initial-const-assert-test.log",
+      "classification": "fixture requested existing-unusable ToggleGroup const invocation; existing constructor/assert preserved; final fixture reuses same final object"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/initial-fatal.log",
+      "classification": "initial fixture/test-only lint findings; all corrected, final fatal5 zero"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/docs-build.log",
+      "classification": "initial docs build ENOSPC; driver could not finish source-after JSON; compact22560 recheck is exact; fresh retry pass separate"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/initial-docs-ui-escaping.log",
+      "classification": "temporary diagnostic Dart quoting error before browser launch; server closed; corrected script final pass"
+    }
+  ],
+  "commands": {
+    "bootstrap": [
+      "flutter",
+      "pub",
+      "get",
+      "--offline",
+      "--enforce-lockfile",
+      "--no-example"
+    ],
+    "regression": [
+      "dart",
+      "test",
+      "tool/parity/test/web/roving_owner_probe_test.dart",
+      "--reporter",
+      "expanded"
+    ],
+    "negative": "same four logical regressions run with before-package-config.json: coui_web lib copied from bad8 exact; old source four failures retained",
+    "unit": [
+      "dart",
+      "test",
+      "packages/coui_web/test/base/roving_focus_test.dart",
+      "packages/coui_web/test/components/navigation/tablist_keyboard_test.dart",
+      "packages/coui_web/test/components/navigation/tabs_test.dart",
+      "packages/coui_web/test/components/navigation/tabs_close_test.dart",
+      "packages/coui_web/test/components/navigation/tabs_scrollable_test.dart",
+      "packages/coui_web/test/components/control/toggle_group_test.dart",
+      "packages/coui_web/test/components/a11y_duplicate_and_name_test.dart",
+      "packages/coui_web/test/components/a11y_wiring_test.dart",
+      "packages/coui_web/test/components/infra/clickable_focus_ring_test.dart",
+      "packages/coui_web/test/components/infra/focus_outline_style_test.dart",
+      "packages/coui_web/test/components/focus_ring_band_test.dart",
+      "--reporter",
+      "expanded"
+    ],
+    "fatalAndFormat": "five changed Dart files, --fatal-infos / --set-exit-if-changed",
+    "guard": [
+      "bash",
+      "scripts/guards/resolver/verify_contracts.sh"
+    ],
+    "docsBuild": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "--packages=/tmp/weever-6345-optimized-20261117/cli-tool/.dart_tool/package_config.json",
+      "/Users/minhyeok/.pub-cache/hosted/pub.dev/jaspr_cli-0.24.0-beta.1/bin/jaspr.dart",
+      "build",
+      "--optimize=2",
+      "--port=59976"
+    ],
+    "reload": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "--enable-vm-service=0/127.0.0.1",
+      "--disable-service-auth-codes",
+      "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/worktree/.dart_tool/package_config.json",
+      "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/debug-server.dart"
+    ]
+  },
+  "sdk": {
+    "officialFlutter": "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin",
+    "jasprCli": "0.24.0-beta.1 approved package config",
+    "globalChanges": false
+  },
+  "evidenceReuse": {
+    "freshAtProduct774e": [
+      "SSR/O2 final4 regressions",
+      "docs359",
+      "built-site8 records",
+      "VM reload",
+      "before/after fixture paint4pairs"
+    ],
+    "unchangedProductSource": "160 existing tests and final fatal/format check were run against exactly the same product file bytes prior to local product commit; source-protection binds hashes",
+    "nativeAndGlobalMatrix": "not rerun, no result promoted"
+  },
+  "unitExecution": {
+    "toolExecSession": 68046,
+    "observedToolExit": 0,
+    "tests": 160,
+    "logSha256": "a86861e44868e60a8f1f56d13828c965e629b3535ad1a75ef5f96d8fa357a19e"
+  },
+  "fatalExecution": {
+    "toolExecSession": 9886,
+    "observedToolExit": 0,
+    "ownedFiles": 5,
+    "issues": 0
+  },
+  "integrationRechecks": [
+    {
+      "mainIncluded": "0a23b3cc9832beef730c01330b6fee2c832ecef6",
+      "mergeSourceHead": "6e056953ffcea3a174167d3a40edcbf9a46cccfa",
+      "originalRovingProduct": "774e80bd837bcf2d0e528214c22265e6b0fcf6be",
+      "pr": 6445,
+      "method": "Root ordinary merge of origin/main; this integration commit changes docs only",
+      "ownProductPathsComparedWithMain": [
+        "packages/coui_web/lib/src/components/control/toggle_group/toggle_group.dart",
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs.dart"
+      ],
+      "ownProductHashExactTo774e": {
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs.dart": "f7b9dc3b84b6bd313ace7df85f93a8a7275c755c9319047f67025c6192999e04",
+        "packages/coui_web/lib/src/components/control/toggle_group/toggle_group.dart": "b628ab8e72b150312e8fa6f3ee460b065f4021957f52b4fd4184bb84a6defa25"
+      },
+      "checksFreshAtMergeHead": {
+        "focused160": {
+          "exit": 0,
+          "casesOrFiles": 160,
+          "seconds": 2.1933181250000002,
+          "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/focused160-receipt.json"
+        },
+        "browser4": {
+          "exit": 0,
+          "casesOrFiles": 4,
+          "seconds": 6.279655084000001,
+          "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser4-receipt.json"
+        },
+        "opacity6": {
+          "exit": 0,
+          "casesOrFiles": 6,
+          "seconds": 3.463708917,
+          "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/opacity6-receipt.json"
+        },
+        "loading47": {
+          "exit": 0,
+          "casesOrFiles": 47,
+          "seconds": 1.408298875,
+          "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/loading47-receipt.json"
+        },
+        "opacityUnit1": {
+          "exit": 0,
+          "casesOrFiles": 1,
+          "seconds": 1.2936811250000002,
+          "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/opacityUnit1-receipt.json"
+        },
+        "fatal5": {
+          "exit": 0,
+          "casesOrFiles": 5,
+          "seconds": 28.928150125000002,
+          "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/fatal5-receipt.json"
+        },
+        "format5": {
+          "exit": 0,
+          "casesOrFiles": 5,
+          "seconds": 0.30212758399999995,
+          "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/format5-receipt.json"
+        }
+      },
+      "keyboard": {
+        "actualO2KeyRows": 56,
+        "focusErrors": 0,
+        "activationErrors": 0,
+        "ssrTargets": 30,
+        "ssrUnique": 30,
+        "rebuildOwnerStable": true,
+        "keyedRemountNewOwner": true
+      },
+      "docsBuildFresh": {
+        "routes": 359,
+        "optimize": 2,
+        "exit": 0,
+        "seconds": 81.545,
+        "trackedFiles": 22567,
+        "hashModeDeltas": 0,
+        "sourceHead": "6e056953ffcea3a174167d3a40edcbf9a46cccfa",
+        "gitClean": true,
+        "groupClosed": true,
+        "previousBuildPreserved": {
+          "from": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/worktree/docs_site/build",
+          "to": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/previous-docs-build",
+          "method": "same-volume rename; no deletion"
+        }
+      },
+      "builtRuntimeFresh": {
+        "routes": [
+          "tabs",
+          "toggle-group"
+        ],
+        "themes": [
+          "light",
+          "dark"
+        ],
+        "recordsIncludingRefresh": 8,
+        "runtimeErrors": 0,
+        "consoleErrors": 0,
+        "failedRequests": 0,
+        "browserServerPidPortsClosed": true
+      },
+      "ssrReloadFresh": {
+        "success": true,
+        "httpBefore": 200,
+        "httpAfter": 200,
+        "targetsAndUniqueEach": 30,
+        "receivedLibraries": 0,
+        "pidHttpVmClosed": true,
+        "newRequestNewOwnerHtmlByteExact": false
+      },
+      "originalDocsPreserved": [
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6443-integration-20261119.y84om0rw/original-roving-docs/parity-element-roving-owners-2026-11-19.md",
+          "sha256": "b3815bc50fd8f30922cd7c4ae7b3b870861d2c2fcbc222751a896a0bea2309eb"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6443-integration-20261119.y84om0rw/original-roving-docs/parity-element-roving-owners-2026-11-19.json",
+          "sha256": "1f10ba47862685fc0844ed146320399609b096e931c05afeed78b218a8835d68"
+        }
+      ],
+      "reuseBoundary": "Original 774e failure/paint PNG4pair/guard receipts stay bound to774e and are not relabeled fresh at6e. The six opacity probes and47 Loading tests specifically validate inherited ThemeConfig opacity changes. No additional global816/3814/Native/parity reduction claim.",
+      "proofReferences": [
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/source-before.json",
+          "sha256": "9d870ce4cac9883470720837c91e1bc4da3baa790e7e35e9d56cc3ddc0828bf5"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/original-docs-preserved.json",
+          "sha256": "b2d3d352eb47ddfcc4c92c2ad74f9dad65d94ada683c44e098dd2f1ac426e3e8"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/focused160-receipt.json",
+          "sha256": "7bafd569db7afe7c5745aaf8f6286a99de065e670178b130824bff0b5a1ed6fa"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/focused160.log",
+          "sha256": "1a415728eb6a13512291429514f6f028f85510ee407a8526ffb7fa3428c13a56"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser4-receipt.json",
+          "sha256": "65e4fbb598254515e4f591862e23f2c178cc76131ca6f805f1e0bc31286313b8"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser4.log",
+          "sha256": "4d889831b3b2b6d391dbb2582fa60e9d5666c1c93842cde1acf8d8ed64cb5a59"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/opacity6-receipt.json",
+          "sha256": "a5bea64b290e1ff94051099bcbe79278c9cc05c298440392493ccc243ba6da01"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/opacity6.log",
+          "sha256": "9b1a973cdd42212f4fd601d67a3cf4f94f14c91bc2452a34532d49fab3d950d5"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/loading47-receipt.json",
+          "sha256": "5467552838996b589865ed5db8fb5c08ac6899bfbcbf3929931ce090f00db3c9"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/loading47.log",
+          "sha256": "acdcdf27ed96a636ef8aaff93e2dd6d1d30a060b0f6ed40d615e94e7c5cf31be"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/opacityUnit1-receipt.json",
+          "sha256": "918ae083b59436069b31738766eb1cdde960cdc6750c01d97e15ae1d8c1f3ff2"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/opacityUnit1.log",
+          "sha256": "04b514fe73fd35e176338624bbae16668b4d41731ccbd02b901e734ea1275c7c"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/fatal5-receipt.json",
+          "sha256": "310148dcdc868628ff7ba818b124dbda0ba32ec4c44b52802817bd38f5da41b1"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/fatal5.log",
+          "sha256": "91f14706c39c12a0d3f56d0b82cb5680a90c6fc328981d9338c5d4de88724b03"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/format5-receipt.json",
+          "sha256": "d90daecd2d9de1346cfc83ebd6452744b15476100d0ca5ba0c9374e92826a46e"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/format5.log",
+          "sha256": "dd4701be149ea0ea302dbc675dbbc55acbd35bd19cd68e84799b1e14498e2d78"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/build-process.json",
+          "sha256": "31cc49e53ee6b8b79fb97e8a97b4007510e552b0456429220a43889f79f3feba"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/build-preserved.json",
+          "sha256": "1d196d47db5bafb139d694cb2f1b8b3177340ced882a7f98af4434f8f829a3e9"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/docs-build.log",
+          "sha256": "196c829b80aea728b3c4cd8774f229ac8e4742d3b7d9bef2c82f8e46ecc2e38a"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/build-source-before.json",
+          "sha256": "788fe6ed81da35a58c171c55b4b04f9133a820a6317adf82547c5c0a3fa2fd3a"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/build-source-after.json",
+          "sha256": "788fe6ed81da35a58c171c55b4b04f9133a820a6317adf82547c5c0a3fa2fd3a"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/docs-ui-records.json",
+          "sha256": "958b9ae2c0499332ad5e82b101cf592eb0262bd7b1cdc8e9a62d32b42452fceb"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/docs-ui-owner.json",
+          "sha256": "c9c9c4f87e465fba0ef27ba904fb00d94250364601592876c3a8322b66f2f5cd"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/debug-reload-proof.json",
+          "sha256": "e2754869a3ac24599fe3c1b4e58efdc05eedce2078eda46b17d5dfbb74b118cc"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser/browser.json",
+          "sha256": "774624382c5bff0cb78302d6adea4f237894063282cccdef934ea5dfb38d9651"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser/cleanup.json",
+          "sha256": "7a8e2ceb7e696c4de1b4b5a8e61f589755bf15bb4e63e5ec1a02fb6c5db33c99"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser/work.json",
+          "sha256": "5643fcc23b7fa3507d37fc30f422e6686009e2b57bea8608298154384eb948c6"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser/compilation.json",
+          "sha256": "a79add8db3dd6afa03858c6b01f1413457ed4c60285179a9d59c70be59aef6e6"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser/ssr-owners.json",
+          "sha256": "929b88ff3180cdfbed6b2715f44fd9924930c5ab69d249572c24072ddfeb4973"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser/tabs-keys.json",
+          "sha256": "55d34875432b02d236d0b078cc27c79c1102bf60a91bebca958a58aed9e7faa2"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser/toggle-keys.json",
+          "sha256": "f7de05fd4bb06cc6d9bbafba73f0e364d600b094adcb6a1b4fb7db5162f8f658"
+        },
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-roving-owner-fix-20261119.8pynk_cn/integration-0a23/browser/lifetime.json",
+          "sha256": "8879d4ca646edf329e7a8d3815fe1501dfdf302faf77f3faddd2006084d6daec"
+        }
+      ]
+    }
+  ]
+}

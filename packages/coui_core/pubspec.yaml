@@ -1,0 +1,47 @@
+name: coui_core
+description: >
+  Platform-independent design tokens and component contracts for CoUI.
+  Supports CoUI Web, M3 Expressive, and Liquid Glass design systems.
+version: 0.192.0
+homepage: https://coui.cocode.im/
+repository: https://github.com/coco-de/coui/tree/main/packages/coui_core
+issue_tracker: https://github.com/coco-de/coui/issues
+topics:
+  - design-system
+  - design-tokens
+  - ui-components
+  - coui-ui
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+
+resolution: workspace
+
+dependencies:
+  # Grapheme clusters for `CoreKeepAll` — a word joiner placed by code
+  # point would split a combining sequence or a jamo-built syllable. Flutter
+  # already depends on this package, so the workspace solve is unchanged.
+  characters: ^1.4.1
+  # `CoreCalendarView.currentTime` reads `clock.now()` so a test or a capture
+  # harness can fix the date a calendar treats as today with `withClock`.
+  # flutter_test's fake clock already depends on this package, so the
+  # workspace solve is unchanged.
+  clock: ^1.1.2
+  collection: ^1.19.1
+  expressions: ^0.2.5+2
+  meta: ^1.18.3
+  # Pure-Dart country dataset (name / ISO code / dial code) — the shared
+  # source for `CoreCountry.all` so Web and Flutter list the same 247
+  # countries. Flutter already depends on this package.
+  phonecodes: ^0.0.4
+
+dev_dependencies:
+  # The repository's Figma exporter in bin/ reads Core style declarations.
+  # The package archive excludes the exporter.
+  analyzer: ">=13.3.0 <15.0.0"
+  lint: any
+  # `FeatureSet.fromEnableFlags2` takes a `Version` — the readers pin the
+  # language version the kit sources are written in (`parse_source.dart`).
+  pub_semver: any
+  test: any
+  very_good_analysis: any

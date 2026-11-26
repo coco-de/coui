@@ -1,0 +1,296 @@
+{
+  "codeSource": "b121bf0acc0f93db5a30aff2034a3b3a23dc3039",
+  "base": "b7567dd036adba08e4b7675fd451dabb825270a4",
+  "originalReproductionAndPaintSource": "98d052061b102bd08897d40096a7b14278b35431",
+  "issues": [
+    6574,
+    6575
+  ],
+  "epic": 6131,
+  "packetRoot": "/Users/minhyeok/orca/artifacts/coui/weever-deferred-owner-lifetime-1h6akysa",
+  "constraints": {
+    "publicAPICoreStyleDefaultsChangedByOwnPR": false,
+    "guardLocations": 3,
+    "mechanicalTouchedFileLintCleanup": true,
+    "sameFixturesAndAssertions": true,
+    "criteriaProbeComparatorAllowlistBaselineEdits": 0,
+    "draftPR": false
+  },
+  "functional": {
+    "NativeOriginalImmutableExternal4": {
+      "before": [
+        3,
+        1
+      ],
+      "after": [
+        4,
+        0
+      ]
+    },
+    "NativeRepoPortAndExisting": {
+      "pass": 21,
+      "repoPort4DuplicatesExternal4LogicalScenarios": true,
+      "existing": 17
+    },
+    "CoreRefreshStyleNativeExecution": {
+      "pass": 19
+    },
+    "WebEgoNativeNode": {
+      "before": [
+        5,
+        2
+      ],
+      "after": [
+        7,
+        0
+      ]
+    },
+    "WebRelatedUnitExecution": {
+      "pass": 33,
+      "includesCore19AlsoRunSeparatelyByNative": true
+    },
+    "WebSSR": {
+      "pass": 2
+    },
+    "WebO2Compile": {
+      "exitCodes": [
+        0,
+        0
+      ]
+    },
+    "DartPuppeteerBrowserSuiteExecutedThisCandidate": false,
+    "format": {
+      "files": 10,
+      "changed": 0
+    },
+    "fatalInfos": {
+      "NativeProductAndRepoTestFiles": 2,
+      "WebProductFiles": 2,
+      "WebFixtureAndDriverFiles": 6,
+      "finalExitCodes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "reload": {
+      "actualScope": "owned Jaspr SSR Dart VM; both Web target libraries loaded",
+      "reloadSourcesSuccess": true,
+      "HTTPBeforeAfter": [
+        200,
+        200
+      ],
+      "targetRootsAndChildMarkers": [
+        2,
+        2
+      ],
+      "browserClientOrNativeHotReloadClaim": false
+    }
+  },
+  "paint": {
+    "manifestAll": 18,
+    "manifestDefault": 4,
+    "freshNativeBeforeAfter": [
+      4,
+      4
+    ],
+    "freshEgoBeforeAfter": [
+      4,
+      4
+    ],
+    "all8PNGByteExactBeforeAfter": true,
+    "Native4JSONByteExactBeforeAfter": true,
+    "Web4RectClipRootHTMLExactBeforeAfter": true,
+    "WebBackend": "Ego Lite native TaskSpace17/p1, Chromium156.0.0.0, actual viewport800x1200/DPR1; metrics restored",
+    "WebScope": "canonical SSR HTML/fonts/icons/freeze/box-root probes, PNG pixel signal only; separate live O2 lifecycle fixtures above",
+    "softwareRasterVerified": false,
+    "computedPropertyCollection": false,
+    "historicalChrome150FullSweepRelabeled": false
+  },
+  "pixelReports": {
+    "unchangedCommittedBaselineSource": "98d052061b102bd08897d40096a7b14278b35431",
+    "baselineBlobsAll8UnchangedAtCodeHead": true,
+    "beforeAndAfterKeyRoleCounts": [
+      0,
+      4,
+      0,
+      0
+    ],
+    "beforeAndAfterPlatformCells": {
+      "NativePass": 4,
+      "WebFail": 4
+    },
+    "baselineMatrixBeforeAfterExact": true,
+    "baselineActualExitBeforeAfter": [
+      1,
+      1
+    ],
+    "crossPlatformPixelKeyRoleCounts": [
+      4,
+      0,
+      0,
+      0
+    ],
+    "crossPlatformActualExit": 0,
+    "failureWaiversOrPromotion": 0,
+    "failureCauseAttribution": null,
+    "candidateNewPaintChange": false
+  },
+  "actualDocsBuild": {
+    "source": "b121bf0acc0f93db5a30aff2034a3b3a23dc3039",
+    "cli": "0.24.0-beta.1",
+    "SDK": "Flutter3.50.0/Dart3.14.0",
+    "exit": 0,
+    "seconds": 103.34500374999999,
+    "SSRRoutes": 366,
+    "JasprHTML": 368,
+    "totalHTMLIncludingFlutter": 370,
+    "all25013TrackedFilesExact": true,
+    "metadata232EffectiveRootsVersionsAllPackageFieldsGraphEdgesAndLockExact": true,
+    "rawConfigURIRepresentationChanged": 19,
+    "automaticRootAndExamplePubPreflightObserved": true,
+    "directWorkerProjectPubCommands": 0,
+    "totalPubOrDownloadZeroClaim": false,
+    "wholeBuildRetained": false,
+    "representativeHTMLRetained": 3
+  },
+  "limits": [
+    "Static own-baseline Web4 FAIL already occurs in the actual unpatched before control, remains FAIL after, and is not waived. Different browser/raster from historical Chrome150 is disclosed without assigning a cause.",
+    "Live seven browser scenarios ran with native Ego Node assertions, not the Dart Puppeteer browser driver.",
+    "Same-platform PNG equality and comparator crosspixelPASS do not claim exact cross-platform pixels; SSR ScrollableClient label0x0 differs from Native800x320.",
+    "Full default834/606PASS228FAIL remains historical sourceb2a4/Chrome150, not a currentmain or Ego full remeasurement.",
+    "No Figma/design-system change or external designer approval claim."
+  ],
+  "refs": [
+    {
+      "path": "ownership.json",
+      "bytes": 1573,
+      "sha256": "8b7ebb36cbbc3d51ec66819cd2a05d1e0e37a1fb91413858ea0a26f508431a02"
+    },
+    {
+      "path": "evidence/Root/main-integration.json",
+      "bytes": 18585,
+      "sha256": "09cf5edd08ee43da0921974d49419f4308cc6290b5e8609cf2ad6a1375c2efe5"
+    },
+    {
+      "path": "evidence/Root/candidate-product-freeze.json",
+      "bytes": 2727,
+      "sha256": "9726201d8d17d496701909323ce8cb857f03b34e7b96c56311d2ab806a89a7f8"
+    },
+    {
+      "path": "evidence/Native/original-handoff.json",
+      "bytes": 13506,
+      "sha256": "fd590be9fd48b60378f51319d3f452760791ef7d0b5df85b8d938cd641d96cb8"
+    },
+    {
+      "path": "evidence/Web/original-ego-handoff.json",
+      "bytes": 6478,
+      "sha256": "15beec75ca1a8535d36ff5f60717370ea40422941863f5c041fbd5a9e98c4ab5"
+    },
+    {
+      "path": "evidence/Native/canonical-before/before-handoff.json",
+      "bytes": 9747,
+      "sha256": "b462ba70abb906dda986259aa4c0f0cf58a4c14df0666f5d66d1d353b42a5b44"
+    },
+    {
+      "path": "evidence/Web/ego-canonical-before-attempt2/handoff.json",
+      "bytes": 3475,
+      "sha256": "0952b5182d028b95580480d8c881d8380148af3f34c113209e64fde7e6f5e040"
+    },
+    {
+      "path": "evidence/Native/candidate-handoff.json",
+      "bytes": 6118,
+      "sha256": "17122c053d61c859056037447eb2ebf79c6b3403c19a145598debe01bf9344ec"
+    },
+    {
+      "path": "evidence/Web/final-web-handoff.json",
+      "bytes": 5635,
+      "sha256": "3f7cf38c6034fa05554ec9bed0e1af12689b3095f3f04ff29e7caf6ae24a07bc"
+    },
+    {
+      "path": "evidence/Web/ego-canonical-before-after.json",
+      "bytes": 3666,
+      "sha256": "13b9bba9117bda1d54d5c47175f68d14aa81749704fc68fae43ccc64c1634de2"
+    },
+    {
+      "path": "evidence/Root/pixel-reports/inputs.json",
+      "bytes": 6962,
+      "sha256": "f34f698393579f6a7225568cde4ce2e67807ba07c2d7b294ff19b3e4a67ac8ce"
+    },
+    {
+      "path": "evidence/Root/pixel-reports/summary.json",
+      "bytes": 5220,
+      "sha256": "b6d91ef5b4bf2e529f0b6591143046875bcc406f63b2a881bb29588d8315b496"
+    },
+    {
+      "path": "evidence/Root/pixel-reports/baseline-before-report.json",
+      "bytes": 917,
+      "sha256": "e53a710bdd17c865ff55cdbce251f5302cc7a355c4936ebef61b79985a912041"
+    },
+    {
+      "path": "evidence/Root/pixel-reports/baseline-after-report.json",
+      "bytes": 917,
+      "sha256": "6e3b49447b6ccbbd795bc00c1258f0fa2e0c20fb4d5c3a3bd2ff785fbd6cf491"
+    },
+    {
+      "path": "evidence/Root/pixel-reports/cross-after-report.json",
+      "bytes": 917,
+      "sha256": "28a3272c6755e5744058b8a5ad78e1546e6ff1a9f4c3b97505101f16407b7e07"
+    },
+    {
+      "path": "evidence/Root/docs-final/exit.json",
+      "bytes": 652,
+      "sha256": "8ffb4d46f89e49b546b9fa5ac8bea15fddbfbff6647047af1681e3d3d8a394ca"
+    },
+    {
+      "path": "evidence/Root/docs-final/output-index.json",
+      "bytes": 974778,
+      "sha256": "260339aab6d843cf39654d14802a22032ac8128c7f5e7cd80b236bab16ff8ade"
+    },
+    {
+      "path": "evidence/Root/docs-final/metadata-proof.json",
+      "bytes": 70515,
+      "sha256": "0911ebb954c321d393cefdc4e5f49ec742d449d416e501a83472b80e9347f80f"
+    },
+    {
+      "path": "evidence/Root/docs-final/pub-preflight-addendum.json",
+      "bytes": 1525,
+      "sha256": "180285730359effa1986ac8013f766899ae73790a000bd4d547428a6657ff8e6"
+    },
+    {
+      "path": "evidence/Root/docs-final/source-before.json",
+      "bytes": 5230595,
+      "sha256": "f925efa7dc12d21ca2c0f7ab23bfe8983ab3fb742f5bb5f694d371c591309a4f"
+    },
+    {
+      "path": "evidence/Root/docs-final/source-final.json",
+      "bytes": 5230595,
+      "sha256": "f925efa7dc12d21ca2c0f7ab23bfe8983ab3fb742f5bb5f694d371c591309a4f"
+    },
+    {
+      "path": "evidence/Root/visual-review-web.json",
+      "bytes": 863,
+      "sha256": "88033e02d6079d105e2204461d3c8b20ecf9792d24366ed5609b5c8727f2f9a6"
+    },
+    {
+      "path": "evidence/Root/visual-review-native-cross.json",
+      "bytes": 1124,
+      "sha256": "13fc1ab002e995538ae922283435bf9ec74c1644f87c9858205f3b4c5f4abb79"
+    },
+    {
+      "path": "evidence/Review/candidate-code-review-b121bf0.json",
+      "bytes": 10478,
+      "sha256": "512fb88c5f2548a2bed2941cc52e99bced01b820cf18b5ced83b708743c678fa"
+    },
+    {
+      "path": "evidence/Review/web-candidate-functional-paint-review-b121bf0.json",
+      "bytes": 7976,
+      "sha256": "a231656f43abe773f7c3ba7234e266d99aa45bff9fd86dfbbe45ffca1daf447b"
+    },
+    {
+      "path": "evidence/Review/pixel-reports-review-b121bf0.json",
+      "bytes": 7599,
+      "sha256": "b3f233f607f5709b494a727bc4adeb072febef3a15b17f6a2c878289c3e3c1a0"
+    }
+  ]
+}

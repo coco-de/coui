@@ -1,0 +1,49 @@
+{
+  "key": "footer-default-light-defaultStyle",
+  "byRole": {
+    "root": {
+      "key": "footer-default-light-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 16.0,
+      "lineHeightPx": 25.6,
+      "letterSpacingPx": -0.16,
+      "color": {
+        "r": 77,
+        "g": 78,
+        "b": 81,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 252,
+        "g": 252,
+        "b": 253,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 195,
+        "g": 196,
+        "b": 198,
+        "a": 1.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [],
+      "opacity": null,
+      "widthPx": 801.0,
+      "heightPx": 192.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

@@ -1,0 +1,55 @@
+{
+  "key": "navigation-bar-sidebar-dark-liquidGlass",
+  "byRole": {
+    "root": {
+      "key": "navigation-bar-sidebar-dark-liquidGlass",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 12.0,
+      "lineHeightPx": 16.8,
+      "letterSpacingPx": -0.12,
+      "color": {
+        "r": 147,
+        "g": 149,
+        "b": 150,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 31,
+        "g": 32,
+        "b": 33,
+        "a": 0.6
+      },
+      "borderColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "paddingPx": [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 187.5,
+      "heightPx": 309.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

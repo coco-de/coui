@@ -1,0 +1,310 @@
+{
+  "base": "8d1831f8e462c77da20aa49c665f6fda25a909c9",
+  "renderHead": "a571ec9d05bce5f65dee6724d940be7c457db7d7",
+  "webRenderHead": "59992833a47adfec48eb4acb002523a9177b518b",
+  "defaultBefore": {
+    "fail": 181,
+    "pass": 567
+  },
+  "defaultAfter": {
+    "fail": 181,
+    "pass": 567
+  },
+  "defaultDimensionFailures": 4,
+  "defaultNewPass": [
+    "tab-pane-editor-strip-light-defaultStyle",
+    "tab-pane-editor-strip-dark-defaultStyle"
+  ],
+  "defaultRestoredFailures": [
+    "navigation-bar-sidebar-light-defaultStyle",
+    "navigation-bar-sidebar-dark-defaultStyle"
+  ],
+  "defaultOwnBefore": {
+    "pass": 1084,
+    "fail": 412,
+    "firstCapture": 24
+  },
+  "defaultOwnAfter": {
+    "pass": 1084,
+    "fail": 412,
+    "firstCapture": 24
+  },
+  "ownStatusChanges": [
+    {
+      "key": "tab-pane-editor-strip-light-defaultStyle",
+      "role": "root",
+      "platform": "web",
+      "before": "pass",
+      "after": "fail"
+    },
+    {
+      "key": "tab-pane-editor-strip-dark-defaultStyle",
+      "role": "root",
+      "platform": "web",
+      "before": "pass",
+      "after": "fail"
+    },
+    {
+      "key": "navigation-bar-sidebar-light-defaultStyle",
+      "role": "root",
+      "platform": "flutter",
+      "before": "fail",
+      "after": "pass"
+    },
+    {
+      "key": "navigation-bar-sidebar-dark-defaultStyle",
+      "role": "root",
+      "platform": "flutter",
+      "before": "fail",
+      "after": "pass"
+    }
+  ],
+  "relatedBefore": {
+    "pass": 34,
+    "fail": 18
+  },
+  "relatedAfter": {
+    "pass": 44,
+    "fail": 8
+  },
+  "relatedOwnAfter": {
+    "fail": 78,
+    "pass": 26
+  },
+  "imageDeltas": {
+    "default": {
+      "exactRgbaSame": 1516,
+      "changed": [
+        "tab-pane-editor-strip-light-defaultStyle.web.png",
+        "tab-pane-editor-strip-dark-defaultStyle.web.png",
+        "navigation-bar-sidebar-light-defaultStyle.flutter.png",
+        "navigation-bar-sidebar-dark-defaultStyle.flutter.png"
+      ],
+      "total": 1520
+    },
+    "related": {
+      "exactRgbaSame": 94,
+      "changed": [
+        "tab-pane-editor-strip-light-defaultStyle.web.png",
+        "tab-pane-editor-strip-light-liquidGlass.web.png",
+        "tab-pane-editor-strip-light-neoBrutalism.web.png",
+        "tab-pane-editor-strip-light-claymorphism.web.png",
+        "tab-pane-editor-strip-light-neumorphism.web.png",
+        "tab-pane-editor-strip-dark-defaultStyle.web.png",
+        "tab-pane-editor-strip-dark-liquidGlass.web.png",
+        "tab-pane-editor-strip-dark-neoBrutalism.web.png",
+        "tab-pane-editor-strip-dark-claymorphism.web.png",
+        "tab-pane-editor-strip-dark-neumorphism.web.png"
+      ],
+      "total": 104
+    }
+  },
+  "api": {
+    "base": "8d1831f8e462c77da20aa49c665f6fda25a909c9",
+    "rows": [
+      {
+        "path": "packages/coui_core/lib/src/util/css_variable_generator.dart",
+        "inSupportedExportGraph": true,
+        "publicSignaturesIdentical": true,
+        "beforeSha256": "130c4c9d621135a3f02279c363352ee98d79ac157e40adc488a3c6c3827032bd",
+        "afterSha256": "130c4c9d621135a3f02279c363352ee98d79ac157e40adc488a3c6c3827032bd"
+      },
+      {
+        "path": "packages/coui_flutter/lib/src/components/display/loading/loading.dart",
+        "inSupportedExportGraph": true,
+        "publicSignaturesIdentical": true,
+        "beforeSha256": "7df6fa9ad0e82dc7ee0f222850bc1897e8f4cd383a1c68911bd78547c4cf6f65",
+        "afterSha256": "7df6fa9ad0e82dc7ee0f222850bc1897e8f4cd383a1c68911bd78547c4cf6f65"
+      },
+      {
+        "path": "packages/coui_web/lib/src/base/theme_config.dart",
+        "inSupportedExportGraph": true,
+        "publicSignaturesIdentical": true,
+        "beforeSha256": "79aa3e2b4e08b72bce7a85b5f3fd1fd0440473c65e136d5ccb8ceb41f5350c86",
+        "afterSha256": "79aa3e2b4e08b72bce7a85b5f3fd1fd0440473c65e136d5ccb8ceb41f5350c86"
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/tabs/tab_pane.dart",
+        "inSupportedExportGraph": true,
+        "publicSignaturesIdentical": true,
+        "beforeSha256": "211c52c706c767c4f8a3432dfcb6a0ee3fa64d1d8ff24193b90b579d28cd3a2c",
+        "afterSha256": "211c52c706c767c4f8a3432dfcb6a0ee3fa64d1d8ff24193b90b579d28cd3a2c"
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/tabs/tab_pane_style.dart",
+        "inSupportedExportGraph": false,
+        "publicSignaturesIdentical": false,
+        "beforeSha256": "4eb4e98d906b56be7f8af387403a4c82cd2ef49d18c1ad9f668f560d4bb58d77",
+        "afterSha256": "3976d058c0f6c46d39bb55f97237b210c3a493b148d9a71a6173bc5decbf0464"
+      }
+    ],
+    "supportedApiChanged": false
+  },
+  "validation": {
+    "coreTests": 7776,
+    "nativeScopedTests": 140,
+    "browserIntegrationTests": 51,
+    "browserMotionTests": 2,
+    "webInitialPassed": 8687,
+    "webInitialInfraSuites": 27,
+    "webRetryPassed": 266,
+    "webDistinctPassed": 8953,
+    "jasprRoutes": 357,
+    "formatFiles": 16,
+    "formatDrift": 0,
+    "baseAnalyzerInfos": 1,
+    "finalAnalyzerInfos": 1,
+    "newAnalyzerDiagnostics": 0
+  },
+  "captureRecovery": {
+    "initialMainFailedKeys": 7,
+    "initialFinalFailedKeys": 14,
+    "reason": "No space left on device while full Web suite compiled; its temporary kernel directory was automatically reclaimed",
+    "mainCompletionKeys": 59,
+    "finalCompletionKeys": 66,
+    "finalMissingKeys": 0,
+    "thresholdChanges": 0
+  },
+  "unresolvedInheritance": [
+    {
+      "id": "raw-under-role",
+      "patched": {
+        "parent": "20px",
+        "child": "20px"
+      },
+      "pre6336NativeInheritance": {
+        "parent": "19.6px",
+        "child": "28px"
+      }
+    },
+    {
+      "id": "unitless-override",
+      "patched": {
+        "parent": "28px",
+        "child": "30px"
+      },
+      "pre6336NativeInheritance": {
+        "parent": "28px",
+        "child": "40px"
+      }
+    },
+    {
+      "id": "length-override",
+      "patched": {
+        "parent": "40px",
+        "child": "30px"
+      },
+      "pre6336NativeInheritance": {
+        "parent": "40px",
+        "child": "40px"
+      }
+    },
+    {
+      "id": "role-override",
+      "patched": {
+        "parent": "28px",
+        "child": "28px"
+      },
+      "pre6336NativeInheritance": {
+        "parent": "28px",
+        "child": "40px"
+      }
+    }
+  ],
+  "sourceSha256": {
+    "packages/coui_core/lib/src/util/css_variable_generator.dart": "599d46395bd608dbf8c738fc90dac72124eadf22095ffc0d3f5fc31d9806b2a6",
+    "packages/coui_flutter/lib/src/components/display/loading/loading.dart": "87e0d610cf7b34b2f1f9c8c60831fc23959ed69545141928f15842d74dd0009c",
+    "packages/coui_flutter/test/parity/integer_capture.dart": "ecd8850b38fef833dde7d1d3fabd87c5d4c106b6d2aa13043deaaef6663fd9ec",
+    "packages/coui_web/lib/src/base/theme_config.dart": "17229f9d8a122f3cfb4203d3c3b7fac035c707cb7a7b3454e3f72940c39d2af5",
+    "packages/coui_web/lib/src/components/navigation/tabs/tab_pane.dart": "e79eaa6514f4b424420664a5cfe924eaa41bdf210a2c5ae1c617c0c75f57b43e",
+    "packages/coui_web/lib/src/components/navigation/tabs/tab_pane_style.dart": "4ba31b7a4772c300a1f90deed78da712eff1260d0737305fea55fa5c60dcd1b8"
+  },
+  "releaseProbe": [
+    {
+      "requestedTheme": "light",
+      "metrics": {
+        "theme": "light",
+        "tabs": [
+          {
+            "text": "#co-clickable-6{transition:transform 100ms var(--easing-ease-in-out), outline-color 150ms var(--easing-ease-in-out), box-shadow 150ms var(--easing-ease-in-out);}#co-clickable-6{outline-color:transparent;}:where(#co-clickable-6){outline-style:solid;}#co-clickable-6:focus-visible{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(0px - var(--coui-stroke-width-2));}main.dart",
+            "selected": "true",
+            "icons": [
+              {
+                "width": 16,
+                "height": 16,
+                "color": "rgb(174, 175, 176)"
+              }
+            ]
+          },
+          {
+            "text": "#co-clickable-7{transition:transform 100ms var(--easing-ease-in-out), outline-color 150ms var(--easing-ease-in-out), box-shadow 150ms var(--easing-ease-in-out);}#co-clickable-7{outline-color:transparent;}:where(#co-clickable-7){outline-style:solid;}#co-clickable-7:focus-visible{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(0px - var(--coui-stroke-width-2));}pubspec.yaml",
+            "selected": "false",
+            "icons": [
+              {
+                "width": 16,
+                "height": 16,
+                "color": "rgb(150, 151, 152)"
+              }
+            ]
+          },
+          {
+            "text": "#co-clickable-8{transition:transform 100ms var(--easing-ease-in-out), outline-color 150ms var(--easing-ease-in-out), box-shadow 150ms var(--easing-ease-in-out);}#co-clickable-8{outline-color:transparent;}:where(#co-clickable-8){outline-style:solid;}#co-clickable-8:focus-visible{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(0px - var(--coui-stroke-width-2));}README.md",
+            "selected": "false",
+            "icons": [
+              {
+                "width": 16,
+                "height": 16,
+                "color": "rgb(150, 151, 152)"
+              }
+            ]
+          }
+        ]
+      },
+      "selectionChanged": true,
+      "runtimeErrors": []
+    },
+    {
+      "requestedTheme": "dark",
+      "metrics": {
+        "theme": "dark",
+        "tabs": [
+          {
+            "text": "#co-clickable-6{transition:transform 100ms var(--easing-ease-in-out), outline-color 150ms var(--easing-ease-in-out), box-shadow 150ms var(--easing-ease-in-out);}#co-clickable-6{outline-color:transparent;}:where(#co-clickable-6){outline-style:solid;}#co-clickable-6:focus-visible{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(0px - var(--coui-stroke-width-2));}main.dart",
+            "selected": "true",
+            "icons": [
+              {
+                "width": 16,
+                "height": 16,
+                "color": "rgb(102, 103, 104)"
+              }
+            ]
+          },
+          {
+            "text": "#co-clickable-7{transition:transform 100ms var(--easing-ease-in-out), outline-color 150ms var(--easing-ease-in-out), box-shadow 150ms var(--easing-ease-in-out);}#co-clickable-7{outline-color:transparent;}:where(#co-clickable-7){outline-style:solid;}#co-clickable-7:focus-visible{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(0px - var(--coui-stroke-width-2));}pubspec.yaml",
+            "selected": "false",
+            "icons": [
+              {
+                "width": 16,
+                "height": 16,
+                "color": "rgb(119, 120, 121)"
+              }
+            ]
+          },
+          {
+            "text": "#co-clickable-8{transition:transform 100ms var(--easing-ease-in-out), outline-color 150ms var(--easing-ease-in-out), box-shadow 150ms var(--easing-ease-in-out);}#co-clickable-8{outline-color:transparent;}:where(#co-clickable-8){outline-style:solid;}#co-clickable-8:focus-visible{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(0px - var(--coui-stroke-width-2));}README.md",
+            "selected": "false",
+            "icons": [
+              {
+                "width": 16,
+                "height": 16,
+                "color": "rgb(119, 120, 121)"
+              }
+            ]
+          }
+        ]
+      },
+      "selectionChanged": true,
+      "runtimeErrors": []
+    }
+  ]
+}

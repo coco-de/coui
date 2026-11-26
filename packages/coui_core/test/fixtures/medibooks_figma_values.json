@@ -1,0 +1,515 @@
+{
+  "_comment": "Figma DS file 9FgsLhiWz0aLsVqcoI6nYJ, read-only, 2026-11-10 — the values the designer put there to be lifted into code (#6118). `primitives` = Primitives/color/medibooks/<name>; `semantic` = Semantic/ Color · Medibooks resolved through its aliases to the primitive hex (category slots omitted: they are the shared group's, same in every brand). 119 slots there, 74 here.",
+  "primitives": {
+    "neutral/pure-white": "FFFFFF",
+    "neutral/white": "FDFCFC",
+    "neutral/white-dark": "F4F2F1",
+    "neutral/white-darker": "E8E4E3",
+    "neutral/grey-lightest": "D9D4D3",
+    "neutral/grey-lighter": "C9C2C0",
+    "neutral/grey-light": "B6ACAA",
+    "neutral/grey": "A09592",
+    "neutral/grey-dark": "887A77",
+    "neutral/grey-darker": "6D625F",
+    "neutral/grey-darkest": "564B48",
+    "neutral/black-lighter": "423633",
+    "neutral/black-light": "302522",
+    "neutral/black": "231815",
+    "neutral/pure-black": "000000",
+    "primary/lightest": "DAF3E4",
+    "primary/lighter": "C3EAD4",
+    "primary/light": "71D2A1",
+    "primary/base": "009260",
+    "primary/dark": "005435",
+    "primary/darker": "003520",
+    "primary/darkest": "002C1A",
+    "secondary/lightest": "DAEEEF",
+    "secondary/lighter": "BFE0E1",
+    "secondary/light": "72B6B8",
+    "secondary/base": "006265",
+    "secondary/dark": "043F41",
+    "secondary/darker": "082D2E",
+    "secondary/darkest": "082728",
+    "tertiary/lightest": "F4E4F8",
+    "tertiary/lighter": "EBD1F1",
+    "tertiary/light": "D198DE",
+    "tertiary/base": "8F3CA1",
+    "tertiary/dark": "582164",
+    "tertiary/darker": "3C1644",
+    "tertiary/darkest": "321339",
+    "success/lightest": "DBF0DE",
+    "success/lighter": "C2E3C7",
+    "success/light": "76BB84",
+    "success/base": "12682F",
+    "success/dark": "0B431D",
+    "success/darker": "0B2F15",
+    "success/darkest": "0B2913",
+    "info/lightest": "DCF0FA",
+    "info/lighter": "C3E5F6",
+    "info/light": "76C4EB",
+    "info/base": "1879AA",
+    "info/dark": "105171",
+    "info/darker": "0C3B52",
+    "info/darkest": "0A3348",
+    "warning/lightest": "FCF4DD",
+    "warning/lighter": "FBEEC8",
+    "warning/light": "F5DA88",
+    "warning/base": "ECB613",
+    "warning/dark": "91700C",
+    "warning/darker": "604A08",
+    "warning/darkest": "4F3D06",
+    "error/lightest": "FADFDF",
+    "error/lighter": "F8CBCB",
+    "error/light": "EF8E8E",
+    "error/base": "DF2020",
+    "error/dark": "891414",
+    "error/darker": "5A0D0D",
+    "error/darkest": "4B0B0B"
+  },
+  "semantic": {
+    "color/surface": {
+      "Light": "FFFFFF",
+      "Dark": "231815",
+      "HCLight": "FFFFFF",
+      "HCDark": "231815"
+    },
+    "color/surface-dim": {
+      "Light": "F4F2F1",
+      "Dark": "000000",
+      "HCLight": "F4F2F1",
+      "HCDark": "000000"
+    },
+    "color/surface-bright": {
+      "Light": "FDFCFC",
+      "Dark": "423633",
+      "HCLight": "FDFCFC",
+      "HCDark": "423633"
+    },
+    "color/surface-container-lowest": {
+      "Light": "FDFCFC",
+      "Dark": "000000",
+      "HCLight": "FDFCFC",
+      "HCDark": "000000"
+    },
+    "color/surface-container-low": {
+      "Light": "F4F2F1",
+      "Dark": "231815",
+      "HCLight": "F4F2F1",
+      "HCDark": "231815"
+    },
+    "color/surface-container": {
+      "Light": "E8E4E3",
+      "Dark": "302522",
+      "HCLight": "E8E4E3",
+      "HCDark": "302522"
+    },
+    "color/surface-container-high": {
+      "Light": "D9D4D3",
+      "Dark": "423633",
+      "HCLight": "D9D4D3",
+      "HCDark": "423633"
+    },
+    "color/surface-container-highest": {
+      "Light": "C9C2C0",
+      "Dark": "564B48",
+      "HCLight": "C9C2C0",
+      "HCDark": "564B48"
+    },
+    "color/on-surface": {
+      "Light": "231815",
+      "Dark": "FDFCFC",
+      "HCLight": "000000",
+      "HCDark": "FFFFFF"
+    },
+    "color/on-surface-variant": {
+      "Light": "564B48",
+      "Dark": "C9C2C0",
+      "HCLight": "302522",
+      "HCDark": "F4F2F1"
+    },
+    "color/surface-tint": {
+      "Light": "009260",
+      "Dark": "71D2A1",
+      "HCLight": "009260",
+      "HCDark": "71D2A1"
+    },
+    "color/primary": {
+      "Light": "009260",
+      "Dark": "009260",
+      "HCLight": "002C1A",
+      "HCDark": "DAF3E4"
+    },
+    "color/on-primary": {
+      "Light": "FDFCFC",
+      "Dark": "FDFCFC",
+      "HCLight": "FFFFFF",
+      "HCDark": "000000"
+    },
+    "color/primary-container": {
+      "Light": "DAF3E4",
+      "Dark": "003520",
+      "HCLight": "DAF3E4",
+      "HCDark": "003520"
+    },
+    "color/on-primary-container": {
+      "Light": "002C1A",
+      "Dark": "DAF3E4",
+      "HCLight": "002C1A",
+      "HCDark": "DAF3E4"
+    },
+    "color/primary-fixed": {
+      "Light": "DAF3E4",
+      "Dark": "DAF3E4",
+      "HCLight": "DAF3E4",
+      "HCDark": "DAF3E4"
+    },
+    "color/primary-fixed-dim": {
+      "Light": "C3EAD4",
+      "Dark": "C3EAD4",
+      "HCLight": "C3EAD4",
+      "HCDark": "C3EAD4"
+    },
+    "color/on-primary-fixed": {
+      "Light": "002C1A",
+      "Dark": "002C1A",
+      "HCLight": "002C1A",
+      "HCDark": "002C1A"
+    },
+    "color/on-primary-fixed-variant": {
+      "Light": "005435",
+      "Dark": "005435",
+      "HCLight": "005435",
+      "HCDark": "005435"
+    },
+    "color/secondary": {
+      "Light": "006265",
+      "Dark": "72B6B8",
+      "HCLight": "082728",
+      "HCDark": "DAEEEF"
+    },
+    "color/on-secondary": {
+      "Light": "FDFCFC",
+      "Dark": "082728",
+      "HCLight": "FFFFFF",
+      "HCDark": "000000"
+    },
+    "color/secondary-container": {
+      "Light": "DAEEEF",
+      "Dark": "082D2E",
+      "HCLight": "DAEEEF",
+      "HCDark": "082D2E"
+    },
+    "color/on-secondary-container": {
+      "Light": "082728",
+      "Dark": "DAEEEF",
+      "HCLight": "082728",
+      "HCDark": "DAEEEF"
+    },
+    "color/secondary-fixed": {
+      "Light": "DAEEEF",
+      "Dark": "DAEEEF",
+      "HCLight": "DAEEEF",
+      "HCDark": "DAEEEF"
+    },
+    "color/secondary-fixed-dim": {
+      "Light": "BFE0E1",
+      "Dark": "BFE0E1",
+      "HCLight": "BFE0E1",
+      "HCDark": "BFE0E1"
+    },
+    "color/on-secondary-fixed": {
+      "Light": "082728",
+      "Dark": "082728",
+      "HCLight": "082728",
+      "HCDark": "082728"
+    },
+    "color/on-secondary-fixed-variant": {
+      "Light": "043F41",
+      "Dark": "043F41",
+      "HCLight": "043F41",
+      "HCDark": "043F41"
+    },
+    "color/tertiary": {
+      "Light": "8F3CA1",
+      "Dark": "D198DE",
+      "HCLight": "321339",
+      "HCDark": "F4E4F8"
+    },
+    "color/on-tertiary": {
+      "Light": "FDFCFC",
+      "Dark": "321339",
+      "HCLight": "FFFFFF",
+      "HCDark": "000000"
+    },
+    "color/tertiary-container": {
+      "Light": "F4E4F8",
+      "Dark": "3C1644",
+      "HCLight": "F4E4F8",
+      "HCDark": "3C1644"
+    },
+    "color/on-tertiary-container": {
+      "Light": "321339",
+      "Dark": "F4E4F8",
+      "HCLight": "321339",
+      "HCDark": "F4E4F8"
+    },
+    "color/tertiary-fixed": {
+      "Light": "F4E4F8",
+      "Dark": "F4E4F8",
+      "HCLight": "F4E4F8",
+      "HCDark": "F4E4F8"
+    },
+    "color/tertiary-fixed-dim": {
+      "Light": "EBD1F1",
+      "Dark": "EBD1F1",
+      "HCLight": "EBD1F1",
+      "HCDark": "EBD1F1"
+    },
+    "color/on-tertiary-fixed": {
+      "Light": "321339",
+      "Dark": "321339",
+      "HCLight": "321339",
+      "HCDark": "321339"
+    },
+    "color/on-tertiary-fixed-variant": {
+      "Light": "582164",
+      "Dark": "582164",
+      "HCLight": "582164",
+      "HCDark": "582164"
+    },
+    "color/error": {
+      "Light": "DF2020",
+      "Dark": "EF8E8E",
+      "HCLight": "4B0B0B",
+      "HCDark": "FADFDF"
+    },
+    "color/on-error": {
+      "Light": "FDFCFC",
+      "Dark": "4B0B0B",
+      "HCLight": "FFFFFF",
+      "HCDark": "000000"
+    },
+    "color/error-container": {
+      "Light": "FADFDF",
+      "Dark": "5A0D0D",
+      "HCLight": "FADFDF",
+      "HCDark": "5A0D0D"
+    },
+    "color/on-error-container": {
+      "Light": "4B0B0B",
+      "Dark": "FADFDF",
+      "HCLight": "4B0B0B",
+      "HCDark": "FADFDF"
+    },
+    "color/success": {
+      "Light": "12682F",
+      "Dark": "76BB84",
+      "HCLight": "0B2913",
+      "HCDark": "DBF0DE"
+    },
+    "color/on-success": {
+      "Light": "FDFCFC",
+      "Dark": "0B2913",
+      "HCLight": "FFFFFF",
+      "HCDark": "000000"
+    },
+    "color/success-container": {
+      "Light": "DBF0DE",
+      "Dark": "0B2F15",
+      "HCLight": "DBF0DE",
+      "HCDark": "0B2F15"
+    },
+    "color/on-success-container": {
+      "Light": "0B2913",
+      "Dark": "DBF0DE",
+      "HCLight": "0B2913",
+      "HCDark": "DBF0DE"
+    },
+    "color/warning": {
+      "Light": "ECB613",
+      "Dark": "F5DA88",
+      "HCLight": "4F3D06",
+      "HCDark": "FCF4DD"
+    },
+    "color/on-warning": {
+      "Light": "231815",
+      "Dark": "4F3D06",
+      "HCLight": "FFFFFF",
+      "HCDark": "000000"
+    },
+    "color/warning-container": {
+      "Light": "FCF4DD",
+      "Dark": "604A08",
+      "HCLight": "FCF4DD",
+      "HCDark": "604A08"
+    },
+    "color/on-warning-container": {
+      "Light": "4F3D06",
+      "Dark": "FCF4DD",
+      "HCLight": "4F3D06",
+      "HCDark": "FCF4DD"
+    },
+    "color/info": {
+      "Light": "1879AA",
+      "Dark": "76C4EB",
+      "HCLight": "0A3348",
+      "HCDark": "DCF0FA"
+    },
+    "color/on-info": {
+      "Light": "FDFCFC",
+      "Dark": "0A3348",
+      "HCLight": "FFFFFF",
+      "HCDark": "000000"
+    },
+    "color/info-container": {
+      "Light": "DCF0FA",
+      "Dark": "0C3B52",
+      "HCLight": "DCF0FA",
+      "HCDark": "0C3B52"
+    },
+    "color/on-info-container": {
+      "Light": "0A3348",
+      "Dark": "DCF0FA",
+      "HCLight": "0A3348",
+      "HCDark": "DCF0FA"
+    },
+    "color/outline": {
+      "Light": "6D625F",
+      "Dark": "B6ACAA",
+      "HCLight": "564B48",
+      "HCDark": "D9D4D3"
+    },
+    "color/outline-variant": {
+      "Light": "C9C2C0",
+      "Dark": "6D625F",
+      "HCLight": "887A77",
+      "HCDark": "B6ACAA"
+    },
+    "color/outline-subtle": {
+      "Light": "D9D4D3",
+      "Dark": "564B48",
+      "HCLight": "A09592",
+      "HCDark": "A09592"
+    },
+    "color/inverse-surface": {
+      "Light": "231815",
+      "Dark": "FDFCFC",
+      "HCLight": "231815",
+      "HCDark": "FDFCFC"
+    },
+    "color/inverse-on-surface": {
+      "Light": "FDFCFC",
+      "Dark": "231815",
+      "HCLight": "FDFCFC",
+      "HCDark": "231815"
+    },
+    "color/inverse-primary": {
+      "Light": "71D2A1",
+      "Dark": "005435",
+      "HCLight": "71D2A1",
+      "HCDark": "005435"
+    },
+    "color/shadow": {
+      "Light": "000000",
+      "Dark": "FFFFFF",
+      "HCLight": "000000",
+      "HCDark": "FFFFFF"
+    },
+    "color/surface-highlight": {
+      "Light": "FFFFFF",
+      "Dark": "B6ACAA",
+      "HCLight": "FFFFFF",
+      "HCDark": "B6ACAA"
+    },
+    "color/scrim": {
+      "Light": "000000",
+      "Dark": "000000",
+      "HCLight": "000000",
+      "HCDark": "000000"
+    },
+    "color/disabled-content": {
+      "Light": "887A77",
+      "Dark": "887A77",
+      "HCLight": "564B48",
+      "HCDark": "D9D4D3"
+    },
+    "color/disabled-container": {
+      "Light": "E8E4E3",
+      "Dark": "302522",
+      "HCLight": "E8E4E3",
+      "HCDark": "302522"
+    },
+    "color/disabled-outline": {
+      "Light": "C9C2C0",
+      "Dark": "564B48",
+      "HCLight": "887A77",
+      "HCDark": "B6ACAA"
+    },
+    "color/primary-text": {
+      "Light": "005435",
+      "Dark": "C3EAD4",
+      "HCLight": "002C1A",
+      "HCDark": "DAF3E4"
+    },
+    "color/primary-text-large": {
+      "Light": "009260",
+      "Dark": "71D2A1",
+      "HCLight": "002C1A",
+      "HCDark": "DAF3E4"
+    },
+    "color/placeholder": {
+      "Light": "6D625F",
+      "Dark": "B6ACAA",
+      "HCLight": "423633",
+      "HCDark": "E8E4E3"
+    },
+    "color/focus-ring": {
+      "Light": "009260",
+      "Dark": "71D2A1",
+      "HCLight": "002C1A",
+      "HCDark": "DAF3E4"
+    },
+    "color/error-strong": {
+      "Light": "5A0D0D",
+      "Dark": "FADFDF",
+      "HCLight": "4B0B0B",
+      "HCDark": "EF8E8E"
+    },
+    "color/primary-hover": {
+      "Light": "005435",
+      "Dark": "C3EAD4",
+      "HCLight": "003520",
+      "HCDark": "C3EAD4"
+    },
+    "color/primary-pressed": {
+      "Light": "003520",
+      "Dark": "DAF3E4",
+      "HCLight": "005435",
+      "HCDark": "71D2A1"
+    },
+    "color/secondary-hover": {
+      "Light": "043F41",
+      "Dark": "BFE0E1",
+      "HCLight": "082D2E",
+      "HCDark": "BFE0E1"
+    },
+    "color/secondary-pressed": {
+      "Light": "082D2E",
+      "Dark": "DAEEEF",
+      "HCLight": "043F41",
+      "HCDark": "72B6B8"
+    },
+    "color/error-pressed": {
+      "Light": "891414",
+      "Dark": "F8CBCB",
+      "HCLight": "891414",
+      "HCDark": "EF8E8E"
+    },
+    "color/link": {
+      "Light": "0C3B52",
+      "Dark": "C3E5F6",
+      "HCLight": "0A3348",
+      "HCDark": "DCF0FA"
+    }
+  }
+}

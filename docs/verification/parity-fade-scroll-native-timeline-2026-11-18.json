@@ -1,0 +1,1525 @@
+{
+  "rejectedCommit": "a76c7e90c3b1c2ae0ee6be1a39a12dbd9b7f458b",
+  "publicApi": {
+    "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": {
+      "declarations": {
+        "FadeScroll": "ctor null ({required this.child, super.attributes, super.classes, super.css, super.eventHandlers, super.id, super.key, super.onChange, super.onClick, super.onInput, super.onKeyDown, super.onKeyUp, super.onMouseEnter, super.onMouseLeave, this.direction = CoreFadeScrollDirection.defaultDirection, this.showScrollbar = false, this.fadeScrollStyle});field false true Component child;field false true CoreFadeScrollDirection direction;field false true bool showScrollbar;field false true CoreFadeScrollStyle? fadeScrollStyle;method copyWith FadeScroll ({Key? key, UiMouseEventHandler? onClick, Map<String, String>? attributes, String? classes, Styles? css, Map<String, List<UiEventHandler>>? eventHandlers, String? id, UiInputEventHandler? onChange, UiInputEventHandler? onInput, UiKeyboardEventHandler? onKeyDown, UiKeyboardEventHandler? onKeyUp, UiMouseEventHandler? onMouseEnter, UiMouseEventHandler? onMouseLeave, CoreFadeScrollDirection? direction, bool? showScrollbar, CoreFadeScrollStyle? fadeScrollStyle, Component? child});method createState State<FadeScroll> ()"
+      },
+      "equal": true
+    },
+    "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart": {
+      "declarations": {
+        "ResolvedFadeScroll": "ctor null ({required this.root, required this.viewport});field false true WebElementChrome root;field false true WebElementChrome viewport",
+        "resolveFadeScroll": "ResolvedFadeScroll null (BuildContext context, {required CoreFadeScrollDirection direction, required bool showScrollbar, CoreFadeScrollStyle? fadeScrollStyle})"
+      },
+      "equal": true
+    },
+    "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart": {
+      "declarations": {
+        "FadeScrollMeasurer": "ctor null ({required this.viewportId, required this.direction});field false true String viewportId;field false true CoreFadeScrollDirection direction;method attach void ();method dispose void ()"
+      },
+      "equal": true
+    }
+  },
+  "registered24": {
+    "rows": [
+      {
+        "key": "fade-scroll-default-dark-claymorphism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-default-dark-defaultStyle",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-default-dark-neoBrutalism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-default-dark-neumorphism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-default-light-claymorphism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-default-light-defaultStyle",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-default-light-neoBrutalism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-default-light-neumorphism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-horizontal-dark-claymorphism",
+        "sizeBefore": [
+          800,
+          21
+        ],
+        "sizeAfter": [
+          800,
+          21
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-horizontal-dark-defaultStyle",
+        "sizeBefore": [
+          800,
+          21
+        ],
+        "sizeAfter": [
+          800,
+          21
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-horizontal-dark-neoBrutalism",
+        "sizeBefore": [
+          800,
+          21
+        ],
+        "sizeAfter": [
+          800,
+          21
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-horizontal-dark-neumorphism",
+        "sizeBefore": [
+          800,
+          21
+        ],
+        "sizeAfter": [
+          800,
+          21
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-horizontal-light-claymorphism",
+        "sizeBefore": [
+          800,
+          21
+        ],
+        "sizeAfter": [
+          800,
+          21
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-horizontal-light-defaultStyle",
+        "sizeBefore": [
+          800,
+          21
+        ],
+        "sizeAfter": [
+          800,
+          21
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-horizontal-light-neoBrutalism",
+        "sizeBefore": [
+          800,
+          21
+        ],
+        "sizeAfter": [
+          800,
+          21
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-horizontal-light-neumorphism",
+        "sizeBefore": [
+          800,
+          21
+        ],
+        "sizeAfter": [
+          800,
+          21
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-with-scrollbar-dark-claymorphism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-with-scrollbar-dark-defaultStyle",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-with-scrollbar-dark-neoBrutalism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-with-scrollbar-dark-neumorphism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-with-scrollbar-light-claymorphism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-with-scrollbar-light-defaultStyle",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-with-scrollbar-light-neoBrutalism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      },
+      {
+        "key": "fade-scroll-with-scrollbar-light-neumorphism",
+        "sizeBefore": [
+          76,
+          200
+        ],
+        "sizeAfter": [
+          76,
+          200
+        ],
+        "PNGbyteSame": true,
+        "RGBAexact": true,
+        "JSONbyteSame": true,
+        "rawJSONDifferencePaths": []
+      }
+    ],
+    "keys": 24,
+    "PNGbyteSame": 24,
+    "RGBAexact": 24,
+    "JSONbyteSame": 24,
+    "rawJSONDiffs": {},
+    "normalizationOrPromotion": false
+  },
+  "images": {
+    "defaults": [
+      {
+        "theme": "light",
+        "platform": "flutter",
+        "source": "/tmp/weever-duration-contracts-20261118.jsuh0jdq/final-integration/composite-after/fade-scroll-default-light-defaultStyle.flutter.png",
+        "target": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-flutter-light.png",
+        "sha256": "f8e0b0371179df6b7161993d1858dd1f19f09f22f1471494e6489755fee8eb2b",
+        "phase": "FreshNative12ac/treeequalmergedmain9f; explicitlyreused; Core/Nativeunchanged",
+        "byteIdenticalCopy": true
+      },
+      {
+        "theme": "light",
+        "platform": "web",
+        "source": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges/registered24-after/fade-scroll-default-light-defaultStyle.web.png",
+        "target": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-web-light.png",
+        "sha256": "890dcb54a1b66ad691ac20a8984133263b57e60e1e4f22a29882e9c3c8591740",
+        "phase": "Freshregistered24candidate985a",
+        "byteIdenticalCopy": true
+      },
+      {
+        "theme": "dark",
+        "platform": "flutter",
+        "source": "/tmp/weever-duration-contracts-20261118.jsuh0jdq/final-integration/composite-after/fade-scroll-default-dark-defaultStyle.flutter.png",
+        "target": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-flutter-dark.png",
+        "sha256": "e67f5aac26a119ad809b94421b6e4414a0dd009ef73eda6116639af2cf41af07",
+        "phase": "FreshNative12ac/treeequalmergedmain9f; explicitlyreused; Core/Nativeunchanged",
+        "byteIdenticalCopy": true
+      },
+      {
+        "theme": "dark",
+        "platform": "web",
+        "source": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges/registered24-after/fade-scroll-default-dark-defaultStyle.web.png",
+        "target": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-web-dark.png",
+        "sha256": "0e07edb32d8c6f80e61570009106938b040d64e810f6d7d6ff6f626c818fef11",
+        "phase": "Freshregistered24candidate985a",
+        "byteIdenticalCopy": true
+      }
+    ],
+    "fit": {
+      "sourceBefore": "0b4c49d10969a9daa6028753222c2678e8f6beca",
+      "sourceAfter": "985a615781f7537f0265e36ee50209ee64be8b96",
+      "browser": "157.0.8103.79",
+      "records": [
+        {
+          "phase": "before",
+          "theme": "light",
+          "html": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges/public-before-canonical.html",
+          "url": "file:///tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges/public-before-canonical.html?numeric=true&kind=fit&axis=h&gradient=both-alpha&theme=light",
+          "png": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/fit-before-light.png",
+          "max": 0,
+          "position": 0,
+          "client": 100,
+          "mask": "linear-gradient(to right, color(srgb 1 1 1 / 0.6) 0px, rgba(255, 255, 255, 0.6) 40px, rgba(255, 255, 255, 0.6) calc(100% - 40px), color(srgb 1 1 1 / 0.501961) 100%)",
+          "start": "",
+          "end": "",
+          "capture": [
+            220,
+            20
+          ],
+          "controller": "light"
+        },
+        {
+          "phase": "after",
+          "theme": "light",
+          "html": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges/public-after-canonical.html",
+          "url": "file:///tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges/public-after-canonical.html?numeric=true&kind=fit&axis=h&gradient=both-alpha&theme=light",
+          "png": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/fit-after-light.png",
+          "max": 0,
+          "position": 0,
+          "client": 100,
+          "mask": "none",
+          "start": "0",
+          "end": "1",
+          "capture": [
+            220,
+            20
+          ],
+          "controller": "light"
+        },
+        {
+          "phase": "before",
+          "theme": "dark",
+          "html": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges/public-before-canonical.html",
+          "url": "file:///tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges/public-before-canonical.html?numeric=true&kind=fit&axis=h&gradient=both-alpha&theme=dark",
+          "png": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/fit-before-dark.png",
+          "max": 0,
+          "position": 0,
+          "client": 100,
+          "mask": "linear-gradient(to right, color(srgb 1 1 1 / 0.6) 0px, rgba(255, 255, 255, 0.6) 40px, rgba(255, 255, 255, 0.6) calc(100% - 40px), color(srgb 1 1 1 / 0.501961) 100%)",
+          "start": "",
+          "end": "",
+          "capture": [
+            220,
+            20
+          ],
+          "controller": "dark"
+        },
+        {
+          "phase": "after",
+          "theme": "dark",
+          "html": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges/public-after-canonical.html",
+          "url": "file:///tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges/public-after-canonical.html?numeric=true&kind=fit&axis=h&gradient=both-alpha&theme=dark",
+          "png": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/fit-after-dark.png",
+          "max": 0,
+          "position": 0,
+          "client": 100,
+          "mask": "none",
+          "start": "0",
+          "end": "1",
+          "capture": [
+            220,
+            20
+          ],
+          "controller": "dark"
+        }
+      ],
+      "errors": [],
+      "closed": true,
+      "rawElementScreenshots": true,
+      "editedResizedPadded": false
+    },
+    "uploadMax": 8,
+    "privateDraftReleaseTTLdays": 3
+  },
+  "limits": [
+    "Full default parity remains incomplete; no tolerance/field/skip/baseline change.",
+    "Legacy private1px policy remains unsupported-path scope;6366 not closed.",
+    "Existing browser-to-Native numeric raster differences preserved and not yet classified as old/new.",
+    "No live designer/Figma approval/full manual CI/deployment claim."
+  ],
+  "artifacts": {
+    "root": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23",
+    "worker": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/strict-edges",
+    "review": "/tmp/weever-6394-independent-review-20261118.hxrjbd1j"
+  },
+  "historical985": {
+    "source": {
+      "head": "05d569ca06c9fa3de632cbf1a3cccb1d6d311658",
+      "tree": "ed7fb8415de0f0c172841a1250e530cd1245f274",
+      "upstreamProductCommit": "985a615781f7537f0265e36ee50209ee64be8b96",
+      "main": "0b4c49d10969a9daa6028753222c2678e8f6beca",
+      "mainTree": "e61ed7a2b97273c27694d4564ed1dfcfc624b1d8",
+      "status": "",
+      "trackedFiles": 22456,
+      "buildPort": 64246,
+      "sdk": "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter",
+      "ownDelta": "3product+1test+1plainBehaviorDoc",
+      "rejectedCandidate": "a76c7e90c3b1c2ae0ee6be1a39a12dbd9b7f458b",
+      "notClaimedMerged": true
+    },
+    "status": "draft; full752 and final counterfactual/fractional/firstpaint review pending",
+    "uniqueTests": {
+      "newActualChrome": 4,
+      "existingSSR": 3,
+      "total": 7,
+      "duplicateRunsExcluded": true,
+      "fatalChangedDart": 4,
+      "formatChanged": 0
+    },
+    "docs": {
+      "source": {
+        "head": "05d569ca06c9fa3de632cbf1a3cccb1d6d311658",
+        "tree": "ed7fb8415de0f0c172841a1250e530cd1245f274",
+        "upstreamProductCommit": "985a615781f7537f0265e36ee50209ee64be8b96",
+        "main": "0b4c49d10969a9daa6028753222c2678e8f6beca",
+        "mainTree": "e61ed7a2b97273c27694d4564ed1dfcfc624b1d8",
+        "status": "",
+        "trackedFiles": 22456,
+        "buildPort": 64246,
+        "sdk": "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter",
+        "ownDelta": "3product+1test+1plainBehaviorDoc",
+        "rejectedCandidate": "a76c7e90c3b1c2ae0ee6be1a39a12dbd9b7f458b",
+        "notClaimedMerged": true
+      },
+      "buildExit": 0,
+      "uniqueRoutes": 359,
+      "runtimeExit": 0,
+      "runtimePassed": true,
+      "records": 72,
+      "recordsByComponent": {
+        "fade-scroll": 44,
+        "text-field": 12,
+        "input-otp": 16
+      },
+      "runtimeErrors": [],
+      "actionFailures": [],
+      "trackedFiles": 22456,
+      "hashDeltas": [],
+      "status": "",
+      "ownedServer": {
+        "pid": 4399,
+        "port": 64487,
+        "root": "/Users/minhyeok/orca/workspaces/coui/weever/docs_site/build/jaspr",
+        "verifiedCommand": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/serve-after.py",
+        "signal": "SIGTERM"
+      },
+      "browserClosed": {
+        "closed": true,
+        "serverPort": 64487
+      },
+      "unrelatedProcessesTouched": false,
+      "portsClosed": {
+        "64246": true,
+        "64487": true
+      },
+      "serverReapedExit": 143
+    },
+    "wholeClassDigestDiagnostic": {
+      "graphs": [
+        {
+          "package": "coui_core",
+          "beforeFiles": 930,
+          "afterFiles": 930,
+          "same": true
+        },
+        {
+          "package": "coui_flutter",
+          "beforeFiles": 1350,
+          "afterFiles": 1350,
+          "same": true
+        },
+        {
+          "package": "coui_web",
+          "beforeFiles": 1295,
+          "afterFiles": 1295,
+          "same": true
+        }
+      ],
+      "rows": [
+        {
+          "path": "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": false,
+          "allDeclarationsIdentical": false,
+          "directivesIdentical": false,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        }
+      ],
+      "errors": [],
+      "methodology": "Function bodies elided; public top-level declarations in supported export closure compared. Existing bodies change while supported public declaration shapes are compared. Private helpers and unnamed library directive cleanup are reported separately."
+    },
+    "supersededForOwnership": true
+  },
+  "source": {
+    "head": "f817af66b1d08f0a92005c087a17aede0a35df43",
+    "tree": "4cbb5411ee317d2d5d6e22ccd26e6173069844b3",
+    "main": "09644e164890b59385c614fbd8cefde21d638843",
+    "main5889FreshBaseline": "5889bb76383b8cee2c0a1c23a6b046d5a4e60747",
+    "counterProductCommit": "95837c0a1ff23e5a88335eb7f73cb496b53288ac",
+    "own4DartByteIdentical": {
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": true,
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart": true,
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart": true,
+      "tool/parity/test/web/fade_scroll_timeline_test.dart": true
+    },
+    "trackedFiles": 22474,
+    "buildPort": 53924,
+    "status": "",
+    "notClaimedMerged": true
+  },
+  "finalDocs": {
+    "source": {
+      "head": "f817af66b1d08f0a92005c087a17aede0a35df43",
+      "tree": "4cbb5411ee317d2d5d6e22ccd26e6173069844b3",
+      "main": "09644e164890b59385c614fbd8cefde21d638843",
+      "main5889FreshBaseline": "5889bb76383b8cee2c0a1c23a6b046d5a4e60747",
+      "counterProductCommit": "95837c0a1ff23e5a88335eb7f73cb496b53288ac",
+      "own4DartByteIdentical": {
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": true,
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart": true,
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart": true,
+        "tool/parity/test/web/fade_scroll_timeline_test.dart": true
+      },
+      "trackedFiles": 22474,
+      "buildPort": 53924,
+      "status": "",
+      "notClaimedMerged": true
+    },
+    "buildExit": 0,
+    "uniqueRoutes": 359,
+    "runtimeExit": 0,
+    "runtimeRecords": 72,
+    "recordsByComponent": {
+      "fade-scroll": 44,
+      "text-field": 12,
+      "input-otp": 16
+    },
+    "runtimePassed": true,
+    "runtimeErrors": [],
+    "actionFailures": [],
+    "trackedFiles": 22474,
+    "hashDeltas": [],
+    "publicMemberProjection": {
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": {
+        "declarations": {
+          "FadeScroll": "ctor null ({required this.child, super.attributes, super.classes, super.css, super.eventHandlers, super.id, super.key, super.onChange, super.onClick, super.onInput, super.onKeyDown, super.onKeyUp, super.onMouseEnter, super.onMouseLeave, this.direction = CoreFadeScrollDirection.defaultDirection, this.showScrollbar = false, this.fadeScrollStyle});field false true Component child;field false true CoreFadeScrollDirection direction;field false true bool showScrollbar;field false true CoreFadeScrollStyle? fadeScrollStyle;method copyWith FadeScroll ({Key? key, UiMouseEventHandler? onClick, Map<String, String>? attributes, String? classes, Styles? css, Map<String, List<UiEventHandler>>? eventHandlers, String? id, UiInputEventHandler? onChange, UiInputEventHandler? onInput, UiKeyboardEventHandler? onKeyDown, UiKeyboardEventHandler? onKeyUp, UiMouseEventHandler? onMouseEnter, UiMouseEventHandler? onMouseLeave, CoreFadeScrollDirection? direction, bool? showScrollbar, CoreFadeScrollStyle? fadeScrollStyle, Component? child});method createState State<FadeScroll> ()"
+        },
+        "equal": true
+      },
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart": {
+        "declarations": {
+          "ResolvedFadeScroll": "ctor null ({required this.root, required this.viewport});field false true WebElementChrome root;field false true WebElementChrome viewport",
+          "resolveFadeScroll": "ResolvedFadeScroll null (BuildContext context, {required CoreFadeScrollDirection direction, required bool showScrollbar, CoreFadeScrollStyle? fadeScrollStyle})"
+        },
+        "equal": true
+      },
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart": {
+        "declarations": {
+          "FadeScrollMeasurer": "ctor null ({required this.viewportId, required this.direction});field false true String viewportId;field false true CoreFadeScrollDirection direction;method attach void ();method dispose void ()"
+        },
+        "equal": true
+      }
+    },
+    "ownedServer": {
+      "pid": 63890,
+      "port": 54205,
+      "root": "/Users/minhyeok/orca/workspaces/coui/weever/docs_site/build/jaspr",
+      "verifiedCommand": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/final-state-identity/serve-after.py",
+      "signal": "SIGTERM"
+    },
+    "browserClosed": {
+      "closed": true,
+      "serverPort": 54205
+    },
+    "unrelatedAppsTouched": false,
+    "portsClosed": {
+      "53924": true,
+      "54205": true
+    },
+    "serverReapedExit": 143
+  },
+  "uniqueTests": {
+    "actualChrome": 5,
+    "existingSSR": 3,
+    "total": 8,
+    "repeatsNotCounted": true,
+    "old5thNegative": "actualA-pixelpreservationafterBdispose,notsetup",
+    "fatalDartFiles": 4,
+    "formatChanged": 0
+  },
+  "independentOwnership": [
+    {
+      "phase": "after",
+      "executionCompleted": true,
+      "runtimeErrors": [],
+      "effectCountsBefore": {
+        "A": 6,
+        "B": 0
+      },
+      "effectsAfterBDispose": 3,
+      "publicRootId": "fade-a",
+      "privateViewportIdsInitial": [
+        "co-fade-5mbz5e",
+        "co-fade-5mbz5e"
+      ],
+      "sameMask": false,
+      "sameCarrierGradient": false,
+      "sameRootRect": true,
+      "callerNodesIdentityValueAndSelectionSame": true,
+      "pointerRemoveBMovesFocus": true,
+      "pixelSize": [
+        100,
+        100
+      ],
+      "differentPixels": 3000,
+      "pngBytesSame": false,
+      "pngSha256": {
+        "middle-before-dispose.png": "b84f506a264a1f41de948050252f40fa7bc249513f777432d762e164118e6b50",
+        "middle-after-dispose.png": "afda2518189e4d7aa23f0ea5f52fb8c7f45823f2190b005fc0270d8619b77f30"
+      },
+      "ownedCleanup": {
+        "browserClosed": true,
+        "serverClosed": true,
+        "port": 53826,
+        "pid": 61548,
+        "processGone": true,
+        "portClosed": true
+      }
+    },
+    {
+      "phase": "corrected",
+      "executionCompleted": true,
+      "runtimeErrors": [],
+      "effectCountsBefore": {
+        "A": 3,
+        "B": 3
+      },
+      "effectsAfterBDispose": 3,
+      "publicRootId": "fade-a",
+      "privateViewportIdsInitial": [
+        "co-fade-0",
+        "co-fade-1"
+      ],
+      "sameMask": true,
+      "sameCarrierGradient": true,
+      "sameRootRect": true,
+      "callerNodesIdentityValueAndSelectionSame": true,
+      "pointerRemoveBMovesFocus": true,
+      "pixelSize": [
+        100,
+        100
+      ],
+      "differentPixels": 0,
+      "pngBytesSame": true,
+      "pngSha256": {
+        "middle-before-dispose.png": "b84f506a264a1f41de948050252f40fa7bc249513f777432d762e164118e6b50",
+        "middle-after-dispose.png": "b84f506a264a1f41de948050252f40fa7bc249513f777432d762e164118e6b50"
+      },
+      "ownedCleanup": {
+        "browserClosed": true,
+        "serverClosed": true,
+        "port": 53852,
+        "pid": 61626,
+        "processGone": true,
+        "portClosed": true
+      }
+    }
+  ],
+  "latest5889DocsHistorical": {
+    "source": {
+      "head": "e3266717ff55a4756b96f7140249fb1ef4a04629",
+      "tree": "f5e2910577a8ad241d815fcbe72c68bc58fae124",
+      "main": "5889bb76383b8cee2c0a1c23a6b046d5a4e60747",
+      "mainTree": "e79b7cf11e0d600d670ec223e9f934c292c34332",
+      "previousValidatedProduct": "985a615781f7537f0265e36ee50209ee64be8b96",
+      "own4DartByteIdentical": {
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": true,
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart": true,
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart": true,
+        "tool/parity/test/web/fade_scroll_timeline_test.dart": true
+      },
+      "upstreamDesignAPIBaselineChanges": [
+        6397,
+        6400
+      ],
+      "ownDeltaFiles": [
+        "docs/verification/parity-fade-scroll-native-timeline-2026-11-18.json",
+        "docs/verification/parity-fade-scroll-native-timeline-2026-11-18.md",
+        "docs_core/content/components/fade-scroll.md",
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart",
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart",
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart",
+        "tool/parity/test/web/fade_scroll_timeline_test.dart"
+      ],
+      "status": "",
+      "trackedFiles": 22474,
+      "buildPort": 50841,
+      "notClaimedMerged": true
+    },
+    "buildExit": 0,
+    "uniqueRoutes": 359,
+    "runtimeExit": 0,
+    "runtimePassed": true,
+    "records": 72,
+    "recordsByComponent": {
+      "fade-scroll": 44,
+      "text-field": 12,
+      "input-otp": 16
+    },
+    "runtimeErrors": [],
+    "actionFailures": [],
+    "trackedFiles": 22474,
+    "hashDeltas": [],
+    "api": {
+      "graphs": [
+        {
+          "package": "coui_core",
+          "beforeFiles": 931,
+          "afterFiles": 931,
+          "same": true
+        },
+        {
+          "package": "coui_flutter",
+          "beforeFiles": 1351,
+          "afterFiles": 1351,
+          "same": true
+        },
+        {
+          "package": "coui_web",
+          "beforeFiles": 1296,
+          "afterFiles": 1296,
+          "same": true
+        }
+      ],
+      "rows": [
+        {
+          "path": "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": false,
+          "allDeclarationsIdentical": false,
+          "directivesIdentical": false,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        }
+      ],
+      "errors": [],
+      "methodology": "Function bodies elided; public top-level declarations in supported export closure compared. Existing bodies change while supported public declaration shapes are compared. Private helpers and unnamed library directive cleanup are reported separately."
+    },
+    "publicMemberProjection": {
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": {
+        "declarations": {
+          "FadeScroll": "ctor null ({required this.child, super.attributes, super.classes, super.css, super.eventHandlers, super.id, super.key, super.onChange, super.onClick, super.onInput, super.onKeyDown, super.onKeyUp, super.onMouseEnter, super.onMouseLeave, this.direction = CoreFadeScrollDirection.defaultDirection, this.showScrollbar = false, this.fadeScrollStyle});field false true Component child;field false true CoreFadeScrollDirection direction;field false true bool showScrollbar;field false true CoreFadeScrollStyle? fadeScrollStyle;method copyWith FadeScroll ({Key? key, UiMouseEventHandler? onClick, Map<String, String>? attributes, String? classes, Styles? css, Map<String, List<UiEventHandler>>? eventHandlers, String? id, UiInputEventHandler? onChange, UiInputEventHandler? onInput, UiKeyboardEventHandler? onKeyDown, UiKeyboardEventHandler? onKeyUp, UiMouseEventHandler? onMouseEnter, UiMouseEventHandler? onMouseLeave, CoreFadeScrollDirection? direction, bool? showScrollbar, CoreFadeScrollStyle? fadeScrollStyle, Component? child});method createState State<FadeScroll> ()"
+        },
+        "equal": true
+      },
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart": {
+        "declarations": {
+          "ResolvedFadeScroll": "ctor null ({required this.root, required this.viewport});field false true WebElementChrome root;field false true WebElementChrome viewport",
+          "resolveFadeScroll": "ResolvedFadeScroll null (BuildContext context, {required CoreFadeScrollDirection direction, required bool showScrollbar, CoreFadeScrollStyle? fadeScrollStyle})"
+        },
+        "equal": true
+      },
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart": {
+        "declarations": {
+          "FadeScrollMeasurer": "ctor null ({required this.viewportId, required this.direction});field false true String viewportId;field false true CoreFadeScrollDirection direction;method attach void ();method dispose void ()"
+        },
+        "equal": true
+      }
+    },
+    "ownedServer": {
+      "pid": 51050,
+      "port": 51097,
+      "root": "/Users/minhyeok/orca/workspaces/coui/weever/docs_site/build/jaspr",
+      "verifiedCommand": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/latest-main5889/serve-after.py",
+      "signal": "SIGTERM"
+    },
+    "browserClosed": {
+      "closed": true,
+      "serverPort": 51097
+    },
+    "unrelatedAppsTouched": false,
+    "portsClosed": {
+      "50841": true,
+      "51097": true
+    },
+    "serverReapedExit": 143
+  },
+  "uploadedEvidence": {
+    "release": {
+      "id": 431249100,
+      "draft": true,
+      "html_url": "https://github.com/coco-de/coui/releases/tag/untagged-5777cbc8f806c67a3301",
+      "private": true
+    },
+    "pr": 6401,
+    "count": 8,
+    "TTLdays": 3,
+    "assets": [
+      {
+        "name": "pr6401-default-flutter-dark.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6401-default-flutter-dark.png",
+        "id": 761925591,
+        "size": 3402,
+        "local": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-flutter-dark.png"
+      },
+      {
+        "name": "pr6401-default-flutter-light.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6401-default-flutter-light.png",
+        "id": 761925641,
+        "size": 3365,
+        "local": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-flutter-light.png"
+      },
+      {
+        "name": "pr6401-default-web-dark.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6401-default-web-dark.png",
+        "id": 761925677,
+        "size": 2653,
+        "local": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-web-dark.png"
+      },
+      {
+        "name": "pr6401-default-web-light.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6401-default-web-light.png",
+        "id": 761925739,
+        "size": 2703,
+        "local": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-web-light.png"
+      },
+      {
+        "name": "pr6401-fit-after-dark.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6401-fit-after-dark.png",
+        "id": 761925778,
+        "size": 163,
+        "local": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/fit-after-dark.png"
+      },
+      {
+        "name": "pr6401-fit-after-light.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6401-fit-after-light.png",
+        "id": 761925872,
+        "size": 163,
+        "local": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/fit-after-light.png"
+      },
+      {
+        "name": "pr6401-fit-before-dark.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6401-fit-before-dark.png",
+        "id": 761925916,
+        "size": 205,
+        "local": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/fit-before-dark.png"
+      },
+      {
+        "name": "pr6401-fit-before-light.png",
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6401-fit-before-light.png",
+        "id": 761926025,
+        "size": 205,
+        "local": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/fit-before-light.png"
+      }
+    ]
+  },
+  "status": "Final local validation and source/runtime cleanup complete; ordinary GitHub merge gate pending.",
+  "finalMatrix": {
+    "freshBaseline": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-main5889-fresh-baseline-20261118.82k803zh",
+    "freshFinalWeb": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6401-final-key-scope-web-20261118.1remhlcu",
+    "captureIntegrity": {
+      "afterSource": "f817af66b1d08f0a92005c087a17aede0a35df43",
+      "beforeSource": "5889bb76383b8cee2c0a1c23a6b046d5a4e60747",
+      "freshWebEntries": 752,
+      "nativeEntriesExplicitReuse": 752,
+      "counts": {
+        "jsonCount": 1504,
+        "jsonByteSame": 1366,
+        "jsonValuesExact": 1366,
+        "pngCount": 1528,
+        "pngByteSame": 1528,
+        "pngRgbaExact": 1528,
+        "jsonByteDifferent": 138
+      },
+      "originKinds": {
+        "reusedNativeFresh5889": 1516,
+        "freshFinalF817Web": 1516
+      },
+      "missing": [],
+      "rawArtifact": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6401-final-key-scope-web-20261118.1remhlcu/capture-integrity.json",
+      "rawSHA256": "f6efc84a32ba276474f662cbe3326d891a2d94250fd20928bcf5615f2648e363",
+      "omittedRecordLists": {
+        "files": 3032
+      }
+    },
+    "rawDelta": {
+      "counts": {
+        "jsonCount": 1504,
+        "jsonByteSame": 1366,
+        "jsonValuesExact": 1366,
+        "pngCount": 1528,
+        "pngByteSame": 1528,
+        "pngRgbaExact": 1528,
+        "jsonByteDifferent": 138
+      },
+      "rawJsonDifferencePaths": {
+        "/captureContext/text": 138
+      },
+      "allRawInputsPreserved": true,
+      "sourceEdits": 0,
+      "imageEdits": 0,
+      "rawArtifact": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6401-final-key-scope-web-20261118.1remhlcu/after-raw-delta.json",
+      "rawSHA256": "88702d26ea2e6b762c537c4121e0f2a4da7993fd56ba42ab8dfeb73e11544e98",
+      "omittedRecordLists": {
+        "differences": 138
+      }
+    },
+    "verdictIndependent": {
+      "pixel": {
+        "counts": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "sameFields": {
+          "matrix": true,
+          "propertyDiffs": true,
+          "infraSkippedKeys": true,
+          "structuralSkippedKeys": true,
+          "passedCount": true,
+          "infraFailedCount": true
+        },
+        "exit": 1
+      },
+      "property": {
+        "counts": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "sameFields": {
+          "matrix": true,
+          "propertyDiffs": true,
+          "infraSkippedKeys": true,
+          "structuralSkippedKeys": true,
+          "passedCount": true,
+          "infraFailedCount": true
+        },
+        "exit": 1
+      }
+    },
+    "ownRegression": {
+      "counts": {
+        "pass": 752,
+        "fail": 0,
+        "infra": 0,
+        "skipped": 0
+      },
+      "exit": 0,
+      "reference": "fresh5889own-platformreference;notcommitted-baselinepromotion"
+    },
+    "nativeAfter": "explicitfresh5889referenceREUSE,notfreshafter",
+    "noWebReuseFromUnsafeCandidate": true,
+    "summary": {
+      "source": "f817af66b1d08f0a92005c087a17aede0a35df43",
+      "tree": "4cbb5411ee317d2d5d6e22ccd26e6173069844b3",
+      "main": "09644e164890b59385c614fbd8cefde21d638843",
+      "beforeExecutedSource": "5889bb76383b8cee2c0a1c23a6b046d5a4e60747",
+      "freshAfterWeb": 752,
+      "nativeExplicitReuse": 752,
+      "manifestSha256": "3f6e29e4edec05b1b3d6c2a1face4104c7ff889092e0f4199bd36febc94ad784",
+      "rawCounts": {
+        "jsonCount": 1504,
+        "jsonByteSame": 1366,
+        "jsonValuesExact": 1366,
+        "pngCount": 1528,
+        "pngByteSame": 1528,
+        "pngRgbaExact": 1528,
+        "jsonByteDifferent": 138
+      },
+      "rawJsonDifferencePaths": {
+        "/captureContext/text": 138
+      },
+      "reports": {
+        "pixel": {
+          "counts": {
+            "pass": 572,
+            "fail": 180,
+            "infra": 0,
+            "skipped": 0
+          },
+          "allKeyRoleVerdictsSame": true,
+          "allPropertyDiffValuesSame": true,
+          "infraKeysSame": true,
+          "structuralKeysSame": true
+        },
+        "property": {
+          "counts": {
+            "pass": 416,
+            "fail": 278,
+            "infra": 12,
+            "skipped": 46
+          },
+          "allKeyRoleVerdictsSame": true,
+          "allPropertyDiffValuesSame": true,
+          "infraKeysSame": true,
+          "structuralKeysSame": true
+        },
+        "ownRegression": {
+          "counts": {
+            "pass": 752,
+            "fail": 0,
+            "infra": 0,
+            "skipped": 0
+          }
+        }
+      },
+      "allTrackedSame": true,
+      "trackedCount": 22474,
+      "clean": true,
+      "ownedBrowsers": 0,
+      "sourceEdits": 0,
+      "captureReusedWeb": 0
+    },
+    "sourceAfter": {
+      "head": "f817af66b1d08f0a92005c087a17aede0a35df43",
+      "tree": "4cbb5411ee317d2d5d6e22ccd26e6173069844b3",
+      "trackedFileCount": 22474,
+      "allTrackedSame": true,
+      "trackedDifferences": [],
+      "status": "",
+      "lockHashes": {
+        "pubspec.lock": "3503684b485aa82c20d5aae09870e92c44a1b5d579173114470266f34187be82"
+      },
+      "rawTrackedInventory": {
+        "count": 22474,
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6401-final-key-scope-web-20261118.1remhlcu/source-after.json",
+        "SHA256": "b5b9a8abcf627c7068ad12a220e29d5f9d962bf0296a1e179b2a11ce756450a7"
+      }
+    },
+    "cleanup": {
+      "head": "f817af66b1d08f0a92005c087a17aede0a35df43",
+      "tree": "4cbb5411ee317d2d5d6e22ccd26e6173069844b3",
+      "trackedCount": 22474,
+      "allTrackedSame": true,
+      "gitClean": true,
+      "ownedBrowserProcesses": [],
+      "allCaptureReportProcessesAwaited": true,
+      "processes": [
+        {
+          "name": "bootstrap",
+          "childPid": 61873,
+          "exit": 0,
+          "elapsedSeconds": 3.055617875
+        },
+        {
+          "name": "manifest",
+          "childPid": 62295,
+          "exit": 0,
+          "elapsedSeconds": 7.804537667
+        },
+        {
+          "name": "web-0",
+          "childPid": 63191,
+          "exit": 0,
+          "elapsedSeconds": 191.40526954100002
+        },
+        {
+          "name": "web-1",
+          "childPid": 63190,
+          "exit": 0,
+          "elapsedSeconds": 191.689269
+        },
+        {
+          "name": "web-2",
+          "childPid": 63192,
+          "exit": 0,
+          "elapsedSeconds": 191.480009583
+        },
+        {
+          "name": "pixel-report",
+          "childPid": 66682,
+          "exit": 1,
+          "elapsedSeconds": 10.591460290999999
+        },
+        {
+          "name": "property-report",
+          "childPid": 66681,
+          "exit": 1,
+          "elapsedSeconds": 5.8370436670000005
+        },
+        {
+          "name": "own-regression",
+          "childPid": 67429,
+          "exit": 0,
+          "elapsedSeconds": 15.053483916000001
+        }
+      ],
+      "sourceEdits": 0,
+      "imageEdits": 0,
+      "repositoryBaselinesPromoted": false,
+      "nativeAfterExecuted": false,
+      "nativeAfterExplicitFresh5889Reuse": 752,
+      "webAfterFresh": 752
+    }
+  },
+  "guards": [
+    {
+      "name": "tokens",
+      "phase": "1..7",
+      "exit": 0
+    },
+    {
+      "name": "contracts",
+      "SDK": "isolated3.50",
+      "exit": 0,
+      "nonEnforcedWarningsRetained": true
+    },
+    {
+      "name": "chrome-passthrough",
+      "exit": 0
+    }
+  ],
+  "publicApiFinal": {
+    "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": {
+      "declarations": {
+        "FadeScroll": "ctor null ({required this.child, super.attributes, super.classes, super.css, super.eventHandlers, super.id, super.key, super.onChange, super.onClick, super.onInput, super.onKeyDown, super.onKeyUp, super.onMouseEnter, super.onMouseLeave, this.direction = CoreFadeScrollDirection.defaultDirection, this.showScrollbar = false, this.fadeScrollStyle});field false true Component child;field false true CoreFadeScrollDirection direction;field false true bool showScrollbar;field false true CoreFadeScrollStyle? fadeScrollStyle;method copyWith FadeScroll ({Key? key, UiMouseEventHandler? onClick, Map<String, String>? attributes, String? classes, Styles? css, Map<String, List<UiEventHandler>>? eventHandlers, String? id, UiInputEventHandler? onChange, UiInputEventHandler? onInput, UiKeyboardEventHandler? onKeyDown, UiKeyboardEventHandler? onKeyUp, UiMouseEventHandler? onMouseEnter, UiMouseEventHandler? onMouseLeave, CoreFadeScrollDirection? direction, bool? showScrollbar, CoreFadeScrollStyle? fadeScrollStyle, Component? child});method createState State<FadeScroll> ()"
+      },
+      "equal": true
+    },
+    "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart": {
+      "declarations": {
+        "ResolvedFadeScroll": "ctor null ({required this.root, required this.viewport});field false true WebElementChrome root;field false true WebElementChrome viewport",
+        "resolveFadeScroll": "ResolvedFadeScroll null (BuildContext context, {required CoreFadeScrollDirection direction, required bool showScrollbar, CoreFadeScrollStyle? fadeScrollStyle})"
+      },
+      "equal": true
+    },
+    "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart": {
+      "declarations": {
+        "FadeScrollMeasurer": "ctor null ({required this.viewportId, required this.direction});field false true String viewportId;field false true CoreFadeScrollDirection direction;method attach void ();method dispose void ()"
+      },
+      "equal": true
+    }
+  },
+  "main096Binding": {
+    "base": "09644e164890b59385c614fbd8cefde21d638843",
+    "freshRunBase": "5889bb76383b8cee2c0a1c23a6b046d5a4e60747",
+    "difference": "4tests+addedalignmenthelpercalledonlybytests;product/docs/capture/report/existingparserbodiesunchanged",
+    "relabelledAsFresh096": false
+  },
+  "historical985ProductAndTestsCommit": "985a615781f7537f0265e36ee50209ee64be8b96",
+  "productAndTestsCommit": "95837c0a1ff23e5a88335eb7f73cb496b53288ac",
+  "ownershipFollowupHistoricalSnapshot": {
+    "status": "SOURCE_FIXED_VALIDATED_WAITING_ROOT_FINAL_FULL_CAPTURE_PR_GATE",
+    "source": {
+      "head": "95837c0a1ff23e5a88335eb7f73cb496b53288ac",
+      "tree": "fd9c902048d8b91e257bcd3e10951cf9fab2bfe2",
+      "parent": "0cb77dd3f8f552ca7d1c10a6a5b152ce9b734eee",
+      "baseMain": "09644e164890b59385c614fbd8cefde21d638843",
+      "sourceCommit985a": "preserved; unsafealone untilcounterfollowup",
+      "ownedSourceSha256": {
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": "34d0b00461725340387d8f0a91b080e607a0b9be21ff6e32d59dbb1a2e9a30cf",
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart": "54e98e0e785c4c99922c84c5cdb7f5f2f10dc377e35c8b32cbb1689ec0b87091",
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_measurer_web.dart": "443398d1817e71174296f6365d5be1e3fc478ac7c86b498e254ed0daf19a7e30",
+        "tool/parity/test/web/fade_scroll_timeline_test.dart": "40b96cc0cc1c4fc16554d9c00f111581194d9002352e656846c7362d5ababe6a"
+      },
+      "followupChangedFiles": [
+        "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart",
+        "tool/parity/test/web/fade_scroll_timeline_test.dart"
+      ],
+      "cleanStatus": "",
+      "positive": "5ChromePASS29s + existingSSR3PASS",
+      "negative": "Same5thtest pinned56b actualBdispose followedbyA pixelassertfailure, exit1, no setupfailure",
+      "api": "Publicmemberprojection/exportclosure0, privatecounterimplementationchanged",
+      "scope": "No new wrappers/tags/callerorder/publicRootid/keyforwarding/observer/registry. PrivateviewportIDandmatchinghidden-scrollbarselectorvalues intentionallychange forkeyedinstances. Existingcounterhandlesallinstances; alphahelperfallbackfunctions unchanged, legacy IDroutingownershipfixedtoo.",
+      "fullAfterPendingOwner": "Root/pixelagent fullWeb752fresh fromnewfinalRoothead, notold18+734composite."
+    },
+    "priorHold": {
+      "status": "HOLD_SUPERSEDED_OWNERSHIP_REGRESSION",
+      "unsafeCandidates": [
+        "985a615781f7537f0265e36ee50209ee64be8b96",
+        "56b50dfc7e66781b3abd2664c1dc80d8d87a2f76",
+        "e3266717ff55a4756b96f7140249fb1ef4a04629"
+      ],
+      "cause": "Equal legal local keys under different parents derive duplicate global viewport IDs; B attaches toA, then Bdispose removesAcarrier whileAeffects remain. Prior static/range/font/default receipts remain narrowevidence and are not overallownershipapproval.",
+      "actualNegative": "/tmp/weever-6401-duplicate-local-key-20261118.bc9r5zmk/after/browser.json",
+      "permanentNegative": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/state-unique-ids/permanent5-negative.log",
+      "replacementCommit": "95837c0a1ff23e5a88335eb7f73cb496b53288ac",
+      "noOldEvidenceDeletedOrRelabeled": true
+    },
+    "negative": {
+      "source": "56b archivedCore/Web; same newest5thtest fixture",
+      "exit": 1,
+      "primaryFailure": "ObservableA pixel equality after Bdisposal, before anyID/effectcount assertion",
+      "rawLog": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/state-unique-ids/permanent5-negative.log",
+      "record": "initialsameprivateIDs/effects[6,0]; disposedAeffects3/builds1/sameRoot/viewport/caller/input/focus/value/selection, carrierempty/leadingopaque; actualA pixels changed",
+      "noAParentRefreshBeforeFailure": true,
+      "setupFailure": false
+    },
+    "positive": {
+      "source": "95837c0a1ff23e5a88335eb7f73cb496b53288ac",
+      "chromeTests": 5,
+      "chromeLog": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/state-unique-ids/permanent5-positive.log",
+      "newControlInputs": "light/dark×horizontal/vertical, equal localValueKeys under twoindependentparentStates",
+      "assertions": [
+        "AandB initialowned3effects anduniqueprivateIDs",
+        "Bstatealone disposal, Aparentbuildcountunchanged",
+        "Aactualpixels/mask/effects preserved withoutArefresh",
+        "PublicRootid/ARIA/callerattrs/inputidentity/value/counter/selection preserved",
+        "ProgrammaticBbuttonaction preservesAfocus; independentmouse-clickcontrol makesnofocusclaim",
+        "Bowned3effectscanceled/privatecarrierscleared; remountBown3; laterArefreshkeepsStateidentity/3effects"
+      ],
+      "ssrExistingTests": 3,
+      "ssrLog": "/tmp/weever-6394-fade-timeline-20261118.7359efzk/state-unique-ids/existing3.log",
+      "fatal": "analyze-final.log:No issues found",
+      "format": "2files0changed/diffcheck0",
+      "api": {
+        "publicProjectionSame": true,
+        "exportGraphSame": true,
+        "beforeExportFiles": 1296,
+        "afterExportFiles": 1296
+      },
+      "original4Bodies": {
+        "rows": [
+          {
+            "index": 0,
+            "byteSame": true,
+            "beforeSha256": "171ee0ddb4964a9470c2cac999d29df0a0b65fc2b36ab0db7acee83ae6faa498",
+            "afterSha256": "171ee0ddb4964a9470c2cac999d29df0a0b65fc2b36ab0db7acee83ae6faa498"
+          },
+          {
+            "index": 1,
+            "byteSame": true,
+            "beforeSha256": "38344e8838404b5c7f163c2ad9601a87737e5221f7b4e397b9f2c308fe5c29f7",
+            "afterSha256": "38344e8838404b5c7f163c2ad9601a87737e5221f7b4e397b9f2c308fe5c29f7"
+          },
+          {
+            "index": 2,
+            "byteSame": true,
+            "beforeSha256": "47240b2c177f065200986a387688283cb28d2aaa59901fcb14d867c094c748ee",
+            "afterSha256": "47240b2c177f065200986a387688283cb28d2aaa59901fcb14d867c094c748ee"
+          },
+          {
+            "index": 3,
+            "byteSame": true,
+            "beforeSha256": "0fc45c4b2e152f6e64e64e5676821b5dfecd02b6d619f9d002af2b911919dd64",
+            "afterSha256": "0fc45c4b2e152f6e64e64e5676821b5dfecd02b6d619f9d002af2b911919dd64"
+          }
+        ],
+        "onlySharedFixtureChange": "Additional local-keys fixturequerybranch/classes; existing4testbodies byteidentical"
+      }
+    },
+    "independentPositive": {
+      "path": "/tmp/weever-6401-duplicate-local-key-20261118.bc9r5zmk/independent-positive-summary.json",
+      "scope": "Separateagent same frozen e326overlay/fixture, changesonly widget34d0..., actual A3/B3→A3, before/after100×100RGBAexact. Olde3263000changedpixels. LastrefreshAdiagnosticnotpassbasis.",
+      "cleanup": "/tmp/weever-6401-duplicate-local-key-20261118.bc9r5zmk/cleanup-final.json"
+    },
+    "ownedDebugReload": {
+      "source": "95837c0a1ff23e5a88335eb7f73cb496b53288ac",
+      "sdk": "officialFlutter3.50absolute",
+      "ownServiceOnly": true,
+      "reloadExit": 0,
+      "reload": {
+        "isolate": "main",
+        "success": true,
+        "details": {
+          "type": "ReloadReport",
+          "success": true,
+          "details": {
+            "finalLibraryCount": 2225,
+            "receivedLibraryCount": 0,
+            "receivedLibrariesBytes": 0,
+            "receivedClassesCount": 0,
+            "receivedProceduresCount": 0,
+            "savedLibraryCount": 2225,
+            "loadedLibraryCount": 0
+          }
+        }
+      },
+      "httpBeforeAfter": [
+        200,
+        200
+      ],
+      "scopeIdsBefore": [
+        "co-fade-0",
+        "co-fade-1"
+      ],
+      "scopeIdsAfter": [
+        "co-fade-2",
+        "co-fade-3"
+      ],
+      "uniqueBefore": true,
+      "uniqueAfter": true,
+      "publicRootIdsPreserved": true,
+      "beforeSha256": "d3bd3690661f02e8dcfd94f5bbf73bd131b4bc490a65bbeb00d743aba91c1c68",
+      "afterSha256": "739077deb85d8788088b4539c665a182b9deb2193617b4092fd53ba9a9e71967",
+      "closed": true,
+      "scope": "Twoequal-local-key SSR roots only; actualO2browser ownership test separate. No otherapp/DTD/server access."
+    },
+    "finalMatrixOwner": "Root/pixelagent freshentireWeb7523shards afternewcounter onfinalRoothead; fresh5889Nativebeforeexplicitreuse to096productidentity. Old985full/56b18+734 receipts preservedOLDUNSAFEphase, notnewfinalcaptureclaims.",
+    "scope": "Newfollowup2files, overallFadepatch4Dartfiles versusmain096. NoCore/default/publicAPI/helperexport/newobserver/registry/wrapper/callerorder/font/AA/offset/threshold/allowlist/baselinechanges. PrivateviewportIDs/scrollbarselectorvalues forkeyedinstances intentionallychange. Rootpublicids/keys unchanged. Legacyalphahelperfunctions remainliteral, scopedIDroutingcorrectedallpaths. #6366notclosed.",
+    "rootOwns": "PR6401/docs/freshfullafter/uploads/push/merge; worker noexternalwrite",
+    "cleanStatus": ""
+  },
+  "ownershipFollowup": {
+    "status": "Final counter source passed full freshWeb752/docs72/independentownership control; GitHub gate pending.",
+    "productCommit": "95837c0a1ff23e5a88335eb7f73cb496b53288ac",
+    "rootExecutionHead": "f817af66b1d08f0a92005c087a17aede0a35df43",
+    "rawSnapshotPreservedAs": "ownershipFollowupHistoricalSnapshot",
+    "snapshotWaitingFieldsAreHistorical": true
+  },
+  "defaultUploadedImageFinalBinding": [
+    {
+      "theme": "light",
+      "engine": "web",
+      "existingUploadedSource": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-web-light.png",
+      "newFinalSourceFiles": [
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6401-final-key-scope-web-20261118.1remhlcu/captured/fade-scroll-default-light-defaultStyle.web.png",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6401-final-key-scope-web-20261118.1remhlcu/web-1/fade-scroll-default-light-defaultStyle.web.png"
+      ],
+      "byteIdentical": true
+    },
+    {
+      "theme": "light",
+      "engine": "flutter",
+      "existingUploadedSource": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-flutter-light.png",
+      "newFinalSourceFiles": [
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6401-final-key-scope-web-20261118.1remhlcu/captured/fade-scroll-default-light-defaultStyle.flutter.png"
+      ],
+      "byteIdentical": true
+    },
+    {
+      "theme": "dark",
+      "engine": "web",
+      "existingUploadedSource": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-web-dark.png",
+      "newFinalSourceFiles": [
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6401-final-key-scope-web-20261118.1remhlcu/web-2/fade-scroll-default-dark-defaultStyle.web.png",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6401-final-key-scope-web-20261118.1remhlcu/captured/fade-scroll-default-dark-defaultStyle.web.png"
+      ],
+      "byteIdentical": true
+    },
+    {
+      "theme": "dark",
+      "engine": "flutter",
+      "existingUploadedSource": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6394-fade-integrated-20261118.ekw79t23/pr-images/default-flutter-dark.png",
+      "newFinalSourceFiles": [
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6401-final-key-scope-web-20261118.1remhlcu/captured/fade-scroll-default-dark-defaultStyle.flutter.png"
+      ],
+      "byteIdentical": true
+    }
+  ]
+}

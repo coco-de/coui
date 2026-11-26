@@ -1,0 +1,31 @@
+{
+  "_why": [
+    "check_alpha_application_parity.py 는 alpha 필드가 '색의 alpha' 로 쓰이는지 '노드 opacity' 로",
+    "쓰이는지 양 플랫폼에서 각각 판정하고 일치를 요구한다. 여기 적히는 것은 **불일치 면제**가 아니라",
+    "**판정 불가**다 — 스크립트가 그 컴포넌트 디렉터리 안에서 적용 지점을 찾지 못한 경우.",
+    "",
+    "한쪽이 안 잡힌 것을 불일치로 세지 않는 이유는, 그게 발산의 증거가 아니라 스크립트가 못 본",
+    "증거이기 때문이다. 그렇다고 조용히 통과시키면 게이트가 자기가 못 보는 것을 봤다고 말하게 되니,",
+    "이름과 사유를 적게 한다. why 에는 '실제로 어디서 어떻게 적용되는가' 를 적는다 — 읽고 확인했다는",
+    "기록이지, 안 봤다는 면제가 아니다.",
+    "",
+    "baseline 은 없다. 줄이 늘어나는 것은 숫자가 아니라 리뷰에 보이는 변경이다."
+  ],
+  "fields": {
+    "card.surfaceOpacity": {
+      "why": "Card 는 이 값을 자기가 적용하지 않고 `CoreOutlinedContainerStyle.surfaceOpacity` 로 forward 한다 (card_style.dart 의 containerStyle). 적용은 OutlinedContainer 의 resolver 가 하고 양 플랫폼 모두 색 alpha 다 — Flutter `backgroundToken.scaleAlpha(surfaceOpacity)` · Web 동일. 즉 일치하지만 그 코드가 card/ 디렉터리 밖에 있어 이 스크립트의 컴포넌트 스코프에 안 들어온다. 스코프를 forward 대상까지 넓히려면 슬롯 forward 를 따라가야 하고, 그건 이 게이트가 아니라 합성 파리티 게이트(G14)의 일이다."
+    },
+    "card_image.disabledContentOpacity": {
+      "why": "양 플랫폼 모두 노드 opacity 다 — 비활성일 때 이미지 층과 글 칸에만 건다. Flutter 는 resolver 가 `contentOpacity`(비활성이면 `merged.disabledContentOpacity ?? defaultDisabledContentOpacity`, 아니면 1) 로 이름을 바꿔 내고 card_image.dart 가 `Opacity(opacity: resolved.contentOpacity)` 로 두 층을 감싼다. Web 은 같은 값을 `buildDimInlineStyles` 의 인라인 `opacity` 로 같은 두 층에 낸다. 일치하지만 Flutter 의 적용 지점이 필드 이름이 아니라 `contentOpacity` 로 읽혀 이 스크립트가 이름으로 잇지 못한다."
+    },
+    "code_diff.rowTintAlpha": {
+      "why": "@Deprecated (since 0.161) — 어느 플랫폼도 읽지 않는다. 추가/삭제 행 배경은 불투명 컨테이너 토큰(`addedBackgroundColor`/`removedBackgroundColor`)이지 success/error 에 alpha 를 곱한 틴트가 아니다. 적용 지점이 양 플랫폼 모두에 없으므로 이 스크립트가 색/노드를 판정할 대상이 없다 — 불일치가 아니라 '적용 자체가 없음' 이다. 필드는 앱이 컴파일되도록 남아 있고 제거는 deprecation.md 의 두 마이너 창 뒤다. 그때 이 줄도 같이 지운다(stale 항목은 이 게이트가 실패시킨다)."
+    },
+    "code_diff.lineNumberAlpha": {
+      "why": "@Deprecated (since 0.161) — 어느 플랫폼도 읽지 않는다. 거터 번호의 위계는 alpha 가 아니라 토큰이다: 평범한 행은 `lineNumberColor`(onSurfaceVariant, 불투명), 밴드 행은 `addedForegroundColor`/`removedForegroundColor`. 적용 지점이 양 플랫폼 모두에 없으므로 이 스크립트가 색/노드를 판정할 대상이 없다 — 불일치가 아니라 '적용 자체가 없음' 이다. 필드는 앱이 컴파일되도록 남아 있고 제거는 deprecation.md 의 두 마이너 창 뒤다. 그때 이 줄도 같이 지운다(stale 항목은 이 게이트가 실패시킨다)."
+    },
+    "code_snippet.lineNumberAlpha": {
+      "why": "@Deprecated (since 0.161) — 어느 플랫폼도 읽지 않는다. 거터 번호의 색은 alpha 가 아니라 토큰이다: `lineNumberTextStyle.color`, 기본값 `defaultLineNumberTextStyle`(onSurfaceVariant, 불투명) — 코드 색에 alpha 를 곱해 만들지 않는다. 적용 지점이 양 플랫폼 모두에 없으므로 이 스크립트가 색/노드를 판정할 대상이 없다 — 불일치가 아니라 '적용 자체가 없음' 이다. 필드는 앱이 컴파일되도록 남아 있고 제거는 deprecation.md 의 두 마이너 창 뒤다. 그때 이 줄도 같이 지운다(stale 항목은 이 게이트가 실패시킨다)."
+    }
+  }
+}

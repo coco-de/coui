@@ -1,0 +1,4140 @@
+{
+  "_comment": [
+    "Shared vectors for the lift of a ContextMenu's source and the fold of",
+    "its panel back into it (CoreContextMenuLift, CoreContextMenuLiftTimeline,",
+    "CoreContextMenuRetract). The numbers of the look are CoreContextMenuStyle's",
+    "defaults and the numbers of the gesture are CoreContextMenuContract's.",
+    "Read by coui_core (every row on the functions and the timeline), coui_flutter",
+    "(the traces as real pointer events, key events and a controller on a real",
+    "ContextMenu, reading the widgets that were painted), coui_web (the traces",
+    "on the press tracker and the timeline with a manual clock, and the same",
+    "numbers on the markup) and the Chrome probe (the computed style of the real",
+    "page). A change on one platform fails the others.",
+    "Expected values were computed by an independent reference (the cubic-bezier",
+    "solved by bisection on x, not by the solver the Dart code uses) from the",
+    "arithmetic the contract documents.",
+    "All times are ms. 'progress' rows are the pure function; 'settle' rows are",
+    "its way back; 'visuals' are what a progress looks like; 'retract' rows give",
+    "the pivot, scale, opacity and the rect a panel occupies at fractions of its",
+    "close; 'traces' are what an opening does (events = what the person or the",
+    "page does, timeline = the calls the seat makes on the timeline, samples =",
+    "what is on screen at that time, measured from the first event).",
+    "Event kinds: down, move, up, cancel, scroll (web only), open (via",
+    "secondaryClick | key | controller), close (via escape | outside | controller).",
+    "'platforms' names who replays a trace (absent: both).",
+    "'riseDuration' rows are the rule that holds a held touch's rise to what the",
+    "hold leaves (requested in, run out). 'override' states a style with other",
+    "numbers, and the traces and the fold under it."
+  ],
+  "numbers": {
+    "holdMs": 500,
+    "delayMs": 150,
+    "durationMs": 300,
+    "closeMs": 100,
+    "liftScale": 1.04,
+    "dimOpacity": 0.2,
+    "retractScale": 0.3,
+    "radius": 16,
+    "cast": [
+      {
+        "offsetX": 0,
+        "offsetY": 16,
+        "blurRadius": 40,
+        "spreadRadius": 0,
+        "opacity": 0.125
+      }
+    ],
+    "liftsWithoutHold": true
+  },
+  "easing": {
+    "enter": [
+      0.0,
+      0.0,
+      0.58,
+      1.0
+    ],
+    "exit": [
+      0.42,
+      0.0,
+      1.0,
+      1.0
+    ]
+  },
+  "progress": [
+    {
+      "name": "nothing happens until the delay is over",
+      "elapsedMs": 0,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 0.0
+    },
+    {
+      "name": "nothing happens until the delay is over",
+      "elapsedMs": 100,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 0.0
+    },
+    {
+      "name": "nothing happens until the delay is over",
+      "elapsedMs": 149,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 0.0
+    },
+    {
+      "name": "nothing happens until the delay is over",
+      "elapsedMs": 150,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 0.0
+    },
+    {
+      "name": "rising along the enter curve",
+      "elapsedMs": 151,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 0.005684656116
+    },
+    {
+      "name": "rising along the enter curve",
+      "elapsedMs": 165,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 0.082242204042
+    },
+    {
+      "name": "rising along the enter curve",
+      "elapsedMs": 225,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 0.378138130825
+    },
+    {
+      "name": "rising along the enter curve",
+      "elapsedMs": 300,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 0.684643187427
+    },
+    {
+      "name": "rising along the enter curve",
+      "elapsedMs": 375,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 0.906535349281
+    },
+    {
+      "name": "rising along the enter curve",
+      "elapsedMs": 449,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 0.999979082908
+    },
+    {
+      "name": "fully lifted and held",
+      "elapsedMs": 450,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 1.0
+    },
+    {
+      "name": "fully lifted and held",
+      "elapsedMs": 500,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 1.0
+    },
+    {
+      "name": "fully lifted and held",
+      "elapsedMs": 700,
+      "delayMs": 150,
+      "durationMs": 300,
+      "expected": 1.0
+    },
+    {
+      "name": "an opening with no hold lifts from its first moment",
+      "elapsedMs": 0,
+      "delayMs": 0,
+      "durationMs": 300,
+      "expected": 0.0
+    },
+    {
+      "name": "an opening with no hold lifts from its first moment",
+      "elapsedMs": 30,
+      "delayMs": 0,
+      "durationMs": 300,
+      "expected": 0.160572154238
+    },
+    {
+      "name": "an opening with no hold lifts from its first moment",
+      "elapsedMs": 75,
+      "delayMs": 0,
+      "durationMs": 300,
+      "expected": 0.378138130825
+    },
+    {
+      "name": "an opening with no hold lifts from its first moment",
+      "elapsedMs": 150,
+      "delayMs": 0,
+      "durationMs": 300,
+      "expected": 0.684643187427
+    },
+    {
+      "name": "an opening with no hold lifts from its first moment",
+      "elapsedMs": 225,
+      "delayMs": 0,
+      "durationMs": 300,
+      "expected": 0.906535349281
+    },
+    {
+      "name": "an opening with no hold lifts from its first moment",
+      "elapsedMs": 300,
+      "delayMs": 0,
+      "durationMs": 300,
+      "expected": 1.0
+    },
+    {
+      "name": "an opening with no hold lifts from its first moment",
+      "elapsedMs": 400,
+      "delayMs": 0,
+      "durationMs": 300,
+      "expected": 1.0
+    },
+    {
+      "name": "released mid-rise: comes back from where it got to",
+      "elapsedMs": 300,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 300,
+      "expected": 0.684643187427
+    },
+    {
+      "name": "released mid-rise: comes back from where it got to",
+      "elapsedMs": 301,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 300,
+      "expected": 0.680751226345
+    },
+    {
+      "name": "released mid-rise: comes back from where it got to",
+      "elapsedMs": 330,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 300,
+      "expected": 0.574708555938
+    },
+    {
+      "name": "released mid-rise: comes back from where it got to",
+      "elapsedMs": 375,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 300,
+      "expected": 0.425753492251
+    },
+    {
+      "name": "released mid-rise: comes back from where it got to",
+      "elapsedMs": 450,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 300,
+      "expected": 0.215906893337
+    },
+    {
+      "name": "released mid-rise: comes back from where it got to",
+      "elapsedMs": 600,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 300,
+      "expected": 0.0
+    },
+    {
+      "name": "released mid-rise: comes back from where it got to",
+      "elapsedMs": 900,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 300,
+      "expected": 0.0
+    },
+    {
+      "name": "released before the lift began: stays at rest",
+      "elapsedMs": 0,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 100,
+      "expected": 0.0
+    },
+    {
+      "name": "released before the lift began: stays at rest",
+      "elapsedMs": 100,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 100,
+      "expected": 0.0
+    },
+    {
+      "name": "released before the lift began: stays at rest",
+      "elapsedMs": 200,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 100,
+      "expected": 0.0
+    },
+    {
+      "name": "released before the lift began: stays at rest",
+      "elapsedMs": 800,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 100,
+      "expected": 0.0
+    },
+    {
+      "name": "released at the top: settles over the lift duration",
+      "elapsedMs": 460,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 460,
+      "expected": 1.0
+    },
+    {
+      "name": "released at the top: settles over the lift duration",
+      "elapsedMs": 480,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 460,
+      "expected": 0.891283994821
+    },
+    {
+      "name": "released at the top: settles over the lift duration",
+      "elapsedMs": 520,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 460,
+      "expected": 0.691633933319
+    },
+    {
+      "name": "released at the top: settles over the lift duration",
+      "elapsedMs": 600,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 460,
+      "expected": 0.3518808266
+    },
+    {
+      "name": "released at the top: settles over the lift duration",
+      "elapsedMs": 760,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 460,
+      "expected": 0.0
+    },
+    {
+      "name": "released at the top: settles over the lift duration",
+      "elapsedMs": 900,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 460,
+      "expected": 0.0
+    },
+    {
+      "name": "a close settles over its own, shorter duration",
+      "elapsedMs": 460,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 460,
+      "returnMs": 100,
+      "expected": 1.0
+    },
+    {
+      "name": "a close settles over its own, shorter duration",
+      "elapsedMs": 485,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 460,
+      "returnMs": 100,
+      "expected": 0.621861869175
+    },
+    {
+      "name": "a close settles over its own, shorter duration",
+      "elapsedMs": 510,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 460,
+      "returnMs": 100,
+      "expected": 0.315356812573
+    },
+    {
+      "name": "a close settles over its own, shorter duration",
+      "elapsedMs": 560,
+      "delayMs": 150,
+      "durationMs": 300,
+      "releasedAtMs": 460,
+      "returnMs": 100,
+      "expected": 0.0
+    },
+    {
+      "name": "a zero duration is a jump (reduced motion)",
+      "elapsedMs": 0,
+      "delayMs": 150,
+      "durationMs": 0,
+      "expected": 0.0
+    },
+    {
+      "name": "a zero duration is a jump (reduced motion)",
+      "elapsedMs": 150,
+      "delayMs": 150,
+      "durationMs": 0,
+      "expected": 0.0
+    },
+    {
+      "name": "a zero duration is a jump (reduced motion)",
+      "elapsedMs": 151,
+      "delayMs": 150,
+      "durationMs": 0,
+      "expected": 1.0
+    },
+    {
+      "name": "a zero duration is a jump (reduced motion)",
+      "elapsedMs": 400,
+      "delayMs": 150,
+      "durationMs": 0,
+      "expected": 1.0
+    },
+    {
+      "name": "zero duration, released at once: no way back to see",
+      "elapsedMs": 200,
+      "delayMs": 150,
+      "durationMs": 0,
+      "releasedAtMs": 200,
+      "expected": 0.0
+    },
+    {
+      "name": "zero duration, released at once: no way back to see",
+      "elapsedMs": 201,
+      "delayMs": 150,
+      "durationMs": 0,
+      "releasedAtMs": 200,
+      "expected": 0.0
+    },
+    {
+      "name": "zero duration, released at once: no way back to see",
+      "elapsedMs": 400,
+      "delayMs": 150,
+      "durationMs": 0,
+      "releasedAtMs": 200,
+      "expected": 0.0
+    }
+  ],
+  "settle": [
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 0,
+      "durationMs": 100,
+      "expected": 1.0
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 25,
+      "durationMs": 100,
+      "expected": 0.621861869175
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 50,
+      "durationMs": 100,
+      "expected": 0.315356812573
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 75,
+      "durationMs": 100,
+      "expected": 0.093464650719
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 100,
+      "durationMs": 100,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 150,
+      "durationMs": 100,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 0,
+      "durationMs": 300,
+      "expected": 1.0
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 25,
+      "durationMs": 300,
+      "expected": 0.865181429817
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 50,
+      "durationMs": 300,
+      "expected": 0.739659669828
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 75,
+      "durationMs": 300,
+      "expected": 0.621861869175
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 100,
+      "durationMs": 300,
+      "expected": 0.51165099729
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 150,
+      "durationMs": 300,
+      "expected": 0.315356812573
+    },
+    {
+      "fromProgress": 0.5,
+      "elapsedMs": 0,
+      "durationMs": 100,
+      "expected": 0.5
+    },
+    {
+      "fromProgress": 0.5,
+      "elapsedMs": 25,
+      "durationMs": 100,
+      "expected": 0.310930934587
+    },
+    {
+      "fromProgress": 0.5,
+      "elapsedMs": 50,
+      "durationMs": 100,
+      "expected": 0.157678406286
+    },
+    {
+      "fromProgress": 0.5,
+      "elapsedMs": 75,
+      "durationMs": 100,
+      "expected": 0.046732325359
+    },
+    {
+      "fromProgress": 0.5,
+      "elapsedMs": 100,
+      "durationMs": 100,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 0.5,
+      "elapsedMs": 150,
+      "durationMs": 100,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 0.0,
+      "elapsedMs": 0,
+      "durationMs": 100,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 0.0,
+      "elapsedMs": 25,
+      "durationMs": 100,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 0.0,
+      "elapsedMs": 50,
+      "durationMs": 100,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 0.0,
+      "elapsedMs": 75,
+      "durationMs": 100,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 0.0,
+      "elapsedMs": 100,
+      "durationMs": 100,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 0.0,
+      "elapsedMs": 150,
+      "durationMs": 100,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 0,
+      "durationMs": 0,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 25,
+      "durationMs": 0,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 50,
+      "durationMs": 0,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 75,
+      "durationMs": 0,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 100,
+      "durationMs": 0,
+      "expected": 0.0
+    },
+    {
+      "fromProgress": 1.0,
+      "elapsedMs": 150,
+      "durationMs": 0,
+      "expected": 0.0
+    }
+  ],
+  "visuals": [
+    {
+      "progress": 0.0,
+      "scale": 1.0,
+      "dim": 0.0,
+      "cast": [
+        {
+          "offsetX": 0.0,
+          "offsetY": 0.0,
+          "blurRadius": 0.0,
+          "spreadRadius": 0.0,
+          "opacity": 0.0
+        }
+      ]
+    },
+    {
+      "progress": 0.25,
+      "scale": 1.01,
+      "dim": 0.05,
+      "cast": [
+        {
+          "offsetX": 0.0,
+          "offsetY": 4.0,
+          "blurRadius": 10.0,
+          "spreadRadius": 0.0,
+          "opacity": 0.03125
+        }
+      ]
+    },
+    {
+      "progress": 0.5,
+      "scale": 1.02,
+      "dim": 0.1,
+      "cast": [
+        {
+          "offsetX": 0.0,
+          "offsetY": 8.0,
+          "blurRadius": 20.0,
+          "spreadRadius": 0.0,
+          "opacity": 0.0625
+        }
+      ]
+    },
+    {
+      "progress": 0.75,
+      "scale": 1.03,
+      "dim": 0.15,
+      "cast": [
+        {
+          "offsetX": 0.0,
+          "offsetY": 12.0,
+          "blurRadius": 30.0,
+          "spreadRadius": 0.0,
+          "opacity": 0.09375
+        }
+      ]
+    },
+    {
+      "progress": 1.0,
+      "scale": 1.04,
+      "dim": 0.2,
+      "cast": [
+        {
+          "offsetX": 0.0,
+          "offsetY": 16.0,
+          "blurRadius": 40.0,
+          "spreadRadius": 0.0,
+          "opacity": 0.125
+        }
+      ]
+    }
+  ],
+  "retract": [
+    {
+      "name": "beneath the source, narrower than it",
+      "panel": [
+        100,
+        100,
+        340,
+        300
+      ],
+      "source": [
+        0,
+        0,
+        300,
+        60
+      ],
+      "pivot": [
+        220.0,
+        60
+      ],
+      "frames": [
+        {
+          "fraction": 0.0,
+          "scale": 1.0,
+          "opacity": 1.0,
+          "rect": [
+            100.0,
+            100.0,
+            340.0,
+            300.0
+          ]
+        },
+        {
+          "fraction": 0.25,
+          "scale": 0.934574744497,
+          "opacity": 0.906535349281,
+          "rect": [
+            107.851030660381,
+            97.382989779873,
+            332.148969339619,
+            284.297938679237
+          ]
+        },
+        {
+          "fraction": 0.5,
+          "scale": 0.779250231199,
+          "opacity": 0.684643187427,
+          "rect": [
+            126.489972256093,
+            91.170009247969,
+            313.510027743907,
+            247.020055487813
+          ]
+        },
+        {
+          "fraction": 0.75,
+          "scale": 0.564696691578,
+          "opacity": 0.378138130825,
+          "rect": [
+            152.236397010691,
+            82.587867663103,
+            287.763602989309,
+            195.527205978618
+          ]
+        },
+        {
+          "fraction": 1.0,
+          "scale": 0.3,
+          "opacity": 0.0,
+          "rect": [
+            184.0,
+            72.0,
+            256.0,
+            132.0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "over the source: opened at the pointer inside the row",
+      "panel": [
+        140,
+        30,
+        380,
+        230
+      ],
+      "source": [
+        0,
+        0,
+        300,
+        60
+      ],
+      "pivot": [
+        260.0,
+        60
+      ],
+      "frames": [
+        {
+          "fraction": 0.0,
+          "scale": 1.0,
+          "opacity": 1.0,
+          "rect": [
+            140.0,
+            30.0,
+            380.0,
+            230.0
+          ]
+        },
+        {
+          "fraction": 0.25,
+          "scale": 0.934574744497,
+          "opacity": 0.906535349281,
+          "rect": [
+            147.851030660381,
+            31.962757665095,
+            372.148969339619,
+            218.87770656446
+          ]
+        },
+        {
+          "fraction": 0.5,
+          "scale": 0.779250231199,
+          "opacity": 0.684643187427,
+          "rect": [
+            166.489972256093,
+            36.622493064023,
+            353.510027743907,
+            192.472539303868
+          ]
+        },
+        {
+          "fraction": 0.75,
+          "scale": 0.564696691578,
+          "opacity": 0.378138130825,
+          "rect": [
+            192.236397010691,
+            43.059099252673,
+            327.763602989309,
+            155.998437568188
+          ]
+        },
+        {
+          "fraction": 1.0,
+          "scale": 0.3,
+          "opacity": 0.0,
+          "rect": [
+            224.0,
+            51.0,
+            296.0,
+            111.0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "its middle inside the source: folds about its own middle",
+      "panel": [
+        100,
+        50,
+        300,
+        200
+      ],
+      "source": [
+        0,
+        0,
+        400,
+        300
+      ],
+      "pivot": [
+        200.0,
+        125.0
+      ],
+      "frames": [
+        {
+          "fraction": 0.0,
+          "scale": 1.0,
+          "opacity": 1.0,
+          "rect": [
+            100.0,
+            50.0,
+            300.0,
+            200.0
+          ]
+        },
+        {
+          "fraction": 0.25,
+          "scale": 0.934574744497,
+          "opacity": 0.906535349281,
+          "rect": [
+            106.542525550318,
+            54.906894162738,
+            293.457474449682,
+            195.093105837262
+          ]
+        },
+        {
+          "fraction": 0.5,
+          "scale": 0.779250231199,
+          "opacity": 0.684643187427,
+          "rect": [
+            122.074976880078,
+            66.556232660058,
+            277.925023119922,
+            183.443767339942
+          ]
+        },
+        {
+          "fraction": 0.75,
+          "scale": 0.564696691578,
+          "opacity": 0.378138130825,
+          "rect": [
+            143.530330842242,
+            82.647748131682,
+            256.469669157758,
+            167.352251868318
+          ]
+        },
+        {
+          "fraction": 1.0,
+          "scale": 0.3,
+          "opacity": 0.0,
+          "rect": [
+            170.0,
+            102.5,
+            230.0,
+            147.5
+          ]
+        }
+      ]
+    },
+    {
+      "name": "beside the source, to its start side",
+      "panel": [
+        0,
+        100,
+        200,
+        300
+      ],
+      "source": [
+        250,
+        80,
+        450,
+        140
+      ],
+      "pivot": [
+        250,
+        140
+      ],
+      "frames": [
+        {
+          "fraction": 0.0,
+          "scale": 1.0,
+          "opacity": 1.0,
+          "rect": [
+            0.0,
+            100.0,
+            200.0,
+            300.0
+          ]
+        },
+        {
+          "fraction": 0.25,
+          "scale": 0.934574744497,
+          "opacity": 0.906535349281,
+          "rect": [
+            16.356313875794,
+            102.617010220127,
+            203.271262775159,
+            289.531959119492
+          ]
+        },
+        {
+          "fraction": 0.5,
+          "scale": 0.779250231199,
+          "opacity": 0.684643187427,
+          "rect": [
+            55.187442200194,
+            108.829990752031,
+            211.037488440039,
+            264.680036991876
+          ]
+        },
+        {
+          "fraction": 0.75,
+          "scale": 0.564696691578,
+          "opacity": 0.378138130825,
+          "rect": [
+            108.825827105606,
+            117.412132336897,
+            221.765165421121,
+            230.351470652412
+          ]
+        },
+        {
+          "fraction": 1.0,
+          "scale": 0.3,
+          "opacity": 0.0,
+          "rect": [
+            175.0,
+            128.0,
+            235.0,
+            188.0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "above the source",
+      "panel": [
+        50,
+        0,
+        290,
+        100
+      ],
+      "source": [
+        0,
+        200,
+        300,
+        260
+      ],
+      "pivot": [
+        170.0,
+        200
+      ],
+      "frames": [
+        {
+          "fraction": 0.0,
+          "scale": 1.0,
+          "opacity": 1.0,
+          "rect": [
+            50.0,
+            0.0,
+            290.0,
+            100.0
+          ]
+        },
+        {
+          "fraction": 0.25,
+          "scale": 0.934574744497,
+          "opacity": 0.906535349281,
+          "rect": [
+            57.851030660381,
+            13.085051100635,
+            282.148969339619,
+            106.542525550318
+          ]
+        },
+        {
+          "fraction": 0.5,
+          "scale": 0.779250231199,
+          "opacity": 0.684643187427,
+          "rect": [
+            76.489972256093,
+            44.149953760156,
+            263.510027743907,
+            122.074976880078
+          ]
+        },
+        {
+          "fraction": 0.75,
+          "scale": 0.564696691578,
+          "opacity": 0.378138130825,
+          "rect": [
+            102.236397010691,
+            87.060661684485,
+            237.763602989309,
+            143.530330842242
+          ]
+        },
+        {
+          "fraction": 1.0,
+          "scale": 0.3,
+          "opacity": 0.0,
+          "rect": [
+            134.0,
+            140.0,
+            206.0,
+            170.0
+          ]
+        }
+      ]
+    },
+    {
+      "name": "a menu that takes the whole viewport height",
+      "panel": [
+        8,
+        8,
+        248,
+        472
+      ],
+      "source": [
+        0,
+        200,
+        300,
+        260
+      ],
+      "pivot": [
+        128.0,
+        240.0
+      ],
+      "frames": [
+        {
+          "fraction": 0.0,
+          "scale": 1.0,
+          "opacity": 1.0,
+          "rect": [
+            8.0,
+            8.0,
+            248.0,
+            472.0
+          ]
+        },
+        {
+          "fraction": 0.25,
+          "scale": 0.934574744497,
+          "opacity": 0.906535349281,
+          "rect": [
+            15.851030660381,
+            23.178659276737,
+            240.148969339619,
+            456.821340723263
+          ]
+        },
+        {
+          "fraction": 0.5,
+          "scale": 0.779250231199,
+          "opacity": 0.684643187427,
+          "rect": [
+            34.489972256093,
+            59.21394636178,
+            221.510027743907,
+            420.78605363822
+          ]
+        },
+        {
+          "fraction": 0.75,
+          "scale": 0.564696691578,
+          "opacity": 0.378138130825,
+          "rect": [
+            60.236397010691,
+            108.990367554002,
+            195.763602989309,
+            371.009632445998
+          ]
+        },
+        {
+          "fraction": 1.0,
+          "scale": 0.3,
+          "opacity": 0.0,
+          "rect": [
+            92.0,
+            170.4,
+            164.0,
+            309.6
+          ]
+        }
+      ]
+    },
+    {
+      "name": "a source with no area",
+      "panel": [
+        100,
+        100,
+        340,
+        300
+      ],
+      "source": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "pivot": [
+        10,
+        10
+      ],
+      "frames": [
+        {
+          "fraction": 0.0,
+          "scale": 1.0,
+          "opacity": 1.0,
+          "rect": [
+            100.0,
+            100.0,
+            340.0,
+            300.0
+          ]
+        },
+        {
+          "fraction": 0.25,
+          "scale": 0.934574744497,
+          "opacity": 0.906535349281,
+          "rect": [
+            94.111727004714,
+            94.111727004714,
+            318.409665683951,
+            281.026675904079
+          ]
+        },
+        {
+          "fraction": 0.5,
+          "scale": 0.779250231199,
+          "opacity": 0.684643187427,
+          "rect": [
+            80.13252080793,
+            80.13252080793,
+            267.152576295743,
+            235.982567047774
+          ]
+        },
+        {
+          "fraction": 0.75,
+          "scale": 0.564696691578,
+          "opacity": 0.378138130825,
+          "rect": [
+            60.822702241982,
+            60.822702241982,
+            196.3499082206,
+            173.762040557497
+          ]
+        },
+        {
+          "fraction": 1.0,
+          "scale": 0.3,
+          "opacity": 0.0,
+          "rect": [
+            37.0,
+            37.0,
+            109.0,
+            97.0
+          ]
+        }
+      ]
+    }
+  ],
+  "retractCurve": [
+    {
+      "fraction": 0.0,
+      "scale": 1.0,
+      "opacity": 1.0
+    },
+    {
+      "fraction": 0.25,
+      "scale": 0.934574744497,
+      "opacity": 0.906535349281
+    },
+    {
+      "fraction": 0.5,
+      "scale": 0.779250231199,
+      "opacity": 0.684643187427
+    },
+    {
+      "fraction": 0.75,
+      "scale": 0.564696691578,
+      "opacity": 0.378138130825
+    },
+    {
+      "fraction": 1.0,
+      "scale": 0.3,
+      "opacity": 0.0
+    }
+  ],
+  "traces": [
+    {
+      "name": "held to the end: it lifts, then the menu opens around the lifted child",
+      "held": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 800,
+          "kind": "up"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": true
+        },
+        {
+          "at": 500,
+          "call": "commit"
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 100,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 150,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 165,
+          "progress": 0.082242204042,
+          "scale": 1.003289688162,
+          "dim": 0.016448440808,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 1.315875264672,
+              "blurRadius": 3.289688161681,
+              "spreadRadius": 0.0,
+              "opacity": 0.010280275505
+            }
+          ]
+        },
+        {
+          "at": 225,
+          "progress": 0.378138130825,
+          "scale": 1.015125525233,
+          "dim": 0.075627626165,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 6.050210093202,
+              "blurRadius": 15.125525233004,
+              "spreadRadius": 0.0,
+              "opacity": 0.047267266353
+            }
+          ]
+        },
+        {
+          "at": 300,
+          "progress": 0.684643187427,
+          "scale": 1.027385727497,
+          "dim": 0.136928637485,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 10.954290998839,
+              "blurRadius": 27.385727497098,
+              "spreadRadius": 0.0,
+              "opacity": 0.085580398428
+            }
+          ]
+        },
+        {
+          "at": 375,
+          "progress": 0.906535349281,
+          "scale": 1.036261413971,
+          "dim": 0.181307069856,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 14.504565588499,
+              "blurRadius": 36.261413971247,
+              "spreadRadius": 0.0,
+              "opacity": 0.11331691866
+            }
+          ]
+        },
+        {
+          "at": 449,
+          "progress": 0.999979082908,
+          "scale": 1.039999163316,
+          "dim": 0.199995816582,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 15.999665326534,
+              "blurRadius": 39.999163316334,
+              "spreadRadius": 0.0,
+              "opacity": 0.124997385364
+            }
+          ]
+        },
+        {
+          "at": 450,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 499,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 500,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 520,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 700,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 800,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 850,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "lifted halfway and let go: it comes back down from where it got to",
+      "held": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 300,
+          "kind": "up"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": true
+        },
+        {
+          "at": 300,
+          "call": "release"
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 150,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 225,
+          "progress": 0.378138130825,
+          "scale": 1.015125525233,
+          "dim": 0.075627626165,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 6.050210093202,
+              "blurRadius": 15.125525233004,
+              "spreadRadius": 0.0,
+              "opacity": 0.047267266353
+            }
+          ]
+        },
+        {
+          "at": 299,
+          "progress": 0.681055924806,
+          "scale": 1.027242236992,
+          "dim": 0.136211184961,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 10.896894796889,
+              "blurRadius": 27.242236992223,
+              "spreadRadius": 0.0,
+              "opacity": 0.085131990601
+            }
+          ]
+        },
+        {
+          "at": 300,
+          "progress": 0.684643187427,
+          "scale": 1.027385727497,
+          "dim": 0.136928637485,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 10.954290998839,
+              "blurRadius": 27.385727497098,
+              "spreadRadius": 0.0,
+              "opacity": 0.085580398428
+            }
+          ]
+        },
+        {
+          "at": 330,
+          "progress": 0.574708555938,
+          "scale": 1.022988342238,
+          "dim": 0.114941711188,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 9.195336895011,
+              "blurRadius": 22.988342237527,
+              "spreadRadius": 0.0,
+              "opacity": 0.071838569492
+            }
+          ]
+        },
+        {
+          "at": 375,
+          "progress": 0.425753492251,
+          "scale": 1.01703013969,
+          "dim": 0.08515069845,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 6.812055876024,
+              "blurRadius": 17.03013969006,
+              "spreadRadius": 0.0,
+              "opacity": 0.053219186531
+            }
+          ]
+        },
+        {
+          "at": 450,
+          "progress": 0.215906893337,
+          "scale": 1.008636275733,
+          "dim": 0.043181378667,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 3.454510293386,
+              "blurRadius": 8.636275733465,
+              "spreadRadius": 0.0,
+              "opacity": 0.026988361667
+            }
+          ]
+        },
+        {
+          "at": 599,
+          "progress": 1.4320744e-05,
+          "scale": 1.00000057283,
+          "dim": 2.864149e-06,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.000229131909,
+              "blurRadius": 0.000572829772,
+              "spreadRadius": 0.0,
+              "opacity": 1.790093e-06
+            }
+          ]
+        },
+        {
+          "at": 600,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 700,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "let go before the lift began: nothing was ever lifted",
+      "held": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 100,
+          "kind": "up"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": true
+        },
+        {
+          "at": 100,
+          "call": "release"
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 100,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 150,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 225,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 300,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 700,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "drifting past the slop mid-lift sets it down",
+      "held": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 250,
+          "kind": "move",
+          "x": 60,
+          "y": 70
+        },
+        {
+          "at": 330,
+          "kind": "move",
+          "x": 60,
+          "y": 80
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": true
+        },
+        {
+          "at": 250,
+          "call": "release"
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 200,
+          "progress": 0.260340330172,
+          "scale": 1.010413613207,
+          "dim": 0.052068066034,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 4.165445282748,
+              "blurRadius": 10.413613206869,
+              "spreadRadius": 0.0,
+              "opacity": 0.032542541271
+            }
+          ]
+        },
+        {
+          "at": 249,
+          "progress": 0.484088727273,
+          "scale": 1.019363549091,
+          "dim": 0.096817745455,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 7.745419636363,
+              "blurRadius": 19.363549090907,
+              "spreadRadius": 0.0,
+              "opacity": 0.060511090909
+            }
+          ]
+        },
+        {
+          "at": 250,
+          "progress": 0.48834900271,
+          "scale": 1.019533960108,
+          "dim": 0.097669800542,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 7.813584043363,
+              "blurRadius": 19.533960108407,
+              "spreadRadius": 0.0,
+              "opacity": 0.061043625339
+            }
+          ]
+        },
+        {
+          "at": 275,
+          "progress": 0.422510488414,
+          "scale": 1.016900419537,
+          "dim": 0.084502097683,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 6.760167814628,
+              "blurRadius": 16.900419536571,
+              "spreadRadius": 0.0,
+              "opacity": 0.052813811052
+            }
+          ]
+        },
+        {
+          "at": 350,
+          "progress": 0.249864254262,
+          "scale": 1.00999457017,
+          "dim": 0.049972850852,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 3.997828068194,
+              "blurRadius": 9.994570170486,
+              "spreadRadius": 0.0,
+              "opacity": 0.031233031783
+            }
+          ]
+        },
+        {
+          "at": 450,
+          "progress": 0.076262495076,
+          "scale": 1.003050499803,
+          "dim": 0.015252499015,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 1.220199921219,
+              "blurRadius": 3.050499803047,
+              "spreadRadius": 0.0,
+              "opacity": 0.009532811885
+            }
+          ]
+        },
+        {
+          "at": 549,
+          "progress": 1.0214841e-05,
+          "scale": 1.000000408594,
+          "dim": 2.042968e-06,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.000163437453,
+              "blurRadius": 0.000408593634,
+              "spreadRadius": 0.0,
+              "opacity": 1.276855e-06
+            }
+          ]
+        },
+        {
+          "at": 550,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 800,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "moving inside the slop does not set it down",
+      "held": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 250,
+          "kind": "move",
+          "x": 64,
+          "y": 54
+        },
+        {
+          "at": 800,
+          "kind": "up"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": true
+        },
+        {
+          "at": 500,
+          "call": "commit"
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 250,
+          "progress": 0.48834900271,
+          "scale": 1.019533960108,
+          "dim": 0.097669800542,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 7.813584043363,
+              "blurRadius": 19.533960108407,
+              "spreadRadius": 0.0,
+              "opacity": 0.061043625339
+            }
+          ]
+        },
+        {
+          "at": 300,
+          "progress": 0.684643187427,
+          "scale": 1.027385727497,
+          "dim": 0.136928637485,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 10.954290998839,
+              "blurRadius": 27.385727497098,
+              "spreadRadius": 0.0,
+              "opacity": 0.085580398428
+            }
+          ]
+        },
+        {
+          "at": 450,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 500,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 600,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 800,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "the system taking the touch mid-lift sets it down",
+      "held": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 300,
+          "kind": "cancel"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": true
+        },
+        {
+          "at": 300,
+          "call": "release"
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 299,
+          "progress": 0.681055924806,
+          "scale": 1.027242236992,
+          "dim": 0.136211184961,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 10.896894796889,
+              "blurRadius": 27.242236992223,
+              "spreadRadius": 0.0,
+              "opacity": 0.085131990601
+            }
+          ]
+        },
+        {
+          "at": 300,
+          "progress": 0.684643187427,
+          "scale": 1.027385727497,
+          "dim": 0.136928637485,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 10.954290998839,
+              "blurRadius": 27.385727497098,
+              "spreadRadius": 0.0,
+              "opacity": 0.085580398428
+            }
+          ]
+        },
+        {
+          "at": 375,
+          "progress": 0.425753492251,
+          "scale": 1.01703013969,
+          "dim": 0.08515069845,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 6.812055876024,
+              "blurRadius": 17.03013969006,
+              "spreadRadius": 0.0,
+              "opacity": 0.053219186531
+            }
+          ]
+        },
+        {
+          "at": 600,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "something scrolling under the touch mid-lift sets it down",
+      "held": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 320,
+          "kind": "scroll"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": true
+        },
+        {
+          "at": 320,
+          "call": "release"
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 319,
+          "progress": 0.749938976601,
+          "scale": 1.029997559064,
+          "dim": 0.14998779532,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 11.999023625608,
+              "blurRadius": 29.997559064021,
+              "spreadRadius": 0.0,
+              "opacity": 0.093742372075
+            }
+          ]
+        },
+        {
+          "at": 320,
+          "progress": 0.753220289732,
+          "scale": 1.030128811589,
+          "dim": 0.150644057946,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 12.05152463572,
+              "blurRadius": 30.1288115893,
+              "spreadRadius": 0.0,
+              "opacity": 0.094152536217
+            }
+          ]
+        },
+        {
+          "at": 400,
+          "progress": 0.451335908314,
+          "scale": 1.018053436333,
+          "dim": 0.090267181663,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 7.221374533025,
+              "blurRadius": 18.053436332562,
+              "spreadRadius": 0.0,
+              "opacity": 0.056416988539
+            }
+          ]
+        },
+        {
+          "at": 620,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        }
+      ],
+      "note": "web only: Flutter hands a scroll to the gesture arena instead",
+      "platforms": [
+        "web"
+      ]
+    },
+    {
+      "name": "letting go after the menu opened leaves the lift alone",
+      "held": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 900,
+          "kind": "up"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": true
+        },
+        {
+          "at": 500,
+          "call": "commit"
+        },
+        {
+          "at": 900,
+          "call": "release"
+        }
+      ],
+      "samples": [
+        {
+          "at": 450,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 500,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 899,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 900,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 1000,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 1200,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "closing a held-open menu settles the lift over the close duration",
+      "held": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 700,
+          "kind": "up"
+        },
+        {
+          "at": 1000,
+          "kind": "close",
+          "via": "escape"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": true
+        },
+        {
+          "at": 500,
+          "call": "commit"
+        },
+        {
+          "at": 1000,
+          "call": "close",
+          "durationMs": 100
+        }
+      ],
+      "samples": [
+        {
+          "at": 999,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 1000,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 1025,
+          "progress": 0.621861869175,
+          "scale": 1.024874474767,
+          "dim": 0.124372373835,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 9.949789906798,
+              "blurRadius": 24.874474766996,
+              "spreadRadius": 0.0,
+              "opacity": 0.077732733647
+            }
+          ]
+        },
+        {
+          "at": 1050,
+          "progress": 0.315356812573,
+          "scale": 1.012614272503,
+          "dim": 0.063071362515,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 5.045709001161,
+              "blurRadius": 12.614272502902,
+              "spreadRadius": 0.0,
+              "opacity": 0.039419601572
+            }
+          ]
+        },
+        {
+          "at": 1075,
+          "progress": 0.093464650719,
+          "scale": 1.003738586029,
+          "dim": 0.018692930144,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 1.495434411501,
+              "blurRadius": 3.738586028753,
+              "spreadRadius": 0.0,
+              "opacity": 0.01168308134
+            }
+          ]
+        },
+        {
+          "at": 1100,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 1200,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "a right click lifts together with the menu opening",
+      "held": false,
+      "events": [
+        {
+          "at": 0,
+          "kind": "open",
+          "via": "secondaryClick",
+          "x": 60,
+          "y": 50
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": false
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 30,
+          "progress": 0.160572154238,
+          "scale": 1.00642288617,
+          "dim": 0.032114430848,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 2.569154467801,
+              "blurRadius": 6.422886169501,
+              "spreadRadius": 0.0,
+              "opacity": 0.02007151928
+            }
+          ]
+        },
+        {
+          "at": 75,
+          "progress": 0.378138130825,
+          "scale": 1.015125525233,
+          "dim": 0.075627626165,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 6.050210093202,
+              "blurRadius": 15.125525233004,
+              "spreadRadius": 0.0,
+              "opacity": 0.047267266353
+            }
+          ]
+        },
+        {
+          "at": 150,
+          "progress": 0.684643187427,
+          "scale": 1.027385727497,
+          "dim": 0.136928637485,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 10.954290998839,
+              "blurRadius": 27.385727497098,
+              "spreadRadius": 0.0,
+              "opacity": 0.085580398428
+            }
+          ]
+        },
+        {
+          "at": 225,
+          "progress": 0.906535349281,
+          "scale": 1.036261413971,
+          "dim": 0.181307069856,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 14.504565588499,
+              "blurRadius": 36.261413971247,
+              "spreadRadius": 0.0,
+              "opacity": 0.11331691866
+            }
+          ]
+        },
+        {
+          "at": 300,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 400,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "a key press lifts together with the menu opening",
+      "held": false,
+      "events": [
+        {
+          "at": 0,
+          "kind": "open",
+          "via": "key"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": false
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 75,
+          "progress": 0.378138130825,
+          "scale": 1.015125525233,
+          "dim": 0.075627626165,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 6.050210093202,
+              "blurRadius": 15.125525233004,
+              "spreadRadius": 0.0,
+              "opacity": 0.047267266353
+            }
+          ]
+        },
+        {
+          "at": 150,
+          "progress": 0.684643187427,
+          "scale": 1.027385727497,
+          "dim": 0.136928637485,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 10.954290998839,
+              "blurRadius": 27.385727497098,
+              "spreadRadius": 0.0,
+              "opacity": 0.085580398428
+            }
+          ]
+        },
+        {
+          "at": 300,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 400,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "a controller opening lifts together with the menu opening",
+      "held": false,
+      "events": [
+        {
+          "at": 0,
+          "kind": "open",
+          "via": "controller"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": false
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 75,
+          "progress": 0.378138130825,
+          "scale": 1.015125525233,
+          "dim": 0.075627626165,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 6.050210093202,
+              "blurRadius": 15.125525233004,
+              "spreadRadius": 0.0,
+              "opacity": 0.047267266353
+            }
+          ]
+        },
+        {
+          "at": 150,
+          "progress": 0.684643187427,
+          "scale": 1.027385727497,
+          "dim": 0.136928637485,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 10.954290998839,
+              "blurRadius": 27.385727497098,
+              "spreadRadius": 0.0,
+              "opacity": 0.085580398428
+            }
+          ]
+        },
+        {
+          "at": 300,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 400,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "closing mid-lift settles from where the lift got to",
+      "held": false,
+      "events": [
+        {
+          "at": 0,
+          "kind": "open",
+          "via": "secondaryClick",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 100,
+          "kind": "close",
+          "via": "escape"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": false
+        },
+        {
+          "at": 100,
+          "call": "close",
+          "durationMs": 100
+        }
+      ],
+      "samples": [
+        {
+          "at": 0,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 99,
+          "progress": 0.484088727273,
+          "scale": 1.019363549091,
+          "dim": 0.096817745455,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 7.745419636363,
+              "blurRadius": 19.363549090907,
+              "spreadRadius": 0.0,
+              "opacity": 0.060511090909
+            }
+          ]
+        },
+        {
+          "at": 100,
+          "progress": 0.48834900271,
+          "scale": 1.019533960108,
+          "dim": 0.097669800542,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 7.813584043363,
+              "blurRadius": 19.533960108407,
+              "spreadRadius": 0.0,
+              "opacity": 0.061043625339
+            }
+          ]
+        },
+        {
+          "at": 125,
+          "progress": 0.303685623635,
+          "scale": 1.012147424945,
+          "dim": 0.060737124727,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 4.858969978161,
+              "blurRadius": 12.147424945402,
+              "spreadRadius": 0.0,
+              "opacity": 0.037960702954
+            }
+          ]
+        },
+        {
+          "at": 150,
+          "progress": 0.154004184918,
+          "scale": 1.006160167397,
+          "dim": 0.030800836984,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 2.464066958683,
+              "blurRadius": 6.160167396706,
+              "spreadRadius": 0.0,
+              "opacity": 0.019250523115
+            }
+          ]
+        },
+        {
+          "at": 175,
+          "progress": 0.045643368967,
+          "scale": 1.001825734759,
+          "dim": 0.009128673793,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.730293903475,
+              "blurRadius": 1.825734758688,
+              "spreadRadius": 0.0,
+              "opacity": 0.005705421121
+            }
+          ]
+        },
+        {
+          "at": 200,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 300,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "closing after a full lift settles from full",
+      "held": false,
+      "events": [
+        {
+          "at": 0,
+          "kind": "open",
+          "via": "secondaryClick",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "close",
+          "via": "outside"
+        }
+      ],
+      "timeline": [
+        {
+          "at": 0,
+          "call": "begin",
+          "held": false
+        },
+        {
+          "at": 600,
+          "call": "close",
+          "durationMs": 100
+        }
+      ],
+      "samples": [
+        {
+          "at": 300,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 599,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 600,
+          "progress": 1.0,
+          "scale": 1.04,
+          "dim": 0.2,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 16.0,
+              "blurRadius": 40.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.125
+            }
+          ]
+        },
+        {
+          "at": 625,
+          "progress": 0.621861869175,
+          "scale": 1.024874474767,
+          "dim": 0.124372373835,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 9.949789906798,
+              "blurRadius": 24.874474766996,
+              "spreadRadius": 0.0,
+              "opacity": 0.077732733647
+            }
+          ]
+        },
+        {
+          "at": 650,
+          "progress": 0.315356812573,
+          "scale": 1.012614272503,
+          "dim": 0.063071362515,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 5.045709001161,
+              "blurRadius": 12.614272502902,
+              "spreadRadius": 0.0,
+              "opacity": 0.039419601572
+            }
+          ]
+        },
+        {
+          "at": 675,
+          "progress": 0.093464650719,
+          "scale": 1.003738586029,
+          "dim": 0.018692930144,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 1.495434411501,
+              "blurRadius": 3.738586028753,
+              "spreadRadius": 0.0,
+              "opacity": 0.01168308134
+            }
+          ]
+        },
+        {
+          "at": 700,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        },
+        {
+          "at": 800,
+          "progress": 0.0,
+          "scale": 1.0,
+          "dim": 0.0,
+          "cast": [
+            {
+              "offsetX": 0.0,
+              "offsetY": 0.0,
+              "blurRadius": 0.0,
+              "spreadRadius": 0.0,
+              "opacity": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "override": {
+    "_comment": [
+      "A style that states other numbers than the defaults: the same shape as",
+      "\"numbers\", the traces of the lift under them, and the fold under the",
+      "retractScale. Read by every seat that mounts a menu with",
+      "contextMenuStyle = CoreContextMenuStyle(liftScale, liftDuration,",
+      "liftDimOpacity, liftCast, liftRadius, retractScale) built from",
+      "\"numbers\" here - and, for the theme, the same style given to the",
+      "CoreContextMenuTheme. A trace names the \"durationMs\" the style states;",
+      "what the seat runs is the rise the hold leaves of it. Expected values",
+      "come from the same independent reference as the rest of this table.",
+      "The cast in \"numbers\" is one layer, different from the default in every",
+      "field, so a seat that reads a default anywhere shows it."
+    ],
+    "numbers": {
+      "liftScale": 1.1,
+      "dimOpacity": 0.35,
+      "radius": 8,
+      "retractScale": 0.5,
+      "cast": [
+        {
+          "offsetX": 0,
+          "offsetY": 8,
+          "blurRadius": 24,
+          "spreadRadius": 2,
+          "opacity": 0.2
+        }
+      ]
+    },
+    "traces": [
+      {
+        "name": "a shorter rise, held to the end: the lift is there well before the hold",
+        "held": true,
+        "durationMs": 200,
+        "events": [
+          {
+            "at": 0,
+            "kind": "down",
+            "x": 60,
+            "y": 50
+          },
+          {
+            "at": 800,
+            "kind": "up"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 0,
+            "call": "begin",
+            "held": true
+          },
+          {
+            "at": 500,
+            "call": "commit"
+          }
+        ],
+        "samples": [
+          {
+            "at": 0,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          },
+          {
+            "at": 150,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          },
+          {
+            "at": 175,
+            "progress": 0.198580006978,
+            "scale": 1.019858000698,
+            "dim": 0.069503002442,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 1.588640055821,
+                "blurRadius": 4.765920167464,
+                "spreadRadius": 0.397160013955,
+                "opacity": 0.039716001396
+              }
+            ]
+          },
+          {
+            "at": 250,
+            "progress": 0.684643187427,
+            "scale": 1.068464318743,
+            "dim": 0.2396251156,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 5.47714549942,
+                "blurRadius": 16.431436498259,
+                "spreadRadius": 1.369286374855,
+                "opacity": 0.136928637485
+              }
+            ]
+          },
+          {
+            "at": 300,
+            "progress": 0.906535349281,
+            "scale": 1.090653534928,
+            "dim": 0.317287372248,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 7.252282794249,
+                "blurRadius": 21.756848382748,
+                "spreadRadius": 1.813070698562,
+                "opacity": 0.181307069856
+              }
+            ]
+          },
+          {
+            "at": 349,
+            "progress": 0.999953024724,
+            "scale": 1.099995302472,
+            "dim": 0.349983558653,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 7.999624197791,
+                "blurRadius": 23.998872593372,
+                "spreadRadius": 1.999906049448,
+                "opacity": 0.199990604945
+              }
+            ]
+          },
+          {
+            "at": 350,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          },
+          {
+            "at": 450,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          },
+          {
+            "at": 500,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          },
+          {
+            "at": 800,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "an over-long rise is held to what the hold leaves: it is whole when the menu opens",
+        "held": true,
+        "durationMs": 800,
+        "events": [
+          {
+            "at": 0,
+            "kind": "down",
+            "x": 60,
+            "y": 50
+          },
+          {
+            "at": 800,
+            "kind": "up"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 0,
+            "call": "begin",
+            "held": true
+          },
+          {
+            "at": 500,
+            "call": "commit"
+          }
+        ],
+        "samples": [
+          {
+            "at": 0,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          },
+          {
+            "at": 150,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          },
+          {
+            "at": 240,
+            "progress": 0.38788385044,
+            "scale": 1.038788385044,
+            "dim": 0.135759347654,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 3.103070803522,
+                "blurRadius": 9.309212410565,
+                "spreadRadius": 0.77576770088,
+                "opacity": 0.077576770088
+              }
+            ]
+          },
+          {
+            "at": 325,
+            "progress": 0.684643187427,
+            "scale": 1.068464318743,
+            "dim": 0.2396251156,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 5.47714549942,
+                "blurRadius": 16.431436498259,
+                "spreadRadius": 1.369286374855,
+                "opacity": 0.136928637485
+              }
+            ]
+          },
+          {
+            "at": 400,
+            "progress": 0.881216092979,
+            "scale": 1.088121609298,
+            "dim": 0.308425632543,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 7.049728743836,
+                "blurRadius": 21.149186231508,
+                "spreadRadius": 1.762432185959,
+                "opacity": 0.176243218596
+              }
+            ]
+          },
+          {
+            "at": 499,
+            "progress": 0.999984624088,
+            "scale": 1.099998462409,
+            "dim": 0.349994618431,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 7.999876992706,
+                "blurRadius": 23.999630978117,
+                "spreadRadius": 1.999969248176,
+                "opacity": 0.199996924818
+              }
+            ]
+          },
+          {
+            "at": 500,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          },
+          {
+            "at": 600,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          },
+          {
+            "at": 800,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "with no hold there is nothing to finish before: an over-long rise runs as stated",
+        "held": false,
+        "durationMs": 800,
+        "events": [
+          {
+            "at": 0,
+            "kind": "open",
+            "via": "secondaryClick",
+            "x": 60,
+            "y": 50
+          }
+        ],
+        "timeline": [
+          {
+            "at": 0,
+            "call": "begin",
+            "held": false
+          }
+        ],
+        "samples": [
+          {
+            "at": 0,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          },
+          {
+            "at": 200,
+            "progress": 0.378138130825,
+            "scale": 1.037813813083,
+            "dim": 0.132348345789,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 3.025105046601,
+                "blurRadius": 9.075315139803,
+                "spreadRadius": 0.75627626165,
+                "opacity": 0.075627626165
+              }
+            ]
+          },
+          {
+            "at": 400,
+            "progress": 0.684643187427,
+            "scale": 1.068464318743,
+            "dim": 0.2396251156,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 5.47714549942,
+                "blurRadius": 16.431436498259,
+                "spreadRadius": 1.369286374855,
+                "opacity": 0.136928637485
+              }
+            ]
+          },
+          {
+            "at": 600,
+            "progress": 0.906535349281,
+            "scale": 1.090653534928,
+            "dim": 0.317287372248,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 7.252282794249,
+                "blurRadius": 21.756848382748,
+                "spreadRadius": 1.813070698562,
+                "opacity": 0.181307069856
+              }
+            ]
+          },
+          {
+            "at": 799,
+            "progress": 0.999997051607,
+            "scale": 1.099999705161,
+            "dim": 0.349998968062,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 7.999976412855,
+                "blurRadius": 23.999929238564,
+                "spreadRadius": 1.999994103214,
+                "opacity": 0.199999410321
+              }
+            ]
+          },
+          {
+            "at": 800,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          },
+          {
+            "at": 900,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "let go mid-rise: it comes back over the rise the style states",
+        "held": true,
+        "durationMs": 200,
+        "events": [
+          {
+            "at": 0,
+            "kind": "down",
+            "x": 60,
+            "y": 50
+          },
+          {
+            "at": 250,
+            "kind": "up"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 0,
+            "call": "begin",
+            "held": true
+          },
+          {
+            "at": 250,
+            "call": "release"
+          }
+        ],
+        "samples": [
+          {
+            "at": 0,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          },
+          {
+            "at": 249,
+            "progress": 0.679256804529,
+            "scale": 1.067925680453,
+            "dim": 0.237739881585,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 5.43405443623,
+                "blurRadius": 16.302163308689,
+                "spreadRadius": 1.358513609057,
+                "opacity": 0.135851360906
+              }
+            ]
+          },
+          {
+            "at": 250,
+            "progress": 0.684643187427,
+            "scale": 1.068464318743,
+            "dim": 0.2396251156,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 5.47714549942,
+                "blurRadius": 16.431436498259,
+                "spreadRadius": 1.369286374855,
+                "opacity": 0.136928637485
+              }
+            ]
+          },
+          {
+            "at": 300,
+            "progress": 0.425753492251,
+            "scale": 1.042575349225,
+            "dim": 0.149013722288,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 3.406027938012,
+                "blurRadius": 10.218083814036,
+                "spreadRadius": 0.851506984503,
+                "opacity": 0.08515069845
+              }
+            ]
+          },
+          {
+            "at": 350,
+            "progress": 0.215906893337,
+            "scale": 1.021590689334,
+            "dim": 0.075567412668,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 1.727255146693,
+                "blurRadius": 5.181765440079,
+                "spreadRadius": 0.431813786673,
+                "opacity": 0.043181378667
+              }
+            ]
+          },
+          {
+            "at": 449,
+            "progress": 3.2161303e-05,
+            "scale": 1.00000321613,
+            "dim": 1.1256456e-05,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.000257290422,
+                "blurRadius": 0.000771871267,
+                "spreadRadius": 6.4322606e-05,
+                "opacity": 6.432261e-06
+              }
+            ]
+          },
+          {
+            "at": 450,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          },
+          {
+            "at": 500,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          },
+          {
+            "at": 700,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "a style that states no rise lifts in a jump once the delay is over",
+        "held": true,
+        "durationMs": 0,
+        "events": [
+          {
+            "at": 0,
+            "kind": "down",
+            "x": 60,
+            "y": 50
+          },
+          {
+            "at": 800,
+            "kind": "up"
+          }
+        ],
+        "timeline": [
+          {
+            "at": 0,
+            "call": "begin",
+            "held": true
+          },
+          {
+            "at": 500,
+            "call": "commit"
+          }
+        ],
+        "samples": [
+          {
+            "at": 0,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          },
+          {
+            "at": 150,
+            "progress": 0.0,
+            "scale": 1.0,
+            "dim": 0.0,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 0.0,
+                "blurRadius": 0.0,
+                "spreadRadius": 0.0,
+                "opacity": 0.0
+              }
+            ]
+          },
+          {
+            "at": 160,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          },
+          {
+            "at": 450,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          },
+          {
+            "at": 500,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          },
+          {
+            "at": 800,
+            "progress": 1.0,
+            "scale": 1.1,
+            "dim": 0.35,
+            "cast": [
+              {
+                "offsetX": 0.0,
+                "offsetY": 8.0,
+                "blurRadius": 24.0,
+                "spreadRadius": 2.0,
+                "opacity": 0.2
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "retractCurve": [
+      {
+        "fraction": 0.0,
+        "scale": 1.0,
+        "opacity": 1.0
+      },
+      {
+        "fraction": 0.25,
+        "scale": 0.953267674641,
+        "opacity": 0.906535349281
+      },
+      {
+        "fraction": 0.5,
+        "scale": 0.842321593714,
+        "opacity": 0.684643187427
+      },
+      {
+        "fraction": 0.75,
+        "scale": 0.689069065413,
+        "opacity": 0.378138130825
+      },
+      {
+        "fraction": 1.0,
+        "scale": 0.5,
+        "opacity": 0.0
+      }
+    ]
+  },
+  "riseDuration": [
+    {
+      "name": "the default fits in the hold",
+      "requestedMs": 300,
+      "held": true,
+      "expectedMs": 300
+    },
+    {
+      "name": "exactly what the hold leaves is kept",
+      "requestedMs": 350,
+      "held": true,
+      "expectedMs": 350
+    },
+    {
+      "name": "one millisecond more is held to what the hold leaves",
+      "requestedMs": 351,
+      "held": true,
+      "expectedMs": 350
+    },
+    {
+      "name": "a very long rise is held to what the hold leaves",
+      "requestedMs": 5000,
+      "held": true,
+      "expectedMs": 350
+    },
+    {
+      "name": "no hold: the rise is as stated",
+      "requestedMs": 5000,
+      "held": false,
+      "expectedMs": 5000
+    },
+    {
+      "name": "no hold: a short rise is as stated",
+      "requestedMs": 100,
+      "held": false,
+      "expectedMs": 100
+    },
+    {
+      "name": "zero is a jump, held",
+      "requestedMs": 0,
+      "held": true,
+      "expectedMs": 0
+    },
+    {
+      "name": "zero is a jump, with no hold",
+      "requestedMs": 0,
+      "held": false,
+      "expectedMs": 0
+    },
+    {
+      "name": "less than zero is a jump, held",
+      "requestedMs": -50,
+      "held": true,
+      "expectedMs": 0
+    },
+    {
+      "name": "less than zero is a jump, with no hold",
+      "requestedMs": -50,
+      "held": false,
+      "expectedMs": 0
+    },
+    {
+      "name": "a shorter hold leaves less",
+      "requestedMs": 300,
+      "held": true,
+      "expectedMs": 250,
+      "holdMs": 400
+    },
+    {
+      "name": "a hold no longer than the delay leaves nothing",
+      "requestedMs": 300,
+      "held": true,
+      "expectedMs": 0,
+      "holdMs": 150
+    },
+    {
+      "name": "a hold shorter than the delay leaves nothing, never less than zero",
+      "requestedMs": 300,
+      "held": true,
+      "expectedMs": 0,
+      "holdMs": 100
+    }
+  ]
+}

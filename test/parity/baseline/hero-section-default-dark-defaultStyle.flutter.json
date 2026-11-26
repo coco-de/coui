@@ -1,0 +1,37 @@
+{
+  "key": "hero-section-default-dark-defaultStyle",
+  "byRole": {
+    "root": {
+      "key": "hero-section-default-dark-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 20.0,
+      "lineHeightPx": 32.0,
+      "letterSpacingPx": 0.0,
+      "color": {
+        "r": 252,
+        "g": 252,
+        "b": 253,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 39,
+        "g": 40,
+        "b": 43,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": null,
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": null
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

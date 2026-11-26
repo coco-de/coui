@@ -1,0 +1,2669 @@
+{
+ "_provenance": "CoUI Brand Color Generator plugin engine (src/engine.js, version e5c5c801a278d893ff4ed5b174c5863e12b2b48a) run with its NEUTRAL and STATUS constants replaced by CouiColorPresets.palette (status 950 omitted - the plugin has no such step) and its linear-sRGB to OKLab matrix replaced by CoreColorConversion's (third row 0.0883024619 / 0.6299787005). semantic rows are [Light, Dark, HCLight, HCDark] refs: '<family>/<step>' or 'base/white' | 'base/black'.",
+ "vectors": [
+  {
+   "input": "#7A3FD1",
+   "step": 700,
+   "primary": {
+    "100": "#F6F4FF",
+    "200": "#E9E1FF",
+    "300": "#D8C9FF",
+    "400": "#C1A7FF",
+    "500": "#A87CFF",
+    "600": "#8B54E4",
+    "700": "#7A3FD1",
+    "800": "#5911A6",
+    "900": "#3D0079",
+    "1000": "#230049"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F6FF",
+      "200": "#CDE7FF",
+      "300": "#A7D1FF",
+      "400": "#77B8FF",
+      "500": "#3F94F5",
+      "600": "#006ED1",
+      "700": "#005EB2",
+      "800": "#00488D",
+      "900": "#033567",
+      "1000": "#012144"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/700",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/800",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/900",
+     "primary/200",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/700",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/700",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/700",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#126EEE",
+   "step": 600,
+   "primary": {
+    "100": "#EFF5FF",
+    "200": "#D8E7FF",
+    "300": "#B6D3FF",
+    "400": "#88B6FF",
+    "500": "#4F94FF",
+    "600": "#126EEE",
+    "700": "#0053BF",
+    "800": "#003C90",
+    "900": "#002766",
+    "1000": "#00143E"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": true,
+     "shift": -26,
+     "ramp": {
+      "100": "#E8F8FC",
+      "200": "#C6ECF9",
+      "300": "#96DBF6",
+      "400": "#48C2EE",
+      "500": "#00A1D0",
+      "600": "#007EA4",
+      "700": "#00607E",
+      "800": "#00475E",
+      "900": "#002F3F",
+      "1000": "#001A25"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/800",
+     "primary/200",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#E8731A",
+   "step": 500,
+   "primary": {
+    "100": "#FFF3E9",
+    "200": "#FFE0CA",
+    "300": "#FFC59E",
+    "400": "#FF9C5B",
+    "500": "#E8731A",
+    "600": "#C15300",
+    "700": "#9B3A00",
+    "800": "#782500",
+    "900": "#561100",
+    "1000": "#370100"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F6FF",
+      "200": "#CDE7FF",
+      "300": "#A7D1FF",
+      "400": "#77B8FF",
+      "500": "#3F94F5",
+      "600": "#006ED1",
+      "700": "#005EB2",
+      "800": "#00488D",
+      "900": "#033567",
+      "1000": "#012144"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "primary/1000",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/400",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/300",
+     "primary/200",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "primary/1000",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#F2C200",
+   "step": 300,
+   "primary": {
+    "100": "#FFF5D7",
+    "200": "#FFE496",
+    "300": "#F2C200",
+    "400": "#E0AE00",
+    "500": "#BB8D00",
+    "600": "#966D00",
+    "700": "#765200",
+    "800": "#593C00",
+    "900": "#3E2600",
+    "1000": "#241300"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F6FF",
+      "200": "#CDE7FF",
+      "300": "#A7D1FF",
+      "400": "#77B8FF",
+      "500": "#3F94F5",
+      "600": "#006ED1",
+      "700": "#005EB2",
+      "800": "#00488D",
+      "900": "#033567",
+      "1000": "#012144"
+     }
+    },
+    "warning": {
+     "shifted": true,
+     "shift": -8,
+     "ramp": {
+      "100": "#FAF5E6",
+      "200": "#FFE2AE",
+      "300": "#FFC776",
+      "400": "#F3A52B",
+      "500": "#D1841F",
+      "600": "#A7641D",
+      "700": "#884909",
+      "800": "#693202",
+      "900": "#4C1D00",
+      "1000": "#2F0B00"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/300",
+     "primary/300",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "primary/1000",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/400",
+     "primary/200",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/500",
+     "primary/100",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/300",
+     "primary/300",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/600",
+     "primary/300",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/300",
+     "primary/300",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "primary/1000",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#1FA855",
+   "step": 500,
+   "primary": {
+    "100": "#E7F9EB",
+    "200": "#C7EFCF",
+    "300": "#9FDFAD",
+    "400": "#66C981",
+    "500": "#1FA855",
+    "600": "#00873F",
+    "700": "#00682F",
+    "800": "#004C20",
+    "900": "#003313",
+    "1000": "#001C07"
+   },
+   "status": {
+    "success": {
+     "shifted": true,
+     "shift": -16,
+     "ramp": {
+      "100": "#EEF8E9",
+      "200": "#D8ECCE",
+      "300": "#BBDBA7",
+      "400": "#94C276",
+      "500": "#6AA43F",
+      "600": "#4D820D",
+      "700": "#376400",
+      "800": "#274A00",
+      "900": "#173200",
+      "1000": "#091C00"
+     }
+    },
+    "info": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F6FF",
+      "200": "#CDE7FF",
+      "300": "#A7D1FF",
+      "400": "#77B8FF",
+      "500": "#3F94F5",
+      "600": "#006ED1",
+      "700": "#005EB2",
+      "800": "#00488D",
+      "900": "#033567",
+      "1000": "#012144"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "primary/1000",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/400",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/300",
+     "primary/200",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "primary/1000",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#D7262B",
+   "step": 600,
+   "primary": {
+    "100": "#FFF3F1",
+    "200": "#FFDFDB",
+    "300": "#FFC3BC",
+    "400": "#FF9A90",
+    "500": "#FC6058",
+    "600": "#D7262B",
+    "700": "#B60016",
+    "800": "#88000D",
+    "900": "#5F0006",
+    "1000": "#390001"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F6FF",
+      "200": "#CDE7FF",
+      "300": "#A7D1FF",
+      "400": "#77B8FF",
+      "500": "#3F94F5",
+      "600": "#006ED1",
+      "700": "#005EB2",
+      "800": "#00488D",
+      "900": "#033567",
+      "1000": "#012144"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": true,
+     "shift": 8,
+     "ramp": {
+      "100": "#FFF2EE",
+      "200": "#FFDFD6",
+      "300": "#FFC3B3",
+      "400": "#FF9A82",
+      "500": "#FF5F37",
+      "600": "#D83700",
+      "700": "#AA2800",
+      "800": "#7F1B00",
+      "900": "#580E00",
+      "1000": "#360400"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/800",
+     "primary/200",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#0F9E9E",
+   "step": 500,
+   "primary": {
+    "100": "#E8F9F8",
+    "200": "#C8EDEC",
+    "300": "#9FDCDB",
+    "400": "#65C3C3",
+    "500": "#0F9E9E",
+    "600": "#008182",
+    "700": "#006364",
+    "800": "#004A4A",
+    "900": "#003131",
+    "1000": "#001B1B"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F6FF",
+      "200": "#CDE7FF",
+      "300": "#A7D1FF",
+      "400": "#77B8FF",
+      "500": "#3F94F5",
+      "600": "#006ED1",
+      "700": "#005EB2",
+      "800": "#00488D",
+      "900": "#033567",
+      "1000": "#012144"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "primary/1000",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/400",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/300",
+     "primary/200",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/500",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "primary/1000",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#D6337A",
+   "step": 600,
+   "primary": {
+    "100": "#FFF2F5",
+    "200": "#FFDEE7",
+    "300": "#FFC1D3",
+    "400": "#FF95B8",
+    "500": "#F46199",
+    "600": "#D6337A",
+    "700": "#B0005D",
+    "800": "#840044",
+    "900": "#5B002C",
+    "1000": "#360018"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F6FF",
+      "200": "#CDE7FF",
+      "300": "#A7D1FF",
+      "400": "#77B8FF",
+      "500": "#3F94F5",
+      "600": "#006ED1",
+      "700": "#005EB2",
+      "800": "#00488D",
+      "900": "#033567",
+      "1000": "#012144"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/800",
+     "primary/200",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#1B2A5E",
+   "step": 900,
+   "primary": {
+    "100": "#F1F5FF",
+    "200": "#DBE5FF",
+    "300": "#C0D1F9",
+    "400": "#9EB5EE",
+    "500": "#7B93D6",
+    "600": "#5971B7",
+    "700": "#3F559A",
+    "800": "#2A3D7C",
+    "900": "#1B2A5E",
+    "1000": "#0A1338"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": true,
+     "shift": -6,
+     "ramp": {
+      "100": "#E9F7FF",
+      "200": "#CCEAFF",
+      "300": "#A8D6FF",
+      "400": "#6DBBFD",
+      "500": "#259AF4",
+      "600": "#0078C7",
+      "700": "#005C99",
+      "800": "#004375",
+      "900": "#002D50",
+      "1000": "#00182F"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/900",
+     "primary/400",
+     "primary/900",
+     "primary/200"
+    ],
+    "on-primary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/1000",
+     "primary/300",
+     "primary/1000",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/800",
+     "primary/200",
+     "primary/800",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/900",
+     "primary/400",
+     "primary/900",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/900",
+     "primary/400",
+     "primary/900",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/900",
+     "primary/400",
+     "primary/900",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#8EC5FF",
+   "step": 400,
+   "primary": {
+    "100": "#EDF6FF",
+    "200": "#D3E8FF",
+    "300": "#AFD5FD",
+    "400": "#8EC5FF",
+    "500": "#5899DA",
+    "600": "#2E77BC",
+    "700": "#005B9F",
+    "800": "#004278",
+    "900": "#002B53",
+    "1000": "#001732"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": true,
+     "shift": 12,
+     "ramp": {
+      "100": "#EDF6FF",
+      "200": "#D8E7FF",
+      "300": "#B9D2FF",
+      "400": "#90B5FF",
+      "500": "#6691FC",
+      "600": "#466EDC",
+      "700": "#3153AF",
+      "800": "#223B87",
+      "900": "#14275E",
+      "1000": "#071439"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/400",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "primary/1000",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/300",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/200",
+     "primary/200",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/400",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/400",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "primary/1000",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#74369E",
+   "step": 700,
+   "primary": {
+    "100": "#F9F3FF",
+    "200": "#F0DFFF",
+    "300": "#E4C6FF",
+    "400": "#D0A3F7",
+    "500": "#B47EDF",
+    "600": "#9559C1",
+    "700": "#74369E",
+    "800": "#5F2186",
+    "900": "#430E62",
+    "1000": "#29023E"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F6FF",
+      "200": "#CDE7FF",
+      "300": "#A7D1FF",
+      "400": "#77B8FF",
+      "500": "#3F94F5",
+      "600": "#006ED1",
+      "700": "#005EB2",
+      "800": "#00488D",
+      "900": "#033567",
+      "1000": "#012144"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/700",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/800",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/900",
+     "primary/200",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/700",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/700",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/700",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  },
+  {
+   "input": "#3D5AFE",
+   "step": 600,
+   "primary": {
+    "100": "#F0F5FF",
+    "200": "#DCE6FF",
+    "300": "#BFD0FF",
+    "400": "#97B3FF",
+    "500": "#6C8EFF",
+    "600": "#3D5AFE",
+    "700": "#2D3FE8",
+    "800": "#201EC6",
+    "900": "#140196",
+    "1000": "#08005D"
+   },
+   "status": {
+    "success": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#E9F8EB",
+      "200": "#CDEAD2",
+      "300": "#A8DAB1",
+      "400": "#78C489",
+      "500": "#3DA65C",
+      "600": "#007F33",
+      "700": "#006E2D",
+      "800": "#005521",
+      "900": "#003D17",
+      "1000": "#00270C"
+     }
+    },
+    "info": {
+     "shifted": true,
+     "shift": -6,
+     "ramp": {
+      "100": "#E9F7FF",
+      "200": "#CCEAFF",
+      "300": "#A8D6FF",
+      "400": "#6DBBFD",
+      "500": "#259AF4",
+      "600": "#0078C7",
+      "700": "#005C99",
+      "800": "#004375",
+      "900": "#002D50",
+      "1000": "#00182F"
+     }
+    },
+    "warning": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#F7F4E5",
+      "200": "#FFE18D",
+      "300": "#FDC64D",
+      "400": "#E9A91C",
+      "500": "#C78500",
+      "600": "#9B6200",
+      "700": "#895100",
+      "800": "#6F3C00",
+      "900": "#552900",
+      "1000": "#3A1700"
+     }
+    },
+    "error": {
+     "shifted": false,
+     "shift": 0,
+     "ramp": {
+      "100": "#FFF1EE",
+      "200": "#FFDCD6",
+      "300": "#FFBFB6",
+      "400": "#FF978C",
+      "500": "#FF594F",
+      "600": "#D71E22",
+      "700": "#B81C1E",
+      "800": "#921416",
+      "900": "#6B0E0F",
+      "1000": "#470707"
+     }
+    }
+   },
+   "semantic": {
+    "primary": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-primary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "primary-hover": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-pressed": [
+     "primary/800",
+     "primary/200",
+     "primary/1000",
+     "primary/300"
+    ],
+    "primary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-primary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "primary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "primary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-primary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-primary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ],
+    "primary-text": [
+     "primary/700",
+     "primary/300",
+     "primary/900",
+     "primary/100"
+    ],
+    "primary-text-large": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "surface-tint": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "inverse-primary": [
+     "primary/300",
+     "primary/700",
+     "primary/200",
+     "primary/800"
+    ],
+    "focus-ring": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "tertiary": [
+     "primary/600",
+     "primary/400",
+     "primary/800",
+     "primary/200"
+    ],
+    "on-tertiary": [
+     "base/white",
+     "primary/1000",
+     "base/white",
+     "base/black"
+    ],
+    "tertiary-container": [
+     "primary/100",
+     "primary/900",
+     "primary/100",
+     "primary/900"
+    ],
+    "on-tertiary-container": [
+     "primary/800",
+     "primary/100",
+     "primary/1000",
+     "base/white"
+    ],
+    "tertiary-fixed": [
+     "primary/200",
+     "primary/200",
+     "primary/200",
+     "primary/200"
+    ],
+    "tertiary-fixed-dim": [
+     "primary/300",
+     "primary/300",
+     "primary/300",
+     "primary/300"
+    ],
+    "on-tertiary-fixed": [
+     "primary/1000",
+     "primary/1000",
+     "primary/1000",
+     "primary/1000"
+    ],
+    "on-tertiary-fixed-variant": [
+     "primary/800",
+     "primary/800",
+     "primary/800",
+     "primary/800"
+    ]
+   }
+  }
+ ]
+}

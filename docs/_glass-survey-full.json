@@ -1,0 +1,2486 @@
+[
+ {
+  "slug": "button",
+  "role": "content",
+  "reason": "컨트롤이지만 자기 채움·보더·반경·캐스트를 가진 재질 박스이고, 콘텐츠 위에 뜨지 않고 콘텐츠층에 앉는다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/control/button/button.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/control/button/button_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "채움이 상태의 함수다 — Flutter 는 `resolved.decoration.resolve(states)` 로 hover×focus×disabled×selected 를 풀고, Web 은 같은 축을 `<button>` 자신의 `hover:bg-`/`focus:bg-`/`disabled:bg-`/`aria-selected:bg-` 로 푼다. 게다가 hover 채움이 80% 알파라 이미 자기 캐스트를 몸으로 비추던 이력이 있어 `InjectedCast` 로 박스를 파낸 상태다 — 재질이 그 위에 얹히면 그 knock-out 이 반투명 아래에서도 유지되는지 다시 봐야 한다.",
+  "group": "Control"
+ },
+ {
+  "slug": "command",
+  "role": "content",
+  "reason": "kControlShadowRestMarker 는 표면 마커가 아니라 23개 파일이 다는 그림자 opt-in. Overlay/Route/Popover 0건, root className 이 wFull — 떠 있는 팔레트는 부모 폭을 안 채운다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/control/command/command.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/control/command/command_style.dart"
+  },
+  "work": "compose",
+  "risk": "Flutter 는 root `Container` 안에 `ClipRRect` 를 *안쪽* 반경(반경 − 보더폭)으로 두어 푸터가 아래 보더 위에 칠하는 것을 막고 있다. 표면 프리미티브로 되돌릴 때 그 inset 을 잃으면 푸터가 보더를 다시 지운다.",
+  "group": "Control"
+ },
+ {
+  "slug": "fab",
+  "role": "functional",
+  "reason": "이름 그대로 콘텐츠 위에 떠 있고, 스피드다이얼 액션들은 합성한 `Popover` 로 오버레이 레이어에 산다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "Button, Popover, Tooltip",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/control/fab/fab.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/control/fab/fab_style.dart"
+  },
+  "work": "compose",
+  "risk": "원 자체는 이미 `Button` 합성이라 Button 이 받는 것을 그대로 물려받는다 — 남은 자기 박스는 액션 라벨 알약 하나뿐(Flutter `DecoratedBox` bg+radius+boxShadow, Web inline 같은 셋)이다. 원까지 다시 손대면 Button 재질 위에 두 번째 재질이 겹친다.",
+  "group": "Control"
+ },
+ {
+  "slug": "hover",
+  "role": "not-a-surface",
+  "reason": "Web root className 이 문자 그대로 `''` 이고 Flutter 쪽 `AnimatedContainer` 에는 decoration 이 없다(ColorFilter 만 나른다) — 자식을 감싸 scale/fade/brighten/shadow 만 거는 래퍼다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/control/hover/hover.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/control/hover/hover_style.dart"
+  },
+  "work": "exclude",
+  "risk": "자기 문서 예제가 `Card` 를 감싼다 — 재질은 감싸인 쪽의 것이다. 여기에 박스를 주면 호버되는 표면 앞에 두 번째 재질이 서고, `drop-shadow` 가 자식 모양을 따르도록 일부러 wrapper 반경을 비워둔 설계도 깨진다.",
+  "group": "Control"
+ },
+ {
+  "slug": "theme-controller",
+  "role": "content",
+  "reason": "root 는 flex 그리드 레이아웃일 뿐이고, 실제 면은 각 스와치 — Flutter `Container`(bg+border+radius), Web inline border-radius/width/color + bg 로 자기 재질 박스를 그린다. 콘텐츠층에 앉는다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/control/theme_controller/theme_controller.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/control/theme_controller/theme_controller_style.dart"
+  },
+  "work": "compose",
+  "risk": "스와치 안의 팔레트 원들은 재질이 아니라 색 견본이다 — 재질이 스와치 채움을 넘어 원까지 닿으면, 그 원이 보여주려고 존재하는 바로 그 색을 못 보여주게 된다.",
+  "group": "Control"
+ },
+ {
+  "slug": "filter",
+  "role": "content",
+  "reason": "세그먼티드 컨트롤 — root `Container` 가 bg+radius 로 레일(트랙)을 그리고 그 위에 선택 표시가 움직인다. 트리거 위에 뜨지 않고 콘텐츠층에 앉는다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/control/filter/filter.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/control/filter/filter_style.dart"
+  },
+  "work": "compose",
+  "risk": "표면은 레일이지 움직이는 선택 채움이 아니다 — 아이템 채움은 alpha-0 로 hue 를 붙든 색과 선택색 사이를 lerp 하므로(투명 검정을 지나지 않으려는 장치), 재질이 아이템에 얹히면 반투명이 선택마다 같이 애니메이션한다.",
+  "group": "Control"
+ },
+ {
+  "slug": "text-field",
+  "role": "content",
+  "reason": "필드 박스를 자기가 그린다 — Flutter `Container(decoration: tokenDecoration)` 가 bg+border+radius 를 칠하고, 콘텐츠 흐름 안에 앉는 입력 면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/text_field/text_field.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/text_field/text_field_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "Web 의 필드 박스가 unframed 일 때 네이티브 `<input>` 자신에 실린다(`buildInputInlineStyles` 가 border-width/background-color/border-radius 를 input 에 직접 emit). 표면 프리미티브로 감싸면 boundary 와 focus-within/hover pseudo 스코프가 통째로 다른 요소로 옮겨가 포커스 링 위치가 어긋난다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "text-area",
+  "role": "content",
+  "reason": "text-field 와 같은 구조 — Flutter `Container(decoration: tokenDecoration)` 가 필드 면을 그리고 콘텐츠층에 앉는다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/text_area/text_area.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/text_area/text_area_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "Web 박스가 네이티브 `<textarea>`(`resolved.textarea`) 위에 통째로 실려 있어 감쌀 수 없다. 게다가 resize 드래그 핸들이 같은 요소의 기하에 묶여 있다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "select",
+  "role": "functional",
+  "reason": "트리거 위에 뜨는 드롭다운 패널이 본체이고, 자기 박스를 그리지 않는다 — Flutter/Web 모두 `Popover(trigger: Button, content: …)` 로 합성하고 Web 은 \"No chrome / padding here — Popover(→ Popup) already paints\" 라고 코드에 적혀 있다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Popover → Popup (패널), Button (트리거·옵션 행)",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/select/select.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/select/select.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Form-A"
+ },
+ {
+  "slug": "checkbox",
+  "role": "content",
+  "reason": "체크 사각형을 자기가 그린다 — `AnimatedContainer(BoxDecoration(boxShadow, color, border, borderRadius))`. 콘텐츠층에 앉는 컨트롤 박스이고, 안쪽 Container 는 indeterminate 대시 글리프라 표면이 아니다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/checkbox/checkbox.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/checkbox/checkbox.dart"
+  },
+  "work": "compose",
+  "risk": "박스가 12~20px 이라 블러 반경이 지각되지 않고 반투명만 남는다 — checked 상태의 채움이 옅어지면 체크 글리프 대비가 떨어진다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "toggle",
+  "role": "content",
+  "reason": "트랙 박스를 자기가 그린다 — `AnimatedContainer(BoxDecoration(color: trackColor, borderRadius: trackBorderRadius))` 가 컴포넌트의 몸이고 thumb 이 그 위에 얹힌다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/toggle/toggle.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/toggle/toggle.dart"
+  },
+  "work": "compose",
+  "risk": "트랙이 반투명해지면 on/off 를 구분하는 것이 트랙 색뿐이라 상태 구분이 약해진다 — 트랙에만 재질을 주고 thumb 은 불투명하게 남겨야 한다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "slider",
+  "role": "not-a-surface",
+  "reason": "slider 자신의 risk 가 \"트랙이 몇 px 이라 블러가 지각 안 되고 활성 채움이 값 신호\"라고 적어 progress 의 배제 사유와 같은 문장이다. 남는 건 자식 없는 thumb 하나인데, status(동일 모양)와 resizable grip·scrollbar thumb 이 전부 affordance 글리프로 배제됐다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/slider/slider.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/slider/slider.dart"
+  },
+  "work": "exclude",
+  "risk": "트랙 두께가 몇 px 이라 블러가 지각되지 않는다 — 재질은 thumb 에 실려야 의미가 있고, 활성 채움(activeColor)은 값을 읽는 신호라 반투명해지면 진행 위치가 흐려진다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "date-picker",
+  "role": "functional",
+  "reason": "트리거 위에 뜨는 팝오버 캘린더 / 모달 다이얼로그가 본체다. 위젯 파일에 `Container`·`BoxDecoration` 이 한 줄도 없고 `Popover` / `Dialog` / `Button` / `Calendar` 만 합성한다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Popover → Popup (패널), Dialog (모달), Button (트리거)",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/date_picker/date_picker.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/date_picker/date_picker.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Form-A"
+ },
+ {
+  "slug": "time-picker",
+  "role": "content",
+  "reason": "패널은 `Popover`/`Dialog` 로 합성해 이미 재질을 받지만, 다이얼로그 안의 HH/MM 세그먼트 필드 박스는 자기가 그린다 — `Container(decoration: buildTimePickerSegmentDecoration(...))` 가 border+fill 을 칠한다. 남은 표면은 패널 안에 앉는 입력 필드라 콘텐츠층이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "Popover → Popup (패널), Dialog (모달), Button (트리거) — 세그먼트 박스만 직접 그림",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/time_picker/time_picker.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/time_picker/time_picker_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "Web 세그먼트 박스가 네이티브 `<input>`(`resolved.segmentInput`)에 실려 있고 Flutter 주석이 \"Web 은 segment `<input>` 이 border·fill·focus:ring-* 을 한 요소에 들고 있다\"고 못박는다 — 감싸면 링이 어긋난다. 또한 떠 있는 패널은 이미 Popup/Dialog 가 재질을 주므로 여기에 functional 재질을 얹으면 이중이 된다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "color-picker",
+  "role": "functional",
+  "reason": "트리거 위에 뜨는 팝오버 패널이 본체이고 그 면은 `Popover → Popup` 이 그린다. 위젯 안 `Container`/`DecoratedBox` 는 전부 색 스와치·hue 슬라이더·SV 그라디언트 영역, 즉 고르는 색 자체를 칠하는 페인트이지 표면이 아니다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Popover → Popup (패널), Button (트리거·액션), Clickable (스와치)",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/color_picker/color_picker.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/color_picker/color_picker_style.dart"
+  },
+  "work": "already-done",
+  "risk": "스와치·SV 영역·hue 바에 재질이 닿으면 표시하는 색이 거짓이 된다(반투명 스와치는 뒤 배경과 섞인 색을 보여준다). 이 박스들은 어떤 경우에도 표면으로 마킹하면 안 된다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "autocomplete",
+  "role": "functional",
+  "reason": "입력 아래로 뜨는 제안 패널이 본체이고 `Popover → Popup` 이 그 면을 그린다 — Web 코드에 \"chrome here: the composed `Popover` → `Popup` paints the surface\" 라고 적혀 있다. 트리거는 `TextField`, 위젯 자신의 `Container` 는 행 hover 하이라이트뿐이다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Popover → Popup (패널), TextField (트리거)",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/autocomplete/autocomplete.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/autocomplete/autocomplete.dart"
+  },
+  "work": "already-done",
+  "risk": "트리거 면은 text-field 가 고쳐질 때 같이 온다 — autocomplete 쪽에서 따로 손대면 이중이 된다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "input-otp",
+  "role": "content",
+  "reason": "셀 박스를 자기가 그린다 — `AnimatedContainer(BoxDecoration(boxShadow, color, border, borderRadius))` 가 칸마다 입력 필드 면을 칠한다. 안쪽 원형 Container 는 obscured 점 글리프라 표면이 아니다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/input_otp/input_otp.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/input_otp/input_otp.dart"
+  },
+  "work": "compose",
+  "risk": "Web 셀은 `div` 라 감쌀 수 있지만 값 입력은 별도 숨김 `<input>` 이 받는다 — 시각 셀만 표면으로 다루고 그 숨김 input 은 건드리면 안 된다. 셀 여러 개가 나란히 서므로 각 셀이 재질을 받으면 블러 비용이 자릿수만큼 곱해진다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "radio-group",
+  "role": "content",
+  "reason": "라디오 원을 자기가 그린다 — `AnimatedContainer(BoxDecoration(boxShadow, color, border, shape: circle))`. checkbox 와 같은 계열의 컨트롤 박스이고 안쪽 원은 선택 점 글리프다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/radio_group/radio_group.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/radio_group/radio_group.dart"
+  },
+  "work": "compose",
+  "risk": "모양이 사각이 아니라 원(`border-radius: 50%`)이라 표면 프리미티브가 radius 를 알약/사각으로 강제하면 원이 깨진다. 그리고 12~20px 이라 블러가 지각되지 않는다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "multiple-choice",
+  "role": "content",
+  "reason": "옵션마다 칩 같은 박스를 자기가 그린다 — `AnimatedContainer(BoxDecoration(boxShadow, color, border, borderRadius))` 를 `Clickable` 안에 넣는다. 콘텐츠 흐름에 앉는 선택 가능한 면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "Clickable (제스처·포커스링) — 박스는 직접 그림",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/multiple_choice/multiple_choice.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/multiple_choice/multiple_choice.dart"
+  },
+  "work": "compose",
+  "risk": "선택/비선택을 배경색으로만 구분하므로 두 상태 채움이 함께 반투명해지면 구분이 약해진다 — 선택 상태는 색만이 아니라 border 로도 서야 한다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "star-rating",
+  "role": "not-a-surface",
+  "reason": "별은 `Container(decoration: ShapeDecoration(shape: StarBorder(...)))` 로 그린 글리프이고 Web 은 bg/rounded 를 한 줄도 emit 하지 않는다 — 재질을 담을 면이 아니라 값을 나타내는 기호다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/star_rating/star_rating.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/star_rating/star_rating.dart"
+  },
+  "work": "exclude",
+  "risk": "별에 재질이 닿으면 half-fill 을 만드는 ShaderMask/clip 과 충돌해 채워진 비율이 흐려진다 — 값을 읽을 수 없게 된다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "range",
+  "role": "not-a-surface",
+  "reason": "자기 risk 가 \"slider 와 같은 결정을 받아야 한다\"고 적었고 slider 가 배제됐다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/range/range.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/range/range.dart"
+  },
+  "work": "exclude",
+  "risk": "트랙이 얇아 블러가 지각되지 않고, thumb 이 둘이라 겹칠 때 반투명이면 어느 쪽이 위인지 읽히지 않는다 — 두 thumb 은 불투명해야 한다. slider 와 같은 결정을 받아야 나란히 놓았을 때 갈라지지 않는다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "item-picker",
+  "role": "content",
+  "reason": "인라인 패널 박스를 자기가 그린다 — 클래스 doc 이 \"inline item picker\" 라고 못박고 build 마지막이 `Container(BoxDecoration(color: backgroundColor, border: .all(...), borderRadius))` 로 검색+목록 전체를 감싼다. 떠 있지 않고 콘텐츠 흐름에 앉는다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "Clickable (옵션 행 제스처) — 패널 박스는 직접 그림",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/form/item_picker/item_picker.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/form/item_picker/item_picker.dart"
+  },
+  "work": "compose",
+  "risk": "옵션 행 hover 하이라이트가 Web 에서 scoped `<style>` 규칙(`.co-item-picker-h-<id>:hover{background-color:…}`)으로 나가므로, 패널을 표면 프리미티브로 감싸면서 scope id 가 붙는 요소가 바뀌면 hover 가 죽는다. 행 하이라이트 자체는 표면이 아니라 패널 위 상태색이다.",
+  "group": "Form-A"
+ },
+ {
+  "slug": "multi-answer-card",
+  "role": "content",
+  "reason": "선택 가능한 답안 카드 면으로, 콘텐츠층에서 자기 배경+보더+radius+padding 박스를 직접 칠한다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/multi_answer_card/multi_answer_card.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/multi_answer_card/multi_answer_card_style.dart"
+  },
+  "work": "compose",
+  "risk": "idle/hover/selected 3-state 를 인라인 번들로 스왑하고 selected 링이 inset box-shadow 라, 표면 프리미티브로 옮길 때 state별 chrome 전달을 빠뜨리기 쉽다.",
+  "group": "Form-B"
+ },
+ {
+  "slug": "formatted-input",
+  "role": "content",
+  "reason": "native <input> / TextField 를 감싸는 입력 필드 프레임이 자기 배경+보더+radius 를 그리는 콘텐츠층 면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/formatted_input/formatted_input.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/formatted_input/formatted_input_style.dart"
+  },
+  "work": "compose",
+  "risk": "focus 시 borderColor 를 스왑하므로 표면 프리미티브가 보더 색을 state 별로 받아야 한다.",
+  "group": "Form-B"
+ },
+ {
+  "slug": "object-input",
+  "role": "content",
+  "reason": "토큰/오브젝트 칩을 담는 입력 프레임이 Container+BoxDecoration(bg/border/radius) 으로 자기 면을 그린다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/object_input/object_input.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/object_input/object_input_style.dart"
+  },
+  "work": "compose",
+  "risk": "Focus 위젯이 프레임 바깥을 감싸고 있어 합성 시 포커스 스코프와 박스 순서가 뒤집히지 않게 해야 한다.",
+  "group": "Form-B"
+ },
+ {
+  "slug": "phone-input",
+  "role": "content",
+  "reason": "국가 선택기+번호 필드를 담은 입력 프레임이 자기 bg/border/radius/shadow 를 그리는 콘텐츠층 면이다(국가 패널은 Popover 로 이미 위임).",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "Popover",
+   "file": "packages/coui_flutter/lib/src/components/form/phone_input/phone_input.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/phone_input/phone_input_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "scoped <style> 규칙(.co-phone-input-fw-<id>:focus-within / -h-<id>:hover)이 프레임 요소 클래스에 직접 걸려 있어, 박스를 다른 컴포넌트 root 로 옮기면 셀렉터가 대상 요소를 잃는다.",
+  "group": "Form-B"
+ },
+ {
+  "slug": "chip-input",
+  "role": "content",
+  "reason": "칩들을 Wrap 으로 담는 입력 프레임이 bg/border/radius/box-shadow 를 직접 칠한다 — 칩과 TextField 는 합성하지만 프레임 자체는 손으로 그린다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/chip_input/chip_input.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/chip_input/chip_input_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "focus 링이 `#<scopeId>:focus-within` id 셀렉터로 root 요소에 묶여 있고 <style> 노드가 root 의 자식이라, 박스를 감싸면 id 와 규칙이 어긋난다.",
+  "group": "Form-B"
+ },
+ {
+  "slug": "switch-field",
+  "role": "not-a-surface",
+  "reason": "라벨/설명 Column 과 Toggle 을 나란히 놓는 Row(웹은 flex-between w-full)일 뿐, 배경·보더·radius 를 전혀 그리지 않는다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/switch_field/switch_field.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/switch_field/switch_field_style.dart"
+  },
+  "work": "exclude",
+  "risk": "재질은 합성된 Toggle 의 트랙이 받아야 하며, 이 래퍼가 받으면 라벨 뒤에 유리 판이 깔린다.",
+  "group": "Form-B"
+ },
+ {
+  "slug": "drag",
+  "role": "not-a-surface",
+  "reason": "DragScope/DragItem/DropZone/DragOverlay 는 측정·히트테스트·transform 만 하는 동작 프리미티브로, 어떤 페인트도 하지 않고 호출자가 준 자식(예제에서는 Card)이 면을 그린다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/infra/drag_scope/drag_scope.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/infra/drag_scope/drag_scope.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Form-B"
+ },
+ {
+  "slug": "sortable",
+  "role": "content",
+  "reason": "재정렬 목록의 각 행이 자기 배경+radius(+드래그 프록시 그림자)를 칠하는 콘텐츠층 면이다 — 루트는 gap 만 주는 리스트 래퍼.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/sortable/sortable.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/sortable/sortable_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "행 요소가 role=listitem 이면서 will-change-transform 위에 런타임 reorder transform 을 직접 받으므로, 그 요소를 다른 컴포넌트로 감싸면 재정렬 엔진이 측정·변환하는 노드가 달라진다.",
+  "group": "Form-B"
+ },
+ {
+  "slug": "fieldset",
+  "role": "content",
+  "reason": "관련 필드를 묶어 legend 와 함께 보더+radius+padding 으로 둘러싸는 콘텐츠층 그룹 패널이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/fieldset/fieldset.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/fieldset/fieldset_style.dart"
+  },
+  "work": "compose",
+  "risk": "기본 채움이 투명 sentinel 이라 유리가 붙으면 지금까지 없던 배경이 처음 생긴다 — legend 가 보더를 파고드는 배치도 같이 확인해야 한다.",
+  "group": "Form-B"
+ },
+ {
+  "slug": "file-input",
+  "role": "content",
+  "reason": "파일을 떨어뜨리는 드롭존 판이 자기 배경+radius 를 칠하는 콘텐츠층 면이다(점선 테두리는 별도 SVG/CustomPaint 오버레이).",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/file_input/file_input.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/file_input/file_input_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "root div 가 position:relative 로 점선 SVG 오버레이의 기준이자 HTML5 dragenter/over/leave/drop 핸들러와 role 을 들고 있어, 박스를 감싸면 오버레이 좌표계와 드롭 타깃이 함께 옮겨간다.",
+  "group": "Form-B"
+ },
+ {
+  "slug": "form",
+  "role": "not-a-surface",
+  "reason": "children 을 세로로 배치하고 FormController 를 Data.inherit 로 흘리는 Column(웹은 flexColFull)일 뿐, 페인트가 0 이다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/form/form.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/form/form_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Form-B"
+ },
+ {
+  "slug": "form-label",
+  "role": "not-a-surface",
+  "reason": "라벨 텍스트와 required 별표를 붙이는 inline-flex Row — 타이포그래피만 있고 박스가 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/form_label/form_label.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/form_label/form_label_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Form-B"
+ },
+ {
+  "slug": "form-field",
+  "role": "not-a-surface",
+  "reason": "라벨/입력/에러·설명을 세로로 쌓고 FormFieldHandle 을 내려주는 flex-col 래퍼로, chrome 은 안에 들어가는 입력이 그린다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/form/form_field.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/form_field/form_field_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Form-B"
+ },
+ {
+  "slug": "formatter",
+  "role": "not-a-surface",
+  "reason": "위젯이 아니다 — Flutter 는 TextInputFormatter 어댑터, Web 은 CoreInputFormatter 팩토리 모음이라 렌더 트리에 존재하지 않는다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/formatter/formatter.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/formatter/formatter.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Form-B"
+ },
+ {
+  "slug": "validated",
+  "role": "not-a-surface",
+  "reason": "검증 상태를 Data.inherit 로 자식 입력에 흘리고 그 아래 ValidatorHint 를 붙이는 Column(웹 flex flex-col)로, 링은 감싼 필드가 자기 error variant 로 그린다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/validated/validated.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/validated/validated_style.dart"
+  },
+  "work": "exclude",
+  "risk": "doc 주석이 \"필드를 둘러싼 색 링\"이라고 적혀 있어 표면으로 오인하기 쉽지만, 실제 build 는 박스를 하나도 그리지 않는다.",
+  "group": "Form-B"
+ },
+ {
+  "slug": "validator-hint",
+  "role": "not-a-surface",
+  "reason": "심각도 아이콘과 메시지를 붙이는 Row — 배경·보더 없이 accent 색 텍스트와 아이콘만 낸다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/form/validator_hint/validator_hint.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/form/validator_hint/validator_hint_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Form-B"
+ },
+ {
+  "slug": "avatar",
+  "role": "content",
+  "reason": "avatar.dart:161 draws its own Container(BoxDecoration(color, boxShadow, ring Border, radius/shape.circle)) — a filled material disc in the content layer, not a glyph.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/avatar/avatar.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/avatar/avatar_style.dart"
+  },
+  "work": "compose",
+  "risk": "buildAvatarBoxClassName uses shape.circle + overflow-hidden clipping and a Tailwind ring (box-shadow based); a surface primitive must keep circle shape, the child clip, and the ring, and an avatar showing a photo will read opaque regardless of material.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "badge",
+  "role": "content",
+  "reason": "Web root 가 super(tag: \"span\") 고정인데 OutlinedContainer 는 super(tag: \"div\") 하드코딩. validation-badge 가 정확히 이 사유로 restate-marker 를 받았다 — 두 판정이 뒤집혀 있었다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/badge/badge.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/badge/badge_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "AnimatedContainer animates the chrome and the root carries a hover:bg-* pseudo class; a composed primitive must preserve both the transition and the pseudo-state class.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "progress",
+  "role": "not-a-surface",
+  "reason": "A determinate/indeterminate bar — the track Container(progress.dart:118) and its fill are an indicator glyph, and the not-a-surface bucket names progress explicitly.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/progress/progress.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/progress/progress_style.dart"
+  },
+  "work": "exclude",
+  "risk": "It does own a filled box, so a blanket 'anything with bg+radius is a surface' sweep would wrongly pick it up — the track must stay opaque or the value becomes unreadable.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "calendar",
+  "role": "not-a-surface",
+  "reason": "Flutter root is IntrinsicWidth(Column(...)) and Web buildContainer() is 'inline-flex flex-col' with buildRoot() an empty className — no fill, no radius, no border anywhere on the root; CoreCalendarStyle has no root backgroundColor.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/calendar/calendar.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/calendar/calendar_style.dart"
+  },
+  "work": "exclude",
+  "risk": "The Containers at calendar.dart:749+ are in-cell range-selection bands, not a panel — easy to misread as a surface. The material comes from whatever holds the grid (Popup in date-picker), which is already marked.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "banner",
+  "role": "content",
+  "reason": "banner.dart:173 draws Container(BoxDecoration(color, left accent Border, radius)) and the Web root emits backgroundEmit + border + radius — a filled announcement strip sitting in the content flow, not floating over it.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/banner/banner.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/banner/banner_style.dart"
+  },
+  "work": "compose",
+  "risk": "The accent is a single-side Border(left:) rather than a uniform border; a composed primitive must express an asymmetric side border or the variant tone cue is lost.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "carousel",
+  "role": "not-a-surface",
+  "reason": "Flutter root is MouseRegion(ClipRRect(borderRadius)) with no decoration, and the Web root is 'relative w-full overflow-hidden' + inline border-radius only — a clipping viewport onto slides, never a filled face.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/carousel/carousel.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/carousel/carousel_style.dart"
+  },
+  "work": "exclude",
+  "risk": "controlOverlayColor makes the nav buttons look surface-like, but carousel.dart:641/655 already composes Button, so that material arrives through Button — marking the carousel root would tint the slides.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "chat",
+  "role": "content",
+  "reason": "The message bubble is the surface — chat.dart:322 DecoratedBox(BoxDecoration(color, radius)) and Web buildBubbleInlineStyles emits background-color + border-radius; the root ('flex w-full justify-*') is pure layout.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/chat/chat.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/chat/chat_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "The surface is a non-root nested element (root → column → bubblesColumn → wrapper → bubble) and the tail is a sibling clipped with clip-path: path() to the bubble's rounded-apex geometry; inserting a wrapper component between wrapper and bubble breaks that pointer. Marker + surfaceFillVar must land on the bubble slot, not root.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "chip",
+  "role": "content",
+  "reason": "chip.dart:237 AnimatedContainer(BoxDecoration) inside InjectedCast, and the Web root already restates kControlShadowRestMarker with its own bg/radius — a filled pill control on the content layer.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/chip/chip.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/chip/chip_style.dart"
+  },
+  "work": "compose",
+  "risk": "Chrome is animated (AnimatedContainer / background-color transition) and the Web root carries a press-squash marker pair that travels into the cast's space; a composed primitive must keep the transition and both shadow markers.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "chip-group",
+  "role": "not-a-surface",
+  "reason": "Flutter build produces only Wrap/scroll layout with spacing and Web buildRootClassName() is WebLayout.flexColFull — no Container, no bg, no radius anywhere; the chips carry the material.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/chip_group/chip_group.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/chip_group/chip_group_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Display-A"
+ },
+ {
+  "slug": "code-diff",
+  "role": "content",
+  "reason": "code_diff.dart:81 Container(BoxDecoration(bg, border, radius)) and the Web root emits 'border border-{outline} bg-{surface}' with inline radius — a filled bordered panel holding diff rows.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/code_diff/code_diff.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/code_diff/code_diff_style.dart"
+  },
+  "work": "compose",
+  "risk": "Rows paint their own added/removed tint background-color over the panel fill; if the panel goes translucent those row tints composite against whatever is behind, so the tints may need to be restated in terms of the panel fill.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "diff",
+  "role": "not-a-surface",
+  "reason": "Flutter is Stacks + Position.fill + ClipRect over the two images and the Web root is 'relative w-full overflow-hidden select-none' with aspect-ratio + radius; the only background-color in the resolver is the thin resizer bar.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/diff/diff.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/diff/diff_style.dart"
+  },
+  "work": "exclude",
+  "risk": "The inline border-radius reads like surface chrome but it is a clip on the image frame — a fill injected here would sit behind opaque images and be invisible while still costing a blur layer.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "code-snippet",
+  "role": "content",
+  "reason": "code_snippet.dart:463 Container(BoxDecoration) and the Web root is 'relative' + bg-{default} + border + inline radius — a filled bordered code panel, and the content bucket names code-snippet explicitly.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/code_snippet/code_snippet.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/code_snippet/code_snippet_style.dart"
+  },
+  "work": "compose",
+  "risk": "Inner elements use bg-transparent over the panel and syntax colours must stay legible; a translucent panel puts arbitrary page content behind monospace text, so contrast needs checking.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "divider",
+  "role": "not-a-surface",
+  "reason": "divider.dart:223/228 is Container(color:, width:, height: thickness) inside LimitedBox — a hairline fill with no decoration and no radius, and the not-a-surface bucket names divider explicitly.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/divider/divider.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/divider/divider_style.dart"
+  },
+  "work": "exclude",
+  "risk": "It is a boundary line; making it translucent would erase the separation it exists to provide.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "dot-indicator",
+  "role": "not-a-surface",
+  "reason": "AnimatedContainer(BoxDecoration) at dot_indicator.dart:216/263 paints navigation dots — indicator glyphs, named explicitly in the not-a-surface bucket.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/dot_indicator/dot_indicator.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator_style.dart"
+  },
+  "work": "exclude",
+  "risk": "Dots do carry bg + border-radius, so a mechanical sweep would grab them; active/inactive is distinguished by fill alpha, and adding material would collapse that distinction.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "empty-state",
+  "role": "content",
+  "reason": "empty_state.dart:110 Container(BoxDecoration(color, Border.all, radius)) wrapped at :177 in InjectedCast, and Web root emits border + bg + radius — a filled panel that replaces missing content; the content bucket names empty-state explicitly.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/empty_state/empty_state.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/empty_state/empty_state.dart"
+  },
+  "work": "compose",
+  "risk": "The border already uses an alpha suffix (border-{token}/{alpha}) and the icon circle is a second filled box inside; both need to survive the composition, and the inner circle should not get its own material.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "indicator",
+  "role": "not-a-surface",
+  "reason": "indicator.dart:70 only computes alignment factors and offsets to overlay item on child — a positioning wrapper with no Container, and the Web resolver emits no bg/radius at all.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/indicator/indicator.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/indicator/indicator_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Display-A"
+ },
+ {
+  "slug": "kbd",
+  "role": "content",
+  "reason": "kbd.dart:83 draws each key cap as Container(BoxDecoration(border, bg, radius)) and the Web keyCap span already restates kControlShadowRestMarker with the comment 'the cap is the surface, the row is layout' — a small material key face.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/kbd/kbd.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/kbd/kbd_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "The surface is the repeated non-root keyCap span, not the root row (buildRootClassName() is inline-flex layout only); separators are interleaved sibling spans, so wrapping each cap in a primitive restructures the row. The marker + surfaceFillVar must go on keyCap, and the doc comment at kbd.dart:75 notes the cap deliberately uses Container over DecoratedBox so the border adds to the box — a composed primitive would change the min-height math.",
+  "group": "Display-A"
+ },
+ {
+  "slug": "label",
+  "role": "not-a-surface",
+  "reason": "Flutter build 은 Icon + Text + '*' 를 담은 Row 만 반환하고 어떤 decoration 도 없으며, Web root `<span>` 은 typography/색 className 만 emit 한다 — 면이 아니라 글자다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/label/label.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/label/label_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Display-B"
+ },
+ {
+  "slug": "number-ticker",
+  "role": "not-a-surface",
+  "reason": "build 이 AnimatedValueBuilder 로 감싼 `Text(formatter(value))` 하나만 내고 Web root 도 클래스만 붙은 텍스트 노드라, 재질을 받을 박스 자체가 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/number_ticker/number_ticker.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/number_ticker/number_ticker_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Display-B"
+ },
+ {
+  "slug": "aspect-ratio-box",
+  "role": "not-a-surface",
+  "reason": "Flutter 는 `AspectRatio(aspectRatio:, child:)` 만, Web 은 padding-top% 스페이서 + 절대배치 콘텐츠 레이어만 그린다 — 채움도 보더도 없는 순수 레이아웃 래퍼다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/aspect_ratio_box/aspect_ratio_box.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/aspect_ratio_box/aspect_ratio_box.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Display-B"
+ },
+ {
+  "slug": "skeleton",
+  "role": "not-a-surface",
+  "reason": "Container+BoxDecoration 로 자기 박스를 그리지만 그건 '아직 안 온 콘텐츠' 자리를 채우는 맥동 플레이스홀더 글리프이지 재질로 만들어진 면이 아니다 — 유리가 닿으면 로딩 표시가 배경을 비춰 사라진다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/skeleton/skeleton.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/skeleton/skeleton_style.dart"
+  },
+  "work": "exclude",
+  "risk": "drawsOwnBox 가 true 라 '박스 있으니 표면' 으로 오분류되기 쉽다 — 역할로 배제해야 한다.",
+  "group": "Display-B"
+ },
+ {
+  "slug": "stat",
+  "role": "content",
+  "reason": "Flutter build 이 `Container(padding, decoration: BoxDecoration(color/border/borderRadius))` 로 KPI 타일 면을 직접 그리고 Web root 도 `w-full border` + bg/border/radius 를 직접 emit 한다 — 콘텐츠층의 카드형 면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/stat/stat.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/stat/stat_style.dart"
+  },
+  "work": "compose",
+  "risk": "Web root 가 `super.tag = _kDivTag` 인 div 라 OutlinedContainer 래핑이 무해하다.",
+  "group": "Display-B"
+ },
+ {
+  "slug": "status",
+  "role": "not-a-surface",
+  "reason": "build 이 `Container(color, borderRadius, width: size, height: size)` 로 size×size 점 하나만 그리고 Web root 는 `<span>` 도트다 — dot-indicator 와 같은 상태 글리프다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/status/status.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/status/status_style.dart"
+  },
+  "work": "exclude",
+  "risk": "점 크기 박스에 블러를 넣으면 색만 흐려져 상태 구분이 사라진다.",
+  "group": "Display-B"
+ },
+ {
+  "slug": "countdown",
+  "role": "not-a-surface",
+  "reason": "build 이 tabular-figures 텍스트를 AnimatedSwitcher 로 교체하는 것이 전부이고 Web root 는 `<span>` 이라, 칠할 면이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/countdown/countdown.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/countdown/countdown_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Display-B"
+ },
+ {
+  "slug": "description-card",
+  "role": "content",
+  "reason": "build 이 `DecoratedBox(BoxDecoration(color/border/borderRadius/boxShadow))` + ClipRRect 로 카드 면을 직접 그리고 Web root 도 bg/border 클래스와 radius 인라인을 직접 낸다 — 이름 그대로 콘텐츠 카드다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/description_card/description_card.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/description_card/description_card_style.dart"
+  },
+  "work": "compose",
+  "risk": "`boxShadow` 를 BoxDecoration 에 실은 채라 반투명 채움이 오면 그림자가 몸을 통해 비친다 — 합성 시 knock-out 캐스트 경로로 같이 옮겨야 한다.",
+  "group": "Display-B"
+ },
+ {
+  "slug": "loading",
+  "role": "not-a-surface",
+  "reason": "세 갈래 build 전부 스피너 부품(도트 3개·트랙+바)을 Container 로 그릴 뿐 콘텐츠를 담는 면이 없다 — 진행 표시 글리프다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/loading/loading.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/loading/loading_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Display-B"
+ },
+ {
+  "slug": "hover-gallery",
+  "role": "not-a-surface",
+  "reason": "Flutter Container 는 `borderRadius` 와 clip 만 갖고 채움/보더가 없으며 Web root 도 `relative w-full overflow-hidden` + height/radius 뿐이다 — 이미지가 가장자리까지 채우는 미디어 클립 래퍼이지 재질 면이 아니다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/hover_gallery/hover_gallery.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/hover_gallery/hover_gallery_style.dart"
+  },
+  "work": "exclude",
+  "risk": "radius 를 보고 표면으로 착각하기 쉽지만 publish 할 채움이 없어 마커만 달면 배경이 사라진다.",
+  "group": "Display-B"
+ },
+ {
+  "slug": "validation-badge",
+  "role": "content",
+  "reason": "build 이 `Container(padding, BoxDecoration(color/border/borderRadius))` 로 아이콘+라벨을 감싼 배지 알약을 직접 그린다 — 컨트롤 계열 배지라 자기 재질 박스를 갖는 콘텐츠층 면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/validation_badge/validation_badge.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/validation_badge/validation_badge_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "Web root 가 `super(tag: 'span')` 인 inline-flex 스팬인데 Web `OutlinedContainer` 는 `super(tag: 'div')` 로 고정이라, 합성하면 인라인 흐름과 `max-w-full` 클램프 체인이 깨진다 — 마커+채움 짝을 root 에 재진술하는 편이 안전하다.",
+  "group": "Display-B"
+ },
+ {
+  "slug": "keyboard-shortcut",
+  "role": "not-a-surface",
+  "reason": "Flutter build 은 `Kbd(keys:, kbdStyle:)` 하나를 반환하고 Web 도 `inline-flex` 스팬 안에 `Kbd` 를 넣을 뿐이라, 키캡 면은 Kbd 소유이고 이 컴포넌트는 spacing 을 넘기는 어댑터다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/keyboard_shortcut/keyboard_shortcut.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/keyboard_shortcut/keyboard_shortcut_style.dart"
+  },
+  "work": "exclude",
+  "risk": "재질이 필요하면 Kbd 쪽에서 처리해야지 여기서 겹쳐 칠하면 이중이 된다.",
+  "group": "Display-B"
+ },
+ {
+  "slug": "tracker",
+  "role": "not-a-surface",
+  "reason": "root 는 decoration 없는 `Row` 이고 각 세그먼트만 색+radius Container 로 그려지는 상태 막대다 — 컨테이너 면이 없는 인디케이터 스트립이다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/tracker/tracker.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/tracker/tracker_style.dart"
+  },
+  "work": "exclude",
+  "risk": "세그먼트에 재질이 닿으면 상태 색이 흐려져 읽을 수 없게 된다.",
+  "group": "Display-B"
+ },
+ {
+  "slug": "mockup",
+  "role": "content",
+  "reason": "docs 슬러그 mockup 이 가리키는 네 프레임(phone/browser/window/code) 전부 root 를 `Container(BoxDecoration(color/border/borderRadius(/boxShadow)))` 로 직접 그리고 Web root 도 bg+`border`+radius 를 직접 emit 한다 — 콘텐츠를 담는 디바이스 프레임 면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/mockup_{phone,browser,window,code}/mockup_*.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/mockup_{phone,browser,window,code}/mockup_*_style.dart"
+  },
+  "work": "compose",
+  "risk": "슬러그 하나에 디렉터리 넷이라 한 프레임만 고치면 나머지 셋이 조용히 유리를 못 받는다. 네 root 모두 `super.tag = 'div'` 라 래핑 자체는 안전하고, mockup_phone 은 프레임 채움/패딩이 root 인라인(width·padding·radius)과 얽혀 있어 containerStyle 로 함께 옮겨야 한다.",
+  "group": "Display-B"
+ },
+ {
+  "slug": "timeline",
+  "role": "not-a-surface",
+  "reason": "root 는 decoration 없는 행 목록이고, 그려지는 것은 도트 Container 와 CustomPaint 커넥터 선, 그리고 텍스트뿐이다 — 담는 면이 없는 글리프+텍스트 레이아웃이다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/timeline/timeline.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/timeline/timeline_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Display-B"
+ },
+ {
+  "slug": "swap",
+  "role": "not-a-surface",
+  "reason": "build 이 두 자식을 rotate/flip/none 으로 교차 전환하는 Transform 만 내고(비인터랙티브면 그대로, 인터랙티브면 Clickable 로 감쌀 뿐) 자기 채움이 없다 — 전환 메커니즘이지 면이 아니다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/display/swap/swap.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/display/swap/swap_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Display-B"
+ },
+ {
+  "slug": "accordion",
+  "role": "content",
+  "reason": "Core 스타일이 backgroundColor/borderColor/borderWidth/borderRadius 를 선언해 자기 면을 진술하는 콘텐츠층 패널인데, Flutter build 는 그 필드를 한 번도 읽지 않고 bare Column + Divider 만 그린다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/accordion/accordion.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/accordion/accordion_style.dart"
+  },
+  "work": "compose",
+  "risk": "Flutter 쪽 box chrome 4 필드가 지금 orphan 이라, 표면 프리미티브 합성이 재질 배선인 동시에 1:1:1:1:1:1 갭 수정이 된다 — 합성 순간 Flutter 에 없던 배경/보더가 처음 나타난다.",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "collapsible",
+  "role": "not-a-surface",
+  "reason": "CoreCollapsibleStyle 필드가 contentInset/duration/typography/icon/gap/clickable 뿐이라 box chrome 이 아예 없고, Flutter build 는 트리거+콘텐츠를 잇는 bare Column 이다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/collapsible/collapsible.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/collapsible/collapsible_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "card",
+  "role": "content",
+  "reason": "Flutter 가 OutlinedContainer 를 합성하고 Web root className 이 kWebSurfaceMarker 로 시작하며 backgroundEmit 클래스로 자기 채움을 publish 한다 — 마커+채움 짝이 이미 성립.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "OutlinedContainer",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/card/card.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": true,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/card/card_style.dart"
+  },
+  "work": "already-done",
+  "risk": "hover 시 boxShadowOverride 를 DecoratedBox 로 카드 위에 덧그려서, 반투명 유리 채움 아래로 그 캐스트가 비칠 수 있다(그림자는 박스 밖으로만 규칙).",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "card-image",
+  "role": "content",
+  "reason": "양 플랫폼 모두 이미지 프레임을 OutlinedContainer 로 합성하고 root 는 방향만 정하는 bare Flex/div 라, 재질은 합성한 프리미티브를 통해 들어온다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "OutlinedContainer",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/card_image/card_image.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/card_image/card_image_style.dart"
+  },
+  "work": "already-done",
+  "risk": "유일한 표면이 이미지 프레임이고 그 위를 이미지가 덮으므로 재질이 시각적으로 거의 드러나지 않는다 — 카드 전체가 유리가 될 거라 기대하면 어긋난다.",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "table",
+  "role": "content",
+  "reason": "Flutter 가 DecoratedBox(color+Border.all+borderRadius) 로, Web 이 grid root 에 inline border/border-radius(+override 시 background-color)로 각자 자기 면을 그리는 콘텐츠층 표면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/table/table.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/table/table_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "Web root 가 grid-template-columns 를 든 그리드 컨테이너 자신이라 프리미티브로 감싸면 frozen cell sticky 와 overflow clip 이 깨진다; 또 테이블은 의도적으로 defaultBackgroundColor 가 없어(어떤 표면 위에도 얹히도록) 재질이 채움을 진술하려면 그 무-채움 전제와 InjectedCast knock-out 을 같이 재검토해야 한다.",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "stepper",
+  "role": "content",
+  "reason": "인디케이터가 Container(BoxDecoration(color, border, shape:.circle)) 로 자기 채움 박스를 그리고 Clickable 로 감싸인 컨트롤이라 badge/button 계열 표면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/stepper/stepper.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/stepper/stepper_style.dart"
+  },
+  "work": "compose",
+  "risk": "모양이 shape:.circle(Flutter) / border-radius:50%(Web inline) 라 프리미티브가 완전 원형을 표현해야 하고, root 자체는 box 가 없어 재질이 닿는 곳은 인디케이터 원과 커넥터뿐이다.",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "steps",
+  "role": "content",
+  "reason": "stepper 와 같은 형태로 인디케이터가 Container(BoxDecoration(color, shape:.circle)) / inline border-radius:50% 채움 박스를 그린다 — 내용 없는 dot-indicator 가 아니라 번호·체크를 담는 badge 형 면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/steps/steps.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/steps/steps_style.dart"
+  },
+  "work": "compose",
+  "risk": "stepper 와 달리 Clickable 이 없는 순수 표시 인디케이터라, 재질 적용을 stepper 와 다르게 판단하면 쌍둥이 두 컴포넌트가 화면에서 갈린다 — 같이 결정해야 한다.",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "tree",
+  "role": "not-a-surface",
+  "reason": "CoreTreeStyle 이 defaultNodeBackgroundColor 를 의도적으로 갖지 않아(주석 명시) 기본 행이 투명하고, root 는 bare Column 이며 행 Container 는 selected/hover 틴트일 뿐이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/tree/tree.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/tree/tree_style.dart"
+  },
+  "work": "exclude",
+  "risk": "행이 박스를 그리긴 해서 기계적 스캔에 표면으로 잡히기 쉽다 — 재질이 닿으면 선택 하이라이트가 유리판이 되어 오히려 틀린다.",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "resizable",
+  "role": "not-a-surface",
+  "reason": "컨테이너 chrome 필드가 없고 그리는 박스는 AnimatedContainer 로 된 divider line 과 grip pill(handleBorderRadius) 뿐인 split-pane 레이아웃이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/resizable/resizable.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/resizable/resizable_style.dart"
+  },
+  "work": "exclude",
+  "risk": "grip pill 이 radius 있는 채움 박스라 스캔에 표면으로 오인될 수 있으나, 스크롤바 thumb 과 같은 affordance 글리프다.",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "scroll-area",
+  "role": "not-a-surface",
+  "reason": "CoreScrollAreaStyle 이 height/maxHeight/scrollbarStyle 뿐이고 build 는 ConstrainedBox + 스크롤바 래핑이라 그리는 면이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/scroll_area/scroll_area.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/scroll_area/scroll_area_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "fade-scroll",
+  "role": "not-a-surface",
+  "reason": "build 가 ShaderMask + LinearGradient 로 스크롤 가장자리를 페이드시키는 마스크 래퍼일 뿐, 배경·보더·radius 를 그리지 않는다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/fade_scroll/fade_scroll.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "scrollable-client",
+  "role": "not-a-surface",
+  "reason": "커스텀 뷰포트/스크롤 인텐트 처리기이고 Web style 이 내는 것은 ::-webkit-scrollbar track/thumb 규칙뿐이라 자기 면이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/scrollable_client/scrollable_client.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/scrollable_client/scrollable_client_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "overflow-marquee",
+  "role": "not-a-surface",
+  "reason": "_RenderOverflowMarqueeLayout 로 넘치는 콘텐츠를 흘리는 렌더 오브젝트 래퍼이고 chrome 필드도 박스 페인트도 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/overflow_marquee/overflow_marquee.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "stack-layout",
+  "role": "not-a-surface",
+  "reason": "디렉터리는 stacks 이며 build 가 Flutter Stack 을 그대로 반환하는 z-축 레이아웃 프리미티브다 — 그리는 면이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/stacks/stacks.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/stacks/stacks_style.dart"
+  },
+  "work": "exclude",
+  "risk": "slug 이 stack-layout 인데 실제 디렉터리·클래스는 stacks/Stacks 라, 경로를 slug 그대로 찍으면 파일을 못 찾는다.",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "stage-container",
+  "role": "not-a-surface",
+  "reason": "CoreStageContainerStyle 이 breakpoint/padding 뿐이고 build 는 LayoutBuilder 로 브레이크포인트별 builder 를 고르는 반응형 래퍼다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/stage_container/stage_container.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/stage_container/stage_container_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "window",
+  "role": "functional",
+  "reason": "프레임은 WindowPanel 에 위임하고 자기가 그리는 것은 콘텐츠 위에 떠 있는 snap preview(BackdropFilter + Container decoration) · snap bar · snap tile 이라 오버레이 표면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "OutlinedContainer (snap bar only)",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/window/window.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/window/window_style.dart"
+  },
+  "work": "compose",
+  "risk": "snap preview 가 이미 자기 blur 를 손으로 건다(Flutter ImageFilter.blur, Web backdrop-filter) — 재질을 얹으면 이중 블러가 되므로 그 손-블러를 걷어내야 하고, snap bar 는 Flutter 만 OutlinedContainer 를 합성하고 Web 은 raw div 라 두 플랫폼 시작점이 이미 다르다.",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "window-panel",
+  "role": "functional",
+  "reason": "Container(border + borderRadius + boxShadow) → ClipRRect → ColoredBox(surfaceColor) 로 자기 창 프레임을 직접 그리고 Web 도 flex-col div 에 border/surface emit + inline radius/box-shadow 를 얹는, 콘텐츠 위에 떠 있는 창 표면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_flutter/lib/src/components/layout/window_panel/window_panel.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "/Users/cocode/orca/workspaces/coui/taimen/packages/coui_web/lib/src/components/layout/window_panel/window_panel_style.dart"
+  },
+  "work": "compose",
+  "risk": "타이틀바의 inner top radius 가 프레임의 containerBorderWidth 에서 파생되므로(Flutter _innerTopRadius / Web innerTopValue), 프레임을 프리미티브로 옮길 때 그 파생을 같이 옮기지 않으면 타이틀바가 보더 모서리를 덮는다.",
+  "group": "Layout-A"
+ },
+ {
+  "slug": "draggable-panel",
+  "role": "functional",
+  "reason": "트리거 위에 떠서 뷰포트 가장자리에 도킹하는 플로팅 팔레트 — 콘텐츠 위에 뜨는 패널이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/draggable_panel/draggable_panel.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/draggable_panel/draggable_panel_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "Web 이 box-shadow 에 kSurfaceRimVar 만 빌려 쓰면서 kWebSurfaceMarker 도 surfaceFillVar 도 없다 — 림만 있고 표면 선언·채움 publish 가 없는 반쪽 배선이라, 마커를 달면서 채움도 같이 진술해야 배경이 사라지지 않는다.",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "join",
+  "role": "not-a-surface",
+  "reason": "자식들을 위치별 radius 로 클립해 한 줄로 잇는 그룹핑 래퍼일 뿐, 자기 채움이 없고 재질은 자식(Button 등)이 들고 있다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/join/join.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/join/join_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "basic",
+  "role": "not-a-surface",
+  "reason": "leading/title/subtitle/content/trailing 5 슬롯을 한 행에 배치하는 슬롯 레이아웃 — Container·BoxDecoration 가 한 줄도 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/basic/basic.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/basic/basic_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "dock",
+  "role": "functional",
+  "reason": "콘텐츠 위에 떠 있는 하단 네비게이션 바 — barMargin 이 있으면 아예 떠 있는 알약이 된다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "SurfaceBlur",
+   "file": "packages/coui_flutter/lib/src/components/layout/dock/dock.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/layout/dock/dock_style.dart"
+  },
+  "work": "already-done",
+  "risk": "Flutter 가 SurfaceBlur 를 합성하면서도 안쪽 Container 로 bg+radius 를 직접 그린다 — 그 Container 가 곧 publish 된 채움이라 지금은 맞지만, 재질이 바뀔 때 두 곳을 같이 봐야 한다.",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "footer",
+  "role": "content",
+  "reason": "페이지 하단 contentinfo 밴드로 자기 배경색을 칠하는 콘텐츠층의 면이다 — 콘텐츠 위에 뜨지 않는다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/footer/footer.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/footer/footer_style.dart"
+  },
+  "work": "compose",
+  "risk": "backgroundColor 를 바꾸는 primitive getter 체인(.primary/.secondary/…)이 이미 노출돼 있어, 재질이 그 채움을 다시 진술할 때 caller override 를 반드시 읽어야 한다.",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "frame",
+  "role": "not-a-surface",
+  "reason": "Container/Row/Column/Padding/Center/ClipRRect 를 통째로 흡수한 Figma-Frame 급 범용 레이아웃 프리미티브 — chrome 은 전부 caller 가 준다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/frame/frame.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/frame/frame_style.dart"
+  },
+  "work": "exclude",
+  "risk": "자기 박스를 그리므로 표면처럼 보이지만, 여기에 재질을 물리면 레이아웃용 div 전부가 유리가 된다 — drawsOwnBox=true 라는 이유만으로 나중에 표면으로 승격시키지 마라.",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "hero-section",
+  "role": "content",
+  "reason": "자기 배경색·배경이미지·오버레이를 칠하고 콘텐츠를 담는 풀블리드 배너 면 — 콘텐츠층의 면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/hero_section/hero_section.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/hero_section/hero_section_style.dart"
+  },
+  "work": "compose",
+  "risk": "채움이 색이 아니라 배경 이미지일 수 있다(imageUrl) — 축이 읽을 채움을 publish 할 때 색만 진술하면 이미지 히어로에서 재질이 무엇 위에 얹히는지가 정의되지 않는다.",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "hidden",
+  "role": "not-a-surface",
+  "reason": "child 를 접고 페이드시키는 전환 래퍼 — 렌더 출력은 자식뿐이고 어떤 채움도 그리지 않는다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/hidden/hidden.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/hidden/hidden_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "listing",
+  "role": "not-a-surface",
+  "reason": "root 가 flex flex-col w-full 뿐이고 채움·radius·보더가 없다 — 행과 Divider 를 세로로 쌓는 구조 컨테이너다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/listing/listing.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/listing/listing_style.dart"
+  },
+  "work": "exclude",
+  "risk": "묶음 리스트라 표면처럼 읽히기 쉽지만 자기 채움이 없어, 마커만 달면 축이 합성할 색이 없어 배경이 사라진다 — 표면으로 만들려면 채움 필드부터 새로 정해야 하는 별개 작업이다.",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "gap",
+  "role": "not-a-surface",
+  "reason": "부모 flex 축을 따라 빈 공간만 차지하는 스페이서(RenderGap leaf) — 면이 아니라 간격이다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/gap/gap.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/gap/gap_style.dart"
+  },
+  "work": "exclude",
+  "risk": "CoreGapStyle.color 로 갭 사각형을 칠할 수 있어 background-color 가 emit 되지만, 그건 디버그/구분선 용도이지 재질 면이 아니다.",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "mask",
+  "role": "not-a-surface",
+  "reason": "child 를 도형(squircle 등)으로 잘라내는 ClipPath 클리퍼 — 자기 픽셀을 그리지 않는다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/mask/mask.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/mask/mask_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "media-query",
+  "role": "not-a-surface",
+  "reason": "뷰포트 폭 범위에 따라 두 슬롯의 display 를 토글하는 가시성 게이트 — 컨테이너 쿼리 래퍼일 뿐이다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/media_query/media_query_visibility.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/media_query/media_query_visibility.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "breakpoint",
+  "role": "not-a-surface",
+  "reason": "위젯이 아니라 값 접근자다 — 클래스 전체가 resolveBreakpoint(context) 로 포워딩하는 getter 뿐이고 렌더 출력이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/breakpoint/breakpoint.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/breakpoint/breakpoint.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "responsive-container",
+  "role": "not-a-surface",
+  "reason": "ConstrainedBox + SizedBox + Padding (+ centered 면 Align) 조합의 폭 제한 래퍼 — 채움이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/responsive_container/responsive_container.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/responsive_container/responsive_container_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "responsive-grid",
+  "role": "not-a-surface",
+  "reason": "LayoutBuilder 로 폭에 따라 컬럼 수를 정해 셀을 배치하는 그리드 — 자기 채움·보더가 없고 카드는 셀 안에 들어간다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/responsive_grid/responsive_grid.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/responsive_grid/responsive_grid_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "responsive-row-column",
+  "role": "not-a-surface",
+  "reason": "브레이크포인트 티어에 따라 Flex direction 만 가로/세로로 바꾸는 레이아웃 프리미티브다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/layout/responsive_row_column/responsive_row_column.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/layout/responsive_row_column/responsive_row_column_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "scaffold",
+  "role": "functional",
+  "reason": "헤더(AppBar) 섹션이 sticky 로 본문 위에 떠 있는 툴바 표면이다 — 루트 배경과 footer 는 의도적으로 표면이 아니다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "SurfaceBlur",
+   "file": "packages/coui_flutter/lib/src/components/layout/scaffold/scaffold.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/layout/scaffold/scaffold_style.dart"
+  },
+  "work": "already-done",
+  "risk": "헤더만 표면이고 footer 섹션은 양 플랫폼 모두 의도적으로 제외돼 있다(Flutter 는 _withSurfaceMaterial 을 헤더에만, Web 은 마커를 헤더 chrome 에만) — 이 비대칭을 버그로 오인해 footer 에 마커를 달지 마라.",
+  "group": "Layout-B"
+ },
+ {
+  "slug": "tabs",
+  "role": "content",
+  "reason": "sticky/fixed/absolute/OverlayPortal 0건. 같은 조사가 동일한 세그먼티드 레일인 filter 를 content 로 판정했고, functional 을 받은 것들(dock·navigation-bar·scaffold·toast)은 전부 코드로 도킹/오버레이를 갖는다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/navigation/tabs/tabs.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "underline variant 는 배경을 안 그리고 border 만 낸다 — 마커를 variant 분기 밖에 두면 박스 없는 캐스트가 뜬다. 또 박스를 그리는 root 가 role=tablist 를 지고 있어 감싸면 semantics 가 밀린다.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "tab-pane",
+  "role": "content",
+  "reason": "탭 아래 본문 패널로, Flutter 는 DecoratedBox(backgroundColor + border + borderRadius), Web 은 content 슬롯 className 에서 배경/border-radius 를 직접 낸다 — 콘텐츠층의 면이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/navigation/tabs/tab_pane.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/navigation/tabs/tab_pane_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "활성 탭 칩이 topLeft/topRight 만 둥근 박스로 content 패널과 모서리에서 융합된다 — 두 박스에 재질을 따로 걸면 이음매가 두 겹으로 보인다. content 는 role=tabpanel 이라 래핑도 DOM 재구조다.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "navigation-bar",
+  "role": "functional",
+  "reason": "콘텐츠 위에 떠 있는 네비게이션 바이고, Flutter 는 SurfaceBlur(surfaceBlur: resolved.surfaceBlur) 를 합성하며 navigation_bar_style.dart 가 surfaceOpacity/Blur/Saturation/Sheen 을 읽는다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "SurfaceBlur",
+   "file": "packages/coui_flutter/lib/src/components/navigation/navigation_bar/navigation_bar.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/navigation/navigation_bar/navigation_bar_style.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "breadcrumb",
+  "role": "not-a-surface",
+  "reason": "Flutter 는 Row 안에 링크와 구분자만 놓고 BoxDecoration 이 한 건도 없으며, Web root 도 flex 레이아웃 className 뿐이라 칠하는 면이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/navigation/breadcrumb/breadcrumb.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/navigation/breadcrumb/breadcrumb_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "pagination",
+  "role": "content",
+  "reason": "루트는 flex row 로 박스가 없지만 페이지 버튼마다 AnimatedContainer(color: backgroundColor, borderRadius: resolved.buttonRadius) / buildButtonClassName 의 bg+border-radius 로 자기 컨트롤 면을 그린다 — 콘텐츠층 컨트롤이다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "Clickable",
+   "file": "packages/coui_flutter/lib/src/components/navigation/pagination/pagination.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/navigation/pagination/pagination_style.dart"
+  },
+  "work": "compose",
+  "risk": "Clickable 은 제스처/포커스링만 주고 면을 안 그린다 — 면은 Button 을 합성해야 하는데, 그러면 active/hover 색 선택이 지금의 pre-resolved 번들에서 Button 의 state 규칙으로 옮겨간다.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "switcher",
+  "role": "not-a-surface",
+  "reason": "MultiChildRenderObjectWidget + RenderBox 로 자식 사이 전환만 그리는 애니메이션 래퍼이고, 양 플랫폼 모두 배경/모서리 선언이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/navigation/switcher/switcher.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/navigation/switcher/switcher_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "menu",
+  "role": "functional",
+  "reason": "Flutter 는 패널을 Popup 으로 합성하고(주석까지 자기-페인트 금지를 명시), Web 은 root 를 resolvePopup 의 popupChrome.root 로 그대로 내보내 kWebSurfaceMarker 가 따라온다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Popup",
+   "file": "packages/coui_flutter/lib/src/components/menu/menu/menu.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/menu/menu/menu_style.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "context-menu",
+  "role": "functional",
+  "reason": "Flutter 는 패널을 Popup 으로 띄우고 Web 은 root 가 relativeInlineBlock 래퍼일 뿐 패널을 Menu(→Popup) 로 합성해 마커를 상속한다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Popup",
+   "file": "packages/coui_flutter/lib/src/components/menu/context_menu/context_menu.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/menu/context_menu/context_menu_style.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "dropdown-menu",
+  "role": "functional",
+  "reason": "context-menu 와 같은 구조 — Flutter 는 Popup 합성, Web 은 root 가 relativeInlineBlock 이고 패널은 Menu(→Popup) 라 마커가 붙는다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Popup",
+   "file": "packages/coui_flutter/lib/src/components/menu/dropdown_menu/dropdown_menu.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/menu/dropdown_menu/dropdown_menu_style.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "menubar",
+  "role": "functional",
+  "reason": "패널은 Popup 으로 합성되지만 **바 자체**가 표면인데 Flutter 는 DecoratedBox(barBorderRadius 포함), Web 은 buildRootClassName 의 border 분기에서 bg/border/radius 를 직접 그린다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "Popup",
+   "file": "packages/coui_flutter/lib/src/components/menu/menubar/menubar.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/menu/menubar/menubar_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "border:false 면 바가 박스를 아예 안 그린다 — 마커/캐스트를 그 분기 밖에 두면 떠 있는 얼룩이 된다(코드가 kControlShadowRestMarker 를 분기 안에 둔 이유가 그것). root 가 role=menubar 라 래핑도 재구조.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "navigation-menu",
+  "role": "functional",
+  "reason": "트리거 줄은 flexRowItemsCenter 뿐이고 떠 있는 패널은 Flutter 가 Popup, Web 이 panelChrome.root(resolvePopup) 로 그려 마커가 붙는다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Popup",
+   "file": "packages/coui_flutter/lib/src/components/menu/navigation_menu/navigation_menu.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/menu/navigation_menu/navigation_menu_style.dart"
+  },
+  "work": "already-done",
+  "risk": "트리거는 자기 border-radius 를 갖는 컨트롤이라 패널과 별개다 — 컨트롤 재질을 논할 때 다시 봐야 한다.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "dialog",
+  "role": "functional",
+  "reason": "모달 중앙 패널이고, Flutter 는 Container 박스 위에 SurfaceBlur 를 감싸며 dialog_style.dart 가 surfaceOpacity/Blur/Saturation/Sheen 을 읽고 Web panel className 은 kWebSurfaceMarker 를 단다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "SurfaceBlur",
+   "file": "packages/coui_flutter/lib/src/components/overlay/dialog/dialog.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/overlay/dialog/dialog_style.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "drawer",
+  "role": "functional",
+  "reason": "화면 엣지에 도킹하는 오버레이 패널인데 Flutter 는 DecoratedBox 로, Web 은 buildPanelClassName/InlineStyles 에서 bg·border·box-shadow 를 직접 그리고 drawer_style.dart 는 resolveSurfaceRim 만 부를 뿐 재질을 읽지 않는다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/overlay/drawer/drawer.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/overlay/drawer/drawer_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "패널 div 가 fixed 도킹 + slide transform + 드래그 오프셋을 같은 요소에 싣고 있고 도킹 엣지 모서리를 longhand 로 0 으로 눌러둔다 — 감싸면 그 셋이 다 갈라지고, 재질 rim 이 눌린 변에서 어긋난다. Swiper 가 이 패널을 그대로 쓰므로 여기 고치면 그쪽도 같이 낫는다.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "hover-card",
+  "role": "functional",
+  "reason": "양 플랫폼 모두 패널 표면을 Card(cardStyle:) 로 합성한다 — Web resolver 주석이 'no further composition' 이라고 못박고 있고 Card 는 마커와 surfaceOpacity 를 이미 갖는다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Card",
+   "file": "packages/coui_flutter/lib/src/components/overlay/hover_card/hover_card.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/overlay/hover_card/hover_card_style.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "popover",
+  "role": "functional",
+  "reason": "Flutter 는 build 가 곧장 Popup 을 반환하고 Web 은 bubble className 이 popupChrome.root.className 을 그대로 이어 붙여 마커와 채움 publish 를 상속한다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Popup",
+   "file": "packages/coui_flutter/lib/src/components/overlay/popover/popover.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/overlay/popover/popover_style.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "toast",
+  "role": "functional",
+  "reason": "콘텐츠 위에 떠서 쌓이는 알림 카드인데 Flutter 는 DecoratedBox(color+border+borderRadius+boxShadow) 로, Web 은 root className/inline 에서 border·radius·box-shadow 를 직접 그리고 마커가 없다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/overlay/toast/toast.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/overlay/toast/toast_style.dart"
+  },
+  "work": "restate-marker",
+  "risk": "박스를 그리는 root 가 role=status live region 이자 transition-all 대상이고 Flutter 쪽은 Semantics(liveRegion) 아래 Stacks 로 닫기 버튼을 앵커한다 — 래퍼를 끼우면 통보와 히트테스트가 같이 흔들린다. transition-all + 마커 조합은 이미 테마 애니메이션 규칙이 따로 취급한다.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "tooltip",
+  "role": "functional",
+  "reason": "트리거 위에 뜨는 말풍선이고, Flutter 는 SurfaceBlur 를 합성하며 tooltip.dart/tooltip_style.dart 가 surfaceOpacity·Sheen 을 읽고 Web tooltip_style 은 kWebSurfaceMarker 를 단다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "SurfaceBlur",
+   "file": "packages/coui_flutter/lib/src/components/overlay/tooltip/tooltip.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/overlay/tooltip/tooltip_style.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "swiper",
+  "role": "not-a-surface",
+  "reason": "스와이프 제스처 래퍼일 뿐 — 패널 표면은 openDrawer/Drawer 합성이 소유하고, 자기가 그리는 유일한 박스는 Container(dragHandleColor, dragHandleBorderRadius) 인 드래그 손잡이 알약이다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "Drawer",
+   "file": "packages/coui_flutter/lib/src/components/overlay/swiper/swiper.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/overlay/swiper/swiper_style.dart"
+  },
+  "work": "exclude",
+  "risk": "드래그 손잡이는 글리프라 재질을 받으면 안 된다 — Drawer 를 고칠 때 손잡이까지 표면으로 묶지 마라.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "refresh-trigger",
+  "role": "functional",
+  "reason": "당겨서 새로고침 중 콘텐츠 위에 떠 있는 인디케이터 알약이고, Flutter 는 DecoratedBox(indicatorBackgroundColor, indicatorBorderRadius), Web 은 indicator className+inline 의 bg/border-radius 로 직접 그린다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/overlay/refresh_trigger/refresh_trigger.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/overlay/refresh_trigger/refresh_trigger_style.dart"
+  },
+  "work": "compose",
+  "risk": "pulling / refreshing 단계마다 padding 이 갈리고 CrossFadedTransition 으로 내용이 바뀐다 — 반투명이 되면 스크롤되는 콘텐츠가 비쳐 단계 구분이 흐려진다.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "alert",
+  "role": "content",
+  "reason": "콘텐츠 흐름 안에 인라인으로 붙는 알림 면이고, Flutter 는 OutlinedContainer 를 합성하며(자기 박스 금지 주석 포함) Web 은 kWebSurfaceMarker + surfaceFillVar 짝을 이미 재진술한다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "OutlinedContainer",
+   "file": "packages/coui_flutter/lib/src/components/overlay/alert/alert.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/overlay/alert/alert_style.dart"
+  },
+  "work": "already-done",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "clickable",
+  "role": "not-a-surface",
+  "reason": "제스처·커서·포커스 링만 얹는 인터랙션 래퍼로, 그리는 것은 focus ring 의 box-shadow 두 레이어와 그 corner radius 뿐 채움 면이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/infra/clickable/clickable.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/infra/clickable/clickable_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "focus-outline",
+  "role": "not-a-surface",
+  "reason": "doc 자체가 'transparent passthrough wrapper hosting the box-shadow ring' 이라고 적혀 있다 — 링만 그리는 투명 래퍼다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/infra/focus_outline/focus_outline.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/infra/focus_outline/focus_outline_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "outlined-container",
+  "role": "content",
+  "reason": "표면 프리미티브 자신 — Flutter 가 surfaceBlur/Opacity/Saturation/Sheen 을 읽고 SurfaceBlur 를 감싸며 refraction 슬롯을 갖고, Web 은 kWebSurfaceMarker + surfaceFillVar 짝을 낸다.",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "SurfaceBlur",
+   "file": "packages/coui_flutter/lib/src/components/infra/outlined_container/outlined_container.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/infra/outlined_container/outlined_container_style.dart"
+  },
+  "work": "already-done",
+  "risk": "이 그룹의 compose 대상 대부분이 여기로 되돌아온다 — 여기 기하가 바뀌면 알림·탭 패널이 한꺼번에 움직인다.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "subfocus",
+  "role": "not-a-surface",
+  "reason": "Web root className 이 'outline-none' 하나이고 Flutter 쪽도 BoxDecoration 이 없다 — 포커스 스코프 관리 래퍼다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/infra/subfocus/subfocus.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/infra/subfocus/subfocus_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "scrollview",
+  "role": "not-a-surface",
+  "reason": "위젯 파일조차 없이 interceptor + style 두 파일뿐이고 배경/모서리 선언이 없다 — 스크롤 동작 인프라다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/infra/scrollview/scrollview_style.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/infra/scrollview/scrollview_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "popup",
+  "role": "functional",
+  "reason": "떠 있는 앵커드 패널 프리미티브 — Flutter 는 surfaceBlur/Opacity 를 읽고 SurfaceBlur 를 감싸며, Web popup_style 은 kWebSurfaceMarker 와 surfaceFillVar 를 짝으로 낸다(주석이 그 짝을 명시).",
+  "flutter": {
+   "drawsOwnBox": true,
+   "composes": "SurfaceBlur",
+   "file": "packages/coui_flutter/lib/src/components/infra/popup/popup.dart"
+  },
+  "web": {
+   "drawsOwnBox": true,
+   "hasMarker": true,
+   "file": "packages/coui_web/lib/src/components/infra/popup/popup_style.dart"
+  },
+  "work": "already-done",
+  "risk": "menu/context-menu/dropdown-menu/menubar 패널/navigation-menu/popover 가 전부 이 하나에 매달려 있다 — 여기 재질이 바뀌면 그 여섯이 동시에 움직인다.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "scrollbar",
+  "role": "not-a-surface",
+  "reason": "::-webkit-scrollbar-thumb 의 background-color/border-radius 만 내는 스크롤 어포던스이고, 콘텐츠를 담는 면이 아니다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/infra/scrollbar/scrollbar.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "icon",
+  "role": "not-a-surface",
+  "reason": "글리프 렌더러로 BoxDecoration 이 한 건도 없고 크기·색만 해석한다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/icon/icon.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/icon/icon.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "triple-dots",
+  "role": "not-a-surface",
+  "reason": "DecoratedBox(shape: .circle) / border-radius:50% 로 점 세 개를 그리는 글리프다 — 담는 면이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/icon/triple_dots/triple_dots.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/icon/triple_dots/triple_dots_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "text",
+  "role": "not-a-surface",
+  "reason": "타이포/색 체인 모디파이어 묶음이라 박스 페인트가 전혀 없다 — 텍스트 노드다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/text/text.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/text/text.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "selectable-text",
+  "role": "not-a-surface",
+  "reason": "선택 가능한 텍스트 렌더일 뿐 BoxDecoration/배경 선언이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/text/selectable/selectable_text.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/text/selectable/selectable_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "text-block",
+  "role": "not-a-surface",
+  "reason": "산문 블록이고 그리는 것은 blockquote 의 왼쪽 Border 한 변과 인라인 코드 조각의 작은 배경 칩뿐 — 담는 면이 아니다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/text/text_block/text_block.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/text/text_block/text_block_style.dart"
+  },
+  "work": "exclude",
+  "risk": "인라인 코드 칩이 배경+radius 를 갖는다 — '박스가 있으니 표면' 으로 오인해 재질을 걸면 본문 한가운데에 유리 조각이 박힌다.",
+  "group": "Nav-Menu-Overlay-Infra"
+ },
+ {
+  "slug": "link",
+  "role": "not-a-surface",
+  "reason": "앵커 텍스트 렌더로 색/밑줄만 해석하고 배경·모서리 선언이 없다.",
+  "flutter": {
+   "drawsOwnBox": false,
+   "composes": "none",
+   "file": "packages/coui_flutter/lib/src/components/text/link/link.dart"
+  },
+  "web": {
+   "drawsOwnBox": false,
+   "hasMarker": false,
+   "file": "packages/coui_web/lib/src/components/text/link/link_style.dart"
+  },
+  "work": "exclude",
+  "risk": "none",
+  "group": "Nav-Menu-Overlay-Infra"
+ }
+]

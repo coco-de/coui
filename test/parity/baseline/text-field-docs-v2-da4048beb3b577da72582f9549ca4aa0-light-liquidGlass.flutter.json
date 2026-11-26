@@ -1,0 +1,50 @@
+{
+  "key": "text-field-docs-v2-da4048beb3b577da72582f9549ca4aa0-light-liquidGlass",
+  "byRole": {
+    "root": {
+      "key": "text-field-docs-v2-da4048beb3b577da72582f9549ca4aa0-light-liquidGlass",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 18.2,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 88,
+        "g": 89,
+        "b": 90,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        16.0,
+        16.0,
+        16.0,
+        16.0
+      ],
+      "paddingPx": [
+        24.0,
+        24.0,
+        24.0,
+        24.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 140.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

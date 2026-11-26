@@ -1,0 +1,7 @@
+// This file does not order by topoSortRegistry(REGISTRY) — a comment that names it must not satisfy the guard.
+/* topoSortRegistry(REGISTRY) in a block comment does not either */
+const note = 'call topoSortRegistry(REGISTRY) first';
+
+export async function run(page: PageNode, lk: VarLookup) {
+  for (const e of REGISTRY) await e.build(page, lk);
+}

@@ -1,0 +1,49 @@
+{
+  "key": "chip-variant-dark-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "chip-variant-dark-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 12.0,
+      "lineHeightPx": 16.8,
+      "letterSpacingPx": -0.12,
+      "color": {
+        "r": 180,
+        "g": 181,
+        "b": 182,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 42,
+        "g": 43,
+        "b": 44,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        24.0,
+        24.0,
+        24.0,
+        24.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [],
+      "opacity": 1.0,
+      "widthPx": 219.74,
+      "heightPx": 223.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

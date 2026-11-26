@@ -1,0 +1,41 @@
+import 'package:coui_web/coui_web.dart';
+
+/// Demonstrates the `withStyle` chain — a quick way to override a
+/// component's [CoreDropdownMenuStyle] slot without constructing the
+/// component from scratch.
+class DropdownMenuChainExample extends StatelessComponent {
+  const DropdownMenuChainExample({super.key});
+
+  @override
+  Component build(BuildContext context) {
+    return DropdownMenu(
+      trigger: Button(
+        variant: CoreButtonVariant.outline,
+        onPressed: () {},
+        child: Text('메뉴 열기'),
+      ),
+      items: [
+        CoreMenuItem.action('프로필', onPressed: () {}),
+        CoreMenuItem.action('설정', onPressed: () {}),
+        const CoreMenuItem.divider(),
+        CoreMenuItem.action('로그아웃', onPressed: () {}),
+      ],
+    ).withStyle(
+      const CoreDropdownMenuStyle(
+        menuOffset: CoreSpace.space16,
+        menuStyle: CoreMenuStyle(
+          itemStyle: CoreMenuItemStyle(
+            padding: CoreEdgeInsets.symmetric(
+              horizontal: CoreSpace.space16,
+              vertical: CoreSpace.space8,
+            ),
+          ),
+          labelTextStyle: CoreTextStyle.token(
+            CoreTextStyles.labelLarge,
+            color: CoreColor.token(CoreColors.primary),
+          ),
+        ),
+      ),
+    );
+  }
+}

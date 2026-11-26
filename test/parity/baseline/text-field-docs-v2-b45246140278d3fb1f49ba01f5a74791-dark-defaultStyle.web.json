@@ -1,0 +1,126 @@
+{
+  "key": "text-field-docs-v2-b45246140278d3fb1f49ba01f5a74791-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "SizeSpec",
+      "attributes": {
+        "component": "text-field",
+        "props": "placeholder=이메일"
+      },
+      "selections": [
+        {
+          "kind": "props",
+          "component": "text-field",
+          "name": null,
+          "props": {
+            "placeholder": "이메일",
+            "size": "sm"
+          },
+          "label": null
+        },
+        {
+          "kind": "props",
+          "component": "text-field",
+          "name": null,
+          "props": {
+            "placeholder": "이메일",
+            "size": "md"
+          },
+          "label": null
+        },
+        {
+          "kind": "props",
+          "component": "text-field",
+          "name": null,
+          "props": {
+            "placeholder": "이메일",
+            "size": "lg"
+          },
+          "label": null
+        },
+        {
+          "kind": "props",
+          "component": "text-field",
+          "name": null,
+          "props": {
+            "placeholder": "이메일",
+            "size": "xl"
+          },
+          "label": null
+        },
+        {
+          "kind": "props",
+          "component": "text-field",
+          "name": null,
+          "props": {
+            "placeholder": "이메일",
+            "size": "xl2"
+          },
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/text-field.md:SizeSpec[18]"
+      ],
+      "anatomyParts": []
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "sm\n                    \n                    \n                      \n                        \n                          \n                            \n                          \n                        \n                      \n                      md\n                    \n                    \n                      \n                        \n                          \n                            \n                          \n                        \n                      \n                      lg\n                    \n                    \n                      \n                        \n                          \n                            \n                          \n                        \n                      \n                      xl\n                    \n                    \n                      \n                        \n                          \n                            \n                          \n                        \n                      \n                      xl2\n                    \n                  \n                  \n                    \n                      size높이 · 좌우 여백글자같은 높이의 Button\n                      \n                        sm32 · 1014sm\n                        md40 · 1214md\n                        lg48 · 1414lg\n                        xl56 · 1615xl\n                        xl264 · 2015xl2",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 582.421875
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(147, 149, 150)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 582.421875
+    }
+  }
+}

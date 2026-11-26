@@ -1,0 +1,63 @@
+{
+  "key": "mockup-foldable-default-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "펼침\n                              \n                              \n                                9:41\n                                \n                                  \n                                    \n                                  \n                                  \n                                    \n                                  \n                                \n                              \n                            \n                          \n                        \n                      \n                    \n                  \n                  \n                  \n                    \n                  \n                  \n                    \n                  \n                  \n                    \n                  \n                  \n                    \n                      \n                      \n                        \n                          \n                            \n                              \n                              \n                                \n                                9:41\n                                \n                                  \n                                    \n                                  \n                                  \n                                    \n                                  \n                                \n                              \n                            \n                          \n                        \n                      \n                    \n                    \n                    \n                  \n                \n                \n                  \n                    \n                      #co-button-ssr-dd:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-dd:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                    \n                    닫힘\n                  \n                  \n                    \n                      #co-button-ssr-de:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-de:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                    \n                    반접힘\n                  \n                  펼침",
+    "layout": {
+      "width": 800,
+      "height": 386.25,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 160,
+          "y": 0,
+          "width": 480,
+          "height": 386.25
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 386.25
+    }
+  }
+}

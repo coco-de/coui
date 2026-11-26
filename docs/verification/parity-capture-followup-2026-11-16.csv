@@ -1,0 +1,749 @@
+key,component,variant,theme,previous_result,current_result,flutter_size,web_size,previous_flutter_phase,flutter_capture_phase,flutter_settled,web_capture_phase,web_viewport_width,web_viewport_height,measurement
+button-primary-light-defaultStyle,button,primary,light,fail,fail,56x40,56x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.571% (192/2240 px), threshold=5.000%, maxChannelDelta=211, FAIL)"
+button-primary-dark-defaultStyle,button,primary,dark,fail,fail,56x40,56x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.366% (165/2240 px), threshold=5.000%, maxChannelDelta=203, FAIL)"
+button-secondary-light-defaultStyle,button,secondary,light,fail,fail,56x40,56x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.759% (129/2240 px), threshold=5.000%, maxChannelDelta=207, FAIL)"
+button-secondary-dark-defaultStyle,button,secondary,dark,fail,fail,56x40,56x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.384% (143/2240 px), threshold=5.000%, maxChannelDelta=179, FAIL)"
+button-tonal-light-defaultStyle,button,tonal,light,pass,pass,44x40,44x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+button-tonal-dark-defaultStyle,button,tonal,dark,pass,pass,44x40,44x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+button-outline-light-defaultStyle,button,outline,light,fail,fail,70x40,70x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.607% (185/2800 px), threshold=5.000%, maxChannelDelta=213, FAIL)"
+button-outline-dark-defaultStyle,button,outline,dark,fail,fail,70x40,70x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.857% (248/2800 px), threshold=5.000%, maxChannelDelta=221, FAIL)"
+button-ghost-light-defaultStyle,button,ghost,light,fail,fail,68x40,68x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.537% (205/2720 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+button-ghost-dark-defaultStyle,button,ghost,dark,fail,fail,68x40,68x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.934% (243/2720 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+button-plain-light-defaultStyle,button,plain,light,fail,fail,36x40,36x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 14.792% (213/1440 px), threshold=5.000%, maxChannelDelta=159, FAIL)"
+button-plain-dark-defaultStyle,button,plain,dark,fail,fail,36x40,36x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 17.569% (253/1440 px), threshold=5.000%, maxChannelDelta=171, FAIL)"
+button-card-light-defaultStyle,button,card,light,fail,fail,58x40,58x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.345% (124/2320 px), threshold=5.000%, maxChannelDelta=208, FAIL)"
+button-card-dark-defaultStyle,button,card,dark,fail,fail,58x40,58x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.293% (146/2320 px), threshold=5.000%, maxChannelDelta=218, FAIL)"
+button-destructive-light-defaultStyle,button,destructive,light,pass,pass,56x40,56x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+button-destructive-dark-defaultStyle,button,destructive,dark,fail,fail,56x40,56x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.071% (136/2240 px), threshold=5.000%, maxChannelDelta=189, FAIL)"
+button-cast-motion-light-defaultStyle,button,cast-motion,light,fail,fail,243x40,243x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.599% (933/9720 px), threshold=5.000%, maxChannelDelta=213, FAIL)"
+button-cast-motion-dark-defaultStyle,button,cast-motion,dark,fail,fail,243x40,243x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.560% (832/9720 px), threshold=5.000%, maxChannelDelta=222, FAIL)"
+command-default-light-defaultStyle,command,default,light,pass,pass,800x373,800x373,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+command-default-dark-defaultStyle,command,default,dark,pass,pass,800x373,800x373,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+command-dialog-light-defaultStyle,command,dialog,light,fail,fail,83x40,83x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.855% (294/3320 px), threshold=5.000%, maxChannelDelta=212, FAIL)"
+command-dialog-dark-defaultStyle,command,dialog,dark,fail,fail,83x40,83x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.422% (346/3320 px), threshold=5.000%, maxChannelDelta=220, FAIL)"
+command-scrollable-light-defaultStyle,command,scrollable,light,pass,pass,800x363,800x363,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+command-scrollable-dark-defaultStyle,command,scrollable,dark,pass,pass,800x363,800x363,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+command-empty-light-defaultStyle,command,empty,light,pass,pass,800x283,800x283,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+command-empty-dark-defaultStyle,command,empty,dark,pass,pass,800x283,800x283,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+fab-default-light-defaultStyle,fab,default,light,pass,pass,56x56,56x56,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+fab-default-dark-defaultStyle,fab,default,dark,pass,pass,56x56,56x56,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+hover-default-light-defaultStyle,hover,default,light,pass,pass,111x61,111x61,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+hover-default-dark-defaultStyle,hover,default,dark,pass,pass,111x61,111x61,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+hover-fade-light-defaultStyle,hover,fade,light,pass,pass,111x61,111x61,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+hover-fade-dark-defaultStyle,hover,fade,dark,pass,pass,111x61,111x61,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+hover-shadow-light-defaultStyle,hover,shadow,light,pass,pass,111x61,111x61,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+hover-shadow-dark-defaultStyle,hover,shadow,dark,pass,pass,111x61,111x61,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+theme-controller-default-light-defaultStyle,theme-controller,default,light,pass,pass,228x64,228x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+theme-controller-default-dark-defaultStyle,theme-controller,default,dark,pass,pass,228x64,228x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+filter-default-light-defaultStyle,filter,default,light,fail,fail,214x40,214x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.040% (517/8560 px), threshold=5.000%, maxChannelDelta=224, FAIL)"
+filter-default-dark-defaultStyle,filter,default,dark,fail,fail,214x40,214x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.561% (476/8560 px), threshold=5.000%, maxChannelDelta=180, FAIL)"
+filter-disabled-light-defaultStyle,filter,disabled,light,pass,pass,214x92,214x92,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+filter-disabled-dark-defaultStyle,filter,disabled,dark,pass,pass,214x92,214x92,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+toggle-group-default-light-defaultStyle,toggle-group,default,light,fail,fail,98x40,98x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.449% (292/3920 px), threshold=5.000%, maxChannelDelta=224, FAIL)"
+toggle-group-default-dark-defaultStyle,toggle-group,default,dark,fail,fail,98x40,98x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.832% (307/3920 px), threshold=5.000%, maxChannelDelta=180, FAIL)"
+toggle-group-vertical-light-defaultStyle,toggle-group,vertical,light,fail,fail,44x60,44x60,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.924% (262/2640 px), threshold=5.000%, maxChannelDelta=220, FAIL)"
+toggle-group-vertical-dark-defaultStyle,toggle-group,vertical,dark,fail,fail,44x60,44x60,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.924% (262/2640 px), threshold=5.000%, maxChannelDelta=179, FAIL)"
+toggle-group-disabled-light-defaultStyle,toggle-group,disabled,light,fail,fail,183x92,183x92,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.845% (984/16836 px), threshold=5.000%, maxChannelDelta=213, FAIL)"
+toggle-group-disabled-dark-defaultStyle,toggle-group,disabled,dark,fail,fail,183x92,183x92,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.928% (998/16836 px), threshold=5.000%, maxChannelDelta=179, FAIL)"
+command-search-default-light-defaultStyle,command-search,default,light,pass,pass,320x40,320x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+command-search-default-dark-defaultStyle,command-search,default,dark,pass,pass,320x40,320x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-field-default-light-defaultStyle,text-field,default,light,pass,pass,800x40,800x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-field-default-dark-defaultStyle,text-field,default,dark,pass,pass,800x40,800x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-field-error-light-defaultStyle,text-field,error,light,pass,pass,800x64,800x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-field-error-dark-defaultStyle,text-field,error,dark,pass,pass,800x64,800x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-area-default-light-defaultStyle,text-area,default,light,pass,pass,800x110,800x110,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-area-default-dark-defaultStyle,text-area,default,dark,pass,pass,800x110,800x110,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-area-footer-light-defaultStyle,text-area,footer,light,pass,pass,800x133,800x133,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-area-footer-dark-defaultStyle,text-area,footer,dark,pass,pass,800x133,800x133,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+rich-editor-default-light-defaultStyle,rich-editor,default,light,pass,pass,800x194,800x194,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+rich-editor-default-dark-defaultStyle,rich-editor,default,dark,pass,pass,800x194,800x194,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+rich-editor-image-light-defaultStyle,rich-editor,image,light,pass,pass,800x151,800x151,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+rich-editor-image-dark-defaultStyle,rich-editor,image,dark,pass,pass,800x151,800x151,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+rich-editor-max-length-light-defaultStyle,rich-editor,max-length,light,pass,pass,800x123,800x123,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+rich-editor-max-length-dark-defaultStyle,rich-editor,max-length,dark,pass,pass,800x123,800x123,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+rich-editor-no-toolbar-light-defaultStyle,rich-editor,no-toolbar,light,pass,pass,800x82,800x82,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+rich-editor-no-toolbar-dark-defaultStyle,rich-editor,no-toolbar,dark,pass,pass,800x82,800x82,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+select-suffix-light-defaultStyle,select,suffix,light,pass,pass,800x40,800x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+select-suffix-dark-defaultStyle,select,suffix,dark,pass,pass,800x40,800x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+checkbox-default-light-defaultStyle,checkbox,default,light,fail,fail,75x21,75x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 13.333% (210/1575 px), threshold=5.000%, maxChannelDelta=134, FAIL)"
+checkbox-default-dark-defaultStyle,checkbox,default,dark,fail,fail,75x21,75x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 19.365% (305/1575 px), threshold=5.000%, maxChannelDelta=145, FAIL)"
+checkbox-checked-light-defaultStyle,checkbox,checked,light,fail,fail,60x21,60x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.635% (71/1260 px), threshold=5.000%, maxChannelDelta=134, FAIL)"
+checkbox-checked-dark-defaultStyle,checkbox,checked,dark,fail,fail,60x21,60x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 21.508% (271/1260 px), threshold=5.000%, maxChannelDelta=152, FAIL)"
+checkbox-indeterminate-light-defaultStyle,checkbox,indeterminate,light,fail,fail,75x21,75x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 12.063% (190/1575 px), threshold=5.000%, maxChannelDelta=136, FAIL)"
+checkbox-indeterminate-dark-defaultStyle,checkbox,indeterminate,dark,fail,fail,75x21,75x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 16.063% (253/1575 px), threshold=5.000%, maxChannelDelta=155, FAIL)"
+checkbox-disabled-light-defaultStyle,checkbox,disabled,light,pass,pass,60x21,60x21,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+checkbox-disabled-dark-defaultStyle,checkbox,disabled,dark,pass,pass,60x21,60x21,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+toggle-default-light-defaultStyle,toggle,default,light,pass,pass,95x21,95x21,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+toggle-default-dark-defaultStyle,toggle,default,dark,fail,fail,95x21,95x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 11.930% (238/1995 px), threshold=5.000%, maxChannelDelta=136, FAIL)"
+toggle-on-light-defaultStyle,toggle,on,light,fail,fail,95x21,95x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.827% (216/1995 px), threshold=5.000%, maxChannelDelta=148, FAIL)"
+toggle-on-dark-defaultStyle,toggle,on,dark,fail,fail,95x21,95x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 15.589% (311/1995 px), threshold=5.000%, maxChannelDelta=160, FAIL)"
+toggle-disabled-light-defaultStyle,toggle,disabled,light,pass,pass,95x21,95x21,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+toggle-disabled-dark-defaultStyle,toggle,disabled,dark,pass,pass,95x21,95x21,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+slider-default-light-defaultStyle,slider,default,light,pass,pass,800x32,800x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+slider-default-dark-defaultStyle,slider,default,dark,pass,pass,800x32,800x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+date-picker-default-light-defaultStyle,date-picker,default,light,pass,pass,256x40,256x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+date-picker-default-dark-defaultStyle,date-picker,default,dark,pass,pass,256x40,256x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+time-picker-default-light-defaultStyle,time-picker,default,light,pass,pass,256x40,256x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+time-picker-default-dark-defaultStyle,time-picker,default,dark,pass,pass,256x40,256x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+color-picker-default-light-defaultStyle,color-picker,default,light,pass,pass,144x40,144x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+color-picker-default-dark-defaultStyle,color-picker,default,dark,pass,pass,144x40,144x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+autocomplete-default-light-defaultStyle,autocomplete,default,light,pass,pass,800x40,800x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+autocomplete-default-dark-defaultStyle,autocomplete,default,dark,pass,pass,800x40,800x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+input-otp-default-light-defaultStyle,input-otp,default,light,pass,pass,302x40,302x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+input-otp-default-dark-defaultStyle,input-otp,default,dark,pass,pass,302x40,302x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+input-otp-lg-light-defaultStyle,input-otp,lg,light,pass,pass,400x56,400x56,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+input-otp-lg-dark-defaultStyle,input-otp,lg,dark,pass,pass,400x56,400x56,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+input-otp-editable-light-defaultStyle,input-otp,editable,light,pass,pass,302x40,302x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+input-otp-editable-dark-defaultStyle,input-otp,editable,dark,pass,pass,302x40,302x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+radio-group-default-light-defaultStyle,radio-group,default,light,fail,fail,60x79,60x79,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.802% (275/4740 px), threshold=5.000%, maxChannelDelta=134, FAIL)"
+radio-group-default-dark-defaultStyle,radio-group,default,dark,fail,fail,60x79,60x79,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 15.506% (735/4740 px), threshold=5.000%, maxChannelDelta=151, FAIL)"
+radio-group-card-light-defaultStyle,radio-group,card,light,fail,fail,800x208,800x207,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x208 vs 800x207)"
+radio-group-card-dark-defaultStyle,radio-group,card,dark,fail,fail,800x208,800x207,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x208 vs 800x207)"
+multiple-choice-default-light-defaultStyle,multiple-choice,default,light,fail,fail,150x32,150x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.125% (390/4800 px), threshold=5.000%, maxChannelDelta=187, FAIL)"
+multiple-choice-default-dark-defaultStyle,multiple-choice,default,dark,fail,fail,150x32,150x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.688% (465/4800 px), threshold=5.000%, maxChannelDelta=180, FAIL)"
+star-rating-default-light-defaultStyle,star-rating,default,light,fail,fail,136x24,136x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.537% (246/3264 px), threshold=5.000%, maxChannelDelta=144, FAIL)"
+star-rating-default-dark-defaultStyle,star-rating,default,dark,fail,fail,136x24,136x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.801% (222/3264 px), threshold=5.000%, maxChannelDelta=120, FAIL)"
+range-default-light-defaultStyle,range,default,light,pass,pass,800x16,800x16,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+range-default-dark-defaultStyle,range,default,dark,pass,pass,800x16,800x16,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+item-picker-default-light-defaultStyle,item-picker,default,light,pass,pass,800x267,800x267,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+item-picker-default-dark-defaultStyle,item-picker,default,dark,pass,pass,800x267,800x267,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+multi-answer-card-default-light-defaultStyle,multi-answer-card,default,light,fail,fail,800x122,800x121,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x122 vs 800x121)"
+multi-answer-card-default-dark-defaultStyle,multi-answer-card,default,dark,fail,fail,800x122,800x121,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x122 vs 800x121)"
+option-item-default-light-defaultStyle,option-item,default,light,pass,pass,800x51,800x51,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+option-item-default-dark-defaultStyle,option-item,default,dark,pass,pass,800x51,800x51,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+option-item-multiple-light-defaultStyle,option-item,multiple,light,fail,fail,800x73,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x73 vs 800x72)"
+option-item-multiple-dark-defaultStyle,option-item,multiple,dark,fail,fail,800x73,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x73 vs 800x72)"
+option-item-disabled-light-defaultStyle,option-item,disabled,light,fail,fail,800x73,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x73 vs 800x72)"
+option-item-disabled-dark-defaultStyle,option-item,disabled,dark,fail,fail,800x73,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x73 vs 800x72)"
+option-list-default-light-defaultStyle,option-list,default,light,fail,fail,800x153,800x152,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x153 vs 800x152)"
+option-list-default-dark-defaultStyle,option-list,default,dark,fail,fail,800x153,800x152,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x153 vs 800x152)"
+bottom-sheet-default-light-defaultStyle,bottom-sheet,default,light,fail,fail,800x348,800x346,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x348 vs 800x346)"
+bottom-sheet-default-dark-defaultStyle,bottom-sheet,default,dark,fail,fail,800x348,800x346,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x348 vs 800x346)"
+bottom-sheet-close-light-defaultStyle,bottom-sheet,close,light,fail,fail,800x201,800x200,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x201 vs 800x200)"
+bottom-sheet-close-dark-defaultStyle,bottom-sheet,close,dark,fail,fail,800x201,800x200,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x201 vs 800x200)"
+formatted-input-default-light-defaultStyle,formatted-input,default,light,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatted-input-default-dark-defaultStyle,formatted-input,default,dark,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatted-input-korean-phone-light-defaultStyle,formatted-input,korean-phone,light,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatted-input-korean-phone-dark-defaultStyle,formatted-input,korean-phone,dark,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatted-input-credit-card-light-defaultStyle,formatted-input,credit-card,light,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatted-input-credit-card-dark-defaultStyle,formatted-input,credit-card,dark,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatted-input-date-light-defaultStyle,formatted-input,date,light,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatted-input-date-dark-defaultStyle,formatted-input,date,dark,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatted-input-verify-light-defaultStyle,formatted-input,verify,light,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatted-input-verify-dark-defaultStyle,formatted-input,verify,dark,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+number-input-default-light-defaultStyle,number-input,default,light,fail,fail,138x124,138x123,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 138x124 vs 138x123)"
+number-input-default-dark-defaultStyle,number-input,default,dark,fail,fail,138x124,138x123,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 138x124 vs 138x123)"
+number-input-sizes-light-defaultStyle,number-input,sizes,light,pass,pass,138x144,138x144,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+number-input-sizes-dark-defaultStyle,number-input,sizes,dark,pass,pass,138x144,138x144,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+number-input-filled-light-defaultStyle,number-input,filled,light,pass,pass,114x64,114x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+number-input-filled-dark-defaultStyle,number-input,filled,dark,pass,pass,114x64,114x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+number-input-error-light-defaultStyle,number-input,error,light,pass,pass,114x88,114x88,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+number-input-error-dark-defaultStyle,number-input,error,dark,fail,fail,114x88,114x88,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.449% (647/10032 px), threshold=5.000%, maxChannelDelta=170, FAIL)"
+number-input-disabled-light-defaultStyle,number-input,disabled,light,pass,pass,114x64,114x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+number-input-disabled-dark-defaultStyle,number-input,disabled,dark,pass,pass,114x64,114x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+object-input-default-light-defaultStyle,object-input,default,light,pass,pass,138x48,138x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+object-input-default-dark-defaultStyle,object-input,default,dark,pass,pass,138x48,138x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+phone-input-default-light-defaultStyle,phone-input,default,light,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+phone-input-default-dark-defaultStyle,phone-input,default,dark,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chip-input-default-light-defaultStyle,chip-input,default,light,pass,pass,800x42,800x42,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chip-input-default-dark-defaultStyle,chip-input,default,dark,pass,pass,800x42,800x42,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+switch-field-default-light-defaultStyle,switch-field,default,light,fail,fail,800x39,800x38,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x39 vs 800x38)"
+switch-field-default-dark-defaultStyle,switch-field,default,dark,fail,fail,800x39,800x38,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x39 vs 800x38)"
+drag-default-light-defaultStyle,drag,default,light,pass,pass,119x114,119x114,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+drag-default-dark-defaultStyle,drag,default,dark,pass,pass,119x114,119x114,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+drag-board-light-defaultStyle,drag,board,light,fail,fail,364x122,364x121,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 364x122 vs 364x121)"
+drag-board-dark-defaultStyle,drag,board,dark,fail,fail,364x122,364x121,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 364x122 vs 364x121)"
+drag-overlay-light-defaultStyle,drag,overlay,light,pass,pass,178x72,178x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+drag-overlay-dark-defaultStyle,drag,overlay,dark,fail,fail,178x72,178x72,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.454% (699/12816 px), threshold=5.000%, maxChannelDelta=90, FAIL)"
+sortable-default-light-defaultStyle,sortable,default,light,pass,pass,800x160,800x160,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+sortable-default-dark-defaultStyle,sortable,default,dark,pass,pass,800x160,800x160,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+fieldset-default-light-defaultStyle,fieldset,default,light,pass,pass,256x184,256x184,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+fieldset-default-dark-defaultStyle,fieldset,default,dark,pass,pass,256x184,256x184,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+file-input-default-light-defaultStyle,file-input,default,light,fail,fail,201x224,201x223,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 201x224 vs 201x223)"
+file-input-default-dark-defaultStyle,file-input,default,dark,fail,fail,201x224,201x223,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 201x224 vs 201x223)"
+form-default-light-defaultStyle,form,default,light,pass,pass,800x220,800x220,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+form-default-dark-defaultStyle,form,default,dark,pass,pass,800x220,800x220,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+form-label-default-light-defaultStyle,form-label,default,light,fail,fail,44x18,44x18,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 22.222% (176/792 px), threshold=5.000%, maxChannelDelta=199, FAIL)"
+form-label-default-dark-defaultStyle,form-label,default,dark,fail,fail,44x18,44x18,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 25.126% (199/792 px), threshold=5.000%, maxChannelDelta=240, FAIL)"
+form-field-default-light-defaultStyle,form-field,default,light,pass,pass,320x94,320x94,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+form-field-default-dark-defaultStyle,form-field,default,dark,pass,pass,320x94,320x94,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatter-default-light-defaultStyle,formatter,default,light,pass,pass,280x40,280x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+formatter-default-dark-defaultStyle,formatter,default,dark,pass,pass,280x40,280x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+validated-default-light-defaultStyle,validated,default,light,pass,pass,320x64,320x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+validated-default-dark-defaultStyle,validated,default,dark,pass,pass,320x64,320x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+validator-hint-default-light-defaultStyle,validator-hint,default,light,fail,fail,182x18,182x18,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 11.844% (388/3276 px), threshold=5.000%, maxChannelDelta=84, FAIL)"
+validator-hint-default-dark-defaultStyle,validator-hint,default,dark,fail,fail,182x18,182x18,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 19.017% (623/3276 px), threshold=5.000%, maxChannelDelta=132, FAIL)"
+avatar-default-light-defaultStyle,avatar,default,light,pass,pass,32x32,32x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+avatar-default-dark-defaultStyle,avatar,default,dark,pass,pass,32x32,32x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+avatar-rounded-light-defaultStyle,avatar,rounded,light,pass,pass,32x32,32x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+avatar-rounded-dark-defaultStyle,avatar,rounded,dark,pass,pass,32x32,32x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+badge-default-light-defaultStyle,badge,default,light,fail,fail,37x24,37x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.023% (89/888 px), threshold=5.000%, maxChannelDelta=150, FAIL)"
+badge-default-dark-defaultStyle,badge,default,dark,fail,fail,37x24,37x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.122% (81/888 px), threshold=5.000%, maxChannelDelta=128, FAIL)"
+badge-tones-light-defaultStyle,badge,tones,light,fail,fail,279x24,279x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 11.007% (737/6696 px), threshold=5.000%, maxChannelDelta=233, FAIL)"
+badge-tones-dark-defaultStyle,badge,tones,dark,fail,fail,279x24,279x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.842% (726/6696 px), threshold=5.000%, maxChannelDelta=189, FAIL)"
+badge-variants-light-defaultStyle,badge,variants,light,fail,fail,136x24,136x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 14.951% (488/3264 px), threshold=5.000%, maxChannelDelta=208, FAIL)"
+badge-variants-dark-defaultStyle,badge,variants,dark,fail,fail,136x24,136x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 15.993% (522/3264 px), threshold=5.000%, maxChannelDelta=204, FAIL)"
+badge-status-light-defaultStyle,badge,status,light,fail,fail,350x24,351x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 350x24 vs 351x24)"
+badge-status-dark-defaultStyle,badge,status,dark,fail,fail,350x24,351x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 350x24 vs 351x24)"
+badge-count-light-defaultStyle,badge,count,light,fail,fail,131x20,131x20,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 16.794% (440/2620 px), threshold=5.000%, maxChannelDelta=255, FAIL)"
+badge-count-dark-defaultStyle,badge,count,dark,fail,fail,131x20,131x20,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 15.954% (418/2620 px), threshold=5.000%, maxChannelDelta=187, FAIL)"
+badge-dot-light-defaultStyle,badge,dot,light,pass,pass,108x8,108x8,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+badge-dot-dark-defaultStyle,badge,dot,dark,pass,pass,108x8,108x8,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tag-default-light-defaultStyle,tag,default,light,fail,fail,49x24,49x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.864% (116/1176 px), threshold=5.000%, maxChannelDelta=166, FAIL)"
+tag-default-dark-defaultStyle,tag,default,dark,fail,fail,49x24,49x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 11.905% (140/1176 px), threshold=5.000%, maxChannelDelta=150, FAIL)"
+tag-colors-light-defaultStyle,tag,colors,light,fail,fail,411x24,411x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 11.993% (1183/9864 px), threshold=5.000%, maxChannelDelta=200, FAIL)"
+tag-colors-dark-defaultStyle,tag,colors,dark,fail,fail,411x24,411x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 12.672% (1250/9864 px), threshold=5.000%, maxChannelDelta=188, FAIL)"
+tag-bold-light-defaultStyle,tag,bold,light,fail,fail,393x24,393x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 16.137% (1522/9432 px), threshold=5.000%, maxChannelDelta=239, FAIL)"
+tag-bold-dark-defaultStyle,tag,bold,dark,fail,fail,393x24,393x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 15.914% (1501/9432 px), threshold=5.000%, maxChannelDelta=244, FAIL)"
+tag-sizes-light-defaultStyle,tag,sizes,light,fail,fail,163x24,163x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 15.031% (588/3912 px), threshold=5.000%, maxChannelDelta=203, FAIL)"
+tag-sizes-dark-defaultStyle,tag,sizes,dark,fail,fail,163x24,163x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 16.564% (648/3912 px), threshold=5.000%, maxChannelDelta=217, FAIL)"
+progress-default-light-defaultStyle,progress,default,light,pass,pass,800x6,800x6,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+progress-default-dark-defaultStyle,progress,default,dark,pass,pass,800x6,800x6,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+progress-tone-light-defaultStyle,progress,tone,light,pass,pass,800x48,800x48,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+progress-tone-dark-defaultStyle,progress,tone,dark,pass,pass,800x48,800x48,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+progress-labelled-light-defaultStyle,progress,labelled,light,pass,pass,800x58,800x58,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+progress-labelled-dark-defaultStyle,progress,labelled,dark,pass,pass,800x58,800x58,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+progress-segments-light-defaultStyle,progress,segments,light,pass,pass,800x30,800x30,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+progress-segments-dark-defaultStyle,progress,segments,dark,pass,pass,800x30,800x30,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+progress-indeterminate-light-defaultStyle,progress,indeterminate,light,pass,pass,800x6,800x6,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+progress-indeterminate-dark-defaultStyle,progress,indeterminate,dark,pass,pass,800x6,800x6,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+progress-radial-light-defaultStyle,progress,radial,light,fail,fail,64x64,64x64,initial-frame,initial-frame,True,initial-frame,800,1200,"PixelDiffResult(parity, 7.275% (298/4096 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+progress-radial-dark-defaultStyle,progress,radial,dark,fail,fail,64x64,64x64,initial-frame,initial-frame,True,initial-frame,800,1200,"PixelDiffResult(parity, 7.446% (305/4096 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+calendar-none-light-defaultStyle,calendar,none,light,pass,pass,224x280,224x280,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+calendar-none-dark-defaultStyle,calendar,none,dark,pass,pass,224x280,224x280,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+calendar-single-light-defaultStyle,calendar,single,light,pass,pass,224x280,224x280,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+calendar-single-dark-defaultStyle,calendar,single,dark,pass,pass,224x280,224x280,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+calendar-multi-light-defaultStyle,calendar,multi,light,pass,pass,224x280,224x280,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+calendar-multi-dark-defaultStyle,calendar,multi,dark,pass,pass,224x280,224x280,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+calendar-range-light-defaultStyle,calendar,range,light,pass,pass,464x280,464x280,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+calendar-range-dark-defaultStyle,calendar,range,dark,pass,pass,464x280,464x280,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+calendar-markers-light-defaultStyle,calendar,markers,light,pass,pass,464x280,464x280,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+calendar-markers-dark-defaultStyle,calendar,markers,dark,pass,pass,464x280,464x280,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-default-light-defaultStyle,banner,default,light,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-default-dark-defaultStyle,banner,default,dark,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-info-light-defaultStyle,banner,info,light,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-info-dark-defaultStyle,banner,info,dark,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-warning-light-defaultStyle,banner,warning,light,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-warning-dark-defaultStyle,banner,warning,dark,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-destructive-light-defaultStyle,banner,destructive,light,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-destructive-dark-defaultStyle,banner,destructive,dark,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-success-light-defaultStyle,banner,success,light,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-success-dark-defaultStyle,banner,success,dark,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-solid-light-defaultStyle,banner,solid,light,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+banner-solid-dark-defaultStyle,banner,solid,dark,pass,pass,800x72,800x72,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+carousel-default-light-defaultStyle,carousel,default,light,pass,pass,800x155,800x155,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+carousel-default-dark-defaultStyle,carousel,default,dark,pass,pass,800x155,800x155,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+carousel-banner-light-defaultStyle,carousel,banner,light,pass,pass,800x112,800x112,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+carousel-banner-dark-defaultStyle,carousel,banner,dark,pass,pass,800x112,800x112,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+carousel-banner-default-light-defaultStyle,carousel-banner,default,light,pass,pass,800x88,800x88,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+carousel-banner-default-dark-defaultStyle,carousel-banner,default,dark,pass,pass,800x88,800x88,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+carousel-banner-md-light-defaultStyle,carousel-banner,md,light,pass,pass,800x112,800x112,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+carousel-banner-md-dark-defaultStyle,carousel-banner,md,dark,pass,pass,800x112,800x112,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-default-light-defaultStyle,chat,default,light,fail,fail,800x151,800x150,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x151 vs 800x150)"
+chat-default-dark-defaultStyle,chat,default,dark,fail,fail,800x151,800x150,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x151 vs 800x150)"
+chat-neutral-light-defaultStyle,chat,neutral,light,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-neutral-dark-defaultStyle,chat,neutral,dark,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-plain-light-defaultStyle,chat,plain,light,fail,fail,800x78,800x77,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x78 vs 800x77)"
+chat-plain-dark-defaultStyle,chat,plain,dark,fail,fail,800x78,800x77,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x78 vs 800x77)"
+chat-primary-light-defaultStyle,chat,primary,light,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-primary-dark-defaultStyle,chat,primary,dark,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-secondary-light-defaultStyle,chat,secondary,light,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-secondary-dark-defaultStyle,chat,secondary,dark,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-accent-light-defaultStyle,chat,accent,light,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-accent-dark-defaultStyle,chat,accent,dark,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-info-light-defaultStyle,chat,info,light,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-info-dark-defaultStyle,chat,info,dark,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-success-light-defaultStyle,chat,success,light,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-success-dark-defaultStyle,chat,success,dark,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-warning-light-defaultStyle,chat,warning,light,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-warning-dark-defaultStyle,chat,warning,dark,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-error-light-defaultStyle,chat,error,light,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-error-dark-defaultStyle,chat,error,dark,pass,pass,800x43,800x43,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+chat-tail-corner-light-defaultStyle,chat,tail-corner,light,fail,fail,800x134,800x133,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x134 vs 800x133)"
+chat-tail-corner-dark-defaultStyle,chat,tail-corner,dark,fail,fail,800x134,800x133,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x134 vs 800x133)"
+chat-tail-top-light-defaultStyle,chat,tail-top,light,fail,fail,800x115,800x114,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x115 vs 800x114)"
+chat-tail-top-dark-defaultStyle,chat,tail-top,dark,fail,fail,800x115,800x114,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x115 vs 800x114)"
+chip-selected-light-defaultStyle,chip,selected,light,fail,fail,172x76,172x76,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.451% (974/13072 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+chip-selected-dark-defaultStyle,chip,selected,dark,fail,fail,172x76,172x76,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.369% (1094/13072 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+chip-variant-light-defaultStyle,chip,variant,light,fail,fail,220x223,220x222,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 220x223 vs 220x222)"
+chip-variant-dark-defaultStyle,chip,variant,dark,fail,fail,220x223,220x222,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 220x223 vs 220x222)"
+chip-shape-light-defaultStyle,chip,shape,light,fail,fail,223x32,223x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.960% (568/7136 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+chip-shape-dark-defaultStyle,chip,shape,dark,fail,fail,223x32,223x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.946% (567/7136 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+chip-removable-light-defaultStyle,chip,removable,light,fail,fail,95x32,95x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.329% (314/3040 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+chip-removable-dark-defaultStyle,chip,removable,dark,fail,fail,95x32,95x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.868% (300/3040 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+chip-disabled-light-defaultStyle,chip,disabled,light,fail,fail,59x32,59x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.508% (104/1888 px), threshold=5.000%, maxChannelDelta=74, FAIL)"
+chip-disabled-dark-defaultStyle,chip,disabled,dark,fail,fail,59x32,59x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.091% (115/1888 px), threshold=5.000%, maxChannelDelta=91, FAIL)"
+chip-cast-motion-light-defaultStyle,chip,cast-motion,light,fail,fail,216x32,216x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.852% (681/6912 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+chip-cast-motion-dark-defaultStyle,chip,cast-motion,dark,fail,fail,216x32,216x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.909% (754/6912 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+chip-prefix-light-defaultStyle,chip,prefix,light,fail,fail,214x32,214x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.609% (658/6848 px), threshold=5.000%, maxChannelDelta=213, FAIL)"
+chip-prefix-dark-defaultStyle,chip,prefix,dark,fail,fail,214x32,214x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.594% (657/6848 px), threshold=5.000%, maxChannelDelta=213, FAIL)"
+chip-group-default-light-defaultStyle,chip-group,default,light,fail,fail,261x32,261x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.207% (769/8352 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+chip-group-default-dark-defaultStyle,chip-group,default,dark,fail,fail,261x32,261x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.483% (792/8352 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+chip-group-scroll-light-defaultStyle,chip-group,scroll,light,fail,fail,555x32,555x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.550% (1696/17760 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+chip-group-scroll-dark-defaultStyle,chip-group,scroll,dark,fail,fail,555x32,555x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.704% (1901/17760 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+code-diff-default-light-defaultStyle,code-diff,default,light,pass,pass,800x189,800x189,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+code-diff-default-dark-defaultStyle,code-diff,default,dark,pass,pass,800x189,800x189,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+diff-default-light-defaultStyle,diff,default,light,pass,pass,800x450,800x450,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+diff-default-dark-defaultStyle,diff,default,dark,pass,pass,800x450,800x450,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+diff-text-light-defaultStyle,diff,text,light,pass,pass,800x450,800x450,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+diff-text-dark-defaultStyle,diff,text,dark,pass,pass,800x450,800x450,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+code-snippet-default-light-defaultStyle,code-snippet,default,light,fail,fail,219x83,216x83,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 219x83 vs 216x83)"
+code-snippet-default-dark-defaultStyle,code-snippet,default,dark,fail,fail,219x83,216x83,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 219x83 vs 216x83)"
+divider-default-light-defaultStyle,divider,default,light,pass,pass,800x1,800x1,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+divider-default-dark-defaultStyle,divider,default,dark,pass,pass,800x1,800x1,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+divider-vertical-light-defaultStyle,divider,vertical,light,pass,pass,1x32,1x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+divider-vertical-dark-defaultStyle,divider,vertical,dark,pass,pass,1x32,1x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+divider-with-child-light-defaultStyle,divider,with-child,light,pass,pass,800x18,800x18,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+divider-with-child-dark-defaultStyle,divider,with-child,dark,pass,pass,800x18,800x18,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+dot-indicator-default-light-defaultStyle,dot-indicator,default,light,pass,pass,88x24,88x24,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+dot-indicator-default-dark-defaultStyle,dot-indicator,default,dark,pass,pass,88x24,88x24,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+dot-indicator-vertical-light-defaultStyle,dot-indicator,vertical,light,pass,pass,24x56,24x56,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+dot-indicator-vertical-dark-defaultStyle,dot-indicator,vertical,dark,pass,pass,24x56,24x56,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+dot-indicator-passive-light-defaultStyle,dot-indicator,passive,light,pass,pass,56x24,56x24,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+dot-indicator-passive-dark-defaultStyle,dot-indicator,passive,dark,pass,pass,56x24,56x24,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+empty-state-default-light-defaultStyle,empty-state,default,light,pass,pass,800x240,800x240,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+empty-state-default-dark-defaultStyle,empty-state,default,dark,pass,pass,800x240,800x240,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+empty-state-large-light-defaultStyle,empty-state,large,light,pass,pass,800x240,800x240,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+empty-state-large-dark-defaultStyle,empty-state,large,dark,pass,pass,800x240,800x240,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+empty-state-failure-light-defaultStyle,empty-state,failure,light,pass,pass,800x262,800x262,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+empty-state-failure-dark-defaultStyle,empty-state,failure,dark,pass,pass,800x262,800x262,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+empty-state-success-light-defaultStyle,empty-state,success,light,pass,pass,800x240,800x240,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+empty-state-success-dark-defaultStyle,empty-state,success,dark,pass,pass,800x240,800x240,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+indicator-default-light-defaultStyle,indicator,default,light,fail,fail,32x32,32x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.469% (56/1024 px), threshold=5.000%, maxChannelDelta=186, FAIL)"
+indicator-default-dark-defaultStyle,indicator,default,dark,pass,pass,32x32,32x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+indicator-bottom-start-light-defaultStyle,indicator,bottom-start,light,fail,fail,32x32,32x32,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.469% (56/1024 px), threshold=5.000%, maxChannelDelta=186, FAIL)"
+indicator-bottom-start-dark-defaultStyle,indicator,bottom-start,dark,pass,pass,32x32,32x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+kbd-single-light-defaultStyle,kbd,single,light,fail,fail,31x20,32x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 31x20 vs 32x21)"
+kbd-single-dark-defaultStyle,kbd,single,dark,fail,fail,31x20,32x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 31x20 vs 32x21)"
+kbd-default-light-defaultStyle,kbd,default,light,fail,fail,55x20,57x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 55x20 vs 57x21)"
+kbd-default-dark-defaultStyle,kbd,default,dark,fail,fail,55x20,57x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 55x20 vs 57x21)"
+kbd-combo-light-defaultStyle,kbd,combo,light,fail,fail,94x20,97x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 94x20 vs 97x21)"
+kbd-combo-dark-defaultStyle,kbd,combo,dark,fail,fail,94x20,97x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 94x20 vs 97x21)"
+kbd-four-light-defaultStyle,kbd,four,light,fail,fail,101x20,105x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 101x20 vs 105x21)"
+kbd-four-dark-defaultStyle,kbd,four,dark,fail,fail,101x20,105x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 101x20 vs 105x21)"
+label-default-light-defaultStyle,label,default,light,fail,fail,36x20,36x20,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 21.389% (154/720 px), threshold=5.000%, maxChannelDelta=217, FAIL)"
+label-default-dark-defaultStyle,label,default,dark,fail,fail,36x20,36x20,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 33.056% (238/720 px), threshold=5.000%, maxChannelDelta=235, FAIL)"
+label-required-light-defaultStyle,label,required,light,fail,fail,47x20,47x20,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 18.298% (172/940 px), threshold=5.000%, maxChannelDelta=217, FAIL)"
+label-required-dark-defaultStyle,label,required,dark,fail,fail,47x20,47x20,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 27.553% (259/940 px), threshold=5.000%, maxChannelDelta=235, FAIL)"
+label-with-icon-light-defaultStyle,label,with-icon,light,fail,fail,58x20,58x20,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 13.276% (154/1160 px), threshold=5.000%, maxChannelDelta=217, FAIL)"
+label-with-icon-dark-defaultStyle,label,with-icon,dark,fail,fail,58x20,58x20,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 20.603% (239/1160 px), threshold=5.000%, maxChannelDelta=235, FAIL)"
+label-disabled-light-defaultStyle,label,disabled,light,fail,fail,36x20,36x20,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 11.667% (84/720 px), threshold=5.000%, maxChannelDelta=69, FAIL)"
+label-disabled-dark-defaultStyle,label,disabled,dark,fail,fail,36x20,36x20,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 16.389% (118/720 px), threshold=5.000%, maxChannelDelta=106, FAIL)"
+number-ticker-default-light-defaultStyle,number-ticker,default,light,fail,fail,50x28,50x28,settled-runtime,settled-runtime,True,client-settled,800,1200,"PixelDiffResult(parity, 7.071% (99/1400 px), threshold=5.000%, maxChannelDelta=105, FAIL)"
+number-ticker-default-dark-defaultStyle,number-ticker,default,dark,fail,fail,50x28,50x28,settled-runtime,settled-runtime,True,client-settled,800,1200,"PixelDiffResult(parity, 12.786% (179/1400 px), threshold=5.000%, maxChannelDelta=165, FAIL)"
+aspect-ratio-box-default-light-defaultStyle,aspect-ratio-box,default,light,pass,pass,280x158,280x158,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+aspect-ratio-box-default-dark-defaultStyle,aspect-ratio-box,default,dark,pass,pass,280x158,280x158,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+skeleton-default-light-defaultStyle,skeleton,default,light,pass,pass,200x76,200x76,unsettled-runtime,initial-frame,True,initial-frame,800,1200,within existing threshold
+skeleton-default-dark-defaultStyle,skeleton,default,dark,pass,pass,200x76,200x76,unsettled-runtime,initial-frame,True,initial-frame,800,1200,within existing threshold
+skeleton-circle-light-defaultStyle,skeleton,circle,light,pass,pass,48x48,48x48,unsettled-runtime,initial-frame,True,initial-frame,800,1200,within existing threshold
+skeleton-circle-dark-defaultStyle,skeleton,circle,dark,pass,pass,48x48,48x48,unsettled-runtime,initial-frame,True,initial-frame,800,1200,within existing threshold
+skeleton-text-light-defaultStyle,skeleton,text,light,pass,pass,800x60,800x60,unsettled-runtime,initial-frame,True,initial-frame,800,1200,within existing threshold
+skeleton-text-dark-defaultStyle,skeleton,text,dark,pass,pass,800x60,800x60,unsettled-runtime,initial-frame,True,initial-frame,800,1200,within existing threshold
+loading-region-default-light-defaultStyle,loading-region,default,light,pass,pass,200x76,200x76,unsettled-runtime,initial-frame,True,initial-frame,800,1200,within existing threshold
+loading-region-default-dark-defaultStyle,loading-region,default,dark,pass,pass,200x76,200x76,unsettled-runtime,initial-frame,True,initial-frame,800,1200,within existing threshold
+stat-default-light-defaultStyle,stat,default,light,fail,fail,800x176,800x175,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x176 vs 800x175)"
+stat-default-dark-defaultStyle,stat,default,dark,fail,fail,800x176,800x175,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x176 vs 800x175)"
+stat-outlined-light-defaultStyle,stat,outlined,light,fail,fail,800x176,800x175,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x176 vs 800x175)"
+stat-outlined-dark-defaultStyle,stat,outlined,dark,fail,fail,800x176,800x175,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x176 vs 800x175)"
+stat-empty-light-defaultStyle,stat,empty,light,fail,fail,800x148,800x147,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x148 vs 800x147)"
+stat-empty-dark-defaultStyle,stat,empty,dark,fail,fail,800x148,800x147,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x148 vs 800x147)"
+status-default-light-defaultStyle,status,default,light,pass,pass,12x12,12x12,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+status-default-dark-defaultStyle,status,default,dark,pass,pass,12x12,12x12,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+status-success-light-defaultStyle,status,success,light,pass,pass,12x12,12x12,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+status-success-dark-defaultStyle,status,success,dark,pass,pass,12x12,12x12,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+status-warning-light-defaultStyle,status,warning,light,pass,pass,12x12,12x12,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+status-warning-dark-defaultStyle,status,warning,dark,pass,pass,12x12,12x12,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+status-error-light-defaultStyle,status,error,light,pass,pass,12x12,12x12,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+status-error-dark-defaultStyle,status,error,dark,pass,pass,12x12,12x12,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+countdown-default-light-defaultStyle,countdown,default,light,fail,fail,41x45,41x45,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.136% (187/1845 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+countdown-default-dark-defaultStyle,countdown,default,dark,fail,fail,41x45,41x45,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.756% (180/1845 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+description-card-default-light-defaultStyle,description-card,default,light,pass,pass,800x167,800x167,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+description-card-default-dark-defaultStyle,description-card,default,dark,pass,pass,800x167,800x167,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+description-card-filled-light-defaultStyle,description-card,filled,light,pass,pass,800x165,800x165,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+description-card-filled-dark-defaultStyle,description-card,filled,dark,pass,pass,800x165,800x165,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+description-card-ghost-light-defaultStyle,description-card,ghost,light,pass,pass,800x119,800x119,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+description-card-ghost-dark-defaultStyle,description-card,ghost,dark,pass,pass,800x119,800x119,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+description-card-vertical-light-defaultStyle,description-card,vertical,light,fail,fail,800x296,800x294,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x296 vs 800x294)"
+description-card-vertical-dark-defaultStyle,description-card,vertical,dark,fail,fail,800x296,800x294,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x296 vs 800x294)"
+description-card-space-between-light-defaultStyle,description-card,space-between,light,pass,pass,800x193,800x193,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+description-card-space-between-dark-defaultStyle,description-card,space-between,dark,pass,pass,800x193,800x193,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+description-card-placeholder-light-defaultStyle,description-card,placeholder,light,pass,pass,800x200,800x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+description-card-placeholder-dark-defaultStyle,description-card,placeholder,dark,pass,pass,800x200,800x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+loading-default-light-defaultStyle,loading,default,light,pass,pass,16x16,16x16,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+loading-default-dark-defaultStyle,loading,default,dark,pass,pass,16x16,16x16,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+loading-dots-light-defaultStyle,loading,dots,light,pass,pass,16x16,16x16,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+loading-dots-dark-defaultStyle,loading,dots,dark,pass,pass,16x16,16x16,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+loading-bar-light-defaultStyle,loading,bar,light,pass,pass,32x2,32x2,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+loading-bar-dark-defaultStyle,loading,bar,dark,pass,pass,32x2,32x2,initial-frame,initial-frame,True,initial-frame,800,1200,within existing threshold
+loading-pulse-light-defaultStyle,loading,pulse,light,fail,fail,16x16,16x16,initial-frame,initial-frame,True,initial-frame,800,1200,"PixelDiffResult(parity, 5.469% (14/256 px), threshold=5.000%, maxChannelDelta=65, FAIL)"
+loading-pulse-dark-defaultStyle,loading,pulse,dark,fail,fail,16x16,16x16,initial-frame,initial-frame,True,initial-frame,800,1200,"PixelDiffResult(parity, 6.250% (16/256 px), threshold=5.000%, maxChannelDelta=74, FAIL)"
+hover-gallery-default-light-defaultStyle,hover-gallery,default,light,pass,pass,800x300,800x300,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+hover-gallery-default-dark-defaultStyle,hover-gallery,default,dark,pass,pass,800x300,800x300,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+validation-badge-default-light-defaultStyle,validation-badge,default,light,fail,fail,73x24,73x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.331% (181/1752 px), threshold=5.000%, maxChannelDelta=228, FAIL)"
+validation-badge-default-dark-defaultStyle,validation-badge,default,dark,fail,fail,73x24,73x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.790% (154/1752 px), threshold=5.000%, maxChannelDelta=148, FAIL)"
+validation-badge-pending-light-defaultStyle,validation-badge,pending,light,fail,fail,89x24,89x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 11.049% (236/2136 px), threshold=5.000%, maxChannelDelta=154, FAIL)"
+validation-badge-pending-dark-defaultStyle,validation-badge,pending,dark,fail,fail,89x24,89x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.674% (228/2136 px), threshold=5.000%, maxChannelDelta=137, FAIL)"
+validation-badge-invalid-light-defaultStyle,validation-badge,invalid,light,fail,fail,76x24,76x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 13.213% (241/1824 px), threshold=5.000%, maxChannelDelta=200, FAIL)"
+validation-badge-invalid-dark-defaultStyle,validation-badge,invalid,dark,fail,fail,76x24,76x24,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 13.268% (242/1824 px), threshold=5.000%, maxChannelDelta=187, FAIL)"
+validation-badge-medium-light-defaultStyle,validation-badge,medium,light,fail,fail,118x28,118x28,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 14.588% (482/3304 px), threshold=5.000%, maxChannelDelta=233, FAIL)"
+validation-badge-medium-dark-defaultStyle,validation-badge,medium,dark,fail,fail,118x28,118x28,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 11.017% (364/3304 px), threshold=5.000%, maxChannelDelta=149, FAIL)"
+tracker-default-light-defaultStyle,tracker,default,light,pass,pass,800x32,800x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tracker-default-dark-defaultStyle,tracker,default,dark,pass,pass,800x32,800x32,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+category-breakdown-default-light-defaultStyle,category-breakdown,default,light,pass,pass,800x176,800x176,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+category-breakdown-default-dark-defaultStyle,category-breakdown,default,dark,pass,pass,800x176,800x176,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+category-breakdown-donut-light-defaultStyle,category-breakdown,donut,light,pass,pass,800x160,800x160,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+category-breakdown-donut-dark-defaultStyle,category-breakdown,donut,dark,pass,pass,800x160,800x160,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+trend-chart-default-light-defaultStyle,trend-chart,default,light,pass,pass,800x417,800x417,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+trend-chart-default-dark-defaultStyle,trend-chart,default,dark,pass,pass,800x417,800x417,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+trend-chart-bar-light-defaultStyle,trend-chart,bar,light,pass,pass,800x185,800x185,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+trend-chart-bar-dark-defaultStyle,trend-chart,bar,dark,pass,pass,800x185,800x185,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-phone-light-defaultStyle,mockup,phone,light,fail,fail,800x675,320x675,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x675 vs 320x675)"
+mockup-phone-dark-defaultStyle,mockup,phone,dark,fail,fail,800x675,320x675,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x675 vs 320x675)"
+mockup-tablet-light-defaultStyle,mockup,tablet,light,fail,fail,800x454,320x454,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x454 vs 320x454)"
+mockup-tablet-dark-defaultStyle,mockup,tablet,dark,fail,fail,800x454,320x454,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x454 vs 320x454)"
+mockup-landscape-light-defaultStyle,mockup,landscape,light,fail,fail,800x157,320x156,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x157 vs 320x156)"
+mockup-landscape-dark-defaultStyle,mockup,landscape,dark,fail,fail,800x157,320x156,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x157 vs 320x156)"
+mockup-browser-light-defaultStyle,mockup,browser,light,pass,pass,380x200,380x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-browser-dark-defaultStyle,mockup,browser,dark,pass,pass,380x200,380x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-code-light-defaultStyle,mockup,code,light,pass,pass,800x95,800x95,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-code-dark-defaultStyle,mockup,code,dark,pass,pass,800x95,800x95,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-app-light-defaultStyle,mockup,app,light,pass,pass,800x65,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-app-dark-defaultStyle,mockup,app,dark,pass,pass,800x65,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-browser-default-light-defaultStyle,mockup-browser,default,light,pass,pass,380x200,380x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-browser-default-dark-defaultStyle,mockup-browser,default,dark,pass,pass,380x200,380x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-code-default-light-defaultStyle,mockup-code,default,light,pass,pass,800x95,800x95,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-code-default-dark-defaultStyle,mockup-code,default,dark,pass,pass,800x95,800x95,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-code-tones-light-defaultStyle,mockup-code,tones,light,pass,pass,800x170,800x170,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-code-tones-dark-defaultStyle,mockup-code,tones,dark,pass,pass,800x170,800x170,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-device-default-light-defaultStyle,mockup-device,default,light,fail,fail,800x675,320x675,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x675 vs 320x675)"
+mockup-device-default-dark-defaultStyle,mockup-device,default,dark,fail,fail,800x675,320x675,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x675 vs 320x675)"
+mockup-device-flat-light-defaultStyle,mockup-device,flat,light,fail,fail,800x496,256x496,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x496 vs 256x496)"
+mockup-device-flat-dark-defaultStyle,mockup-device,flat,dark,fail,fail,800x496,256x496,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x496 vs 256x496)"
+mockup-device-screen-brightness-light-defaultStyle,mockup-device,screen-brightness,light,pass,pass,304x536,304x536,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mockup-device-screen-brightness-dark-defaultStyle,mockup-device,screen-brightness,dark,pass,pass,304x536,304x536,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+timeline-default-light-defaultStyle,timeline,default,light,fail,fail,800x92,800x91,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x92 vs 800x91)"
+timeline-default-dark-defaultStyle,timeline,default,dark,fail,fail,800x92,800x91,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x92 vs 800x91)"
+swap-default-light-defaultStyle,swap,default,light,pass,pass,24x21,24x21,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+swap-default-dark-defaultStyle,swap,default,dark,fail,fail,24x21,24x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 27.778% (140/504 px), threshold=5.000%, maxChannelDelta=103, FAIL)"
+swap-rotate-light-defaultStyle,swap,rotate,light,pass,pass,24x21,24x21,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+swap-rotate-dark-defaultStyle,swap,rotate,dark,fail,fail,24x21,24x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 27.778% (140/504 px), threshold=5.000%, maxChannelDelta=103, FAIL)"
+swap-flip-light-defaultStyle,swap,flip,light,pass,pass,24x21,24x21,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+swap-flip-dark-defaultStyle,swap,flip,dark,fail,fail,24x21,24x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 27.778% (140/504 px), threshold=5.000%, maxChannelDelta=103, FAIL)"
+disclosure-badge-default-light-defaultStyle,disclosure-badge,default,light,fail,fail,58x23,58x23,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 17.091% (228/1334 px), threshold=5.000%, maxChannelDelta=208, FAIL)"
+disclosure-badge-default-dark-defaultStyle,disclosure-badge,default,dark,fail,fail,58x23,58x23,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 22.039% (294/1334 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+disclosure-badge-commitment-light-defaultStyle,disclosure-badge,commitment,light,fail,fail,79x23,79x23,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 15.410% (280/1817 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+disclosure-badge-commitment-dark-defaultStyle,disclosure-badge,commitment,dark,fail,fail,79x23,79x23,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 18.932% (344/1817 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+disclosure-badge-private-light-defaultStyle,disclosure-badge,private,light,fail,fail,78x23,78x23,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 20.847% (374/1794 px), threshold=5.000%, maxChannelDelta=162, FAIL)"
+disclosure-badge-private-dark-defaultStyle,disclosure-badge,private,dark,fail,fail,78x23,78x23,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 22.687% (407/1794 px), threshold=5.000%, maxChannelDelta=172, FAIL)"
+accordion-default-light-defaultStyle,accordion,default,light,fail,fail,247x198,247x198,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.175% (3509/48906 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+accordion-default-dark-defaultStyle,accordion,default,dark,fail,fail,247x198,247x198,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.758% (4283/48906 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+collapsible-default-light-defaultStyle,collapsible,default,light,pass,pass,169x90,169x90,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+collapsible-default-dark-defaultStyle,collapsible,default,dark,fail,fail,169x90,169x90,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.995% (1064/15210 px), threshold=5.000%, maxChannelDelta=149, FAIL)"
+disclosure-default-light-defaultStyle,disclosure,default,light,pass,pass,800x90,800x90,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+disclosure-default-dark-defaultStyle,disclosure,default,dark,pass,pass,800x90,800x90,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+disclosure-group-light-defaultStyle,disclosure,group,light,pass,pass,800x212,800x212,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+disclosure-group-dark-defaultStyle,disclosure,group,dark,pass,pass,800x212,800x212,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+disclosure-chain-light-defaultStyle,disclosure,chain,light,pass,pass,800x115,800x115,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+disclosure-chain-dark-defaultStyle,disclosure,chain,dark,pass,pass,800x115,800x115,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+card-default-light-defaultStyle,card,default,light,pass,pass,236x146,236x146,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+card-default-dark-defaultStyle,card,default,dark,pass,pass,236x146,236x146,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+card-filled-light-defaultStyle,card,filled,light,pass,pass,256x94,256x94,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+card-filled-dark-defaultStyle,card,filled,dark,pass,pass,256x94,256x94,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+card-elevated-light-defaultStyle,card,elevated,light,pass,pass,256x94,256x94,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+card-elevated-dark-defaultStyle,card,elevated,dark,pass,pass,256x94,256x94,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+card-image-default-light-defaultStyle,card-image,default,light,pass,pass,240x215,240x215,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+card-image-default-dark-defaultStyle,card-image,default,dark,pass,pass,240x215,240x215,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+table-default-light-defaultStyle,table,default,light,pass,pass,800x136,800x136,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+table-default-dark-defaultStyle,table,default,dark,pass,pass,800x136,800x136,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+table-resizable-light-defaultStyle,table,resizable,light,pass,pass,800x168,800x168,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+table-resizable-dark-defaultStyle,table,resizable,dark,pass,pass,800x168,800x168,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+table-scrollable-light-defaultStyle,table,scrollable,light,pass,pass,800x320,800x320,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+table-scrollable-dark-defaultStyle,table,scrollable,dark,pass,pass,800x320,800x320,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+stepper-default-light-defaultStyle,stepper,default,light,pass,pass,800x52,800x52,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+stepper-default-dark-defaultStyle,stepper,default,dark,pass,pass,800x52,800x52,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+stepper-vertical-light-defaultStyle,stepper,vertical,light,fail,fail,106x175,106x175,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.542% (1028/18550 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+stepper-vertical-dark-defaultStyle,stepper,vertical,dark,fail,fail,106x175,106x175,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.887% (1463/18550 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+stepper-disabled-light-defaultStyle,stepper,disabled,light,pass,pass,800x52,800x52,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+stepper-disabled-dark-defaultStyle,stepper,disabled,dark,pass,pass,800x52,800x52,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+steps-default-light-defaultStyle,steps,default,light,fail,fail,188x264,188x264,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.877% (2917/49632 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+steps-default-dark-defaultStyle,steps,default,dark,fail,fail,188x264,188x264,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.199% (3573/49632 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+steps-horizontal-light-defaultStyle,steps,horizontal,light,pass,pass,800x62,800x62,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+steps-horizontal-dark-defaultStyle,steps,horizontal,dark,pass,pass,800x62,800x62,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+steps-list-light-defaultStyle,steps,list,light,pass,pass,280x128,280x128,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+steps-list-dark-defaultStyle,steps,list,dark,pass,pass,280x128,280x128,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+step-item-default-light-defaultStyle,step-item,default,light,pass,pass,280x128,280x128,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+step-item-default-dark-defaultStyle,step-item,default,dark,pass,pass,280x128,280x128,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tree-default-light-defaultStyle,tree,default,light,pass,pass,800x140,800x140,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tree-default-dark-defaultStyle,tree,default,dark,pass,pass,800x140,800x140,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tree-selected-light-defaultStyle,tree,selected,light,pass,pass,800x112,800x112,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tree-selected-dark-defaultStyle,tree,selected,dark,pass,pass,800x112,800x112,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tree-trailing-light-defaultStyle,tree,trailing,light,pass,pass,800x168,800x168,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tree-trailing-dark-defaultStyle,tree,trailing,dark,pass,pass,800x168,800x168,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+resizable-default-light-defaultStyle,resizable,default,light,pass,pass,800x200,800x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+resizable-default-dark-defaultStyle,resizable,default,dark,pass,pass,800x200,800x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+scroll-area-default-light-defaultStyle,scroll-area,default,light,pass,pass,260x180,260x180,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+scroll-area-default-dark-defaultStyle,scroll-area,default,dark,fail,fail,260x180,260x180,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.543% (2594/46800 px), threshold=5.000%, maxChannelDelta=129, FAIL)"
+fade-scroll-default-light-defaultStyle,fade-scroll,default,light,pass,pass,76x200,76x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+fade-scroll-default-dark-defaultStyle,fade-scroll,default,dark,pass,pass,76x200,76x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+fade-scroll-horizontal-light-defaultStyle,fade-scroll,horizontal,light,fail,fail,800x21,800x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.089% (1023/16800 px), threshold=5.000%, maxChannelDelta=149, FAIL)"
+fade-scroll-horizontal-dark-defaultStyle,fade-scroll,horizontal,dark,fail,fail,800x21,800x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 12.048% (2024/16800 px), threshold=5.000%, maxChannelDelta=173, FAIL)"
+fade-scroll-with-scrollbar-light-defaultStyle,fade-scroll,with-scrollbar,light,pass,pass,76x200,76x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+fade-scroll-with-scrollbar-dark-defaultStyle,fade-scroll,with-scrollbar,dark,pass,pass,76x200,76x200,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+scrollable-client-default-light-defaultStyle,scrollable-client,default,light,pass,pass,800x320,800x320,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+scrollable-client-default-dark-defaultStyle,scrollable-client,default,dark,pass,pass,800x320,800x320,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+overflow-marquee-default-light-defaultStyle,overflow-marquee,default,light,fail,fail,240x21,240x21,initial-frame,initial-frame,True,initial-frame,800,1200,"PixelDiffResult(parity, 6.310% (318/5040 px), threshold=5.000%, maxChannelDelta=91, FAIL)"
+overflow-marquee-default-dark-defaultStyle,overflow-marquee,default,dark,fail,fail,240x21,240x21,initial-frame,initial-frame,True,initial-frame,800,1200,"PixelDiffResult(parity, 20.218% (1019/5040 px), threshold=5.000%, maxChannelDelta=148, FAIL)"
+stack-layout-default-light-defaultStyle,stack-layout,default,light,pass,pass,160x96,160x96,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+stack-layout-default-dark-defaultStyle,stack-layout,default,dark,pass,pass,160x96,160x96,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+stage-container-default-light-defaultStyle,stage-container,default,light,pass,pass,800x80,800x80,settled-runtime,settled-runtime,True,client-settled,800,1200,within existing threshold
+stage-container-default-dark-defaultStyle,stage-container,default,dark,pass,pass,800x80,800x80,settled-runtime,settled-runtime,True,client-settled,800,1200,within existing threshold
+window-default-light-defaultStyle,window,default,light,pass,pass,800x648,800x648,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+window-default-dark-defaultStyle,window,default,dark,pass,pass,800x648,800x648,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+window-panel-default-light-defaultStyle,window-panel,default,light,pass,pass,320x79,320x79,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+window-panel-default-dark-defaultStyle,window-panel,default,dark,pass,pass,320x79,320x79,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+draggable-panel-default-light-defaultStyle,draggable-panel,default,light,pass,pass,360x360,360x360,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+draggable-panel-default-dark-defaultStyle,draggable-panel,default,dark,pass,pass,360x360,360x360,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+draggable-panel-outside-light-defaultStyle,draggable-panel,outside,light,pass,pass,360x360,360x360,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+draggable-panel-outside-dark-defaultStyle,draggable-panel,outside,dark,pass,pass,360x360,360x360,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+join-default-light-defaultStyle,join,default,light,pass,pass,125x40,125x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+join-default-dark-defaultStyle,join,default,dark,pass,pass,125x40,125x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+join-vertical-light-defaultStyle,join,vertical,light,pass,pass,44x120,44x120,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+join-vertical-dark-defaultStyle,join,vertical,dark,pass,pass,44x120,44x120,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+basic-default-light-defaultStyle,basic,default,light,fail,fail,295x67,295x66,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 295x67 vs 295x66)"
+basic-default-dark-defaultStyle,basic,default,dark,fail,fail,295x67,295x66,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 295x67 vs 295x66)"
+frame-default-light-defaultStyle,frame,default,light,pass,pass,133x58,133x58,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+frame-default-dark-defaultStyle,frame,default,dark,pass,pass,133x58,133x58,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+frame-column-light-defaultStyle,frame,column,light,fail,fail,71x111,71x111,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.482% (432/7881 px), threshold=5.000%, maxChannelDelta=88, FAIL)"
+frame-column-dark-defaultStyle,frame,column,dark,fail,fail,71x111,71x111,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.497% (512/7881 px), threshold=5.000%, maxChannelDelta=127, FAIL)"
+frame-dashed-light-defaultStyle,frame,dashed,light,fail,fail,154x73,154x73,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.340% (1050/11242 px), threshold=5.000%, maxChannelDelta=134, FAIL)"
+frame-dashed-dark-defaultStyle,frame,dashed,dark,fail,fail,154x73,154x73,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.176% (1144/11242 px), threshold=5.000%, maxChannelDelta=153, FAIL)"
+frame-elevated-light-defaultStyle,frame,elevated,light,pass,pass,224x78,224x78,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+frame-elevated-dark-defaultStyle,frame,elevated,dark,fail,fail,224x78,224x78,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.508% (1137/17472 px), threshold=5.000%, maxChannelDelta=143, FAIL)"
+hidden-default-light-defaultStyle,hidden,default,light,pass,pass,141x105,141x105,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+hidden-default-dark-defaultStyle,hidden,default,dark,pass,pass,141x105,141x105,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+listing-default-light-defaultStyle,listing,default,light,pass,pass,800x137,800x137,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+listing-default-dark-defaultStyle,listing,default,dark,pass,pass,800x137,800x137,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+swipe-actions-default-light-defaultStyle,swipe-actions,default,light,fail,fail,221x43,221x43,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.651% (537/9503 px), threshold=5.000%, maxChannelDelta=215, FAIL)"
+swipe-actions-default-dark-defaultStyle,swipe-actions,default,dark,fail,fail,221x43,221x43,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.576% (815/9503 px), threshold=5.000%, maxChannelDelta=231, FAIL)"
+swipe-actions-scope-light-defaultStyle,swipe-actions,scope,light,fail,fail,800x87,800x86,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x87 vs 800x86)"
+swipe-actions-scope-dark-defaultStyle,swipe-actions,scope,dark,fail,fail,800x87,800x86,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x87 vs 800x86)"
+gap-default-light-defaultStyle,gap,default,light,fail,fail,98x40,98x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.434% (213/3920 px), threshold=5.000%, maxChannelDelta=213, FAIL)"
+gap-default-dark-defaultStyle,gap,default,dark,fail,fail,98x40,98x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.791% (227/3920 px), threshold=5.000%, maxChannelDelta=222, FAIL)"
+gap-max-light-defaultStyle,gap,max,light,pass,pass,800x40,800x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+gap-max-dark-defaultStyle,gap,max,dark,pass,pass,800x40,800x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+gap-sliver-light-defaultStyle,gap,sliver,light,pass,pass,800x160,800x160,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+gap-sliver-dark-defaultStyle,gap,sliver,dark,pass,pass,800x160,800x160,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-default-light-defaultStyle,mask,default,light,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-default-dark-defaultStyle,mask,default,dark,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-circle-light-defaultStyle,mask,circle,light,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-circle-dark-defaultStyle,mask,circle,dark,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-heart-light-defaultStyle,mask,heart,light,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-heart-dark-defaultStyle,mask,heart,dark,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-hexagon-light-defaultStyle,mask,hexagon,light,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-hexagon-dark-defaultStyle,mask,hexagon,dark,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-star-light-defaultStyle,mask,star,light,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-star-dark-defaultStyle,mask,star,dark,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-triangle-light-defaultStyle,mask,triangle,light,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+mask-triangle-dark-defaultStyle,mask,triangle,dark,pass,pass,64x64,64x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+media-query-default-light-defaultStyle,media-query,default,light,pass,pass,800x45,800x45,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+media-query-default-dark-defaultStyle,media-query,default,dark,pass,pass,800x45,800x45,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+breakpoint-default-light-defaultStyle,breakpoint,default,light,pass,pass,800x53,800x53,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+breakpoint-default-dark-defaultStyle,breakpoint,default,dark,pass,pass,800x53,800x53,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+responsive-container-default-light-defaultStyle,responsive-container,default,light,fail,fail,800x74,640x74,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x74 vs 640x74)"
+responsive-container-default-dark-defaultStyle,responsive-container,default,dark,fail,fail,800x74,640x74,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x74 vs 640x74)"
+responsive-grid-default-light-defaultStyle,responsive-grid,default,light,pass,pass,800x191,800x191,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+responsive-grid-default-dark-defaultStyle,responsive-grid,default,dark,pass,pass,800x191,800x191,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+responsive-grid-span-light-defaultStyle,responsive-grid,span,light,pass,pass,800x138,800x138,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+responsive-grid-span-dark-defaultStyle,responsive-grid,span,dark,pass,pass,800x138,800x138,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+responsive-row-column-default-light-defaultStyle,responsive-row-column,default,light,pass,pass,800x78,800x78,settled-runtime,settled-runtime,True,client-settled,800,1200,within existing threshold
+responsive-row-column-default-dark-defaultStyle,responsive-row-column,default,dark,pass,pass,800x78,800x78,settled-runtime,settled-runtime,True,client-settled,800,1200,within existing threshold
+responsive-row-column-desktop-light-defaultStyle,responsive-row-column,desktop,light,fail,fail,78x258,78x259,settled-runtime,settled-runtime,True,client-settled,800,1200,"PixelDiffResult(parity, dimension mismatch: 78x258 vs 78x259)"
+responsive-row-column-desktop-dark-defaultStyle,responsive-row-column,desktop,dark,fail,fail,78x258,78x259,settled-runtime,settled-runtime,True,client-settled,800,1200,"PixelDiffResult(parity, dimension mismatch: 78x258 vs 78x259)"
+scaffold-default-light-defaultStyle,scaffold,default,light,pass,pass,800x384,800x384,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+scaffold-default-dark-defaultStyle,scaffold,default,dark,pass,pass,800x384,800x384,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+page-header-default-light-defaultStyle,page-header,default,light,pass,pass,800x89,800x89,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+page-header-default-dark-defaultStyle,page-header,default,dark,pass,pass,800x89,800x89,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+panel-header-default-light-defaultStyle,panel-header,default,light,pass,pass,800x40,800x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+panel-header-default-dark-defaultStyle,panel-header,default,dark,pass,pass,800x40,800x40,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+bottom-action-bar-default-light-defaultStyle,bottom-action-bar,default,light,pass,pass,800x165,800x165,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+bottom-action-bar-default-dark-defaultStyle,bottom-action-bar,default,dark,pass,pass,800x165,800x165,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+bottom-action-bar-horizontal-light-defaultStyle,bottom-action-bar,horizontal,light,pass,pass,800x81,800x81,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+bottom-action-bar-horizontal-dark-defaultStyle,bottom-action-bar,horizontal,dark,pass,pass,800x81,800x81,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+bottom-action-bar-scaffold-light-defaultStyle,bottom-action-bar,scaffold,light,pass,pass,800x384,800x384,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+bottom-action-bar-scaffold-dark-defaultStyle,bottom-action-bar,scaffold,dark,pass,pass,800x384,800x384,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-default-light-defaultStyle,app-bar,default,light,pass,pass,800x64,800x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-default-dark-defaultStyle,app-bar,default,dark,pass,pass,800x64,800x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-compact-light-defaultStyle,app-bar,compact,light,pass,pass,800x56,800x56,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-compact-dark-defaultStyle,app-bar,compact,dark,pass,pass,800x56,800x56,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-medium-light-defaultStyle,app-bar,medium,light,pass,pass,800x112,800x112,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-medium-dark-defaultStyle,app-bar,medium,dark,pass,pass,800x112,800x112,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-dense-light-defaultStyle,app-bar,dense,light,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-dense-dark-defaultStyle,app-bar,dense,dark,pass,pass,800x48,800x48,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-prominent-light-defaultStyle,app-bar,prominent,light,pass,pass,800x56,800x56,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-prominent-dark-defaultStyle,app-bar,prominent,dark,pass,pass,800x56,800x56,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-centered-light-defaultStyle,app-bar,centered,light,pass,pass,800x64,800x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-centered-dark-defaultStyle,app-bar,centered,dark,pass,pass,800x64,800x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-text-light-defaultStyle,app-bar,text,light,pass,pass,800x64,800x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+app-bar-text-dark-defaultStyle,app-bar,text,dark,pass,pass,800x64,800x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+dock-default-light-defaultStyle,dock,default,light,pass,pass,800x64,800x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+dock-default-dark-defaultStyle,dock,default,dark,pass,pass,800x64,800x64,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tabs-default-light-defaultStyle,tabs,default,light,pass,pass,126x77,126x77,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tabs-default-dark-defaultStyle,tabs,default,dark,fail,fail,126x77,126x77,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.998% (970/9702 px), threshold=5.000%, maxChannelDelta=177, FAIL)"
+tabs-line-light-defaultStyle,tabs,line,light,pass,pass,800x77,800x77,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tabs-line-dark-defaultStyle,tabs,line,dark,pass,pass,800x77,800x77,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tabs-badge-light-defaultStyle,tabs,badge,light,fail,fail,284x77,284x77,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.097% (1552/21868 px), threshold=5.000%, maxChannelDelta=224, FAIL)"
+tabs-badge-dark-defaultStyle,tabs,badge,dark,fail,fail,284x77,284x77,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.527% (1646/21868 px), threshold=5.000%, maxChannelDelta=180, FAIL)"
+tabs-closable-light-defaultStyle,tabs,closable,light,pass,pass,353x77,353x77,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tabs-closable-dark-defaultStyle,tabs,closable,dark,pass,pass,353x77,353x77,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tab-pane-default-light-defaultStyle,tab-pane,default,light,pass,pass,800x107,800x107,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tab-pane-default-dark-defaultStyle,tab-pane,default,dark,pass,pass,800x107,800x107,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+tab-pane-editor-strip-light-defaultStyle,tab-pane,editor-strip,light,fail,fail,800x36,800x36,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.094% (2331/28800 px), threshold=5.000%, maxChannelDelta=224, FAIL)"
+tab-pane-editor-strip-dark-defaultStyle,tab-pane,editor-strip,dark,fail,fail,800x36,800x36,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.892% (2273/28800 px), threshold=5.000%, maxChannelDelta=222, FAIL)"
+navigation-bar-default-light-defaultStyle,navigation-bar,default,light,pass,pass,800x80,800x80,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+navigation-bar-default-dark-defaultStyle,navigation-bar,default,dark,pass,pass,800x80,800x80,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+navigation-bar-rail-light-defaultStyle,navigation-bar,rail,light,pass,pass,81x224,81x224,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+navigation-bar-rail-dark-defaultStyle,navigation-bar,rail,dark,pass,pass,81x224,81x224,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+navigation-bar-sidebar-light-defaultStyle,navigation-bar,sidebar,light,fail,fail,187x309,188x309,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 187x309 vs 188x309)"
+navigation-bar-sidebar-dark-defaultStyle,navigation-bar,sidebar,dark,fail,fail,187x309,188x309,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 187x309 vs 188x309)"
+navigation-bar-item-default-light-defaultStyle,navigation-bar-item,default,light,pass,pass,240x166,240x166,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+navigation-bar-item-default-dark-defaultStyle,navigation-bar-item,default,dark,pass,pass,240x166,240x166,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+navigation-bar-item-drawer-light-defaultStyle,navigation-bar-item,drawer,light,fail,fail,131x40,131x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.328% (384/5240 px), threshold=5.000%, maxChannelDelta=222, FAIL)"
+navigation-bar-item-drawer-dark-defaultStyle,navigation-bar-item,drawer,dark,fail,fail,131x40,131x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.729% (405/5240 px), threshold=5.000%, maxChannelDelta=220, FAIL)"
+sidebar-default-light-defaultStyle,sidebar,default,light,pass,pass,248x640,248x640,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+sidebar-default-dark-defaultStyle,sidebar,default,dark,pass,pass,248x640,248x640,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+sidebar-two-pane-light-defaultStyle,sidebar,two-pane,light,pass,pass,304x640,304x640,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+sidebar-two-pane-dark-defaultStyle,sidebar,two-pane,dark,pass,pass,304x640,304x640,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+sidebar-collapsed-light-defaultStyle,sidebar,collapsed,light,pass,pass,64x400,64x400,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+sidebar-collapsed-dark-defaultStyle,sidebar,collapsed,dark,pass,pass,64x400,64x400,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+breadcrumb-default-light-defaultStyle,breadcrumb,default,light,fail,fail,180x25,180x25,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.044% (272/4500 px), threshold=5.000%, maxChannelDelta=216, FAIL)"
+breadcrumb-default-dark-defaultStyle,breadcrumb,default,dark,fail,fail,180x25,180x25,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.933% (447/4500 px), threshold=5.000%, maxChannelDelta=232, FAIL)"
+pagination-default-light-defaultStyle,pagination,default,light,pass,pass,316x36,316x36,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+pagination-default-dark-defaultStyle,pagination,default,dark,pass,pass,316x36,316x36,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+switcher-default-light-defaultStyle,switcher,default,light,pass,pass,256x152,256x152,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+switcher-default-dark-defaultStyle,switcher,default,dark,pass,pass,256x152,256x152,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+menu-default-light-defaultStyle,menu,default,light,pass,pass,240x204,240x204,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+menu-default-dark-defaultStyle,menu,default,dark,pass,pass,240x204,240x204,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+menu-item-default-light-defaultStyle,menu-item,default,light,pass,pass,280x36,280x36,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+menu-item-default-dark-defaultStyle,menu-item,default,dark,pass,pass,280x36,280x36,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+menu-item-critical-light-defaultStyle,menu-item,critical,light,pass,pass,280x36,280x36,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+menu-item-critical-dark-defaultStyle,menu-item,critical,dark,pass,pass,280x36,280x36,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+menu-item-description-light-defaultStyle,menu-item,description,light,pass,pass,280x68,280x68,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+menu-item-description-dark-defaultStyle,menu-item,description,dark,pass,pass,280x68,280x68,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+context-menu-default-light-defaultStyle,context-menu,default,light,pass,pass,204x55,204x55,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+context-menu-default-dark-defaultStyle,context-menu,default,dark,fail,fail,204x55,204x55,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.852% (881/11220 px), threshold=5.000%, maxChannelDelta=102, FAIL)"
+context-menu-lift-light-defaultStyle,context-menu,lift,light,pass,pass,140x55,140x55,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+context-menu-lift-dark-defaultStyle,context-menu,lift,dark,pass,pass,140x55,140x55,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+dropdown-menu-default-light-defaultStyle,dropdown-menu,default,light,fail,fail,85x40,85x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.588% (326/3400 px), threshold=5.000%, maxChannelDelta=222, FAIL)"
+dropdown-menu-default-dark-defaultStyle,dropdown-menu,default,dark,fail,fail,85x40,85x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.176% (278/3400 px), threshold=5.000%, maxChannelDelta=221, FAIL)"
+menubar-default-light-defaultStyle,menubar,default,light,fail,fail,152x48,152x48,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.428% (396/7296 px), threshold=5.000%, maxChannelDelta=224, FAIL)"
+menubar-default-dark-defaultStyle,menubar,default,dark,fail,fail,152x48,152x48,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.853% (500/7296 px), threshold=5.000%, maxChannelDelta=222, FAIL)"
+toolbar-group-default-light-defaultStyle,toolbar-group,default,light,pass,pass,112x65,112x65,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+toolbar-group-default-dark-defaultStyle,toolbar-group,default,dark,fail,fail,112x65,112x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 11.566% (842/7280 px), threshold=5.000%, maxChannelDelta=231, FAIL)"
+navigation-menu-default-light-defaultStyle,navigation-menu,default,light,fail,fail,254x40,254x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.766% (789/10160 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+navigation-menu-default-dark-defaultStyle,navigation-menu,default,dark,fail,fail,254x40,254x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.829% (897/10160 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+dialog-default-light-defaultStyle,dialog,default,light,fail,fail,107x40,107x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 11.238% (481/4280 px), threshold=5.000%, maxChannelDelta=213, FAIL)"
+dialog-default-dark-defaultStyle,dialog,default,dark,fail,fail,107x40,107x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.117% (433/4280 px), threshold=5.000%, maxChannelDelta=222, FAIL)"
+drawer-default-light-defaultStyle,drawer,default,light,fail,fail,85x40,85x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.382% (353/3400 px), threshold=5.000%, maxChannelDelta=222, FAIL)"
+drawer-default-dark-defaultStyle,drawer,default,dark,fail,fail,85x40,85x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.176% (312/3400 px), threshold=5.000%, maxChannelDelta=220, FAIL)"
+hover-card-default-light-defaultStyle,hover-card,default,light,fail,fail,38x21,38x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 14.160% (113/798 px), threshold=5.000%, maxChannelDelta=162, FAIL)"
+hover-card-default-dark-defaultStyle,hover-card,default,dark,fail,fail,38x21,38x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 31.454% (251/798 px), threshold=5.000%, maxChannelDelta=184, FAIL)"
+popover-default-light-defaultStyle,popover,default,light,fail,fail,97x40,97x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 9.459% (367/3880 px), threshold=5.000%, maxChannelDelta=222, FAIL)"
+popover-default-dark-defaultStyle,popover,default,dark,fail,fail,97x40,97x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.284% (399/3880 px), threshold=5.000%, maxChannelDelta=220, FAIL)"
+toast-default-light-defaultStyle,toast,default,light,fail,fail,800x70,800x69,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x70 vs 800x69)"
+toast-default-dark-defaultStyle,toast,default,dark,fail,fail,800x70,800x69,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x70 vs 800x69)"
+toast-destructive-light-defaultStyle,toast,destructive,light,fail,fail,800x70,800x69,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x70 vs 800x69)"
+toast-destructive-dark-defaultStyle,toast,destructive,dark,fail,fail,800x70,800x69,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x70 vs 800x69)"
+toast-no-icon-light-defaultStyle,toast,no-icon,light,fail,fail,800x70,800x69,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x70 vs 800x69)"
+toast-no-icon-dark-defaultStyle,toast,no-icon,dark,fail,fail,800x70,800x69,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x70 vs 800x69)"
+tooltip-default-light-defaultStyle,tooltip,default,light,fail,fail,58x40,58x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.940% (161/2320 px), threshold=5.000%, maxChannelDelta=220, FAIL)"
+tooltip-default-dark-defaultStyle,tooltip,default,dark,fail,fail,58x40,58x40,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.103% (188/2320 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+swiper-default-light-defaultStyle,swiper,default,light,pass,pass,800x256,800x256,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+swiper-default-dark-defaultStyle,swiper,default,dark,pass,pass,800x256,800x256,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+swiper-sheet-light-defaultStyle,swiper,sheet,light,pass,pass,800x256,800x256,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+swiper-sheet-dark-defaultStyle,swiper,sheet,dark,pass,pass,800x256,800x256,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+refresh-trigger-default-light-defaultStyle,refresh-trigger,default,light,pass,pass,800x258,800x258,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+refresh-trigger-default-dark-defaultStyle,refresh-trigger,default,dark,pass,pass,800x258,800x258,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+alert-default-light-defaultStyle,alert,default,light,fail,fail,800x66,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x66 vs 800x65)"
+alert-default-dark-defaultStyle,alert,default,dark,fail,fail,800x66,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x66 vs 800x65)"
+alert-info-light-defaultStyle,alert,info,light,fail,fail,800x66,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x66 vs 800x65)"
+alert-info-dark-defaultStyle,alert,info,dark,fail,fail,800x66,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x66 vs 800x65)"
+alert-success-light-defaultStyle,alert,success,light,fail,fail,800x66,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x66 vs 800x65)"
+alert-success-dark-defaultStyle,alert,success,dark,fail,fail,800x66,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x66 vs 800x65)"
+alert-warning-light-defaultStyle,alert,warning,light,fail,fail,800x66,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x66 vs 800x65)"
+alert-warning-dark-defaultStyle,alert,warning,dark,fail,fail,800x66,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x66 vs 800x65)"
+alert-destructive-light-defaultStyle,alert,destructive,light,fail,fail,800x66,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x66 vs 800x65)"
+alert-destructive-dark-defaultStyle,alert,destructive,dark,fail,fail,800x66,800x65,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x66 vs 800x65)"
+alert-inline-light-defaultStyle,alert,inline,light,pass,pass,800x44,800x44,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+alert-inline-dark-defaultStyle,alert,inline,dark,pass,pass,800x44,800x44,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+alert-text-only-light-defaultStyle,alert,text-only,light,fail,fail,800x144,800x142,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x144 vs 800x142)"
+alert-text-only-dark-defaultStyle,alert,text-only,dark,fail,fail,800x144,800x142,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x144 vs 800x142)"
+icon-default-light-defaultStyle,icon,default,light,pass,pass,28x28,28x28,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+icon-default-dark-defaultStyle,icon,default,dark,pass,pass,28x28,28x28,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+icon-search-light-defaultStyle,icon,search,light,fail,fail,28x28,28x28,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.888% (54/784 px), threshold=5.000%, maxChannelDelta=69, FAIL)"
+icon-search-dark-defaultStyle,icon,search,dark,fail,fail,28x28,28x28,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.526% (59/784 px), threshold=5.000%, maxChannelDelta=74, FAIL)"
+icon-favorite-light-defaultStyle,icon,favorite,light,pass,pass,28x28,28x28,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+icon-favorite-dark-defaultStyle,icon,favorite,dark,pass,pass,28x28,28x28,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-typography-display-light-defaultStyle,text,typography-display,light,fail,fail,243x175,243x174,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 243x175 vs 243x174)"
+text-typography-display-dark-defaultStyle,text,typography-display,dark,fail,fail,243x175,243x174,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 243x175 vs 243x174)"
+text-typography-headline-light-defaultStyle,text,typography-headline,light,fail,fail,253x166,253x166,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.724% (2404/41998 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+text-typography-headline-dark-defaultStyle,text,typography-headline,dark,fail,fail,253x166,253x166,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.405% (3110/41998 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+text-typography-title-light-defaultStyle,text,typography-title,light,fail,fail,138x123,138x124,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 138x123 vs 138x124)"
+text-typography-title-dark-defaultStyle,text,typography-title,dark,fail,fail,138x123,138x124,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 138x123 vs 138x124)"
+text-typography-body-light-defaultStyle,text,typography-body,light,fail,fail,117x191,117x190,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 117x191 vs 117x190)"
+text-typography-body-dark-defaultStyle,text,typography-body,dark,fail,fail,117x191,117x190,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 117x191 vs 117x190)"
+text-typography-weight-light-defaultStyle,text,typography-weight,light,pass,pass,135x198,135x198,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-typography-weight-dark-defaultStyle,text,typography-weight,dark,fail,fail,135x198,135x198,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.119% (1903/26730 px), threshold=5.000%, maxChannelDelta=150, FAIL)"
+text-typography-primitive-light-defaultStyle,text,typography-primitive,light,pass,pass,188x258,188x258,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-typography-primitive-dark-defaultStyle,text,typography-primitive,dark,fail,fail,188x258,188x258,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.804% (2815/48504 px), threshold=5.000%, maxChannelDelta=201, FAIL)"
+text-colors-brand-light-defaultStyle,text,colors-brand,light,pass,pass,98x111,98x111,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-colors-brand-dark-defaultStyle,text,colors-brand,dark,fail,fail,98x111,98x111,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.157% (561/10878 px), threshold=5.000%, maxChannelDelta=189, FAIL)"
+text-colors-status-light-defaultStyle,text,colors-status,light,fail,fail,260x190,260x191,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 260x190 vs 260x191)"
+text-colors-status-dark-defaultStyle,text,colors-status,dark,fail,fail,260x190,260x191,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 260x190 vs 260x191)"
+text-colors-surface-light-defaultStyle,text,colors-surface,light,pass,pass,167x270,167x270,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-colors-surface-dark-defaultStyle,text,colors-surface,dark,pass,pass,167x270,167x270,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-modifiers-light-defaultStyle,text,modifiers,light,fail,fail,107x170,107x170,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 7.185% (1307/18190 px), threshold=5.000%, maxChannelDelta=167, FAIL)"
+text-modifiers-dark-defaultStyle,text,modifiers,dark,fail,fail,107x170,107x170,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 10.803% (1965/18190 px), threshold=5.000%, maxChannelDelta=180, FAIL)"
+text-wrap-light-defaultStyle,text,wrap,light,fail,fail,800x237,800x238,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x237 vs 800x238)"
+text-wrap-dark-defaultStyle,text,wrap,dark,fail,fail,800x237,800x238,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x237 vs 800x238)"
+text-keep-all-light-defaultStyle,text,keep-all,light,pass,pass,232x150,232x150,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-keep-all-dark-defaultStyle,text,keep-all,dark,fail,fail,232x150,232x150,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.362% (2910/34800 px), threshold=5.000%, maxChannelDelta=172, FAIL)"
+text-textstyle-light-defaultStyle,text,textstyle,light,fail,fail,200x141,200x140,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 200x141 vs 200x140)"
+text-textstyle-dark-defaultStyle,text,textstyle,dark,fail,fail,200x141,200x140,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 200x141 vs 200x140)"
+text-opacity-light-defaultStyle,text,opacity,light,pass,pass,166x198,166x198,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-opacity-dark-defaultStyle,text,opacity,dark,pass,pass,166x198,166x198,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-rich-light-defaultStyle,text,rich,light,pass,pass,256x53,256x53,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-rich-dark-defaultStyle,text,rich,dark,fail,fail,256x53,256x53,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 6.420% (871/13568 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+selectable-text-default-light-defaultStyle,selectable-text,default,light,fail,fail,203x21,200x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 203x21 vs 200x21)"
+selectable-text-default-dark-defaultStyle,selectable-text,default,dark,fail,fail,203x21,200x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 203x21 vs 200x21)"
+selectable-text-styled-light-defaultStyle,selectable-text,styled,light,fail,fail,255x27,252x27,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 255x27 vs 252x27)"
+selectable-text-styled-dark-defaultStyle,selectable-text,styled,dark,fail,fail,255x27,252x27,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 255x27 vs 252x27)"
+text-block-default-light-defaultStyle,text-block,default,light,pass,pass,360x84,360x84,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+text-block-default-dark-defaultStyle,text-block,default,dark,fail,fail,360x84,360x84,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 8.039% (2431/30240 px), threshold=5.000%, maxChannelDelta=173, FAIL)"
+link-default-light-defaultStyle,link,default,light,fail,fail,68x21,68x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 27.311% (390/1428 px), threshold=5.000%, maxChannelDelta=233, FAIL)"
+link-default-dark-defaultStyle,link,default,dark,fail,fail,68x21,68x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 29.132% (416/1428 px), threshold=5.000%, maxChannelDelta=238, FAIL)"
+link-muted-light-defaultStyle,link,muted,light,fail,fail,51x21,51x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 28.291% (303/1071 px), threshold=5.000%, maxChannelDelta=162, FAIL)"
+link-muted-dark-defaultStyle,link,muted,dark,fail,fail,51x21,51x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 30.626% (328/1071 px), threshold=5.000%, maxChannelDelta=172, FAIL)"
+link-underline-light-defaultStyle,link,underline,light,fail,fail,84x21,84x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 33.560% (592/1764 px), threshold=5.000%, maxChannelDelta=242, FAIL)"
+link-underline-dark-defaultStyle,link,underline,dark,fail,fail,84x21,84x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 37.018% (653/1764 px), threshold=5.000%, maxChannelDelta=240, FAIL)"
+link-external-light-defaultStyle,link,external,light,fail,fail,55x21,55x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 28.485% (329/1155 px), threshold=5.000%, maxChannelDelta=248, FAIL)"
+link-external-dark-defaultStyle,link,external,dark,fail,fail,55x21,55x21,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 32.727% (378/1155 px), threshold=5.000%, maxChannelDelta=244, FAIL)"
+definition-list-default-light-defaultStyle,definition-list,default,light,fail,fail,90x139,90x139,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 12.702% (1589/12510 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+definition-list-default-dark-defaultStyle,definition-list,default,dark,fail,fail,90x139,90x139,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 14.085% (1762/12510 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+definition-list-columns-light-defaultStyle,definition-list,columns,light,fail,fail,800x102,800x103,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x102 vs 800x103)"
+definition-list-columns-dark-defaultStyle,definition-list,columns,dark,fail,fail,800x102,800x103,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, dimension mismatch: 800x102 vs 800x103)"
+definition-list-inline-light-defaultStyle,definition-list,inline,light,fail,fail,382x18,382x18,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 26.992% (1856/6876 px), threshold=5.000%, maxChannelDelta=219, FAIL)"
+definition-list-inline-dark-defaultStyle,definition-list,inline,dark,fail,fail,382x18,382x18,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 27.472% (1889/6876 px), threshold=5.000%, maxChannelDelta=236, FAIL)"
+clickable-default-light-defaultStyle,clickable,default,light,pass,pass,138x61,138x61,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+clickable-default-dark-defaultStyle,clickable,default,dark,pass,pass,138x61,138x61,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+focus-outline-default-light-defaultStyle,focus-outline,default,light,pass,pass,123x61,123x61,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+focus-outline-default-dark-defaultStyle,focus-outline,default,dark,pass,pass,123x61,123x61,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+outlined-container-default-light-defaultStyle,outlined-container,default,light,pass,pass,121x55,121x55,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+outlined-container-default-dark-defaultStyle,outlined-container,default,dark,fail,fail,121x55,121x55,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.139% (342/6655 px), threshold=5.000%, maxChannelDelta=137, FAIL)"
+subfocus-default-light-defaultStyle,subfocus,default,light,pass,pass,177x199,177x199,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+subfocus-default-dark-defaultStyle,subfocus,default,dark,pass,pass,177x199,177x199,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+scrollview-default-light-defaultStyle,scrollview,default,light,pass,pass,260x160,260x160,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+scrollview-default-dark-defaultStyle,scrollview,default,dark,pass,pass,260x160,260x160,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+popup-default-light-defaultStyle,popup,default,light,pass,pass,128x119,128x119,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+popup-default-dark-defaultStyle,popup,default,dark,pass,pass,128x119,128x119,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+scrollbar-default-light-defaultStyle,scrollbar,default,light,pass,pass,240x160,240x160,settled-runtime,settled-runtime,True,ssr,800,1200,within existing threshold
+scrollbar-default-dark-defaultStyle,scrollbar,default,dark,fail,fail,240x160,240x160,settled-runtime,settled-runtime,True,ssr,800,1200,"PixelDiffResult(parity, 5.698% (2188/38400 px), threshold=5.000%, maxChannelDelta=129, FAIL)"

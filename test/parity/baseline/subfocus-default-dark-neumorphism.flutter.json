@@ -1,0 +1,34 @@
+{
+  "key": "subfocus-default-dark-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "subfocus-default-dark-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "backgroundColor": null,
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": null,
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 176.7,
+      "heightPx": 199.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

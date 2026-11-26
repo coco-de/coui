@@ -1,0 +1,82 @@
+{
+  "key": "text-field-docs-v2-3699558c278bfbb86259ec84aff2dca4-dark-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Preview",
+      "attributes": {
+        "demo": "text-field/a11y-label"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "text-field/a11y-label",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/text-field.md:Preview[39]"
+      ],
+      "anatomyParts": []
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "이메일\n                          \n                            \n                              \n                            \n                          \n                        \n                      \n                    \n                    \n                      label: '이메일'\n                      라벨은 입력창 위에 함께 보입니다. 접근 가능한 이름으로 연결되는 범위는 알려진 제약을 보세요.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 140
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "13px",
+      "lineHeight": "18px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(180, 181, 182)",
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "32px",
+      "paddingRight": "24px",
+      "paddingBottom": "32px",
+      "paddingLeft": "24px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(180, 181, 182)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 140
+    }
+  }
+}

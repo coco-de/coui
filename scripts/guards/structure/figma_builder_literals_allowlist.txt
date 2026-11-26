@@ -1,0 +1,17 @@
+# G7 allowlist (#3756) — files under tools/figma-token-sync/src/components/
+# excluded from the literal-count ratchet, one per line: `filename.ts | 사유`.
+#
+# Excluding a file is for a component that is legitimately builder-original
+# (no coui_core CoreXxxStyle default exists to bind, or the Figma
+# representation isn't 1:1 with the code structure — #3755's OQ-2 judgment,
+# e.g. Chat/Window/Calendar candidates) — not a way to make this guard
+# quieter. The allowlist's own *entry count* is ratcheted (see
+# ALLOWLIST_BASELINE in check_figma_builder_literals.sh): adding a file
+# here without a reason, or moving a file here just to dodge the count
+# ratchet, is exactly the "skip 을 늘리는 것 자체가 막혀야 한다" case #3756
+# calls out — the guard treats a new entry the same as a literal-count
+# regression.
+#
+# Empty today — #3755's OQ-2 pass (which file is genuinely builder-original)
+# hasn't run yet. This file exists so the guard's allowlist mechanism has
+# something to parse and the injection self-test can exercise it.

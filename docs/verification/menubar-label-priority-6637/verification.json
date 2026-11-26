@@ -1,0 +1,224 @@
+{
+  "issue": 6637,
+  "originalSource": "94d2fe93158a25f294aeec102891a88f0a33926d",
+  "codeHead": "20060fc72385972da13abdadd632c5a636351253",
+  "scope": "Native resolver consumes existing triggerButtonStyle.labelStyle with Core typed merge and caller-layer precedence; public/Core/default/Widget/Web/probe/criteria changes0",
+  "sourceAndTestsSHA256": {
+    "packages/coui_flutter/lib/src/components/menu/menubar/menubar_style.dart": "814e1efe220b79069ce61480c4dac27744e60e47fcd94ba6e4948acd0d5526e7",
+    "packages/coui_flutter/test/components/menu/menubar_label_priority_test.dart": "c15f1d0a061801856bfee9a1803de2256aaa9aadfbc7dd53d3875eb3227bf13d",
+    "packages/coui_flutter/test/components/menu/menubar_label_role_boundary_test.dart": "76061f7ed082c8ac9832aa440b483e50bd10d28ef6a895e94d6c155c7bf257e4"
+  },
+  "logicalCandidateCases": {
+    "matrix": 14,
+    "labelOnlyBoundary": 2,
+    "existingNativePackage": 28,
+    "existingCore": 9,
+    "total": 53
+  },
+  "sameFinalFixture": {
+    "sameFinalFixtureSHA256": "b034df1072204caa8531a21562e73cf5a2b712791ca4dd1b825cfb2a4bba6012",
+    "originalMatrix14": {
+      "pass": 6,
+      "fail": 8,
+      "actualExit": 1
+    },
+    "candidateMatrix14": {
+      "pass": 14,
+      "fail": 0,
+      "actualExit": 0
+    },
+    "labelOnlyRoleBoundary2": "2PASS on both sources",
+    "existingNativePackage28AndCore9": "37PASS, both commands exit0",
+    "testedLogicSHA256": "97e6d1c2fd7d4a2a7bbf97e13834e00364f0d1336c1ad3be970b01eef354404e",
+    "final814eDifference": "Comment only; exact noncomment bytes. Fresh permanent repo port16PASS and final source3 fatal/format0; existing37 not rerun or relabeled."
+  },
+  "nativeCaptureBeforeAfter": {
+    "allManifest": 10,
+    "selected": 2,
+    "originalTestsPass": 2,
+    "candidateTestsPass": 2,
+    "PNG": 4,
+    "JSON": 4,
+    "beforeAfterAllByteExact": true,
+    "captureSource": "20060fc72385972da13abdadd632c5a636351253"
+  },
+  "committedNativeBaselineRegression": {
+    "baselineSource": "94d2fe93158a25f294aeec102891a88f0a33926d",
+    "pass": 2,
+    "fail": 0,
+    "infra": 0,
+    "actualExit": 0,
+    "seconds": 1.531311334,
+    "channelThreshold": 32,
+    "regressionThreshold": 0.001,
+    "notByteExact": "Each has1 differing pixel of7296; passed existing criterion. No promotion/waiver."
+  },
+  "resident": {
+    "source": "20060fc72385972da13abdadd632c5a636351253",
+    "actualExit": 0,
+    "seconds": 15.046180375000002,
+    "standardAppRestartFullRestart": false,
+    "reloadCode": 0,
+    "librariesReloaded": 1,
+    "samePIDStateInputRender": true,
+    "defaultWholeExact": true,
+    "customSixTypographyFieldsRestored": true,
+    "customPNG": 2,
+    "portsClosedAndNativePIDAbsent": true
+  },
+  "metadata": {
+    "packages": 232,
+    "ownRebound": 12,
+    "externalFieldsLiteralExact": 220,
+    "graphLockAndWTConfigExact": true,
+    "pubSolveGetDownload": 0,
+    "sdkUnversionedDeclaredNullVersusGraphSentinelDistinguished": true
+  },
+  "historicalStagesAndCorrections": {
+    "initial14": "10P4F, only10 priority-asserted and4 raw-only; not14 priority PASS",
+    "firstRefined14": "Original6P8F; candidate12P2F, boundary2PASS each. Candidate failures were incorrect bodyLarge16 expectation.",
+    "finalCorrection": "New fixture changes R3 expected16 to actual Core bodyLarge15 at two literals; original and candidate rerun on same new SHA. Previous raw fixture/results preserved.",
+    "WebNumericTarget": "Earlier16/1.5 Web numerical claim withdrawn; no actual current Web computed measurement. Core raw18/2 preservation is separate from source-only Web merge behavior."
+  },
+  "limits": [
+    "Native-only fix and verification; Web/SSR/UI docs build not run because those sources/interfaces unchanged and Root scoped them N/A",
+    "No cross-parity/full838/current static failure improvement claim; no producer/probe or criteria change",
+    "Resident startup emitted two unused FFI-capability warnings, retained unchanged; no blanket console-error0 claim",
+    "First resident attempt stopped at7INFO before UI runtime; failed formatted shadow was not retained, original input/logs are retained",
+    "Final-validation inherited sourceCompilerSpill label actually described preexisting owned M1, clarified without changing original evidence"
+  ],
+  "evidenceRoot": "/Users/minhyeok/orca/artifacts/coui/weever-menubar-label-priority-6637-20261124.c4wdwrzf",
+  "proofRefs": [
+    {
+      "path": "artifact-index.json",
+      "sha256": "242387a594cc744d0374d7eb3b3d4a04436e557fff04057f26e06f50eede90b0",
+      "bytes": 5966
+    },
+    {
+      "path": "final-handoff.json",
+      "sha256": "82e2eeda7a39ffe7e637239a064479829ff66a1e72ec6a7aacf7d9294091ce5c",
+      "bytes": 4371
+    },
+    {
+      "path": "original-handoff.json",
+      "sha256": "331a18973e7e1c72b5332a4d3453846d96c90cf9df8961e1da472a8c228d9d78",
+      "bytes": 676
+    },
+    {
+      "path": "final-contract/expectation-authority.json",
+      "sha256": "a6b462c5dcd9b2e524d74d8e32c32abb864fdb50382e329d28035b1f09795dbe",
+      "bytes": 7894
+    },
+    {
+      "path": "final-contract/WHY.json",
+      "sha256": "0252e3be13c243a697af28753e815e295ffb5b60f19e3b8a6cea8adefb3742ff",
+      "bytes": 892
+    },
+    {
+      "path": "final-validation/execution-source-binding.json",
+      "sha256": "105c56e466c8c75f59e7038175aaf526d9c43803ec17980a8e0221d084bf6586",
+      "bytes": 1260
+    },
+    {
+      "path": "final-validation/final-results.json",
+      "sha256": "95c25c9b1feefe85458b665f6f48ea45238c19b28833faa2ed2aa0c77fafcf27",
+      "bytes": 14619
+    },
+    {
+      "path": "final-validation/source-status-clarification.json",
+      "sha256": "d9605a5fa56d0f57f5df5ed03502aba43755aae0ca4baf0f0688a477e12a0922",
+      "bytes": 556
+    },
+    {
+      "path": "implementation/doc-only-addendum.json",
+      "sha256": "80b12d45fae012b1050b019ea19e8f39a230d33199adc331872676b5bd6a6b2c",
+      "bytes": 419
+    },
+    {
+      "path": "repo-port/binding.json",
+      "sha256": "f09d438b248ef53a181a1bc9f63e4010aea260087d6a8076cd20d2ab4eea05f7",
+      "bytes": 1085
+    },
+    {
+      "path": "repo-port-validation/counts.json",
+      "sha256": "ed251533bde55dbdf8b57bb759a34f3172c9b0654420908cf96bbd851f686b8f",
+      "bytes": 5437
+    },
+    {
+      "path": "repo-port-validation/native-exit.json",
+      "sha256": "b3f1f32390aa3ffa406266a021f72b82499dabc01d6b6d05e8beb1fa8b59d260",
+      "bytes": 899
+    },
+    {
+      "path": "repo-port-validation/fatal-production-exit.json",
+      "sha256": "47ca01824ee7813bc028a5a79137c0444cb25636a69fff54807583996337d058",
+      "bytes": 415
+    },
+    {
+      "path": "repo-port-validation/fatal-exit.json",
+      "sha256": "c6f2564eb9035e327c6899734a9ed5821a36ecd983d1958f0888a64a1cf08eaf",
+      "bytes": 853
+    },
+    {
+      "path": "canonical-native/domain.json",
+      "sha256": "82904657aef45beaa56ddd8564531c5d89d3a6584ff2b1b6e54e3e496eee30ea",
+      "bytes": 2156
+    },
+    {
+      "path": "canonical-native/execution-source-binding.json",
+      "sha256": "03824293baa0507da83539ffd3796f48e233bc57ab56fb2cb30e1dd44fe0f428",
+      "bytes": 1080
+    },
+    {
+      "path": "canonical-native/before-after-comparison.json",
+      "sha256": "b48928ce22a04e004608bc1ae0baa582bcccd12f29ea98d190a26e0fcde05734",
+      "bytes": 413
+    },
+    {
+      "path": "native-baseline/inputs.json",
+      "sha256": "f594a012e5da057695c36541ebc90102445660dd2fa6b7411c41d56f44285b3a",
+      "bytes": 1730
+    },
+    {
+      "path": "native-baseline/report.json",
+      "sha256": "2e04c784cda45b28331d2d545663fc6d1fa10a1eab2b21c9962551f70cacf945",
+      "bytes": 856
+    },
+    {
+      "path": "native-baseline/exit.json",
+      "sha256": "3d7f026ea6635f20ed1f611ea2af795ac501c082cd117fa05b0641ddf7dfc252",
+      "bytes": 1515
+    },
+    {
+      "path": "resident/attempt2/resident-reload-proof.json",
+      "sha256": "e435b61950ea2f97a50093ec629825410e78ccf4b0a7555af807b43693780970",
+      "bytes": 4313
+    },
+    {
+      "path": "resident/attempt2/observation-readback.json",
+      "sha256": "67ac627b97d37f6a339d206c719a98fda2c14ffedeebe70670bf6074cc9a4106",
+      "bytes": 1332
+    },
+    {
+      "path": "resident/attempt2/startup-capability-limit.json",
+      "sha256": "71d403db50c730f68748bdfa8c400313d9de97802008206ac7fb4a0669219ba6",
+      "bytes": 1012
+    },
+    {
+      "path": "metadata/ready.json",
+      "sha256": "ecab1f218b9008e843d38f3594f7139ccb089266bc90dba93f987042f3f93c38",
+      "bytes": 5595
+    },
+    {
+      "path": "final-cleanup.json",
+      "sha256": "dbe32c5ba588d7b2176579b638ccf3fd762423c2ebcac8fedb9460454715aa2c",
+      "bytes": 1013
+    },
+    {
+      "path": "artifact-index-provenance-addendum.json",
+      "sha256": "4e7524427c8bcd84546509b82a5f6814d374c28ea2e13636668937bac20980f3",
+      "bytes": 1115
+    }
+  ],
+  "artifactIndexHistoricalPreimageBindings": "artifact-index-provenance-addendum.json resolves only the pre-commit rolling-log ref to its exact preserved prefix; no current rolling-log exactness claim."
+}

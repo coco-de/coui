@@ -1,0 +1,100 @@
+{
+  "key": "toast-default-dark-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "toast-default-dark-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "shadowBlurUnit": "css-radius",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 19.6,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 31,
+        "g": 32,
+        "b": 33,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        16.0,
+        16.0,
+        16.0,
+        16.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [
+        {
+          "offsetX": 0.0,
+          "offsetY": 2.0,
+          "blur": 8.0,
+          "spread": -1.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.2
+          }
+        },
+        {
+          "offsetX": 0.0,
+          "offsetY": -2.0,
+          "blur": 8.0,
+          "spread": -1.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.2
+          }
+        },
+        {
+          "offsetX": 0.0,
+          "offsetY": 1.0,
+          "blur": 4.0,
+          "spread": 0.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.122
+          }
+        },
+        {
+          "offsetX": 0.0,
+          "offsetY": -1.0,
+          "blur": 4.0,
+          "spread": 0.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.122
+          }
+        }
+      ],
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 70.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

@@ -1,0 +1,42 @@
+{
+  "generator": "export_figma_tokens.dart",
+  "colorCollection": "Semantic/ Color · CoUI",
+  "content": {
+    "collection": "Semantic/ Content",
+    "variable": "content/current",
+    "statusMode": "status",
+    "modes": [
+      "on-surface",
+      "on-surface-variant",
+      "on-surface-subtle",
+      "disabled-content",
+      "on-primary",
+      "on-primary-container",
+      "on-secondary-container",
+      "inverse-on-surface",
+      "placeholder",
+      "primary",
+      "primary-text",
+      "link",
+      "status"
+    ]
+  },
+  "status": {
+    "collection": "Semantic/ Content Status",
+    "variable": "content/status",
+    "modes": [
+      "success",
+      "on-success",
+      "on-success-container",
+      "info",
+      "on-info",
+      "on-info-container",
+      "warning",
+      "on-warning",
+      "on-warning-container",
+      "error",
+      "on-error",
+      "on-error-container"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "key": "item-picker-default-dark-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "item-picker-default-dark-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "shadowBlurUnit": "css-radius",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 147,
+        "g": 149,
+        "b": 150,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 42,
+        "g": 43,
+        "b": 44,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 64,
+        "g": 65,
+        "b": 67,
+        "a": 1.0
+      },
+      "borderWidthPx": 1.0,
+      "borderRadiusPx": [
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [
+        {
+          "offsetX": 0.0,
+          "offsetY": 16.0,
+          "blur": 64.0,
+          "spread": 0.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.502
+          }
+        }
+      ],
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 267.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

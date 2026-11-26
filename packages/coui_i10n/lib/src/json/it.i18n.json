@@ -1,0 +1,1464 @@
+{
+  "widgetbook": {
+    "common": {
+      "increment_progress": "Incrementa il progresso",
+      "selected_tab": "Scheda selezionata: {index}",
+      "current_page": "Pagina attuale: {page}",
+      "total_pages": "Pagine totali: {count}",
+      "page_of": "{current}Pagina / {total}",
+      "hover_over_icon": "Passa il mouse sopra l'icona",
+      "counter": "Contatore: {count}",
+      "selected_rows": "Righe selezionate: {count}",
+      "value": "Valore: {value}",
+      "selected_cells": "Celle selezionate: {count}"
+    },
+    "loading": {
+      "indeterminate": "Caricamento infinito",
+      "with_value": "Incluso valore ({percent}%)",
+      "custom_size": "Dimensione personalizzata",
+      "custom_height": "Altezza personalizzata",
+      "circular_progress": "Progresso circolare",
+      "linear_progress": "Progresso lineare"
+    },
+    "tabs": {
+      "home": "Home",
+      "profile": "Profilo",
+      "settings": "Impostazioni",
+      "overview": "Panoramica",
+      "details": "Dettagli",
+      "history": "Storia",
+      "overview_content": "Contenuto panoramico",
+      "details_content": "Contenuto dettagliato",
+      "history_content": "Contenuto della storia",
+      "general_info": "Informazioni generali sull'elemento",
+      "specifications": "Specifiche dettagliate e attributi",
+      "timeline": "Cronologia delle modifiche e aggiornamenti"
+    },
+    "pagination": {
+      "show_skip_to_first": "Mostra salto alla prima",
+      "show_skip_to_last": "Mostra salto all'ultima",
+      "hide_previous_on_first": "Nascondi precedente nella prima pagina",
+      "hide_next_on_last": "Nascondi successivo nell'ultima pagina",
+      "max_visible_pages": "Numero massimo di pagine visibili"
+    },
+    "tooltip": {
+      "helpful_message": "Messaggio tooltip utile",
+      "tooltip_above": "Tooltip sopra",
+      "tooltip_below": "Tooltip sotto",
+      "tooltip_left": "Tooltip a sinistra",
+      "tooltip_right": "Tooltip a destra",
+      "top": "Alto",
+      "bottom": "Basso",
+      "left": "Sinistra",
+      "right": "Destra"
+    },
+    "radio": {
+      "small": "Piccolo",
+      "medium": "Medio",
+      "large": "Grande"
+    },
+    "card": {
+      "card_content": "Contenuto della scheda",
+      "gradient_card": "Carta sfumata",
+      "custom_decoration": "Carta con decorazione personalizzata"
+    },
+    "alert": {
+      "title": "Titolo dell'allerta",
+      "message": "Questo è un messaggio di allerta."
+    },
+    "accordion": {
+      "what_is_coui": "Che cos'è CoUI Flutter?",
+      "what_is_coui_answer": "CoUI Flutter è una libreria di componenti UI completa progettata per costruire applicazioni Flutter moderne e accessibili con schemi di design coerenti.",
+      "how_to_install": "Come si installa?",
+      "how_to_install_answer": "Aggiungi coui_flutter alle dipendenze di pubspec.yaml ed esegui flutter pub get per installare il pacchetto.",
+      "is_customizable": "È personalizzabile?",
+      "is_customizable_answer": "Sì! CoUI Flutter offre un supporto tematico completo per personalizzare colori, tipografia, spaziature, ecc. tramite ThemeData.",
+      "getting_started": "Iniziare",
+      "getting_started_answer": "Inizia installando il pacchetto e importandolo nel tuo progetto. Per dettagli su come configurarlo, consulta la documentazione.",
+      "features_expanded": "Funzionalità (di base estesa)",
+      "features_answer": "CoUI Flutter include componenti quali pulsanti, moduli, finestre di dialogo, componenti di navigazione, ecc. Tutti i componenti sono progettati tenendo conto dell'accessibilità e del tema.",
+      "support": "Supporto",
+      "support_answer": "Se hai domande o necessiti di supporto, visita il repository GitHub o controlla la documentazione su docs.coui.dev."
+    },
+    "skeleton": {
+      "skeleton_enabled": "Skeleton attivato:",
+      "title_text": "Titolo",
+      "description_text": "Testo descrittivo lungo",
+      "short_text": "Testo breve",
+      "without_skeleton": "Senza skeleton:",
+      "with_skeleton": "Con skeleton:",
+      "user_name": "Nome utente",
+      "user_email": "user@example.com",
+      "article_title": "Titolo dell'articolo",
+      "posted_date": "Pubblicato il 1 gennaio 2024",
+      "bio_description": "Sviluppatore che registra la quotidianità",
+      "show_content": "Mostra contenuto",
+      "show_loading": "Mostra caricamento",
+      "article_content": "Questo è un esempio del contenuto di un articolo. Viene sostituito con uno skeleton durante il caricamento."
+    },
+    "toast": {
+      "success": "Successo",
+      "operation_completed": "Operazione completata con successo",
+      "show_toast": "Mostra toast",
+      "toast_at": "Toast a {location}",
+      "top_left": "In alto a sinistra",
+      "top_center": "In alto al centro",
+      "top_right": "In alto a destra",
+      "bottom_left": "In basso a sinistra",
+      "bottom_center": "In basso al centro",
+      "bottom_right": "In basso a destra"
+    },
+    "chip": {
+      "chip": "Chip"
+    },
+    "checkbox": {
+      "accept_terms": "Accetto i termini e le condizioni",
+      "tristate": "Tre stati"
+    },
+    "toggle": {
+      "toggle": "Attiva/Disattiva"
+    },
+    "dialog": {
+      "basic_dialog": "Dialogo di base",
+      "basic_title": "Dialogo di base",
+      "basic_content": "Un semplice dialogo con titolo e contenuto.",
+      "simple_dialog_content": "Dialogo semplice con titolo e contenuto.",
+      "show_basic": "Mostra di base",
+      "show_basic_dialog": "Mostra dialogo di base",
+      "confirm_action": "Conferma azione",
+      "confirm_title": "Conferma",
+      "confirm_content": "Sei sicuro di voler eseguire questa operazione?",
+      "confirm_action_content": "Sei sicuro di voler eseguire quest'azione? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Conferma",
+      "show_confirmation": "Mostra conferma",
+      "show_confirmation_dialog": "Mostra dialogo di conferma",
+      "warning": "Avviso",
+      "warning_title": "Avviso",
+      "warning_content": "Questa azione potrebbe influenzare i dati. Procedere con cautela.",
+      "dismiss": "Chiudi",
+      "show_warning": "Mostra avviso",
+      "show_warning_dialog": "Mostra dialogo di avviso"
+    },
+    "popover": {
+      "popover_content": "Contenuto del popover",
+      "content_title": "Titolo del popover",
+      "content_description": "Popover con contenuto personalizzabile.",
+      "customizable_content": "Popover con contenuto personalizzabile.",
+      "show_popover": "Mostra popover",
+      "popover_at": "{position} popover",
+      "top": "Superiore",
+      "bottom": "Inferiore",
+      "left": "Sinistra",
+      "right": "Destra"
+    },
+    "text_field": {
+      "enter_name": "Inserisci il nome",
+      "type_here": "Digita qui"
+    },
+    "button": {
+      "primary_button": "Pulsante principale",
+      "secondary_button": "Pulsante secondario",
+      "dashed_button": "Carica file",
+      "upload_file": "Carica file"
+    },
+    "table": {
+      "name": "Nome",
+      "email": "Email",
+      "role": "Ruolo",
+      "john_doe": "Giovanni Rossi",
+      "john_email": "rossi@example.com",
+      "developer": "Sviluppatore",
+      "jane_smith": "Maria Bianchi",
+      "jane_email": "bianchi@example.com",
+      "designer": "Designer",
+      "bob_johnson": "Pietro Verdi",
+      "bob_email": "verdi@example.com",
+      "manager": "Manager",
+      "select": "Seleziona",
+      "product": "Prodotto",
+      "price": "Prezzo",
+      "stock": "Magazzino",
+      "laptop": "Portatile",
+      "mouse": "Mouse",
+      "keyboard": "Tastiera"
+    },
+    "switch": {
+      "switch": "Interruttore"
+    },
+    "switch_component": {
+      "switch_label": "Etichetta dell'interruttore"
+    },
+    "select": {
+      "apple": "Mela",
+      "banana": "Banana",
+      "cherry": "Ciliegia",
+      "date": "Dattero",
+      "choose_size": "Scegli la dimensione",
+      "small": "Piccolo",
+      "medium": "Medio",
+      "large": "Grande",
+      "extra_large": "Molto grande"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "products": "Prodotti",
+      "electronics": "Elettronica",
+      "smartphones": "Smartphone",
+      "documents": "Documenti",
+      "projects": "Progetti",
+      "current_folder": "Cartella attuale",
+      "current_path": "Percorso attuale: {path}"
+    },
+    "badge": {
+      "primary": "Primario",
+      "secondary": "Secondario",
+      "outline": "Contorno",
+      "destructive": "Distruttivo",
+      "featured": "In primo piano",
+      "more": "Di più",
+      "verified": "Verificato",
+      "error": "Errore",
+      "click_me": "Clicca qui",
+      "clickable": "Cliccabile"
+    },
+    "themePreview": {
+      "title": "Anteprima del tema",
+      "description": "Una panoramica completa di tutti i token tematici e degli stili dei componenti",
+      "color_palette": "Palette dei colori",
+      "brand_colors": "Colori del marchio",
+      "base_colors": "Colori di base",
+      "status_colors": "Colori di stato",
+      "buttons": "Pulsanti",
+      "primary_button": "Primario",
+      "secondary_button": "Secondario",
+      "outline_button": "Outline",
+      "ghost_button": "Ghost",
+      "destructive_button": "Distruttivo",
+      "disabled_button": "Disabilitato",
+      "cards": "Carte",
+      "card_title": "Titolo della carta",
+      "card_description": "Descrizione della carta di esempio.",
+      "surface_card": "Carta superficie",
+      "filled_variant": "Stile filled con sfondo",
+      "form_elements": "Elementi del modulo",
+      "text_input_placeholder": "Inserisci il testo...",
+      "checkbox_checked": "Selezionato",
+      "checkbox_unchecked": "Non selezionato",
+      "toggle_on": "Acceso",
+      "toggle_off": "Spento",
+      "alerts": "Avvisi",
+      "info_alert": "Avviso informativo",
+      "info_alert_message": "Messaggio informativo.",
+      "error_alert": "Avviso di errore",
+      "error_alert_message": "Si è verificato un problema.",
+      "badges_chips": "Badge & Chip",
+      "primary_badge": "Primario",
+      "secondary_badge": "Secondario",
+      "outline_badge": "Outline",
+      "destructive_badge": "Distruttivo",
+      "chip_example": "Preferito",
+      "typography": "Tipografia",
+      "heading_1": "Titolo 1",
+      "heading_2": "Titolo 2",
+      "heading_3": "Titolo 3",
+      "heading_4": "Titolo 4",
+      "body_text": "Testo del corpo con spessore normale.",
+      "small_text": "Testo piccolo per didascalie.",
+      "muted_text": "Testo attenuato per informazioni aggiuntive.",
+      "bold_text": "Testo in grassetto per enfasi.",
+      "spacing_radius": "Spaziatura & Raggio",
+      "border_radius": "Raggio del bordo",
+      "loading_states": "Stati di caricamento"
+    },
+    "chat": {
+      "hello": "Ciao! Come stai?",
+      "doing_great": "Benissimo, grazie!",
+      "nice_weather": "Bel tempo oggi!",
+      "yes_beautiful": "Sì, è bellissimo!",
+      "sender": "Mittente",
+      "receiver": "Destinatario"
+    },
+    "multiple_choice": {
+      "option_a": "Option A",
+      "option_b": "Option B",
+      "option_c": "Option C",
+      "option_d": "Option D",
+      "selected_value": "Selezionato: {value}",
+      "selected_values": "Selezionati: {values}"
+    },
+    "formatted_input": {
+      "date_format": "Formato data (MM/GG/AAAA)",
+      "time_format": "Formato ora (HH:MM)",
+      "current_value": "Valore attuale: {value}"
+    },
+    "swiper": {
+      "swipe_hint": "Scorri o tocca per aprire",
+      "overlay_content": "Contenuto overlay",
+      "close": "Chiudi"
+    }
+  },
+  "docs": {
+    "common": {
+      "app_name": "coui_flutter",
+      "search_documentation": "Cerca documentazione...",
+      "docs": "Documentazione",
+      "components": "Componenti",
+      "close": "Chiudi",
+      "on_this_page": "Indice di questa pagina",
+      "work_in_progress_title": "In fase di sviluppo",
+      "work_in_progress_message": "Questa pagina è ancora in fase di sviluppo. Torna a trovarci più tardi.",
+      "add": "Aggiungi",
+      "reset": "Ripristina",
+      "prev": "Precedente",
+      "next": "Successivo",
+      "finish": "Completa",
+      "open": "Apri",
+      "disabled": "Disabilitato",
+      "refresh": "Aggiorna",
+      "rebuild": "Ricostruisci",
+      "change_color": "Cambia colore"
+    },
+    "badges": {
+      "new": "Nuovo",
+      "updated": "Aggiornato",
+      "wip": "In sviluppo",
+      "experimental": "Sperimentale"
+    },
+    "flavors": {
+      "local": "Locale",
+      "experimental": "Sperimentale",
+      "unknown": "Sconosciuto"
+    },
+    "navigation": {
+      "getting_started": "Inizia",
+      "animation": "Animazione",
+      "control": "Controllo",
+      "disclosure": "Divulgazione",
+      "display": "Visualizzazione",
+      "feedback": "Feedback",
+      "form": "Modulo",
+      "layout": "Layout",
+      "navigation": "Navigazione",
+      "overlay": "Sovrapposizione",
+      "utility": "Utility",
+      "my_account": "Il mio account",
+      "profile": "Profilo",
+      "settings": "Impostazioni",
+      "team": "Team",
+      "new_team": "Nuovo team",
+      "billing": "Fatturazione",
+      "api": "API",
+      "log_out": "Disconnetti",
+      "support": "Supporto",
+      "invite_users": "Invita utenti",
+      "more": "Altro",
+      "github": "GitHub",
+      "note": "Nota",
+      "message": "Messaggio",
+      "keyboard_shortcuts": "Scorciatoie da tastiera"
+    },
+    "pages": {
+      "introduction": {
+        "title": "Introduzione",
+        "description": "Iniziare con coui_flutter",
+        "lead": "Ora puoi utilizzare i componenti splendidamente progettati di Coui/UI in Flutter.",
+        "welcome_paragraph_1": "coui_flutter è un insieme variegato e completo di componenti UI progettati specificamente per applicazioni desktop e web Flutter. Con la crescente popolarità di Flutter per la costruzione di app cross-platform, abbiamo riconosciuto la necessità di un toolkit che evidenzi le uniche esigenze di design delle interfacce desktop e web.",
+        "welcome_paragraph_2": "Questo pacchetto offre un'ampia gamma di componenti personalizzabili e reattivi che si allineano ai principi di design moderni per desktop e web. Che tu stia costruendo sofisticate applicazioni aziendali, dashboard eleganti o strumenti di produttività, i nostri componenti sono progettati per aiutarti a creare interfacce utente professionali e raffinate in modo rapido ed efficiente.",
+        "features": "Caratteristiche principali",
+        "features_list": {
+          "components_count": "84 componenti e in continua crescita!",
+          "material_cupertino": "Supporta i widget Material e Cupertino, con temi attualmente adattati per il tema coui_flutter.",
+          "premade_themes": "Temi predefiniti di Coui/UI.",
+          "platform_support": "Supporto per piattaforme mobili, web e desktop.",
+          "middle_drag": "Supporto per lo scorrimento con trascinamento intermedio.",
+          "typography_extensions": "Vasta gamma di estensioni per la tipografia.",
+          "webassembly": "Supporto per WebAssembly per migliori prestazioni."
+        },
+        "notes": "Note",
+        "notes_paragraph_1": "Questo pacchetto è ancora in fase di sviluppo e potrebbe subire modifiche in futuro. Procedi con cautela quando utilizzi questo pacchetto in produzione.",
+        "notes_paragraph_2": "Questo pacchetto non è affiliato a Coui/UI. È un progetto guidato dalla comunità.",
+        "faq": "Domande frequent",
+        "faq_gorouter_q": "Supporta GoRouter?",
+        "faq_gorouter_a": "Sì, lo supporta. Puoi utilizzare GoRouter con coui_flutter.",
+        "faq_usage_q": "Posso usarlo nel mio progetto?",
+        "faq_usage_a": "Sì! Puoi usarlo liberamente per progetti personali e commerciali. Non è richiesta attribuzione.",
+        "faq_material_q": "Posso usarlo con widget Material/Cupertino?",
+        "faq_material_a_1": "Certo!",
+        "faq_material_a_2": "Fai riferimento a questa pagina!",
+        "faq_style_q": "Posso impostare quale stile usare? (Default/New York)",
+        "faq_style_a_1": "Sfortunatamente no. Questo pacchetto supporta solo lo stile New York. Se desideri lo stile predefinito di Coui/UI,",
+        "faq_style_a_2": "ti consiglio di utilizzare",
+        "faq_style_a_3": "questo pacchetto. Creatore:",
+        "links": "Link",
+        "link_github": "Github: ",
+        "link_pubdev": "pub.dev: ",
+        "link_discord": "Discord: "
+      },
+      "installation": {
+        "title": "Installazione",
+        "description": "Installare coui_flutter nel progetto",
+        "stable_version": "Versione stabile",
+        "experimental_version": "Versione sperimentale",
+        "step1_title": "Crea un nuovo progetto Flutter",
+        "step1_content": "Utilizza il seguente comando per creare un nuovo progetto Flutter:",
+        "step2_title": "Aggiungi dipendenze",
+        "step2_content": "Ora, aggiungi la dipendenza coui_flutter al progetto.",
+        "step3_title": "Importa il pacchetto",
+        "step3_content": "Ora puoi importare il pacchetto nel codice Dart.",
+        "step4_title": "Aggiungi il widget CouiApp",
+        "step4_content": "Aggiungi il widget CouiApp alla funzione main.",
+        "step5_title": "Esegui l'app",
+        "step5_content": "Utilizza il seguente comando per eseguire l'app:",
+        "experimental_intro": "La versione sperimentale è disponibile su GitHub.",
+        "experimental_usage": "Per utilizzare la versione sperimentale, usa git nel file pubspec.yaml invece del numero di versione:",
+        "see_page": "Vedi: ",
+        "this_page": "questa pagina",
+        "for_more_info": " per ulteriori informazioni.",
+        "warning_title": "Attenzione",
+        "warning_content": "La versione sperimentale potrebbe includere modifiche che rompono la compatibilità e non è raccomandata per l'uso in produzione. Questa versione dovrebbe essere utilizzata solo per test e sviluppo."
+      },
+      "theme": {
+        "title": "Tema",
+        "description": "Personalizzazione del tema",
+        "custom_color_scheme": "Schema di colore personalizzato",
+        "custom_color_scheme_desc": "Puoi personalizzare l'aspetto e la sensazione dell'app utilizzando uno schema di colori personalizzato.",
+        "premade_color_schemes": "Schema di colori predefiniti",
+        "premade_color_schemes_desc": "Puoi personalizzare l'aspetto e la sensazione dell'app utilizzando uno schema di colori predefiniti.",
+        "radius": "Raggio",
+        "radius_desc": "Puoi personalizzare quanto arrotondati appaiono gli elementi dell'app modificando il raggio.",
+        "scaling": "Scalabilità",
+        "scaling_desc": "Puoi personalizzare la scala dei componenti coui_flutter modificando la scalabilità.",
+        "scaling_alert": "Non ingrandisce/riduce l'intera app. Solo i componenti coui_flutter sono influenzati.",
+        "surface_opacity": "Opacità della superficie",
+        "surface_opacity_desc": "Puoi personalizzare l'opacità della superficie modificando il valore dell'opacità.",
+        "surface_blur": "Sfocatura della superficie",
+        "surface_blur_desc": "Puoi personalizzare la sfocatura della superficie modificando il valore della sfocatura.",
+        "code": "Codice",
+        "code_desc": "Utilizza il seguente codice per applicare lo schema di colori."
+      },
+      "typography": {
+        "title": "Tipografia",
+        "description": "Stile del testo",
+        "headline1": "Titolo 1",
+        "headline2": "Titolo 2",
+        "headline3": "Titolo 3",
+        "headline4": "Titolo 4",
+        "paragraph": "Paragrafo",
+        "blockquote": "Citazione",
+        "list": "Elenco",
+        "inline_code": "Codice inline",
+        "lead": "Lead",
+        "large_text": "Testo grande",
+        "small_text": "Testo piccolo",
+        "muted_text": "Testo smorzato",
+        "sans": "Sans",
+        "mono": "Mono",
+        "extra_small": "Molto piccolo",
+        "small": "Piccolo",
+        "base": "Base",
+        "large": "Grande",
+        "extra_large": "Molto grande",
+        "extra_2x_large": "Molto 2x grande",
+        "extra_3x_large": "Molto 3x grande",
+        "extra_4x_large": "Molto 4x grande",
+        "extra_5x_large": "Molto 5x grande",
+        "extra_6x_large": "Molto 6x grande",
+        "extra_7x_large": "Molto 7x grande",
+        "extra_8x_large": "Molto 8x grande",
+        "extra_9x_large": "Molto 9x grande",
+        "thin": "Sottile",
+        "extra_light": "Molto leggero",
+        "light": "Leggero",
+        "normal": "Normale",
+        "medium": "Medio",
+        "semi_bold": "Semi grassetto",
+        "bold": "Grassetto",
+        "extra_bold": "Molto grassetto",
+        "black": "Nero",
+        "italic": "Corsivo"
+      },
+      "layout": {
+        "title": "Layout",
+        "description": "Configurare il layout della pagina",
+        "padding": "Padding",
+        "margin": "Margine",
+        "center": "Centro",
+        "gapped_column": "Colonna con spaziatura",
+        "gapped_row": "Riga con spaziatura",
+        "separated_column": "Colonna separata",
+        "separated_row": "Riga separata",
+        "basic_layout": "Layout di base"
+      },
+      "web_preloader": {
+        "title": "Preloader web",
+        "description": "Schermata di caricamento web",
+        "step1_title": "Crea directory web",
+        "step1_content": "Se non hai una directory web, creala.",
+        "step1_note": "* Se stai utilizzando il legacy Flutter web, dovrai eseguire l'aggiornamento utilizzando il comando sopra.",
+        "step1_button": "Clicca qui per ulteriori informazioni.",
+        "step2_title": "Aggiungi script",
+        "step2_content": "Successivamente, scegli e copia uno dei seguenti preloader precompilati:",
+        "step2_standard": "Preloader standard",
+        "step3_title": "Incolla lo script",
+        "step3_content_1": "Apri il tuo ",
+        "step3_content_2": " file e incolla lo script all'interno del tag ",
+        "step3_content_3": ".",
+        "step3_example": "Ad esempio:",
+        "step4_title": "Esegui app",
+        "step4_content": "Usa il seguente comando per eseguire l'app:",
+        "alert_title": "Contribuire",
+        "alert_content_1": "Se hai un preloader che desideri condividere, crea una pull request nella directory ",
+        "alert_button": "web_loaders",
+        "alert_content_2": "."
+      },
+      "components_list": {
+        "title": "Componenti",
+        "description": "Elenco di componenti riutilizzabili",
+        "work_in_progress": "Lavori in corso",
+        "animation": "Animazione",
+        "disclosure": "Divulgazione",
+        "feedback": "Feedback",
+        "forms": "Moduli",
+        "layout": "Layout",
+        "navigation": "Navigazione",
+        "surfaces": "Superfici",
+        "data_display": "Visualizzazione dei dati",
+        "utilities": "Utilità"
+      },
+      "icons": {
+        "title": "Icone",
+        "description": "Sistema di icone",
+        "use_this_code": "Usa questo codice per visualizzare questa icona:",
+        "search_icons": "Cerca icone",
+        "radix_icons": "Icone Radix",
+        "bootstrap_icons": "Icone Bootstrap",
+        "lucide_icons": "Icone Lucide"
+      },
+      "colors": {
+        "title": "Colori",
+        "description": "Palette di colori",
+        "use_this_code": "Usa questo codice per visualizzare questo colore:",
+        "color_and_colorshades": "Costanti Color e ColorShades/ColorSwatch",
+        "predefined_colors": "Colori predefiniti",
+        "generate_color": "Genera colore",
+        "hue_shift": "Spostamento tonalità",
+        "saturation_step_up": "Aumento della saturazione",
+        "saturation_step_down": "Diminuzione della saturazione",
+        "lightness_step_up": "Aumento della luminosità",
+        "lightness_step_down": "Diminuzione della luminosità",
+        "cancel": "Annulla",
+        "reset_options": "Ripristina opzioni",
+        "reset_confirmation": "Vuoi davvero ripristinare le opzioni?"
+      },
+      "external": {
+        "title": "Material/Cupertino",
+        "description": "Widget predefiniti di Flutter"
+      },
+      "state": {
+        "title": "Gestione dello stato",
+        "description": "Modelli di gestione dello stato",
+        "intro_1": "In Flutter, tutto è un widget e anche dove vengono memorizzati i dati.",
+        "intro_2": "Internamente, coui_flutter ha il proprio sistema di gestione dello stato. Se stai già utilizzando un sistema di gestione dello stato, puoi continuare ad usare coui_flutter.",
+        "passing_data_to_children": "Passare dati ai figli",
+        "passing_data_desc": "Puoi passare dati ai figli utilizzando il widget Data. Ogni modifica dei dati farà ricostruire i figli.",
+        "rebuild_difference_title": "Hai notato la differenza nel numero di ricostruzioni?",
+        "rebuild_difference_content": "MostInnerWidget viene ricostruito quando i dati cambiano, mentre InnerWidget no. Questo perché InnerWidget non riceve dati.",
+        "setting_data_boundary": "Impostare il confine dei dati",
+        "setting_data_boundary_desc": "Puoi impostare un confine per impedire ai figli di accedere ai dati.",
+        "data_methods_vs": "Data.maybeOf/Data.of vs Data.maybeFind/Data.find",
+        "data_methods_desc_1": " e ",
+        "data_methods_desc_2": "ricevono dati e ricostruiscono il widget quando i dati cambiano, mentre ",
+        "data_methods_desc_3": "resta il valore dei dati senza riceverli.",
+        "data_find_usage": "è utile quando il metodo viene chiamato una sola volta, come onPressed, onLongPressed.",
+        "data_of_usage": "si usa meglio all'interno del metodo build dove il widget deve essere ricostruito quando i dati cambiano.",
+        "getting_data_from_child": "Ottenere dati dai figli",
+        "getting_data_desc_1": "Puoi usare il metodo per ottenere dati dai figli. Questo metodo non riceve modifiche nei dati.",
+        "getting_data_desc_2": "Ricevere dati dai figli può creare un ciclo di ricostruzione infinita. Se hai bisogno di ricevere dati, spostati nel widget padre.",
+        "root_data_title": "Hai notato i dati root?",
+        "root_data_content": "Utilizza i dati dei dati più interni a sinistra. I genitori possono ottenere dati solo dal primo figlio connesso.",
+        "setting_messenger_boundary": "Impostare il confine del DataMessenger",
+        "setting_messenger_boundary_desc": "Puoi impostare un confine per impedire di ottenere dati dai figli di un genitore specifico.",
+        "multidata_widget": "Widget MultiData",
+        "multidata_desc": "Utilizzando il widget MultiData, puoi passare più dati ai figli. Dai un'occhiata al seguente esempio:",
+        "multidata_avoid_nesting": "Utilizzando MultiData, puoi evitare la nidificazione.",
+        "example": "Esempio",
+        "passing_state_as_controller": "Passare lo stato come controllore",
+        "passing_state_controller_desc": "Puoi passare lo stato ai figli come controllore. In questo modo, i widget figli possono chiamare i metodi del widget padre.",
+        "databuilder": "DataBuilder",
+        "databuilder_desc": "Utilizzando il widget DataBuilder, puoi ricostruire il widget quando i dati cambiano, evitando così di ricostruire l'intero widget.",
+        "datanotifier": "DataNotifier",
+        "datanotifier_desc": "Utilizzando DataNotifier, puoi passare un valore ai figli da ValueListenable.",
+        "example_with_multidata": "Esempio utilizzando MultiData",
+        "passing_object_as_data": "Passare un oggetto come dati",
+        "passing_object_desc": "Ci sono alcune considerazioni da fare quando si passa un oggetto come dati:",
+        "override_equals_hashcode": "1. Sovrascrivere == e hashCode",
+        "override_equals_desc": "Le notifiche vengono inviate ai figli quando un oggetto precedente non è uguale a un nuovo oggetto. Se non sovrascrivi == e hashCode, gli oggetti saranno sempre considerati diversi quando vengono instanziati, anche se i valori dei campi sono uguali.",
+        "use_distinctdata": "2. Usare DistinctData",
+        "use_distinctdata_desc": "DistinctData è un mixin che può avvisare i figli quando un campo specifico cambia.",
+        "passing_mutable_object": "3. Passare oggetti mutabili ai figli",
+        "passing_mutable_object_desc": "È consigliabile passare oggetti immutabili ai figli. Gli oggetti mutabili (come List, Map, Set, Widget State) non notifica i figli quando l'oggetto cambia, poiché il riferimento dell'oggetto non cambia.",
+        "passing_variable_to_children": "Passare variabili ai figli",
+        "passing_variable_desc": "Puoi utilizzare il widget Model per passare variabili ai figli. È simile al widget Data ma con tipi rigorosi e etichettati.",
+        "change_variable_from_children": "Modificare variabili dai figli",
+        "change_variable_desc": "Ci sono due modi per cambiare il valore del modello dai figli:",
+        "modelnotifier": "ModelNotifier",
+        "modelnotifier_desc": "Utilizzando ModelNotifier, puoi passare valori ai figli da ValueNotifier senza dover utilizzare setState nel widget padre.",
+        "modellistenable": "ModelListenable",
+        "modellistenable_desc": "ModelListenable è un ModelNotifier in sola lettura. I figli possono solo ricevere il valore e non possono cambiarlo.",
+        "modelbuilder": "ModelBuilder",
+        "modelbuilder_desc": "ModelBuilder riceve valori e si ricostruisce quando questi cambiano. È simile a DataBuilder ma con tipi rigorosi e etichettati."
+      }
+    },
+    "components": {
+      "accordion": {
+        "display_name": "Accordione",
+        "description": "Un accordione è un elenco di elementi impilati verticalmente. È possibile 'espandere' o 'ridurre' ciascun elemento per visualizzare i contenuti associati.",
+        "examples": {
+          "basic": "Esempio di accordione"
+        }
+      },
+      "alert": {
+        "display_name": "Avviso",
+        "description": "Gli avvisi vengono utilizzati per comunicare stati che influenzano il sistema.",
+        "examples": {
+          "basic": "Esempio di avviso",
+          "destructive": "Esempio di avviso distruttivo"
+        },
+        "title": "Titolo dell'avviso",
+        "content": "Questo è il contenuto dell'avviso."
+      },
+      "alert_dialog": {
+        "display_name": "Dialogo di avviso",
+        "description": "Il dialogo di avviso mostra informazioni importanti che richiedono l'attenzione dell'utente.",
+        "examples": {
+          "basic": "Esempio di dialogo di avviso"
+        },
+        "click_here": "Clicca qui",
+        "alert_title": "Titolo dell'avviso",
+        "alert_content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      "animated_value_builder": {
+        "display_name": "Costruttore di valori animati",
+        "description": "Un costruttore che applica automaticamente animazioni quando i valori cambiano.",
+        "examples": {
+          "basic": "Esempio di costruttore di valori animati"
+        }
+      },
+      "app_bar": {
+        "display_name": "Barra dell'app",
+        "description": "La barra dell'app è un elemento di navigazione di base visualizzato nella parte superiore dell'app.",
+        "examples": {
+          "basic": "Esempio di barra dell'app"
+        }
+      },
+      "autocomplete": {
+        "display_name": "Autocompletamento",
+        "description": "Un campo di input che mostra suggerimenti in base all'input dell'utente.",
+        "examples": {
+          "basic": "Esempio di autocompletamento"
+        }
+      },
+      "avatar": {
+        "display_name": "Avatar",
+        "description": "Un'immagine o un'icona che rappresenta un utente o un'entità.",
+        "examples": {
+          "basic": "Esempio di avatar"
+        }
+      },
+      "avatar_group": {
+        "display_name": "Gruppo di avatar",
+        "description": "Visualizza più avatar insieme.",
+        "examples": {
+          "basic": "Esempio di gruppo di avatar"
+        }
+      },
+      "badge": {
+        "display_name": "Distintivo",
+        "description": "Un piccolo etichetta che mostra lo stato o il numero di notifiche.",
+        "examples": {
+          "basic": "Esempio di distintivo"
+        },
+        "primary": "Primario",
+        "secondary": "Secondario",
+        "outline": "Contorno",
+        "destructive": "Distruttivo"
+      },
+      "breadcrumb": {
+        "display_name": "Briciole di pane",
+        "description": "Le briciole di pane sono un sistema di navigazione secondario che mostra la posizione dell'utente in un sito web o un'applicazione web.",
+        "examples": {
+          "basic": "Esempio di briciole di pane"
+        },
+        "home": "Home",
+        "components": "Componenti"
+      },
+      "button": {
+        "display_name": "Pulsante",
+        "description": "I pulsanti consentono all'utente di eseguire un'azione o selezionare un'opzione con un singolo tocco.",
+        "examples": {
+          "primary": "Esempio di pulsante primario",
+          "secondary": "Esempio di pulsante secondario",
+          "outline": "Esempio di pulsante contornato",
+          "ghost": "Esempio di pulsante ghost",
+          "destructive": "Esempio di pulsante distruttivo",
+          "link": "Esempio di pulsante link",
+          "text": "Esempio di pulsante di testo",
+          "disabled": "Esempio di pulsante disabilitato",
+          "icon": "Esempio di pulsante icona",
+          "icon_with_label": "Esempio di pulsante icona con etichetta",
+          "size": "Esempio di dimensione del pulsante",
+          "density": "Esempio di densità del pulsante",
+          "shape": "Esempio di forma del pulsante",
+          "group": "Esempio di gruppo di pulsanti",
+          "stated": "Esempio di pulsante stato",
+          "card": "Esempio di pulsante carta",
+          "custom": "Esempio di pulsante personalizzato"
+        },
+        "primary": "Primario",
+        "secondary": "Secondario",
+        "outlined": "Contornato",
+        "ghost": "Ghost",
+        "destructive": "Distruttivo",
+        "link": "Link",
+        "outline": "Contorno",
+        "text": "Testo",
+        "extra_small": "Extra piccolo",
+        "small": "Piccolo",
+        "normal": "Normale",
+        "large": "Grande",
+        "extra_large": "Extra grande",
+        "save": "Salva",
+        "cancel": "Annulla",
+        "close": "Chiudi",
+        "submit": "Invia",
+        "edit_profile": "Modifica profilo",
+        "save_changes": "Salva modifiche",
+        "undo": "Annulla",
+        "compact": "Compatto",
+        "dense": "Denso",
+        "comfortable": "Confortevole",
+        "icon": "Icona",
+        "icon_comfortable": "Icona Confortevole",
+        "rectangle": "Rettangolo",
+        "add": "Aggiungi",
+        "focused": "Focalizzato",
+        "hovered": "Sopra",
+        "pressed": "Premuto",
+        "text_button": "Pulsante di testo",
+        "custom_button": "Pulsante personalizzato"
+      },
+      "calendar": {
+        "display_name": "Calendario",
+        "description": "Un componente calendario per selezionare e visualizzare le date.",
+        "examples": {
+          "basic": "Esempio di calendario"
+        }
+      },
+      "card": {
+        "display_name": "Scheda",
+        "description": "Descrizione",
+        "examples": {
+          "basic": "Esempio di scheda"
+        },
+        "create_project": "Crea progetto",
+        "deploy_description": "Distribuisci un nuovo progetto con un solo clic",
+        "name": "Nome",
+        "name_placeholder": "Nome del progetto",
+        "description_placeholder": "Descrizione del progetto",
+        "deploy": "Distribuisci"
+      },
+      "card_image": {
+        "display_name": "Scheda immagine",
+        "description": "Un componente scheda che include un'immagine.",
+        "examples": {
+          "basic": "Esempio di scheda immagine"
+        },
+        "card_image_title": "Immagine della scheda",
+        "card_clicked": "Hai cliccato sull'immagine della scheda",
+        "card_number": "Numero della scheda {n}",
+        "lorem_ipsum": "Lorem ipsum dolor sit amet"
+      },
+      "carousel": {
+        "display_name": "Carosello",
+        "description": "Un componente che mostra più elementi in slideshow.",
+        "examples": {
+          "basic": "Esempio di carosello"
+        }
+      },
+      "checkbox": {
+        "display_name": "Casella di controllo",
+        "description": "La casella di controllo consente all'utente di selezionare uno o più elementi da un elenco.",
+        "examples": {
+          "basic": "Esempio di casella di controllo"
+        },
+        "remember_me": "Ricordami"
+      },
+      "chip": {
+        "display_name": "Chip",
+        "description": "I chip sono piccoli elementi che rappresentano attributi, opzioni o azioni.",
+        "examples": {
+          "basic": "Esempio di chip"
+        },
+        "apple": "Mela",
+        "banana": "Banana",
+        "cherry": "Ciliegia",
+        "durian": "Durian",
+        "elderberry": "Sambuco"
+      },
+      "chip_input": {
+        "display_name": "Input chip",
+        "description": "Un campo di input che consente di inserire più valori in forma di chip.",
+        "examples": {
+          "basic": "Esempio di input chip"
+        }
+      },
+      "circular_progress": {
+        "display_name": "Progresso circolare",
+        "description": "Indicatore di avanzamento circolare.",
+        "examples": {
+          "basic": "Esempio di progresso circolare"
+        },
+        "increase_by_10": "Aumenta di 10",
+        "decrease_by_10": "Diminuisci di 10"
+      },
+      "code_snippet": {
+        "display_name": "Snippet di codice",
+        "description": "Un componente che visualizza un codice.",
+        "examples": {
+          "basic": "Esempio di snippet di codice"
+        }
+      },
+      "collapsible": {
+        "display_name": "Collapsabile",
+        "description": "Un contenitore di contenuti che può essere ripiegato o aperto.",
+        "examples": {
+          "basic": "Esempio di collapsabile"
+        },
+        "starred_repositories": "@coco-de ha messo stelle a 3 repository",
+        "collapse_all": "Ripiega tutto",
+        "expand_all": "Espandi tutto",
+        "expand_icon": "Espandi icona",
+        "use_path_branch": "Usa branch di percorso",
+        "recursive_selection": "Selezione ricorsiva"
+      },
+      "color_picker": {
+        "display_name": "Selettore di colore",
+        "description": "Un componente per scegliere colori.",
+        "examples": {
+          "basic": "Esempio di selettore di colore"
+        },
+        "pick_color": "Scegli colore",
+        "color_label": "Colore: {color}",
+        "select_color": "Seleziona colore",
+        "open_color_picker_popover": "Apri popover selettore di colore",
+        "open_color_picker_dialog": "Apri dialogo selettore di colore"
+      },
+      "command": {
+        "display_name": "Comando",
+        "description": "Il comando è un componente che consente di cercare elementi.",
+        "examples": {
+          "basic": "Esempio di comando"
+        }
+      },
+      "context_menu": {
+        "display_name": "Menu contestuale",
+        "description": "Un menu che viene visualizzato con un clic destro o a lungo.",
+        "examples": {
+          "basic": "Esempio di menu contestuale"
+        }
+      },
+      "date_picker": {
+        "display_name": "Selettore di data",
+        "description": "Un campo di input per selezionare una data.",
+        "examples": {
+          "basic": "Esempio di selettore di data"
+        },
+        "select_date": "Seleziona data",
+        "select_date_range": "Seleziona intervallo di date"
+      },
+      "dialog": {
+        "display_name": "Dialogo",
+        "description": "Il dialogo è una finestra modale che viene visualizzata sopra il resto dell'app.",
+        "examples": {
+          "basic": "Esempio di dialogo"
+        },
+        "edit_profile_title": "Modifica profilo",
+        "edit_profile_description": "Modifica qui il tuo profilo. Fai clic su Salva quando hai finito.",
+        "name_label": "Nome",
+        "username_label": "Nome utente",
+        "hello": "Ciao",
+        "material_dialog_content": "Dialogo di Material.",
+        "cupertino_dialog_content": "Dialogo di Cupertino.",
+        "alert_title": "Titolo dell'avviso",
+        "click_here": "Clicca qui",
+        "ok": "OK",
+        "open_material_dialog": "Apri dialogo di Material",
+        "open_cupertino_dialog": "Apri dialogo di Cupertino",
+        "open_coui_dialog": "Apri dialogo COUI"
+      },
+      "divider": {
+        "display_name": "Divisore",
+        "description": "Una linea che separa visivamente i contenuti.",
+        "examples": {
+          "basic": "Esempio di divisore"
+        },
+        "item_1": "Elemento 1",
+        "item_2": "Elemento 2",
+        "item_3": "Elemento 3",
+        "divider": "Divisore"
+      },
+      "dot_indicator": {
+        "display_name": "Indicatore a punto",
+        "description": "Un indicatore che mostra la posizione attuale con un punto.",
+        "examples": {
+          "basic": "Esempio di indicatore a punto"
+        }
+      },
+      "drawer": {
+        "display_name": "Cassetto",
+        "description": "Un pannello che scorre dal bordo dello schermo.",
+        "examples": {
+          "basic": "Esempio di cassetto"
+        },
+        "open_drawer": "Apri cassetto",
+        "close_drawer": "Chiudi cassetto",
+        "open_another_drawer": "Apri un altro cassetto",
+        "drawer_at": "Cassetto {count} at {position}"
+      },
+      "dropdown_menu": {
+        "display_name": "Menu a discesa",
+        "description": "Un menu che mostra un elenco di opzioni selezionabili.",
+        "examples": {
+          "basic": "Esempio di menu a discesa"
+        }
+      },
+      "expandable_sidebar": {
+        "display_name": "Sidebar espandibile",
+        "description": "Una barra laterale che può essere espansa e ridotta.",
+        "examples": {
+          "basic": "Esempio di sidebar espandibile"
+        }
+      },
+      "form": {
+        "display_name": "Modulo",
+        "description": "Un widget helper per creare facilmente la validazione del modulo.",
+        "examples": {
+          "table_layout": "Esempio di modulo (layout a tabella)",
+          "column_layout": "Esempio di modulo (layout a colonne)",
+          "validation_mode": "Esempio di modalità di validazione"
+        },
+        "username_label": "Nome utente",
+        "username_hint": "Nome pubblico",
+        "password_label": "Password",
+        "confirm_password_label": "Conferma password",
+        "passwords_do_not_match": "Le password non corrispondono",
+        "agree_terms": "Accetto i termini e le condizioni",
+        "must_agree_terms": "Devi accettare i termini e le condizioni",
+        "form_values_title": "Valori del modulo",
+        "register": "Registrati",
+        "username_already_taken": "Nome utente già preso",
+        "email": "Email",
+        "username_display": "Nome utente: {value}",
+        "password_display": "Password: {value}",
+        "confirm_password_display": "Conferma password: {value}",
+        "agree_display": "Accordo: {value}",
+        "json_display": "JSON: {value}",
+        "submitted_value_display": "Valore inviato: {value}",
+        "login": "Accedi",
+        "sign_up": "Registrati",
+        "dont_have_account": "Non hai un account?",
+        "already_have_account": "Hai già un account?"
+      },
+      "formatted_input": {
+        "display_name": "Input formattato",
+        "description": "Un campo di testo che accetta input in un formato specifico.",
+        "examples": {
+          "basic": "Esempio di input formattato"
+        }
+      },
+      "hover_card": {
+        "display_name": "Scheda hover",
+        "description": "Una scheda che appare quando si passa il mouse.",
+        "examples": {
+          "basic": "Esempio di scheda hover"
+        },
+        "flutter_handle": "@flutter",
+        "flutter_username": "Flutter",
+        "flutter_description": "Il Flutter SDK fornisce strumenti per costruire bellissime app per mobile, web e desktop da un'unica base di codice."
+      },
+      "input": {
+        "display_name": "Input",
+        "description": "Campo di input di testo.",
+        "examples": {
+          "basic": "Esempio di input"
+        },
+        "enter_name": "Inserisci il tuo nome",
+        "enter_username": "Inserisci il tuo nome utente",
+        "username_already_taken": "Nome utente già preso",
+        "hello_world": "Ciao Mondo!",
+        "search_something": "Cerca qualcosa...",
+        "email": "Email",
+        "password": "Inserisci la tua password",
+        "username_hint": "Questo è per il tuo nome utente"
+      },
+      "input_otp": {
+        "display_name": "Input OTP",
+        "description": "Campo per inserire una password monouso.",
+        "examples": {
+          "basic": "Esempio di input OTP"
+        }
+      },
+      "item_picker": {
+        "display_name": "Selettore di elementi",
+        "description": "Un componente per selezionare un elemento da un elenco.",
+        "examples": {
+          "basic": "Esempio di selettore di elementi"
+        }
+      },
+      "keyboard_display": {
+        "display_name": "Visualizzazione tastiera",
+        "description": "Un componente che visualizza le scorciatoie da tastiera.",
+        "examples": {
+          "basic": "Esempio di visualizzazione tastiera"
+        }
+      },
+      "linear_progress": {
+        "display_name": "Progresso lineare",
+        "description": "Indicatore di avanzamento lineare.",
+        "examples": {
+          "basic": "Esempio di progresso lineare"
+        },
+        "increase": "Aumenta",
+        "decrease": "Diminuisci"
+      },
+      "material": {
+        "display_name": "Material/Cupertino",
+        "description": "Come utilizzare i widget Material e Cupertino predefiniti di Flutter.",
+        "examples": {
+          "basic": "Esempio di Material/Cupertino"
+        },
+        "my_material_app": "La mia app Material",
+        "my_cupertino_app": "La mia app Cupertino",
+        "you_pushed_button": "Hai premuto il pulsante {count} volte",
+        "open_material_dialog": "Apri dialogo di Material",
+        "open_cupertino_dialog": "Apri dialogo di Cupertino",
+        "open_coui_dialog": "Apri dialogo COUI"
+      },
+      "menubar": {
+        "display_name": "Barra dei menu",
+        "description": "Una barra dei menu orizzontale.",
+        "examples": {
+          "basic": "Esempio di barra dei menu"
+        },
+        "file": "File",
+        "edit": "Modifica",
+        "new_tab": "Nuova scheda",
+        "new_window": "Nuova finestra",
+        "new_incognito_window": "Nuova finestra in incognito",
+        "email_link": "Link email",
+        "messages": "Messaggi",
+        "notes": "Note",
+        "share": "Condividi",
+        "print": "Stampa",
+        "save_and_exit": "Salva e esci",
+        "discard_and_exit": "Annulla e esci",
+        "exit": "Esci",
+        "undo": "Annulla",
+        "redo": "Ripeti"
+      },
+      "multiselect": {
+        "display_name": "Selezione multipla",
+        "description": "Un componente che consente di selezionare più elementi.",
+        "examples": {
+          "basic": "Esempio di selezione multipla"
+        }
+      },
+      "navigation_bar": {
+        "display_name": "Barra di navigazione",
+        "description": "Una barra di navigazione in basso.",
+        "examples": {
+          "basic": "Esempio di barra di navigazione"
+        }
+      },
+      "navigation_menu": {
+        "display_name": "Menu di navigazione",
+        "description": "Un componente di menu di navigazione.",
+        "examples": {
+          "basic": "Esempio di menu di navigazione"
+        }
+      },
+      "navigation_rail": {
+        "display_name": "Binario di navigazione",
+        "description": "Un binario di navigazione laterale.",
+        "examples": {
+          "basic": "Esempio di binario di navigazione"
+        }
+      },
+      "navigation_sidebar": {
+        "display_name": "Sidebar di navigazione",
+        "description": "Un componente di sidebar di navigazione.",
+        "examples": {
+          "basic": "Esempio di sidebar di navigazione"
+        }
+      },
+      "number_input": {
+        "display_name": "Input numerico",
+        "description": "Un campo per inserire numeri.",
+        "examples": {
+          "basic": "Esempio di input numerico"
+        },
+        "value": "Valore: {value}"
+      },
+      "number_ticker": {
+        "display_name": "Ticker numerico",
+        "description": "Mostra un'animazione quando il numero cambia.",
+        "examples": {
+          "basic": "Esempio di ticker numerico"
+        }
+      },
+      "overflow_marquee": {
+        "display_name": "Marquee overflow",
+        "description": "Scorre automaticamente quando il testo è troppo lungo.",
+        "examples": {
+          "basic": "Esempio di marquee overflow"
+        }
+      },
+      "pagination": {
+        "display_name": "Paginazione",
+        "description": "Un componente per navigare tra le pagine.",
+        "examples": {
+          "basic": "Esempio di paginazione"
+        }
+      },
+      "phone_input": {
+        "display_name": "Input telefono",
+        "description": "Un campo per inserire un numero di telefono.",
+        "examples": {
+          "basic": "Esempio di input telefono"
+        }
+      },
+      "popover": {
+        "display_name": "Popover",
+        "description": "Un popup che viene visualizzato sopra un elemento.",
+        "examples": {
+          "basic": "Esempio di popover"
+        },
+        "dimensions": "Dimensioni",
+        "set_dimensions": "Imposta le dimensioni del layer",
+        "width": "Larghezza",
+        "max_width": "Larghezza massima",
+        "height": "Altezza",
+        "max_height": "Altezza massima",
+        "open_popover": "Apri popover",
+        "submit": "Invia"
+      },
+      "progress": {
+        "display_name": "Progresso",
+        "description": "Mostra lo stato di avanzamento.",
+        "examples": {
+          "basic": "Esempio di progresso"
+        }
+      },
+      "radio_card": {
+        "display_name": "Carta radio",
+        "description": "Un pulsante radio a forma di scheda.",
+        "examples": {
+          "basic": "Esempio di carta radio"
+        }
+      },
+      "radio_group": {
+        "display_name": "Gruppo radio",
+        "description": "Un gruppo di pulsanti radio.",
+        "examples": {
+          "basic": "Esempio di gruppo radio"
+        },
+        "option_1": "Opzione 1",
+        "option_2": "Opzione 2",
+        "option_3": "Opzione 3",
+        "selected": "Selezionato"
+      },
+      "refresh_trigger": {
+        "display_name": "Trigger di aggiornamento",
+        "description": "Offre la possibilità di tirare per aggiornare.",
+        "examples": {
+          "basic": "Esempio di trigger di aggiornamento"
+        },
+        "pull_me": "Tira per favore",
+        "refresh": "Aggiorna"
+      },
+      "repeated_animation_builder": {
+        "display_name": "Costruttore di animazione ripetuta",
+        "description": "Un costruttore che ripete l'animazione.",
+        "examples": {
+          "basic": "Esempio di costruttore di animazione ripetuta"
+        }
+      },
+      "resizable": {
+        "display_name": "Ridimensionabile",
+        "description": "Un contenitore che può essere ridimensionato.",
+        "examples": {
+          "basic": "Esempio di ridimensionabile"
+        }
+      },
+      "scaffold": {
+        "display_name": "Scaffold",
+        "description": "Lo scaffold è il contenitore di livello superiore della pagina.",
+        "examples": {
+          "basic": "Esempio di scaffold"
+        }
+      },
+      "select": {
+        "display_name": "Seleziona",
+        "description": "Permette di scegliere un elemento da un elenco di opzioni.",
+        "examples": {
+          "basic": "Esempio di selezione"
+        },
+        "placeholder": "Seleziona un frutto",
+        "search_fruit": "Cerca frutto",
+        "no_fruit_found": "Nessun frutto trovato",
+        "apple": "Mela",
+        "banana": "Banana",
+        "cherry": "Ciliegia",
+        "lemon": "Limone",
+        "tomato": "Pomodoro",
+        "red_apple": "Mela rossa",
+        "green_apple": "Mela verde",
+        "yellow_banana": "Banana gialla",
+        "brown_banana": "Banana marrone",
+        "yellow_lemon": "Limone giallo",
+        "green_lemon": "Limone verde",
+        "red": "Rosso",
+        "green": "Verde",
+        "yellow": "Giallo",
+        "brown": "Marrone"
+      },
+      "sheet": {
+        "display_name": "Foglietto",
+        "description": "Un foglietto che emerge dal basso.",
+        "examples": {
+          "basic": "Esempio di foglietto"
+        }
+      },
+      "skeleton": {
+        "display_name": "Scheletro",
+        "description": "Uno schermo scheletro visualizzato durante il caricamento.",
+        "examples": {
+          "basic": "Esempio di scheletro"
+        }
+      },
+      "slider": {
+        "display_name": "Slider",
+        "description": "Permette di scegliere un valore scorrendo.",
+        "examples": {
+          "basic": "Esempio di slider"
+        },
+        "value_single": "Valore: {value}",
+        "value_range": "Valore: {start} - {end}"
+      },
+      "sortable": {
+        "display_name": "Ordinabile",
+        "description": "Permette di ordinare gli elementi trascinandoli.",
+        "examples": {
+          "basic": "Esempio di ordinabile"
+        }
+      },
+      "star_rating": {
+        "display_name": "Valutazione a stelle",
+        "description": "Permette di selezionare una valutazione a stelle.",
+        "examples": {
+          "basic": "Esempio di valutazione a stelle"
+        }
+      },
+      "stepper": {
+        "display_name": "Stepper",
+        "description": "Mostra un processo passo-passo.",
+        "examples": {
+          "basic": "Esempio di stepper"
+        },
+        "step_1": "Passo 1",
+        "step_2": "Passo 2",
+        "step_3": "Passo 3",
+        "step_n": "Passo {n}",
+        "optional_step": "Passo opzionale",
+        "horizontal": "Orizzontale",
+        "vertical": "Verticale",
+        "toggle_error": "Interruttore di errore",
+        "circle": "Circolare",
+        "circle_alt": "Circolare alternativo",
+        "line": "Lineare",
+        "small": "Piccolo",
+        "medium": "Medio",
+        "large": "Grande"
+      },
+      "steps": {
+        "display_name": "Passi",
+        "description": "Mostra i progressi come passi.",
+        "examples": {
+          "basic": "Esempio di passi"
+        }
+      },
+      "swiper": {
+        "display_name": "Swiper",
+        "description": "Un componente che può essere scorrere.",
+        "examples": {
+          "basic": "Esempio di swiper"
+        }
+      },
+      "switch": {
+        "display_name": "Interruttore",
+        "description": "Un interruttore che può essere acceso/spento.",
+        "examples": {
+          "basic": "Esempio di interruttore"
+        }
+      },
+      "switcher": {
+        "display_name": "Switcher",
+        "description": "Permette di passare tra diverse visualizzazioni.",
+        "examples": {
+          "basic": "Esempio di switcher"
+        },
+        "switch_direction": "Cambia direzione",
+        "next_item": "Prossimo elemento"
+      },
+      "tab_list": {
+        "display_name": "Elenco di schede",
+        "description": "Un componente elenco di schede.",
+        "examples": {
+          "basic": "Esempio di elenco di schede"
+        }
+      },
+      "tab_pane": {
+        "display_name": "Pannello di schede",
+        "description": "Un componente pannello di schede.",
+        "examples": {
+          "basic": "Esempio di pannello di schede"
+        }
+      },
+      "table": {
+        "display_name": "Tabella",
+        "description": "Mostra i dati in formato tabellare.",
+        "examples": {
+          "basic": "Esempio di tabella"
+        },
+        "invoice": "Fattura",
+        "status": "Stato",
+        "method": "Metodo",
+        "amount": "Importo",
+        "total": "Totale",
+        "paid": "Pagato",
+        "pending": "In attesa",
+        "unpaid": "Non pagato",
+        "credit_card": "Carta di credito",
+        "paypal": "PayPal",
+        "bank_transfer": "Bonifico bancario"
+      },
+      "tabs": {
+        "display_name": "Schede",
+        "description": "Usa le schede per organizzare i contenuti.",
+        "examples": {
+          "basic": "Esempio di schede"
+        },
+        "tab_1": "Scheda 1",
+        "tab_2": "Scheda 2",
+        "tab_3": "Scheda 3",
+        "tab_n": "Scheda {n}"
+      },
+      "text_area": {
+        "display_name": "Area di testo",
+        "description": "Permette di inserire più righe di testo.",
+        "examples": {
+          "basic": "Esempio di area di testo"
+        },
+        "hello_world": "Ciao, Mondo!"
+      },
+      "time_picker": {
+        "display_name": "Selettore di ora",
+        "description": "Permette di selezionare un'ora.",
+        "examples": {
+          "basic": "Esempio di selettore di ora"
+        },
+        "select_time": "Seleziona ora"
+      },
+      "timeline": {
+        "display_name": "Timeline",
+        "description": "Mostra eventi in una cronologia.",
+        "examples": {
+          "basic": "Esempio di timeline"
+        }
+      },
+      "timeline_animation": {
+        "display_name": "Animazione di timeline",
+        "description": "Animazione basata su timeline.",
+        "examples": {
+          "basic": "Esempio di animazione di timeline"
+        }
+      },
+      "toast": {
+        "display_name": "Toast",
+        "description": "Un'avviso che mostra un messaggio breve.",
+        "examples": {
+          "basic": "Esempio di toast"
+        },
+        "event_created": "Evento creato",
+        "event_date": "Domenica 7 luglio 2024 ore 12:00",
+        "show_bottom_left": "Mostra toast in basso a sinistra",
+        "show_bottom_right": "Mostra toast in basso a destra",
+        "show_top_left": "Mostra toast in alto a sinistra",
+        "show_top_right": "Mostra toast in alto a destra",
+        "show_bottom_center": "Mostra toast al centro in basso",
+        "show_top_center": "Mostra toast al centro in alto"
+      },
+      "toggle": {
+        "display_name": "Toggle",
+        "description": "Permette di passare tra le opzioni.",
+        "examples": {
+          "basic": "Esempio di toggle"
+        },
+        "toggle": "Attiva/disattiva"
+      },
+      "tooltip": {
+        "display_name": "Tooltip",
+        "description": "Mostra informazioni aggiuntive su un elemento.",
+        "examples": {
+          "basic": "Esempio di tooltip"
+        },
+        "this_is_tooltip": "Questo è un tooltip.",
+        "hover_over_me": "Passa il mouse su di me"
+      },
+      "tracker": {
+        "display_name": "Tracker",
+        "description": "Tiene traccia dei progressi.",
+        "examples": {
+          "basic": "Esempio di tracker"
+        },
+        "fine": "Buono",
+        "warning": "Attenzione",
+        "critical": "Critico",
+        "unknown": "Sconosciuto",
+        "tracker_fine": "Tracker buono",
+        "tracker_warning": "Tracker attenzione",
+        "tracker_critical": "Tracker critico",
+        "tracker_unknown": "Tracker sconosciuto"
+      },
+      "tree": {
+        "display_name": "Albero",
+        "description": "Visualizza dati gerarchici in forma ad albero.",
+        "examples": {
+          "basic": "Esempio di albero"
+        }
+      },
+      "window": {
+        "display_name": "Finestra",
+        "description": "Una finestra in stile desktop.",
+        "examples": {
+          "basic": "Esempio di finestra"
+        },
+        "window_1": "Finestra 1",
+        "window_2": "Finestra 2",
+        "desktop": "Desktop",
+        "add_window": "Aggiungi finestra"
+      }
+    }
+  }
+}

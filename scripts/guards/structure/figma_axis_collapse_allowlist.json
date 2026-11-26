@@ -1,0 +1,48 @@
+{
+  "_why": [
+    "A-1 은 '표에 행이 여럿인데 키 하나를 글자로 박은 자리' 를 위반으로 본다. 그 판정에는 예외가 하나 있고,",
+    "그것은 자기 표가 아니라 **합성하는 자식의 표**를 읽는 자리다.",
+    "",
+    "위젯 코드가 `Button(size: .sm)` 이라고 말하면 그 행을 읽는 것은 축을 접는 것이 아니라 그 진술을",
+    "옮기는 일이다. 부모가 자식의 여섯 크기를 다 순회하면 오히려 코드가 하지 않는 말을 하게 된다.",
+    "",
+    "그래서 여기 적히는 항목은 전부 같은 모양이어야 한다 — 부모가 자식을 합성하고, 위젯 소스가 그 행을",
+    "이름으로 지정한다. why 에는 그 위젯 표현을 적는다. 자기 표의 행을 읽는 자리는 여기 올 수 없고,",
+    "축으로 순회하는 것만이 답이다.",
+    "",
+    "키는 `<파일>:<slug>.<table>` 이고 줄 번호를 넣지 않는다. 처음엔 넣었는데 같은 파일의 무관한 편집이",
+    "줄을 밀자 항목들이 한꺼번에 매칭을 잃었다 — allowlist 가 편집으로 조용히 무효가 되면 그 게이트는",
+    "편집마다 거짓 red 를 내고, 거짓 red 는 읽히지 않는다.",
+    "",
+    "baseline 은 없다. 이 파일에 줄이 늘어나는 것은 숫자가 아니라 리뷰에 보이는 변경이다."
+  ],
+  "sites": {
+    "tools/figma-token-sync/src/components/display-media.ts:button.defaultsBySize": {
+      "why": "Button 의 sm 행 leadingIconStyle. Carousel 의 이전/다음이 `Button(size: .sm, child: const Icon(chevronLeft))` 이고, 그 `Icon` 은 자기 스타일을 들지 않아 버튼의 ambient leadingIconTheme — 즉 이 행 — 을 받는다. Carousel 자신은 그 크기를 진술하지 않는다(`prevNextButtonStyle` 에 `leadingIconStyle` 이 없다). 부모가 여섯 크기를 순회하면 코드가 지정하지 않은 다섯 개를 그린다."
+    },
+    "tools/figma-token-sync/src/components/form-controls.ts:button.defaultsByVariant": {
+      "why": "Button 의 primary 행. Fab 의 트리거가 `Button(variant: .primary)` 라서 그 행의 색이 트리거 색이다. Fab 자신의 축은 따로 있고(이 함수는 ComponentSet 을 만든다), 접힌 것은 없다."
+    },
+    "tools/figma-token-sync/src/components/form-controls.ts:text_area.defaultsBySize": {
+      "why": "TextArea 의 md 행. RichEditor 의 상자가 `resolveTextArea(size: CoreComponentSize.md, …)`(Flutter `rich_editor.dart` · Web `rich_editor_style.dart`)로 푼 TextArea 의 상자이고, 모서리·안쪽 여백·글자 역할이 이 행이다. RichEditor 에는 크기 축이 없고 코드가 md 한 행만 말한다 — 툴바가 테두리 안에 들어가야 해 인스턴스 대신 프레임으로 그릴 뿐이다."
+    },
+    "tools/figma-token-sync/src/components/form-controls.ts:text_area.defaultsByVariant": {
+      "why": "TextArea 의 default 행. RichEditor 가 `resolveTextArea(hasError: false, …)` 로 상자를 풀므로 쓰는 것은 오류 없는 행 하나이고(RichEditor 에 오류 상태가 없다), enabled/disabled 는 그 행의 두 칸으로 세트의 `State` 축이 그린다."
+    },
+    "tools/figma-token-sync/src/components/form-pickers.ts:button.defaultsBySize": {
+      "why": "Button 의 sm 행. 팝오버 안 액션(스포이드·Cancel·Save)이 `Button(size: .sm)` 이고 kPopoverButtonSize 가 같은 'sm' 을 인스턴스 이름에도 쓴다 — 한 자리에서 읽은 행과 합성한 variant 가 같은 문자열이다. 부모가 여섯 크기를 순회하면 코드가 지정하지 않은 다섯 개를 그린다."
+    },
+    "tools/figma-token-sync/src/components/form-pickers.ts:text_field.defaultsBySize": {
+      "why": "TextField 의 md 행. DatePicker 의 `placeholderWidget` 이 트리거 필드의 placeholder 자리에 놓이고, 그 글자 역할(`baseTextStyle`)과 왼쪽 안쪽 여백(`padding.l`)이 이 행이다 — 트리거가 `TextField`(size: md)이므로 코드는 그 한 행만 말한다. 부모가 여섯 크기를 순회하면 코드가 지정하지 않은 다섯 개를 그린다."
+    },
+    "tools/figma-token-sync/src/components/overlay.ts:button.defaultsByVariant": {
+      "why": "Button 의 plain 행 foregroundColor. 메뉴 항목이 `Button(variant: .plain)` 으로 합성되므로 그 행이 항목 글자색의 출처다. 또한 Button 의 menu 행 foregroundColor. 같은 파일의 메뉴바 트리거가 `Button(variant: .menu)` 다 — 두 줄이 나란히 있는 것은 두 자리가 서로 다른 자식 variant 를 합성한다는 뜻이다."
+    },
+    "tools/figma-token-sync/src/components/overlay.ts:menu_item.defaultsBySize": {
+      "why": "MenuItem 의 md 행. Menu 의 제목 줄은 행이 아니라 라벨이지만 그 아래 행들과 같은 열에 앉으므로 행 사다리의 인셋과 좌석 간격을 그대로 쓴다 — `menu.dart` 의 label entry 가 `itemStyle.padding ?? defaultsBySize[size].padding` 을 읽는 그 자리이고, size 는 Menu 가 한 값을 전 행에 넘기므로 기본값 md 다. 부모가 세 행을 순회하면 코드가 지정하지 않은 두 개를 그린다."
+    },
+    "tools/figma-token-sync/src/components/form-pickers.ts:text_field.defaultsByVariant": {
+      "why": "#6069 — the picker builder reads only the default row of TextField's four variants. Whether it should draw each variant or read the composed field's own row is that issue's decision; listed so the gate runs to completion."
+    }
+  }
+}

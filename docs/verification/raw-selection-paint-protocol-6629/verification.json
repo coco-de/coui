@@ -1,0 +1,293 @@
+{
+  "issue": 6629,
+  "links": "Part of #6629/#6131; publication and parent closure handled separately",
+  "sourceCodeCommit": "1df7d382d396ffe84aa6733bd624df7d78d2ab28",
+  "base": "94d2fe93158a25f294aeec102891a88f0a33926d",
+  "mainAncestor": "8d08756e8e4fd18788a9f7a429450c801d2d1e8d",
+  "sourceAndTests9": {
+    "packages/coui_web/lib/src/base/theme_config.dart": "3dc547ef02bb554f84275e1d6820f4ca5d204cbf904f7057d91f58991c0be43e",
+    "packages/coui_web/lib/src/components/form/text_area/text_area_style.dart": "8bf57c8a885e1bab3c1195c59f1e0297004eaf2b96fd48370edf1a5cd6437dd4",
+    "packages/coui_web/lib/src/components/text/selectable/selectable_style.dart": "9fc1a5621053236c235fb8234dac7106472c183f7c953308df16a7a384a6481e",
+    "packages/coui_web/lib/src/internal/selection_paint.dart": "fa8681c4c7976a6a6564e48671a47bb64ce532563f0371bf7ea234616481b92e",
+    "packages/coui_web/lib/src/internal/text_area_boundary_paint.dart": "8ab37eaad0dd8106dffeda0d72ba3183ccdc8fac04c31f47d544c4aa3b9b8a02",
+    "packages/coui_web/test/components/form/text_area_footer_test.dart": "fec84dd510487baed641d0882f4558e969e155b136ec91b34602286f4512ff45",
+    "tool/parity/test/web/raw_selection_emission_test.dart": "4de489af4ba249da1a454ef8b6838c713d2eda6b8fbc1f1bc11cd968c617b1c6",
+    "tool/parity/test/web/raw_style_color_test.dart": "ddb03e14a80efbb3a71dcd42a9c541d09f4442d5200ae0ef2c4a0b0a3d7d5cc5",
+    "tool/parity/test/web/textarea_focus_paint_protocol_test.dart": "456164ecaec8b710d50883d76799f3e1a75ad9670797deb0a83e5f542d6a693f"
+  },
+  "change": {
+    "productionFiles": 5,
+    "testFiles": 4,
+    "selectable": "Named root-only selection variant + real static utility reading existing inline variable in standard Tailwind utility sheet",
+    "textArea": "Existing frame variable consumed by one normal rule with unchanged first-text-row focus selector",
+    "ownPublicAPIOrCoreOrDefaultsOrDependenciesOrCriteriaChange": false,
+    "blanketBehaviorUnchangedClaim": false,
+    "intentionalCollisionChange": "Caller [&::selection]:bg-[#070809] now wins (7,8,9), formerly raw component color (18,85,170) won a private lexical utility tie"
+  },
+  "finalChecks": {
+    "source": "1df7d382d396ffe84aa6733bd624df7d78d2ab28",
+    "uniqueTestFiles": 13,
+    "cases": 184,
+    "pass": 184,
+    "nonPass": 0,
+    "actualExit": 0,
+    "fatalExit": 0,
+    "formatExit": 0,
+    "sourceAndMetadataExact": true,
+    "source9StillExactToFeature362": true
+  },
+  "actualBrowser": {
+    "source": "1df7d382d396ffe84aa6733bd624df7d78d2ab28",
+    "freshCases": 32,
+    "actualRecordsSameExceptURLTo362": true,
+    "selectedVsOriginal": "14same/1documentedhex-collision-normalized",
+    "textAreaVsOriginal": "17observed-equal",
+    "actualCurrentPNGsSameTo362": 9,
+    "actualOldRecordRetained": "final362-public32.json",
+    "scope": "Fresh publicSSR CSSOM/selection/keyboard, not hydration/full callback proof",
+    "managedBrowser": "Ego27 Chrome156; software raster unconfirmed"
+  },
+  "canonicalWebOnly": {
+    "freshOriginal": 4,
+    "freshCurrent": 4,
+    "beforeAfterPNGByteExact": 4,
+    "beforeAfterFailed": 0,
+    "gitOwnBaselinePassed": 0,
+    "gitOwnBaselineFailed": 8,
+    "actualCompareExit": 1,
+    "infra": 0,
+    "channelThreshold": 32,
+    "regressionThreshold": 0.001,
+    "allowlistWaiversApplied": 0,
+    "differencesIdenticalBeforeAfter": true,
+    "baselineDiffPixels": {
+      "textAreaLight": 540,
+      "textAreaDark": 523,
+      "selectableLight": 917,
+      "selectableDark": 921
+    },
+    "nativeOrFullVRTClaim": false,
+    "profileCauseClaim": false,
+    "actualSource": "1df7d382d396ffe84aa6733bd624df7d78d2ab28",
+    "sameCountsAs362": true
+  },
+  "finalBuild": {
+    "source": "1df7d382d396ffe84aa6733bd624df7d78d2ab28",
+    "actualCLIExit": 0,
+    "childCLISeconds": 108.9524155,
+    "observerExit": 0,
+    "routeProgress": [
+      361,
+      361
+    ],
+    "generatedFileHashRows": 5044,
+    "HTMLFiles": 365,
+    "JasprHTMLFiles": 363,
+    "representativeHTMLRetained": 3,
+    "wholeBuildOrCacheRetained": false,
+    "trackedSourceInvariant": 25192,
+    "sourceWT232GraphLockRawExact": true,
+    "job232FieldsRootsVersionsPubspecEdgesLockExact": true,
+    "usedPackageTreesExact": 256,
+    "hostedDomainAndRegistryExact": true,
+    "workerDirectPubCommands": 0,
+    "totalPub0Claim": false
+  },
+  "preservedHistory": {
+    "originalFormAssertions": "94d Selectable1P6F, TextArea7P7F; functional paint not declared wrong",
+    "globalSheetCandidate": "SSR-form passed but actual two regressions; rejected",
+    "utilityOnlyPrototype": "13same/1arbitrary-primary collision changed; rejected",
+    "namedVariantPrototype": "14same/1hex collision normalization; approved after actual and source contract review",
+    "firstViewportPostcheck": "FAIL retained; paired repeat used same-invocation metrics",
+    "SSRHotReload": "reloadSources true/class update, initialized static CSS retained => overall observer FAIL; separate cold start not hot restart",
+    "initialSetupAndCacheMirrorFailures": "Retained, package copy/download cause unknown; not relabelled success",
+    "priorDocs3da": "Exact preimages preserved, old sealed indexes unchanged",
+    "rollingLog": "Only frozen prefix/per-job snapshot refs; old TA index resolved by explicit immutable-prefix addendum"
+  },
+  "remainingLimits": [
+    "Hydration and client Dart callbacks not exercised by these public SSR observations",
+    "No guarantee of every caller utility collision or all browser/styles",
+    "No Native fillers, new baseline promotion, full matrix or profile-cause claim"
+  ],
+  "refs": [
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/production-c2/source-freeze.json",
+      "sha256": "d1957ca6445aa454fb63d68d508d505be8d9b443a554724f923265cdc77739ac"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-textarea-paint-protocol-6629-20261124.p5iogmxe/evidence/candidate-index-reclaim-provenance-addendum.json",
+      "sha256": "4d7d5b7f07315bb635bc9eed1c1c261d73ef29d451da34fb99ed67d085b09104"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-textarea-paint-protocol-6629-20261124.p5iogmxe/evidence/reclaim-through-textarea-candidate.log",
+      "sha256": "03d45966100663b19e091e4026e88c5b337d93fac39c07739042e48cf9e460b2"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-menubar-label-priority-6637-20261124.c4wdwrzf/Review/web6629-public-classes-tie-contract-peer.json",
+      "sha256": "eeca50e42ef0a9de215a9f77226e72aa26a56db6ceaad0b0d5b10f3b00b8c3cb"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/main8d-integration/proof.json",
+      "sha256": "194a9601eb024a4b09be2aaed4438171aaaab6f7eae742b82114c4ffeaaea393"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/main8d-integration/old-feaa-README.md",
+      "sha256": "c2b2163bc86f9d0b6316fce7354812229767687cc3c3c7042223c13e4e625fd4"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/main8d-integration/old-feaa-verification.json",
+      "sha256": "e962984fb544ef98444dd56c823802f71af61aef2cc97b51f618cc40c670ce88"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/main8d-integration/reclaim-through-window-integrated.log",
+      "sha256": "8037cfd3f587dbfad08decc8a575ae58044b315fa1fc26d2747a35e456024c45"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/window-main-integrated-tests/summary.json",
+      "sha256": "ca867d0a26ef0b17e34efb79bfe8e38335e155362643900a8b0f7f9695bb7d9a"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/window-main-integrated-tests/union13-exit.json",
+      "sha256": "da41d47fe685c5a0ac012988f5134d9eacb941f7b1216692bd825a3ad4ff9add"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/window-main-integrated-tests/fatal-exit.json",
+      "sha256": "99a349a322a3da6fa97ed8345d17824412a9438bb06ad9abad54be5e31a61813"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/window-main-integrated-tests/format-exit.json",
+      "sha256": "2e73cbd8923f108540924768c88ca54954f99cd86cd9fac735c1a8fc3ec4b335"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/window-main-integrated-tests/source-before.json",
+      "sha256": "845a60849554b39826a163ba778d781dbc14d9913a0fc175c239fceb606f176f"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/window-main-integrated-tests/source-after.json",
+      "sha256": "8826b8a9379ad8c9d875a9c20352da464f249a16c77a23096ba4da9c47c8e248"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/docs-window-integrated/exit.json",
+      "sha256": "54e42dfee3c0cee8a167549536e74eee1a0a8da616ebe6cf6c95cd856c8aacc3"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/docs-window-integrated/metadata-proof.json",
+      "sha256": "374bae32741b9992359ec13fc52f62378b02f85a1d21173d764d4eece6db4eae"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/docs-window-integrated/output-index.json",
+      "sha256": "bcf495382357f5b7db9e756c40279fd79aeb515b28a981ba65ea778f454a7d7a"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/docs-window-integrated/CLI81/identities.json",
+      "sha256": "b41491a409b1cd443a2e55ca8d48fb53688bc443a8597994f7d4c65ca65e756b"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/Root/browser-actual-27/final1df-public32.json",
+      "sha256": "208e3231da60a7f0ceb07d2a9250b112fffbc897216ded0f7c87f92793eedcd2"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/Root/browser-actual-27/final1df-public32-verdict.json",
+      "sha256": "634cb77884c22d72a6c3e77dcc58066941d4da547c85d58b8dc1007de356f83b"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/Root/browser-actual-27/canonical8-main8d/execution-proof.json",
+      "sha256": "ea058192c11917fcbcb38a3d20041dbbf7da9208e98fc5556401edb4dfa0d7fb"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-raw-pseudo-6629-fsps2e87/evidence/Root/image-reuse-main8d-proof.json",
+      "sha256": "6b19b75410be104a7d9a3f2c446de0ba6ad0deb26d82c8ec5e1d759e7aa140a6"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-textarea-paint-protocol-6629-20261124.p5iogmxe/evidence/integrated-1df-public32-oidjic1b/browser-inputs32.json",
+      "sha256": "e52c7742654f80b5635c81490cdd6c414bb8bc204a511f5ddef2ea952d3c89a3"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-textarea-paint-protocol-6629-20261124.p5iogmxe/evidence/integrated-1df-public32-oidjic1b/proof.json",
+      "sha256": "409056d67a4e6bc418da2b8eaddfbf1984d024b87d80425d29025c829d3b6498"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-textarea-paint-protocol-6629-20261124.p5iogmxe/evidence/integrated-1df-public32-oidjic1b/canonical-default-prep/web-only-report.json",
+      "sha256": "d7c41d19ddc293d2571a8e0538f5c21a39f47c9dd0bf51538aae13b1cdab144f"
+    }
+  ],
+  "prior362Execution": {
+    "sourceCodeCommit": "362de44210da6d4ba71ca0cb7dfc57c788b29286",
+    "checks": {
+      "source": "362de44210da6d4ba71ca0cb7dfc57c788b29286",
+      "uniqueTestFiles": 11,
+      "cases": 156,
+      "pass": 156,
+      "nonPass": 0,
+      "actualExit": 0,
+      "fatalExit": 0,
+      "formatExit": 0,
+      "sourceAndMetadataExact": true
+    },
+    "browser": {
+      "source": "362de44210da6d4ba71ca0cb7dfc57c788b29286",
+      "cases": 32,
+      "selected15": {
+        "sameObserved": 14,
+        "different": 1,
+        "documentedDifference": "Only caller arbitrary hex utility lexical collision changes raw18,85,170→explicit caller7,8,9. Public class passthrough and documented override channels preserved; no blanket unchanged-behavior claim."
+      },
+      "textArea17": {
+        "allObservedEqual": true
+      },
+      "viewportPolicy": "Each final case pinned to its original recorded viewport with same-invocation page-scoped CDP; no document paint/DOM substitutions.",
+      "comparisonScope": "Only protocol class spelling omitted from scalar observation comparison; all raw JSON intact. Browser observations are actual public SSR source362, not relabelled prototypes. No hydrated/full-matrix claim.",
+      "customPNGPairsByteExact": 8,
+      "scope": "Actual public SSR CSSOM/selection/keyboard focus, not hydration or full client callback proof",
+      "managedBrowser": "Ego27 Chrome156; software raster unconfirmed"
+    },
+    "canonical": {
+      "freshOriginal": 4,
+      "freshCurrent": 4,
+      "beforeAfterPNGByteExact": 4,
+      "beforeAfterFailed": 0,
+      "gitOwnBaselinePassed": 0,
+      "gitOwnBaselineFailed": 8,
+      "actualCompareExit": 1,
+      "infra": 0,
+      "channelThreshold": 32,
+      "regressionThreshold": 0.001,
+      "allowlistWaiversApplied": 0,
+      "differencesIdenticalBeforeAfter": true,
+      "baselineDiffPixels": {
+        "textAreaLight": 540,
+        "textAreaDark": 523,
+        "selectableLight": 917,
+        "selectableDark": 921
+      },
+      "nativeOrFullVRTClaim": false,
+      "profileCauseClaim": false,
+      "actualSource": "1df7d382d396ffe84aa6733bd624df7d78d2ab28",
+      "sameCountsAs362": true
+    },
+    "build": {
+      "source": "1df7d382d396ffe84aa6733bd624df7d78d2ab28",
+      "actualCLIExit": 0,
+      "childCLISeconds": 108.9524155,
+      "observerExit": 0,
+      "routeProgress": [
+        361,
+        361
+      ],
+      "generatedFileHashRows": 5044,
+      "HTMLFiles": 365,
+      "JasprHTMLFiles": 363,
+      "representativeHTMLRetained": 3,
+      "wholeBuildOrCacheRetained": false,
+      "trackedSourceInvariant": 25192,
+      "sourceWT232GraphLockRawExact": true,
+      "job232FieldsRootsVersionsPubspecEdgesLockExact": true,
+      "usedPackageTreesExact": 256,
+      "hostedDomainAndRegistryExact": true,
+      "workerDirectPubCommands": 0,
+      "totalPub0Claim": false
+    }
+  },
+  "featureCodeCommit": "362de44210da6d4ba71ca0cb7dfc57c788b29286",
+  "historicalRefsResolution": "Immutable old-feaa-verification.json retains the complete prior35 references, original failures and362 runtime; current refs focus on fresh1df and required provenance addenda."
+}

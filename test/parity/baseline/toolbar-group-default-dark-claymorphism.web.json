@@ -1,0 +1,69 @@
+{
+  "key": "toolbar-group-default-dark-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "배율: 100%\n              \n                \n                  \n                    \n                      #co-button-ssr-ba:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-ssr-ba:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n                    \n                    축소\n                  \n                \n                \n                  \n                    \n                      #co-button-ssr-bb:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-ssr-bb:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n                    \n                    확대",
+    "layout": {
+      "width": 111.84375,
+      "height": 65,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 23.390625,
+          "y": 0,
+          "width": 65.046875,
+          "height": 21
+        },
+        {
+          "x": 0,
+          "y": 21,
+          "width": 111.84375,
+          "height": 44
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgba(42, 43, 44, 0.6)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "9999px",
+      "borderTopRightRadius": "9999px",
+      "borderBottomRightRadius": "9999px",
+      "borderBottomLeftRadius": "9999px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "color(srgb 0 0 0 / 0.2) 0px 2px 6.4px -1px, color(srgb 0 0 0 / 0.12) 0px 1px 3.2px 0px, color(srgb 0.705882 0.709804 0.713726 / 0.55) 0px 2px 6px 0px inset",
+      "opacity": "1",
+      "widthPx": 111.84375,
+      "heightPx": 65
+    }
+  }
+}

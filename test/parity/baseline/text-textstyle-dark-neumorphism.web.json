@@ -1,0 +1,81 @@
+{
+  "key": "text-textstyle-dark-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "bodyLarge + semiBold\n              bodyMedium + primary\n              bodySmall + error + underline\n              s14 + semiBold + primary",
+    "layout": {
+      "width": 200.453125,
+      "height": 141,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 16,
+          "y": 16,
+          "width": 168.453125,
+          "height": 23
+        },
+        {
+          "x": 16,
+          "y": 47,
+          "width": 168.453125,
+          "height": 21
+        },
+        {
+          "x": 16,
+          "y": 76,
+          "width": 168.453125,
+          "height": 20
+        },
+        {
+          "x": 16,
+          "y": 104,
+          "width": 168.453125,
+          "height": 21
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "15px",
+      "lineHeight": "23px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 200.453125,
+      "heightPx": 141
+    }
+  }
+}

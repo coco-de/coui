@@ -1,0 +1,49 @@
+PODS:
+  - desktop_drop (0.0.1):
+    - FlutterMacOS
+  - dir_picker (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - file_picker_darwin (1.0.0):
+    - Flutter
+    - FlutterMacOS
+  - file_saver_ffi (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - FlutterMacOS (1.0.0)
+  - url_launcher_macos (0.0.1):
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - desktop_drop (from `Flutter/ephemeral/.symlinks/plugins/desktop_drop/macos`)
+  - dir_picker (from `Flutter/ephemeral/.symlinks/plugins/dir_picker/darwin`)
+  - file_picker_darwin (from `Flutter/ephemeral/.symlinks/plugins/file_picker_darwin/darwin`)
+  - file_saver_ffi (from `Flutter/ephemeral/.symlinks/plugins/file_saver_ffi/darwin`)
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
+
+EXTERNAL SOURCES:
+  desktop_drop:
+    :path: Flutter/ephemeral/.symlinks/plugins/desktop_drop/macos
+  dir_picker:
+    :path: Flutter/ephemeral/.symlinks/plugins/dir_picker/darwin
+  file_picker_darwin:
+    :path: Flutter/ephemeral/.symlinks/plugins/file_picker_darwin/darwin
+  file_saver_ffi:
+    :path: Flutter/ephemeral/.symlinks/plugins/file_saver_ffi/darwin
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  url_launcher_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
+
+SPEC CHECKSUMS:
+  desktop_drop: 10a3e6a7fa9dbe350541f2574092fecfa345a07b
+  dir_picker: 153a68e3a17dbf4d7a5012d7c3642704972cec9a
+  file_picker_darwin: 4c2b9a50ea44cb3b071381ea0cf48591bdd80251
+  file_saver_ffi: 75d0b891038d1d7e75e107057e5b7d1db615a1c5
+  FlutterMacOS: c232990155153907050900a2e175c7773903ba4e
+  url_launcher_macos: f87a979182d112f911de6820aefddaf56ee9fbfd
+
+PODFILE CHECKSUM: f0c21717cb7ee9112f915044c74bfceb5b12e02a
+
+COCOAPODS: 1.17.0

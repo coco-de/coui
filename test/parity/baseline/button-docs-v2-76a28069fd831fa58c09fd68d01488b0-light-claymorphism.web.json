@@ -1,0 +1,104 @@
+{
+  "key": "button-docs-v2-76a28069fd831fa58c09fd68d01488b0-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Card",
+      "attributes": {
+        "demo": "button/dont-two-primary",
+        "eyebrow": "이렇게 하지 마세요",
+        "tone": "dont"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "button/dont-two-primary",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/button.md:Cards[44]:Card[3]"
+      ],
+      "anatomyParts": [],
+      "cardBody": [
+        {
+          "tag": "p",
+          "attributes": {},
+          "children": [
+            {
+              "text": "primary가 둘이면 무엇이 중요한지 알 수 없습니다.",
+              "raw": false
+            }
+          ]
+        }
+      ],
+      "cardIndex": 0,
+      "captureUnit": "whole-card",
+      "nativeCardAttributes": {
+        "demo": "button/dont-two-primary",
+        "eyebrow": "이렇게 하지 마세요",
+        "tone": "dont"
+      },
+      "nativeCardBody": "\nprimary가 둘이면 무엇이 중요한지 알 수 없습니다.\n"
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "취소\n                        저장하기\n                      \n                    \n                    이렇게 하지 마세요\n                    primary가 둘이면 무엇이 중요한지 알 수 없습니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 225.890625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(255, 241, 238)",
+      "borderRightColor": "rgb(255, 241, 238)",
+      "borderBottomColor": "rgb(255, 241, 238)",
+      "borderLeftColor": "rgb(255, 241, 238)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "24px",
+      "borderTopRightRadius": "24px",
+      "borderBottomRightRadius": "24px",
+      "borderBottomLeftRadius": "24px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 225.890625
+    }
+  }
+}

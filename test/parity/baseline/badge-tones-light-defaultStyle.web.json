@@ -1,0 +1,93 @@
+{
+  "key": "badge-tones-light-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "중립\n              주요\n              정보\n              성공\n              경고\n              위험",
+    "layout": {
+      "width": 279.09375,
+      "height": 24,
+      "direction": "row",
+      "innerPaddingLeft": "8px",
+      "innerPaddingRight": "8px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 36.515625,
+          "height": 24
+        },
+        {
+          "x": 48.515625,
+          "y": 0,
+          "width": 36.515625,
+          "height": 24
+        },
+        {
+          "x": 97.03125,
+          "y": 0,
+          "width": 36.515625,
+          "height": 24
+        },
+        {
+          "x": 145.546875,
+          "y": 0,
+          "width": 36.515625,
+          "height": 24
+        },
+        {
+          "x": 194.0625,
+          "y": 0,
+          "width": 36.515625,
+          "height": 24
+        },
+        {
+          "x": 242.578125,
+          "y": 0,
+          "width": 36.515625,
+          "height": 24
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "12px",
+      "lineHeight": "17px",
+      "letterSpacing": "-0.12px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 279.09375,
+      "heightPx": 24
+    }
+  }
+}

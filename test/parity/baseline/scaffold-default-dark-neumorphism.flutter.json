@@ -1,0 +1,44 @@
+{
+  "key": "scaffold-default-dark-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "scaffold-default-dark-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 18.0,
+      "lineHeightPx": 25.2,
+      "letterSpacingPx": -0.18,
+      "color": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 22,
+        "g": 23,
+        "b": 24,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 384.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

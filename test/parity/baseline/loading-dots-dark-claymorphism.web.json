@@ -1,0 +1,89 @@
+{
+  "key": "loading-dots-dark-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "initial-frame",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "@keyframes co-loading-ssr-14-dot { 0.0000% { opacity: 1.0; } 33.3333% { opacity: 0.3; } 66.6667% { opacity: 0.6; } 100.0000% { opacity: 1.0; } } #co-loading-ssr-14 .co-loading-dot { animation: co-loading-ssr-14-dot var(--coui-duration-1000) var(--easing-linear) infinite; }",
+    "layout": {
+      "width": 16,
+      "height": 16,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 0,
+          "y": 6,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 6,
+          "y": 6,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 12,
+          "y": 6,
+          "width": 4,
+          "height": 4
+        }
+      ]
+    },
+    "animationTimes": [
+      0,
+      0,
+      0
+    ],
+    "animationStates": [
+      "paused",
+      "paused",
+      "paused"
+    ],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSize": null,
+      "lineHeight": null,
+      "letterSpacing": null,
+      "color": null,
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 16,
+      "heightPx": 16
+    }
+  }
+}

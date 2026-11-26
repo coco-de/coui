@@ -1,0 +1,702 @@
+{
+  "issue": 5603,
+  "parent": 6131,
+  "issueUrl": "https://github.com/coco-de/coui/issues/5603",
+  "productHead": "db59bed679fc6be9af78968b55dca7bf8023df94",
+  "baseMain": "bad8ebdc8d2c512d216f00c98cb2064f97d51333",
+  "initialActualBase": "6ec4d2078eb9dd3844febec56b41493be54fae91",
+  "branch": "fix/5603-core-opacity-scale-20261119",
+  "worktree": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-5603-opacity-scale-20261119._5ob_zc8/worktree",
+  "artifactDirectory": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-5603-opacity-scale-20261119._5ob_zc8",
+  "productFiles": [
+    "packages/coui_web/lib/src/base/theme_config.dart"
+  ],
+  "coreScale": {
+    "primitive": 21,
+    "semantic": 5,
+    "pairs": [
+      {
+        "member": "opacity0",
+        "key": "0",
+        "value": 0.0,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity3",
+        "key": "3",
+        "value": 0.03,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity5",
+        "key": "5",
+        "value": 0.05,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity8",
+        "key": "8",
+        "value": 0.08,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity10",
+        "key": "10",
+        "value": 0.1,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity12",
+        "key": "12",
+        "value": 0.12,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity15",
+        "key": "15",
+        "value": 0.15,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity16",
+        "key": "16",
+        "value": 0.16,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity20",
+        "key": "20",
+        "value": 0.2,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity25",
+        "key": "25",
+        "value": 0.25,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity30",
+        "key": "30",
+        "value": 0.3,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity40",
+        "key": "40",
+        "value": 0.4,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity50",
+        "key": "50",
+        "value": 0.5,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity60",
+        "key": "60",
+        "value": 0.6,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity70",
+        "key": "70",
+        "value": 0.7,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity75",
+        "key": "75",
+        "value": 0.75,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity80",
+        "key": "80",
+        "value": 0.8,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity85",
+        "key": "85",
+        "value": 0.85,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity90",
+        "key": "90",
+        "value": 0.9,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity95",
+        "key": "95",
+        "value": 0.95,
+        "kind": "primitive"
+      },
+      {
+        "member": "opacity100",
+        "key": "100",
+        "value": 1.0,
+        "kind": "primitive"
+      },
+      {
+        "member": "disabled",
+        "key": "disabled",
+        "value": 0.4,
+        "kind": "semantic"
+      },
+      {
+        "member": "hover",
+        "key": "hover",
+        "value": 0.03,
+        "kind": "semantic"
+      },
+      {
+        "member": "focus",
+        "key": "focus",
+        "value": 0.08,
+        "kind": "semantic"
+      },
+      {
+        "member": "pressed",
+        "key": "pressed",
+        "value": 0.12,
+        "kind": "semantic"
+      },
+      {
+        "member": "scrim",
+        "key": "scrim",
+        "value": 0.6,
+        "kind": "semantic"
+      }
+    ]
+  },
+  "scope": "Register exactly existing CoreOpacity.scale keys with existing CoreOpacity values under theme.extend.opacity. Public signatures, Core/native/default tokens and global serializer unchanged.",
+  "actual": {
+    "browserPages": 12,
+    "rawRows": 1860,
+    "validatedAfterValues": 910,
+    "afterFailures": [],
+    "missingCoreRuleCounts": [
+      {
+        "mode": "default",
+        "theme": "light",
+        "beforeMissingCoreRules": 45,
+        "afterMissingCoreRules": 0
+      },
+      {
+        "mode": "default",
+        "theme": "dark",
+        "beforeMissingCoreRules": 45,
+        "afterMissingCoreRules": 0
+      },
+      {
+        "mode": "brand",
+        "theme": "light",
+        "beforeMissingCoreRules": 45,
+        "afterMissingCoreRules": 0
+      },
+      {
+        "mode": "brand",
+        "theme": "dark",
+        "beforeMissingCoreRules": 45,
+        "afterMissingCoreRules": 0
+      },
+      {
+        "mode": "caller",
+        "theme": "light",
+        "beforeMissingCoreRules": 40,
+        "afterMissingCoreRules": 0
+      },
+      {
+        "mode": "caller",
+        "theme": "dark",
+        "beforeMissingCoreRules": 40,
+        "afterMissingCoreRules": 0
+      }
+    ],
+    "inheritedDefaultsPairedExact": 120,
+    "callerOverridesPairedExact": 20,
+    "remainingConfigPairsByteExact": 6,
+    "nativeOpacityAndColorRows": 52,
+    "nativeAfterRowsAllExact": true,
+    "inactiveTabsNativeRows": 12,
+    "inactiveTabsWebRows": 24,
+    "afterInactiveTabsColorRgba8Exact": true,
+    "maxAfterInactivePaintSampleChannelDelta": 1,
+    "maxBeforeInactivePaintSampleChannelDelta": 34,
+    "pageErrors": 0,
+    "failedRequests": 0
+  },
+  "tests": {
+    "themeConfigSuites": 143,
+    "focusedChrome": 6,
+    "loadingCompatibilityAfterIntegration": 47,
+    "nativeTests": 2,
+    "fatalInfos": "all4 touched Dart files passed",
+    "format": "4 files passed, 0 changes",
+    "fullContracts": "passed; existing7 non-enforced migration warnings retained",
+    "publicDeclarationShapes": {
+      "count": 24,
+      "exact": true
+    },
+    "packageConfigTuples": {
+      "count": 232,
+      "exact": true
+    }
+  },
+  "build": {
+    "sourceHead": "db59bed679fc6be9af78968b55dca7bf8023df94",
+    "exit": 0,
+    "seconds": 132.01099014282227,
+    "uniqueRoutes": 359,
+    "optimization": 2,
+    "trackedFiles": 22560,
+    "trackedDeltas": [],
+    "groupClosed": true
+  },
+  "docsRuntime": {
+    "route": "/components/tabs/",
+    "records": 8,
+    "states": [
+      "rest",
+      "hover",
+      "pressed"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "refreshes": 2,
+    "runtimeErrors": [],
+    "failedRequests": [],
+    "browserCloseAwaited": true
+  },
+  "ownedReload": {
+    "sourceHead": "db59bed679fc6be9af78968b55dca7bf8023df94",
+    "success": true,
+    "beforeAndAfter200": true,
+    "htmlExact": true,
+    "httpClosed": true,
+    "vmClosed": true,
+    "pidClosed": true
+  },
+  "protection": {
+    "base": "bad8ebdc8d2c512d216f00c98cb2064f97d51333",
+    "head": "db59bed679fc6be9af78968b55dca7bf8023df94",
+    "changed": [
+      "packages/coui_web/lib/src/base/theme_config.dart",
+      "packages/coui_web/test/base/theme_config_opacity_test.dart",
+      "tool/parity/test/fixtures/core_opacity_scale_cases.dart",
+      "tool/parity/test/web/core_opacity_scale_probe_test.dart"
+    ],
+    "productFiles": [
+      "packages/coui_web/lib/src/base/theme_config.dart"
+    ],
+    "protected": {
+      "packages/coui_core": [],
+      "packages/coui_flutter": [],
+      "docs_core": [],
+      "app/docs_app": [],
+      "docs_site": [],
+      "tool/parity/src": [],
+      "pubspec.yaml": [],
+      "pubspec.lock": []
+    },
+    "allDependencyManifestsDelta": [],
+    "publicDeclarationShapesExact": true,
+    "publicDeclarationCount": 24,
+    "productSha256": "3cf35d8cbce5899df6ddd34f8439abf4c7e21790f289db84c22e2ef8fdd0f53d",
+    "trackedModeChanges": "create mode 100644 packages/coui_web/test/base/theme_config_opacity_test.dart\n create mode 100644 tool/parity/test/fixtures/core_opacity_scale_cases.dart\n create mode 100644 tool/parity/test/web/core_opacity_scale_probe_test.dart"
+  },
+  "sourceBinding": {
+    "productHead": "db59bed679fc6be9af78968b55dca7bf8023df94",
+    "themeSourceSha256": "3cf35d8cbce5899df6ddd34f8439abf4c7e21790f289db84c22e2ef8fdd0f53d",
+    "beforeThemeSha256": "d66f97e6ff96071bc3aa4fb6e32c54fc355bc453ad5a89f2fe52a6cfa5945836",
+    "coreSourceSha256": "428c621c71e56fa6fa2f4d1d7849d60abf9d0e15cc3a8e50dca4555548d14c6f",
+    "beforeActualBase": "6ec4d2078eb9dd3844febec56b41493be54fae91",
+    "integrationMain": "bad8ebdc8d2c512d216f00c98cb2064f97d51333",
+    "actualAfterBinding": "After harness generated before freeze; theme source bytes match committed product, brand/default fixtures and Tabs source are unchanged by Loading main integration. Final Chrome6, actual site8, docs build and reload executed at committed db59 source."
+  },
+  "configCompatibility": [
+    {
+      "mode": "default",
+      "theme": "light",
+      "remainingConfigByteExact": true,
+      "beforeSha256": "973b636ae4f5c1f0237190c02a5d5567b8ec6110f5850b7171015b6bd11e1932",
+      "afterSha256": "09471d07851d5e3889e3bd12a545db92d565daacfaa79049231e970fe94d937d"
+    },
+    {
+      "mode": "default",
+      "theme": "dark",
+      "remainingConfigByteExact": true,
+      "beforeSha256": "973b636ae4f5c1f0237190c02a5d5567b8ec6110f5850b7171015b6bd11e1932",
+      "afterSha256": "09471d07851d5e3889e3bd12a545db92d565daacfaa79049231e970fe94d937d"
+    },
+    {
+      "mode": "brand",
+      "theme": "light",
+      "remainingConfigByteExact": true,
+      "beforeSha256": "973b636ae4f5c1f0237190c02a5d5567b8ec6110f5850b7171015b6bd11e1932",
+      "afterSha256": "09471d07851d5e3889e3bd12a545db92d565daacfaa79049231e970fe94d937d"
+    },
+    {
+      "mode": "brand",
+      "theme": "dark",
+      "remainingConfigByteExact": true,
+      "beforeSha256": "973b636ae4f5c1f0237190c02a5d5567b8ec6110f5850b7171015b6bd11e1932",
+      "afterSha256": "09471d07851d5e3889e3bd12a545db92d565daacfaa79049231e970fe94d937d"
+    },
+    {
+      "mode": "caller",
+      "theme": "light",
+      "remainingConfigByteExact": true,
+      "beforeSha256": "973b636ae4f5c1f0237190c02a5d5567b8ec6110f5850b7171015b6bd11e1932",
+      "afterSha256": "09471d07851d5e3889e3bd12a545db92d565daacfaa79049231e970fe94d937d"
+    },
+    {
+      "mode": "caller",
+      "theme": "dark",
+      "remainingConfigByteExact": true,
+      "beforeSha256": "973b636ae4f5c1f0237190c02a5d5567b8ec6110f5850b7171015b6bd11e1932",
+      "afterSha256": "09471d07851d5e3889e3bd12a545db92d565daacfaa79049231e970fe94d937d"
+    }
+  ],
+  "limits": [
+    "Selected pure-token Tabs base-fill composition is a different known issue. This restores utility generation only.",
+    "Inactive Tabs painted samples retain maximum channel delta1. No whole-image or whole-Tabs pixel parity claim, no threshold relaxation.",
+    "No global816 capture/report in this issue. Historical582/234 remains bound to Web555/Native309, not this source.",
+    "20 after-fixture targets use caller-only key without caller configuration and are intentionally undefined, retained in raw data. Report910 valid value checks, not930.",
+    "Utility fixtures use white canvas in both token themes; Native/Web full control layouts have different allocations and are not compared as whole images."
+  ],
+  "preservedNegatives": [
+    "Fixture const-expression compile failures and initial Chrome Proxy preview failures remain preserved. Corrected actual beforeCSS retains45 missing rules per default/brand page and40 on caller pages that already define8.",
+    "API helper old analyzer AST compile failure, documentation-inclusive mismatch and detached comment-token failure preserved. Final projection uses analyzer14.7 firstTokenAfterCommentAndMetadata.",
+    "Initial reload succeeded but HTML differed only in generated Tabs IDs. Diff preserved; stable utility owner then verified reload and exact HTML without ID stripping.",
+    "Initial docs helper compile failure and full-content screenshot originals preserved. Final screenshots use actual browser viewport coordinates; no PNG editing."
+  ],
+  "selectedEvidence": [
+    {
+      "file": "before-light-utilities.png",
+      "sha256": "28c0e661575f6f0d2923a2150e5088b969b729f5f531aca005066749278fac5f",
+      "dimensions": [
+        832,
+        1548
+      ],
+      "caption": "Before, light tokens: opacity / background / text / border / ring. White test canvas; caller key is intentionally undefined in default mode.",
+      "viewed": true
+    },
+    {
+      "file": "after-light-utilities.png",
+      "sha256": "2ea763221799ab7a89658c591553b411fa3b0de7e067a9a8ea6e3b9bab14e18f",
+      "dimensions": [
+        832,
+        1548
+      ],
+      "caption": "After, light tokens: existing 26 Core keys generate utility rules. Built-in-only defaults35/45/55/65 are retained.",
+      "viewed": true
+    },
+    {
+      "file": "before-dark-utilities.png",
+      "sha256": "893f267484795f95b202cf79b60c0763d130fa008a400ed35143eae735490b1a",
+      "dimensions": [
+        832,
+        1548
+      ],
+      "caption": "Before, dark token inputs on the same white test canvas. This is a utility fixture, not the dark docs page.",
+      "viewed": true
+    },
+    {
+      "file": "after-dark-utilities.png",
+      "sha256": "48b85de6d9347bd969f776882e90a63219742a53c419072dce83a4d0235499cb",
+      "dimensions": [
+        832,
+        1548
+      ],
+      "caption": "After, dark token inputs on the same white test canvas. Faint token text is preserved as observed.",
+      "viewed": true
+    },
+    {
+      "file": "native-pill-light-pressed.png",
+      "sha256": "f4f0fdb3e8afe2dfdd4419cdc7db4bfff88d3a25660af52ee7f0d83d1402b065",
+      "dimensions": [
+        600,
+        40
+      ],
+      "caption": "Actual Native inactive pill tab pressed: 16% on-surface. Whole control geometry is not compared with the Web fixture.",
+      "viewed": true
+    },
+    {
+      "file": "web-after-pill-light-pressed.png",
+      "sha256": "6c2d2e8931f5d50e74b96cad57f439113d73de5d6142ba525aa3a5a5144c9cad",
+      "dimensions": [
+        800,
+        72
+      ],
+      "caption": "Actual Web inactive pill tab pressed after registration: same RGBA8 input; sampled painted pixel retains one-channel delta1.",
+      "viewed": true
+    },
+    {
+      "file": "docs-tabs-light-hover.png",
+      "sha256": "989ca4a523623cade297ce6f0c280e2520da9d62ed53a5c16d5ef6ae7c81fc34",
+      "dimensions": [
+        1360,
+        1000
+      ],
+      "caption": "Fresh optimized docs, actual light theme and inactive tab hover. Browser viewport capture, no image edits.",
+      "viewed": true
+    },
+    {
+      "file": "docs-tabs-dark-hover.png",
+      "sha256": "b3f94b9b0c1e9524e7f89971be41e316784b9cbe5d2a929dc2fe899da7333412",
+      "dimensions": [
+        1360,
+        1000
+      ],
+      "caption": "Fresh optimized docs, actual dark theme and inactive tab hover. Browser viewport capture, no image edits.",
+      "viewed": true
+    }
+  ],
+  "cleanup": {
+    "processes": [
+      {
+        "receipt": "actual-css-plain-snapshot-process.json",
+        "pid": 70281,
+        "closed": true
+      },
+      {
+        "receipt": "build-process.json",
+        "pid": 87954,
+        "closed": true
+      },
+      {
+        "receipt": "chrome-opacity-final-process.json",
+        "pid": 86650,
+        "closed": true
+      },
+      {
+        "receipt": "chrome-opacity-process.json",
+        "pid": 65761,
+        "closed": true
+      },
+      {
+        "receipt": "chrome-opacity-proxy-snapshot-process.json",
+        "pid": 69003,
+        "closed": true
+      },
+      {
+        "receipt": "contracts-final-process.json",
+        "pid": 88357,
+        "closed": true
+      },
+      {
+        "receipt": "fatal-source-corrected-process.json",
+        "pid": 80359,
+        "closed": true
+      },
+      {
+        "receipt": "fatal-source-process.json",
+        "pid": 70322,
+        "closed": true
+      },
+      {
+        "receipt": "format-check-final-process.json",
+        "pid": 86651,
+        "closed": true
+      },
+      {
+        "receipt": "format-native-harness-process.json",
+        "pid": 71656,
+        "closed": true
+      },
+      {
+        "receipt": "format-source-final-process.json",
+        "pid": 75327,
+        "closed": true
+      },
+      {
+        "receipt": "format-source-process.json",
+        "pid": 57506,
+        "closed": true
+      },
+      {
+        "receipt": "format-tests-process.json",
+        "pid": 65735,
+        "closed": true
+      },
+      {
+        "receipt": "loading-compatibility-process.json",
+        "pid": 80358,
+        "closed": true
+      },
+      {
+        "receipt": "native-controls-process.json",
+        "pid": 71683,
+        "closed": true
+      },
+      {
+        "receipt": "opacity-negative-process.json",
+        "pid": 55721,
+        "closed": true
+      },
+      {
+        "receipt": "opacity-positive-corrected-process.json",
+        "pid": 59935,
+        "closed": true
+      },
+      {
+        "receipt": "opacity-positive-process.json",
+        "pid": 57532,
+        "closed": true
+      },
+      {
+        "receipt": "pub-get-process.json",
+        "pid": 54786,
+        "closed": true
+      },
+      {
+        "receipt": "public-api-declaration-shapes-process.json",
+        "pid": 87252,
+        "closed": true
+      },
+      {
+        "receipt": "public-api-shapes-corrected-process.json",
+        "pid": 85406,
+        "closed": true
+      },
+      {
+        "receipt": "public-api-shapes-process.json",
+        "pid": 81106,
+        "closed": true
+      },
+      {
+        "receipt": "public-api-token-shapes-process.json",
+        "pid": 86652,
+        "closed": true
+      },
+      {
+        "receipt": "render-after-process.json",
+        "pid": 58941,
+        "closed": true
+      },
+      {
+        "receipt": "render-before-corrected-process.json",
+        "pid": 58586,
+        "closed": true
+      },
+      {
+        "receipt": "render-before-process.json",
+        "pid": 57208,
+        "closed": true
+      },
+      {
+        "receipt": "theme-config-suites-process.json",
+        "pid": 75354,
+        "closed": true
+      },
+      {
+        "receipt": "web-tabs-controls-process.json",
+        "pid": 74594,
+        "closed": true
+      },
+      {
+        "receipt": "browser-owner.json",
+        "field": "runnerPid",
+        "pid": 70281,
+        "closed": true
+      },
+      {
+        "receipt": "browser-owner.json",
+        "field": "chromePid",
+        "pid": 70349,
+        "closed": true
+      },
+      {
+        "receipt": "debug-owner.json",
+        "field": "pid",
+        "pid": 89661,
+        "closed": true
+      },
+      {
+        "receipt": "docs-ui-owner.json",
+        "field": "pid",
+        "pid": 93569,
+        "closed": true
+      },
+      {
+        "receipt": "full-content-original-docs-ui-owner.json",
+        "field": "pid",
+        "pid": 92612,
+        "closed": true
+      },
+      {
+        "receipt": "initial-compile-docs-ui-owner.json",
+        "field": "pid",
+        "pid": 92003,
+        "closed": true
+      },
+      {
+        "receipt": "initial-dynamic-tabs-debug-owner.json",
+        "field": "pid",
+        "pid": 88423,
+        "closed": true
+      },
+      {
+        "receipt": "tabs-browser-owner.json",
+        "field": "runnerPid",
+        "pid": 74594,
+        "closed": true
+      },
+      {
+        "receipt": "tabs-browser-owner.json",
+        "field": "chromePid",
+        "pid": 74647,
+        "closed": true
+      }
+    ],
+    "ports": [
+      {
+        "receipt": "browser-owner.json",
+        "field": "webSocketUrl",
+        "port": 53329,
+        "closed": true
+      },
+      {
+        "receipt": "docs-ui-owner.json",
+        "field": "port",
+        "port": 59412,
+        "closed": true
+      },
+      {
+        "receipt": "full-content-original-docs-ui-owner.json",
+        "field": "port",
+        "port": 59106,
+        "closed": true
+      },
+      {
+        "receipt": "initial-compile-docs-ui-owner.json",
+        "field": "port",
+        "port": 58949,
+        "closed": true
+      },
+      {
+        "receipt": "tabs-browser-owner.json",
+        "field": "webSocketUrl",
+        "port": 54546,
+        "closed": true
+      },
+      {
+        "receipt": "build-process.json",
+        "field": "port",
+        "port": 58082,
+        "closed": true
+      }
+    ],
+    "allRecordedProcessesClosed": true,
+    "allRecordedPortsClosed": true,
+    "preservedWorktreeAndBranch": true
+  },
+  "remoteActions": "Existing5603 reused after checking no competing implementation, linked to6131 and issue-develop branch created. Product remains local; no push/PR/merge by this worker."
+}

@@ -1,0 +1,58 @@
+import 'package:coui_web/coui_web.dart';
+
+class CodeDiffDefaultExample extends StatelessComponent {
+  const CodeDiffDefaultExample({super.key});
+
+  @override
+  Component build(BuildContext context) {
+    return const CodeDiff(
+      lines: [
+        CoreCodeDiffLine(
+          text: "import 'package:coui_web/coui_web.dart';",
+          type: CoreCodeDiffLineType.unchanged,
+          lineNumber: 1,
+        ),
+        CoreCodeDiffLine(
+          text: '',
+          type: CoreCodeDiffLineType.unchanged,
+          lineNumber: 2,
+        ),
+        CoreCodeDiffLine(
+          text: 'class MyWidget extends StatelessComponent {',
+          type: CoreCodeDiffLineType.unchanged,
+          lineNumber: 3,
+        ),
+        CoreCodeDiffLine(
+          text: '  Component build(BuildContext context) {',
+          type: CoreCodeDiffLineType.removed,
+          lineNumber: 4,
+        ),
+        CoreCodeDiffLine(
+          text: '  Component build(BuildContext context) {',
+          type: CoreCodeDiffLineType.added,
+          lineNumber: 4,
+        ),
+        CoreCodeDiffLine(
+          text: "    return text('Hello');",
+          type: CoreCodeDiffLineType.removed,
+          lineNumber: 5,
+        ),
+        CoreCodeDiffLine(
+          text: "    return Text('Hello').bodyMedium;",
+          type: CoreCodeDiffLineType.added,
+          lineNumber: 5,
+        ),
+        CoreCodeDiffLine(
+          text: '  }',
+          type: CoreCodeDiffLineType.unchanged,
+          lineNumber: 6,
+        ),
+        CoreCodeDiffLine(
+          text: '}',
+          type: CoreCodeDiffLineType.unchanged,
+          lineNumber: 7,
+        ),
+      ],
+    );
+  }
+}

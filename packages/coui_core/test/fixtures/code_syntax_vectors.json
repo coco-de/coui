@@ -1,0 +1,196 @@
+{
+  "doc": "Highlighted code and the role each run of it takes — the rendered-value table the Core, Flutter and Web code-snippet tests share. A run is a stretch of text with one role (adjacent leaves of one role are joined); \"plain\" runs inherit the code colour. To regenerate after a grammar change, review the diff by hand: a role that moved is a decision, not noise. \"modes\" is the grammar each mode is painted with, written out by hand rather than read off the contract's table; null is a mode shown as plain text.",
+  "modes": {
+    "dart": "dart",
+    "javascript": "dart",
+    "js": "dart",
+    "ts": "dart",
+    "json": "json",
+    "yaml": "yaml",
+    "yml": "yaml",
+    "sql": "sql",
+    "bash": null,
+    "shell": null,
+    "text": null,
+    "": null
+  },
+  "vectors": [
+    {
+      "mode": "dart",
+      "code": "final answer = 42;",
+      "runs": [
+        ["final", "keyword"],
+        [" answer ", "plain"],
+        ["=", "punctuation"],
+        [" ", "plain"],
+        ["42", "type"],
+        [";", "punctuation"]
+      ]
+    },
+    {
+      "mode": "dart",
+      "code": "// note\nvoid main() {\n  print('hi ${name}');\n}",
+      "runs": [
+        ["// note", "comment"],
+        ["\n", "plain"],
+        ["void", "keyword"],
+        [" ", "plain"],
+        ["main", "function"],
+        ["()", "punctuation"],
+        [" ", "plain"],
+        ["{", "punctuation"],
+        ["\n  ", "plain"],
+        ["print", "function"],
+        ["(", "punctuation"],
+        ["'hi ${name}'", "string"],
+        [");", "punctuation"],
+        ["\n", "plain"],
+        ["}", "punctuation"]
+      ]
+    },
+    {
+      "mode": "dart",
+      "code": "class Foo<T> extends Bar { bool ok = true && !false; }",
+      "runs": [
+        ["class", "keyword"],
+        [" ", "plain"],
+        ["Foo", "type"],
+        ["<", "punctuation"],
+        ["T", "type"],
+        [">", "punctuation"],
+        [" ", "plain"],
+        ["extends", "keyword"],
+        [" ", "plain"],
+        ["Bar", "type"],
+        [" ", "plain"],
+        ["{", "punctuation"],
+        [" ", "plain"],
+        ["bool", "type"],
+        [" ok ", "plain"],
+        ["=", "punctuation"],
+        [" ", "plain"],
+        ["true", "keyword"],
+        [" ", "plain"],
+        ["&&", "punctuation"],
+        [" ", "plain"],
+        ["!", "punctuation"],
+        ["false", "keyword"],
+        [";", "punctuation"],
+        [" ", "plain"],
+        ["}", "punctuation"]
+      ]
+    },
+    {
+      "mode": "dart",
+      "code": "@override\nFuture<void> run(int a) async => null;",
+      "runs": [
+        ["@override", "keyword"],
+        ["\n", "plain"],
+        ["Future", "type"],
+        ["<", "punctuation"],
+        ["void", "keyword"],
+        [">", "punctuation"],
+        [" ", "plain"],
+        ["run", "function"],
+        ["(", "punctuation"],
+        ["int", "type"],
+        [" a", "plain"],
+        [")", "punctuation"],
+        [" ", "plain"],
+        ["async", "keyword"],
+        [" ", "plain"],
+        ["=>", "punctuation"],
+        [" ", "plain"],
+        ["null", "keyword"],
+        [";", "punctuation"]
+      ]
+    },
+    {
+      "mode": "dart",
+      "code": "/// doc\nconst x = [1, 2.5];",
+      "runs": [
+        ["/// doc\n", "comment"],
+        ["const", "keyword"],
+        [" x ", "plain"],
+        ["=", "punctuation"],
+        [" ", "plain"],
+        ["[", "punctuation"],
+        ["1", "type"],
+        [",", "punctuation"],
+        [" ", "plain"],
+        ["2.5", "type"],
+        ["];", "punctuation"]
+      ]
+    },
+    {
+      "mode": "json",
+      "code": "{\"a\": 1, \"b\": [true, null], \"c\": \"x\"}",
+      "runs": [
+        ["{", "punctuation"],
+        ["\"a\"", "function"],
+        [":", "punctuation"],
+        [" ", "plain"],
+        ["1", "type"],
+        [",", "punctuation"],
+        [" ", "plain"],
+        ["\"b\"", "function"],
+        [":", "punctuation"],
+        [" ", "plain"],
+        ["[", "punctuation"],
+        ["true", "keyword"],
+        [",", "punctuation"],
+        [" ", "plain"],
+        ["null", "keyword"],
+        ["],", "punctuation"],
+        [" ", "plain"],
+        ["\"c\"", "function"],
+        [":", "punctuation"],
+        [" ", "plain"],
+        ["\"x\"", "string"],
+        ["}", "punctuation"]
+      ]
+    },
+    {
+      "mode": "yaml",
+      "code": "name: demo # c\nok: \"yes\"\n",
+      "runs": [
+        ["name", "function"],
+        [":", "punctuation"],
+        [" demo ", "plain"],
+        ["# c", "comment"],
+        ["\n", "plain"],
+        ["ok", "function"],
+        [":", "punctuation"],
+        [" ", "plain"],
+        ["\"yes\"", "string"],
+        ["\n", "plain"]
+      ]
+    },
+    {
+      "mode": "sql",
+      "code": "SELECT COUNT(*) FROM t WHERE a = 'x' AND b > 3; -- c",
+      "runs": [
+        ["SELECT", "keyword"],
+        [" ", "plain"],
+        ["COUNT", "function"],
+        ["(*)", "punctuation"],
+        [" ", "plain"],
+        ["FROM", "keyword"],
+        [" t ", "plain"],
+        ["WHERE", "keyword"],
+        [" a ", "plain"],
+        ["=", "punctuation"],
+        [" ", "plain"],
+        ["'x'", "string"],
+        [" ", "plain"],
+        ["AND", "punctuation"],
+        [" b ", "plain"],
+        [">", "punctuation"],
+        [" ", "plain"],
+        ["3", "type"],
+        ["; ", "plain"],
+        ["-- c", "comment"]
+      ]
+    }
+  ]
+}

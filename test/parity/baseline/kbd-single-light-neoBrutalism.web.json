@@ -1,0 +1,38 @@
+{
+  "key": "kbd-single-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "11px",
+      "lineHeight": "15.4px",
+      "letterSpacing": "-0.11px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(31, 32, 33)",
+      "borderRightColor": "rgb(31, 32, 33)",
+      "borderBottomColor": "rgb(31, 32, 33)",
+      "borderLeftColor": "rgb(31, 32, 33)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "2px",
+      "borderTopRightRadius": "2px",
+      "borderBottomRightRadius": "2px",
+      "borderBottomLeftRadius": "2px",
+      "paddingTop": "2px",
+      "paddingRight": "6px",
+      "paddingBottom": "2px",
+      "paddingLeft": "6px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 37.921875,
+      "heightPx": 27.390625
+    }
+  }
+}

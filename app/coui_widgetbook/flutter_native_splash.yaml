@@ -1,0 +1,18 @@
+# dart run flutter_native_splash:create --flavor development
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/icons/splash_logo.png
+  branding: assets/icons/splash_brand.png
+  color_dark: "#0f0f0f"
+  image_dark: assets/icons/splash_logo.png
+  branding_dark: assets/icons/splash_brand.png
+  branding_mode: bottomRight
+
+  android_12:
+    image: assets/icons/splash_logo.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/icons/splash_logo.png
+    icon_background_color_dark: "#0f0f0f"
+
+  web: true

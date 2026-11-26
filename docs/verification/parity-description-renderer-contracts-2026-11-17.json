@@ -1,0 +1,349 @@
+{
+  "issues": [
+    6355,
+    6360
+  ],
+  "parentIssue": 6131,
+  "date": "2026-11-17",
+  "base": "141ccf6f7c468833110c18ccc9d253814d8cee46",
+  "productHead": "ca62a6c322dc6546eac680ac88214057a9a8c434",
+  "SDK": {
+    "flutter": "3.50.0",
+    "dart": "3.14.0",
+    "jaspr": "0.24.0-beta.1",
+    "globalFvmUnchanged": "3.47.9"
+  },
+  "scope": {
+    "productFiles": [
+      "packages/coui_web/lib/src/components/display/description_card/description_card.dart"
+    ],
+    "testFiles": [
+      "tool/parity/test/web/description_card_style_test.dart"
+    ],
+    "publicDartApiChanged": false,
+    "privateEnumAdded": "_DescriptionCardSlot.rows",
+    "DOMTagsAttributesOrderChanged": true,
+    "DOMChangeScope": "When title is non-null and showDivider is false, restoring the second existing Gap also adds its div before rows. Other existing nodes and caller order are preserved. The rows-key-only change does not alter DOM. Default showDivider:true captures are unchanged.",
+    "CallerKeysChanged": false,
+    "coreDefaultValuesTokensOrNativeChanged": false,
+    "baselineThresholdAllowlistChanged": false
+  },
+  "api": {
+    "allPublicTopLevelShapesIdentical": true,
+    "allClassesFieldsConstructorsMethodsIdentical": true,
+    "directivesIdentical": true,
+    "allDeclarationsIdentical": false,
+    "privateAddition": "enum _DescriptionCardSlot { rows }",
+    "parseErrorsBefore": [],
+    "parseErrorsAfter": [],
+    "methodology": "AST function body elision retaining public/private class fields/constructors/methods/defaults/annotations; one private enum addition explicitly separated. Only this product file differs; all barrels, Core, Native and styles unchanged."
+  },
+  "radiusAlias": {
+    "identical": true,
+    "equal": true,
+    "sameHash": true,
+    "beforeCSS": "var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-0)",
+    "afterCSS": "var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-0)",
+    "corners": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "spacing": {
+    "isolatedBase": "6b18d85de9",
+    "cases": 80,
+    "beforeExact": 60,
+    "beforeFail": 20,
+    "afterExact": 80,
+    "afterFail": 0,
+    "epsilon": 0,
+    "permanentPairs": 90,
+    "negativeExpectedDivider": 1,
+    "negativeActualHeightDelta": 7
+  },
+  "state": {
+    "isolatedBase": "6b18d85de9",
+    "webBeforeRecords": 208,
+    "webLossRecords": 80,
+    "webAfterRecords": 208,
+    "webAfterLossRecords": 0,
+    "nativeReference": {
+      "head": "6b18d85de9f445ddd1fefe50804dc7be7af00b07",
+      "sdk": "Flutter 3.50.0 / Dart 3.14.0",
+      "flutterRevision": "ab2912035e160d9cad6306df307576da6128ebdb",
+      "recordCount": 104,
+      "profiles": [
+        {
+          "dark": false,
+          "selectionCase": false,
+          "recordCount": 26,
+          "persistentNames": [
+            "value",
+            "bottom",
+            "row-leading",
+            "row-trailing"
+          ],
+          "allStateAndElementSame": true,
+          "countersStayOne": true,
+          "titleNullRecordCount": 5,
+          "selectionExact": null,
+          "valueColumnAncestorElementsSame": true
+        },
+        {
+          "dark": true,
+          "selectionCase": false,
+          "recordCount": 26,
+          "persistentNames": [
+            "value",
+            "bottom",
+            "row-leading",
+            "row-trailing"
+          ],
+          "allStateAndElementSame": true,
+          "countersStayOne": true,
+          "titleNullRecordCount": 5,
+          "selectionExact": null,
+          "valueColumnAncestorElementsSame": true
+        },
+        {
+          "dark": false,
+          "selectionCase": true,
+          "recordCount": 26,
+          "persistentNames": [
+            "value",
+            "bottom",
+            "row-leading",
+            "row-trailing"
+          ],
+          "allStateAndElementSame": true,
+          "countersStayOne": true,
+          "titleNullRecordCount": 5,
+          "selectionExact": true,
+          "valueColumnAncestorElementsSame": true
+        },
+        {
+          "dark": true,
+          "selectionCase": true,
+          "recordCount": 26,
+          "persistentNames": [
+            "value",
+            "bottom",
+            "row-leading",
+            "row-trailing"
+          ],
+          "allStateAndElementSame": true,
+          "countersStayOne": true,
+          "titleNullRecordCount": 5,
+          "selectionExact": true,
+          "valueColumnAncestorElementsSame": true
+        }
+      ],
+      "sources": {
+        "native": {
+          "path": "packages/coui_flutter/lib/src/components/display/description_card/description_card.dart",
+          "gitBlob": "238083fb99e085537770f368bbdd3bdc1097721b",
+          "sha256": "18d02abcbbec1d561c56c7a6591f18da89078ba93be45d3aaeab9f92fadcff78",
+          "frozenConsumerBytesExact": true
+        },
+        "web": {
+          "path": "packages/coui_web/lib/src/components/display/description_card/description_card.dart",
+          "gitBlob": "2d203ee399c17e6864129093c82072bf55cbb14a",
+          "sha256": "e670bc3fba6863401f0b29313376b01e66fd1eeebda917e5a91319b3fb64e383"
+        },
+        "jaspr-framework": {
+          "source": "/Users/minhyeok/.pub-cache/hosted/pub.dev/jaspr-0.24.0-beta.1/lib/src/framework/framework.dart",
+          "sha256": "2ca9648d811bb8d04cb6abcf887025daa7cfe50660ee58405b5ca0e5a2836295"
+        },
+        "flutter-framework": {
+          "source": "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/packages/flutter/lib/src/widgets/framework.dart",
+          "sha256": "a01402e62e07075bd8cb49aee144ba9b1d54839f6e9e2568ea97a59977ff2a31"
+        }
+      },
+      "callerKeys": null,
+      "cardWidth": 720,
+      "viewSize": [
+        1000,
+        900
+      ],
+      "initialFixtureRejected": "420px with long row-leading/row-trailing counter text overflowed; its tap missed. It provides no product state conclusion. No product or source geometry was changed."
+    },
+    "O2": true,
+    "noNewWrapper": true
+  },
+  "tests": {
+    "native": 83,
+    "web": 8,
+    "chrome": 4,
+    "stateTestRerunAfterLintCleanup": true,
+    "changedFilesFatalInfos": "No issues found!",
+    "formatChanges": 0,
+    "newIgnores": 0,
+    "guards": {
+      "designTokenPhases1to6": 0,
+      "chromePassthrough": 0,
+      "contracts": 0
+    }
+  },
+  "fullMainBaseline": {
+    "head": "141ccf6f7c468833110c18ccc9d253814d8cee46",
+    "inputCount": 3713,
+    "inputsChanged": [],
+    "keys": 750,
+    "PNGsDecoded": 1524,
+    "JSONparsed": 1500,
+    "bad": [],
+    "missing": []
+  },
+  "upstreamDeltas": {
+    "all": {
+      "fail": 180,
+      "pass": 570
+    },
+    "common748": {
+      "fail": 180,
+      "pass": 568
+    },
+    "newKeys": [
+      {
+        "key": "toolbar-group-vertical-light-defaultStyle",
+        "status": "pass"
+      },
+      {
+        "key": "toolbar-group-vertical-dark-defaultStyle",
+        "status": "pass"
+      }
+    ],
+    "newFail": [],
+    "improved": [],
+    "dimensions": [
+      "badge-status-light-defaultStyle",
+      "badge-status-dark-defaultStyle",
+      "navigation-bar-sidebar-light-defaultStyle",
+      "navigation-bar-sidebar-dark-defaultStyle"
+    ]
+  },
+  "captureIntegration": {
+    "head": "ca62a6c322dc6546eac680ac88214057a9a8c434",
+    "base": "141ccf6f7c468833110c18ccc9d253814d8cee46",
+    "libraryDiff": [
+      "packages/coui_web/lib/src/components/display/description_card/description_card.dart"
+    ],
+    "allDefaultKeys": 750,
+    "newlyCapturedRelatedKeysBothEngines": 60,
+    "replacedDefaultKeys": 12,
+    "otherKeysReused": 738,
+    "images": 1524,
+    "PNGbyteSame": 1524,
+    "JSONsame": 1500,
+    "noClaimSecondFullCapture": true
+  },
+  "pixel": {
+    "pass": 570,
+    "fail": 180,
+    "infra": 0,
+    "skipped": 0
+  },
+  "property": {
+    "pass": 416,
+    "fail": 276,
+    "infra": 12,
+    "skipped": 46
+  },
+  "relatedPixel": {
+    "pass": 60,
+    "fail": 0,
+    "infra": 0,
+    "skipped": 0
+  },
+  "relatedBeforeAfter": {
+    "images": 120,
+    "RGBAexact": 120,
+    "JSONsame": 120
+  },
+  "ownBaseline": {
+    "nativePass": 10,
+    "nativeFail": 50,
+    "webPass": 0,
+    "webFail": 60,
+    "unchanged": true,
+    "regressionReportExit": 1
+  },
+  "optimizedIntegrated": {
+    "passed": true,
+    "phaseResults": {
+      "before141": {
+        "records": 208,
+        "stateLossRecords": 80,
+        "gapFailureRecords": 40,
+        "documentControllerThemesMatch": true,
+        "allDarkClassFalse": true
+      },
+      "after": {
+        "records": 208,
+        "stateLossRecords": 0,
+        "gapFailureRecords": 0,
+        "documentControllerThemesMatch": true,
+        "allDarkClassFalse": true
+      }
+    },
+    "runtimeErrors": 0,
+    "docsRecords": 3,
+    "images": 4,
+    "chrome": "Chrome/157.0.8103.79",
+    "path": "/tmp/weever-description-integrated-o2-20261117.by2fcp9y",
+    "earlierMislabeledDiagnosticsPreserved": true,
+    "buildRoutes": 357,
+    "trackedGeneratedFilesIdentical": 185,
+    "recordedSourcesIdentical": 3128,
+    "cleanupPending": false,
+    "ownedProcessesStopped": true,
+    "cleanupReceipt": "/tmp/weever-description-integrated-o2-20261117.by2fcp9y/cleanup.json",
+    "sourceProvenance": {
+      "requestedHead": "ca62a6c322dc6546eac680ac88214057a9a8c434",
+      "ownHead": "c6f4ccc4b7f5619706fe6e6679530f14f08594b9",
+      "ownTree": "8dd28ac0d2c4b844430937c027112d2f980851b3",
+      "before": "141ccf6f7c468833110c18ccc9d253814d8cee46",
+      "lockSha256": "3503684b485aa82c20d5aae09870e92c44a1b5d579173114470266f34187be82",
+      "requestedTree": "8dd28ac0d2c4b844430937c027112d2f980851b3",
+      "mergeConflictResolution": "Only conflicted test file was set to exact requested SHA blob; entire merged tree equals requested tree.",
+      "baselineOverlayWidgetSha256": "e670bc3fba6863401f0b29313376b01e66fd1eeebda917e5a91319b3fb64e383",
+      "afterWidgetSha256": "0ea353f2c81335cd6f07f49191986698c8648b66b795e5e62677378efeb4255f",
+      "baselineOverlayOtherLibrariesMatch141": true,
+      "trackedGeneratedFiles": 185,
+      "requestedOriginalHead": "3e1d11dd00a9751731d6400f730d187c51afaa8d",
+      "testOnlyCleanupProductSameAs3e": true,
+      "lockSha256After": "3503684b485aa82c20d5aae09870e92c44a1b5d579173114470266f34187be82",
+      "javascriptSha256": {
+        "image-before141.dart.js": "bc692fe79f96f27d61424119fa3b4d59b73339ea89f097af4dfd77bb8930e3da",
+        "state-before141.dart.js": "c95c5b560638e1de513d7c35356fb977b1a0dea7db3e511fc0b4f81fc3772c19",
+        "image-after.dart.js": "0860db3c2e061a241bab1106b34d2041ba328664c2cb0da628b298f32986f580",
+        "state-after.dart.js": "2a501730ae6e3b7e8e4d7d4252a44ed291e67c51bfe469ded54939376ab57561"
+      },
+      "sdk": "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter",
+      "gitStatus": ""
+    },
+    "generatedIntegrity": {
+      "trackedGeneratedCount": 185,
+      "changed": [],
+      "inputCount": 3128,
+      "changedInputs": []
+    }
+  },
+  "knownRemaining": {
+    "emptyTitleCallerFixture": "24 cases retain pre-existing 11px residual after restored gap is accounted for; not a general all-empty-title assertion",
+    "fixedWidthCaller": "existing Native tight/Web loose width constraint difference retained",
+    "definitionInlineDOMContractConflict": 6354,
+    "genericInheritanceCandidateHeld": 6342,
+    "wholeParityIncomplete": true
+  },
+  "artifacts": {
+    "root": "/tmp/weever-description-contracts-20261117",
+    "mainBaseline": "/tmp/weever-main6357-parity-20261117.zj9cryx0",
+    "gapIsolated": "/tmp/weever-6355-description-divider-20261117.eucg3vka",
+    "stateIsolated": "/tmp/weever-6360-row-identity-20261117.8a7yix4t",
+    "nativeStateReference": "/tmp/weever-native-title-state-20261117.f5cuav5m",
+    "independent": "/tmp/weever-6355-6360-final-review-20261117.4g4p4csn"
+  }
+}

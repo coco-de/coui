@@ -1,0 +1,1673 @@
+{
+  "browser": "Chrome/150.0.7871.24",
+  "executable": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6131-native-refresh-20261119.f5b91re7/worktree/.dart_tool/puppeteer/local-chrome/150.0.7871.24/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+  "rows": 48,
+  "events": [
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 0,
+      "action": "hover",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0s",
+      "frames": 26,
+      "distinct": 2,
+      "first": {
+        "t": -3.100000095367477,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 405.1999999046325,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 0,
+      "action": "press",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": 7.000000190734909,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "last": {
+        "t": 407.0000001907349,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 0,
+      "action": "release",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": 0.09999990463256836,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 400.09999990463257,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 0,
+      "action": "leave",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": -3.699999999999818,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 396.3000000000002,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 0,
+      "action": "hover",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0s, 0s, 0s, 0s, 0s, 0s, 0s",
+      "frames": 27,
+      "distinct": 2,
+      "first": {
+        "t": -0.40000000000009095,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 416.3000000000002,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 0,
+      "action": "press",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0s, 0s, 0s, 0s, 0s, 0s, 0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": -0.4999999046326593,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "last": {
+        "t": 399.60000009536725,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 0,
+      "action": "release",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0s, 0s, 0s, 0s, 0s, 0s, 0s",
+      "frames": 26,
+      "distinct": 1,
+      "first": {
+        "t": -6.199999809265137,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 410.5000001907347,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 0,
+      "action": "leave",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0s, 0s, 0s, 0s, 0s, 0s, 0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": 3.1999998092651367,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 403.19999980926514,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 100,
+      "action": "hover",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.1s",
+      "frames": 27,
+      "distinct": 9,
+      "first": {
+        "t": -0.49999990463220456,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 416.2000000953676,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 100,
+      "action": "press",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.1s",
+      "frames": 25,
+      "distinct": 8,
+      "first": {
+        "t": 1.2999999046323865,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": true,
+        "active": true,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 401.19999990463293,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 100,
+      "action": "release",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.1s",
+      "frames": 25,
+      "distinct": 7,
+      "first": {
+        "t": -3.2999998092655005,
+        "color": "oklab(0.541077 -0.116626 0.0643294 / 0.75098)",
+        "hover": true,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 396.80000019073486,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 100,
+      "action": "leave",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.1s",
+      "frames": 25,
+      "distinct": 7,
+      "first": {
+        "t": -7.000000190734681,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": false,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 392.9999998092653,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 100,
+      "action": "hover",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s",
+      "frames": 26,
+      "distinct": 8,
+      "first": {
+        "t": 8.700000095367614,
+        "color": "oklab(0.37929 -0.0131637 -0.0339971 / 0.501961)",
+        "hover": true,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 417.10000009536725,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 100,
+      "action": "press",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s",
+      "frames": 25,
+      "distinct": 8,
+      "first": {
+        "t": 2.0999999046325684,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": true,
+        "active": true,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 401.9999999046322,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 100,
+      "action": "release",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s",
+      "frames": 25,
+      "distinct": 8,
+      "first": {
+        "t": 3.4999998092653186,
+        "color": "oklab(0.541077 -0.116626 0.0643294 / 0.75098)",
+        "hover": true,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 403.4999998092644,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 100,
+      "action": "leave",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s",
+      "frames": 25,
+      "distinct": 8,
+      "first": {
+        "t": 2.299999904633296,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": false,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 402.2999999046333,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 250,
+      "action": "hover",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.25s",
+      "frames": 27,
+      "distinct": 18,
+      "first": {
+        "t": 0.10000019073413569,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 416.80000019073486,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 250,
+      "action": "press",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.25s",
+      "frames": 25,
+      "distinct": 17,
+      "first": {
+        "t": 6.799999999999272,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": true,
+        "active": true,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 406.89999999999964,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 250,
+      "action": "release",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.25s",
+      "frames": 24,
+      "distinct": 17,
+      "first": {
+        "t": 6.299999904633296,
+        "color": "oklab(0.541077 -0.116626 0.0643294 / 0.75098)",
+        "hover": true,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 389.59999990463257,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "toggle",
+      "expectedDurationMs": 250,
+      "action": "leave",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.25s",
+      "frames": 25,
+      "distinct": 16,
+      "first": {
+        "t": 6.400000095367432,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": false,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 406.40000009536743,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 250,
+      "action": "hover",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s",
+      "frames": 26,
+      "distinct": 18,
+      "first": {
+        "t": -3.7000001907344995,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 396.39999980926586,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 250,
+      "action": "press",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s",
+      "frames": 25,
+      "distinct": 16,
+      "first": {
+        "t": -5,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": true,
+        "active": true,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 395,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 250,
+      "action": "release",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s",
+      "frames": 25,
+      "distinct": 17,
+      "first": {
+        "t": -3.000000190735591,
+        "color": "oklab(0.541077 -0.116626 0.0643294 / 0.75098)",
+        "hover": true,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 396.9999998092644,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "light",
+      "kind": "chip",
+      "expectedDurationMs": 250,
+      "action": "leave",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s",
+      "frames": 25,
+      "distinct": 17,
+      "first": {
+        "t": -4.600000190734136,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": false,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 395.2999998092655,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 0,
+      "action": "hover",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0s",
+      "frames": 26,
+      "distinct": 2,
+      "first": {
+        "t": -5.700000095367386,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 402.6999999046325,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 0,
+      "action": "press",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": 1.699999713897796,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "last": {
+        "t": 401.6999997138978,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 0,
+      "action": "release",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": 5.09999971389766,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 405.0999997138979,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 0,
+      "action": "leave",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": 6.699999904632477,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 406.6999999046325,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 0,
+      "action": "hover",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0s, 0s, 0s, 0s, 0s, 0s, 0s",
+      "frames": 27,
+      "distinct": 2,
+      "first": {
+        "t": -5.000000095367341,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 411.6999999046325,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 0,
+      "action": "press",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0s, 0s, 0s, 0s, 0s, 0s, 0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": 6.599999809265228,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "last": {
+        "t": 406.5999998092652,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 0,
+      "action": "release",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0s, 0s, 0s, 0s, 0s, 0s, 0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": 6.499999809265319,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 406.39999980926495,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 0,
+      "action": "leave",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0s, 0s, 0s, 0s, 0s, 0s, 0s",
+      "frames": 25,
+      "distinct": 1,
+      "first": {
+        "t": 6.7999999046323865,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 406.69999990463293,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": []
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 100,
+      "action": "hover",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.1s",
+      "frames": 26,
+      "distinct": 9,
+      "first": {
+        "t": -7.600000000000364,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 392.39999999999964,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 100,
+      "action": "press",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.1s",
+      "frames": 25,
+      "distinct": 7,
+      "first": {
+        "t": -7.10000009536725,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": true,
+        "active": true,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 392.89999990463275,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 100,
+      "action": "release",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.1s",
+      "frames": 25,
+      "distinct": 7,
+      "first": {
+        "t": -4.000000381469363,
+        "color": "oklab(0.541077 -0.116626 0.0643294 / 0.75098)",
+        "hover": true,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 395.99999961853064,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 100,
+      "action": "leave",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.1s",
+      "frames": 25,
+      "distinct": 8,
+      "first": {
+        "t": -1,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": false,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 398.89999999999964,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 100,
+      "action": "hover",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s",
+      "frames": 26,
+      "distinct": 9,
+      "first": {
+        "t": -3.5000003814693628,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 396.49999961853064,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 100,
+      "action": "press",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s",
+      "frames": 24,
+      "distinct": 7,
+      "first": {
+        "t": 8.099999618530092,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": true,
+        "active": true,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 391.2999996185299,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 100,
+      "action": "release",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s",
+      "frames": 24,
+      "distinct": 7,
+      "first": {
+        "t": 7.899999999999636,
+        "color": "oklab(0.541077 -0.116626 0.0643294 / 0.75098)",
+        "hover": true,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 391.2999999999993,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 100,
+      "action": "leave",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s, 0.1s",
+      "frames": 25,
+      "distinct": 8,
+      "first": {
+        "t": -7.899999999999636,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": false,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 100,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 392.10000000000036,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 100, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 250,
+      "action": "hover",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.25s",
+      "frames": 26,
+      "distinct": 18,
+      "first": {
+        "t": -3.6000000953681592,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 396.39999990463184,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 250,
+      "action": "press",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.25s",
+      "frames": 24,
+      "distinct": 16,
+      "first": {
+        "t": 7.899999809265864,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": true,
+        "active": true,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 391.2999998092655,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 250,
+      "action": "release",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.25s",
+      "frames": 24,
+      "distinct": 17,
+      "first": {
+        "t": 7.699999904632932,
+        "color": "oklab(0.541077 -0.116626 0.0643294 / 0.75098)",
+        "hover": true,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 391.09999990463257,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "toggle",
+      "expectedDurationMs": 250,
+      "action": "leave",
+      "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "background-color",
+      "duration": "0.25s",
+      "frames": 25,
+      "distinct": 16,
+      "first": {
+        "t": -5.600000095368159,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": false,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 394.39999990463184,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 250,
+      "action": "hover",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s",
+      "frames": 26,
+      "distinct": 18,
+      "first": {
+        "t": -7.7000001907344995,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "last": {
+        "t": 392.39999980926586,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 250,
+      "action": "press",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s",
+      "frames": 25,
+      "distinct": 16,
+      "first": {
+        "t": -5.600000000000364,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": true,
+        "active": true,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 394.5,
+        "color": "color(srgb 0.113838 0.517319 0.268059 / 0.75098)",
+        "hover": true,
+        "active": true,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 250,
+      "action": "release",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s",
+      "frames": 25,
+      "distinct": 16,
+      "first": {
+        "t": -2.800000381470454,
+        "color": "oklab(0.541077 -0.116626 0.0643294 / 0.75098)",
+        "hover": true,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 397.19999961852955,
+        "color": "color(srgb 0.148357 0.416901 0.29421 / 0.626471)",
+        "hover": true,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    },
+    {
+      "theme": "dark",
+      "kind": "chip",
+      "expectedDurationMs": 250,
+      "action": "leave",
+      "easing": "ease, ease, cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1), cubic-bezier(0.42, 0, 0.58, 1)",
+      "property": "translate, box-shadow, scale, color, background-color, border-color, outline-color, border-width, border-radius, padding",
+      "duration": "0.05s, 0.05s, 0.05s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s, 0.25s",
+      "frames": 25,
+      "distinct": 17,
+      "first": {
+        "t": 0.599999618531001,
+        "color": "oklab(0.472933 -0.0810567 0.0288459 / 0.626471)",
+        "hover": false,
+        "active": false,
+        "animations": [
+          {
+            "time": 0,
+            "timing": {
+              "delay": 0,
+              "direction": "normal",
+              "duration": 250,
+              "easing": "cubic-bezier(0.42, 0, 0.58, 1)",
+              "endDelay": 0,
+              "fill": "backwards",
+              "iterationStart": 0,
+              "iterations": 1
+            }
+          }
+        ]
+      },
+      "last": {
+        "t": 400.49999961853064,
+        "color": "rgba(51, 68, 85, 0.5)",
+        "hover": false,
+        "active": false,
+        "animations": []
+      },
+      "animationTimings": [
+        "{\"delay\": 0, \"direction\": \"normal\", \"duration\": 250, \"easing\": \"cubic-bezier(0.42, 0, 0.58, 1)\", \"endDelay\": 0, \"fill\": \"backwards\", \"iterationStart\": 0, \"iterations\": 1}"
+      ]
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "zeroDurationHasNoAnimation": true,
+  "scope": "Actual natural hover/press/release/leave, 0/100/250 ms. CSS background-color interpolation only, no Native intermediate RGBA equivalence claim."
+}

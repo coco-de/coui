@@ -1,0 +1,3108 @@
+{
+  "issue": 6451,
+  "parent": 6131,
+  "issueUrl": "https://github.com/coco-de/coui/issues/6451",
+  "branch": "fix/6451-join-scope-20261119",
+  "base": "ad1ba78e9dc2f7c33b8f5dd41c511cac4b312d38",
+  "productCommit": "dd60229991e45686ef4ae5e1a7d21849b41cc393",
+  "joinTestCorrectionCommit": "fc7ca504f7371278b4f74b28e79f8eb3c7dc0df7",
+  "dotTestCorrectionCommit": "5997c68e7748130874366773730c235fd56aa411",
+  "productionFilesSHA256": {
+    "packages/coui_web/lib/src/components/layout/join/join.dart": "0888bc878a3bb66ea390bee3a2eb6f2d0a5360dca5ad413a2b098e9297987e42",
+    "packages/coui_web/lib/src/components/layout/join/join_style.dart": "3676449d92ad4c3ec8879e1008fbd62cb0011d18ee87afd3c080316cc1665fe0"
+  },
+  "productionSourceUnchangedAfterFreeze": true,
+  "publicAPI": {
+    "widget": {
+      "existingPublicShapeExact": true,
+      "before": {
+        "class:Join": {
+          "header": "class Join extends UiComponent implements CoreJoinContract < Component >",
+          "members": [
+            "constructor:null:null:null:({required this.children, this.vertical = false, this.joinStyle, super.key, super.id, super.classes, super.css, super.attributes, super.eventHandlers})",
+            "field:final:List<Component>:children",
+            "field:final:bool:vertical",
+            "field:final:CoreJoinStyle?:joinStyle"
+          ]
+        },
+        "methods": {
+          "build": "Component:null:null:(BuildContext context)",
+          "copyWith": "Join:null:null:({List<Component>? children, bool? vertical, CoreJoinStyle? joinStyle, String? id, String? classes, Styles? css, Map<String, String>? attributes, Map<String, List<UiEventHandler>>? eventHandlers, Key? key})",
+          "withStyle": "Join:null:null:(CoreJoinStyle patch)",
+          "radius0": "Join:get:null:null",
+          "radius2": "Join:get:null:null",
+          "radius4": "Join:get:null:null",
+          "radius6": "Join:get:null:null",
+          "radius8": "Join:get:null:null",
+          "radius10": "Join:get:null:null",
+          "radius12": "Join:get:null:null",
+          "radius14": "Join:get:null:null",
+          "radius16": "Join:get:null:null",
+          "radius20": "Join:get:null:null",
+          "radius24": "Join:get:null:null",
+          "radius28": "Join:get:null:null",
+          "radius32": "Join:get:null:null",
+          "radius36": "Join:get:null:null",
+          "radius40": "Join:get:null:null",
+          "radius48": "Join:get:null:null",
+          "radius56": "Join:get:null:null",
+          "radius64": "Join:get:null:null",
+          "radius9999": "Join:get:null:null"
+        },
+        "functions": {}
+      },
+      "after": {
+        "class:Join": {
+          "header": "class Join extends UiComponent implements CoreJoinContract < Component >",
+          "members": [
+            "constructor:null:null:null:({required this.children, this.vertical = false, this.joinStyle, super.key, super.id, super.classes, super.css, super.attributes, super.eventHandlers})",
+            "field:final:List<Component>:children",
+            "field:final:bool:vertical",
+            "field:final:CoreJoinStyle?:joinStyle"
+          ]
+        },
+        "methods": {
+          "build": "Component:null:null:(BuildContext context)",
+          "copyWith": "Join:null:null:({List<Component>? children, bool? vertical, CoreJoinStyle? joinStyle, String? id, String? classes, Styles? css, Map<String, String>? attributes, Map<String, List<UiEventHandler>>? eventHandlers, Key? key})",
+          "withStyle": "Join:null:null:(CoreJoinStyle patch)",
+          "radius0": "Join:get:null:null",
+          "radius2": "Join:get:null:null",
+          "radius4": "Join:get:null:null",
+          "radius6": "Join:get:null:null",
+          "radius8": "Join:get:null:null",
+          "radius10": "Join:get:null:null",
+          "radius12": "Join:get:null:null",
+          "radius14": "Join:get:null:null",
+          "radius16": "Join:get:null:null",
+          "radius20": "Join:get:null:null",
+          "radius24": "Join:get:null:null",
+          "radius28": "Join:get:null:null",
+          "radius32": "Join:get:null:null",
+          "radius36": "Join:get:null:null",
+          "radius40": "Join:get:null:null",
+          "radius48": "Join:get:null:null",
+          "radius56": "Join:get:null:null",
+          "radius64": "Join:get:null:null",
+          "radius9999": "Join:get:null:null"
+        },
+        "functions": {}
+      },
+      "addedNonBarrelFunctions": [],
+      "constructorPrivateInitializerExcluded": "Private initialization/body are implementation; const/factory/public parameter shape compared."
+    },
+    "style": {
+      "existingPublicShapeExact": true,
+      "before": {
+        "class:ResolvedJoin": {
+          "header": "class ResolvedJoin implements WebResolvedChrome",
+          "members": [
+            "constructor:const:null:null:({required this.root, required this.items})",
+            "field:final:WebElementChrome:root",
+            "field:final:List<WebElementChrome>:items"
+          ]
+        },
+        "methods": {},
+        "functions": {
+          "resolveJoin": "ResolvedJoin:null:(BuildContext context, {required bool vertical, required int count, CoreJoinStyle? joinStyle})",
+          "resolveJoinCss": "String:null:(BuildContext context, {required String scopeId, required bool vertical, required int count, CoreJoinStyle? joinStyle})"
+        }
+      },
+      "after": {
+        "class:ResolvedJoin": {
+          "header": "class ResolvedJoin implements WebResolvedChrome",
+          "members": [
+            "constructor:const:null:null:({required this.root, required this.items})",
+            "field:final:WebElementChrome:root",
+            "field:final:List<WebElementChrome>:items"
+          ]
+        },
+        "methods": {},
+        "functions": {
+          "resolveJoin": "ResolvedJoin:null:(BuildContext context, {required bool vertical, required int count, CoreJoinStyle? joinStyle})",
+          "resolveJoinCss": "String:null:(BuildContext context, {required String scopeId, required bool vertical, required int count, CoreJoinStyle? joinStyle})"
+        }
+      },
+      "addedNonBarrelFunctions": [
+        "resolveJoinElementCss"
+      ],
+      "constructorPrivateInitializerExcluded": "Private initialization/body are implementation; const/factory/public parameter shape compared."
+    },
+    "exportClosureSummary": {
+      "defaultUris": {
+        "count": 361,
+        "membershipExact": true,
+        "joinStyleExported": false,
+        "implementationByteChanges": [
+          "src/components/layout/join/join.dart"
+        ],
+        "remainingLibrariesByteExact": true
+      },
+      "allConditionalAlternatives": {
+        "count": 365,
+        "membershipExact": true,
+        "joinStyleExported": false,
+        "implementationByteChanges": [
+          "src/components/layout/join/join.dart"
+        ],
+        "remainingLibrariesByteExact": true
+      }
+    },
+    "constructorByteExact": false,
+    "constructorPublicShapeAndGenerativeBehaviorExact": true,
+    "constructorChange": "A real private ID-generation helper preserves key hash/radix or eager counter evaluation and actual _scopeId DOM fallback. Formatter rejoined the historical long interpolation; no ignore/factory/const/dummy state.",
+    "legacyCSSCasesExact": 128,
+    "actualIDSequenceExact": 8,
+    "externalSubclassSuperCompiledRendered": true,
+    "radius0NamedConstant": "Canonical CoreBorderRadius.zero equals former constant .all(CoreRadius.radius0); no new design value."
+  },
+  "packageCount": 232,
+  "packageTuplesExact": true,
+  "originalOldBrowserNegative": {
+    "source": "ad1ba78e9dc2f7c33b8f5dd41c511cac4b312d38",
+    "failures": 4,
+    "receipt": {
+      "argv": [
+        "dart",
+        "test",
+        "tool/parity/test/web/join_scope_test.dart",
+        "-r",
+        "expanded"
+      ],
+      "cwd": "worktree",
+      "pid": 47318,
+      "exit": 1,
+      "seconds": 3.709165125,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/old-negative-browser.log"
+    },
+    "binding": "old-negative-binding.json"
+  },
+  "checks": {
+    "tests-final-clean-exit.json": {
+      "argv": [
+        "dart",
+        "test",
+        "packages/coui_web/test/components/layout/join_element_rules_test.dart",
+        "packages/coui_web/test/components/layout/join_focus_ring_test.dart",
+        "tool/parity/test/web/join_scope_test.dart",
+        "tool/parity/test/web/join_scope_runtime_test.dart",
+        "-r",
+        "expanded"
+      ],
+      "cwd": "worktree",
+      "pid": 65901,
+      "exit": 0,
+      "seconds": 9.480133166,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/tests-final-clean.log"
+    },
+    "fatal-final-clean-exit.json": {
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/coui_web/lib/src/components/layout/join/join.dart",
+        "packages/coui_web/lib/src/components/layout/join/join_style.dart",
+        "packages/coui_web/test/components/layout/join_element_rules_test.dart",
+        "tool/parity/test/fixtures/join_scope_cases.dart",
+        "tool/parity/test/web/join_scope_test.dart",
+        "tool/parity/test/web/join_scope_runtime_test.dart"
+      ],
+      "cwd": "worktree",
+      "pid": 65361,
+      "exit": 0,
+      "seconds": 25.08796575,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/fatal-final-clean.log"
+    },
+    "runtime-owner-corrected-exit.json": {
+      "argv": [
+        "dart",
+        "test",
+        "tool/parity/test/web/join_scope_runtime_test.dart",
+        "-r",
+        "expanded"
+      ],
+      "cwd": "worktree",
+      "pid": 90278,
+      "exit": 0,
+      "seconds": 8.643796,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/runtime-owner-corrected.log"
+    },
+    "fatal-runtime-owner-exit.json": {
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "tool/parity/test/web/join_scope_runtime_test.dart"
+      ],
+      "cwd": "worktree",
+      "pid": 90377,
+      "exit": 0,
+      "seconds": 25.511203208,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/fatal-runtime-owner.log"
+    },
+    "dot-retrospective-runtime-exit.json": {
+      "argv": [
+        "dart",
+        "test",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart",
+        "-r",
+        "expanded"
+      ],
+      "cwd": "worktree",
+      "pid": 94644,
+      "exit": 0,
+      "seconds": 11.082583375,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/dot-retrospective-runtime.log"
+    },
+    "fatal-dot-retrospective-exit.json": {
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart"
+      ],
+      "cwd": "worktree",
+      "pid": 94907,
+      "exit": 0,
+      "seconds": 25.976642875,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/fatal-dot-retrospective.log"
+    },
+    "contracts-final-exit.json": {
+      "argv": [
+        "bash",
+        "scripts/guards/resolver/verify_contracts.sh"
+      ],
+      "cwd": "worktree",
+      "pid": 77231,
+      "exit": 0,
+      "seconds": 79.68078020899999,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/contracts-final.log"
+    },
+    "legacy-id-witness-exit.json": {
+      "argv": [
+        "dart",
+        "--packages=.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/legacy-id-witness.dart",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk"
+      ],
+      "cwd": "worktree",
+      "pid": 63901,
+      "exit": 0,
+      "seconds": 4.0558978329999995,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/legacy-id-witness.log"
+    }
+  },
+  "testCounts": "Original35 exit0 includes6 runtime whose old lifecycle claim is superseded; corrected affected Join6 exit0 establishes actual removal/new scope. Do not add repeat cases as new distinct tests. Dot6 is a separate retrospective validation correction.",
+  "correctedJoinRecords": 30,
+  "correctedJoinLifecycle": [
+    {
+      "theme": "light",
+      "action": "initial",
+      "present": true,
+      "beforeBuilds": 2,
+      "a": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-8",
+        "classes": "inline-flex flex-row co-join-rule-web-8 caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      },
+      "b": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-c",
+        "classes": "inline-flex flex-row co-join-rule-web-c caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "light",
+      "action": "rebuild",
+      "present": true,
+      "beforeBuilds": 2,
+      "a": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-8",
+        "classes": "inline-flex flex-row co-join-rule-web-8 caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      },
+      "b": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-c",
+        "classes": "inline-flex flex-row co-join-rule-web-c caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "light",
+      "action": "reorder",
+      "present": true,
+      "beforeBuilds": 3,
+      "a": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-8",
+        "classes": "inline-flex flex-row co-join-rule-web-8 caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      },
+      "b": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-c",
+        "classes": "inline-flex flex-row co-join-rule-web-c caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "light",
+      "action": "mount",
+      "present": false,
+      "beforeBuilds": 4,
+      "b": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-c",
+        "classes": "inline-flex flex-row co-join-rule-web-c caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "light",
+      "action": "mount",
+      "present": true,
+      "beforeBuilds": 5,
+      "a": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-1v",
+        "classes": "inline-flex flex-row co-join-rule-web-1v caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      },
+      "b": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-c",
+        "classes": "inline-flex flex-row co-join-rule-web-c caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "dark",
+      "action": "initial",
+      "present": true,
+      "beforeBuilds": 2,
+      "a": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-8",
+        "classes": "inline-flex flex-row co-join-rule-web-8 caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      },
+      "b": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-c",
+        "classes": "inline-flex flex-row co-join-rule-web-c caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "dark",
+      "action": "rebuild",
+      "present": true,
+      "beforeBuilds": 2,
+      "a": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-8",
+        "classes": "inline-flex flex-row co-join-rule-web-8 caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      },
+      "b": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-c",
+        "classes": "inline-flex flex-row co-join-rule-web-c caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "dark",
+      "action": "reorder",
+      "present": true,
+      "beforeBuilds": 3,
+      "a": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-8",
+        "classes": "inline-flex flex-row co-join-rule-web-8 caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      },
+      "b": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-c",
+        "classes": "inline-flex flex-row co-join-rule-web-c caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "dark",
+      "action": "mount",
+      "present": false,
+      "beforeBuilds": 4,
+      "b": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-c",
+        "classes": "inline-flex flex-row co-join-rule-web-c caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      }
+    },
+    {
+      "theme": "dark",
+      "action": "mount",
+      "present": true,
+      "beforeBuilds": 5,
+      "a": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-1v",
+        "classes": "inline-flex flex-row co-join-rule-web-1v caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      },
+      "b": {
+        "id": "co-join-2",
+        "scope": "co-join-rule-web-c",
+        "classes": "inline-flex flex-row co-join-rule-web-c caller-join-root",
+        "cursor": "crosshair",
+        "caller": "kept",
+        "firstTag": "STYLE",
+        "childNodes": 4,
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "minWidth": "73px",
+            "minHeight": "27px",
+            "overflow": "hidden",
+            "zIndex": "auto",
+            "position": "static",
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "focused": false,
+            "boxSizing": "border-box"
+          }
+        ]
+      }
+    }
+  ],
+  "correctedJoinActualAbsentRecords": 2,
+  "runtimeErrorObservationScope": "Permanent browser suites observe page.onError, not full console/network. Separate canonical8 capture and actual docs UI also record console/error/failed/external request scopes.",
+  "dotRetrospective": {
+    "overridesHistoricalRemountCoverageClaim": true,
+    "reason": "Historical harness anchor div#mount and toggle button#mount collided, so page.click(#mount) targeted the app wrapper. Historical passing logs are insufficient removal/remount proof. They remain immutable historical results.",
+    "productChanged": false,
+    "dotProductHashes": {
+      "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator.dart": "085ef17fa25fdf89907feaf21eebd956c49b0bcb1407802e9ce5f7922c36a73b",
+      "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator_style.dart": "b33687c37e160767033643f6e2c8fe18c3e1695ecf3c16075b970d145985756f"
+    },
+    "correctedTestCommit": "5997c68e7748130874366773730c235fd56aa411",
+    "actualRunHead": "fc7ca504f7371278b4f74b28e79f8eb3c7dc0df7",
+    "actualRunBinding": "The Dot test ran with this exact corrected test SHA as the only working-tree change on fc7ca, then was committed unchanged as5997. It is not attributed to the untouched fc7 tree.",
+    "correctedTestFile": "tool/parity/test/web/dot_indicator_scope_runtime_test.dart",
+    "correctedTestSHA256": "31a50d88a2c1cf7b9f9cc2cf9b4f3d73e8a1f14148c0d733c27cbe707cfa1dfa",
+    "testReceipt": {
+      "argv": [
+        "dart",
+        "test",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart",
+        "-r",
+        "expanded"
+      ],
+      "cwd": "worktree",
+      "pid": 94644,
+      "exit": 0,
+      "seconds": 11.082583375,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/dot-retrospective-runtime.log"
+    },
+    "fatalReceipt": {
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart"
+      ],
+      "cwd": "worktree",
+      "pid": 94907,
+      "exit": 0,
+      "seconds": 25.976642875,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/fatal-dot-retrospective.log"
+    },
+    "formatReceipt": {
+      "argv": [
+        "dart",
+        "format",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart"
+      ],
+      "cwd": "worktree",
+      "pid": 94616,
+      "exit": 0,
+      "seconds": 0.28825716700000004,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/format-dot-retrospective.log"
+    },
+    "runtimeRecords": 78,
+    "actualLifecycleRecords": [
+      {
+        "theme": "light",
+        "action": "initial",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-8ihksx"
+        },
+        "beforeBuilds": 2
+      },
+      {
+        "theme": "light",
+        "action": "rebuild",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-8ihksx"
+        },
+        "beforeBuilds": 2
+      },
+      {
+        "theme": "light",
+        "action": "reorder",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-8ihksx"
+        },
+        "beforeBuilds": 3
+      },
+      {
+        "theme": "light",
+        "action": "mount",
+        "lifetime": {
+          "present": false,
+          "oldConnected": false,
+          "sameNode": false
+        },
+        "beforeBuilds": 4
+      },
+      {
+        "theme": "light",
+        "action": "mount",
+        "lifetime": {
+          "present": true,
+          "oldConnected": false,
+          "sameNode": false,
+          "legacyClass": "co-dot-h-co-dot-8ihksx"
+        },
+        "beforeBuilds": 5
+      },
+      {
+        "theme": "dark",
+        "action": "initial",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-ez8ib"
+        },
+        "beforeBuilds": 2
+      },
+      {
+        "theme": "dark",
+        "action": "rebuild",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-ez8ib"
+        },
+        "beforeBuilds": 2
+      },
+      {
+        "theme": "dark",
+        "action": "reorder",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-ez8ib"
+        },
+        "beforeBuilds": 3
+      },
+      {
+        "theme": "dark",
+        "action": "mount",
+        "lifetime": {
+          "present": false,
+          "oldConnected": false,
+          "sameNode": false
+        },
+        "beforeBuilds": 4
+      },
+      {
+        "theme": "dark",
+        "action": "mount",
+        "lifetime": {
+          "present": true,
+          "oldConnected": false,
+          "sameNode": false,
+          "legacyClass": "co-dot-h-co-dot-ez8ib"
+        },
+        "beforeBuilds": 5
+      }
+    ],
+    "actualAbsentRecords": 2,
+    "newNodeAfterRemount": true,
+    "legacyScopeClassPreserved": true,
+    "remountedFocus": [
+      {
+        "theme": "light",
+        "case": "remounted-focus",
+        "reference": {
+          "border": "rgb(31, 32, 33)",
+          "borderStyle": "solid",
+          "borderWidth": "0px",
+          "outline": "rgba(180, 20, 40, 0.62)",
+          "width": "2px",
+          "offset": "3px",
+          "style": "solid",
+          "shadow": "rgb(40, 50, 60) 0px 0px 3px 0px",
+          "classes": "transition-all bg-on-surface border-on-surface coui-touch-target co-dot-hit-h-co-dot-2dm500 co-dot-hit-horizontal outline-none co-dot-r-co-dot-2dm500 co-dot-raw-ring",
+          "declaredColor": "rgba(180, 20, 40, 0.62)",
+          "declaredWidth": "2.5px",
+          "declaredOffset": "3.75px"
+        },
+        "observed": {
+          "border": "rgb(31, 32, 33)",
+          "borderStyle": "solid",
+          "borderWidth": "0px",
+          "outline": "rgba(180, 20, 40, 0.62)",
+          "width": "2px",
+          "offset": "3px",
+          "style": "solid",
+          "shadow": "rgb(40, 50, 60) 0px 0px 3px 0px",
+          "classes": "transition-all bg-on-surface border-on-surface coui-touch-target co-dot-hit-h-co-dot-8ihksx co-dot-hit-horizontal outline-none co-dot-r-co-dot-8ihksx co-dot-raw-ring",
+          "declaredColor": "rgba(180, 20, 40, 0.62)",
+          "declaredWidth": "2.5px",
+          "declaredOffset": "3.75px"
+        }
+      },
+      {
+        "theme": "dark",
+        "case": "remounted-focus",
+        "reference": {
+          "border": "rgb(244, 245, 246)",
+          "borderStyle": "solid",
+          "borderWidth": "0px",
+          "outline": "rgba(180, 20, 40, 0.62)",
+          "width": "2px",
+          "offset": "3px",
+          "style": "solid",
+          "shadow": "rgb(40, 50, 60) 0px 0px 3px 0px",
+          "classes": "transition-all bg-on-surface border-on-surface coui-touch-target co-dot-hit-h-co-dot-128oqo co-dot-hit-horizontal outline-none co-dot-r-co-dot-128oqo co-dot-raw-ring",
+          "declaredColor": "rgba(180, 20, 40, 0.62)",
+          "declaredWidth": "2.5px",
+          "declaredOffset": "3.75px"
+        },
+        "observed": {
+          "border": "rgb(244, 245, 246)",
+          "borderStyle": "solid",
+          "borderWidth": "0px",
+          "outline": "rgba(180, 20, 40, 0.62)",
+          "width": "2px",
+          "offset": "3px",
+          "style": "solid",
+          "shadow": "rgb(40, 50, 60) 0px 0px 3px 0px",
+          "classes": "transition-all bg-on-surface border-on-surface coui-touch-target co-dot-hit-h-co-dot-ez8ib co-dot-hit-horizontal outline-none co-dot-r-co-dot-ez8ib co-dot-raw-ring",
+          "declaredColor": "rgba(180, 20, 40, 0.62)",
+          "declaredWidth": "2.5px",
+          "declaredOffset": "3.75px"
+        }
+      }
+    ],
+    "remountedFocusFieldComparisonIncludes": [
+      "style",
+      "shadow",
+      "outline",
+      "width",
+      "offset",
+      "declaredColor",
+      "declaredWidth",
+      "declaredOffset"
+    ],
+    "bandScope": "Painted/mixed/bandless and forced-colors/hit controls pass on separate cold pages in the same6-test suite. They are not described as band owners remounting or same-tree band continuity.",
+    "runtimeErrorObservationScope": "page.onError only; not a full console/network audit",
+    "errors": [],
+    "sourceProof": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/corrected-dot-runtime/observed.json",
+    "sourceProofSHA256": "273179e86770a43eaf96d6fa18d4ffae33c01abeeb31dcbe1b6bff491deb2169",
+    "originalProofsAndOldDotWorktreeModified": false,
+    "noNewDocsBuildNeeded": "Only runtime tests and verification docs differ after the dd602 docs build; all docs-site/Core/Native/Web product/capture source/dependency inputs remain byte-identical.",
+    "noFreshDefault816OrNativePixelClaim": true
+  },
+  "selectedOriginalImages": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/before-light-shared-a-rest.png",
+      "sha256": "412f91866e893d4220a535bd0d0c2f830206d7b6deed6438312ce1c8128f106d",
+      "dimensions": [
+        420,
+        88
+      ],
+      "phase": "before",
+      "theme": "light",
+      "owner": "shared-a",
+      "state": "rest",
+      "label": "before light: shared runtime H3 radius owner A4. Actual official foundation; same final fixture before/after. Legacy duplicate DOM ID retained. Original PNG, no edits.",
+      "sourceHead": "ad1ba78e9dc2f7c33b8f5dd41c511cac4b312d38",
+      "viewedByWorker": true,
+      "observation": {
+        "id": "co-join-2",
+        "classes": "inline-flex flex-row caller-join-root",
+        "firstTag": "STYLE",
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          }
+        ],
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 420,
+          "height": 88
+        },
+        "phase": "before",
+        "theme": "light",
+        "owner": "shared-a",
+        "state": "rest",
+        "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/before-light-shared-a-rest.png"
+      }
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/before-light-equal-a-focus.png",
+      "sha256": "3d91e47ac2355e36ee65af182bdc6781dbeaad3fa69630ab17526cc2d7132614",
+      "dimensions": [
+        420,
+        88
+      ],
+      "phase": "before",
+      "theme": "light",
+      "owner": "equal-a",
+      "state": "focus",
+      "label": "before light: equal local key single A4 versus vertical B16 count3; focus ring. Actual official foundation; same final fixture before/after. Legacy duplicate DOM ID retained. Original PNG, no edits.",
+      "sourceHead": "ad1ba78e9dc2f7c33b8f5dd41c511cac4b312d38",
+      "viewedByWorker": true,
+      "observation": {
+        "id": "co-join-2rsuj1",
+        "classes": "inline-flex flex-row caller-join-root",
+        "firstTag": "STYLE",
+        "items": [
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "16px",
+              "16px"
+            ],
+            "focused": true,
+            "outlineColor": "rgb(64, 65, 67)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "visible",
+            "zIndex": "1"
+          }
+        ],
+        "clip": {
+          "x": 0,
+          "y": 629,
+          "width": 420,
+          "height": 88
+        },
+        "phase": "before",
+        "theme": "light",
+        "owner": "equal-a",
+        "state": "focus",
+        "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/before-light-equal-a-focus.png"
+      }
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/before-dark-shared-a-rest.png",
+      "sha256": "d38d14c7d234a51dba1259d2b819f279ef5cd0d5f035cd9e7094ba3bdd882593",
+      "dimensions": [
+        420,
+        88
+      ],
+      "phase": "before",
+      "theme": "dark",
+      "owner": "shared-a",
+      "state": "rest",
+      "label": "before dark: shared runtime H3 radius owner A4. Actual official foundation; same final fixture before/after. Legacy duplicate DOM ID retained. Original PNG, no edits.",
+      "sourceHead": "ad1ba78e9dc2f7c33b8f5dd41c511cac4b312d38",
+      "viewedByWorker": true,
+      "observation": {
+        "id": "co-join-2",
+        "classes": "inline-flex flex-row caller-join-root",
+        "firstTag": "STYLE",
+        "items": [
+          {
+            "radius": [
+              "16px",
+              "0px",
+              "0px",
+              "16px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "radius": [
+              "0px",
+              "16px",
+              "16px",
+              "0px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          }
+        ],
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 420,
+          "height": 88
+        },
+        "phase": "before",
+        "theme": "dark",
+        "owner": "shared-a",
+        "state": "rest",
+        "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/before-dark-shared-a-rest.png"
+      }
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/before-dark-equal-a-focus.png",
+      "sha256": "704efc74f30eb08e0f16d5d8ce025878ce5df019141a0ccd2e184f6e13c1e2e6",
+      "dimensions": [
+        420,
+        88
+      ],
+      "phase": "before",
+      "theme": "dark",
+      "owner": "equal-a",
+      "state": "focus",
+      "label": "before dark: equal local key single A4 versus vertical B16 count3; focus ring. Actual official foundation; same final fixture before/after. Legacy duplicate DOM ID retained. Original PNG, no edits.",
+      "sourceHead": "ad1ba78e9dc2f7c33b8f5dd41c511cac4b312d38",
+      "viewedByWorker": true,
+      "observation": {
+        "id": "co-join-2rsuj1",
+        "classes": "inline-flex flex-row caller-join-root",
+        "firstTag": "STYLE",
+        "items": [
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "16px",
+              "16px"
+            ],
+            "focused": true,
+            "outlineColor": "rgb(244, 245, 246)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "visible",
+            "zIndex": "1"
+          }
+        ],
+        "clip": {
+          "x": 0,
+          "y": 629,
+          "width": 420,
+          "height": 88
+        },
+        "phase": "before",
+        "theme": "dark",
+        "owner": "equal-a",
+        "state": "focus",
+        "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/before-dark-equal-a-focus.png"
+      }
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/after-light-shared-a-rest.png",
+      "sha256": "e4539eaf3ab7435142d15374cc3bf74f709f0cd15e40869f78b4012b344cb259",
+      "dimensions": [
+        420,
+        88
+      ],
+      "phase": "after",
+      "theme": "light",
+      "owner": "shared-a",
+      "state": "rest",
+      "label": "after light: shared runtime H3 radius owner A4. Actual official foundation; same final fixture before/after. Legacy duplicate DOM ID retained. Original PNG, no edits.",
+      "sourceHead": "dd60229991e45686ef4ae5e1a7d21849b41cc393",
+      "viewedByWorker": true,
+      "observation": {
+        "id": "co-join-2",
+        "classes": "inline-flex flex-row co-join-rule-ssr-8 caller-join-root",
+        "firstTag": "STYLE",
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "radius": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          }
+        ],
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 420,
+          "height": 88
+        },
+        "phase": "after",
+        "theme": "light",
+        "owner": "shared-a",
+        "state": "rest",
+        "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/after-light-shared-a-rest.png"
+      }
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/after-light-equal-a-focus.png",
+      "sha256": "0739fcdc0afa0e42948b571c0d8d7a688906fd2e8597f07fe29fe994e2541e41",
+      "dimensions": [
+        420,
+        88
+      ],
+      "phase": "after",
+      "theme": "light",
+      "owner": "equal-a",
+      "state": "focus",
+      "label": "after light: equal local key single A4 versus vertical B16 count3; focus ring. Actual official foundation; same final fixture before/after. Legacy duplicate DOM ID retained. Original PNG, no edits.",
+      "sourceHead": "dd60229991e45686ef4ae5e1a7d21849b41cc393",
+      "viewedByWorker": true,
+      "observation": {
+        "id": "co-join-5ygvn4",
+        "classes": "inline-flex flex-row co-join-rule-ssr-m caller-join-root",
+        "firstTag": "STYLE",
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "4px",
+              "4px",
+              "4px"
+            ],
+            "focused": true,
+            "outlineColor": "rgb(64, 65, 67)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "visible",
+            "zIndex": "1"
+          }
+        ],
+        "clip": {
+          "x": 0,
+          "y": 629,
+          "width": 420,
+          "height": 88
+        },
+        "phase": "after",
+        "theme": "light",
+        "owner": "equal-a",
+        "state": "focus",
+        "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/after-light-equal-a-focus.png"
+      }
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/after-dark-shared-a-rest.png",
+      "sha256": "6a19dded20cf549c59e66fd2f325971c2053b079cc01bc4d894f37de2911e434",
+      "dimensions": [
+        420,
+        88
+      ],
+      "phase": "after",
+      "theme": "dark",
+      "owner": "shared-a",
+      "state": "rest",
+      "label": "after dark: shared runtime H3 radius owner A4. Actual official foundation; same final fixture before/after. Legacy duplicate DOM ID retained. Original PNG, no edits.",
+      "sourceHead": "dd60229991e45686ef4ae5e1a7d21849b41cc393",
+      "viewedByWorker": true,
+      "observation": {
+        "id": "co-join-2",
+        "classes": "inline-flex flex-row co-join-rule-ssr-8 caller-join-root",
+        "firstTag": "STYLE",
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "radius": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "radius": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "focused": false,
+            "outlineColor": "rgba(0, 0, 0, 0)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "hidden",
+            "zIndex": "auto"
+          }
+        ],
+        "clip": {
+          "x": 0,
+          "y": 197,
+          "width": 420,
+          "height": 88
+        },
+        "phase": "after",
+        "theme": "dark",
+        "owner": "shared-a",
+        "state": "rest",
+        "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/after-dark-shared-a-rest.png"
+      }
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/after-dark-equal-a-focus.png",
+      "sha256": "76714467f537fef3a8fe319e77d41bc426896b683fe503f0a4a4a928ff5ad178",
+      "dimensions": [
+        420,
+        88
+      ],
+      "phase": "after",
+      "theme": "dark",
+      "owner": "equal-a",
+      "state": "focus",
+      "label": "after dark: equal local key single A4 versus vertical B16 count3; focus ring. Actual official foundation; same final fixture before/after. Legacy duplicate DOM ID retained. Original PNG, no edits.",
+      "sourceHead": "dd60229991e45686ef4ae5e1a7d21849b41cc393",
+      "viewedByWorker": true,
+      "observation": {
+        "id": "co-join-5ygvn4",
+        "classes": "inline-flex flex-row co-join-rule-ssr-m caller-join-root",
+        "firstTag": "STYLE",
+        "items": [
+          {
+            "radius": [
+              "4px",
+              "4px",
+              "4px",
+              "4px"
+            ],
+            "focused": true,
+            "outlineColor": "rgb(244, 245, 246)",
+            "outlineWidth": "2px",
+            "wrapperOverflow": "visible",
+            "zIndex": "1"
+          }
+        ],
+        "clip": {
+          "x": 0,
+          "y": 629,
+          "width": 420,
+          "height": 88
+        },
+        "phase": "after",
+        "theme": "dark",
+        "owner": "equal-a",
+        "state": "focus",
+        "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/canonical-evidence/after-dark-equal-a-focus.png"
+      }
+    }
+  ],
+  "build": {
+    "sourceHead": "dd60229991e45686ef4ae5e1a7d21849b41cc393",
+    "exit": 0,
+    "started": 1795039021.73236,
+    "finished": 1795039127.086526,
+    "trackedCount": 22584,
+    "trackedDeltas": [],
+    "groupClosed": true
+  },
+  "actualDocsUI": {
+    "rows": [
+      {
+        "theme": "light",
+        "variant": "default",
+        "action": "initial",
+        "id": "co-join-0",
+        "scope": "co-join-rule-web-3",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "row",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "wrapper": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "variant": "default",
+        "action": "focus-middle",
+        "id": "co-join-0",
+        "scope": "co-join-rule-web-3",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "row",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "wrapper": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": true,
+            "overflow": "visible",
+            "zIndex": "1"
+          },
+          {
+            "child": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "variant": "default",
+        "action": "click-first",
+        "id": "co-join-0",
+        "scope": "co-join-rule-web-3",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "row",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "wrapper": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "visible",
+            "zIndex": "1"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "variant": "vertical",
+        "action": "initial",
+        "id": "co-join-1",
+        "scope": "co-join-rule-web-7",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "column",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "variant": "vertical",
+        "action": "focus-middle",
+        "id": "co-join-1",
+        "scope": "co-join-rule-web-7",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "column",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": true,
+            "overflow": "visible",
+            "zIndex": "1"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "variant": "vertical",
+        "action": "click-first",
+        "id": "co-join-1",
+        "scope": "co-join-rule-web-7",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "column",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "visible",
+            "zIndex": "1"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "light",
+        "action": "refresh",
+        "observedTheme": "light"
+      },
+      {
+        "theme": "dark",
+        "variant": "default",
+        "action": "initial",
+        "id": "co-join-0",
+        "scope": "co-join-rule-web-3",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "row",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "wrapper": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "variant": "default",
+        "action": "focus-middle",
+        "id": "co-join-0",
+        "scope": "co-join-rule-web-3",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "row",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "wrapper": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": true,
+            "overflow": "visible",
+            "zIndex": "1"
+          },
+          {
+            "child": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "variant": "default",
+        "action": "click-first",
+        "id": "co-join-0",
+        "scope": "co-join-rule-web-3",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "row",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "wrapper": [
+              "4px",
+              "0px",
+              "0px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "visible",
+            "zIndex": "1"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "4px",
+              "4px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "variant": "vertical",
+        "action": "initial",
+        "id": "co-join-1",
+        "scope": "co-join-rule-web-7",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "column",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "variant": "vertical",
+        "action": "focus-middle",
+        "id": "co-join-1",
+        "scope": "co-join-rule-web-7",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "column",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": true,
+            "overflow": "visible",
+            "zIndex": "1"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "variant": "vertical",
+        "action": "click-first",
+        "id": "co-join-1",
+        "scope": "co-join-rule-web-7",
+        "rootIdentity": true,
+        "docsShell": 1,
+        "firstTag": "STYLE",
+        "direction": "column",
+        "actualGuardBound": true,
+        "items": [
+          {
+            "child": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "4px",
+              "4px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "visible",
+            "zIndex": "1"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "0px",
+              "0px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          },
+          {
+            "child": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "wrapper": [
+              "0px",
+              "0px",
+              "4px",
+              "4px"
+            ],
+            "focus": false,
+            "overflow": "hidden",
+            "zIndex": "auto"
+          }
+        ]
+      },
+      {
+        "theme": "dark",
+        "action": "refresh",
+        "observedTheme": "dark"
+      }
+    ],
+    "runtimeErrors": [],
+    "consoleErrors": [],
+    "failedRequests": [],
+    "browserCloseAwaited": true
+  },
+  "docsUIOwner": {
+    "serverArgv": [
+      "python3",
+      "-m",
+      "http.server",
+      "53366",
+      "--bind",
+      "127.0.0.1",
+      "--directory",
+      "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/worktree/docs_site/build/jaspr"
+    ],
+    "pid": 81090,
+    "port": 53366,
+    "sourceHead": "dd60229991e45686ef4ae5e1a7d21849b41cc393",
+    "browserArgv": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/worktree/.dart_tool/package_config.json",
+      "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/docs-ui.dart",
+      "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk",
+      "http://127.0.0.1:53366"
+    ],
+    "exit": 0,
+    "serverClosed": true,
+    "portClosed": true
+  },
+  "reload": {
+    "sourceHead": "dd60229991e45686ef4ae5e1a7d21849b41cc393",
+    "sourceSha256": "3676449d92ad4c3ec8879e1008fbd62cb0011d18ee87afd3c080316cc1665fe0",
+    "reload": {
+      "result": {
+        "type": "ReloadReport",
+        "success": true,
+        "details": {
+          "finalLibraryCount": 2226,
+          "receivedLibraryCount": 0,
+          "receivedLibrariesBytes": 0,
+          "receivedClassesCount": 0,
+          "receivedProceduresCount": 0,
+          "savedLibraryCount": 2226,
+          "loadedLibraryCount": 0
+        }
+      }
+    },
+    "beforeAfterHtmlExact": false,
+    "legacyDOMIDsStable": true,
+    "identityBoundary": "Independent fresh SSR request contexts allocate new private CSS owners; raw HTML retained without stripping or pretending exact identity. Legacy shared-configuration DOM IDs remain duplicated by design boundary.",
+    "exit": 0,
+    "pidClosed": true,
+    "httpClosed": true,
+    "vmClosed": true
+  },
+  "cleanup": {
+    "ports": [
+      {
+        "port": 51584,
+        "closed": true
+      },
+      {
+        "port": 53366,
+        "closed": true
+      },
+      {
+        "port": 54225,
+        "closed": true
+      },
+      {
+        "port": 54180,
+        "closed": true
+      }
+    ],
+    "pids": [
+      {
+        "pid": 72441,
+        "closed": true
+      },
+      {
+        "pid": 81090,
+        "closed": true
+      },
+      {
+        "pid": 84204,
+        "closed": true
+      }
+    ],
+    "browserAndRuntimeHttpCloseAwaited": true,
+    "correctedJoinRuntimeClosed": true,
+    "correctedDotRuntimeClosed": true,
+    "fileDeletion": 0,
+    "foreignRuntimeAccess": false
+  },
+  "boundaries": [
+    "CSS ownership isolation only. Legacy generated Join DOM IDs can still collide, including shared runtime configurations/equal local keys. No document-wide uniqueness claim.",
+    "Existing unescaped punctuation caller IDs remain a known negative; no input-policy expansion or escaping change.",
+    "Existing #5155 literal-selector report and #5547 clay raster report are separate, not closed by this change.",
+    "No Core/Native/theme/design/default tokens/global helper/dependency/capture comparator/normalizer/criterion/skip/baseline change. No fresh full Native or default816 capture or residual234 reduction claim.",
+    "Original setup/strict-lint/focus-readiness/lifecycle-stale/selector-timeout attempts are retained; superseded logs do not prove removal/remount.",
+    "Fresh SSR reload contexts allocate distinct private class identities. Before/after HTML is retained as nonidentical; each actual owner/selector mapping and unchanged legacy IDs are verified without stripping identities."
+  ],
+  "sourceClosureAfterBuild": "Only runtime tests/verification docs changed after dd602. docs_site/docs_core/Web/Core/Flutter product/capture sources and dependencies are byte-identical, so the single359 build is explicitly reused, not relabelled fresh.",
+  "proofRoot": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk"
+}

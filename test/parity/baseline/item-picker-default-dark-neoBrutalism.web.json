@@ -1,0 +1,75 @@
+{
+  "key": "item-picker-default-dark-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "담당자\n                \n                  \n                    \n                      \n                    \n                    김코드\n                  \n                \n                \n                  이코드\n                \n                \n                  박코드\n                \n                \n                  최코드\n                \n                \n                  정코드",
+    "layout": {
+      "width": 800,
+      "height": 281,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 4,
+          "y": 4,
+          "width": 792,
+          "height": 45
+        },
+        {
+          "x": 4,
+          "y": 49,
+          "width": 792,
+          "height": 4
+        },
+        {
+          "x": 4,
+          "y": 53,
+          "width": 792,
+          "height": 224
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(147, 149, 150)",
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(244, 245, 247)",
+      "borderRightColor": "rgb(244, 245, 247)",
+      "borderBottomColor": "rgb(244, 245, 247)",
+      "borderLeftColor": "rgb(244, 245, 247)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(0, 0, 0) 4px 20px 0px 0px",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 281
+    }
+  }
+}

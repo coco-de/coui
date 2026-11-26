@@ -1,0 +1,143 @@
+{
+  "issue": 6440,
+  "base": "f27dc733a85fb1af499112a4ebf8affab58674f9",
+  "productHead": "bb3bb59669f571f15e5cff50ecbe4bdb3c5cca40",
+  "proofRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09",
+  "productionFiles": 2,
+  "newTests": 10,
+  "allWebTabsTests": 61,
+  "oldImplementationInitialTests": {
+    "total": 7,
+    "fail": 5,
+    "pass": 2
+  },
+  "nativeCanonicalRows": 132,
+  "webRows": {
+    "before": 132,
+    "afterSsr": 132,
+    "optimizedHydration": 132
+  },
+  "statesPerRow": 3,
+  "browserErrors": 0,
+  "externalRequests": 0,
+  "defaultAndTokenChangedRows": 0,
+  "disabledChangedRows": 0,
+  "restChangedRows": 0,
+  "ssrHydrationChangedRows": 0,
+  "rawInstanceScopesPerTheme": 18,
+  "paintSamples": {
+    "perPhase": 24,
+    "beforeExact": 8,
+    "afterExact": 20,
+    "hydratedExact": 20,
+    "afterMaxChannelDelta": 1,
+    "wholeImageEqualityClaimed": false
+  },
+  "docsBuild": {
+    "routes": 359,
+    "exit": 0,
+    "seconds": 103.72,
+    "trackedPaths": 22550,
+    "changed": []
+  },
+  "publicApiChanges": 0,
+  "coreOrNativeChanges": 0,
+  "dependencyOrLockChanges": 0,
+  "criteriaBaselineSkipChanges": 0,
+  "official40Or816SweepRerun": false,
+  "default234ReductionClaimed": false,
+  "receipts": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/worktree.json",
+      "sha256": "cbd19f4d32647514323d5b7e95934ef7ab8144e97346cc9f472d37b75e72e161"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/new-test-negative-exit.json",
+      "sha256": "af5af69e54e414ecb1eecff2074ce8ea0a7ca156f5992c192601d4dc8747c654"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/web-tabs-suites-exit.json",
+      "sha256": "7449fd72551048d79305cb6d97e56f952ddfa0d6c2dd76b4a30d8b7e85a0d337"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/analyze-second-exit.json",
+      "sha256": "7449fd72551048d79305cb6d97e56f952ddfa0d6c2dd76b4a30d8b7e85a0d337"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/contract-guard-exit.json",
+      "sha256": "929ea25b43ce2cdeaae94c77501da333b527ba278a9c3346262a188d42402856"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/artifact-index.json",
+      "sha256": "f6ed9a8bec7b40597c2c9dca245c5a8aea24c41c3968fbc437f8ecf576a5e289"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/product-freeze.json",
+      "sha256": "53528f6ee52293ed3763c2494fbcb09774d0ba24e34a08e2cc3232513ddf9afa"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/source-scope.json",
+      "sha256": "0435f80568cf16f3d140b8d418c25ecb5c72549b99d6a28288bdf0b63f01e275"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/public-component-api.json",
+      "sha256": "8c0c436c58260a9776050833d4170b98f2f7d21a6aeae4a9013c5a20a4c16281"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/internal-renderer-api.json",
+      "sha256": "7d04444da4e2d2175edadd151ebf4f8c79ed32d16d947e3f80ede357643580ab"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/export-scope.json",
+      "sha256": "10c368bba50532acad9d48a58b3e35b85cc56c85f36f2566e6d37f4a55744e16"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/canonical-font-binding.json",
+      "sha256": "bf328d5a1234fcdd15c03a9bc91cce222bb968702a272d6baf08b778a0a4b6c4"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/native-with-fonts-exit.json",
+      "sha256": "587fa8e02d55ceb646d41713db111af0c096bffbc27f8f606594b7cd852cd27d"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/browser-run-exit.json",
+      "sha256": "bcc4c5b6501df3c914823ddda775c0f863ad0c4dd36b71864bd096bd95212a87"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/semantic-comparison.json",
+      "sha256": "3baee9c7d14398d2ba865e35c2aaf1062fa12eb74a006714383e8a5b6d56288a"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/default-token-dom-comparison.json",
+      "sha256": "578c31ab23e1fbe09815d5f2116be49ae0b8d9b74a04757369b102282cf9b0d2"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/scope-validation.json",
+      "sha256": "a5bdd10e5dbda45ef98cec65e5d6253fae706c166f90e2260ee1ab87c8736666"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/paint-comparison.json",
+      "sha256": "9919fad82b82a21bb79cd6b917856dd8219e6952d85a170d594e2c3a754668be"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/build-process.json",
+      "sha256": "4ea630628583afb222de1ff451a5e62955c9dcb1d425a0bc78507dd2c4292857"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/owned-reload.json",
+      "sha256": "95afe86cf966867393bcaa901d085368e7c1f028fe3cbac672af6eb0a008c5c0"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/cleanup.json",
+      "sha256": "251b933de0db1fc404ced43d91c49c4d01d742ab96e8918d41ef0cc12a73f493"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/selected-evidence8.json",
+      "sha256": "402fbbbf38c5eaa8f4768d2185b2d581552082e746794282b5f2442f5abee5bf"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-wash-audit-20261119.c8plry09/implementation/format-final-exit.json",
+      "sha256": "7449fd72551048d79305cb6d97e56f952ddfa0d6c2dd76b4a30d8b7e85a0d337"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+// G12 self-test fixture — a VarLookup that inherits. The accessors it asks for
+// may live in the parent, which the guard does not read.
+export class VarLookup extends Base {
+  space(n: number): Variable {
+    return this.get('Primitives', `space/${n}`);
+  }
+}
+
+function canonicalCollection(): void {}

@@ -1,0 +1,7 @@
+# 승격된 baseline 이 커밋되는 자리.
+#
+# 픽셀 baseline(`<key>.<platform>.png`)은 Tier1 만, 속성 baseline
+# (`<key>.<platform>.json`)은 전체 컴포넌트를 커밋한다 — 속성 JSON 은
+# 킬로바이트라 커버리지를 넓혀도 리포 부담이 없고 1차 신호이기 때문이다.
+#
+# 채우는 방법: melos run parity:promote [-- <key>]

@@ -1,0 +1,268 @@
+# CoUI
+
+> CoUI is a cross-platform UI component library for Dart: the same components, with the same named-properties API and the same design tokens, render on Flutter (mobile/desktop) and on the web via Jaspr.
+
+- Packages: `coui_flutter` (Flutter widgets), `coui_web` (Jaspr components), `coui_core` (platform-neutral contracts, styles and design tokens shared by both).
+- Import one barrel per platform: `package:coui_flutter/coui_flutter.dart` or `package:coui_web/coui_web.dart`.
+- Visual overrides go through a single `xxxStyle: CoreXxxStyle?` parameter per component; semantic choices such as `variant` and `size` are plain parameters.
+- The linked documentation pages are written in Korean; component names, parameters and code samples are English.
+
+## Getting Started
+
+- [Overview](https://coui.cocode.im/overview): What CoUI does and how these docs are organized
+- [Quick start](https://coui.cocode.im/getting-started): Install CoUI, wrap the app root and render a first component
+- [Design principles](https://coui.cocode.im/principles): Why the API is shaped the way it is, and what that changes in your code
+- [Accessibility](https://coui.cocode.im/accessibility): What CoUI guarantees across every component, and where each component documents its own behavior
+- [Theming](https://coui.cocode.im/guides/theming)
+- [Surface styles](https://coui.cocode.im/guides/surface-styles)
+- [Cross-platform](https://coui.cocode.im/guides/cross-platform)
+- [State control](https://coui.cocode.im/guides/state)
+- [Glossary](https://coui.cocode.im/guides/glossary)
+
+## Foundations
+
+- [Design tokens](https://coui.cocode.im/tokens/overview): Shared coui_core tokens: color, typography, spacing, shape, effects, layering and motion
+- [Colors](https://coui.cocode.im/guides/colors)
+- [Typography](https://coui.cocode.im/guides/typography)
+- [Icons](https://coui.cocode.im/guides/icons)
+- [Layout](https://coui.cocode.im/guides/layout)
+- [Shape](https://coui.cocode.im/guides/shape)
+- [Shadows and effects](https://coui.cocode.im/guides/effect)
+- [Motion](https://coui.cocode.im/guides/animation)
+- [Layers](https://coui.cocode.im/guides/layering)
+
+## Components
+
+- [All components](https://coui.cocode.im/components-overview): Every component, grouped by category
+
+## Components: Control
+
+Buttons, toggles, and interactive controls.
+
+- [Button](https://coui.cocode.im/components/button): Clickable button
+- [Command](https://coui.cocode.im/components/command): Command palette
+- [FAB](https://coui.cocode.im/components/fab): Floating action button
+- [Hover](https://coui.cocode.im/components/hover): Hover effect wrapper
+- [ThemeController](https://coui.cocode.im/components/theme-controller): Theme picker swatches
+- [Filter](https://coui.cocode.im/components/filter): Segmented filter control
+- [ToggleGroup](https://coui.cocode.im/components/toggle-group): Grouped toggle with a raised chosen segment
+- [CommandSearch](https://coui.cocode.im/components/command-search): Command palette trigger
+
+## Components: Form
+
+Form inputs and data entry components.
+
+- [TextField](https://coui.cocode.im/components/text-field): Text input field
+- [TextArea](https://coui.cocode.im/components/text-area): Multi-line text
+- [RichEditor](https://coui.cocode.im/components/rich-editor): Markdown post / comment composer
+- [Select](https://coui.cocode.im/components/select): Dropdown select
+- [Checkbox](https://coui.cocode.im/components/checkbox): Select one or more options, with an indeterminate state
+- [Toggle](https://coui.cocode.im/components/toggle): On/off toggle
+- [Slider](https://coui.cocode.im/components/slider): Range slider
+- [DatePicker](https://coui.cocode.im/components/date-picker): Date selector
+- [TimePicker](https://coui.cocode.im/components/time-picker): Hour, minute, and second picker
+- [ColorPicker](https://coui.cocode.im/components/color-picker): Pick and edit a color
+- [AutoComplete](https://coui.cocode.im/components/autocomplete): Auto-suggestions
+- [InputOtp](https://coui.cocode.im/components/input-otp): OTP input
+- [RadioGroup](https://coui.cocode.im/components/radio-group): Radio selection
+- [MultipleChoice](https://coui.cocode.im/components/multiple-choice): Single-select option group
+- [StarRating](https://coui.cocode.im/components/star-rating): Star rating
+- [Range](https://coui.cocode.im/components/range): Dual-handle range slider
+- [ItemPicker](https://coui.cocode.im/components/item-picker): Searchable item picker
+- [MultiAnswerCard](https://coui.cocode.im/components/multi-answer-card): Selectable answer card
+- [OptionItem](https://coui.cocode.im/components/option-item): One choosable row of a list of options — a check for single, a checkbox for multiple
+- [OptionList](https://coui.cocode.im/components/option-list): Option list — OptionItems stacked in one column
+- [BottomSheet](https://coui.cocode.im/components/bottom-sheet): Bottom sheet — the panel that rises from the bottom of a phone screen: handle, title, content and a bottom bar
+- [FormattedInput](https://coui.cocode.im/components/formatted-input): Masked / segmented input
+- [NumberInput](https://coui.cocode.im/components/number-input): Stepper-style number field
+- [ObjectInput](https://coui.cocode.im/components/object-input): Key-value field input
+- [PhoneInput](https://coui.cocode.im/components/phone-input): Phone number
+- [ChipInput](https://coui.cocode.im/components/chip-input): Tag input
+- [SwitchField](https://coui.cocode.im/components/switch-field): Switch toggle
+- [Drag](https://coui.cocode.im/components/drag): Drag, drop and reorder primitives
+- [Sortable](https://coui.cocode.im/components/sortable): Drag to reorder
+- [Fieldset](https://coui.cocode.im/components/fieldset): Field grouping
+- [FileInput](https://coui.cocode.im/components/file-input): File upload
+- [Form](https://coui.cocode.im/components/form): Form container
+- [FormLabel](https://coui.cocode.im/components/form-label): Form field label
+- [FormField](https://coui.cocode.im/components/form-field): Form field wrapper (used inside Form)
+- [Formatter](https://coui.cocode.im/components/formatter): Input formatter factories
+- [Validated](https://coui.cocode.im/components/validated): Validation ring wrapper
+- [ValidatorHint](https://coui.cocode.im/components/validator-hint): Validation message
+
+## Components: Display
+
+Content and data display components.
+
+- [Avatar](https://coui.cocode.im/components/avatar): User avatar
+- [Badge](https://coui.cocode.im/components/badge): Status badge
+- [Tag](https://coui.cocode.im/components/tag): Category tag
+- [Progress](https://coui.cocode.im/components/progress): Progress bar
+- [Calendar](https://coui.cocode.im/components/calendar): Calendar view
+- [Banner](https://coui.cocode.im/components/banner): Banner message
+- [Carousel](https://coui.cocode.im/components/carousel): Image carousel
+- [CarouselBanner](https://coui.cocode.im/components/carousel-banner): Promotional strip for a banner carousel
+- [Chat](https://coui.cocode.im/components/chat): Chat bubbles
+- [Chip](https://coui.cocode.im/components/chip): Info chip
+- [ChipGroup](https://coui.cocode.im/components/chip-group): Selectable chip group
+- [CodeDiff](https://coui.cocode.im/components/code-diff): Line-by-line code diff
+- [Diff](https://coui.cocode.im/components/diff): Before/after split-view
+- [CodeSnippet](https://coui.cocode.im/components/code-snippet): Code display
+- [Divider](https://coui.cocode.im/components/divider): Content divider
+- [DotIndicator](https://coui.cocode.im/components/dot-indicator): Dot indicator
+- [EmptyState](https://coui.cocode.im/components/empty-state): Empty placeholder
+- [Indicator](https://coui.cocode.im/components/indicator): Corner badge wrapper
+- [Kbd](https://coui.cocode.im/components/kbd): Keyboard key
+- [Label](https://coui.cocode.im/components/label): Form field label
+- [NumberTicker](https://coui.cocode.im/components/number-ticker): Animated number
+- [AspectRatioBox](https://coui.cocode.im/components/aspect-ratio-box): Fixed width:height container
+- [Skeleton](https://coui.cocode.im/components/skeleton): Loading skeleton
+- [LoadingRegion](https://coui.cocode.im/components/loading-region): Announces loading once for an area
+- [Stat](https://coui.cocode.im/components/stat): Statistics
+- [Status](https://coui.cocode.im/components/status): Status indicator
+- [Countdown](https://coui.cocode.im/components/countdown): Count down timer
+- [DescriptionCard](https://coui.cocode.im/components/description-card): Card summarizing label/value metadata
+- [Loading](https://coui.cocode.im/components/loading): Loading spinner
+- [HoverGallery](https://coui.cocode.im/components/hover-gallery): Hover gallery
+- [ValidationBadge](https://coui.cocode.im/components/validation-badge): Validation status
+- [Tracker](https://coui.cocode.im/components/tracker): Status tracker
+- [CategoryBreakdown](https://coui.cocode.im/components/category-breakdown): Category share — bars or donut
+- [TrendChart](https://coui.cocode.im/components/trend-chart): Time-series trend chart
+- [Mockup](https://coui.cocode.im/components/mockup): Device mockup
+- [MockupBrowser](https://coui.cocode.im/components/mockup-browser): Browser and app window frame
+- [MockupCode](https://coui.cocode.im/components/mockup-code): Code editor frame
+- [MockupDevice](https://coui.cocode.im/components/mockup-device): Phone and tablet bezel frame
+- [MockupFoldable](https://coui.cocode.im/components/mockup-foldable): Folding device frame with an adjustable fold angle
+- [Timeline](https://coui.cocode.im/components/timeline): Event timeline
+- [Swap](https://coui.cocode.im/components/swap): Swap animation
+- [DisclosureBadge](https://coui.cocode.im/components/disclosure-badge): Static badge stating whether a source can be opened now
+
+## Components: Layout
+
+Structure, containers, and layout components.
+
+- [Accordion](https://coui.cocode.im/components/accordion): Expandable sections
+- [Collapsible](https://coui.cocode.im/components/collapsible): Collapsible panel
+- [Disclosure](https://coui.cocode.im/components/disclosure): Native <details> section that opens without JavaScript
+- [Card](https://coui.cocode.im/components/card): Slot-based content card
+- [CardImage](https://coui.cocode.im/components/card-image): Card with an image plus title/subtitle
+- [Table](https://coui.cocode.im/components/table): Data table
+- [Stepper](https://coui.cocode.im/components/stepper): Step indicator
+- [Steps](https://coui.cocode.im/components/steps): Steps display
+- [StepItem](https://coui.cocode.im/components/step-item): One step row — the unit Steps (list) stacks
+- [Tree](https://coui.cocode.im/components/tree): Tree view
+- [Resizable](https://coui.cocode.im/components/resizable): Resizable panel
+- [ScrollArea](https://coui.cocode.im/components/scroll-area): Styled scrollable viewport
+- [FadeScroll](https://coui.cocode.im/components/fade-scroll): Scroll edge fade wrapper
+- [ScrollableClient](https://coui.cocode.im/components/scrollable-client): 2D scrollable viewport with offset-aware builder
+- [OverflowMarquee](https://coui.cocode.im/components/overflow-marquee): Scrolling marquee for overflow text
+- [Stacks](https://coui.cocode.im/components/stack-layout): Layered children with per-layer offset
+- [StageContainer](https://coui.cocode.im/components/stage-container): Responsive container with breakpoint padding
+- [Window](https://coui.cocode.im/components/window): Window manager with drag, resize, and snap
+- [WindowPanel](https://coui.cocode.im/components/window-panel): Window-style panel with title bar + controls
+- [DraggablePanel](https://coui.cocode.im/components/draggable-panel): Floating, draggable, edge-docking tool palette
+- [Join](https://coui.cocode.im/components/join): Join elements
+- [Basic](https://coui.cocode.im/components/basic): Slot-based row layout
+- [Frame](https://coui.cocode.im/components/frame): Layout primitive mirroring a Figma frame 1:1
+- [Hidden](https://coui.cocode.im/components/hidden): Collapse toggle wrapper with fade + size animation
+- [Listing](https://coui.cocode.im/components/listing): Row-based list container with smart column grow
+- [SwipeActions](https://coui.cocode.im/components/swipe-actions): List row that reveals actions when swiped sideways
+- [Gap](https://coui.cocode.im/components/gap): Spacing utility
+- [Mask](https://coui.cocode.im/components/mask): Clip content to a shape
+- [MediaQuery](https://coui.cocode.im/components/media-query): Responsive visibility by breakpoint
+- [Breakpoint](https://coui.cocode.im/components/breakpoint): Current viewport tier accessor (mobile/tablet/desktop)
+- [ResponsiveContainer](https://coui.cocode.im/components/responsive-container): Centred, max-width layout wrapper
+- [ResponsiveGrid](https://coui.cocode.im/components/responsive-grid): CSS-Grid-based responsive grid with col/row span
+- [ResponsiveRowColumn](https://coui.cocode.im/components/responsive-row-column): Row↔Column layout that flips at a breakpoint tier
+- [Scaffold](https://coui.cocode.im/components/scaffold): Screen layout structure
+- [PageHeader](https://coui.cocode.im/components/page-header): Page head — eyebrow, title and actions
+- [PanelHeader](https://coui.cocode.im/components/panel-header): Panel head — a title and one trailing action
+- [BottomActionBar](https://coui.cocode.im/components/bottom-action-bar): Bottom action bar — the primary and secondary actions at the foot of a screen
+
+## Components: Navigation
+
+Navigation and wayfinding components.
+
+- [AppBar](https://coui.cocode.im/components/app-bar): Application bar with leading / title / trailing clusters
+- [Dock](https://coui.cocode.im/components/dock): Bottom navigation bar
+- [Tabs](https://coui.cocode.im/components/tabs): Tab navigation
+- [TabPane](https://coui.cocode.im/components/tab-pane): Tabbed content panels
+- [NavigationBar](https://coui.cocode.im/components/navigation-bar): Bottom nav bar
+- [NavigationBarItem](https://coui.cocode.im/components/navigation-bar-item): Navigation item — one sidebar row, usable outside the bar
+- [Sidebar](https://coui.cocode.im/components/sidebar): Sidebar — side navigation with identity, search, rows and the account
+- [Breadcrumb](https://coui.cocode.im/components/breadcrumb): Breadcrumb trail
+- [Pagination](https://coui.cocode.im/components/pagination): Page navigation
+- [Switcher](https://coui.cocode.im/components/switcher): View switcher
+- [IndexedSwitcher](https://coui.cocode.im/components/indexed-switcher): Destination switcher that keeps every view
+
+## Components: Menu
+
+Menus and contextual actions.
+
+- [Menu](https://coui.cocode.im/components/menu): Menu list
+- [MenuItem](https://coui.cocode.im/components/menu-item): A single menu row — the unit Menu and Select lay out
+- [ContextMenu](https://coui.cocode.im/components/context-menu): Right-click menu
+- [DropdownMenu](https://coui.cocode.im/components/dropdown-menu): Dropdown actions
+- [Menubar](https://coui.cocode.im/components/menubar): App menu bar
+- [ToolbarGroup](https://coui.cocode.im/components/toolbar-group): Related toolbar controls on one shared surface
+- [NavigationMenu](https://coui.cocode.im/components/navigation-menu): Horizontal mega-menu
+
+## Components: Overlay
+
+Dialogs, popovers, and overlays.
+
+- [Dialog](https://coui.cocode.im/components/dialog): Modal dialog
+- [Drawer](https://coui.cocode.im/components/drawer): Side drawer
+- [HoverCard](https://coui.cocode.im/components/hover-card): Hover popup
+- [Popover](https://coui.cocode.im/components/popover): Popover panel
+- [Toast](https://coui.cocode.im/components/toast): Notification toast
+- [Tooltip](https://coui.cocode.im/components/tooltip): Tooltip hint
+- [Swiper](https://coui.cocode.im/components/swiper): Swipe gesture
+- [RefreshTrigger](https://coui.cocode.im/components/refresh-trigger): Pull to refresh
+- [Alert](https://coui.cocode.im/components/alert): Alert message
+
+## Components: Icon
+
+Iconography components.
+
+- [Icon](https://coui.cocode.im/components/icon): Icon display
+
+## Components: Text
+
+Typography and text components.
+
+- [Text](https://coui.cocode.im/components/text): Typography
+- [Selectable Text](https://coui.cocode.im/components/selectable-text): User-selectable text
+- [TextBlock](https://coui.cocode.im/components/text-block): Semantic prose text block
+- [Link](https://coui.cocode.im/components/link): Styled link
+- [DefinitionList](https://coui.cocode.im/components/definition-list): Definition list pairing terms with descriptions
+
+## Components: Infra
+
+Low-level building-block components.
+
+- [Clickable](https://coui.cocode.im/components/clickable): Interaction wrapper
+- [FocusOutline](https://coui.cocode.im/components/focus-outline): Focus ring around a control
+- [OutlinedContainer](https://coui.cocode.im/components/outlined-container): Bordered container box
+- [SubfocusScope](https://coui.cocode.im/components/subfocus): Keyboard focus traversal scope
+- [ScrollViewInterceptor](https://coui.cocode.im/components/scrollview): Desktop scroll interception
+- [Popup](https://coui.cocode.im/components/popup): Floating panel container
+- [Scrollbar](https://coui.cocode.im/components/scrollbar): Themed scrollbar
+
+## Blocks
+
+- [All blocks](https://coui.cocode.im/blocks): Page-section shells composed from components
+- [Hero](https://coui.cocode.im/blocks/hero): The hero at the top of a page. Centered copy, or copy and media side by side.
+- [Footer](https://coui.cocode.im/blocks/footer): The footer at the bottom of a page, with nav sections & a legal block
+
+## Resources
+
+- [Figma library](https://coui.cocode.im/guides/figma-library)
+- [MCP server](https://coui.cocode.im/guides/mcp)
+- [Design sources](https://coui.cocode.im/guides/design-sources)
+- [Contributing](https://coui.cocode.im/contributing): How to propose and land a change
+- [Changelog](https://coui.cocode.im/changelog): Release notes for each package
+
+## Optional
+
+- [Source code](https://github.com/coco-de/coui): Repository with all three packages

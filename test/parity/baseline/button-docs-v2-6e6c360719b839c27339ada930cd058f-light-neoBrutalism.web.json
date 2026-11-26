@@ -1,0 +1,104 @@
+{
+  "key": "button-docs-v2-6e6c360719b839c27339ada930cd058f-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Card",
+      "attributes": {
+        "demo": "button/do-clear-label",
+        "eyebrow": "이렇게 하세요",
+        "tone": "do"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "button/do-clear-label",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/button.md:Cards[44]:Card[5]"
+      ],
+      "anatomyParts": [],
+      "cardBody": [
+        {
+          "tag": "p",
+          "attributes": {},
+          "children": [
+            {
+              "text": "되돌릴 수 없는 행동은 라벨에 결과를 적습니다.",
+              "raw": false
+            }
+          ]
+        }
+      ],
+      "cardIndex": 0,
+      "captureUnit": "whole-card",
+      "nativeCardAttributes": {
+        "demo": "button/do-clear-label",
+        "eyebrow": "이렇게 하세요",
+        "tone": "do"
+      },
+      "nativeCardBody": "\n되돌릴 수 없는 행동은 라벨에 결과를 적습니다.\n"
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-button-ssr-14:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-14:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                          \n                          취소\n                        \n                        \n                          항목 3개 삭제\n                        \n                      \n                    \n                    이렇게 하세요\n                    되돌릴 수 없는 행동은 라벨에 결과를 적습니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 231.890625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(233, 248, 235)",
+      "borderRightColor": "rgb(233, 248, 235)",
+      "borderBottomColor": "rgb(233, 248, 235)",
+      "borderLeftColor": "rgb(233, 248, 235)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 231.890625
+    }
+  }
+}

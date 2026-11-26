@@ -1,0 +1,415 @@
+{
+  "_note": "Read by Core, Flutter and Web tests and by the Chrome and device probes. Pixel values are 0-255; expected is the nearest integer to the formula, stated by hand from the formulas in surface_frost.dart and surface_body_shade.dart. The browser filter and the fragment program agree with it to within 2 levels (8-bit intermediates).",
+  "luma": {
+    "red": 0.213,
+    "green": 0.715,
+    "blue": 0.072
+  },
+  "bodyShade": {
+    "cases": [
+      {
+        "name": "strength zero changes nothing",
+        "strength": 0,
+        "rgb": [
+          200,
+          100,
+          50
+        ],
+        "expected": [
+          200,
+          100,
+          50
+        ]
+      },
+      {
+        "name": "white under the dark material",
+        "strength": 0.28,
+        "rgb": [
+          255,
+          255,
+          255
+        ],
+        "expected": [
+          184,
+          184,
+          184
+        ]
+      },
+      {
+        "name": "gray 0 at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          0,
+          0,
+          0
+        ],
+        "expected": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "gray 32 at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          32,
+          32,
+          32
+        ],
+        "expected": [
+          32,
+          32,
+          32
+        ]
+      },
+      {
+        "name": "gray 64 at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          64,
+          64,
+          64
+        ],
+        "expected": [
+          63,
+          63,
+          63
+        ]
+      },
+      {
+        "name": "gray 96 at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          96,
+          96,
+          96
+        ],
+        "expected": [
+          92,
+          92,
+          92
+        ]
+      },
+      {
+        "name": "gray 128 at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          128,
+          128,
+          128
+        ],
+        "expected": [
+          119,
+          119,
+          119
+        ]
+      },
+      {
+        "name": "gray 160 at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          160,
+          160,
+          160
+        ],
+        "expected": [
+          142,
+          142,
+          142
+        ]
+      },
+      {
+        "name": "gray 192 at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          192,
+          192,
+          192
+        ],
+        "expected": [
+          162,
+          162,
+          162
+        ]
+      },
+      {
+        "name": "gray 224 at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          224,
+          224,
+          224
+        ],
+        "expected": [
+          176,
+          176,
+          176
+        ]
+      },
+      {
+        "name": "gray 255 at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          255,
+          255,
+          255
+        ],
+        "expected": [
+          184,
+          184,
+          184
+        ]
+      },
+      {
+        "name": "pure red at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "expected": [
+          252,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "pure green at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          0,
+          255,
+          0
+        ],
+        "expected": [
+          0,
+          218,
+          0
+        ]
+      },
+      {
+        "name": "pure blue at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "expected": [
+          0,
+          0,
+          255
+        ]
+      },
+      {
+        "name": "orange at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          255,
+          140,
+          0
+        ],
+        "expected": [
+          229,
+          126,
+          0
+        ]
+      },
+      {
+        "name": "mid grey at strength one",
+        "strength": 1,
+        "rgb": [
+          128,
+          128,
+          128
+        ],
+        "expected": [
+          96,
+          96,
+          96
+        ]
+      },
+      {
+        "name": "white at strength one goes to black",
+        "strength": 1,
+        "rgb": [
+          255,
+          255,
+          255
+        ],
+        "expected": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "light grey at 0.5",
+        "strength": 0.5,
+        "rgb": [
+          200,
+          200,
+          200
+        ],
+        "expected": [
+          138,
+          138,
+          138
+        ]
+      },
+      {
+        "name": "a brand blue at 0.28",
+        "strength": 0.28,
+        "rgb": [
+          59,
+          111,
+          213
+        ],
+        "expected": [
+          56,
+          106,
+          202
+        ]
+      }
+    ]
+  },
+  "frost": {
+    "cases": [
+      {
+        "name": "opacity one is the cloud",
+        "opacity": 1,
+        "cloud": [
+          128,
+          128,
+          128
+        ],
+        "copy": [
+          255,
+          255,
+          255
+        ],
+        "expected": [
+          128,
+          128,
+          128
+        ]
+      },
+      {
+        "name": "light share over a bright copy",
+        "opacity": 0.73,
+        "cloud": [
+          128,
+          128,
+          128
+        ],
+        "copy": [
+          255,
+          255,
+          255
+        ],
+        "expected": [
+          162,
+          162,
+          162
+        ]
+      },
+      {
+        "name": "dark share over a bright copy",
+        "opacity": 0.85,
+        "cloud": [
+          128,
+          128,
+          128
+        ],
+        "copy": [
+          255,
+          255,
+          255
+        ],
+        "expected": [
+          147,
+          147,
+          147
+        ]
+      },
+      {
+        "name": "a cloud darker than the copy, per channel",
+        "opacity": 0.73,
+        "cloud": [
+          100,
+          150,
+          200
+        ],
+        "copy": [
+          255,
+          0,
+          40
+        ],
+        "expected": [
+          142,
+          110,
+          157
+        ]
+      },
+      {
+        "name": "half and half",
+        "opacity": 0.5,
+        "cloud": [
+          0,
+          0,
+          0
+        ],
+        "copy": [
+          255,
+          255,
+          255
+        ],
+        "expected": [
+          128,
+          128,
+          128
+        ]
+      },
+      {
+        "name": "a faint cloud",
+        "opacity": 0.27,
+        "cloud": [
+          40,
+          80,
+          120
+        ],
+        "copy": [
+          220,
+          180,
+          140
+        ],
+        "expected": [
+          171,
+          153,
+          135
+        ]
+      },
+      {
+        "name": "a copy that equals the cloud is unchanged",
+        "opacity": 0.73,
+        "cloud": [
+          90,
+          90,
+          90
+        ],
+        "copy": [
+          90,
+          90,
+          90
+        ],
+        "expected": [
+          90,
+          90,
+          90
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,298 @@
+{
+  "sourceMain": "e3ab376d333ad5c8364e7021e9daad6d41c61a23",
+  "approvedToggleCommit": "15b87c1f47b78148bd3dc52e73e645aa82d4615b",
+  "presets": [
+    {
+      "baseline": "packages/coui_flutter/test/theme/preset_snapshot/baselines/claymorphism.json",
+      "changedSurface": "toggle",
+      "changedNode": 3,
+      "onlyFields": [
+        "fill",
+        "shadows"
+      ],
+      "before": {
+        "t": "box",
+        "fill": {
+          "r": 31,
+          "g": 32,
+          "b": 33,
+          "a": 1.0
+        },
+        "shadows": [],
+        "shape": "circle"
+      },
+      "after": {
+        "t": "box",
+        "fill": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1.0
+        },
+        "shadows": [
+          {
+            "o": [
+              0.0,
+              1.0
+            ],
+            "blur": 1.91,
+            "spread": 0.0,
+            "c": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.078
+            },
+            "style": "normal"
+          },
+          {
+            "o": [
+              0.0,
+              0.0
+            ],
+            "blur": 0.52,
+            "spread": 0.0,
+            "c": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.059
+            },
+            "style": "normal"
+          }
+        ],
+        "shape": "circle"
+      },
+      "beforeSha256": "69da5e57087e9ca2002d33a6dbc82b8e108488cea9aba029245faab13d890366",
+      "afterSha256": "0e29094c4179377e7524821d91d941ae19c64b5e9b7e0862a74e28acf4823495"
+    },
+    {
+      "baseline": "packages/coui_flutter/test/theme/preset_snapshot/baselines/default_style.json",
+      "changedSurface": "toggle",
+      "changedNode": 3,
+      "onlyFields": [
+        "fill",
+        "shadows"
+      ],
+      "before": {
+        "t": "box",
+        "fill": {
+          "r": 31,
+          "g": 32,
+          "b": 33,
+          "a": 1.0
+        },
+        "shadows": [],
+        "shape": "circle"
+      },
+      "after": {
+        "t": "box",
+        "fill": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1.0
+        },
+        "shadows": [
+          {
+            "o": [
+              0.0,
+              1.0
+            ],
+            "blur": 0.87,
+            "spread": 0.0,
+            "c": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.078
+            },
+            "style": "normal"
+          },
+          {
+            "o": [
+              0.0,
+              0.0
+            ],
+            "blur": 0.0,
+            "spread": 0.0,
+            "c": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.059
+            },
+            "style": "normal"
+          }
+        ],
+        "shape": "circle"
+      },
+      "beforeSha256": "425ca08ce6c72aeac9dadc9876b7952d13f4b1c1fa31861965792a59b6ef5a84",
+      "afterSha256": "f4db3e1cbeff0292efcc5f3a24e9d51f590a4cc7afbffd17e197272aea98bdda"
+    },
+    {
+      "baseline": "packages/coui_flutter/test/theme/preset_snapshot/baselines/neo_brutalism.json",
+      "changedSurface": "toggle",
+      "changedNode": 3,
+      "onlyFields": [
+        "fill",
+        "shadows"
+      ],
+      "before": {
+        "t": "box",
+        "fill": {
+          "r": 31,
+          "g": 32,
+          "b": 33,
+          "a": 1.0
+        },
+        "shadows": [],
+        "shape": "circle"
+      },
+      "after": {
+        "t": "box",
+        "fill": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1.0
+        },
+        "shadows": [
+          {
+            "o": [
+              4.0,
+              5.0
+            ],
+            "blur": 0.0,
+            "spread": 0.0,
+            "c": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 1.0
+            },
+            "style": "normal"
+          },
+          {
+            "o": [
+              4.0,
+              4.0
+            ],
+            "blur": 0.0,
+            "spread": 0.0,
+            "c": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 1.0
+            },
+            "style": "normal"
+          }
+        ],
+        "shape": "circle"
+      },
+      "beforeSha256": "449161e5acf129c4afd45f27883d5f530bc67267447450f78d7b5de408c5e891",
+      "afterSha256": "bdf5369e6d597329da38972d31b9319fcea3c868254d62c9588a6c89b428da3e"
+    },
+    {
+      "baseline": "packages/coui_flutter/test/theme/preset_snapshot/baselines/neumorphism.json",
+      "changedSurface": "toggle",
+      "changedNode": 3,
+      "onlyFields": [
+        "fill",
+        "shadows"
+      ],
+      "before": {
+        "t": "box",
+        "fill": {
+          "r": 31,
+          "g": 32,
+          "b": 33,
+          "a": 1.0
+        },
+        "shadows": [],
+        "shape": "circle"
+      },
+      "after": {
+        "t": "box",
+        "fill": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1.0
+        },
+        "shadows": [
+          {
+            "o": [
+              0.0,
+              1.0
+            ],
+            "blur": 2.6,
+            "spread": 0.0,
+            "c": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.078
+            },
+            "style": "normal"
+          },
+          {
+            "o": [
+              0.0,
+              -1.0
+            ],
+            "blur": 2.6,
+            "spread": 0.0,
+            "c": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.078
+            },
+            "style": "normal"
+          },
+          {
+            "o": [
+              0.0,
+              0.0
+            ],
+            "blur": 0.87,
+            "spread": 0.0,
+            "c": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.059
+            },
+            "style": "normal"
+          },
+          {
+            "o": [
+              0.0,
+              0.0
+            ],
+            "blur": 0.87,
+            "spread": 0.0,
+            "c": {
+              "r": 0,
+              "g": 0,
+              "b": 0,
+              "a": 0.059
+            },
+            "style": "normal"
+          }
+        ],
+        "shape": "circle"
+      },
+      "beforeSha256": "18bfeb8707077a1762760107e82eb92b165e313692d06154b16c423ca553a02d",
+      "afterSha256": "7b6ca4b35114dd5230e4f5b6d4bfbbc7c86b13649d62e3506d9e34a10deefce0"
+    }
+  ],
+  "onlyChangedSurface": "toggle",
+  "onlyChangedFields": [
+    "fill",
+    "shadows"
+  ],
+  "otherSurfacesUnchanged": true
+}

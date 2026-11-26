@@ -1,0 +1,177 @@
+{
+  "_comment": "Where a Scrollbar thumb sits for one axis. Read by the Core test, the Web overlay test and the Flutter test — Flutter's ScrollbarPainter is the reference, so the Flutter test asks the painter the same questions. Lengths are logical px; offsets are in range (no overscroll). expected is null when no thumb is drawn.",
+  "tolerance": 1e-06,
+  "cases": [
+    {
+      "name": "content fits the viewport — no thumb",
+      "viewport": 160,
+      "content": 160,
+      "scrollOffset": 0,
+      "margin": 2,
+      "minLength": 48,
+      "expected": null
+    },
+    {
+      "name": "content shorter than the viewport — no thumb",
+      "viewport": 160,
+      "content": 100,
+      "scrollOffset": 0,
+      "margin": 2,
+      "minLength": 48,
+      "expected": null
+    },
+    {
+      "name": "one pixel of overflow — thumb nearly fills the track",
+      "viewport": 160,
+      "content": 161,
+      "scrollOffset": 0,
+      "margin": 2,
+      "minLength": 48,
+      "expected": {
+        "extent": 155.031056,
+        "offset": 2.0
+      }
+    },
+    {
+      "name": "long content at the top — minimum length binds",
+      "viewport": 160,
+      "content": 560,
+      "scrollOffset": 0,
+      "margin": 2,
+      "minLength": 48,
+      "expected": {
+        "extent": 48,
+        "offset": 2.0
+      }
+    },
+    {
+      "name": "long content in the middle",
+      "viewport": 160,
+      "content": 560,
+      "scrollOffset": 200,
+      "margin": 2,
+      "minLength": 48,
+      "expected": {
+        "extent": 48,
+        "offset": 56.0
+      }
+    },
+    {
+      "name": "long content at the bottom — thumb ends one margin from the edge",
+      "viewport": 160,
+      "content": 560,
+      "scrollOffset": 400,
+      "margin": 2,
+      "minLength": 48,
+      "expected": {
+        "extent": 48,
+        "offset": 110.0
+      }
+    },
+    {
+      "name": "very long content — minimum length binds, a quarter of the way",
+      "viewport": 300,
+      "content": 20000,
+      "scrollOffset": 4925,
+      "margin": 2,
+      "minLength": 48,
+      "expected": {
+        "extent": 48,
+        "offset": 64.0
+      }
+    },
+    {
+      "name": "modest overflow — proportional length",
+      "viewport": 300,
+      "content": 400,
+      "scrollOffset": 50,
+      "margin": 2,
+      "minLength": 48,
+      "expected": {
+        "extent": 222.0,
+        "offset": 39.0
+      }
+    },
+    {
+      "name": "modest overflow at the bottom",
+      "viewport": 300,
+      "content": 400,
+      "scrollOffset": 100,
+      "margin": 2,
+      "minLength": 48,
+      "expected": {
+        "extent": 222.0,
+        "offset": 76.0
+      }
+    },
+    {
+      "name": "no margin",
+      "viewport": 200,
+      "content": 800,
+      "scrollOffset": 100,
+      "margin": 0,
+      "minLength": 48,
+      "expected": {
+        "extent": 50.0,
+        "offset": 25.0
+      }
+    },
+    {
+      "name": "large margin",
+      "viewport": 200,
+      "content": 800,
+      "scrollOffset": 300,
+      "margin": 12,
+      "minLength": 48,
+      "expected": {
+        "extent": 48,
+        "offset": 76.0
+      }
+    },
+    {
+      "name": "margins leave no room — no thumb",
+      "viewport": 40,
+      "content": 400,
+      "scrollOffset": 0,
+      "margin": 20,
+      "minLength": 48,
+      "expected": null
+    },
+    {
+      "name": "minimum longer than the track — thumb fills it",
+      "viewport": 60,
+      "content": 400,
+      "scrollOffset": 0,
+      "margin": 2,
+      "minLength": 100,
+      "expected": {
+        "extent": 56,
+        "offset": 2.0
+      }
+    },
+    {
+      "name": "minimum longer than the track, scrolled — nowhere to move",
+      "viewport": 60,
+      "content": 400,
+      "scrollOffset": 340,
+      "margin": 2,
+      "minLength": 100,
+      "expected": {
+        "extent": 56,
+        "offset": 2.0
+      }
+    },
+    {
+      "name": "tall viewport proportional",
+      "viewport": 600,
+      "content": 1000,
+      "scrollOffset": 133,
+      "margin": 2,
+      "minLength": 48,
+      "expected": {
+        "extent": 357.6,
+        "offset": 81.268
+      }
+    }
+  ]
+}

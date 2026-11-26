@@ -1,0 +1,4 @@
+// it's the shape that matters — an apostrophe in a comment must not open a string
+export async function run(page: PageNode, lk: VarLookup) {
+  await e.build(page, lk);
+}

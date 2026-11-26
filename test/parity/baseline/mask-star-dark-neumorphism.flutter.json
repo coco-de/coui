@@ -1,0 +1,39 @@
+{
+  "key": "mask-star-dark-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "mask-star-dark-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSizePx": null,
+      "lineHeightPx": null,
+      "letterSpacingPx": null,
+      "color": null,
+      "backgroundColor": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 64.0,
+      "heightPx": 64.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

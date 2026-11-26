@@ -1,0 +1,562 @@
+{
+  "issue": 6409,
+  "pr": 6411,
+  "status": "local validation complete; GitHub merge gate pending",
+  "base": "34c4d5ff1e6660180434cee2541af4c1bfe28ee0",
+  "productAndTestsCommit": "4b7dc023d9c5491a05d50d418d99a9be49287c34",
+  "productAndTestsTree": "59ccb29bc39141118b9e440ab64a061ce0bed779",
+  "productHash": "8a638d3395292ccd1a3c87967e366027ec792934114ea9f1e16df55634e660fa",
+  "testHash": "e040153fd331c5aff14d6fd82da44d05c50d165e004cf25707275c54939eae74",
+  "artifactRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6409-partial-ssr-20261118.79b40hm8",
+  "tests": {
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "test",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart",
+      "packages/coui_web/test/components/fade_scroll_first_paint_test.dart",
+      "packages/coui_web/test/components/fade_scroll_selection_test.dart",
+      "--reporter=expanded"
+    ],
+    "cwd": "/Users/minhyeok/orca/workspaces/coui/weever",
+    "exit": 0,
+    "seconds": 34.652451375,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": "8a638d3395292ccd1a3c87967e366027ec792934114ea9f1e16df55634e660fa",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart": "e040153fd331c5aff14d6fd82da44d05c50d165e004cf25707275c54939eae74"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": "8a638d3395292ccd1a3c87967e366027ec792934114ea9f1e16df55634e660fa",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart": "e040153fd331c5aff14d6fd82da44d05c50d165e004cf25707275c54939eae74"
+    },
+    "unchanged": true
+  },
+  "uniqueTests": {
+    "chrome": 6,
+    "ssr": 3,
+    "total": 9
+  },
+  "analyze": {
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "analyze",
+      "--fatal-infos",
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart"
+    ],
+    "cwd": "/Users/minhyeok/orca/workspaces/coui/weever",
+    "exit": 0,
+    "seconds": 28.717319375,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": "8a638d3395292ccd1a3c87967e366027ec792934114ea9f1e16df55634e660fa",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart": "e040153fd331c5aff14d6fd82da44d05c50d165e004cf25707275c54939eae74"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": "8a638d3395292ccd1a3c87967e366027ec792934114ea9f1e16df55634e660fa",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart": "e040153fd331c5aff14d6fd82da44d05c50d165e004cf25707275c54939eae74"
+    },
+    "unchanged": true
+  },
+  "format": {
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart"
+    ],
+    "cwd": "/Users/minhyeok/orca/workspaces/coui/weever",
+    "exit": 0,
+    "seconds": 0.400178958,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": "8a638d3395292ccd1a3c87967e366027ec792934114ea9f1e16df55634e660fa",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart": "e040153fd331c5aff14d6fd82da44d05c50d165e004cf25707275c54939eae74"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart": "8a638d3395292ccd1a3c87967e366027ec792934114ea9f1e16df55634e660fa",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart": "e040153fd331c5aff14d6fd82da44d05c50d165e004cf25707275c54939eae74"
+    },
+    "unchanged": true
+  },
+  "api": {
+    "base": "34c4d5ff1e6660180434cee2541af4c1bfe28ee0",
+    "head": "4b7dc023d9c5491a05d50d418d99a9be49287c34",
+    "publicPrefixByteEqual": true,
+    "publicExtensionByteEqual": true,
+    "changedPaths": [
+      "packages/coui_web/lib/src/components/layout/fade_scroll/fade_scroll.dart",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart"
+    ],
+    "supportedApiChange": false,
+    "coreNativeResolverBarrelDefaultChanges": false
+  },
+  "partialSSR": {
+    "browser": "157.0.8103.79",
+    "records": [
+      {
+        "phase": "before",
+        "theme": "light",
+        "axis": "h",
+        "Apaint": {
+          "size": [
+            100,
+            20
+          ],
+          "changedPixels": 800,
+          "maxChannel": 234
+        },
+        "sameStaticRoot": true,
+        "sameStaticViewport": true,
+        "beforeMask": "linear-gradient(to right, color(srgb 0.121569 0.12549 0.129412) 0px, rgb(31, 32, 33) 40px, rgb(31, 32, 33) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "afterMask": "none",
+        "effects": [
+          3,
+          0
+        ],
+        "BmiddleMask": "linear-gradient(to right, color(srgb 0.121569 0.12549 0.129412) 0px, rgb(31, 32, 33) 40px, rgb(31, 32, 33) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "actualTheme": "light",
+        "palette": [
+          "255 255 255",
+          "31 32 33"
+        ]
+      },
+      {
+        "phase": "before",
+        "theme": "light",
+        "axis": "v",
+        "Apaint": {
+          "size": [
+            20,
+            100
+          ],
+          "changedPixels": 800,
+          "maxChannel": 234
+        },
+        "sameStaticRoot": true,
+        "sameStaticViewport": true,
+        "beforeMask": "linear-gradient(color(srgb 0.121569 0.12549 0.129412) 0px, rgb(31, 32, 33) 40px, rgb(31, 32, 33) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "afterMask": "none",
+        "effects": [
+          3,
+          0
+        ],
+        "BmiddleMask": "linear-gradient(color(srgb 0.121569 0.12549 0.129412) 0px, rgb(31, 32, 33) 40px, rgb(31, 32, 33) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "actualTheme": "light",
+        "palette": [
+          "255 255 255",
+          "31 32 33"
+        ]
+      },
+      {
+        "phase": "before",
+        "theme": "dark",
+        "axis": "h",
+        "Apaint": {
+          "size": [
+            100,
+            20
+          ],
+          "changedPixels": 800,
+          "maxChannel": 234
+        },
+        "sameStaticRoot": true,
+        "sameStaticViewport": true,
+        "beforeMask": "linear-gradient(to right, color(srgb 0.956863 0.960784 0.964706) 0px, rgb(244, 245, 246) 40px, rgb(244, 245, 246) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "afterMask": "none",
+        "effects": [
+          3,
+          0
+        ],
+        "BmiddleMask": "linear-gradient(to right, color(srgb 0.956863 0.960784 0.964706) 0px, rgb(244, 245, 246) 40px, rgb(244, 245, 246) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "actualTheme": "dark",
+        "palette": [
+          "22 23 24",
+          "244 245 246"
+        ]
+      },
+      {
+        "phase": "before",
+        "theme": "dark",
+        "axis": "v",
+        "Apaint": {
+          "size": [
+            20,
+            100
+          ],
+          "changedPixels": 800,
+          "maxChannel": 234
+        },
+        "sameStaticRoot": true,
+        "sameStaticViewport": true,
+        "beforeMask": "linear-gradient(color(srgb 0.956863 0.960784 0.964706) 0px, rgb(244, 245, 246) 40px, rgb(244, 245, 246) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "afterMask": "none",
+        "effects": [
+          3,
+          0
+        ],
+        "BmiddleMask": "linear-gradient(color(srgb 0.956863 0.960784 0.964706) 0px, rgb(244, 245, 246) 40px, rgb(244, 245, 246) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "actualTheme": "dark",
+        "palette": [
+          "22 23 24",
+          "244 245 246"
+        ]
+      },
+      {
+        "phase": "after",
+        "theme": "light",
+        "axis": "h",
+        "Apaint": {
+          "size": [
+            100,
+            20
+          ],
+          "changedPixels": 0,
+          "maxChannel": 0
+        },
+        "sameStaticRoot": true,
+        "sameStaticViewport": true,
+        "beforeMask": "linear-gradient(to right, color(srgb 0.121569 0.12549 0.129412) 0px, rgb(31, 32, 33) 40px, rgb(31, 32, 33) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "afterMask": "linear-gradient(to right, color(srgb 0.121569 0.12549 0.129412) 0px, rgb(31, 32, 33) 40px, rgb(31, 32, 33) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "effects": [
+          0,
+          3
+        ],
+        "BmiddleMask": "linear-gradient(to right, color(srgb 0 0 0 / 0) 0px, rgb(31, 32, 33) 40px, rgb(31, 32, 33) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "actualTheme": "light",
+        "palette": [
+          "255 255 255",
+          "31 32 33"
+        ]
+      },
+      {
+        "phase": "after",
+        "theme": "light",
+        "axis": "v",
+        "Apaint": {
+          "size": [
+            20,
+            100
+          ],
+          "changedPixels": 0,
+          "maxChannel": 0
+        },
+        "sameStaticRoot": true,
+        "sameStaticViewport": true,
+        "beforeMask": "linear-gradient(color(srgb 0.121569 0.12549 0.129412) 0px, rgb(31, 32, 33) 40px, rgb(31, 32, 33) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "afterMask": "linear-gradient(color(srgb 0.121569 0.12549 0.129412) 0px, rgb(31, 32, 33) 40px, rgb(31, 32, 33) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "effects": [
+          0,
+          3
+        ],
+        "BmiddleMask": "linear-gradient(color(srgb 0 0 0 / 0) 0px, rgb(31, 32, 33) 40px, rgb(31, 32, 33) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "actualTheme": "light",
+        "palette": [
+          "255 255 255",
+          "31 32 33"
+        ]
+      },
+      {
+        "phase": "after",
+        "theme": "dark",
+        "axis": "h",
+        "Apaint": {
+          "size": [
+            100,
+            20
+          ],
+          "changedPixels": 0,
+          "maxChannel": 0
+        },
+        "sameStaticRoot": true,
+        "sameStaticViewport": true,
+        "beforeMask": "linear-gradient(to right, color(srgb 0.956863 0.960784 0.964706) 0px, rgb(244, 245, 246) 40px, rgb(244, 245, 246) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "afterMask": "linear-gradient(to right, color(srgb 0.956863 0.960784 0.964706) 0px, rgb(244, 245, 246) 40px, rgb(244, 245, 246) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "effects": [
+          0,
+          3
+        ],
+        "BmiddleMask": "linear-gradient(to right, color(srgb 0 0 0 / 0) 0px, rgb(244, 245, 246) 40px, rgb(244, 245, 246) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "actualTheme": "dark",
+        "palette": [
+          "22 23 24",
+          "244 245 246"
+        ]
+      },
+      {
+        "phase": "after",
+        "theme": "dark",
+        "axis": "v",
+        "Apaint": {
+          "size": [
+            20,
+            100
+          ],
+          "changedPixels": 0,
+          "maxChannel": 0
+        },
+        "sameStaticRoot": true,
+        "sameStaticViewport": true,
+        "beforeMask": "linear-gradient(color(srgb 0.956863 0.960784 0.964706) 0px, rgb(244, 245, 246) 40px, rgb(244, 245, 246) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "afterMask": "linear-gradient(color(srgb 0.956863 0.960784 0.964706) 0px, rgb(244, 245, 246) 40px, rgb(244, 245, 246) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "effects": [
+          0,
+          3
+        ],
+        "BmiddleMask": "linear-gradient(color(srgb 0 0 0 / 0) 0px, rgb(244, 245, 246) 40px, rgb(244, 245, 246) calc(100% - 40px), color(srgb 0 0 0 / 0) 100%)",
+        "actualTheme": "dark",
+        "palette": [
+          "22 23 24",
+          "244 245 246"
+        ]
+      }
+    ],
+    "errors": []
+  },
+  "matrix": {
+    "sourceHead": "4b7dc023d9c5491a05d50d418d99a9be49287c34",
+    "allManifest": 3494,
+    "defaultStyle": 752,
+    "components": 163,
+    "freshNative": 752,
+    "freshWeb": 752,
+    "initialInfra": {
+      "runner": "web-2",
+      "exit": 2,
+      "key": "sidebar-collapsed-light-defaultStyle",
+      "observed": "TimeoutException waiting for function after 30000ms",
+      "originalArtifactsPreserved": true,
+      "sourceOrTimingCriteriaChanged": false,
+      "followup": "One identical-source/criteria single-key capture, kept in separate output directory."
+    },
+    "comparison": {
+      "png": 1528,
+      "pngByteEqual": 1528,
+      "json": 1504,
+      "jsonByteEqual": 1362
+    },
+    "report": {
+      "pixel": {
+        "counts": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "entryRolesEqual5889": true,
+        "propertyDiffsEqual5889": true,
+        "infraKeysEqual5889": true,
+        "structuralKeysEqual5889": true,
+        "exit": 1
+      },
+      "property": {
+        "counts": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "entryRolesEqual5889": true,
+        "propertyDiffsEqual5889": true,
+        "infraKeysEqual5889": true,
+        "structuralKeysEqual5889": true,
+        "exit": 1
+      }
+    },
+    "noBaselinePromotionOrComparatorChanges": true
+  },
+  "docs": {
+    "sourceHead": "4b7dc023d9c5491a05d50d418d99a9be49287c34",
+    "buildExit": 0,
+    "uniqueRoutes": 359,
+    "runtimeExit": 0,
+    "runtimePassed": true,
+    "records": 72,
+    "byComponent": {
+      "fade-scroll": 44,
+      "text-field": 12,
+      "input-otp": 16
+    },
+    "runtimeErrors": [],
+    "actionFailures": [],
+    "browserCleanup": {
+      "closed": true,
+      "serverPort": 62573
+    }
+  },
+  "tokenPhases": [
+    {
+      "phase": 1,
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "1"
+      ],
+      "exit": 0,
+      "seconds": 0.036456542
+    },
+    {
+      "phase": 2,
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 0.04452066599999999
+    },
+    {
+      "phase": 3,
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "3"
+      ],
+      "exit": 0,
+      "seconds": 0.11090625000000001
+    },
+    {
+      "phase": 4,
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "4"
+      ],
+      "exit": 0,
+      "seconds": 0.12683783299999998
+    },
+    {
+      "phase": 5,
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "5"
+      ],
+      "exit": 0,
+      "seconds": 0.15814979199999996
+    },
+    {
+      "phase": 6,
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "6"
+      ],
+      "exit": 0,
+      "seconds": 0.16990166699999998
+    },
+    {
+      "phase": 7,
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "7"
+      ],
+      "exit": 0,
+      "seconds": 0.20428208300000006
+    }
+  ],
+  "contractGuard": {
+    "guardExit": 1,
+    "knownBaseFailure": "navigation_bar_style.dart:1085 direct CoreSpace.space0 reference",
+    "base": "34c4d5ff1e6660180434cee2541af4c1bfe28ee0",
+    "introducedBy": "f1ab3f82a61d907b002f8b5da563edfcec3bce11",
+    "baseAndCandidateFileByteEqual": true,
+    "baseFileSha256": "8f6d66fb82950acd19365c803f5a809a619f507c6992d01796816bcb3dc460e7",
+    "candidateFileSha256": "8f6d66fb82950acd19365c803f5a809a619f507c6992d01796816bcb3dc460e7",
+    "modifiedBy6409": false,
+    "guardOrBaselineRelaxed": false,
+    "notClaimedPassed": true
+  },
+  "chromePassthroughGuardExit": 0,
+  "evidence": {
+    "assets": [
+      {
+        "name": "pr6411-default-flutter-light.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6409-partial-ssr-20261118.79b40hm8/matrix/captured/fade-scroll-default-light-defaultStyle.flutter.png",
+        "sha256": "f8e0b0371179df6b7161993d1858dd1f19f09f22f1471494e6489755fee8eb2b",
+        "assetId": 762220707,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6411-default-flutter-light.png"
+      },
+      {
+        "name": "pr6411-default-web-light.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6409-partial-ssr-20261118.79b40hm8/matrix/captured/fade-scroll-default-light-defaultStyle.web.png",
+        "sha256": "890dcb54a1b66ad691ac20a8984133263b57e60e1e4f22a29882e9c3c8591740",
+        "assetId": 762220764,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6411-default-web-light.png"
+      },
+      {
+        "name": "pr6411-partial-b-middle-before-light.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6409-partial-ssr-20261118.79b40hm8/independent/before-light-h-middle-b.png",
+        "sha256": "87c516ecf86cdf8f2ca11217d7a2cec91032486741a25cf9ebd0c612d674b142",
+        "assetId": 762220796,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6411-partial-b-middle-before-light.png"
+      },
+      {
+        "name": "pr6411-partial-b-middle-after-light.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6409-partial-ssr-20261118.79b40hm8/independent/after-light-h-middle-b.png",
+        "sha256": "88d0b8b154d852b194f84368ad49db8db2796e55be9bd96193d9a4ad82eba54b",
+        "assetId": 762220882,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6411-partial-b-middle-after-light.png"
+      },
+      {
+        "name": "pr6411-default-flutter-dark.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6409-partial-ssr-20261118.79b40hm8/matrix/captured/fade-scroll-default-dark-defaultStyle.flutter.png",
+        "sha256": "e67f5aac26a119ad809b94421b6e4414a0dd009ef73eda6116639af2cf41af07",
+        "assetId": 762220950,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6411-default-flutter-dark.png"
+      },
+      {
+        "name": "pr6411-default-web-dark.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6409-partial-ssr-20261118.79b40hm8/matrix/captured/fade-scroll-default-dark-defaultStyle.web.png",
+        "sha256": "0e07edb32d8c6f80e61570009106938b040d64e810f6d7d6ff6f626c818fef11",
+        "assetId": 762220990,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6411-default-web-dark.png"
+      },
+      {
+        "name": "pr6411-partial-b-middle-before-dark.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6409-partial-ssr-20261118.79b40hm8/independent/before-dark-h-middle-b.png",
+        "sha256": "87c516ecf86cdf8f2ca11217d7a2cec91032486741a25cf9ebd0c612d674b142",
+        "assetId": 762221046,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6411-partial-b-middle-before-dark.png"
+      },
+      {
+        "name": "pr6411-partial-b-middle-after-dark.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6409-partial-ssr-20261118.79b40hm8/independent/after-dark-h-middle-b.png",
+        "sha256": "88d0b8b154d852b194f84368ad49db8db2796e55be9bd96193d9a4ad82eba54b",
+        "assetId": 762221085,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6411-partial-b-middle-after-dark.png"
+      }
+    ],
+    "privateUnpublishedDraftReleaseId": 431249100,
+    "ttlDays": 3,
+    "rawPngEdited": false
+  },
+  "cleanup": {
+    "trackedFiles": 22476,
+    "hashDeltas": [],
+    "statusBeforeVerificationDocs": "",
+    "ownedCaptureAndReportRunnersAwaited": true,
+    "ownedIndependentBrowserClosed": true,
+    "ownedDocsBrowserClosed": true,
+    "portsClosed": {
+      "61914": true,
+      "62573": true
+    },
+    "ownedDocsServerReapedExit": 143,
+    "unrelatedAppsTouched": false
+  },
+  "limits": [
+    "General warm hydration/B DOM identity is not proven by the partial-mount regression.",
+    "Static server-only A keeps its existing SSR mask; this does not resolve SSR fit/Native #5134/#6366.",
+    "The global contract guard fails at the unchanged main NavigationBar line; tracked separately by #6412.",
+    "Initial Sidebar capture timeout and corrected unsupported --phase all/setup failures remain in raw artifacts.",
+    "No full manual CI, deployment, new designer approval or all-parity completion claim."
+  ]
+}

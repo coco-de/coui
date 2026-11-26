@@ -1,0 +1,81 @@
+{
+  "key": "steps-horizontal-light-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "장바구니\n                \n              \n              \n                \n                  \n                    2\n                  \n                  \n                  \n                  \n                \n                \n                  배송\n                \n              \n              \n                \n                  \n                    3\n                  \n                  \n                  \n                  \n                \n                \n                  결제\n                \n              \n              \n                \n                  \n                    4\n                  \n                \n                \n                  확인",
+    "layout": {
+      "width": 800,
+      "height": 62,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 200,
+          "height": 62
+        },
+        {
+          "x": 200,
+          "y": 0,
+          "width": 200,
+          "height": 62
+        },
+        {
+          "x": 400,
+          "y": 0,
+          "width": 200,
+          "height": 62
+        },
+        {
+          "x": 600,
+          "y": 0,
+          "width": 200,
+          "height": 62
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "16px",
+      "lineHeight": "22px",
+      "letterSpacing": "-0.16px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgba(255, 255, 255, 0.5)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "9999px",
+      "borderTopRightRadius": "9999px",
+      "borderBottomRightRadius": "9999px",
+      "borderBottomLeftRadius": "9999px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 62
+    }
+  }
+}

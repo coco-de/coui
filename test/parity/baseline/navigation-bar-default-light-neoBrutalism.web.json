@@ -1,0 +1,105 @@
+{
+  "key": "navigation-bar-default-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": ".coui-navigation-pane,.coui-navigation-selection,.coui-navigation-lens{display:none;pointer-events:none;position:absolute;left:0;box-sizing:border-box;border-radius:var(--coui-navigation-radius);transform-origin:center;}\n                .coui-navigation-glass-active{position:relative;overflow:visible!important;touch-action:pan-y;isolation:isolate;background:transparent!important;backdrop-filter:none!important;}\n                .coui-navigation-glass-active.coui-navigation-glass-vertical{touch-action:pan-x;}\n                .coui-navigation-glass-active>.coui-navigation-pane{display:block;inset:0;border-radius:inherit;z-index:-1;}\n                .coui-navigation-glass-active [data-coui-nav-index]{position:relative;z-index:1;transform:none!important;}\n                .coui-navigation-glass-active [data-coui-nav-chrome]{background:transparent!important;}\n                .coui-navigation-glass-active>.coui-navigation-selection{display:block;z-index:0;background:var(--coui-navigation-selection);}\n                .coui-navigation-glass-active>.coui-navigation-lens{display:block;z-index:2;backdrop-filter:blur(0px);border:1px solid rgb(var(--coui-on-surface)/22%);background:linear-gradient(var(--coui-navigation-light-angle,145deg),rgba(255,255,255,.14),rgba(255,255,255,.015));}\n                @media(prefers-contrast:more){.coui-navigation-glass-active>.coui-navigation-lens{border-color:rgb(var(--coui-on-surface)/70%);background:none;}}\n                \n              \n              \n              \n                .co-navbar-sl-2mihoe:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 0%, rgb(var(--coui-surface) / 100%));}:focus-visible>.co-navbar-sl-2mihoe{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface) / 100%));}.co-navbar-sl-2mihoe:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface) / 100%));}\n              \n              \n                \n                  홈\n                \n              \n              \n                \n                  검색\n                \n              \n              \n                \n                  알림\n                \n              \n              \n                \n                  프로필",
+    "layout": {
+      "width": 800,
+      "height": 80,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 208,
+          "y": 8,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "x": 304,
+          "y": 8,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "x": 400,
+          "y": 8,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "x": 496,
+          "y": 8,
+          "width": 96,
+          "height": 64
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(42, 43, 44)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(31, 32, 33)",
+      "borderRightColor": "rgb(31, 32, 33)",
+      "borderBottomColor": "rgb(31, 32, 33)",
+      "borderLeftColor": "rgb(31, 32, 33)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "4px",
+      "paddingRight": "12px",
+      "paddingBottom": "8px",
+      "paddingLeft": "12px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 80
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "key": "date-picker-default-light-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "normal",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(115, 116, 118)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(208, 209, 210)",
+      "borderRightColor": "rgb(208, 209, 210)",
+      "borderBottomColor": "rgb(208, 209, 210)",
+      "borderLeftColor": "rgb(208, 209, 210)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "10px",
+      "borderTopRightRadius": "10px",
+      "borderBottomRightRadius": "10px",
+      "borderBottomLeftRadius": "10px",
+      "paddingTop": "0px",
+      "paddingRight": "12px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 256,
+      "heightPx": 40
+    }
+  }
+}

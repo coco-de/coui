@@ -1,0 +1,734 @@
+{
+  "renderBaseMain": "185dca1ef84f196f5e7be26cfed0bc7af76bcb4d",
+  "mergedLatestMain": "6cfd416c21caa71496aea550db699d8257088fd5",
+  "mainUpdateProof": {
+    "main": "98a404ae6e4f50810a72a600f72f47256147ed13",
+    "filesChecked": 110,
+    "proof": [
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/accordion/accordion_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "4338f3965b5e58fb6c49cdd5fbd62065b7876a32a42e24076b87554e98ed47e8"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/alert/alert_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "750a34b22283a9ed5ef479d9d58b2f84fc14d1cba5beb4063beb3b3e7c41daa2"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/app_bar/app_bar_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "e0fae4f0c779c39fcf80aa6f249f5b92e0c5f7ae9ba27a75659a9c5766d4c432"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/autocomplete/autocomplete_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "6026637121b58037c646a21f11ecc50a039b5191f175986a4da661cdbdf9924b"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/avatar/avatar_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "15f43be2e664df44009236a36eba81ad1476765291c0e0661ae303d1131343d4"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/badge/badge_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "aeb2de9a9e8f8af180e38e96099ab6d3b88fe08991d7e17db83811622daeff42"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/banner/banner_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "9a1efe0c71fdd8f441dfde3bd149b13b429f2d8765e1bfa2d3ce31ec72185705"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/basic/basic_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "ded2ff1ccc8f3dbfc2cff4ed276debbbe6fd7ec68940bb2345e17b3cae49a3ed"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/bottom_action_bar/bottom_action_bar_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "2c3a24e285d1af7454fb80f5432dd1755ec278cf3b02de32dc467c8d18308d0b"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/bottom_sheet/bottom_sheet_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "941083dfa55b468b5e947143a79bff720f3284315d53c3376e5ab0e603b925f9"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/breadcrumb/breadcrumb_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "6832425c90bc9bfc1d5f3f066ca949bba85ff0b56d59146c9b38b990c4e4ab55"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/button/button_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "346985eb23a43f17ce922bf113dd819b2c6dfd9fad8afb3504b079fceebb9540"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/calendar/calendar_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "59e5d4e32b032d84243c128d6e7375f8eb2e4bc3fcd4caa4b7b109e6c262a84a"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/card/card_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "b62b361c1b72c8f5ad1b7b7831305ea7701f60fe6a56ca101b4665107b870282"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/card_image/card_image_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "f9cc2a6fae8935803f46d3e300c3729d8ed63e0de76087a36332380c502c3183"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/carousel/carousel_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "7315fe204bdec837ea9a33e2302bccced8939a14b24acb7c0d05e334b123edd0"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/checkbox/checkbox_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "7e84d5ed0fee96ca767bccc1aca6cf398877dbbb6f7bbe74b6cd8b0fc3616b0b"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/chip/chip_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "56d8e592ec3ba637d76ffce06fe4e13025c303e51572bdce32dc1fc6d0373629"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/chip_group/chip_group_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "072e83a41abf65f5f59a97637baf328a2546fc7aacd2fb0506bb1b66dba6b3bf"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/chip_input/chip_input_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "6ea43689747d4dfbbc18f5aa132a9598b45d45f29ab793d509a67838534f1917"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/clickable/clickable_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "e5373b3d38519c1e2487bea00a57db1bf39c6a44ef5966e5670e559f0238f7f1"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/code_diff/code_diff_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "05ed9f2de95eab262b2423d505e9dd9bb6cc38b07749d9f1dfeb8a9749fc0d7a"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/code_snippet/code_snippet_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "362319d5295c8688ad661f302dcccc1ebccf21eb5c0bddc7440832952aaa4ed1"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/collapsible/collapsible_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "cb3a7907a782bb943ca394cc945bd90f03d61d5d3404f2090440bae25a6cbe1e"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/color_picker/color_picker_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "163a20b8897373f810e827332af5f4fb72de5518fc34b55d2a908966fb62bb11"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/command/command_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "5bcb651e2756fa3029f41abf0bbae020f7b89eb2eb884d5395f0b1c676c3432b"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/command_search/command_search_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "22dd81441181fe3fd419e62f122e45b417eaf3be636d9ffde93f0226ee25553d"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/context_menu/context_menu_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "f4cb28e5a65f4944e574151155601bb43df27cfaf755745f96963133df76872f"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/date_picker/date_picker_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "e5b576ccc32c659af8ae39b881584aeeb8a1f289d2f30b8d86bb55edfef86ab8"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/description_card/description_card_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "f6810baa9c9b6dfd11dfd10d99dc17a3738bf7ec2dc5d9564dcd3e7ff455b3dc"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/dialog/dialog_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "03b09d12150837565478e9fa28ec0cac31fa0824b3bc97ec31d29c627eb861ea"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/diff/diff_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "de91fe5644374c82572c89de0d7a5fe6f17ddb59a2242e36f3f8749f02f93d17"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/disclosure/disclosure_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "5591fb91ff491463004b7e52242562d10b96d3bb050e3cf1e68a199a3b256005"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/divider/divider_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "64e0d918a773cfd3aee882b6f764007d10b8f994f8a3bc5b3e6d6ab4d4a2dd3a"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/dock/dock_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "3647cf92403bb211e250a36a2544550cdeb2fb836c4ac51803768f12cdd6701a"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/dot_indicator/dot_indicator_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "b94cd36de7375836e7e5f1bb727f56c116f81c1b8ed0869292b85a8f4bd51668"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/draggable_panel/draggable_panel_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "990eda589e0d0edf57918e71a5695e903b1c92511637bbc2294f99577ddc5994"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/drawer/drawer_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "9be7e7773d383a6b85b3748c7ef7945699c8bd21b4b16cf3c0967e046af5c41d"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/dropdown_menu/dropdown_menu_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "772126d7db11e2eeb0d0be7d602a4ffbc35b56a5826de084a26e4e4215d2dd9b"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/empty_state/empty_state_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "3bd82b381fb78dbfa93a62267d89194d0f961cfd8a5ab4eb4beb13437a9caefe"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/fab/fab_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "25702331910ab0f084226f542a1dc20a74933c6df8a75bd5376c6e31943423e3"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/file_input/file_input_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "6e40bf7287939bf5b1bca518531ebbf9338664c70778d40152fc2203855b5ba8"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/filter/filter_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "1e1028debd3a0899bb2abb7b70151f497cf5767a68b4de9237ba2d59f7a34465"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/focus_outline/focus_outline_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "fef40e402a60ed51779938722c0ad66e88a72a82b6a19213c557f976f59fa603"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/footer/footer_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "08f153076c9c1c3e44410c76538b4a2dfaa73afb9e5b7faa91dcd37cef423e11"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/form_label/form_label_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "85ec33102dee01a24ce90bb26fe7da649f2d722ad24a97862e31b722900f026d"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/formatted_input/formatted_input_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "ef0912017a6d2366498241017a93071a1212b7b4a59998bf647c2df524d66424"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/frame/frame_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "a7eab60846adef44cf3187b2caa05ab23c28e34926f96ea56a469af532db65ca"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/hover_card/hover_card_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "22c07a3bba96bc582faaacdfa09878149ee969a98da852fcdabeaaa7dd074ac1"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/icon/icon_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "87656d25bd41820406c14b3ba890cc6fee85490b64ab26e978113d64e2709acc"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/input_otp/input_otp_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "a0e0eca1caff1f5480afbc33760fbc37ad464a6aaee1ce55eb498b270ba65ddc"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/item_picker/item_picker_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "11bd94bf5efb382b2047617075b33f0172232e6e2983ef3f5bc96e8eae0cc5c2"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/label/label_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "6c38a15a04375e0bb44486bc0be3769b947e63bd36d66b1a49f0e4d43b8508bb"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/link/link_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "1816e186febc9a57cb4adac1886a83fbbed422bba5807ac9ea385e20e0f4510a"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/listing/listing_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "4bffc2da91f8e96b6736b17691b0a92b67f5465bab752f7e9fde0be68c2f67b7"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/menu/menu_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "9de0c45f60bed1444bae4b07bdd53118039ec05f7165ffeec1d38a1654c8fa65"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/menu_item/menu_item_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "c5a0d43f6f17f2e02ea4ae84995061859523d8fa73005dabf6d8cdbd23b1e0b4"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/menubar/menubar_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "778b20e1e19ad49dfd969e5f6f8c0d6e99803708f6481b44b18a6e49b6e59467"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/mockup/mockup_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "7ee58ff74f0242f41395428e32e82e6308be02fdc5f2e0ff2551c2468970b6a5"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/multi_answer_card/multi_answer_card_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "68ef6b3a46e1db7dd6f9cb072292866a1f1c0852e4f6168f640f568e9b2b88ce"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/multiple_choice/multiple_choice_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "cb974c7babfb7c72fd29e1523db3e883c20ccb0e23ddd28b51187ea7c60d28ed"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/navigation_bar/navigation_bar_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "6e92e0cda3f95bcc7a767566bc46f05d51d1474bf5b845d89a4db9edc6ca8b45"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/navigation_menu/navigation_menu_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "a6a28be4c03be3ed370f5ac25276037c45714442ef257e7d0444e365316187f0"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/number_input/number_input_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "769df5349d41b5b9e4f4b65d7a931dec2efc1c5356eff74e4ce03ec051c31647"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/object_input/object_input_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "0d6eccfea46e2458be82caa94a9c916d4c47bdb6736ed8511e5e65dae7954835"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/option_item/option_item_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "b383e34aaa77b418c8faa34c23575ee308fddf32acd91c7709411c1f59c5e670"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/outlined_container/outlined_container_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "d646630f4112e239de2f7d82754abb1e7e5a1b6ab0d62865eb9d1b226b033a5e"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/page_header/page_header_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "fe26110ccf58d7bcb920c5a5b6dcde75f11f07f9ab0d362c1ce78c18067d2a70"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/pagination/pagination_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "5b48068afd73b9c8a51394eef870d56aac07e58a541801c9b5e6530848496911"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/panel_header/panel_header_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "af35e0a753f683bf0b1265db9e26f7943d60371ee12f15c190d1f03c817f5c82"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/phone_input/phone_input_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "5aa478fae5fcb0d29caded30f169b929f85dc3b5f3be838fc378cd750f185b5d"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/popover/popover_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "a416ef2c3a5876c68c02b9d894ff159e7c99e17974e334e321222c33b7870859"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/popup/popup_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "f3b95f99d61bcf34fdfdcf2c202bb7b32c95ad7f37832fc3be8314c3704fa850"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/progress/progress_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "0498134c2f0f8281c7f9fd0063c796281af61e535a48031d5901ea0f9fa1284a"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/radio_group/radio_group_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "7ab009e5b48c26d727283d90c6eb41018904187a431b315c7fd76b52c1406e6a"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/range/range_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "8832ae718ead69921855712da37581a48c5bcd95a5c1b86de26bbc34a2827827"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/refresh_trigger/refresh_trigger_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "54cd5f448f134593060cd1d6f144dbe7a3daeb4c3f59d894e2c5c7b3b595f5ff"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/rich_editor/rich_editor_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "30e4ca1ab2f3c13f0c78b37e544c4f3ddb8ced5f93094b26a5fd132bbad9e197"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/scroll_area/scroll_area_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "50e5dd1590f5ca89e6f56330ec74adfe15cf266f829c516e1dcd705ebc05a111"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/select/select_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "e6e819e7ef8b4a92e07946b8d6dcd167f062633c131e2c9c2def47aaa9848e46"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/slider/slider_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "f01f9b5e9097876b41583c07d8f3f9097b0d1f0fddb9eb07e0b5a88bde564d9e"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/sortable/sortable_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "6d4ebbb3862886c938c8706b86ae84abffba621e309cf62aa2399ff480e587bd"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/star_rating/star_rating_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "72de0f8d7e2066a9bb6482619ec17c39c1c165ee2521ca3691fdd40cc7df213d"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/stat/stat_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "e2956ec375da5fab1fa29d0a1883dc2da5941cbe978922321cb14e7903ce8104"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/status/status_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "df7bf79618e617860dfd75cc8f3df07814fa8c94cf808366ac9b5bf6a9beccd6"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/step_item/step_item_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "bdc3f7733d2a650e041f87e034449a3166f4e7756f3ee6772ab7a7c0fe745d0d"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/stepper/stepper_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "9941f77939c6b3e74a54453fe9fd4d03b1b35a76ce5fd2233a662377699495d3"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/steps/steps_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "8e1e7c767ec2ba974c57dce46f3ce3a6aa2266ad0414d94818518a685e6ac5ef"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/swap/swap_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "d3f005718a91c83d0611d58381a0ff37837deefab14edb757a2b192a858ca846"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/swipe_actions/swipe_actions_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "1c45795e90cac1de724779f23a95c73b93f8d589d38287c679998c837b8718be"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/swiper/swiper_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "c5f20b661cab556ff1bd1889d7f291eaf1ea5cb369ca95a8ece2367356b4b7cd"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/switch_field/switch_field_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "4ddd18981748b230816f54426d449302acd19695b847c3d70f6af3e4500f22b7"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/tabs/tabs_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "8615ba82703ff0a2e01ed9ba3bca091a4750d578be27ab6e6cdecbbfc2436053"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/text_area/text_area_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "0e3601ed37125817b21bc590405f25a46e0786e422a9b4acac8d7c070302f6d4"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/text_block/text_block_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "e823ad0f16fb03cfb39964197839e52ccb463e10ae466cdbefc62e605032d6e8"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/text_field/text_field_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "a11967c311175541b2e800d7930621de5eea8d80c520369d18074ff238fd9059"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/theme_controller/theme_controller_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "efba761d8f79c3e707fd414cc3da44dab7ee8d3a9f68417d8c6c89ab9cbe913d"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/time_picker/time_picker_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "2be69b060970cc55b387c403731242ca630ff2ef2c7a93bdfaab1d76873134f6"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/timeline/timeline_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "19330e7e58f80d1012381cd737ca7e0f4eeaa43f7e65a807ea27f7bf9b769f4c"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/toast/toast_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "fba778e4aaf31ada0068a82060b7d6982a3623269cc800eea583e8e1da029a9e"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/toggle/toggle_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "dfe9af174fbfaf598a669230e5d3ca0a99c5eeb8861f8ac15681a2c768999083"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/toggle_group/toggle_group_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "1d79f2d81a310ca1bd62eb4e2175d3f79baf7dd456254bbb88917f31aec7fe7b"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/tracker/tracker_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "37a38d3d9ffe0159507bf17a38f88e82e9d25dfad3536f789367b4342c503c12"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/tree/tree_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "608d6cbdfa9f805862255a25840de541be57a4e56c686d76ad83331296225e4e"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/trend_chart/trend_chart_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "8877a597b8f84d6367aec2ed474a2265a27498a6252119b9adab2af6f8e6a25d"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/validated/validated_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "af01bb6608a5ea12f873e27a9e3622715f1daa97aabbefddd5aca34a8ce12aa5"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/validation_badge/validation_badge_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "e20847967c2a02568d15d7aba4ab4d16d7909619769ec6b573b994f4b1e07df9"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/window/window_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "f1f48991bcb61fc5cbd6b66581f40b1f99d9801a121ff787b4f4980067775f77"
+      },
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/window_panel/window_panel_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "21af31d94ee09eeed945db23ec6e5aa7ab7ada8d423d9db88c6791f09c52f7b0"
+      },
+      {
+        "path": "packages/coui_flutter/lib/src/components/overlay/popover/popover_style.dart",
+        "executableTokensUnchanged": true,
+        "sha256": "eb69397e8ba44292cb4dda79f756be5ab7bfc376fa747718eb5ddbb8718c0f71"
+      }
+    ]
+  },
+  "sourceSha256": {
+    "packages/coui_flutter/lib/src/components/layout/frame/frame.dart": "72f223344e20c05db895704b2900f3c6562d57332412b46938255a2033b3d386",
+    "packages/coui_flutter/test/components/layout/frame_patterned_border_test.dart": "842346c638c03aa3db594fbfc1582aa9674d2a014f15579e73a977df8eb97eda",
+    "packages/coui_web/lib/src/util/dashed_overlay.dart": "b8e6f163fa9704c9781620f340c8f5e233cbaef9360073d1b5e29222d6d8caf2",
+    "tool/parity/src/web/computed_style_probe.dart": "0bc8c7e3dc1d0fff917431a43637eaaa27453b91fb6cf6a9dab272017bab950d",
+    "tool/parity/src/normalize/web_property_normalizer.dart": "5daad74c5b167bccdde7781a053258bdd06263c1b2003d9217e5a0f0b2c9e142",
+    "packages/coui_flutter/test/parity/root_text_probe.dart": "a2de6f50da8623600194788d96f5a3b6047fa0b6bc174319d107e6b3d0eddc19",
+    "packages/coui_flutter/test/parity/root_scoped_walk.dart": "9cd6b5090d34383484d1d712da363656a4d7263866c13ce775dadd140e591d5d"
+  },
+  "webCaptureReuse": {
+    "source": "Previous accepted 88c7ca5 capture",
+    "reason": "Web renderer/probe and all executable Core tokens unchanged. Four fresh default-control Web screenshots matched prior Web RGBA exactly.",
+    "mainMetadataOnlyExceptions": [
+      "CoreFabStyle Deprecated message wording; comments"
+    ]
+  },
+  "tests": {
+    "native": 50,
+    "docsPlainWords": 7,
+    "analyzeIssues": 0,
+    "formatChanged": 0,
+    "jasprRoutes": 357,
+    "webCallerPrior": 101,
+    "webProbeGeometryNormalizePrior": 101,
+    "latestDocsCss": 21
+  },
+  "publicDeclarationSha256": {
+    "packages/coui_flutter/lib/src/components/layout/frame/frame.dart": "a0785db6379e582a3e8475e64349b59d02bda4ddba4b09e56aa1771b44171ff4",
+    "packages/coui_web/lib/src/util/dashed_overlay.dart": "e90c9f21c301f526aac19933838afa0ed10457c42ec9eb808da215efc1c6f54d",
+    "packages/coui_flutter/test/parity/root_text_probe.dart": "00c95d8c9bf7fa3a976cd47437e17920689bd78e2ad1e025f13e8db35b01ae9e",
+    "packages/coui_flutter/test/parity/root_scoped_walk.dart": "819b24f04ac1732a5257aeb95aa724f1b1b8a3771db981371f2b703827d5bbae",
+    "tool/parity/src/normalize/web_property_normalizer.dart": "fee8e69105c93630cd1e6b990d1ba705fec0f9a0bbe35b7023b96926b5273623"
+  },
+  "defaultMatrix": {
+    "keys": 748,
+    "probes": 760,
+    "main": {
+      "pass": 460,
+      "fail": 288
+    },
+    "current": {
+      "fail": 287,
+      "pass": 461
+    },
+    "newFailures": [],
+    "ownBaselineAfter": {
+      "pass": 1363,
+      "fail": 133,
+      "firstCapture": 24
+    }
+  },
+  "relatedMatrix": {
+    "keys": 152,
+    "main": {
+      "fail": 113,
+      "pass": 39
+    },
+    "priorPr": {
+      "fail": 110,
+      "pass": 42
+    },
+    "current": {
+      "fail": 109,
+      "pass": 43
+    },
+    "newFailuresFromMain": [],
+    "newFailuresFromPriorPr": [],
+    "frame": {
+      "pass": 17,
+      "fail": 15
+    }
+  },
+  "neoDashed": [
+    {
+      "key": "frame-dashed-light-neoBrutalism",
+      "mainRatio": 0.1136774617787276,
+      "priorPrRatio": 0.017836593785960874,
+      "current": {
+        "status": "pass",
+        "aSize": [
+          158,
+          77
+        ],
+        "bSize": [
+          158,
+          77
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 113,
+        "totalPixels": 12166,
+        "diffRatio": 0.009288180174256123,
+        "maxChannelDelta": 127
+      }
+    },
+    {
+      "key": "frame-dashed-dark-neoBrutalism",
+      "mainRatio": 0.15017261219792866,
+      "priorPrRatio": 0.053838566496794346,
+      "current": {
+        "status": "pass",
+        "aSize": [
+          158,
+          77
+        ],
+        "bSize": [
+          158,
+          77
+        ],
+        "dimensionMismatch": null,
+        "diffPixels": 564,
+        "totalPixels": 12166,
+        "diffRatio": 0.04635870458655269,
+        "maxChannelDelta": 138
+      }
+    }
+  ],
+  "neoPixelRegions": [
+    {
+      "key": "frame-dashed-light-neoBrutalism",
+      "text": 89,
+      "outsideText": 24,
+      "diagnosticTextBox": [
+        28,
+        28,
+        131,
+        49
+      ],
+      "usedAsMask": false
+    },
+    {
+      "key": "frame-dashed-dark-neoBrutalism",
+      "text": 527,
+      "outsideText": 37,
+      "diagnosticTextBox": [
+        28,
+        28,
+        131,
+        49
+      ],
+      "usedAsMask": false
+    }
+  ],
+  "propertyMatrix": {
+    "pass": 300,
+    "fail": 390,
+    "infra": 12,
+    "skipped": 46
+  },
+  "unchangedPolicy": {
+    "parityRatio": 0.05,
+    "regressionRatio": 0.001,
+    "channelDelta": 32,
+    "captureDpr": 1,
+    "baselinePromoted": false,
+    "allowlistChanged": false,
+    "coreValuesChanged": false,
+    "publicApiChanged": false,
+    "imageOffsetsOrMasks": false
+  },
+  "limitations": [
+    "Frame still has 15 failing registered cases; this is not total Frame/Neo style completion.",
+    "The default-style 748-key matrix excludes Neo; its 287 failures are unchanged.",
+    "No designer approval or whole-repo CI result is inferred."
+  ],
+  "additionalMainUpdate": {
+    "from": "98a404ae6e4f50810a72a600f72f47256147ed13",
+    "to": "6cfd416c21caa71496aea550db699d8257088fd5",
+    "changes": [
+      "Core/Flutter package version and changelog metadata",
+      "Docs table inline code overflow-wrap: normal"
+    ],
+    "rendererLibraryDiff": [],
+    "captureInputsChanged": false
+  }
+}

@@ -1,0 +1,1464 @@
+{
+  "widgetbook": {
+    "common": {
+      "increment_progress": "زيادة التقدم",
+      "selected_tab": "التبويب المحدد: {index}",
+      "current_page": "الصفحة الحالية: {page}",
+      "total_pages": "إجمالي الصفحات: {count}",
+      "page_of": "{current} صفحة / {total}",
+      "hover_over_icon": "مرر فوق الأيقونة",
+      "counter": "عداد: {count}",
+      "selected_rows": "الصفوف المحددة: {count}",
+      "value": "القيمة: {value}",
+      "selected_cells": "الخلايا المحددة: {count}"
+    },
+    "loading": {
+      "indeterminate": "تحميل غير محدد",
+      "with_value": "مع قيمة ({percent}%)",
+      "custom_size": "حجم مخصص",
+      "custom_height": "ارتفاع مخصص",
+      "circular_progress": "تقدم دائري",
+      "linear_progress": "تقدم خطي"
+    },
+    "tabs": {
+      "home": "الرئيسية",
+      "profile": "الملف الشخصي",
+      "settings": "الإعدادات",
+      "overview": "نظرة عامة",
+      "details": "تفاصيل",
+      "history": "تاريخ",
+      "overview_content": "محتوى النظرة العامة",
+      "details_content": "محتوى التفاصيل",
+      "history_content": "محتوى التاريخ",
+      "general_info": "معلومات عامة عن العنصر",
+      "specifications": "المواصفات والتفاصيل",
+      "timeline": "جدول التغييرات والتحديثات"
+    },
+    "pagination": {
+      "show_skip_to_first": "عرض تخطي إلى الأول",
+      "show_skip_to_last": "عرض تخطي إلى الأخير",
+      "hide_previous_on_first": "إخفاء السابق في الصفحة الأولى",
+      "hide_next_on_last": "إخفاء التالي في الصفحة الأخيرة",
+      "max_visible_pages": "أقصى عدد من الصفحات المرئية"
+    },
+    "tooltip": {
+      "helpful_message": "رسالة Tooltip مفيدة",
+      "tooltip_above": "Tooltip فوق",
+      "tooltip_below": "Tooltip أدناه",
+      "tooltip_left": "Tooltip على اليسار",
+      "tooltip_right": "Tooltip على اليمين",
+      "top": "الأعلى",
+      "bottom": "الأسفل",
+      "left": "اليسار",
+      "right": "اليمين"
+    },
+    "radio": {
+      "small": "صغير",
+      "medium": "متوسط",
+      "large": "كبير"
+    },
+    "card": {
+      "card_content": "محتوى البطاقة",
+      "gradient_card": "بطاقة متدرجة",
+      "custom_decoration": "بطاقة بزخرفة مخصصة"
+    },
+    "alert": {
+      "title": "عنوان التنبيه",
+      "message": "هذه رسالة تنبيه."
+    },
+    "accordion": {
+      "what_is_coui": "ما هو CoUI Flutter؟",
+      "what_is_coui_answer": "CoUI Flutter هي مكتبة مكونات واجهة مستخدم شاملة مصممة لبناء تطبيقات Flutter حديثة وقابلة للوصول باستخدام أنماط تصميم متناسقة.",
+      "how_to_install": "كيف يتم التثبيت؟",
+      "how_to_install_answer": "أضف coui_flutter إلى اعتماديات pubspec.yaml وشغل flutter pub get لتثبيت الحزمة.",
+      "is_customizable": "هل يمكن تخصيصها؟",
+      "is_customizable_answer": "نعم! توفر CoUI Flutter دعم موضوع شامل يسمح لك بتخصيص الألوان والطباعة والفجوات من خلال ThemeData.",
+      "getting_started": "ابدأ",
+      "getting_started_answer": "ابدأ بتثبيت الحزمة وإضافتها إلى مشروعك. لمزيد من تفاصيل إعداد التفاصيل، يرجى الرجوع إلى الوثائق.",
+      "features_expanded": "الميزات (التوسيع الافتراضي)",
+      "features_answer": "تشمل CoUI Flutter الأزرار والنماذج والصناديق الحوارية ومكونات التنقل. تم تصميم جميع المكونات مع مراعاة إمكانية الوصول والموضوع.",
+      "support": "الدعم",
+      "support_answer": "إذا كان لديك أي استفسارات أو تحتاج إلى دعم، قم بزيارة مستودع GitHub أو تحقق من الوثائق على docs.coui.dev."
+    },
+    "skeleton": {
+      "skeleton_enabled": "تفعيل الهيكل العظمي:",
+      "title_text": "هذا هو العنوان",
+      "description_text": "هذا نص وصف طويل",
+      "short_text": "نص قصير",
+      "without_skeleton": "بدون الهيكل العظمي:",
+      "with_skeleton": "مع الهيكل العظمي:",
+      "user_name": "اسم المستخدم",
+      "user_email": "user@example.com",
+      "article_title": "عنوان المقال",
+      "posted_date": "تاريخ النشر: 1 يناير 2024",
+      "bio_description": "مطور يسجل حياته اليومية",
+      "show_content": "عرض المحتوى",
+      "show_loading": "عرض التحميل",
+      "article_content": "هذا مثال لمحتوى المقال. يتم استبداله بالهيكل العظمي أثناء التحميل."
+    },
+    "toast": {
+      "success": "نجاح",
+      "operation_completed": "تم إكمال العملية بنجاح",
+      "show_toast": "عرض Toast",
+      "toast_at": "Toast في {location}",
+      "top_left": "أعلى اليسار",
+      "top_center": "الوسط العلوي",
+      "top_right": "أعلى اليمين",
+      "bottom_left": "أسفل اليسار",
+      "bottom_center": "الوسط السفلي",
+      "bottom_right": "أسفل اليمين"
+    },
+    "chip": {
+      "chip": "شريحة"
+    },
+    "checkbox": {
+      "accept_terms": "أوافق على الشروط والأحكام",
+      "tristate": "ثلاث حالات"
+    },
+    "toggle": {
+      "toggle": "تبديل"
+    },
+    "dialog": {
+      "basic_dialog": "حوار أساسي",
+      "basic_title": "الحوار الأساسي",
+      "basic_content": "حوار بسيط بعنوان ومحتوى.",
+      "simple_dialog_content": "هذا حوار بسيط يحتوي على عنوان ومحتوى.",
+      "show_basic": "عرض أساسي",
+      "show_basic_dialog": "عرض الحوار الأساسي",
+      "confirm_action": "تأكيد العمل",
+      "confirm_title": "تأكيد",
+      "confirm_content": "هل تريد حقًا إجراء هذه العملية؟",
+      "confirm_action_content": "هل أنت متأكد أنك تريد تنفيذ هذا الإجراء؟ لا يمكن إلغاء هذا الإجراء.",
+      "cancel": "إلغاء",
+      "confirm": "تأكيد",
+      "show_confirmation": "عرض التأكيد",
+      "show_confirmation_dialog": "عرض حوار التأكيد",
+      "warning": "تحذير",
+      "warning_title": "تحذير",
+      "warning_content": "قد يؤثر هذا الإجراء على البيانات. يرجى proceed بحذر.",
+      "dismiss": "إغلاق",
+      "show_warning": "عرض التحذير",
+      "show_warning_dialog": "عرض حوار التحذير"
+    },
+    "popover": {
+      "popover_content": "محتوى Popover",
+      "content_title": "عنوان البوب أوفر",
+      "content_description": "بوب أوفر بمحتوى قابل للتخصيص.",
+      "customizable_content": "Popover بمحتوى قابل للتخصيص.",
+      "show_popover": "عرض Popover",
+      "popover_at": "Popover في {position}",
+      "top": "أعلى",
+      "bottom": "أسفل",
+      "left": "يسار",
+      "right": "يمين"
+    },
+    "text_field": {
+      "enter_name": "أدخل الاسم",
+      "type_here": "اكتب هنا"
+    },
+    "button": {
+      "primary_button": "زر أساسي",
+      "secondary_button": "زر ثانوي",
+      "dashed_button": "تحميل ملف",
+      "upload_file": "تحميل ملف"
+    },
+    "table": {
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "role": "الدور",
+      "john_doe": "جون دو",
+      "john_email": "john@example.com",
+      "developer": "مطور",
+      "jane_smith": "جين سميث",
+      "jane_email": "jane@example.com",
+      "designer": "مصمم",
+      "bob_johnson": "بوب جونسون",
+      "bob_email": "bob@example.com",
+      "manager": "مدير",
+      "select": "تحديد",
+      "product": "المنتج",
+      "price": "السعر",
+      "stock": "المخزون",
+      "laptop": "حاسوب محمول",
+      "mouse": "فأرة",
+      "keyboard": "لوحة مفاتيح"
+    },
+    "switch": {
+      "switch": "تبديل"
+    },
+    "switch_component": {
+      "switch_label": "تسمية التبديل"
+    },
+    "select": {
+      "apple": "تفاح",
+      "banana": "موز",
+      "cherry": "كرز",
+      "date": "تمر",
+      "choose_size": "اختر الحجم",
+      "small": "صغير",
+      "medium": "متوسط",
+      "large": "كبير",
+      "extra_large": "كبير جدًا"
+    },
+    "breadcrumb": {
+      "home": "الرئيسية",
+      "products": "المنتجات",
+      "electronics": "الإلكترونيات",
+      "smartphones": "الهاتف الذكي",
+      "documents": "المستندات",
+      "projects": "المشاريع",
+      "current_folder": "المجلد الحالي",
+      "current_path": "المسار الحالي: {path}"
+    },
+    "badge": {
+      "primary": "أساسي",
+      "secondary": "ثانوي",
+      "outline": "حدود",
+      "destructive": "مدمر",
+      "featured": "مميز",
+      "more": "المزيد",
+      "verified": "تم التحقق",
+      "error": "خطأ",
+      "click_me": "اضغط علي",
+      "clickable": "يمكن النقر"
+    },
+    "themePreview": {
+      "title": "معاينة السمة",
+      "description": "نظرة شاملة على جميع رموز السمات وأنماط المكونات.",
+      "color_palette": "لوحة الألوان",
+      "brand_colors": "ألوان العلامة التجارية",
+      "base_colors": "الألوان الأساسية",
+      "status_colors": "ألوان الحالة",
+      "buttons": "الأزرار",
+      "primary_button": "أساسي",
+      "secondary_button": "ثانوي",
+      "outline_button": "مخطط",
+      "ghost_button": "شبح",
+      "destructive_button": "مدمر",
+      "disabled_button": "معطل",
+      "cards": "البطاقات",
+      "card_title": "عنوان البطاقة",
+      "card_description": "هذا وصف نموذج البطاقة.",
+      "surface_card": "بطاقة السطح",
+      "filled_variant": "أسلوب مليء بخلفية",
+      "form_elements": "عناصر النموذج",
+      "text_input_placeholder": "أدخل النص هنا...",
+      "checkbox_checked": "محدد",
+      "checkbox_unchecked": "غير محدد",
+      "toggle_on": "مفعل",
+      "toggle_off": "معطل",
+      "alerts": "التنبيهات",
+      "info_alert": "تنبيه المعلومات",
+      "info_alert_message": "هذه رسالة إرشادية.",
+      "error_alert": "تنبيه الخطأ",
+      "error_alert_message": "حدثت مشكلة.",
+      "badges_chips": "شارات ورقائق",
+      "primary_badge": "أساسي",
+      "secondary_badge": "ثانوي",
+      "outline_badge": "مخطط",
+      "destructive_badge": "مدمر",
+      "chip_example": "المفضلة",
+      "typography": "الطباعة",
+      "heading_1": "العنوان 1",
+      "heading_2": "العنوان 2",
+      "heading_3": "العنوان 3",
+      "heading_4": "العنوان 4",
+      "body_text": "نص الجسم بسمك عادي.",
+      "small_text": "نص صغير للتعليقات.",
+      "muted_text": "نص باهت للمعلومات الإضافية.",
+      "bold_text": "نص عريض للتأكيد.",
+      "spacing_radius": "فراغ & زوايا مدورة",
+      "border_radius": "زاوية حدودية",
+      "loading_states": "حالات التحميل"
+    },
+    "chat": {
+      "hello": "مرحبا! كيف حالك؟",
+      "doing_great": "بخير، شكرا!",
+      "nice_weather": "الطقس جميل اليوم!",
+      "yes_beautiful": "نعم، إنه جميل!",
+      "sender": "المرسل",
+      "receiver": "المستقبل"
+    },
+    "multiple_choice": {
+      "option_a": "Option A",
+      "option_b": "Option B",
+      "option_c": "Option C",
+      "option_d": "Option D",
+      "selected_value": "المحدد: {value}",
+      "selected_values": "المحدد: {values}"
+    },
+    "formatted_input": {
+      "date_format": "صيغة التاريخ (MM/DD/YYYY)",
+      "time_format": "صيغة الوقت (HH:MM)",
+      "current_value": "القيمة الحالية: {value}"
+    },
+    "swiper": {
+      "swipe_hint": "اسحب أو اضغط للفتح",
+      "overlay_content": "محتوى التراكب",
+      "close": "إغلاق"
+    }
+  },
+  "docs": {
+    "common": {
+      "app_name": "coui_flutter",
+      "search_documentation": "البحث في الوثائق...",
+      "docs": "الوثائق",
+      "components": "المكونات",
+      "close": "إغلاق",
+      "on_this_page": "فهرس هذه الصفحة",
+      "work_in_progress_title": "قيد التطوير",
+      "work_in_progress_message": "هذه الصفحة قيد التطوير. يرجى العودة لاحقًا.",
+      "add": "إضافة",
+      "reset": "إعادة تعيين",
+      "prev": "السابق",
+      "next": "التالي",
+      "finish": "إنهاء",
+      "open": "فتح",
+      "disabled": "معطلة",
+      "refresh": "تحديث",
+      "rebuild": "إعادة بناء",
+      "change_color": "تغيير اللون"
+    },
+    "badges": {
+      "new": "جديد",
+      "updated": "محدث",
+      "wip": "قيد التطوير",
+      "experimental": "تجريبي"
+    },
+    "flavors": {
+      "local": "محلي",
+      "experimental": "تجريبي",
+      "unknown": "غير معروف"
+    },
+    "navigation": {
+      "getting_started": "البدء",
+      "animation": "الرسوم المتحركة",
+      "control": "التحكم",
+      "disclosure": "الكشف",
+      "display": "عرض",
+      "feedback": "التعليقات",
+      "form": "النموذج",
+      "layout": "التخطيط",
+      "navigation": "الملاحة",
+      "overlay": "تراكب",
+      "utility": "أداة",
+      "my_account": "حسابي",
+      "profile": "الملف الشخصي",
+      "settings": "الإعدادات",
+      "team": "الفريق",
+      "new_team": "فريق جديد",
+      "billing": "الفواتير",
+      "api": "API",
+      "log_out": "تسجيل الخروج",
+      "support": "الدعم",
+      "invite_users": "دعوة المستخدمين",
+      "more": "المزيد",
+      "github": "GitHub",
+      "note": "ملاحظة",
+      "message": "رسالة",
+      "keyboard_shortcuts": "اختصارات لوحة المفاتيح"
+    },
+    "pages": {
+      "introduction": {
+        "title": "مقدمة",
+        "description": "البدء مع coui_flutter",
+        "lead": "الآن يمكنك استخدام مكونات مصممة بشكل جميل من Coui/UI على Flutter.",
+        "welcome_paragraph_1": "coui_flutter هو مجموعة شاملة ومتنوعة من مكونات واجهة المستخدم مصممة خصيصًا لتطبيقات Flutter على سطح المكتب والويب. مع ازدياد شعبية Flutter في بناء التطبيقات عبر الأنظمة الأساسية، أدركنا الحاجة إلى مجموعة أدوات تسلط الضوء على متطلبات التصميم الفريدة لواجهات سطح المكتب والويب.",
+        "welcome_paragraph_2": "توفر هذه الحزمة مجموعة واسعة من المكونات القابلة للتخصيص والاستجابة والتي تتماشى مع مبادئ التصميم المعاصر لسطح المكتب والويب. سواء كنت تبني تطبيقات أعمال متطورة أو لوحات معلومات أنيقة أو أدوات إنتاجية، تم تصميم مكوناتنا لمساعدتك في إنشاء واجهات مستخدم احترافية وأنيقة بسرعة وكفاءة.",
+        "features": "الميزات الرئيسية",
+        "features_list": {
+          "components_count": "84 مكونًا وما زال العدد في تزايد!",
+          "material_cupertino": "يدعم مكونات Material وCupertino مع تعديلات تتوافق مع ثيمة coui_flutter الحالية.",
+          "premade_themes": "ثيمات مسبقة الصنع من Coui/UI.",
+          "platform_support": "دعم للأنظمة الأساسية للهاتف المحمول والويب وسطح المكتب.",
+          "middle_drag": "دعم سحب منتصف الشاشة.",
+          "typography_extensions": "توسعات متنوعة للخطوط.",
+          "webassembly": "دعم WebAssembly لأداء أفضل."
+        },
+        "notes": "ملاحظات",
+        "notes_paragraph_1": "هذه الحزمة لا تزال قيد التطوير وقد يحدث تغييرات في المستقبل. يرجى توخي الحذر عند استخدام هذه الحزمة في الإنتاج.",
+        "notes_paragraph_2": "هذه الحزمة ليست مرتبطة بـ Coui/UI. هذه الحزمة مشروع يقوده المجتمع.",
+        "faq": "الأسئلة الشائعة",
+        "faq_gorouter_q": "هل يدعم GoRouter؟",
+        "faq_gorouter_a": "نعم، يدعم. يمكنك استخدام GoRouter مع coui_flutter.",
+        "faq_usage_q": "هل أستطيع استخدامه في مشروعي؟",
+        "faq_usage_a": "نعم! يمكنك استخدامه مجانًا في المشاريع الشخصية والتجارية. لا حاجة للنسب إلى المؤلف.",
+        "faq_material_q": "هل يمكن استخدامه مع مكونات Material/Cupertino؟",
+        "faq_material_a_1": "بالطبع!",
+        "faq_material_a_2": "يرجى الرجوع إلى هذه الصفحة!",
+        "faq_style_q": "هل يمكنني تحديد أي نمط لاستخدامه؟ (افتراضي/نيويورك)",
+        "faq_style_a_1": "للأسف، لا يمكنك. تدعم هذه الحزمة نمط نيويورك فقط. ولكن إذا كنت ترغب في النمط الافتراضي لـ Coui/UI،",
+        "faq_style_a_2": "أوصي بهذه الحزمة:",
+        "faq_style_a_3": "المؤلف:",
+        "links": "روابط",
+        "link_github": "Github: ",
+        "link_pubdev": "pub.dev: ",
+        "link_discord": "Discord: "
+      },
+      "installation": {
+        "title": "التثبيت",
+        "description": "تثبيت coui_flutter في المشروع",
+        "stable_version": "النسخة المستقرة",
+        "experimental_version": "النسخة التجريبية",
+        "step1_title": "إنشاء مشروع فلاتر جديد",
+        "step1_content": "استخدم الأمر التالي لإنشاء مشروع فلاتر جديد:",
+        "step2_title": "إضافة الاعتماديات",
+        "step2_content": "بعد ذلك، أضف اعتماديات coui_flutter إلى مشروعك.",
+        "step3_title": "استيراد الحزمة",
+        "step3_content": "الآن يمكنك استيراد الحزمة في كود Dart الخاص بك.",
+        "step4_title": "إضافة عنصر واجهة CouiApp",
+        "step4_content": "قم بإضافة عنصر واجهة CouiApp في دالة main.",
+        "step5_title": "تشغيل التطبيق",
+        "step5_content": "استخدم الأمر التالي لتشغيل التطبيق:",
+        "experimental_intro": "النسخة التجريبية متاحة على GitHub.",
+        "experimental_usage": "لاستخدام النسخة التجريبية، استخدم git بدلاً من رقم الإصدار في ملف pubspec.yaml:",
+        "see_page": "راجع: ",
+        "this_page": "هذه الصفحة",
+        "for_more_info": " لمزيد من المعلومات.",
+        "warning_title": "تحذير",
+        "warning_content": "قد تحتوي النسخة التجريبية على تغييرات قد تكسر التوافق، ولا يُنصح باستخدامها في الإنتاج. هذه النسخة مخصصة للاختبار والتطوير فقط."
+      },
+      "theme": {
+        "title": "الموضوع",
+        "description": "تخصيص الموضوع",
+        "custom_color_scheme": "نظام الألوان المخصص",
+        "custom_color_scheme_desc": "يمكنك تخصيص شكل ومظهر التطبيق باستخدام نظام ألوان مخصص.",
+        "premade_color_schemes": "أنظمة الألوان الجاهزة",
+        "premade_color_schemes_desc": "يمكنك تخصيص شكل ومظهر التطبيق باستخدام أنظمة ألوان جاهزة.",
+        "radius": "نصف القطر",
+        "radius_desc": "يمكنك تخصيص مدى انحناء التطبيق من خلال تغيير نصف القطر.",
+        "scaling": "التكبير",
+        "scaling_desc": "يمكنك تخصيص مقياس عناصر coui_flutter من خلال تغيير التكبير.",
+        "scaling_alert": "لن يؤدي ذلك إلى تكبير أو تصغير التطبيق بأكمله. ستتأثر فقط عناصر coui_flutter.",
+        "surface_opacity": "عتمة السطح",
+        "surface_opacity_desc": "يمكنك تخصيص عتمة السطح من خلال تغيير عتمة السطح.",
+        "surface_blur": "ضبابية السطح",
+        "surface_blur_desc": "يمكنك تخصيص ضبابية السطح من خلال تغيير ضبابية السطح.",
+        "code": "الكود",
+        "code_desc": "استخدم الكود التالي لتطبيق نظام الألوان."
+      },
+      "typography": {
+        "title": "الطباعة",
+        "description": "أنماط النص",
+        "headline1": "العنوان 1",
+        "headline2": "العنوان 2",
+        "headline3": "العنوان 3",
+        "headline4": "العنوان 4",
+        "paragraph": "فقرة",
+        "blockquote": "اقتباس",
+        "list": "قائمة",
+        "inline_code": "كود مضمن",
+        "lead": "رئيسي",
+        "large_text": "نص كبير",
+        "small_text": "نص صغير",
+        "muted_text": "نص رمادي",
+        "sans": "Sans",
+        "mono": "Mono",
+        "extra_small": "صغير جدًا",
+        "small": "صغير",
+        "base": "أساسي",
+        "large": "كبير",
+        "extra_large": "كبير جدًا",
+        "extra_2x_large": "كبير جدًا 2x",
+        "extra_3x_large": "كبير جدًا 3x",
+        "extra_4x_large": "كبير جدًا 4x",
+        "extra_5x_large": "كبير جدًا 5x",
+        "extra_6x_large": "كبير جدًا 6x",
+        "extra_7x_large": "كبير جدًا 7x",
+        "extra_8x_large": "كبير جدًا 8x",
+        "extra_9x_large": "كبير جدًا 9x",
+        "thin": "رفيع",
+        "extra_light": "خفيف جدًا",
+        "light": "خفيف",
+        "normal": "عادي",
+        "medium": "متوسط",
+        "semi_bold": "نصف غامق",
+        "bold": "غامق",
+        "extra_bold": "غامق جدًا",
+        "black": "أسود",
+        "italic": "مائل"
+      },
+      "layout": {
+        "title": "التخطيط",
+        "description": "ترتيب تخطيط الصفحة",
+        "padding": "padding",
+        "margin": "هامش",
+        "center": "مركز",
+        "gapped_column": "عمود بفواصل",
+        "gapped_row": "صف بفواصل",
+        "separated_column": "عمود مفصول",
+        "separated_row": "صف مفصول",
+        "basic_layout": "تخطيط أساسي"
+      },
+      "web_preloader": {
+        "title": "محمل الويب",
+        "description": "شاشة تحميل الويب",
+        "step1_title": "إنشاء دليل الويب",
+        "step1_content": "إذا لم يكن هناك دليل للويب، قم بإنشائه.",
+        "step1_note": "* إذا كنت تستخدم Flutter ويب القديم، فقد تحتاج إلى استخدام الأمر أعلاه للتحديث.",
+        "step1_button": "انقر هنا لمزيد من المعلومات.",
+        "step2_title": "إضافة سكريبت",
+        "step2_content": "ثم، اختر واحدة من التمهيديات الإعدادية التالية وانسخها:",
+        "step2_standard": "تحميل قياسي",
+        "step3_title": "لصق السكريبت",
+        "step3_content_1": "افتح ملفك ",
+        "step3_content_2": " والصق السكريبت داخل علامة ",
+        "step3_content_3": ".",
+        "step3_example": "على سبيل المثال:",
+        "step4_title": "تشغيل التطبيق",
+        "step4_content": "استخدم الأمر التالي لتشغيل التطبيق:",
+        "alert_title": "للمساهمة",
+        "alert_content_1": "إذا كان لديك تمهيد تريد مشاركته، يرجى إنشاء طلب سحب إلى الدليل ",
+        "alert_button": "web_loaders",
+        "alert_content_2": "."
+      },
+      "components_list": {
+        "title": "المكونات",
+        "description": "قائمة المكونات القابلة لإعادة الاستخدام",
+        "work_in_progress": "قيد العمل",
+        "animation": "الرسوم المتحركة",
+        "disclosure": "الكشف",
+        "feedback": "التغذية الراجعة",
+        "forms": "النماذج",
+        "layout": "التخطيط",
+        "navigation": "التنقل",
+        "surfaces": "السطوح",
+        "data_display": "عرض البيانات",
+        "utilities": "الأدوات"
+      },
+      "icons": {
+        "title": "الرموز",
+        "description": "نظام الرموز",
+        "use_this_code": "لإظهار هذا الرمز، استخدم الكود التالي:",
+        "search_icons": "ابحث عن الرموز",
+        "radix_icons": "رموز Radix",
+        "bootstrap_icons": "رموز Bootstrap",
+        "lucide_icons": "رموز Lucide"
+      },
+      "colors": {
+        "title": "الألوان",
+        "description": "لوحة الألوان",
+        "use_this_code": "لإظهار هذا اللون، استخدم الكود التالي:",
+        "color_and_colorshades": "ثوابت اللون وظل اللون/لون البقعة",
+        "predefined_colors": "ألوان محددة مسبقًا",
+        "generate_color": "إنشاء لون",
+        "hue_shift": "تحويل درجة اللون",
+        "saturation_step_up": "زيادة درجة التشبع",
+        "saturation_step_down": "تقليل درجة التشبع",
+        "lightness_step_up": "زيادة الإضاءة",
+        "lightness_step_down": "تقليل الإضاءة",
+        "cancel": "إلغاء",
+        "reset_options": "إعادة تعيين الخيارات",
+        "reset_confirmation": "هل تريد إعادة تعيين الخيارات؟"
+      },
+      "external": {
+        "title": "Material/Cupertino",
+        "description": "استخدام الأدوات الأساسية Flutter"
+      },
+      "state": {
+        "title": "إدارة الحالة",
+        "description": "أنماط إدارة الحالة",
+        "intro_1": "في Flutter، كل شيء عبارة عن أدوات، ومكان تخزين البيانات هو نفسه.",
+        "intro_2": "داخليًا، يحتوي coui_flutter على نظام إدارة حالة خاص به. إذا كنت تستخدم بالفعل نظام إدارة حالات، يمكنك الاستمرار في استخدامه مع coui_flutter.",
+        "passing_data_to_children": "تمرير البيانات إلى الأطفال",
+        "passing_data_desc": "يمكنك استخدام أداة البيانات لتمرير البيانات إلى الأطفال. ستؤدي جميع التغييرات الحاصلة على البيانات إلى إعادة بناء الأطفال.",
+        "rebuild_difference_title": "هل لاحظت الفرق في عدد عمليات إعادة البناء؟",
+        "rebuild_difference_content": "MostInnerWidget يعاد بناؤه عندما تتغير البيانات، بينما InnerWidget لا يفعل ذلك. هذا لأن InnerWidget لا يستقبل البيانات.",
+        "setting_data_boundary": "تعيين حدود البيانات",
+        "setting_data_boundary_desc": "يمكنك تعيين الحدود بحيث لا يمكن للأطفال الوصول إلى البيانات.",
+        "data_methods_vs": "Data.maybeOf/Data.of ضد Data.maybeFind/Data.find",
+        "data_methods_desc_1": " تستخدم البيانات وتقودها إلى إعادة البناء عندما تتغير.",
+        "data_methods_desc_2": "بينما ",
+        "data_methods_desc_3": " لا تستقبل البيانات، بل تعيدها فقط.",
+        "data_find_usage": "تكون مناسبة للاستخدام في المكان الذي يتم فيه استدعاء العمليات مثل onPressed، onLongPressed.",
+        "data_of_usage": "تكون مناسبة للاستخدام داخل طريقة build التي تحتاج إلى إعادة بناء عند تغيير البيانات.",
+        "getting_data_from_child": "الحصول على البيانات من الطفل",
+        "getting_data_desc_1": "يمكن استخدام طريقة للحصول على البيانات من الأطفال. هذه الطريقة لا تستقبل التغييرات الحاصلة على البيانات.",
+        "getting_data_desc_2": "قد تحدث حلقة إعادة بناء غير منتهية عند استقبالك لتغييرات البيانات. إذا كنت بحاجة إلى البيانات، انتقل إلى الأداة الوالدية.",
+        "root_data_title": "هل لاحظت البيانات الجذرية؟",
+        "root_data_content": "تستخدم البيانات الأكثر داخلية البيانات الخاصة بها. لا يمكن للوالدين الحصول على البيانات إلا من أول طفل متصل.",
+        "setting_messenger_boundary": "تعيين حدود DataMessenger",
+        "setting_messenger_boundary_desc": "يمكنك أيضًا تعيين الحدود بحيث لا يمكن للأطفال الحصول على البيانات من والد معين.",
+        "multidata_widget": "أداة MultiData",
+        "multidata_desc": "باستخدام أداة MultiData، يمكنك تمرير بيانات متعددة إلى الأطفال. انظر المثال التالي:",
+        "multidata_avoid_nesting": "يمكنك استخدام أداة MultiData لتجنب تعشيش الأدوات.",
+        "example": "مثال",
+        "passing_state_as_controller": "تمرير الحالة كتحكم",
+        "passing_state_controller_desc": "يمكنك تمرير الحالة كتحكم إلى الأطفال. وبذلك، يمكن للأطفال استدعاء طرق الوالد.",
+        "databuilder": "DataBuilder",
+        "databuilder_desc": "باستخدام أداة DataBuilder، يمكنك إعادة بناء الأداة عند تغيير البيانات. مما يساعد على تجنب إعادة بناء الأداة بالكامل.",
+        "datanotifier": "DataNotifier",
+        "datanotifier_desc": "باستخدام DataNotifier، يمكنك تمرير قيمة من ValueListenable إلى الأطفال.",
+        "example_with_multidata": "مثال باستخدام MultiData",
+        "passing_object_as_data": "تمرير الكائن كبيانات",
+        "passing_object_desc": "هناك بعض الأمور التي يجب مراعاتها عند تمرير الكائنات كبيانات:",
+        "override_equals_hashcode": "1. إعادة تعريف == و hashCode",
+        "override_equals_desc": "عند عدم مطابقة كائن قديم مع كائن جديد، يتم إرسال إشعار إلى الأطفال. إذا لم تقم بتعريف == و hashCode، سيتم اعتباره مختلفًا حتى لو كانت قيم الحقول متشابهة.",
+        "use_distinctdata": "2. استخدام DistinctData",
+        "use_distinctdata_desc": "DistinctData هو مزيج يمكنه إعلام الأطفال عندما تتغير حقول معينة.",
+        "passing_mutable_object": "3. تمرير كائن متغير إلى الأطفال",
+        "passing_mutable_object_desc": "من الأفضل تمرير كائنات غير قابلة للتغيير للأطفال. لأن الكائنات المتغيرة (مثل القوائم، الخرائط، المجموعات، حالة الأدوات) قد لا تخبر الأطفال عندما تتغير.",
+        "passing_variable_to_children": "تمرير متغيرات إلى الأطفال",
+        "passing_variable_desc": "يمكنك استخدام أداة Model لتمرير المتغيرات إلى الأطفال. تشبه أداة البيانات ولكنها أكثر صرامة من حيث النوع والتسمية.",
+        "change_variable_from_children": "تغيير المتغيرات من الأطفال",
+        "change_variable_desc": "هناك طريقتان لتغيير قيمة النموذج من الأطفال:",
+        "modelnotifier": "ModelNotifier",
+        "modelnotifier_desc": "باستخدام ModelNotifier، يمكنك تمرير قيمة من ValueNotifier إلى الأطفال. ليس هناك حاجة لاستخدام setState في الأداة الوالدية.",
+        "modellistenable": "ModelListenable",
+        "modellistenable_desc": "ModelListenable هو ModelNotifier للقراءة فقط. يتمكن الأطفال فقط من استلام القيمة. قد يؤدي محاولتهم تغيير القيمة إلى خطأ.",
+        "modelbuilder": "ModelBuilder",
+        "modelbuilder_desc": "ModelBuilder يستقبل القيم وإعادة بناء الأداة عند التغيير. تشبه DataBuilder ولكنها أكثر صرامة من حيث النوع والتسمية."
+      }
+    },
+    "components": {
+      "accordion": {
+        "display_name": "أكورديون",
+        "description": "الأكورديون هو قائمة عناصر تتراص عمودياً. يمكن 'توسيع' أو 'طي' كل عنصر لعرض المحتوى المتعلق به.",
+        "examples": {
+          "basic": "مثال أكورديون"
+        }
+      },
+      "alert": {
+        "display_name": "تنبيه",
+        "description": "تُستخدم التنبيهات لنقل حالة تؤثر على النظام.",
+        "examples": {
+          "basic": "مثال تنبيه",
+          "destructive": "مثال تنبيه خطر"
+        },
+        "title": "عنوان التنبيه",
+        "content": "هذا هو محتوى التنبيه."
+      },
+      "alert_dialog": {
+        "display_name": "حوار التنبيه",
+        "description": "يظهر حوار التنبيه معلومات مهمة تتطلب انتباه المستخدم.",
+        "examples": {
+          "basic": "مثال حوار التنبيه"
+        },
+        "click_here": "اضغط هنا",
+        "alert_title": "عنوان التنبيه",
+        "alert_content": "لوريم إيبسوم دولور سيت أميت، كونسيكتيتور أديبيسكيغ إلليت."
+      },
+      "animated_value_builder": {
+        "display_name": "منشئ القيمة المتحركة",
+        "description": "منشئ يطبق الرسوم المتحركة تلقائيًا عند تغيير القيمة.",
+        "examples": {
+          "basic": "مثال منشئ القيمة المتحركة"
+        }
+      },
+      "app_bar": {
+        "display_name": "شريط التطبيق",
+        "description": "شريط التطبيق هو عنصر الملاحة الأساسي المعروض في أعلى التطبيق.",
+        "examples": {
+          "basic": "مثال شريط التطبيق"
+        }
+      },
+      "autocomplete": {
+        "display_name": "الإكمال التلقائي",
+        "description": "حقل إدخال يعرض الاقتراحات وفقًا لإدخال المستخدم.",
+        "examples": {
+          "basic": "مثال الإكمال التلقائي"
+        }
+      },
+      "avatar": {
+        "display_name": "الصورة الرمزية",
+        "description": "صورة أو أيقونة تمثل مستخدمًا أو كيانًا.",
+        "examples": {
+          "basic": "مثال الصورة الرمزية"
+        }
+      },
+      "avatar_group": {
+        "display_name": "مجموعة الصور الرمزية",
+        "description": "يعرض عدة صور رمزية معًا.",
+        "examples": {
+          "basic": "مثال مجموعة الصور الرمزية"
+        }
+      },
+      "badge": {
+        "display_name": "شارة",
+        "description": "ملصق صغير يعرض حالة أو عدد الإشعارات.",
+        "examples": {
+          "basic": "مثال شارة"
+        },
+        "primary": "أساسي",
+        "secondary": "ثانوي",
+        "outline": "خط خارجي",
+        "destructive": "مدمر"
+      },
+      "breadcrumb": {
+        "display_name": "فتات الخبز",
+        "description": "فتات الخبز هو نظام ملاحة ثانوي يوضح موقع المستخدم في موقع الويب أو التطبيق.",
+        "examples": {
+          "basic": "مثال فتات الخبز"
+        },
+        "home": "الرئيسية",
+        "components": "المكونات"
+      },
+      "button": {
+        "display_name": "زر",
+        "description": "تتيح الأزرار للمستخدم تنفيذ إجراء أو اختيار بضغطة واحدة.",
+        "examples": {
+          "primary": "مثال زر أساسي",
+          "secondary": "مثال زر ثانوي",
+          "outline": "مثال زر بخط خارجي",
+          "ghost": "مثال زر شبح",
+          "destructive": "مثال زر خطر",
+          "link": "مثال زر رابط",
+          "text": "مثال زر نص",
+          "disabled": "مثال زر معطل",
+          "icon": "مثال زر أيقونة",
+          "icon_with_label": "مثال زر أيقونة مع تسمية",
+          "size": "مثال حجم الزر",
+          "density": "مثال كثافة الزر",
+          "shape": "مثال شكل الزر",
+          "group": "مثال مجموعة الأزرار",
+          "stated": "مثال زر بالحالة",
+          "card": "مثال زر بطاقة",
+          "custom": "مثال زر مخصص"
+        },
+        "primary": "أساسي",
+        "secondary": "ثانوي",
+        "outlined": "مؤطر",
+        "ghost": "شبح",
+        "destructive": "مدمر",
+        "link": "رابط",
+        "outline": "خط خارجي",
+        "text": "نص",
+        "extra_small": "إضافي صغير",
+        "small": "صغير",
+        "normal": "عادي",
+        "large": "كبير",
+        "extra_large": "إضافي كبير",
+        "save": "حفظ",
+        "cancel": "إلغاء",
+        "close": "إغلاق",
+        "submit": "إرسال",
+        "edit_profile": "تعديل الملف الشخصي",
+        "save_changes": "حفظ التغييرات",
+        "undo": "تراجع",
+        "compact": "مضغوط",
+        "dense": "كثيف",
+        "comfortable": "مريح",
+        "icon": "أيقونة",
+        "icon_comfortable": "أيقونة مريحة",
+        "rectangle": "مستطيل",
+        "add": "إضافة",
+        "focused": "مركّز",
+        "hovered": "مرر فوقها",
+        "pressed": "ضغطت",
+        "text_button": "زر نص",
+        "custom_button": "زر مخصص"
+      },
+      "calendar": {
+        "display_name": "التقويم",
+        "description": "مكون التقويم لاختيار وعرض التواريخ.",
+        "examples": {
+          "basic": "مثال التقويم"
+        }
+      },
+      "card": {
+        "display_name": "بطاقة",
+        "description": "وصف",
+        "examples": {
+          "basic": "مثال بطاقة"
+        },
+        "create_project": "إنشاء مشروع",
+        "deploy_description": "انشر مشروعًا جديدًا بنقرة واحدة",
+        "name": "الاسم",
+        "name_placeholder": "اسم المشروع",
+        "description_placeholder": "وصف المشروع",
+        "deploy": "نشر"
+      },
+      "card_image": {
+        "display_name": "بطاقة الصورة",
+        "description": "مكون بطاقة يتضمن صورة.",
+        "examples": {
+          "basic": "مثال بطاقة الصورة"
+        },
+        "card_image_title": "صورة البطاقة",
+        "card_clicked": "تم النقر على صورة البطاقة",
+        "card_number": "رقم البطاقة {n}",
+        "lorem_ipsum": "لوريم إيبسوم دولور سيت أميت"
+      },
+      "carousel": {
+        "display_name": "دوار",
+        "description": "مكون يعرض عناصر متعددة كتحريك.",
+        "examples": {
+          "basic": "مثال دوار"
+        }
+      },
+      "checkbox": {
+        "display_name": "مربع اختيار",
+        "description": "يمكن لمربع الاختيار أن يسمح للمستخدم باختيار عنصر أو أكثر من القائمة.",
+        "examples": {
+          "basic": "مثال مربع اختيار"
+        },
+        "remember_me": "تذكرني"
+      },
+      "chip": {
+        "display_name": "شريحة",
+        "description": "الشريحة هي عنصر صغير تمثل خصائص أو اختيارات أو إجراءات.",
+        "examples": {
+          "basic": "مثال شريحة"
+        },
+        "apple": "تفاح",
+        "banana": "موز",
+        "cherry": "كرز",
+        "durian": "دوريان",
+        "elderberry": "توته"
+      },
+      "chip_input": {
+        "display_name": "إدخال الشريحة",
+        "description": "حقل إدخال يسمح بإدخال قيم متعددة على شكل شرائح.",
+        "examples": {
+          "basic": "مثال إدخال الشريحة"
+        }
+      },
+      "circular_progress": {
+        "display_name": "التقدم الدائري",
+        "description": "مؤشر تقدم دائري.",
+        "examples": {
+          "basic": "مثال تقدم دائري"
+        },
+        "increase_by_10": "زيادة بمقدار 10",
+        "decrease_by_10": "انخفاض بمقدار 10"
+      },
+      "code_snippet": {
+        "display_name": "قصاصة الشيفرة",
+        "description": "مكون يعرض الشيفرة.",
+        "examples": {
+          "basic": "مثال قصاصة الشيفرة"
+        }
+      },
+      "collapsible": {
+        "display_name": "قابل للطي",
+        "description": "حاوية محتوى يمكن طيها أو توسيعها.",
+        "examples": {
+          "basic": "مثال قابل للطي"
+        },
+        "starred_repositories": "@coco-de قد وضع نجوم على 3 مستودعات",
+        "collapse_all": "طي الكل",
+        "expand_all": "توسيع الكل",
+        "expand_icon": "توسيع الأيقونة",
+        "use_path_branch": "استخدام فرع المسار",
+        "recursive_selection": "اختيار متكرر"
+      },
+      "color_picker": {
+        "display_name": "اختر اللون",
+        "description": "مكون يتيح لك اختيار الألوان.",
+        "examples": {
+          "basic": "مثال اختيار اللون"
+        },
+        "pick_color": "اختر اللون",
+        "color_label": "اللون: {color}",
+        "select_color": "اختر اللون",
+        "open_color_picker_popover": "فتح نافذة اختيار اللون",
+        "open_color_picker_dialog": "فتح حوار اختيار اللون"
+      },
+      "command": {
+        "display_name": "الأمر",
+        "description": "الأمر هو مكون يتيح لك البحث عن العناصر.",
+        "examples": {
+          "basic": "مثال الأمر"
+        }
+      },
+      "context_menu": {
+        "display_name": "قائمة السياق",
+        "description": "قائمة تظهر عند النقر بزر الفأرة الأيمن أو الضغط لفترة طويلة.",
+        "examples": {
+          "basic": "مثال قائمة السياق"
+        }
+      },
+      "date_picker": {
+        "display_name": "اختيار التاريخ",
+        "description": "حقل إدخال يتيح لك اختيار التاريخ.",
+        "examples": {
+          "basic": "مثال اختيار التاريخ"
+        },
+        "select_date": "اختر التاريخ",
+        "select_date_range": "اختر نطاق التاريخ"
+      },
+      "dialog": {
+        "display_name": "حوار",
+        "description": "الحوار هو نافذة modal تظهر فوق باقي أجزاء التطبيق.",
+        "examples": {
+          "basic": "مثال حوار"
+        },
+        "edit_profile_title": "تعديل الملف الشخصي",
+        "edit_profile_description": "قم بتغيير ملفك الشخصي هنا. اضغط حفظ عند الانتهاء.",
+        "name_label": "الاسم",
+        "username_label": "اسم المستخدم",
+        "hello": "مرحبا",
+        "material_dialog_content": "هذا حوار Material.",
+        "cupertino_dialog_content": "هذا حوار Cupertino.",
+        "alert_title": "عنوان التنبيه",
+        "click_here": "اضغط هنا",
+        "ok": "موافق",
+        "open_material_dialog": "فتح حوار Material",
+        "open_cupertino_dialog": "فتح حوار Cupertino",
+        "open_coui_dialog": "فتح حوار COUI"
+      },
+      "divider": {
+        "display_name": "فاصل",
+        "description": "خط يفصل المحتوى بصريًا.",
+        "examples": {
+          "basic": "مثال فاصل"
+        },
+        "item_1": "العنصر 1",
+        "item_2": "العنصر 2",
+        "item_3": "العنصر 3",
+        "divider": "فاصل"
+      },
+      "dot_indicator": {
+        "display_name": "مؤشر النقاط",
+        "description": "مؤشر يُظهر الموقع الحالي كنقطة.",
+        "examples": {
+          "basic": "مثال مؤشر النقاط"
+        }
+      },
+      "drawer": {
+        "display_name": "درج",
+        "description": "لوحة تنزلق من حافة الشاشة.",
+        "examples": {
+          "basic": "مثال درج"
+        },
+        "open_drawer": "فتح الدرج",
+        "close_drawer": "إغلاق الدرج",
+        "open_another_drawer": "فتح درج آخر",
+        "drawer_at": "الدرج رقم {count} عند {position}"
+      },
+      "dropdown_menu": {
+        "display_name": "قائمة منسدلة",
+        "description": "قائمة تعرض خيارات قابلة للاختيار.",
+        "examples": {
+          "basic": "مثال قائمة منسدلة"
+        }
+      },
+      "expandable_sidebar": {
+        "display_name": "شريط جانبي قابل للتوسيع",
+        "description": "شريط جانبي يمكن توسيعه وطيه.",
+        "examples": {
+          "basic": "مثال شريط جانبي قابل للتوسيع"
+        }
+      },
+      "form": {
+        "display_name": "نموذج",
+        "description": "أداة مساعدة لإنشاء تحقق من صحة النموذج بسهولة.",
+        "examples": {
+          "table_layout": "مثال النموذج (تخطيط جدول)",
+          "column_layout": "مثال النموذج (تخطيط عمود)",
+          "validation_mode": "مثال وضع التحقق من الصحة"
+        },
+        "username_label": "اسم المستخدم",
+        "username_hint": "الاسم المعروض علنًا",
+        "password_label": "كلمة المرور",
+        "confirm_password_label": "تأكيد كلمة المرور",
+        "passwords_do_not_match": "كلمات المرور لا تتطابق",
+        "agree_terms": "أوافق على الشروط والأحكام",
+        "must_agree_terms": "يجب أن توافق على الشروط والأحكام",
+        "form_values_title": "قيم النموذج",
+        "register": "تسجيل",
+        "username_already_taken": "اسم المستخدم مستخدم بالفعل",
+        "email": "الإيميل",
+        "username_display": "اسم المستخدم: {value}",
+        "password_display": "كلمة المرور: {value}",
+        "confirm_password_display": "تأكيد كلمة المرور: {value}",
+        "agree_display": "الاتفاق: {value}",
+        "json_display": "JSON: {value}",
+        "submitted_value_display": "القيمة المقدمة: {value}",
+        "login": "تسجيل الدخول",
+        "sign_up": "التسجيل",
+        "dont_have_account": "لا تملك حسابًا؟",
+        "already_have_account": "هل لديك حساب بالفعل؟"
+      },
+      "formatted_input": {
+        "display_name": "إدخال منسق",
+        "description": "حقل نص يتطلب تنسيقًا معينًا.",
+        "examples": {
+          "basic": "مثال إدخال منسق"
+        }
+      },
+      "hover_card": {
+        "display_name": "بطاقة هوفر",
+        "description": "بطاقة تظهر عند تمرير الماوس.",
+        "examples": {
+          "basic": "مثال بطاقة هوفر"
+        },
+        "flutter_handle": "@flutter",
+        "flutter_username": "فلاتر",
+        "flutter_description": "يقدم SDK فلاتر أدوات لبناء تطبيقات جميلة للجوّال والويب وسطح المكتب من قاعدة شيفرة واحدة."
+      },
+      "input": {
+        "display_name": "الإدخال",
+        "description": "حقل إدخال النص.",
+        "examples": {
+          "basic": "مثال إدخال"
+        },
+        "enter_name": "أدخل اسمك",
+        "enter_username": "أدخل اسم المستخدم",
+        "username_already_taken": "اسم المستخدم مستخدم بالفعل",
+        "hello_world": "مرحبا بالعالم!",
+        "search_something": "ابحث عن شيء...",
+        "email": "البريد الإلكتروني",
+        "password": "أدخل كلمة المرور",
+        "username_hint": "هذا من أجل اسم المستخدم الخاص بك"
+      },
+      "input_otp": {
+        "display_name": "إدخال OTP",
+        "description": "حقل لإدخال كلمة المرور المؤقتة.",
+        "examples": {
+          "basic": "مثال إدخال OTP"
+        }
+      },
+      "item_picker": {
+        "display_name": "اختر عنصر",
+        "description": "مكون يتيح لك اختيار عنصر من قائمة.",
+        "examples": {
+          "basic": "مثال اختيار عنصر"
+        }
+      },
+      "keyboard_display": {
+        "display_name": "عرض لوحة المفاتيح",
+        "description": "مكون يعرض اختصارات لوحة المفاتيح.",
+        "examples": {
+          "basic": "مثال عرض لوحة المفاتيح"
+        }
+      },
+      "linear_progress": {
+        "display_name": "التقدم الخطي",
+        "description": "مؤشر تقدم خطي.",
+        "examples": {
+          "basic": "مثال تقدم خطي"
+        },
+        "increase": "زيادة",
+        "decrease": "انخفاض"
+      },
+      "material": {
+        "display_name": "Material/Cupertino",
+        "description": "طريقة استخدام أدوات Material و Cupertino الأساسية في Flutter.",
+        "examples": {
+          "basic": "مثال Material/Cupertino"
+        },
+        "my_material_app": "تطبيقي Material",
+        "my_cupertino_app": "تطبيقي Cupertino",
+        "you_pushed_button": "لقد ضغطت على الزر {count} مرات",
+        "open_material_dialog": "فتح حوار Material",
+        "open_cupertino_dialog": "فتح حوار Cupertino",
+        "open_coui_dialog": "فتح حوار COUI"
+      },
+      "menubar": {
+        "display_name": "شريط القوائم",
+        "description": "شريط قوائم أفقي.",
+        "examples": {
+          "basic": "مثال شريط القوائم"
+        },
+        "file": "ملف",
+        "edit": "تحرير",
+        "new_tab": "علامة تبويب جديدة",
+        "new_window": "نافذة جديدة",
+        "new_incognito_window": "نافذة جديدة في وضع التصفح المتخفي",
+        "email_link": "رابط البريد الإلكتروني",
+        "messages": "رسائل",
+        "notes": "ملاحظات",
+        "share": "مشاركة",
+        "print": "طباعة",
+        "save_and_exit": "حفظ ثم الخروج",
+        "discard_and_exit": "إلغاء ثم الخروج",
+        "exit": "خروج",
+        "undo": "تراجع",
+        "redo": "إعادة"
+      },
+      "multiselect": {
+        "display_name": "تحديد متعدد",
+        "description": "مكون يتيح لك اختيار عناصر متعددة.",
+        "examples": {
+          "basic": "مثال تحديد متعدد"
+        }
+      },
+      "navigation_bar": {
+        "display_name": "شريط الملاحة",
+        "description": "شريط الملاحة السفلي.",
+        "examples": {
+          "basic": "مثال شريط الملاحة"
+        }
+      },
+      "navigation_menu": {
+        "display_name": "قائمة الملاحة",
+        "description": "مكون قائمة الملاحة.",
+        "examples": {
+          "basic": "مثال قائمة الملاحة"
+        }
+      },
+      "navigation_rail": {
+        "display_name": "سكة الملاحة",
+        "description": "سكة ملاحة جانبية.",
+        "examples": {
+          "basic": "مثال سكة الملاحة"
+        }
+      },
+      "navigation_sidebar": {
+        "display_name": "شريط جانبي للملاحة",
+        "description": "مكون شريط جانبي للملاحة.",
+        "examples": {
+          "basic": "مثال شريط جانبي للملاحة"
+        }
+      },
+      "number_input": {
+        "display_name": "إدخال رقم",
+        "description": "حقل لإدخال الأرقام.",
+        "examples": {
+          "basic": "مثال إدخال رقم"
+        },
+        "value": "القيمة: {value}"
+      },
+      "number_ticker": {
+        "display_name": "عداد الأرقام",
+        "description": "يظهر رسومًا متحركة عندما تتغير الأرقام.",
+        "examples": {
+          "basic": "مثال عداد الأرقام"
+        }
+      },
+      "overflow_marquee": {
+        "display_name": "ماركي مفرط",
+        "description": "يتحرك تلقائيًا عند تoverflow النص.",
+        "examples": {
+          "basic": "مثال ماركي مفرط"
+        }
+      },
+      "pagination": {
+        "display_name": "التصفح",
+        "description": "مكون يتم استخدامه لتصفح الصفحات.",
+        "examples": {
+          "basic": "مثال التصفح"
+        }
+      },
+      "phone_input": {
+        "display_name": "إدخال رقم الهاتف",
+        "description": "حقل لإدخال رقم الهاتف.",
+        "examples": {
+          "basic": "مثال إدخال رقم الهاتف"
+        }
+      },
+      "popover": {
+        "display_name": "نافذة منبثقة",
+        "description": "نافذة منبثقة تظهر فوق العنصر.",
+        "examples": {
+          "basic": "مثال نافذة منبثقة"
+        },
+        "dimensions": "الأبعاد",
+        "set_dimensions": "حدد حجم الطبقة",
+        "width": "العرض",
+        "max_width": "أقصى عرض",
+        "height": "الارتفاع",
+        "max_height": "أقصى ارتفاع",
+        "open_popover": "فتح النافذة المنبثقة",
+        "submit": "إرسال"
+      },
+      "progress": {
+        "display_name": "التقدم",
+        "description": "يعرض حالة التقدم.",
+        "examples": {
+          "basic": "مثال التقدم"
+        }
+      },
+      "radio_card": {
+        "display_name": "بطاقة الراديو",
+        "description": "زر راديو على شكل بطاقة.",
+        "examples": {
+          "basic": "مثال بطاقة الراديو"
+        }
+      },
+      "radio_group": {
+        "display_name": "مجموعة الراديو",
+        "description": "مجموعة أزرار الراديو.",
+        "examples": {
+          "basic": "مثال مجموعة الراديو"
+        },
+        "option_1": "الخيار 1",
+        "option_2": "الخيار 2",
+        "option_3": "الخيار 3",
+        "selected": "محدد"
+      },
+      "refresh_trigger": {
+        "display_name": "م-trigger التحديث",
+        "description": "يوفر ميزة سحب للتحديث.",
+        "examples": {
+          "basic": "مثال م-trigger التحديث"
+        },
+        "pull_me": "اسحبني",
+        "refresh": "تحديث"
+      },
+      "repeated_animation_builder": {
+        "display_name": "منشئ الرسوم المتحركة المتكررة",
+        "description": "منشئ يقوم بتكرار الرسوم المتحركة.",
+        "examples": {
+          "basic": "مثال منشئ الرسوم المتحركة المتكررة"
+        }
+      },
+      "resizable": {
+        "display_name": "قابل لتغيير الحجم",
+        "description": "حاوية يمكن تغيير حجمها.",
+        "examples": {
+          "basic": "مثال قابل لتغيير الحجم"
+        }
+      },
+      "scaffold": {
+        "display_name": "هيكل",
+        "description": "الهيكل هو الحاوية العليا للصفحة.",
+        "examples": {
+          "basic": "مثال هيكل"
+        }
+      },
+      "select": {
+        "display_name": "اختيار",
+        "description": "يمكنك اختيار عنصر من قائمة الخيارات.",
+        "examples": {
+          "basic": "مثال اختيار"
+        },
+        "placeholder": "اختر فاكهة",
+        "search_fruit": "ابحث عن فاكهة",
+        "no_fruit_found": "لا يمكن العثور على فاكهة",
+        "apple": "تفاح",
+        "banana": "موز",
+        "cherry": "كرز",
+        "lemon": "ليمون",
+        "tomato": "طماطم",
+        "red_apple": "تفاحة حمراء",
+        "green_apple": "تفاحة خضراء",
+        "yellow_banana": "موز أصفر",
+        "brown_banana": "موز بني",
+        "yellow_lemon": "ليمون أصفر",
+        "green_lemon": "ليمون أخضر",
+        "red": "أحمر",
+        "green": "أخضر",
+        "yellow": "أصفر",
+        "brown": "بني"
+      },
+      "sheet": {
+        "display_name": "ورقة",
+        "description": "ورقة تظهر من الأسفل.",
+        "examples": {
+          "basic": "مثال ورقة"
+        }
+      },
+      "skeleton": {
+        "display_name": "هيكل عظمي",
+        "description": "شاشة هيكل عظمي تعرض أثناء التحميل.",
+        "examples": {
+          "basic": "مثال هيكل عظمي"
+        }
+      },
+      "slider": {
+        "display_name": "شريط التمرير",
+        "description": "يمكنك اختيار قيمة عن طريق التمرير.",
+        "examples": {
+          "basic": "مثال شريط التمرير"
+        },
+        "value_single": "القيمة: {value}",
+        "value_range": "القيمة: {start} - {end}"
+      },
+      "sortable": {
+        "display_name": "قابل للفرز",
+        "description": "يمكنك سحب العناصر لإعادة ترتيبها.",
+        "examples": {
+          "basic": "مثال قابل للفرز"
+        }
+      },
+      "star_rating": {
+        "display_name": "تقييم بالنجوم",
+        "description": "يمكنك اختيار تقييم بالنجوم.",
+        "examples": {
+          "basic": "مثال تقييم بالنجوم"
+        }
+      },
+      "stepper": {
+        "display_name": "عداد الخطوات",
+        "description": "يظهر عملية خطوة بخطوة.",
+        "examples": {
+          "basic": "مثال عداد الخطوات"
+        },
+        "step_1": "الخطوة 1",
+        "step_2": "الخطوة 2",
+        "step_3": "الخطوة 3",
+        "step_n": "الخطوة {n}",
+        "optional_step": "خطوة اختيارية",
+        "horizontal": "أفقي",
+        "vertical": "عمودي",
+        "toggle_error": "تبديل الخطأ",
+        "circle": "دائرة",
+        "circle_alt": "دائرة بديلة",
+        "line": "خط",
+        "small": "صغير",
+        "medium": "متوسط",
+        "large": "كبير"
+      },
+      "steps": {
+        "display_name": "الخطوات",
+        "description": "تظهر تقدم العملية على شكل خطوات.",
+        "examples": {
+          "basic": "مثال خطوات"
+        }
+      },
+      "swiper": {
+        "display_name": "سوايبر",
+        "description": "مكون يمكن سحبه.",
+        "examples": {
+          "basic": "مثال سوايبر"
+        }
+      },
+      "switch": {
+        "display_name": "زر التبديل",
+        "description": "زر للتشغيل/الإيقاف.",
+        "examples": {
+          "basic": "مثال زر التبديل"
+        }
+      },
+      "switcher": {
+        "display_name": "مفتاح التغيير",
+        "description": "يمكنك التبديل بين عدة مكونات.",
+        "examples": {
+          "basic": "مثال مفتاح التغيير"
+        },
+        "switch_direction": "تغيير الاتجاه",
+        "next_item": "العنصر التالي"
+      },
+      "tab_list": {
+        "display_name": "قائمة التبويب",
+        "description": "مكون قائمة التبويب.",
+        "examples": {
+          "basic": "مثال قائمة التبويب"
+        }
+      },
+      "tab_pane": {
+        "display_name": "لوحة التبويب",
+        "description": "مكون لوحة تبويب.",
+        "examples": {
+          "basic": "مثال لوحة التبويب"
+        }
+      },
+      "table": {
+        "display_name": "جدول",
+        "description": "يعرض البيانات في شكل جدول.",
+        "examples": {
+          "basic": "مثال جدول"
+        },
+        "invoice": "فاتورة",
+        "status": "الحالة",
+        "method": "الطريقة",
+        "amount": "المبلغ",
+        "total": "المجموع",
+        "paid": "مدفوع",
+        "pending": "قيد الانتظار",
+        "unpaid": "غير مدفوع",
+        "credit_card": "بطاقة ائتمان",
+        "paypal": "باي بال",
+        "bank_transfer": "تحويل مصرفي"
+      },
+      "tabs": {
+        "display_name": "تبويبات",
+        "description": "استخدام التبويب لتنظيم المحتوى.",
+        "examples": {
+          "basic": "مثال تبويبات"
+        },
+        "tab_1": "التبويب 1",
+        "tab_2": "التبويب 2",
+        "tab_3": "التبويب 3",
+        "tab_n": "التبويب {n}"
+      },
+      "text_area": {
+        "display_name": "منطقة النص",
+        "description": "يمكنك إدخال نص في عدة أسطر.",
+        "examples": {
+          "basic": "مثال منطقة النص"
+        },
+        "hello_world": "مرحبا بالعالم!"
+      },
+      "time_picker": {
+        "display_name": "اختيار الوقت",
+        "description": "يمكنك اختيار الوقت.",
+        "examples": {
+          "basic": "مثال اختيار الوقت"
+        },
+        "select_time": "اختر الوقت"
+      },
+      "timeline": {
+        "display_name": "الخط الزمني",
+        "description": "يعرض الأحداث على شكل خط زمني.",
+        "examples": {
+          "basic": "مثال الخط الزمني"
+        }
+      },
+      "timeline_animation": {
+        "display_name": "رسوم متحركة للخط الزمني",
+        "description": "رسوم متحركة تعتمد على الخط الزمني.",
+        "examples": {
+          "basic": "مثال رسوم متحركة للخط الزمني"
+        }
+      },
+      "toast": {
+        "display_name": "توست",
+        "description": "تنبيه يعرض رسالة قصيرة.",
+        "examples": {
+          "basic": "مثال توست"
+        },
+        "event_created": "تم إنشاء الحدث",
+        "event_date": "الأحد، 7 يوليو 2024، الساعة 12:00 مساءً",
+        "show_bottom_left": "عرض توست في الزاوية السفلى اليسرى",
+        "show_bottom_right": "عرض توست في الزاوية السفلى اليمنى",
+        "show_top_left": "عرض توست في الزاوية العليا اليسرى",
+        "show_top_right": "عرض توست في الزاوية العليا اليمنى",
+        "show_bottom_center": "عرض توست في المركز الأسفل",
+        "show_top_center": "عرض توست في المركز الأعلى"
+      },
+      "toggle": {
+        "display_name": "تبديل",
+        "description": "يمكنك التبديل بين الخيارات.",
+        "examples": {
+          "basic": "مثال تبديل"
+        },
+        "toggle": "تبديل"
+      },
+      "tooltip": {
+        "display_name": "تلميح",
+        "description": "يعرض معلومات إضافية حول العنصر.",
+        "examples": {
+          "basic": "مثال تلميح"
+        },
+        "this_is_tooltip": "هذا هو التلميح.",
+        "hover_over_me": "مرر فوقي"
+      },
+      "tracker": {
+        "display_name": "متعقب",
+        "description": "يتعقب التقدم.",
+        "examples": {
+          "basic": "مثال متعقب"
+        },
+        "fine": "جيد",
+        "warning": "تحذير",
+        "critical": "حرج",
+        "unknown": "غير معروف",
+        "tracker_fine": "متعقب جيد",
+        "tracker_warning": "متعقب تحذير",
+        "tracker_critical": "متعقب حرج",
+        "tracker_unknown": "متعقب غير معروف"
+      },
+      "tree": {
+        "display_name": "الشجرة",
+        "description": "يعرض البيانات الهيكلية في شكل شجرة.",
+        "examples": {
+          "basic": "مثال شجرة"
+        }
+      },
+      "window": {
+        "display_name": "نافذة",
+        "description": "نافذة بأسلوب سطح المكتب.",
+        "examples": {
+          "basic": "مثال نافذة"
+        },
+        "window_1": "نافذة 1",
+        "window_2": "نافذة 2",
+        "desktop": "سطح المكتب",
+        "add_window": "إضافة نافذة"
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "resolved": [],
+  "newFailures": [],
+  "continuedFailures": 297,
+  "freshCaptureFiles": 2992,
+  "flutterPhases": {
+    "settled-runtime": 718,
+    "initial-frame": 30
+  },
+  "unsettled": 0,
+  "samePlatformChangedPngs": [
+    "loading-region-default-dark-defaultStyle.flutter.png",
+    "loading-region-default-dark-defaultStyle.web.png",
+    "loading-region-default-light-defaultStyle.flutter.png",
+    "loading-region-default-light-defaultStyle.web.png",
+    "mockup-app-light-defaultStyle.web.png",
+    "navigation-bar-default-dark-defaultStyle.web.png",
+    "navigation-bar-default-light-defaultStyle.web.png",
+    "skeleton-circle-dark-defaultStyle.flutter.png",
+    "skeleton-circle-dark-defaultStyle.web.png",
+    "skeleton-circle-light-defaultStyle.flutter.png",
+    "skeleton-circle-light-defaultStyle.web.png",
+    "skeleton-default-dark-defaultStyle.flutter.png",
+    "skeleton-default-dark-defaultStyle.web.png",
+    "skeleton-default-light-defaultStyle.flutter.png",
+    "skeleton-default-light-defaultStyle.web.png",
+    "skeleton-text-dark-defaultStyle.flutter.png",
+    "skeleton-text-dark-defaultStyle.web.png",
+    "skeleton-text-light-defaultStyle.flutter.png",
+    "skeleton-text-light-defaultStyle.web.png",
+    "swiper-default-dark-defaultStyle.web.png",
+    "swiper-default-light-defaultStyle.web.png",
+    "swiper-sheet-dark-defaultStyle.web.png",
+    "swiper-sheet-light-defaultStyle.web.png",
+    "tab-pane-editor-strip-dark-defaultStyle.web.png",
+    "tab-pane-editor-strip-light-defaultStyle.web.png",
+    "trend-chart-bar-dark-defaultStyle.web.png",
+    "trend-chart-bar-light-defaultStyle.web.png",
+    "trend-chart-default-dark-defaultStyle.web.png",
+    "trend-chart-default-light-defaultStyle.web.png"
+  ],
+  "captureProvenance": {
+    "baseSha": "0459dd702f2a66aa2c68b2046ab2c5c97f9e65dc",
+    "startedAt": "2026-11-16T01:43:32.134212+00:00",
+    "patchSha256": "c45ebae8fefeb22ae351d6b5ac9cc0eb0d70f05dffca4f2636e21803604f0e1e"
+  },
+  "completedAt": "2026-11-16T01:53:28.575222+00:00",
+  "sourceFiles": {
+    "tool/parity/src/model/capture_motion.dart": "15d9485bb5f9cd785e6d4e1d76cca88c29564950223eb516e7323070f94087b0",
+    "tool/parity/src/web/web_capture_backend.dart": "3e1beb02f069cd9d360a5d30f56e702b5634e351264f7989e4c8859f1ce9f15e"
+  },
+  "counts": {
+    "passed": 451,
+    "failed": 297,
+    "infraSkipped": 0,
+    "structuralSkipped": 0,
+    "dimensionMismatches": 110,
+    "sameSizePixelMismatches": 187
+  },
+  "layoutDiagnostic": {
+    "cells": 92,
+    "heightCells": 80,
+    "differentRootExtentCells": 12,
+    "pairedTextRuns": 364,
+    "equalFontTuples": 364,
+    "fontTupleFields": [
+      "family",
+      "fontSize",
+      "fontWeight",
+      "letterSpacing",
+      "lineHeightPx"
+    ],
+    "numericEpsilon": 0.0001,
+    "acceptanceChanged": false
+  },
+  "remainingFontScreen": {
+    "cells": 297,
+    "statusCounts": {
+      "font_tuple_inventory_equal": 285,
+      "no_text_shape": 6,
+      "editable_inline_layout": 2,
+      "hidden_face_layout": 1,
+      "letter_spacing_representation": 2,
+      "keep_all_display_marker": 1
+    },
+    "acceptanceChanged": false,
+    "inputScope": [
+      "fontFamily",
+      "fontSize",
+      "fontWeight",
+      "letterSpacing",
+      "lineHeightPx"
+    ],
+    "numericComparisonEpsilon": 0.0001
+  },
+  "wholeOwnBaselineComparison": {
+    "platformCells": 1496,
+    "main": {
+      "passed": 1381,
+      "failed": 115
+    },
+    "followup": {
+      "passed": 1381,
+      "failed": 115
+    },
+    "newRegressions": 0,
+    "resolvedRegressions": 0,
+    "changedFailedMeasurements": 0,
+    "allowlisted": 0,
+    "missingBaselines": 0,
+    "skipped": 0,
+    "infraFailed": 0,
+    "reportExitCodes": {
+      "main": 1,
+      "followup": 1
+    }
+  }
+}

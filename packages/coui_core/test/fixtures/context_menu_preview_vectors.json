@@ -1,0 +1,689 @@
+{
+  "_comment": [
+    "Shared vectors for where a ContextMenu's preview goes (CoreContextMenuPreview.place and",
+    "CoreContextMenuContract.defaultPreviewGap).",
+    "Read by coui_core ('cases': exact numbers in, exact box out), coui_flutter and coui_web",
+    "('scenarios': a real menu opened at a pointer in a viewport of a given size, whose preview",
+    "has to end up on the side the rule names, in the right place relative to the menu that",
+    "was actually laid out) and a real-Chrome probe (the same scenarios on the compiled",
+    "component). A change on one platform fails the others.",
+    "",
+    "The rule. A preview of natural size w x h goes around a menu inside a viewport. The sides are",
+    "tried above, below, end, start; the first whose room holds the preview whole wins. If none does,",
+    "the side with the most room wins (ties: the earlier side) and the preview is held to that room",
+    "along that side's axis. Along its axis the preview sits `gap` from the menu; across it the",
+    "preview's start edge lines up with the menu's start edge (above, below) or its top with the",
+    "menu's top (end, start), then slides back inside the viewport. 'end' is right in 'ltr' and left",
+    "in 'rtl'.",
+    "",
+    "All numbers are px; a box is [left, top, right, bottom], half-open; 'viewport' is the area the",
+    "seat keeps panels inside (the window less the margin, the system bars and the keyboard).",
+    "A case's 'expect.box' is the preview's box; 'capped' is whether it is smaller than the preview;",
+    "'visible' is false when there is no room at all.",
+    "",
+    "A scenario opens a menu of 'rows' action rows at 'pointer' (viewport coordinates) in a viewport",
+    "of 'viewport' = [width, height] with an 8 px margin and no system bars, shows a preview of",
+    "'preview' = [width, height], and says which side of the menu it must land on ('side') and which",
+    "physical side that is ('physical': above, below, left or right of the menu). Scenario answers",
+    "hold for every menu 240 to 280 px wide and 110 to 140 px tall, the sizes a menu of three rows",
+    "takes, because the seats lay out their own menus."
+  ],
+  "gap": 8,
+  "cases": [
+    {
+      "name": "room above holds the preview: it sits the gap above the menu, start edges lined up",
+      "menu": [
+        100,
+        400,
+        360,
+        500
+      ],
+      "preview": [
+        200,
+        120
+      ],
+      "viewport": [
+        0,
+        0,
+        400,
+        800
+      ],
+      "expect": {
+        "side": "above",
+        "box": [
+          100,
+          272,
+          300,
+          392
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "room above exactly holds the preview",
+      "menu": [
+        100,
+        128,
+        360,
+        228
+      ],
+      "preview": [
+        200,
+        120
+      ],
+      "viewport": [
+        0,
+        0,
+        400,
+        800
+      ],
+      "expect": {
+        "side": "above",
+        "box": [
+          100,
+          0,
+          300,
+          120
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "room above a pixel short: the preview goes below",
+      "menu": [
+        100,
+        127,
+        360,
+        227
+      ],
+      "preview": [
+        200,
+        120
+      ],
+      "viewport": [
+        0,
+        0,
+        400,
+        800
+      ],
+      "expect": {
+        "side": "below",
+        "box": [
+          100,
+          235,
+          300,
+          355
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "a preview wider than the room to the viewport's edge slides back inside it",
+      "menu": [
+        130,
+        400,
+        390,
+        500
+      ],
+      "preview": [
+        300,
+        120
+      ],
+      "viewport": [
+        0,
+        0,
+        400,
+        800
+      ],
+      "expect": {
+        "side": "above",
+        "box": [
+          100,
+          272,
+          400,
+          392
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "neither vertical side holds a tall preview: it goes to the end of the menu",
+      "menu": [
+        100,
+        20,
+        360,
+        140
+      ],
+      "preview": [
+        200,
+        280
+      ],
+      "viewport": [
+        0,
+        0,
+        800,
+        300
+      ],
+      "expect": {
+        "side": "end",
+        "box": [
+          368,
+          20,
+          568,
+          300
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "the end side slides up to stay inside the viewport",
+      "menu": [
+        100,
+        100,
+        360,
+        220
+      ],
+      "preview": [
+        200,
+        280
+      ],
+      "viewport": [
+        0,
+        0,
+        800,
+        300
+      ],
+      "expect": {
+        "side": "end",
+        "box": [
+          368,
+          20,
+          568,
+          300
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "no room at the end: the preview goes to the start of the menu",
+      "menu": [
+        540,
+        20,
+        780,
+        140
+      ],
+      "preview": [
+        200,
+        280
+      ],
+      "viewport": [
+        0,
+        0,
+        800,
+        300
+      ],
+      "expect": {
+        "side": "start",
+        "box": [
+          332,
+          20,
+          532,
+          300
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "in right-to-left text the end is the left: the preview goes there when it fits",
+      "menu": [
+        400,
+        20,
+        660,
+        140
+      ],
+      "preview": [
+        200,
+        280
+      ],
+      "viewport": [
+        0,
+        0,
+        1000,
+        300
+      ],
+      "direction": "rtl",
+      "expect": {
+        "side": "end",
+        "box": [
+          192,
+          20,
+          392,
+          300
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "in left-to-right text the same menu puts it on the right",
+      "menu": [
+        400,
+        20,
+        660,
+        140
+      ],
+      "preview": [
+        200,
+        280
+      ],
+      "viewport": [
+        0,
+        0,
+        1000,
+        300
+      ],
+      "expect": {
+        "side": "end",
+        "box": [
+          668,
+          20,
+          868,
+          300
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "in right-to-left text the start edge is the right one: the preview lines up with it",
+      "menu": [
+        100,
+        400,
+        360,
+        500
+      ],
+      "preview": [
+        200,
+        120
+      ],
+      "viewport": [
+        0,
+        0,
+        400,
+        800
+      ],
+      "direction": "rtl",
+      "expect": {
+        "side": "above",
+        "box": [
+          160,
+          272,
+          360,
+          392
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "a preview no side holds takes the side with the most room and is held to it",
+      "menu": [
+        20,
+        20,
+        280,
+        140
+      ],
+      "preview": [
+        250,
+        250
+      ],
+      "viewport": [
+        0,
+        0,
+        300,
+        300
+      ],
+      "expect": {
+        "side": "below",
+        "box": [
+          20,
+          148,
+          270,
+          300
+        ],
+        "capped": true,
+        "visible": true
+      }
+    },
+    {
+      "name": "a menu that fills the viewport leaves no room: nothing is shown",
+      "menu": [
+        8,
+        8,
+        292,
+        292
+      ],
+      "preview": [
+        100,
+        100
+      ],
+      "viewport": [
+        0,
+        0,
+        300,
+        300
+      ],
+      "expect": {
+        "side": "above",
+        "box": [
+          8,
+          0,
+          108,
+          0
+        ],
+        "capped": true,
+        "visible": false
+      }
+    },
+    {
+      "name": "a preview wider than the viewport is reduced to it first",
+      "menu": [
+        100,
+        400,
+        360,
+        500
+      ],
+      "preview": [
+        500,
+        100
+      ],
+      "viewport": [
+        0,
+        0,
+        400,
+        800
+      ],
+      "expect": {
+        "side": "above",
+        "box": [
+          0,
+          292,
+          400,
+          392
+        ],
+        "capped": true,
+        "visible": true
+      }
+    },
+    {
+      "name": "equal room on two sides, none enough: the earlier side takes it and is held to it",
+      "menu": [
+        100,
+        108,
+        360,
+        692
+      ],
+      "preview": [
+        100,
+        150
+      ],
+      "viewport": [
+        0,
+        0,
+        400,
+        800
+      ],
+      "expect": {
+        "side": "above",
+        "box": [
+          100,
+          0,
+          200,
+          100
+        ],
+        "capped": true,
+        "visible": true
+      }
+    },
+    {
+      "name": "a gap other than the default is honoured",
+      "menu": [
+        100,
+        400,
+        360,
+        500
+      ],
+      "preview": [
+        200,
+        120
+      ],
+      "viewport": [
+        0,
+        0,
+        400,
+        800
+      ],
+      "gap": 16,
+      "expect": {
+        "side": "above",
+        "box": [
+          100,
+          264,
+          300,
+          384
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "the viewport need not start at the origin",
+      "menu": [
+        150,
+        460,
+        410,
+        560
+      ],
+      "preview": [
+        200,
+        120
+      ],
+      "viewport": [
+        50,
+        60,
+        450,
+        860
+      ],
+      "expect": {
+        "side": "above",
+        "box": [
+          150,
+          332,
+          350,
+          452
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "a menu pressed against the viewport's top and bottom edges: only the sides are left",
+      "menu": [
+        60,
+        8,
+        320,
+        792
+      ],
+      "preview": [
+        100,
+        200
+      ],
+      "viewport": [
+        0,
+        0,
+        800,
+        800
+      ],
+      "expect": {
+        "side": "end",
+        "box": [
+          328,
+          8,
+          428,
+          208
+        ],
+        "capped": false,
+        "visible": true
+      }
+    },
+    {
+      "name": "in right-to-left text only the start side has the room: the preview goes there",
+      "menu": [
+        60,
+        8,
+        320,
+        792
+      ],
+      "preview": [
+        100,
+        200
+      ],
+      "viewport": [
+        0,
+        0,
+        800,
+        800
+      ],
+      "direction": "rtl",
+      "expect": {
+        "side": "start",
+        "box": [
+          328,
+          8,
+          428,
+          208
+        ],
+        "capped": false,
+        "visible": true
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "low on a phone: the preview goes above the menu",
+      "viewport": [
+        390,
+        844
+      ],
+      "pointer": [
+        100,
+        600
+      ],
+      "rows": 3,
+      "preview": [
+        200,
+        120
+      ],
+      "side": "above",
+      "physical": "above"
+    },
+    {
+      "name": "high on a phone: there is no room above, so it goes below",
+      "viewport": [
+        390,
+        844
+      ],
+      "pointer": [
+        100,
+        40
+      ],
+      "rows": 3,
+      "preview": [
+        200,
+        120
+      ],
+      "side": "below",
+      "physical": "below"
+    },
+    {
+      "name": "wide and short: a tall preview goes beside the menu",
+      "viewport": [
+        1000,
+        400
+      ],
+      "pointer": [
+        100,
+        20
+      ],
+      "rows": 3,
+      "preview": [
+        200,
+        300
+      ],
+      "side": "end",
+      "physical": "right"
+    },
+    {
+      "name": "in right-to-left text the end is the left, when it fits",
+      "viewport": [
+        1000,
+        400
+      ],
+      "pointer": [
+        450,
+        20
+      ],
+      "rows": 3,
+      "preview": [
+        200,
+        300
+      ],
+      "direction": "rtl",
+      "side": "end",
+      "physical": "left"
+    },
+    {
+      "name": "in left-to-right text the same pointer puts it on the right",
+      "viewport": [
+        1000,
+        400
+      ],
+      "pointer": [
+        450,
+        20
+      ],
+      "rows": 3,
+      "preview": [
+        200,
+        300
+      ],
+      "side": "end",
+      "physical": "right"
+    },
+    {
+      "name": "against the right edge there is no room at the end: the preview goes to the start",
+      "viewport": [
+        1000,
+        400
+      ],
+      "pointer": [
+        800,
+        20
+      ],
+      "rows": 3,
+      "preview": [
+        200,
+        300
+      ],
+      "side": "start",
+      "physical": "left"
+    }
+  ]
+}

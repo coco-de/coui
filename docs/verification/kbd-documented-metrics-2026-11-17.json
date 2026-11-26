@@ -1,0 +1,235 @@
+{
+  "base": "887f2a364a0ff2d63514da8c6f3403b0276f57fa",
+  "actualNativeDPR": 1,
+  "native": [
+    {
+      "keys": [
+        "Esc"
+      ],
+      "width": 30.555742263793945,
+      "height": 20.0,
+      "caps": [
+        {
+          "width": 30.555742263793945,
+          "height": 20.0
+        }
+      ]
+    },
+    {
+      "keys": [
+        "Ctrl",
+        "C"
+      ],
+      "width": 55.30644464492798,
+      "height": 20.0,
+      "caps": [
+        {
+          "width": 30.682069778442383,
+          "height": 20.0
+        },
+        {
+          "width": 20.624374866485596,
+          "height": 20.0
+        }
+      ]
+    },
+    {
+      "keys": [
+        "\u2303",
+        "\u21e7",
+        "\u2318",
+        "4"
+      ],
+      "width": 100.50238370895386,
+      "height": 20.0,
+      "caps": [
+        {
+          "width": 21.279648780822754,
+          "height": 20.0
+        },
+        {
+          "width": 24.008164405822754,
+          "height": 20.0
+        },
+        {
+          "width": 23.342148780822754,
+          "height": 20.0
+        },
+        {
+          "width": 19.872421741485596,
+          "height": 20.0
+        }
+      ]
+    },
+    {
+      "keys": [
+        "Ctrl",
+        "Alt",
+        "Shift",
+        "F5"
+      ],
+      "width": 130.43656253814697,
+      "height": 20.0,
+      "caps": [
+        {
+          "width": 30.682069778442383,
+          "height": 20.0
+        },
+        {
+          "width": 26.420000076293945,
+          "height": 20.0
+        },
+        {
+          "width": 35.73906326293945,
+          "height": 20.0
+        },
+        {
+          "width": 25.59542942047119,
+          "height": 20.0
+        }
+      ]
+    }
+  ],
+  "web": {
+    "requestedDPR": 1.0,
+    "actualDPR": 1,
+    "denseMedia": false,
+    "hairline": "1.0px",
+    "rows": [
+      {
+        "keys": [
+          "Esc"
+        ],
+        "width": 31.5625,
+        "height": 21.390625,
+        "caps": [
+          {
+            "width": 31.5625,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          }
+        ]
+      },
+      {
+        "keys": [
+          "Ctrl",
+          "C"
+        ],
+        "width": 57.3125,
+        "height": 21.390625,
+        "caps": [
+          {
+            "width": 31.6875,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          },
+          {
+            "width": 21.625,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          }
+        ]
+      },
+      {
+        "keys": [
+          "\u2303",
+          "\u21e7",
+          "\u2318",
+          "4"
+        ],
+        "width": 104.515625,
+        "height": 21.390625,
+        "caps": [
+          {
+            "width": 22.28125,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          },
+          {
+            "width": 25.015625,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          },
+          {
+            "width": 24.34375,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          },
+          {
+            "width": 20.875,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          }
+        ]
+      },
+      {
+        "keys": [
+          "Ctrl",
+          "Alt",
+          "Shift",
+          "F5"
+        ],
+        "width": 134.46875,
+        "height": 21.390625,
+        "caps": [
+          {
+            "width": 31.6875,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          },
+          {
+            "width": 27.421875,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          },
+          {
+            "width": 36.75,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          },
+          {
+            "width": 26.609375,
+            "height": 21.390625,
+            "stroke": "1px",
+            "lineHeight": "15.4px",
+            "fontSize": "11px",
+            "fontFamily": "Pretendard, system-ui, sans-serif"
+          }
+        ]
+      }
+    ]
+  },
+  "fontSource": "docs_site/fonts/Pretendard-Medium.otf, same registered native and browser; labelXs 11px/500/1.4",
+  "conditions": "light, defaultStyle, default padding, gap4, real public Kbd",
+  "limitations": "Only actual DPR1 measurements are quoted in product docs. Requested DPR2 confirmed window DPR2 and media matching; CSS hairline variable0.5px but this Chrome computed border1px. No policy was changed and no claim of dense-screen raster equivalence is made."
+}

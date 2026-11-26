@@ -1,0 +1,66 @@
+# Lefthook Configuration
+# https://github.com/evilmartians/lefthook
+#
+# 포맷터와 애널라이저는 각각 하나다 — `dart format` 과 `dart analyze`.
+# 포맷 설정(`trailing_commas: preserve` / `page_width: 80`)은 옵션 파일이
+# 소유하므로(analysis_options.yaml) 여기서 플래그로 다시 말하지 않는다.
+#
+# 게이트 시맨틱:
+#   pre-commit  — `--fatal-infos` (staged 파일). CI 보다 엄격한 쪽이 먼저 온다.
+#   pre-push    — 같은 판정 + 포맷 드리프트 0.
+#   CI          — `dart analyze . --fatal-warnings` (레포 전체).
+# pre-commit/pre-push 가 info 까지 보는 것은 **새로 만지는 파일**만 보기
+# 때문이다. 레포 전체에는 아직 info 부채가 있고, 그것을 CI 가 차단하면
+# 관계없는 PR 이 남의 부채로 막힌다.
+#
+# ⚠️ 판정 단위는 **파일**이지 변경 줄이 아니다 — info 부채가 있는 옛 파일을
+# 한 줄만 고쳐도 그 파일의 기존 info 전부가 훅에 걸린다. 그 부채를 이 커밋이
+# 갚을 대상이 아니면 `LEFTHOOK=0 git commit` 으로 건너뛰고 PR 본문에 그 이유를
+# 적는다. 레포 전체를 훑는 기계적 변경(린트 셋 교체·일괄 rename 류)이
+# 그 경우다.
+
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.dart"
+      exclude: "**/*.{g,freezed,gr,config,module,gen,mocks,mock,gm}.dart"
+      run: dart format {staged_files}
+      stage_fixed: true
+
+    analyze:
+      glob: "*.dart"
+      exclude: "**/*.{g,freezed,gr,config,module,gen,mocks,mock,gm}.dart"
+      run: dart analyze --fatal-infos {staged_files}
+
+pre-push:
+  parallel: true
+  commands:
+    format-check:
+      glob: "*.dart"
+      exclude: "**/*.{g,freezed,gr,config,module,gen,mocks,mock,gm}.dart"
+      run: dart format --set-exit-if-changed --output=none {push_files}
+
+    analyze:
+      glob: "*.dart"
+      exclude: "**/*.{g,freezed,gr,config,module,gen,mocks,mock,gm}.dart"
+      run: dart analyze --fatal-infos {push_files}
+
+commit-msg:
+  commands:
+    conventional-commits:
+      run: |
+        # Conventional Commits validation
+        # Format: <type>(<scope>): <description>
+
+        commit_msg=$(cat {1})
+
+        if ! echo "$commit_msg" | head -1 | grep -qE "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-zA-Z0-9_-]+\))?: .+"; then
+          echo "Error: Commit message does not follow Conventional Commits format."
+          echo "Format: <type>(<scope>): <description>"
+          echo ""
+          echo "Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+          echo ""
+          echo "Example: feat(button): ✨ 버튼 컴포넌트 hover 상태 추가"
+          exit 1
+        fi

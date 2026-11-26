@@ -1,0 +1,212 @@
+[
+  {
+    "mode": "before",
+    "iteration": 0,
+    "x": 1513,
+    "y": 94.5,
+    "rects": [
+      {
+        "x": 1522,
+        "width": 18
+      },
+      {
+        "x": 1510,
+        "width": 6
+      },
+      {
+        "x": 1504,
+        "width": 6
+      }
+    ],
+    "selected": 1,
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "Go to item 3"
+      },
+      {
+        "type": "pointerup",
+        "target": "Go to item 2"
+      },
+      {
+        "type": "click",
+        "target": null
+      }
+    ]
+  },
+  {
+    "mode": "before",
+    "iteration": 1,
+    "x": 1513,
+    "y": 94.5,
+    "rects": [
+      {
+        "x": 1522,
+        "width": 18
+      },
+      {
+        "x": 1510,
+        "width": 6
+      },
+      {
+        "x": 1504,
+        "width": 6
+      }
+    ],
+    "selected": 1,
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "Go to item 3"
+      },
+      {
+        "type": "pointerup",
+        "target": "Go to item 2"
+      },
+      {
+        "type": "click",
+        "target": null
+      }
+    ]
+  },
+  {
+    "mode": "before",
+    "iteration": 2,
+    "x": 1513,
+    "y": 94.5,
+    "rects": [
+      {
+        "x": 1522,
+        "width": 18
+      },
+      {
+        "x": 1510,
+        "width": 6
+      },
+      {
+        "x": 1504,
+        "width": 6
+      }
+    ],
+    "selected": 1,
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "Go to item 3"
+      },
+      {
+        "type": "pointerup",
+        "target": "Go to item 2"
+      },
+      {
+        "type": "click",
+        "target": null
+      }
+    ]
+  },
+  {
+    "mode": "after",
+    "iteration": 0,
+    "x": 1519,
+    "y": 94.5,
+    "rects": [
+      {
+        "x": 1528,
+        "width": 18
+      },
+      {
+        "x": 1516,
+        "width": 6
+      },
+      {
+        "x": 1504,
+        "width": 6
+      }
+    ],
+    "selected": 2,
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "Go to item 2"
+      },
+      {
+        "type": "pointerup",
+        "target": "Go to item 2"
+      },
+      {
+        "type": "click",
+        "target": "Go to item 2"
+      }
+    ]
+  },
+  {
+    "mode": "after",
+    "iteration": 1,
+    "x": 1519,
+    "y": 94.5,
+    "rects": [
+      {
+        "x": 1528,
+        "width": 18
+      },
+      {
+        "x": 1516,
+        "width": 6
+      },
+      {
+        "x": 1504,
+        "width": 6
+      }
+    ],
+    "selected": 2,
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "Go to item 2"
+      },
+      {
+        "type": "pointerup",
+        "target": "Go to item 2"
+      },
+      {
+        "type": "click",
+        "target": "Go to item 2"
+      }
+    ]
+  },
+  {
+    "mode": "after",
+    "iteration": 2,
+    "x": 1519,
+    "y": 94.5,
+    "rects": [
+      {
+        "x": 1528,
+        "width": 18
+      },
+      {
+        "x": 1516,
+        "width": 6
+      },
+      {
+        "x": 1504,
+        "width": 6
+      }
+    ],
+    "selected": 2,
+    "events": [
+      {
+        "type": "pointerdown",
+        "target": "Go to item 2"
+      },
+      {
+        "type": "pointerup",
+        "target": "Go to item 2"
+      },
+      {
+        "type": "click",
+        "target": "Go to item 2"
+      }
+    ]
+  }
+]

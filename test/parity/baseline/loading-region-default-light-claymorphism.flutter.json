@@ -1,0 +1,10 @@
+{
+  "key": "loading-region-default-light-claymorphism",
+  "byRole": {},
+  "rootOmitted": "no-root-chrome",
+  "settled": false,
+  "captureNotes": [
+    "pumpAndSettle timed out (likely an indeterminate/looping animation, e.g. skeleton/loading) — captured at a fixed, unsettled phase instead of the usual integer-width two-pass capture.",
+    "root 스냅샷이 비어있음 (chrome 노드 미발견 + 텍스트 미발견) — \"root\" 역할을 <key>.flutter.json 에서 생략함. 아래 rootOmitted 마커가 이 생략을 기계가독으로 표시해, entry_loader 가 이를 진짜 인프라 실패(파일 부재/손상)와 구분해 \"구조적 스킵\" 으로 분류한다 — property 비교만 건너뛰고 픽셀 회귀는 계속 돈다. 마커 없이 role 만 생략했다면 InfraFailure(exit 2) 로 오분류되고, 생략하지 않았다면 모든 필드가 \"flutter=null web=<real>\" 로 어긋나 확정적 실패(exit 1)가 됐을 것이다 (실측 확인 — Web 은 getComputedStyle() 이 항상 구체값을 내므로 null==null 항등 통과가 아니라 전면 불일치로 나타난다)."
+  ]
+}

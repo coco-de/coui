@@ -1,0 +1,189 @@
+{
+  "key": "text-field-docs-v2-da4048beb3b577da72582f9549ca4aa0-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Anatomy",
+      "attributes": {
+        "demo": "text-field/anatomy"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "text-field/anatomy",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/text-field.md:Anatomy[8]"
+      ],
+      "anatomyParts": [
+        "label@left",
+        "div:has(> input)@left",
+        "input@right",
+        "p@left"
+      ],
+      "anatomyBody": [
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "label",
+            "select": "label",
+            "side": "left"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "입력할 내용을 알려 줍니다. 항상 보여 주는 것을 권장합니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "Container",
+            "select": "div:has(> input)",
+            "side": "left"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "테두리와 배경. 상태에 따라 테두리가 바뀝니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "value",
+            "select": "input",
+            "side": "right"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "입력 값. 비어 있으면 placeholder를 보여 줍니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "description",
+            "select": "p",
+            "side": "left"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "도움말. 오류일 때는 errorText로 바뀝니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        }
+      ]
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "이메일\n                        \n                          \n                            \n                          \n                        \n                        업무용 이메일을 권장합니다.\n                      \n                    \n                  1234\n                  \n                    \n                      1label\n                      입력할 내용을 알려 줍니다. 항상 보여 주는 것을 권장합니다.\n                    \n                    \n                      2Container\n                      테두리와 배경. 상태에 따라 테두리가 바뀝니다.\n                    \n                    \n                      3value\n                      입력 값. 비어 있으면 placeholder를 보여 줍니다.\n                    \n                    \n                      4description\n                      도움말. 오류일 때는 errorText로 바뀝니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 385.890625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "13px",
+      "lineHeight": "18px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "16px",
+      "borderTopRightRadius": "16px",
+      "borderBottomRightRadius": "16px",
+      "borderBottomLeftRadius": "16px",
+      "paddingTop": "32px",
+      "paddingRight": "24px",
+      "paddingBottom": "32px",
+      "paddingLeft": "24px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 240
+    }
+  }
+}

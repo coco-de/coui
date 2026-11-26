@@ -1,0 +1,38 @@
+{
+  "key": "disclosure-badge-default-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "12px",
+      "lineHeight": "16.8px",
+      "letterSpacing": "-0.12px",
+      "color": "rgb(42, 43, 44)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgb(42, 43, 44)",
+      "borderRightColor": "rgb(42, 43, 44)",
+      "borderBottomColor": "rgb(42, 43, 44)",
+      "borderLeftColor": "rgb(42, 43, 44)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "2px",
+      "paddingRight": "6px",
+      "paddingBottom": "2px",
+      "paddingLeft": "6px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 57.828125,
+      "heightPx": 22.796875
+    }
+  }
+}

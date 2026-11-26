@@ -1,0 +1,1464 @@
+{
+  "widgetbook": {
+    "common": {
+      "increment_progress": "增加进度",
+      "selected_tab": "选中的标签：{index}",
+      "current_page": "当前页面：{page}",
+      "total_pages": "总页面数：{count}",
+      "page_of": "{current}页 / {total}",
+      "hover_over_icon": "将鼠标悬停在图标上",
+      "counter": "计数器：{count}",
+      "selected_rows": "选中的行：{count}",
+      "value": "值：{value}",
+      "selected_cells": "选中的单元格: {count}"
+    },
+    "loading": {
+      "indeterminate": "无限加载",
+      "with_value": "包含值 ({percent}%)",
+      "custom_size": "自定义大小",
+      "custom_height": "自定义高度",
+      "circular_progress": "圆形进度",
+      "linear_progress": "线性进度"
+    },
+    "tabs": {
+      "home": "主页",
+      "profile": "个人资料",
+      "settings": "设置",
+      "overview": "概述",
+      "details": "详细信息",
+      "history": "历史",
+      "overview_content": "概述内容",
+      "details_content": "详细内容",
+      "history_content": "历史内容",
+      "general_info": "关于项目的一般信息",
+      "specifications": "详细规格和属性",
+      "timeline": "变更和更新时间线"
+    },
+    "pagination": {
+      "show_skip_to_first": "显示跳到第一页",
+      "show_skip_to_last": "显示跳到最后一页",
+      "hide_previous_on_first": "在第一页隐藏上一页",
+      "hide_next_on_last": "在最后一页隐藏下一页",
+      "max_visible_pages": "最大可见页面数"
+    },
+    "tooltip": {
+      "helpful_message": "有用的工具提示信息",
+      "tooltip_above": "上方工具提示",
+      "tooltip_below": "下方工具提示",
+      "tooltip_left": "左侧工具提示",
+      "tooltip_right": "右侧工具提示",
+      "top": "上",
+      "bottom": "下",
+      "left": "左",
+      "right": "右"
+    },
+    "radio": {
+      "small": "小",
+      "medium": "中",
+      "large": "大"
+    },
+    "card": {
+      "card_content": "卡片内容",
+      "gradient_card": "渐变卡片",
+      "custom_decoration": "自定义装饰卡片"
+    },
+    "alert": {
+      "title": "通知标题",
+      "message": "这是通知消息。"
+    },
+    "accordion": {
+      "what_is_coui": "什么是 CoUI Flutter？",
+      "what_is_coui_answer": "CoUI Flutter 是一个综合 UI 组件库，旨在构建现代化和可访问的 Flutter 应用，并采用一致的设计模式。",
+      "how_to_install": "如何安装？",
+      "how_to_install_answer": "请将 coui_flutter 添加到 pubspec.yaml 依赖项中，并运行 flutter pub get 以安装该包。",
+      "is_customizable": "可以自定义吗？",
+      "is_customizable_answer": "可以！CoUI Flutter 提供全面的主题支持，可通过 ThemeData 自定义颜色、排版、间距等。",
+      "getting_started": "开始使用",
+      "getting_started_answer": "通过安装该包并在项目中引入它来开始使用。有关详细的设置方法，请参阅文档。",
+      "features_expanded": "功能（基本扩展）",
+      "features_answer": "CoUI Flutter 包含按钮、表单、对话框、导航组件等。所有组件都考虑了可访问性和主题。",
+      "support": "支持",
+      "support_answer": "如果您有任何问题或需要支持，请访问 GitHub 存储库或查看 docs.coui.dev 上的文档。"
+    },
+    "skeleton": {
+      "skeleton_enabled": "启用骨架：",
+      "title_text": "这是标题",
+      "description_text": "长描述文本",
+      "short_text": "短文本",
+      "without_skeleton": "无骨架：",
+      "with_skeleton": "包含骨架：",
+      "user_name": "用户名",
+      "user_email": "user@example.com",
+      "article_title": "文章标题",
+      "posted_date": "2024年1月1日发布",
+      "bio_description": "记录日常的开发者",
+      "show_content": "显示内容",
+      "show_loading": "显示加载中",
+      "article_content": "这是文章内容的示例。在加载时将替换为骨架。"
+    },
+    "toast": {
+      "success": "成功",
+      "operation_completed": "操作成功完成",
+      "show_toast": "显示吐司",
+      "toast_at": "吐司位于 {location}",
+      "top_left": "左上",
+      "top_center": "顶部中心",
+      "top_right": "右上",
+      "bottom_left": "左下",
+      "bottom_center": "底部中心",
+      "bottom_right": "右下"
+    },
+    "chip": {
+      "chip": "芯片"
+    },
+    "checkbox": {
+      "accept_terms": "我同意服务条款",
+      "tristate": "三态选择"
+    },
+    "toggle": {
+      "toggle": "切换"
+    },
+    "dialog": {
+      "basic_dialog": "基本对话框",
+      "basic_title": "基本对话框",
+      "basic_content": "带有标题和内容的简单对话框。",
+      "simple_dialog_content": "这是一个有标题和内容的简单对话框。",
+      "show_basic": "展示基本",
+      "show_basic_dialog": "显示基本对话框",
+      "confirm_action": "确认操作",
+      "confirm_title": "确认",
+      "confirm_content": "您真的要执行此操作吗？",
+      "confirm_action_content": "您确定要执行此操作吗？此操作无法撤销。",
+      "cancel": "取消",
+      "confirm": "确认",
+      "show_confirmation": "展示确认",
+      "show_confirmation_dialog": "显示确认对话框",
+      "warning": "警告",
+      "warning_title": "警告",
+      "warning_content": "此操作可能会影响数据。请谨慎操作。",
+      "dismiss": "关闭",
+      "show_warning": "展示警告",
+      "show_warning_dialog": "显示警告对话框"
+    },
+    "popover": {
+      "popover_content": "弹出内容",
+      "content_title": "弹出框标题",
+      "content_description": "具有可自定义内容的弹出框。",
+      "customizable_content": "具有可自定义内容的弹出框。",
+      "show_popover": "显示弹出框",
+      "popover_at": "{position} 的弹出框",
+      "top": "顶部",
+      "bottom": "底部",
+      "left": "左",
+      "right": "右"
+    },
+    "text_field": {
+      "enter_name": "输入姓名",
+      "type_here": "在这里输入"
+    },
+    "button": {
+      "primary_button": "主按钮",
+      "secondary_button": "辅助按钮",
+      "dashed_button": "上传文件",
+      "upload_file": "上传文件"
+    },
+    "table": {
+      "name": "姓名",
+      "email": "电子邮件",
+      "role": "角色",
+      "john_doe": "张三",
+      "john_email": "zhang@example.com",
+      "developer": "开发者",
+      "jane_smith": "李四",
+      "jane_email": "li@example.com",
+      "designer": "设计师",
+      "bob_johnson": "王五",
+      "bob_email": "wang@example.com",
+      "manager": "经理",
+      "select": "选择",
+      "product": "产品",
+      "price": "价格",
+      "stock": "库存",
+      "laptop": "笔记本电脑",
+      "mouse": "鼠标",
+      "keyboard": "键盘"
+    },
+    "switch": {
+      "switch": "开关"
+    },
+    "switch_component": {
+      "switch_label": "开关标签"
+    },
+    "select": {
+      "apple": "苹果",
+      "banana": "香蕉",
+      "cherry": "樱桃",
+      "date": "枣",
+      "choose_size": "选择大小",
+      "small": "小",
+      "medium": "中",
+      "large": "大",
+      "extra_large": "特大"
+    },
+    "breadcrumb": {
+      "home": "主页",
+      "products": "产品",
+      "electronics": "电子产品",
+      "smartphones": "智能手机",
+      "documents": "文档",
+      "projects": "项目",
+      "current_folder": "当前文件夹",
+      "current_path": "当前路径：{path}"
+    },
+    "badge": {
+      "primary": "主要",
+      "secondary": "辅助",
+      "outline": "轮廓",
+      "destructive": "危险",
+      "featured": "推荐",
+      "more": "更多",
+      "verified": "已验证",
+      "error": "错误",
+      "click_me": "点击我",
+      "clickable": "可点击"
+    },
+    "themePreview": {
+      "title": "主题预览",
+      "description": "所有主题令牌和组件样式的综合概述",
+      "color_palette": "颜色调色板",
+      "brand_colors": "品牌颜色",
+      "base_colors": "基本颜色",
+      "status_colors": "状态颜色",
+      "buttons": "按钮",
+      "primary_button": "主要",
+      "secondary_button": "次要",
+      "outline_button": "轮廓",
+      "ghost_button": "幽灵",
+      "destructive_button": "破坏性",
+      "disabled_button": "禁用",
+      "cards": "卡片",
+      "card_title": "卡片标题",
+      "card_description": "示例卡片说明。",
+      "surface_card": "表面卡片",
+      "filled_variant": "带背景的填充样式",
+      "form_elements": "表单元素",
+      "text_input_placeholder": "请输入文本...",
+      "checkbox_checked": "已选中",
+      "checkbox_unchecked": "未选中",
+      "toggle_on": "开启",
+      "toggle_off": "关闭",
+      "alerts": "通知",
+      "info_alert": "信息通知",
+      "info_alert_message": "这是引导消息。",
+      "error_alert": "错误通知",
+      "error_alert_message": "发生了问题。",
+      "badges_chips": "徽章 & 标签",
+      "primary_badge": "主要",
+      "secondary_badge": "次要",
+      "outline_badge": "轮廓",
+      "destructive_badge": "破坏性",
+      "chip_example": "收藏",
+      "typography": "排版",
+      "heading_1": "标题 1",
+      "heading_2": "标题 2",
+      "heading_3": "标题 3",
+      "heading_4": "标题 4",
+      "body_text": "普通粗细的正文文本。",
+      "small_text": "用于说明的较小文本。",
+      "muted_text": "用作附加信息的淡化文本。",
+      "bold_text": "用于强调的粗体文本。",
+      "spacing_radius": "间距 & 圆角",
+      "border_radius": "边框圆角",
+      "loading_states": "加载状态"
+    },
+    "chat": {
+      "hello": "你好！最近怎么样？",
+      "doing_great": "很好，谢谢！",
+      "nice_weather": "今天天气真好！",
+      "yes_beautiful": "是的，真美！",
+      "sender": "发送者",
+      "receiver": "接收者"
+    },
+    "multiple_choice": {
+      "option_a": "Option A",
+      "option_b": "Option B",
+      "option_c": "Option C",
+      "option_d": "Option D",
+      "selected_value": "已选择: {value}",
+      "selected_values": "已选择: {values}"
+    },
+    "formatted_input": {
+      "date_format": "日期格式 (MM/DD/YYYY)",
+      "time_format": "时间格式 (HH:MM)",
+      "current_value": "当前值: {value}"
+    },
+    "swiper": {
+      "swipe_hint": "滑动或点击打开",
+      "overlay_content": "弹出内容",
+      "close": "关闭"
+    }
+  },
+  "docs": {
+    "common": {
+      "app_name": "coui_flutter",
+      "search_documentation": "搜索文档...",
+      "docs": "文档",
+      "components": "组件",
+      "close": "关闭",
+      "on_this_page": "本页目录",
+      "work_in_progress_title": "开发中",
+      "work_in_progress_message": "此页面仍在开发中，请稍后再来。",
+      "add": "添加",
+      "reset": "重置",
+      "prev": "上一个",
+      "next": "下一个",
+      "finish": "完成",
+      "open": "打开",
+      "disabled": "禁用",
+      "refresh": "刷新",
+      "rebuild": "重新构建",
+      "change_color": "更改颜色"
+    },
+    "badges": {
+      "new": "新的",
+      "updated": "已更新",
+      "wip": "开发中",
+      "experimental": "实验性"
+    },
+    "flavors": {
+      "local": "本地",
+      "experimental": "实验性",
+      "unknown": "未知"
+    },
+    "navigation": {
+      "getting_started": "开始使用",
+      "animation": "动画",
+      "control": "控制",
+      "disclosure": "披露",
+      "display": "显示",
+      "feedback": "反馈",
+      "form": "表单",
+      "layout": "布局",
+      "navigation": "导航",
+      "overlay": "覆盖",
+      "utility": "工具",
+      "my_account": "我的账户",
+      "profile": "个人资料",
+      "settings": "设置",
+      "team": "团队",
+      "new_team": "新团队",
+      "billing": "账单",
+      "api": "API",
+      "log_out": "注销",
+      "support": "支持",
+      "invite_users": "邀请用户",
+      "more": "更多",
+      "github": "GitHub",
+      "note": "备注",
+      "message": "消息",
+      "keyboard_shortcuts": "键盘快捷键"
+    },
+    "pages": {
+      "introduction": {
+        "title": "介绍",
+        "description": "开始使用 coui_flutter",
+        "lead": "Coui/UI 设计精美的组件现在可以在 Flutter 中使用。",
+        "welcome_paragraph_1": "coui_flutter 是为 Flutter 桌面和 Web 应用特别设计的多功能 UI 组件集。随着跨平台应用开发的流行，我们认识到需要一个工具包来强调桌面和 Web 界面的独特设计需求。",
+        "welcome_paragraph_2": "本包提供了一系列符合现代桌面和 Web 设计原则的可高度自定义和响应式组件。无论您是在构建复杂的业务应用程序、时尚的仪表板或生产力工具，我们的组件都旨在帮助您快速有效地创建专业和优雅的 UI。",
+        "features": "主要功能",
+        "features_list": {
+          "components_count": "84 个组件，数量持续增加！",
+          "material_cupertino": "支持 Material 和 Cupertino 小部件，主题已调整为与 coui_flutter 主题一致。",
+          "premade_themes": "Coui/UI 的预制主题。",
+          "platform_support": "支持移动、Web 和桌面平台。",
+          "middle_drag": "支持中间拖动滚动。",
+          "typography_extensions": "用于排版的多种小部件扩展。",
+          "webassembly": "支持 WebAssembly 以提高性能。"
+        },
+        "notes": "注意事项",
+        "notes_paragraph_1": "本包仍在开发中，未来可能会有变化。将其用于生产时请小心。",
+        "notes_paragraph_2": "本包与 Coui/UI 没有关联。此包是由社区主导的项目。",
+        "faq": "常见问题",
+        "faq_gorouter_q": "支持 GoRouter 吗？",
+        "faq_gorouter_a": "是的，支持。您可以与 coui_flutter 一起使用 GoRouter。",
+        "faq_usage_q": "我可以在我的项目中使用吗？",
+        "faq_usage_a": "可以！可免费用于个人和商业项目。不需要署名。",
+        "faq_material_q": "可以与 Material/Cupertino 小部件一起使用吗？",
+        "faq_material_a_1": "当然可以！",
+        "faq_material_a_2": "请参阅此页面！",
+        "faq_style_q": "我可以设置使用哪种样式吗？（默认/纽约）",
+        "faq_style_a_1": "很抱歉，不能。该包只支持纽约样式。但是，如果您想要 Coui/UI 的默认样式，",
+        "faq_style_a_2": "我推荐这个包，",
+        "faq_style_a_3": "制作者：",
+        "links": "链接",
+        "link_github": "Github: ",
+        "link_pubdev": "pub.dev: ",
+        "link_discord": "Discord: "
+      },
+      "installation": {
+        "title": "安装",
+        "description": "在项目中安装 coui_flutter",
+        "stable_version": "稳定版本",
+        "experimental_version": "实验版本",
+        "step1_title": "创建新的 Flutter 项目",
+        "step1_content": "使用以下命令创建新的 Flutter 项目：",
+        "step2_title": "添加依赖",
+        "step2_content": "接下来，将 coui_flutter 依赖添加到项目中。",
+        "step3_title": "导入包",
+        "step3_content": "现在可以在 Dart 代码中导入该包。",
+        "step4_title": "添加 CouiApp 组件",
+        "step4_content": "在 main 函数中添加 CouiApp 组件。",
+        "step5_title": "运行应用程序",
+        "step5_content": "使用以下命令运行应用程序：",
+        "experimental_intro": "实验版本可在GitHub上使用。",
+        "experimental_usage": "要使用实验版本，请在 pubspec.yaml 文件中使用 git 替代版本号：",
+        "see_page": "参阅：",
+        "this_page": "本页面",
+        "for_more_info": "获取更多信息。",
+        "warning_title": "警告",
+        "warning_content": "实验版本可能包含破坏兼容性的更改，不建议用于生产。此版本仅用于测试和开发目的。"
+      },
+      "theme": {
+        "title": "主题",
+        "description": "主题自定义",
+        "custom_color_scheme": "自定义颜色方案",
+        "custom_color_scheme_desc": "使用自定义颜色方案来自定义应用程序的外观和感觉。",
+        "premade_color_schemes": "预制颜色方案",
+        "premade_color_schemes_desc": "使用预制颜色方案来自定义应用程序的外观和感觉。",
+        "radius": "半径",
+        "radius_desc": "可以更改半径以自定义应用程序的圆润程度。",
+        "scaling": "缩放",
+        "scaling_desc": "可以更改缩放来自定义 coui_flutter 组件的比例。",
+        "scaling_alert": "不会缩放整个应用程序。仅影响 coui_flutter 组件。",
+        "surface_opacity": "表面不透明度",
+        "surface_opacity_desc": "可以更改表面不透明度来定制表面的透明度。",
+        "surface_blur": "表面模糊",
+        "surface_blur_desc": "可以更改表面模糊以定制表面的模糊程度。",
+        "code": "代码",
+        "code_desc": "使用以下代码应用颜色方案。"
+      },
+      "typography": {
+        "title": "排版",
+        "description": "文本样式",
+        "headline1": "标题 1",
+        "headline2": "标题 2",
+        "headline3": "标题 3",
+        "headline4": "标题 4",
+        "paragraph": "段落",
+        "blockquote": "引用",
+        "list": "列表",
+        "inline_code": "行内代码",
+        "lead": "引导",
+        "large_text": "大文本",
+        "small_text": "小文本",
+        "muted_text": "灰色文本",
+        "sans": "无衬线",
+        "mono": "等宽",
+        "extra_small": "极小",
+        "small": "小",
+        "base": "基本",
+        "large": "大",
+        "extra_large": "特大",
+        "extra_2x_large": "超特大",
+        "extra_3x_large": "三倍大",
+        "extra_4x_large": "四倍大",
+        "extra_5x_large": "五倍大",
+        "extra_6x_large": "六倍大",
+        "extra_7x_large": "七倍大",
+        "extra_8x_large": "八倍大",
+        "extra_9x_large": "九倍大",
+        "thin": "细",
+        "extra_light": "超轻",
+        "light": "轻",
+        "normal": "正常",
+        "medium": "中",
+        "semi_bold": "半粗体",
+        "bold": "粗体",
+        "extra_bold": "超粗体",
+        "black": "黑色",
+        "italic": "斜体"
+      },
+      "layout": {
+        "title": "布局",
+        "description": "页面布局组成",
+        "padding": "填充",
+        "margin": "边距",
+        "center": "中心",
+        "gapped_column": "间隔列",
+        "gapped_row": "间隔行",
+        "separated_column": "分隔列",
+        "separated_row": "分隔行",
+        "basic_layout": "基本布局"
+      },
+      "web_preloader": {
+        "title": "网页预加载器",
+        "description": "网页加载界面",
+        "step1_title": "创建网络目录",
+        "step1_content": "如果没有网络目录，请创建一个。",
+        "step1_note": "* 如果您正在使用传统的 Flutter Web，请使用上述命令进行升级。",
+        "step1_button": "点击这里获取更多信息。",
+        "step2_title": "添加脚本",
+        "step2_content": "接下来，选择并复制以下预制加载器之一：",
+        "step2_standard": "标准加载器",
+        "step3_title": "粘贴脚本",
+        "step3_content_1": "打开您的 ",
+        "step3_content_2": " 文件，在 ",
+        "step3_content_3": " 标签内粘贴脚本。",
+        "step3_example": "例如：",
+        "step4_title": "运行应用",
+        "step4_content": "使用以下命令运行应用：",
+        "alert_title": "贡献",
+        "alert_content_1": "如果您有想分享的加载器，请在 ",
+        "alert_button": "web_loaders",
+        "alert_content_2": " 目录中创建拉取请求。"
+      },
+      "components_list": {
+        "title": "组件",
+        "description": "可重用组件列表",
+        "work_in_progress": "进行中",
+        "animation": "动画",
+        "disclosure": "披露",
+        "feedback": "反馈",
+        "forms": "表单",
+        "layout": "布局",
+        "navigation": "导航",
+        "surfaces": "表面",
+        "data_display": "数据展示",
+        "utilities": "工具"
+      },
+      "icons": {
+        "title": "图标",
+        "description": "图标系统",
+        "use_this_code": "要显示此图标，请使用以下代码：",
+        "search_icons": "搜索图标",
+        "radix_icons": "Radix 图标",
+        "bootstrap_icons": "Bootstrap 图标",
+        "lucide_icons": "Lucide 图标"
+      },
+      "colors": {
+        "title": "颜色",
+        "description": "颜色调色板",
+        "use_this_code": "要显示此颜色，请使用以下代码：",
+        "color_and_colorshades": "颜色和 ColorShades/ColorSwatch 常量",
+        "predefined_colors": "预定义颜色",
+        "generate_color": "生成颜色",
+        "hue_shift": "色相移动",
+        "saturation_step_up": "饱和度增加步骤",
+        "saturation_step_down": "饱和度减少步骤",
+        "lightness_step_up": "明度增加步骤",
+        "lightness_step_down": "明度减少步骤",
+        "cancel": "取消",
+        "reset_options": "重置选项",
+        "reset_confirmation": "您确定要重置选项吗？"
+      },
+      "external": {
+        "title": "Material/Cupertino",
+        "description": "Flutter 的基本小部件"
+      },
+      "state": {
+        "title": "状态管理",
+        "description": "状态管理模式",
+        "intro_1": "在 Flutter 中，一切都是组件，数据也是存储在组件中。",
+        "intro_2": "在内部，coui_flutter 具有自己的状态管理系统。如果您已经使用状态管理系统，可以继续使用 coui_flutter。",
+        "passing_data_to_children": "向子组件传递数据",
+        "passing_data_desc": "您可以使用 Data 组件将数据传递给子组件。所有数据发生的变化都会导致子组件重新构建。",
+        "rebuild_difference_title": "您注意到重建次数的差异了吗？",
+        "rebuild_difference_content": "MostInnerWidget 在数据更改时会重新构建，但 InnerWidget 不会。因为 InnerWidget 没有接收数据。",
+        "setting_data_boundary": "设置数据边界",
+        "setting_data_boundary_desc": "可以设置边界，以防子组件无法访问数据。",
+        "data_methods_vs": "Data.maybeOf/Data.of vs Data.maybeFind/Data.find",
+        "data_methods_desc_1": " 和 ",
+        "data_methods_desc_2": " 接收数据并在数据更改时重新构建组件。而 ",
+        "data_methods_desc_3": " 不接收数据，只返回数据。",
+        "data_find_usage": " 适合在 onPressed、onLongPressed 等方法被调用一次的地方使用。",
+        "data_of_usage": " 适合在需要在构建方法中重新构建组件时使用。",
+        "getting_data_from_child": "从子组件获取数据",
+        "getting_data_desc_1": " 可以使用此方法从子组件获取数据。该方法不会接收数据的变化。",
+        "getting_data_desc_2": "如果接收子组件数据，可能会导致无限重建循环。若需要接收数据，请移动到父组件。",
+        "root_data_title": "您注意到 root 数据了吗？",
+        "root_data_content": "使用左侧最内层数据的数据，因为父级只能从第一个相连的子组件获取数据。",
+        "setting_messenger_boundary": "设置 DataMessenger 边界",
+        "setting_messenger_boundary_desc": "可以设置边界，以防从特定父组件获取子组件的数据。",
+        "multidata_widget": "MultiData 组件",
+        "multidata_desc": "使用 MultiData 组件可以向子组件传递多个数据。请查看以下示例：",
+        "multidata_avoid_nesting": "使用 MultiData 组件避免嵌套。",
+        "example": "示例",
+        "passing_state_as_controller": "作为控制器传递状态",
+        "passing_state_controller_desc": "可以作为控制器将状态传递给子组件。这样，子组件可以调用父组件的方法。",
+        "databuilder": "DataBuilder",
+        "databuilder_desc": "使用 DataBuilder 组件可以在数据更改时重新构建组件。这有助于避免重建整个组件。",
+        "datanotifier": "DataNotifier",
+        "datanotifier_desc": "使用 DataNotifier 可以从 ValueListenable 向子组件传递值。",
+        "example_with_multidata": "使用 MultiData 的示例",
+        "passing_object_as_data": "作为数据传递对象",
+        "passing_object_desc": "在作为数据传递对象时需要考虑几个要点：",
+        "override_equals_hashcode": "1. 重写 == 和 hashCode",
+        "override_equals_desc": "在先前对象与新对象不同时，需要通知子组件。如果不重写 == 和 hashCode，即使字段值相同，每次实例化对象时也会被视为不同。",
+        "use_distinctdata": "2. 使用 DistinctData",
+        "use_distinctdata_desc": "DistinctData 是一个 Mixin，可以在特定字段更改时通知子组件。",
+        "passing_mutable_object": "3. 向子组件传递可变对象",
+        "passing_mutable_object_desc": "建议将不可变对象传递给子组件。可变对象（例如 List、Map、Set、Widget State）由于对象引用不变，无法在对象更改时通知子组件。",
+        "passing_variable_to_children": "向子组件传递变量",
+        "passing_variable_desc": "您可以使用 Model 组件向子组件传递变量。与 Data 组件类似，但类型更严格并且有标签。",
+        "change_variable_from_children": "从子组件更改变量",
+        "change_variable_desc": "有两种方法可以从子组件更改模型值：",
+        "modelnotifier": "ModelNotifier",
+        "modelnotifier_desc": "使用 ModelNotifier 可以从 ValueNotifier 向子组件传递值。无需在父组件中使用 setState。",
+        "modellistenable": "ModelListenable",
+        "modellistenable_desc": "ModelListenable 是只读 ModelNotifier。子组件只能接收值。如果尝试更改值，则会发生错误。",
+        "modelbuilder": "ModelBuilder",
+        "modelbuilder_desc": "ModelBuilder 会在值更改时接收并重新构建组件。与 DataBuilder 类似，但类型更严格并且有标签。"
+      }
+    },
+    "components": {
+      "accordion": {
+        "display_name": "手风琴",
+        "description": "手风琴是一个垂直堆积的项目列表。每个项目可以通过‘展开’或‘收起’来显示与该项目相关的内容。",
+        "examples": {
+          "basic": "手风琴示例"
+        }
+      },
+      "alert": {
+        "display_name": "提醒",
+        "description": "提醒用于传达影响系统的状态。",
+        "examples": {
+          "basic": "提醒示例",
+          "destructive": "危险提醒示例"
+        },
+        "title": "提醒标题",
+        "content": "这是提醒内容。"
+      },
+      "alert_dialog": {
+        "display_name": "提醒对话框",
+        "description": "提醒对话框用于显示需要用户注意的重要信息。",
+        "examples": {
+          "basic": "提醒对话框示例"
+        },
+        "click_here": "点击这里",
+        "alert_title": "提醒标题",
+        "alert_content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      "animated_value_builder": {
+        "display_name": "动画值构建器",
+        "description": "这是一个在值更改时自动应用动画的构建器。",
+        "examples": {
+          "basic": "动画值构建器示例"
+        }
+      },
+      "app_bar": {
+        "display_name": "应用栏",
+        "description": "应用栏是显示在应用顶部的主要导航元素。",
+        "examples": {
+          "basic": "应用栏示例"
+        }
+      },
+      "autocomplete": {
+        "display_name": "自动完成",
+        "description": "根据用户输入显示建议的输入字段。",
+        "examples": {
+          "basic": "自动完成示例"
+        }
+      },
+      "avatar": {
+        "display_name": "头像",
+        "description": "表示用户或实体的图像或图标。",
+        "examples": {
+          "basic": "头像示例"
+        }
+      },
+      "avatar_group": {
+        "display_name": "头像组",
+        "description": "显示多个头像。",
+        "examples": {
+          "basic": "头像组示例"
+        }
+      },
+      "badge": {
+        "display_name": "徽章",
+        "description": "显示状态或通知数的小标签。",
+        "examples": {
+          "basic": "徽章示例"
+        },
+        "primary": "主要",
+        "secondary": "次要",
+        "outline": "轮廓",
+        "destructive": "毁灭性"
+      },
+      "breadcrumb": {
+        "display_name": "面包屑",
+        "description": "面包屑是一种辅助导航系统，用于指示用户在网站或Web应用程序中的位置。",
+        "examples": {
+          "basic": "面包屑示例"
+        },
+        "home": "主页",
+        "components": "组件"
+      },
+      "button": {
+        "display_name": "按钮",
+        "description": "按钮允许用户通过一次点击来执行操作和选择。",
+        "examples": {
+          "primary": "主要按钮示例",
+          "secondary": "次要按钮示例",
+          "outline": "轮廓按钮示例",
+          "ghost": "幽灵按钮示例",
+          "destructive": "毁灭性按钮示例",
+          "link": "链接按钮示例",
+          "text": "文本按钮示例",
+          "disabled": "禁用按钮示例",
+          "icon": "图标按钮示例",
+          "icon_with_label": "带标签的图标按钮示例",
+          "size": "按钮大小示例",
+          "density": "按钮密度示例",
+          "shape": "按钮形状示例",
+          "group": "按钮组示例",
+          "stated": "状态按钮示例",
+          "card": "卡片按钮示例",
+          "custom": "自定义按钮示例"
+        },
+        "primary": "主要",
+        "secondary": "次要",
+        "outlined": "轮廓",
+        "ghost": "幽灵",
+        "destructive": "毁灭性",
+        "link": "链接",
+        "outline": "轮廓",
+        "text": "文本",
+        "extra_small": "超小",
+        "small": "小",
+        "normal": "普通",
+        "large": "大",
+        "extra_large": "超大",
+        "save": "保存",
+        "cancel": "取消",
+        "close": "关闭",
+        "submit": "提交",
+        "edit_profile": "编辑资料",
+        "save_changes": "保存更改",
+        "undo": "撤消",
+        "compact": "紧凑",
+        "dense": "密集",
+        "comfortable": "舒适",
+        "icon": "图标",
+        "icon_comfortable": "图标舒适",
+        "rectangle": "矩形",
+        "add": "添加",
+        "focused": "聚焦",
+        "hovered": "悬停",
+        "pressed": "按下",
+        "text_button": "文本按钮",
+        "custom_button": "自定义按钮"
+      },
+      "calendar": {
+        "display_name": "日历",
+        "description": "用于选择和显示日期的日历组件。",
+        "examples": {
+          "basic": "日历示例"
+        }
+      },
+      "card": {
+        "display_name": "卡片",
+        "description": "描述",
+        "examples": {
+          "basic": "卡片示例"
+        },
+        "create_project": "创建项目",
+        "deploy_description": "一键部署新项目",
+        "name": "名称",
+        "name_placeholder": "项目名称",
+        "description_placeholder": "项目描述",
+        "deploy": "部署"
+      },
+      "card_image": {
+        "display_name": "图片卡片",
+        "description": "包含图像的卡片组件。",
+        "examples": {
+          "basic": "图片卡片示例"
+        },
+        "card_image_title": "卡片图像",
+        "card_clicked": "点击了卡片图像",
+        "card_number": "卡片编号 {n}",
+        "lorem_ipsum": "Lorem ipsum dolor sit amet"
+      },
+      "carousel": {
+        "display_name": "轮播",
+        "description": "一个组件，用于以幻灯片形式展示多个项目。",
+        "examples": {
+          "basic": "轮播示例"
+        }
+      },
+      "checkbox": {
+        "display_name": "复选框",
+        "description": "复选框允许用户从列表中选择一个或多个项目。",
+        "examples": {
+          "basic": "复选框示例"
+        },
+        "remember_me": "记住我"
+      },
+      "chip": {
+        "display_name": "芯片",
+        "description": "芯片是表示属性、选项或操作的小元素。",
+        "examples": {
+          "basic": "芯片示例"
+        },
+        "apple": "苹果",
+        "banana": "香蕉",
+        "cherry": "樱桃",
+        "durian": "榴莲",
+        "elderberry": "接骨木"
+      },
+      "chip_input": {
+        "display_name": "芯片输入",
+        "description": "一个可输入多个值的输入字段，形式为芯片。",
+        "examples": {
+          "basic": "芯片输入示例"
+        }
+      },
+      "circular_progress": {
+        "display_name": "圆形进度",
+        "description": "圆形进度指示器。",
+        "examples": {
+          "basic": "圆形进度示例"
+        },
+        "increase_by_10": "增加10",
+        "decrease_by_10": "减少10"
+      },
+      "code_snippet": {
+        "display_name": "代码片段",
+        "description": "显示代码的组件。",
+        "examples": {
+          "basic": "代码片段示例"
+        }
+      },
+      "collapsible": {
+        "display_name": "可折叠",
+        "description": "可折叠和展开的内容容器。",
+        "examples": {
+          "basic": "可折叠示例"
+        },
+        "starred_repositories": "@coco-de 在3个仓库中标记了星星",
+        "collapse_all": "全部折叠",
+        "expand_all": "全部展开",
+        "expand_icon": "展开图标",
+        "use_path_branch": "使用路径分支",
+        "recursive_selection": "递归选择"
+      },
+      "color_picker": {
+        "display_name": "颜色选择器",
+        "description": "用于选择颜色的组件。",
+        "examples": {
+          "basic": "颜色选择器示例"
+        },
+        "pick_color": "选择颜色",
+        "color_label": "颜色: {color}",
+        "select_color": "选择颜色",
+        "open_color_picker_popover": "打开颜色选择器弹出框",
+        "open_color_picker_dialog": "打开颜色选择器对话框"
+      },
+      "command": {
+        "display_name": "命令",
+        "description": "命令是一个可搜索项目的组件。",
+        "examples": {
+          "basic": "命令示例"
+        }
+      },
+      "context_menu": {
+        "display_name": "上下文菜单",
+        "description": "通过右键单击或长按显示的菜单。",
+        "examples": {
+          "basic": "上下文菜单示例"
+        }
+      },
+      "date_picker": {
+        "display_name": "日期选择器",
+        "description": "用于选择日期的输入字段。",
+        "examples": {
+          "basic": "日期选择器示例"
+        },
+        "select_date": "选择日期",
+        "select_date_range": "选择日期范围"
+      },
+      "dialog": {
+        "display_name": "对话框",
+        "description": "对话框是显示在应用其余部分上方的模态窗口。",
+        "examples": {
+          "basic": "对话框示例"
+        },
+        "edit_profile_title": "编辑资料",
+        "edit_profile_description": "在这里更改您的个人资料。完成后，请点击保存。",
+        "name_label": "姓名",
+        "username_label": "用户名",
+        "hello": "你好",
+        "material_dialog_content": "这是Material对话框",
+        "cupertino_dialog_content": "这是Cupertino对话框",
+        "alert_title": "提醒标题",
+        "click_here": "点击这里",
+        "ok": "确定",
+        "open_material_dialog": "打开Material对话框",
+        "open_cupertino_dialog": "打开Cupertino对话框",
+        "open_coui_dialog": "打开COUI对话框"
+      },
+      "divider": {
+        "display_name": "分隔线",
+        "description": "用于视觉上分隔内容的线。",
+        "examples": {
+          "basic": "分隔线示例"
+        },
+        "item_1": "项目 1",
+        "item_2": "项目 2",
+        "item_3": "项目 3",
+        "divider": "分隔线"
+      },
+      "dot_indicator": {
+        "display_name": "点指示器",
+        "description": "显示当前位置的指示器，采用点的形式。",
+        "examples": {
+          "basic": "点指示器示例"
+        }
+      },
+      "drawer": {
+        "display_name": "抽屉",
+        "description": "从屏幕边缘滑出的面板。",
+        "examples": {
+          "basic": "抽屉示例"
+        },
+        "open_drawer": "打开抽屉",
+        "close_drawer": "关闭抽屉",
+        "open_another_drawer": "打开另一个抽屉",
+        "drawer_at": "抽屉 {count} 在 {position}"
+      },
+      "dropdown_menu": {
+        "display_name": "下拉菜单",
+        "description": "显示可选项列表的菜单。",
+        "examples": {
+          "basic": "下拉菜单示例"
+        }
+      },
+      "expandable_sidebar": {
+        "display_name": "可扩展侧边栏",
+        "description": "可扩展和折叠的侧边栏。",
+        "examples": {
+          "basic": "可扩展侧边栏示例"
+        }
+      },
+      "form": {
+        "display_name": "表单",
+        "description": "用于轻松创建表单验证的助手小部件。",
+        "examples": {
+          "table_layout": "表单示例 (表格布局)",
+          "column_layout": "表单示例 (列布局)",
+          "validation_mode": "验证模式示例"
+        },
+        "username_label": "用户名",
+        "username_hint": "将公开显示的名称",
+        "password_label": "密码",
+        "confirm_password_label": "确认密码",
+        "passwords_do_not_match": "密码不匹配",
+        "agree_terms": "我同意条款",
+        "must_agree_terms": "您必须同意条款",
+        "form_values_title": "表单值",
+        "register": "注册",
+        "username_already_taken": "用户名已被使用",
+        "email": "电子邮件",
+        "username_display": "用户名: {value}",
+        "password_display": "密码: {value}",
+        "confirm_password_display": "确认密码: {value}",
+        "agree_display": "同意: {value}",
+        "json_display": "JSON: {value}",
+        "submitted_value_display": "提交的值: {value}",
+        "login": "登录",
+        "sign_up": "注册",
+        "dont_have_account": "没有账户吗？",
+        "already_have_account": "已经有账户吗？"
+      },
+      "formatted_input": {
+        "display_name": "格式化输入",
+        "description": "根据特定格式输入的文本字段。",
+        "examples": {
+          "basic": "格式化输入示例"
+        }
+      },
+      "hover_card": {
+        "display_name": "悬停卡片",
+        "description": "悬停时显示的卡片。",
+        "examples": {
+          "basic": "悬停卡片示例"
+        },
+        "flutter_handle": "@flutter",
+        "flutter_username": "Flutter",
+        "flutter_description": "Flutter SDK 提供了一个工具，可以在单一代码库中构建美观的移动、Web 和桌面应用。"
+      },
+      "input": {
+        "display_name": "输入",
+        "description": "文本输入字段。",
+        "examples": {
+          "basic": "输入示例"
+        },
+        "enter_name": "请输入姓名",
+        "enter_username": "请输入用户名",
+        "username_already_taken": "用户名已被使用",
+        "hello_world": "你好，世界！",
+        "search_something": "搜索一些东西...",
+        "email": "电子邮件",
+        "password": "输入您的密码",
+        "username_hint": "这用于您的用户名"
+      },
+      "input_otp": {
+        "display_name": "OTP 输入",
+        "description": "用于输入一次性密码的字段。",
+        "examples": {
+          "basic": "OTP 输入示例"
+        }
+      },
+      "item_picker": {
+        "display_name": "项选择器",
+        "description": "用于从列表中选择项的组件。",
+        "examples": {
+          "basic": "项选择器示例"
+        }
+      },
+      "keyboard_display": {
+        "display_name": "键盘显示",
+        "description": "显示键盘快捷键的组件。",
+        "examples": {
+          "basic": "键盘显示示例"
+        }
+      },
+      "linear_progress": {
+        "display_name": "线性进度",
+        "description": "线性进度指示器。",
+        "examples": {
+          "basic": "线性进度示例"
+        },
+        "increase": "增加",
+        "decrease": "减少"
+      },
+      "material": {
+        "display_name": "Material/Cupertino",
+        "description": "如何使用Flutter的基本Material和Cupertino小部件。",
+        "examples": {
+          "basic": "Material/Cupertino 示例"
+        },
+        "my_material_app": "我的材料应用",
+        "my_cupertino_app": "我的Cupertino应用",
+        "you_pushed_button": "您已按下按钮 {count} 次",
+        "open_material_dialog": "打开Material对话框",
+        "open_cupertino_dialog": "打开Cupertino对话框",
+        "open_coui_dialog": "打开COUI对话框"
+      },
+      "menubar": {
+        "display_name": "菜单栏",
+        "description": "水平菜单栏。",
+        "examples": {
+          "basic": "菜单栏示例"
+        },
+        "file": "文件",
+        "edit": "编辑",
+        "new_tab": "新标签",
+        "new_window": "新窗口",
+        "new_incognito_window": "新隐身窗口",
+        "email_link": "电子邮件链接",
+        "messages": "消息",
+        "notes": "备注",
+        "share": "分享",
+        "print": "打印",
+        "save_and_exit": "保存并退出",
+        "discard_and_exit": "放弃并退出",
+        "exit": "退出",
+        "undo": "撤消",
+        "redo": "重做"
+      },
+      "multiselect": {
+        "display_name": "多选",
+        "description": "允许选择多个项目的组件。",
+        "examples": {
+          "basic": "多选示例"
+        }
+      },
+      "navigation_bar": {
+        "display_name": "导航栏",
+        "description": "底部导航栏。",
+        "examples": {
+          "basic": "导航栏示例"
+        }
+      },
+      "navigation_menu": {
+        "display_name": "导航菜单",
+        "description": "导航菜单组件。",
+        "examples": {
+          "basic": "导航菜单示例"
+        }
+      },
+      "navigation_rail": {
+        "display_name": "导航轨道",
+        "description": "侧边导航轨道。",
+        "examples": {
+          "basic": "导航轨道示例"
+        }
+      },
+      "navigation_sidebar": {
+        "display_name": "导航侧边栏",
+        "description": "导航侧边栏组件。",
+        "examples": {
+          "basic": "导航侧边栏示例"
+        }
+      },
+      "number_input": {
+        "display_name": "数字输入",
+        "description": "用于输入数字的字段。",
+        "examples": {
+          "basic": "数字输入示例"
+        },
+        "value": "值: {value}"
+      },
+      "number_ticker": {
+        "display_name": "数字滴答器",
+        "description": "当数字更改时显示动画。",
+        "examples": {
+          "basic": "数字滴答器示例"
+        }
+      },
+      "overflow_marquee": {
+        "display_name": "溢出马基",
+        "description": "当文本溢出时，自动滚动。",
+        "examples": {
+          "basic": "溢出马基示例"
+        }
+      },
+      "pagination": {
+        "display_name": "分页",
+        "description": "用于浏览页面的组件。",
+        "examples": {
+          "basic": "分页示例"
+        }
+      },
+      "phone_input": {
+        "display_name": "电话输入",
+        "description": "用于输入电话号码的字段。",
+        "examples": {
+          "basic": "电话输入示例"
+        }
+      },
+      "popover": {
+        "display_name": "弹出框",
+        "description": "显示在元素上方的弹出窗口。",
+        "examples": {
+          "basic": "弹出框示例"
+        },
+        "dimensions": "尺寸",
+        "set_dimensions": "设置层的尺寸",
+        "width": "宽度",
+        "max_width": "最大宽度",
+        "height": "高度",
+        "max_height": "最大高度",
+        "open_popover": "打开弹出框",
+        "submit": "提交"
+      },
+      "progress": {
+        "display_name": "进度",
+        "description": "显示进度状态。",
+        "examples": {
+          "basic": "进度示例"
+        }
+      },
+      "radio_card": {
+        "display_name": "单选卡片",
+        "description": "以卡片形式呈现的单选按钮。",
+        "examples": {
+          "basic": "单选卡片示例"
+        }
+      },
+      "radio_group": {
+        "display_name": "单选组",
+        "description": "单选按钮组。",
+        "examples": {
+          "basic": "单选组示例"
+        },
+        "option_1": "选项 1",
+        "option_2": "选项 2",
+        "option_3": "选项 3",
+        "selected": "已选择"
+      },
+      "refresh_trigger": {
+        "display_name": "刷新触发器",
+        "description": "提供下拉刷新功能。",
+        "examples": {
+          "basic": "刷新触发器示例"
+        },
+        "pull_me": "请下拉",
+        "refresh": "刷新"
+      },
+      "repeated_animation_builder": {
+        "display_name": "重复动画构建器",
+        "description": "这是一个重复动画的构建器。",
+        "examples": {
+          "basic": "重复动画构建器示例"
+        }
+      },
+      "resizable": {
+        "display_name": "可调整大小",
+        "description": "可以调整大小的容器。",
+        "examples": {
+          "basic": "可调整大小示例"
+        }
+      },
+      "scaffold": {
+        "display_name": "脚手架",
+        "description": "脚手架是页面的顶级容器。",
+        "examples": {
+          "basic": "脚手架示例"
+        }
+      },
+      "select": {
+        "display_name": "选择",
+        "description": "从选项列表中选择项目。",
+        "examples": {
+          "basic": "选择示例"
+        },
+        "placeholder": "选择水果",
+        "search_fruit": "搜索水果",
+        "no_fruit_found": "找不到水果",
+        "apple": "苹果",
+        "banana": "香蕉",
+        "cherry": "樱桃",
+        "lemon": "柠檬",
+        "tomato": "西红柿",
+        "red_apple": "红苹果",
+        "green_apple": "绿苹果",
+        "yellow_banana": "黄香蕉",
+        "brown_banana": "棕香蕉",
+        "yellow_lemon": "黄柠檬",
+        "green_lemon": "绿柠檬",
+        "red": "红",
+        "green": "绿",
+        "yellow": "黄",
+        "brown": "棕"
+      },
+      "sheet": {
+        "display_name": "底单",
+        "description": "从底部滑出的底单。",
+        "examples": {
+          "basic": "底单示例"
+        }
+      },
+      "skeleton": {
+        "display_name": "骨架",
+        "description": "加载时显示的骨架屏。",
+        "examples": {
+          "basic": "骨架示例"
+        }
+      },
+      "slider": {
+        "display_name": "滑块",
+        "description": "允许滑动选择值。",
+        "examples": {
+          "basic": "滑块示例"
+        },
+        "value_single": "值: {value}",
+        "value_range": "值: {start} - {end}"
+      },
+      "sortable": {
+        "display_name": "可排序",
+        "description": "可以通过拖动对项目进行排序。",
+        "examples": {
+          "basic": "可排序示例"
+        }
+      },
+      "star_rating": {
+        "display_name": "星级评定",
+        "description": "可以选择星级评分。",
+        "examples": {
+          "basic": "星级评定示例"
+        }
+      },
+      "stepper": {
+        "display_name": "数字步骤",
+        "description": "显示分步流程。",
+        "examples": {
+          "basic": "数字步骤示例"
+        },
+        "step_1": "第一步",
+        "step_2": "第二步",
+        "step_3": "第三步",
+        "step_n": "步骤 {n}",
+        "optional_step": "可选步骤",
+        "horizontal": "水平",
+        "vertical": "垂直",
+        "toggle_error": "切换错误",
+        "circle": "圆形",
+        "circle_alt": "圆形替代",
+        "line": "线性",
+        "small": "小",
+        "medium": "中",
+        "large": "大"
+      },
+      "steps": {
+        "display_name": "步骤",
+        "description": "以步骤的形式显示进度。",
+        "examples": {
+          "basic": "步骤示例"
+        }
+      },
+      "swiper": {
+        "display_name": "滑动",
+        "description": "可滑动的组件。",
+        "examples": {
+          "basic": "滑动示例"
+        }
+      },
+      "switch": {
+        "display_name": "开关",
+        "description": "开/关开关。",
+        "examples": {
+          "basic": "开关示例"
+        }
+      },
+      "switcher": {
+        "display_name": "切换器",
+        "description": "可以在多个视图之间切换。",
+        "examples": {
+          "basic": "切换器示例"
+        },
+        "switch_direction": "切换方向",
+        "next_item": "下一个项目"
+      },
+      "tab_list": {
+        "display_name": "标签列表",
+        "description": "标签列表组件。",
+        "examples": {
+          "basic": "标签列表示例"
+        }
+      },
+      "tab_pane": {
+        "display_name": "标签面板",
+        "description": "标签面板组件。",
+        "examples": {
+          "basic": "标签面板示例"
+        }
+      },
+      "table": {
+        "display_name": "表格",
+        "description": "以表格形式显示数据。",
+        "examples": {
+          "basic": "表格示例"
+        },
+        "invoice": "发票",
+        "status": "状态",
+        "method": "方式",
+        "amount": "金额",
+        "total": "总计",
+        "paid": "已支付",
+        "pending": "待处理",
+        "unpaid": "未支付",
+        "credit_card": "信用卡",
+        "paypal": "PayPal",
+        "bank_transfer": "银行转账"
+      },
+      "tabs": {
+        "display_name": "标签",
+        "description": "使用标签组织内容。",
+        "examples": {
+          "basic": "标签示例"
+        },
+        "tab_1": "标签 1",
+        "tab_2": "标签 2",
+        "tab_3": "标签 3",
+        "tab_n": "标签 {n}"
+      },
+      "text_area": {
+        "display_name": "文本区域",
+        "description": "用于输入多行文本的字段。",
+        "examples": {
+          "basic": "文本区域示例"
+        },
+        "hello_world": "你好，世界！"
+      },
+      "time_picker": {
+        "display_name": "时间选择器",
+        "description": "选择时间的组件。",
+        "examples": {
+          "basic": "时间选择器示例"
+        },
+        "select_time": "选择时间"
+      },
+      "timeline": {
+        "display_name": "时间线",
+        "description": "以时间线形式显示事件。",
+        "examples": {
+          "basic": "时间线示例"
+        }
+      },
+      "timeline_animation": {
+        "display_name": "时间线动画",
+        "description": "基于时间线的动画。",
+        "examples": {
+          "basic": "时间线动画示例"
+        }
+      },
+      "toast": {
+        "display_name": "吐司",
+        "description": "用于显示简短消息的提示。",
+        "examples": {
+          "basic": "吐司示例"
+        },
+        "event_created": "事件已创建",
+        "event_date": "2024年7月7日星期日中午12:00",
+        "show_bottom_left": "显示左下角吐司",
+        "show_bottom_right": "显示右下角吐司",
+        "show_top_left": "显示左上角吐司",
+        "show_top_right": "显示右上角吐司",
+        "show_bottom_center": "显示底部中心吐司",
+        "show_top_center": "显示顶部中心吐司"
+      },
+      "toggle": {
+        "display_name": "切换",
+        "description": "可以在选项之间切换。",
+        "examples": {
+          "basic": "切换示例"
+        },
+        "toggle": "切换"
+      },
+      "tooltip": {
+        "display_name": "工具提示",
+        "description": "显示关于元素的附加信息。",
+        "examples": {
+          "basic": "工具提示示例"
+        },
+        "this_is_tooltip": "这是工具提示。",
+        "hover_over_me": "悬停在我身上"
+      },
+      "tracker": {
+        "display_name": "跟踪器",
+        "description": "用于跟踪进度。",
+        "examples": {
+          "basic": "跟踪器示例"
+        },
+        "fine": "良好",
+        "warning": "警告",
+        "critical": "危急",
+        "unknown": "未知",
+        "tracker_fine": "跟踪器良好",
+        "tracker_warning": "跟踪器警告",
+        "tracker_critical": "跟踪器危急",
+        "tracker_unknown": "跟踪器未知"
+      },
+      "tree": {
+        "display_name": "树",
+        "description": "以树形结构显示层次数据。",
+        "examples": {
+          "basic": "树示例"
+        }
+      },
+      "window": {
+        "display_name": "窗口",
+        "description": "桌面风格的窗口。",
+        "examples": {
+          "basic": "窗口示例"
+        },
+        "window_1": "窗口 1",
+        "window_2": "窗口 2",
+        "desktop": "桌面",
+        "add_window": "添加窗口"
+      }
+    }
+  }
+}

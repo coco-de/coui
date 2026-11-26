@@ -1,0 +1,81 @@
+{
+  "key": "mockup-foldable-default-dark-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "mockup-foldable-default-dark-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "shadowBlurUnit": "css-radius",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 87,
+        "g": 87,
+        "b": 87,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 70,
+        "g": 70,
+        "b": 70,
+        "a": 1.0
+      },
+      "borderWidthPx": 1.0,
+      "borderRadiusPx": [
+        28.0,
+        28.0,
+        28.0,
+        28.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [
+        {
+          "offsetX": 0.0,
+          "offsetY": 14.0,
+          "blur": 44.8,
+          "spread": -5.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.078
+          }
+        },
+        {
+          "offsetX": 0.0,
+          "offsetY": 6.0,
+          "blur": 16.0,
+          "spread": -3.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.051
+          }
+        }
+      ],
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 386.26
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

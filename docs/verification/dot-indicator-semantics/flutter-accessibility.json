@@ -1,0 +1,35 @@
+[
+  {
+    "role": "button",
+    "name": "Go to item 1"
+  },
+  {
+    "role": "button",
+    "name": "Go to item 2"
+  },
+  {
+    "role": "button",
+    "name": "Go to item 3"
+  },
+  {
+    "role": "StaticText",
+    "name": "Item 2 of 3"
+  },
+  {
+    "role": "button",
+    "name": "Go to item 1"
+  },
+  {
+    "role": "button",
+    "name": "Go to item 2"
+  },
+  {
+    "role": "button",
+    "name": "Go to item 3"
+  },
+  {
+    "role": "InlineTextBox",
+    "name": "Item 2 of 3"
+  }
+]
+

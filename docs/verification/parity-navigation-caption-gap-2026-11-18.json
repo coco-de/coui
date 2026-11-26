@@ -1,0 +1,368 @@
+{
+  "issue": 6412,
+  "pr": 6414,
+  "status": "local validation complete; GitHub merge gate pending",
+  "productAndTestsCommit": "14726a72b8a85e686c74b4772b24a899cdc39412",
+  "productAndTestsTree": "ecfdc478580fe83d9511d63e26a744a09e882067",
+  "base": "e2d2dbf21ab7e6ae3c05389f11b271dc7ef39889",
+  "workerCommit": "df3128153a0113bb6f20fe83f3f6af1b57792e7b",
+  "source3ByteEqual": true,
+  "productDifference": "Omit the redundant compact-parent inline gap0 declaration; preserve the existing caption-owned labelSpacing. CSS initial normal has used gap0 on this flex. Noncompact declaration unchanged.",
+  "publicApiCoreNativeDefaultsChanged": false,
+  "privateInlineRepresentationChanged": true,
+  "workerEvidenceRoot": "/tmp/weever-6412-caption-gap-product-20261118.ltqp0zoh",
+  "rootEvidenceRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6412-integration-20261118.7qq11s5l",
+  "staticProductCases": {
+    "baseline": "e2d2dbf21ab7e6ae3c05389f11b271dc7ef39889",
+    "sourceDifference": "Only committed resolver line",
+    "renderer": "Actual same public optimized O2 client, separate frozen before/after configs; no tmp DOM mutation",
+    "engine": "157.0.8103.79",
+    "cases": 32,
+    "pngByteExact": 32,
+    "rootCssGap": "37px",
+    "ancestorGap": "39px",
+    "classes": "caller-nav",
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "positions": [
+      "bottom",
+      "top",
+      "start",
+      "end"
+    ],
+    "labelSpacing": [
+      4,
+      11.25
+    ],
+    "folded": [
+      false,
+      true
+    ],
+    "rawSource": "records.json",
+    "errors": []
+  },
+  "onScroll": {
+    "beforeAfterThemePairs": 2,
+    "states": [
+      "open",
+      "folded",
+      "returned"
+    ],
+    "nodeIdentityPreserved": true,
+    "callbacksSame": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "rawGeometryAndRecordedRelevantStylesSameExceptIntendedGapRepresentation": true,
+    "source": "scroll-stable-records.json",
+    "pixelLimits": "dynamic-raw-deltas.json",
+    "sameSourceControl": "same-source-repeat-deltas.json",
+    "errors": []
+  },
+  "tests": {
+    "uniqueActualChrome": 2,
+    "existingWeb": 26,
+    "existingNative": 28,
+    "totalUnique": 56,
+    "webActual": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "test",
+        "tool/parity/test/web/navigation_caption_gap_ownership_test.dart",
+        "--reporter=expanded"
+      ],
+      "cwd": "/Users/minhyeok/orca/workspaces/coui/weever",
+      "exit": 0,
+      "seconds": 24.21786875
+    },
+    "webUnit": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "test",
+        "test/components/navigation/navigation_bar_compact_test.dart",
+        "--reporter=expanded"
+      ],
+      "cwd": "/Users/minhyeok/orca/workspaces/coui/weever/packages/coui_web",
+      "exit": 0,
+      "seconds": 3.4878155
+    },
+    "native": {
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "test/components/navigation/navigation_bar_compact_test.dart",
+        "--reporter=expanded"
+      ],
+      "cwd": "/Users/minhyeok/orca/workspaces/coui/weever/packages/coui_flutter",
+      "exit": 0,
+      "seconds": 4.700893874999999
+    }
+  },
+  "fullOfficialSdkContracts": {
+    "args": [
+      "bash",
+      "scripts/guards/resolver/verify_contracts.sh"
+    ],
+    "exit": 0,
+    "seconds": 91.069562083,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/navigation/navigation_bar/navigation_bar_style.dart": "cac87bbf3a7465bc2c159cea599edc1a19325b72eab031bd901c55a31e1a4e70",
+      "packages/coui_web/test/components/navigation/navigation_bar_compact_test.dart": "7fefffa3ed19dc0b6e1f13a7a9a1212f456ac02f517219a61b0cafcaff0ba79f",
+      "tool/parity/test/web/navigation_caption_gap_ownership_test.dart": "ccd758023e85ea7dca6a8502fc48e1eaf7db2e0127550c2a51a4a643579bbdd0"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/navigation/navigation_bar/navigation_bar_style.dart": "cac87bbf3a7465bc2c159cea599edc1a19325b72eab031bd901c55a31e1a4e70",
+      "packages/coui_web/test/components/navigation/navigation_bar_compact_test.dart": "7fefffa3ed19dc0b6e1f13a7a9a1212f456ac02f517219a61b0cafcaff0ba79f",
+      "tool/parity/test/web/navigation_caption_gap_ownership_test.dart": "ccd758023e85ea7dca6a8502fc48e1eaf7db2e0127550c2a51a4a643579bbdd0"
+    },
+    "unchanged": true
+  },
+  "analyze": {
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "analyze",
+      "--fatal-infos",
+      "packages/coui_web/lib/src/components/navigation/navigation_bar/navigation_bar_style.dart",
+      "packages/coui_web/test/components/navigation/navigation_bar_compact_test.dart",
+      "tool/parity/test/web/navigation_caption_gap_ownership_test.dart"
+    ],
+    "exit": 0,
+    "seconds": 32.377803583,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/navigation/navigation_bar/navigation_bar_style.dart": "cac87bbf3a7465bc2c159cea599edc1a19325b72eab031bd901c55a31e1a4e70",
+      "packages/coui_web/test/components/navigation/navigation_bar_compact_test.dart": "7fefffa3ed19dc0b6e1f13a7a9a1212f456ac02f517219a61b0cafcaff0ba79f",
+      "tool/parity/test/web/navigation_caption_gap_ownership_test.dart": "ccd758023e85ea7dca6a8502fc48e1eaf7db2e0127550c2a51a4a643579bbdd0"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/navigation/navigation_bar/navigation_bar_style.dart": "cac87bbf3a7465bc2c159cea599edc1a19325b72eab031bd901c55a31e1a4e70",
+      "packages/coui_web/test/components/navigation/navigation_bar_compact_test.dart": "7fefffa3ed19dc0b6e1f13a7a9a1212f456ac02f517219a61b0cafcaff0ba79f",
+      "tool/parity/test/web/navigation_caption_gap_ownership_test.dart": "ccd758023e85ea7dca6a8502fc48e1eaf7db2e0127550c2a51a4a643579bbdd0"
+    },
+    "unchanged": true
+  },
+  "format": {
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "packages/coui_web/lib/src/components/navigation/navigation_bar/navigation_bar_style.dart",
+      "packages/coui_web/test/components/navigation/navigation_bar_compact_test.dart",
+      "tool/parity/test/web/navigation_caption_gap_ownership_test.dart"
+    ],
+    "exit": 0,
+    "seconds": 0.37349458300000005,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/navigation/navigation_bar/navigation_bar_style.dart": "cac87bbf3a7465bc2c159cea599edc1a19325b72eab031bd901c55a31e1a4e70",
+      "packages/coui_web/test/components/navigation/navigation_bar_compact_test.dart": "7fefffa3ed19dc0b6e1f13a7a9a1212f456ac02f517219a61b0cafcaff0ba79f",
+      "tool/parity/test/web/navigation_caption_gap_ownership_test.dart": "ccd758023e85ea7dca6a8502fc48e1eaf7db2e0127550c2a51a4a643579bbdd0"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/navigation/navigation_bar/navigation_bar_style.dart": "cac87bbf3a7465bc2c159cea599edc1a19325b72eab031bd901c55a31e1a4e70",
+      "packages/coui_web/test/components/navigation/navigation_bar_compact_test.dart": "7fefffa3ed19dc0b6e1f13a7a9a1212f456ac02f517219a61b0cafcaff0ba79f",
+      "tool/parity/test/web/navigation_caption_gap_ownership_test.dart": "ccd758023e85ea7dca6a8502fc48e1eaf7db2e0127550c2a51a4a643579bbdd0"
+    },
+    "unchanged": true
+  },
+  "tokenAndChromeGuards": [
+    {
+      "name": "token-1",
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "1"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "token-2",
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "2"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "token-3",
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "3"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "token-4",
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "4"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "token-5",
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "5"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "token-6",
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "6"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "token-7",
+      "args": [
+        "bash",
+        "scripts/guards/tokens/check_design_tokens.sh",
+        "--phase",
+        "7"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "chrome",
+      "args": [
+        "bash",
+        "scripts/guards/structure/check_chrome_passthrough.sh"
+      ],
+      "exit": 0
+    }
+  ],
+  "boundedMatrix": {
+    "beforeActualSource": "e2d2dbf21ab7e6ae3c05389f11b271dc7ef39889",
+    "afterActualSource": "14726a72b8a85e686c74b4772b24a899cdc39412",
+    "keys": 50,
+    "webPngCount": 50,
+    "webPngByteEqual": 50,
+    "webPngRgbaEqual": 50,
+    "webJsonByteEqual": 40,
+    "pngDeltas": []
+  },
+  "crossPlatformReports": {
+    "pixel": {
+      "pass": 28,
+      "fail": 22,
+      "infra": 0,
+      "skipped": 0
+    },
+    "property": {
+      "pass": 8,
+      "fail": 42,
+      "infra": 0,
+      "skipped": 0
+    }
+  },
+  "reportExits": {
+    "pixel": 1,
+    "property": 1
+  },
+  "docs": {
+    "head": "14726a72b8a85e686c74b4772b24a899cdc39412",
+    "buildExit": 0,
+    "uniqueRoutes": 359,
+    "runtimePassed": true,
+    "runtimeExit": 0,
+    "records": 30,
+    "byComponent": {
+      "navigation-bar": 12,
+      "navigation-bar-item": 10,
+      "scaffold": 8
+    },
+    "runtimeErrors": [],
+    "actionFailures": [],
+    "browserClosed": true
+  },
+  "apiWorker": {
+    "allDeclarationsAndResolvedSame": true,
+    "exportClosureSame": true,
+    "files": 1296,
+    "log": "api-contract.json"
+  },
+  "evidence": {
+    "assets": [
+      {
+        "name": "pr6414-navigation-flutter-light.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6412-integration-20261118.7qq11s5l/matrix/captured/navigation-bar-default-light-defaultStyle.flutter.png",
+        "sha256": "709eb2e9bad8f91efa97d58add558dcf8c0ccaacc69e52de72a47a9949ee40f3",
+        "assetId": 762393030,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6414-navigation-flutter-light.png"
+      },
+      {
+        "name": "pr6414-navigation-web-light.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6412-integration-20261118.7qq11s5l/matrix/captured/navigation-bar-default-light-defaultStyle.web.png",
+        "sha256": "974b4872abb955298c572ba5f8dcb8281a9446357278d6380050ce3ae0282e51",
+        "assetId": 762393177,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6414-navigation-web-light.png"
+      },
+      {
+        "name": "pr6414-navigation-flutter-dark.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6412-integration-20261118.7qq11s5l/matrix/captured/navigation-bar-default-dark-defaultStyle.flutter.png",
+        "sha256": "8861f0e78057f93f4835a619b465c6d1289af74c18a6b88a1d0b13f88b64985e",
+        "assetId": 762393250,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6414-navigation-flutter-dark.png"
+      },
+      {
+        "name": "pr6414-navigation-web-dark.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6412-integration-20261118.7qq11s5l/matrix/captured/navigation-bar-default-dark-defaultStyle.web.png",
+        "sha256": "95b96ef8ce74910b1ffa8c1f2fc70776afe5a6756afc5a3b6f82ba57d861d1f1",
+        "assetId": 762393312,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6414-navigation-web-dark.png"
+      }
+    ],
+    "privateUnpublishedDraftReleaseId": 431249100,
+    "ttlDays": 3,
+    "rawPngEdited": false
+  },
+  "cleanup": {
+    "trackedFiles": 22482,
+    "hashDeltas": [],
+    "statusBeforeDocs": "",
+    "ownedDocsBrowserClosed": true,
+    "runnersAwaited": true,
+    "serverReapedExit": 143,
+    "portsClosed": {
+      "54975": true,
+      "55610": true
+    }
+  },
+  "limits": [
+    "No full matrix or optimized docs build executed in this narrow worker phase; Root integration owns those checks.",
+    "Dynamic whole-RGBA equivalence is not claimed. Same-source actual repetition reproduces pixel variability while raw measured rects and recorded spacing/opacity/grid styles match. Causes beyond this bounded comparison remain unclassified.",
+    "Initial full contracts-before/after script diagnostics ran ambient Dart3.13.7. They are preserved separately and are not represented as officialSDK3.50 analysis proof. Final changed-file analysis and exact global check11 run use official3.50/Dart3.14 scope; Root will run full official integration guard.",
+    "Prior /tmp/weever-6412-compact-gap-readonly-20261118.kfnn9k1z was 34c static SSR with temporary DOM removal. It is not relabeled as this e2d actual product execution.",
+    "Existing upstream #6410 item max width and #6411 namespace are part of the baseline, not modifications in this patch.",
+    "Root first combined Web run had a unit fixture cwd load error; corrected package-cwd Web26 and standalone Chrome2 runs both exited0. The load error is not a product negative.",
+    "Official full guard uses SDK3.50 and exits0; seven pre-existing non-enforced warnings remain.",
+    "Native50/Web50 are fresh after captures; only Web has an actual frozen before e2 counterpart50.",
+    "No full manual CI, deployment, Figma generation, designer approval or whole parity completion claim."
+  ]
+}

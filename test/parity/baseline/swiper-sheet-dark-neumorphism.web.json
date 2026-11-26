@@ -1,0 +1,63 @@
+{
+  "key": "swiper-sheet-dark-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "밀어 보세요!\n                          \n                            \n                              #co-join-19:where(.co-join-rule-ssr-ou) > div > * { border-radius: var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-0) !important; min-height: 100%; }#co-join-19:where(.co-join-rule-ssr-ou) > div:first-of-type > * { border-radius: var(--coui-radius-4) var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-4) !important; }#co-join-19:where(.co-join-rule-ssr-ou) > div:last-of-type > * { border-radius: var(--coui-radius-0) var(--coui-radius-4) var(--coui-radius-4) var(--coui-radius-0) !important; }#co-join-19:where(.co-join-rule-ssr-ou) > div:focus-within { overflow: visible !important; position: relative; z-index: 1; }\n                            \n                            \n                              왼쪽\n                            \n                            \n                              \n                                \n                                  #co-button-ssr-ow:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-ow:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                                \n                                오른쪽\n                              \n                            \n                            \n                              \n                                \n                                  #co-button-ssr-ox:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-ox:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                                \n                                위\n                              \n                            \n                            \n                              \n                                \n                                  #co-button-ssr-oy:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-oy:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                                \n                                아래\n                              \n                            \n                          \n                          스와이퍼 열기",
+    "layout": {
+      "width": 800,
+      "height": 256,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 256
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "16px",
+      "borderTopRightRadius": "16px",
+      "borderBottomRightRadius": "16px",
+      "borderBottomLeftRadius": "16px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 256
+    }
+  }
+}

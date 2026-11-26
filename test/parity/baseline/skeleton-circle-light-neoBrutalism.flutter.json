@@ -1,0 +1,46 @@
+{
+  "key": "skeleton-circle-light-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "skeleton-circle-light-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSizePx": null,
+      "lineHeightPx": null,
+      "letterSpacingPx": null,
+      "color": null,
+      "backgroundColor": {
+        "r": 228,
+        "g": 230,
+        "b": 231,
+        "a": 0.992
+      },
+      "borderColor": {
+        "r": 31,
+        "g": 32,
+        "b": 34,
+        "a": 1.0
+      },
+      "borderWidthPx": 4.0,
+      "borderRadiusPx": [
+        9999.0,
+        9999.0,
+        9999.0,
+        9999.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 48.0,
+      "heightPx": 48.0
+    }
+  },
+  "settled": false,
+  "captureNotes": [
+    "pumpAndSettle timed out (likely an indeterminate/looping animation, e.g. skeleton/loading) — captured at a fixed, unsettled phase instead of the usual integer-width two-pass capture."
+  ]
+}

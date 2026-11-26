@@ -1,0 +1,69 @@
+{
+  "key": "toast-no-icon-dark-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "저장했어요\n                \n                변경 사항을 저장했어요.",
+    "layout": {
+      "width": 800,
+      "height": 70,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 18,
+          "y": 14,
+          "width": 734,
+          "height": 42
+        },
+        {
+          "x": 752,
+          "y": 0,
+          "width": 40,
+          "height": 70
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(244, 245, 246)",
+      "borderTopColor": "rgb(244, 245, 246)",
+      "borderRightColor": "rgb(244, 245, 246)",
+      "borderBottomColor": "rgb(244, 245, 246)",
+      "borderLeftColor": "rgb(244, 245, 246)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "24px",
+      "borderTopRightRadius": "24px",
+      "borderBottomRightRadius": "24px",
+      "borderBottomLeftRadius": "24px",
+      "paddingTop": "14px",
+      "paddingRight": "48px",
+      "paddingBottom": "14px",
+      "paddingLeft": "18px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "color(srgb 0 0 0 / 0.2) 0px 2px 6.4px -1px, color(srgb 0 0 0 / 0.12) 0px 1px 3.2px 0px, color(srgb 0.705882 0.709804 0.713726 / 0.55) 0px 2px 6px 0px inset",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 70
+    }
+  }
+}

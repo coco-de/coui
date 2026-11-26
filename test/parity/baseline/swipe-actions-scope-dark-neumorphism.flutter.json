@@ -1,0 +1,44 @@
+{
+  "key": "swipe-actions-scope-dark-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "swipe-actions-scope-dark-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 15.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.15,
+      "color": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 149,
+        "g": 150,
+        "b": 152,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 87.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

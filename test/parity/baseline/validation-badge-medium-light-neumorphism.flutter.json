@@ -1,0 +1,49 @@
+{
+  "key": "validation-badge-medium-light-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "validation-badge-medium-light-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 18.2,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 0,
+        "g": 110,
+        "b": 45,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 233,
+        "g": 248,
+        "b": 235,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ],
+      "paddingPx": [
+        0.0,
+        10.0,
+        0.0,
+        10.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 118.42,
+      "heightPx": 28.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

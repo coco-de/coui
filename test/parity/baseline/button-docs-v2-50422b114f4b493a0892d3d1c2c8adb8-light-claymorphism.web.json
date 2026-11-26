@@ -1,0 +1,102 @@
+{
+  "key": "button-docs-v2-50422b114f4b493a0892d3d1c2c8adb8-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Card",
+      "attributes": {
+        "demo": "button/related-fab",
+        "title": "FAB"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "button/related-fab",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/button.md:Cards[87]:Card[1]"
+      ],
+      "anatomyParts": [],
+      "cardBody": [
+        {
+          "tag": "p",
+          "attributes": {},
+          "children": [
+            {
+              "text": "화면의 대표 행동을 떠 있는 버튼으로 둡니다.",
+              "raw": false
+            }
+          ]
+        }
+      ],
+      "cardIndex": 0,
+      "captureUnit": "whole-card",
+      "nativeCardAttributes": {
+        "demo": "button/related-fab",
+        "title": "FAB"
+      },
+      "nativeCardBody": "\n화면의 대표 행동을 떠 있는 버튼으로 둡니다.\n"
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "FAB\n                    화면의 대표 행동을 떠 있는 버튼으로 둡니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 222.390625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "16px",
+      "lineHeight": "22px",
+      "letterSpacing": "-0.16px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(237, 238, 240)",
+      "borderRightColor": "rgb(237, 238, 240)",
+      "borderBottomColor": "rgb(237, 238, 240)",
+      "borderLeftColor": "rgb(237, 238, 240)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "24px",
+      "borderTopRightRadius": "24px",
+      "borderBottomRightRadius": "24px",
+      "borderBottomLeftRadius": "24px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 222.390625
+    }
+  }
+}

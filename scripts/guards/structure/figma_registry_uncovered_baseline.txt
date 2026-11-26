@@ -1,0 +1,7 @@
+# coui_core components with no Figma REGISTRY entry yet.
+# Ratchet: net-new entries fail CI; this list may only shrink.
+CategoryBreakdown
+IndexedSwitcher
+MockupFoldable
+PageTransition
+TrendChart

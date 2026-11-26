@@ -1,0 +1,81 @@
+{
+  "key": "command-empty-dark-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#coui-command-28 .co-command-row:hover > .co-command-wash{background-color:rgb(var(--coui-on-surface) / 3%);}#coui-command-28 .co-command-row:active > .co-command-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n              \n              \n                \n                  \n                \n                \n                \n                  \n                    \n                      \n                        \n                      \n                    \n                  \n                \n              \n              \n              \n                \n                  \n                    No results found.\n                    \n                    Try another word, or widen the scope to All.",
+    "layout": {
+      "width": 800,
+      "height": 283,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "width": 798,
+          "height": 40
+        },
+        {
+          "x": 1,
+          "y": 41,
+          "width": 798,
+          "height": 1
+        },
+        {
+          "x": 1,
+          "y": 42,
+          "width": 798,
+          "height": 240
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(64, 65, 67)",
+      "borderRightColor": "rgb(64, 65, 67)",
+      "borderBottomColor": "rgb(64, 65, 67)",
+      "borderLeftColor": "rgb(64, 65, 67)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "20px",
+      "borderTopRightRadius": "20px",
+      "borderBottomRightRadius": "20px",
+      "borderBottomLeftRadius": "20px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 283
+    }
+  }
+}

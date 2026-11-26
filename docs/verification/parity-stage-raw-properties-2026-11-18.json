@@ -1,0 +1,373 @@
+{
+  "issue": 6429,
+  "scope": "Web capture producer retains its already collected full stage raw CSS map; no render/crop/PNG or comparison behavior code changed.",
+  "capturedProductSource": {
+    "head": "4211557e140b5aa8904602a9c019b65cb6bfd41e",
+    "tree": "969b2e1bccf2936a89bd0c010097b964bd5933bc",
+    "main": "e8ef25314a456f9192f9ae9833d0ebc625f89d41",
+    "ownCheckpoint": "41ded85b98c262ab17619f42c5c99186d7ab1bdf",
+    "status": "",
+    "utc": "2026-11-18T13:39:24.245088+00:00",
+    "ownChangedPaths": [
+      "tool/parity/src/web/web_capture_backend.dart",
+      "tool/parity/test/web/capture_state_test.dart"
+    ]
+  },
+  "implementationCheckpoint": "41ded85b98c262ab17619f42c5c99186d7ab1bdf",
+  "integratedMain": "e8ef25314a456f9192f9ae9833d0ebc625f89d41",
+  "domain": {
+    "all": 3814,
+    "default": 816,
+    "manifestDescriptorsExactTo6427": true,
+    "MatrixEntryFieldCount": 7,
+    "stageDeclaredFields": [
+      "heightPx",
+      "widthPx"
+    ],
+    "actualComparatorFieldCount": 17
+  },
+  "captureProvenance": {
+    "web": "Fresh all816 from4211557e after upstream Frame6430 integration; first attempt816/816, no retry;416438ms capture loop.",
+    "native": "Reused actual309 Native816. Conservative workspace import/export/part closure1990 files byte/blob exact; existing232 package tuples/versions and lock exact. No freshNative execution claim.",
+    "rawFiles": 3288,
+    "json": 1632,
+    "png": 1656,
+    "missing": 0
+  },
+  "results": {
+    "property": {
+      "matrixKeyCounts": {
+        "pass": 402,
+        "fail": 368,
+        "infra": 0,
+        "skipped": 46
+      },
+      "topLevelRolePassedCount": 402,
+      "infraSkippedKeys": [],
+      "structuralSkippedKeys": [
+        "command-dialog-light-defaultStyle/root",
+        "command-dialog-dark-defaultStyle/root",
+        "star-rating-default-light-defaultStyle/root",
+        "star-rating-default-dark-defaultStyle/root",
+        "drag-overlay-light-defaultStyle/root",
+        "drag-overlay-dark-defaultStyle/root",
+        "sortable-default-light-defaultStyle/root",
+        "sortable-default-dark-defaultStyle/root",
+        "badge-dot-light-defaultStyle/root",
+        "badge-dot-dark-defaultStyle/root",
+        "progress-tone-light-defaultStyle/root",
+        "progress-tone-dark-defaultStyle/root",
+        "diff-default-light-defaultStyle/root",
+        "diff-default-dark-defaultStyle/root",
+        "dot-indicator-default-light-defaultStyle/root",
+        "dot-indicator-default-dark-defaultStyle/root",
+        "dot-indicator-vertical-light-defaultStyle/root",
+        "dot-indicator-vertical-dark-defaultStyle/root",
+        "dot-indicator-passive-light-defaultStyle/root",
+        "dot-indicator-passive-dark-defaultStyle/root",
+        "skeleton-default-light-defaultStyle/root",
+        "skeleton-default-dark-defaultStyle/root",
+        "skeleton-text-light-defaultStyle/root",
+        "skeleton-text-dark-defaultStyle/root",
+        "loading-region-default-light-defaultStyle/root",
+        "loading-region-default-dark-defaultStyle/root",
+        "loading-default-light-defaultStyle/root",
+        "loading-default-dark-defaultStyle/root",
+        "loading-dots-light-defaultStyle/root",
+        "loading-dots-dark-defaultStyle/root",
+        "loading-bar-light-defaultStyle/root",
+        "loading-bar-dark-defaultStyle/root",
+        "loading-pulse-light-defaultStyle/root",
+        "loading-pulse-dark-defaultStyle/root",
+        "tracker-default-light-defaultStyle/root",
+        "tracker-default-dark-defaultStyle/root",
+        "gap-sliver-light-defaultStyle/root",
+        "gap-sliver-dark-defaultStyle/root",
+        "dialog-default-light-defaultStyle/root",
+        "dialog-default-dark-defaultStyle/root",
+        "icon-default-light-defaultStyle/root",
+        "icon-default-dark-defaultStyle/root",
+        "icon-search-light-defaultStyle/root",
+        "icon-search-dark-defaultStyle/root",
+        "icon-favorite-light-defaultStyle/root",
+        "icon-favorite-dark-defaultStyle/root"
+      ],
+      "reportExitCode": 1
+    },
+    "pixel": {
+      "matrixKeyCounts": {
+        "pass": 582,
+        "fail": 234,
+        "infra": 0,
+        "skipped": 0
+      },
+      "topLevelRolePassedCount": 593,
+      "infraSkippedKeys": [],
+      "structuralSkippedKeys": [],
+      "reportExitCode": 1
+    }
+  },
+  "changes": {
+    "previousStageInfra": 12,
+    "actualLoadedStageRows": 12,
+    "actualStageFull17Fail": 12,
+    "stageRawMeasuredKeysEach": 31,
+    "currentFullStagePixelClaim": "Pixel signal unchanged; restoring rawMap is not12passes or12CoUI fixes.",
+    "existingRootPropertyDiffsUnchanged": true,
+    "webRootRawPropertyMapsUnchanged": 816,
+    "webPNGsByteExactToPreviousCanonical": 828,
+    "cropBodyBoundsLayoutUnchanged": 12
+  },
+  "validation": {
+    "negativeRegression": "Before producer deletion, new real mockup/phone regression fails with original Web InfraFailure at loader; original log preserved.",
+    "positiveRegression": "Existing capture_state21 real browser tests pass at41ded, includes six stage shapes\u00d7400/800 real captures, loader plus existing body/crop/PNG guards. Root independent six stage tests\u00d7two widths12actual pass at421.",
+    "fatal": "Final421 touched2 files --fatal-infos, diagnostic0",
+    "format": "Final2files0changes",
+    "contracts": "Final421 official full contract guard exit0/78.21seconds; existing7non-enforced warnings retained.",
+    "debug": "Real own backend VM HTTP200\u2192reloadSources success\u2192HTTP200; stage31keys both captures; root/stagePNG hashes exact; owned HTTP/VM/browser/PID closed.",
+    "docsBuild": "No additional full docs359 build: own changes are capture-tool result map retention and test only, imported by no production site/app/Core library; docsCSS/JS/MD/UI/render paths unchanged. No sitebuild is claimed as fresh for6429.",
+    "upstreamFrame": "Integratede8ef/#6430. Default8 independent image/SSRDOM proof is separately archived; finalWeb816fresh covers nested Frame inputs, not inferred from8."
+  },
+  "limitations": [
+    "Native stage remains size-only. ProbeSpec declares2dimension fields but existing report/compare executes17fields. This separate contract/owner limitation is unchanged; load success is not property equality.",
+    "Generic restored Web fullMap uses existing computed style/owner semantics; no new representative chrome or foreign-child selection policy is introduced. #6374 remains a separate root-owner issue.",
+    "All3814 surface-style rows were regenerated, but only default816 were captured/reported; this is not all3814fresh or allcontrol-state coverage.",
+    "Property and pixel report exit1 remain; no normalizer/comparator/threshold/field/filter/skip/baseline/publicAPI/Core/Markdown changes."
+  ],
+  "proofs": [
+    {
+      "name": "source-head.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/source-head.json",
+      "sha256": "25efcd00c7bce17c9323a6c9445299fe7e994ca976dce06536542c43462a7a22"
+    },
+    {
+      "name": "negative-stage-loader-exit.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/negative-stage-loader-exit.json",
+      "sha256": "94b705fa4477d5de35e720a3470bf8e0e45c880d5e109b09f262edbccba6d34e"
+    },
+    {
+      "name": "capture-state-positive-exit.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/capture-state-positive-exit.json",
+      "sha256": "645db0056a17bef44f012910af56abbee04a3bc86a0936611fda88144422bee7"
+    },
+    {
+      "name": "final-analyze-exit.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-analyze-exit.json",
+      "sha256": "65231968815e78ba61eaf4b6bbc8bda88f5fe041d8e914ab280a3fc11f1dfad2"
+    },
+    {
+      "name": "final-format-exit.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-format-exit.json",
+      "sha256": "bc63b31c98b98b98ffa97df0b9c7e88d44de326dfb8c46946b0a2d939e5bb4af"
+    },
+    {
+      "name": "final-contracts-exit.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-contracts-exit.json",
+      "sha256": "d02ebfa1f4c19b1ade98233cd24aa14cb2e2e84158e15e5ad62b80feb7145a4c"
+    },
+    {
+      "name": "final12-capture-exit.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final12-capture-exit.json",
+      "sha256": "bd4354f86fc262c816afe40d46e01313b2d116202cf6d65c25fefb780d51fe4e"
+    },
+    {
+      "name": "stage-retention-observations.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/stage-retention-observations.json",
+      "sha256": "94ff714a9a4b591722b719e27ad256609c060b95b4e395dc12cc1273442d8563"
+    },
+    {
+      "name": "web816-attempt0-exit.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/web816-attempt0-exit.json",
+      "sha256": "6ad1b234ea4e3c1f7274506f1f94686fc3721d164e8ba6c2dd655a0f50835475"
+    },
+    {
+      "name": "web816-raw-attempt0-result.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/web816-raw-attempt0-result.json",
+      "sha256": "ec316646d11350d098f98fd4a5c7b833c7ad59d4492c75d7444d2143941f9604"
+    },
+    {
+      "name": "capture-integrity-final.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/capture-integrity-final.json",
+      "sha256": "111bd1f5c51ef166d73bb43b90fef8708bd264d673922a31999aaaa3d8dd8e16"
+    },
+    {
+      "name": "native-reuse-closure.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/native-reuse-closure.json",
+      "sha256": "ca1dd4e3eb66c8f3cbba0f8c16b4a52e09e8a5797d6d12f5ad7be7ff6727fd8a"
+    },
+    {
+      "name": "protected-source-proof.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/protected-source-proof.json",
+      "sha256": "a602ba703379cb154c456460e1259fb34b9d301b4209e4c87cc6edacd8e69dcc"
+    },
+    {
+      "name": "originals-preserved.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/originals-preserved.json",
+      "sha256": "8b1db84c3e8b21d30a2015a6fb684edd6796393e2eeb58b15f87ee4ddef4ef60"
+    },
+    {
+      "name": "fresh-vs-canonical-raw.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/fresh-vs-canonical-raw.json",
+      "sha256": "74083737d9ea336109ac820a33246383ed7f228cef4427bc0ee339a6c564912a"
+    },
+    {
+      "name": "report-transition.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/report-transition.json",
+      "sha256": "3e6377f2bbf5fa74f8447128f30051e191b3b1b7fc0a0feed255464e912da1d4"
+    },
+    {
+      "name": "property-report.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/property-report.json",
+      "sha256": "1f78e7e9ebe65556212f6d1ca2b2b9e7a60592580b5c1f4f1e6bf42515318aba"
+    },
+    {
+      "name": "pixel-report.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/pixel-report.json",
+      "sha256": "417f22953ba515e458591c4f0fa0df5dd2184b5817179bba4a49aff4d504079d"
+    },
+    {
+      "name": "final-property-report-exit.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-property-report-exit.json",
+      "sha256": "fa50d2ee6e482658b2e030f3c23b837554ce7d4883daea75134e5ac83a9d50fb"
+    },
+    {
+      "name": "final-pixel-report-exit.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-pixel-report-exit.json",
+      "sha256": "15c2a27d53711cbf063be53940c1def5669c5611c66d979340797e0e33dbb8d9"
+    },
+    {
+      "name": "environment-proof.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/environment-proof.json",
+      "sha256": "38b0d925b06b309cd72e20f0dfdc08a531bdde4471878b541143900494e35ec0"
+    },
+    {
+      "name": "upstream-frame-proof.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/upstream-frame-proof.json",
+      "sha256": "c331211073280016d9b9d2f4cd8fd56e85b3c7e314b10c107d4da7f5c65ec64b"
+    },
+    {
+      "name": "cleanup-final.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/cleanup-final.json",
+      "sha256": "310c97e7256214d575843437beffd6b360b5b599fcdfeea39d4f4490a71dbb3d"
+    },
+    {
+      "name": "debug-backend/reload.json",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/debug-backend/reload.json",
+      "sha256": "272e46817ecedaa6f533fe6da4fee2af7034f87f04511e7e88e2773cd286e5fb"
+    }
+  ],
+  "rootIndependentProofs": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6429-integration-20261118.qjzeqd9y/root-stage-loader-test-exit.json",
+      "sha256": "bbdb66d3e1406acb3414fa49ac25bba1abd55c9f2b97f32d2626417cfe5fde0d"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6429-integration-20261118.qjzeqd9y/root-stage-loader-test.log",
+      "sha256": "fddcb04d37a5b40de3537b537dc8faf620ecef5a4622b866528b4ec1e4928a3f"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6429-integration-20261118.qjzeqd9y/root-full816-verification.json",
+      "sha256": "dc3b0544a3a077c0dd626eb7ceffba47065aee395ecddf78731bec1af21d2aeb"
+    }
+  ],
+  "originals": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/originals-preserved.json",
+  "cleanup": {
+    "ownedProcesses": [
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/negative-stage-loader-process.json",
+        "pid": 96159,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/web816-attempt0-process.json",
+        "pid": 5963,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-format-process.json",
+        "pid": 12129,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final12-capture-process.json",
+        "pid": 3193,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-analyze-process.json",
+        "pid": 9045,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/capture-state-positive-process.json",
+        "pid": 97463,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/format-process.json",
+        "pid": 97407,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-pixel-report-process.json",
+        "pid": 16422,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-contracts-process.json",
+        "pid": 3240,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-manifest-process.json",
+        "pid": 3287,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/analyze-process.json",
+        "pid": 98124,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/final-property-report-process.json",
+        "pid": 16421,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/browser.json",
+        "pid": 3322,
+        "live": false,
+        "ps": ""
+      },
+      {
+        "metadata": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r/web816-raw-attempt0-browser.json",
+        "pid": 6021,
+        "live": false,
+        "ps": ""
+      }
+    ],
+    "allRecordedPidsClosed": true,
+    "debugClosed": {
+      "pidClosed": true,
+      "vmPortClosed": true,
+      "httpPortClosed": true,
+      "browserPidClosed": true
+    },
+    "diskFreeGiB": 17.93,
+    "scope": "Only this worker recorded runners and owned browsers/HTTP/VM. No shared DTD/app/SDK touched."
+  },
+  "productSourceWillRemainUnchangedByVerificationCommit": true,
+  "writtenUTC": "2026-11-18T13:55:02.287167+00:00"
+}

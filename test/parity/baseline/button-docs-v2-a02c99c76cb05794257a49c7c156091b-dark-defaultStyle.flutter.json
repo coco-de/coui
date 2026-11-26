@@ -1,0 +1,50 @@
+{
+  "key": "button-docs-v2-a02c99c76cb05794257a49c7c156091b-dark-defaultStyle",
+  "byRole": {
+    "root": {
+      "key": "button-docs-v2-a02c99c76cb05794257a49c7c156091b-dark-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 16.0,
+      "lineHeightPx": 22.4,
+      "letterSpacingPx": -0.16,
+      "color": {
+        "r": 22,
+        "g": 23,
+        "b": 24,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 42,
+        "g": 43,
+        "b": 44,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        16.0,
+        16.0,
+        16.0,
+        16.0
+      ],
+      "paddingPx": [
+        76.0,
+        340.66,
+        76.0,
+        340.66
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 200.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

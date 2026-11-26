@@ -1,0 +1,56 @@
+{
+  "key": "select-default-dark-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "select-default-dark-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 19.6,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 144,
+        "g": 149,
+        "b": 155,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 20,
+        "g": 23,
+        "b": 27,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 191,
+        "g": 196,
+        "b": 202,
+        "a": 1.0
+      },
+      "borderWidthPx": 1.0,
+      "borderRadiusPx": [
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 126.91,
+      "heightPx": 40.0
+    }
+  },
+  "settled": true,
+  "captureNotes": [
+    "flutterFinder byType:Select 이 tester.allWidgets 에 없음 — 레지스트리가 예상과 다른 서브트리를 반환했을 수 있다 (변형된 variant 처리·GlobalKey 잔존 등 조용한 오캡처의 1차 탐지기)."
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "key": "toggle-group-vertical-dark-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "toggle-group-vertical-dark-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "shadowBlurUnit": "css-radius",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 18.2,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 22,
+        "g": 23,
+        "b": 24,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 149,
+        "g": 150,
+        "b": 152,
+        "a": 1.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        8.0,
+        8.0,
+        8.0,
+        8.0
+      ],
+      "paddingPx": [
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [],
+      "opacity": 1.0,
+      "widthPx": 44.21,
+      "heightPx": 60.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": [
+    "flutterFinder byType:ToggleGroup 이 tester.allWidgets 에 없음 — 레지스트리가 예상과 다른 서브트리를 반환했을 수 있다 (변형된 variant 처리·GlobalKey 잔존 등 조용한 오캡처의 1차 탐지기)."
+  ]
+}

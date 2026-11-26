@@ -1,0 +1,49 @@
+{
+  "key": "chat-error-light-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "chat-error-light-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 15.0,
+      "lineHeightPx": 22.5,
+      "letterSpacingPx": -0.15,
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 215,
+        "g": 30,
+        "b": 34,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        24.0,
+        24.0,
+        24.0,
+        24.0
+      ],
+      "paddingPx": [
+        10.0,
+        14.0,
+        10.0,
+        14.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 43.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

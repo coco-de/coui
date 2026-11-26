@@ -1,0 +1,34 @@
+{
+  "key": "disclosure-chain-light-neumorphism",
+  "byRole": {
+    "root": {
+      "key": "disclosure-chain-light-neumorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 16.0,
+      "lineHeightPx": 22.4,
+      "letterSpacingPx": -0.16,
+      "color": {
+        "r": 42,
+        "g": 43,
+        "b": 44,
+        "a": 1.0
+      },
+      "backgroundColor": null,
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": null,
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 115.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

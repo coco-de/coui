@@ -1,0 +1,52 @@
+{
+  "key": "mockup-app-light-liquidGlass",
+  "byRole": {
+    "root": {
+      "key": "mockup-app-light-liquidGlass",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 13.0,
+      "lineHeightPx": 19.5,
+      "letterSpacingPx": -0.13,
+      "color": {
+        "r": 88,
+        "g": 89,
+        "b": 90,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 249,
+        "g": 250,
+        "b": 251,
+        "a": 0.502
+      },
+      "borderColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        14.0,
+        14.0,
+        14.0,
+        14.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 65.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": [
+    "flutterFinder byType:Mockup 이 tester.allWidgets 에 없음 — 레지스트리가 예상과 다른 서브트리를 반환했을 수 있다 (변형된 variant 처리·GlobalKey 잔존 등 조용한 오캡처의 1차 탐지기)."
+  ]
+}

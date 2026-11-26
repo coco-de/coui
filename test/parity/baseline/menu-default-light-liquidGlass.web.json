@@ -1,0 +1,93 @@
+{
+  "key": "menu-default-light-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "탐색\n                \n              \n              \n                \n                  .co-menu-item-ssr-90:hover > .co-menu-item-wash{background-color:rgb(var(--coui-on-primary) / 8%);}.co-menu-item-ssr-90:focus-visible > .co-menu-item-wash{background-color:rgb(var(--coui-on-primary) / 8%);}.co-menu-item-ssr-90:active > .co-menu-item-wash{background-color:rgb(var(--coui-on-primary) / 12%);}\n                \n                \n                \n                \n                \n                  홈\n                \n              \n              \n                \n                  .co-menu-item-ssr-91:hover > .co-menu-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-menu-item-ssr-91:focus-visible > .co-menu-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-menu-item-ssr-91:active > .co-menu-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                \n                \n                \n                \n                \n                  프로필\n                \n              \n              \n                \n              \n              \n                \n                  .co-menu-item-ssr-92:hover > .co-menu-item-wash{background-color:rgb(var(--coui-on-primary) / 8%);}.co-menu-item-ssr-92:focus-visible > .co-menu-item-wash{background-color:rgb(var(--coui-on-primary) / 8%);}.co-menu-item-ssr-92:active > .co-menu-item-wash{background-color:rgb(var(--coui-on-primary) / 12%);}\n                \n                \n                \n                  \n                    \n                  \n                \n                \n                \n                  격자 보기\n                \n              \n              \n                \n                \n                \n                \n                  설정",
+    "layout": {
+      "width": 240,
+      "height": 186,
+      "direction": "column",
+      "innerPaddingLeft": "8px",
+      "innerPaddingRight": "8px",
+      "children": [
+        {
+          "x": 6,
+          "y": 6,
+          "width": 228,
+          "height": 27
+        },
+        {
+          "x": 6,
+          "y": 35,
+          "width": 228,
+          "height": 32
+        },
+        {
+          "x": 6,
+          "y": 69,
+          "width": 228,
+          "height": 32
+        },
+        {
+          "x": 6,
+          "y": 103,
+          "width": 228,
+          "height": 9
+        },
+        {
+          "x": 6,
+          "y": 114,
+          "width": 228,
+          "height": 32
+        },
+        {
+          "x": 6,
+          "y": 148,
+          "width": 228,
+          "height": 32
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgba(255, 255, 255, 0.5)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "12px",
+      "borderTopRightRadius": "12px",
+      "borderBottomRightRadius": "12px",
+      "borderBottomLeftRadius": "12px",
+      "paddingTop": "6px",
+      "paddingRight": "6px",
+      "paddingBottom": "6px",
+      "paddingLeft": "6px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "color(srgb 0 0 0 / 0.125) 0px 16px 40px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 240,
+      "heightPx": 186
+    }
+  }
+}

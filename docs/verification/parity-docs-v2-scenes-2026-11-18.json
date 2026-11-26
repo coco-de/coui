@@ -1,0 +1,640 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-18",
+  "issue": 6421,
+  "status": "verified_product_source",
+  "writtenUTC": "2026-11-18T13:02:01.031752+00:00",
+  "source": {
+    "productAndFreshCapture": "309d4f9c894c5c36cbaf2c0628b9e5dcf09aae73",
+    "productTree": "f4632b8591d85f2ddc47ee7dfd0ec908835dc879",
+    "reviewedHeadBeforeVerificationDocs": "7480a307bdd20d40e3277edde2e0a6c1eae18d9d",
+    "includedMain": "314bd9321cb56ee7e5dbea741741ef8cbbf74df9",
+    "afterProductChanges": [
+      "app/docs_app/test/markdown/shared_card_scene_test.dart"
+    ],
+    "afterProductExecutableChanges": [],
+    "rule": "Subsequent test/documentation commits are bound by unchanged product bytes; not relabeled fresh captures."
+  },
+  "domain": {
+    "default": 816,
+    "allStyles": 3814,
+    "legacyUnchanged": 730,
+    "sourceReferences": 43,
+    "newThemeRows": 86,
+    "wholeCardRows": 42,
+    "removedFallbackRows": 4,
+    "matrixEntryFields": [
+      "component",
+      "key",
+      "probes",
+      "surfaceStyle",
+      "theme",
+      "tier",
+      "variant"
+    ],
+    "cardUnit": "whole-card",
+    "otherUnits": "SizeSpec whole block; Preview/VariantRow/Anatomy/Playground actual preview stage in canonical document context. Available width is standardized, not the original page grid allocation."
+  },
+  "measurement": {
+    "nativeFresh": 816,
+    "webV2Fresh": 86,
+    "webLegacyReused": 730,
+    "jsonFiles": 1632,
+    "pngFiles": 1656,
+    "rawFiles": 3288,
+    "missing": 0,
+    "reportExitCodes": {
+      "pixel": 1,
+      "property": 1
+    },
+    "paired": {
+      "property": {
+        "historical734": {
+          "pass": 404,
+          "fail": 272,
+          "infra": 12,
+          "skipped": 46
+        },
+        "final816": {
+          "pass": 402,
+          "fail": 356,
+          "infra": 12,
+          "skipped": 46
+        },
+        "legacy730Before": {
+          "skipped": 46,
+          "pass": 402,
+          "fail": 270,
+          "infra": 12
+        },
+        "legacy730After": {
+          "skipped": 46,
+          "pass": 402,
+          "fail": 270,
+          "infra": 12
+        },
+        "legacyChanged": [],
+        "new86": {
+          "fail": 86
+        },
+        "newByUnit": {
+          "Preview:stage": {
+            "fail": 12
+          },
+          "Card:whole-card": {
+            "fail": 42
+          },
+          "VariantRow:stage": {
+            "fail": 20
+          },
+          "SizeSpec:size-spec": {
+            "fail": 4
+          },
+          "Anatomy:stage": {
+            "fail": 4
+          },
+          "Playground:stage": {
+            "fail": 4
+          }
+        },
+        "removedHistoricalFallback4": {
+          "pass": 2,
+          "fail": 2
+        },
+        "infraKeys": [
+          "mockup-phone-light-defaultStyle/stage",
+          "mockup-phone-dark-defaultStyle/stage",
+          "mockup-tablet-light-defaultStyle/stage",
+          "mockup-tablet-dark-defaultStyle/stage",
+          "mockup-landscape-light-defaultStyle/stage",
+          "mockup-landscape-dark-defaultStyle/stage",
+          "mockup-device-default-light-defaultStyle/stage",
+          "mockup-device-default-dark-defaultStyle/stage",
+          "mockup-device-flat-light-defaultStyle/stage",
+          "mockup-device-flat-dark-defaultStyle/stage",
+          "responsive-container-default-light-defaultStyle/stage",
+          "responsive-container-default-dark-defaultStyle/stage"
+        ],
+        "structuralKeys": [
+          "command-dialog-light-defaultStyle/root",
+          "command-dialog-dark-defaultStyle/root",
+          "star-rating-default-light-defaultStyle/root",
+          "star-rating-default-dark-defaultStyle/root",
+          "drag-overlay-light-defaultStyle/root",
+          "drag-overlay-dark-defaultStyle/root",
+          "sortable-default-light-defaultStyle/root",
+          "sortable-default-dark-defaultStyle/root",
+          "badge-dot-light-defaultStyle/root",
+          "badge-dot-dark-defaultStyle/root",
+          "progress-tone-light-defaultStyle/root",
+          "progress-tone-dark-defaultStyle/root",
+          "diff-default-light-defaultStyle/root",
+          "diff-default-dark-defaultStyle/root",
+          "dot-indicator-default-light-defaultStyle/root",
+          "dot-indicator-default-dark-defaultStyle/root",
+          "dot-indicator-vertical-light-defaultStyle/root",
+          "dot-indicator-vertical-dark-defaultStyle/root",
+          "dot-indicator-passive-light-defaultStyle/root",
+          "dot-indicator-passive-dark-defaultStyle/root",
+          "skeleton-default-light-defaultStyle/root",
+          "skeleton-default-dark-defaultStyle/root",
+          "skeleton-text-light-defaultStyle/root",
+          "skeleton-text-dark-defaultStyle/root",
+          "loading-region-default-light-defaultStyle/root",
+          "loading-region-default-dark-defaultStyle/root",
+          "loading-default-light-defaultStyle/root",
+          "loading-default-dark-defaultStyle/root",
+          "loading-dots-light-defaultStyle/root",
+          "loading-dots-dark-defaultStyle/root",
+          "loading-bar-light-defaultStyle/root",
+          "loading-bar-dark-defaultStyle/root",
+          "loading-pulse-light-defaultStyle/root",
+          "loading-pulse-dark-defaultStyle/root",
+          "tracker-default-light-defaultStyle/root",
+          "tracker-default-dark-defaultStyle/root",
+          "gap-sliver-light-defaultStyle/root",
+          "gap-sliver-dark-defaultStyle/root",
+          "dialog-default-light-defaultStyle/root",
+          "dialog-default-dark-defaultStyle/root",
+          "icon-default-light-defaultStyle/root",
+          "icon-default-dark-defaultStyle/root",
+          "icon-search-light-defaultStyle/root",
+          "icon-search-dark-defaultStyle/root",
+          "icon-favorite-light-defaultStyle/root",
+          "icon-favorite-dark-defaultStyle/root"
+        ]
+      },
+      "pixel": {
+        "historical734": {
+          "pass": 559,
+          "fail": 175,
+          "infra": 0,
+          "skipped": 0
+        },
+        "final816": {
+          "pass": 582,
+          "fail": 234,
+          "infra": 0,
+          "skipped": 0
+        },
+        "legacy730Before": {
+          "pass": 556,
+          "fail": 174
+        },
+        "legacy730After": {
+          "pass": 556,
+          "fail": 174
+        },
+        "legacyChanged": [],
+        "new86": {
+          "fail": 60,
+          "pass": 26
+        },
+        "newByUnit": {
+          "Preview:stage": {
+            "fail": 6,
+            "pass": 6
+          },
+          "Card:whole-card": {
+            "fail": 42
+          },
+          "VariantRow:stage": {
+            "pass": 20
+          },
+          "SizeSpec:size-spec": {
+            "fail": 4
+          },
+          "Anatomy:stage": {
+            "fail": 4
+          },
+          "Playground:stage": {
+            "fail": 4
+          }
+        },
+        "removedHistoricalFallback4": {
+          "fail": 1,
+          "pass": 3
+        },
+        "infraKeys": [],
+        "structuralKeys": []
+      },
+      "interpretation": "Measurement coverage, not parity fixes. Legacy730 is unchanged. Removed historical fallback4 and prototype Card-stage42/Anatomy4 replacement are not resolutions. Capture host/context corrections are not CoUI component changes."
+    },
+    "reuseProof": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/final-source-protection.json",
+    "interpretation": "Coverage repair, not 26 resolved CoUI defects. Existing730 unchanged. Historical fallback4 and invalid prototype Card-stage rows are not counted as resolutions."
+  },
+  "validation": {
+    "purePassed": 10,
+    "actualBrowserPassed": 4,
+    "nativeBeforeTestsPassed": 16,
+    "nativeAfterTestsPassed": 19,
+    "nativeWholeCardBeforeAfterPairs": 168,
+    "nativeWholeCardRgbaGeometryMismatches": 0,
+    "nativeDocumentsParsed": 193,
+    "nativeParserOutputDifferences": 0,
+    "nativeApiAstChecks": 11,
+    "nativeParserTokens": 999,
+    "nativeParserFormattingOnly": true,
+    "nativeParserFileByteExact": false,
+    "rootIntegratedDart42FatalExit": 0,
+    "extraNativeRegressionFileFatalExit": 0,
+    "format43Changed": 0,
+    "contractsExit": 0,
+    "existingNonEnforcedContractWarnings": 7,
+    "pgClientOwnerCases": 4,
+    "ssrReloadBeforeScenes": 43,
+    "ssrReloadAfterScenes": 43,
+    "ownNativeCliHotReload": true,
+    "nativeCliReloadNote": "Actual same-source Flutter CLI r succeeded, 0 libraries reloaded, compile35ms/reassemble41ms, two actual800x241 Card/body frames, normal q and owned runtime closed. Not a before-to-after live-upgrade guarantee."
+  },
+  "site": {
+    "freshSource": "309d4f9c894c5c36cbaf2c0628b9e5dcf09aae73",
+    "beforeSource": "2c3d333558858dc8c37a0fb58aeba9ba43248941",
+    "generatedRoutes": 359,
+    "buildExit": 0,
+    "buildSeconds": 73.71,
+    "trackedFiles": 22533,
+    "trackedDeltas": [],
+    "actualRecords": 26,
+    "initialDomPairsExact": 4,
+    "rawPngPairsByteAndRgbaExact": 8,
+    "runtimeErrors": [],
+    "consoleErrors": [],
+    "requestFailures": [],
+    "fontManifestCompleted": 2,
+    "nativeEmbedsActive": 2,
+    "ownedServersBrowserClosed": true
+  },
+  "protected": {
+    "captureSource": {
+      "head": "309d4f9c894c5c36cbaf2c0628b9e5dcf09aae73",
+      "tree": "f4632b8591d85f2ddc47ee7dfd0ec908835dc879",
+      "nativeSourceCheckpoint": "f6f85236c005c76a6ad86bdfefcf76776acf9f72",
+      "priorHostSource": "07254a090c95c20dd20ed565ea9334e91a3111c3",
+      "main": "314bd9321cb56ee7e5dbea741741ef8cbbf74df9",
+      "status": ""
+    },
+    "finalHead": "7480a307bdd20d40e3277edde2e0a6c1eae18d9d",
+    "finalTree": "537e1417f51484a2165044a207cd8ffd28267828",
+    "testOnlyAfterCapture": [
+      "app/docs_app/test/markdown/shared_card_scene_test.dart"
+    ],
+    "productSourceDiffAfterCapture": [],
+    "protectedVsMain": {
+      "packages/coui_core": true,
+      "packages/coui_flutter": true,
+      "packages/coui_web": true,
+      "docs_core/content": true,
+      "docs_site/web": true,
+      "tool/parity/src/model": true,
+      "tool/parity/src/normalize": true,
+      "tool/parity/src/diff": true,
+      "tool/parity/src/baseline": true,
+      "tool/parity/src/report": true,
+      "tool/parity/report.dart": true,
+      "tool/parity/compare.dart": true,
+      "test/parity/allowlist.yaml": true,
+      "test/parity/baseline": true,
+      "pubspec.yaml": true,
+      "pubspec.lock": true
+    },
+    "nativeConsumerHostWriterVsMain": {
+      "packages/coui_flutter/test/parity/flutter_capture_matrix_test.dart": true,
+      "packages/coui_flutter/test/parity/capture_host.dart": true
+    },
+    "nativeSharedParserOriginalByteExact": false,
+    "nativeSharedParserFormattingOnly": true,
+    "nativeSharedParserTokenProof": {
+      "originalTokens": 999,
+      "sharedTokens": 999,
+      "executableTokensExact": true,
+      "originalFileBytesExact": false,
+      "formatOnly": "parseDocsTagAttributes ?? chain4lines to1line"
+    },
+    "legacyDescriptorsExact": true,
+    "legacyWebCodePathsExactToFullCapture": {
+      "tool/parity/src/web": true,
+      "docs_core/lib/previews": true,
+      "packages/coui_core": true,
+      "packages/coui_web": true,
+      "docs_core/lib/shared": true,
+      "docs_core/content": true,
+      "docs_site/web": true
+    },
+    "reuseRationale": "Full conservative imported closure changes only in v2 scene metadata/renderer helpers. Current legacy variants do not begin docs-v2-, so registry _withDocumentationScenes returns existing builder; backend does not invoke docsSceneHost or docs CSS/JS/head; runtime legacy config has scene null. Web backend/runtime/registry/shared/example/public source paths are byte identical to actual full capture2c3d. This is explicit Web legacy730 reuse, not a fresh748 capture. Native all816 and Web v2 all86 are fresh309.",
+    "environment": {
+      "packageTupleCountBefore": 232,
+      "packageTupleCountAfter": 232,
+      "tuplesExact": true,
+      "sameNodes": true,
+      "graphDelta": {
+        "docs_core": {
+          "before": {
+            "name": "docs_core",
+            "version": "0.1.0",
+            "dependencies": [
+              "coui_core",
+              "coui_flutter",
+              "coui_web",
+              "flutter",
+              "jaspr",
+              "jaspr_content",
+              "markdown"
+            ],
+            "devDependencies": [
+              "flutter_test",
+              "test"
+            ]
+          },
+          "after": {
+            "name": "docs_core",
+            "version": "0.1.0",
+            "dependencies": [
+              "coui_core",
+              "coui_flutter",
+              "coui_web",
+              "flutter",
+              "jaspr",
+              "jaspr_content",
+              "markdown",
+              "url_launcher"
+            ],
+            "devDependencies": [
+              "flutter_test",
+              "test"
+            ]
+          }
+        }
+      },
+      "lockExact": true
+    },
+    "gitStatus": ""
+  },
+  "environment": {
+    "packageTupleCountBefore": 232,
+    "packageTupleCountAfter": 232,
+    "tuplesExact": true,
+    "sameNodes": true,
+    "graphDelta": {
+      "docs_core": {
+        "before": {
+          "name": "docs_core",
+          "version": "0.1.0",
+          "dependencies": [
+            "coui_core",
+            "coui_flutter",
+            "coui_web",
+            "flutter",
+            "jaspr",
+            "jaspr_content",
+            "markdown"
+          ],
+          "devDependencies": [
+            "flutter_test",
+            "test"
+          ]
+        },
+        "after": {
+          "name": "docs_core",
+          "version": "0.1.0",
+          "dependencies": [
+            "coui_core",
+            "coui_flutter",
+            "coui_web",
+            "flutter",
+            "jaspr",
+            "jaspr_content",
+            "markdown",
+            "url_launcher"
+          ],
+          "devDependencies": [
+            "flutter_test",
+            "test"
+          ]
+        }
+      }
+    },
+    "lockExact": true
+  },
+  "retainedNegatives": [
+    {
+      "phase": "2c3d/f16 initial full816",
+      "meaning": "Before containing-block and whole-Card/prose correction; intermediate reports not current validated source."
+    },
+    {
+      "phase": "072 host-only86",
+      "meaning": "Containing-block correction valid, Card stage-only context invalid; not final whole-Card measurement."
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-context-20261118.1ct11ykw",
+      "meaning": "Same206 constraints still lose actual parent Card paint144/145px. Diagnostic206 never copied into production geometry."
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-content-context-review-20261118.kjo4u5ig",
+      "meaning": "Actual Content and type-specific not-content scopes required; no fake body/stylesheet value copy."
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-integration-20261118.y6dm47zv",
+      "meaning": "Original invalid incomingTransition fixture, external Iconify navigation cancellation, inappropriate all-SVG assertion and fixed-navbar screenshot occlusion retained. Final site run is separately measured with complete vendor assets and natural centered scrolling."
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-icon-visibility-review-20261118.04dkyszg",
+      "meaning": "Normal offscreen Iconify lazy SVG removal/reappearance. Original SSR escaping suspicion withdrawn; no product issue inferred."
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-share-proof-20261118.hiqya046",
+      "meaning": "Initial testVM reload without kernel task rejected and retained; subsequent normal Flutter CLI reload verified. Headless dir_picker/file_saver_ffi symbol limitations retained."
+    }
+  ],
+  "limits": [
+    "Overall parity remains incomplete; 234 pixel differences are neither all unavoidable AA nor all CoUI component defects.",
+    "Composite document frame/property attribution differences remain visible.",
+    "Historical20 exact input restoration is still tracked by6417.",
+    "No all3814 capture, exhaustive interaction sweep, full manual CI, deployment or Figma Generate claim.",
+    "Standard paragraph Native Card bodies use the original renderer; unsupported future body blocks fail explicitly.",
+    "Public CoUI/Core design values, generic Native consumer, comparison criteria, schema7, original MD/CSS/JS/baselines/SDK constraints unchanged. One direct dependency edge on the already-resolved url_launcher6.3.2 is added to docs_core, the shared Native renderer owner; no new nodes/versions/lock changes."
+  ],
+  "artifactRoots": {
+    "wholeCard": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md",
+    "nativeOriginalProof": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-share-proof-20261118.hiqya046",
+    "finalSite": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk",
+    "rootIntegration": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-integration-20261118.y6dm47zv"
+  },
+  "evidence": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/final-ledger.json",
+      "sha256": "7aafff4fe1b7ee179e752485e4fa84ef1cb5e6ef382e1f5b8e258c36f57f1294",
+      "bytes": 24252
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/final-artifact-index.json",
+      "sha256": "2de22a84f77ec50ac3435a84edbef19d1a00bd60779fae52b7d13443b838a15c",
+      "bytes": 21705
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/final-source-protection.json",
+      "sha256": "73a395a70a083fb211da9e1824a5f5be718fbee8831751a6d45a1be551aecde1",
+      "bytes": 14076
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/final-source-sha256.json",
+      "sha256": "f6b0ca2dbaab10d77e6d6eb1d9e8c7bf5e1951dda130ab7310c505d1cddbc34e",
+      "bytes": 9224
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/final-domain-proof.json",
+      "sha256": "f9ae83a7ffc2368ace5c043272e80a01321b027f94fe5f75ec332b63de7eb980",
+      "bytes": 7767
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/final-paired-report-summary.json",
+      "sha256": "8dc6a12376b7952d2670f48b3a7b87c069b9909b834b5280b08f60f0c8be532e",
+      "bytes": 5025
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/final-v2-field-analysis.json",
+      "sha256": "e7171bcd0cde08de0d0025c6016c68f788fd011fccdff2b0d5da71ce78f4d0e0",
+      "bytes": 125262
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/capture-integrity-final.json",
+      "sha256": "c8d8cc585e2301eb9ab9d047be9a085621b98e4a3f8058bd97a54abda570799b",
+      "bytes": 1285998
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/manifest-default.json",
+      "sha256": "26ddf0bc4df1cca57cb199e9d1781eb533c9dc2f8fce684aeb7d7493019ee36b",
+      "bytes": 822327
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/manifest-all.json",
+      "sha256": "100d07c0c3d8c4db5da6653beb6da4c9da069e1ab37854b0b1bb6cc0d164dfa3",
+      "bytes": 3866158
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/property-report.json",
+      "sha256": "7427bc8b5df5b04fd64f4734ab14be8ee964be4d7c3cfd5606f8410af2a4c069",
+      "bytes": 3095014
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/pixel-report.json",
+      "sha256": "83f4e7f83f7f7a2b6780b2825bfb39717ecf3736552114aff47d6a0abe5d9cba",
+      "bytes": 126684
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/pg-ownership.json",
+      "sha256": "7254ee9484abd45f3240433b82c885eab6e054410fd8e04039263edd32431054",
+      "bytes": 3008
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/contracts-final-exit.json",
+      "sha256": "0af627c64630043685ab2196fcf52292fb5e4c90fa36124bc50b69857874ae00",
+      "bytes": 765
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6421-whole-card-20261118.h0gw08md/review-candidate8.json",
+      "sha256": "f94699d86c679ef3017999af3e64ebd25236de6f39c7fe2b9d973f49359f441c",
+      "bytes": 4455
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-share-proof-20261118.hiqya046/README.md",
+      "sha256": "65646033d4599bd28e21cc013e81bf0290e260a0965177039167885c0dc8168c",
+      "bytes": 9687
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-share-proof-20261118.hiqya046/validation-summary.json",
+      "sha256": "11936952ace72b9c727935ebdd688123f31de4e45f98ba7855059dac5cf09552",
+      "bytes": 3270
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-share-proof-20261118.hiqya046/whole-card-comparison.json",
+      "sha256": "302e521cf179618f2cec837c5a5fca30c4c91ae483cdc2f683130e86f335b97c",
+      "bytes": 191
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-share-proof-20261118.hiqya046/frozen-source-proof.json",
+      "sha256": "92f59f47414dbd4f981cdc32414029ee22838d275539e5795a94a4c102ba8dc2",
+      "bytes": 290074
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-share-proof-20261118.hiqya046/source-after.json",
+      "sha256": "46b5373683d7c8a2ecf877a89c160eb9eee8021c2dfce9c4e73fdfc3ced17d86",
+      "bytes": 3918
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-share-proof-20261118.hiqya046/cleanup.json",
+      "sha256": "c28d39759203e8efeccf33034116a18dc3317132c75464695d578130a28d5f73",
+      "bytes": 956
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-share-proof-20261118.hiqya046/evidence-sha256.json",
+      "sha256": "0a72af910f9086b12e5169469451e76752b17478e8b673f54cbb80f587b1b930",
+      "bytes": 351965
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-card-share-proof-20261118.hiqya046/native-cli-debug-proof.json",
+      "sha256": "f99bce3cfac4c4b3e5f97360b35a35cfe1de0f47038360422d0609c3acc49200",
+      "bytes": 985
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk/build-process.json",
+      "sha256": "7905dc48cfcd960a330da1714903d5499a871488c7dd856864c038ea9443affb",
+      "bytes": 795
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk/docs-build.log",
+      "sha256": "787f7c14a3166e41986be9797b85a5a0d3ddecba20f75fda4c11ddf7acdc09ea",
+      "bytes": 32440
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk/build-source-before.json",
+      "sha256": "5f506ca6dc35af7371a75ef9a2abd842364ecccf774d68b67af6b76b7beac1fa",
+      "bytes": 4232749
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk/build-source-after.json",
+      "sha256": "5f506ca6dc35af7371a75ef9a2abd842364ecccf774d68b67af6b76b7beac1fa",
+      "bytes": 4232749
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk/deployment-local-copies.json",
+      "sha256": "dfd0f54e3e2f60dc612d18725995dacbbbd9aaba533a183d2606e8817efaba12",
+      "bytes": 816
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk/final-site-summary.json",
+      "sha256": "3472a489980bfc141cae3a44c387565c72de301d911d79cf54ca3f997e99d557",
+      "bytes": 5575
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk/browser-results.json",
+      "sha256": "73258b405544d274e2c8ce150bac6cd6392c9d878e6448a6fcc33399ac183ded",
+      "bytes": 65041
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk/docs-before-after.json",
+      "sha256": "15a6f3a842049e2d334f044434a383c3610fac3d1ee954af41c0e59e3df3d5c6",
+      "bytes": 417
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk/browser-cleanup.json",
+      "sha256": "dec6379303b2b79e0c42472136f1e84d91c355286d89fd483abdf385eb619df9",
+      "bytes": 32
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-final-docs-20261118.pqo64ljk/server-cleanup.json",
+      "sha256": "291869cdff14eec9600a7f2b2ed5c18832bf26154a421ae3cf691258681151b7",
+      "bytes": 478
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-integration-20261118.y6dm47zv/whole-card-all42-analyze-exit.json",
+      "sha256": "6585ef3db5c192937873d6da3f451dfd7ca9f379eea57d1c535399b7929cc42c",
+      "bytes": 2744
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6421-integration-20261118.y6dm47zv/native-tests-merge-receipt.json",
+      "sha256": "64326a8cc71fc5031b1c1ff291dc2d14ee052729e28e84a612efb8e66edad4ed",
+      "bytes": 326
+    }
+  ]
+}

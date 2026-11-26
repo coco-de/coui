@@ -1,0 +1,49 @@
+{
+  "key": "carousel-banner-default-dark-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "carousel-banner-default-dark-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 16.0,
+      "lineHeightPx": 22.4,
+      "letterSpacingPx": -0.16,
+      "color": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 64,
+        "g": 65,
+        "b": 67,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "paddingPx": [
+        16.0,
+        16.0,
+        16.0,
+        16.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 88.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

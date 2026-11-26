@@ -1,0 +1,34 @@
+{
+  "key": "kbd-combo-dark-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "kbd-combo-dark-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 11.0,
+      "lineHeightPx": 15.4,
+      "letterSpacingPx": -0.11,
+      "color": {
+        "r": 180,
+        "g": 181,
+        "b": 182,
+        "a": 1.0
+      },
+      "backgroundColor": null,
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": null,
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 116.22,
+      "heightPx": 27.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

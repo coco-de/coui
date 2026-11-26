@@ -1,0 +1,38 @@
+{
+  "key": "number-input-error-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "13px",
+      "lineHeight": "18.2px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(215, 30, 34)",
+      "borderRightColor": "rgb(215, 30, 34)",
+      "borderBottomColor": "rgb(215, 30, 34)",
+      "borderLeftColor": "rgb(215, 30, 34)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "10px",
+      "borderTopRightRadius": "10px",
+      "borderBottomRightRadius": "10px",
+      "borderBottomLeftRadius": "10px",
+      "paddingTop": "3px",
+      "paddingRight": "4px",
+      "paddingBottom": "3px",
+      "paddingLeft": "4px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 114,
+      "heightPx": 88.1875
+    }
+  }
+}

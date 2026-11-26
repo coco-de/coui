@@ -1,0 +1,265 @@
+{
+  "_comment": [
+    "Shared vectors for the navigation bar that follows scrolling content (CoreNavigationCompact.onScroll):",
+    "scroll steps of the content and whether the bar is compact after each (CoreNavigationScrollCompaction).",
+    "Read by coui_core (every trace replayed on the pure type), coui_flutter (the steps are dispatched as scroll",
+    "notifications under a Scaffold and the bar's drawn scale read back) and coui_web (the offsets are fed to",
+    "the DOM-free tracker the scroll listener drives and its answer read back). A change on one seat fails the",
+    "others.",
+    "",
+    "Every `compact` is stated by hand from the rule, not computed by the code under test; each trace says how",
+    "(`derivation`). `travel` is CoreNavigationScrollCompaction.travel, restated so a change to it fails here.",
+    "",
+    "A step is {offset, delta, compact}: the content is at `offset` after moving `delta` (positive toward its",
+    "end), and the bar is `compact` afterwards. The content's start is offset 0 and its end `maxExtent`. Every",
+    "trace is one content's consecutive positions - each delta is its offset minus the offset before, and the",
+    "first step states where the content is with delta 0 - so a seat that works deltas out for itself (the",
+    "Web) replays the same steps. {event: reset} is another destination being selected."
+  ],
+  "travel": 12,
+  "traces": [
+    {
+      "name": "toward the end, then back",
+      "derivation": "5 + 6 = 11 is under the travel and 11 + 1 = 12 reaches it. Back: 5 + 6 = 11 keeps the bar compact and one more makes 12. Turning round again counts from 2, and 2 + 12 = 14 passes the travel.",
+      "maxExtent": 2000,
+      "steps": [
+        {
+          "offset": 0,
+          "delta": 0,
+          "compact": false
+        },
+        {
+          "offset": 5,
+          "delta": 5,
+          "compact": false
+        },
+        {
+          "offset": 11,
+          "delta": 6,
+          "compact": false
+        },
+        {
+          "offset": 12,
+          "delta": 1,
+          "compact": true
+        },
+        {
+          "offset": 300,
+          "delta": 288,
+          "compact": true
+        },
+        {
+          "offset": 295,
+          "delta": -5,
+          "compact": true
+        },
+        {
+          "offset": 289,
+          "delta": -6,
+          "compact": true
+        },
+        {
+          "offset": 288,
+          "delta": -1,
+          "compact": false
+        },
+        {
+          "offset": 290,
+          "delta": 2,
+          "compact": false
+        },
+        {
+          "offset": 302,
+          "delta": 12,
+          "compact": true
+        }
+      ]
+    },
+    {
+      "name": "a wobble starts the count again",
+      "derivation": "Back 8, forward 3, back 8: the forward step resets the count, so the second run back is 8, then 8 + 3 = 11, then 12.",
+      "maxExtent": 2000,
+      "steps": [
+        {
+          "offset": 0,
+          "delta": 0,
+          "compact": false
+        },
+        {
+          "offset": 100,
+          "delta": 100,
+          "compact": true
+        },
+        {
+          "offset": 92,
+          "delta": -8,
+          "compact": true
+        },
+        {
+          "offset": 95,
+          "delta": 3,
+          "compact": true
+        },
+        {
+          "offset": 87,
+          "delta": -8,
+          "compact": true
+        },
+        {
+          "offset": 84,
+          "delta": -3,
+          "compact": true
+        },
+        {
+          "offset": 83,
+          "delta": -1,
+          "compact": false
+        }
+      ]
+    },
+    {
+      "name": "an overscroll at the start is not travel",
+      "derivation": "At or before the start the bar is in full whatever the step. The step from -10 to 4 starts before the start, so its 14 is not counted; 12 from inside the content is.",
+      "maxExtent": 2000,
+      "steps": [
+        {
+          "offset": 0,
+          "delta": 0,
+          "compact": false
+        },
+        {
+          "offset": -30,
+          "delta": -30,
+          "compact": false
+        },
+        {
+          "offset": -10,
+          "delta": 20,
+          "compact": false
+        },
+        {
+          "offset": 4,
+          "delta": 14,
+          "compact": false
+        },
+        {
+          "offset": 16,
+          "delta": 12,
+          "compact": true
+        }
+      ]
+    },
+    {
+      "name": "the rebound from the end is not travel",
+      "derivation": "The step to 1040 ends past the end and the step back to 1000 starts past it; neither is counted. From 1000, 5 back is under the travel and 5 + 12 = 17 passes it.",
+      "maxExtent": 1000,
+      "steps": [
+        {
+          "offset": 0,
+          "delta": 0,
+          "compact": false
+        },
+        {
+          "offset": 990,
+          "delta": 990,
+          "compact": true
+        },
+        {
+          "offset": 1040,
+          "delta": 50,
+          "compact": true
+        },
+        {
+          "offset": 1000,
+          "delta": -40,
+          "compact": true
+        },
+        {
+          "offset": 995,
+          "delta": -5,
+          "compact": true
+        },
+        {
+          "offset": 983,
+          "delta": -12,
+          "compact": false
+        }
+      ]
+    },
+    {
+      "name": "content too short to scroll",
+      "derivation": "With the end at 0 every position past it is an overscroll.",
+      "maxExtent": 0,
+      "steps": [
+        {
+          "offset": 0,
+          "delta": 0,
+          "compact": false
+        },
+        {
+          "offset": 30,
+          "delta": 30,
+          "compact": false
+        },
+        {
+          "offset": 0,
+          "delta": -30,
+          "compact": false
+        }
+      ]
+    },
+    {
+      "name": "a step that does not move",
+      "derivation": "A delta of 0 - a sideways scroll reports one - changes nothing.",
+      "maxExtent": 2000,
+      "steps": [
+        {
+          "offset": 0,
+          "delta": 0,
+          "compact": false
+        },
+        {
+          "offset": 200,
+          "delta": 200,
+          "compact": true
+        },
+        {
+          "offset": 200,
+          "delta": 0,
+          "compact": true
+        }
+      ]
+    },
+    {
+      "name": "selecting another destination",
+      "derivation": "The reset returns the bar in full and forgets the 500 travelled: 5 is under the travel, 5 + 7 = 12 reaches it.",
+      "maxExtent": 2000,
+      "steps": [
+        {
+          "offset": 0,
+          "delta": 0,
+          "compact": false
+        },
+        {
+          "offset": 500,
+          "delta": 500,
+          "compact": true
+        },
+        {
+          "event": "reset",
+          "compact": false
+        },
+        {
+          "offset": 505,
+          "delta": 5,
+          "compact": false
+        },
+        {
+          "offset": 512,
+          "delta": 7,
+          "compact": true
+        }
+      ]
+    }
+  ]
+}

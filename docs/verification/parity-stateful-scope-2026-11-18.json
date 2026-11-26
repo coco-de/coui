@@ -1,0 +1,829 @@
+{
+  "issue": 6404,
+  "pr": 6413,
+  "status": "Final local validation complete; GitHub gate pending",
+  "validatedProductCommit": "61bf85137e314472328c4b8b10bdd44b4cae11f7",
+  "validatedIntegratedCommit": "c122d8ad61c9b8644070ee8be9845004604ac858",
+  "validatedBase": "e2d2dbf21ab7e6ae3c05389f11b271dc7ef39889",
+  "source": {
+    "phase": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6404-integration-20261118.h0_a3h5u",
+    "head": "61bf85137e314472328c4b8b10bdd44b4cae11f7",
+    "tree": "6f10fcf2df73344815f274132cc98c02e6a3a4b1",
+    "base": "7fc04b0843bfa893e0ab4cc9b9cd980f826f929e",
+    "workerCommit": "13ce1d07b2bbfa7b28ddd31de51c26f92828b823",
+    "worker11ByteEqual": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": true,
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": true,
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": true,
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": true,
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": true,
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": true,
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": true,
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": true,
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": true,
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": true,
+      "tool/parity/test/web/stateful_scope_identity_test.dart": true
+    },
+    "status": ""
+  },
+  "workerEvidenceRoot": "/tmp/weever-stateful-keyscope-20261118.ji8oyp7d",
+  "independentEvidenceRoot": "/tmp/weever-6404-independent-review-20261118.4ke4e6iz",
+  "rootEvidenceRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6404-integration-20261118.h0_a3h5u",
+  "worker": {
+    "issue": 6404,
+    "status": "VALIDATED_SOURCE_COMMITTED_FOR_ROOT_INTEGRATION",
+    "source": {
+      "head": "13ce1d07b2bbfa7b28ddd31de51c26f92828b823",
+      "tree": "bca05665beb6f694cc5de06e6821568ae61d443b",
+      "parent": "34c4d5ff1e6660180434cee2541af4c1bfe28ee0",
+      "branch": "fix/6404-stateful-private-scope-identity-20261118",
+      "clean": true,
+      "files": [
+        {
+          "file": "packages/coui_web/lib/src/components/display/loading/loading.dart",
+          "sha256": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+          "gitBlob": "ca7043175552e1c5086296aac1d6bb1c636bf40d",
+          "committedByteExact": true
+        },
+        {
+          "file": "packages/coui_web/lib/src/components/form/form_field/form_field.dart",
+          "sha256": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+          "gitBlob": "07bc8de79b679dcb2f1c3cc3298bb2481c66ba41",
+          "committedByteExact": true
+        },
+        {
+          "file": "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart",
+          "sha256": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+          "gitBlob": "9f41d381b2490c4f9f1626444cae1395ff12b01c",
+          "committedByteExact": true
+        },
+        {
+          "file": "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart",
+          "sha256": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+          "gitBlob": "5d0b2f064be063a569d1d49e4572e1941bc38184",
+          "committedByteExact": true
+        },
+        {
+          "file": "packages/coui_web/lib/src/components/form/object_input/object_input.dart",
+          "sha256": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+          "gitBlob": "1b5f44bc2445d12e1dbeef9059ae234ded2bd543",
+          "committedByteExact": true
+        },
+        {
+          "file": "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart",
+          "sha256": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+          "gitBlob": "cb5e5b5d84fa4e016fdd59c7b047f16b0484ffbe",
+          "committedByteExact": true
+        },
+        {
+          "file": "packages/coui_web/lib/src/components/form/text_area/text_area.dart",
+          "sha256": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+          "gitBlob": "21182288e42d060779e9f80ecc49c65c8d2ad29a",
+          "committedByteExact": true
+        },
+        {
+          "file": "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart",
+          "sha256": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+          "gitBlob": "024376c896ef9b368c44ed0d6e525f591e334ccd",
+          "committedByteExact": true
+        },
+        {
+          "file": "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart",
+          "sha256": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+          "gitBlob": "4c7e72d48b5f3e78473a543b124b52a23ae35df1",
+          "committedByteExact": true
+        },
+        {
+          "file": "packages/coui_web/lib/src/components/layout/tree/tree.dart",
+          "sha256": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+          "gitBlob": "67ce7c89e6ef47d1ad0cb18bb393554a2860688a",
+          "committedByteExact": true
+        },
+        {
+          "file": "tool/parity/test/web/stateful_scope_identity_test.dart",
+          "sha256": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a",
+          "gitBlob": "211d563d490dfe36f2856514c10b0c3bbedd86e6",
+          "committedByteExact": true
+        }
+      ],
+      "productCount": 10,
+      "testCount": 1,
+      "scope": "State-owned private scope IDs with web/ssr namespace; equivalent existing staged-file lint cleanup only. Private IDs/ARIA references/scoped selectors change; no extra wrapper/tag/order changes.",
+      "unchanged": [
+        "Native",
+        "Core",
+        "defaults",
+        "public constructors/fields/helpers/resolver arguments",
+        "barrels/exports",
+        "SDK",
+        "locks",
+        "capture tools",
+        "thresholds",
+        "allowlists",
+        "baselines"
+      ],
+      "formattedBackingInputIdPreserved": true
+    },
+    "tests": {
+      "optimizedChrome": {
+        "passed": 13,
+        "failed": 0,
+        "log": "final-13-positive.log"
+      },
+      "existingDirectUnits": {
+        "files": 11,
+        "passed": 142,
+        "failed": 0,
+        "log": "final-142-unit.log"
+      },
+      "negativeMerged9b": {
+        "passed": 3,
+        "failed": 10,
+        "exit": 1,
+        "log": "permanent-before9b-final.log",
+        "scope": "All ten primary ownership regressions fail on actual observable UI/AX/geometry/focus/callbacks, not duplicate-ID counts. Lifecycle/explicit public IDs/partial CSR pass."
+      },
+      "negativeBareCounter": {
+        "passed": 0,
+        "failed": 1,
+        "exit": 1,
+        "log": "permanent-barecounter-final.log",
+        "scope": "Partial CSR aliases static SSR RichEditor: expected Alpha/Beta, actual Beta/empty."
+      },
+      "fatalInfos": {
+        "issues": 0,
+        "log": "analyze-final.log"
+      },
+      "format": {
+        "changedFiles": 0,
+        "log": "format-final.log"
+      },
+      "publicApi": {
+        "unchanged": true,
+        "exportFiles": 1296,
+        "log": "api-contract.json"
+      },
+      "ownedDebugReload": {
+        "success": true,
+        "httpBeforeAfter": [
+          200,
+          200
+        ],
+        "closed": true,
+        "log": "owned-reload.json"
+      }
+    },
+    "knownLimits": [
+      "No full matrix/default registered capture executed in this worker phase; Root integration verification remains separate.",
+      "Seeded FormattedInput value/selection reset on owner rebuild is identical on baseline9b and candidate; not fixed or claimed preserved by this batch. Unseeded native-node/value/selection/primary element-ID lifecycle passes rebuild/reorder/remount controls.",
+      "FormattedInput scoped hover root ID is intentionally conditional on hover CSS availability/focus; no claim that every nested/conditional DOM ID stays exposed. Existing actual input ID code is unchanged.",
+      "TextArea !h-auto sizing issue remains out of scope; this fix is backed by outside-click callback isolation.",
+      "Partial-SSR Fade all-State barecounter regression is separately owned by Root; no Fade file changed here.",
+      "Actual browser tests use owned Puppeteer Chrome. Earlier standalone audit uses Chrome157; no cross-engine/AT-all claim.",
+      "Global whole-DOM ID uniqueness is not claimed; scope is these ten components. Caller explicit duplicate IDs remain caller-owned.",
+      "Existing main Nav token contract guard failure reported by Root is not changed or bypassed."
+    ],
+    "cleanup": {
+      "testBrowserClosedByTearDownAll": true,
+      "tempFixturesRemovedByTearDownAll": true,
+      "ownedSsrClosedExit": 0,
+      "noOtherAppOrServerAccess": true
+    },
+    "priorEvidence": [
+      "records.json",
+      "records-v2.json",
+      "partial-summary.json",
+      "partial-records.json",
+      "pre-lint-accepted/source.json"
+    ],
+    "sourcePhase": "Tests executed on final uncommitted bytes identical to committed source rows; negative baselines and earlier setup/fixture diagnostics remain separately named/preserved."
+  },
+  "rootTests": {
+    "head": "c122d8ad61c9b8644070ee8be9845004604ac858",
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "test",
+      "tool/parity/test/web/stateful_scope_identity_test.dart",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart",
+      "packages/coui_web/test/components/fade_scroll_first_paint_test.dart",
+      "packages/coui_web/test/components/fade_scroll_selection_test.dart",
+      "--reporter=expanded"
+    ],
+    "exit": 0,
+    "seconds": 47.188921625,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "unchanged": true
+  },
+  "rootTestComposition": {
+    "statefulActual": 13,
+    "fadeActualAndSSR": 9,
+    "total": 22,
+    "worker142NotSummedWithRepeated13": true
+  },
+  "rootAnalyze": {
+    "name": "analyze",
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "analyze",
+      "--fatal-infos",
+      "packages/coui_web/lib/src/components/display/loading/loading.dart",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart",
+      "tool/parity/test/web/stateful_scope_identity_test.dart"
+    ],
+    "exit": 0,
+    "seconds": 29.441795625,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "unchanged": true
+  },
+  "rootFormat": {
+    "name": "format",
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "packages/coui_web/lib/src/components/display/loading/loading.dart",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart",
+      "tool/parity/test/web/stateful_scope_identity_test.dart"
+    ],
+    "exit": 0,
+    "seconds": 0.34628475,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "unchanged": true
+  },
+  "matrix": {
+    "source": "c122d8ad61c9b8644070ee8be9845004604ac858",
+    "manifest": {
+      "all": 3494,
+      "defaultStyle": 752,
+      "components": 163,
+      "keyRoleFieldsEqualPrior": true,
+      "manifestSha256": "7094dac16cbcb4402efe19f3f1694f2c72ea32f7fd82f5df796a4590d618512b"
+    },
+    "freshNative": 752,
+    "freshWeb": 752,
+    "missing": 0,
+    "retries": 0,
+    "deltaSummary": {
+      "png": 1528,
+      "pngByteEqual": 1524,
+      "json": 1504,
+      "jsonByteEqual": 1348
+    },
+    "changedPngs": [
+      {
+        "path": "navigation-bar-default-light-defaultStyle.web.png",
+        "oldSize": [
+          800,
+          80
+        ],
+        "newSize": [
+          800,
+          80
+        ],
+        "changedPixels": 2416,
+        "maxChannel": 213
+      },
+      {
+        "path": "navigation-bar-default-dark-defaultStyle.flutter.png",
+        "oldSize": [
+          800,
+          80
+        ],
+        "newSize": [
+          800,
+          80
+        ],
+        "changedPixels": 2558,
+        "maxChannel": 222
+      },
+      {
+        "path": "navigation-bar-default-light-defaultStyle.flutter.png",
+        "oldSize": [
+          800,
+          80
+        ],
+        "newSize": [
+          800,
+          80
+        ],
+        "changedPixels": 2580,
+        "maxChannel": 213
+      },
+      {
+        "path": "navigation-bar-default-dark-defaultStyle.web.png",
+        "oldSize": [
+          800,
+          80
+        ],
+        "newSize": [
+          800,
+          80
+        ],
+        "changedPixels": 2412,
+        "maxChannel": 222
+      }
+    ],
+    "report": {
+      "pixel": {
+        "counts": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "keyRoleEqualPrior": true,
+        "propertyDiffsEqualPrior": true,
+        "infraKeysEqualPrior": true,
+        "skipKeysEqualPrior": true,
+        "exit": 1
+      },
+      "property": {
+        "counts": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "keyRoleEqualPrior": true,
+        "propertyDiffsEqualPrior": true,
+        "infraKeysEqualPrior": true,
+        "skipKeysEqualPrior": true,
+        "exit": 1
+      }
+    }
+  },
+  "docs": {
+    "head": "c122d8ad61c9b8644070ee8be9845004604ac858",
+    "buildExit": 0,
+    "uniqueRoutes": 359,
+    "runtimePassed": true,
+    "runtimeExit": 0,
+    "records": 110,
+    "byComponent": {
+      "tree": 16,
+      "scrollbar": 8,
+      "overflow-marquee": 8,
+      "loading": 14,
+      "form-field": 8,
+      "text-area": 12,
+      "rich-editor": 12,
+      "formatted-input": 16,
+      "object-input": 8,
+      "item-picker": 8
+    },
+    "runtimeErrors": [],
+    "actionFailures": [],
+    "browserClosed": true
+  },
+  "cleanup": {
+    "sourceHead": "c122d8ad61c9b8644070ee8be9845004604ac858",
+    "trackedFiles": 22482,
+    "hashDeltas": [],
+    "status": "",
+    "allCaptureAndReportRunnersAwaited": true,
+    "docsBrowserClosed": true,
+    "serverReapedExit": 143,
+    "portsClosed": {
+      "49735": true,
+      "50459": true
+    }
+  },
+  "evidence": {
+    "assets": [
+      {
+        "name": "pr6413-tree-flutter-light.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6404-integration-20261118.h0_a3h5u/matrix/captured/tree-default-light-defaultStyle.flutter.png",
+        "sha256": "ba1b6f7a3a850e3216bc76b0fa6be5e1654bf2d0d67c77d7e0bb713a5107d636",
+        "assetId": 762335624,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6413-tree-flutter-light.png"
+      },
+      {
+        "name": "pr6413-tree-web-light.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6404-integration-20261118.h0_a3h5u/matrix/captured/tree-default-light-defaultStyle.web.png",
+        "sha256": "8478cd88c84d72103ed87c7a9cdaa6a9e5f2c3d386d793855262b63446cb2d1f",
+        "assetId": 762335676,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6413-tree-web-light.png"
+      },
+      {
+        "name": "pr6413-rich-before-light.png",
+        "source": "/tmp/weever-6404-independent-review-20261118.4ke4e6iz/before/rich-light.png",
+        "sha256": "4ff9d98d5130a8fa0f9c75369c2d7421f02f84b2df0be045b62f0263cd28fa9f",
+        "assetId": 762335757,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6413-rich-before-light.png"
+      },
+      {
+        "name": "pr6413-rich-after-light.png",
+        "source": "/tmp/weever-6404-independent-review-20261118.4ke4e6iz/after/rich-light.png",
+        "sha256": "e1e5db7c78674f4c3223c7c1fbe3d0b312026bcd16a570cb6800b7ee15dc35d5",
+        "assetId": 762335801,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6413-rich-after-light.png"
+      },
+      {
+        "name": "pr6413-tree-flutter-dark.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6404-integration-20261118.h0_a3h5u/matrix/captured/tree-default-dark-defaultStyle.flutter.png",
+        "sha256": "64990bc267e3c7c3a3ba9d3e329106864a713721e91d0be78e6ef513bd71b7d8",
+        "assetId": 762335887,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6413-tree-flutter-dark.png"
+      },
+      {
+        "name": "pr6413-tree-web-dark.png",
+        "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6404-integration-20261118.h0_a3h5u/matrix/captured/tree-default-dark-defaultStyle.web.png",
+        "sha256": "ab35b65fb737e9a4804040de048af613145b7fa9d66a4718113d01b96321d582",
+        "assetId": 762335932,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6413-tree-web-dark.png"
+      },
+      {
+        "name": "pr6413-rich-before-dark.png",
+        "source": "/tmp/weever-6404-independent-review-20261118.4ke4e6iz/before/rich-dark.png",
+        "sha256": "99ffdab93311af942b6fd758df72fbed1ef70d97ac19d65d84168c92fba7bf6d",
+        "assetId": 762336005,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6413-rich-before-dark.png"
+      },
+      {
+        "name": "pr6413-rich-after-dark.png",
+        "source": "/tmp/weever-6404-independent-review-20261118.4ke4e6iz/after/rich-dark.png",
+        "sha256": "5c66f3a9e9aebe3acf06f3c75021ca1f45f98f8b00d64e4c16a7b6be6933dc07",
+        "assetId": 762336061,
+        "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6413-rich-after-dark.png"
+      }
+    ],
+    "release": 431249100,
+    "privateUnpublished": true,
+    "ttlDays": 3,
+    "rawPngEdited": false
+  },
+  "limits": [
+    "Initial stateful actual tests are bounded Chrome light controls; independent RichEditor/FormField and full registered matrix cover both actual themes.",
+    "Private generated IDs/ARIA references/CSS selectors change; public root IDs/Key/API/Core values/Native/default/producer/criteria do not.",
+    "FormattedInput actual backing input ID remains unchanged; seeded controlled-value reset on owner rebuild is a pre-existing limitation.",
+    "TextArea !h-auto sizing is not fixed.",
+    "Whole-document ID uniqueness/general partial hydration/AT-all/engine-all/all parity completion are not certified.",
+    "The inherited Nav itemMaxWidth96/API/Figma/baseline change belongs to main #6410; the four PNG changes relative7fc are attributed to it.",
+    "The c122 full snapshot precedes separate Nav gap guard fix #6414; final integration source binding is recorded separately.",
+    "No full manual CI/deployment/new designer approval claim."
+  ],
+  "finalIntegratedSource": {
+    "head": "978b21c6651cc620380192bfd7bb72db8b1bf98e",
+    "tree": "f50fe022e3919aa5727679a95035bcbfd88ec975",
+    "base": "ce6a391641bf56337df702035327f5c5fb2cba0a",
+    "stateful11EqualC122": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": true,
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": true,
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": true,
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": true,
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": true,
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": true,
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": true,
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": true,
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": true,
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": true,
+      "tool/parity/test/web/stateful_scope_identity_test.dart": true
+    },
+    "deltaFromC122": [
+      ".claude/rules/process/docs-site.md",
+      "app/docs_app/lib/src/markdown/tags/block_tags.dart",
+      "app/docs_app/lib/src/markdown/tags/docs_tags.dart",
+      "app/docs_app/lib/src/markdown/tags/preview_block_tags.dart",
+      "app/docs_app/test/markdown/preview_block_tags_test.dart",
+      "docs/verification/parity-navigation-caption-gap-2026-11-18.json",
+      "docs/verification/parity-navigation-caption-gap-2026-11-18.md",
+      "docs_core/content/components/button.md",
+      "docs_core/content/components/text-field.md",
+      "docs_core/lib/previews/props/flutter_doc_demos.dart",
+      "docs_core/lib/previews/props/flutter_prop_previews.dart",
+      "docs_core/lib/previews/props/web_doc_demos.dart",
+      "docs_core/lib/previews/props/web_prop_previews.dart",
+      "docs_core/lib/shared/docs_template.dart",
+      "docs_core/lib/shared/playground_spec.dart",
+      "docs_core/lib/shared/playground_store.dart",
+      "docs_core/lib/shared/preview_constraints.dart",
+      "docs_core/lib/shared/preview_props.dart",
+      "docs_core/lib/shared/size_spec.dart",
+      "docs_core/test/registry/catalog_single_source_test.dart",
+      "docs_core/test/registry/docs_section_contract_test.dart",
+      "docs_core/test/registry/registry_consistency_test.dart",
+      "docs_core/test/shared/prop_previews_parity_test.dart",
+      "docs_core/test/shared/size_spec_test.dart",
+      "docs_site/lib/components/component_source_links.dart",
+      "docs_site/lib/components/docs_blocks.dart",
+      "docs_site/lib/components/docs_playground.dart",
+      "docs_site/lib/components/docs_preview_blocks.dart",
+      "docs_site/lib/components/safe_code_block.dart",
+      "docs_site/lib/layouts/manual_layout.dart",
+      "docs_site/lib/main.client.options.dart",
+      "docs_site/lib/main.server.dart",
+      "docs_site/lib/main.server.options.dart",
+      "docs_site/lib/widgets/preview_app.dart",
+      "docs_site/test/components/docs_preview_blocks_render_test.dart",
+      "docs_site/web/docs-shell.css",
+      "docs_site/web/docs-shell.js",
+      "packages/coui_web/lib/src/components/navigation/navigation_bar/navigation_bar_style.dart",
+      "packages/coui_web/test/components/navigation/navigation_bar_compact_test.dart",
+      "tool/parity/test/web/navigation_caption_gap_ownership_test.dart"
+    ],
+    "status": ""
+  },
+  "finalTests24": {
+    "head": "978b21c6651cc620380192bfd7bb72db8b1bf98e",
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "test",
+      "tool/parity/test/web/stateful_scope_identity_test.dart",
+      "tool/parity/test/web/fade_scroll_timeline_test.dart",
+      "tool/parity/test/web/navigation_caption_gap_ownership_test.dart",
+      "packages/coui_web/test/components/fade_scroll_first_paint_test.dart",
+      "packages/coui_web/test/components/fade_scroll_selection_test.dart",
+      "--reporter=expanded"
+    ],
+    "exit": 0,
+    "seconds": 44.83911875,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "unchanged": true
+  },
+  "finalContracts": {
+    "head": "978b21c6651cc620380192bfd7bb72db8b1bf98e",
+    "args": [
+      "bash",
+      "scripts/guards/resolver/verify_contracts.sh"
+    ],
+    "exit": 0,
+    "seconds": 99.72565974999999,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "unchanged": true
+  },
+  "finalAnalyze": {
+    "head": "978b21c6651cc620380192bfd7bb72db8b1bf98e",
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "analyze",
+      "--fatal-infos",
+      "packages/coui_web/lib/src/components/display/loading/loading.dart",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart",
+      "tool/parity/test/web/stateful_scope_identity_test.dart"
+    ],
+    "exit": 0,
+    "seconds": 43.59902975,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "unchanged": true
+  },
+  "finalFormat": {
+    "head": "978b21c6651cc620380192bfd7bb72db8b1bf98e",
+    "args": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "packages/coui_web/lib/src/components/display/loading/loading.dart",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart",
+      "tool/parity/test/web/stateful_scope_identity_test.dart"
+    ],
+    "exit": 0,
+    "seconds": 0.39578274999999996,
+    "sourceBefore": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "sourceAfter": {
+      "packages/coui_web/lib/src/components/display/loading/loading.dart": "f7bfbed10e3ec474c32c4e80f3b73d58b8f5a082305b0b951864ad63ab1a3e51",
+      "packages/coui_web/lib/src/components/form/form_field/form_field.dart": "2ff1e9566dc27884a625d029a82bb0e288e5f4ebf3ea6e5b86d4d5dd92e7965e",
+      "packages/coui_web/lib/src/components/form/formatted_input/formatted_input.dart": "f438725b6f8cf78f2952616156acc753e656ada9fbf1a92809c3ee751e006b44",
+      "packages/coui_web/lib/src/components/form/item_picker/item_picker.dart": "b296dd93ba27b2d39e008d598d29951e0f4715c6597daca07244b9039d1757d2",
+      "packages/coui_web/lib/src/components/form/object_input/object_input.dart": "58fa2236d9493891acf0aeaaa108a74d66b6227996f06505230e5407109708d5",
+      "packages/coui_web/lib/src/components/form/rich_editor/rich_editor.dart": "6547bad51c4fa2068753309e646a640e2d74d52928d4fde4135a53c874e6e94e",
+      "packages/coui_web/lib/src/components/form/text_area/text_area.dart": "1932331155b22d0c662d5a8aa0a019c8072af9746207ce36ad218bbd5472bc4c",
+      "packages/coui_web/lib/src/components/infra/scrollbar/scrollbar.dart": "8e73c142259e089362793e9af896f9edcff1953ceeb890972f3d98598fafd7ca",
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee.dart": "b74986cf9346af91a8796d8aec6cb9950431156460e32a9ac32fc14fd6c11ac2",
+      "packages/coui_web/lib/src/components/layout/tree/tree.dart": "2340997da7b2618da08154460cd4a6387643565df0a1757d20668d97089f779e",
+      "tool/parity/test/web/stateful_scope_identity_test.dart": "9864b5af2b69db051424b988495d9aa42f61d180a9750f5c4e2fdaf818a49d2a"
+    },
+    "unchanged": true
+  },
+  "inheritedDocsV2Main": {
+    "commit": "b3c031a7c",
+    "pr": 6416,
+    "notMetadataOnly": true,
+    "followupBuildRuntimeOwnedSeparately": true
+  },
+  "finalLatestDocs": {
+    "head": "978b21c6651cc620380192bfd7bb72db8b1bf98e",
+    "buildExit": 0,
+    "uniqueRoutes": 359,
+    "runtimePassed": true,
+    "runtimeExit": 0,
+    "records": 110,
+    "byComponent": {
+      "tree": 16,
+      "scrollbar": 8,
+      "overflow-marquee": 8,
+      "loading": 14,
+      "form-field": 8,
+      "text-area": 12,
+      "rich-editor": 12,
+      "formatted-input": 16,
+      "object-input": 8,
+      "item-picker": 8
+    },
+    "runtimeErrors": [],
+    "actionFailures": [],
+    "browserClosed": true
+  },
+  "finalCleanup": {
+    "trackedFiles": 22501,
+    "hashDeltas": [],
+    "status": "",
+    "ownedBrowserClosed": true,
+    "ownedServerSignalled": "SIGTERM"
+  }
+}

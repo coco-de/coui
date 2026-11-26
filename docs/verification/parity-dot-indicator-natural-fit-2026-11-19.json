@@ -1,0 +1,233 @@
+{
+  "issue": "https://github.com/coco-de/coui/issues/6456",
+  "parent": "https://github.com/coco-de/coui/issues/6131",
+  "base": "b6b181aafb4375ee2c636b350ae31f36f4a7b3f4",
+  "productCommit": "d186c9e2f5ea7f555fe96d5b35a400e98afaaf2d",
+  "latestMain": "fab3c999e282e63d629cecc2f1adee0a72b70e85",
+  "integratedSourceHead": "404f30e7d7bc36bb1c137595ab0c13978e3eff0b",
+  "branch": "fix/6456-native-dot-natural-fit-20261119",
+  "productPath": "packages/coui_flutter/lib/src/components/display/dot_indicator/dot_indicator.dart",
+  "productSHA256": "36cb125905585487d37aba8ec5bee62c58145d6e6b4cd19d74c9736744f9c3dc",
+  "testPath": "packages/coui_flutter/test/components/display/dot_indicator_natural_fit_test.dart",
+  "testSHA256": "74d7affeaa2abcdc8b52d9da6f8f09b52c687b7a8c12e0f1af36a1d7c25e6807",
+  "change": "Private transparent RenderProxyBox measures existing Flex current dry geometry with only main max relaxed. Relax only when current extent fits; retain original main min/all cross bounds and original too-narrow constraints. Same pure selector for actual/dry/baseline; inherited intrinsic delegation, original Flex/Flexible/subtrees/placement retained.",
+  "beforeAfter": {
+    "sameCallerMax88": "Original root83.2x24/edge5.6x8 becomes88x24/all5markers8x8. No design value or capture policy changed.",
+    "CoreFigmaGeometry": "Existing md dot8/spacing8/padding8 and derived activeLength=dotSize; historical15variant Figma snapshot agrees. No fresh Figma certification claimed."
+  },
+  "verification": {
+    "finalCombinedNativeTests": {
+      "passed": 48,
+      "new": 20,
+      "existing": 28,
+      "exit": 0,
+      "seconds": 3.467072010040283,
+      "source": "d186",
+      "doNotAddEarlierRuns": true
+    },
+    "finalSourceActual": {
+      "passed": 9,
+      "exit": 0,
+      "seconds": 8.598392248153687,
+      "layoutRecords": 44,
+      "controlRecords": 12,
+      "pointerSamples": 52,
+      "scope": "Bothaxes fit/narrow/min/cross/RTL/asymmetric/activeLength20/intrinsic/dry/baseline/current-motion, focus/keyboard/semantics/hits/callerclip; original copiedb6 vs actual package finalDot."
+    },
+    "animation": {
+      "additionalPumpMilliseconds": [
+        0,
+        16,
+        50,
+        100,
+        200
+      ],
+      "cumulativeMilliseconds": [
+        0,
+        16,
+        66,
+        166,
+        366
+      ],
+      "bothOriginalAndFixedHaveGenuineIntermediateDimensions": true,
+      "notWebMotionOrUniversalTimelineClaim": true
+    },
+    "fatalInfos": {
+      "files": 2,
+      "exit": 0,
+      "seconds": 28.542692184448242
+    },
+    "format": {
+      "files": 2,
+      "changed": 0
+    },
+    "fullContracts": {
+      "exit": 0,
+      "seconds": 77.30877113342285
+    },
+    "integratedFocusedTests": {
+      "passed": 2,
+      "exit": 0
+    },
+    "publicAPI": {
+      "publicClassConstructorFieldsCopyWithTextExact": true,
+      "publicASTExact": true,
+      "constFactorySDKChange": false,
+      "exportMembershipExact": true,
+      "allExportedBytesExact": false,
+      "allowedExportedImplementationDelta": "Native Dot widget only",
+      "transitiveLocalExportCounts": {
+        "coui_core": 931,
+        "coui_flutter": 1351,
+        "coui_web": 1296
+      }
+    },
+    "packages": {
+      "resolvedDescriptors": 232,
+      "versionsLanguagesDependenciesLocksChanged": 0,
+      "canonicalAliasIdentityPairs": 12
+    },
+    "docsBuilds": [
+      {
+        "source": "d186c9e2f5ea7f555fe96d5b35a400e98afaaf2d",
+        "routes": 359,
+        "optimization": 2,
+        "exit": 0,
+        "seconds": 94.42585587501526,
+        "tracked": 22587,
+        "trackedByteModeDeltas": 0
+      },
+      {
+        "source": "404f30e7d7bc36bb1c137595ab0c13978e3eff0b",
+        "routes": 359,
+        "optimization": 2,
+        "exit": 0,
+        "seconds": 68.91747999191284,
+        "tracked": 22598,
+        "trackedByteModeDeltas": 0
+      }
+    ],
+    "ownedNativeApp": {
+      "standardCLIHeadlessTester": true,
+      "actualLibraryEntryVerified": true,
+      "hotReload": "Reloaded0libraries62ms",
+      "beforeAfter": "Root88x24 and5markers8x8 both frames",
+      "closed": true,
+      "pluginLimits": [
+        "dir_picker native symbol absent",
+        "file_saver_ffi native symbol absent"
+      ],
+      "notDesktopPluginIntegration": true
+    },
+    "selectedOriginalImages": {
+      "count": 8,
+      "allViewed": true,
+      "unedited": true,
+      "defect": "L/D samecap88 before/after",
+      "focusControl": "lightvertical originalnaturalcap800 vs fixedcap88, explicitly different caps; PNG/RGBAexact",
+      "narrowControl": "darkvertical samecap87.75, PNG/RGBAexact"
+    }
+  },
+  "integration": {
+    "ordinaryMerge": true,
+    "ownDiffVsFab3": [
+      "NativeDotwidget",
+      "newNaturalFitTest"
+    ],
+    "NativeCoreTreeAndConservativeActualClosureUnchanged": true,
+    "actualClosureLocalRepoFiles": 1395,
+    "actualClosureAllOwnAndRepoFiles": 1401,
+    "actualClosureWebFiles": 0,
+    "notEarlierGenericNative1990Scope": true,
+    "conditionalImportsExportsPartsIncluded": true,
+    "originalRuntimeCapturesRemainD186": true,
+    "notFresh404fNativeExecution": true,
+    "WebToggleChipUpstreamChangeRequiredFreshIntegratedDocs": true
+  },
+  "boundaries": [
+    "Existing explicitwidgetStyle/const-descendant no-update remains unchanged; real dimension motion used inheritedTheme invalidation.",
+    "5326 minimum24 hit floor and5327 passive interception remain separate open input holds. No minimum24 exception or semantics/hit redesign.",
+    "Captureorigin/left-only experiment remains separate HOLD. Comparator/normalizer/fields/thresholds/skip/baseline/manifest/examples/MD/CSSJS/Core/resolver/helpers unchanged by this branch.",
+    "No Native-Web exact parity, physical-device, full816fresh or234reduction claim. This Native change invalidates oldbad8 Native reuse for a future complete final-main measurement."
+  ],
+  "preservedFailures": "Original external prototype failures remain in native-dot-fit-investigation ud50j9ni. This implementation preserves initial typedtest/Rect-derived-size/testwrapper failures, canonicalpackageURI association correction (no ctor/lint/language change), external metadata URI fixes and selected-image fixture failures/partial originals. Final receipts above identify successful exact source; no failed run relabeled.",
+  "proofRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87",
+  "artifacts": {
+    "oldNegative": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/old-negative2-exit.json",
+      "sha256": "d6f74d809611c1da77c945cbb8b1fa5260bb51cf28a254fa9c405814e96d4223"
+    },
+    "combined48": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/focused-complete-exit.json",
+      "sha256": "2058373a5b7b283c18880651dd7b890a696ce88e7d6edb1124b85d5862e71ce9"
+    },
+    "fatal2Files": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/fatal3-exit.json",
+      "sha256": "ead94a6600ac208886c6f07df7a643b29b6b7894f05f7dcfff685010af1d388b"
+    },
+    "contracts": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/contracts-exit.json",
+      "sha256": "4beb8fd62eb16fd29774dc209b978ac9ac7ffe1e551163d9758c8209524bd089"
+    },
+    "publicAST": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/api-shape.json",
+      "sha256": "9c7be1c3bbed821094f233f5bf97fdc98f0d90c30a7bf0cebe15b4fca7167693"
+    },
+    "exportMembership": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/export-closure.json",
+      "sha256": "e2a9c4cb038e3576aea25968633bec9bf69f4af07a13f6fff5d68e73888bb7d1"
+    },
+    "originalProtection": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/source-protection.json",
+      "sha256": "0fe0e8691f473732dcd5b0f45390f76ec85197c6ffcee082e93b8d9b2f9b684f"
+    },
+    "original232": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/package-tuples.json",
+      "sha256": "94f6919ad453b9738eb2be108ea2d1a13ea39c16844293452d7c978a273aa16f"
+    },
+    "actual9": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/actual-source2-exit.json",
+      "sha256": "7309dbc583de3152d93a092c95a478612b2352892edc5f46c79706f45342c127"
+    },
+    "actual44Records": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/actual/prototype-records.json",
+      "sha256": "0a06cdd6f822dc37d29616403ee8bc5f68b93b75b1024fec001a2b11f72ba401"
+    },
+    "actual12Controls": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/actual/acceptance-controls.json",
+      "sha256": "11ac5f1ae03e9246822c96bd2d7f0899a6de4483abefe654ae2ead5387998778"
+    },
+    "selected8": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/selected-evidence8-reviewed.json",
+      "sha256": "64a2b6526d88742155928212c069e71ee7458eb5e2308ba24cc30dcd03c67c1a"
+    },
+    "ownedNativeReload": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/native-cli-proof.json",
+      "sha256": "edc1202568f647080412d7c8d4e209e31e4a68c5416b4e80e09c4a55cfd53a55"
+    },
+    "originalDocs": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/build-process.json",
+      "sha256": "687828d32586b913069922ed582f174e21f07b975be3e77423d14db8db974de0"
+    },
+    "ordinaryMerge": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/integration-fab3/merge.json",
+      "sha256": "754dbdcffa4a0606e5cac41bdbfe57c390fa002d3b85d8e89b4b461b9e738d56"
+    },
+    "integratedDocs": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/integration-fab3/build-process.json",
+      "sha256": "91b0d292443475782ab672c73c55c21f9f473600f9f57a07b8f6943c8d86b5d9"
+    },
+    "integrationProof": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/integration-fab3/integration-proof.json",
+      "sha256": "d2a3940c26602535c91e173bc243497463aa23c626f24d2b385bae9170b2bd23"
+    },
+    "actualNativeClosure1395": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/integration-fab3/native-closure.json",
+      "sha256": "7b0d7962966b0a6b8c76512b470bddf39694b87108b614774bae0608374ff644"
+    },
+    "integration2": {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6456-native-dot-fit-20261119.q9zsms87/integration-focused-exit.json",
+      "sha256": "9b6f3627196c1a56d04b0f9fdf8338515dc3f688afd65afbec99037267fe0c6a"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "key": "sidebar-default-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": ".co-sidebar-header-b4bnoh:hover > .co-sidebar-header-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-header-b4bnoh:focus-visible > .co-sidebar-header-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-header-b4bnoh:active > .co-sidebar-header-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                      \n                      \n                      \n                        \n                          C\n                        \n                      \n                      \n                        나음 병원\n                        본원 · 관리자\n                      \n                      \n                        \n                          \n                        \n                      \n                    \n                    \n                      \n                        .co-sidebar-search-7gi1jd:hover > .co-sidebar-search-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-search-7gi1jd:focus-visible > .co-sidebar-search-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-search-7gi1jd:active > .co-sidebar-search-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                      \n                      \n                      \n                        \n                      \n                      검색\n                      ⌘K\n                    \n                  \n                  \n                    \n                      \n                        .co-sidebar-item-heo1va:hover > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-item-heo1va:focus-visible > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-item-heo1va:active > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                      \n                      \n                      \n                        \n                      \n                      홈\n                    \n                    \n                      \n                        .co-sidebar-item-3f4pel:hover > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-item-3f4pel:focus-visible > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-item-3f4pel:active > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                      \n                      \n                      \n                        \n                      \n                      받은 편지함\n                      \n                    \n                    \n                      업무\n                    \n                    \n                      \n                        \n                          .co-sidebar-item-63gi8k:hover > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-item-63gi8k:focus-visible > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-item-63gi8k:active > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                        \n                        \n                        \n                          \n                        \n                        프로젝트\n                        \n                          \n                            \n                          \n                        \n                      \n                      \n                        \n                          \n                            \n                            \n                              \n                                .co-sidebar-item-2cwcde:hover > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-item-2cwcde:focus-visible > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-item-2cwcde:active > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                              \n                              \n                              디자인 시스템\n                            \n                            \n                              \n                                .co-sidebar-item-exmcsp:hover > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-item-exmcsp:focus-visible > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-item-exmcsp:active > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                              \n                              \n                              웹사이트\n                            \n                          \n                        \n                      \n                    \n                    \n                      \n                        .co-sidebar-item-1hxun3:hover > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-item-1hxun3:focus-visible > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-item-1hxun3:active > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                      \n                      \n                      \n                        \n                      \n                      일정\n                    \n                  \n                  \n                    \n                      \n                        .co-sidebar-item-7gqm7o:hover > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 3%);}.co-sidebar-item-7gqm7o:focus-visible > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 8%);}.co-sidebar-item-7gqm7o:active > .co-sidebar-item-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n                      \n                      \n                      \n                      도움말\n                    \n                    \n                      \n                        \n                          B\n                        \n                      \n                      \n                        김하나\n                        hana@example.com",
+    "layout": {
+      "width": 248,
+      "height": 640,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 248,
+          "height": 640
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "13px",
+      "lineHeight": "18px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(31, 32, 33)",
+      "borderTopColor": "rgb(64, 65, 67)",
+      "borderRightColor": "rgb(64, 65, 67)",
+      "borderBottomColor": "rgb(64, 65, 67)",
+      "borderLeftColor": "rgb(64, 65, 67)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 248,
+      "heightPx": 640
+    }
+  }
+}

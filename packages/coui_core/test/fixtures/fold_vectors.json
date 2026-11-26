@@ -1,0 +1,204 @@
+{
+  "_about": "Folds across a viewport and what CoreFoldLayout reads from them. Read by the Core rule's test, the Flutter transport and dialog tests, and the Web transport and dialog tests. Sizes are logical pixels; bounds and segments are [left, top, width, height]. 'start' is the index of the segment a panel that nothing anchors opens in, per reading direction. 'aligned' is the index of the segment a panel placed at an alignment of the viewport opens in, per reading direction: three rows — top, middle, bottom — of three columns — left, middle, right. 'crossing' is how many of the folds cross the viewport. Written by hand from the rule, not from the code.",
+  "cases": [
+    {
+      "name": "no fold",
+      "viewport": [400, 800],
+      "folds": [],
+      "crossing": 0,
+      "segments": [[0, 0, 400, 800]],
+      "kind": null,
+      "posture": null,
+      "start": {"ltr": 0, "rtl": 0},
+      "aligned": {
+        "ltr": [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+        "rtl": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+      }
+    },
+    {
+      "name": "a flip, half open (stand mode)",
+      "viewport": [412, 1004],
+      "folds": [{"bounds": [0, 502, 412, 0], "state": "halfOpened"}],
+      "crossing": 1,
+      "segments": [[0, 0, 412, 502], [0, 502, 412, 502]],
+      "kind": "flip",
+      "posture": "tabletop",
+      "start": {"ltr": 0, "rtl": 0},
+      "aligned": {
+        "ltr": [[0, 0, 0], [0, 0, 0], [1, 1, 1]],
+        "rtl": [[0, 0, 0], [0, 0, 0], [1, 1, 1]]
+      }
+    },
+    {
+      "name": "a flip, open flat",
+      "viewport": [412, 1004],
+      "folds": [{"bounds": [0, 502, 412, 0], "state": "flat"}],
+      "crossing": 1,
+      "segments": [[0, 0, 412, 1004]],
+      "kind": "flip",
+      "posture": "flat",
+      "start": {"ltr": 0, "rtl": 0},
+      "aligned": {
+        "ltr": [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+        "rtl": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+      }
+    },
+    {
+      "name": "a flip on its side, half open",
+      "viewport": [1004, 412],
+      "folds": [{"bounds": [502, 0, 0, 412], "state": "halfOpened"}],
+      "crossing": 1,
+      "segments": [[0, 0, 502, 412], [502, 0, 502, 412]],
+      "kind": "flip",
+      "posture": "book",
+      "start": {"ltr": 0, "rtl": 1},
+      "aligned": {
+        "ltr": [[0, 0, 1], [0, 0, 1], [0, 0, 1]],
+        "rtl": [[0, 1, 1], [0, 1, 1], [0, 1, 1]]
+      }
+    },
+    {
+      "name": "a fold, half open as a book",
+      "viewport": [690, 840],
+      "folds": [{"bounds": [345, 0, 0, 840], "state": "halfOpened"}],
+      "crossing": 1,
+      "segments": [[0, 0, 345, 840], [345, 0, 345, 840]],
+      "kind": "fold",
+      "posture": "book",
+      "start": {"ltr": 0, "rtl": 1},
+      "aligned": {
+        "ltr": [[0, 0, 1], [0, 0, 1], [0, 0, 1]],
+        "rtl": [[0, 1, 1], [0, 1, 1], [0, 1, 1]]
+      }
+    },
+    {
+      "name": "a fold, open flat",
+      "viewport": [690, 840],
+      "folds": [{"bounds": [345, 0, 0, 840], "state": "flat"}],
+      "crossing": 1,
+      "segments": [[0, 0, 690, 840]],
+      "kind": "fold",
+      "posture": "flat",
+      "start": {"ltr": 0, "rtl": 0},
+      "aligned": {
+        "ltr": [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+        "rtl": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+      }
+    },
+    {
+      "name": "a fold on its side, half open as a laptop",
+      "viewport": [840, 690],
+      "folds": [{"bounds": [0, 345, 840, 0], "state": "halfOpened"}],
+      "crossing": 1,
+      "segments": [[0, 0, 840, 345], [0, 345, 840, 345]],
+      "kind": "fold",
+      "posture": "tabletop",
+      "start": {"ltr": 0, "rtl": 0},
+      "aligned": {
+        "ltr": [[0, 0, 0], [0, 0, 0], [1, 1, 1]],
+        "rtl": [[0, 0, 0], [0, 0, 0], [1, 1, 1]]
+      }
+    },
+    {
+      "name": "a fold whose inner screen is wider than tall, half open",
+      "viewport": [840, 700],
+      "folds": [{"bounds": [420, 0, 0, 700], "state": "halfOpened"}],
+      "crossing": 1,
+      "segments": [[0, 0, 420, 700], [420, 0, 420, 700]],
+      "kind": "fold",
+      "posture": "book",
+      "start": {"ltr": 0, "rtl": 1},
+      "aligned": {
+        "ltr": [[0, 0, 1], [0, 0, 1], [0, 0, 1]],
+        "rtl": [[0, 1, 1], [0, 1, 1], [0, 1, 1]]
+      }
+    },
+    {
+      "name": "two screens and a hinge, open flat",
+      "viewport": [1114, 720],
+      "folds": [{"bounds": [540, 0, 34, 720], "state": "flat"}],
+      "crossing": 1,
+      "segments": [[0, 0, 540, 720], [574, 0, 540, 720]],
+      "kind": "fold",
+      "posture": "flat",
+      "start": {"ltr": 0, "rtl": 1},
+      "aligned": {
+        "ltr": [[0, 0, 1], [0, 0, 1], [0, 0, 1]],
+        "rtl": [[0, 1, 1], [0, 1, 1], [0, 1, 1]]
+      }
+    },
+    {
+      "name": "two screens and a hinge, turned so the hinge runs across",
+      "viewport": [720, 1114],
+      "folds": [{"bounds": [0, 540, 720, 34], "state": "flat"}],
+      "crossing": 1,
+      "segments": [[0, 0, 720, 540], [0, 574, 720, 540]],
+      "kind": "fold",
+      "posture": "flat",
+      "start": {"ltr": 0, "rtl": 0},
+      "aligned": {
+        "ltr": [[0, 0, 0], [0, 0, 0], [1, 1, 1]],
+        "rtl": [[0, 0, 0], [0, 0, 0], [1, 1, 1]]
+      }
+    },
+    {
+      "name": "a fold whose posture was not reported",
+      "viewport": [690, 840],
+      "folds": [{"bounds": [345, 0, 0, 840], "state": "unknown"}],
+      "crossing": 1,
+      "segments": [[0, 0, 690, 840]],
+      "kind": "fold",
+      "posture": null,
+      "start": {"ltr": 0, "rtl": 0},
+      "aligned": {
+        "ltr": [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+        "rtl": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+      }
+    },
+    {
+      "name": "a hinge whose posture was not reported",
+      "viewport": [1114, 720],
+      "folds": [{"bounds": [540, 0, 34, 720], "state": "unknown"}],
+      "crossing": 1,
+      "segments": [[0, 0, 540, 720], [574, 0, 540, 720]],
+      "kind": "fold",
+      "posture": null,
+      "start": {"ltr": 0, "rtl": 1},
+      "aligned": {
+        "ltr": [[0, 0, 1], [0, 0, 1], [0, 0, 1]],
+        "rtl": [[0, 1, 1], [0, 1, 1], [0, 1, 1]]
+      }
+    },
+    {
+      "name": "something that does not cross the viewport",
+      "viewport": [400, 800],
+      "folds": [{"bounds": [150, 0, 100, 30], "state": "halfOpened"}],
+      "crossing": 0,
+      "segments": [[0, 0, 400, 800]],
+      "kind": null,
+      "posture": null,
+      "start": {"ltr": 0, "rtl": 0},
+      "aligned": {
+        "ltr": [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+        "rtl": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+      }
+    },
+    {
+      "name": "three panels folding the same way, half open",
+      "viewport": [1260, 840],
+      "folds": [
+        {"bounds": [420, 0, 0, 840], "state": "halfOpened"},
+        {"bounds": [840, 0, 0, 840], "state": "halfOpened"}
+      ],
+      "crossing": 2,
+      "segments": [[0, 0, 420, 840], [420, 0, 420, 840], [840, 0, 420, 840]],
+      "kind": "fold",
+      "posture": "book",
+      "start": {"ltr": 0, "rtl": 2},
+      "aligned": {
+        "ltr": [[0, 1, 2], [0, 1, 2], [0, 1, 2]],
+        "rtl": [[0, 1, 2], [0, 1, 2], [0, 1, 2]]
+      }
+    }
+  ]
+}

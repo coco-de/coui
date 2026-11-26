@@ -1,0 +1,91 @@
+{
+  "_comment": [
+    "Shared Lucide icon stroke vectors. Read by coui_core (CoreIconStroke),",
+    "coui_flutter (Icon) and coui_web (Icon) tests so a fix that lands on one",
+    "platform fails the other. renderedWidth is the stroke in token px,",
+    "max(1.25, tokenSize / 16); svgValue is the stroke-width attribute for a",
+    "24-unit viewBox, renderedWidth * 24 / tokenSize; svgString is that value",
+    "as written into the SVG (at most 4 decimals, trailing zeros trimmed)."
+  ],
+  "viewBox": 24,
+  "cases": [
+    {
+      "tokenSize": 8,
+      "renderedWidth": 1.25,
+      "svgValue": 3.75,
+      "svgString": "3.75"
+    },
+    {
+      "tokenSize": 10,
+      "renderedWidth": 1.25,
+      "svgValue": 3.0,
+      "svgString": "3"
+    },
+    {
+      "tokenSize": 12,
+      "renderedWidth": 1.25,
+      "svgValue": 2.5,
+      "svgString": "2.5"
+    },
+    {
+      "tokenSize": 14,
+      "renderedWidth": 1.25,
+      "svgValue": 2.142857142857143,
+      "svgString": "2.1429"
+    },
+    {
+      "tokenSize": 16,
+      "renderedWidth": 1.25,
+      "svgValue": 1.875,
+      "svgString": "1.875"
+    },
+    {
+      "tokenSize": 18,
+      "renderedWidth": 1.25,
+      "svgValue": 1.6666666666666667,
+      "svgString": "1.6667"
+    },
+    {
+      "tokenSize": 20,
+      "renderedWidth": 1.25,
+      "svgValue": 1.5,
+      "svgString": "1.5"
+    },
+    {
+      "tokenSize": 22,
+      "renderedWidth": 1.375,
+      "svgValue": 1.5,
+      "svgString": "1.5"
+    },
+    {
+      "tokenSize": 24,
+      "renderedWidth": 1.5,
+      "svgValue": 1.5,
+      "svgString": "1.5"
+    },
+    {
+      "tokenSize": 28,
+      "renderedWidth": 1.75,
+      "svgValue": 1.5,
+      "svgString": "1.5"
+    },
+    {
+      "tokenSize": 30,
+      "renderedWidth": 1.875,
+      "svgValue": 1.5,
+      "svgString": "1.5"
+    },
+    {
+      "tokenSize": 32,
+      "renderedWidth": 2.0,
+      "svgValue": 1.5,
+      "svgString": "1.5"
+    },
+    {
+      "tokenSize": 48,
+      "renderedWidth": 3.0,
+      "svgValue": 1.5,
+      "svgString": "1.5"
+    }
+  ]
+}

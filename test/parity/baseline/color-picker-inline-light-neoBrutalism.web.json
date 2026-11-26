@@ -1,0 +1,63 @@
+{
+  "key": "color-picker-inline-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "RGBRGB\n                        \n                      \n                      \n                        \n                          HSLHSL\n                        \n                      \n                      \n                        \n                          HSVHSV\n                        \n                      \n                    \n                  \n                  \n                    \n                  \n                  \n                    \n                    \n                  \n                  \n                    \n                      \n                        HEX\n                        \n                        \n                          \n                            \n                              \n                            \n                          \n                        \n                      \n                    \n                    \n                      \n                        R\n                        \n                        \n                          \n                            \n                              \n                            \n                          \n                        \n                      \n                    \n                    \n                      \n                        G\n                        \n                        \n                          \n                            \n                              \n                            \n                          \n                        \n                      \n                    \n                    \n                      \n                        B\n                        \n                        \n                          \n                            \n                              \n                            \n                          \n                        \n                      \n                    \n                  \n                  \n                    \n                      \n                        #co-button-ssr-5:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-ssr-5:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}",
+    "layout": {
+      "width": 272,
+      "height": 472,
+      "direction": "row",
+      "innerPaddingLeft": "12px",
+      "innerPaddingRight": "12px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 272,
+          "height": 472
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(31, 32, 33)",
+      "borderRightColor": "rgb(31, 32, 33)",
+      "borderBottomColor": "rgb(31, 32, 33)",
+      "borderLeftColor": "rgb(31, 32, 33)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "12px",
+      "paddingRight": "12px",
+      "paddingBottom": "12px",
+      "paddingLeft": "12px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 272,
+      "heightPx": 472
+    }
+  }
+}

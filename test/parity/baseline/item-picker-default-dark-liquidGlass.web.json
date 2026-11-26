@@ -1,0 +1,75 @@
+{
+  "key": "item-picker-default-dark-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "담당자\n                \n                  \n                    \n                      \n                    \n                    김코드\n                  \n                \n                \n                  이코드\n                \n                \n                  박코드\n                \n                \n                  최코드\n                \n                \n                  정코드",
+    "layout": {
+      "width": 800,
+      "height": 267,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 1,
+          "y": 1,
+          "width": 798,
+          "height": 40
+        },
+        {
+          "x": 1,
+          "y": 41,
+          "width": 798,
+          "height": 1
+        },
+        {
+          "x": 1,
+          "y": 42,
+          "width": 798,
+          "height": 224
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(147, 149, 150)",
+      "backgroundColor": "rgba(42, 43, 44, 0.6)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "12px",
+      "borderTopRightRadius": "12px",
+      "borderBottomRightRadius": "12px",
+      "borderBottomLeftRadius": "12px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, color(srgb 0 0 0 / 0.5) 0px 16px 40px 0px",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 267
+    }
+  }
+}

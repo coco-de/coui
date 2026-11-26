@@ -1,0 +1,35 @@
+{
+  "key": "page-header-default-light-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "page-header-default-light-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 15.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.15,
+      "color": {
+        "r": 88,
+        "g": 89,
+        "b": 90,
+        "a": 1.0
+      },
+      "backgroundColor": null,
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": null,
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 90.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

@@ -1,0 +1,50 @@
+{
+  "key": "rich-editor-no-toolbar-light-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "rich-editor-no-toolbar-light-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSizePx": null,
+      "lineHeightPx": null,
+      "letterSpacingPx": null,
+      "color": null,
+      "backgroundColor": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 208,
+        "g": 209,
+        "b": 210,
+        "a": 1.0
+      },
+      "borderWidthPx": 1.0,
+      "borderRadiusPx": [
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 82.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

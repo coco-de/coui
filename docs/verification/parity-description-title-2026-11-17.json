@@ -1,0 +1,322 @@
+{
+  "date": "2026-11-17",
+  "issue": 6345,
+  "parentIssue": 6131,
+  "base": "d0fcdb80e15b4227e11b1b6ab0c5446f4258731a",
+  "productHead": "0275bc5c659288f02890c735e37f9b96d1f88924",
+  "SDK": {
+    "flutter": "3.50.0",
+    "revision": "ab2912035e160d9cad6306df307576da6128ebdb",
+    "dart": "3.14.0",
+    "jaspr": "0.24.0-beta.1",
+    "globalFvmUnchanged": "3.47.9"
+  },
+  "sourceFiles": {
+    "packages/coui_flutter/lib/src/components/display/description_card/description_card_style.dart": {
+      "baseBlob": "c1254c9a24a4fcc9210bb98f89950450e11a09de",
+      "acceptedBlob": "741039f3845f0c328a86dc7e88089813af1016c1",
+      "sha256": "2c08605d8eb94ef25beade2dc8848224c4c88ccfedc46c99131a46a9d9636110"
+    },
+    "packages/coui_web/lib/src/components/display/description_card/description_card_style.dart": {
+      "baseBlob": "44b93cb8a72b5637c8e31e5b497ed8f2fac8a05d",
+      "acceptedBlob": "4590b3bbf68834aa90ae09e29f130d6bec0194f1",
+      "sha256": "d54d2a77d2b12a88fc70d24c191725323b7791913ddc7e668c5eb5850f868dfb"
+    }
+  },
+  "mainCaptureIntegrity": {
+    "head": "d0fcdb80e15b4227e11b1b6ab0c5446f4258731a",
+    "inputsChanged": [],
+    "imagesDecoded": 1520,
+    "JSONparsed": 1496,
+    "decodeErrors": [],
+    "rootMissing": [],
+    "nativeCaptureExit": 0,
+    "webCaptureExit": 0,
+    "retries": 0
+  },
+  "combinedCaptureIntegrity": {
+    "head": "0275bc5c659288f02890c735e37f9b96d1f88924",
+    "freshMainHead": "d0fcdb80e15b4227e11b1b6ab0c5446f4258731a",
+    "SDK": "Flutter3.50.0/Dart3.14.0/Jaspr0.24.0-beta.1",
+    "changedCaptureInputFiles": [
+      "packages/coui_flutter/lib/src/components/display/description_card/description_card_style.dart",
+      "packages/coui_web/lib/src/components/display/description_card/description_card_style.dart"
+    ],
+    "freshDescriptionCardAllStylesKeys": 60,
+    "replacedDefaultStyleKeys": 12,
+    "otherKeysReused": 736,
+    "images": 1520,
+    "imagesPNGbytesEqualFreshMain": 1520,
+    "JSONequalFreshMain": 1496,
+    "notSecondFullCapture": true
+  },
+  "relatedExact": {
+    "keys": 60,
+    "images": 120,
+    "RGBAexact": 120,
+    "JSONexact": 120
+  },
+  "relatedParity": {
+    "pass": 60,
+    "fail": 0,
+    "infra": 0,
+    "skipped": 0
+  },
+  "mainPixel": {
+    "pass": 568,
+    "fail": 180,
+    "infra": 0,
+    "skipped": 0
+  },
+  "acceptedPixel": {
+    "pass": 568,
+    "fail": 180,
+    "infra": 0,
+    "skipped": 0
+  },
+  "mainProperty": {
+    "pass": 416,
+    "fail": 274,
+    "infra": 12,
+    "skipped": 46
+  },
+  "acceptedProperty": {
+    "pass": 416,
+    "fail": 274,
+    "infra": 12,
+    "skipped": 46
+  },
+  "upstreamChangeSince9c": {
+    "before": {
+      "fail": 181,
+      "pass": 567
+    },
+    "latest": {
+      "fail": 180,
+      "pass": 568
+    },
+    "newFail": [],
+    "improved": [
+      "radio-group-default-light-defaultStyle"
+    ],
+    "dimensions": [
+      "badge-status-light-defaultStyle",
+      "badge-status-dark-defaultStyle",
+      "navigation-bar-sidebar-light-defaultStyle",
+      "navigation-bar-sidebar-dark-defaultStyle"
+    ],
+    "baseline": {
+      "flutter": {
+        "pass": 653,
+        "fail": 95,
+        "firstCapture": 12
+      },
+      "web": {
+        "fail": 335,
+        "pass": 413,
+        "firstCapture": 12
+      }
+    }
+  },
+  "relatedOwnBaseline": {
+    "flutter": {
+      "pass": 10,
+      "fail": 50
+    },
+    "web": {
+      "pass": 0,
+      "fail": 60
+    },
+    "unchangedByPatch": true
+  },
+  "limits": {
+    "supportedApiChange": false,
+    "internalResolvedSurfaceChange": false,
+    "coreDefaultsTokensOrThemeChange": false,
+    "SDKDependencyChangeInPR": false,
+    "FigmaChange": false,
+    "thresholdBaselineAllowlistChange": false,
+    "genericCSSCandidateIncluded": false
+  },
+  "validation": {
+    "native": {
+      "pass": 83,
+      "log": "/tmp/weever-6345-root-final-20261117/native-final.log"
+    },
+    "webUnit": {
+      "pass": 8,
+      "log": "/tmp/weever-6345-root-final-20261117/web-final.log"
+    },
+    "chrome": {
+      "pass": 2,
+      "tokenControlObservations": 24,
+      "scalarObservations": 12,
+      "log": "/tmp/weever-6345-root-final-20261117/chrome-final.log"
+    },
+    "configuredProductionFilesAnalyze": {
+      "root": "No issues found!",
+      "fatalInfos": true,
+      "log": "/tmp/weever-6345-root-final-20261117/analyze-final.log"
+    },
+    "wholeScopedAnalyzeHistorical9c": {
+      "baseInfos": 5,
+      "acceptedInfos": 5,
+      "newDiagnostics": 0,
+      "scope": "Core/Native/Web/Flutter examples/Web examples plus 3 direct tests"
+    },
+    "format": {
+      "files": 36,
+      "changed": 0,
+      "log": "/tmp/weever-6345-root-final-20261117/format-final.log"
+    },
+    "guards": {
+      "designTokensPhase1to6": 0,
+      "contractsAllChecks": 0,
+      "chromePassthrough": 0
+    },
+    "optimizedDocs": {
+      "routes": 357,
+      "succeeded": true,
+      "jasprCLI": "0.24.0-beta.1",
+      "source": "worker6da8ff93; product bytes identical to root; additional root Markdown paragraph only",
+      "generatedTrackedFilesUnchanged": 4,
+      "log": "/tmp/weever-6345-final-6352-20261117.5ufrmt9e/docs-build.log"
+    },
+    "optimizedDOM": {
+      "records": 12,
+      "runtimeErrors": 0,
+      "consoleErrors": 0,
+      "chrome": "157.0.8103.79",
+      "log": "/tmp/weever-6345-final-6352-20261117.5ufrmt9e/browser-results.json"
+    },
+    "tokenActualPairs": {
+      "count": 8,
+      "allMatch": true,
+      "log": "/tmp/weever-6345-final-6352-20261117.5ufrmt9e/token-comparison.json"
+    },
+    "sameSDKDefaultFiveSizesLightDark": {
+      "nativeRGBAExact": 10,
+      "webRGBAandDOMExact": 10
+    },
+    "testRename": {
+      "oldSuffix": "description_card_title_style_contract_test.dart",
+      "newName": "description_card_style_test.dart",
+      "contentIdentity": "100% git rename; new names rerun in root with 83/8/2 passing"
+    },
+    "hotReloadReceipt": "/tmp/weever-6345-final-6352-20261117.5ufrmt9e/runtime-receipt.json",
+    "SSR": {
+      "HTTP200": true,
+      "tokenClasses": [
+        "bg-outline-variant",
+        "bg-surface",
+        "bg-surface-container",
+        "bg-surface-container-low",
+        "bg-surface-container/0",
+        "bg-surface-raised",
+        "bg-transparent",
+        "border-outline-subtle",
+        "border-outline-variant",
+        "rounded-bl-radius4",
+        "rounded-br-radius4",
+        "rounded-tl-radius4",
+        "rounded-tr-radius4",
+        "text-body-large",
+        "text-body-medium",
+        "text-body-small",
+        "text-code-md",
+        "text-display-small",
+        "text-inherit",
+        "text-label-large",
+        "text-label-medium",
+        "text-label-small",
+        "text-label-xl",
+        "text-label-xs",
+        "text-on-surface",
+        "text-on-surface-subtle",
+        "text-on-surface-variant",
+        "text-start",
+        "text-title-medium",
+        "text-title-small"
+      ],
+      "invalidBareColorTokens": [],
+      "rgbaClass": false,
+      "sha256": "b8df7d5dbffd836cbac22b9dfeb315fd273c44dfc91f2f1b3a49465af2b8ff92"
+    },
+    "ownedRuntime": {
+      "head": "6da8ff93bda9c400855fa949ad18ffd514b119a1",
+      "base": "d0fcdb80e15b4227e11b1b6ab0c5446f4258731a",
+      "sdk": "Flutter3.50.0/Dart3.14.0",
+      "device": "flutter-tester",
+      "ownedSession": 20928,
+      "port": 60569,
+      "fonts": "real parity static masters loaded before runApp",
+      "reload": {
+        "libraries": 2,
+        "total": 3728,
+        "milliseconds": 516
+      },
+      "restartMilliseconds": 635,
+      "quit": true
+    }
+  },
+  "artifacts": {
+    "main": "/tmp/weever-main6352-parity-20261117.58yotkgw",
+    "accepted": "/tmp/weever-6345-root-final-20261117",
+    "initial9c": "/tmp/weever-main350-parity-20261117.vwdnz8s8",
+    "workerFinal": "/tmp/weever-6345-final-6352-20261117.5ufrmt9e"
+  },
+  "latestMainEquivalence": {
+    "capturedBase": "d0fcdb80e15b4227e11b1b6ab0c5446f4258731a",
+    "latestMergedMain": "37c6df6acaf9abc9e56c26accab2f87ea8d08959",
+    "mainChangedPaths": [
+      "tools/figma-token-sync/scripts/selftest-registry-runtime.ts",
+      "tools/figma-token-sync/src/components/navigation.ts"
+    ],
+    "intersectsCaptureInputs": []
+  },
+  "apiContract": {
+    "graphCounts": {
+      "coui_core": {
+        "beforeFiles": 922,
+        "afterFiles": 922,
+        "same": true
+      },
+      "coui_flutter": {
+        "beforeFiles": 1337,
+        "afterFiles": 1337,
+        "same": true
+      },
+      "coui_web": {
+        "beforeFiles": 1282,
+        "afterFiles": 1282,
+        "same": true
+      }
+    },
+    "missingExportFiles": [],
+    "rows": [
+      {
+        "path": "packages/coui_flutter/lib/src/components/display/description_card/description_card_style.dart",
+        "inSupportedExportFileClosure": true,
+        "allDeclarationSignaturesIdentical": true,
+        "allClassesIncludingResolvedIdentical": true,
+        "beforeSignatureSha256": "a55ca686a0a1ac9a156b0a3f52b33e9c69d4202ccdcca01690a3a6d4a9fd1517",
+        "afterSignatureSha256": "a55ca686a0a1ac9a156b0a3f52b33e9c69d4202ccdcca01690a3a6d4a9fd1517"
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/display/description_card/description_card_style.dart",
+        "inSupportedExportFileClosure": true,
+        "allDeclarationSignaturesIdentical": true,
+        "allClassesIncludingResolvedIdentical": true,
+        "beforeSignatureSha256": "76147ef66e2b3f290b9c57603a4310071930f2586abc859a17538febf238cba6",
+        "afterSignatureSha256": "76147ef66e2b3f290b9c57603a4310071930f2586abc859a17538febf238cba6"
+      }
+    ],
+    "methodology": "AST function-body elision; semantic token shapes retain all private/public declarations, annotations, parameter defaults, fields, constructors and initializers; documentation comments excluded. Conditional exports traversed. External SDK exports unchanged by git scope."
+  },
+  "knownSeparateIssues": {
+    "genericInheritance": 6342,
+    "definitionInlineWrap": 6354,
+    "showDividerFalseGap": 6355,
+    "legacyColorFieldPrecedenceDifference": "Native titleColor wins; Web nested slot color wins; intentionally preserved"
+  }
+}

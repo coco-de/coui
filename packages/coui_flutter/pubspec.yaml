@@ -1,0 +1,125 @@
+name: coui_flutter
+description: "CoUI components for Flutter with shared design tokens, type-safe theming, and a matching component API for Jaspr."
+version: 0.194.2-beta.1
+homepage: https://github.com/coco-de/coui
+repository: https://github.com/coco-de/coui/tree/main/packages/coui_flutter
+issue_tracker: https://github.com/coco-de/coui/issues
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+  flutter: ">=3.47.0"
+
+resolution: workspace
+
+dependencies:
+  collection: ^1.19.1
+  coui_core: ^0.192.0
+  country_flags: ^4.0.1
+  cross_file: ^0.3.4+2
+  data_widget: ^0.0.2
+  desktop_drop: ^0.8.4
+  dir_picker: ^0.4.1
+  email_validator: ^3.0.0
+  expressions: ^0.2.5+2
+  file_picker: ^12.2.0
+  file_saver_ffi: ^0.9.1
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg: ^2.0.16
+  heroicons: ^0.11.0
+  image: ^4.5.4
+  markdown: ^7.3.1
+  skeletonizer: ^2.1.0+1
+  # RichEditor uses the dev.52 document and editing APIs.
+  super_editor: ">=0.3.0-dev.52 <0.3.0-dev.53"
+  syntax_highlight_lite: ^0.0.1
+  web: ^1.1.1
+
+  http: ^1.6.0
+dev_dependencies:
+  alchemist: ^0.14.0
+  archive: any
+  build_runner: ^2.10.4
+  # The parity matrix test and the calendar tests fix the date a calendar
+  # treats as today with `withClock` (`CoreCalendarView.currentTime`).
+  clock: any
+  # #3652 — test/parity/flutter_capture_matrix_test.dart reuses
+  # docs_core's kFlutterPreviewRegistry (component slug → widget builder)
+  # instead of a second, independently-maintained instantiation source.
+  # Workspace tests resolve the same docs fixtures from the local source.
+  docs_core:
+    path: ../../docs_core
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+  lint: ^2.14.0
+  mocktail: ^1.0.4
+  very_good_analysis: ^11.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  # The package's one piece of native code: on iOS it measures the fold of a
+  # folding iPhone, which Flutter's embedder does not hand to
+  # `MediaQuery.displayFeatures` (ios/). `FoldScopeHost` is the Dart half.
+  # Every other platform is Dart only — Android reports folds through the
+  # engine, and there is nothing to ask elsewhere.
+  plugin:
+    platforms:
+      ios:
+        pluginClass: CoUIFoldPlugin
+  uses-material-design: true
+  assets:
+    - assets/syntax_grammars/
+  # Bundled with the package so a consuming app needs no registration of
+  # its own — a surface that asks for refraction must not depend on the app
+  # having remembered to list an asset it never wrote.
+  shaders:
+    - shaders/surface_refraction.frag
+  # 아이콘 글꼴(Lucide · Bootstrap · Radix)은 선언하지 않는다. CoUI 의 `Icon`
+  # 은 `IconName` 을 SVG 로 그리고, 이 글꼴을 가리키는 const `IconData` 는
+  # 라이브러리 어디에도 없다. 그래서 아이콘 트리 셰이커가 잘라낼 코드포인트를
+  # 찾지 못해 글꼴이 통째로 실렸고(gzip 518 KB), Flutter web 은 그 글꼴을
+  # 첫 프레임 전에 내려받았다. 파일은 lib/icons/ 에 그대로 있어, 글꼴로
+  # 그리는 앱은 자기 pubspec 에서 opt-in 한다 — docs 설치 가이드 참조.
+  fonts:
+  # Geist 는 기본 서체(Pretendard / Geist Mono) 뒤의 결정적 fallback 이다
+  # — 테스트·글꼴 없는 앱이 같은 메트릭으로 그리게. GeistMono 는 모노 토큰
+  # 그 서체 자체라 앱이 따로 싣지 않아도 같은 글리프로 그려지고, GeistSans
+  # 는 앱이 제공하는 Pretendard 뒤의 대역이다.
+  # 그래서 컴포넌트 토큰이 실제로 쓰는 굵기(400·500·600·700)만 선언한다.
+  # Flutter web 은 여기 선언된 글꼴을 첫 프레임 전에 전부 내려받으므로,
+  # 쓰지 않는 굵기를 선언하면 모든 소비 앱이 그 바이트를 낸다.
+  # 나머지 굵기(100·200·300·800·900) 파일은 lib/fonts/ 에 그대로 있고,
+  # 필요한 앱은 자기 pubspec 에서 opt-in 한다 — docs 설치 가이드 참조.
+  - family: "GeistSans"
+    fonts:
+    - asset: "lib/fonts/Geist-Regular.otf"
+      weight: 400
+    - asset: "lib/fonts/Geist-Medium.otf"
+      weight: 500
+    - asset: "lib/fonts/Geist-SemiBold.otf"
+      weight: 600
+    - asset: "lib/fonts/Geist-Bold.otf"
+      weight: 700
+  - family: "GeistMono"
+    fonts:
+    - asset: "lib/fonts/GeistMono-Regular.otf"
+      weight: 400
+    - asset: "lib/fonts/GeistMono-Medium.otf"
+      weight: 500
+    - asset: "lib/fonts/GeistMono-SemiBold.otf"
+      weight: 600
+    - asset: "lib/fonts/GeistMono-Bold.otf"
+      weight: 700
+
+topics:
+- widgets
+- user-interface
+- design
+- components
+- coui-ui

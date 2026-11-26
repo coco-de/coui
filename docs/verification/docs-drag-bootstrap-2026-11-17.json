@@ -1,0 +1,149 @@
+{
+  "base": "c2ad35fc14730184ce65c2335c3b619f5e8170f2",
+  "mergedPr": 6330,
+  "mergeTree": "c9eff9ff04f0f4daf667dd611720f8cf3ffae943",
+  "verifiedHead6330": "ac75f25af45ec1d4c83438efeaa2172c0233f44b",
+  "releaseRun6330": 43994620225,
+  "releaseResult6330": "success",
+  "source": {
+    "path": "docs_site/lib/main.client.dart",
+    "beforeSha256": "2dc65f05b2021bc85ac577813393dc63cf8e34c174eeb818993529d0734871e1",
+    "afterSha256": "23636110a20c6462eac9c54a2ce1b16975bc76de8cbb94a4b67b4ed0187b08af"
+  },
+  "dependencyResolution": "desktop_drop0.8.4 and Flutter SDK already resolved; now direct app dependencies; lock unchanged",
+  "negativeCases": [
+    {
+      "route": "/",
+      "theme": "light",
+      "passed": false,
+      "failures": [
+        "No implementation found for method entered on channel desktop_drop",
+        "No implementation found for method updated on channel desktop_drop"
+      ]
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "passed": false,
+      "failures": [
+        "No implementation found for method entered on channel desktop_drop",
+        "No implementation found for method updated on channel desktop_drop"
+      ]
+    },
+    {
+      "route": "/embed/file-input/",
+      "theme": "light",
+      "passed": false,
+      "failures": [
+        "No implementation found for method entered on channel desktop_drop",
+        "No implementation found for method updated on channel desktop_drop",
+        "No implementation found for method exited on channel desktop_drop",
+        "No implementation found for method entered on channel desktop_drop",
+        "No implementation found for method updated on channel desktop_drop",
+        "No implementation found for method updated on channel desktop_drop"
+      ]
+    },
+    {
+      "route": "/embed/file-input/",
+      "theme": "dark",
+      "passed": false,
+      "failures": [
+        "No implementation found for method entered on channel desktop_drop",
+        "No implementation found for method updated on channel desktop_drop",
+        "No implementation found for method exited on channel desktop_drop",
+        "No implementation found for method entered on channel desktop_drop",
+        "No implementation found for method updated on channel desktop_drop",
+        "No implementation found for method updated on channel desktop_drop"
+      ]
+    }
+  ],
+  "acceptedCases": [
+    {
+      "route": "/",
+      "theme": "light",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "route": "/",
+      "theme": "dark",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "route": "/embed/file-input/",
+      "theme": "light",
+      "passed": true,
+      "failures": []
+    },
+    {
+      "route": "/embed/file-input/",
+      "theme": "dark",
+      "passed": true,
+      "failures": []
+    }
+  ],
+  "screenshots": [
+    {
+      "theme": "light",
+      "size": [
+        214,
+        257
+      ],
+      "changedRgbaPixels": 0
+    },
+    {
+      "theme": "dark",
+      "size": [
+        214,
+        257
+      ],
+      "changedRgbaPixels": 0
+    }
+  ],
+  "docsTestsPassed": 30,
+  "jasprRoutes": 357,
+  "parity": "No fresh offline matrix claimed. Core/Flutter/Web/preview/capture/normalizer inputs unchanged from the verified #6330 matrix (461 pass /287 fail).",
+  "forbiddenChanges": {
+    "publicComponentApi": 0,
+    "CoreDesignValues": 0,
+    "fakeChannelHandlers": 0,
+    "catchAndIgnoreInProduction": 0,
+    "generatedRegistrantEdits": 0,
+    "eventFilteringOrDisabling": 0,
+    "baselinePromotion": 0,
+    "thresholdChanges": 0
+  },
+  "nativePreviewBefore": {
+    "errors": [],
+    "zone": true,
+    "drag": "function",
+    "flutter": [
+      "FLT-SEMANTICS-PLACEHOLDER",
+      "FLUTTER-VIEW",
+      "FLT-GLASS-PANE",
+      "FLT-PLATFORM-VIEW",
+      "FLT-TEXT-EDITING-HOST",
+      "FLT-SEMANTICS-HOST",
+      "FLT-ANNOUNCEMENT-HOST",
+      "FLT-ANNOUNCEMENT-POLITE",
+      "FLT-ANNOUNCEMENT-ASSERTIVE"
+    ]
+  },
+  "nativePreviewAfter": {
+    "errors": [],
+    "zone": true,
+    "drag": "function",
+    "flutter": [
+      "FLT-SEMANTICS-PLACEHOLDER",
+      "FLUTTER-VIEW",
+      "FLT-GLASS-PANE",
+      "FLT-PLATFORM-VIEW",
+      "FLT-TEXT-EDITING-HOST",
+      "FLT-SEMANTICS-HOST",
+      "FLT-ANNOUNCEMENT-HOST",
+      "FLT-ANNOUNCEMENT-POLITE",
+      "FLT-ANNOUNCEMENT-ASSERTIVE"
+    ]
+  }
+}

@@ -1,0 +1,460 @@
+{
+  "_comment": [
+    "Shared vectors for how a SwipeActions row follows a pointer and where it comes to rest",
+    "(CoreSwipeGeometry.constrain / settle / targetOf, CoreSwipeDrag, CoreSwipeGesture,",
+    "CoreSwipeActionsStyle.extentFor).",
+    "Read by coui_core (every section, against the engine), coui_flutter (every gestures row is",
+    "replayed on the SwipeActions widget as real pointer events, so the framework's drag",
+    "recogniser has to answer the table), coui_web (every gestures row is replayed on the row's",
+    "pointer model with a manual clock) and a real-Chrome probe of the Web row (a subset, with",
+    "real pointer input). A rule that changes on one platform fails the other.",
+    "UNITS. Positions, offsets and extents are logical px (CSS px on the Web). Velocities are",
+    "logical px per SECOND, signed like positions (positive = toward the right). Times are ms.",
+    "SIGNS. Every offset in this table is PHYSICAL: positive is toward the right, whatever the",
+    "reading direction. 'rtl': true makes the leading actions the ones on the right, so they are",
+    "revealed by moving the row LEFT (negative). The engine flips the sign in exactly one place.",
+    "numbers: the Contract figures the table is stated for, so a change to one of them fails here",
+    "before it fails anywhere else. style: the cell, spacing and inset the extents are derived from.",
+    "row: the row the gestures are replayed on (width, height); pointer coordinates are in the row's",
+    "own box, from its top-left.",
+    "extent: the platter width of 'count' cells (CoreSwipeActionsStyle.extentFor); actionWidth,",
+    "actionSpacing and platterInset default to the 'style' block.",
+    "constrain: the row's offset when the pointer would carry it to 'raw', the offset the drag",
+    "started at plus the pointer's travel since it armed. 'leading' / 'trailing' are platter",
+    "widths in px (0 = no actions on that side). leadingFullSwipe / trailingFullSwipe default to",
+    "true. lockedSide is the side that was open when the drag began.",
+    "settle: what releasing at 'offset' with 'velocity' does, and the offset it rests at ('target').",
+    "A platter that already reaches the full-swipe distance runs its first action only after a pull of",
+    "'fullSwipeOvershoot' beyond it; a platter short of that distance never reads the figure.",
+    "'executeLeading' / 'executeTrailing' run the first action of that side, then rest at 0.",
+    "open: where a row rests when a side is opened without a pointer - keyboard focus reaching",
+    "one of its actions (CoreSwipeGeometry.openOffsetOf). 'leading' / 'trailing' are NUMBERS OF",
+    "ACTIONS, as in 'gestures'; 'side' is the side that opens and 'offset' the physical offset the",
+    "row rests at, the target of that side's open outcome.",
+    "gestures: a pointer trace replayed on a row of the stated action counts ('leading' /",
+    "'trailing' are NUMBERS OF ACTIONS here, not px; their platters are extentFor of that many",
+    "cells). 'startOffset' is the row's offset before the press (an open row). events are down,",
+    "move, up and cancel with a time 'at' and a position (x, y). 'offsets' is the row's offset after",
+    "each move event, in order; 'release' is what the lift (or cancel) decided, null when the",
+    "press was a tap or went vertical. The slop forgives the first 18 px: the row does not move on",
+    "the move that arms the drag. The strokes keep a wide margin either side of the 400 px/s fling",
+    "velocity (flicks run at about 1200 px/s, slow drags well under 100), because the Flutter",
+    "recogniser measures its own velocity: a flick is only a flick when both estimators say so."
+  ],
+  "numbers": {"fullSwipeThreshold": 0.65, "fullSwipeOvershoot": 24, "openThreshold": 0.5, "flingVelocity": 400, "resistance": 0.25, "dragSlop": 18, "restTolerance": 1},
+  "style": {"actionWidth": 48, "actionSpacing": 12, "platterInset": 12},
+  "row": {"width": 400, "height": 72},
+  "extent": [
+    {"name": "no actions, no platter", "count": 0, "extent": 0},
+    {"name": "one cell: the cell and an inset at each end", "count": 1, "extent": 72},
+    {"name": "two cells add a cell and a spacing", "count": 2, "extent": 132},
+    {"name": "three cells", "count": 3, "extent": 192},
+    {"name": "four cells", "count": 4, "extent": 252},
+    {"name": "a style states its own cell, spacing and inset", "count": 2, "actionWidth": 56, "actionSpacing": 8, "platterInset": 16, "extent": 152}
+  ],
+  "constrain": [
+    {"name": "within the leading platter the row follows the pointer exactly", "rowWidth": 400, "leading": 132, "trailing": 72, "raw": 100, "offset": 100},
+    {"name": "exactly the platter's width is still one to one", "rowWidth": 400, "leading": 132, "trailing": 72, "raw": 132, "offset": 132},
+    {"name": "past the platter with full swipe on the row keeps following", "rowWidth": 400, "leading": 132, "trailing": 72, "raw": 200, "offset": 200},
+    {"name": "...as far as the row's own width and no further", "rowWidth": 400, "leading": 132, "trailing": 72, "raw": 500, "offset": 400},
+    {"name": "trailing mirrors leading: within the platter", "rowWidth": 400, "leading": 132, "trailing": 72, "raw": -50, "offset": -50},
+    {"name": "trailing: past the platter with full swipe on", "rowWidth": 400, "leading": 132, "trailing": 72, "raw": -150, "offset": -150},
+    {"name": "full swipe off: past the platter the row resists, a quarter of the excess", "rowWidth": 400, "leading": 132, "trailing": 72, "leadingFullSwipe": false, "trailingFullSwipe": false, "raw": 232, "offset": 157},
+    {"name": "full swipe off, trailing: the excess is the pull beyond 72", "rowWidth": 400, "leading": 132, "trailing": 72, "leadingFullSwipe": false, "trailingFullSwipe": false, "raw": -172, "offset": -97},
+    {"name": "full swipe off: within the platter nothing resists", "rowWidth": 400, "leading": 132, "trailing": 72, "leadingFullSwipe": false, "trailingFullSwipe": false, "raw": 100, "offset": 100},
+    {"name": "a side with no actions does not move", "rowWidth": 400, "leading": 132, "trailing": 0, "raw": -40, "offset": 0},
+    {"name": "...whichever side it is", "rowWidth": 400, "leading": 0, "trailing": 72, "raw": 80, "offset": 0},
+    {"name": "started with leading open: a pull back across closed stops at closed", "rowWidth": 400, "leading": 132, "trailing": 72, "lockedSide": "leading", "raw": -30, "offset": 0},
+    {"name": "started with leading open: pulled to exactly closed is closed", "rowWidth": 400, "leading": 132, "trailing": 72, "lockedSide": "leading", "raw": 0, "offset": 0},
+    {"name": "started with trailing open: a pull across to leading stops at closed", "rowWidth": 400, "leading": 132, "trailing": 72, "lockedSide": "trailing", "raw": 30, "offset": 0},
+    {"name": "started with trailing open: its own side is free", "rowWidth": 400, "leading": 132, "trailing": 72, "lockedSide": "trailing", "raw": -60, "offset": -60},
+    {"name": "right to left: the leading platter is revealed by moving left", "rowWidth": 400, "leading": 132, "trailing": 72, "rtl": true, "raw": -100, "offset": -100},
+    {"name": "right to left: the trailing platter is revealed by moving right", "rowWidth": 400, "leading": 132, "trailing": 72, "rtl": true, "raw": 40, "offset": 40},
+    {"name": "right to left: past the leading platter with full swipe on", "rowWidth": 400, "leading": 132, "trailing": 72, "rtl": true, "raw": -250, "offset": -250},
+    {"name": "right to left: a lock on leading stops a pull right at closed", "rowWidth": 400, "leading": 132, "trailing": 72, "rtl": true, "lockedSide": "leading", "raw": 30, "offset": 0},
+    {"name": "right to left, full swipe off: the same resistance, mirrored", "rowWidth": 400, "leading": 132, "trailing": 72, "leadingFullSwipe": false, "trailingFullSwipe": false, "rtl": true, "raw": -232, "offset": -157},
+    {"name": "a row narrower than its platter still follows within the platter", "rowWidth": 100, "leading": 132, "trailing": 0, "raw": 120, "offset": 120},
+    {"name": "...and past it holds at the platter, not at the row", "rowWidth": 100, "leading": 132, "trailing": 0, "raw": 150, "offset": 132}
+  ],
+  "settle": [
+    {"name": "a closed row stays closed", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 0, "velocity": 0, "outcome": "closed", "target": 0},
+    {"name": "a row within a pixel of closed is closed, whatever the speed", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 0.8, "velocity": 1000, "outcome": "closed", "target": 0},
+    {"name": "less than half the platter out rests closed", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 65, "velocity": 0, "outcome": "closed", "target": 0},
+    {"name": "exactly half the platter out rests open", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 66, "velocity": 0, "outcome": "openLeading", "target": 132},
+    {"name": "trailing: half of 72 is 36, and 35 rests closed", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": -35, "velocity": 0, "outcome": "closed", "target": 0},
+    {"name": "trailing: 36 rests open at the platter's width", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": -36, "velocity": 0, "outcome": "openTrailing", "target": -72},
+    {"name": "a flick toward the actions opens them however short the pull", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 20, "velocity": 500, "outcome": "openLeading", "target": 132},
+    {"name": "exactly the fling velocity is a flick", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 20, "velocity": 400, "outcome": "openLeading", "target": 132},
+    {"name": "a pixel per second under it is not", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 20, "velocity": 399, "outcome": "closed", "target": 0},
+    {"name": "a flick away from the actions closes however far out", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 120, "velocity": -500, "outcome": "closed", "target": 0},
+    {"name": "exactly the fling velocity away is a flick", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 120, "velocity": -400, "outcome": "closed", "target": 0},
+    {"name": "a pixel per second under it, far out, still rests open", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 120, "velocity": -399, "outcome": "openLeading", "target": 132},
+    {"name": "trailing: a flick toward the actions is a negative velocity", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": -20, "velocity": -500, "outcome": "openTrailing", "target": -72},
+    {"name": "trailing: a flick back toward the edge closes", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": -60, "velocity": 500, "outcome": "closed", "target": 0},
+    {"name": "past the platter, short of the full-swipe distance, rests open", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 200, "velocity": 0, "outcome": "openLeading", "target": 132},
+    {"name": "at the full-swipe distance (65% of 400 = 260) the first action runs", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 260, "velocity": 0, "outcome": "executeLeading", "target": 0},
+    {"name": "a pixel short of it rests open", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 259, "velocity": 0, "outcome": "openLeading", "target": 132},
+    {"name": "trailing: the full-swipe distance is the same share of the row", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": -260, "velocity": 0, "outcome": "executeTrailing", "target": 0},
+    {"name": "a flick back cancels even a pull past the full-swipe distance", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 300, "velocity": -900, "outcome": "closed", "target": 0},
+    {"name": "a flick toward the actions past the distance still runs the action", "rowWidth": 400, "leading": 132, "trailing": 72, "offset": 300, "velocity": 900, "outcome": "executeLeading", "target": 0},
+    {"name": "full swipe off: a long pull only opens", "rowWidth": 400, "leading": 132, "trailing": 72, "leadingFullSwipe": false, "trailingFullSwipe": false, "offset": 300, "velocity": 0, "outcome": "openLeading", "target": 132},
+    {"name": "full swipe is per side: trailing off, leading still runs", "rowWidth": 400, "leading": 132, "trailing": 72, "trailingFullSwipe": false, "offset": 260, "velocity": 0, "outcome": "executeLeading", "target": 0},
+    {"name": "...and trailing only opens", "rowWidth": 400, "leading": 132, "trailing": 72, "trailingFullSwipe": false, "offset": -260, "velocity": 0, "outcome": "openTrailing", "target": -72},
+    {"name": "a side with no actions is closed, whatever the offset", "rowWidth": 400, "leading": 0, "trailing": 72, "offset": 80, "velocity": 0, "outcome": "closed", "target": 0},
+    {"name": "right to left: the leading platter is on the left of zero", "rowWidth": 400, "leading": 132, "trailing": 72, "rtl": true, "offset": -100, "velocity": 0, "outcome": "openLeading", "target": -132},
+    {"name": "right to left: a flick toward leading is a negative velocity", "rowWidth": 400, "leading": 132, "trailing": 72, "rtl": true, "offset": -20, "velocity": -500, "outcome": "openLeading", "target": -132},
+    {"name": "right to left: the full-swipe pull is negative for leading", "rowWidth": 400, "leading": 132, "trailing": 72, "rtl": true, "offset": -260, "velocity": 0, "outcome": "executeLeading", "target": 0},
+    {"name": "right to left: the trailing platter opens to the right", "rowWidth": 400, "leading": 132, "trailing": 72, "rtl": true, "offset": 40, "velocity": 0, "outcome": "openTrailing", "target": 72},
+    {"name": "a row narrower than its platter opens at the platter's width", "rowWidth": 100, "leading": 132, "trailing": 0, "offset": 132, "velocity": 0, "outcome": "openLeading", "target": 132},
+    {"name": "...and a pull one pixel past it is still an opening", "rowWidth": 100, "leading": 132, "trailing": 0, "offset": 133, "velocity": 0, "outcome": "openLeading", "target": 132},
+    {"name": "...and runs the first action once the pull is the overshoot past it", "rowWidth": 100, "leading": 132, "trailing": 0, "offset": 156, "velocity": 0, "outcome": "executeLeading", "target": 0},
+    {"name": "a platter past the full-swipe distance: one pixel beyond it only opens", "rowWidth": 300, "leading": 252, "trailing": 0, "offset": 253, "velocity": 0, "outcome": "openLeading", "target": 252},
+    {"name": "...and the first action waits for the overshoot", "rowWidth": 300, "leading": 252, "trailing": 0, "offset": 275, "velocity": 0, "outcome": "openLeading", "target": 252},
+    {"name": "...and runs there", "rowWidth": 300, "leading": 252, "trailing": 0, "offset": 276, "velocity": 0, "outcome": "executeLeading", "target": 0},
+    {"name": "a flick toward the actions short of the overshoot still only opens", "rowWidth": 300, "leading": 252, "trailing": 0, "offset": 270, "velocity": 900, "outcome": "openLeading", "target": 252},
+    {"name": "trailing reads the same distance", "rowWidth": 300, "leading": 0, "trailing": 252, "offset": -275, "velocity": 0, "outcome": "openTrailing", "target": -252},
+    {"name": "...and runs there too", "rowWidth": 300, "leading": 0, "trailing": 252, "offset": -276, "velocity": 0, "outcome": "executeTrailing", "target": 0}
+  ],
+  "open": [
+    {"name": "the leading platter opens to its width", "leading": 2, "trailing": 1, "side": "leading", "offset": 132},
+    {"name": "the trailing platter opens to minus its width", "leading": 2, "trailing": 1, "side": "trailing", "offset": -72},
+    {"name": "one action: the cell and an inset at each end", "trailing": 1, "side": "trailing", "offset": -72},
+    {"name": "three actions on a side", "leading": 3, "trailing": 3, "side": "leading", "offset": 192},
+    {"name": "right to left: the leading platter opens to the left", "leading": 2, "trailing": 1, "rtl": true, "side": "leading", "offset": -132},
+    {"name": "right to left: the trailing platter opens to the right", "leading": 2, "trailing": 1, "rtl": true, "side": "trailing", "offset": 72},
+    {"name": "right to left, three actions: the trailing platter opens to the right", "leading": 1, "trailing": 3, "rtl": true, "side": "trailing", "offset": 192}
+  ],
+  "gestures": [
+    {
+      "name": "a slow pull past half the trailing platter opens it",
+      "trailing": 2,
+      "events": [
+        {"kind": "down", "at": 0, "x": 300, "y": 36},
+        {"kind": "move", "at": 100, "x": 290, "y": 36},
+        {"kind": "move", "at": 200, "x": 280, "y": 36},
+        {"kind": "move", "at": 300, "x": 230, "y": 36},
+        {"kind": "move", "at": 400, "x": 200, "y": 36},
+        {"kind": "move", "at": 500, "x": 180, "y": 36},
+        {"kind": "up", "at": 600}
+      ],
+      "offsets": [0, 0, -50, -80, -100],
+      "release": {
+        "outcome": "openTrailing",
+        "target": -132
+      }
+    },
+    {
+      "name": "a slow short pull rests closed",
+      "trailing": 2,
+      "events": [
+        {"kind": "down", "at": 0, "x": 300, "y": 36},
+        {"kind": "move", "at": 100, "x": 270, "y": 36},
+        {"kind": "move", "at": 200, "x": 250, "y": 36},
+        {"kind": "move", "at": 300, "x": 240, "y": 36},
+        {"kind": "up", "at": 400}
+      ],
+      "offsets": [0, -20, -30],
+      "release": {
+        "outcome": "closed",
+        "target": 0
+      }
+    },
+    {
+      "name": "a quick flick opens although the pull is short",
+      "trailing": 2,
+      "events": [
+        {"kind": "down", "at": 0, "x": 300, "y": 36},
+        {"kind": "move", "at": 16, "x": 285, "y": 36},
+        {"kind": "move", "at": 32, "x": 265, "y": 36},
+        {"kind": "move", "at": 48, "x": 245, "y": 36},
+        {"kind": "move", "at": 64, "x": 225, "y": 36},
+        {"kind": "up", "at": 70}
+      ],
+      "offsets": [0, 0, -20, -40],
+      "release": {
+        "outcome": "openTrailing",
+        "target": -132
+      }
+    },
+    {
+      "name": "a flick held still before the lift is not a flick",
+      "trailing": 2,
+      "events": [
+        {"kind": "down", "at": 0, "x": 300, "y": 36},
+        {"kind": "move", "at": 16, "x": 285, "y": 36},
+        {"kind": "move", "at": 32, "x": 265, "y": 36},
+        {"kind": "move", "at": 48, "x": 245, "y": 36},
+        {"kind": "move", "at": 64, "x": 225, "y": 36},
+        {"kind": "up", "at": 300}
+      ],
+      "offsets": [0, 0, -20, -40],
+      "release": {
+        "outcome": "closed",
+        "target": 0
+      }
+    },
+    {
+      "name": "a quick flick back closes an open row",
+      "trailing": 2,
+      "startOffset": -132,
+      "events": [
+        {"kind": "down", "at": 0, "x": 200, "y": 36},
+        {"kind": "move", "at": 16, "x": 210, "y": 36},
+        {"kind": "move", "at": 32, "x": 230, "y": 36},
+        {"kind": "move", "at": 48, "x": 260, "y": 36},
+        {"kind": "move", "at": 64, "x": 290, "y": 36},
+        {"kind": "up", "at": 70}
+      ],
+      "offsets": [-132, -132, -102, -72],
+      "release": {
+        "outcome": "closed",
+        "target": 0
+      }
+    },
+    {
+      "name": "a slow pull back past half closes an open row",
+      "trailing": 2,
+      "startOffset": -132,
+      "events": [
+        {"kind": "down", "at": 0, "x": 200, "y": 36},
+        {"kind": "move", "at": 100, "x": 215, "y": 36},
+        {"kind": "move", "at": 200, "x": 230, "y": 36},
+        {"kind": "move", "at": 300, "x": 260, "y": 36},
+        {"kind": "move", "at": 400, "x": 290, "y": 36},
+        {"kind": "move", "at": 500, "x": 310, "y": 36},
+        {"kind": "up", "at": 600}
+      ],
+      "offsets": [-132, -132, -102, -72, -52],
+      "release": {
+        "outcome": "closed",
+        "target": 0
+      }
+    },
+    {
+      "name": "a slow small pull back leaves an open row open",
+      "trailing": 2,
+      "startOffset": -132,
+      "events": [
+        {"kind": "down", "at": 0, "x": 200, "y": 36},
+        {"kind": "move", "at": 100, "x": 215, "y": 36},
+        {"kind": "move", "at": 200, "x": 230, "y": 36},
+        {"kind": "move", "at": 300, "x": 250, "y": 36},
+        {"kind": "up", "at": 400}
+      ],
+      "offsets": [-132, -132, -112],
+      "release": {
+        "outcome": "openTrailing",
+        "target": -132
+      }
+    },
+    {
+      "name": "full swipe off: past the platter the row resists and a release opens",
+      "trailing": 2,
+      "trailingFullSwipe": false,
+      "events": [
+        {"kind": "down", "at": 0, "x": 350, "y": 36},
+        {"kind": "move", "at": 100, "x": 320, "y": 36},
+        {"kind": "move", "at": 200, "x": 250, "y": 36},
+        {"kind": "move", "at": 300, "x": 150, "y": 36},
+        {"kind": "move", "at": 400, "x": 100, "y": 36},
+        {"kind": "up", "at": 500}
+      ],
+      "offsets": [0, -70, -141.5, -154],
+      "release": {
+        "outcome": "openTrailing",
+        "target": -132
+      }
+    },
+    {
+      "name": "full swipe: a pull to the threshold runs the first trailing action",
+      "trailing": 2,
+      "events": [
+        {"kind": "down", "at": 0, "x": 380, "y": 36},
+        {"kind": "move", "at": 100, "x": 350, "y": 36},
+        {"kind": "move", "at": 200, "x": 250, "y": 36},
+        {"kind": "move", "at": 300, "x": 150, "y": 36},
+        {"kind": "move", "at": 400, "x": 80, "y": 36},
+        {"kind": "up", "at": 500}
+      ],
+      "offsets": [0, -100, -200, -270],
+      "release": {
+        "outcome": "executeTrailing",
+        "target": 0
+      }
+    },
+    {
+      "name": "a pixel short of the threshold opens instead",
+      "trailing": 2,
+      "events": [
+        {"kind": "down", "at": 0, "x": 380, "y": 36},
+        {"kind": "move", "at": 100, "x": 350, "y": 36},
+        {"kind": "move", "at": 200, "x": 250, "y": 36},
+        {"kind": "move", "at": 300, "x": 150, "y": 36},
+        {"kind": "move", "at": 400, "x": 91, "y": 36},
+        {"kind": "up", "at": 500}
+      ],
+      "offsets": [0, -100, -200, -259],
+      "release": {
+        "outcome": "openTrailing",
+        "target": -132
+      }
+    },
+    {
+      "name": "a slow pull toward the end opens the leading platter",
+      "leading": 1,
+      "events": [
+        {"kind": "down", "at": 0, "x": 100, "y": 36},
+        {"kind": "move", "at": 100, "x": 120, "y": 36},
+        {"kind": "move", "at": 200, "x": 160, "y": 36},
+        {"kind": "move", "at": 300, "x": 180, "y": 36},
+        {"kind": "move", "at": 400, "x": 190, "y": 36},
+        {"kind": "up", "at": 500}
+      ],
+      "offsets": [0, 40, 60, 70],
+      "release": {
+        "outcome": "openLeading",
+        "target": 72
+      }
+    },
+    {
+      "name": "a pull toward a side with no actions does not move the row",
+      "leading": 1,
+      "events": [
+        {"kind": "down", "at": 0, "x": 300, "y": 36},
+        {"kind": "move", "at": 100, "x": 270, "y": 36},
+        {"kind": "move", "at": 200, "x": 200, "y": 36},
+        {"kind": "up", "at": 300}
+      ],
+      "offsets": [0, 0],
+      "release": {
+        "outcome": "closed",
+        "target": 0
+      }
+    },
+    {
+      "name": "a stroke that goes down first belongs to the scroller",
+      "trailing": 2,
+      "events": [
+        {"kind": "down", "at": 0, "x": 300, "y": 36},
+        {"kind": "move", "at": 16, "x": 302, "y": 66},
+        {"kind": "move", "at": 32, "x": 270, "y": 90},
+        {"kind": "up", "at": 48}
+      ],
+      "offsets": [0, 0],
+      "release": null
+    },
+    {
+      "name": "a press that never leaves the slop is a tap",
+      "trailing": 2,
+      "events": [
+        {"kind": "down", "at": 0, "x": 300, "y": 36},
+        {"kind": "move", "at": 50, "x": 310, "y": 36},
+        {"kind": "move", "at": 100, "x": 305, "y": 36},
+        {"kind": "up", "at": 150}
+      ],
+      "offsets": [0, 0],
+      "release": null
+    },
+    {
+      "name": "right to left: the leading platter opens by pulling left",
+      "leading": 1,
+      "rtl": true,
+      "events": [
+        {"kind": "down", "at": 0, "x": 300, "y": 36},
+        {"kind": "move", "at": 100, "x": 270, "y": 36},
+        {"kind": "move", "at": 200, "x": 230, "y": 36},
+        {"kind": "move", "at": 300, "x": 210, "y": 36},
+        {"kind": "move", "at": 400, "x": 200, "y": 36},
+        {"kind": "up", "at": 500}
+      ],
+      "offsets": [0, -40, -60, -70],
+      "release": {
+        "outcome": "openLeading",
+        "target": -72
+      }
+    },
+    {
+      "name": "right to left: the trailing platter opens by pulling right",
+      "trailing": 1,
+      "rtl": true,
+      "events": [
+        {"kind": "down", "at": 0, "x": 100, "y": 36},
+        {"kind": "move", "at": 100, "x": 130, "y": 36},
+        {"kind": "move", "at": 200, "x": 170, "y": 36},
+        {"kind": "move", "at": 300, "x": 200, "y": 36},
+        {"kind": "up", "at": 400}
+      ],
+      "offsets": [0, 40, 70],
+      "release": {
+        "outcome": "openTrailing",
+        "target": 72
+      }
+    },
+    {
+      "name": "a drag that starts with leading open cannot swing across to trailing",
+      "leading": 1,
+      "trailing": 1,
+      "startOffset": 72,
+      "events": [
+        {"kind": "down", "at": 0, "x": 300, "y": 36},
+        {"kind": "move", "at": 100, "x": 280, "y": 36},
+        {"kind": "move", "at": 200, "x": 200, "y": 36},
+        {"kind": "move", "at": 300, "x": 150, "y": 36},
+        {"kind": "up", "at": 400}
+      ],
+      "offsets": [72, 0, 0],
+      "release": {
+        "outcome": "closed",
+        "target": 0
+      }
+    },
+    {
+      "name": "a cancelled pull goes back and never runs an action",
+      "trailing": 2,
+      "events": [
+        {"kind": "down", "at": 0, "x": 380, "y": 36},
+        {"kind": "move", "at": 100, "x": 350, "y": 36},
+        {"kind": "move", "at": 200, "x": 150, "y": 36},
+        {"kind": "move", "at": 300, "x": 80, "y": 36},
+        {"kind": "cancel", "at": 400}
+      ],
+      "offsets": [0, -200, -270],
+      "release": {
+        "outcome": "closed",
+        "target": 0
+      }
+    },
+    {
+      "name": "a cancelled pull on an open row goes back to open",
+      "trailing": 2,
+      "startOffset": -132,
+      "events": [
+        {"kind": "down", "at": 0, "x": 200, "y": 36},
+        {"kind": "move", "at": 100, "x": 230, "y": 36},
+        {"kind": "move", "at": 200, "x": 260, "y": 36},
+        {"kind": "cancel", "at": 300}
+      ],
+      "offsets": [-132, -102],
+      "release": {
+        "outcome": "openTrailing",
+        "target": -132
+      }
+    },
+    {
+      "name": "exactly the slop is still a press; a pixel more is a drag",
+      "trailing": 2,
+      "events": [
+        {"kind": "down", "at": 0, "x": 300, "y": 36},
+        {"kind": "move", "at": 100, "x": 282, "y": 36},
+        {"kind": "move", "at": 200, "x": 281, "y": 36},
+        {"kind": "move", "at": 300, "x": 231, "y": 36},
+        {"kind": "up", "at": 400}
+      ],
+      "offsets": [0, 0, -50],
+      "release": {
+        "outcome": "closed",
+        "target": 0
+      }
+    }
+  ]
+}

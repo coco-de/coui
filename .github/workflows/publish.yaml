@@ -1,0 +1,55 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    tags:
+      - 'pub-coui_core-v*'
+      - 'pub-coui_flutter-v*'
+      - 'pub-coui_web-v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-to-pub-dev
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Verify package tag
+    if: github.repository == 'coco-de/coui' && github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    outputs:
+      package: ${{ steps.package.outputs.name }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check that the tag names a version on main
+        id: package
+        run: |
+          git merge-base --is-ancestor HEAD origin/main
+          case "$GITHUB_REF_NAME" in
+            pub-coui_core-v*) package=coui_core ;;
+            pub-coui_flutter-v*) package=coui_flutter ;;
+            pub-coui_web-v*) package=coui_web ;;
+            *) exit 1 ;;
+          esac
+          version=$(sed -n 's/^version: *//p' "packages/$package/pubspec.yaml")
+          if [ "$GITHUB_REF_NAME" != "pub-$package-v$version" ]; then
+            echo "::error::Expected pub-$package-v$version for packages/$package"
+            exit 1
+          fi
+          echo "name=$package" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: release
+    permissions:
+      contents: read
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@2286a0c042b44434fe26d292bbce8d34f7ec662b # v1
+    with:
+      working-directory: packages/${{ needs.release.outputs.package }}
+      use-flutter: true

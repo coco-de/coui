@@ -1,0 +1,930 @@
+{
+  "date": "2026-11-17",
+  "issues": [
+    6363,
+    6364,
+    6365,
+    6367
+  ],
+  "tracker": 6131,
+  "base": "11aed12edcb8ebe92ce071a640261dec9c148684",
+  "codeHead": "7929a05bd7f3dc79382549d66f6d1baa32e9d035",
+  "codeTree": "bd5ef2418ee5c7c51cf2bc6706626f7b63c013e6",
+  "scope": {
+    "productFiles": [
+      "packages/coui_web/lib/src/components/form/checkbox/checkbox_style.dart",
+      "packages/coui_web/lib/src/components/form/star_rating/star_rating_style.dart",
+      "packages/coui_web/lib/src/components/control/toggle_group/toggle_group_style.dart",
+      "packages/coui_web/lib/src/components/overlay/dialog/dialog.dart"
+    ],
+    "publicSupportedApiChanged": false,
+    "coreDefaultsTokensNativeFigmaSdkLocksBaselineThresholdChanged": false,
+    "classAndInlineAttributesIntentionallyChanged": true,
+    "tagTreeAndCallerOrderPreserved": true,
+    "privateCheckboxPaletteAndConverterAdded": true,
+    "unnamedStarLibraryDirectiveRemoved": true,
+    "descriptionCardDOMReceiptCorrected": true,
+    "excludedCandidateIssue": 6366
+  },
+  "sdk": {
+    "flutter": "3.50.0",
+    "dart": "3.14.0",
+    "jaspr": "0.24.0-beta.1",
+    "globalFvmUnchanged": "3.47.9"
+  },
+  "api": {
+    "graphs": [
+      {
+        "package": "coui_core",
+        "beforeFiles": 927,
+        "afterFiles": 927,
+        "same": true
+      },
+      {
+        "package": "coui_flutter",
+        "beforeFiles": 1345,
+        "afterFiles": 1345,
+        "same": true
+      },
+      {
+        "package": "coui_web",
+        "beforeFiles": 1290,
+        "afterFiles": 1290,
+        "same": true
+      }
+    ],
+    "rows": [
+      {
+        "path": "packages/coui_web/lib/src/components/control/toggle_group/toggle_group_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/checkbox/checkbox_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": false,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/star_rating/star_rating_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": false,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/overlay/dialog/dialog.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      }
+    ],
+    "errors": [],
+    "methodology": "Function bodies elided; public top-level declarations in supported export closure compared. The new Checkbox conversion is private; FadeScroll is excluded from this PR. Unnamed library directive cleanup is reported, not represented as identical directives."
+  },
+  "tests": {
+    "rootCombinedTotal": 83,
+    "rootWebUnitTests": 79,
+    "rootChromeTests": 4,
+    "workerCombinedChromeTests": 4,
+    "workerChromeIsRepeatOfRootContracts": true,
+    "starExistingNativeTests": 30,
+    "dialogNativeReferenceTests": 1,
+    "changedDartFilesFatalInfos": "No issues found!",
+    "formatFiles": 9,
+    "formatChanges": 0,
+    "tokenGuardPhases": "1..6",
+    "tokenGuardExit": 0,
+    "contractGuardExit": 0,
+    "chromePassthroughExit": 0,
+    "latestExecution": "75 combined tests plus8 existing Dialog tests in a second command;83 unique tests, not a single83-test invocation",
+    "latestCommandArtifacts": [
+      "combined-test-command.json",
+      "combined-final-tests.log",
+      "dialog-final-tests.log"
+    ]
+  },
+  "checkbox": {
+    "officialHost": true,
+    "nativeWebBoxes": 36,
+    "beforeBoxFailures": 18,
+    "afterBoxFailures": 0,
+    "nativeWebDashes": 12,
+    "beforeDashFailures": 8,
+    "afterDashFailures": 0,
+    "negativeRequested": 17.25,
+    "negativeActualBox": [
+      2,
+      2
+    ],
+    "afterActualBox": [
+      17.25,
+      17.25
+    ],
+    "minimalHostZeroPixelAttemptIsNotProductionEvidence": true,
+    "registeredWebImages": 40,
+    "registeredWebPNGandJSONBytesSame": true,
+    "sizeVariableRemapRootFontDensityVerified": true
+  },
+  "starRating": {
+    "canonicalSSR": 44,
+    "canonicalO2": 44,
+    "O2AndSSRLabelFieldsIdentical": true,
+    "nativeComparisons": 160,
+    "nativeFieldsMatch": 152,
+    "remainingNativeComparisonDifferences": 8,
+    "remainingScope": "custom codeMd font19/fixed23.5 yields Native paragraph23px versus Web round23.5=24px, four slots in SSR/O2; common helper policy is unchanged",
+    "registeredWebImages": 8,
+    "registeredWebPNGBytesAndRGBAIdentical": true,
+    "disabledColorPrecedencePreserved": true,
+    "existingArrowKeyboardLimitDocumented": true
+  },
+  "toggleGroup": {
+    "beforeCustom123MsSSRStatus": 500,
+    "afterCustom123MsSSRStatus": 200,
+    "actualBrowserObservations": 80,
+    "normalDurationMs": [
+      150,
+      0,
+      150,
+      123,
+      2000
+    ],
+    "reduceDurationMs": [
+      0,
+      0,
+      0,
+      0,
+      2000
+    ],
+    "token150VariableRemapMs": 73,
+    "raw123UnaffectedByTokenRemap": true,
+    "registeredWebImages": 30,
+    "registeredWebPNGandJSONBytesSame": true,
+    "geometryAriaTabstopHitPreserved": true
+  },
+  "dialog": {
+    "O2NegativeExpected": "0/0",
+    "O2NegativeActual": "1/1",
+    "O2Positive": "pass",
+    "nativeReferenceRecords": 6,
+    "registeredWebImages": 10,
+    "registeredWebPNGandJSONBytesSame": true,
+    "registeredScope": "closed examples and their trigger controls, not open-panel visual coverage",
+    "listenerRegistrationAndDisposalUnchanged": true,
+    "initialNullCallbackAndMultipleOpenDialogPolicyNotChanged": true
+  },
+  "capture": {
+    "beforeHead": "da560c1d9e4a1b02c4c7e61401e063dfa69ba7c9",
+    "afterCodeHead": "7929a05bd7f3dc79382549d66f6d1baa32e9d035",
+    "bothPlatformsBothPhasesFresh": true,
+    "canonicalAllStyles": 3494,
+    "defaultKeys": 752,
+    "beforeAndAfterWebDisjointShards": [
+      251,
+      251,
+      250
+    ],
+    "pixelBefore": {
+      "pass": 572,
+      "fail": 180,
+      "infra": 0,
+      "skipped": 0
+    },
+    "pixelAfter": {
+      "pass": 572,
+      "fail": 180,
+      "infra": 0,
+      "skipped": 0
+    },
+    "propertyBeforeAndAfter": {
+      "pass": 416,
+      "fail": 278,
+      "infra": 12,
+      "skipped": 46
+    },
+    "dimensionFailures": 4,
+    "pixelAndPropertyReportExit": 1,
+    "verdictDeltas": {
+      "newFail": [],
+      "improved": [],
+      "sameKeyset": true,
+      "keys": 752
+    },
+    "integrity": {
+      "source": {
+        "before": {
+          "head": "da560c1d9e4a1b02c4c7e61401e063dfa69ba7c9",
+          "inputs": 5205,
+          "changed": []
+        },
+        "after": {
+          "head": "7929a05bd7f3dc79382549d66f6d1baa32e9d035",
+          "inputs": 5209,
+          "changed": []
+        }
+      },
+      "counts": {
+        "before": {
+          "PNG": 1528,
+          "JSON": 1504
+        },
+        "after": {
+          "PNG": 1528,
+          "JSON": 1504
+        }
+      },
+      "PNGbyteSame": 1528,
+      "PNGdifferent": [],
+      "JSONbyteSame": 1366,
+      "JSONdifferent": 138,
+      "JSONdiffPaths": {
+        ".captureContext.text": 138
+      },
+      "badJSON": [],
+      "beforeRetry": 0,
+      "afterRetry": 0,
+      "noFlagsThresholdBaselineChanges": true
+    },
+    "rawJSONFilesAreUnmodified": true,
+    "rawJSONDifferenceFieldsNotRemovedFromGate": true,
+    "upstreamNewKeys": {
+      "issue": 6369,
+      "keys": [
+        "indexed-switcher-default-light-defaultStyle",
+        "indexed-switcher-default-dark-defaultStyle"
+      ],
+      "pixel": "pass",
+      "property": "fail",
+      "propertyMismatchFields": [
+        "backgroundColor",
+        "borderRadiusPx",
+        "paddingPx"
+      ],
+      "notAttributedToOurFixes": true
+    }
+  },
+  "optimizedDocs": {
+    "renderSource": {
+      "requestedHead": "7929a05bd7f3dc79382549d66f6d1baa32e9d035",
+      "ownHead": "f04ce8df35407b6a55654cd598db9ec6dfdcd09c",
+      "requestedTree": "bd5ef2418ee5c7c51cf2bc6706626f7b63c013e6",
+      "ownTree": "bd5ef2418ee5c7c51cf2bc6706626f7b63c013e6",
+      "upstreamBase": "da560c1d9e4a1b02c4c7e61401e063dfa69ba7c9",
+      "previousPhaseHead": "24d549cdd28ea05538b6b50f52e8086192cd98df",
+      "sourceFiles": 13909,
+      "generatedFiles": 185,
+      "buildPort": 64486,
+      "sdk": "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter",
+      "cli": "0.24.0-beta.1"
+    },
+    "wholeRenderTreeSame": true,
+    "pages": 359,
+    "lastPageCounter": [
+      "359",
+      "359"
+    ],
+    "routeIncreaseReason": [
+      "/components/indexed-switcher",
+      "/embed/indexed-switcher"
+    ],
+    "permanentChrome4Passed": true,
+    "runtimePassed": true,
+    "runtimeRecords": 44,
+    "runtimeErrors": [],
+    "http200": [
+      "star-rating",
+      "checkbox",
+      "toggle-group",
+      "dialog"
+    ],
+    "renderPhaseByteChecks": {
+      "source-inputs": {
+        "count": 13909,
+        "changed": []
+      },
+      "generated": {
+        "count": 185,
+        "changed": []
+      }
+    },
+    "trackedLocks": 4,
+    "changedLocks": [],
+    "cliLockSame": true,
+    "cleanup": {
+      "time": "2026-11-17T12:05:44.037022+00:00",
+      "httpPort": 65188,
+      "httpPortClosed": true,
+      "httpPid": 11437,
+      "verifiedCommand": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /tmp/weever-four-contracts-indexed-phase-20261117.b1el5_bx/serve.py",
+      "buildPort": 64486,
+      "buildPortClosed": true,
+      "browserClosed": true,
+      "buildProcessesRemaining": [],
+      "unrelatedAppsTouched": false,
+      "activeArtifactProcesses": []
+    },
+    "finalBaselineOnlyBinding": {
+      "validationRenderHead": "7929a05bd7f3dc79382549d66f6d1baa32e9d035",
+      "validationRenderTree": "bd5ef2418ee5c7c51cf2bc6706626f7b63c013e6",
+      "finalRootHead": "7137145039626635bf4862801b93ee1582469589",
+      "finalRootTree": "7ac1f198e7ac48463bd37d45fc666c102419a4a7",
+      "finalOwnHead": "11194dc681daf18ef48140a76718efa452b9e7fc",
+      "finalWholeTreeSame": true,
+      "upstreamBaselineHead": "11aed12edc",
+      "changedBaselineFiles": [
+        "test/parity/baseline/navigation-bar-rail-dark-claymorphism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-dark-claymorphism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-dark-claymorphism.web.json",
+        "test/parity/baseline/navigation-bar-rail-dark-claymorphism.web.png",
+        "test/parity/baseline/navigation-bar-rail-dark-defaultStyle.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-dark-defaultStyle.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-dark-defaultStyle.web.json",
+        "test/parity/baseline/navigation-bar-rail-dark-defaultStyle.web.png",
+        "test/parity/baseline/navigation-bar-rail-dark-liquidGlass.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-dark-liquidGlass.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-dark-liquidGlass.web.json",
+        "test/parity/baseline/navigation-bar-rail-dark-liquidGlass.web.png",
+        "test/parity/baseline/navigation-bar-rail-dark-neoBrutalism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-dark-neoBrutalism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-dark-neoBrutalism.web.json",
+        "test/parity/baseline/navigation-bar-rail-dark-neoBrutalism.web.png",
+        "test/parity/baseline/navigation-bar-rail-dark-neumorphism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-dark-neumorphism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-dark-neumorphism.web.json",
+        "test/parity/baseline/navigation-bar-rail-dark-neumorphism.web.png",
+        "test/parity/baseline/navigation-bar-rail-light-claymorphism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-light-claymorphism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-light-claymorphism.web.json",
+        "test/parity/baseline/navigation-bar-rail-light-claymorphism.web.png",
+        "test/parity/baseline/navigation-bar-rail-light-defaultStyle.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-light-defaultStyle.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-light-defaultStyle.web.json",
+        "test/parity/baseline/navigation-bar-rail-light-defaultStyle.web.png",
+        "test/parity/baseline/navigation-bar-rail-light-liquidGlass.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-light-liquidGlass.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-light-liquidGlass.web.json",
+        "test/parity/baseline/navigation-bar-rail-light-liquidGlass.web.png",
+        "test/parity/baseline/navigation-bar-rail-light-neoBrutalism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-light-neoBrutalism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-light-neoBrutalism.web.json",
+        "test/parity/baseline/navigation-bar-rail-light-neoBrutalism.web.png",
+        "test/parity/baseline/navigation-bar-rail-light-neumorphism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-light-neumorphism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-light-neumorphism.web.json",
+        "test/parity/baseline/navigation-bar-rail-light-neumorphism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-claymorphism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-claymorphism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-claymorphism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-claymorphism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-defaultStyle.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-defaultStyle.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-defaultStyle.web.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-defaultStyle.web.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-neoBrutalism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-neoBrutalism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-neoBrutalism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-neoBrutalism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-neumorphism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-neumorphism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-neumorphism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-neumorphism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-light-claymorphism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-light-claymorphism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-light-claymorphism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-light-claymorphism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-light-defaultStyle.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-light-defaultStyle.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-light-defaultStyle.web.json",
+        "test/parity/baseline/toolbar-group-vertical-light-defaultStyle.web.png",
+        "test/parity/baseline/toolbar-group-vertical-light-neoBrutalism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-light-neoBrutalism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-light-neoBrutalism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-light-neoBrutalism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-light-neumorphism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-light-neumorphism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-light-neumorphism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-light-neumorphism.web.png"
+      ],
+      "baselineFileCount": 72,
+      "allOtherTrackedPathsSame": true,
+      "outsideBaselineTrackedCount": 8114,
+      "outsideBaselineDigest": "48a9752334bee96e340534745fa75494a69da4a23fa137239d8a9f6f7b800060",
+      "outsideBaselineFinalDigest": "48a9752334bee96e340534745fa75494a69da4a23fa137239d8a9f6f7b800060",
+      "rebuildNeeded": false,
+      "validatedPhaseSourceInputs": 13909,
+      "finalTrackedSourceExtensionsCount": 13925,
+      "finalCountDifferenceReason": "16 newly inherited baseline JSON files; renderer inputs unchanged",
+      "CoreNativePublicBarrelsLockDiffRelative11aed": []
+    },
+    "knownExistingStarArrowNoop": "Web pointer-only limitation documented in pre-existing star-rating.md; widget byte-identical to base, explicit failure attempts retained",
+    "baselineOnlyBinding": {
+      "validationRenderHead": "7929a05bd7f3dc79382549d66f6d1baa32e9d035",
+      "validationRenderTree": "bd5ef2418ee5c7c51cf2bc6706626f7b63c013e6",
+      "finalRootHead": "7137145039626635bf4862801b93ee1582469589",
+      "finalRootTree": "7ac1f198e7ac48463bd37d45fc666c102419a4a7",
+      "finalOwnHead": "11194dc681daf18ef48140a76718efa452b9e7fc",
+      "finalWholeTreeSame": true,
+      "upstreamBaselineHead": "11aed12edc",
+      "changedBaselineFiles": [
+        "test/parity/baseline/navigation-bar-rail-dark-claymorphism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-dark-claymorphism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-dark-claymorphism.web.json",
+        "test/parity/baseline/navigation-bar-rail-dark-claymorphism.web.png",
+        "test/parity/baseline/navigation-bar-rail-dark-defaultStyle.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-dark-defaultStyle.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-dark-defaultStyle.web.json",
+        "test/parity/baseline/navigation-bar-rail-dark-defaultStyle.web.png",
+        "test/parity/baseline/navigation-bar-rail-dark-liquidGlass.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-dark-liquidGlass.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-dark-liquidGlass.web.json",
+        "test/parity/baseline/navigation-bar-rail-dark-liquidGlass.web.png",
+        "test/parity/baseline/navigation-bar-rail-dark-neoBrutalism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-dark-neoBrutalism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-dark-neoBrutalism.web.json",
+        "test/parity/baseline/navigation-bar-rail-dark-neoBrutalism.web.png",
+        "test/parity/baseline/navigation-bar-rail-dark-neumorphism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-dark-neumorphism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-dark-neumorphism.web.json",
+        "test/parity/baseline/navigation-bar-rail-dark-neumorphism.web.png",
+        "test/parity/baseline/navigation-bar-rail-light-claymorphism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-light-claymorphism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-light-claymorphism.web.json",
+        "test/parity/baseline/navigation-bar-rail-light-claymorphism.web.png",
+        "test/parity/baseline/navigation-bar-rail-light-defaultStyle.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-light-defaultStyle.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-light-defaultStyle.web.json",
+        "test/parity/baseline/navigation-bar-rail-light-defaultStyle.web.png",
+        "test/parity/baseline/navigation-bar-rail-light-liquidGlass.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-light-liquidGlass.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-light-liquidGlass.web.json",
+        "test/parity/baseline/navigation-bar-rail-light-liquidGlass.web.png",
+        "test/parity/baseline/navigation-bar-rail-light-neoBrutalism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-light-neoBrutalism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-light-neoBrutalism.web.json",
+        "test/parity/baseline/navigation-bar-rail-light-neoBrutalism.web.png",
+        "test/parity/baseline/navigation-bar-rail-light-neumorphism.flutter.json",
+        "test/parity/baseline/navigation-bar-rail-light-neumorphism.flutter.png",
+        "test/parity/baseline/navigation-bar-rail-light-neumorphism.web.json",
+        "test/parity/baseline/navigation-bar-rail-light-neumorphism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-claymorphism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-claymorphism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-claymorphism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-claymorphism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-defaultStyle.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-defaultStyle.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-defaultStyle.web.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-defaultStyle.web.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-neoBrutalism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-neoBrutalism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-neoBrutalism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-neoBrutalism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-neumorphism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-neumorphism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-dark-neumorphism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-dark-neumorphism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-light-claymorphism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-light-claymorphism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-light-claymorphism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-light-claymorphism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-light-defaultStyle.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-light-defaultStyle.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-light-defaultStyle.web.json",
+        "test/parity/baseline/toolbar-group-vertical-light-defaultStyle.web.png",
+        "test/parity/baseline/toolbar-group-vertical-light-neoBrutalism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-light-neoBrutalism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-light-neoBrutalism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-light-neoBrutalism.web.png",
+        "test/parity/baseline/toolbar-group-vertical-light-neumorphism.flutter.json",
+        "test/parity/baseline/toolbar-group-vertical-light-neumorphism.flutter.png",
+        "test/parity/baseline/toolbar-group-vertical-light-neumorphism.web.json",
+        "test/parity/baseline/toolbar-group-vertical-light-neumorphism.web.png"
+      ],
+      "baselineFileCount": 72,
+      "allOtherTrackedPathsSame": true,
+      "outsideBaselineTrackedCount": 8114,
+      "outsideBaselineDigest": "48a9752334bee96e340534745fa75494a69da4a23fa137239d8a9f6f7b800060",
+      "outsideBaselineFinalDigest": "48a9752334bee96e340534745fa75494a69da4a23fa137239d8a9f6f7b800060",
+      "rebuildNeeded": false,
+      "validatedPhaseSourceInputs": 13909,
+      "finalTrackedSourceExtensionsCount": 13925,
+      "finalCountDifferenceReason": "16 newly inherited baseline JSON files; renderer inputs unchanged",
+      "CoreNativePublicBarrelsLockDiffRelative11aed": []
+    }
+  },
+  "knownLimits": {
+    "fullParityStillIncomplete": true,
+    "genericCssInheritanceCandidateHeld": 6342,
+    "definitionListExplicitDOMContractHeld": 6354,
+    "nativeFadeChildStateIssue": 5134,
+    "notFullManualCIOrDeploymentOrDesignerApproval": true,
+    "fadeScrollSeparateAfterFormalNotificationAndNestedFix": 6366
+  },
+  "artifacts": {
+    "root": "/tmp/weever-four-main6369-20261117.t7zqrf1x",
+    "optimizedDocs": "/tmp/weever-four-contracts-indexed-phase-20261117.b1el5_bx",
+    "checkbox": "/tmp/weever-controls-contract-20261117.0hgplij0",
+    "star": "/tmp/weever-star-label-roles-20261117.gz9i5l_r",
+    "toggle": "/tmp/weever-6367-toggle-duration-20261117.luqw7v25",
+    "dialog": "/tmp/weever-6364-dialog-keyboard-20261117",
+    "fadeBlockingReview": "/tmp/weever-6366-inline-audit-20261117._cjws7ob",
+    "checkboxDarkEvidence": "/tmp/weever-6370-checkbox-dark-20261117.wl3us2ml",
+    "starLightEvidence": "/tmp/weever-four-contracts-main-phase-20261117.usdq2xsq/star-light-assets",
+    "fadeFinalIndependentReview": "/tmp/weever-6366-final-inline-mo-20261117.gti0_ewr"
+  },
+  "diagnosticFailuresPreserved": [
+    "wrong default-SDK contract-guard run excluded; isolated3.14 guard rerun passed",
+    "initial token phase1..2 run separated; full1..6 passed",
+    "nonexistent guessed Star unit filename load failure; correct existing suites and final combined83 passed",
+    "minimal host Checkbox0px and dark Fade white-background attempts not production evidence",
+    "docs driver nullable/keyboard/global-selector/absent-element assumptions corrected without product edits",
+    "Latest phase initial guessed absent star_rating_test.dart load failure retained in combined-tests.log; actual paths verified and75+8 final tests passed."
+  ],
+  "staticAudit": {
+    "unchangedTreesAndFiles": {
+      "packages/coui_core": true,
+      "packages/coui_flutter/lib": true,
+      "tools/figma-token-sync": true,
+      "pubspec.yaml": true,
+      "pubspec.lock": true,
+      "packages/coui_web/lib/coui_web.dart": true,
+      "packages/coui_web/lib/src/util/core_to_css.dart": true
+    },
+    "newIgnores": 0,
+    "newDeprecationsOrPublicApiRemoved": false,
+    "components": [
+      {
+        "component": "checkbox",
+        "coreContractStyleSlot": true,
+        "themeStyleField": true,
+        "webStyleField": true,
+        "nativeStyleField": true,
+        "resolvedWebChrome": true,
+        "themeRead": true,
+        "resolveCall": true,
+        "newStyleSurfaceFields": false
+      },
+      {
+        "component": "star_rating",
+        "coreContractStyleSlot": true,
+        "themeStyleField": true,
+        "webStyleField": true,
+        "nativeStyleField": true,
+        "resolvedWebChrome": true,
+        "themeRead": true,
+        "resolveCall": true,
+        "newStyleSurfaceFields": false
+      },
+      {
+        "component": "toggle_group",
+        "coreContractStyleSlot": true,
+        "themeStyleField": true,
+        "webStyleField": true,
+        "nativeStyleField": true,
+        "resolvedWebChrome": true,
+        "themeRead": true,
+        "resolveCall": true,
+        "newStyleSurfaceFields": false
+      },
+      {
+        "component": "dialog",
+        "coreContractStyleSlot": true,
+        "themeStyleField": true,
+        "webStyleField": true,
+        "nativeStyleField": true,
+        "resolvedWebChrome": true,
+        "themeRead": true,
+        "resolveCall": true,
+        "newStyleSurfaceFields": false
+      }
+    ],
+    "oldDescriptionDOMCorrectionIsDocsOnly": true,
+    "unchangedExamplesRegistriesMarkdownApi": true
+  },
+  "previousD551Phase": {
+    "base": "d5517009091e44620e02d3dd32483ca1b559e479",
+    "codeHead": "29adab2c3a280b14dc65c64b22fb52872b51c209",
+    "codeTree": "ec616607d25f0102495ed1d05152f20128458be8",
+    "api": {
+      "graphs": [
+        {
+          "package": "coui_core",
+          "beforeFiles": 922,
+          "afterFiles": 922,
+          "same": true
+        },
+        {
+          "package": "coui_flutter",
+          "beforeFiles": 1337,
+          "afterFiles": 1337,
+          "same": true
+        },
+        {
+          "package": "coui_web",
+          "beforeFiles": 1282,
+          "afterFiles": 1282,
+          "same": true
+        }
+      ],
+      "rows": [
+        {
+          "path": "packages/coui_web/lib/src/components/control/toggle_group/toggle_group_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/checkbox/checkbox_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": false,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/star_rating/star_rating_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": false,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/overlay/dialog/dialog.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        }
+      ],
+      "errors": [],
+      "methodology": "Function bodies elided; public top-level declarations in supported export closure compared. New private Checkbox conversion and unexported Fade measurer implementation changes are separated. Unnamed library directive cleanup is reported, not represented as identical directives."
+    },
+    "capture": {
+      "beforeHead": "d5517009091e44620e02d3dd32483ca1b559e479",
+      "afterCodeHead": "29adab2c3a280b14dc65c64b22fb52872b51c209",
+      "bothPlatformsBothPhasesFresh": true,
+      "canonicalAllStyles": 3484,
+      "defaultKeys": 750,
+      "afterWebDisjointShards": [
+        250,
+        250,
+        250
+      ],
+      "pixelBefore": {
+        "pass": 570,
+        "fail": 180,
+        "infra": 0,
+        "skipped": 0
+      },
+      "pixelAfter": {
+        "pass": 570,
+        "fail": 180,
+        "infra": 0,
+        "skipped": 0
+      },
+      "propertyBeforeAndAfter": {
+        "pass": 416,
+        "fail": 276,
+        "infra": 12,
+        "skipped": 46
+      },
+      "pixelAndPropertyReportExit": 1,
+      "verdictDeltas": {
+        "newFail": [],
+        "improved": [],
+        "sameKeyset": true,
+        "keys": 750
+      },
+      "integrity": {
+        "codeHead": "29adab2c3a280b14dc65c64b22fb52872b51c209",
+        "tree": "ec616607d25f0102495ed1d05152f20128458be8",
+        "inputs": 4124,
+        "changedInputs": [],
+        "freshBothPlatforms": true,
+        "webShards": 3,
+        "PNGs": 1524,
+        "PNGbyteSame": 1524,
+        "PNGdifferent": [],
+        "JSONs": 1500,
+        "JSONbyteSame": 1332,
+        "JSONdifferent": 168,
+        "badJSON": [],
+        "rawJSONDiffFieldCounts": {
+          ".captureContext.text": 168
+        },
+        "samples": {
+          ".captureContext.text": {
+            "file": "sidebar-collapsed-light-defaultStyle.web.json",
+            "after": "C\n                    \n                  \n                  \n                  \n                    \n                      \n                        \n                          \n                        ",
+            "before": "C\n                    \n                  \n                  \n                  \n                    \n                      \n                        \n                          \n                        "
+          }
+        },
+        "baselinePromoted": false,
+        "noClaimAllRawJSONEqual": true
+      },
+      "rawJSONFilesAreUnmodified": true,
+      "rawJSONDifferenceFieldsNotRemovedFromGate": true
+    },
+    "optimizedDocs": {
+      "requestedHead": "29adab2c3a280b14dc65c64b22fb52872b51c209",
+      "ownHead": "51a5ca1e4a0aa3804704caabbba18ddcf0388cbd",
+      "ownTreeEqualsCodeTree": true,
+      "routes": 357,
+      "generatedFilesUnchanged": 185,
+      "sourceFilesUnchanged": 13882,
+      "permanentChromeContracts": 4,
+      "httpResponses": 4,
+      "actualUIRecords": 40,
+      "totalRecords": 44,
+      "runtimeErrors": 0,
+      "actualThemeAndControllerMatch": true,
+      "rootCurl": [
+        {
+          "component": "checkbox",
+          "httpStatus": "HTTP/1.0 200 OK",
+          "htmlBytes": 490328,
+          "tokenClassCount": 278,
+          "bareColorTokenInline": false,
+          "rgbaClass": false
+        },
+        {
+          "component": "star-rating",
+          "httpStatus": "HTTP/1.0 200 OK",
+          "htmlBytes": 451288,
+          "tokenClassCount": 247,
+          "bareColorTokenInline": false,
+          "rgbaClass": false
+        },
+        {
+          "component": "toggle-group",
+          "httpStatus": "HTTP/1.0 200 OK",
+          "htmlBytes": 521747,
+          "tokenClassCount": 289,
+          "bareColorTokenInline": false,
+          "rgbaClass": false
+        },
+        {
+          "component": "dialog",
+          "httpStatus": "HTTP/1.0 200 OK",
+          "htmlBytes": 598941,
+          "tokenClassCount": 299,
+          "bareColorTokenInline": false,
+          "rgbaClass": false
+        }
+      ],
+      "knownExistingStarArrowNoop": "Web pointer-only limitation documented in pre-existing star-rating.md; widget byte-identical to base, explicit failure attempts retained",
+      "cleanup": {
+        "time": "2026-11-17T11:29:51.645076+00:00",
+        "serverPid": 49162,
+        "serverCommandVerified": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /tmp/weever-four-contracts-final-20261117.0it964bs/serve.py",
+        "httpPort": 60235,
+        "httpPortClosed": true,
+        "buildPort": 59686,
+        "buildPortClosed": true,
+        "browserClosed": true,
+        "buildProcessesRemaining": [],
+        "unrelatedAppsTouched": false
+      }
+    },
+    "artifacts": {
+      "root": "/tmp/weever-next-contracts-20261117.8z442pui",
+      "optimizedDocs": "/tmp/weever-four-contracts-final-20261117.0it964bs",
+      "checkbox": "/tmp/weever-controls-contract-20261117.0hgplij0",
+      "star": "/tmp/weever-star-label-roles-20261117.gz9i5l_r",
+      "toggle": "/tmp/weever-6367-toggle-duration-20261117.luqw7v25",
+      "dialog": "/tmp/weever-6364-dialog-keyboard-20261117",
+      "fadeBlockingReview": "/tmp/weever-6366-inline-audit-20261117._cjws7ob"
+    },
+    "diagnosticFailuresPreserved": [
+      "wrong default-SDK contract-guard run excluded; isolated3.14 guard rerun passed",
+      "initial token phase1..2 run separated; full1..6 passed",
+      "nonexistent guessed Star unit filename load failure; correct existing suites and final combined83 passed",
+      "minimal host Checkbox0px and dark Fade white-background attempts not production evidence",
+      "docs driver nullable/keyboard/global-selector/absent-element assumptions corrected without product edits"
+    ]
+  },
+  "finalIntegrationCodeHead": "7137145039626635bf4862801b93ee1582469589",
+  "finalIntegrationCodeTree": "7ac1f198e7ac48463bd37d45fc666c102419a4a7",
+  "finalBinding": {
+    "captureBase": "da560c1d9e4a1b02c4c7e61401e063dfa69ba7c9",
+    "captureHead": "7929a05bd7f3dc79382549d66f6d1baa32e9d035",
+    "captureTree": "bd5ef2418ee5c7c51cf2bc6706626f7b63c013e6",
+    "latestMain": "11aed12edcb8ebe92ce071a640261dec9c148684",
+    "baselineIntegratedHead": "7137145039626635bf4862801b93ee1582469589",
+    "baselineIntegratedTree": "7ac1f198e7ac48463bd37d45fc666c102419a4a7",
+    "upstreamBaselineOnlyFiles": 72,
+    "captureToFinalRenderInputChanges": 0,
+    "oursBaselinePromotion": false,
+    "ourApiDefaultCoreNativeFigmaSdkLockChangesRelativeFinalMain": false,
+    "keyVerdictsExactlyEqual": true
+  },
+  "intermediate7dPhase": {
+    "base": "7d491be2901b493884259c0601c82f3bfbe03504",
+    "codeHead": "24d549cdd28ea05538b6b50f52e8086192cd98df",
+    "tree": "a54a1f8b275baa7a5f0311ec214ccffedfa77150",
+    "integrity": {
+      "source": {
+        "before": {
+          "head": "7d491be2901b493884259c0601c82f3bfbe03504",
+          "inputs": 4125,
+          "changed": []
+        },
+        "after": {
+          "head": "24d549cdd28ea05538b6b50f52e8086192cd98df",
+          "inputs": 4129,
+          "changed": []
+        }
+      },
+      "counts": {
+        "before": {
+          "PNG": 1524,
+          "JSON": 1500
+        },
+        "after": {
+          "PNG": 1524,
+          "JSON": 1500
+        }
+      },
+      "PNGbyteSame": 1524,
+      "PNGdifferent": [],
+      "JSONbyteSame": 1364,
+      "JSONdifferent": 136,
+      "JSONdiffPaths": {
+        ".captureContext.text": 136
+      },
+      "upstreamPNGChangesFromD551": [
+        "toolbar-group-vertical-dark-defaultStyle.flutter.png",
+        "toolbar-group-vertical-dark-defaultStyle.web.png",
+        "toolbar-group-vertical-light-defaultStyle.web.png",
+        "toolbar-group-vertical-light-defaultStyle.flutter.png"
+      ],
+      "beforeRetry": 0,
+      "afterExactRetryKeys": [
+        "navigation-bar-rail-dark-defaultStyle"
+      ],
+      "noFlagsThresholdBaselineChanges": true
+    },
+    "pixel": {
+      "pass": 570,
+      "fail": 180,
+      "infra": 0,
+      "skipped": 0
+    },
+    "property": {
+      "pass": 416,
+      "fail": 276,
+      "infra": 12,
+      "skipped": 46
+    },
+    "apiGraphs": [
+      {
+        "package": "coui_core",
+        "beforeFiles": 924,
+        "afterFiles": 924,
+        "same": true
+      },
+      {
+        "package": "coui_flutter",
+        "beforeFiles": 1340,
+        "afterFiles": 1340,
+        "same": true
+      },
+      {
+        "package": "coui_web",
+        "beforeFiles": 1285,
+        "afterFiles": 1285,
+        "same": true
+      }
+    ],
+    "exactRetryNote": "One unchanged retry for navigation-bar-rail-dark-defaultStyle after original30s timeout; original log retained. This is not the latest752-key phase, whose retries are0.",
+    "artifacts": "/tmp/weever-four-main6368-20261117.oalie4ck",
+    "docsArtifacts": "/tmp/weever-four-contracts-main-phase-20261117.usdq2xsq"
+  },
+  "evidence": {
+    "comment": "https://github.com/coco-de/coui/pull/6370#issuecomment-6947530776",
+    "images": 8,
+    "storage": "private unpublished draft release;3-day TTL",
+    "scope": "Frozen canonical custom states; product sources byte-equal to latest integration, not claimed as freshly-rendered whole latest main",
+    "baselinePromotedByUs": false
+  }
+}

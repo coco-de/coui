@@ -1,0 +1,2082 @@
+{
+  "purpose": "Diagnostic only; no pixel mask, exclusion or verdict change. Layout line boxes and painted glyph ink have different meanings.",
+  "cases": [
+    {
+      "key": "frame-column-light-defaultStyle",
+      "flutterRoot": [
+        71.25249862670898,
+        111.0
+      ],
+      "webRoot": [
+        71.265625,
+        111
+      ],
+      "texts": [
+        {
+          "text": "첫째 행",
+          "flutter": {
+            "text": "첫째 행",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "첫째 행",
+            "x": 16,
+            "y": 16,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "둘째 행",
+          "flutter": {
+            "text": "둘째 행",
+            "x": 16.0,
+            "y": 45.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "둘째 행",
+            "x": 16,
+            "y": 45,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 47,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "셋째 행",
+          "flutter": {
+            "text": "셋째 행",
+            "x": 16.0,
+            "y": 74.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "셋째 행",
+            "x": 16,
+            "y": 74,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 76,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-column-light-neoBrutalism",
+      "flutterRoot": [
+        71.06109237670898,
+        111.0
+      ],
+      "webRoot": [
+        71.0625,
+        111
+      ],
+      "texts": [
+        {
+          "text": "첫째 행",
+          "flutter": {
+            "text": "첫째 행",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 39.061092376708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 600,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 38.991092681884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "첫째 행",
+            "x": 16,
+            "y": 16,
+            "width": 39.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 39.0625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "둘째 행",
+          "flutter": {
+            "text": "둘째 행",
+            "x": 16.0,
+            "y": 45.0,
+            "width": 39.061092376708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 600,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 38.991092681884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "둘째 행",
+            "x": 16,
+            "y": 45,
+            "width": 39.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 47,
+                "width": 39.0625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "셋째 행",
+          "flutter": {
+            "text": "셋째 행",
+            "x": 16.0,
+            "y": 74.0,
+            "width": 39.061092376708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 600,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 38.991092681884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "셋째 행",
+            "x": 16,
+            "y": 74,
+            "width": 39.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 76,
+                "width": 39.0625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-column-light-claymorphism",
+      "flutterRoot": [
+        71.25249862670898,
+        111.0
+      ],
+      "webRoot": [
+        71.265625,
+        111
+      ],
+      "texts": [
+        {
+          "text": "첫째 행",
+          "flutter": {
+            "text": "첫째 행",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "첫째 행",
+            "x": 16,
+            "y": 16,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "둘째 행",
+          "flutter": {
+            "text": "둘째 행",
+            "x": 16.0,
+            "y": 45.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "둘째 행",
+            "x": 16,
+            "y": 45,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 47,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "셋째 행",
+          "flutter": {
+            "text": "셋째 행",
+            "x": 16.0,
+            "y": 74.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "셋째 행",
+            "x": 16,
+            "y": 74,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 76,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-column-light-neumorphism",
+      "flutterRoot": [
+        71.25249862670898,
+        111.0
+      ],
+      "webRoot": [
+        71.265625,
+        111
+      ],
+      "texts": [
+        {
+          "text": "첫째 행",
+          "flutter": {
+            "text": "첫째 행",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "첫째 행",
+            "x": 16,
+            "y": 16,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "둘째 행",
+          "flutter": {
+            "text": "둘째 행",
+            "x": 16.0,
+            "y": 45.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "둘째 행",
+            "x": 16,
+            "y": 45,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 47,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "셋째 행",
+          "flutter": {
+            "text": "셋째 행",
+            "x": 16.0,
+            "y": 74.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "셋째 행",
+            "x": 16,
+            "y": 74,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 76,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-column-dark-defaultStyle",
+      "flutterRoot": [
+        71.25249862670898,
+        111.0
+      ],
+      "webRoot": [
+        71.265625,
+        111
+      ],
+      "texts": [
+        {
+          "text": "첫째 행",
+          "flutter": {
+            "text": "첫째 행",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "첫째 행",
+            "x": 16,
+            "y": 16,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "둘째 행",
+          "flutter": {
+            "text": "둘째 행",
+            "x": 16.0,
+            "y": 45.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "둘째 행",
+            "x": 16,
+            "y": 45,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 47,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "셋째 행",
+          "flutter": {
+            "text": "셋째 행",
+            "x": 16.0,
+            "y": 74.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "셋째 행",
+            "x": 16,
+            "y": 74,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 76,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-column-dark-neoBrutalism",
+      "flutterRoot": [
+        71.06109237670898,
+        111.0
+      ],
+      "webRoot": [
+        71.0625,
+        111
+      ],
+      "texts": [
+        {
+          "text": "첫째 행",
+          "flutter": {
+            "text": "첫째 행",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 39.061092376708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 600,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 38.991092681884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "첫째 행",
+            "x": 16,
+            "y": 16,
+            "width": 39.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 39.0625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "둘째 행",
+          "flutter": {
+            "text": "둘째 행",
+            "x": 16.0,
+            "y": 45.0,
+            "width": 39.061092376708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 600,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 38.991092681884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "둘째 행",
+            "x": 16,
+            "y": 45,
+            "width": 39.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 47,
+                "width": 39.0625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "셋째 행",
+          "flutter": {
+            "text": "셋째 행",
+            "x": 16.0,
+            "y": 74.0,
+            "width": 39.061092376708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 600,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 38.991092681884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "셋째 행",
+            "x": 16,
+            "y": 74,
+            "width": 39.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 76,
+                "width": 39.0625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-column-dark-claymorphism",
+      "flutterRoot": [
+        71.25249862670898,
+        111.0
+      ],
+      "webRoot": [
+        71.265625,
+        111
+      ],
+      "texts": [
+        {
+          "text": "첫째 행",
+          "flutter": {
+            "text": "첫째 행",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "첫째 행",
+            "x": 16,
+            "y": 16,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "둘째 행",
+          "flutter": {
+            "text": "둘째 행",
+            "x": 16.0,
+            "y": 45.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "둘째 행",
+            "x": 16,
+            "y": 45,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 47,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "셋째 행",
+          "flutter": {
+            "text": "셋째 행",
+            "x": 16.0,
+            "y": 74.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "셋째 행",
+            "x": 16,
+            "y": 74,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 76,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-column-dark-neumorphism",
+      "flutterRoot": [
+        71.25249862670898,
+        111.0
+      ],
+      "webRoot": [
+        71.265625,
+        111
+      ],
+      "texts": [
+        {
+          "text": "첫째 행",
+          "flutter": {
+            "text": "첫째 행",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "첫째 행",
+            "x": 16,
+            "y": 16,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "둘째 행",
+          "flutter": {
+            "text": "둘째 행",
+            "x": 16.0,
+            "y": 45.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "둘째 행",
+            "x": 16,
+            "y": 45,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 47,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "셋째 행",
+          "flutter": {
+            "text": "셋째 행",
+            "x": 16.0,
+            "y": 74.0,
+            "width": 39.252498626708984,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 39.182498931884766,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "셋째 행",
+            "x": 16,
+            "y": 74,
+            "width": 39.265625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 76,
+                "width": 39.265625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-dashed-dark-neumorphism",
+      "flutterRoot": [
+        154.4242172241211,
+        73.0
+      ],
+      "webRoot": [
+        154.4375,
+        73
+      ],
+      "texts": [
+        {
+          "text": "점선 테두리 프레임",
+          "flutter": {
+            "text": "점선 테두리 프레임",
+            "x": 26.0,
+            "y": 26.0,
+            "width": 102.4242172241211,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 102.35421752929688,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "점선 테두리 프레임",
+            "x": 26,
+            "y": 26,
+            "width": 102.4375,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 26,
+                "y": 28,
+                "width": 102.4375,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-elevated-dark-defaultStyle",
+      "flutterRoot": [
+        224.0515594482422,
+        78.0
+      ],
+      "webRoot": [
+        224.0625,
+        78
+      ],
+      "texts": [
+        {
+          "text": "그림자 프레임",
+          "flutter": {
+            "text": "그림자 프레임",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 75.1313247680664,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 75.06132507324219,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "그림자 프레임",
+            "x": 16,
+            "y": 16,
+            "width": 192.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 75.140625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "md 그림자를 쓰고 테두리는 없어요.",
+          "flutter": {
+            "text": "md 그림자를 쓰고 테두리는 없어요.",
+            "x": 16.0,
+            "y": 41.0,
+            "width": 192.0515594482422,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 191.98155212402344,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "md 그림자를 쓰고 테두리는 없어요.",
+            "x": 16,
+            "y": 41,
+            "width": 192.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 43,
+                "width": 192.0625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-elevated-dark-neoBrutalism",
+      "flutterRoot": [
+        224.1609344482422,
+        78.0
+      ],
+      "webRoot": [
+        224.171875,
+        78
+      ],
+      "texts": [
+        {
+          "text": "그림자 프레임",
+          "flutter": {
+            "text": "그림자 프레임",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 74.9399185180664,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 600,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 74.86991882324219,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "그림자 프레임",
+            "x": 16,
+            "y": 16,
+            "width": 192.171875,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 74.953125,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "md 그림자를 쓰고 테두리는 없어요.",
+          "flutter": {
+            "text": "md 그림자를 쓰고 테두리는 없어요.",
+            "x": 16.0,
+            "y": 41.0,
+            "width": 192.1609344482422,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 600,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 192.09092712402344,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "md 그림자를 쓰고 테두리는 없어요.",
+            "x": 16,
+            "y": 41,
+            "width": 192.171875,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "600",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 43,
+                "width": 192.171875,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-elevated-dark-claymorphism",
+      "flutterRoot": [
+        224.0515594482422,
+        78.0
+      ],
+      "webRoot": [
+        224.0625,
+        78
+      ],
+      "texts": [
+        {
+          "text": "그림자 프레임",
+          "flutter": {
+            "text": "그림자 프레임",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 75.1313247680664,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 75.06132507324219,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "그림자 프레임",
+            "x": 16,
+            "y": 16,
+            "width": 192.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 75.140625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "md 그림자를 쓰고 테두리는 없어요.",
+          "flutter": {
+            "text": "md 그림자를 쓰고 테두리는 없어요.",
+            "x": 16.0,
+            "y": 41.0,
+            "width": 192.0515594482422,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 191.98155212402344,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "md 그림자를 쓰고 테두리는 없어요.",
+            "x": 16,
+            "y": 41,
+            "width": 192.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 43,
+                "width": 192.0625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "key": "frame-elevated-dark-neumorphism",
+      "flutterRoot": [
+        224.0515594482422,
+        78.0
+      ],
+      "webRoot": [
+        224.0625,
+        78
+      ],
+      "texts": [
+        {
+          "text": "그림자 프레임",
+          "flutter": {
+            "text": "그림자 프레임",
+            "x": 16.0,
+            "y": 16.0,
+            "width": 75.1313247680664,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 75.06132507324219,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "그림자 프레임",
+            "x": 16,
+            "y": 16,
+            "width": 192.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 18,
+                "width": 75.140625,
+                "height": 16
+              }
+            ]
+          }
+        },
+        {
+          "text": "md 그림자를 쓰고 테두리는 없어요.",
+          "flutter": {
+            "text": "md 그림자를 쓰고 테두리는 없어요.",
+            "x": 16.0,
+            "y": 41.0,
+            "width": 192.0515594482422,
+            "height": 21.0,
+            "fontFamily": "Pretendard",
+            "fontSize": 14.0,
+            "lineHeight": 1.5,
+            "letterSpacing": -0.14,
+            "fontWeight": 400,
+            "lineBoxes": [
+              {
+                "left": -0.07000000029802322,
+                "top": 0.0,
+                "right": 191.98155212402344,
+                "bottom": 21.0
+              }
+            ]
+          },
+          "web": {
+            "text": "md 그림자를 쓰고 테두리는 없어요.",
+            "x": 16,
+            "y": 41,
+            "width": 192.0625,
+            "height": 21,
+            "fontFamily": "Pretendard, system-ui, sans-serif",
+            "fontSize": "14px",
+            "lineHeight": "21px",
+            "fontWeight": "400",
+            "letterSpacing": "-0.14px",
+            "lineBoxes": [
+              {
+                "x": 16,
+                "y": 43,
+                "width": 192.0625,
+                "height": 16
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "pixelRegions": [
+    {
+      "key": "frame-column-light-defaultStyle",
+      "insideTextBoxes": 432,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ]
+      ]
+    },
+    {
+      "key": "frame-column-light-neoBrutalism",
+      "insideTextBoxes": 284,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ]
+      ]
+    },
+    {
+      "key": "frame-column-light-claymorphism",
+      "insideTextBoxes": 432,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ]
+      ]
+    },
+    {
+      "key": "frame-column-light-neumorphism",
+      "insideTextBoxes": 445,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ]
+      ]
+    },
+    {
+      "key": "frame-column-dark-defaultStyle",
+      "insideTextBoxes": 512,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ]
+      ]
+    },
+    {
+      "key": "frame-column-dark-neoBrutalism",
+      "insideTextBoxes": 560,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ]
+      ]
+    },
+    {
+      "key": "frame-column-dark-claymorphism",
+      "insideTextBoxes": 512,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ]
+      ]
+    },
+    {
+      "key": "frame-column-dark-neumorphism",
+      "insideTextBoxes": 533,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          16,
+          56,
+          37
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          45,
+          56,
+          66
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ],
+        [
+          16,
+          74,
+          56,
+          95
+        ]
+      ]
+    },
+    {
+      "key": "frame-dashed-dark-neumorphism",
+      "insideTextBoxes": 414,
+      "outsideTextBoxes": 325,
+      "diagnosticTextRects": [
+        [
+          26,
+          26,
+          129,
+          47
+        ],
+        [
+          26,
+          26,
+          129,
+          47
+        ]
+      ]
+    },
+    {
+      "key": "frame-elevated-dark-defaultStyle",
+      "insideTextBoxes": 1137,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          92,
+          37
+        ],
+        [
+          16,
+          16,
+          209,
+          37
+        ],
+        [
+          16,
+          41,
+          209,
+          62
+        ],
+        [
+          16,
+          41,
+          209,
+          62
+        ]
+      ]
+    },
+    {
+      "key": "frame-elevated-dark-neoBrutalism",
+      "insideTextBoxes": 1113,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          91,
+          37
+        ],
+        [
+          16,
+          16,
+          209,
+          37
+        ],
+        [
+          16,
+          41,
+          209,
+          62
+        ],
+        [
+          16,
+          41,
+          209,
+          62
+        ]
+      ]
+    },
+    {
+      "key": "frame-elevated-dark-claymorphism",
+      "insideTextBoxes": 1137,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          92,
+          37
+        ],
+        [
+          16,
+          16,
+          209,
+          37
+        ],
+        [
+          16,
+          41,
+          209,
+          62
+        ],
+        [
+          16,
+          41,
+          209,
+          62
+        ]
+      ]
+    },
+    {
+      "key": "frame-elevated-dark-neumorphism",
+      "insideTextBoxes": 1137,
+      "outsideTextBoxes": 0,
+      "diagnosticTextRects": [
+        [
+          16,
+          16,
+          92,
+          37
+        ],
+        [
+          16,
+          16,
+          209,
+          37
+        ],
+        [
+          16,
+          41,
+          209,
+          62
+        ],
+        [
+          16,
+          41,
+          209,
+          62
+        ]
+      ]
+    }
+  ]
+}

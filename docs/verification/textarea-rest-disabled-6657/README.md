@@ -1,0 +1,22 @@
+# TextArea idle and disabled paint (#6657)
+
+Web TextArea now consumes existing raw idle and hover border values on its actual box. The unfooted disabled frame uses its dedicated fill/stroke; explicit disabled idle borders yield to the disabled token on physical hover and return on exit, matching the existing Native contract.
+
+Token idle strings retain their original rounding, including `/51` beside raw hover. A token-only canonical pseudo emitter owns class generation. The fixed footer adapter preserves its original main-textarea focus predicate, opacity suffix and selector priority; raw values use real same-box variable readers. No public API, Core default, DOM structure, color formatter or measurement criterion changes.
+
+[Regression 22](../../../tool/parity/test/web/text_area_rest_disabled_paint_test.dart) and [evidence.json](evidence.json) bind code `26a4b2f3fe` on main `194d0b8790`. Functional execution used `9495` plus the exact frozen files before the code-only commit; it is not relabeled as a new-head run.
+
+- Original 14 plus companion 4: 3 pass/15 delivery-form fail → the same 18 pass. Mixed token 2 pass before/after. Permanent 22 pass; external 20 overlap 20 of those 22. Related 166 pass on the earlier source and were not repeated or counted as independent new scenarios.
+- Unchanged scoped resolver guard, touched 4 fatal analysis and final no-drift format all exit 0. The initial generic-prefix guard failure and four missing assert-message infos remain preserved.
+- Root observed public 40/230 paired states on `aee`: 88 intended border/fill changes, no geometry/other-owner-paint changes. Native 6 opaque light references give 18 border samples, moving 7 pass/11 fail to 18 pass. This is not 20 fresh Native constructors or alpha parity.
+- Caller 14/84 states each preserve 60 strong ID/important/actual-frame-inline-important samples. Two ordinary-class raw-hover rows change as the intended field is consumed. These are explicit CSS mechanism controls, not constructor `css` forwarding proof.
+- Final 26 public 40 and caller 14 whole self-contained HTML inputs are byte exact to those actual observations; no new 26 browser 40/14 run is claimed.
+- Latest canonical before194d/after26 actual 8 captures succeed: four PNG/CRC and byRole records are exact, with cleanup 8 complete. Native 4 were captured once on `aee` (four JSON/four PNG, NoRoot 0). New keys have no own-baseline PASS or compare-CLI claim. Native/Web capture units differ, including docs tabs on Web; no cross-platform all-match claim.
+- Final 26 pinned docs CLI exits 0 in 301.317s (observer 342.094s including setup/postchecks), 361 routes, 363 Jaspr+2 Flutter HTML, 5,044 hashes and 3 retained HTML. All 25,249 tracked source inputs and used package trees are unchanged. The owned 232 graph matches current pubspec; retained WT metadata is unchanged. Registry metadata changed; automatic fetch was not measured and direct pub commands are 0.
+- Final 26 pure Dart SSR reload succeeds for the actual two target libraries, six HTTP controls and CSS, with the same PID/input identity and two ports closed. It is not browser/client or Native-app hot reload.
+
+After the normal `f542` integration, HEAD `10a89eec` passes focused 22, touched fatal/format and unchanged scoped guards. The only inherited ThemeConfig difference is two layout560 declarations; the TextArea style, protocol and regression bytes are unchanged. This is a separate focused execution, without another build or browser run. Subsequent source `93454432` completes the same pure Dart SSR reload in 6.330s: two loaded libraries, HTTP 200 responses containing six controls, the same PID/input/CSS and closed ports. The added layout560 CSS variable is actually present.
+
+The upstream docs-shell CSS and compiled JS changes are separated from the style repair. The original 9495 build exits 0 while its observer exits 1 on the newly declared docs `html` edge; the isolated current-pubspec graph and successful final build are separate evidence. The first before194d harness vendor omission and its bounded recovery are retained.
+
+`evidence.json` lists portable artifact paths/SHA256 under `weever-textarea-rest-disabled-4ajm1r8g` and the per-item `.claude/rules/process/verify.md` applicability map. API/default/registry/new-theme and unrelated structure checks are source-unchanged/N/A, not a new whole-component conventions certificate. No latest 1096/full-parity success, global alpha fix, waiver or pixel-improvement count is claimed.

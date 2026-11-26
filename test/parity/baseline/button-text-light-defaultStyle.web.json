@@ -1,0 +1,35 @@
+{
+  "key": "button-text-light-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "22.4px",
+      "letterSpacing": "normal",
+      "color": "rgb(24, 25, 27)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "8px",
+      "borderTopRightRadius": "8px",
+      "borderBottomRightRadius": "8px",
+      "borderBottomLeftRadius": "8px",
+      "paddingTop": "8px",
+      "paddingRight": "16px",
+      "paddingBottom": "8px",
+      "paddingLeft": "16px",
+      "outlineWidth": "3px",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1"
+    }
+  }
+}

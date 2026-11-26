@@ -1,0 +1,487 @@
+{
+  "issue": 6131,
+  "captureSource": {
+    "sourceSha": "5bb8661c581476905605bc91db8441e096cb98d8",
+    "branch": "fix/6131-capture-region-contract-20261116",
+    "capturedAt": "2026-11-16T04:17:22.535465+00:00",
+    "workingSourceSha256": {
+      "docs_core/lib/previews/web_registry.dart": "17b4cdedcc04eb772bbb67eb4878c08ffc7d1bf6e1ceb0a686b3231e4c288e32",
+      "docs_core/lib/shared/preview_layout.dart": "d0736d04bdcce0ab40644f189b6e4af90147e3e3b8a238d222797f880cfe0192",
+      "packages/coui_flutter/test/parity/flutter_capture_matrix_test.dart": "4f64db431e97913176c4c7fe490c33b1dc648e0a39d5972e947a521578646fbb",
+      "tool/parity/report.dart": "42c4807e78ea0873206105c1736ee914225bf67f18743423e64ceabf0028e161",
+      "tool/parity/src/manifest/material_reach.dart": "f9f6b9fd1ec2f976b0b53dec3f46febdd062107e466ed64b4b8213f6fe3e734f",
+      "tool/parity/src/manifest/parity_manifest.dart": "5c0c60f641eaada5bda3fc2a6fc985c8973aef64672f866501ed1b421322dbc8",
+      "tool/parity/src/manifest/pruned_pairs.dart": "9a443faf763e5d66503b5f7cddea05775c144b9bc830b3fdcd6bc2e9f0616649",
+      "tool/parity/src/model/probe_spec.dart": "f81e25ffdd806d7a87a586534edfc1d120c4ecad4fe01d05c0419368882ee4fd",
+      "tool/parity/src/report/entry_loader.dart": "4f2eed4e914b8ed9702fb8749de3440714bcc58b6769952fa30f016c5976f0e7",
+      "tool/parity/src/web/web_capture_backend.dart": "9abfed5b09923dc248819bbe95e1676b3f471c98e855c28298dfbf7447adebce",
+      "tool/parity/test/web/capture_state_test.dart": "85b775bc23ac98f1eccfa90b1582e2ce9e353d2bb6e9b78159f333a252d9a20d",
+      "tool/parity/test/web/web_capture_backend_test.dart": "ac101f10956d703a1888e2d69527d3971eee8e46572e102b5ad189ed76957d1e",
+      "packages/coui_flutter/test/parity/capture_body_probe.dart": "6410caeb2a1c0fc36e53fd193dcf50ca404d38e4fa430afe80bed42a221ef88b",
+      "packages/coui_flutter/test/parity/capture_body_probe_test.dart": "8ebcb141f8b92c9f9343ae9d81123433c2ad32132072e01f94a15b4dd3d0eab1",
+      "tool/parity/src/manifest/capture_probes.dart": "f5b65d9593470a2b350ed0515a8b2406dace98c3f43be93ec81b39e0cd39540a",
+      "tool/parity/src/model/capture_body.dart": "644b48c356e6dbce024a00e2335dedde5414489596e4b6aa4f3d9cd6b01e4a63",
+      "tool/parity/test/model/capture_body_test.dart": "8f2a6d0eae2545b201c6057369c1eeb4401c6699ab63cdbfd8448d3c62e02e72",
+      "tool/parity/test/report/body_capture_test.dart": "a2e42d91529688412cdafff7bde2df1378dc8399ae92af72fa763e7af63c72b1"
+    },
+    "manifestSha256": {
+      "framed-manifest.json": "27029ac5693a51df3186422d1b33d63a7706c7f6d0d8a9302720b7ec013fc8f4",
+      "updated-manifest.json": "ce2e93ebfa4892d3375f065b4203c3990d2fd4096f37144580c440120c78a707"
+    }
+  },
+  "integratedMainBefore": {
+    "sha": "a5b51346059a82c13db39c5e3776a9232ab3d058",
+    "keys": 748,
+    "pass": 451,
+    "fail": 297,
+    "infra": 0,
+    "baselinePass": 1381,
+    "baselineDifferences": 115,
+    "changedFailureKeysSince6307Head": 0
+  },
+  "generatedAt": "2026-11-16T04:25:55.763368+00:00",
+  "finalDefaultStyle": {
+    "keys": 748,
+    "probes": 760,
+    "pass": 460,
+    "fail": 288,
+    "infra": 0,
+    "skipped": 0,
+    "dimensionFailedKeys": 100,
+    "sameSizePixelFailedKeys": 188,
+    "resolvedKeys": [
+      "mockup-phone-light-defaultStyle",
+      "mockup-phone-dark-defaultStyle",
+      "mockup-tablet-light-defaultStyle",
+      "mockup-tablet-dark-defaultStyle",
+      "mockup-device-default-light-defaultStyle",
+      "mockup-device-default-dark-defaultStyle",
+      "mockup-device-flat-light-defaultStyle",
+      "mockup-device-flat-dark-defaultStyle",
+      "responsive-container-default-light-defaultStyle"
+    ],
+    "newFailedKeys": [],
+    "passProbes": 469,
+    "failProbes": 291,
+    "artifactFiles": 3016
+  },
+  "affectedAllRetainedStyles": {
+    "keys": 60,
+    "probes": 120,
+    "pass": 45,
+    "fail": 15,
+    "infra": 0,
+    "artifacts": 360,
+    "styles": [
+      "claymorphism",
+      "defaultStyle",
+      "liquidGlass",
+      "neoBrutalism",
+      "neumorphism"
+    ]
+  },
+  "baselineDefaultStyle": {
+    "platformCellsWithBaseline": 1496,
+    "pass": 1369,
+    "differences": 127,
+    "existingDifferences": 115,
+    "existingDifferencesWithChangedMeasurements": [],
+    "newScopeDifferences": [
+      {
+        "key": "mockup-phone-light-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "mockup-phone-dark-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "mockup-tablet-light-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "mockup-tablet-dark-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "mockup-landscape-light-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "mockup-landscape-dark-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "mockup-device-default-light-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "mockup-device-default-dark-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "mockup-device-flat-light-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "mockup-device-flat-dark-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "responsive-container-default-light-defaultStyle",
+        "platform": "flutter"
+      },
+      {
+        "key": "responsive-container-default-dark-defaultStyle",
+        "platform": "flutter"
+      }
+    ],
+    "additionalStageFirstCapture": 24,
+    "approved": 0,
+    "infra": 0,
+    "skipped": 0
+  },
+  "baselineAffectedStyles": {
+    "rootPass": 60,
+    "rootScopeDifferences": 60,
+    "stageFirstCapture": 120,
+    "nativeFullStageVsLegacyRootBaselinePass": 60,
+    "nativeFullStageVsLegacyRootBaselineFailedComparisons": 0,
+    "nativeFullStageVsLegacyRootBaselineChangedPixelsOverChannelThreshold": 5
+  },
+  "preservation": {
+    "defaultNativeFullStages": [
+      {
+        "key": "mockup-phone-light-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "mockup-phone-dark-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "mockup-tablet-light-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "mockup-tablet-dark-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "mockup-landscape-light-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "mockup-landscape-dark-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "mockup-device-default-light-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "mockup-device-default-dark-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "mockup-device-flat-light-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "mockup-device-flat-dark-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "responsive-container-default-light-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      },
+      {
+        "key": "responsive-container-default-dark-defaultStyle",
+        "passed": true,
+        "diffPixels": 0,
+        "maxChannelDelta": 0,
+        "dimensionMismatch": null
+      }
+    ],
+    "defaultRootProperties": [
+      {
+        "key": "mockup-phone-light-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            320.0
+          ]
+        }
+      },
+      {
+        "key": "mockup-phone-light-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "mockup-phone-dark-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            320.0
+          ]
+        }
+      },
+      {
+        "key": "mockup-phone-dark-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "mockup-tablet-light-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            320.0
+          ]
+        }
+      },
+      {
+        "key": "mockup-tablet-light-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "mockup-tablet-dark-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            320.0
+          ]
+        }
+      },
+      {
+        "key": "mockup-tablet-dark-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "mockup-landscape-light-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            320.0
+          ]
+        }
+      },
+      {
+        "key": "mockup-landscape-light-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "mockup-landscape-dark-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            320.0
+          ]
+        }
+      },
+      {
+        "key": "mockup-landscape-dark-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "mockup-device-default-light-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            320.0
+          ]
+        }
+      },
+      {
+        "key": "mockup-device-default-light-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "mockup-device-default-dark-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            320.0
+          ]
+        }
+      },
+      {
+        "key": "mockup-device-default-dark-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "mockup-device-flat-light-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            256.0
+          ]
+        }
+      },
+      {
+        "key": "mockup-device-flat-light-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "mockup-device-flat-dark-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            256.0
+          ]
+        }
+      },
+      {
+        "key": "mockup-device-flat-dark-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "responsive-container-default-light-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            640.0
+          ]
+        }
+      },
+      {
+        "key": "responsive-container-default-light-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      },
+      {
+        "key": "responsive-container-default-dark-defaultStyle",
+        "platform": "flutter",
+        "droppedFields": [],
+        "changes": {
+          "widthPx": [
+            800.0,
+            640.0
+          ]
+        }
+      },
+      {
+        "key": "responsive-container-default-dark-defaultStyle",
+        "platform": "web",
+        "droppedFields": [],
+        "changes": {}
+      }
+    ]
+  },
+  "thresholds": {
+    "parity": 0.05,
+    "regression": 0.001,
+    "channelDelta": 32,
+    "dimensionMismatchFails": true,
+    "changed": false
+  },
+  "commands": {
+    "captureExit": 0,
+    "defaultParityReportExit": 1,
+    "stylesParityReportExit": 1,
+    "defaultRegressionReportExit": 1,
+    "stylesRegressionReportExit": 1,
+    "toolTests": {
+      "passed": 202,
+      "skipped": 1,
+      "skipReason": "no deprecated component in the current catalog"
+    },
+    "nativeBodyTests": 5,
+    "docsTests": 31,
+    "nativeFullCaptures": 748,
+    "nativeStyleCaptures": 60,
+    "analyze": "No issues found",
+    "formatFiles": 18,
+    "formatChanged": 0,
+    "jasprBuildRoutes": 356,
+    "mutationSelectedTests": 5,
+    "mutationFailures": 3,
+    "restoredTestsPassed": true,
+    "missingStageReportExit": 2
+  },
+  "scope": {
+    "productLibraryChanges": false,
+    "coreContractChanges": false,
+    "publicPackageApiChanges": false,
+    "figmaChanges": false,
+    "baselinesPromoted": false,
+    "allowlistChanged": false,
+    "fullManualCiRun": false,
+    "hotReload": "No running app for this workspace; fresh Flutter test processes and static build used."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "issue": 6436,
+  "base": "c769ae7040b968528dd775056662b773c76cd388",
+  "product": "da774f446e6869985bb87b47df3367a829ae56fa",
+  "proofRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0",
+  "coreTests": 121,
+  "nativeIconTests": 53,
+  "newTests": 28,
+  "oldParserNewTestFailures": 23,
+  "vendoredUnchanged": 2034,
+  "webCoordinateMatches": 96,
+  "nativeOracleRgbaExact": 96,
+  "crossPlatformRgbaExact": 0,
+  "defaultSweepReductionClaimed": false,
+  "newPublicApi": false,
+  "intentionalBehaviorFixes": [
+    "Existing Iconify transforms/origins are honored",
+    "Odd rotations swap viewBox axes",
+    "Missing collection viewBox falls back to16; standalone constructor/design size remain24"
+  ],
+  "receipts": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/core-negative-exit.json",
+      "sha256": "af5af69e54e414ecb1eecff2074ce8ea0a7ca156f5992c192601d4dc8747c654"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/core-package-tests-exit.json",
+      "sha256": "7449fd72551048d79305cb6d97e56f952ddfa0d6c2dd76b4a30d8b7e85a0d337"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/native-existing-icon-tests-exit.json",
+      "sha256": "1fc28cffe33f45d747f3775c08fee7c6f9df7a12f488423d088c262c47b55ef0"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/analyze-final-exit.json",
+      "sha256": "7449fd72551048d79305cb6d97e56f952ddfa0d6c2dd76b4a30d8b7e85a0d337"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/contracts-corrected-exit.json",
+      "sha256": "7449fd72551048d79305cb6d97e56f952ddfa0d6c2dd76b4a30d8b7e85a0d337"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/source-scope.json",
+      "sha256": "87d1aafd1a4059065d9974ddd17cd422bc0d0ff3dc0af1f75f6889df975a7e7f"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/api-surface.json",
+      "sha256": "261c972cbad4af8b2acc202962bd1525a70e2ed07238876f17ed1ae3583108c9"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/vendored-corpus.json",
+      "sha256": "e2335e8a8851a0e8f3a53e99cb539d7e4e6ee780150b5ad9b21dd6be4ee37c09"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/native-render-exit.json",
+      "sha256": "ed39c7f584843d9faae5d36ea16d69b29afa466e6ae88948424224096764326e"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/web-capture-final-exit.json",
+      "sha256": "17964e2601ac44ba02994d6edba0c32b838e20a0f29a93dad47a94419236bd9d"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/renderer-comparison.json",
+      "sha256": "fec1be04765a7751e9bd2223d137880b4be82338b555fb6e15934ac607328bc6"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/native-oracle-exit.json",
+      "sha256": "1302f17c02a1578d0192c7ff132545241b833180893ff6a41c07068c9463bd73"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/native-oracle-comparison.json",
+      "sha256": "382f55df6d8a45c290ae589acf339644ad1110e44f19404252da2bdffe5c3387"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/selected-evidence8.json",
+      "sha256": "20a82d78ac10610b956f56139011d6c2aa0ff2f06dae6e35a39f981f4102de27"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/build-process.json",
+      "sha256": "46255d086abd292a8e8c7187f7c6bd984db0eda39f298fbba62026bc1e81fdf4"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/owned-reload.json",
+      "sha256": "f03d22662023ebe6801fac833fa2bf2754e320a21c47ea19bc38d4c3fbb84067"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/browser-cleanup.json",
+      "sha256": "bebfc1ce3387a74f26db80e84b6de92f6cb3fbdf20261be6cb30a14a3f5b131d"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-json-proof-20261119.q0ef5pq0/artifact-index.json",
+      "sha256": "18fa7c18ddee7b6ba3a864bd7e7540a0aede05c4fbf6404c0d1df5a8d02a8006"
+    }
+  ]
+}

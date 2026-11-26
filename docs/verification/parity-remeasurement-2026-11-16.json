@@ -1,0 +1,94 @@
+{
+  "sourceSha": "0459dd702f2a66aa2c68b2046ab2c5c97f9e65dc",
+  "startedAt": "2026-11-16T01:14:27.683243+00:00",
+  "completedAt": "2026-11-16T01:22:55.932672+00:00",
+  "matrixEntries": 748,
+  "components": 162,
+  "matrixSha256": "835f2f61c7a9363fe613664e0b4dcda7b9b2024a86e187eb7bdc29a462ec95c6",
+  "flutterVersion": "3.47.9",
+  "flutterRevision": "c197ca5199e9ee5661e865596c9c07294dfab51c",
+  "dartVersion": "3.13.7",
+  "chromeVersions": [
+    "Chrome/150.0.7871.24"
+  ],
+  "previous": {
+    "passed": 451,
+    "failed": 297
+  },
+  "current": {
+    "passed": 451,
+    "failed": 297,
+    "infraSkipped": 0,
+    "structuralSkipped": 0,
+    "dimensionMismatches": 110,
+    "sameSizePixelMismatches": 187,
+    "affectedComponents": 78
+  },
+  "delta": {
+    "resolved": [],
+    "newFailures": [],
+    "continuedFailures": 297
+  },
+  "capturePhases": {
+    "settled-runtime": 718,
+    "initial-frame": 22,
+    "unsettled-runtime": 8
+  },
+  "unsettledKeys": [
+    "loading-region-default-dark-defaultStyle",
+    "loading-region-default-light-defaultStyle",
+    "skeleton-circle-dark-defaultStyle",
+    "skeleton-circle-light-defaultStyle",
+    "skeleton-default-dark-defaultStyle",
+    "skeleton-default-light-defaultStyle",
+    "skeleton-text-dark-defaultStyle",
+    "skeleton-text-light-defaultStyle"
+  ],
+  "samePlatformChangesFromPrevious": [
+    "calendar-markers-dark-defaultStyle.flutter.png",
+    "calendar-markers-dark-defaultStyle.web.png",
+    "calendar-markers-light-defaultStyle.flutter.png",
+    "calendar-markers-light-defaultStyle.web.png",
+    "calendar-multi-dark-defaultStyle.flutter.png",
+    "calendar-multi-dark-defaultStyle.web.png",
+    "calendar-multi-light-defaultStyle.flutter.png",
+    "calendar-multi-light-defaultStyle.web.png",
+    "calendar-none-dark-defaultStyle.flutter.png",
+    "calendar-none-dark-defaultStyle.web.png",
+    "calendar-none-light-defaultStyle.flutter.png",
+    "calendar-none-light-defaultStyle.web.png",
+    "calendar-range-dark-defaultStyle.flutter.png",
+    "calendar-range-dark-defaultStyle.web.png",
+    "calendar-range-light-defaultStyle.flutter.png",
+    "calendar-range-light-defaultStyle.web.png",
+    "calendar-single-dark-defaultStyle.flutter.png",
+    "calendar-single-dark-defaultStyle.web.png",
+    "calendar-single-light-defaultStyle.flutter.png",
+    "calendar-single-light-defaultStyle.web.png",
+    "command-default-light-defaultStyle.web.png",
+    "tabs-line-light-defaultStyle.flutter.png",
+    "tabs-line-light-defaultStyle.web.png"
+  ],
+  "fixedOrSettledSubset": {
+    "entries": 740,
+    "passed": 443,
+    "failed": 297
+  },
+  "scope": {
+    "surfaceStyle": "defaultStyle",
+    "themes": {
+      "light": 374,
+      "dark": 374
+    },
+    "signal": "pixel",
+    "mode": "parity",
+    "pixelThresholdPercent": 5,
+    "freshCaptureFiles": 2992
+  },
+  "exitCodes": {
+    "manifest": 0,
+    "flutterCapture": 0,
+    "webCapture": 0,
+    "pixelReport": 1
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "key": "color-picker-inline-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "RGBRGB\n                        \n                      \n                      \n                        \n                          HSLHSL\n                        \n                      \n                      \n                        \n                          HSVHSV\n                        \n                      \n                    \n                  \n                  \n                    \n                  \n                  \n                    \n                    \n                  \n                  \n                    \n                      \n                        HEX\n                        \n                        \n                          \n                            \n                              \n                            \n                          \n                        \n                      \n                    \n                    \n                      \n                        R\n                        \n                        \n                          \n                            \n                              \n                            \n                          \n                        \n                      \n                    \n                    \n                      \n                        G\n                        \n                        \n                          \n                            \n                              \n                            \n                          \n                        \n                      \n                    \n                    \n                      \n                        B\n                        \n                        \n                          \n                            \n                              \n                            \n                          \n                        \n                      \n                    \n                  \n                  \n                    \n                      \n                        #co-button-ssr-b:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-ssr-b:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}",
+    "layout": {
+      "width": 272,
+      "height": 472,
+      "direction": "row",
+      "innerPaddingLeft": "15px",
+      "innerPaddingRight": "15px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 272,
+          "height": 472
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(64, 65, 67)",
+      "borderRightColor": "rgb(64, 65, 67)",
+      "borderBottomColor": "rgb(64, 65, 67)",
+      "borderLeftColor": "rgb(64, 65, 67)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "14px",
+      "borderTopRightRadius": "14px",
+      "borderBottomRightRadius": "14px",
+      "borderBottomLeftRadius": "14px",
+      "paddingTop": "15px",
+      "paddingRight": "15px",
+      "paddingBottom": "15px",
+      "paddingLeft": "15px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 272,
+      "heightPx": 472
+    }
+  }
+}

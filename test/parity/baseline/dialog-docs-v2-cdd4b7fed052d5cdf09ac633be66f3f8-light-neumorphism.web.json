@@ -1,0 +1,87 @@
+{
+  "key": "dialog-docs-v2-cdd4b7fed052d5cdf09ac633be66f3f8-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "client-settled",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Playground",
+      "attributes": {
+        "component": "dialog"
+      },
+      "selections": [
+        {
+          "kind": "props",
+          "component": "dialog",
+          "name": null,
+          "props": {
+            "actions": "2",
+            "actionsLayout": "end",
+            "content": "true",
+            "opener": "true"
+          },
+          "label": "연결이 끊겼어요"
+        }
+      ],
+      "origins": [
+        "/Users/cocode/actions/cocodeui-macstudio-kentrosaurus/_work/coui/coui/docs_core/content/components/dialog.md:Playground[4]"
+      ],
+      "anatomyParts": []
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "@media (hover:hover){ .coui-clickable-press:active:hover{transform:translate(var(--coui-press-x,0),var(--coui-press-y,0)) scale(var(--coui-press-scale,1));}.coui-clickable-press-shadow:active:hover{box-shadow:var(--coui-press-shadow);}}@media (hover:none){ .coui-clickable-press:active{transform:translate(var(--coui-press-x,0),var(--coui-press-y,0)) scale(var(--coui-press-scale,1));}.coui-clickable-press-shadow:active{box-shadow:var(--coui-press-shadow);}}.coui-clickable-press.coui-clickable-key-pressed{transform:translate(var(--coui-press-x,0),var(--coui-press-y,0)) scale(var(--coui-press-scale,1));}.coui-clickable-press-shadow.coui-clickable-key-pressed{box-shadow:var(--coui-press-shadow);}.coui-aspect-fill>*{width:100%;height:100%;}@media (forced-colors:active){ .coui-root :not(:focus-visible){outline-style:none;} .coui-root :focus-visible{outline:2px solid;outline-offset:2px;}}@media (prefers-contrast:more),(prefers-reduced-transparency:reduce){ [data-coui-app-bar-edge]{opacity:1!important;background:rgb(var(--coui-surface))!important;}}:where(.coui-theme-anim),:where(.coui-theme-anim *), :where(.coui-theme-anim *)::before,:where(.coui-theme-anim *)::after{ transition-property:background-color,border-color,color,fill,stroke,outline-color,box-shadow,text-decoration-color;transition-duration:var(--coui-duration-150);transition-timing-function:linear;}:where(.coui-theme-anim, .coui-theme-anim *) .coui-surface{ transition-property:background-color,border-color,color,fill,stroke,outline-color,box-shadow,text-decoration-color,border-width,border-radius,opacity,transform;transition-duration:var(--coui-duration-150);transition-timing-function:linear;}@keyframes co-overlay-enter{from{transform:scale(0.9)}to{transform:scale(1)}}@keyframes co-overlay-exit{from{transform:scale(1)}to{transform:scale(0.9)}}@keyframes co-overlay-fade-enter{from{opacity:0}to{opacity:1}}@keyframes co-overlay-fade-exit{from{opacity:1}to{opacity:0}}@keyframes co-dialog-panel-enter{from{--coui-fade:0;transform:translate(-50%,-50%) scale(var(--coui-dialog-scale-from))}to{--coui-fade:1;transform:translate(-50%,-50%) scale(var(--coui-dialog-scale-to))}}@keyframes co-dialog-panel-exit{from{--coui-fade:1;transform:translate(-50%,-50%) scale(var(--coui-dialog-scale-to))}to{--coui-fade:0;transform:translate(-50%,-50%) scale(var(--coui-dialog-scale-from))}}@keyframes co-overlay-switch{from{transform:translate(var(--coui-overlay-switch-x),var(--coui-overlay-switch-y))}to{transform:none}}@keyframes co-overlay-swap-enter{from{opacity:0;transform:translateX(var(--coui-overlay-swap-x))}to{opacity:1;transform:none}}@keyframes co-overlay-swap-exit{from{opacity:1;transform:none}to{opacity:0;transform:translateX(calc(-1 * var(--coui-overlay-swap-x)))}}@property --coui-fade{syntax:\"<number>\";inherits:false; initial-value:1} @keyframes co-fade-in{from{--coui-fade:0}to{--coui-fade:1}} @keyframes co-fade-out{from{--coui-fade:1}to{--coui-fade:0}} @keyframes co-fade-opacity-in{from{opacity:0}} @keyframes co-fade-opacity-out{to{opacity:0}} @keyframes co-fade-paint-in{from{box-shadow:none; border-color:transparent}} @keyframes co-fade-paint-out{to{box-shadow:none; border-color:transparent}} @keyframes co-fade-layer-in{from{opacity:0}} @keyframes co-fade-layer-out{to{opacity:0}} .coui-fade-box,.coui-fade-panel{--coui-fade-opacity:var(--coui-fade-opacity-name);--coui-fade-paint:co-fade-none;--coui-fade-layer:co-fade-none} .coui-fade-box>*{animation:var(--coui-fade-progress) var(--coui-fade-dur) var(--coui-fade-ease) both, var(--coui-fade-opacity) var(--coui-fade-dur) var(--coui-fade-ease) both, var(--coui-fade-paint) var(--coui-fade-dur) var(--coui-fade-ease) var(--coui-fade-fill)} .coui-fade-panel>*,.coui-fade-box>*>*,.coui-fade-panel::before,.coui-fade-panel::after,.coui-fade-box>*::before,.coui-fade-box>*::after{animation:var(--coui-fade-layer) var(--coui-fade-dur) var(--coui-fade-ease) var(--coui-fade-fill)} @keyframes co-overlay-retract{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(var(--coui-overlay-retract-scale))}}:where([data-coui-overlay-panel]){margin:0;padding:0;border:0;background:transparent;color:inherit;overflow:visible;inset:auto;width:auto;height:auto}:where([data-coui-overlay-panel][popover]:not(:popover-open)){display:block}@media (forced-colors:active){[data-coui-lift-dim]{display:none}}Jaspr WebJaspr WebFlutterFlutter나란히나란히연결이 끊겼어요네트워크를 확인한 뒤 다시 시도해 주세요.#co-button-web-1:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-web-1:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}취소다시 시도#co-button-web-3:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-web-3:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}열어 보기actionsLayoutendendstretchstretch행동 수1122leading 아이콘.co-toggle-sl-6ge48u:hover > :where(.co-toggle-content) > .co-toggle-track:where(:not(.co-toggle-owned-fill)){background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-highest)));}.co-toggle-sl-6ge48u:active > :where(.co-toggle-content) > .co-toggle-track:where(:not(.co-toggle-owned-fill)){background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 16%, rgb(var(--coui-surface-container-highest)));}.co-toggle-sl-6ge48u > :where(.co-toggle-content) > .co-toggle-track{outline-color:transparent;}:where(.co-toggle-sl-6ge48u > :where(.co-toggle-content) > .co-toggle-track){outline-style:solid;}.co-toggle-sl-6ge48u:focus-visible > :where(.co-toggle-content) > .co-toggle-track{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(4px - var(--coui-stroke-width-2));}닫기 버튼 (trailing).co-toggle-sl-6ge48u:hover > :where(.co-toggle-content) > .co-toggle-track:where(:not(.co-toggle-owned-fill)){background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-highest)));}.co-toggle-sl-6ge48u:active > :where(.co-toggle-content) > .co-toggle-track:where(:not(.co-toggle-owned-fill)){background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 16%, rgb(var(--coui-surface-container-highest)));}.co-toggle-sl-6ge48u > :where(.co-toggle-content) > .co-toggle-track{outline-color:transparent;}:where(.co-toggle-sl-6ge48u > :where(.co-toggle-content) > .co-toggle-track){outline-style:solid;}.co-toggle-sl-6ge48u:focus-visible > :where(.co-toggle-content) > .co-toggle-track{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(4px - var(--coui-stroke-width-2));}본문 (content).co-toggle-sl-5yc12d:hover > :where(.co-toggle-content) > .co-toggle-track:where(:not(.co-toggle-owned-fill)){background-color:color-mix(in srgb, rgb(var(--coui-surface)) 8%, rgb(var(--coui-primary)));}.co-toggle-sl-5yc12d:active > :where(.co-toggle-content) > .co-toggle-track:where(:not(.co-toggle-owned-fill)){background-color:color-mix(in srgb, rgb(var(--coui-surface)) 16%, rgb(var(--coui-primary)));}.co-toggle-sl-5yc12d > :where(.co-toggle-content) > .co-toggle-track{outline-color:transparent;}:where(.co-toggle-sl-5yc12d > :where(.co-toggle-content) > .co-toggle-track){outline-style:solid;}.co-toggle-sl-5yc12d:focus-visible > :where(.co-toggle-content) > .co-toggle-track{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(4px - var(--coui-stroke-width-2));}",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 354
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "13px",
+      "lineHeight": "18px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "16px",
+      "paddingRight": "16px",
+      "paddingBottom": "16px",
+      "paddingLeft": "16px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 558,
+      "heightPx": 352
+    }
+  }
+}

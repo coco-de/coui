@@ -1,0 +1,98 @@
+CoUI
+Copyright (c) 2025-2026 Cocode Inc.
+
+This product includes software derived from third-party open source projects.
+Their copyright notices and license terms are reproduced below and in the
+LICENSE file of each package. Those terms continue to apply to the derived
+portions of this work.
+
+================================================================================
+packages/coui_flutter
+================================================================================
+
+Portions of this package are derived from shadcn_flutter.
+
+    shadcn_flutter
+    https://github.com/sunarya-thito/shadcn_flutter
+    Copyright 2025 Thito Yalasatria Sunarya
+    Licensed under the BSD 3-Clause License
+
+The component taxonomy, the public API surface, and portions of the
+documentation comments originate from that project. The implementations in
+this package have largely been rewritten.
+
+Portions of the RichEditor component (src/components/form/rich_editor/ — the
+Markdown block codec, the editing controller, the autoformat reactions and
+the document styling) are derived from Wonky Work's `wonky_rich_editor`.
+
+    Wonky Work
+    https://github.com/serverpod/wonky
+    Copyright 2026 The Wonky Work authors
+    Licensed under the BSD 3-Clause License
+
+The same note on clause 3 applies: the reference is an attribution of origin,
+not an endorsement.
+
+The JSON, YAML and SQL TextMate grammars the CodeSnippet component registers
+(assets/syntax_grammars/) are taken from `syntax_highlight`; the SQL grammar's
+inline case-insensitivity flags are written out as explicit character classes.
+
+    syntax_highlight
+    https://github.com/serverpod/syntax_highlight
+    Copyright 2023 The Serverpod authors
+    Licensed under the BSD 3-Clause License
+
+The same note on clause 3 applies here too.
+
+Note on the BSD 3-Clause License, clause 3: the name of the copyright holder
+and the names of contributors are NOT used here to endorse or promote this
+package. The reference above is an attribution of origin, not an endorsement.
+
+================================================================================
+packages/coui_web
+================================================================================
+
+Portions of this package are derived from Deepyr.
+
+    Deepyr
+    https://pub.dev/packages/deepyr
+    Copyright (c) 2025 Philipp H. Gerber
+    Licensed under the MIT License
+
+The component structure, the `UiComponent` / `UiComponentAttributes` base
+classes, and portions of the documentation comments originate from that
+project. The implementations in this package have largely been rewritten.
+
+The JSON, YAML and SQL TextMate grammars the CodeSnippet component registers
+are the same files packages/coui_flutter carries, compiled into this package
+(src/components/display/code_snippet/code_snippet_grammars.g.dart).
+
+    syntax_highlight
+    https://github.com/serverpod/syntax_highlight
+    Copyright 2023 The Serverpod authors
+    Licensed under the BSD 3-Clause License
+
+Note on the BSD 3-Clause License, clause 3: the name of the copyright holder
+and the names of contributors are NOT used here to endorse or promote this
+package. The reference above is an attribution of origin, not an endorsement.
+
+================================================================================
+Packages authored by Cocode Inc.
+================================================================================
+
+The following packages are original work and are licensed under the MIT
+License, Copyright (c) 2025-2026 Cocode Inc.:
+
+    packages/coui
+    packages/coui_core
+    packages/coui_i10n
+    packages/coui_lints
+    packages/coui_mcp
+
+================================================================================
+Redistribution
+================================================================================
+
+Anyone redistributing this software, in source or binary form, must retain
+this NOTICE file together with the LICENSE file of each package. This applies
+to source copies delivered to clients under a development agreement.

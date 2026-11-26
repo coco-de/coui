@@ -1,0 +1,481 @@
+{
+  "issue": 6657,
+  "artifactRoot": "weever-textarea-rest-disabled-4ajm1r8g",
+  "scope": "Existing Web TextArea idle, hover and disabled paint consumption; bounded verification only.",
+  "source": {
+    "original": "30c8433b169d63c0bedb80a53944516c9df9c179",
+    "firstCandidate": "aee1ffb1516f42b92d9658dac93857d9c0eba86f",
+    "integratedMain": "194d0b8790560ac623d4bd0c50d0cf7035ad049c",
+    "code": "26a4b2f3fe001f03caee1364fbbdf9eef99f84f0",
+    "codeTree": "08e84db3f7b17cc35f6a66781419b55064fd83c0",
+    "finalFunctionalActual": "9495 plus dirty frozen4; byte exact to the subsequent code-only commit26",
+    "styleSHA256": "89b94563744c8dca87b144946c2dd355bf5428b97beec56b8dc4b671adb6b53a",
+    "newImportant": 0,
+    "guardBaselineThresholdChanges": 0,
+    "latestNormalIntegration": {
+      "head": "10a89eec9f3a6a243ccc6ecf441ae0095258b104",
+      "tree": "769588220e741cc8b8afe0e87fe46395ac46321d",
+      "base": "f542b358b694cea2e62430e77e00bfb2e340b0b8",
+      "ownSource3ExactToCode26": true,
+      "ThemeConfigInheritedLayout560DeclarationsOnly": 2,
+      "earlierExecutionsRetainTheirSources": true
+    },
+    "ownPublicAPICoreDefaultsRendererDOMStructureChanges": 0
+  },
+  "actual": {
+    "static": {
+      "guardBefore": 0,
+      "guardAfter": 0,
+      "fatalTouched4": 0,
+      "formatTouched4": {
+        "exit": 0,
+        "changed": 0
+      }
+    },
+    "functional": {
+      "originalSSR14": {
+        "pass": 3,
+        "formDeliveryFail": 11
+      },
+      "originalCompanion4": {
+        "pass": 0,
+        "formDeliveryFail": 4
+      },
+      "finalSameExternal18": {
+        "pass": 18,
+        "fail": 0
+      },
+      "sameMixedCompatibility2": {
+        "originalPass": 2,
+        "candidatePass": 2
+      },
+      "permanent22": {
+        "pass": 22,
+        "fail": 0
+      },
+      "related166": {
+        "pass": 166,
+        "fail": 0,
+        "executionSource": "30c plus first candidate frozen4; not rerun on26"
+      },
+      "integrated9495Focused22": {
+        "pass": 22,
+        "executionSource": "9495 before the canonical adapter; separate execution, not22 additional scenarios"
+      },
+      "overlap": "External20 overlap20 of repo22; repeated phases and related166 are not additive independent product cases."
+    },
+    "nativeReferences": {
+      "originalSource": "30c",
+      "publicPointerCases": 6,
+      "restHoverReturnLightBorderObservations": 18,
+      "scope": "Opaque disabled default/raw/token only; not allWeb20 constructors or alpha parity."
+    },
+    "browserPublicAndCaller": {
+      "actualExecutionSource": "aee",
+      "original40Composition": "Original36 plus mixed4 in separate actual runs",
+      "pairedStates": 230,
+      "changedBorderOrFillStates": 88,
+      "geometryOtherOwnerPaintChanges": 0,
+      "referenceProjection18": {
+        "beforePass": 7,
+        "beforeFail": 11,
+        "afterPass": 18,
+        "afterFail": 0
+      },
+      "caller14StatesEachSide": 84,
+      "strongCallerRowsPreserved": 60,
+      "ordinaryRawHoverRowsChangedAsFieldNowConsumed": 2,
+      "final26Bridge": "Whole self-contained HTML for public40 and caller14 is byte exact; no new26 browser40/14 execution",
+      "constructorCSSForwardingProof": false
+    },
+    "canonical": {
+      "currentBeforeSource": "194d",
+      "currentAfterSource": "26a",
+      "WebActualCaptures": 8,
+      "beforeCLISeconds": 11.231847333,
+      "afterCLISeconds": 11.116294208,
+      "PNG4ByteAndCRCExact": true,
+      "byRole4Exact": true,
+      "cleanup8Complete": true,
+      "NativeOnce": {
+        "source": "aee",
+        "JSON": 4,
+        "PNG": 4,
+        "CLISeconds": 11.761181708,
+        "NoRoot": 0
+      },
+      "firstCaptureOwnBaselinePassClaim": false,
+      "compareCLIRun": false,
+      "existingCaptureUnitsDiffer": "Native basic-light800x200 versus historical Web basic-light558x363 with docs tabs; no cross-platform all-match claim."
+    },
+    "docs": {
+      "source": "26a",
+      "CLIExit": 0,
+      "CLISeconds": 301.31654095799996,
+      "observerExit": 0,
+      "observerSecondsIncludingSetupPostchecks": 342.093527792,
+      "routes": 361,
+      "JasprHTML": 363,
+      "FlutterHTML": 2,
+      "hashes": 5044,
+      "representativeHTML": 3,
+      "tracked": 25249,
+      "owned232SemanticExact": true,
+      "currentGraph": "c80f73a41dc23fd8bbfcfde41023b47d4d8389450966a2558602e460f6d4a2e2",
+      "retainedWTGraph": "62e2f660818cde11191a43559063b2ca1fd6283a4ad090487b3c201d871032c1",
+      "graphClarification": "Current owned graph includes the actual upstream docs_site html dev edge; original9495 observer1 is retained.",
+      "sourceAndUsedPackageTreesExact": true,
+      "directPubCalls": 0,
+      "registryMetadataChanged": true,
+      "automaticFetchMeasured": false
+    },
+    "SSRReload": {
+      "source": "26a",
+      "actualLoadedLibraries": 2,
+      "reloadSourcesSuccess": true,
+      "HTTPControlsBeforeAfter": 6,
+      "samePIDInput": true,
+      "sameControlsCSS": true,
+      "seconds": 6.085109624999999,
+      "processExit": 0,
+      "portsClosed": 2,
+      "scope": "Pure Dart Jaspr SSR VM reload; not browser/client or Native-app hot reload."
+    },
+    "latestIntegrationFocused22": {
+      "source": "10a89eec9f3a6a243ccc6ecf441ae0095258b104",
+      "pass": 22,
+      "fail": 0,
+      "childExit": 0,
+      "childSeconds": 17.426423999999997,
+      "loadingErrors": 0,
+      "guardBeforeExit": 0,
+      "guardCandidateExit": 0,
+      "fatalTouched4Exit": 0,
+      "formatTouched4Exit": 0,
+      "formatChanged": 0,
+      "sourceMetadataBeforeAfterExact": true,
+      "compilerSpill": 0,
+      "scope": "Focused repeat only, not additional independent scenarios; no build/browser/reload rerun"
+    },
+    "latestIntegrationSSRReload": {
+      "source": "93454432b1fc88f918d75f6d6c5b3caddd00b2c6",
+      "actualLoadedLibraries": 2,
+      "reloadSourcesSuccess": true,
+      "HTTPResponseStatusBeforeAfter": [
+        200,
+        200
+      ],
+      "controlsEachHTTPResponse": 6,
+      "samePIDInputControlsCSS": true,
+      "inheritedMainLayout560CSSActuallyObserved": "--coui-layout-560:35.0rem;",
+      "seconds": 6.330128916,
+      "childExit": 0,
+      "source8MetadataExact": true,
+      "portsClosed": 2,
+      "pidClosed": true,
+      "scope": "Pure Dart SSR VM reload; no browser/client/Native-app reload"
+    }
+  },
+  "preservedFailures": [
+    "Originalstatic/observer setup attempts and genuineoriginalfield failures",
+    "Rejected tokenfloor/mixedrest path; oldfrozenproducts preserved",
+    "GenericprefixnewRULEF failure plus typed63 assertINFO4 beforemessages89",
+    "ExternalPythonpreparation syntax failure/missingpayload job2; Darttests0",
+    "9495docs actualCLI0/observer1 upstreamdeclaredhtml edge corrected in isolated context, not erased",
+    "Final26 before194d vendor-closure setup child255; corrected readonlyvendor link only, successful40/current4 not rerun"
+  ],
+  "limits": [
+    "No new public/core/default/formatter/numeric criterion fixes.",
+    "No broad component or main all-conventions certificate; verify.md mapping scoped peritem and source-unchanged/N/A.",
+    "RawCSSalpha precision andNative floatprecision differences unchanged.",
+    "No freshNative20, latest1096/fullparity success or widepixel improvement credit.",
+    "Canonical oldAee→latest docs style/JS differences are upstream-source-bound; body/CSS/current-style equivalence separately recorded."
+  ],
+  "references": [
+    {
+      "artifact": "evidence/code-commit.json",
+      "sha256": "4dae8adc5689a7bc08e377d37ea8d8270acb6ca059c4916e8821009b7523149a",
+      "bytes": 996
+    },
+    {
+      "artifact": "evidence/Root/integration194d/summary.json",
+      "sha256": "95f2e69c80f3cf36bad3a928863281a1e8316d8fd1b4fbf9e172afd37dd157af",
+      "bytes": 560
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/code-commit-binding.json",
+      "sha256": "1c24f65ca16ba768f402f8e0baf9a5db30672c0e3595a9b889316b362d4f3ac2",
+      "bytes": 839
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/source-freeze.json",
+      "sha256": "dd530277b00af13f5a6a794eea7220b7923256e824044fdb609403a3744488da",
+      "bytes": 620
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/source-after.json",
+      "sha256": "9b06b6d8e11897076ead270d7900b6c4231c37b7a50ac246bde07a2d881c9029",
+      "bytes": 1160
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/guard-before-exit.json",
+      "sha256": "5ea3c4b6f793a2fa72cadb8dcf9954a417f95429a265ce075662564deac0e385",
+      "bytes": 383
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/guard-before.log",
+      "sha256": "fd8fd526d7a3ee49d59ae35aef5a88241f22f43ffa23e51abe074b98fdc31126",
+      "bytes": 225
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/guard-candidate-exit.json",
+      "sha256": "4395ed6a1ce91b91f7f042c2b0ea1dfe3cefb3787d1af1b0e5215210546d656b",
+      "bytes": 346
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/guard-candidate.log",
+      "sha256": "02dae8803557565104708783f4108cef77dd58aae8f68cfceac723a6bceb4cc4",
+      "bytes": 180
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/fatal-exit.json",
+      "sha256": "9678b7f704366311269cdbc5b37d75796d071c657f3dbe821fe59a834d10dbbb",
+      "bytes": 946
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/fatal.log",
+      "sha256": "f77943f03699bea8cba84a49aedd630a78413af0918ecb67c728fb95df9fcbb1",
+      "bytes": 140
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/final-format-exit.json",
+      "sha256": "ccf68b33496d99d829dd1f6145474aa6ed5d39df5b90d54c5cafe2cc4b718f86",
+      "bytes": 721
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/final-format.log",
+      "sha256": "7477651517b81e82690cdc75609bc9e914fef11973ce522f1e8f33c5ed04d09b",
+      "bytes": 47
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/repo22-counts.json",
+      "sha256": "f4228ab6e6bf35fe7c0028fda854efc5705342f75857a810260b36d81c32e264",
+      "bytes": 2426
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/same-original14-counts.json",
+      "sha256": "b93525c0ac837f98e27aaf826d1e038d436b87e98f45fabbaa30e70e948bdd6b",
+      "bytes": 1550
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/same-transparent2-counts.json",
+      "sha256": "b5de846169e201f87ce419afc904a1cde4327edbbf3da2515cab6be98e5a0297",
+      "bytes": 316
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/same-disabled-token2-counts.json",
+      "sha256": "0c107d29011ac7e25b5cb6767f0f3855821a3afa7cc29e3ccf6420cc5feb50e0",
+      "bytes": 320
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/same-mixed2-counts.json",
+      "sha256": "b24489b3b7d0c5f1217f0ad2111a783876155bc5d175743c923a23ae46d2f360",
+      "bytes": 318
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/external-fixture-binding.json",
+      "sha256": "31810af5f7929616a3548d252972e36d46ed6b6e70aa34f37c537730d7ffd13e",
+      "bytes": 505
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation2/public20-SSR-body-comparison.json",
+      "sha256": "73909268bfb72f7641c55bb3fac39a3dcf0e0b2953badd47b087f072c7d7d458",
+      "bytes": 6235
+    },
+    {
+      "artifact": "evidence/candidate-attempt2/related9-by-file.json",
+      "sha256": "b9eb97a8104f9afa019efd46a1e62cfa0f62b97e9f155c77d355f8b641d502a8",
+      "bytes": 1314
+    },
+    {
+      "artifact": "evidence/candidate-attempt2/artifact-index.json",
+      "sha256": "add2c2a6812ab682ed87ee79770218454f8212c28317490a135ef247821b9fe7",
+      "bytes": 5576
+    },
+    {
+      "artifact": "evidence/native-state-expectations.json",
+      "sha256": "065bf74005a35c0ba8afcf8f17e0cab2cfbba668616541bb926b01726a0e4ac7",
+      "bytes": 12097
+    },
+    {
+      "artifact": "evidence/native4-handoff.json",
+      "sha256": "6b6c4ab4bcc7de183709de1cbe0d4acea8cd2627d8881a1d8cc12086243da3d5",
+      "bytes": 2187
+    },
+    {
+      "artifact": "native-canonical/attempt1/artifact-index.json",
+      "sha256": "9a318b84eb8b915ba8f53f88e7015295b2c42bbb90065a43e3a9aec0e64d504d",
+      "bytes": 5249
+    },
+    {
+      "artifact": "evidence/Root/candidate40-paired-readback.json",
+      "sha256": "59336dbd5dcdc05aae7d8d17ba9d16fe7b99ac7e976236eb8e13ab96b393bb0c",
+      "bytes": 31597
+    },
+    {
+      "artifact": "evidence/Root/caller14-paired-readback.json",
+      "sha256": "8d82efde8f40165d87e37f30d67e245893efce5f8e59cdae57fdd1e1b23e8b95",
+      "bytes": 12115
+    },
+    {
+      "artifact": "evidence/Root/final26-public40-caller14-independent-equivalence.json",
+      "sha256": "72a7e15765cad132abe0b81d644c9f8d02cd67a51140c52a80f5d54834c9df49",
+      "bytes": 30966
+    },
+    {
+      "artifact": "evidence/Root/canonical-current194d-final26-paired-readback.json",
+      "sha256": "260e73ecbd6f795fed526a4f63fc1ab1a913842be29558c4853c91618a04428c",
+      "bytes": 8014
+    },
+    {
+      "artifact": "evidence/final26-pipeline/public40-harness-comparison.json",
+      "sha256": "fa1613e512aeed3f146285b27584c8102f8b1d148db34b06a1d3ccfe42019ca0",
+      "bytes": 11735
+    },
+    {
+      "artifact": "evidence/final26-pipeline/canonical-style-only-body-css-comparison.json",
+      "sha256": "21b602e71459c47207467222d07a4530e0e39c70c53052e73a07447cb5ec21b7",
+      "bytes": 1780
+    },
+    {
+      "artifact": "evidence/final26-pipeline/canonical-aee-vs-final26-emission-comparison.json",
+      "sha256": "4c10c9339b958a1fe68a316e5dabda1cd9a3727a68891ef1146184816eb70730",
+      "bytes": 1872
+    },
+    {
+      "artifact": "evidence/final26-pipeline/upstream-style-provenance.json",
+      "sha256": "c76fcb5e1fc8ea0a793250bd7aa99c33119dd5ea663a1ad68998e9c4a288597c",
+      "bytes": 922
+    },
+    {
+      "artifact": "evidence/final26-recovery/before194d-source-binding.json",
+      "sha256": "578ad87ab21e6f45e829e99579127a26f5fc8c7ec26f4a1612fe03ae25cf30d4",
+      "bytes": 119038
+    },
+    {
+      "artifact": "evidence/final26-recovery/source-after.json",
+      "sha256": "9670312e7ed26d1e5caea33da71e20fe1790003edb1fa2fa3dcfd3f579cd58a6",
+      "bytes": 1050
+    },
+    {
+      "artifact": "evidence/docs-final26-attempt1/final-proof.json",
+      "sha256": "13cc0d27f1d5021e6e2ca1d06f2a9c7ef83f5c2200c38160d36a68bbf379a785",
+      "bytes": 2033
+    },
+    {
+      "artifact": "evidence/docs-final26-attempt1/proof-index.json",
+      "sha256": "8e675777935e6ec52960087be822aec9b0a6ce1ff9ca7f88a83d2408a04744f0",
+      "bytes": 2498
+    },
+    {
+      "artifact": "owned-ssr-reload-final26/ssr-reload-proof.json",
+      "sha256": "f8270b87a8504ec8a20897dace08967e45a84cfe9c5752f4e94d74612199753d",
+      "bytes": 19336
+    },
+    {
+      "artifact": "owned-ssr-reload-final26/proof-index.json",
+      "sha256": "8f787de817103f3aabf5ffd7ca952f1f53936eb88302899a452403753ae75f30",
+      "bytes": 3048
+    },
+    {
+      "artifact": "evidence/metadata-current-pubspec-graph/independent-readback.json",
+      "sha256": "e264ad995d230e9c1b0f6eb1f058c2c2bc04e1ce624971f2d4b65fc228733f51",
+      "bytes": 1291
+    },
+    {
+      "artifact": "evidence/scoped-verification-source-map-final26.json",
+      "sha256": "9bae9bec2b15d023a072cfacf639a995036db09faeb2cbebe1efdb40bac83d0a",
+      "bytes": 3275
+    },
+    {
+      "artifact": "evidence/verify-md-applicability-final26.json",
+      "sha256": "2566822370e61d58e97a2c2e24606de640323a4b70efcb0d79dabc59705ab9c1",
+      "bytes": 13161
+    },
+    {
+      "artifact": "evidence/author-original-visual-review.json",
+      "sha256": "2e03bf25d66f5afea96af809866670a9ac69c62e173b6a8a6a930d19ef1fa5a4",
+      "bytes": 2361
+    },
+    {
+      "artifact": "evidence/Root/scoped-resolver-guard/summary.json",
+      "sha256": "0e9d00341bce6feb18442a275046790c5177b7b4c63afc221fc2a0ee81ea0910",
+      "bytes": 762
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation/assert-message-clarification.json",
+      "sha256": "4e17d9a80967469bc3540ef1e1eeb075f34ff8e4db94e4b9445852c9c705d89f",
+      "bytes": 406
+    },
+    {
+      "artifact": "evidence/guard-canonical-validation-launch1.json",
+      "sha256": "ae6fb12a1a2bf5982c08372fa01d24e58b59f48c0712acf17d90ddeeb5c3193c",
+      "bytes": 535
+    },
+    {
+      "artifact": "evidence/docs-final9495-attempt1/semantic-drift-readback.json",
+      "sha256": "f001077169c9386aa04ae6738900e35056c91669607cde4ef80475b7d4e0b816",
+      "bytes": 1728
+    },
+    {
+      "artifact": "evidence/final26-pipeline/canonical-before194d-execution.json",
+      "sha256": "bd4dc8e10e394c6942dcb2a94dc299ea962fe2f32e5bde59ba52600cbe4cb739",
+      "bytes": 997
+    },
+    {
+      "artifact": "evidence/Review/textarea-6657-canonical-token89-final-source-peer.json",
+      "sha256": "c1846794234ce1b4a81cb1a17bd0380751ac402cfa6f7f9805f551c781d35b2a",
+      "bytes": 10210
+    },
+    {
+      "artifact": "evidence/Review/textarea-6657-final-caller14-canonical8-peer.json",
+      "sha256": "fb2780b736c7bb8c4e6fccd6bcc9e9dbb328b2bb9356173230bb434a10498065",
+      "bytes": 19455
+    },
+    {
+      "artifact": "evidence/Review/textarea-6657-final26-input-equivalence-canonical8-peer.json",
+      "sha256": "e966b9e827d601d15c71853e12c3f333cdccf29affb8bc776ae3b6842c1294bb",
+      "bytes": 18859
+    },
+    {
+      "artifact": "evidence/Root/integration-f542/summary.json",
+      "sha256": "c66790f4011d1c239abdbbc0e509761171d63bd289744bcaac27dcbac2ea3394",
+      "bytes": 999
+    },
+    {
+      "artifact": "evidence/post-f542-focused-attempt1/artifact-index.json",
+      "sha256": "dce46986b6ea42667e018c30d772434074046502c29da1b69d023cdf9ab35c81",
+      "bytes": 2940
+    },
+    {
+      "artifact": "evidence/post-f542-focused-attempt1/integration-bridge.json",
+      "sha256": "b46c7d61040aa3ca2f8a19c72b55a6fe7f3370c56d5cea57ae0065d1cffea693",
+      "bytes": 1572
+    },
+    {
+      "artifact": "run_post_f542.py",
+      "sha256": "dc31d07f769021154e7d4af36bd6ff85add126953201683591865b4b88e36292",
+      "bytes": 6113
+    },
+    {
+      "artifact": "owned-ssr-reload-post-f542/ssr-reload-proof.json",
+      "sha256": "9e97356787b20bc9a695d83c817105347cd33e3b98db644a716e48cc7d08eb92",
+      "bytes": 19309
+    },
+    {
+      "artifact": "owned-ssr-reload-post-f542/proof-index.json",
+      "sha256": "24108c1d9a9fde8fa854427f4d369294aab39612007252ada2a47929e16fe82e",
+      "bytes": 2905
+    }
+  ]
+}

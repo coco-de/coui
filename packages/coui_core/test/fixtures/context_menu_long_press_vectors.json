@@ -1,0 +1,873 @@
+{
+  "_comment": [
+    "Shared vectors for the touch / pen long press that opens a ContextMenu",
+    "(CoreContextMenuContract.defaultLongPressDuration, defaultLongPressSlop and",
+    "exceedsLongPressSlop).",
+    "Read by coui_core (the constants, the slop predicate, and a reference reading of every",
+    "press), coui_flutter (every press is replayed on the ContextMenu as real pointer events,",
+    "so the framework's LongPressGestureRecognizer has to answer the table) and coui_web",
+    "(every press is replayed on the ContextMenu's press tracker with a manual clock). A",
+    "change on one platform fails the other.",
+    "All coordinates are in logical px (Flutter) or CSS px (Web), relative to the top-left",
+    "of the region that carries the menu. All times are ms since the first 'down'.",
+    "drift: a pointer that went down at 'origin' and is now at 'point' - does it exceed the slop?",
+    "presses: a list of pointer events, replayed in order, with the clock advanced to 'until'",
+    "after the last one. 'opens' is where the menu ended up open (null when it did not) - at",
+    "the point the pointer went DOWN, not where it drifted to. Events: down, move, up,",
+    "cancel (the system took the pointer), and the Web-only scroll (the page or a scroller",
+    "moved), contextmenu (the browser's own event) and touchend.",
+    "'platforms' names who replays a press (absent: both). The Web-only presses cover what",
+    "Flutter has no counterpart for: the browser may send its own contextmenu event for the",
+    "same gesture ('claims' says, per contextmenu event, whether the press owns it - an owned",
+    "event must not toggle the menu it just opened), and the release of a press that opened",
+    "the menu is consumed so the click that may follow it does not reach the page",
+    "('consumes', per touchend event). Instants are kept clear of the hold and of the Web's",
+    "release window, so a tie between a timer and an event is never asked."
+  ],
+  "durationMs": 500,
+  "slop": 18,
+  "drift": [
+    {
+      "name": "a pointer that has not moved is in place",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        60,
+        50
+      ],
+      "exceeds": false
+    },
+    {
+      "name": "a few pixels is jitter, not a drift",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        63,
+        54
+      ],
+      "exceeds": false
+    },
+    {
+      "name": "exactly the slop to the right is still in place",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        78,
+        50
+      ],
+      "exceeds": false
+    },
+    {
+      "name": "exactly the slop upwards is still in place",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        60,
+        32
+      ],
+      "exceeds": false
+    },
+    {
+      "name": "exactly the slop to the left is still in place",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        42,
+        50
+      ],
+      "exceeds": false
+    },
+    {
+      "name": "a hair past the slop to the right has drifted",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        78.01,
+        50
+      ],
+      "exceeds": true
+    },
+    {
+      "name": "a hair past the slop downwards has drifted",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        60,
+        68.01
+      ],
+      "exceeds": true
+    },
+    {
+      "name": "the slop is a distance: 12 over and 12 down is 16.97 away",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        72,
+        62
+      ],
+      "exceeds": false
+    },
+    {
+      "name": "and not a box: 13 over and 13 down is 18.38 away",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        73,
+        63
+      ],
+      "exceeds": true
+    },
+    {
+      "name": "the direction does not matter: 13 back and 13 up is 18.38 away",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        47,
+        37
+      ],
+      "exceeds": true
+    },
+    {
+      "name": "the origin can sit anywhere, negative coordinates included",
+      "origin": [
+        5,
+        5
+      ],
+      "point": [
+        -13,
+        5
+      ],
+      "exceeds": false
+    },
+    {
+      "name": "a pointer far away has drifted",
+      "origin": [
+        60,
+        50
+      ],
+      "point": [
+        1000,
+        900
+      ],
+      "exceeds": true
+    }
+  ],
+  "presses": [
+    {
+      "name": "held past the hold, a press opens the menu at the point it went down",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 800,
+          "kind": "up"
+        }
+      ],
+      "until": 850,
+      "opens": {
+        "x": 60,
+        "y": 50
+      }
+    },
+    {
+      "name": "released a ms after the hold is up still opened it",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 501,
+          "kind": "up"
+        }
+      ],
+      "until": 550,
+      "opens": {
+        "x": 60,
+        "y": 50
+      }
+    },
+    {
+      "name": "released a ms before the hold is up opens nothing",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 499,
+          "kind": "up"
+        }
+      ],
+      "until": 700,
+      "opens": null
+    },
+    {
+      "name": "a quick tap opens nothing",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 80,
+          "kind": "up"
+        }
+      ],
+      "until": 700,
+      "opens": null
+    },
+    {
+      "name": "a pointer that is never lifted opens the menu when the hold is up",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        }
+      ],
+      "until": 600,
+      "opens": {
+        "x": 60,
+        "y": 50
+      }
+    },
+    {
+      "name": "drifting within the slop keeps the press, and it opens where it went down",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 200,
+          "kind": "move",
+          "x": 70,
+          "y": 60
+        },
+        {
+          "at": 700,
+          "kind": "up"
+        }
+      ],
+      "until": 750,
+      "opens": {
+        "x": 60,
+        "y": 50
+      }
+    },
+    {
+      "name": "drifting right to the slop keeps the press",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 200,
+          "kind": "move",
+          "x": 78,
+          "y": 50
+        },
+        {
+          "at": 700,
+          "kind": "up"
+        }
+      ],
+      "until": 750,
+      "opens": {
+        "x": 60,
+        "y": 50
+      }
+    },
+    {
+      "name": "drifting past the slop before the hold is up cancels the press",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 200,
+          "kind": "move",
+          "x": 79,
+          "y": 50
+        },
+        {
+          "at": 700,
+          "kind": "up"
+        }
+      ],
+      "until": 750,
+      "opens": null
+    },
+    {
+      "name": "a diagonal drift past the slop cancels the press",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 200,
+          "kind": "move",
+          "x": 73,
+          "y": 63
+        },
+        {
+          "at": 700,
+          "kind": "up"
+        }
+      ],
+      "until": 750,
+      "opens": null
+    },
+    {
+      "name": "a drift that comes back inside the slop stays cancelled",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 150,
+          "kind": "move",
+          "x": 90,
+          "y": 50
+        },
+        {
+          "at": 300,
+          "kind": "move",
+          "x": 62,
+          "y": 50
+        },
+        {
+          "at": 700,
+          "kind": "up"
+        }
+      ],
+      "until": 750,
+      "opens": null
+    },
+    {
+      "name": "a press cancelled by the drift stays cancelled while the pointer is still down",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 150,
+          "kind": "move",
+          "x": 120,
+          "y": 50
+        }
+      ],
+      "until": 900,
+      "opens": null
+    },
+    {
+      "name": "drifting after the menu opened changes nothing",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 700,
+          "kind": "move",
+          "x": 160,
+          "y": 120
+        },
+        {
+          "at": 900,
+          "kind": "up"
+        }
+      ],
+      "until": 950,
+      "opens": {
+        "x": 60,
+        "y": 50
+      }
+    },
+    {
+      "name": "a pointer the system takes before the hold is up cancels the press",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 300,
+          "kind": "cancel"
+        }
+      ],
+      "until": 900,
+      "opens": null
+    },
+    {
+      "name": "a pointer the system takes after the menu opened leaves it open",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 700,
+          "kind": "cancel"
+        }
+      ],
+      "until": 900,
+      "opens": {
+        "x": 60,
+        "y": 50
+      }
+    },
+    {
+      "name": "a scroll before the hold is up cancels the press",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 200,
+          "kind": "scroll"
+        }
+      ],
+      "until": 900,
+      "opens": null
+    },
+    {
+      "name": "a scroll after the menu opened leaves it open",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 700,
+          "kind": "scroll"
+        },
+        {
+          "at": 900,
+          "kind": "up"
+        }
+      ],
+      "until": 950,
+      "opens": {
+        "x": 60,
+        "y": 50
+      }
+    },
+    {
+      "name": "the browser's contextmenu while the finger is down belongs to the press",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 520,
+          "kind": "contextmenu"
+        },
+        {
+          "at": 800,
+          "kind": "up"
+        }
+      ],
+      "until": 850,
+      "opens": {
+        "x": 60,
+        "y": 50
+      },
+      "claims": [
+        true
+      ]
+    },
+    {
+      "name": "a contextmenu the browser sends before the hold is up is the press's too",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 300,
+          "kind": "contextmenu"
+        },
+        {
+          "at": 800,
+          "kind": "up"
+        }
+      ],
+      "until": 850,
+      "opens": {
+        "x": 60,
+        "y": 50
+      },
+      "claims": [
+        true
+      ]
+    },
+    {
+      "name": "a contextmenu just after the finger lifts is still the press's",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "up"
+        },
+        {
+          "at": 620,
+          "kind": "contextmenu"
+        }
+      ],
+      "until": 700,
+      "opens": {
+        "x": 60,
+        "y": 50
+      },
+      "claims": [
+        true
+      ]
+    },
+    {
+      "name": "a contextmenu long after the press is a trigger of its own",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "up"
+        },
+        {
+          "at": 2000,
+          "kind": "contextmenu"
+        }
+      ],
+      "until": 2050,
+      "opens": {
+        "x": 60,
+        "y": 50
+      },
+      "claims": [
+        false
+      ]
+    },
+    {
+      "name": "a contextmenu with no press behind it is a trigger of its own",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "contextmenu"
+        }
+      ],
+      "until": 50,
+      "opens": null,
+      "claims": [
+        false
+      ]
+    },
+    {
+      "name": "a tap does not make the next right-click anyone's but its own",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 80,
+          "kind": "up"
+        },
+        {
+          "at": 2000,
+          "kind": "contextmenu"
+        }
+      ],
+      "until": 2050,
+      "opens": null,
+      "claims": [
+        false
+      ]
+    },
+    {
+      "name": "a contextmenu while a cancelled press is still down is the press's, and opens nothing",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 100,
+          "kind": "move",
+          "x": 120,
+          "y": 50
+        },
+        {
+          "at": 520,
+          "kind": "contextmenu"
+        },
+        {
+          "at": 800,
+          "kind": "up"
+        }
+      ],
+      "until": 850,
+      "opens": null,
+      "claims": [
+        true
+      ]
+    },
+    {
+      "name": "a contextmenu after a cancelled press has ended is a trigger of its own",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 100,
+          "kind": "move",
+          "x": 120,
+          "y": 50
+        },
+        {
+          "at": 400,
+          "kind": "up"
+        },
+        {
+          "at": 2000,
+          "kind": "contextmenu"
+        }
+      ],
+      "until": 2050,
+      "opens": null,
+      "claims": [
+        false
+      ]
+    },
+    {
+      "name": "the release of a press that opened the menu is consumed",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 800,
+          "kind": "up"
+        },
+        {
+          "at": 810,
+          "kind": "touchend"
+        }
+      ],
+      "until": 900,
+      "opens": {
+        "x": 60,
+        "y": 50
+      },
+      "consumes": [
+        true
+      ]
+    },
+    {
+      "name": "the release of a tap is left to the page",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 80,
+          "kind": "up"
+        },
+        {
+          "at": 90,
+          "kind": "touchend"
+        }
+      ],
+      "until": 700,
+      "opens": null,
+      "consumes": [
+        false
+      ]
+    },
+    {
+      "name": "the release of a press cancelled by the drift is left to the page",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 100,
+          "kind": "move",
+          "x": 120,
+          "y": 50
+        },
+        {
+          "at": 800,
+          "kind": "up"
+        },
+        {
+          "at": 810,
+          "kind": "touchend"
+        }
+      ],
+      "until": 900,
+      "opens": null,
+      "consumes": [
+        false
+      ]
+    },
+    {
+      "name": "a touchend long after the opening press is left to the page",
+      "platforms": [
+        "web"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 800,
+          "kind": "up"
+        },
+        {
+          "at": 2000,
+          "kind": "touchend"
+        }
+      ],
+      "until": 2050,
+      "opens": {
+        "x": 60,
+        "y": 50
+      },
+      "consumes": [
+        false
+      ]
+    }
+  ]
+}

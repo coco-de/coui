@@ -1,0 +1,684 @@
+{
+  "issue": 6588,
+  "scope": "Web OverflowMarquee private fractional CSS fade length preservation",
+  "implementation": {
+    "firstCodeCommit": "ab53a7d8afe17fcd6922fecbeb03aa9f70f4e353",
+    "ownFiles": {
+      "packages/coui_web/lib/src/components/layout/overflow_marquee/overflow_marquee_style.dart": "36bf1ee879af8ba31eca35cebe50b1f16154a7c1bcd75f9cbf773404c9bb2851",
+      "tool/parity/test/web/overflow_marquee_fractional_fade_test.dart": "6e57899726962f3e02031297f22260c2642b88f4435ff71443496df924a9a56d"
+    },
+    "behavior": "Keep existing <=0 guard and toInt evaluation; retain old int interpolation for integral/default values, original double for fractional values.",
+    "mechanicalCleanup": "One anonymous library directive and3 unresolved documentation links, after actual4INFO was preserved.",
+    "publicAPIResolvedConstructorsRuntimeConfigCoreNativeStateTimingDOMCallerCSSDefaultsChanged": false,
+    "nonfinite": "Same toInt evaluation/error order retained in source; no new nonfinite runtime result asserted."
+  },
+  "sourceProvenance": {
+    "originalNegative": "d91ad501467029c9ab5a873ce6edbb43f60de9b2",
+    "firstCandidateAndLiveCSS6": "ab53a7d8afe17fcd6922fecbeb03aa9f70f4e353",
+    "actualIntegratedFunctionalNativeReloadDocsReports": "68a108499aa27732c9251a24d4dd03e415543c11",
+    "canonicalWebProduct": "68a108499aa27732c9251a24d4dd03e415543c11",
+    "canonicalWebTool": "961170ac1dcf883f5ebeed853a86316afc7fb073",
+    "laterOrdinaryIntegration": {
+      "head": "ae63bfee07d2e07b9f0a31be5baf01768ec63cb6",
+      "upstream": "705502b2811687829f872f202f17c9e6ff4e1872",
+      "own2SHAExact": true,
+      "oldExecutionsRelabelled": false,
+      "latestDocsBuildStatus": "Completed with actual exit0; separate latest-source receipt, no relabeling of68a executions."
+    },
+    "toolMergeIntegration": {
+      "head": "1d91e58f413062259606fe4919e29bcc5c1a5917",
+      "upstreamToolMerge": "8bd17cc153712a6cb2ed09d3783cb6c0474b3387",
+      "own2SHAExact": true,
+      "tool7ExactTo961": true,
+      "historicalExecutionsRelabelled": false,
+      "reasonForFreshNative2": "Upstream Native CoUILayerFoldScopeHost changed; current13pubspec and changed Native source are bound to new capture.",
+      "old9_17_8FunctionalRerun": 0
+    }
+  },
+  "originalEvidence": {
+    "publicSSR": {
+      "immutableFixtureSHA256": "e7f5b2b7818016f6499abcbb928516b888ebd5dd472603620f94fb4809b18677",
+      "fractional12_5And0_5BothAxesFail": 4,
+      "integral12And24BothAxesPass": 4,
+      "FadeSSRControlPass": 1,
+      "FadeControlIsNotLiveLegacyProof": true
+    },
+    "NativeHistorical": {
+      "source": "d91ad501467029c9ab5a873ce6edbb43f60de9b2",
+      "testsPass": 3,
+      "paintObservations": 11,
+      "candidateRerun": 0,
+      "fractionalValuesPreserved": true
+    },
+    "firstNativeImageEncodingStall": "Owned partialPNG/protocol/exit143 preserved; one bounded tester.runAsync encoding-boundary recovery, no product/assertion/timing changes."
+  },
+  "static": {
+    "twoTouchedDartFilesFormatExit": 0,
+    "fatalInfosExit": 0,
+    "priorFourInfosPreserved": true
+  },
+  "freshIntegratedFunctional": {
+    "source": "68a108499aa27732c9251a24d4dd03e415543c11",
+    "externalSameFixture": {
+      "pass": 9,
+      "fail": 0
+    },
+    "repo12AndExistingWeb5": {
+      "pass": 17,
+      "fail": 0
+    },
+    "CoreDuration": {
+      "pass": 8,
+      "fail": 0
+    },
+    "executionCountOverlap": "External and repo repeat fractional assertions; not34 independent scenarios.",
+    "wholeDefaultNullAndIntegral12SSR": {
+      "cases": 4,
+      "byteExactToD91": true,
+      "nullMeaning": "Existing no-override style argument, not syntactic omission."
+    },
+    "metadata": {
+      "actualPackages": 232,
+      "own": 12,
+      "external": 220,
+      "packageFieldsEffectiveRootsAndGraphAllFieldsExactWithAb53": true,
+      "currentOwn12DependencyEdgesVerified": true,
+      "currentOwn12PubspecBytesAndLockExactWithAb53": true,
+      "SDKVersionOmission": "8 SDK pubspecs declare no version; declared null and existing graph0.0.0 are recorded separately. Remaining declared versions match graph; no invented declared SDK version.",
+      "validatorFirstAttempt": "Preserved in marquee-integrated-ee4-functional/attempt1; validator incorrectly required explicit SDK version and exited before any functional tests. Corrected metadata representation only, product/test assertion changes0."
+    },
+    "workspaceBinding": {
+      "source": "68a108499aa27732c9251a24d4dd03e415543c11",
+      "oneOwnWorkspaceTestCopyRoot": [
+        {
+          "name": "coui_workspace",
+          "sourceRoot": "file:///Users/minhyeok/orca/workspaces/coui/fade-mask-audit-20261123/",
+          "jobRoot": "file:///Users/minhyeok/orca/artifacts/coui/weever-fade-mask-audit-lb2rdvnk/jobboxes/marquee-integrated-ee4-functional.DpYICL/workspace",
+          "languageVersion": "3.11",
+          "copiedPubspecSHA256": "d432c54aeb63029b01c74515e0adc045451282a91b84867c599f9ea0c939d4e8"
+        }
+      ],
+      "other231EffectivePackageRootsUnchanged": true,
+      "external220Unchanged": true,
+      "graphFieldsAndVersionsUnchanged": true,
+      "pubget": 0
+    }
+  },
+  "freshIntegratedNative": {
+    "source": "68a108499aa27732c9251a24d4dd03e415543c11",
+    "allManifest": 8,
+    "defaultManifest": 2,
+    "manifestSHA256": "7b3a512e25c13f4ffc5b19214f0647e9181dba817f6a80f9079640c3a5ebd84a",
+    "matrixTests": 2,
+    "pass": 2,
+    "fail": 0,
+    "JSON": 2,
+    "PNG": 2,
+    "hiddenHooksExcluded": 3,
+    "rootOmitted": 0,
+    "missing": 0,
+    "seconds": 10.752437416000003,
+    "rawReuse": 0,
+    "beforeAndAb53Comparison": "Each historical rawset2JSON+2PNG is byte exact with fresh integrated4raw. Eight pair comparisons, not eight fresh files."
+  },
+  "ownedSSRVMReload": {
+    "source": "68a108499aa27732c9251a24d4dd03e415543c11",
+    "targetStyleLibrary": [
+      {
+        "type": "@Library",
+        "fixedId": true,
+        "id": "libraries/@751518376",
+        "name": "",
+        "uri": "package:coui_web/src/components/layout/overflow_marquee/overflow_marquee_style.dart"
+      }
+    ],
+    "reloadSourcesSuccess": true,
+    "beforeHTTP200Cases": 6,
+    "afterHTTP200Cases": 6,
+    "eachRootCount": 1,
+    "sixCSSControlsExactAcrossReload": true,
+    "allHTMLByteExactAcrossReload": false,
+    "sourceInvariant": true,
+    "pidClosed": true,
+    "ports": [
+      {
+        "port": 64481,
+        "closed": true
+      },
+      {
+        "port": 64496,
+        "closed": true
+      }
+    ],
+    "scope": "Owned Jaspr SSR VM reload only; no browser client or Native app hot reload claim."
+  },
+  "livePublicCSS6": {
+    "source": "ab53a7d8afe17fcd6922fecbeb03aa9f70f4e353",
+    "backend": "EgoLite native19/p1 Chrome156",
+    "viewport": [
+      960,
+      891
+    ],
+    "DPR": 2,
+    "computedMaskAndWebkitRows": [
+      {
+        "id": "marquee-css-horizontal-12-5",
+        "fadeStopPx": 12.5,
+        "maskAndWebkitCSSMatch": true,
+        "rootWidthHeight": [
+          240,
+          80
+        ],
+        "trackWidthHeight": [
+          720,
+          80
+        ]
+      },
+      {
+        "id": "marquee-css-horizontal-0-5",
+        "fadeStopPx": 0.5,
+        "maskAndWebkitCSSMatch": true,
+        "rootWidthHeight": [
+          240,
+          80
+        ],
+        "trackWidthHeight": [
+          720,
+          80
+        ]
+      },
+      {
+        "id": "marquee-css-horizontal-default",
+        "fadeStopPx": 24,
+        "maskAndWebkitCSSMatch": true,
+        "rootWidthHeight": [
+          240,
+          80
+        ],
+        "trackWidthHeight": [
+          720,
+          80
+        ]
+      },
+      {
+        "id": "marquee-css-vertical-12-5",
+        "fadeStopPx": 12.5,
+        "maskAndWebkitCSSMatch": true,
+        "rootWidthHeight": [
+          80,
+          240
+        ],
+        "trackWidthHeight": [
+          80,
+          720
+        ]
+      },
+      {
+        "id": "marquee-css-vertical-0-5",
+        "fadeStopPx": 0.5,
+        "maskAndWebkitCSSMatch": true,
+        "rootWidthHeight": [
+          80,
+          240
+        ],
+        "trackWidthHeight": [
+          80,
+          720
+        ]
+      },
+      {
+        "id": "marquee-css-vertical-default",
+        "fadeStopPx": 24,
+        "maskAndWebkitCSSMatch": true,
+        "rootWidthHeight": [
+          80,
+          240
+        ],
+        "trackWidthHeight": [
+          80,
+          720
+        ]
+      }
+    ],
+    "scope": "Actual SSR DOM getComputedStyle and bounds, no O2 hydration, interaction or mask-raster-to-Native comparison.",
+    "fullHTML": "Original20MB preimage reclaimed; producer/body/semantic body and SHA256 receipts retained.",
+    "preimageSHA256": "ff4f2ca546d57b0b88cc5373c65df3850320197ba3e30fd5720bd53395f45502"
+  },
+  "freshCanonicalWeb": {
+    "productSource": "68a108499aa27732c9251a24d4dd03e415543c11",
+    "toolSource": "961170ac1dcf883f5ebeed853a86316afc7fb073",
+    "all": 8,
+    "default": 2,
+    "manifestSHA256": "7b3a512e25c13f4ffc5b19214f0647e9181dba817f6a80f9079640c3a5ebd84a",
+    "exit": 0,
+    "seconds": 11.746320917,
+    "JSON": 2,
+    "PNG": 2,
+    "reuse": 0,
+    "renderPhase": "initial-frame",
+    "captureViewport": [
+      800,
+      1200
+    ],
+    "captureDPR": 1,
+    "browserEngine": "Chrome156; GPU/software mode unknown",
+    "incomingViewportRestored": [
+      1668,
+      1027,
+      2
+    ],
+    "allObservedCleanupExact": true,
+    "CWDInputEqualityFiles": 1899,
+    "binding": "Physical Ego tool/CWD961 plus actual product68a package roots; CWD-read docs/fonts/icons/vendor/fixture equality proven.",
+    "setupFailure": "Attempt1 failed source snapshot on quoted non-ASCII git paths before browser0; original retained, reader alone corrected to NUL-delimited paths."
+  },
+  "actualScopedReports": {
+    "source": "68a108499aa27732c9251a24d4dd03e415543c11",
+    "baselineSource": "ee4f3b4309b5722587d0320e5e07fb379f625fd2",
+    "matrixKeys": 2,
+    "ownBaseline": {
+      "counts": {
+        "pass": 0,
+        "fail": 2,
+        "infra": 0,
+        "skipped": 0
+      },
+      "actualExit": 1,
+      "platformCells": {
+        "NativePass": 2,
+        "WebFail": 2
+      }
+    },
+    "crossPixel": {
+      "counts": {
+        "pass": 0,
+        "fail": 2,
+        "infra": 0,
+        "skipped": 0
+      },
+      "actualExit": 1
+    },
+    "property": {
+      "counts": {
+        "pass": 2,
+        "fail": 0,
+        "infra": 0,
+        "skipped": 0
+      },
+      "actualExit": 0
+    },
+    "historicalB2Control": {
+      "source": "b2a4cee517e9e5f7b8644ed0874f97399e0c7be0",
+      "counts": {
+        "pass": 2,
+        "fail": 0,
+        "infra": 0,
+        "skipped": 0
+      },
+      "actualExit": 0,
+      "platformCellsPass": 4,
+      "notFresh": true
+    },
+    "all8CommittedBaselineBlobsB2AndCurrentExact": true,
+    "NativeCurrent4RawFilesByteExactB2": true,
+    "criteriaAllowlistEdits": 0,
+    "waiversPromotions": 0,
+    "cause": "Current Chrome156 Web pixels differ from historical Chrome150; cause not established. No old Ego before-PNG equality claim or code-causal attribution."
+  },
+  "actualDocsAt68a": {
+    "source": "68a108499aa27732c9251a24d4dd03e415543c11",
+    "CLIExit": 0,
+    "CLISeconds": 99.806366792,
+    "routes": 361,
+    "JasprHTML": 363,
+    "HTMLIncludingFlutter": 365,
+    "outputHashes": 5044,
+    "retainedRepresentativeHTML": 3,
+    "trackedBytesModesLinksExact": 24995,
+    "actual232FieldsEffectiveRootsGraphLockExact": true,
+    "automaticPubPreflightObserved": true,
+    "directWorkerProjectPub": 0,
+    "wholeBuildReclaimed": true,
+    "portClosed": true
+  },
+  "limits": [
+    "FadeScroll legacy live path remains HOLD; no Fade product repair.",
+    "Default24/integral emission remains unchanged; no reduction attributed to historical full-b2 pixel228.",
+    "Current scoped pixel regressions remain FAIL; no threshold/filter/baseline update or waiver.",
+    "CSS6 validates browser parsing/bounds, not fractional mask raster parity, arbitrary caller override or interaction coverage.",
+    "All historical sources and failed attempts remain preserved, not relabeled fresh.",
+    "SSR VM reload is server-side only; whole HTML before/after is not all byte exact, while six CSS controls are exact."
+  ],
+  "documentationOnlyWork": {
+    "productOrTestEdits": 0,
+    "newRuntimeBrowserBuildOrTests": 0,
+    "committedByAuthor": false,
+    "rootChangelogEdited": false
+  },
+  "artifacts": {
+    "bundle": "weever-fade-mask-audit-lb2rdvnk",
+    "convention": "Portable bundle-relative paths and SHA256; rawPNG/JSON remain outside Git and are not promoted baselines.",
+    "refs": [
+      {
+        "artifact": "evidence/Native/original-handoff.json",
+        "bytes": 5764,
+        "sha256": "cbe79b7b35535017cd55378a084744d7558363bdf5dae91484e875a6273556ba"
+      },
+      {
+        "artifact": "evidence/Review/marquee-original-authority-review.json",
+        "bytes": 7537,
+        "sha256": "5f5eeaaa55adb4c6d4a821fd7d5d94688c3543e249aa4beaa8e90d605e3fefe8"
+      },
+      {
+        "artifact": "evidence/Native/marquee-canonical-before/before-handoff.json",
+        "bytes": 6781,
+        "sha256": "988ab8fb0200feac1921a0e1ca8b3a0670c6b85fbf719d9f43695d79b5babc62"
+      },
+      {
+        "artifact": "evidence/Native/implementation-static/ready-for-root-commit.json",
+        "bytes": 1673,
+        "sha256": "ab5a943963de70dff9cc164a70148b87f1e72f9e2ba36dbb4a93b1915d8cfd1b"
+      },
+      {
+        "artifact": "evidence/Review/marquee-code-review-ab53a7.json",
+        "bytes": 4339,
+        "sha256": "6ed9577ce418296fc03b4e77c05b7f2003a363329d7cb66494118dfd20b267d0"
+      },
+      {
+        "artifact": "evidence/Native/candidate-handoff.json",
+        "bytes": 5973,
+        "sha256": "5edca9a6edd520c0baaf15228ee2fa9baf225d6adf1479ae1c7e83500d6df99b"
+      },
+      {
+        "artifact": "evidence/Native/integrated-ee4-handoff.json",
+        "bytes": 5925,
+        "sha256": "6d75612893205e4728f30705a80eb18511b05c5fd7cebe21894561cb96a1461b"
+      },
+      {
+        "artifact": "evidence/Native/integrated-ee4-artifact-index.json",
+        "bytes": 14268,
+        "sha256": "0b34ac8a25e77d2146acb754a8bda4fd51ed2b0355cf6a32c3a6a35a3cf0cab4"
+      },
+      {
+        "artifact": "evidence/Native/marquee-integrated-ee4-functional/summary.json",
+        "bytes": 12138,
+        "sha256": "f4621fbbdd3572003f831c90ccee19fa4f088fd17648cfa927c97d1d4c20d4b4"
+      },
+      {
+        "artifact": "evidence/Native/marquee-integrated-ee4-functional/integral-SSR-comparison.json",
+        "bytes": 1332,
+        "sha256": "00a91511f4c5dcaec57f617f615683cfd745402eb7be242d2f98bbf84e5333ef"
+      },
+      {
+        "artifact": "evidence/Native/marquee-integrated-ee4-functional/job-workspace-binding.json",
+        "bytes": 660,
+        "sha256": "7e6cd0491d6a2dd882f60ee9fbcfea9197a45f206d606e0c2fccfb212a003ed9"
+      },
+      {
+        "artifact": "evidence/Native/marquee-integrated-ee4-canonical/comparison-before-and-ab53.json",
+        "bytes": 3428,
+        "sha256": "9c2bcd6a0f51600c93805e1239409a74d9961a7897830937a8efc3ce3bbb56da"
+      },
+      {
+        "artifact": "evidence/Native/marquee-integrated-ee4-ssr/proof.json",
+        "bytes": 14532,
+        "sha256": "0849bcfe384ebf653632946a4401dbc8115bbeee56f412f85f7eb74968bfb163"
+      },
+      {
+        "artifact": "evidence/Review/marquee-live-css6-review.json",
+        "bytes": 9059,
+        "sha256": "4853523c257dff5dbfb9517f100719bf27f816ca126bd5aa332f69fc75f4f041"
+      },
+      {
+        "artifact": "evidence/Web/live-css-observed/space19-attempt1/observations.json",
+        "bytes": 12806,
+        "sha256": "3eac9e493d7ccfa9d18cfc4df7bd9430e965c9f2b50221400d8f76d5cf4cf2e3"
+      },
+      {
+        "artifact": "evidence/Web/live-css-observed/space19-attempt1/readback-index.json",
+        "bytes": 3195,
+        "sha256": "65239d4b6cb8579ad48ea9cbb8e8f3bc714c8bd9c0ebe3ac9b89afe5f2c7598c"
+      },
+      {
+        "artifact": "evidence/Web/live-css-observed/space19-attempt1/html-reclamation-addendum.json",
+        "bytes": 829,
+        "sha256": "61bb59ec2e5a11f82d55c61b10a4cfaa7ad43eaff2a3098639fa873118624636"
+      },
+      {
+        "artifact": "evidence/Web/marquee-canonical-egolite/attempt2/final-handoff.json",
+        "bytes": 3876,
+        "sha256": "818e2a4c5f8c07e4503ce88c06cfad22de3d29c703f6be41d335a83b0968be46"
+      },
+      {
+        "artifact": "evidence/Web/marquee-canonical-egolite/attempt2/artifact-index.json",
+        "bytes": 5348,
+        "sha256": "d526b619bdd6854cca201c5e334fa5233386a5420d620b90ed1aa43d8ba8a0e0"
+      },
+      {
+        "artifact": "evidence/Web/marquee-canonical-egolite/attempt2/worker-artifact-index.json",
+        "bytes": 5219,
+        "sha256": "33c13a063495678ba098e5063335453b28f3cd901cb42bc0c90d923bf3c262d3"
+      },
+      {
+        "artifact": "evidence/Web/marquee-canonical-egolite/attempt2/integrity-readback.json",
+        "bytes": 17319,
+        "sha256": "8c0a309c4632a5757403e3818b7115400d01d85430da1da6dfbec6616f53ceef"
+      },
+      {
+        "artifact": "evidence/Root/reports-integrated/summary.json",
+        "bytes": 6640,
+        "sha256": "8aca76488ee7fa33bb98df9373c69ca45fe7e6091fc25826319457468802e472"
+      },
+      {
+        "artifact": "evidence/Root/reports-integrated/inputs.json",
+        "bytes": 7304,
+        "sha256": "f234d37ad73e01dd5f26874f8b170f9b9ec5cc3b674a3db19f48e6ce103020da"
+      },
+      {
+        "artifact": "evidence/Root/reports-integrated/regression-report.json",
+        "bytes": 599,
+        "sha256": "dbe7d037a6ba698ca605f3065f2b2556203ea7ff897f37eff26b98b3f5e20eaa"
+      },
+      {
+        "artifact": "evidence/Root/reports-integrated/pixel-report.json",
+        "bytes": 599,
+        "sha256": "3ffa90b2218f496ab65bd9260381d30fd7d4ce74d2d8dd7fd94996b6e1f16f22"
+      },
+      {
+        "artifact": "evidence/Root/reports-integrated/property-report.json",
+        "bytes": 8150,
+        "sha256": "82abf19edda5c61d8f1e2867c910c03c2fec64db8ff064dfd41ea1c20a0ce60c"
+      },
+      {
+        "artifact": "evidence/Root/reports-integrated/historical-control-report.json",
+        "bytes": 599,
+        "sha256": "09bd09e65433020c5ee955a044b64ddb911c828be205b8639a36503ea46833c4"
+      },
+      {
+        "artifact": "evidence/Root/docs-integrated/exit.json",
+        "bytes": 647,
+        "sha256": "5735ee285175a6c6cb8c0801aa42e1a9e9dc57464f136f28e4a9e4e1b20ca5bd"
+      },
+      {
+        "artifact": "evidence/Root/docs-integrated/pub-preflight-addendum.json",
+        "bytes": 548,
+        "sha256": "c72a0945354d17032af36f018adb0ee7c957b5b5616572cd285cffd8fe8113d9"
+      },
+      {
+        "artifact": "evidence/Root/main-integration-705.json",
+        "bytes": 592,
+        "sha256": "a741c4534c27de82b51e7b52db4746f42eb5fe5518fb0b312de252f88ffd3c17"
+      },
+      {
+        "artifact": "evidence/Root/docs-current/final-proof.json",
+        "bytes": 510,
+        "sha256": "907f50b1c4bf394ec08897ccc8c42dbc9335fe8aa4f250965e1498a115744ac5"
+      },
+      {
+        "artifact": "evidence/Root/docs-current/exit.json",
+        "bytes": 645,
+        "sha256": "d2b9f825f942039fa73e4d11dcdac884fc82769b920b2aeb6f6c089c01f606d5"
+      },
+      {
+        "artifact": "evidence/Root/docs-current/output-index.json",
+        "bytes": 970451,
+        "sha256": "a25bf53c38cff6875f23fd73551609001599a5964d68e4670623542b7442ce2a"
+      },
+      {
+        "artifact": "evidence/Root/docs-current/metadata-proof.json",
+        "bytes": 125745,
+        "sha256": "d66405476c1e4d01a16d69aaab3a9dfc71cc149c214dc089115730d15e950200"
+      },
+      {
+        "artifact": "evidence/Root/docs-current/source-before.json",
+        "bytes": 5237088,
+        "sha256": "9c0471ad1aa3e521b1f476243b4efc595585b66e4cae4bd6d7981450276560c8"
+      },
+      {
+        "artifact": "evidence/Root/docs-current/source-final.json",
+        "bytes": 5237088,
+        "sha256": "9c0471ad1aa3e521b1f476243b4efc595585b66e4cae4bd6d7981450276560c8"
+      },
+      {
+        "artifact": "evidence/Root/canonical-original-visual-review.json",
+        "bytes": 1455,
+        "sha256": "3efdb094c39ef55b4d98e3650bcdf10b7e6d86f07234b36481cea8c1ea8d4ea4"
+      },
+      {
+        "artifact": "evidence/Root/main-integration-8bd.json",
+        "bytes": 666,
+        "sha256": "6e39d66f2ec3ce55bd794acc1ca784d891fad03f804ac9f8d82c1eb07b63eafd"
+      },
+      {
+        "artifact": "evidence/Root/docs-8bd/final-proof.json",
+        "bytes": 837,
+        "sha256": "f56d099d0d3a7953f60395c0a9732de8f7ea61268bc0d7c73de8186cad11781f"
+      },
+      {
+        "artifact": "evidence/Root/docs-8bd/exit.json",
+        "bytes": 646,
+        "sha256": "8cf5ff36d75788bf58efa894e86d81bd5b3991e9b0878910b9a556fae756973a"
+      },
+      {
+        "artifact": "evidence/Root/docs-8bd/output-index.json",
+        "bytes": 970439,
+        "sha256": "73072d468a7cc6e858cf3814d56f979294d5beba9fdedfdbcd92037e9dc1f07f"
+      },
+      {
+        "artifact": "evidence/Root/docs-8bd/metadata-proof.json",
+        "bytes": 125745,
+        "sha256": "d66405476c1e4d01a16d69aaab3a9dfc71cc149c214dc089115730d15e950200"
+      },
+      {
+        "artifact": "evidence/Root/docs-8bd/source-before.json",
+        "bytes": 5240050,
+        "sha256": "b3752cffa6dbc6f276da426df17f33d5b2702d5d1fa27c2b31802def5f7ae885"
+      },
+      {
+        "artifact": "evidence/Root/docs-8bd/source-final.json",
+        "bytes": 5240050,
+        "sha256": "b3752cffa6dbc6f276da426df17f33d5b2702d5d1fa27c2b31802def5f7ae885"
+      },
+      {
+        "artifact": "evidence/Native/marquee-integrated-8bd-canonical/final-handoff.json",
+        "bytes": 4130,
+        "sha256": "7a63c44bad919b7e0d72772f2fbb9fa133b0c672985f0bf06e0286b7fa892be7"
+      },
+      {
+        "artifact": "evidence/Native/marquee-integrated-8bd-canonical/comparison-historical.json",
+        "bytes": 4440,
+        "sha256": "1a1f5411faa84073d650aebafd2e6f808d42a63cbea7e006ad42b1e32dd090d4"
+      },
+      {
+        "artifact": "evidence/Native/marquee-integrated-8bd-canonical/capture-summary.json",
+        "bytes": 7773,
+        "sha256": "f7fe880bdc81ade56df4a5d61b3049848be1d19e21b09eaf8a25e81a926b260c"
+      },
+      {
+        "artifact": "evidence/Native/marquee-integrated-8bd-canonical/source-before.json",
+        "bytes": 3993,
+        "sha256": "25c527d21f6f6d453da4e5f0c84cb18c8429b0434acf31c3ba5e61a67870e19e"
+      },
+      {
+        "artifact": "evidence/Native/marquee-integrated-8bd-canonical/source-after.json",
+        "bytes": 3993,
+        "sha256": "25c527d21f6f6d453da4e5f0c84cb18c8429b0434acf31c3ba5e61a67870e19e"
+      }
+    ]
+  },
+  "actualDocsAtLatestIntegration": {
+    "source": "ae63bfee07d2e07b9f0a31be5baf01768ec63cb6",
+    "CLIExit": 0,
+    "CLISeconds": 102.082666375,
+    "routes": 361,
+    "JasprHTML": 363,
+    "HTMLIncludingFlutter": 365,
+    "outputHashes": 5044,
+    "retainedRepresentativeHTML": 3,
+    "trackedBytesModesLinksExact": 25038,
+    "actual232FieldsEffectiveRootsGraphLockExact": true,
+    "rawConfigURIRepresentationChanges": [],
+    "automaticRootAndExamplePubPreflightObserved": true,
+    "directWorkerProjectPub": 0,
+    "universalPubZeroClaim": false,
+    "wholeBuildReclaimed": true,
+    "portClosed": true
+  },
+  "originalVisualReview": {
+    "reviewer": "Root",
+    "productSource": "68a108499aa27732c9251a24d4dd03e415543c11",
+    "toolSource": "961170ac1dcf883f5ebeed853a86316afc7fb073",
+    "originalNativeAndWebPNGsViewed": 4,
+    "sha256": "3efdb094c39ef55b4d98e3650bcdf10b7e6d86f07234b36481cea8c1ea8d4ea4",
+    "scope": "Default light/dark text and fade strip at240x21; originalNative andEgo images viewed. This visual review does not waive actual own-baseline or crosspixelFAIL2. No prepatchEgoPNG equality claim."
+  },
+  "freshLatestIntegratedNative": {
+    "source": "1d91e58f413062259606fe4919e29bcc5c1a5917",
+    "all": 8,
+    "default": 2,
+    "manifestSHA256": "7b3a512e25c13f4ffc5b19214f0647e9181dba817f6a80f9079640c3a5ebd84a",
+    "actualTests": 2,
+    "pass": 2,
+    "fail": 0,
+    "hiddenHooksExcluded": 3,
+    "JSON": 2,
+    "PNG": 2,
+    "rootOmitted": 0,
+    "missing": 0,
+    "captureSeconds": 10.550470292,
+    "rawReuse": 0,
+    "sourceMetadata13PubspecAndSelectedNativeFilesBeforeAfterExact": true,
+    "earlier13PubspecBytesEqualityClaim": false,
+    "current232MetadataAuthority": "evidence/Root/docs-8bd/final-proof.json; actual current roots/fields/graph/lock verified by completed current docs preflight",
+    "historicalComparison": {
+      "pairs": 12,
+      "allByteExact": true
+    },
+    "metadataAndWTConsumersEOF": true,
+    "jobbox": {
+      "exitCode": 0,
+      "seconds": 18.867552,
+      "jobRunnerGroupClosed": true,
+      "JOB_DIR": "/Users/minhyeok/orca/artifacts/coui/weever-fade-mask-audit-lb2rdvnk/jobboxes/native-marquee-integrated-8bd.UWby37",
+      "jobDirReclaimed": true
+    }
+  },
+  "actualDocsAfterToolMerge": {
+    "source": "1d91e58f413062259606fe4919e29bcc5c1a5917",
+    "CLIExit": 0,
+    "CLISeconds": 110.49710545800001,
+    "routes": 361,
+    "JasprHTML": 363,
+    "HTMLIncludingFlutter": 365,
+    "outputHashes": 5044,
+    "retainedRepresentativeHTML": 3,
+    "trackedBytesModesLinksExact": 25053,
+    "actual232FieldsEffectiveRootsGraphLockExact": true,
+    "rawConfigURIRepresentationChanges": [],
+    "automaticRootAndExamplePubPreflightObserved": true,
+    "directWorkerProjectPub": 0,
+    "universalPubZeroClaim": false,
+    "wholeBuildReclaimed": true,
+    "portClosed": true
+  }
+}

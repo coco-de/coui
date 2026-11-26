@@ -1,0 +1,589 @@
+{
+  "_comment": [
+    "Shared vectors for the stretched Dialog actions row (CoreDialogActionsLayout.stretch).",
+    "Read by coui_core (CoreDialogActionsStretch.place), coui_flutter (the Dialog",
+    "actions render object) and a real-Chrome probe of the Web footer CSS, so a fix",
+    "that lands on one platform fails the other.",
+    "Each action is a row of parts, laid side by side and wrapping between them:",
+    "its narrowest width (min-content) is its widest part, its natural width",
+    "(max-content) is the sum of its parts. Every part is partHeight tall, or the",
+    "action's own partHeight when it states one.",
+    "cells: line (row from 0), start (offset of the action's start edge from the",
+    "row's start edge: left in ltr, right in rtl) and width, in logical px.",
+    "flutterCells, where present, is what Flutter draws instead: Flutter never lays",
+    "an action out wider than its row, so an action that cannot be narrower than",
+    "the row is squeezed to it there, while CSS lets it overflow at the start."
+  ],
+  "spacing": 8,
+  "runSpacing": 8,
+  "partHeight": 40,
+  "cases": [
+    {
+      "name": "one action fills the row",
+      "width": 294,
+      "actions": [
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 294.0
+        }
+      ]
+    },
+    {
+      "name": "two short actions split the row in half",
+      "width": 294,
+      "actions": [
+        {
+          "parts": [
+            60
+          ]
+        },
+        {
+          "parts": [
+            80
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 143.0
+        },
+        {
+          "line": 0,
+          "start": 151.0,
+          "width": 143.0
+        }
+      ]
+    },
+    {
+      "name": "an action exactly its half keeps the row",
+      "width": 294,
+      "actions": [
+        {
+          "parts": [
+            143
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 143.0
+        },
+        {
+          "line": 0,
+          "start": 151.0,
+          "width": 143.0
+        }
+      ]
+    },
+    {
+      "name": "an action a pixel over its half stacks both",
+      "width": 294,
+      "actions": [
+        {
+          "parts": [
+            144
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 294.0
+        },
+        {
+          "line": 1,
+          "start": 0.0,
+          "width": 294.0
+        }
+      ]
+    },
+    {
+      "name": "the pair fits but one is wider than half: both stack",
+      "width": 312,
+      "actions": [
+        {
+          "parts": [
+            200
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 312.0
+        },
+        {
+          "line": 1,
+          "start": 0.0,
+          "width": 312.0
+        }
+      ]
+    },
+    {
+      "name": "the pair is wider than the row: both stack",
+      "width": 312,
+      "actions": [
+        {
+          "parts": [
+            250
+          ]
+        },
+        {
+          "parts": [
+            100
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 312.0
+        },
+        {
+          "line": 1,
+          "start": 0.0,
+          "width": 312.0
+        }
+      ]
+    },
+    {
+      "name": "a phone panel: two short labels",
+      "width": 310,
+      "actions": [
+        {
+          "parts": [
+            72
+          ]
+        },
+        {
+          "parts": [
+            56
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 151.0
+        },
+        {
+          "line": 0,
+          "start": 159.0,
+          "width": 151.0
+        }
+      ]
+    },
+    {
+      "name": "a narrow panel stacks two short actions",
+      "width": 100,
+      "actions": [
+        {
+          "parts": [
+            60
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 100.0
+        },
+        {
+          "line": 1,
+          "start": 0.0,
+          "width": 100.0
+        }
+      ]
+    },
+    {
+      "name": "a label wider than the row wraps inside its full-width cell",
+      "width": 312,
+      "actions": [
+        {
+          "parts": [
+            120,
+            120,
+            160
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 312.0
+        }
+      ]
+    },
+    {
+      "name": "a wrapping label beside a short one stacks both",
+      "width": 312,
+      "actions": [
+        {
+          "parts": [
+            120,
+            120,
+            160
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0,
+          "width": 312
+        },
+        {
+          "line": 1,
+          "start": 0.0,
+          "width": 312.0
+        }
+      ]
+    },
+    {
+      "name": "three short actions split the row in thirds",
+      "width": 312,
+      "actions": [
+        {
+          "parts": [
+            60
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 98.666667
+        },
+        {
+          "line": 0,
+          "start": 106.666667,
+          "width": 98.666667
+        },
+        {
+          "line": 0,
+          "start": 213.333333,
+          "width": 98.666667
+        }
+      ]
+    },
+    {
+      "name": "three with a wide first: two share a line, the third fills the next",
+      "width": 312,
+      "actions": [
+        {
+          "parts": [
+            150
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 152.0
+        },
+        {
+          "line": 0,
+          "start": 160.0,
+          "width": 152.0
+        },
+        {
+          "line": 1,
+          "start": 0.0,
+          "width": 312.0
+        }
+      ]
+    },
+    {
+      "name": "a held action leaves the rest to its neighbour",
+      "width": 300.5,
+      "actions": [
+        {
+          "parts": [
+            150
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 150
+        },
+        {
+          "line": 0,
+          "start": 158.0,
+          "width": 142.5
+        },
+        {
+          "line": 1,
+          "start": 0.0,
+          "width": 300.5
+        }
+      ]
+    },
+    {
+      "name": "three that cannot pair: every action on its own line",
+      "width": 200,
+      "actions": [
+        {
+          "parts": [
+            120
+          ]
+        },
+        {
+          "parts": [
+            120
+          ]
+        },
+        {
+          "parts": [
+            120
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 200.0
+        },
+        {
+          "line": 1,
+          "start": 0.0,
+          "width": 200.0
+        },
+        {
+          "line": 2,
+          "start": 0.0,
+          "width": 200.0
+        }
+      ]
+    },
+    {
+      "name": "an unbreakable action wider than the row overflows at the start",
+      "width": 200,
+      "actions": [
+        {
+          "parts": [
+            240
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": -40,
+          "width": 240
+        }
+      ],
+      "flutterCells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 200.0
+        }
+      ]
+    },
+    {
+      "name": "actions of different heights share a line, each centred on it",
+      "width": 294,
+      "actions": [
+        {
+          "parts": [
+            60
+          ],
+          "partHeight": 40
+        },
+        {
+          "parts": [
+            80
+          ],
+          "partHeight": 56
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 143.0
+        },
+        {
+          "line": 0,
+          "start": 151.0,
+          "width": 143.0
+        }
+      ]
+    },
+    {
+      "name": "a desktop panel: two short actions at half width",
+      "width": 590,
+      "actions": [
+        {
+          "parts": [
+            64
+          ]
+        },
+        {
+          "parts": [
+            72
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 291.0
+        },
+        {
+          "line": 0,
+          "start": 299.0,
+          "width": 291.0
+        }
+      ]
+    },
+    {
+      "name": "a label fitting its half only when broken still stacks both \u2014 the cell claims its natural width",
+      "width": 312,
+      "actions": [
+        {
+          "parts": [
+            100,
+            100
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 312.0
+        },
+        {
+          "line": 1,
+          "start": 0.0,
+          "width": 312.0
+        }
+      ]
+    },
+    {
+      "name": "a broken label under its share still sets the row by its natural width",
+      "width": 312,
+      "actions": [
+        {
+          "parts": [
+            50,
+            50
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        },
+        {
+          "parts": [
+            60
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "line": 0,
+          "start": 0.0,
+          "width": 152.0
+        },
+        {
+          "line": 0,
+          "start": 160.0,
+          "width": 152.0
+        },
+        {
+          "line": 1,
+          "start": 0.0,
+          "width": 312.0
+        }
+      ]
+    }
+  ]
+}

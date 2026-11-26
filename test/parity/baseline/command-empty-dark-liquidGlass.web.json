@@ -1,0 +1,81 @@
+{
+  "key": "command-empty-dark-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#coui-command-26 .co-command-row:hover > .co-command-wash{background-color:rgb(var(--coui-on-surface) / 3%);}#coui-command-26 .co-command-row:active > .co-command-wash{background-color:rgb(var(--coui-on-surface) / 12%);}\n              \n              \n                \n                  \n                \n                \n                \n                  \n                    \n                      \n                        \n                      \n                    \n                  \n                \n              \n              \n              \n                \n                  \n                    No results found.\n                    \n                    Try another word, or widen the scope to All.",
+    "layout": {
+      "width": 800,
+      "height": 283,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "width": 798,
+          "height": 40
+        },
+        {
+          "x": 1,
+          "y": 41,
+          "width": 798,
+          "height": 1
+        },
+        {
+          "x": 1,
+          "y": 42,
+          "width": 798,
+          "height": 240
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgba(42, 43, 44, 0.6)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "12px",
+      "borderTopRightRadius": "12px",
+      "borderBottomRightRadius": "12px",
+      "borderBottomLeftRadius": "12px",
+      "paddingTop": "1px",
+      "paddingRight": "1px",
+      "paddingBottom": "1px",
+      "paddingLeft": "1px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 283
+    }
+  }
+}

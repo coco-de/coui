@@ -1,0 +1,37 @@
+# G9 baseline — the CoreSize primitive ladder, pinned
+# (CoUI_Size_Token_Specification §1, v1.1 2026-08-07).
+#
+# 24 tokens, 4–128px, banded intervals: optical 4–20 (2px), control
+# 24–48 (4px), structure 56–96 (8px), display 112–128 (16px). CoreSize
+# and CoreSpace are separate namespaces — value overlap between them is
+# by design (shared 4px-multiple principle, not shared references), so
+# this file pins the SIZE set itself rather than the old space∩size
+# duplication diff (#3736 F1, superseded by the spec above).
+#
+# One value per line (not a count — a count lets one violation swap for
+# another and still pass). Additions and removals both fail the guard
+# until the spec and this file move in the same commit.
+4.0
+6.0
+8.0
+10.0
+12.0
+14.0
+16.0
+18.0
+20.0
+24.0
+28.0
+32.0
+36.0
+40.0
+44.0
+48.0
+56.0
+64.0
+72.0
+80.0
+88.0
+96.0
+112.0
+128.0

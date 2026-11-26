@@ -1,0 +1,130 @@
+{
+  "key": "button-docs-v2-46269d9ade25d02d3b65b1a8f35b3b70-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "SizeSpec",
+      "attributes": {
+        "component": "button",
+        "label": "버튼"
+      },
+      "selections": [
+        {
+          "kind": "props",
+          "component": "button",
+          "name": null,
+          "props": {
+            "size": "xs"
+          },
+          "label": "버튼"
+        },
+        {
+          "kind": "props",
+          "component": "button",
+          "name": null,
+          "props": {
+            "size": "sm"
+          },
+          "label": "버튼"
+        },
+        {
+          "kind": "props",
+          "component": "button",
+          "name": null,
+          "props": {
+            "size": "md"
+          },
+          "label": "버튼"
+        },
+        {
+          "kind": "props",
+          "component": "button",
+          "name": null,
+          "props": {
+            "size": "lg"
+          },
+          "label": "버튼"
+        },
+        {
+          "kind": "props",
+          "component": "button",
+          "name": null,
+          "props": {
+            "size": "xl"
+          },
+          "label": "버튼"
+        },
+        {
+          "kind": "props",
+          "component": "button",
+          "name": null,
+          "props": {
+            "size": "xl2"
+          },
+          "label": "버튼"
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/button.md:SizeSpec[22]"
+      ],
+      "anatomyParts": []
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "버튼\n                      xs\n                    \n                    \n                      버튼\n                      sm\n                    \n                    \n                      버튼\n                      md\n                    \n                    \n                      버튼\n                      lg\n                    \n                    \n                      버튼\n                      xl\n                    \n                    \n                      버튼\n                      xl2\n                    \n                  \n                  \n                    \n                      size높이 · 좌우 여백아이콘라벨 · 모서리\n                      \n                        xs24 · 81212 Medium · 6\n                        sm32 · 121413 Medium · 8\n                        md40 · 161614 Medium · 10\n                        lg48 · 201816 Medium · 12\n                        xl56 · 242016 Medium · 14\n                        xl264 · 282416 Medium · 16",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 518.6875
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "12px",
+      "lineHeight": "17px",
+      "letterSpacing": "-0.12px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 518.6875
+    }
+  }
+}

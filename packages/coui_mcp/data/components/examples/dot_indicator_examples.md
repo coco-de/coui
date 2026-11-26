@@ -1,0 +1,40 @@
+# Dot Indicator Examples
+
+This document contains example code for the dot_indicator component.
+
+## Table of Contents
+
+- [Example 1: Basic Example](#example-1)
+
+## Example 1
+
+**Basic Example**
+
+```dart
+import 'package:coui_flutter/coui_flutter.dart';
+
+class DotIndicatorExample1 extends StatefulWidget {
+  const DotIndicatorExample1({super.key});
+
+  @override
+  State<DotIndicatorExample1> createState() => _DotIndicatorExample1State();
+}
+
+class _DotIndicatorExample1State extends State<DotIndicatorExample1> {
+  int _index = 0;
+  @override
+  Widget build(BuildContext context) {
+    return DotIndicator(
+      index: _index,
+      length: 5,
+      onChanged: (index) {
+        setState(() {
+          _index = index;
+        });
+      },
+    );
+  }
+}
+
+```
+

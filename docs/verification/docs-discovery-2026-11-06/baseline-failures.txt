@@ -1,0 +1,19 @@
+Base: 1dd36c7b3
+Current and baseline failure sets are identical (14).
+
+markdown/figma_library_snapshot_test.dart: Anatomy page ids come from the canonical library structure capture
+markdown/figma_library_test.dart: Anatomy 의 node-id 는 pages 맵에 있는 것만
+markdown/figma_library_test.dart: pages 맵 슬러그의 문서에 Anatomy 가 있고 node-id 가 맵과 같다
+registry/chain_example_convention_test.dart: AC-2 — T3 무축 (withStyle full-control 만) bottom-sheet
+registry/chain_example_convention_test.dart: AC-2 — T3 무축 (withStyle full-control 만) option-item
+registry/chain_example_convention_test.dart: AC-2 — T3 무축 (withStyle full-control 만) option-list
+registry/chain_example_convention_test.dart: AC-3 — _code.dart chain 스니펫 ≡ 예제 클래스 전문 bottom-sheet
+registry/chain_example_convention_test.dart: AC-3 — _code.dart chain 스니펫 ≡ 예제 클래스 전문 option-item
+registry/chain_example_convention_test.dart: AC-3 — _code.dart chain 스니펫 ≡ 예제 클래스 전문 option-list
+registry/chain_example_convention_test.dart: AC-3 — _code.dart chain 스니펫 ≡ 예제 클래스 전문 sidebar
+registry/docs_preview_overflow_test.dart: 1024px viewport file-input/chain on a 266.5px pane
+registry/docs_preview_overflow_test.dart: 1024px viewport item-picker/chain on a 266.5px pane
+registry/docs_preview_overflow_test.dart: 1440px viewport file-input/chain on a 314.5px pane
+registry/docs_preview_overflow_test.dart: 1440px viewport item-picker/chain on a 314.5px pane
+
+Gallery gzip: base 73.4091796875 KiB, current 77.380859375 KiB, gate <64 KiB.

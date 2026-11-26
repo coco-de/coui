@@ -1,0 +1,63 @@
+{
+  "key": "switch-field-default-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "알림 받기\n                  \n                  푸시 알림을 받아요.\n                \n                \n                \n                  \n                    .co-toggle-sl-aqfkw0:hover .co-toggle-track{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-highest)));}.co-toggle-sl-aqfkw0:active .co-toggle-track{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 16%, rgb(var(--coui-surface-container-highest)));}.co-toggle-sl-aqfkw0 .co-toggle-track{outline-color:transparent;}:where(.co-toggle-sl-aqfkw0 .co-toggle-track){outline-style:solid;}.co-toggle-sl-aqfkw0:focus-visible .co-toggle-track{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(4.0px - var(--coui-stroke-width-2));}",
+    "layout": {
+      "width": 800,
+      "height": 39,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 39
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(228, 230, 231)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "9999px",
+      "borderTopRightRadius": "9999px",
+      "borderBottomRightRadius": "9999px",
+      "borderBottomLeftRadius": "9999px",
+      "paddingTop": "2px",
+      "paddingRight": "2px",
+      "paddingBottom": "2px",
+      "paddingLeft": "2px",
+      "outlineWidth": "3px",
+      "outlineStyle": "solid",
+      "outlineColor": "rgba(0, 0, 0, 0)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 39
+    }
+  }
+}

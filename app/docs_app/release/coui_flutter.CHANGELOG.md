@@ -1,0 +1,1 @@
+../../../packages/coui_flutter/CHANGELOG.md

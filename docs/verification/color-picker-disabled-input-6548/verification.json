@@ -1,0 +1,224 @@
+{
+  "issue": 6548,
+  "PR": 6550,
+  "testedSource": "3c040112f312e84268f1984f5d1cdddf4dc9bb82",
+  "firstProductCommit": "5e6af2f6f4",
+  "mainIntegrated": "c08cbc7289dd850a7748c683f55f49b829bb2512",
+  "originalBase": "57e30c22ac7a02a0914eeb2f9c942cb85d44471a",
+  "sourceFiles": {
+    "packages/coui_web/lib/src/components/form/color_picker/color_picker.dart": "b5902e05d977f0be5bc79689f2da0514ee327945c0aff759b6ab075d1f4ad24f",
+    "packages/coui_web/test/browser/fixtures/color_picker_disabled_probe.dart": "6b385037f4470eee22fbd24719ca964bb95a85d7523848ea8e4eb4c735c7903f",
+    "packages/coui_web/test/browser/fixtures/color_picker_disabled_probe.client.dart": "d47c71e40d83074c4d66424f8f4cd38864c516d3387177bb6ebf3fbb437decc6",
+    "tool/parity/test/web/color_picker_disabled_test.dart": "d285c47418a7095584d34bf1ab5a2b7f345e64711e9050f3c9a4debdadbcff4e",
+    "packages/coui_flutter/test/components/form/color_picker_disabled_keyboard_test.dart": "09ec0f36b9aec1c39dddf51cacb0dcd81335cb6185ce8d736ed5eccee839f246",
+    "packages/coui_flutter/lib/src/components/form/color_picker/color_picker.dart": "6a6e011b0b8ae78a283d54742d3258afeaa96127d24d8035bc23e7cde0858b42",
+    "packages/coui_web/CHANGELOG.md": "24f63744e2e1c4e65e5ecaaa9a67e337d5c32e2f6860c2d2901e2b7b3e172abe",
+    "packages/coui_flutter/CHANGELOG.md": "f6df6ec6f0883ceb4e88c4ccb16a32f0505f0870ba536d44f16d7fbcb6e7088f"
+  },
+  "authority": [
+    "docs_core/content/components/color-picker.md:395",
+    "existing composed ToggleGroup/Clickable/Button enabled contracts"
+  ],
+  "publicAPICoreResolverStyleDefaultDependencyChanges": 0,
+  "newPaintValues": 0,
+  "baselineProbeNormalizerCriterionChanges": 0,
+  "originalNegatives": {
+    "Web": "disabled light/dark keyboard tests fail, controlled EyeDropper host only",
+    "Native": "enabled positive1PASS / disabled1FAIL, real FocusNode+Enter mode/recent action"
+  },
+  "functionalPass": {
+    "NativeNew": 5,
+    "NativeExisting": 20,
+    "WebNew": 4,
+    "WebExistingCapability": 5,
+    "CoreExisting": 20,
+    "WebExisting": 20,
+    "total": 74,
+    "WebExistingRecovery": "19 passed in original run; one browser-path environment timeout retained, then exact one-test recovery passes"
+  },
+  "changedDartFatalFormatFiles": 6,
+  "freshCanonical": {
+    "keys": 6,
+    "platformCaptures": 12,
+    "NativeReuse": 0,
+    "WebReuse": 0,
+    "variants": [
+      "default",
+      "inline",
+      "chain"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "surfaceStyle": "defaultStyle"
+  },
+  "reports": {
+    "regression": {
+      "actualExit": 0,
+      "counts": {
+        "pass": 6,
+        "fail": 0,
+        "infra": 0,
+        "skipped": 0
+      },
+      "actualSeconds": 5.886899042,
+      "baseline": "Git57e 24 blobs and unchanged allowlist"
+    },
+    "pixel": {
+      "actualExit": 1,
+      "counts": {
+        "pass": 4,
+        "fail": 2,
+        "infra": 0,
+        "skipped": 0
+      },
+      "actualSeconds": 5.501206000000001,
+      "baseline": "fresh Native/Web parity"
+    },
+    "property": {
+      "actualExit": 1,
+      "counts": {
+        "pass": 4,
+        "fail": 2,
+        "infra": 0,
+        "skipped": 0
+      },
+      "actualSeconds": 5.471259333999999,
+      "baseline": "fresh Native/Web parity"
+    }
+  },
+  "beforeAfterControl": {
+    "originalFullSource": "6882d1d41c872b6285b5f12d169b5c3d9b21f59a",
+    "all12PNGByteExact": true,
+    "Native6JSONByteExact": true,
+    "Web4JSONByteExact": true,
+    "Web2JSONChangedPaths": [
+      "/captureContext/text"
+    ],
+    "separateFromCommittedBaseline": true
+  },
+  "docs": {
+    "actualExit": 0,
+    "actualSeconds": 133.389608958,
+    "routes": 361,
+    "SSRHTML": 363,
+    "FlutterHTML": 2,
+    "totalBuildHTML": 365,
+    "trackedFilesExactBeforeAfter": 24981,
+    "retainedRepresentativeHTML": 3,
+    "regeneratedOutputFilesReclaimed": 5046,
+    "directProjectPubGetCommands": 0,
+    "automaticFlutterPubPreflight": true,
+    "internalSolverDownloadCountsMeasured": false,
+    "packageTuplesAndAllEdges": 232,
+    "packageConfigRawBytesChanged": true,
+    "packageGraphAndLockByteExact": true
+  },
+  "reload": {
+    "kind": "actual owned headless Flutter tester app; standard app.restart fullRestart:false",
+    "actualSuccess": true,
+    "librariesReloaded": 0,
+    "actualMilliseconds": 80,
+    "frames": [
+      "272x549",
+      "272x549"
+    ],
+    "sourceChangedBetweenFrames": false,
+    "ownedProcessGroupAndPortClosed": true,
+    "ownRuntimePackageProxy": "one owned coui_flutter root rebound to task project with same source lib symlink and byte-exact pubspec; other231 roots unchanged"
+  },
+  "limits": [
+    "Native VM EyeDropper capability is false; no actual OS sampling or Native pending OS result test",
+    "Web pending-host cases use a controlled stub, not physical OS sampling",
+    "Cross-platform inline geometry and normalized padding differences remain; no forced alignment",
+    "No new full-main sweep after this scoped change; last full source6882 was pixel606PASS/228FAIL of834",
+    "Original failures, setup mistakes and environment recoveries retained; generated build/cache/profile artifacts reclaimed"
+  ],
+  "artifacts": [
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Root/integrated-source-freeze.json",
+      "sha256": "04909a0829448210b9c0f50d919f98b904c14137dbf6325d07484116d74102a4"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Web/web-freeze.json",
+      "sha256": "d652307be3acb8bca9f4a4aeb2183e9b162fd06fd714ca07f6bf1c59c614f656"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Native/after-functional3-exit.json",
+      "sha256": "60f79db789536fd59473e04692d9c24618a60224dd1961adb5eb6497d975269d"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Native/checks2-exit.json",
+      "sha256": "220fcfbafd1a7ffabfe45c588f14e5b76023481ca1a6e8ce4a3028cefdcb461c"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Review/current-public-surface-proof.json",
+      "sha256": "9a66fd15db290f279e0ea8308b6222db4e5e7f2992c2250ad217f670a171afa0"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Review/web-final-binding.json",
+      "sha256": "d5bf76237516b9113a22a1f3052adfc8c494bd434acf6ddcccd67d1d4b72a8df"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Review/native-final-binding.json",
+      "sha256": "9c8d7ca6d894985b8d29fe6a10159d77e105fbaa7d4e0c042f622445480bf81e"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Review/canonical-reports-binding.json",
+      "sha256": "9186fb4762b976cf596017df8fdcf0e9eb557dd4712fd39297ac722f58726411"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Root/canonical-reports/inputs.json",
+      "sha256": "5feec3af62a46247a2054a18fa45e309359cfd484af89e16327bc497f357eee8"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Root/canonical-reports/exits.json",
+      "sha256": "13b906ae97f156d632862e0cc977eb52f287ae1a8253857d68c26a0480b5412d"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Root/canonical-reports/regression-report.json",
+      "sha256": "7583201f7edd403a050e4d266e530e20b8451d8b35fb9c3fb82f508c8c70049a"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Root/canonical-reports/pixel-report.json",
+      "sha256": "01fa49b54aa7ebf0f93381bccc2997c9b3ac348db9973754b88ac80cda1e695e"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Root/canonical-reports/property-report.json",
+      "sha256": "74115d2c92178a379a7c1cdbd3b595a3b18ae22f672f2d9fb5e805b3a0946c06"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Root/native-before-after-control.json",
+      "sha256": "ce98cbff0153e818ca3575c49ac27228ac712d65951c667003a975db5c93de94"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Root/web-before-after-control.json",
+      "sha256": "ff88dbe8e150f969087b59085d459b244a1c5b1990c217dea8e0b0ad858a907f"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Web/web-execution-complete.json",
+      "sha256": "19c4a535d9af8fc9a30e79b4db438a0f180cd7dd7631ce667c8ab76c8eecc8af"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Web/docs/output-retention.json",
+      "sha256": "4e22b310fc877043361ba13b7e1f2e637e9d0c5b687878b4cdc795efe2981260"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Native/owned-reload-attempt4/native-cli-proof.json",
+      "sha256": "dae50f03c332d8ef32ae6ca035b6a1a0e08c4656c66870481f6f7e8c4ae5ecd2"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Native/owned-reload-attempt4/reload-jobbox-exit.json",
+      "sha256": "6dc8fa480914167774ab67a166f62ea277bf29a00c29405db3bc226d89ad1009"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Root/selected-images8.json",
+      "sha256": "18819489e6c844348288bc828f4ffe477b59ac5617eb850429509ec51376cf2a"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-6548-disabled-keyboard-k7t7yqjs/evidence/Root/uploaded-images8.json",
+      "sha256": "8aa2e7a296326ffc6f4f5357b566ca79a588a9e32adac55455b79689b734ffc4"
+    }
+  ]
+}

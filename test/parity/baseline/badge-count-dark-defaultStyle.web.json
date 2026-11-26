@@ -1,0 +1,81 @@
+{
+  "key": "badge-count-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "3\n              12\n              8\n              99+",
+    "layout": {
+      "width": 131,
+      "height": 20,
+      "direction": "row",
+      "innerPaddingLeft": "6px",
+      "innerPaddingRight": "6px",
+      "children": [
+        {
+          "x": 0,
+          "y": 1,
+          "width": 18.84375,
+          "height": 18
+        },
+        {
+          "x": 30.84375,
+          "y": 1,
+          "width": 23.46875,
+          "height": 18
+        },
+        {
+          "x": 66.3125,
+          "y": 0,
+          "width": 20,
+          "height": 20
+        },
+        {
+          "x": 98.3125,
+          "y": 0,
+          "width": 32.6875,
+          "height": 20
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "11px",
+      "lineHeight": "15px",
+      "letterSpacing": "-0.11px",
+      "color": "rgb(1, 33, 68)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 131,
+      "heightPx": 20
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "key": "swipe-actions-default-dark-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "주간 보고서\n                    \n                    이번 주 진행 상황을 정리했어요\n                  \n                  \n                  \n                    \n                      \n                        \n                      \n                    \n                  \n                \n              \n              \n                \n                  \n                    \n                      \n                    \n                    \n                    삭제\n                  \n                  \n                    \n                      \n                        #co-button-9d7drx:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 3%, rgb(var(--coui-secondary-container) / 100%)) !important;}#co-button-9d7drx:active{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 12%, rgb(var(--coui-secondary-container) / 100%)) !important;}\n                      \n                      \n                    \n                    \n                    보관",
+    "layout": {
+      "width": 220.90625,
+      "height": 43,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 220.90625,
+          "height": 43
+        },
+        {
+          "x": 220.90625,
+          "y": 0,
+          "width": 0,
+          "height": 43
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "15px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 220.90625,
+      "heightPx": 43
+    }
+  }
+}

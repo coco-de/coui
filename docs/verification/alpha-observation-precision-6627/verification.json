@@ -1,0 +1,237 @@
+{
+  "issue": 6627,
+  "sourceCodeCommit": "a9a11b1a71251b2923130fe240e33f6dfae49cd3",
+  "executionBase": "b75eb12480f516ce2c46978ecefbbcb231c1a281 + exact frozen patch",
+  "source7SHA256": {
+    "packages/coui_flutter/test/parity/flutter_property_snapshot.dart": "c5e8603484102cb8cb58a175bbff67cbdb3f59ced1b0de9a02d8c954f0f2ff29",
+    "tool/parity/src/diff/property_diff.dart": "3883fe99951f0e88e06665281825af0dcf9f80210ae655fd1c1938d2b0490d27",
+    "tool/parity/src/normalize/flutter_property_normalizer.dart": "943e8d0a47af011c89ea5bdbd5758b651b16be0b493c3af91d02d043debc0510",
+    "tool/parity/src/model/property_snapshot.dart": "f05c19311cc080657b96c1e1f69bff2f0e02e2ef1d1107f8345cbf53fcffcf71",
+    "tool/parity/test/diff/property_diff_test.dart": "0fe4a3e9ab161af38ee411008a7a878997e4586c538af44492e1e155b8942277",
+    "packages/coui_flutter/test/parity/flutter_alpha_observation_test.dart": "16598a2466412a49d93bd985154b046c1b89e713c515b2b7beaeee5e755990b4",
+    "tool/parity/test/diff/alpha_precision_test.dart": "235813f3d7cce265c3c382c78721ceb300595931a7b041e452ab6e6bd9b8c995"
+  },
+  "scope": "Test-side typed-alpha observation and pure property-comparison precision; production/Core/API/default/render0",
+  "intentionalMeasurementChanges": {
+    "NativeTypedAlpha": "ARGB8 discarded precision -> actual Color.a with existing round3",
+    "alphaTolerance": {
+      "before": 0.0035,
+      "after": 0.0005,
+      "basis": "Original half of existing shared decimal step.001; deliberate strengthening"
+    },
+    "RGBSchemaAndRawJsonCoercionChange": false,
+    "intervalOrSourceGuess": false
+  },
+  "unchanged": {
+    "pixelChannelThreshold": 32,
+    "parityRatio": 0.05,
+    "regressionRatio": 0.001,
+    "pxTolerance": 0.5,
+    "capturedPngProfilesBaselinesAllowlist": true,
+    "productionCoUI": true
+  },
+  "results": {
+    "nativeSame8": {
+      "originalPass": 6,
+      "originalFail": 2,
+      "candidatePass": 8,
+      "sameFixtureSHA256": "66047b2601a348639705f50884d379ef1cdb832212acb195febf0cf62a01cf37",
+      "twoAssertionsFailed": "text/fill; border/shadow raw loss also observed, candidate reaches all4 slots"
+    },
+    "initialCurrent27": {
+      "original": [
+        12,
+        15
+      ],
+      "candidate": [
+        26,
+        1
+      ],
+      "retained": true
+    },
+    "refinedCurrent27": {
+      "original": [
+        11,
+        16
+      ],
+      "candidate": [
+        27,
+        0
+      ],
+      "repoPort": [
+        27,
+        0
+      ],
+      "sameFixtureSHA256": "3de3f100be6b7a581b4c9a031abdedc2069c344a0d3c828e77d91739237ef849",
+      "refinement": "One inherited.024/.025 compatible expectation true->false under actual normalized-value contract; numerical inputs and allother assertions unchanged"
+    },
+    "legacy21": {
+      "sha256": "da29e1e92694683630a96ac91d084fc47bfa2cf5b3d9f5e7ac27e5f9e92ed272",
+      "classification": "Old A8 uncertainty diagnostic, unchanged; no currentcollector interpretation"
+    },
+    "pureRelatedAssertionsPass": 130,
+    "nativeRelated": {
+      "firstCommand": {
+        "pass": 33,
+        "actualExit": 1,
+        "loadError": "Missing unchanged helpers/test_app.dart in owned shadow",
+        "wholeGreenSummaryWithdrawn": true
+      },
+      "omittedBindingOnly": {
+        "pass": 2,
+        "actualExit": 0,
+        "loadErrors": 0
+      },
+      "logicalScope": "Port8+related27 across two commands; not a single35/exit0 run. External8 duplicates port8."
+    },
+    "fatalFormat": "Five initialpure files had1commentINFO, then changedcomment1fatal0 with other4hashes exact; Native2fatal0; refinedrepo1/external1finalfatal0. Format7 plus finalchangedtests checks0."
+  },
+  "metadata": {
+    ".dart_tool/package_config.json": "3e44bacfd156a1616a3fba0e23898ce2e3ba31765a64c23d95ea950b47ede078",
+    ".dart_tool/package_graph.json": "62e2f660818cde11191a43559063b2ca1fd6283a4ad090487b3c201d871032c1",
+    "pubspec.lock": "41866c70f556da2de00cf26ccd7997db6925bc36f9f33b1e9244d4333ea307b3"
+  },
+  "metadata232BeforeAfterExact": true,
+  "nativeHelperReload": {
+    "proof": "owned-native-reload/attempt1/resident-reload-proof.json",
+    "code": 0,
+    "libraries": 2,
+    "seconds": 6.4056835419999985,
+    "sameStateRenderIdentitySizeRawAAndRGB": true,
+    "snapshotFourAlpha": [
+      0.302,
+      0.3
+    ],
+    "source7Unchanged": true,
+    "scope": "Real owned Flutter flutter-tester debug host reloading test-side helper, not production feature change"
+  },
+  "comparatorReload": {
+    "proof": "evidence/Root/alpha-comparator-resident-attempt3/proof-index.json",
+    "success": true,
+    "libraries": 2,
+    "seconds": 0.334473667,
+    "samePIDStateInputs": true,
+    "genuineDifferenceTransitions": "Three PASS->FAIL",
+    "controls": "Samealpha/noise/padding PASS->PASS",
+    "observerImportedConst": [
+      0.0035,
+      0.0035
+    ],
+    "limitation": "No observerconst refresh claim. Actual functionoutcomes and immutable sourcecriterion establish behavior. Earlier2harnessassert failures preserved."
+  },
+  "limits": [
+    "No fullhistorical566 rejudgement or new capture/component improvement credit",
+    "Old JSON lostfloat alpha not recoverable by value shape; never relabelled new observations",
+    "No browser/UI-site build",
+    "Separate production CoreTextStyle conversion remains another issue",
+    "Initial runnerpath/fixturelint/assets failures and Native loaderror are retained; no productfailure relabel",
+    "All verification ran before sourcecommit; source hashes, not a fresh-commit run, bind results"
+  ],
+  "evidenceRoot": "weever-alpha-contract-6627-20261124.l83j2cxd",
+  "proofs": [
+    {
+      "artifact": "metadata/ready.json",
+      "sha256": "768f86786fb59ec7ec9c99f0395e05583a3a761a4afd7d88e26a7ffb0b68e269"
+    },
+    {
+      "artifact": "original-final-handoff.json",
+      "sha256": "8411386f515effc9589ba4830e933657ee04367b13e007fe50aeae2e4f5928de"
+    },
+    {
+      "artifact": "design/loss-first-priority-addendum.json",
+      "sha256": "d7e24f383787d512cb50fd2a57a28825ce93e4c54248ef870072d7cdc6a8b0e5"
+    },
+    {
+      "artifact": "native-original/final-handoff.json",
+      "sha256": "01654944defd9b79d7105dbeabfe41a7a7f6200130fd0313ccfb99a248a8f05f"
+    },
+    {
+      "artifact": "native-original/artifact-index.json",
+      "sha256": "4462ae6e3d81c0f389bb66f9939b39e39fa5367cf3f7e652c0930456110fbda3"
+    },
+    {
+      "artifact": "current-original/attempt3/original-counts.json",
+      "sha256": "66dd4f90a18727c880c5c3a0301a8a2831c508ab8e58bd6a8db9002fe1b1bc21"
+    },
+    {
+      "artifact": "current-original/attempt3/fixture-freeze.json",
+      "sha256": "17e5eefb1e053c13b44a2bf030e871c15b04928a1bd2ff33f302de0bc4801f6c"
+    },
+    {
+      "artifact": "candidate-attempt2/same-native8-counts.json",
+      "sha256": "d16287fb949150b2c14c6f8274f292035c40384a5660d3d3e9dff0795556ba6b"
+    },
+    {
+      "artifact": "candidate-attempt2/repo-current27-and-existing-counts.json",
+      "sha256": "ab9aaf163fd2c2faa3831ed1c4430de28a732a1a9f60d30de2beb325b11af73c"
+    },
+    {
+      "artifact": "candidate-attempt2/repo-native8-and-existing-exit.json",
+      "sha256": "99436222699c18c5b6fc5c1899c81079769926d8b88554331ba164b9a2d3f742"
+    },
+    {
+      "artifact": "candidate-attempt2/overall-status-clarification.json",
+      "sha256": "52983de925e784f4b0070c5a22514b4e601dcc4567d0d7dd93c505bc4d2214f1"
+    },
+    {
+      "artifact": "omitted-binding/source-before.json",
+      "sha256": "a0f5cc26e5cfff501c193ecd71b625e28273668c6108557da0ef6560b031d15a"
+    },
+    {
+      "artifact": "omitted-binding/exit.json",
+      "sha256": "ef1e057f0c09d007b09b92d8c4f71e898172b715dedee904adbc88481861a1e6"
+    },
+    {
+      "artifact": "omitted-binding/counts.json",
+      "sha256": "f0151b48eb1e7c18d3364f52e081dde348268a11e39672eef4db490a96278e6b"
+    },
+    {
+      "artifact": "candidate-refined/refinement-addendum.json",
+      "sha256": "c8fa8f981e2dfd1c47213a2b71fc9f0b6b80cc3613aeab2c8d0a4926815c371c"
+    },
+    {
+      "artifact": "candidate-refined/source-freeze.json",
+      "sha256": "ad09f63c01acb53bd42534d8282bb2f255d7c858898f78bd50cc4f532e6ed9d9"
+    },
+    {
+      "artifact": "candidate-refined/original-refined27-counts.json",
+      "sha256": "b7d0c35eb48ab0c73947ea8de3843477fe562840c740d1688cae11f50d4b8715"
+    },
+    {
+      "artifact": "candidate-refined/candidate-refined27-counts.json",
+      "sha256": "426f916b21d9c546667a9feee62409437527ef935b934b5a8128016101fd9621"
+    },
+    {
+      "artifact": "candidate-refined/repo-refined27-counts.json",
+      "sha256": "426f916b21d9c546667a9feee62409437527ef935b934b5a8128016101fd9621"
+    },
+    {
+      "artifact": "candidate-refined/source-after.json",
+      "sha256": "7e606c0898343ec86c92a55a0a9ef0c066138638fbdc806e39066c1e5ca07867"
+    },
+    {
+      "artifact": "owned-native-reload/attempt1/resident-reload-proof.json",
+      "sha256": "1973bb716f31e6f5eb6158093c5f07ffd650c9c125da6af905fff25c02fe2cf8"
+    },
+    {
+      "artifact": "owned-native-reload/attempt1/native-pid-postcheck.json",
+      "sha256": "efa7615e827a12d3ff396e956c8107a197f0b0b78089cee3a5443b1c89e091ac"
+    },
+    {
+      "artifact": "owned-native-reload/attempt1/external-check-exits.json",
+      "sha256": "458a286c4cee9b66021acfd5bb9936c664a56340b587eeb084fd66500ba95457"
+    },
+    {
+      "artifact": "evidence/Root/alpha-comparator-resident-attempt3/proof-index.json",
+      "sha256": "e9a89c0368c1e9b4e59cca928d08a0b87e9787db2c2c0d0a4d9a7dd18acf778f"
+    },
+    {
+      "artifact": "implementation/source-commit.json",
+      "sha256": "c90a85e2e5f0249064feae02b4f8a6d551467cc9a1485d5cc08966e9be8656a5"
+    },
+    {
+      "artifact": "Review/alpha-candidate-followup-peer.json",
+      "sha256": "5676a64d3c2dd6bc2357971d34b46bfeab20052a160133f5034e6d1cb489bce2"
+    }
+  ]
+}

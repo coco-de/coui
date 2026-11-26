@@ -1,0 +1,698 @@
+{
+  "issue": 6448,
+  "parent": 6131,
+  "base": "64dd884831f12ee4d39aef9be3263481e94b168e",
+  "verifiedProductCommit": "cbc478159a9b94f9fb8cc7ad00d105fef8ef2a58",
+  "productionOnly": "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart",
+  "productSha256": "a65dda012478351d578e77aa0772442be0accb5758d3afdc5669ed396d360e7a",
+  "proofRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96",
+  "focusTests": 102,
+  "initialNewRegressionFailures": 9,
+  "api": {
+    "existingSignaturesAndConstUnchanged": true,
+    "defaultExportClosure": 361,
+    "conditionalUnionExportClosure": 365,
+    "tabsStyleInEitherClosure": false,
+    "unchangedScopes": {
+      "packages/coui_core": true,
+      "packages/coui_flutter": true,
+      "packages/coui_web/lib/src/util/core_to_css.dart": true,
+      "packages/coui_web/lib/src/base/theme_config.dart": true,
+      "packages/coui_web/lib/src/components/navigation/tabs/tabs.dart": true,
+      "packages/coui_web/lib/coui_web.dart": true,
+      "pubspec.lock": true
+    }
+  },
+  "packageCount": 232,
+  "environment": {
+    "packageCount": 232,
+    "sameNamesAsKnown232": true,
+    "added": [],
+    "removed": [],
+    "rootLockSha256": "3503684b485aa82c20d5aae09870e92c44a1b5d579173114470266f34187be82",
+    "rootLockSameAsBase": true,
+    "bootstrapExit": 1,
+    "bootstrapScopeNote": "Workspace dependency config generated; aggregate lock enforcement failed only at separate example without an existing lock. Tests use generated locked workspace config."
+  },
+  "foundation": {
+    "productCommit": "cbc478159a9b94f9fb8cc7ad00d105fef8ef2a58",
+    "baseCommit": "64dd884831f12ee4d39aef9be3263481e94b168e",
+    "scripts": {
+      "shared_inputs.dart": "f42392530ee05cd58a3faec7ab48f1e7062a6f2a88146dd549d2577e4a07115e",
+      "web_fixture.dart": "d9454e0e78bc54c240bc44ef1537fe8f233d337d957c7267719861e81c66590b",
+      "render_web.dart": "44b81c1bf512931cc2021772c16067270198642a9d595a937367b45ea22f2396",
+      "probe.client.dart": "8599198b005220850d25d5ac2fdbea6fa783d6a32f6c7e13846154de98eb4081",
+      "capture_web.dart": "28ddbe289ee0a637da150f4ef73dd8a8e7dbc878de684d4048af9ec8ed8bad61",
+      "native_probe_test.dart": "9714d20baf59ff3670129ee3c6a7ab9ea51c081d9618fe3c04d6bc9d9f80669b",
+      "browser_motion.dart": "57ecf8d1dc0e8714a4d81a4c12f05d2afa8e444a0fd5519afcb9f5cee5e3fb33",
+      "native_motion_test.dart": "6dc3d12dfd9762b4408d2d3de7c87e8732d1d26201b500e297fca8ee863d7785",
+      "run_reload.py": "e8de857fb7cce62ba6d75efe67a09b6e9e552f7d0f7283254362bfc9db4c0d67",
+      "owned_ssr.dart": "cc77bf0dd531c72e4b39dcd20af3d59cfd9c87ca3d66117367bd257c65c9b842",
+      "reload_owned.dart": "2837b2c75a03ce63a2aa75f52dc4a5155a3c1293f5f67f12dc4366c322db72f2",
+      "before-package-config.json": "8ad55e5f741ac80a4fd33a297e4840bc4cba7a6a2b1c434c196eea1257cb25ca"
+    },
+    "foundation": "Literal official _BuildContextlessWrapper: Style(styles:docsContentTheme().styles) + CoUIWeb(theme:ThemeData.coui); no target CSS. Font/icon helpers + official animationFreezeCss used for endpoint capture only. Natural motion CSS unfrozen.",
+    "sharedColorSource": "Fixture-only CoreSchemeSource delegates Coui source and states exact semantic caller RGB/alpha in one source. ThemeConfig.from(source) Web stylesheet and Native ThemeData colorScheme consume the same light/dark schemes.",
+    "browserExecutable": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6131-native-refresh-20261119.f5b91re7/worktree/.dart_tool/puppeteer/local-chrome/150.0.7871.24/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+    "browserVersion": "Chrome/150.0.7871.24",
+    "initialPhase": "initial-theme-data-only/ preserves original scripts/output with BOTH-before/after brand CSS source mismatch; excluded from corrected evidence."
+  },
+  "checks": {
+    "focused-final-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "test",
+        "test/components/navigation/tabs_token_state_layer_test.dart",
+        "test/components/navigation/tabs_state_layer_test.dart",
+        "test/components/navigation/tabs_test.dart",
+        "test/components/navigation/tabs_close_test.dart",
+        "test/components/navigation/tabs_scrollable_test.dart",
+        "test/base/roving_focus_test.dart",
+        "--reporter=expanded"
+      ],
+      "exit": 0,
+      "seconds": 1.7560920715332031
+    },
+    "fatal-infos-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart",
+        "packages/coui_web/test/components/navigation/tabs_state_layer_test.dart",
+        "packages/coui_web/test/components/navigation/tabs_token_state_layer_test.dart",
+        "packages/coui_web/test/components/navigation/tabs_test.dart",
+        "packages/coui_web/test/components/navigation/tabs_close_test.dart"
+      ],
+      "exit": 0,
+      "seconds": 26.20913314819336
+    },
+    "fatal-test-final-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/coui_web/test/components/navigation/tabs_token_state_layer_test.dart"
+      ],
+      "exit": 0,
+      "seconds": 25.44742226600647
+    },
+    "format-final-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart",
+        "packages/coui_web/test/components/navigation/tabs_state_layer_test.dart",
+        "packages/coui_web/test/components/navigation/tabs_token_state_layer_test.dart",
+        "packages/coui_web/test/components/navigation/tabs_test.dart",
+        "packages/coui_web/test/components/navigation/tabs_close_test.dart"
+      ],
+      "exit": 0,
+      "seconds": 0.26253795623779297
+    },
+    "guard-exit.json": {
+      "argv": [
+        "bash",
+        "scripts/guards/resolver/verify_contracts.sh"
+      ],
+      "exit": 0,
+      "seconds": 79.93480396270752
+    },
+    "ssr-before-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/before-package-config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/render_web.dart",
+        "before"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+      "exit": 0,
+      "seconds": 5.48639702796936
+    },
+    "ssr-after-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/render_web.dart",
+        "after"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+      "exit": 0,
+      "seconds": 5.489572048187256
+    },
+    "browser-current-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/capture_web.dart"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+      "exit": 0,
+      "seconds": 39.90987205505371
+    },
+    "native-current-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/native_probe_test.dart",
+        "--reporter=expanded"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/packages/coui_flutter",
+      "exit": 0,
+      "seconds": 5.488108158111572
+    },
+    "roving4-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "test",
+        "tool/parity/test/web/roving_owner_probe_test.dart",
+        "--reporter",
+        "expanded"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+      "evidence": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/roving-browser",
+      "packageConfig": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/.dart_tool/package_config.json",
+      "browser": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6131-native-refresh-20261119.f5b91re7/worktree/.dart_tool/puppeteer/local-chrome/150.0.7871.24/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+      "exit": 0,
+      "seconds": 8.42440414428711
+    },
+    "browser-motion-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/browser_motion.dart"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+      "exit": 0,
+      "seconds": 107.73029804229736
+    },
+    "native-motion-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/native_motion_test.dart",
+        "--reporter=expanded"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/packages/coui_flutter",
+      "exit": 0,
+      "seconds": 5.533757925033569
+    },
+    "reload-exit.json": {
+      "argv": [
+        "python3",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/run_reload.py"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+      "exit": 0,
+      "seconds": 5.59994912147522
+    },
+    "api-existing-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/internal_api_surface.dart",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/preimage/tabs_style.dart",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+      "exit": 0,
+      "seconds": 4.530884742736816
+    },
+    "api-widget-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/class_api_surface.dart",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/preimage/tabs.dart",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/packages/coui_web/lib/src/components/navigation/tabs/tabs.dart"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+      "exit": 0,
+      "seconds": 4.535243988037109
+    },
+    "raw-before-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/before-package-config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/render_raw.dart",
+        "before"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+      "exit": 0,
+      "seconds": 5.433183908462524
+    },
+    "raw-after-exit.json": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/render_raw.dart",
+        "after"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+      "exit": 0,
+      "seconds": 5.4321160316467285
+    }
+  },
+  "docsBuild": {
+    "argv": [
+      "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+      "--packages=/tmp/weever-6345-optimized-20261117/cli-tool/.dart_tool/package_config.json",
+      "/Users/minhyeok/.pub-cache/hosted/pub.dev/jaspr_cli-0.24.0-beta.1/bin/jaspr.dart",
+      "build",
+      "--optimize=2",
+      "--port=50118"
+    ],
+    "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/docs_site",
+    "sourceHead": "cbc478159a9b94f9fb8cc7ad00d105fef8ef2a58",
+    "port": 50118,
+    "started": 1795035151.9798012,
+    "pid": 91690,
+    "exit": 0,
+    "remainingOwnedGroupTerminated": false,
+    "groupClosed": true,
+    "finished": 1795035254.404361,
+    "trackedCount": 22573,
+    "trackedDeltas": [],
+    "headAfter": "cbc478159a9b94f9fb8cc7ad00d105fef8ef2a58",
+    "statusAfter": ""
+  },
+  "endpointPaint": {
+    "before": {
+      "rows": 279,
+      "errors": [],
+      "externalRequests": [],
+      "version": "Chrome/150.0.7871.24",
+      "pngSamples": 75,
+      "exact": 32,
+      "maxDelta": 165
+    },
+    "after": {
+      "rows": 279,
+      "errors": [],
+      "externalRequests": [],
+      "version": "Chrome/150.0.7871.24",
+      "pngSamples": 75,
+      "exact": 46,
+      "maxDelta": 32
+    },
+    "hydrated": {
+      "rows": 279,
+      "errors": [],
+      "externalRequests": [],
+      "version": "Chrome/150.0.7871.24",
+      "pngSamples": 75,
+      "exact": 46,
+      "maxDelta": 32
+    }
+  },
+  "steadyInvariants": {
+    "restRowsExact": 279,
+    "disabledStateChecksExact": 303,
+    "mixedStateChecksExact": 108,
+    "hydrationPaintStateChecksExact": 837,
+    "hydratedPngByteEqual": 75,
+    "restPngBeforeAfterByteEqual": 25,
+    "rawMixedIsolatedSerializedThemesByteEqual": 5,
+    "literalOwnerMappingRetained": "invariants.json",
+    "scopeComparisonNote": "Private owner identities differ across SSR request/browser lifetimes; only the owner class is excluded when comparing paint classes. Unique owners and roving4 separately verified."
+  },
+  "motion": {
+    "source": "cbc478159a9b94f9fb8cc7ad00d105fef8ef2a58",
+    "version": "Chrome/150.0.7871.24",
+    "rows": 96,
+    "events": {
+      "natural-before": 192,
+      "natural-after": 192
+    },
+    "timeouts": [],
+    "changingEvents": {
+      "natural-before": 96,
+      "natural-after": 112
+    },
+    "computedCurves": {
+      "natural-before": [
+        "cubic-bezier(0.42, 0, 0.58, 1)",
+        "cubic-bezier(0.4, 0, 0.2, 1)"
+      ],
+      "natural-after": [
+        "cubic-bezier(0.42, 0, 0.58, 1)",
+        "cubic-bezier(0.4, 0, 0.2, 1)"
+      ]
+    },
+    "computedDurations": {
+      "('natural-before', 100)": [
+        "0.1s"
+      ],
+      "('natural-before', 0)": [
+        "0s"
+      ],
+      "('natural-before', 250)": [
+        "0.25s"
+      ],
+      "('natural-after', 100)": [
+        "0.1s"
+      ],
+      "('natural-after', 0)": [
+        "0s"
+      ],
+      "('natural-after', 250)": [
+        "0.25s"
+      ]
+    },
+    "hoveredHydration": [
+      {
+        "phase": "natural-before",
+        "theme": "light",
+        "frames": 17,
+        "notHovered": 1,
+        "differentNode": 0
+      },
+      {
+        "phase": "natural-before",
+        "theme": "dark",
+        "frames": 17,
+        "notHovered": 1,
+        "differentNode": 0
+      },
+      {
+        "phase": "natural-after",
+        "theme": "light",
+        "frames": 16,
+        "notHovered": 1,
+        "differentNode": 0
+      },
+      {
+        "phase": "natural-after",
+        "theme": "dark",
+        "frames": 17,
+        "notHovered": 1,
+        "differentNode": 0
+      }
+    ],
+    "errors": [],
+    "externalRequests": [],
+    "nativeActualRows": 48,
+    "nativeActualTransitions": 192,
+    "nativeAllEndsReachTargets": true,
+    "boundary": "Standard browser CSS Oklab/premultiplied interpolation differs from Native Color.lerp intermediate RGBA. No complete Native interpolation parity claim."
+  },
+  "boundaries": [
+    "Existing Web token alpha truncation preserved; fractional and tiny weights can differ from Native by2 sampled channel units. Tiny weights normalize to0%; no token ink contribution. color-mix0 of alpha base can serialize rgba.5 as alpha.501961, with1-unit raster/pressed transform difference.",
+    "Preexisting semantic token RGB model loses source palette alpha in BOTH versions; accepted diagnostic palette-alpha max32 remains. The emitted semantic declarations are byte-equivalent before/after.",
+    "Standard CSS Oklab/premultiplied color interpolation differs materially from Native Color.lerp intermediates; no exact midpoint RGBA claim.",
+    "Hovered hydration has1 notHovered frame in EACH old/new light/dark control, node replacement0.",
+    "Arbitrary selectors targeting private face markup remain subject to ordinary CSS cascade.",
+    "No full816/global sweep, official40 own-baseline VRT, full manual CI, deployment/Figma or designer approval claim."
+  ],
+  "selectedOriginalEvidence": [
+    {
+      "label": "Native selected token hover",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/native-with-fonts/pill-custom-token-light-hover.png",
+      "sha256": "7dd0abe8a9377510c0b9d9dffb2a7a053ac063800d8894e2fe7a3998f9f6b7ee"
+    },
+    {
+      "label": "Before selected token hover",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/before/pill-custom-token-light-hover.png",
+      "sha256": "95235c6472b3b040c38b37ebe2250f6a87c274232f31b6d46039e502e56b3a1d"
+    },
+    {
+      "label": "After selected token hover",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/after/pill-custom-token-light-hover.png",
+      "sha256": "ce32f2db7213608e7690465cbcfcee24791f775e971cbc102e865d3a6bdedcc1"
+    },
+    {
+      "label": "Native raw alpha indicator pressed",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/native-with-fonts/pill-token-alpha-indicator-dark-pressed.png",
+      "sha256": "5385d1f20c46baca4f1a276691eb98635dac561fae9395d01bca6f8562e2a0a9"
+    },
+    {
+      "label": "After raw alpha indicator pressed",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/after/pill-token-alpha-indicator-dark-pressed.png",
+      "sha256": "a227b7dc3be469875cea64c7f93d0e886d87a55669aa48c9440be6b30672ad96"
+    },
+    {
+      "label": "Native natural250ms hover mid125ms",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/native-motion/pill-duration-custom-light-hover-mid.png",
+      "sha256": "a4085b5d55edd006dd774bf7c8b61a8f4f8904f4d38815c7eb5b9a68d88eec97"
+    },
+    {
+      "label": "Web natural250ms hover mid screenshot, exact bracketing timestamps in sidecar",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/web-motion/natural-after-pill-duration-custom-light-hover-mid.png",
+      "sha256": "239d43abccce89f3d961f4013e902851d9db32abb236a30905f7acd9f4a10b85"
+    },
+    {
+      "label": "After custom source selected token pressed",
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/after/pill-custom-token-brand-light-pressed.png",
+      "sha256": "3ab0c5a1a2e22f17bdd1ebaa92d477adf9f87c0299bbde2e4beccf06f33783a4"
+    }
+  ],
+  "receiptHashes": {
+    "focused-final-exit.json": "c555218ae4d737209f65b847390b8ea7539ffa17f9d2ceae594fae020a5bac5b",
+    "fatal-infos-exit.json": "c15d31b39c15e39f79a0bf0e1dc9837712880a70621d05e8ac9f6aaeb2f00088",
+    "fatal-test-final-exit.json": "f70426d01e3593e27d100c841a73bef7709f57160c7d81487fff34c6f9c5fbb9",
+    "format-final-exit.json": "323deb4150a34fbc49c78b5a335621efe666ea09799f25253a128221f098f4fb",
+    "guard-exit.json": "81e89adf78dd682774afc1983b09b39789e2100d08b802890a13d4989a02c3c9",
+    "ssr-before-exit.json": "c6b49811b70f6cd88186ce80a1d7060611069cbd63fa9c663ddaaaa0008e310c",
+    "ssr-after-exit.json": "24fde23c1833ba793721b2d84f7b1ab8779c7f653ab54d4b68bf0f2867c80772",
+    "browser-current-exit.json": "c2bb5d4414beb75082e0bc01ad6021792295fa7c322ccb062692e6b6d3c48ec5",
+    "native-current-exit.json": "2c63f1f979960e44262ce8722a71e8b5be5c372c60a778fd71f39e4cd42aa398",
+    "roving4-exit.json": "ffb241b7767b67f9ad1445c9eaaa53f2e73ec62fd3a61bc987628e88e8caedf1",
+    "browser-motion-exit.json": "7dbeaa97f158a8115d79cefc7dec5517fc992f0e1bdd7c89ffcaa7b5a68a4676",
+    "native-motion-exit.json": "b2f91dbdf3114b1a3a7ac5998db07c35f7e6c6703eea118de8114c977d29f6cb",
+    "reload-exit.json": "bf807040ef94edb1314e51b79d88758579063e3efa3f400049057acc72f96425",
+    "api-existing-exit.json": "329397db5a6fb80150a104264def75cb05d51feb544bf5fffa9b649b6b954097",
+    "api-widget-exit.json": "7a6d68773a10aa5d7d2f2dfac0e1c1914d3758c208d186b6f2f1fbb26aa04968",
+    "raw-before-exit.json": "ec973e75f0737c40abeffd73216138dea95a464b2fbd7c7db9d63e7da753e9ee",
+    "raw-after-exit.json": "bb6631bcc49103b6d2bd7ea135fa18846635ef49e6c22a63d4a15e5e64232d58",
+    "paint-current.json": "f1298dfd458eb36c07b86e4c8be5fef5826a722fc6ca10cdd7f000ca366bd7bf",
+    "invariants.json": "44344f5141f4008fede9c5ab66341b34bb27a07d201467fe469e9ddbb4bd3d46",
+    "api-boundary.json": "3cf6eeee2ca4383e137cb85aea371f34348f6629f51025552ece5801b6e1df10",
+    "motion-summary.json": "397999a0d8885b11a06330aa612cb3badf729ac0da6847b14d13aa774411e1db",
+    "final-source-binding.json": "8965e2dd5712ce54777ea14fbcb05a3133b90ecb48e35b13594a218fe8b9e949",
+    "selected-evidence8.json": "991e3f1445ab80720a88957d01152f03260ae57c537cf12cf0d94a9104817ff1"
+  },
+  "publication": "Local commits only; Root owns push/PR/merge.",
+  "integrationC669": {
+    "sourceHead": "b56c83284d04b0f69f6507f6cdf7c26a70fc361b",
+    "integratedMain": "c6690e18cd13484a7b33a61806cf7b7938e6bee3",
+    "integratedMainTree": "d1cf6eafc57ba41fbd4dfef46542c22fddcbfb9c",
+    "mergeMethod": "normal git merge after pinned Kim wrapper fetch; no force or history rewrite",
+    "originalProductCaptureHead": "cbc478159a9b94f9fb8cc7ad00d105fef8ef2a58",
+    "tabsProductionSha256": "a65dda012478351d578e77aa0772442be0accb5758d3afdc5669ed396d360e7a",
+    "sourceApiEnvironment": {
+      "sourceHead": "b56c83284d04b0f69f6507f6cdf7c26a70fc361b",
+      "integratedMain": "c6690e18cd13484a7b33a61806cf7b7938e6bee3",
+      "mainTree": "d1cf6eafc57ba41fbd4dfef46542c22fddcbfb9c",
+      "productEvidenceSource": "cbc478159a9b94f9fb8cc7ad00d105fef8ef2a58",
+      "tabsProductionSha256": "a65dda012478351d578e77aa0772442be0accb5758d3afdc5669ed396d360e7a",
+      "tabsAndProtectedClosureChangesFromProduct": [],
+      "protectedScopes": [
+        "packages/coui_core",
+        "packages/coui_flutter",
+        "packages/coui_web/lib/src/components/navigation/tabs",
+        "packages/coui_web/lib/src/util",
+        "packages/coui_web/lib/src/base",
+        "packages/coui_web/lib/src/theme",
+        "packages/coui_web/lib/coui_web.dart",
+        "pubspec.yaml",
+        "pubspec.lock",
+        "tool/parity/src",
+        "packages/coui_flutter/test/parity/parity_fonts.dart"
+      ],
+      "publicExportClosure": {
+        "defaultTarget": {
+          "count": 361,
+          "allByteIdenticalToIntegratedMain": true,
+          "tabsStyleExported": false,
+          "changesFromMain": []
+        },
+        "allConditionalAlternatives": {
+          "count": 365,
+          "allByteIdenticalToIntegratedMain": true,
+          "tabsStyleExported": false,
+          "changesFromMain": []
+        }
+      },
+      "productionChangesFromNewMain": [
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart"
+      ],
+      "inheritedProductionChangesFromCBC": [
+        "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator_style.dart"
+      ],
+      "rootLockSha256": "3503684b485aa82c20d5aae09870e92c44a1b5d579173114470266f34187be82",
+      "originalEvidenceRemainsBound": "CBC production Tabs/helper/Core/Native/capture-source closure unchanged; inherited Dot style implementation not reachable from Tabs controls. No fresh full capture is claimed."
+    },
+    "packageCount": 232,
+    "samePackageNamesRootsLanguagesUris": true,
+    "freshChecks": {
+      "focused-final": {
+        "argv": [
+          "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+          "test",
+          "test/components/navigation/tabs_token_state_layer_test.dart",
+          "test/components/navigation/tabs_state_layer_test.dart",
+          "test/components/navigation/tabs_test.dart",
+          "test/components/navigation/tabs_close_test.dart",
+          "test/components/navigation/tabs_scrollable_test.dart",
+          "test/base/roving_focus_test.dart",
+          "--reporter=expanded"
+        ],
+        "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/packages/coui_web",
+        "sourceHead": "b56c83284d04b0f69f6507f6cdf7c26a70fc361b",
+        "exit": 0,
+        "seconds": 1.8168020248413086
+      },
+      "fatal-infos": {
+        "argv": [
+          "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart",
+          "packages/coui_web/test/components/navigation/tabs_state_layer_test.dart",
+          "packages/coui_web/test/components/navigation/tabs_token_state_layer_test.dart",
+          "packages/coui_web/test/components/navigation/tabs_test.dart",
+          "packages/coui_web/test/components/navigation/tabs_close_test.dart"
+        ],
+        "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+        "sourceHead": "b56c83284d04b0f69f6507f6cdf7c26a70fc361b",
+        "exit": 0,
+        "seconds": 27.451465368270874
+      },
+      "guard": {
+        "argv": [
+          "bash",
+          "scripts/guards/resolver/verify_contracts.sh"
+        ],
+        "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+        "sourceHead": "b56c83284d04b0f69f6507f6cdf7c26a70fc361b",
+        "exit": 0,
+        "seconds": 83.39766502380371
+      },
+      "roving4": {
+        "argv": [
+          "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+          "test",
+          "tool/parity/test/web/roving_owner_probe_test.dart",
+          "--reporter",
+          "expanded"
+        ],
+        "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+        "sourceHead": "b56c83284d04b0f69f6507f6cdf7c26a70fc361b",
+        "exit": 0,
+        "seconds": 83.39698004722595
+      },
+      "reload": {
+        "argv": [
+          "python3",
+          "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/integration-c669/run_reload.py"
+        ],
+        "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+        "sourceHead": "b56c83284d04b0f69f6507f6cdf7c26a70fc361b",
+        "exit": 0,
+        "seconds": 4.710247993469238
+      },
+      "docs-build-wrapper": {
+        "argv": [
+          "python3",
+          "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/integration-c669/build-docs.py"
+        ],
+        "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree",
+        "sourceHead": "b56c83284d04b0f69f6507f6cdf7c26a70fc361b",
+        "exit": 0,
+        "seconds": 89.20858001708984
+      }
+    },
+    "freshDocsBuild": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/tmp/weever-6345-optimized-20261117/cli-tool/.dart_tool/package_config.json",
+        "/Users/minhyeok/.pub-cache/hosted/pub.dev/jaspr_cli-0.24.0-beta.1/bin/jaspr.dart",
+        "build",
+        "--optimize=2",
+        "--port=56726"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6448-tabs-token-20261119.9aoserht/worktree/docs_site",
+      "sourceHead": "b56c83284d04b0f69f6507f6cdf7c26a70fc361b",
+      "port": 56726,
+      "started": 1795036735.653523,
+      "pid": 21556,
+      "exit": 0,
+      "remainingOwnedGroupTerminated": false,
+      "groupClosed": true,
+      "finished": 1795036820.899277,
+      "trackedCount": 22580,
+      "trackedDeltas": [],
+      "headAfter": "b56c83284d04b0f69f6507f6cdf7c26a70fc361b",
+      "statusAfter": ""
+    },
+    "freshRovingCleanup": {
+      "browserCloseAwaited": true,
+      "pid": 21615,
+      "pidClosed": true,
+      "errors": [],
+      "externalRequests": [],
+      "servers": 0
+    },
+    "freshOwnedRuntime": {
+      "scope": "Owned real Tabs SSR Dart VM reload smoke, not a Flutter app source-migration test",
+      "pid": 23144,
+      "beforeStatus": 200,
+      "before": {
+        "actualTabs": true,
+        "tokenFill": true,
+        "privateScope": true
+      },
+      "reloadExit": 0,
+      "reload": {
+        "isolate": "main",
+        "success": true,
+        "details": {
+          "type": "ReloadReport",
+          "success": true,
+          "details": {
+            "finalLibraryCount": 2234,
+            "receivedLibraryCount": 0,
+            "receivedLibrariesBytes": 0,
+            "receivedClassesCount": 0,
+            "receivedProceduresCount": 0,
+            "savedLibraryCount": 2234,
+            "loadedLibraryCount": 0
+          }
+        }
+      },
+      "afterStatus": 200,
+      "after": {
+        "actualTabs": true,
+        "tokenFill": true,
+        "privateScope": true
+      },
+      "processExit": 0,
+      "closed": true
+    },
+    "retainedCaptureScriptsHashesExact": true,
+    "retainedSelectedPngHashesExact": 8,
+    "captureReuseBoundary": "No new full endpoint/motion capture at integrated head. Original CBC before/after/hydration/Native timelines retained by unchanged Tabs45-local-Web dependency closure, unchanged Core/Native/helpers/theme/capture sources, identical232 package roots and lock. The only inherited Web production change is DotIndicator style, absent from that Tabs closure. Existing fractional/source-alpha/interpolation/hydration boundaries remain.",
+    "previousDocsBuild": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/integration-c669/previous-docs-build",
+    "proofRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-token-implementation-20261119.x2z4wf96/integration-c669",
+    "receiptHashes": {
+      "merge-main.json": "25929ea0847b6581827f303e51a71aee06f64d0dd9a4a58e72bc9232b001e1ab",
+      "source-api-environment.json": "ca488da1270aa71ddcc6df429af553709053f4cdab8b19154d7ea53a4e3e2239",
+      "tabs-web-dependency-closure.json": "2c5f170afb48e2ebf7bb1b553b2e81c65365c0c67fbb4fcdb72f48c27a230375",
+      "build-process.json": "366842c954b6639ff4e6cdebd93ebcbd5b3049d1c2ba6f719cfb3334e4adfe0b",
+      "build-source-before.json": "526260cd2c9ff1855e23e2499cf6485cf07ab96460e90561d0d02e530e201f54",
+      "build-source-after.json": "526260cd2c9ff1855e23e2499cf6485cf07ab96460e90561d0d02e530e201f54",
+      "owned-reload.json": "29f8004dcdba386ff5fea1dbb1ed69e50238eeb0acbcd42bdd62c26ad9d73339",
+      "roving-browser/cleanup.json": "e9542d306d419179cb7f91136f6737f26f625d3c3180459ecb246cd366e8d720",
+      "focused-final-exit.json": "3eec71b58ebe0f4d2228b72d8796c40b80278e28f51af8703c216158ad47edd4",
+      "fatal-infos-exit.json": "8154f836210231d7110dc0a93241e3a11fc846885194af579deb42a77c85ef8f",
+      "guard-exit.json": "16b518c6f73e142bb0a8ba6d5c1086716daf54397d374e2cceb79d6d52c57ebb",
+      "roving4-exit.json": "9993b44da18e4a58e6739aaa40a196a4a3a2a134919ebd88b05bcd65542b7535",
+      "reload-exit.json": "d823785870d51c6af670a6f205b70aaa854b5457531b5a9e8eaba0f6dbf1e9b1",
+      "docs-build-wrapper-exit.json": "81cc89b48c47350ab991a6168a155b2e0eab2e5fcc592db8e8d700107d24cdb2"
+    }
+  }
+}

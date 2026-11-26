@@ -1,0 +1,55 @@
+{
+  "key": "alert-warning-light-defaultStyle",
+  "byRole": {
+    "root": {
+      "key": "alert-warning-light-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 19.6,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 137,
+        "g": 81,
+        "b": 0,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 247,
+        "g": 244,
+        "b": 229,
+        "a": 1.0
+      },
+      "borderColor": {
+        "r": 208,
+        "g": 209,
+        "b": 210,
+        "a": 1.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "paddingPx": [
+        12.0,
+        12.0,
+        12.0,
+        16.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [],
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 66.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": []
+}

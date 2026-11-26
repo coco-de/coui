@@ -1,0 +1,87 @@
+{
+  "key": "text-colors-status-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "상태 색 — 채움마다 짝이 되는 전경색\n              \n                오류 채움\n                오류 컨테이너\n              \n              \n                성공 채움\n                성공 컨테이너\n              \n              \n                경고 채움\n                경고 컨테이너\n              \n              \n                정보 채움\n                정보 컨테이너",
+    "layout": {
+      "width": 260.421875,
+      "height": 190,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 16,
+          "y": 16,
+          "width": 228.421875,
+          "height": 22
+        },
+        {
+          "x": 16,
+          "y": 46,
+          "width": 228.421875,
+          "height": 26
+        },
+        {
+          "x": 16,
+          "y": 80,
+          "width": 228.421875,
+          "height": 26
+        },
+        {
+          "x": 16,
+          "y": 114,
+          "width": 228.421875,
+          "height": 26
+        },
+        {
+          "x": 16,
+          "y": 148,
+          "width": 228.421875,
+          "height": 26
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "16px",
+      "lineHeight": "22px",
+      "letterSpacing": "-0.16px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 260.421875,
+      "heightPx": 190
+    }
+  }
+}

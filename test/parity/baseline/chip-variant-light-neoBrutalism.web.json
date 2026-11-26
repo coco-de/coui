@@ -1,0 +1,123 @@
+{
+  "key": "chip-variant-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "outlined\n              \n              \n                \n                  \n                    \n                      .co-chip-sl-d6ci5m:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 3%, rgb(var(--coui-inverse-surface)));}.co-chip-sl-d6ci5m:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 8%, rgb(var(--coui-inverse-surface)));}.co-chip-sl-d6ci5m:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 12%, rgb(var(--coui-inverse-surface)));}\n                    \n                    전체\n                  \n                \n                \n                  \n                    \n                      .co-chip-sl-1ssey0:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgba(0, 0, 0, 0.00));}\n                    \n                    디자인\n                  \n                \n                \n                  \n                    \n                      .co-chip-sl-1ssey0:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgba(0, 0, 0, 0.00));}\n                    \n                    개발\n                  \n                \n              \n              \n              filled\n              \n              \n                \n                  \n                    \n                      .co-chip-sl-d6ci5m:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 3%, rgb(var(--coui-inverse-surface)));}.co-chip-sl-d6ci5m:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 8%, rgb(var(--coui-inverse-surface)));}.co-chip-sl-d6ci5m:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 12%, rgb(var(--coui-inverse-surface)));}\n                    \n                    전체\n                  \n                \n                \n                  \n                    \n                      .co-chip-sl-6l2mhs:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-high)));}.co-chip-sl-6l2mhs:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high)));}.co-chip-sl-6l2mhs:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container-high)));}\n                    \n                    디자인\n                  \n                \n                \n                  \n                    \n                      .co-chip-sl-6l2mhs:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-high)));}.co-chip-sl-6l2mhs:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high)));}.co-chip-sl-6l2mhs:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container-high)));}\n                    \n                    개발\n                  \n                \n              \n              \n              회색 바탕 위에서는 outlined\n              \n              \n                \n                  \n                    \n                      \n                        \n                          .co-chip-sl-d6ci5m:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 3%, rgb(var(--coui-inverse-surface)));}.co-chip-sl-d6ci5m:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 8%, rgb(var(--coui-inverse-surface)));}.co-chip-sl-d6ci5m:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-inverse-on-surface)) 12%, rgb(var(--coui-inverse-surface)));}\n                        \n                        전체\n                      \n                    \n                    \n                      \n                        \n                          .co-chip-sl-1ssey0:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgba(0, 0, 0, 0.00));}\n                        \n                        디자인\n                      \n                    \n                    \n                      \n                        \n                          .co-chip-sl-1ssey0:hover>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:focus-visible>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgba(0, 0, 0, 0.00));}.co-chip-sl-1ssey0:active>.co-chip-body{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgba(0, 0, 0, 0.00));}\n                        \n                        개발",
+    "layout": {
+      "width": 237.765625,
+      "height": 223,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 44.40625,
+          "height": 17
+        },
+        {
+          "x": 0,
+          "y": 17,
+          "width": 237.765625,
+          "height": 4
+        },
+        {
+          "x": 0,
+          "y": 21,
+          "width": 189.765625,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 53,
+          "width": 237.765625,
+          "height": 12
+        },
+        {
+          "x": 0,
+          "y": 65,
+          "width": 26.421875,
+          "height": 17
+        },
+        {
+          "x": 0,
+          "y": 82,
+          "width": 237.765625,
+          "height": 4
+        },
+        {
+          "x": 0,
+          "y": 86,
+          "width": 189.765625,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 118,
+          "width": 237.765625,
+          "height": 12
+        },
+        {
+          "x": 0,
+          "y": 130,
+          "width": 134.59375,
+          "height": 17
+        },
+        {
+          "x": 0,
+          "y": 147,
+          "width": 237.765625,
+          "height": 4
+        },
+        {
+          "x": 0,
+          "y": 151,
+          "width": 237.765625,
+          "height": 72
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "12px",
+      "lineHeight": "17px",
+      "letterSpacing": "-0.12px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgb(244, 245, 246)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgb(0, 0, 0) 4px 4px 0px 0px",
+      "opacity": "1",
+      "widthPx": 237.765625,
+      "heightPx": 223
+    }
+  }
+}

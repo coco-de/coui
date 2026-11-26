@@ -1,0 +1,8 @@
+// A real driver that orders by topoSortRegistry — the shape the guard requires.
+import { REGISTRY, topoSortRegistry } from './registry';
+
+export async function run(targetPage: PageNode, lk: VarLookup) {
+  for (const e of topoSortRegistry(REGISTRY)) {
+    await e.build(targetPage, lk);
+  }
+}

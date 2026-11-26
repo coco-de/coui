@@ -1,0 +1,81 @@
+{
+  "key": "app-bar-centered-light-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "주문 상세\n              \n                \n                  \n                    #co-button-1mxze4:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-1mxze4:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n                  \n                  공유\n                \n                \n                  \n                    #co-button-4b8vq3:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-4b8vq3:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n                  \n                  편집",
+    "layout": {
+      "width": 800,
+      "height": 64,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 8,
+          "y": 11.5,
+          "width": 16,
+          "height": 40
+        },
+        {
+          "x": 359.1875,
+          "y": 19,
+          "width": 81.609375,
+          "height": 25
+        },
+        {
+          "x": 695.5625,
+          "y": 15.5,
+          "width": 96.4375,
+          "height": 32
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "18px",
+      "lineHeight": "25px",
+      "letterSpacing": "-0.18px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(208, 209, 210)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "8px",
+      "paddingBottom": "0px",
+      "paddingLeft": "8px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 64
+    }
+  }
+}

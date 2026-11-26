@@ -1,0 +1,30 @@
+// Fixture for check_deprecation_policy.sh's self-test. Each annotation
+// below pairs, in order, with one line of deprecation_messages.expected.txt.
+// Kept as .txt so no Dart tool, lint or other guard scans it.
+
+// A parenthesis inside the message, followed by a word.
+@Deprecated('Use Foo (the new one) instead (since 0.130).')
+class A {}
+
+// Adjacent literals, both quote styles, an apostrophe and a trailing comma.
+@Deprecated(
+  'Renamed to Bar (see the docs) '
+  "because it's clearer (since 0.131).",
+)
+class B {}
+
+// A trailing comment with parentheses must not be read as part of the
+// message, nor let the match run on into the next annotation's marker.
+@Deprecated('No marker (still a violation).') // trailing (since 9.9)
+class C {}
+
+// A comment inside the argument list with an apostrophe and a marker.
+@Deprecated(
+  // it's not the message (since 9.9)
+  'Commented (since 0.132).',
+)
+class D {}
+
+// A non-literal message has nothing to read; its raw text is reported.
+@Deprecated(kMessage)
+class E {}

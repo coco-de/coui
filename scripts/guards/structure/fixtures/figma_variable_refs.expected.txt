@@ -1,0 +1,27 @@
+accessor #privateBad bad
+accessor fontFamily ok
+accessor fontSize ok
+accessor letterSpacingOrNull ok
+accessor missingLiteral bad
+accessor pick bad
+accessor radiusArrow bad
+accessor radiusRole bad
+accessor radiusWrapped ok
+accessor sem ok
+accessor space ok
+accessor startsWithDecoy bad
+accessor stroke ok
+accessor tail bad
+accessor touchTarget ok
+accessor touchTargetBad bad
+accessor typographyOrNull ok
+canonical-fn present
+ref-missing <empty>
+ref-missing Component/ghost/1
+ref-missing NoSlash
+ref-missing Primitives/radius/99
+refs 10 (under ref 7)
+unread directRead: reads this.byKey directly
+unread dynamic: this.get(coll, `space/${n}`);
+unread ladder: the leaf starts with an interpolation — ${group}/${n}
+unread viaLadder: hands a literal to this.ladder(…)

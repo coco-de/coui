@@ -1,0 +1,737 @@
+---
+title: AppBar
+description: leading · 중앙(제목 또는 커스텀 child) · trailing 세 클러스터로 구성되는 통합 애플리케이션 바 컴포넌트
+category: layout
+platforms: [flutter, web]
+related: [scaffold, navigation-bar]
+tags: [app-bar, header, toolbar, layout]
+---
+
+# AppBar
+
+`AppBar`는 화면 상단(또는 하단)에 놓이는 통합 애플리케이션 바입니다. leading 클러스터, 중앙 영역(`title` / `header` / `subtitle` 세 슬롯의 세로 조합, 또는 이를 통째로 대체하는 `child`), trailing 액션 클러스터를 가로로 배치합니다. `variant` 하나로 바 모양을 고릅니다 — `standard`(64px 단일 행), `compact`(56px 단일 행), `medium`(112px — leading / trailing 이 놓인 48px 상단 행 아래에 큰 제목이 하단 정렬), `dense`(48px 단일 행 — 데스크톱 창 · 도구 바), `prominent`(56px 단일 행 — 탭 첫 화면의 큰 제목). 표면 색·높이·클러스터 간격·제목 타이포그래피·하단 헤어라인·elevated 그림자는 모두 단일 `appBarStyle` 슬롯을 지나며, `Scaffold` 의 `headers` / `footers` 슬롯에 그대로 넣어 화면 헤더 / 푸터로 쓰는 것이 일반적인 사용법입니다.
+
+## Live Preview
+
+<LivePreview component="app-bar" variants="default,compact,medium,dense,prominent,centered,text,glass,foldable" />
+
+## 사용 시기 (When to Use)
+
+**이 컴포넌트를 사용하세요:**
+- 화면 제목과 뒤로 가기 · 설정 같은 액션을 한 줄에 담는 헤더가 필요할 때
+- `Scaffold` 의 `headers` / `footers` 슬롯에 넣어 화면 골격의 헤더 / 푸터를 구성할 때
+- 큰 제목이 별도 행에 놓이는 두 행 헤더(`medium`)가 필요할 때
+- 데스크톱 앱의 창 제목 바 · 도구 바처럼 32px 컨트롤 한 줄을 담는 낮은 바(`dense`)가 필요할 때
+- 탭의 첫 화면처럼 뒤로 가기 없이 화면 이름을 크게 보여주는 한 줄 바(`prominent`)가 필요할 때
+
+**대신 다른 컴포넌트를 사용하세요:**
+- **[NavigationBar](/components/navigation-bar)**: 제목 · 액션 클러스터 대신 현재 섹션 선택과 섹션 이동이 필요할 때
+- **[Menubar](/components/menubar)**: 제목 바 대신 File / Edit / View 같은 드롭다운 메뉴 트리거 목록이 필요할 때
+
+## 기본 사용법 (Basic Usage)
+
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+```dart
+AppBar(
+  leading: [
+    Button(
+      variant: CoreButtonVariant.plain,
+      onPressed: () {},
+      child: const Icon(LucideIcons.arrowLeft),
+    ),
+  ],
+  title: const Text('대시보드'),
+  trailing: [
+    Button(
+      variant: CoreButtonVariant.plain,
+      onPressed: () {},
+      child: const Icon(LucideIcons.settings),
+    ),
+  ],
+)
+```
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+```dart
+AppBar(
+  leading: [
+    Button(
+      variant: CoreButtonVariant.plain,
+      onPressed: () {},
+      child: const Icon(LucideIcons.arrowLeft),
+    ),
+  ],
+  title: const Text('대시보드'),
+  trailing: [
+    Button(
+      variant: CoreButtonVariant.plain,
+      onPressed: () {},
+      child: const Icon(LucideIcons.settings),
+    ),
+  ],
+)
+```
+
+  </TabItem>
+</Tabs>
+
+`title` 에 넣은 텍스트는 활성 variant 의 제목 타이포그래피(`standard` / `compact` 는 `titleMedium`, `medium` 은 `titleLarge`, `dense` 는 `labelLarge` semibold, `prominent` 는 `headlineSmall`)를 자동으로 상속하므로 `Text('...')` 만 넣으면 됩니다. leading / trailing 의 아이콘 버튼은 `Button(variant: CoreButtonVariant.plain)` 으로 합성합니다 — 투명 배경 · hover 페이드 · 포커스 링을 버튼이 스스로 그립니다.
+
+### 가운데 제목 — 좌우 행동의 폭이 다를 때
+
+뒤로 아이콘 하나와 글자 행동 둘처럼 양쪽 클러스터의 폭이 달라도, `centerTitle: true` 의 제목은 클러스터 사이 공간이 아니라 **바 전체의 가운데**에 놓입니다. 재질(기본 · liquid glass)과 무관합니다.
+
+```dart
+AppBar(
+  centerTitle: true,
+  leading: [
+    Button(
+      variant: CoreButtonVariant.plain,
+      onPressed: () {},
+      child: const Icon(LucideIcons.arrowLeft),
+    ),
+  ],
+  title: const Text('주문 상세'),
+  trailing: [
+    Button(
+      variant: CoreButtonVariant.ghost,
+      size: CoreComponentSize.sm,
+      onPressed: () {},
+      child: const Text('공유'),
+    ),
+    Button(
+      variant: CoreButtonVariant.ghost,
+      size: CoreComponentSize.sm,
+      onPressed: () {},
+      child: const Text('편집'),
+    ),
+  ],
+)
+```
+
+양옆은 둘 중 넓은 클러스터의 폭으로 같게 잡힙니다. 그래서 제목이 쓸 수 있는 폭은 `바 안쪽 폭 − 2 × max(leading, trailing) − 2 × spacing` 이고, 그보다 긴 제목은 옆으로 밀리지 않고 그 폭 안에서 한 줄 말줄임(…)으로 끝납니다. 제목은 언제나 바 가운데에 있고, 클러스터를 밀어내지도 않습니다.
+
+### 글자 행동 — 아이콘 대신 글자로
+
+행동을 아이콘이 아니라 글자로 보여주는 앱도 같은 `AppBar` 로 만듭니다. `leading` 과 `trailing` 은 `List<W>` 라서 아이콘 버튼이든 글자 버튼이든 `Button` 을 그대로 넣으면 되고, 글자 행동은 `Button(variant: CoreButtonVariant.ghost)` 에 `Text` 를 넣어 만듭니다. 오른쪽의 보조 행동(목록으로 등)은 같은 버튼에 글자색만 한 단계 옅은 `onSurfaceVariant` 를 줍니다 — 자리와 누름 영역은 왼쪽과 같습니다. 글자 행동만을 위한 속성은 따로 없습니다. 버튼 크기를 적지 않으면 기본 크기(`md`)가 쓰입니다.
+
+```dart
+AppBar(
+  leading: [
+    Button(
+      variant: CoreButtonVariant.ghost,
+      onPressed: () {},
+      child: const Text('뒤로'),
+    ),
+  ],
+  trailing: [
+    Button(
+      variant: CoreButtonVariant.ghost,
+      buttonStyle: const CoreButtonStyle(
+        foregroundColor: CoreColor.token(CoreColors.onSurfaceVariant),
+      ),
+      onPressed: () {},
+      child: const Text('목록으로'),
+    ),
+  ],
+)
+```
+
+글자의 색 · 굵기 · 크기는 버튼이 상태(hover · 눌림 · 비활성)에 맞춰 정하므로 `Text` 에 따로 스타일을 붙이지 않습니다. 제목이 필요하면 `title` 을 함께 넣으면 되고, 가운데에 두려면 위의 `centerTitle: true` 를 씁니다.
+
+### 빠른 오버라이드 (Chain)
+
+이미 만든 `AppBar` 인스턴스에 스타일을 빠르게 덧붙이고 싶다면 `withStyle` 체인을 쓸 수 있습니다. 생성자의 style 슬롯 인자와 동일하게 동작하지만, 이미 구성된 위젯 위에서 바로 이어 쓸 수 있습니다. `.surfaceContainer`처럼 Core 토큰 상수 이름과 똑같은 이름의 getter도 있습니다 — `withStyle`을 한 번 더 줄인 sugar로, 이름이 곧 값이라(surfaceContainer == `CoreColors.surfaceContainer`) 어느 컴포넌트에서 써도 뜻이 갈리지 않으며, 아래 예시처럼 `withStyle` 뒤에 이어붙일 수도 있습니다.
+
+<!-- CHAIN_SNIPPET:BEGIN — auto-generated by `dart run tool/generate_chain_artifacts.dart` (write mode). Do not hand-edit between these markers; edit the chain example sources (`*_chain_example.dart` / `*_code.dart`) and regenerate. -->
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+```dart
+class AppBarChainExample extends StatelessWidget {
+  const AppBarChainExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+          leading: [
+            Button(
+              variant: CoreButtonVariant.plain,
+              onPressed: () {},
+              child: const Icon(LucideIcons.arrowLeft),
+            ),
+          ],
+          title: const Text('대시보드'),
+          trailing: [
+            Button(
+              variant: CoreButtonVariant.plain,
+              onPressed: () {},
+              child: const Icon(LucideIcons.settings),
+            ),
+          ],
+        )
+        .withStyle(
+          const CoreAppBarStyle(
+            dividerColor: CoreColor.token(CoreColors.outline),
+            dividerWidth: CoreStrokeWidth.stroke2,
+          ),
+        )
+        .surfaceContainer;
+  }
+}
+```
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+```dart
+class AppBarChainExample extends StatelessComponent {
+  const AppBarChainExample({super.key});
+
+  @override
+  Component build(BuildContext context) {
+    return AppBar(
+          leading: [
+            Button(
+              variant: CoreButtonVariant.plain,
+              onPressed: () {},
+              child: const Icon(LucideIcons.arrowLeft),
+            ),
+          ],
+          title: const Text('대시보드'),
+          trailing: [
+            Button(
+              variant: CoreButtonVariant.plain,
+              onPressed: () {},
+              child: const Icon(LucideIcons.settings),
+            ),
+          ],
+        )
+        .withStyle(
+          const CoreAppBarStyle(
+            dividerColor: CoreColor.token(CoreColors.outline),
+            dividerWidth: CoreStrokeWidth.stroke2,
+          ),
+        )
+        .surfaceContainer;
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
+<!-- CHAIN_SNIPPET:END -->
+
+## Props / Parameters
+
+`W` 는 Flutter의 `Widget`, Web의 Jaspr `Component` 입니다. `W?` 는 선택 슬롯, `List<W>` 는 콘텐츠 목록입니다.
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `title` | `W?` | `null` | 바의 주요 제목 콘텐츠 — 활성 variant 의 제목 타이포그래피를 상속 |
+| `header` | `W?` | `null` | 제목 위 보조 콘텐츠 |
+| `subtitle` | `W?` | `null` | 제목 아래 보조 콘텐츠 |
+| `child` | `W?` | `null` | 커스텀 중앙 콘텐츠 — `header` / `title` / `subtitle` 열을 통째로 대체 (`title` 과 동시 지정 불가) |
+| `leading` | `List<W>` | `[]` | leading(시작) 클러스터 — 보통 뒤로 가기 · 메뉴 아이콘 버튼 하나 |
+| `trailing` | `List<W>` | `[]` | trailing(끝) 액션 클러스터 |
+| `variant` | `CoreAppBarVariant` | `standard` | 바 모양 — `standard` (64px) / `compact` (56px) / `medium` (112px 두 행) / `dense` (48px 데스크톱 바) / `prominent` (56px 한 줄 큰 제목) |
+| `trailingExpanded` | `bool` | `false` | trailing 클러스터가 남은 너비를 채우고 액션을 끝에 정렬 (단일 행 variant 에서만 의미). `centerTitle` 과 함께면 가운데 맞출 자리가 없어 제목은 leading 옆에 남고 텍스트만 가운데 |
+| `centerTitle` | `bool` | `false` | 제목을 **바 전체**의 가운데에 — 좌우 클러스터의 폭이 달라도. 양옆을 넓은 쪽 폭으로 같게 잡고, 그 사이에 들어가지 않으면 가운데에서 한 줄 말줄임 |
+| `showDivider` | `bool` | `true` | 하단 헤어라인 디바이더 표시 |
+| `elevated` | `bool` | `false` | elevated 드롭 섀도 표시 |
+| `actionsAxis` | `CoreAxis` | `horizontal` | 바의 동작이 서는 곳 — `horizontal` 이면 바의 줄, `vertical` 이면 콘텐츠 옆의 세로 줄. `vertical` 이면 바는 `leading` · `trailing` 가운데 `BarAction` 으로 `horizontalOnly` 라고 표시한 동작만 그립니다 ([옆 컨트롤 자리로 동작 나누기](#옆-컨트롤-자리로-동작-나누기)) |
+| `appBarStyle` | `CoreAppBarStyle?` | `null` | 겉모습을 바꾸는 값 묶음 (아래 표 참고) |
+
+## 스타일 시스템 (Style System)
+
+<!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
+
+### `CoreAppBarStyle` 필드
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| `surfaceStyle` | `CoreSurfaceStyleId?` | Material of the bar (e.g. glass), set without changing its colours, text or sizes. `null` keeps the material of whatever surrounds the bar; `defaultStyle` turns glass off. |
+| `backgroundColor` | `CoreColor?` | Bar surface colour override. `null` defers to the active variant's entry in [defaultsByVariant], then to [defaultBackgroundColor]. |
+| `padding` | `CoreEdgeInsets?` | Horizontal bar inset override — the outer inset of the cluster row (the root for standard / compact / dense / prominent, the top row for medium). `null` defers to the active variant's entry in [defaultsByVariant], then to [defaultPadding]. |
+| `spacing` | `double?` | Gap between the leading / title / actions clusters (logical px). Mirrors Flutter `Row.spacing` between the clusters. `null` defers to the active variant's entry in [defaultsByVariant], then to [defaultSpacing]. |
+| `actionSpacing` | `double?` | Gap between adjacent widgets inside the leading or trailing action cluster (logical px). Mirrors Flutter `Row.spacing` applied to each cluster. `null` defers to the active variant's entry in [defaultsByVariant], then to [defaultActionSpacing]. |
+| `height` | `double?` | Total bar height override (logical px). `null` defers to the active variant's entry in [defaultsByVariant]. |
+| `topRowHeight` | `double?` | Height of the medium variant's top row (logical px). Consumed only by the medium render branch. `null` defers to [defaultTopRowHeight]. |
+| `titleStyle` | `CoreTextStyle?` | Title typography override. Text colour is carried via `CoreTextStyle.color` inside this slot. `null` (or any unset field) defers to the active variant's entry in [defaultsByVariant]. |
+| `titlePadding` | `CoreEdgeInsets?` | Inset of the title block. `null` defers to the active variant's entry in [defaultsByVariant]. |
+| `dividerColor` | `CoreColor?` | Bottom hairline colour override. `null` defers to [defaultDividerColor]. |
+| `dividerWidth` | `double?` | Bottom hairline thickness override (logical px). `null` defers to [defaultDividerWidth]. |
+| `elevatedShadow` | `List<CoreShadowLayer>?` | Drop shadow shown while `elevated` is on. `null` defers to [defaultElevatedShadow]. |
+
+### `CoreAppBarStyle` 변형별 기본값 (`CoreAppBarStyle`)
+
+| 필드 | `standard` | `compact` | `medium` | `dense` | `prominent` |
+|------|------|------|------|------|------|
+| `height` | size64 | size56 | size112 | size48 | size56 |
+| `titleStyle` | CoreTextStyle.token(CoreTextStyles.titleMedium, color: CoreCo… | CoreTextStyle.token(CoreTextStyles.titleMedium, color: CoreCo… | CoreTextStyle.token(CoreTextStyles.titleLarge, color: CoreCol… | CoreTextStyle.token(CoreTextStyles.labelLarge, color: CoreCol… | CoreTextStyle.token(CoreTextStyles.headlineSmall, color: Core… |
+| `titlePadding` | CoreEdgeInsets.symmetric(horizontal: CoreSpace.space8) | CoreEdgeInsets.symmetric(horizontal: CoreSpace.space8) | CoreEdgeInsets.only(left: CoreSpace.space16, right: CoreSpace… | zero | CoreEdgeInsets.symmetric(horizontal: CoreSpace.space16) |
+| `padding` | — | CoreEdgeInsets.symmetric(horizontal: CoreSpace.space16) | — | CoreEdgeInsets.symmetric(horizontal: CoreSpace.space16) | CoreEdgeInsets.symmetric(horizontal: CoreSpace.space4) |
+| `backgroundColor` | — | — | — | surfaceContainerLow | — |
+| `spacing` | — | — | — | space14 | — |
+| `actionSpacing` | — | — | — | space8 | — |
+
+<!-- STYLE_TABLE:END -->
+
+<a id="resolve-chain"></a>
+
+### 값이 정해지는 순서
+
+`appBarStyle` 은 프로젝트 테마와 인스턴스 오버라이드를 한 줄로 합칩니다 — 뒤에 오는 층이 앞 층의 같은 필드를 덮습니다.
+
+```text
+design system default (CoreAppBarStyle.defaultX / defaultsByVariant)
+  → CoreAppBarTheme.style                    // 프로젝트 공통
+  → CoreAppBarTheme.variantStyles[variant]   // 프로젝트 per-variant
+  → widget.appBarStyle                       // 인스턴스별
+```
+
+`titleStyle` 은 안쪽 부품의 스타일이라 필드별로 합쳐집니다 — `CoreTextStyle(color: …)` 처럼 색만 준 부분 오버라이드는 variant 의 role(`titleMedium` / `titleLarge` / `labelLarge` / `headlineSmall`)과 굵기를 그대로 두고 색만 바꿉니다.
+
+### 위젯 슬롯 직접 주입 (asChild)
+
+겉모습(색 · 간격 · 높이)은 `appBarStyle` 로 정하지만, **무엇을 그릴지**는 슬롯이 정합니다. `title` / `header` / `subtitle` / `child` / `leading` / `trailing` 은 전부 위젯 슬롯이라 어떤 위젯이든 그대로 받습니다 (shadcn `asChild` 패턴) — 제목의 typography role 자체를 바꾸고 싶다면 `titleStyle` 을 만지는 대신 `title: Text('Inbox').titleLarge` 처럼 이미 스타일이 붙은 위젯을 넣고, leading / trailing 버튼의 variant 를 바꾸고 싶다면 원하는 `Button(variant: …)` 을 직접 넣습니다. 슬롯에 넣은 위젯의 명시 스타일이 바의 기본 제목 타이포그래피보다 우선합니다.
+
+### 프로젝트 테마
+
+```dart
+CoreComponentTheme(
+  appBar: CoreAppBarTheme(
+    style: CoreAppBarStyle(
+      backgroundColor: CoreColor.token(CoreColors.surfaceContainer),
+    ),
+    variantStyles: {
+      CoreAppBarVariant.medium: CoreAppBarStyle(
+        titlePadding: CoreEdgeInsets.only(
+          left: CoreSpace.space24,
+          right: CoreSpace.space24,
+          bottom: CoreSpace.space16,
+        ),
+      ),
+    },
+  ),
+)
+```
+
+## 변형 (Variants)
+
+### standard (기본)
+
+64px 단일 행. leading · 중앙 · trailing 이 한 줄에 놓이고 제목은 `titleMedium`.
+
+```dart
+AppBar(
+  title: const Text('대시보드'),
+)
+```
+
+### compact
+
+56px 단일 행. 모바일 화면 · 사이드 시트 헤더처럼 `standard` 보다 낮은 바가 필요할 때 쓰며 제목 타이포그래피는 `standard` 와 같습니다. 바 좌우 여백은 `standard` 의 8 보다 넓은 16 입니다.
+
+```dart
+AppBar(
+  variant: CoreAppBarVariant.compact,
+  title: const Text('알림'),
+)
+```
+
+### medium
+
+112px 두 행. 48px 상단 행에 leading / trailing 이 놓이고, 그 아래 남은 공간에 `titleLarge` 제목이 하단 정렬됩니다. 제목 블록의 여백은 `titlePadding` (기본 좌우 16 · 하단 12) 이 정합니다.
+
+```dart
+AppBar(
+  variant: CoreAppBarVariant.medium,
+  leading: [
+    Button(
+      variant: CoreButtonVariant.plain,
+      onPressed: () {},
+      child: const Icon(LucideIcons.arrowLeft),
+    ),
+  ],
+  title: const Text('받은편지함'),
+)
+```
+
+### dense
+
+48px 단일 행 — 데스크톱 창 제목 바 · 도구 바. 32px 컨트롤 한 줄에 위아래 8 을 더한 높이라, leading / trailing 버튼은 `CoreComponentSize.sm`(32px) 으로 넣습니다. 다른 변형이 `surface` 위에 놓이는 것과 달리 화면 틀 단의 면(`surfaceContainerLow`)을 칠하고, 바 좌우 여백 16 · 클러스터 사이 14 · 액션 사이 8 · `labelLarge` semibold 제목을 씁니다. 제목 블록에는 자체 여백이 없어 클러스터 사이 14 가 제목과 이웃 사이의 유일한 거리입니다.
+
+```dart
+AppBar(
+  variant: CoreAppBarVariant.dense,
+  leading: [
+    Button(
+      variant: CoreButtonVariant.plain,
+      size: CoreComponentSize.sm,
+      onPressed: () {},
+      child: const Icon(LucideIcons.panelLeft),
+    ),
+  ],
+  title: const Text('워크스페이스'),
+  trailing: [
+    Button(
+      variant: CoreButtonVariant.plain,
+      size: CoreComponentSize.sm,
+      onPressed: () {},
+      child: const Icon(LucideIcons.settings),
+    ),
+  ],
+)
+```
+
+### prominent
+
+56px 단일 행 — 탭의 첫 화면에서 화면 이름을 크게 보여주는 바. 높이는 `compact` 와 같지만 제목이 `headlineSmall`(24 Bold) 이고 왼쪽 정렬이라, 바 안의 라벨이 아니라 화면의 머리글로 읽힙니다. 뒤로 가기 없이 쓰는 화면이라 `leading` 은 비우고, 오른쪽에는 글자 행동 하나를 두는 것이 기본 모양입니다.
+
+제목은 바 가장자리에서 20 안쪽에서 시작합니다 — 바 좌우 여백 4 에 제목 여백 16 을 더한 값입니다. 글자 행동에 쓰는 ghost `Button` 은 자기 안쪽 여백이 16 이라, 같은 4 여백 위에서 글자가 반대쪽 가장자리에서도 20 안쪽에 끝납니다. 면은 다른 터치용 바와 같은 `surface` 이고 클러스터 사이 간격도 기본값을 씁니다.
+
+```dart
+AppBar(
+  variant: CoreAppBarVariant.prominent,
+  title: const Text('지도'),
+  trailing: [
+    Button(
+      variant: CoreButtonVariant.ghost,
+      buttonStyle: const CoreButtonStyle(
+        foregroundColor: CoreColor.token(CoreColors.onSurfaceVariant),
+      ),
+      onPressed: () {},
+      child: const Text('목록으로'),
+    ),
+  ],
+)
+```
+
+스크롤에 따라 접히는 제목은 이 변형이 하지 않습니다. 큰 제목이 두 번째 행에 놓이는 모양이 필요하면 `medium` 을 씁니다.
+
+## 동작 스펙 (Behavior)
+
+바 자체는 표시용 레이아웃이며 내비게이션 · 클릭 콜백 · 비활성 상태를 소유하지 않습니다. leading / trailing 의 각 버튼·링크가 자신의 동작을 담당합니다.
+
+### 레이아웃
+
+- **단일 행 (`standard` / `compact` / `dense` / `prominent`)**: `[leading] [중앙 열] [trailing]` 을 `spacing` 간격으로 가로 배치. 중앙 열이 남은 너비를 차지하고 자기 `titlePadding`(기본 좌우 8, `dense` 는 0, `prominent` 는 16) 만큼 안으로 들어가며, `trailingExpanded: true` 면 trailing 클러스터가 대신 남은 너비를 받아 액션을 끝에 정렬합니다.
+- **두 행 (`medium`)**: `topRowHeight`(기본 48px) 높이의 상단 행에 leading 과 trailing 이 양 끝으로 벌어지고, 남은 높이에 중앙 열이 `titlePadding` 안쪽 하단(`centerTitle` 이면 하단 가운데)에 정렬됩니다. 상단 행이 이미 양 끝 정렬이라 `trailingExpanded` 는 영향이 없습니다.
+- **중앙 열**: `header` → `title` → `subtitle` 순의 세로 열. `child` 를 주면 이 열 전체가 `child` 로 대체됩니다.
+- **클러스터 내부 간격**: leading / trailing 안의 인접 위젯은 `actionSpacing` 으로 벌어집니다 — 클러스터 사이 간격(`spacing`)과 별개 필드라 한쪽만 넓힐 수 있습니다.
+
+### 제목 정렬
+
+- `centerTitle: false` (기본): 중앙 열이 시작 정렬(`stretch`) — 제목이 leading 바로 옆에서 시작
+- `centerTitle: true` (단일 행): 제목이 **바 전체의 가운데**에 놓입니다 — leading · trailing 의 폭이 달라도 클러스터 사이 공간의 가운데가 아닙니다. 재질과 무관합니다.
+  - 양옆 자리는 같은 폭 — 둘 중 넓은 클러스터의 폭(`max(leading, trailing)`)입니다. 제목의 최대 폭은 `바 안쪽 폭 − 2 × max(leading, trailing) − 2 × spacing` 입니다.
+  - 그보다 긴 제목은 옆으로 밀리지 않고 가운데에서 한 줄 말줄임으로 끝납니다 — 넓은 쪽 클러스터와는 정확히 `spacing`, 좁은 쪽과는 그보다 넓게 떨어집니다. 클러스터를 밀어내지 않습니다. 말줄임은 `title` 에만 적용되고 `header` · `subtitle` · `child` 는 그대로입니다.
+  - `trailingExpanded: true` 면 trailing 이 남는 폭을 가져가 가운데 맞출 자리가 없으므로, 제목은 leading 옆에 남고 텍스트만 가운데 정렬됩니다.
+- `centerTitle: true` (`medium`): 큰 제목 블록이 하단 가운데에 정렬됩니다.
+
+### 디바이더 · 그림자
+
+- `showDivider: true` (기본): 바 하단에 `dividerColor` / `dividerWidth` (기본 `outlineVariant` · 1px) 헤어라인
+- `Scaffold` 헤더 안에서는 이 헤어라인과 Scaffold 헤더 보더(`CoreScaffoldStyle.headerBorderColor`)가 **같은 자리**(헤더 하단)에 그려집니다. 둘 다 켜 두면 구조상 선이 두 겹이므로, `AppBar` 쪽을 `showDivider: false` 로 끄고 경계선은 Scaffold 헤더 보더 하나만 그리게 둡니다 — 아래 사용 가이드라인 참조.
+- `elevated: true`: `elevatedShadow` (기본 `CoreShadow.sm`) 드롭 섀도. 표면 채움이 불투명한 variant 면(`surface`, `dense` 는 `surfaceContainerLow`)이라 그림자가 바 아래로 비치지 않습니다.
+
+## 사용 가이드라인 (Usage Guidelines)
+
+### ✅ Do
+
+<Callout type="tip">
+
+**아이콘 액션은 `Button(variant: CoreButtonVariant.plain)` 으로 합성하기**
+
+```dart
+AppBar(
+  leading: [
+    Button(
+      variant: CoreButtonVariant.plain,
+      onPressed: goBack,
+      child: const Icon(LucideIcons.arrowLeft),
+    ),
+  ],
+  title: const Text('설정'),
+)
+```
+
+`plain` 버튼이 투명 배경 · hover 페이드 · 포커스 링 · 터치 타겟을 스스로 그립니다. 맨 `Icon` 만 넣으면 클릭도 포커스도 되지 않습니다.
+
+</Callout>
+
+<Callout type="tip">
+
+**`Scaffold` 의 `headers` / `footers` 슬롯에 넣기**
+
+```dart
+Scaffold(
+  headers: [
+    AppBar(
+      title: const Text('대시보드'),
+      showDivider: false,
+    ),
+  ],
+  child: body,
+)
+```
+
+Scaffold 가 헤더 섹션을 본문 위에 쌓고, 플로팅 헤더 · 로딩 인디케이터와의 겹침을 처리합니다. 헤더 하단 경계선은 Scaffold 헤더 보더가 그리므로 `AppBar` 의 헤어라인은 `showDivider: false` 로 끕니다 — 두 선은 같은 자리에 그려집니다.
+
+</Callout>
+
+---
+
+### ❌ Don't
+
+<Callout type="warning">
+
+**`title` 과 `child` 를 동시에 주기**
+
+```dart
+// ❌ assert 실패 — 두 슬롯은 서로 배타적이다
+AppBar(
+  title: const Text('대시보드'),
+  child: searchField,
+)
+```
+
+`child` 는 `header` / `title` / `subtitle` 열을 **통째로 대체**하는 슬롯입니다. 검색 필드처럼 자유 형식 중앙 콘텐츠가 필요하면 `child` 만 주고, 제목이 필요하면 `title` 계열만 씁니다.
+
+</Callout>
+
+<Callout type="warning">
+
+**`Scaffold` 헤더 안에서 `AppBar` 디바이더를 켜 둔 채 쓰기**
+
+```dart
+// ❌ Scaffold 헤더 보더와 AppBar 헤어라인이 같은 자리에 두 번 그려진다
+Scaffold(
+  headers: [
+    AppBar(title: const Text('대시보드')), // showDivider 기본값 true
+  ],
+  child: body,
+)
+```
+
+Scaffold 헤더 보더와 `AppBar` 하단 디바이더는 둘 다 헤더 하단에 그려집니다. 기본값끼리는 같은 `outlineVariant` 1px 라 한 줄처럼 보이지만 구조상 이중이고, 한쪽 색(`dividerColor` 또는 `headerBorderColor`)만 바꾸면 두 선이 어긋나 드러납니다. `AppBar(showDivider: false)` 로 끄고 경계선은 `CoreScaffoldStyle.headerBorderColor` / `headerBorderWidth` 한 곳에서 정합니다.
+
+</Callout>
+
+<Callout type="warning">
+
+**높이 · 색을 바깥 래퍼로 덮어쓰기**
+
+```dart
+// ❌ 바가 자기 겉모습을 가진다 — 래퍼로 덮으면 variant · 테마 오버라이드와 어긋난다
+SizedBox(
+  height: 80,
+  child: AppBar(title: const Text('대시보드')),
+)
+```
+
+높이 · 표면 색 · 간격은 전부 `appBarStyle` (또는 프로젝트의 `CoreAppBarTheme`) 로 흐릅니다. `withStyle(const CoreAppBarStyle(height: CoreSize.size80))` 처럼 슬롯으로 주면 Web · Flutter 가 같이 움직입니다.
+
+</Callout>
+
+## 접근성 (Accessibility)
+
+### 역할
+
+바 자체는 랜드마크 역할을 자동으로 붙이지 않습니다. leading / trailing 의
+버튼·링크와 제목 콘텐츠는 각자의 의미를 유지합니다. 페이지 헤더 의미는 호출부가
+Flutter 시맨틱 래퍼 또는 Web `attributes: {'role': 'banner'}` 로 제공합니다.
+
+### 스크린 리더
+
+- **Flutter**: 바 자체는 시맨틱 래퍼를 추가하지 않습니다 — leading / trailing 의 `Button` 과 `title` 의 `Text` 가 각자의 시맨틱을 그대로 노출합니다. 읽기 순서는 leading → 중앙 열 → trailing.
+- **Web**: 루트가 `<div>` 이며 랜드마크 role 을 자동으로 붙이지 않습니다. 페이지 헤더로 쓰면 `attributes: {'role': 'banner'}` 를 넘겨 랜드마크로 노출하세요.
+
+### 키보드
+
+바 자체는 포커스를 받지 않습니다. leading / trailing 의 `Button` 이 DOM · 위젯 순서대로 `Tab` 포커스를 받고, `Enter` / `Space` 로 활성화됩니다 — 포커스 링은 각 버튼이 그립니다.
+
+### 포커스 관리
+
+진입·이탈 시 포커스를 옮기거나 가두지 않습니다. 자식 컨트롤의 포커스와 링을
+그대로 유지합니다.
+
+### 알려진 제약
+
+아이콘만 넣은 액션의 이름은 AppBar 가 대신 만들지 않습니다. 호출부에서 버튼의
+접근 가능한 이름을 채우고, 제목을 heading 으로 읽어야 하면 그 의미도 슬롯에 실으세요.
+
+AppBar 는 기기의 세로 컨트롤 자리를 스스로 찾지 않고, 그 자리에 동작을 그리지도
+않습니다. 그 자리는 바의 상자 밖이고, 자리가 있는지는 Flutter 만 기기에서 읽을 수
+있습니다. 그래서 자리가 있다는 것은 앱의 틀이 `actionsAxis` 로 알리고, 옮겨진
+동작은 세로 [ToolbarGroup](/components/toolbar-group) 이 그립니다.
+
+`leading` · `trailing` 은 어떤 위젯이든 받는 목록이라 어느 것이 글자 동작인지 바가
+알 수 없습니다. 바에 남아야 하는 동작은 `BarAction` 으로 직접 표시합니다 — 표시하지
+않은 글자 버튼은 다른 동작과 함께 세로 줄로 옮겨집니다. 아래
+[조합 예제](#옆-컨트롤-자리로-동작-나누기) 를 보세요.
+
+## 크로스 플랫폼 차이점 (Platform Differences)
+
+| 항목 | Flutter | Web |
+|------|---------|-----|
+| 클래스명 | `AppBar` | `AppBar` |
+| 렌더 루트 | `DecoratedBox` + `SizedBox(height:)` | `<div>` (flex row · `w-full`) |
+| 가운데 제목 (단일 행) | `CustomMultiChildLayout` — 양옆을 `max(leading, trailing)` 으로 같게 잡고 바 가운데에, 넘치면 한 줄 말줄임 | 세 칸 CSS grid — 양옆 칸의 최소 폭이 `--coui-app-bar-side` 이고, 브라우저에서 측정 스크립트가 두 클러스터 중 넓은 폭을 그 변수에 씁니다. 서버가 그린 첫 화면(측정 전)에는 각 칸이 자기 클러스터 폭이라, 들어가는 제목은 처음부터 가운데지만 넘치는 제목은 측정 전까지 좁은 쪽으로 밀려 보입니다 |
+| 하단 디바이더 | `Border(bottom:)` | `border-b` + px 고정 `border-bottom-width` |
+| elevated 그림자 | `BoxDecoration.boxShadow` | inline `box-shadow` |
+| HTML 배관 | — | `id` / `classes` / `css` / `attributes` / `eventHandlers` 통과 |
+
+## 관련 컴포넌트 (Related Components)
+
+- **[Scaffold](/components/scaffold)**: `headers` / `footers` 슬롯에 AppBar 를 넣어 화면 골격을 구성
+- **[NavigationBar](/components/navigation-bar)**: 주요 섹션 이동 내비게이션 — 헤더 대신 쓰지 않고 함께 씁니다
+
+### 조합 예제
+
+```dart
+Scaffold(
+  headers: [
+    AppBar(
+      leading: [
+        Button(
+          variant: CoreButtonVariant.plain,
+          onPressed: openDrawer,
+          child: const Icon(LucideIcons.menu),
+        ),
+      ],
+      title: const Text('대시보드'),
+      trailing: [
+        Button(
+          variant: CoreButtonVariant.plain,
+          onPressed: openSettings,
+          child: const Icon(LucideIcons.settings),
+        ),
+      ],
+    ),
+  ],
+  child: body,
+)
+```
+
+#### 옆 컨트롤 자리로 동작 나누기
+
+화면 한쪽을 세로 컨트롤 자리로 비워 두는 기기에서는 바의 동작 가운데 **아이콘
+동작만** 그 자리로 옮기고, 글자 동작과 제목은 바에 남깁니다 — 세로로 세운
+자리에서는 글자를 눕히지 않기 때문입니다.
+
+동작 목록은 한 번만 씁니다. 바에 남아야 하는 동작을 `BarAction` 으로 감싸
+`horizontalOnly` 라고 표시하고, 같은 목록을 `AppBar` 와 세로
+[ToolbarGroup](/components/toolbar-group) 에 함께 넘깁니다. `actionsAxis` 가
+`vertical` 인 바는 표시한 동작만 그리고, 세로 그룹은 나머지를 그립니다. 어느 동작도
+두 번 그려지거나 빠지지 않습니다.
+
+```dart
+// 화면 오른쪽에 세로 컨트롤 자리가 있으면 그 폭이 viewPadding 으로 들어옵니다.
+// 위쪽 여백이 없고 오른쪽에만 여백이 있을 때가 그 자리입니다 — 보통 아이폰도
+// 가로로 눕히면 양쪽에 같은 여백이 생깁니다.
+final inset = MediaQuery.viewPaddingOf(context);
+final strip = inset.top == 0 && inset.left == 0 ? inset.right : 0.0;
+final side = strip > 0;
+
+final leading = [backButton];
+final trailing = [
+  shareButton,
+  // 글자 동작은 세로 줄에 서지 않습니다.
+  BarAction(
+    axisBehavior: CoreBarActionAxisBehavior.horizontalOnly,
+    child: editButton,
+  ),
+];
+
+Stacks(
+  children: [
+    Position.fill(
+      child: Scaffold(
+        headers: [
+          AppBar(
+            // 뒤로 버튼이 옆으로 갔으니 제목이 화면의 머리말이 됩니다.
+            variant: side
+                ? CoreAppBarVariant.prominent
+                : CoreAppBarVariant.standard,
+            actionsAxis: side ? CoreAxis.vertical : CoreAxis.horizontal,
+            leading: leading,
+            title: const Text('제목'),
+            trailing: trailing,
+          ),
+        ],
+        child: body,
+      ),
+    ),
+    if (side)
+      Position(
+        top: 0,
+        right: 0,
+        bottom: 0,
+        width: strip,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ToolbarGroup(
+              ariaLabel: '페이지 동작',
+              direction: CoreAxis.vertical,
+              // 바와 같은 목록 — 표시한 글자 동작은 세로 그룹이 빼고 그립니다.
+              children: [...leading, ...trailing],
+            ),
+            NavigationBar(
+              mode: CoreNavigationBarMode.rail,
+              selectedIndex: tab,
+              onSelected: selectTab,
+              items: tabs,
+            ),
+          ],
+        ),
+      ),
+  ],
+)
+```
+
+`BarAction` 은 표시일 뿐이라 스스로 그리는 것이 없습니다. 바와 세로 그룹 밖에서는
+감싼 동작을 그대로 그립니다.
+
+| 속성 | 타입 | 기본값 | 설명 |
+|------|------|--------|------|
+| `axisBehavior` | `CoreBarActionAxisBehavior` | 필수 | 동작이 설 수 있는 줄 — `automatic` 은 바의 동작이 가는 곳으로 함께 가고(표시하지 않은 동작과 같습니다), `horizontalOnly` 는 바의 줄에만 섭니다 |
+| `child` | `W` | 필수 | 표시할 동작 |
+
+- **바가 하지 않는 것**: 자리를 찾는 일, 세로 그룹을 그리는 일, `variant` 를 바꾸는
+  일은 앱의 틀이 합니다. `actionsAxis` 는 어느 동작을 바가 그릴지만 정합니다.
+- **묶음**: `trailing` 에 넣은 `ToolbarGroup` 도 표시하지 않으면 옮겨지고, 세로
+  그룹은 그 안의 동작을 자기 것으로 받아 캡슐 하나로 그립니다.
+- **표시는 목록의 항목에 직접**: 바와 세로 그룹은 자기 목록의 항목만 봅니다. 다른
+  위젯 안쪽에 넣은 `BarAction` 은 읽히지 않습니다.
+
+Liquid Glass 에서 세로 그룹과 [NavigationBar](/components/navigation-bar) 의 레일은
+둘 다 폭 48 의 캡슐이라 한 자리에 나란히 섭니다. 그 자리의 폭, 캡슐과 가장자리
+사이의 거리, 콘텐츠를 그만큼 비우는 일은 기기마다 다르므로 앱의 틀이 정합니다.
+그 자리는 글 쓰는 방향이 바뀌어도 화면의 같은 쪽에 남으니 `start` · `end` 가
+아니라 `left` · `right` 로 맞춥니다.
+
+
+## 폴더블의 세로 컨트롤 레일
+
+`Scaffold(adaptiveAppBarActions: true, headers: [AppBar(...)])`는 첫 번째 직접 자식 앱바의
+아이콘 동작을 시스템이 확보한 쪽면의 상단으로 옮긴다. `appBarStyle: CoreAppBarStyle(surfaceStyle:
+CoreSurfaceStyleId.liquidGlass)`를 쓰면 가로 앱바와 세로 레일이 같은 유리 캡슐을 사용한다.
+제목과 `BarAction(axisBehavior: CoreBarActionAxisBehavior.horizontalOnly)`로 표시한 텍스트 동작은
+본문 쪽에 남는다. 섞인 ToolbarGroup 안의 텍스트 동작도 한 번만 표시된다.
+
+Flutter는 MediaQuery.viewPadding, Web은 CSS safe-area-inset 값을 읽는다. 힌지나 넓은 화면만으로는
+레일을 만들지 않는다. 위쪽 여백이 없고 한쪽 안전 영역에 컨트롤이 들어갈 폭이 있어야 한다.
+RTL에서도 안전 영역이 있는 물리 방향을 유지한다. 앱은 `appBarControlInsets`를 생략하고, 장치 미리보기와 SSR에서만
+명시적인 값을 넘긴다. `CoreScaffoldStyle.appBarRailPadding`으로 시스템 상태 표시 영역 아래의
+시작 위치와 가장자리 여백을 조정한다. 기본 시작 높이는 160이며 화면 가장자리에서 24 논리 픽셀을 띄운다.
+Flutter에서 키보드나 짧은 창 때문에 한 버튼도 놓을 수 없으면 앱바의 가로 배치로 돌아간다.
+
+기존 화면은 `adaptiveAppBarActions: false`가 기본이므로 변하지 않는다. 앱바를 Padding 등으로
+감싸지 않고 headers에 직접 전달해야 Scaffold가 동작을 배치할 수 있다.

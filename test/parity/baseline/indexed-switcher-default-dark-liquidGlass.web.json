@@ -1,0 +1,75 @@
+{
+  "key": "indexed-switcher-default-dark-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-button-ssr-i3:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 3%, rgb(var(--coui-secondary-container) / 100%)) !important;}#co-button-ssr-i3:active{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 12%, rgb(var(--coui-secondary-container) / 100%)) !important;}\n                        \n                        홈 · 0\n                      \n                    \n                  \n                  \n                    \n                      \n                        \n                          #co-button-ssr-i4:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 3%, rgb(var(--coui-secondary-container) / 100%)) !important;}#co-button-ssr-i4:active{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 12%, rgb(var(--coui-secondary-container) / 100%)) !important;}\n                        \n                        검색 · 0\n                      \n                    \n                  \n                  \n                    \n                      \n                        \n                          #co-button-ssr-i5:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 3%, rgb(var(--coui-secondary-container) / 100%)) !important;}#co-button-ssr-i5:active{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 12%, rgb(var(--coui-secondary-container) / 100%)) !important;}\n                        \n                        프로필 · 0\n                      \n                    \n                  \n                \n              \n              \n              \n                홈\n                \n                  \n                    #co-button-ssr-i7:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-i7:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                  \n                  검색\n                \n                \n                  \n                    #co-button-ssr-i8:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-i8:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                  \n                  프로필",
+    "layout": {
+      "width": 256,
+      "height": 152,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 96
+        },
+        {
+          "x": 0,
+          "y": 96,
+          "width": 256,
+          "height": 16
+        },
+        {
+          "x": 34.109375,
+          "y": 112,
+          "width": 187.78125,
+          "height": 40
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgba(64, 65, 67, 0.6)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "10px",
+      "borderTopRightRadius": "10px",
+      "borderBottomRightRadius": "10px",
+      "borderBottomLeftRadius": "10px",
+      "paddingTop": "8px",
+      "paddingRight": "16px",
+      "paddingBottom": "8px",
+      "paddingLeft": "16px",
+      "outlineWidth": "2px",
+      "outlineStyle": "solid",
+      "outlineColor": "rgba(0, 0, 0, 0)",
+      "outlineOffset": "2px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 256,
+      "heightPx": 152
+    }
+  }
+}

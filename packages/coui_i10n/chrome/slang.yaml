@@ -1,0 +1,29 @@
+# Component chrome strings (CoUILocalizations / CouiLocalizations) — the
+# single source both platforms' locale classes are generated from.
+#
+#   translate: dart run tool/translate_chrome.dart --target=<locale|gdp-10>
+#   generate:  dart run tool/gen_chrome_localizations.dart
+#
+# Only slang_gpt reads this config (no slang Dart output is generated here):
+# the locale classes are emitted by gen_chrome_localizations.dart so they can
+# keep the interfaces' compiler-enforced member parity and const singletons.
+base_locale: ko
+fallback_strategy: none
+input_directory: i18n
+input_file_pattern: .i18n.json
+namespaces: false
+string_interpolation: braces
+
+gpt:
+  model: gpt-4.1
+  description: |
+    These are the built-in UI strings ("chrome") of CoUI, a cross-platform
+    (Flutter + web) UI component library: button labels, form validation
+    messages, picker placeholders, calendar month and weekday names,
+    screen-reader labels and announcements. They are not app content.
+    Use the concise, neutral wording that mainstream operating systems and
+    UI toolkits use in the target language (polite but not overly formal;
+    consistent register across all strings). Calendar month and weekday
+    names must follow CLDR for the target language. Keep every {placeholder}
+    exactly as written, keep technical acronyms (RGB, HSV, HSL, URL, PDF,
+    JSON ...) unchanged, and keep digits Latin (0-9).

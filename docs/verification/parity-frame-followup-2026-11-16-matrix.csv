@@ -1,0 +1,761 @@
+key,role,beforeRootStatus,beforeRootRatio,afterStatus,afterRatio,flutterWidth,flutterHeight,webWidth,webHeight,dimensionMismatch,diffPixels,totalPixels,maxChannelDelta,flutterBaseline,webBaseline
+button-primary-light-defaultStyle,root,fail,0.08571428571428572,fail,0.08571428571428572,56,40,56,40,,192,2240,211,pass,pass
+button-primary-dark-defaultStyle,root,fail,0.07366071428571429,fail,0.07366071428571429,56,40,56,40,,165,2240,203,pass,pass
+button-secondary-light-defaultStyle,root,fail,0.05758928571428571,fail,0.05758928571428571,56,40,56,40,,129,2240,207,pass,pass
+button-secondary-dark-defaultStyle,root,fail,0.06383928571428571,fail,0.06383928571428571,56,40,56,40,,143,2240,179,pass,pass
+button-tonal-light-defaultStyle,root,pass,0.044886363636363634,pass,0.044886363636363634,44,40,44,40,,79,1760,171,pass,pass
+button-tonal-dark-defaultStyle,root,pass,0.048863636363636366,pass,0.048863636363636366,44,40,44,40,,86,1760,179,pass,pass
+button-outline-light-defaultStyle,root,fail,0.06607142857142857,fail,0.06607142857142857,70,40,70,40,,185,2800,213,pass,pass
+button-outline-dark-defaultStyle,root,fail,0.08857142857142856,fail,0.08857142857142856,70,40,70,40,,248,2800,221,pass,pass
+button-ghost-light-defaultStyle,root,fail,0.07536764705882353,fail,0.07536764705882353,68,40,68,40,,205,2720,219,pass,pass
+button-ghost-dark-defaultStyle,root,fail,0.08933823529411765,fail,0.08933823529411765,68,40,68,40,,243,2720,236,pass,pass
+button-plain-light-defaultStyle,root,fail,0.14791666666666667,fail,0.14791666666666667,36,40,36,40,,213,1440,159,pass,pass
+button-plain-dark-defaultStyle,root,fail,0.17569444444444443,fail,0.17569444444444443,36,40,36,40,,253,1440,171,pass,pass
+button-card-light-defaultStyle,root,fail,0.05344827586206897,fail,0.05344827586206897,58,40,58,40,,124,2320,208,pass,pass
+button-card-dark-defaultStyle,root,fail,0.06293103448275862,fail,0.06293103448275862,58,40,58,40,,146,2320,218,pass,pass
+button-destructive-light-defaultStyle,root,pass,0.048214285714285716,pass,0.048214285714285716,56,40,56,40,,108,2240,202,pass,pass
+button-destructive-dark-defaultStyle,root,fail,0.060714285714285714,fail,0.060714285714285714,56,40,56,40,,136,2240,189,pass,pass
+button-cast-motion-light-defaultStyle,root,fail,0.09598765432098766,fail,0.09598765432098766,243,40,243,40,,933,9720,213,pass,pass
+button-cast-motion-dark-defaultStyle,root,fail,0.08559670781893004,fail,0.08559670781893004,243,40,243,40,,832,9720,222,pass,pass
+command-default-light-defaultStyle,root,pass,0.011306970509383379,pass,0.011306970509383379,800,373,800,373,,3374,298400,224,pass,pass
+command-default-dark-defaultStyle,root,pass,0.011554959785522788,pass,0.011554959785522788,800,373,800,373,,3448,298400,202,pass,pass
+command-dialog-light-defaultStyle,root,fail,0.08855421686746988,fail,0.08855421686746988,83,40,83,40,,294,3320,212,pass,pass
+command-dialog-dark-defaultStyle,root,fail,0.10421686746987951,fail,0.10421686746987951,83,40,83,40,,346,3320,220,pass,pass
+command-scrollable-light-defaultStyle,root,pass,0.009397382920110192,pass,0.009397382920110192,800,363,800,363,,2729,290400,224,pass,pass
+command-scrollable-dark-defaultStyle,root,pass,0.009851928374655648,pass,0.009851928374655648,800,363,800,363,,2861,290400,202,pass,pass
+command-empty-light-defaultStyle,root,pass,0.004774734982332156,pass,0.004774734982332156,800,283,800,283,,1081,226400,224,pass,pass
+command-empty-dark-defaultStyle,root,pass,0.005627208480565371,pass,0.005627208480565371,800,283,800,283,,1274,226400,202,pass,pass
+fab-default-light-defaultStyle,root,pass,0.01403061224489796,pass,0.01403061224489796,56,56,56,56,,44,3136,60,pass,pass
+fab-default-dark-defaultStyle,root,pass,0.018494897959183673,pass,0.018494897959183673,56,56,56,56,,58,3136,71,pass,pass
+hover-default-light-defaultStyle,root,pass,0.02525476295968099,pass,0.02525476295968099,111,61,111,61,,171,6771,84,pass,pass
+hover-default-dark-defaultStyle,root,pass,0.03426377196869,pass,0.03426377196869,111,61,111,61,,232,6771,130,pass,pass
+hover-fade-light-defaultStyle,root,pass,0.02525476295968099,pass,0.02525476295968099,111,61,111,61,,171,6771,84,pass,pass
+hover-fade-dark-defaultStyle,root,pass,0.03426377196869,pass,0.03426377196869,111,61,111,61,,232,6771,130,pass,pass
+hover-shadow-light-defaultStyle,root,pass,0.02525476295968099,pass,0.02525476295968099,111,61,111,61,,171,6771,84,pass,pass
+hover-shadow-dark-defaultStyle,root,pass,0.03426377196869,pass,0.03426377196869,111,61,111,61,,232,6771,130,pass,pass
+theme-controller-default-light-defaultStyle,root,pass,0.04063870614035088,pass,0.04063870614035088,228,64,228,64,,593,14592,214,pass,pass
+theme-controller-default-dark-defaultStyle,root,pass,0.04084429824561404,pass,0.04084429824561404,228,64,228,64,,596,14592,230,pass,pass
+filter-default-light-defaultStyle,root,fail,0.060397196261682246,fail,0.060397196261682246,214,40,214,40,,517,8560,224,pass,pass
+filter-default-dark-defaultStyle,root,fail,0.05560747663551402,fail,0.05560747663551402,214,40,214,40,,476,8560,180,pass,pass
+filter-disabled-light-defaultStyle,root,pass,0.03641812271434376,pass,0.03641812271434376,214,92,214,92,,717,19688,224,pass,pass
+filter-disabled-dark-defaultStyle,root,pass,0.036011783827712314,pass,0.036011783827712314,214,92,214,92,,709,19688,180,pass,pass
+toggle-group-default-light-defaultStyle,root,fail,0.07448979591836735,fail,0.07448979591836735,98,40,98,40,,292,3920,224,pass,pass
+toggle-group-default-dark-defaultStyle,root,fail,0.07831632653061224,fail,0.07831632653061224,98,40,98,40,,307,3920,180,pass,pass
+toggle-group-vertical-light-defaultStyle,root,fail,0.09924242424242424,fail,0.09924242424242424,44,60,44,60,,262,2640,220,pass,pass
+toggle-group-vertical-dark-defaultStyle,root,fail,0.09924242424242424,fail,0.09924242424242424,44,60,44,60,,262,2640,179,pass,pass
+toggle-group-disabled-light-defaultStyle,root,fail,0.05844618674269423,fail,0.05844618674269423,183,92,183,92,,984,16836,213,pass,pass
+toggle-group-disabled-dark-defaultStyle,root,fail,0.05927773818009028,fail,0.05927773818009028,183,92,183,92,,998,16836,179,pass,pass
+command-search-default-light-defaultStyle,root,pass,0.022109375,pass,0.022109375,320,40,320,40,,283,12800,167,pass,pass
+command-search-default-dark-defaultStyle,root,pass,0.02484375,pass,0.02484375,320,40,320,40,,318,12800,158,pass,pass
+text-field-default-light-defaultStyle,root,pass,0.00459375,pass,0.00459375,800,40,800,40,,147,32000,68,pass,pass
+text-field-default-dark-defaultStyle,root,pass,0.0064375,pass,0.0064375,800,40,800,40,,206,32000,70,pass,pass
+text-field-error-light-defaultStyle,root,pass,0.0071484375,pass,0.0071484375,800,64,800,64,,366,51200,93,pass,pass
+text-field-error-dark-defaultStyle,root,pass,0.0108984375,pass,0.0108984375,800,64,800,64,,558,51200,140,pass,pass
+text-area-default-light-defaultStyle,root,pass,0.000965909090909091,pass,0.000965909090909091,800,110,800,110,,85,88000,68,pass,pass
+text-area-default-dark-defaultStyle,root,pass,0.0016363636363636363,pass,0.0016363636363636363,800,110,800,110,,144,88000,70,pass,pass
+text-area-footer-light-defaultStyle,root,pass,0.002612781954887218,pass,0.002612781954887218,800,133,800,133,,278,106400,212,pass,pass
+text-area-footer-dark-defaultStyle,root,pass,0.0033270676691729323,pass,0.0033270676691729323,800,133,800,133,,354,106400,219,pass,pass
+rich-editor-default-light-defaultStyle,root,pass,0.008157216494845361,pass,0.008157216494845361,800,194,800,194,,1266,155200,218,pass,pass
+rich-editor-default-dark-defaultStyle,root,pass,0.017248711340206186,pass,0.017248711340206186,800,194,800,194,,2677,155200,216,pass,pass
+rich-editor-image-light-defaultStyle,root,pass,0.006125827814569536,pass,0.006125827814569536,800,151,800,151,,740,120800,156,pass,pass
+rich-editor-image-dark-defaultStyle,root,pass,0.017574503311258278,pass,0.017574503311258278,800,151,800,151,,2123,120800,168,pass,pass
+rich-editor-max-length-light-defaultStyle,root,pass,0.004197154471544715,pass,0.004197154471544715,800,123,800,123,,413,98400,156,pass,pass
+rich-editor-max-length-dark-defaultStyle,root,pass,0.017449186991869918,pass,0.017449186991869918,800,123,800,123,,1717,98400,151,pass,pass
+rich-editor-no-toolbar-light-defaultStyle,root,pass,0.02516768292682927,pass,0.02516768292682927,800,82,800,82,,1651,65600,224,pass,pass
+rich-editor-no-toolbar-dark-defaultStyle,root,pass,0.03059451219512195,pass,0.03059451219512195,800,82,800,82,,2007,65600,222,pass,pass
+select-suffix-light-defaultStyle,root,pass,0.00059375,pass,0.00059375,800,40,800,40,,19,32000,43,pass,pass
+select-suffix-dark-defaultStyle,root,pass,0.0033125,pass,0.0033125,800,40,800,40,,106,32000,97,pass,pass
+checkbox-default-light-defaultStyle,root,fail,0.13333333333333333,fail,0.13333333333333333,75,21,75,21,,210,1575,134,pass,pass
+checkbox-default-dark-defaultStyle,root,fail,0.19365079365079366,fail,0.19365079365079366,75,21,75,21,,305,1575,145,pass,pass
+checkbox-checked-light-defaultStyle,root,fail,0.05634920634920635,fail,0.05634920634920635,60,21,60,21,,71,1260,134,pass,pass
+checkbox-checked-dark-defaultStyle,root,fail,0.2150793650793651,fail,0.2150793650793651,60,21,60,21,,271,1260,152,pass,pass
+checkbox-indeterminate-light-defaultStyle,root,fail,0.12063492063492064,fail,0.12063492063492064,75,21,75,21,,190,1575,136,pass,pass
+checkbox-indeterminate-dark-defaultStyle,root,fail,0.16063492063492063,fail,0.16063492063492063,75,21,75,21,,253,1575,155,pass,pass
+checkbox-disabled-light-defaultStyle,root,pass,0.0,pass,0.0,60,21,60,21,,0,1260,25,pass,pass
+checkbox-disabled-dark-defaultStyle,root,pass,0.0007936507936507937,pass,0.0007936507936507937,60,21,60,21,,1,1260,36,pass,pass
+toggle-default-light-defaultStyle,root,pass,0.04661654135338346,pass,0.04661654135338346,95,21,95,21,,93,1995,72,pass,pass
+toggle-default-dark-defaultStyle,root,fail,0.11929824561403508,fail,0.11929824561403508,95,21,95,21,,238,1995,136,pass,pass
+toggle-on-light-defaultStyle,root,fail,0.10827067669172932,fail,0.10827067669172932,95,21,95,21,,216,1995,148,pass,pass
+toggle-on-dark-defaultStyle,root,fail,0.15588972431077694,fail,0.15588972431077694,95,21,95,21,,311,1995,160,pass,pass
+toggle-disabled-light-defaultStyle,root,pass,0.002506265664160401,pass,0.002506265664160401,95,21,95,21,,5,1995,35,pass,pass
+toggle-disabled-dark-defaultStyle,root,pass,0.037092731829573934,pass,0.037092731829573934,95,21,95,21,,74,1995,141,pass,pass
+slider-default-light-defaultStyle,root,pass,0.0,pass,0.0,800,32,800,32,,0,25600,25,pass,pass
+slider-default-dark-defaultStyle,root,pass,0.0,pass,0.0,800,32,800,32,,0,25600,25,pass,pass
+date-picker-default-light-defaultStyle,root,pass,0.008984375,pass,0.008984375,256,40,256,40,,92,10240,68,pass,pass
+date-picker-default-dark-defaultStyle,root,pass,0.0162109375,pass,0.0162109375,256,40,256,40,,166,10240,70,pass,pass
+time-picker-default-light-defaultStyle,root,pass,0.00712890625,pass,0.00712890625,256,40,256,40,,73,10240,68,pass,pass
+time-picker-default-dark-defaultStyle,root,pass,0.01220703125,pass,0.01220703125,256,40,256,40,,125,10240,70,pass,pass
+color-picker-default-light-defaultStyle,root,pass,0.0125,pass,0.0125,144,40,144,40,,72,5760,83,pass,fail
+color-picker-default-dark-defaultStyle,root,pass,0.043402777777777776,pass,0.043402777777777776,144,40,144,40,,250,5760,136,pass,fail
+autocomplete-default-light-defaultStyle,root,pass,0.00265625,pass,0.00265625,800,40,800,40,,85,32000,68,pass,pass
+autocomplete-default-dark-defaultStyle,root,pass,0.00471875,pass,0.00471875,800,40,800,40,,151,32000,70,pass,pass
+input-otp-default-light-defaultStyle,root,pass,0.0011589403973509935,pass,0.0011589403973509935,302,40,302,40,,14,12080,132,pass,pass
+input-otp-default-dark-defaultStyle,root,pass,0.0012417218543046358,pass,0.0012417218543046358,302,40,302,40,,15,12080,140,pass,pass
+input-otp-lg-light-defaultStyle,root,pass,0.00026785714285714287,pass,0.00026785714285714287,400,56,400,56,,6,22400,63,pass,pass
+input-otp-lg-dark-defaultStyle,root,pass,0.00026785714285714287,pass,0.00026785714285714287,400,56,400,56,,6,22400,80,pass,pass
+input-otp-editable-light-defaultStyle,root,pass,0.011506622516556292,pass,0.011506622516556292,302,40,302,40,,139,12080,224,pass,pass
+input-otp-editable-dark-defaultStyle,root,pass,0.011175496688741722,pass,0.011175496688741722,302,40,302,40,,135,12080,222,pass,pass
+radio-group-default-light-defaultStyle,root,fail,0.0580168776371308,fail,0.0580168776371308,60,79,60,79,,275,4740,134,pass,pass
+radio-group-default-dark-defaultStyle,root,fail,0.1550632911392405,fail,0.1550632911392405,60,79,60,79,,735,4740,151,pass,pass
+radio-group-card-light-defaultStyle,root,fail,,fail,,800,208,800,207,800x208 vs 800x207,0,0,0,pass,pass
+radio-group-card-dark-defaultStyle,root,fail,,fail,,800,208,800,207,800x208 vs 800x207,0,0,0,pass,pass
+multiple-choice-default-light-defaultStyle,root,fail,0.08125,fail,0.08125,150,32,150,32,,390,4800,187,pass,pass
+multiple-choice-default-dark-defaultStyle,root,fail,0.096875,fail,0.096875,150,32,150,32,,465,4800,180,pass,pass
+star-rating-default-light-defaultStyle,root,fail,0.07536764705882353,fail,0.07536764705882353,136,24,136,24,,246,3264,144,pass,pass
+star-rating-default-dark-defaultStyle,root,fail,0.06801470588235294,fail,0.06801470588235294,136,24,136,24,,222,3264,120,pass,pass
+range-default-light-defaultStyle,root,pass,0.000625,pass,0.000625,800,16,800,16,,8,12800,67,pass,pass
+range-default-dark-defaultStyle,root,pass,0.000703125,pass,0.000703125,800,16,800,16,,9,12800,72,pass,pass
+item-picker-default-light-defaultStyle,root,pass,0.0015589887640449437,pass,0.0015589887640449437,800,267,800,267,,333,213600,140,pass,pass
+item-picker-default-dark-defaultStyle,root,pass,0.004386704119850187,pass,0.004386704119850187,800,267,800,267,,937,213600,108,pass,fail
+multi-answer-card-default-light-defaultStyle,root,fail,,fail,,800,122,800,121,800x122 vs 800x121,0,0,0,pass,pass
+multi-answer-card-default-dark-defaultStyle,root,fail,,fail,,800,122,800,121,800x122 vs 800x121,0,0,0,pass,pass
+option-item-default-light-defaultStyle,root,pass,0.006176470588235294,pass,0.006176470588235294,800,51,800,51,,252,40800,208,pass,pass
+option-item-default-dark-defaultStyle,root,pass,0.007622549019607843,pass,0.007622549019607843,800,51,800,51,,311,40800,236,pass,pass
+option-item-multiple-light-defaultStyle,root,fail,,fail,,800,73,800,72,800x73 vs 800x72,0,0,0,pass,pass
+option-item-multiple-dark-defaultStyle,root,fail,,fail,,800,73,800,72,800x73 vs 800x72,0,0,0,pass,pass
+option-item-disabled-light-defaultStyle,root,fail,,fail,,800,73,800,72,800x73 vs 800x72,0,0,0,pass,pass
+option-item-disabled-dark-defaultStyle,root,fail,,fail,,800,73,800,72,800x73 vs 800x72,0,0,0,pass,pass
+option-list-default-light-defaultStyle,root,fail,,fail,,800,153,800,152,800x153 vs 800x152,0,0,0,pass,pass
+option-list-default-dark-defaultStyle,root,fail,,fail,,800,153,800,152,800x153 vs 800x152,0,0,0,pass,pass
+bottom-sheet-default-light-defaultStyle,root,fail,,fail,,800,348,800,346,800x348 vs 800x346,0,0,0,pass,pass
+bottom-sheet-default-dark-defaultStyle,root,fail,,fail,,800,348,800,346,800x348 vs 800x346,0,0,0,pass,pass
+bottom-sheet-close-light-defaultStyle,root,fail,,fail,,800,201,800,200,800x201 vs 800x200,0,0,0,pass,pass
+bottom-sheet-close-dark-defaultStyle,root,fail,,fail,,800,201,800,200,800x201 vs 800x200,0,0,0,pass,pass
+formatted-input-default-light-defaultStyle,root,pass,0.004036458333333334,pass,0.004036458333333334,800,48,800,48,,155,38400,140,pass,pass
+formatted-input-default-dark-defaultStyle,root,pass,0.004270833333333333,pass,0.004270833333333333,800,48,800,48,,164,38400,126,pass,pass
+formatted-input-korean-phone-light-defaultStyle,root,pass,0.0037760416666666667,pass,0.0037760416666666667,800,48,800,48,,145,38400,140,pass,pass
+formatted-input-korean-phone-dark-defaultStyle,root,pass,0.004036458333333334,pass,0.004036458333333334,800,48,800,48,,155,38400,126,pass,pass
+formatted-input-credit-card-light-defaultStyle,root,pass,0.004791666666666666,pass,0.004791666666666666,800,48,800,48,,184,38400,140,pass,pass
+formatted-input-credit-card-dark-defaultStyle,root,pass,0.0048177083333333336,pass,0.0048177083333333336,800,48,800,48,,185,38400,126,pass,pass
+formatted-input-date-light-defaultStyle,root,pass,0.003125,pass,0.003125,800,48,800,48,,120,38400,140,pass,pass
+formatted-input-date-dark-defaultStyle,root,pass,0.0030729166666666665,pass,0.0030729166666666665,800,48,800,48,,118,38400,126,pass,pass
+formatted-input-verify-light-defaultStyle,root,pass,0.016171875,pass,0.016171875,800,48,800,48,,621,38400,224,pass,pass
+formatted-input-verify-dark-defaultStyle,root,pass,0.0178125,pass,0.0178125,800,48,800,48,,684,38400,222,pass,pass
+number-input-default-light-defaultStyle,root,fail,,fail,,138,124,138,123,138x124 vs 138x123,0,0,0,pass,pass
+number-input-default-dark-defaultStyle,root,fail,,fail,,138,124,138,123,138x124 vs 138x123,0,0,0,pass,pass
+number-input-sizes-light-defaultStyle,root,pass,0.00030193236714975844,pass,0.00030193236714975844,138,144,138,144,,6,19872,41,pass,pass
+number-input-sizes-dark-defaultStyle,root,pass,0.0036231884057971015,pass,0.0036231884057971015,138,144,138,144,,72,19872,93,pass,pass
+number-input-filled-light-defaultStyle,root,pass,0.01644736842105263,pass,0.01644736842105263,114,64,114,64,,120,7296,162,pass,pass
+number-input-filled-dark-defaultStyle,root,pass,0.0200109649122807,pass,0.0200109649122807,114,64,114,64,,146,7296,172,pass,pass
+number-input-error-light-defaultStyle,root,pass,0.024421850079744817,pass,0.024421850079744817,114,88,114,88,,245,10032,160,pass,pass
+number-input-error-dark-defaultStyle,root,fail,0.06449362041467305,fail,0.06449362041467305,114,88,114,88,,647,10032,170,pass,pass
+number-input-disabled-light-defaultStyle,root,pass,0.013980263157894737,pass,0.013980263157894737,114,64,114,64,,102,7296,132,pass,pass
+number-input-disabled-dark-defaultStyle,root,pass,0.014665570175438597,pass,0.014665570175438597,114,64,114,64,,107,7296,138,pass,pass
+object-input-default-light-defaultStyle,root,pass,0.04498792270531401,pass,0.04498792270531401,138,48,138,48,,298,6624,140,pass,pass
+object-input-default-dark-defaultStyle,root,pass,0.04559178743961353,pass,0.04559178743961353,138,48,138,48,,302,6624,126,pass,pass
+phone-input-default-light-defaultStyle,root,pass,0.02859375,pass,0.02859375,800,48,800,48,,1098,38400,213,pass,fail
+phone-input-default-dark-defaultStyle,root,pass,0.026328125,pass,0.026328125,800,48,800,48,,1011,38400,221,pass,fail
+chip-input-default-light-defaultStyle,root,pass,0.008095238095238095,pass,0.008095238095238095,800,42,800,42,,272,33600,150,pass,pass
+chip-input-default-dark-defaultStyle,root,pass,0.010386904761904762,pass,0.010386904761904762,800,42,800,42,,349,33600,128,pass,pass
+switch-field-default-light-defaultStyle,root,fail,,fail,,800,39,800,38,800x39 vs 800x38,0,0,0,pass,pass
+switch-field-default-dark-defaultStyle,root,fail,,fail,,800,39,800,38,800x39 vs 800x38,0,0,0,pass,pass
+drag-default-light-defaultStyle,root,pass,0.019460415745245468,pass,0.019460415745245468,119,114,119,114,,264,13566,81,pass,pass
+drag-default-dark-defaultStyle,root,pass,0.03759398496240601,pass,0.03759398496240601,119,114,119,114,,510,13566,115,pass,pass
+drag-board-light-defaultStyle,root,fail,,fail,,364,122,364,121,364x122 vs 364x121,0,0,0,pass,fail
+drag-board-dark-defaultStyle,root,fail,,fail,,364,122,364,121,364x122 vs 364x121,0,0,0,pass,fail
+drag-overlay-light-defaultStyle,root,pass,0.004759675405742822,pass,0.004759675405742822,178,72,178,72,,61,12816,45,pass,fail
+drag-overlay-dark-defaultStyle,root,fail,0.05454119850187266,fail,0.05454119850187266,178,72,178,72,,699,12816,90,pass,fail
+sortable-default-light-defaultStyle,root,pass,0.00521875,pass,0.00521875,800,160,800,160,,668,128000,224,pass,pass
+sortable-default-dark-defaultStyle,root,pass,0.005578125,pass,0.005578125,800,160,800,160,,714,128000,222,pass,pass
+fieldset-default-light-defaultStyle,root,pass,0.004840353260869565,pass,0.004840353260869565,256,184,256,184,,228,47104,219,pass,pass
+fieldset-default-dark-defaultStyle,root,pass,0.006050441576086957,pass,0.006050441576086957,256,184,256,184,,285,47104,236,pass,pass
+file-input-default-light-defaultStyle,root,fail,,fail,,201,224,201,223,201x224 vs 201x223,0,0,0,pass,fail
+file-input-default-dark-defaultStyle,root,fail,,fail,,201,224,201,223,201x224 vs 201x223,0,0,0,pass,fail
+form-default-light-defaultStyle,root,pass,0.004789772727272728,pass,0.004789772727272728,800,220,800,220,,843,176000,162,pass,fail
+form-default-dark-defaultStyle,root,pass,0.005159090909090909,pass,0.005159090909090909,800,220,800,220,,908,176000,172,pass,fail
+form-label-default-light-defaultStyle,root,fail,0.2222222222222222,fail,0.2222222222222222,44,18,44,18,,176,792,199,pass,pass
+form-label-default-dark-defaultStyle,root,fail,0.25126262626262624,fail,0.25126262626262624,44,18,44,18,,199,792,240,pass,pass
+form-field-default-light-defaultStyle,root,pass,0.014095744680851063,pass,0.014095744680851063,320,94,320,94,,424,30080,220,pass,fail
+form-field-default-dark-defaultStyle,root,pass,0.022805851063829787,pass,0.022805851063829787,320,94,320,94,,686,30080,246,pass,fail
+formatter-default-light-defaultStyle,root,pass,0.006875,pass,0.006875,280,40,280,40,,77,11200,98,pass,pass
+formatter-default-dark-defaultStyle,root,pass,0.012142857142857143,pass,0.012142857142857143,280,40,280,40,,136,11200,99,pass,pass
+validated-default-light-defaultStyle,root,pass,0.00751953125,pass,0.00751953125,320,64,320,64,,154,20480,78,pass,pass
+validated-default-dark-defaultStyle,root,pass,0.019970703125,pass,0.019970703125,320,64,320,64,,409,20480,110,pass,pass
+validator-hint-default-light-defaultStyle,root,fail,0.11843711843711843,fail,0.11843711843711843,182,18,182,18,,388,3276,84,pass,pass
+validator-hint-default-dark-defaultStyle,root,fail,0.19017094017094016,fail,0.19017094017094016,182,18,182,18,,623,3276,132,pass,pass
+avatar-default-light-defaultStyle,root,pass,0.0458984375,pass,0.0458984375,32,32,32,32,,47,1024,186,pass,pass
+avatar-default-dark-defaultStyle,root,pass,0.04296875,pass,0.04296875,32,32,32,32,,44,1024,179,pass,pass
+avatar-rounded-light-defaultStyle,root,pass,0.0458984375,pass,0.0458984375,32,32,32,32,,47,1024,186,pass,pass
+avatar-rounded-dark-defaultStyle,root,pass,0.04296875,pass,0.04296875,32,32,32,32,,44,1024,179,pass,pass
+badge-default-light-defaultStyle,root,fail,0.10022522522522523,fail,0.10022522522522523,37,24,37,24,,89,888,150,pass,pass
+badge-default-dark-defaultStyle,root,fail,0.09121621621621621,fail,0.09121621621621621,37,24,37,24,,81,888,128,pass,pass
+badge-tones-light-defaultStyle,root,fail,0.11006571087216248,fail,0.11006571087216248,279,24,279,24,,737,6696,233,pass,pass
+badge-tones-dark-defaultStyle,root,fail,0.10842293906810035,fail,0.10842293906810035,279,24,279,24,,726,6696,189,pass,pass
+badge-variants-light-defaultStyle,root,fail,0.14950980392156862,fail,0.14950980392156862,136,24,136,24,,488,3264,208,pass,pass
+badge-variants-dark-defaultStyle,root,fail,0.15992647058823528,fail,0.15992647058823528,136,24,136,24,,522,3264,204,pass,pass
+badge-status-light-defaultStyle,root,fail,,fail,,350,24,351,24,350x24 vs 351x24,0,0,0,pass,pass
+badge-status-dark-defaultStyle,root,fail,,fail,,350,24,351,24,350x24 vs 351x24,0,0,0,pass,pass
+badge-count-light-defaultStyle,root,fail,0.16793893129770993,fail,0.16793893129770993,131,20,131,20,,440,2620,255,pass,pass
+badge-count-dark-defaultStyle,root,fail,0.15954198473282444,fail,0.15954198473282444,131,20,131,20,,418,2620,187,pass,pass
+badge-dot-light-defaultStyle,root,pass,0.0,pass,0.0,108,8,108,8,,0,864,30,pass,pass
+badge-dot-dark-defaultStyle,root,pass,0.0,pass,0.0,108,8,108,8,,0,864,29,pass,pass
+tag-default-light-defaultStyle,root,fail,0.09863945578231292,fail,0.09863945578231292,49,24,49,24,,116,1176,166,pass,pass
+tag-default-dark-defaultStyle,root,fail,0.11904761904761904,fail,0.11904761904761904,49,24,49,24,,140,1176,150,pass,pass
+tag-colors-light-defaultStyle,root,fail,0.11993106244931062,fail,0.11993106244931062,411,24,411,24,,1183,9864,200,pass,pass
+tag-colors-dark-defaultStyle,root,fail,0.12672343876723438,fail,0.12672343876723438,411,24,411,24,,1250,9864,188,pass,pass
+tag-bold-light-defaultStyle,root,fail,0.16136556403731978,fail,0.16136556403731978,393,24,393,24,,1522,9432,239,pass,pass
+tag-bold-dark-defaultStyle,root,fail,0.15913910093299408,fail,0.15913910093299408,393,24,393,24,,1501,9432,244,pass,pass
+tag-sizes-light-defaultStyle,root,fail,0.15030674846625766,fail,0.15030674846625766,163,24,163,24,,588,3912,203,pass,pass
+tag-sizes-dark-defaultStyle,root,fail,0.1656441717791411,fail,0.1656441717791411,163,24,163,24,,648,3912,217,pass,pass
+progress-default-light-defaultStyle,root,pass,0.0004166666666666667,pass,0.0004166666666666667,800,6,800,6,,2,4800,36,pass,pass
+progress-default-dark-defaultStyle,root,pass,0.0004166666666666667,pass,0.0004166666666666667,800,6,800,6,,2,4800,37,pass,pass
+progress-tone-light-defaultStyle,root,pass,0.0005208333333333333,pass,0.0005208333333333333,800,48,800,48,,20,38400,44,pass,pass
+progress-tone-dark-defaultStyle,root,pass,0.00026041666666666666,pass,0.00026041666666666666,800,48,800,48,,10,38400,39,pass,pass
+progress-labelled-light-defaultStyle,root,pass,0.009030172413793103,pass,0.009030172413793103,800,58,800,58,,419,46400,219,pass,pass
+progress-labelled-dark-defaultStyle,root,pass,0.012672413793103448,pass,0.012672413793103448,800,58,800,58,,588,46400,236,pass,pass
+progress-segments-light-defaultStyle,root,pass,0.007166666666666667,pass,0.007166666666666667,800,30,800,30,,172,24000,208,pass,pass
+progress-segments-dark-defaultStyle,root,pass,0.009541666666666667,pass,0.009541666666666667,800,30,800,30,,229,24000,236,pass,pass
+progress-indeterminate-light-defaultStyle,root,pass,0.0,pass,0.0,800,6,800,6,,0,4800,1,fail,fail
+progress-indeterminate-dark-defaultStyle,root,pass,0.0,pass,0.0,800,6,800,6,,0,4800,4,fail,fail
+progress-radial-light-defaultStyle,root,fail,0.07275390625,fail,0.07275390625,64,64,64,64,,298,4096,219,pass,pass
+progress-radial-dark-defaultStyle,root,fail,0.074462890625,fail,0.074462890625,64,64,64,64,,305,4096,236,pass,pass
+calendar-none-light-defaultStyle,root,pass,0.01484375,pass,0.01484375,224,280,224,280,,931,62720,219,fail,fail
+calendar-none-dark-defaultStyle,root,pass,0.033928571428571426,pass,0.033928571428571426,224,280,224,280,,2128,62720,236,fail,fail
+calendar-single-light-defaultStyle,root,pass,0.01484375,pass,0.01484375,224,280,224,280,,931,62720,219,fail,fail
+calendar-single-dark-defaultStyle,root,pass,0.033928571428571426,pass,0.033928571428571426,224,280,224,280,,2128,62720,236,fail,fail
+calendar-multi-light-defaultStyle,root,pass,0.01484375,pass,0.01484375,224,280,224,280,,931,62720,219,fail,fail
+calendar-multi-dark-defaultStyle,root,pass,0.033928571428571426,pass,0.033928571428571426,224,280,224,280,,2128,62720,236,fail,fail
+calendar-range-light-defaultStyle,root,pass,0.014870689655172414,pass,0.014870689655172414,464,280,464,280,,1932,129920,219,fail,fail
+calendar-range-dark-defaultStyle,root,pass,0.03342826354679803,pass,0.03342826354679803,464,280,464,280,,4343,129920,236,fail,fail
+calendar-markers-light-defaultStyle,root,pass,0.015363300492610837,pass,0.015363300492610837,464,280,464,280,,1996,129920,219,fail,fail
+calendar-markers-dark-defaultStyle,root,pass,0.03392087438423645,pass,0.03392087438423645,464,280,464,280,,4407,129920,236,fail,fail
+banner-default-light-defaultStyle,root,pass,0.008940972222222222,pass,0.008940972222222222,800,72,800,72,,515,57600,233,pass,pass
+banner-default-dark-defaultStyle,root,pass,0.00796875,pass,0.00796875,800,72,800,72,,459,57600,184,pass,pass
+banner-info-light-defaultStyle,root,pass,0.02015625,pass,0.02015625,800,72,800,72,,1161,57600,233,pass,pass
+banner-info-dark-defaultStyle,root,pass,0.018472222222222223,pass,0.018472222222222223,800,72,800,72,,1064,57600,184,pass,pass
+banner-warning-light-defaultStyle,root,pass,0.01546875,pass,0.01546875,800,72,800,72,,891,57600,193,pass,pass
+banner-warning-dark-defaultStyle,root,pass,0.01638888888888889,pass,0.01638888888888889,800,72,800,72,,944,57600,177,pass,pass
+banner-destructive-light-defaultStyle,root,pass,0.025034722222222222,pass,0.025034722222222222,800,72,800,72,,1442,57600,213,pass,pass
+banner-destructive-dark-defaultStyle,root,pass,0.025607638888888888,pass,0.025607638888888888,800,72,800,72,,1475,57600,190,pass,pass
+banner-success-light-defaultStyle,root,pass,0.024965277777777777,pass,0.024965277777777777,800,72,800,72,,1438,57600,233,pass,pass
+banner-success-dark-defaultStyle,root,pass,0.021076388888888888,pass,0.021076388888888888,800,72,800,72,,1214,57600,149,pass,pass
+banner-solid-light-defaultStyle,root,pass,0.03333333333333333,pass,0.03333333333333333,800,72,800,72,,1920,57600,225,pass,pass
+banner-solid-dark-defaultStyle,root,pass,0.016961805555555556,pass,0.016961805555555556,800,72,800,72,,977,57600,184,pass,pass
+carousel-default-light-defaultStyle,root,pass,0.0024193548387096775,pass,0.0024193548387096775,800,155,800,155,,300,124000,129,pass,pass
+carousel-default-dark-defaultStyle,root,pass,0.002435483870967742,pass,0.002435483870967742,800,155,800,155,,302,124000,129,pass,pass
+carousel-banner-light-defaultStyle,root,pass,0.0049330357142857145,pass,0.0049330357142857145,800,112,800,112,,442,89600,187,pass,pass
+carousel-banner-dark-defaultStyle,root,pass,0.010625,pass,0.010625,800,112,800,112,,952,89600,180,pass,pass
+carousel-banner-default-light-defaultStyle,root,pass,0.009630681818181818,pass,0.009630681818181818,800,88,800,88,,678,70400,183,pass,pass
+carousel-banner-default-dark-defaultStyle,root,pass,0.017428977272727273,pass,0.017428977272727273,800,88,800,88,,1227,70400,179,pass,pass
+carousel-banner-md-light-defaultStyle,root,pass,0.0032589285714285715,pass,0.0032589285714285715,800,112,800,112,,292,89600,84,pass,pass
+carousel-banner-md-dark-defaultStyle,root,pass,0.011339285714285715,pass,0.011339285714285715,800,112,800,112,,1016,89600,120,pass,pass
+chat-default-light-defaultStyle,root,fail,,fail,,800,151,800,150,800x151 vs 800x150,0,0,0,pass,pass
+chat-default-dark-defaultStyle,root,fail,,fail,,800,151,800,150,800x151 vs 800x150,0,0,0,pass,pass
+chat-neutral-light-defaultStyle,root,pass,0.012819767441860466,pass,0.012819767441860466,800,43,800,43,,441,34400,207,pass,pass
+chat-neutral-dark-defaultStyle,root,pass,0.01441860465116279,pass,0.01441860465116279,800,43,800,43,,496,34400,192,pass,pass
+chat-plain-light-defaultStyle,root,fail,,fail,,800,78,800,77,800x78 vs 800x77,0,0,0,pass,pass
+chat-plain-dark-defaultStyle,root,fail,,fail,,800,78,800,77,800x78 vs 800x77,0,0,0,pass,pass
+chat-primary-light-defaultStyle,root,pass,0.01438953488372093,pass,0.01438953488372093,800,43,800,43,,495,34400,213,pass,pass
+chat-primary-dark-defaultStyle,root,pass,0.01252906976744186,pass,0.01252906976744186,800,43,800,43,,431,34400,222,pass,pass
+chat-secondary-light-defaultStyle,root,pass,0.014941860465116278,pass,0.014941860465116278,800,43,800,43,,514,34400,191,pass,pass
+chat-secondary-dark-defaultStyle,root,pass,0.012877906976744185,pass,0.012877906976744185,800,43,800,43,,443,34400,207,pass,pass
+chat-accent-light-defaultStyle,root,pass,0.015203488372093022,pass,0.015203488372093022,800,43,800,43,,523,34400,213,pass,pass
+chat-accent-dark-defaultStyle,root,pass,0.013488372093023256,pass,0.013488372093023256,800,43,800,43,,464,34400,222,pass,pass
+chat-info-light-defaultStyle,root,pass,0.016017441860465116,pass,0.016017441860465116,800,43,800,43,,551,34400,255,pass,pass
+chat-info-dark-defaultStyle,root,pass,0.012645348837209303,pass,0.012645348837209303,800,43,800,43,,435,34400,187,pass,pass
+chat-success-light-defaultStyle,root,pass,0.01578488372093023,pass,0.01578488372093023,800,43,800,43,,543,34400,255,pass,pass
+chat-success-dark-defaultStyle,root,pass,0.011715116279069767,pass,0.011715116279069767,800,43,800,43,,403,34400,157,pass,pass
+chat-warning-light-defaultStyle,root,pass,0.015726744186046512,pass,0.015726744186046512,800,43,800,43,,541,34400,255,pass,pass
+chat-warning-dark-defaultStyle,root,pass,0.012151162790697674,pass,0.012151162790697674,800,43,800,43,,418,34400,175,pass,pass
+chat-error-light-defaultStyle,root,pass,0.01561046511627907,pass,0.01561046511627907,800,43,800,43,,537,34400,225,pass,pass
+chat-error-dark-defaultStyle,root,pass,0.012558139534883722,pass,0.012558139534883722,800,43,800,43,,432,34400,184,pass,pass
+chat-tail-corner-light-defaultStyle,root,fail,,fail,,800,134,800,133,800x134 vs 800x133,0,0,0,pass,pass
+chat-tail-corner-dark-defaultStyle,root,fail,,fail,,800,134,800,133,800x134 vs 800x133,0,0,0,pass,pass
+chat-tail-top-light-defaultStyle,root,fail,,fail,,800,115,800,114,800x115 vs 800x114,0,0,0,pass,pass
+chat-tail-top-dark-defaultStyle,root,fail,,fail,,800,115,800,114,800x115 vs 800x114,0,0,0,pass,pass
+chip-selected-light-defaultStyle,root,fail,0.07451040391676866,fail,0.07451040391676866,172,76,172,76,,974,13072,219,pass,pass
+chip-selected-dark-defaultStyle,root,fail,0.08369033047735618,fail,0.08369033047735618,172,76,172,76,,1094,13072,236,pass,pass
+chip-variant-light-defaultStyle,root,fail,,fail,,220,223,220,222,220x223 vs 220x222,0,0,0,pass,pass
+chip-variant-dark-defaultStyle,root,fail,,fail,,220,223,220,222,220x223 vs 220x222,0,0,0,pass,pass
+chip-shape-light-defaultStyle,root,fail,0.0795964125560538,fail,0.0795964125560538,223,32,223,32,,568,7136,219,pass,pass
+chip-shape-dark-defaultStyle,root,fail,0.07945627802690583,fail,0.07945627802690583,223,32,223,32,,567,7136,236,pass,pass
+chip-removable-light-defaultStyle,root,fail,0.10328947368421053,fail,0.10328947368421053,95,32,95,32,,314,3040,219,pass,pass
+chip-removable-dark-defaultStyle,root,fail,0.09868421052631579,fail,0.09868421052631579,95,32,95,32,,300,3040,236,pass,pass
+chip-disabled-light-defaultStyle,root,fail,0.05508474576271186,fail,0.05508474576271186,59,32,59,32,,104,1888,74,pass,pass
+chip-disabled-dark-defaultStyle,root,fail,0.06091101694915254,fail,0.06091101694915254,59,32,59,32,,115,1888,91,pass,pass
+chip-cast-motion-light-defaultStyle,root,fail,0.09852430555555555,fail,0.09852430555555555,216,32,216,32,,681,6912,219,pass,pass
+chip-cast-motion-dark-defaultStyle,root,fail,0.10908564814814815,fail,0.10908564814814815,216,32,216,32,,754,6912,236,pass,pass
+chip-prefix-light-defaultStyle,root,fail,0.09608644859813084,fail,0.09608644859813084,214,32,214,32,,658,6848,213,pass,pass
+chip-prefix-dark-defaultStyle,root,fail,0.09594042056074767,fail,0.09594042056074767,214,32,214,32,,657,6848,213,pass,pass
+chip-group-default-light-defaultStyle,root,fail,0.09207375478927203,fail,0.09207375478927203,261,32,261,32,,769,8352,219,pass,pass
+chip-group-default-dark-defaultStyle,root,fail,0.09482758620689655,fail,0.09482758620689655,261,32,261,32,,792,8352,236,pass,pass
+chip-group-scroll-light-defaultStyle,root,fail,0.09549549549549549,fail,0.09549549549549549,555,32,555,32,,1696,17760,219,pass,pass
+chip-group-scroll-dark-defaultStyle,root,fail,0.10703828828828829,fail,0.10703828828828829,555,32,555,32,,1901,17760,236,pass,pass
+code-diff-default-light-defaultStyle,root,pass,0.026686507936507935,pass,0.026686507936507935,800,189,800,189,,4035,151200,233,pass,pass
+code-diff-default-dark-defaultStyle,root,pass,0.04488095238095238,pass,0.04488095238095238,800,189,800,189,,6786,151200,215,pass,pass
+diff-default-light-defaultStyle,root,pass,0.0,pass,0.0,800,450,800,450,,0,360000,21,pass,fail
+diff-default-dark-defaultStyle,root,pass,2.777777777777778e-06,pass,2.777777777777778e-06,800,450,800,450,,1,360000,34,pass,fail
+diff-text-light-defaultStyle,root,pass,0.0018416666666666666,pass,0.0018416666666666666,800,450,800,450,,663,360000,213,pass,pass
+diff-text-dark-defaultStyle,root,pass,0.001738888888888889,pass,0.001738888888888889,800,450,800,450,,626,360000,222,pass,pass
+code-snippet-default-light-defaultStyle,root,fail,,fail,,219,83,216,83,219x83 vs 216x83,0,0,0,pass,pass
+code-snippet-default-dark-defaultStyle,root,fail,,fail,,219,83,216,83,219x83 vs 216x83,0,0,0,fail,pass
+divider-default-light-defaultStyle,root,pass,0.0,pass,0.0,800,1,800,1,,0,800,0,pass,pass
+divider-default-dark-defaultStyle,root,pass,0.0,pass,0.0,800,1,800,1,,0,800,0,pass,pass
+divider-vertical-light-defaultStyle,root,pass,0.0,pass,0.0,1,32,1,32,,0,32,0,pass,pass
+divider-vertical-dark-defaultStyle,root,pass,0.0,pass,0.0,1,32,1,32,,0,32,0,pass,pass
+divider-with-child-light-defaultStyle,root,pass,0.009097222222222222,pass,0.009097222222222222,800,18,800,18,,131,14400,162,pass,pass
+divider-with-child-dark-defaultStyle,root,pass,0.009027777777777777,pass,0.009027777777777777,800,18,800,18,,130,14400,172,pass,pass
+dot-indicator-default-light-defaultStyle,root,pass,0.007575757575757576,pass,0.007575757575757576,88,24,88,24,,16,2112,42,pass,pass
+dot-indicator-default-dark-defaultStyle,root,pass,0.014204545454545454,pass,0.014204545454545454,88,24,88,24,,30,2112,56,pass,pass
+dot-indicator-vertical-light-defaultStyle,root,pass,0.0,pass,0.0,24,56,24,56,,0,1344,26,pass,pass
+dot-indicator-vertical-dark-defaultStyle,root,pass,0.0,pass,0.0,24,56,24,56,,0,1344,28,pass,pass
+dot-indicator-passive-light-defaultStyle,root,pass,0.002976190476190476,pass,0.002976190476190476,56,24,56,24,,4,1344,42,pass,pass
+dot-indicator-passive-dark-defaultStyle,root,pass,0.008928571428571428,pass,0.008928571428571428,56,24,56,24,,12,1344,56,pass,pass
+empty-state-default-light-defaultStyle,root,pass,0.0015260416666666666,pass,0.0015260416666666666,800,240,800,240,,293,192000,77,pass,pass
+empty-state-default-dark-defaultStyle,root,pass,0.004848958333333334,pass,0.004848958333333334,800,240,800,240,,931,192000,128,pass,pass
+empty-state-large-light-defaultStyle,root,pass,0.007859375,pass,0.007859375,800,240,800,240,,1509,192000,161,pass,pass
+empty-state-large-dark-defaultStyle,root,pass,0.011380208333333334,pass,0.011380208333333334,800,240,800,240,,2185,192000,171,pass,pass
+empty-state-failure-light-defaultStyle,root,pass,0.005104961832061068,pass,0.005104961832061068,800,262,800,262,,1070,209600,213,pass,pass
+empty-state-failure-dark-defaultStyle,root,pass,0.010014312977099237,pass,0.010014312977099237,800,262,800,262,,2099,209600,221,pass,pass
+empty-state-success-light-defaultStyle,root,pass,0.0033541666666666668,pass,0.0033541666666666668,800,240,800,240,,644,192000,233,pass,pass
+empty-state-success-dark-defaultStyle,root,pass,0.005848958333333334,pass,0.005848958333333334,800,240,800,240,,1123,192000,149,pass,pass
+indicator-default-light-defaultStyle,root,fail,0.0546875,fail,0.0546875,32,32,32,32,,56,1024,186,pass,pass
+indicator-default-dark-defaultStyle,root,pass,0.0439453125,pass,0.0439453125,32,32,32,32,,45,1024,179,pass,pass
+indicator-bottom-start-light-defaultStyle,root,fail,0.0546875,fail,0.0546875,32,32,32,32,,56,1024,186,pass,pass
+indicator-bottom-start-dark-defaultStyle,root,pass,0.046875,pass,0.046875,32,32,32,32,,48,1024,179,pass,pass
+kbd-single-light-defaultStyle,root,fail,,fail,,31,20,32,21,31x20 vs 32x21,0,0,0,pass,pass
+kbd-single-dark-defaultStyle,root,fail,,fail,,31,20,32,21,31x20 vs 32x21,0,0,0,pass,pass
+kbd-default-light-defaultStyle,root,fail,,fail,,55,20,57,21,55x20 vs 57x21,0,0,0,pass,pass
+kbd-default-dark-defaultStyle,root,fail,,fail,,55,20,57,21,55x20 vs 57x21,0,0,0,pass,pass
+kbd-combo-light-defaultStyle,root,fail,,fail,,94,20,97,21,94x20 vs 97x21,0,0,0,pass,pass
+kbd-combo-dark-defaultStyle,root,fail,,fail,,94,20,97,21,94x20 vs 97x21,0,0,0,pass,pass
+kbd-four-light-defaultStyle,root,fail,,fail,,101,20,105,21,101x20 vs 105x21,0,0,0,pass,pass
+kbd-four-dark-defaultStyle,root,fail,,fail,,101,20,105,21,101x20 vs 105x21,0,0,0,pass,pass
+label-default-light-defaultStyle,root,fail,0.21388888888888888,fail,0.21388888888888888,36,20,36,20,,154,720,217,pass,pass
+label-default-dark-defaultStyle,root,fail,0.33055555555555555,fail,0.33055555555555555,36,20,36,20,,238,720,235,pass,pass
+label-required-light-defaultStyle,root,fail,0.1829787234042553,fail,0.1829787234042553,47,20,47,20,,172,940,217,pass,pass
+label-required-dark-defaultStyle,root,fail,0.275531914893617,fail,0.275531914893617,47,20,47,20,,259,940,235,pass,pass
+label-with-icon-light-defaultStyle,root,fail,0.13275862068965516,fail,0.13275862068965516,58,20,58,20,,154,1160,217,pass,pass
+label-with-icon-dark-defaultStyle,root,fail,0.20603448275862069,fail,0.20603448275862069,58,20,58,20,,239,1160,235,pass,pass
+label-disabled-light-defaultStyle,root,fail,0.11666666666666667,fail,0.11666666666666667,36,20,36,20,,84,720,69,pass,pass
+label-disabled-dark-defaultStyle,root,fail,0.1638888888888889,fail,0.1638888888888889,36,20,36,20,,118,720,106,pass,pass
+number-ticker-default-light-defaultStyle,root,fail,0.07071428571428572,fail,0.07071428571428572,50,28,50,28,,99,1400,105,pass,fail
+number-ticker-default-dark-defaultStyle,root,fail,0.12785714285714286,fail,0.12785714285714286,50,28,50,28,,179,1400,165,fail,fail
+aspect-ratio-box-default-light-defaultStyle,root,pass,0.008092224231464738,pass,0.008092224231464738,280,158,280,158,,358,44240,213,pass,pass
+aspect-ratio-box-default-dark-defaultStyle,root,pass,0.010013562386980108,pass,0.010013562386980108,280,158,280,158,,443,44240,202,pass,pass
+skeleton-default-light-defaultStyle,root,pass,0.0,pass,0.0,200,76,200,76,,0,15200,3,pass,pass
+skeleton-default-dark-defaultStyle,root,pass,0.0,pass,0.0,200,76,200,76,,0,15200,7,pass,pass
+skeleton-circle-light-defaultStyle,root,pass,0.0,pass,0.0,48,48,48,48,,0,2304,2,pass,pass
+skeleton-circle-dark-defaultStyle,root,pass,0.0,pass,0.0,48,48,48,48,,0,2304,7,pass,pass
+skeleton-text-light-defaultStyle,root,pass,0.0,pass,0.0,800,60,800,60,,0,48000,2,pass,pass
+skeleton-text-dark-defaultStyle,root,pass,0.0,pass,0.0,800,60,800,60,,0,48000,4,pass,pass
+loading-region-default-light-defaultStyle,root,pass,0.0,pass,0.0,200,76,200,76,,0,15200,3,pass,pass
+loading-region-default-dark-defaultStyle,root,pass,0.0,pass,0.0,200,76,200,76,,0,15200,7,pass,pass
+stat-default-light-defaultStyle,root,fail,,fail,,800,176,800,175,800x176 vs 800x175,0,0,0,pass,pass
+stat-default-dark-defaultStyle,root,fail,,fail,,800,176,800,175,800x176 vs 800x175,0,0,0,pass,pass
+stat-outlined-light-defaultStyle,root,fail,,fail,,800,176,800,175,800x176 vs 800x175,0,0,0,pass,pass
+stat-outlined-dark-defaultStyle,root,fail,,fail,,800,176,800,175,800x176 vs 800x175,0,0,0,pass,pass
+stat-empty-light-defaultStyle,root,fail,,fail,,800,148,800,147,800x148 vs 800x147,0,0,0,pass,pass
+stat-empty-dark-defaultStyle,root,fail,,fail,,800,148,800,147,800x148 vs 800x147,0,0,0,pass,pass
+status-default-light-defaultStyle,root,pass,0.006944444444444444,pass,0.006944444444444444,12,12,12,12,,1,144,34,pass,pass
+status-default-dark-defaultStyle,root,pass,0.027777777777777776,pass,0.027777777777777776,12,12,12,12,,4,144,40,pass,pass
+status-success-light-defaultStyle,root,pass,0.027777777777777776,pass,0.027777777777777776,12,12,12,12,,4,144,41,pass,pass
+status-success-dark-defaultStyle,root,pass,0.0,pass,0.0,12,12,12,12,,0,144,31,pass,pass
+status-warning-light-defaultStyle,root,pass,0.027777777777777776,pass,0.027777777777777776,12,12,12,12,,4,144,42,pass,pass
+status-warning-dark-defaultStyle,root,pass,0.020833333333333332,pass,0.020833333333333332,12,12,12,12,,3,144,37,pass,pass
+status-error-light-defaultStyle,root,pass,0.013888888888888888,pass,0.013888888888888888,12,12,12,12,,2,144,37,pass,pass
+status-error-dark-defaultStyle,root,pass,0.027777777777777776,pass,0.027777777777777776,12,12,12,12,,4,144,41,pass,pass
+countdown-default-light-defaultStyle,root,fail,0.1013550135501355,fail,0.1013550135501355,41,45,41,45,,187,1845,219,pass,pass
+countdown-default-dark-defaultStyle,root,fail,0.0975609756097561,fail,0.0975609756097561,41,45,41,45,,180,1845,236,pass,pass
+description-card-default-light-defaultStyle,root,pass,0.012926646706586827,pass,0.012926646706586827,800,167,800,167,,1727,133600,224,fail,pass
+description-card-default-dark-defaultStyle,root,pass,0.015089820359281437,pass,0.015089820359281437,800,167,800,167,,2016,133600,222,fail,pass
+description-card-filled-light-defaultStyle,root,pass,0.013128787878787879,pass,0.013128787878787879,800,165,800,165,,1733,132000,213,fail,pass
+description-card-filled-dark-defaultStyle,root,pass,0.01412878787878788,pass,0.01412878787878788,800,165,800,165,,1865,132000,202,fail,pass
+description-card-ghost-light-defaultStyle,root,pass,0.014894957983193277,pass,0.014894957983193277,800,119,800,119,,1418,95200,219,fail,pass
+description-card-ghost-dark-defaultStyle,root,pass,0.017752100840336134,pass,0.017752100840336134,800,119,800,119,,1690,95200,236,fail,pass
+description-card-vertical-light-defaultStyle,root,fail,,fail,,800,296,800,294,800x296 vs 800x294,0,0,0,fail,pass
+description-card-vertical-dark-defaultStyle,root,fail,,fail,,800,296,800,294,800x296 vs 800x294,0,0,0,fail,pass
+description-card-space-between-light-defaultStyle,root,pass,0.007318652849740932,pass,0.007318652849740932,800,193,800,193,,1130,154400,224,fail,pass
+description-card-space-between-dark-defaultStyle,root,pass,0.008374352331606218,pass,0.008374352331606218,800,193,800,193,,1293,154400,222,fail,pass
+description-card-placeholder-light-defaultStyle,root,pass,0.00913125,pass,0.00913125,800,200,800,200,,1461,160000,224,pass,pass
+description-card-placeholder-dark-defaultStyle,root,pass,0.01099375,pass,0.01099375,800,200,800,200,,1759,160000,222,pass,pass
+loading-default-light-defaultStyle,root,pass,0.0,pass,0.0,16,16,16,16,,0,256,2,fail,fail
+loading-default-dark-defaultStyle,root,pass,0.0,pass,0.0,16,16,16,16,,0,256,8,fail,fail
+loading-dots-light-defaultStyle,root,pass,0.0,pass,0.0,16,16,16,16,,0,256,26,fail,fail
+loading-dots-dark-defaultStyle,root,pass,0.0,pass,0.0,16,16,16,16,,0,256,30,fail,fail
+loading-bar-light-defaultStyle,root,pass,0.0,pass,0.0,32,2,32,2,,0,64,10,fail,pass
+loading-bar-dark-defaultStyle,root,pass,0.0,pass,0.0,32,2,32,2,,0,64,10,fail,pass
+loading-pulse-light-defaultStyle,root,fail,0.0546875,fail,0.0546875,16,16,16,16,,14,256,65,pass,fail
+loading-pulse-dark-defaultStyle,root,fail,0.0625,fail,0.0625,16,16,16,16,,16,256,74,pass,fail
+hover-gallery-default-light-defaultStyle,root,pass,0.0,pass,0.0,800,300,800,300,,0,240000,15,pass,fail
+hover-gallery-default-dark-defaultStyle,root,pass,0.0,pass,0.0,800,300,800,300,,0,240000,24,pass,fail
+validation-badge-default-light-defaultStyle,root,fail,0.10331050228310502,fail,0.10331050228310502,73,24,73,24,,181,1752,228,pass,pass
+validation-badge-default-dark-defaultStyle,root,fail,0.08789954337899543,fail,0.08789954337899543,73,24,73,24,,154,1752,148,pass,pass
+validation-badge-pending-light-defaultStyle,root,fail,0.1104868913857678,fail,0.1104868913857678,89,24,89,24,,236,2136,154,pass,pass
+validation-badge-pending-dark-defaultStyle,root,fail,0.10674157303370786,fail,0.10674157303370786,89,24,89,24,,228,2136,137,pass,pass
+validation-badge-invalid-light-defaultStyle,root,fail,0.13212719298245615,fail,0.13212719298245615,76,24,76,24,,241,1824,200,pass,pass
+validation-badge-invalid-dark-defaultStyle,root,fail,0.13267543859649122,fail,0.13267543859649122,76,24,76,24,,242,1824,187,pass,pass
+validation-badge-medium-light-defaultStyle,root,fail,0.14588377723970944,fail,0.14588377723970944,118,28,118,28,,482,3304,233,pass,pass
+validation-badge-medium-dark-defaultStyle,root,fail,0.11016949152542373,fail,0.11016949152542373,118,28,118,28,,364,3304,149,pass,pass
+tracker-default-light-defaultStyle,root,pass,0.0275,pass,0.0275,800,32,800,32,,704,25600,109,pass,pass
+tracker-default-dark-defaultStyle,root,pass,0.02,pass,0.02,800,32,800,32,,512,25600,105,pass,pass
+category-breakdown-default-light-defaultStyle,root,pass,0.009723011363636364,pass,0.009723011363636364,800,176,800,176,,1369,140800,219,pass,pass
+category-breakdown-default-dark-defaultStyle,root,pass,0.01684659090909091,pass,0.01684659090909091,800,176,800,176,,2372,140800,236,pass,pass
+category-breakdown-donut-light-defaultStyle,root,pass,0.017265625,pass,0.017265625,800,160,800,160,,2210,128000,243,pass,pass
+category-breakdown-donut-dark-defaultStyle,root,pass,0.025265625,pass,0.025265625,800,160,800,160,,3234,128000,236,pass,pass
+trend-chart-default-light-defaultStyle,root,pass,0.013540167865707433,pass,0.013540167865707433,800,417,800,417,,4517,333600,255,pass,pass
+trend-chart-default-dark-defaultStyle,root,pass,0.01415767386091127,pass,0.01415767386091127,800,417,800,417,,4723,333600,236,pass,pass
+trend-chart-bar-light-defaultStyle,root,pass,0.007932432432432433,pass,0.007932432432432433,800,185,800,185,,1174,148000,162,pass,pass
+trend-chart-bar-dark-defaultStyle,root,pass,0.008101351351351352,pass,0.008101351351351352,800,185,800,185,,1199,148000,172,pass,pass
+mockup-phone-light-defaultStyle,root,pass,0.00837037037037037,pass,0.00837037037037037,320,675,320,675,,1808,216000,166,fail,pass
+mockup-phone-light-defaultStyle,stage,,,pass,0.004388888888888889,800,675,800,675,,2370,540000,166,firstCapture,firstCapture
+mockup-phone-dark-defaultStyle,root,pass,0.007875,pass,0.007875,320,675,320,675,,1701,216000,139,fail,pass
+mockup-phone-dark-defaultStyle,stage,,,pass,0.0042703703703703706,800,675,800,675,,2306,540000,139,firstCapture,firstCapture
+mockup-tablet-light-defaultStyle,root,pass,0.012169603524229074,pass,0.012169603524229074,320,454,320,454,,1768,145280,201,fail,pass
+mockup-tablet-light-defaultStyle,stage,,,pass,0.006205947136563876,800,454,800,454,,2254,363200,201,firstCapture,firstCapture
+mockup-tablet-dark-defaultStyle,root,pass,0.012906112334801762,pass,0.012906112334801762,320,454,320,454,,1875,145280,187,fail,pass
+mockup-tablet-dark-defaultStyle,stage,,,pass,0.006574889867841409,800,454,800,454,,2388,363200,187,firstCapture,firstCapture
+mockup-landscape-light-defaultStyle,root,fail,,fail,,320,157,320,156,320x157 vs 320x156,0,0,0,fail,pass
+mockup-landscape-light-defaultStyle,stage,,,fail,,800,157,800,156,800x157 vs 800x156,0,0,0,firstCapture,firstCapture
+mockup-landscape-dark-defaultStyle,root,fail,,fail,,320,157,320,156,320x157 vs 320x156,0,0,0,fail,pass
+mockup-landscape-dark-defaultStyle,stage,,,fail,,800,157,800,156,800x157 vs 800x156,0,0,0,firstCapture,firstCapture
+mockup-browser-light-defaultStyle,root,pass,0.0062763157894736845,pass,0.0062763157894736845,380,200,380,200,,477,76000,158,pass,pass
+mockup-browser-dark-defaultStyle,root,pass,0.016460526315789474,pass,0.016460526315789474,380,200,380,200,,1251,76000,141,pass,pass
+mockup-code-light-defaultStyle,root,pass,0.013131578947368421,pass,0.013131578947368421,800,95,800,95,,998,76000,218,pass,pass
+mockup-code-dark-defaultStyle,root,pass,0.013855263157894737,pass,0.013855263157894737,800,95,800,95,,1053,76000,213,pass,pass
+mockup-app-light-defaultStyle,root,pass,0.0016346153846153845,pass,0.0016346153846153845,800,65,800,65,,85,52000,152,pass,pass
+mockup-app-dark-defaultStyle,root,pass,0.03669230769230769,pass,0.03669230769230769,800,65,800,65,,1908,52000,136,pass,pass
+mockup-browser-default-light-defaultStyle,root,pass,0.0062763157894736845,pass,0.0062763157894736845,380,200,380,200,,477,76000,158,pass,pass
+mockup-browser-default-dark-defaultStyle,root,pass,0.016460526315789474,pass,0.016460526315789474,380,200,380,200,,1251,76000,141,pass,pass
+mockup-code-default-light-defaultStyle,root,pass,0.013131578947368421,pass,0.013131578947368421,800,95,800,95,,998,76000,218,pass,pass
+mockup-code-default-dark-defaultStyle,root,pass,0.013855263157894737,pass,0.013855263157894737,800,95,800,95,,1053,76000,213,pass,pass
+mockup-code-tones-light-defaultStyle,root,pass,0.022676470588235294,pass,0.022676470588235294,800,170,800,170,,3084,136000,251,pass,pass
+mockup-code-tones-dark-defaultStyle,root,pass,0.024051470588235296,pass,0.024051470588235296,800,170,800,170,,3271,136000,224,pass,pass
+mockup-device-default-light-defaultStyle,root,pass,0.00837037037037037,pass,0.00837037037037037,320,675,320,675,,1808,216000,166,fail,pass
+mockup-device-default-light-defaultStyle,stage,,,pass,0.004388888888888889,800,675,800,675,,2370,540000,166,firstCapture,firstCapture
+mockup-device-default-dark-defaultStyle,root,pass,0.007875,pass,0.007875,320,675,320,675,,1701,216000,139,fail,pass
+mockup-device-default-dark-defaultStyle,stage,,,pass,0.0042703703703703706,800,675,800,675,,2306,540000,139,firstCapture,firstCapture
+mockup-device-flat-light-defaultStyle,root,pass,0.0001102570564516129,pass,0.0001102570564516129,256,496,256,496,,14,126976,55,fail,pass
+mockup-device-flat-light-defaultStyle,stage,,,pass,3.528225806451613e-05,800,496,800,496,,14,396800,55,firstCapture,firstCapture
+mockup-device-flat-dark-defaultStyle,root,pass,0.0014097152217741936,pass,0.0014097152217741936,256,496,256,496,,179,126976,99,fail,pass
+mockup-device-flat-dark-defaultStyle,stage,,,pass,0.0004511088709677419,800,496,800,496,,179,396800,99,firstCapture,firstCapture
+mockup-device-screen-brightness-light-defaultStyle,root,pass,0.004658042026708563,pass,0.004658042026708563,304,536,304,536,,759,162944,220,pass,pass
+mockup-device-screen-brightness-dark-defaultStyle,root,pass,0.004651904948939513,pass,0.004651904948939513,304,536,304,536,,758,162944,220,pass,pass
+timeline-default-light-defaultStyle,root,fail,,fail,,800,92,800,91,800x92 vs 800x91,0,0,0,pass,pass
+timeline-default-dark-defaultStyle,root,fail,,fail,,800,92,800,91,800x92 vs 800x91,0,0,0,pass,pass
+swap-default-light-defaultStyle,root,pass,0.025793650793650792,pass,0.025793650793650792,24,21,24,21,,13,504,44,pass,pass
+swap-default-dark-defaultStyle,root,fail,0.2777777777777778,fail,0.2777777777777778,24,21,24,21,,140,504,103,pass,pass
+swap-rotate-light-defaultStyle,root,pass,0.025793650793650792,pass,0.025793650793650792,24,21,24,21,,13,504,44,pass,pass
+swap-rotate-dark-defaultStyle,root,fail,0.2777777777777778,fail,0.2777777777777778,24,21,24,21,,140,504,103,pass,pass
+swap-flip-light-defaultStyle,root,pass,0.025793650793650792,pass,0.025793650793650792,24,21,24,21,,13,504,45,pass,pass
+swap-flip-dark-defaultStyle,root,fail,0.2777777777777778,fail,0.2777777777777778,24,21,24,21,,140,504,103,pass,pass
+disclosure-badge-default-light-defaultStyle,root,fail,0.17091454272863568,fail,0.17091454272863568,58,23,58,23,,228,1334,208,pass,pass
+disclosure-badge-default-dark-defaultStyle,root,fail,0.22038980509745126,fail,0.22038980509745126,58,23,58,23,,294,1334,236,fail,pass
+disclosure-badge-commitment-light-defaultStyle,root,fail,0.15410016510731975,fail,0.15410016510731975,79,23,79,23,,280,1817,219,pass,pass
+disclosure-badge-commitment-dark-defaultStyle,root,fail,0.18932305998899285,fail,0.18932305998899285,79,23,79,23,,344,1817,236,pass,pass
+disclosure-badge-private-light-defaultStyle,root,fail,0.2084726867335563,fail,0.2084726867335563,78,23,78,23,,374,1794,162,pass,pass
+disclosure-badge-private-dark-defaultStyle,root,fail,0.22686733556298774,fail,0.22686733556298774,78,23,78,23,,407,1794,172,pass,pass
+accordion-default-light-defaultStyle,root,fail,0.07174988753936122,fail,0.07174988753936122,247,198,247,198,,3509,48906,219,pass,pass
+accordion-default-dark-defaultStyle,root,fail,0.08757616652353495,fail,0.08757616652353495,247,198,247,198,,4283,48906,236,pass,pass
+collapsible-default-light-defaultStyle,root,pass,0.020907297830374753,pass,0.020907297830374753,169,90,169,90,,318,15210,99,pass,pass
+collapsible-default-dark-defaultStyle,root,fail,0.06995397764628535,fail,0.06995397764628535,169,90,169,90,,1064,15210,149,pass,pass
+disclosure-default-light-defaultStyle,root,pass,0.008013888888888888,pass,0.008013888888888888,800,90,800,90,,577,72000,98,pass,pass
+disclosure-default-dark-defaultStyle,root,pass,0.023680555555555555,pass,0.023680555555555555,800,90,800,90,,1705,72000,149,pass,pass
+disclosure-group-light-defaultStyle,root,pass,0.00558372641509434,pass,0.00558372641509434,800,212,800,212,,947,169600,200,pass,pass
+disclosure-group-dark-defaultStyle,root,pass,0.023172169811320753,pass,0.023172169811320753,800,212,800,212,,3930,169600,234,pass,pass
+disclosure-chain-light-defaultStyle,root,pass,0.012206521739130435,pass,0.012206521739130435,800,115,800,115,,1123,92000,208,pass,pass
+disclosure-chain-dark-defaultStyle,root,pass,0.021978260869565218,pass,0.021978260869565218,800,115,800,115,,2022,92000,236,pass,pass
+card-default-light-defaultStyle,root,pass,0.024204782911539355,pass,0.024204782911539355,236,146,236,146,,834,34456,211,pass,pass
+card-default-dark-defaultStyle,root,pass,0.04733573252844207,pass,0.04733573252844207,236,146,236,146,,1631,34456,220,pass,pass
+card-filled-light-defaultStyle,root,pass,0.03540558510638298,pass,0.03540558510638298,256,94,256,94,,852,24064,102,pass,pass
+card-filled-dark-defaultStyle,root,pass,0.040018284574468085,pass,0.040018284574468085,256,94,256,94,,963,24064,139,pass,pass
+card-elevated-light-defaultStyle,root,pass,0.030792885638297872,pass,0.030792885638297872,256,94,256,94,,741,24064,102,pass,pass
+card-elevated-dark-defaultStyle,root,pass,0.042760970744680854,pass,0.042760970744680854,256,94,256,94,,1029,24064,128,pass,pass
+card-image-default-light-defaultStyle,root,pass,0.006356589147286822,pass,0.006356589147286822,240,215,240,215,,328,51600,219,pass,fail
+card-image-default-dark-defaultStyle,root,pass,0.009883720930232558,pass,0.009883720930232558,240,215,240,215,,510,51600,236,pass,fail
+table-default-light-defaultStyle,root,pass,0.012757352941176471,pass,0.012757352941176471,800,136,800,136,,1388,108800,219,pass,pass
+table-default-dark-defaultStyle,root,pass,0.014963235294117647,pass,0.014963235294117647,800,136,800,136,,1628,108800,236,pass,pass
+table-resizable-light-defaultStyle,root,pass,0.010632440476190476,pass,0.010632440476190476,800,168,800,168,,1429,134400,219,pass,pass
+table-resizable-dark-defaultStyle,root,pass,0.01236607142857143,pass,0.01236607142857143,800,168,800,168,,1662,134400,236,pass,pass
+table-scrollable-light-defaultStyle,root,pass,0.0345625,pass,0.0345625,800,320,800,320,,8848,256000,224,pass,pass
+table-scrollable-dark-defaultStyle,root,pass,0.0379375,pass,0.0379375,800,320,800,320,,9712,256000,236,pass,pass
+stepper-default-light-defaultStyle,root,pass,0.03221153846153846,pass,0.03221153846153846,800,52,800,52,,1340,41600,213,pass,pass
+stepper-default-dark-defaultStyle,root,pass,0.03408653846153846,pass,0.03408653846153846,800,52,800,52,,1418,41600,235,pass,pass
+stepper-vertical-light-defaultStyle,root,fail,0.0554177897574124,fail,0.0554177897574124,106,175,106,175,,1028,18550,219,pass,pass
+stepper-vertical-dark-defaultStyle,root,fail,0.07886792452830188,fail,0.07886792452830188,106,175,106,175,,1463,18550,236,pass,pass
+stepper-disabled-light-defaultStyle,root,pass,0.008533653846153845,pass,0.008533653846153845,800,52,800,52,,355,41600,74,pass,pass
+stepper-disabled-dark-defaultStyle,root,pass,0.011995192307692307,pass,0.011995192307692307,800,52,800,52,,499,41600,105,pass,pass
+steps-default-light-defaultStyle,root,fail,0.058772566086395875,fail,0.058772566086395875,188,264,188,264,,2917,49632,219,pass,pass
+steps-default-dark-defaultStyle,root,fail,0.07198984526112186,fail,0.07198984526112186,188,264,188,264,,3573,49632,236,pass,pass
+steps-horizontal-light-defaultStyle,root,pass,0.02596774193548387,pass,0.02596774193548387,800,62,800,62,,1288,49600,219,pass,pass
+steps-horizontal-dark-defaultStyle,root,pass,0.028729838709677418,pass,0.028729838709677418,800,62,800,62,,1425,49600,236,pass,pass
+steps-list-light-defaultStyle,root,pass,0.0400390625,pass,0.0400390625,280,128,280,128,,1435,35840,222,pass,pass
+steps-list-dark-defaultStyle,root,pass,0.045731026785714286,pass,0.045731026785714286,280,128,280,128,,1639,35840,246,pass,pass
+step-item-default-light-defaultStyle,root,pass,0.0400390625,pass,0.0400390625,280,128,280,128,,1435,35840,222,pass,pass
+step-item-default-dark-defaultStyle,root,pass,0.045731026785714286,pass,0.045731026785714286,280,128,280,128,,1639,35840,246,pass,pass
+tree-default-light-defaultStyle,root,pass,0.007375,pass,0.007375,800,140,800,140,,826,112000,162,pass,pass
+tree-default-dark-defaultStyle,root,pass,0.008821428571428572,pass,0.008821428571428572,800,140,800,140,,988,112000,172,pass,pass
+tree-selected-light-defaultStyle,root,pass,0.006908482142857142,pass,0.006908482142857142,800,112,800,112,,619,89600,207,pass,pass
+tree-selected-dark-defaultStyle,root,pass,0.00830357142857143,pass,0.00830357142857143,800,112,800,112,,744,89600,192,pass,pass
+tree-trailing-light-defaultStyle,root,pass,0.011272321428571428,pass,0.011272321428571428,800,168,800,168,,1515,134400,252,pass,pass
+tree-trailing-dark-defaultStyle,root,pass,0.01240327380952381,pass,0.01240327380952381,800,168,800,168,,1667,134400,224,pass,pass
+resizable-default-light-defaultStyle,root,pass,0.00035,pass,0.00035,800,200,800,200,,56,160000,73,pass,pass
+resizable-default-dark-defaultStyle,root,pass,0.00198125,pass,0.00198125,800,200,800,200,,317,160000,119,pass,pass
+scroll-area-default-light-defaultStyle,root,pass,0.017777777777777778,pass,0.017777777777777778,260,180,260,180,,832,46800,67,pass,pass
+scroll-area-default-dark-defaultStyle,root,fail,0.055427350427350426,fail,0.055427350427350426,260,180,260,180,,2594,46800,129,pass,pass
+fade-scroll-default-light-defaultStyle,root,pass,0.02598684210526316,pass,0.02598684210526316,76,200,76,200,,395,15200,174,pass,pass
+fade-scroll-default-dark-defaultStyle,root,pass,0.04868421052631579,pass,0.04868421052631579,76,200,76,200,,740,15200,187,pass,pass
+fade-scroll-horizontal-light-defaultStyle,root,fail,0.060892857142857144,fail,0.060892857142857144,800,21,800,21,,1023,16800,149,pass,pass
+fade-scroll-horizontal-dark-defaultStyle,root,fail,0.12047619047619047,fail,0.12047619047619047,800,21,800,21,,2024,16800,173,pass,pass
+fade-scroll-with-scrollbar-light-defaultStyle,root,pass,0.02598684210526316,pass,0.02598684210526316,76,200,76,200,,395,15200,174,pass,pass
+fade-scroll-with-scrollbar-dark-defaultStyle,root,pass,0.04868421052631579,pass,0.04868421052631579,76,200,76,200,,740,15200,187,pass,pass
+scrollable-client-default-light-defaultStyle,root,pass,0.0035625,pass,0.0035625,800,320,800,320,,912,256000,213,pass,pass
+scrollable-client-default-dark-defaultStyle,root,pass,0.00814453125,pass,0.00814453125,800,320,800,320,,2085,256000,202,pass,pass
+overflow-marquee-default-light-defaultStyle,root,fail,0.0630952380952381,fail,0.0630952380952381,240,21,240,21,,318,5040,91,fail,pass
+overflow-marquee-default-dark-defaultStyle,root,fail,0.20218253968253969,fail,0.20218253968253969,240,21,240,21,,1019,5040,148,fail,pass
+stack-layout-default-light-defaultStyle,root,pass,0.007356770833333333,pass,0.007356770833333333,160,96,160,96,,113,15360,57,pass,pass
+stack-layout-default-dark-defaultStyle,root,pass,0.016861979166666666,pass,0.016861979166666666,160,96,160,96,,259,15360,90,pass,pass
+stage-container-default-light-defaultStyle,root,pass,0.00309375,pass,0.00309375,800,80,800,80,,198,64000,213,pass,fail
+stage-container-default-dark-defaultStyle,root,pass,0.00815625,pass,0.00815625,800,80,800,80,,522,64000,202,pass,fail
+window-default-light-defaultStyle,root,pass,0.0014583333333333334,pass,0.0014583333333333334,800,648,800,648,,756,518400,213,pass,pass
+window-default-dark-defaultStyle,root,pass,0.0021064814814814813,pass,0.0021064814814814813,800,648,800,648,,1092,518400,221,pass,pass
+window-panel-default-light-defaultStyle,root,pass,0.012183544303797469,pass,0.012183544303797469,320,79,320,79,,308,25280,213,pass,pass
+window-panel-default-dark-defaultStyle,root,pass,0.023061708860759495,pass,0.023061708860759495,320,79,320,79,,583,25280,202,pass,pass
+draggable-panel-default-light-defaultStyle,root,pass,0.0077083333333333335,pass,0.0077083333333333335,360,360,360,360,,999,129600,224,pass,pass
+draggable-panel-default-dark-defaultStyle,root,pass,0.008179012345679013,pass,0.008179012345679013,360,360,360,360,,1060,129600,222,pass,pass
+draggable-panel-outside-light-defaultStyle,root,pass,0.0001080246913580247,pass,0.0001080246913580247,360,360,360,360,,14,129600,61,pass,pass
+draggable-panel-outside-dark-defaultStyle,root,pass,0.0013040123456790123,pass,0.0013040123456790123,360,360,360,360,,169,129600,110,pass,pass
+join-default-light-defaultStyle,root,pass,0.0228,pass,0.0228,125,40,125,40,,114,5000,224,pass,pass
+join-default-dark-defaultStyle,root,pass,0.0248,pass,0.0248,125,40,125,40,,124,5000,222,pass,pass
+join-vertical-light-defaultStyle,root,pass,0.029734848484848486,pass,0.029734848484848486,44,120,44,120,,157,5280,224,pass,pass
+join-vertical-dark-defaultStyle,root,pass,0.026325757575757575,pass,0.026325757575757575,44,120,44,120,,139,5280,222,pass,pass
+basic-default-light-defaultStyle,root,fail,,fail,,295,67,295,66,295x67 vs 295x66,0,0,0,fail,pass
+basic-default-dark-defaultStyle,root,fail,,fail,,295,67,295,66,295x67 vs 295x66,0,0,0,fail,pass
+frame-default-light-defaultStyle,root,pass,0.021778584392014518,pass,0.021778584392014518,133,58,133,58,,168,7714,85,pass,pass
+frame-default-dark-defaultStyle,root,pass,0.031371532278973296,pass,0.031371532278973296,133,58,133,58,,242,7714,131,pass,pass
+frame-column-light-defaultStyle,root,fail,0.05481537875904073,fail,0.05481537875904073,71,111,71,111,,432,7881,88,pass,pass
+frame-column-dark-defaultStyle,root,fail,0.06496637482552975,fail,0.06496637482552975,71,111,71,111,,512,7881,127,pass,pass
+frame-dashed-light-defaultStyle,root,fail,0.09339975093399751,pass,0.043853406867105496,154,73,154,73,,493,11242,87,fail,fail
+frame-dashed-dark-defaultStyle,root,fail,0.10176125244618395,fail,0.05221490837929194,154,73,154,73,,587,11242,153,fail,fail
+frame-elevated-light-defaultStyle,root,pass,0.02918956043956044,pass,0.02918956043956044,224,78,224,78,,510,17472,89,pass,pass
+frame-elevated-dark-defaultStyle,root,fail,0.06507554945054946,fail,0.06507554945054946,224,78,224,78,,1137,17472,143,pass,pass
+hidden-default-light-defaultStyle,root,pass,0.03282674772036474,pass,0.03282674772036474,141,105,141,105,,486,14805,213,pass,pass
+hidden-default-dark-defaultStyle,root,pass,0.04343127321850726,pass,0.04343127321850726,141,105,141,105,,643,14805,222,pass,pass
+listing-default-light-defaultStyle,root,pass,0.006724452554744525,pass,0.006724452554744525,800,137,800,137,,737,109600,92,pass,pass
+listing-default-dark-defaultStyle,root,pass,0.02166970802919708,pass,0.02166970802919708,800,137,800,137,,2375,109600,150,pass,pass
+swipe-actions-default-light-defaultStyle,root,fail,0.056508471009155,fail,0.056508471009155,221,43,221,43,,537,9503,215,pass,pass
+swipe-actions-default-dark-defaultStyle,root,fail,0.08576239082395033,fail,0.08576239082395033,221,43,221,43,,815,9503,231,pass,pass
+swipe-actions-scope-light-defaultStyle,root,fail,,fail,,800,87,800,86,800x87 vs 800x86,0,0,0,pass,pass
+swipe-actions-scope-dark-defaultStyle,root,fail,,fail,,800,87,800,86,800x87 vs 800x86,0,0,0,pass,pass
+gap-default-light-defaultStyle,root,fail,0.05433673469387755,fail,0.05433673469387755,98,40,98,40,,213,3920,213,pass,pass
+gap-default-dark-defaultStyle,root,fail,0.05790816326530612,fail,0.05790816326530612,98,40,98,40,,227,3920,222,pass,pass
+gap-max-light-defaultStyle,root,pass,0.0069375,pass,0.0069375,800,40,800,40,,222,32000,213,pass,pass
+gap-max-dark-defaultStyle,root,pass,0.00728125,pass,0.00728125,800,40,800,40,,233,32000,222,pass,pass
+gap-sliver-light-defaultStyle,root,pass,0.0013671875,pass,0.0013671875,800,160,800,160,,175,128000,86,pass,pass
+gap-sliver-dark-defaultStyle,root,pass,0.00553125,pass,0.00553125,800,160,800,160,,708,128000,129,pass,pass
+mask-default-light-defaultStyle,root,pass,0.00537109375,pass,0.00537109375,64,64,64,64,,22,4096,77,pass,pass
+mask-default-dark-defaultStyle,root,pass,0.00634765625,pass,0.00634765625,64,64,64,64,,26,4096,87,pass,pass
+mask-circle-light-defaultStyle,root,pass,0.011474609375,pass,0.011474609375,64,64,64,64,,47,4096,78,pass,pass
+mask-circle-dark-defaultStyle,root,pass,0.014404296875,pass,0.014404296875,64,64,64,64,,59,4096,89,pass,pass
+mask-heart-light-defaultStyle,root,pass,0.012451171875,pass,0.012451171875,64,64,64,64,,51,4096,79,pass,pass
+mask-heart-dark-defaultStyle,root,pass,0.01416015625,pass,0.01416015625,64,64,64,64,,58,4096,89,pass,pass
+mask-hexagon-light-defaultStyle,root,pass,0.00537109375,pass,0.00537109375,64,64,64,64,,22,4096,59,pass,pass
+mask-hexagon-dark-defaultStyle,root,pass,0.007080078125,pass,0.007080078125,64,64,64,64,,29,4096,67,pass,pass
+mask-star-light-defaultStyle,root,pass,0.009033203125,pass,0.009033203125,64,64,64,64,,37,4096,61,pass,pass
+mask-star-dark-defaultStyle,root,pass,0.0107421875,pass,0.0107421875,64,64,64,64,,44,4096,69,pass,pass
+mask-triangle-light-defaultStyle,root,pass,0.015625,pass,0.015625,64,64,64,64,,64,4096,53,pass,pass
+mask-triangle-dark-defaultStyle,root,pass,0.015625,pass,0.015625,64,64,64,64,,64,4096,60,pass,pass
+media-query-default-light-defaultStyle,root,pass,0.0021666666666666666,pass,0.0021666666666666666,800,45,800,45,,78,36000,75,pass,pass
+media-query-default-dark-defaultStyle,root,pass,0.010972222222222222,pass,0.010972222222222222,800,45,800,45,,395,36000,114,pass,pass
+breakpoint-default-light-defaultStyle,root,pass,0.03139150943396227,pass,0.03139150943396227,800,53,800,53,,1331,42400,213,pass,pass
+breakpoint-default-dark-defaultStyle,root,pass,0.034693396226415096,pass,0.034693396226415096,800,53,800,53,,1471,42400,202,pass,pass
+responsive-container-default-light-defaultStyle,root,pass,0.018074324324324324,pass,0.018074324324324324,640,74,640,74,,856,47360,87,fail,pass
+responsive-container-default-light-defaultStyle,stage,,,pass,0.01445945945945946,800,74,800,74,,856,59200,87,firstCapture,firstCapture
+responsive-container-default-dark-defaultStyle,root,fail,0.07225506756756757,fail,0.07225506756756757,640,74,640,74,,3422,47360,126,fail,pass
+responsive-container-default-dark-defaultStyle,stage,,,fail,0.05780405405405405,800,74,800,74,,3422,59200,126,firstCapture,firstCapture
+responsive-grid-default-light-defaultStyle,root,pass,0.0009685863874345549,pass,0.0009685863874345549,800,191,800,191,,148,152800,49,pass,pass
+responsive-grid-default-dark-defaultStyle,root,pass,0.004725130890052356,pass,0.004725130890052356,800,191,800,191,,722,152800,89,pass,pass
+responsive-grid-span-light-defaultStyle,root,pass,0.0014764492753623188,pass,0.0014764492753623188,800,138,800,138,,163,110400,86,pass,pass
+responsive-grid-span-dark-defaultStyle,root,pass,0.006340579710144928,pass,0.006340579710144928,800,138,800,138,,700,110400,122,pass,pass
+responsive-row-column-default-light-defaultStyle,root,pass,0.004294871794871795,pass,0.004294871794871795,800,78,800,78,,268,62400,103,pass,fail
+responsive-row-column-default-dark-defaultStyle,root,pass,0.008157051282051282,pass,0.008157051282051282,800,78,800,78,,509,62400,136,pass,fail
+responsive-row-column-desktop-light-defaultStyle,root,fail,,fail,,78,258,78,259,78x258 vs 78x259,0,0,0,pass,fail
+responsive-row-column-desktop-dark-defaultStyle,root,fail,,fail,,78,258,78,259,78x258 vs 78x259,0,0,0,pass,fail
+scaffold-default-light-defaultStyle,root,pass,0.004280598958333334,pass,0.004280598958333334,800,384,800,384,,1315,307200,224,pass,pass
+scaffold-default-dark-defaultStyle,root,pass,0.004993489583333333,pass,0.004993489583333333,800,384,800,384,,1534,307200,222,pass,pass
+page-header-default-light-defaultStyle,root,pass,0.023707865168539326,pass,0.023707865168539326,800,89,800,89,,1688,71200,219,pass,pass
+page-header-default-dark-defaultStyle,root,pass,0.026938202247191012,pass,0.026938202247191012,800,89,800,89,,1918,71200,236,pass,pass
+panel-header-default-light-defaultStyle,root,pass,0.0209375,pass,0.0209375,800,40,800,40,,670,32000,219,pass,pass
+panel-header-default-dark-defaultStyle,root,pass,0.02390625,pass,0.02390625,800,40,800,40,,765,32000,236,pass,pass
+bottom-action-bar-default-light-defaultStyle,root,pass,0.00856060606060606,pass,0.00856060606060606,800,165,800,165,,1130,132000,224,pass,pass
+bottom-action-bar-default-dark-defaultStyle,root,pass,0.011272727272727273,pass,0.011272727272727273,800,165,800,165,,1488,132000,222,pass,pass
+bottom-action-bar-horizontal-light-defaultStyle,root,pass,0.01191358024691358,pass,0.01191358024691358,800,81,800,81,,772,64800,221,pass,pass
+bottom-action-bar-horizontal-dark-defaultStyle,root,pass,0.013101851851851852,pass,0.013101851851851852,800,81,800,81,,849,64800,219,pass,pass
+bottom-action-bar-scaffold-light-defaultStyle,root,pass,0.021764322916666665,pass,0.021764322916666665,800,384,800,384,,6686,307200,224,pass,pass
+bottom-action-bar-scaffold-dark-defaultStyle,root,pass,0.022913411458333335,pass,0.022913411458333335,800,384,800,384,,7039,307200,222,pass,pass
+app-bar-default-light-defaultStyle,root,pass,0.00681640625,pass,0.00681640625,800,64,800,64,,349,51200,224,pass,pass
+app-bar-default-dark-defaultStyle,root,pass,0.007734375,pass,0.007734375,800,64,800,64,,396,51200,222,pass,pass
+app-bar-compact-light-defaultStyle,root,pass,0.006584821428571429,pass,0.006584821428571429,800,56,800,56,,295,44800,218,pass,pass
+app-bar-compact-dark-defaultStyle,root,pass,0.006540178571428572,pass,0.006540178571428572,800,56,800,56,,293,44800,219,pass,pass
+app-bar-medium-light-defaultStyle,root,pass,0.01572544642857143,pass,0.01572544642857143,800,112,800,112,,1409,89600,224,pass,pass
+app-bar-medium-dark-defaultStyle,root,pass,0.015948660714285714,pass,0.015948660714285714,800,112,800,112,,1429,89600,222,pass,pass
+app-bar-dense-light-defaultStyle,root,pass,0.010130208333333333,pass,0.010130208333333333,800,48,800,48,,389,38400,216,fail,pass
+app-bar-dense-dark-defaultStyle,root,pass,0.011796875,pass,0.011796875,800,48,800,48,,453,38400,211,fail,pass
+app-bar-prominent-light-defaultStyle,root,pass,0.010446428571428572,pass,0.010446428571428572,800,56,800,56,,468,44800,159,pass,pass
+app-bar-prominent-dark-defaultStyle,root,pass,0.011830357142857142,pass,0.011830357142857142,800,56,800,56,,530,44800,158,pass,pass
+app-bar-centered-light-defaultStyle,root,pass,0.01546875,pass,0.01546875,800,64,800,64,,792,51200,224,pass,pass
+app-bar-centered-dark-defaultStyle,root,pass,0.016796875,pass,0.016796875,800,64,800,64,,860,51200,222,pass,pass
+app-bar-text-light-defaultStyle,root,pass,0.00921875,pass,0.00921875,800,64,800,64,,472,51200,206,pass,pass
+app-bar-text-dark-defaultStyle,root,pass,0.01052734375,pass,0.01052734375,800,64,800,64,,539,51200,216,pass,pass
+dock-default-light-defaultStyle,root,pass,0.0115234375,pass,0.0115234375,800,64,800,64,,590,51200,174,fail,pass
+dock-default-dark-defaultStyle,root,pass,0.01103515625,pass,0.01103515625,800,64,800,64,,565,51200,197,fail,pass
+tabs-default-light-defaultStyle,root,pass,0.04710368996083282,pass,0.04710368996083282,126,77,126,77,,457,9702,218,pass,pass
+tabs-default-dark-defaultStyle,root,fail,0.0999793856936714,fail,0.0999793856936714,126,77,126,77,,970,9702,177,pass,pass
+tabs-line-light-defaultStyle,root,pass,0.00814935064935065,pass,0.00814935064935065,800,77,800,77,,502,61600,213,pass,fail
+tabs-line-dark-defaultStyle,root,pass,0.017012987012987014,pass,0.017012987012987014,800,77,800,77,,1048,61600,232,pass,fail
+tabs-badge-light-defaultStyle,root,fail,0.07097128223888788,fail,0.07097128223888788,284,77,284,77,,1552,21868,224,pass,pass
+tabs-badge-dark-defaultStyle,root,fail,0.0752698006219133,fail,0.0752698006219133,284,77,284,77,,1646,21868,180,pass,pass
+tabs-closable-light-defaultStyle,root,pass,0.03793090761929289,pass,0.03793090761929289,353,77,353,77,,1031,27181,224,pass,pass
+tabs-closable-dark-defaultStyle,root,pass,0.04087414002428167,pass,0.04087414002428167,353,77,353,77,,1111,27181,236,pass,pass
+tab-pane-default-light-defaultStyle,root,pass,0.006331775700934579,pass,0.006331775700934579,800,107,800,107,,542,85600,212,pass,pass
+tab-pane-default-dark-defaultStyle,root,pass,0.008738317757009346,pass,0.008738317757009346,800,107,800,107,,748,85600,220,pass,pass
+tab-pane-editor-strip-light-defaultStyle,root,fail,0.0809375,fail,0.0809375,800,36,800,36,,2331,28800,224,fail,pass
+tab-pane-editor-strip-dark-defaultStyle,root,fail,0.07892361111111111,fail,0.07892361111111111,800,36,800,36,,2273,28800,222,fail,pass
+navigation-bar-default-light-defaultStyle,root,pass,0.01271875,pass,0.01271875,800,80,800,80,,814,64000,195,pass,pass
+navigation-bar-default-dark-defaultStyle,root,pass,0.011625,pass,0.011625,800,80,800,80,,744,64000,220,pass,pass
+navigation-bar-rail-light-defaultStyle,root,pass,0.010141093474426807,pass,0.010141093474426807,81,224,81,224,,184,18144,199,pass,pass
+navigation-bar-rail-dark-defaultStyle,root,pass,0.010361552028218694,pass,0.010361552028218694,81,224,81,224,,188,18144,211,pass,pass
+navigation-bar-sidebar-light-defaultStyle,root,fail,,fail,,187,309,188,309,187x309 vs 188x309,0,0,0,pass,pass
+navigation-bar-sidebar-dark-defaultStyle,root,fail,,fail,,187,309,188,309,187x309 vs 188x309,0,0,0,pass,pass
+navigation-bar-item-default-light-defaultStyle,root,pass,0.021009036144578313,pass,0.021009036144578313,240,166,240,166,,837,39840,255,pass,pass
+navigation-bar-item-default-dark-defaultStyle,root,pass,0.023418674698795182,pass,0.023418674698795182,240,166,240,166,,933,39840,187,pass,pass
+navigation-bar-item-drawer-light-defaultStyle,root,fail,0.0732824427480916,fail,0.0732824427480916,131,40,131,40,,384,5240,222,pass,pass
+navigation-bar-item-drawer-dark-defaultStyle,root,fail,0.07729007633587787,fail,0.07729007633587787,131,40,131,40,,405,5240,220,pass,pass
+sidebar-default-light-defaultStyle,root,pass,0.023727318548387097,pass,0.023727318548387097,248,640,248,640,,3766,158720,224,pass,pass
+sidebar-default-dark-defaultStyle,root,pass,0.02716733870967742,pass,0.02716733870967742,248,640,248,640,,4312,158720,222,pass,pass
+sidebar-two-pane-light-defaultStyle,root,pass,0.00425061677631579,pass,0.00425061677631579,304,640,304,640,,827,194560,199,pass,pass
+sidebar-two-pane-dark-defaultStyle,root,pass,0.004970189144736842,pass,0.004970189144736842,304,640,304,640,,967,194560,211,pass,pass
+sidebar-collapsed-light-defaultStyle,root,pass,0.0147265625,pass,0.0147265625,64,400,64,400,,377,25600,218,pass,pass
+sidebar-collapsed-dark-defaultStyle,root,pass,0.013828125,pass,0.013828125,64,400,64,400,,354,25600,222,pass,pass
+breadcrumb-default-light-defaultStyle,root,fail,0.060444444444444446,fail,0.060444444444444446,180,25,180,25,,272,4500,216,pass,pass
+breadcrumb-default-dark-defaultStyle,root,fail,0.09933333333333333,fail,0.09933333333333333,180,25,180,25,,447,4500,232,pass,pass
+pagination-default-light-defaultStyle,root,pass,0.008790436005625879,pass,0.008790436005625879,316,36,316,36,,100,11376,209,pass,pass
+pagination-default-dark-defaultStyle,root,pass,0.011251758087201125,pass,0.011251758087201125,316,36,316,36,,128,11376,212,pass,pass
+switcher-default-light-defaultStyle,root,pass,0.02017372532894737,pass,0.02017372532894737,256,152,256,152,,785,38912,224,pass,pass
+switcher-default-dark-defaultStyle,root,pass,0.022332442434210526,pass,0.022332442434210526,256,152,256,152,,869,38912,236,pass,pass
+menu-default-light-defaultStyle,root,pass,0.018075980392156864,pass,0.018075980392156864,240,204,240,204,,885,48960,216,pass,fail
+menu-default-dark-defaultStyle,root,pass,0.017116013071895426,pass,0.017116013071895426,240,204,240,204,,838,48960,220,pass,fail
+menu-item-default-light-defaultStyle,root,pass,0.015277777777777777,pass,0.015277777777777777,280,36,280,36,,154,10080,200,pass,pass
+menu-item-default-dark-defaultStyle,root,pass,0.020634920634920634,pass,0.020634920634920634,280,36,280,36,,208,10080,234,pass,pass
+menu-item-critical-light-defaultStyle,root,pass,0.010714285714285714,pass,0.010714285714285714,280,36,280,36,,108,10080,209,fail,pass
+menu-item-critical-dark-defaultStyle,root,pass,0.014583333333333334,pass,0.014583333333333334,280,36,280,36,,147,10080,244,fail,pass
+menu-item-description-light-defaultStyle,root,pass,0.03203781512605042,pass,0.03203781512605042,280,68,280,68,,610,19040,219,fail,pass
+menu-item-description-dark-defaultStyle,root,pass,0.04007352941176471,pass,0.04007352941176471,280,68,280,68,,763,19040,236,fail,pass
+context-menu-default-light-defaultStyle,root,pass,0.011497326203208556,pass,0.011497326203208556,204,55,204,55,,129,11220,73,fail,pass
+context-menu-default-dark-defaultStyle,root,fail,0.0785204991087344,fail,0.0785204991087344,204,55,204,55,,881,11220,102,fail,pass
+context-menu-lift-light-defaultStyle,root,pass,0.03792207792207792,pass,0.03792207792207792,140,55,140,55,,292,7700,92,fail,pass
+context-menu-lift-dark-defaultStyle,root,pass,0.04792207792207792,pass,0.04792207792207792,140,55,140,55,,369,7700,138,fail,pass
+dropdown-menu-default-light-defaultStyle,root,fail,0.09588235294117647,fail,0.09588235294117647,85,40,85,40,,326,3400,222,pass,pass
+dropdown-menu-default-dark-defaultStyle,root,fail,0.08176470588235295,fail,0.08176470588235295,85,40,85,40,,278,3400,221,pass,pass
+menubar-default-light-defaultStyle,root,fail,0.054276315789473686,fail,0.054276315789473686,152,48,152,48,,396,7296,224,pass,pass
+menubar-default-dark-defaultStyle,root,fail,0.06853070175438597,fail,0.06853070175438597,152,48,152,48,,500,7296,222,pass,pass
+toolbar-group-default-light-defaultStyle,root,pass,0.04519230769230769,pass,0.04519230769230769,112,65,112,65,,329,7280,211,pass,pass
+toolbar-group-default-dark-defaultStyle,root,fail,0.11565934065934066,fail,0.11565934065934066,112,65,112,65,,842,7280,231,pass,pass
+navigation-menu-default-light-defaultStyle,root,fail,0.07765748031496063,fail,0.07765748031496063,254,40,254,40,,789,10160,219,pass,pass
+navigation-menu-default-dark-defaultStyle,root,fail,0.08828740157480315,fail,0.08828740157480315,254,40,254,40,,897,10160,236,pass,pass
+dialog-default-light-defaultStyle,root,fail,0.11238317757009346,fail,0.11238317757009346,107,40,107,40,,481,4280,213,pass,pass
+dialog-default-dark-defaultStyle,root,fail,0.10116822429906543,fail,0.10116822429906543,107,40,107,40,,433,4280,222,pass,pass
+drawer-default-light-defaultStyle,root,fail,0.1038235294117647,fail,0.1038235294117647,85,40,85,40,,353,3400,222,pass,pass
+drawer-default-dark-defaultStyle,root,fail,0.09176470588235294,fail,0.09176470588235294,85,40,85,40,,312,3400,220,pass,pass
+hover-card-default-light-defaultStyle,root,fail,0.14160401002506265,fail,0.14160401002506265,38,21,38,21,,113,798,162,fail,pass
+hover-card-default-dark-defaultStyle,root,fail,0.31453634085213034,fail,0.31453634085213034,38,21,38,21,,251,798,184,fail,pass
+popover-default-light-defaultStyle,root,fail,0.09458762886597938,fail,0.09458762886597938,97,40,97,40,,367,3880,222,pass,pass
+popover-default-dark-defaultStyle,root,fail,0.10283505154639175,fail,0.10283505154639175,97,40,97,40,,399,3880,220,pass,pass
+toast-default-light-defaultStyle,root,fail,,fail,,800,70,800,69,800x70 vs 800x69,0,0,0,pass,pass
+toast-default-dark-defaultStyle,root,fail,,fail,,800,70,800,69,800x70 vs 800x69,0,0,0,pass,pass
+toast-destructive-light-defaultStyle,root,fail,,fail,,800,70,800,69,800x70 vs 800x69,0,0,0,pass,pass
+toast-destructive-dark-defaultStyle,root,fail,,fail,,800,70,800,69,800x70 vs 800x69,0,0,0,pass,pass
+toast-no-icon-light-defaultStyle,root,fail,,fail,,800,70,800,69,800x70 vs 800x69,0,0,0,pass,pass
+toast-no-icon-dark-defaultStyle,root,fail,,fail,,800,70,800,69,800x70 vs 800x69,0,0,0,pass,pass
+tooltip-default-light-defaultStyle,root,fail,0.06939655172413793,fail,0.06939655172413793,58,40,58,40,,161,2320,220,pass,pass
+tooltip-default-dark-defaultStyle,root,fail,0.08103448275862069,fail,0.08103448275862069,58,40,58,40,,188,2320,219,pass,pass
+swiper-default-light-defaultStyle,root,pass,0.0094482421875,pass,0.0094482421875,800,256,800,256,,1935,204800,224,pass,fail
+swiper-default-dark-defaultStyle,root,pass,0.009501953125,pass,0.009501953125,800,256,800,256,,1946,204800,222,pass,fail
+swiper-sheet-light-defaultStyle,root,pass,0.0094482421875,pass,0.0094482421875,800,256,800,256,,1935,204800,224,pass,fail
+swiper-sheet-dark-defaultStyle,root,pass,0.009501953125,pass,0.009501953125,800,256,800,256,,1946,204800,222,pass,fail
+refresh-trigger-default-light-defaultStyle,root,pass,0.005939922480620155,pass,0.005939922480620155,800,258,800,258,,1226,206400,213,pass,pass
+refresh-trigger-default-dark-defaultStyle,root,pass,0.006438953488372093,pass,0.006438953488372093,800,258,800,258,,1329,206400,222,pass,pass
+alert-default-light-defaultStyle,root,fail,,fail,,800,66,800,65,800x66 vs 800x65,0,0,0,pass,pass
+alert-default-dark-defaultStyle,root,fail,,fail,,800,66,800,65,800x66 vs 800x65,0,0,0,pass,pass
+alert-info-light-defaultStyle,root,fail,,fail,,800,66,800,65,800x66 vs 800x65,0,0,0,pass,pass
+alert-info-dark-defaultStyle,root,fail,,fail,,800,66,800,65,800x66 vs 800x65,0,0,0,pass,pass
+alert-success-light-defaultStyle,root,fail,,fail,,800,66,800,65,800x66 vs 800x65,0,0,0,pass,pass
+alert-success-dark-defaultStyle,root,fail,,fail,,800,66,800,65,800x66 vs 800x65,0,0,0,pass,pass
+alert-warning-light-defaultStyle,root,fail,,fail,,800,66,800,65,800x66 vs 800x65,0,0,0,pass,pass
+alert-warning-dark-defaultStyle,root,fail,,fail,,800,66,800,65,800x66 vs 800x65,0,0,0,pass,pass
+alert-destructive-light-defaultStyle,root,fail,,fail,,800,66,800,65,800x66 vs 800x65,0,0,0,pass,pass
+alert-destructive-dark-defaultStyle,root,fail,,fail,,800,66,800,65,800x66 vs 800x65,0,0,0,pass,pass
+alert-inline-light-defaultStyle,root,pass,0.012926136363636364,pass,0.012926136363636364,800,44,800,44,,455,35200,233,pass,pass
+alert-inline-dark-defaultStyle,root,pass,0.015482954545454546,pass,0.015482954545454546,800,44,800,44,,545,35200,149,pass,pass
+alert-text-only-light-defaultStyle,root,fail,,fail,,800,144,800,142,800x144 vs 800x142,0,0,0,pass,pass
+alert-text-only-dark-defaultStyle,root,fail,,fail,,800,144,800,142,800x144 vs 800x142,0,0,0,pass,pass
+icon-default-light-defaultStyle,root,pass,0.0,pass,0.0,28,28,28,28,,0,784,1,fail,pass
+icon-default-dark-defaultStyle,root,pass,0.0,pass,0.0,28,28,28,28,,0,784,1,fail,pass
+icon-search-light-defaultStyle,root,fail,0.06887755102040816,fail,0.06887755102040816,28,28,28,28,,54,784,69,fail,pass
+icon-search-dark-defaultStyle,root,fail,0.07525510204081633,fail,0.07525510204081633,28,28,28,28,,59,784,74,fail,pass
+icon-favorite-light-defaultStyle,root,pass,0.0,pass,0.0,28,28,28,28,,0,784,0,pass,pass
+icon-favorite-dark-defaultStyle,root,pass,0.0,pass,0.0,28,28,28,28,,0,784,0,pass,pass
+text-typography-display-light-defaultStyle,root,fail,,fail,,243,175,243,174,243x175 vs 243x174,0,0,0,pass,pass
+text-typography-display-dark-defaultStyle,root,fail,,fail,,243,175,243,174,243x175 vs 243x174,0,0,0,pass,pass
+text-typography-headline-light-defaultStyle,root,fail,0.05724082099147578,fail,0.05724082099147578,253,166,253,166,,2404,41998,219,pass,pass
+text-typography-headline-dark-defaultStyle,root,fail,0.07405114529263299,fail,0.07405114529263299,253,166,253,166,,3110,41998,236,pass,pass
+text-typography-title-light-defaultStyle,root,fail,,fail,,138,123,138,124,138x123 vs 138x124,0,0,0,pass,pass
+text-typography-title-dark-defaultStyle,root,fail,,fail,,138,123,138,124,138x123 vs 138x124,0,0,0,pass,pass
+text-typography-body-light-defaultStyle,root,fail,,fail,,117,191,117,190,117x191 vs 117x190,0,0,0,pass,pass
+text-typography-body-dark-defaultStyle,root,fail,,fail,,117,191,117,190,117x191 vs 117x190,0,0,0,fail,pass
+text-typography-weight-light-defaultStyle,root,pass,0.020650953984287318,pass,0.020650953984287318,135,198,135,198,,552,26730,90,pass,pass
+text-typography-weight-dark-defaultStyle,root,fail,0.07119341563786008,fail,0.07119341563786008,135,198,135,198,,1903,26730,150,pass,pass
+text-typography-primitive-light-defaultStyle,root,pass,0.03356424212436088,pass,0.03356424212436088,188,258,188,258,,1628,48504,137,pass,pass
+text-typography-primitive-dark-defaultStyle,root,fail,0.05803645060201221,fail,0.05803645060201221,188,258,188,258,,2815,48504,201,pass,pass
+text-colors-brand-light-defaultStyle,root,pass,0.044585401728258874,pass,0.044585401728258874,98,111,98,111,,485,10878,137,pass,pass
+text-colors-brand-dark-defaultStyle,root,fail,0.05157198014340871,fail,0.05157198014340871,98,111,98,111,,561,10878,189,fail,pass
+text-colors-status-light-defaultStyle,root,fail,,fail,,260,190,260,191,260x190 vs 260x191,0,0,0,pass,fail
+text-colors-status-dark-defaultStyle,root,fail,,fail,,260,190,260,191,260x190 vs 260x191,0,0,0,pass,fail
+text-colors-surface-light-defaultStyle,root,pass,0.013506320691949434,pass,0.013506320691949434,167,270,167,270,,609,45090,151,pass,pass
+text-colors-surface-dark-defaultStyle,root,pass,0.022821024617431802,pass,0.022821024617431802,167,270,167,270,,1029,45090,124,pass,pass
+text-modifiers-light-defaultStyle,root,fail,0.07185266630016493,fail,0.07185266630016493,107,170,107,170,,1307,18190,167,pass,pass
+text-modifiers-dark-defaultStyle,root,fail,0.1080263881253436,fail,0.1080263881253436,107,170,107,170,,1965,18190,180,pass,pass
+text-wrap-light-defaultStyle,root,fail,,fail,,800,237,800,238,800x237 vs 800x238,0,0,0,pass,pass
+text-wrap-dark-defaultStyle,root,fail,,fail,,800,237,800,238,800x237 vs 800x238,0,0,0,pass,pass
+text-keep-all-light-defaultStyle,root,pass,0.04031609195402299,pass,0.04031609195402299,232,150,232,150,,1403,34800,162,pass,pass
+text-keep-all-dark-defaultStyle,root,fail,0.08362068965517241,fail,0.08362068965517241,232,150,232,150,,2910,34800,172,pass,pass
+text-textstyle-light-defaultStyle,root,fail,,fail,,200,141,200,140,200x141 vs 200x140,0,0,0,pass,fail
+text-textstyle-dark-defaultStyle,root,fail,,fail,,200,141,200,140,200x141 vs 200x140,0,0,0,fail,fail
+text-opacity-light-defaultStyle,root,pass,0.017494219301448215,pass,0.017494219301448215,166,198,166,198,,575,32868,105,pass,pass
+text-opacity-dark-defaultStyle,root,pass,0.04086041134233905,pass,0.04086041134233905,166,198,166,198,,1343,32868,167,pass,pass
+text-rich-light-defaultStyle,root,pass,0.039652122641509434,pass,0.039652122641509434,256,53,256,53,,538,13568,219,pass,pass
+text-rich-dark-defaultStyle,root,fail,0.06419516509433962,fail,0.06419516509433962,256,53,256,53,,871,13568,236,pass,pass
+selectable-text-default-light-defaultStyle,root,fail,,fail,,203,21,200,21,203x21 vs 200x21,0,0,0,pass,pass
+selectable-text-default-dark-defaultStyle,root,fail,,fail,,203,21,200,21,203x21 vs 200x21,0,0,0,pass,pass
+selectable-text-styled-light-defaultStyle,root,fail,,fail,,255,27,252,27,255x27 vs 252x27,0,0,0,pass,pass
+selectable-text-styled-dark-defaultStyle,root,fail,,fail,,255,27,252,27,255x27 vs 252x27,0,0,0,pass,pass
+text-block-default-light-defaultStyle,root,pass,0.026554232804232806,pass,0.026554232804232806,360,84,360,84,,803,30240,114,pass,pass
+text-block-default-dark-defaultStyle,root,fail,0.08039021164021164,fail,0.08039021164021164,360,84,360,84,,2431,30240,173,pass,pass
+link-default-light-defaultStyle,root,fail,0.27310924369747897,fail,0.27310924369747897,68,21,68,21,,390,1428,233,pass,pass
+link-default-dark-defaultStyle,root,fail,0.2913165266106443,fail,0.2913165266106443,68,21,68,21,,416,1428,238,pass,pass
+link-muted-light-defaultStyle,root,fail,0.28291316526610644,fail,0.28291316526610644,51,21,51,21,,303,1071,162,pass,pass
+link-muted-dark-defaultStyle,root,fail,0.3062558356676004,fail,0.3062558356676004,51,21,51,21,,328,1071,172,pass,pass
+link-underline-light-defaultStyle,root,fail,0.3356009070294785,fail,0.3356009070294785,84,21,84,21,,592,1764,242,pass,pass
+link-underline-dark-defaultStyle,root,fail,0.3701814058956916,fail,0.3701814058956916,84,21,84,21,,653,1764,240,pass,pass
+link-external-light-defaultStyle,root,fail,0.28484848484848485,fail,0.28484848484848485,55,21,55,21,,329,1155,248,pass,pass
+link-external-dark-defaultStyle,root,fail,0.32727272727272727,fail,0.32727272727272727,55,21,55,21,,378,1155,244,pass,pass
+definition-list-default-light-defaultStyle,root,fail,0.1270183852917666,fail,0.1270183852917666,90,139,90,139,,1589,12510,219,pass,pass
+definition-list-default-dark-defaultStyle,root,fail,0.14084732214228618,fail,0.14084732214228618,90,139,90,139,,1762,12510,236,pass,pass
+definition-list-columns-light-defaultStyle,root,fail,,fail,,800,102,800,103,800x102 vs 800x103,0,0,0,pass,pass
+definition-list-columns-dark-defaultStyle,root,fail,,fail,,800,102,800,103,800x102 vs 800x103,0,0,0,pass,pass
+definition-list-inline-light-defaultStyle,root,fail,0.2699243746364165,fail,0.2699243746364165,382,18,382,18,,1856,6876,219,pass,pass
+definition-list-inline-dark-defaultStyle,root,fail,0.2747236765561373,fail,0.2747236765561373,382,18,382,18,,1889,6876,236,pass,pass
+clickable-default-light-defaultStyle,root,pass,0.024233784746970778,pass,0.024233784746970778,138,61,138,61,,204,8418,87,pass,pass
+clickable-default-dark-defaultStyle,root,pass,0.04526015680684248,pass,0.04526015680684248,138,61,138,61,,381,8418,126,pass,pass
+focus-outline-default-light-defaultStyle,root,pass,0.022657603625216582,pass,0.022657603625216582,123,61,123,61,,170,7503,86,pass,pass
+focus-outline-default-dark-defaultStyle,root,pass,0.03558576569372251,pass,0.03558576569372251,123,61,123,61,,267,7503,130,pass,pass
+outlined-container-default-light-defaultStyle,root,pass,0.03305785123966942,pass,0.03305785123966942,121,55,121,55,,220,6655,89,pass,pass
+outlined-container-default-dark-defaultStyle,root,fail,0.05138993238166792,fail,0.05138993238166792,121,55,121,55,,342,6655,137,pass,pass
+subfocus-default-light-defaultStyle,root,pass,0.00681372966527553,pass,0.00681372966527553,177,199,177,199,,240,35223,84,pass,pass
+subfocus-default-dark-defaultStyle,root,pass,0.021803934928881698,pass,0.021803934928881698,177,199,177,199,,768,35223,126,pass,pass
+scrollview-default-light-defaultStyle,root,pass,0.011658653846153846,pass,0.011658653846153846,260,160,260,160,,485,41600,55,pass,pass
+scrollview-default-dark-defaultStyle,root,pass,0.028629807692307694,pass,0.028629807692307694,260,160,260,160,,1191,41600,110,pass,pass
+popup-default-light-defaultStyle,root,pass,0.009716386554621849,pass,0.009716386554621849,128,119,128,119,,148,15232,98,pass,pass
+popup-default-dark-defaultStyle,root,pass,0.036830357142857144,pass,0.036830357142857144,128,119,128,119,,561,15232,117,pass,pass
+scrollbar-default-light-defaultStyle,root,pass,0.012369791666666666,pass,0.012369791666666666,240,160,240,160,,475,38400,67,pass,pass
+scrollbar-default-dark-defaultStyle,root,fail,0.056979166666666664,fail,0.056979166666666664,240,160,240,160,,2188,38400,129,pass,pass

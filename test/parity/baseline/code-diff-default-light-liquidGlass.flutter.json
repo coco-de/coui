@@ -1,0 +1,49 @@
+{
+  "key": "code-diff-default-light-liquidGlass",
+  "byRole": {
+    "root": {
+      "key": "code-diff-default-light-liquidGlass",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Geist Mono",
+      "fontWeight": 400,
+      "fontSizePx": 12.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": 0.0,
+      "color": {
+        "r": 88,
+        "g": 89,
+        "b": 90,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 249,
+        "g": 250,
+        "b": 251,
+        "a": 0.502
+      },
+      "borderColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderWidthPx": 0.0,
+      "borderRadiusPx": [
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [],
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 189.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

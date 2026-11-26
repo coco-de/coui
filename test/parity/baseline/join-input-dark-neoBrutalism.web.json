@@ -1,0 +1,75 @@
+{
+  "key": "join-input-dark-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-join-17:where(.co-join-rule-ssr-1i) > div > * { border-radius: var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-0) !important; min-height: 100%; }#co-join-17:where(.co-join-rule-ssr-1i) > div:first-of-type > * { border-radius: var(--coui-radius-10) var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-10) !important; }#co-join-17:where(.co-join-rule-ssr-1i) > div:last-of-type > * { border-radius: var(--coui-radius-0) var(--coui-radius-10) var(--coui-radius-10) var(--coui-radius-0) !important; }#co-join-17:where(.co-join-rule-ssr-1i) > div:focus-within { overflow: visible !important; position: relative; z-index: 1; }\n              \n              \n                \n                  \n                    \n                      \n                        \n                      \n                    \n                  \n                \n              \n              \n                구독하기",
+    "layout": {
+      "width": 275.84375,
+      "height": 40,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 200,
+          "height": 40
+        },
+        {
+          "x": 196,
+          "y": 0,
+          "width": 79.84375,
+          "height": 40
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(147, 149, 150)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 275.84375,
+      "heightPx": 40
+    }
+  }
+}

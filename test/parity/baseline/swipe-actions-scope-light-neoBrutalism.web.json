@@ -1,0 +1,63 @@
+{
+  "key": "swipe-actions-scope-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-button-1v5ma3:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 3%, rgb(var(--coui-secondary-container) / 100%)) !important;}#co-button-1v5ma3:active{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 12%, rgb(var(--coui-secondary-container) / 100%)) !important;}\n                          \n                          \n                        \n                        \n                        고정\n                      \n                    \n                  \n                  \n                    \n                      \n                        \n                          \n                        \n                      \n                      \n                      \n                        주간 보고서\n                        \n                        이번 주 진행 상황을 정리했어요\n                      \n                      \n                      \n                        \n                          \n                            \n                          \n                        \n                      \n                    \n                  \n                  \n                    \n                      \n                        \n                          \n                        \n                        \n                        삭제\n                      \n                      \n                        \n                          \n                            #co-button-pfod2:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 3%, rgb(var(--coui-secondary-container) / 100%)) !important;}#co-button-pfod2:active{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 12%, rgb(var(--coui-secondary-container) / 100%)) !important;}\n                          \n                          \n                        \n                        \n                        보관\n                      \n                    \n                  \n                \n                \n                \n                  \n                    \n                      \n                        \n                          \n                            #co-button-ed086r:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 3%, rgb(var(--coui-secondary-container) / 100%)) !important;}#co-button-ed086r:active{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 12%, rgb(var(--coui-secondary-container) / 100%)) !important;}\n                          \n                          \n                        \n                        \n                        고정\n                      \n                    \n                  \n                  \n                    \n                      \n                        \n                          \n                        \n                      \n                      \n                      \n                        디자인 리뷰 초대\n                        \n                        내일 오후 2시, 3층 회의실\n                      \n                      \n                      \n                        \n                          \n                            \n                          \n                        \n                      \n                    \n                  \n                  \n                    \n                      \n                        \n                          \n                        \n                        \n                        삭제\n                      \n                      \n                        \n                          \n                            #co-button-1pi652:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 3%, rgb(var(--coui-secondary-container) / 100%)) !important;}#co-button-1pi652:active{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 12%, rgb(var(--coui-secondary-container) / 100%)) !important;}\n                          \n                          \n                        \n                        \n                        보관",
+    "layout": {
+      "width": 800,
+      "height": 90,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 90
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "15px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(31, 32, 33)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 90
+    }
+  }
+}

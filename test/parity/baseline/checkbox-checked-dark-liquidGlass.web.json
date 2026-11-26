@@ -1,0 +1,63 @@
+{
+  "key": "checkbox-checked-dark-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": ".co-checkbox-sl-lyt8b .co-checkbox-box::before{content:\"\";position:absolute;inset:calc(-0.25rem - var(--coui-stroke-width-1));border-radius:var(--coui-radius-8) var(--coui-radius-8) var(--coui-radius-8) var(--coui-radius-8);background-color:rgb(var(--coui-on-surface) / 0%);pointer-events:none;transition:background-color var(--coui-duration-300) var(--easing-ease-in-out);}.co-checkbox-sl-lyt8b:hover .co-checkbox-box::before{background-color:rgb(var(--coui-on-surface) / 8%);}.co-checkbox-sl-lyt8b:active .co-checkbox-box::before{background-color:rgb(var(--coui-on-surface) / 16%);}.co-checkbox-sl-lyt8b .co-checkbox-box{outline-color:transparent;}:where(.co-checkbox-sl-lyt8b .co-checkbox-box){outline-style:solid;}.co-checkbox-sl-lyt8b:focus-visible .co-checkbox-box{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(4.0px - var(--coui-stroke-width-2));}선택됨",
+    "layout": {
+      "width": 59.890625,
+      "height": 21,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 59.890625,
+          "height": 21
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(244, 245, 246)",
+      "borderTopColor": "rgb(244, 245, 246)",
+      "borderRightColor": "rgb(244, 245, 246)",
+      "borderBottomColor": "rgb(244, 245, 246)",
+      "borderLeftColor": "rgb(244, 245, 246)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "solid",
+      "outlineColor": "rgba(0, 0, 0, 0)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 59.890625,
+      "heightPx": 21
+    }
+  }
+}

@@ -1,0 +1,10 @@
+# preflight 에 기대는 Web resolver 파일 수.
+#
+# Tailwind border-width 유틸만 쓰고 `border-style` 을 스스로 선언하지 않는
+# `*_style.dart`. 설정이 `preflight:false` 라고 선언하는데도 런타임에는
+# preflight 가 살아 있어서 지금은 그려진다 — 그 우연이 사라지면 이 파일들의
+# 테두리가 조용히 없어진다.
+#
+# 이 숫자를 줄이는 방향(같은 요소에 inline `border-style: solid` 추가)은 언제나
+# 옳다. 올리는 것은 그 불일치를 넓히는 것이므로 선언이 필요하다.
+30

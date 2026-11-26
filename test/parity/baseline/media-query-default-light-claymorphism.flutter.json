@@ -1,0 +1,49 @@
+{
+  "key": "media-query-default-light-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "media-query-default-light-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 42,
+        "g": 43,
+        "b": 44,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 228,
+        "g": 230,
+        "b": 231,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "paddingPx": [
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 45.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

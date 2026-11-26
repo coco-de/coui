@@ -1,0 +1,109 @@
+{
+  "key": "mockup-device-default-dark-defaultStyle",
+  "byRole": {
+    "root": {
+      "key": "mockup-device-default-dark-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "root",
+      "shadowBlurUnit": "css-radius",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 21.0,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 0.0
+      },
+      "borderColor": {
+        "r": 100,
+        "g": 101,
+        "b": 104,
+        "a": 1.0
+      },
+      "borderWidthPx": 1.0,
+      "borderRadiusPx": [
+        24.0,
+        24.0,
+        24.0,
+        24.0
+      ],
+      "paddingPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": [
+        {
+          "offsetX": 0.0,
+          "offsetY": 14.0,
+          "blur": 28.0,
+          "spread": -5.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.078
+          }
+        },
+        {
+          "offsetX": 0.0,
+          "offsetY": 6.0,
+          "blur": 10.0,
+          "spread": -3.0,
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 0.051
+          }
+        }
+      ],
+      "opacity": 1.0,
+      "widthPx": 320.0,
+      "heightPx": 674.67
+    },
+    "stage": {
+      "key": "mockup-device-default-dark-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "stage",
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSizePx": null,
+      "lineHeightPx": null,
+      "letterSpacingPx": null,
+      "color": null,
+      "backgroundColor": null,
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": null,
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": null,
+      "widthPx": 800.0,
+      "heightPx": 674.67
+    }
+  },
+  "settled": true,
+  "capturePhase": "settled-runtime",
+  "captureNotes": [],
+  "bodyBounds": {
+    "left": 240.0,
+    "top": 0,
+    "width": 320.0,
+    "height": 674.6666666666666
+  }
+}

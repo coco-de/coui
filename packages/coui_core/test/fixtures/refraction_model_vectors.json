@@ -1,0 +1,556 @@
+{
+  "_comment": [
+    "Shared vectors for the two refraction laws (CoreRefractionModel).",
+    "Read by coui_core (CoreSurfaceRefraction.displacementAt and the Web displacement map),",
+    "coui_flutter (the GLSL transcription the parity test pins to surface_refraction.frag) and",
+    "coui_web (the map bytes the browser filter reads), so a law that changes on one platform",
+    "fails the others.",
+    "Computed by an independent implementation of the formulas in the documentation, not by the",
+    "Dart: Snell is -(1/index) * lateralShare * band * strength * 5 * (1 - h) with lateralShare =",
+    "sqrt(1 - h^2); paraxial is -(index - 1) * (1 - h^2) * band * strength * 5; h = clamp(inset /",
+    "band, 0, 1). 5 is CoreSurfaceRefraction.travelPerBand.",
+    "travel.cases: travelPx is the signed displacement of a sample insetPx inside the edge, along",
+    "the outward normal (negative: the bend pulls inward). peakPx is the largest magnitude over",
+    "the band. The row at 1.25 band widths is outside the band and is zero for both laws.",
+    "The 'vacuum' set is index 1: paraxial bends nothing there and snell does not - the table",
+    "states the difference rather than hiding it.",
+    "map: a 120x80 box with a 16 px corner and bezel 0.2, strength 1, index 1.5. redAlongMiddleRow",
+    "is the R byte of surfaceRefractionDisplacementMap for x = 0..23 on row 40, where the left",
+    "edge is straight; 128 is 'do not move', above it the sample comes from the right."
+  ],
+  "travel": {
+    "cases": [
+      {
+        "name": "shipped glass on a 56 px bar",
+        "model": "snell",
+        "strength": 0.8,
+        "refractiveIndex": 1.5,
+        "bandPx": 15.12,
+        "peakPx": 40.32,
+        "rows": [
+          {
+            "insetPx": 0.0,
+            "travelPx": -40.32
+          },
+          {
+            "insetPx": 0.756,
+            "travelPx": -38.2560900375
+          },
+          {
+            "insetPx": 1.512,
+            "travelPx": -36.1061041177
+          },
+          {
+            "insetPx": 3.78,
+            "travelPx": -29.2797540973
+          },
+          {
+            "insetPx": 7.56,
+            "travelPx": -17.4590721403
+          },
+          {
+            "insetPx": 11.34,
+            "travelPx": -6.66729330388
+          },
+          {
+            "insetPx": 13.608,
+            "travelPx": -1.75750805404
+          },
+          {
+            "insetPx": 15.12,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 18.9,
+            "travelPx": -0.0
+          }
+        ]
+      },
+      {
+        "name": "shipped glass on a 56 px bar",
+        "model": "paraxial",
+        "strength": 0.8,
+        "refractiveIndex": 1.5,
+        "bandPx": 15.12,
+        "peakPx": 30.24,
+        "rows": [
+          {
+            "insetPx": 0.0,
+            "travelPx": -30.24
+          },
+          {
+            "insetPx": 0.756,
+            "travelPx": -30.1644
+          },
+          {
+            "insetPx": 1.512,
+            "travelPx": -29.9376
+          },
+          {
+            "insetPx": 3.78,
+            "travelPx": -28.35
+          },
+          {
+            "insetPx": 7.56,
+            "travelPx": -22.68
+          },
+          {
+            "insetPx": 11.34,
+            "travelPx": -13.23
+          },
+          {
+            "insetPx": 13.608,
+            "travelPx": -5.7456
+          },
+          {
+            "insetPx": 15.12,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 18.9,
+            "travelPx": -0.0
+          }
+        ]
+      },
+      {
+        "name": "full strength on a card",
+        "model": "snell",
+        "strength": 1.0,
+        "refractiveIndex": 1.5,
+        "bandPx": 48.0,
+        "peakPx": 160.0,
+        "rows": [
+          {
+            "insetPx": 0.0,
+            "travelPx": -160.0
+          },
+          {
+            "insetPx": 2.4,
+            "travelPx": -151.809881101
+          },
+          {
+            "insetPx": 4.8,
+            "travelPx": -143.278190943
+          },
+          {
+            "insetPx": 12.0,
+            "travelPx": -116.189500386
+          },
+          {
+            "insetPx": 24.0,
+            "travelPx": -69.2820323028
+          },
+          {
+            "insetPx": 36.0,
+            "travelPx": -26.4575131106
+          },
+          {
+            "insetPx": 43.2,
+            "travelPx": -6.97423830967
+          },
+          {
+            "insetPx": 48.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 60.0,
+            "travelPx": -0.0
+          }
+        ]
+      },
+      {
+        "name": "full strength on a card",
+        "model": "paraxial",
+        "strength": 1.0,
+        "refractiveIndex": 1.5,
+        "bandPx": 48.0,
+        "peakPx": 120.0,
+        "rows": [
+          {
+            "insetPx": 0.0,
+            "travelPx": -120.0
+          },
+          {
+            "insetPx": 2.4,
+            "travelPx": -119.7
+          },
+          {
+            "insetPx": 4.8,
+            "travelPx": -118.8
+          },
+          {
+            "insetPx": 12.0,
+            "travelPx": -112.5
+          },
+          {
+            "insetPx": 24.0,
+            "travelPx": -90.0
+          },
+          {
+            "insetPx": 36.0,
+            "travelPx": -52.5
+          },
+          {
+            "insetPx": 43.2,
+            "travelPx": -22.8
+          },
+          {
+            "insetPx": 48.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 60.0,
+            "travelPx": -0.0
+          }
+        ]
+      },
+      {
+        "name": "a thin prism",
+        "model": "snell",
+        "strength": 0.5,
+        "refractiveIndex": 1.24,
+        "bandPx": 32.0,
+        "peakPx": 64.5161290323,
+        "rows": [
+          {
+            "insetPx": 0.0,
+            "travelPx": -64.5161290323
+          },
+          {
+            "insetPx": 1.6,
+            "travelPx": -61.2136617344
+          },
+          {
+            "insetPx": 3.2,
+            "travelPx": -57.7734640901
+          },
+          {
+            "insetPx": 8.0,
+            "travelPx": -46.8506049944
+          },
+          {
+            "insetPx": 16.0,
+            "travelPx": -27.9363033479
+          },
+          {
+            "insetPx": 24.0,
+            "travelPx": -10.6683520607
+          },
+          {
+            "insetPx": 28.8,
+            "travelPx": -2.8121928668
+          },
+          {
+            "insetPx": 32.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 40.0,
+            "travelPx": -0.0
+          }
+        ]
+      },
+      {
+        "name": "a thin prism",
+        "model": "paraxial",
+        "strength": 0.5,
+        "refractiveIndex": 1.24,
+        "bandPx": 32.0,
+        "peakPx": 19.2,
+        "rows": [
+          {
+            "insetPx": 0.0,
+            "travelPx": -19.2
+          },
+          {
+            "insetPx": 1.6,
+            "travelPx": -19.152
+          },
+          {
+            "insetPx": 3.2,
+            "travelPx": -19.008
+          },
+          {
+            "insetPx": 8.0,
+            "travelPx": -18.0
+          },
+          {
+            "insetPx": 16.0,
+            "travelPx": -14.4
+          },
+          {
+            "insetPx": 24.0,
+            "travelPx": -8.4
+          },
+          {
+            "insetPx": 28.8,
+            "travelPx": -3.648
+          },
+          {
+            "insetPx": 32.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 40.0,
+            "travelPx": -0.0
+          }
+        ]
+      },
+      {
+        "name": "a dense glass",
+        "model": "snell",
+        "strength": 0.25,
+        "refractiveIndex": 2.0,
+        "bandPx": 48.0,
+        "peakPx": 30.0,
+        "rows": [
+          {
+            "insetPx": 0.0,
+            "travelPx": -30.0
+          },
+          {
+            "insetPx": 2.4,
+            "travelPx": -28.4643527065
+          },
+          {
+            "insetPx": 4.8,
+            "travelPx": -26.8646608019
+          },
+          {
+            "insetPx": 12.0,
+            "travelPx": -21.7855313224
+          },
+          {
+            "insetPx": 24.0,
+            "travelPx": -12.9903810568
+          },
+          {
+            "insetPx": 36.0,
+            "travelPx": -4.96078370825
+          },
+          {
+            "insetPx": 43.2,
+            "travelPx": -1.30766968306
+          },
+          {
+            "insetPx": 48.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 60.0,
+            "travelPx": -0.0
+          }
+        ]
+      },
+      {
+        "name": "a dense glass",
+        "model": "paraxial",
+        "strength": 0.25,
+        "refractiveIndex": 2.0,
+        "bandPx": 48.0,
+        "peakPx": 60.0,
+        "rows": [
+          {
+            "insetPx": 0.0,
+            "travelPx": -60.0
+          },
+          {
+            "insetPx": 2.4,
+            "travelPx": -59.85
+          },
+          {
+            "insetPx": 4.8,
+            "travelPx": -59.4
+          },
+          {
+            "insetPx": 12.0,
+            "travelPx": -56.25
+          },
+          {
+            "insetPx": 24.0,
+            "travelPx": -45.0
+          },
+          {
+            "insetPx": 36.0,
+            "travelPx": -26.25
+          },
+          {
+            "insetPx": 43.2,
+            "travelPx": -11.4
+          },
+          {
+            "insetPx": 48.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 60.0,
+            "travelPx": -0.0
+          }
+        ]
+      },
+      {
+        "name": "vacuum",
+        "model": "snell",
+        "strength": 1.0,
+        "refractiveIndex": 1.0,
+        "bandPx": 48.0,
+        "peakPx": 240.0,
+        "rows": [
+          {
+            "insetPx": 0.0,
+            "travelPx": -240.0
+          },
+          {
+            "insetPx": 2.4,
+            "travelPx": -227.714821652
+          },
+          {
+            "insetPx": 4.8,
+            "travelPx": -214.917286415
+          },
+          {
+            "insetPx": 12.0,
+            "travelPx": -174.284250579
+          },
+          {
+            "insetPx": 24.0,
+            "travelPx": -103.923048454
+          },
+          {
+            "insetPx": 36.0,
+            "travelPx": -39.686269666
+          },
+          {
+            "insetPx": 43.2,
+            "travelPx": -10.4613574645
+          },
+          {
+            "insetPx": 48.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 60.0,
+            "travelPx": -0.0
+          }
+        ]
+      },
+      {
+        "name": "vacuum",
+        "model": "paraxial",
+        "strength": 1.0,
+        "refractiveIndex": 1.0,
+        "bandPx": 48.0,
+        "peakPx": 0.0,
+        "rows": [
+          {
+            "insetPx": 0.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 2.4,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 4.8,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 12.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 24.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 36.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 43.2,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 48.0,
+            "travelPx": -0.0
+          },
+          {
+            "insetPx": 60.0,
+            "travelPx": -0.0
+          }
+        ]
+      }
+    ]
+  },
+  "map": {
+    "width": 120,
+    "height": 80,
+    "radius": 16,
+    "bezel": 0.2,
+    "strength": 1.0,
+    "refractiveIndex": 1.5,
+    "row": 40,
+    "cases": [
+      {
+        "model": "snell",
+        "peakPx": 53.3333333333,
+        "redAlongMiddleRow": [
+          251,
+          243,
+          234,
+          225,
+          215,
+          206,
+          197,
+          187,
+          178,
+          169,
+          161,
+          152,
+          145,
+          138,
+          133,
+          128,
+          128,
+          128,
+          128,
+          128,
+          128,
+          128,
+          128,
+          128
+        ]
+      },
+      {
+        "model": "paraxial",
+        "peakPx": 40.0,
+        "redAlongMiddleRow": [
+          255,
+          254,
+          252,
+          249,
+          245,
+          240,
+          234,
+          227,
+          219,
+          210,
+          200,
+          189,
+          177,
+          164,
+          150,
+          135,
+          128,
+          128,
+          128,
+          128,
+          128,
+          128,
+          128,
+          128
+        ]
+      }
+    ]
+  }
+}

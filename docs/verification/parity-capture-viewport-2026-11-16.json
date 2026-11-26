@@ -1,0 +1,101 @@
+{
+  "issue": 6131,
+  "branch": "fix/6131-capture-viewport-20261116",
+  "source": {
+    "sourceSha": "9888109634877165960b0df027d32acd8bb75196",
+    "webCaptureStartedAt": "2026-11-16T04:45:29.573108+00:00",
+    "workingSourceSha256": {
+      "tool/parity/src/web/element_capture.dart": "4eeaf0187f094eac1573d801ba0a4ffe64465d58efec2e8cf8d63717b2db381d",
+      "tool/parity/src/web/web_capture_backend.dart": "390336d55c3015c30e9e37f2f88e3cd1500c7ab22f976f912bc34cc1f3fa06fd"
+    },
+    "manifests": {
+      "manifest.json": "ce2e93ebfa4892d3375f065b4203c3990d2fd4096f37144580c440120c78a707",
+      "styles-manifest.json": "27029ac5693a51df3186422d1b33d63a7706c7f6d0d8a9302720b7ec013fc8f4"
+    },
+    "testSourceSha256AtCaptureStart": {
+      "tool/parity/test/web/element_capture_test.dart": "a268a7daaa430f1cbdf974d2231cc21cb050949121fd1229efd0f5db4d04597a",
+      "tool/parity/test/web/capture_state_test.dart": "32653c2c1b61aca0747e5f69e32782720cb1a7f4be7685b07a42c9e57d3d73c6"
+    },
+    "testSourceSha256AfterFormatting": {
+      "tool/parity/test/web/element_capture_test.dart": "5d3c04907ba13dfc270ce59f47759290d65dea1f10a94c5301677b5f25740ab7",
+      "tool/parity/test/web/capture_state_test.dart": "32653c2c1b61aca0747e5f69e32782720cb1a7f4be7685b07a42c9e57d3d73c6"
+    },
+    "testOnlyChangeDuringCapture": "element_capture_test: whitespace in the viewport diagnostic JS string; production capture files remained frozen."
+  },
+  "generatedAt": "2026-11-16T04:54:07.188269+00:00",
+  "merged6312": {
+    "sha": "9888109634877165960b0df027d32acd8bb75196",
+    "sameTreeAsValidatedHead": true,
+    "treeSha": "f5b63bdf42aea460c8ccfb2b327dfd4995ff9593",
+    "releaseRun": 43804843557,
+    "releaseConclusion": "success"
+  },
+  "defaultStyle": {
+    "keys": 748,
+    "probes": 760,
+    "passKeys": 460,
+    "failKeys": 288,
+    "passProbes": 469,
+    "failProbes": 291,
+    "infra": 0,
+    "skipped": 0,
+    "newFailures": 0,
+    "resolvedFailures": 0,
+    "dimensionFailedKeys": 100,
+    "sameSizePixelFailedKeys": 188,
+    "platformProbeRastersCompared": 1520,
+    "nonIdenticalRasters": 0,
+    "maxChannelDelta": 0,
+    "artifactFiles": 3016,
+    "exceedingViewportBefore": 0,
+    "parityReportExit": 1
+  },
+  "relatedAllRetainedStyles": {
+    "keys": 60,
+    "probes": 120,
+    "passKeys": 45,
+    "failKeys": 15,
+    "platformProbeRastersCompared": 240,
+    "nonIdenticalRasters": 0,
+    "maxChannelDelta": 0,
+    "parityReportExit": 1
+  },
+  "baseline": {
+    "platformCellsWithBaseline": 1496,
+    "pass": 1369,
+    "differences": 127,
+    "firstCaptureStageCells": 24,
+    "measurementsEqualTo6312": true,
+    "approved": 0,
+    "infra": 0,
+    "regressionReportExit": 1
+  },
+  "relatedStylesBaseline": {
+    "webRootPass": 60,
+    "flutterRootScopeDifferences": 60,
+    "stageFirstCaptureCells": 120
+  },
+  "tests": {
+    "webPassed": 43,
+    "helperPassedAfterWhitespaceFix": 4,
+    "backendMutationFailed": 2,
+    "helperBeforeFixFailed": 2,
+    "analyze": "No issues found!",
+    "formattedDartFiles": 4,
+    "formatDrift": 0,
+    "nativeFullCaptures": 748,
+    "nativeStyleCaptures": 60
+  },
+  "scope": {
+    "productLibrariesChanged": false,
+    "publicPackageApiChanged": false,
+    "coreChanged": false,
+    "docsUiChanged": false,
+    "figmaChanged": false,
+    "rasterRoundingChanged": false,
+    "baselineOrAllowlistChanged": false,
+    "pixelThresholdsChanged": false,
+    "fullManualCiRun": false,
+    "jasprBuildRun": false
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "key": "dialog-docs-v2-c419e24e806c95521aaa80974d6e982a-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Card",
+      "attributes": {
+        "demo": "dialog/do-one-decision",
+        "eyebrow": "이렇게 하세요",
+        "height": "340",
+        "tone": "do"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "dialog/do-one-decision",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/actions/cocodeui-macstudio-kentrosaurus/_work/coui/coui/docs_core/content/components/dialog.md:Cards[48]:Card[5]"
+      ],
+      "anatomyParts": [],
+      "cardBody": [
+        {
+          "tag": "p",
+          "attributes": {},
+          "children": [
+            {
+              "text": "결정 하나에 집중하면 빠르게 판단할 수 있습니다.",
+              "raw": false
+            }
+          ]
+        }
+      ],
+      "cardIndex": 0,
+      "captureUnit": "whole-card",
+      "nativeCardAttributes": {
+        "demo": "dialog/do-one-decision",
+        "eyebrow": "이렇게 하세요",
+        "height": "340",
+        "tone": "do"
+      },
+      "nativeCardBody": "\n결정 하나에 집중하면 빠르게 판단할 수 있습니다.\n"
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "변경 사항을 저장할까요?\n                        \n                        \n                        저장하지 않은 변경 사항이 있어요.\n                        \n                        \n                          \n                            \n                              #co-button-ssr-4c:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-4c:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                            \n                            저장 안 함\n                          \n                          저장\n                        \n                      \n                    \n                    이렇게 하세요\n                    결정 하나에 집중하면 빠르게 판단할 수 있습니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 422.890625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "15px",
+      "lineHeight": "22.5px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(233, 248, 235)",
+      "borderRightColor": "rgb(233, 248, 235)",
+      "borderBottomColor": "rgb(233, 248, 235)",
+      "borderLeftColor": "rgb(233, 248, 235)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "24px",
+      "borderTopRightRadius": "24px",
+      "borderBottomRightRadius": "24px",
+      "borderBottomLeftRadius": "24px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 422.890625
+    }
+  }
+}

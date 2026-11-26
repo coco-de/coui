@@ -1,0 +1,30 @@
+base_locale: ko
+fallback_strategy: base_locale
+input_directory: lib/src/json
+input_file_pattern: .i18n.json
+output_directory: lib/src/translations
+output_file_name: translations.g.dart
+output_format: single_file
+locale_handling: true
+flutter_integration: true
+namespaces: false
+translate_var: translations
+enum_name: AppLocale
+class_name: Translations
+translation_class_visibility: private
+key_case: snake
+key_map_case: camel
+param_case: camel
+string_interpolation: braces
+flat_map: false
+translation_overrides: false
+timestamp: true
+statistics: true
+
+gpt:
+  model: gpt-4o-mini
+  description: |
+    "coui_flutter"는 CoUI 디자인 시스템 기반 Flutter UI 컴포넌트 라이브러리입니다.
+    재사용 가능한 UI 컴포넌트와 일관된 디자인 시스템을 제공하여
+    Flutter 앱 개발을 더 빠르고 효율적으로 만들어줍니다.
+    이 번역 파일은 문서 사이트의 컴포넌트 예제 및 설명을 다국어로 제공하기 위한 것입니다.

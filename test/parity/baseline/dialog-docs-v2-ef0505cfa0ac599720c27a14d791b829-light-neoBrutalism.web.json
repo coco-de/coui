@@ -1,0 +1,104 @@
+{
+  "key": "dialog-docs-v2-ef0505cfa0ac599720c27a14d791b829-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Card",
+      "attributes": {
+        "demo": "dialog/dont-vague",
+        "eyebrow": "이렇게 하지 마세요",
+        "tone": "dont"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "dialog/dont-vague",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/actions/cocodeui-macstudio-kentrosaurus/_work/coui/coui/docs_core/content/components/dialog.md:Cards[48]:Card[3]"
+      ],
+      "anatomyParts": [],
+      "cardBody": [
+        {
+          "tag": "p",
+          "attributes": {},
+          "children": [
+            {
+              "text": "'확인'과 '진행할까요?'만으로는 무엇이 일어나는지 알 수 없어, 실수로 위험한 행동을 실행합니다.",
+              "raw": false
+            }
+          ]
+        }
+      ],
+      "cardIndex": 0,
+      "captureUnit": "whole-card",
+      "nativeCardAttributes": {
+        "demo": "dialog/dont-vague",
+        "eyebrow": "이렇게 하지 마세요",
+        "tone": "dont"
+      },
+      "nativeCardBody": "\n'확인'과 '진행할까요?'만으로는 무엇이 일어나는지 알 수 없어, 실수로 위험한 행동을 실행합니다.\n"
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "확인\n                        \n                        \n                        진행할까요?\n                        \n                        \n                          확인\n                        \n                      \n                    \n                    이렇게 하지 마세요\n                    '확인'과 '진행할까요?'만으로는 무엇이 일어나는지 알 수 없어, 실수로 위험한 행동을 실행합니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 331.890625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "15px",
+      "lineHeight": "22.5px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(255, 241, 238)",
+      "borderRightColor": "rgb(255, 241, 238)",
+      "borderBottomColor": "rgb(255, 241, 238)",
+      "borderLeftColor": "rgb(255, 241, 238)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 331.890625
+    }
+  }
+}

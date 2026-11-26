@@ -1,0 +1,236 @@
+{
+  "base": "6db2278fdd5a8178502207a7bb8b7cd03f29bc7f",
+  "nativeCaptureHead": "96a42b5f2d6f99a6986b1c04cadbda28577f215d",
+  "webCaptureHead": "72c83304cfdde2ff76bbb6ba54d4895e26af8bcc",
+  "manifestSha256": "ce2e93ebfa4892d3375f065b4203c3990d2fd4096f37144580c440120c78a707",
+  "propertyBefore": {
+    "pass": 350,
+    "fail": 340,
+    "infra": 12,
+    "skipped": 46
+  },
+  "propertyAfter": {
+    "pass": 416,
+    "fail": 274,
+    "infra": 12,
+    "skipped": 46
+  },
+  "comparableFieldsBefore": {
+    "outlineWidthPx": 42,
+    "outlineOffsetPx": 42,
+    "boxShadow": 190,
+    "borderRadiusPx": 44,
+    "paddingPx": 232,
+    "backgroundColor": 30,
+    "borderColor": 10,
+    "borderWidthPx": 10,
+    "fontFamily": 2,
+    "fontWeight": 52,
+    "fontSizePx": 16,
+    "lineHeightPx": 64,
+    "letterSpacingPx": 2,
+    "color": 8,
+    "opacity": 4
+  },
+  "comparableFieldsAfter": {
+    "borderRadiusPx": 44,
+    "paddingPx": 232,
+    "boxShadow": 10,
+    "backgroundColor": 30,
+    "borderColor": 10,
+    "borderWidthPx": 10,
+    "fontFamily": 2,
+    "fontWeight": 52,
+    "fontSizePx": 16,
+    "lineHeightPx": 64,
+    "letterSpacingPx": 2,
+    "color": 8,
+    "opacity": 4
+  },
+  "newPropertyFailKeys": [],
+  "propertyImprovedKeys": [
+    "button-primary-light-defaultStyle",
+    "button-primary-dark-defaultStyle",
+    "button-secondary-light-defaultStyle",
+    "button-secondary-dark-defaultStyle",
+    "button-tonal-light-defaultStyle",
+    "button-tonal-dark-defaultStyle",
+    "button-outline-light-defaultStyle",
+    "button-outline-dark-defaultStyle",
+    "button-card-light-defaultStyle",
+    "button-card-dark-defaultStyle",
+    "button-destructive-light-defaultStyle",
+    "button-destructive-dark-defaultStyle",
+    "toggle-default-light-defaultStyle",
+    "toggle-default-dark-defaultStyle",
+    "toggle-on-light-defaultStyle",
+    "toggle-on-dark-defaultStyle",
+    "toggle-disabled-light-defaultStyle",
+    "toggle-disabled-dark-defaultStyle",
+    "switch-field-default-light-defaultStyle",
+    "switch-field-default-dark-defaultStyle",
+    "badge-default-light-defaultStyle",
+    "badge-default-dark-defaultStyle",
+    "chip-variant-light-defaultStyle",
+    "chip-variant-dark-defaultStyle",
+    "code-diff-default-light-defaultStyle",
+    "code-diff-default-dark-defaultStyle",
+    "description-card-filled-light-defaultStyle",
+    "description-card-filled-dark-defaultStyle",
+    "mockup-browser-light-defaultStyle",
+    "mockup-browser-dark-defaultStyle",
+    "mockup-app-light-defaultStyle",
+    "mockup-app-dark-defaultStyle",
+    "mockup-browser-default-light-defaultStyle",
+    "mockup-browser-default-dark-defaultStyle",
+    "mockup-device-screen-brightness-light-defaultStyle",
+    "mockup-device-screen-brightness-dark-defaultStyle",
+    "card-default-light-defaultStyle",
+    "card-default-dark-defaultStyle",
+    "card-filled-light-defaultStyle",
+    "card-filled-dark-defaultStyle",
+    "card-elevated-light-defaultStyle",
+    "card-elevated-dark-defaultStyle",
+    "table-default-light-defaultStyle",
+    "table-default-dark-defaultStyle",
+    "table-resizable-light-defaultStyle",
+    "table-resizable-dark-defaultStyle",
+    "table-scrollable-light-defaultStyle",
+    "table-scrollable-dark-defaultStyle",
+    "frame-elevated-light-defaultStyle",
+    "frame-elevated-dark-defaultStyle",
+    "tabs-default-light-defaultStyle",
+    "tabs-default-dark-defaultStyle",
+    "tabs-badge-light-defaultStyle",
+    "tabs-badge-dark-defaultStyle",
+    "tabs-closable-light-defaultStyle",
+    "tabs-closable-dark-defaultStyle",
+    "navigation-bar-item-drawer-light-defaultStyle",
+    "navigation-bar-item-drawer-dark-defaultStyle",
+    "dropdown-menu-default-light-defaultStyle",
+    "dropdown-menu-default-dark-defaultStyle",
+    "drawer-default-light-defaultStyle",
+    "drawer-default-dark-defaultStyle",
+    "popover-default-light-defaultStyle",
+    "popover-default-dark-defaultStyle",
+    "tooltip-default-light-defaultStyle",
+    "tooltip-default-dark-defaultStyle"
+  ],
+  "pixelBefore": {
+    "fail": 181,
+    "pass": 567
+  },
+  "pixelAfter": {
+    "fail": 181,
+    "pass": 567
+  },
+  "pixelStatusChanges": [],
+  "pixelDimensionFailures": 4,
+  "observationOnlyImages": {
+    "total": 1520,
+    "rgbaExact": 1520
+  },
+  "shadowBindingNativeImages": {
+    "images": 760,
+    "exactImages": 690,
+    "changedImages": 70,
+    "sizeChanges": 0,
+    "jsonCount": 748,
+    "exactJson": 748
+  },
+  "tests": {
+    "integratedDartIncludingColor4Chrome": 146,
+    "realChromeProbe": 46,
+    "nativeShadowSuites": 31,
+    "nativeFreshMatrix": 748
+  },
+  "productionLibraryChangedPaths": [],
+  "baselineAllowlistChangedPaths": [],
+  "sources": [
+    {
+      "path": "packages/coui_flutter/test/parity/flutter_capture_matrix_test.dart",
+      "beforeSha256": "d5dce9dbf82b6a4be072708c68c716747b2fec16780d01d165bb114a158b931a",
+      "afterSha256": "11656d43d3e1a457e9d8b340a95f6df5cd6c8e727862f3090edac08cfd95a06c"
+    },
+    {
+      "path": "packages/coui_flutter/test/parity/flutter_capture_test.dart",
+      "beforeSha256": "bd6aa6d7cf7929a5cce10dd1d37789b231224fe9e7a0487c7af7c902882c22ab",
+      "afterSha256": "b6ad12a44a0f445ba8b6827aba3411b2fa19dfbbd188b4d7f6d16041fb45d93b"
+    },
+    {
+      "path": "packages/coui_flutter/test/parity/flutter_property_snapshot.dart",
+      "beforeSha256": "9a316a48aa79564a04e2dde0f5bcf4975cc739ba40b7b9c63ed782455d8ae7cd",
+      "afterSha256": "9ec2ea3c34b55532a32632887dc58fcf3f76ee521c136f2ee0204fb6713e82c7"
+    },
+    {
+      "path": "packages/coui_flutter/test/parity/flutter_shadow_observation_test.dart",
+      "beforeSha256": null,
+      "afterSha256": "9ecf30804865527de2202ba7266df477ae0a5bfb5da1660e6b7bcf33402a5922"
+    },
+    {
+      "path": "packages/coui_flutter/test/parity/parity_capture_binding.dart",
+      "beforeSha256": null,
+      "afterSha256": "0485aa520ee12d8f03b6149140fe90e23db1d90e870f34f210f7331779c81405"
+    },
+    {
+      "path": "packages/coui_flutter/test/parity/parity_capture_binding_test.dart",
+      "beforeSha256": null,
+      "afterSha256": "782aff7976a3cc68e42efb93d9a3cac3fffd3df415f5fd0125d0228c0383bc3b"
+    },
+    {
+      "path": "tool/parity/src/diff/property_diff.dart",
+      "beforeSha256": "a31e952d6fbb22119cb8a1b912dc40316685f3ed4dc963afcc7d4cd484293de7",
+      "afterSha256": "3154605b572d1ddb3a41cf8da244fc71e4477455c4d0d0acf04fdcfabaa328fd"
+    },
+    {
+      "path": "tool/parity/src/model/property_snapshot.dart",
+      "beforeSha256": "26151c5ffce2c802795f8a117afed4e407cabd1dc9e20ef5e6a9ee0505bc3034",
+      "afterSha256": "6eefa3a74c18df7b60c9d117f0e54a62991fde3c89f840c1da170e22f755eb68"
+    },
+    {
+      "path": "tool/parity/src/normalize/css_value_parsers.dart",
+      "beforeSha256": "391101b8763d0748c40e6343bfa8de3d85b0323ecb3505d748646decc098e6dd",
+      "afterSha256": "4c9a2c70abe0e4d4d0368dcb0935e2497caff10bd55c5e7c85388ca87b5d8494"
+    },
+    {
+      "path": "tool/parity/src/normalize/web_property_normalizer.dart",
+      "beforeSha256": "5daad74c5b167bccdde7781a053258bdd06263c1b2003d9217e5a0f0b2c9e142",
+      "afterSha256": "42f8fb6740bc2d38e5d64ac7da527c690f5903a345073dc7584f198bb72fffe5"
+    },
+    {
+      "path": "tool/parity/src/web/computed_style_probe.dart",
+      "beforeSha256": "0bc8c7e3dc1d0fff917431a43637eaaa27453b91fb6cf6a9dab272017bab950d",
+      "afterSha256": "7a0ec27da98cd68e3b917d4343b7de360b4c4c6f80d7fb3a7e6ef7c8571f9809"
+    },
+    {
+      "path": "tool/parity/test/diff/paint_observation_comparator_test.dart",
+      "beforeSha256": null,
+      "afterSha256": "eb53ee64929478991aa972107fcb3d51a25475dd0c0e1ec61fe65fde307c9316"
+    },
+    {
+      "path": "tool/parity/test/model/paint_observation_metadata_test.dart",
+      "beforeSha256": null,
+      "afterSha256": "88475dce726c6994dad68020a2ed67cbdc2b776c39f2f80c9a3f44d5fb84c587"
+    },
+    {
+      "path": "tool/parity/test/normalize/alpha_color4_observation_test.dart",
+      "beforeSha256": null,
+      "afterSha256": "354bf0fbf0121f3281f4b1f80f22475dd2ca50783c67b88cf874a806cf54d2ed"
+    },
+    {
+      "path": "tool/parity/test/normalize/css_value_parsers_test.dart",
+      "beforeSha256": "830b7e94b3c4101f7b854b88b6d97c585b90b5420737344354ff7e5133635a6b",
+      "afterSha256": "9cf528dfc77d9aac814a7e07ad61b320602f0a60024dc9dfbf971c5cf1ddb708"
+    },
+    {
+      "path": "tool/parity/test/normalize/paint_observation_normalizer_test.dart",
+      "beforeSha256": null,
+      "afterSha256": "3d5dddfa0bdd20d3b49dce2fa4c5811ca7d5adefd967b7fe505ab6748289dc0d"
+    },
+    {
+      "path": "tool/parity/test/web/paint_observation_probe_test.dart",
+      "beforeSha256": null,
+      "afterSha256": "7c0ccd7993ed12a95b2d224ece602fd159b679b85f8bb3514f498136f91d833b"
+    }
+  ]
+}

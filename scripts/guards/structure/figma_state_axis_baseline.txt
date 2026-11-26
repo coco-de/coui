@@ -1,0 +1,38 @@
+# Figma 빌더 `State` 축 계약(R1 · R3)의 기존 예외 — ratchet baseline.
+#
+# 읽는 곳:
+#   · check_figma_state_axis.py        — 빌더 소스. 키 형식 `파일::이름::종류` (set:: 줄은 건너뛴다)
+#   · selftest-registry-runtime        — *state axis drill*. 만들어진 세트. 키 형식 `set::세트::종류`
+#
+# net-new 0 이고, 여기 있는데 더는 위반이 아닌 줄은 실패한다 — 고친 사람이 줄을 지운다.
+# 모든 줄은 `#` 뒤에 이유를 가진다. 규칙 본문은 docs/redesign/상태-표현-통일-제안.md §5 와
+# tools/figma-token-sync/README.md "상태 축 계약".
+# 이 줄들이 사라지는 방식은 그 세트를 옮기는 작업이다 — 변형 개명표와 함께, 세트마다 자기 차례에.
+
+# ── 소스: 목록이 헬퍼를 거치지 않았다 ──────────────────────────────────────────────────────────────
+form.ts::kButtonStates::list-not-via-helper  # `selected` 는 값 상태(R2) — Button selected 제거(972 → 810 멤버)와 함께
+primitives-behaviour.ts::kClickableStates::list-not-via-helper  # `default` → `enabled`, `focused` → `focus`, `Enabled` 불린 → State 의 disabled
+
+# ── 소스: State 축을 쓰는데 목록이 없다 ──────────────────────────────────────────────────────────
+primitives-chrome.ts::buildLabel::axis-without-list  # `default` → `enabled`
+primitives-chrome.ts::buildSwap::axis-without-list  # `State[off, on]` 는 값 상태 — 값 상태 축(On)으로 옮긴다
+
+# ── 소스: State=focus 가 있는데 Show focus ring 이 없다 ─────────────────────────────────────────────
+form.ts::buildCheckbox::focus-without-show-focus-ring  # Show focus ring 추가
+form-controls.ts::buildSelect::focus-without-show-focus-ring  # 링이 안쪽 TextField 에 있다 — 새 링을 그리지 않고 자식의 불린을 밖으로 노출한다
+form-controls.ts::buildFab::focus-without-show-focus-ring  # 링이 안쪽 Button 에 있다 — 자식의 불린을 밖으로 노출한다
+navigation.ts::buildTabItem::focus-without-show-focus-ring  # Show focus ring 추가
+form-fields.ts::buildInputOtp::focus-without-show-focus-ring  # 셀마다 링이 있다
+
+# ── 만들어진 세트: State 값이 R1 이름 · 순서가 아니다 ───────────────────────────────────────────────
+set::Button::state-not-r1  # `selected` — 위 kButtonStates 와 같은 일
+set::Clickable::state-not-r1  # `default` · `focused`
+set::Label::state-not-r1  # `default`
+set::Swap::state-not-r1  # `off` · `on` — 값 상태
+
+# ── 만들어진 세트: State=focus 가 있는데 Show focus ring 이 결선돼 있지 않다 ────────────────────────
+set::Checkbox::focus-without-show-focus-ring  # 위 소스 줄과 같은 일
+set::Select::focus-without-show-focus-ring
+set::Fab::focus-without-show-focus-ring
+set::TabItem::focus-without-show-focus-ring
+set::InputOtp::focus-without-show-focus-ring

@@ -1,0 +1,185 @@
+{
+  "key": "button-docs-v2-878502f32f424128faf424355307d42e-dark-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Anatomy",
+      "attributes": {
+        "demo": "button/anatomy"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "button/anatomy",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/button.md:Anatomy[8]"
+      ],
+      "anatomyParts": [
+        "container@",
+        "leading@",
+        "label@",
+        "trailing@"
+      ],
+      "anatomyBody": [
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "Container",
+            "part": "container"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "배경, 테두리, 모서리. 모서리는 높이의 0.25배입니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "leading",
+            "part": "leading"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "라벨 앞 아이콘 슬롯. 선택 사항입니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "child",
+            "part": "label"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "버튼 라벨. 필수이며 접근 가능한 이름이 됩니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "trailing",
+            "part": "trailing"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "라벨 뒤 아이콘 슬롯. 선택 사항입니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        }
+      ]
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "저장하기\n                      \n                    \n                  1234\n                  \n                    \n                      1Container\n                      배경, 테두리, 모서리. 모서리는 높이의 0.25배입니다.\n                    \n                    \n                      2leading\n                      라벨 앞 아이콘 슬롯. 선택 사항입니다.\n                    \n                    \n                      3child\n                      버튼 라벨. 필수이며 접근 가능한 이름이 됩니다.\n                    \n                    \n                      4trailing\n                      라벨 뒤 아이콘 슬롯. 선택 사항입니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 391.890625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "16px",
+      "lineHeight": "22px",
+      "letterSpacing": "-0.16px",
+      "color": "rgb(22, 23, 24)",
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "32px",
+      "paddingRight": "24px",
+      "paddingBottom": "32px",
+      "paddingLeft": "24px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(180, 181, 182)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 240
+    }
+  }
+}

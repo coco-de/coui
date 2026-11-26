@@ -1,0 +1,366 @@
+{
+  "issue": 6651,
+  "publicIssue": "https://github.com/coco-de/coui/issues/6651",
+  "executionBase": "3eda7b0ba17123841c30f858778f4257d93831cb",
+  "executionRevision": "base plus frozen source6 hashes; not relabeled as subsequent docs commit",
+  "filesSHA256": {
+    "tool/parity/src/diff/property_diff.dart": "d0657855f378eb83bdba2145a9fc4904d3e0d1cedde562d884ce98ddb9051f9e",
+    "tool/parity/src/diff/comparator.dart": "5c623469ce0c422b88135f88e807377369cf2f3f5107a5099023a3dfdffa0e33",
+    "tool/parity/report.dart": "73f353608c93807db925201c34024adb2b4dbfe09f9a1c16e5e0b85ae7d45a13",
+    "tool/parity/compare.dart": "258bfd82ce5c597465a4fae9b9406ac74d5760c692728faa96f7319fa15c847f",
+    "tool/parity/test/report/png_color_boundary_cli_test.dart": "999632357c2549f6826b18d9849793d04c96c94f4f1c57c4ac4e980fce845c4e",
+    "tool/parity/test/report/declared_probe_fields_test.dart": "79f4791020196bfa8c9cbca1379b9d814ed124134d07467bf7cbc3fae5036f69"
+  },
+  "captureSource": "a5a6b6f76e89e32d11df90ee9bcb4b50b5ff118d",
+  "results": {
+    "original4": {
+      "pass": 3,
+      "fail": 1,
+      "source": "a5a6b6f76e89e32d11df90ee9bcb4b50b5ff118d"
+    },
+    "candidateSameOriginal4": {
+      "pass": 4,
+      "fail": 0
+    },
+    "repoFinal8": {
+      "pass": 8,
+      "fail": 0
+    },
+    "related13Files": {
+      "pass": 123,
+      "fail": 0,
+      "loadErrors": 0
+    },
+    "countsOverlap": "External4 and first4 of repo8 repeat the same scenarios; these are not135 independent cases.",
+    "static": "candidate-attempt2 six-file fatal0; final test-only assertion correction fatal0, unchanged other5 hashes; final formatter verification separately bound.",
+    "historicalFullJ": {
+      "captureSource": "a5a6b6f76e89e32d11df90ee9bcb4b50b5ff118d",
+      "candidateToolOnly": true,
+      "all3384RawHashesAndTargetsExact": true,
+      "manifestExact": true,
+      "source4AndMetadataExact": true,
+      "newCaptureOrProductCredit": 0,
+      "attempt3OuterExit": 1,
+      "outerErrorAndRecoveryDisclosed": true,
+      "toolCliActualExitsUnchanged": true,
+      "property": {
+        "actualExit": 1,
+        "seconds": 6.261363792,
+        "beforeKeyCounts": {
+          "pass": 452,
+          "fail": 338,
+          "infra": 0,
+          "skipped": 50
+        },
+        "afterKeyCounts": {
+          "pass": 452,
+          "fail": 338,
+          "infra": 0,
+          "skipped": 50
+        },
+        "beforeRolePassed": 452,
+        "afterRolePassed": 464,
+        "keyChanges": 0,
+        "roleChanges": 12,
+        "propertyPayloadChanges": 12,
+        "structuralSkipListExact": true,
+        "structuralSkippedRoles": 50,
+        "infra": 0
+      },
+      "pixel": {
+        "actualExit": 1,
+        "seconds": 12.994508999999997,
+        "beforeKeyCounts": {
+          "pass": 559,
+          "fail": 281,
+          "infra": 0,
+          "skipped": 0
+        },
+        "afterKeyCounts": {
+          "pass": 559,
+          "fail": 281,
+          "infra": 0,
+          "skipped": 0
+        },
+        "beforeRolePassed": 569,
+        "afterRolePassed": 569,
+        "keyChanges": 0,
+        "roleChanges": 0,
+        "propertyPayloadChanges": 0,
+        "structuralSkipListExact": true,
+        "structuralSkippedRoles": 0,
+        "infra": 0
+      }
+    },
+    "UIImagesDocsBuild": "N/A: tool comparison-only; no UI code changes",
+    "allOwnJobsClosed": true
+  },
+  "contract": {
+    "declaredFieldSelectionBeforeVerdict": true,
+    "directCallersDefaultAll": true,
+    "activeEmpty": "FormatException / per-role infra / exit2",
+    "pixelOnlyEmpty": "valid unchanged",
+    "unknownJSONEnum": "manifest error / exit2 unchanged",
+    "internalOptionalSignatureAdditions": [
+      "compareEntry.propertyFields",
+      "comparePropertySnapshots.requestedFields"
+    ],
+    "productionCoUIPublicAPICoreDefaultsChanges": 0,
+    "rawSchemaNormalizerProbeManifestBaselineAllowlistThresholdChanges": 0,
+    "thresholds": {
+      "px": 0.5,
+      "alpha": 0.0005,
+      "pixelChannel": 32,
+      "regressionRatio": 0.001,
+      "parityRatio": 0.05
+    }
+  },
+  "limits": [
+    "Historical J rejudge, no fresh capture/current-main parity claim",
+    "12 role corrections,0 key reductions,0 component fix credit",
+    "All50 structural omissions preserved; no new skips",
+    "First4 of permanent8 repeat immutable external4",
+    "Rejudge attempt3 outer1 retained; later readback0 is not a report rerun or report exit0"
+  ],
+  "artifactRoots": {
+    "implementation": "weever-declared-probe-fields-6651-_ev193vb",
+    "original": "weever-focus-border-consumption-5526-qa9xejz3/evidence/declared-fields-comparator-audit-J",
+    "captureJ": "weever-focus-border-consumption-5526-qa9xejz3/evidence/full-current-main1d"
+  },
+  "proofRefs": [
+    {
+      "artifactRoot": "original",
+      "path": "original-final-index.json",
+      "sha256": "fd3db98ffb1f4190cdb646dc4915661cce01b227fecbe9895623a236497b2269",
+      "bytes": 3792
+    },
+    {
+      "artifactRoot": "original",
+      "path": "source-contract-plan.json",
+      "sha256": "f85e56d4aafcfeb47371101fa4db13159d97749301c873de78bcbe95d9f38d8e",
+      "bytes": 4307
+    },
+    {
+      "artifactRoot": "original",
+      "path": "original-attempt1/executed_fixture.dart",
+      "sha256": "51d6564b1e4266b197d1b1425b1ee422c7d7221cc7605ab08581fed27b68b5a6",
+      "bytes": 6742
+    },
+    {
+      "artifactRoot": "original",
+      "path": "original-attempt1/counts.json",
+      "sha256": "bcaa1ae10ff50470bffa78fe9b97aa72236b05219be328192a5008c631d63ee0",
+      "bytes": 1090
+    },
+    {
+      "artifactRoot": "original",
+      "path": "original-attempt1/test-exit.json",
+      "sha256": "56bc330b4d31f4bed405a277565bdb516c6acdd06bad744fc3bd5e079d21e1df",
+      "bytes": 806
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/metadata-ready.json",
+      "sha256": "9094d9844110f09de262ad091b9595f188b85454703cfdc2a014fde3118f8932",
+      "bytes": 5119
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/actual-domain-fieldsets.json",
+      "sha256": "8314875821d40ddcdba9eb68136fb54326bcb62e61e68762789abd14843dd35a",
+      "bytes": 472
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/preimage/index.json",
+      "sha256": "87edcde5f04a4c832971ea3baeb0c8459b378d2ecf8e2fd5154d4521f05e11d5",
+      "bytes": 725
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/candidate-attempt1/fatal.log",
+      "sha256": "a3e85833833a862d9b48c81dd37e923ea4b636dc4239cd78b00ed3fac9afd650",
+      "bytes": 888
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/candidate-attempt2/source-freeze.json",
+      "sha256": "855e71c81a29a0a639a5d960d3db06a7691f565153a90d8ccb2a7591d89fd827",
+      "bytes": 763
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/candidate-attempt2/fatal-exit.json",
+      "sha256": "4f3d9885d81f0f1365668fa7511eb89de369184aad53921e01f121414ec9c239",
+      "bytes": 1226
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/candidate-attempt2/external4-counts.json",
+      "sha256": "99a18ed2b28dd861d48ce9dba09cfdced212a42fec156f7fb87a6f8fa4228378",
+      "bytes": 581
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/candidate-attempt2/external4-exit.json",
+      "sha256": "b7cf8a012ae06dccbf221372ce6842a6d9f3cacb8a5a5325c72efc54d3dee952",
+      "bytes": 669
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/candidate-attempt2/related-counts.json",
+      "sha256": "0a74bb1eec0db9d9f218a2cff220a1a102edd9a771e7b35cfcd7090b6a58797e",
+      "bytes": 19785
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/candidate-attempt2/related-exit.json",
+      "sha256": "6ab21a86749b2d8fb06fb71d96ca7d47f17ea0fd2eccca624a1c7fcf9f9c8b3e",
+      "bytes": 2928
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/candidate-attempt2/repo8-counts.json",
+      "sha256": "4c228fe281d04fb99fa0341288ead5d7de0faa33f5049855287003aeb87c4aa4",
+      "bytes": 1338
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/repo-count-assertion-correction.json",
+      "sha256": "543ec87e09c9bdba7a72690218e277417bd2630eb9ade9745d55fb0d2de9efe2",
+      "bytes": 487
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/repo8-followup/source-freeze.json",
+      "sha256": "0278e2d566bac5e45c340ef8cffa0d63fe18380b10de04e7e50d0940b9e69272",
+      "bytes": 884
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/repo8-followup/counts.json",
+      "sha256": "629a477bc3a63419cfa1a0bb0f06a96011c540b259eb1f66fa2d48e0237487eb",
+      "bytes": 1021
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/repo8-followup/repo8-exit.json",
+      "sha256": "1d9002dcce37af667aaac1d8b2b012c163c3e0f92607377748f436c131de5692",
+      "bytes": 649
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/repo8-followup/fatal-exit.json",
+      "sha256": "b6cc6ba259c7f3c0f26a44def75c8964ae4bd70e0527b9000660639a7a196bf8",
+      "bytes": 349
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/rejudge-setup-recovery.json",
+      "sha256": "a37b631432469927adce5fc851f49c88615ced14b30e64d3e5f9abe8ccdfdab2",
+      "bytes": 545
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/rejudge-setup-recovery2.json",
+      "sha256": "38578e4e5fc344bfd3861a7c2da3b21f8d8990fa9a06e72825b05c8bb4d650d9",
+      "bytes": 587
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/fullJ-rejudge-attempt3/summary.json",
+      "sha256": "62a893fd5795fcd706d27cda4fc407c2faec4fd253b06fe76a0533c1a444b676",
+      "bytes": 11981
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/fullJ-rejudge-attempt3/postcheck-recovery.json",
+      "sha256": "5ba486cc5cfa5ccaf6aaeace131e57c5c984e2316d3b9a25fd0d2077dfdee85a",
+      "bytes": 1405
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/fullJ-rejudge-attempt3/raw-before.json",
+      "sha256": "7c32e64f354960677550c2fda82709fbc77350ce13ee17c4a8774ee4691fce4d",
+      "bytes": 369
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/fullJ-rejudge-attempt3/raw-after.json",
+      "sha256": "7c32e64f354960677550c2fda82709fbc77350ce13ee17c4a8774ee4691fce4d",
+      "bytes": 369
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/fullJ-rejudge-attempt3/baseline-gitJ.json",
+      "sha256": "146759a471d30196552674c4793c35de117edf87f8545fbc0cf7d36b94348a6b",
+      "bytes": 782018
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/fullJ-rejudge-attempt3/execution-binding.json",
+      "sha256": "a771d9d4e1934314c2b6a421d1156b4bfa84775b50dfd9055e82dea20f4a9e09",
+      "bytes": 13919
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/fullJ-rejudge-attempt3/property-exit.json",
+      "sha256": "ac073b154b8b4311b3573c261af10b6e69abf1003200e8791900f7ea0d262d44",
+      "bytes": 2107
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/fullJ-rejudge-attempt3/pixel-exit.json",
+      "sha256": "e76fad618452ef2e141e86ee48609b8ee2bea6bbcf4e456efff9def1e9052e07",
+      "bytes": 2099
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/final/source-binding.json",
+      "sha256": "ff59ed535b521fd7574626942a0b4cf2d1bb38cd861aad3338f38f4a6ba1fdf3",
+      "bytes": 2143
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/final/reclaim-through-verification.log",
+      "sha256": "0eb4f4a3c5a4a7e5c5cf2954f611562a27527b57e446c522991aad701ac49c81",
+      "bytes": 635
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/final/summary.json",
+      "sha256": "38f969ed0d49face4bdcc1fc4ccb982ee420f23e4945000d94a2e259f2819f57",
+      "bytes": 13593
+    },
+    {
+      "artifactRoot": "captureJ",
+      "path": "evidence/integrity/all-raw-index.json",
+      "sha256": "101ea306082cdef5dc643031b4d6d23c3475d030344ca2330cf9698600f40aa1",
+      "bytes": 2708340
+    },
+    {
+      "artifactRoot": "captureJ",
+      "path": "evidence/manifest-default.json",
+      "sha256": "df9f3691de950a93a0c3f75dd8682d522d2ffdb5c701d03dfb284bf12287a6f6",
+      "bytes": 844196
+    },
+    {
+      "artifactRoot": "captureJ",
+      "path": "evidence/Root/property-report.json",
+      "sha256": "7fbcc796c0e7d536c4b8d40b96c9409d2e9619e9e2ef9830399a4d803252008e",
+      "bytes": 3220614
+    },
+    {
+      "artifactRoot": "captureJ",
+      "path": "evidence/Root/pixel-report.json",
+      "sha256": "68a727769f82b2ae7be13be7359313e893af7b15ec69e6b54915820ecd0ce968",
+      "bytes": 130358
+    },
+    {
+      "artifactRoot": "implementation",
+      "path": "evidence/final/format-check.json",
+      "sha256": "7e8d401c3e2c8918217b2e274f89e4656de587037e961d8be3277978deae59ac",
+      "bytes": 930
+    }
+  ]
+}

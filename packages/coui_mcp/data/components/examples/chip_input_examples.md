@@ -1,0 +1,84 @@
+# Chip Input Examples
+
+This document contains example code for the chip_input component.
+
+## Table of Contents
+
+- [Example 1: Basic Example](#example-1)
+
+## Example 1
+
+**Basic Example**
+
+```dart
+import 'package:coui_flutter/coui_flutter.dart';
+
+class ChipInputExample1 extends StatefulWidget {
+  const ChipInputExample1({super.key});
+
+  @override
+  State<ChipInputExample1> createState() => _ChipInputExample1State();
+}
+
+class _ChipInputExample1State extends State<ChipInputExample1> {
+  List<String> _chips = [];
+  List<String> _suggestions = [];
+  final TextEditingController _controller = TextEditingController();
+  static const List<String> _availableSuggestions = [
+    'hello world',
+    'lorem ipsum',
+    'do re mi',
+    'foo bar',
+    'flutter dart',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      setState(() {
+        var value = _controller.text;
+        if (value.isNotEmpty) {
+          _suggestions = _availableSuggestions.where((element) {
+            return element.startsWith(value);
+          }).toList();
+        } else {
+          _suggestions = [];
+        }
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ChipInput<String>(
+      chipBuilder: (context, chip) {
+        return Text(chip);
+      },
+      chips: _chips,
+      controller: _controller,
+      onChanged: (value) {
+        setState(() {
+          _chips = value;
+        });
+      },
+      onSubmitted: (value) {
+        setState(() {
+          _chips.add(value);
+          _suggestions.clear();
+          _controller.clear();
+        });
+      },
+      onSuggestionChoosen: (index) {
+        setState(() {
+          _chips.add(_suggestions[index]);
+          _controller.clear();
+        });
+      },
+      suggestions: _suggestions,
+    );
+  }
+}
+
+```
+

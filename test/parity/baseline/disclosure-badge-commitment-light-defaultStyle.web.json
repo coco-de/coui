@@ -1,0 +1,69 @@
+{
+  "key": "disclosure-badge-commitment-light-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "계약 시 제공",
+    "layout": {
+      "width": 78.875,
+      "height": 23,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 7,
+          "y": 9.5,
+          "width": 4,
+          "height": 4
+        },
+        {
+          "x": 15,
+          "y": 3,
+          "width": 56.875,
+          "height": 17
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "12px",
+      "lineHeight": "17px",
+      "letterSpacing": "-0.12px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgb(115, 116, 118)",
+      "borderRightColor": "rgb(115, 116, 118)",
+      "borderBottomColor": "rgb(115, 116, 118)",
+      "borderLeftColor": "rgb(115, 116, 118)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "2px",
+      "paddingRight": "6px",
+      "paddingBottom": "2px",
+      "paddingLeft": "6px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 78.875,
+      "heightPx": 23
+    }
+  }
+}

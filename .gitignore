@@ -1,0 +1,53 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# IDE
+.idea/
+
+# Icon cache
+.coui_icons_cache/
+
+# Dart/Flutter
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+
+# Temporary
+*.log
+.gen_tmp_*
+*.tmp
+/.claude/
+/app/coui_widgetbook/android/keystore/
+
+# puppeteer local chromium cache
+.local-chrome/
+
+# Local golden test failure artifacts
+packages/*/test/src/golden/failures/
+
+# Parity gate — baseline/ 과 allowlist.yaml 만 커밋한다.
+# 캡처·diff 산출물은 매 실행마다 새로 만들어지며, diff/ 는 CI 아티팩트로 올라간다.
+test/parity/captured/
+test/parity/diff/
+test/parity/harness/
+
+# FVM Version Cache
+.fvm/
+# 로컬 Flutter 핀. main 이 의도적으로 지운 파일이고(#18), CI 는 3.44.8 을 쓴다 —
+# 커밋되면 FVM 을 쓰는 사람만 다른 버전을 강제받는다.
+.fvmrc
+test/parity/report/
+
+# Playwright MCP 세션 산출물 (스크린샷 · 스냅샷) — 로컬 검증용
+.playwright-mcp/
+
+# DCM 분석 출력 — 재생성 가능, 커밋 대상 아님
+dcm_report.json
+
+# Python bytecode caches (guards run python scripts)
+__pycache__/
+*.pyc

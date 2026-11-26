@@ -1,0 +1,114 @@
+# `default*` constants on a CoreXxxStyle that no production code
+# reads. Net-new entries fail CI; this list may only shrink.
+#
+# exported — components.json carries the field, so the Figma canvas
+#            may draw a value neither platform renders. Fixing it is
+#            a resolver change (consult the default), not a builder
+#            edit.
+# inert    — no instance field, no reader, no export. Nothing is
+#            downstream of the value at all.
+#
+# To clear one: wire it (`merged.X ?? CoreXxxStyle.defaultX`) or
+# remove it. Removal of an exported symbol follows
+# process/deprecation.md, and the entry stays here until the removal
+# lands — a deprecated constant is still a declared one.
+
+# ── exported (8)
+accordion.defaultArrowIconStyle
+button.defaultIconLabelGapStyle
+card.defaultBoxShadow
+carousel.defaultIndicatorSpacing
+outlined_container.defaultBoxShadow
+sortable.defaultHandleStyle
+table.defaultResizerColor
+toggle.defaultPadding
+
+# ── inert (88)
+avatar.defaultInitialsFontRatio
+banner.defaultFocusRingColor
+banner.defaultFocusRingOffset
+banner.defaultFocusRingWidth
+basic.defaultContentTypography
+basic.defaultTitleTypography
+chip.defaultBorderRadius
+chip.defaultDisabledOpacity
+chip.defaultNeutralFgValue
+chip_input.defaultPlaceholderColor
+code_diff.defaultAddedColor
+code_diff.defaultLineNumberAlpha
+code_diff.defaultRemovedColor
+code_diff.defaultRowTintAlpha
+code_snippet.defaultLineNumberAlpha
+color_picker.defaultHueMarkerFillColor
+date_picker.defaultTriggerButtonStyle
+description_card.defaultBorderRadius
+dock.defaultBarRadius
+dock.defaultIndicatorPadding
+dock.defaultIndicatorRadius
+dock.defaultPadding
+fab.defaultActionButtonStyle
+fab.defaultActionIconStyle
+fab.defaultActionLabelTextStyle
+filter.defaultBackgroundColor
+filter.defaultBorderRadius
+filter.defaultClickableStyle
+filter.defaultIconStyle
+filter.defaultItemBorderRadius
+filter.defaultItemHeight
+filter.defaultItemPadding
+filter.defaultItemSpacing
+filter.defaultLabelPadding
+filter.defaultLabelTextStyle
+filter.defaultPadding
+filter.defaultSelectedColor
+filter.defaultSelectedFontWeight
+filter.defaultSelectedIconStyle
+filter.defaultSelectedLabelTextStyle
+filter.defaultTransitionDuration
+input_otp.defaultErrorTextStyle
+input_otp.defaultSeparatorTextStyle
+menu_item.defaultBorderRadius
+mockup.defaultBezelWidth
+mockup.defaultCameraCoreSize
+mockup.defaultGestureBarWidthRatio
+multiple_choice.defaultClickableStyle
+multiple_choice.defaultDisabledTextStyle
+multiple_choice.defaultOptionBorderWidth
+multiple_choice.defaultOptionPadding
+multiple_choice.defaultSelectedBackgroundColor
+multiple_choice.defaultSelectedBorderColor
+multiple_choice.defaultSelectedTextColor
+multiple_choice.defaultSelectedTextStyle
+multiple_choice.defaultTransitionDuration
+multiple_choice.defaultUnselectedBackgroundColor
+multiple_choice.defaultUnselectedBorderColor
+multiple_choice.defaultUnselectedTextStyle
+navigation_bar.defaultDisabledSelectedIconAnchorColor
+navigation_bar.defaultIconAnchorRadius
+navigation_bar.defaultSelectedIconAnchorColor
+navigation_bar.defaultSelectedIconAnchorIconStyle
+object_input.defaultPlaceholderColor
+object_input.defaultSeparatorTypography
+popover.defaultZIndex
+popup.defaultContentPadding
+progress.defaultBackgroundAlpha
+progress.defaultSize
+progress.defaultStrokeWidth
+progress.defaultValueTextStyle
+rich_editor.defaultQuoteGap
+sortable.defaultRemoveButtonBorderRadius
+sortable.defaultRemoveButtonColor
+sortable.defaultRemoveButtonSize
+star_rating.defaultFocusBorderWidth
+subfocus.defaultFocusRingWidth
+text_area.defaultBorderRadius
+text_field.defaultBorderRadius
+time_picker.defaultAmPmSelectedButtonStyle
+time_picker.defaultAmPmTypography
+time_picker.defaultErrorColor
+time_picker.defaultLabelTypography
+time_picker.defaultSegmentFocusOutlineStyle
+time_picker.defaultSegmentHoverBorderColor
+time_picker.defaultTriggerContentGapStyle
+toast.defaultCloseForegroundOpacity
+toast.defaultDescriptionForegroundOpacity

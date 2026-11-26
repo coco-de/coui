@@ -1,0 +1,43 @@
+key,role,before_status,after_status,before_ratio,after_ratio,dimension_mismatch,flutter_width,flutter_height,web_width,web_height,flutter_baseline,web_baseline,flutter_before_after_pixels,web_before_after_pixels
+code-snippet-default-light-defaultStyle,root,fail,fail,,,219x83 vs 216x83,219,83,216,83,pass,pass,0,0
+code-snippet-default-light-liquidGlass,root,fail,fail,,,219x83 vs 216x83,219,83,216,83,fail,pass,0,0
+code-snippet-default-light-neoBrutalism,root,fail,fail,,,219x83 vs 216x83,219,83,216,83,fail,pass,0,0
+code-snippet-default-light-claymorphism,root,fail,fail,,,219x83 vs 216x83,219,83,216,83,fail,pass,0,0
+code-snippet-default-light-neumorphism,root,fail,fail,,,219x83 vs 216x83,219,83,216,83,fail,pass,0,0
+code-snippet-default-dark-defaultStyle,root,fail,fail,,,219x83 vs 216x83,219,83,216,83,fail,pass,0,0
+code-snippet-default-dark-liquidGlass,root,fail,fail,,,219x83 vs 216x83,219,83,216,83,fail,pass,0,0
+code-snippet-default-dark-neoBrutalism,root,fail,fail,,,219x83 vs 216x83,219,83,216,83,fail,pass,0,0
+code-snippet-default-dark-claymorphism,root,fail,fail,,,219x83 vs 216x83,219,83,216,83,fail,pass,0,0
+code-snippet-default-dark-neumorphism,root,fail,fail,,,219x83 vs 216x83,219,83,216,83,fail,pass,0,0
+frame-default-light-defaultStyle,root,pass,pass,0.021778584392014518,0.021778584392014518,,133,58,133,58,pass,pass,0,0
+frame-default-light-neoBrutalism,root,pass,pass,0.002810251798561151,0.002810251798561151,,139,64,139,64,pass,pass,0,0
+frame-default-light-claymorphism,root,pass,pass,0.021778584392014518,0.021778584392014518,,133,58,133,58,pass,pass,0,0
+frame-default-light-neumorphism,root,pass,pass,0.026704692766398756,0.026704692766398756,,133,58,133,58,pass,pass,0,0
+frame-default-dark-defaultStyle,root,pass,pass,0.031371532278973296,0.031371532278973296,,133,58,133,58,pass,pass,0,0
+frame-default-dark-neoBrutalism,root,pass,pass,0.033160971223021585,0.033160971223021585,,139,64,139,64,pass,pass,0,0
+frame-default-dark-claymorphism,root,pass,pass,0.031371532278973296,0.031371532278973296,,133,58,133,58,pass,pass,0,0
+frame-default-dark-neumorphism,root,pass,pass,0.036168006222452684,0.036168006222452684,,133,58,133,58,pass,pass,0,0
+frame-column-light-defaultStyle,root,fail,fail,0.05481537875904073,0.05481537875904073,,71,111,71,111,pass,pass,0,0
+frame-column-light-neoBrutalism,root,pass,pass,0.036036036036036036,0.036036036036036036,,71,111,71,111,pass,pass,0,0
+frame-column-light-claymorphism,root,fail,fail,0.05481537875904073,0.05481537875904073,,71,111,71,111,pass,pass,0,0
+frame-column-light-neumorphism,root,fail,fail,0.0564649156198452,0.0564649156198452,,71,111,71,111,pass,pass,0,0
+frame-column-dark-defaultStyle,root,fail,fail,0.06496637482552975,0.06496637482552975,,71,111,71,111,pass,pass,0,0
+frame-column-dark-neoBrutalism,root,fail,fail,0.07105697246542317,0.07105697246542317,,71,111,71,111,pass,pass,0,0
+frame-column-dark-claymorphism,root,fail,fail,0.06496637482552975,0.06496637482552975,,71,111,71,111,pass,pass,0,0
+frame-column-dark-neumorphism,root,fail,fail,0.06763101129298313,0.06763101129298313,,71,111,71,111,pass,pass,0,0
+frame-dashed-light-defaultStyle,root,fail,pass,0.09339975093399751,0.03415762319871909,,154,73,154,73,fail,pass,707,0
+frame-dashed-light-neoBrutalism,root,fail,fail,0.1136774617787276,0.15099457504520797,,158,77,158,77,fail,pass,1151,0
+frame-dashed-light-claymorphism,root,fail,fail,0.08254758939690447,0.07036114570361146,,154,73,154,73,fail,pass,704,0
+frame-dashed-light-neumorphism,root,fail,pass,0.09793631026507739,0.04661092332325209,,154,73,154,73,fail,pass,799,0
+frame-dashed-dark-defaultStyle,root,fail,pass,0.10176125244618395,0.04269702899839886,,154,73,154,73,fail,pass,709,0
+frame-dashed-dark-neoBrutalism,root,fail,fail,0.15017261219792866,0.18699654775604144,,158,77,158,77,fail,pass,1211,0
+frame-dashed-dark-claymorphism,root,fail,fail,0.09099804305283757,0.07925636007827788,,154,73,154,73,fail,pass,708,0
+frame-dashed-dark-neumorphism,root,fail,fail,0.10629781177726383,0.059597936310265075,,154,73,154,73,fail,pass,800,0
+frame-elevated-light-defaultStyle,root,pass,pass,0.02918956043956044,0.02918956043956044,,224,78,224,78,pass,pass,0,0
+frame-elevated-light-neoBrutalism,root,pass,pass,0.031192765567765568,0.031192765567765568,,224,78,224,78,pass,pass,0,0
+frame-elevated-light-claymorphism,root,pass,pass,0.02918956043956044,0.02918956043956044,,224,78,224,78,pass,pass,0,0
+frame-elevated-light-neumorphism,root,pass,pass,0.02918956043956044,0.02918956043956044,,224,78,224,78,pass,pass,0,0
+frame-elevated-dark-defaultStyle,root,fail,fail,0.06507554945054946,0.06507554945054946,,224,78,224,78,pass,pass,0,0
+frame-elevated-dark-neoBrutalism,root,fail,fail,0.06370192307692307,0.06370192307692307,,224,78,224,78,pass,pass,0,0
+frame-elevated-dark-claymorphism,root,fail,fail,0.06507554945054946,0.06507554945054946,,224,78,224,78,pass,pass,0,0
+frame-elevated-dark-neumorphism,root,fail,fail,0.06507554945054946,0.06507554945054946,,224,78,224,78,pass,pass,0,0

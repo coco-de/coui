@@ -1,0 +1,123 @@
+{
+  "issue": 6633,
+  "scope": "One Native public CoreTextStyle converter expression reuses canonical CoreColor.toValue; no API/Core/default/dependency/measurement/criterion/baseline changes",
+  "codeCommit": "5200d69fa2",
+  "integratedExecutionHead": "9fc57828ac288bc184b172a7421151dda95b0fd1",
+  "original": {
+    "source": "b75eb12480f516ce2c46978ecefbbcb231c1a281",
+    "fixtureSha256": "434ebd992b147c3707b34199e7ef82ec0c0845546d4bc63fb04d98bb2e77f345",
+    "cases": 12,
+    "pass": 7,
+    "assertionFailures": 4,
+    "widgetMatcherError": 1,
+    "actualExit": 1,
+    "invalidFirstInputAssumptionExcluded": true
+  },
+  "candidate": {
+    "actualSource": "b75 + uncommitted frozen2; same bytes as code5200/integrated9fc",
+    "sameFixture": true,
+    "newPass": 12,
+    "existingPass": 66,
+    "fatalExit": 0,
+    "formatExit": 0
+  },
+  "nativeResident": {
+    "actualSource": "9fc; owned cloned converter Gitf19 -> candidate",
+    "actualHotReload": true,
+    "librariesReloaded": 1,
+    "librariesTotal": 3754,
+    "beforeA": 0.30196078431372547,
+    "afterA": 0.3,
+    "unchangedObservedFields": 19,
+    "sameEncodedPngAndRgba": true,
+    "pngSamples": 2,
+    "portsClosed": 2,
+    "actualCliExit": 0,
+    "stateAndInputIdentical": true,
+    "scope": "Only this custom public converter fixture, not canonical capture/baseline/global pixel claim"
+  },
+  "environment": {
+    "sdk": "existing FVM Flutter3.50.0 per-command only",
+    "configPackages": 232,
+    "ownRootRebinds": 12,
+    "externalRootsUnchanged": 220,
+    "allDeclaredNamesVersionsAndOwnEdgeSetsVerified": true,
+    "sourceMetadataGraphLockInvariant": true,
+    "projectPubgetInstallDownload": 0,
+    "browserCalls": 0,
+    "ownedJobsReclaimed": 2,
+    "actualActiveRuntime": 0
+  },
+  "notRun": [
+    "canonical component capture",
+    "committed screenshot baseline comparator",
+    "latest full default sweep",
+    "Web/Jaspr/Figma (unchanged axes)"
+  ],
+  "refs": [
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/evidence/original-final/summary.json",
+      "sha256": "5d5e2111c816b56fe3b309a0bb90c1fafdc09393189ba6995e0652c72f65ae8a"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/evidence/original-final/fixture-freeze.json",
+      "sha256": "4e51fb14a15e0b4c11f1837c8855b1a367994031305b5a9bcec51597254dccfa"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/evidence/original/input-criterion-correction.json",
+      "sha256": "20c5b69113f493389a909c16917084879fde32169cbd20698f1fb477c923e1bc"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/candidate/summary.json",
+      "sha256": "9b968ae469e8ee2ebcc47c1c82663f494864ce888b2a32c0c5da4f22090219a8"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/candidate/fatal-exit.json",
+      "sha256": "2218fb2db7f2799c02e55facb6c6109b21233135e65a07c02a57384980771d7a"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/candidate/format-exit.json",
+      "sha256": "c33bd4dff73a85d8a007371be4e046441a123877d6dba6af254cdcdcafcb31ad"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/candidate/candidate12-exit.json",
+      "sha256": "cc9aac20fa6b794a016c5b83a6feb04bc41a6866be48bf8061393bf0f82c6cc7"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/candidate/existing-related-exit.json",
+      "sha256": "1f8b4f5816fef8f04a2e63a30c7bb4ca5f7b89048904c27e71a2928d51b19d83"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/alpha-integration.json",
+      "sha256": "a91c69ade50f276a40223c1afb7068d80441a44518f23bb6e9693036dc4a6d8f"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/resident-attempt1/resident-reload-proof.json",
+      "sha256": "1cf738925f1a468c1dcfb48a0ac53f00c413cd2fd57b643b8e635951a58e8e29"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/resident-attempt1/before.json",
+      "sha256": "b8c696ee2b358cdf9d4116f0f5e172b88240b3c2c970f100cbc500e4a733e7f7"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/resident-attempt1/after.json",
+      "sha256": "647ff2987748c6f541cdab37858480439a18c1a03069bfeebca09718f25f0843"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/resident-attempt1/before.png",
+      "sha256": "4dd57754fe66580035fa83041bf78a3512bc348f237d2fc5a847a3d1650a54fb"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/resident-attempt1/after.png",
+      "sha256": "4dd57754fe66580035fa83041bf78a3512bc348f237d2fc5a847a3d1650a54fb"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/final-readback.json",
+      "sha256": "205af01082588af755666748f68f9c30cf2751569584fd3b78db19a6555fdd9d"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-core-text-alpha-original-h025vxrh/implementation/final-proof-index.json",
+      "sha256": "81e28160d50ddba636b05bf32f49a75482429bd50c5cc2c91410e34e59c7bc02"
+    }
+  ]
+}

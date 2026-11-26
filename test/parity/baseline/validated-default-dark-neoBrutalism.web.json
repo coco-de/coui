@@ -1,0 +1,38 @@
+{
+  "key": "validated-default-dark-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "normal",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(147, 149, 150)",
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(255, 151, 140)",
+      "borderRightColor": "rgb(255, 151, 140)",
+      "borderBottomColor": "rgb(255, 151, 140)",
+      "borderLeftColor": "rgb(255, 151, 140)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "paddingTop": "0px",
+      "paddingRight": "12px",
+      "paddingBottom": "0px",
+      "paddingLeft": "12px",
+      "outlineWidth": "2px",
+      "outlineStyle": "solid",
+      "outlineOffset": "2px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 320,
+      "heightPx": 63.5
+    }
+  }
+}

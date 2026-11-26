@@ -1,0 +1,302 @@
+{
+  "issue": 6431,
+  "productCheckpoint": "cadd3d1287b9bff7d3869a5ec71eecc8fa131543",
+  "executableSourceFreeze": "55573fe8a84865f242b65ba7ac9a65c24f17816e",
+  "main": "1b362c9ae391b05edc31e0ba2c91630a8d6fb483",
+  "publicApiConstCoreNativeDefaultsTokensChanged": false,
+  "callerCssPriorityChanged": false,
+  "compositionPolicy": "image over color without gradient; image over gradient with solid excluded when gradient exists",
+  "validation": {
+    "productCheckpoint": "cadd3d1287b9bff7d3869a5ec71eecc8fa131543",
+    "executableSourceFreeze": "55573fe8a84865f242b65ba7ac9a65c24f17816e",
+    "latestMain": "1b362c9ae391b05edc31e0ba2c91630a8d6fb483",
+    "evidenceExecutionSource": "cadd3d1287b9bff7d3869a5ec71eecc8fa131543",
+    "sourceReuseBasis": "Checkpoint to final freeze packages/docs_core/docs_site/lock byte exact; no rerun or new-source fresh claim.",
+    "permanentNewTests": 16,
+    "allWebFrameTests": 54,
+    "fatalInfos": 0,
+    "formatChanges": 0,
+    "fullContractExit": 0,
+    "existingGuardWarning": "One existing WARN block; see full-contract.log",
+    "docsO2Build": {
+      "exit": 0,
+      "pages": 359,
+      "seconds": 122.04,
+      "trackedCount": 22540,
+      "trackedDeltas": [],
+      "executionSource": "cadd3d1287b9bff7d3869a5ec71eecc8fa131543"
+    },
+    "boundedActual": {
+      "beforeBrowserRows": 204,
+      "afterBrowserRows": 204,
+      "nativeRows": 180,
+      "renderErrors": 0,
+      "externalRequests": 0,
+      "selected8NativeWebRgbaExact": true
+    },
+    "canonicalRegisteredFrame8": {
+      "pngAndRgbaExact": true,
+      "computedByRoleAndContextExact": true,
+      "referenceSource": "4211557e140b5aa8904602a9c019b65cb6bfd41e",
+      "captureSource": "cadd3d1287b9bff7d3869a5ec71eecc8fa131543",
+      "viewportWidth": 800,
+      "devicePixelRatio": 1,
+      "chrome": "Chrome/150.0.7871.24"
+    },
+    "mixedGrid": {
+      "chrome": "Chrome/157.0.8103.79",
+      "strictDefaultExact": 6,
+      "defaultsTotal": 8,
+      "unchangedGradientLightDifferentPixels": 278,
+      "unchangedGradientLightMaxChannelDelta": 1,
+      "elevatedLightDarkDifferentPixels": [
+        18,
+        15
+      ],
+      "originalsRetained": true,
+      "aaAttributionClaimed": false,
+      "differentResetContext": "Missing canonical docsContentTheme reset: grid border/padding is not a Native border-edge control."
+    },
+    "nativeColorPolicy": "Actual Native BoxDecoration excludes color whenever gradient exists; Web solid remains absent except explicit caller CSS.",
+    "existingLimits": [
+      "Small-image scaleDown maps to contain on Web; mapping unchanged.",
+      "Existing RTL physical versus Native directional interpretation unchanged.",
+      "Cross-engine gradient channel differences retained without new tolerance.",
+      "Grid border/padding reset context differs from canonical consumer; no Native border-edge parity claim."
+    ],
+    "actualSsrVmReloadSucceeded": true,
+    "reloadSourceTransitionClaimed": false,
+    "globalReport": {
+      "status": "complete",
+      "source": "55573fe8a84865f242b65ba7ac9a65c24f17816e",
+      "sourceWorktree": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-20261118.njkaj1sw/worktree",
+      "integratedMain": "1b362c9ae391b05edc31e0ba2c91630a8d6fb483",
+      "finalDocsOnlyHeadDuringCapture": "17f801004bc4084f3c4212d23ccc8f033aececf0",
+      "domain": {
+        "all": 3814,
+        "default": 816,
+        "allAndDefaultDescriptorsExactTo421": true,
+        "matrixFieldNames": [
+          "component",
+          "key",
+          "probes",
+          "surfaceStyle",
+          "theme",
+          "tier",
+          "variant"
+        ],
+        "frameFillProductSource": "55573fe8a84865f242b65ba7ac9a65c24f17816e"
+      },
+      "capture": {
+        "freshWebEntries": 816,
+        "captureMs": 402677,
+        "failed": 0,
+        "retries": 0,
+        "nativeReusedEntries": 816,
+        "nativeActualCaptureSource": "309d4f9c894c5c36cbaf2c0628b9e5dcf09aae73",
+        "nativeWorkspaceClosureFiles": 1990,
+        "nativeClosureChanged": [],
+        "rawFileCount": 3288,
+        "rawFileCounts": {
+          ".json": 1632,
+          ".png": 1656
+        },
+        "missing": []
+      },
+      "reports": {
+        "property": {
+          "matrixKeyCounts": {
+            "pass": 402,
+            "fail": 368,
+            "infra": 0,
+            "skipped": 46
+          },
+          "topLevelRolePassedCount": 402,
+          "exitCode": 1,
+          "elapsedSeconds": 5.705733776092529
+        },
+        "pixel": {
+          "matrixKeyCounts": {
+            "pass": 582,
+            "fail": 234,
+            "infra": 0,
+            "skipped": 0
+          },
+          "topLevelRolePassedCount": 593,
+          "exitCode": 1,
+          "elapsedSeconds": 10.252686738967896
+        }
+      },
+      "fresh555VsFresh421": {
+        "before421": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6429-stage-implementation-20261118._uj4pk2r",
+        "after555": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw",
+        "webRootPropertyChanged": [],
+        "webAnyRolePropertyChanged": [],
+        "webPNGsCompared": 828,
+        "webPNGBytesChanged": [],
+        "bodyBoundsChanged": []
+      },
+      "pairedReports": {
+        "property": {
+          "sameSemanticFieldsAs421": {
+            "matrix": true,
+            "propertyDiffs": true,
+            "infraSkippedKeys": true,
+            "structuralSkippedKeys": true,
+            "passedCount": true,
+            "infraFailedCount": true
+          },
+          "verdictChanges": []
+        },
+        "pixel": {
+          "sameSemanticFieldsAs421": {
+            "matrix": true,
+            "propertyDiffs": true,
+            "infraSkippedKeys": true,
+            "structuralSkippedKeys": true,
+            "passedCount": true,
+            "infraFailedCount": true
+          },
+          "verdictChanges": []
+        }
+      },
+      "productFilesSHAAndModeChecked": 5831,
+      "productFilesChanged": [],
+      "legacy174Or234DirectReductionClaimed": false,
+      "rootIndependentVerification": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6431-integration-20261118.xl1_s1g8/root-final555-matrix-verification.json"
+    },
+    "selectedEvidence8": "selected-evidence8.json",
+    "report": "README.md",
+    "existingGuardWarningsCount": 7
+  },
+  "evidenceRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km",
+  "review": {
+    "sourceReview": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-frame-fill-contract-review-20261118.hy9kkz1n/6431-implementation-review.json",
+    "rootViewedRawImages": 8,
+    "rawPngEdited": false,
+    "baselinePromoted": false
+  },
+  "evidenceFiles": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/README.md",
+      "sha256": "91b315c7fec4884c829a34b58d4f404aad4d113a8034b9916037a1e507bd6d6e"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/validation-summary.json",
+      "sha256": "6dadf9ba471cfb76ed3de54cd70a43f6ff0385cd5ff16212c007d940ff94d585"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/api-scope-proof.json",
+      "sha256": "e73c339625e01500a438b8d8b61aa824293248aff574afd3fc4c26a11ef0fd7d"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/browser-native-comparison.json",
+      "sha256": "78ce26406c5277e7b0aa512ee60f5b8e5c71dd462eae48f847858fc0e07d1694"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/canonical-frame8-comparison.json",
+      "sha256": "36f5528ace7f3ca93ca7a52aefac01afd333c71dbfe1aacd6a65b1809afaf540"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/selected-evidence8.json",
+      "sha256": "36e055bcef83a766e0e874d8f46d1fe746cd756693b0d8ca45ad67f446bc6746"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/owned-reload.json",
+      "sha256": "f3a510e116d8dc166c8f864e8d4284bcafcd7bec3316a541e70f33655880a094"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/build-process.json",
+      "sha256": "02ed4742e4cb43ed08edcda34acd3a54005f983545a7a53210bf298df0245fe7"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/native-records.json",
+      "sha256": "0e158783791818e633f4084affb78ebd42fb3fe8a663e38b53ee53ecadda279e"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/before-browser-records.json",
+      "sha256": "cc757cf7c152f5e1b24c6671e15878a8176d5f8f907e363e0e0d6e0c5cb2e8ba"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/after-browser-records.json",
+      "sha256": "6d139c20967b7cb8335cdb3ea2cb03217bf7174463bf17935950338f05e9ead3"
+    }
+  ],
+  "integratedEvidenceRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw",
+  "integratedEvidenceFiles": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/README.md",
+      "sha256": "7cffca535caf9724c9887560d11cd056d3007e5d0774c1621995be523ca32326"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/final-summary.json",
+      "sha256": "cf226a6dfe1fe1ce53398ae153a31ec158a2a6ca6364887f6de116326658198c"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/capture-integrity-final.json",
+      "sha256": "ccee1e296323f3d9055bb97547d9ebcc034169b881ea704e9a1e7204cdb382f0"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/product-source-after.json",
+      "sha256": "1605e1e1dbaec7e790a4fcbc725db2f51ad1b2526b9215620433947056ac556e"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/fresh555-vs-fresh421.json",
+      "sha256": "fdc2101119e3cf422abf3639b382f9fedad0b46bda35c5e3c5af3a07a7f4334e"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/paired-report-proof.json",
+      "sha256": "6e509695c6d89e0917035bf3c07811ee985071767b5fac542b4da90958d74eb2"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/original421-preserved.json",
+      "sha256": "4e7c9ba27115360ebcaf38698abcf76106c20d811cd9d61ffffdaae0bc16c1d4"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/cleanup-final.json",
+      "sha256": "1bf70b8ee399a045f379c9f0367054d960e2a4e3a3ca7d4afae1809545b32fd1"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/domain-proof.json",
+      "sha256": "6782c85325a10d2ed46f1ebbef13dcdae31de9c5f6a394bdd334c06f0d3ad7c4"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/native-reuse-closure.json",
+      "sha256": "0b595fadee083767e9a0ef55f87719d405d065b92f13a2867af4de7e700ee7fe"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/environment-proof.json",
+      "sha256": "ca9155d7f2feddf050621fbea681d6dc44a6b8653a8c28ea74aefad95421ec1a"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/property-report.json",
+      "sha256": "ca61870b033d614056a3bc4592e2902e1da7fe2194ce2a842e49c8693ed92e8a"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/pixel-report.json",
+      "sha256": "5fd420e80543a3705014df88052a9ca4af8ad0a065314cfea073d1113621ff3a"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/property-report-exit.json",
+      "sha256": "c7341a01cfb5e9f27d9abb571ce55709e4de33f33737a534661575909a5e8373"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/pixel-report-exit.json",
+      "sha256": "3548904ecfda80c479386bae28deeeeae14f94e0d780d202ae4b853b83d3de22"
+    }
+  ],
+  "boundedFinalEvidenceFiles": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/cleanup.json",
+      "sha256": "4cb9f8587f1ff8e90c79831b1da1b22294bb54e2802aca0aed872e3f74b50905"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/source-final.json",
+      "sha256": "9b741e3b76555a67f746e5c0516a83276e9b84886ec5778600d18da5e45b3a5e"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-frame-fill-proof-20261118.je5gv4km/artifact-index.json",
+      "sha256": "70f4632ad4479d499e296daa3cba4adcc7d76495803011a6abf324f38e6d7f49"
+    }
+  ]
+}

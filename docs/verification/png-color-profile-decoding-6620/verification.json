@@ -1,0 +1,368 @@
+{
+  "issue": 6620,
+  "executionBase": "54417c107f87b6444291c9f71eff5b90540c706f",
+  "ownScope": "Tool-only generic PNG colour interpretation, active-format infra boundaries, seven test/fixture files and verification docs",
+  "productionSHA256": {
+    "tool/parity/src/diff/png_color_space.dart": "0be610792b31ae8332e3c1ac3ecd7cf08b58e030852159d93881e4d0cf211dbb",
+    "tool/parity/src/diff/pixel_diff.dart": "bceeb1af3f247f1f1c37203bd3b69f63e1774a4854a6dd9b0d0e7f010106d8d0",
+    "tool/parity/report.dart": "e5d721f29ec6cac2fea5e368576388f1035fcbe1a3a84660c2472c383230b6db",
+    "tool/parity/compare.dart": "a324fb6108b43630c5d17b648c83529e128c1b4dd7a2a7087b89cd33ff0928cd",
+    "tool/parity/pruned_verify.dart": "c618de7f9a4e42abd6d04cfa81093f300945676c801305f45c26784f39bc1e86"
+  },
+  "sourceAndTestSHA256": {
+    "tool/parity/src/diff/png_color_space.dart": "0be610792b31ae8332e3c1ac3ecd7cf08b58e030852159d93881e4d0cf211dbb",
+    "tool/parity/src/diff/pixel_diff.dart": "bceeb1af3f247f1f1c37203bd3b69f63e1774a4854a6dd9b0d0e7f010106d8d0",
+    "tool/parity/report.dart": "e5d721f29ec6cac2fea5e368576388f1035fcbe1a3a84660c2472c383230b6db",
+    "tool/parity/compare.dart": "a324fb6108b43630c5d17b648c83529e128c1b4dd7a2a7087b89cd33ff0928cd",
+    "tool/parity/test/diff/png_color_profile_fixtures.dart": "a4ab5b76b4e43576dc0541c521bcbd9f637f940c4647800eb6d1815eef91210f",
+    "tool/parity/test/diff/png_color_profile_test.dart": "4e3d26c6eb9c45e4289f68ec3de85572e049f84727ac4231a503ef9d292981e8",
+    "tool/parity/test/report/png_color_profile_cli_test.dart": "7e4904d7e3777b90c52e3ff0fa77cfecb986242035c4898528dd17b0bb876574",
+    "tool/parity/test/diff/png_color_boundary_fixtures.dart": "761c5a9bcfdca42e1c13fa0f3c8df3ed1784a6cb9e76be6bf3b202da3209190e",
+    "tool/parity/test/diff/png_color_boundary_test.dart": "5987d10a9dc974d1b0b0b25fc433492bf358b9d656efccbdcb65a8cb93fff478",
+    "tool/parity/test/report/png_color_boundary_cli_test.dart": "c4a74f9f63d04f881fcfd319350020afb6cc80ec6a9e70ce7581e571c55c44bc",
+    "tool/parity/pruned_verify.dart": "c618de7f9a4e42abd6d04cfa81093f300945676c801305f45c26784f39bc1e86",
+    "tool/parity/test/report/png_color_pruned_cli_test.dart": "ac0afe53635b63e7faf4f3157f24d7b77d9d7938d4e3625f1802a83ead3551f5"
+  },
+  "results": {
+    "refinedOriginal17": {
+      "pass": 4,
+      "fail": 13,
+      "actualExit": 1
+    },
+    "candidate": {
+      "pass": 50,
+      "fail": 0,
+      "actualExit": 0,
+      "composition": {
+        "originalCases": 17,
+        "colourDepthCurveFloatCases": 23,
+        "cliCases": 10
+      }
+    },
+    "originalInactiveMode4AndPropertyOnly2": {
+      "pass": 6,
+      "fail": 0
+    },
+    "originalLegacyUnmanagedControls": {
+      "pass": 8,
+      "fail": 0
+    },
+    "priorExistingSuitesNotRerun": {
+      "initial7Suites": 66,
+      "related2SuitesFinal": 17
+    },
+    "analysis": {
+      "remainingIssues": 0,
+      "coverage": "previous10-file analysis plus changed2 final fatal0; other8 SHA exact; additionalprunedCLI+test2 freshfatal0"
+    },
+    "format": {
+      "files": 12,
+      "remainingChanges": 0,
+      "coverage": "prior10 unchanged+additional2 format0"
+    }
+  },
+  "oracle": {
+    "runtime": "Existing Pillow11.3.0/LittleCMS2.17, no install",
+    "commonSpace": "Floating relative XYZ D50 -> standard extended sRGB, no target gamut clip",
+    "precision": "Parametric/direct .001 encoded unit; sampled16-bit table2/65535 PCS; source curve out-of-range clip normative assertion separate",
+    "floatThresholdBoundary": 32.181731769564
+  },
+  "preserved": {
+    "numericThresholds": {
+      "kChannelDeltaThreshold": "32",
+      "kParityThreshold": "0.05",
+      "kRegressionThreshold": "0.001"
+    },
+    "inputPngProfilesBaselinesAllowlist": true,
+    "CoUIApiCoreDesignDefaults": true,
+    "probeCaptureProducerNormalizer": true,
+    "reportSchema": true,
+    "legacyUnmanagedUnits": true,
+    "modePropertyFirstCaptureSelection": "Existing comparator unchanged; inactive inputs are not interpreted",
+    "scope": "Own6620 changes and their recorded execution; upstream and later release metadata distinguished inpostIntegration",
+    "executionMetadata232ConfigGraphLockRawExact": true
+  },
+  "limits": [
+    "RGB matrix/TRC subset is not a full ICC CMM; LUT/HDR/cICP/gAMA-only/cHRM-only/grayscaleICC/ICC16 and mixed ICC8/non8bit comparisons fail explicitly",
+    "Untagged physical gamut unknown; legacy numeric convention retained",
+    "Encoded transition hex values are source diagnostics, not common-space floats",
+    "Initial setup/compile failures, previous17/66 and39P4F precision run remain preserved separately",
+    "Two original diagnostic bounds2->3 explicitly refined for conservative integer ceil; comparison criteria unchanged",
+    "No historical FULL dataset rejudgement or new capture/UI/browser/build; isolatedStatus probe is separately recorded; no component improvement credit",
+    "Prunedfollowup preflight/source-binding filenamecollision disclosed; authoritative exactGit original replay retained. Existing mixed-infra+failure exit precedence unchanged."
+  ],
+  "historicalMetadataObservation": {
+    "source": "566b1c55ae2a0ff6dfd5b73d787ef0fc5e2b475f",
+    "Native": {
+      "sRGB": 838,
+      "untagged": 12,
+      "bitDepth": 8,
+      "colorType": 6
+    },
+    "Web": {
+      "ICC": 524,
+      "untagged": 326,
+      "bitDepth": 8,
+      "colorType": 2
+    }
+  },
+  "evidenceRoot": "weever-parallel-residual-jjrdof5a/pixel-cohorts/evidence",
+  "proofs": [
+    {
+      "artifact": "metadata-ready.json",
+      "sha256": "b791fd77847f7bf46285aceaa6b6edde792b0829efade23f4cb6fe7b0145e6e2"
+    },
+    {
+      "artifact": "decoder-source-review.json",
+      "sha256": "e9b02ad360cf84bc1204ae00480a882e419c19d9a740125e1687c99c4efbf5dd"
+    },
+    {
+      "artifact": "all-original-png-color-metadata.json",
+      "sha256": "3d66d070a6d33c1fd9c58be4be13ee141b4b16a4ce3e805e6fda3e04e1d33ec5"
+    },
+    {
+      "artifact": "icc-original/handoff.json",
+      "sha256": "d1b714e7acd5ea98d60e76d4f00902689b4f3633b51c8642407e38adde93593a"
+    },
+    {
+      "artifact": "icc-extended/handoff.json",
+      "sha256": "34aefc147bc6d5566b7d57cf2f855bda3bbf647937991514eb27bcd53431a9dc"
+    },
+    {
+      "artifact": "icc-boundary-oracle/observations.json",
+      "sha256": "3ca22d3824c549112f5f1ffa174fab05b8f09187f3b03ed43b0dac9890a8d58f"
+    },
+    {
+      "artifact": "candidate-first/fatal-exit.json",
+      "sha256": "8393ddecb4ef8a9ffc27119d4b3b33fd37959bdc3a50ac78d42a997f44ce8eb9"
+    },
+    {
+      "artifact": "candidate-second/source-after.json",
+      "sha256": "021e5ae89cd80967d5d0e59e352b93ce83ae7bf613e0b6209d5d012a5f836482"
+    },
+    {
+      "artifact": "candidate-boundaries/candidate-exit.json",
+      "sha256": "abd428061f8b216602bec9f196cda223414763d8eb31587b80929f2b23ff1339"
+    },
+    {
+      "artifact": "candidate-boundaries/legacy-original-counts.json",
+      "sha256": "32637c69f497b7d0f9180549abaa6bfb59c3af1ce4c78fbcd0a2036fca6bc2d2"
+    },
+    {
+      "artifact": "candidate-refinement-addendum.json",
+      "sha256": "f4797d9a932214d4b34d0b70ab53599dfa4091d222ecec332e8d4ca4e03279db"
+    },
+    {
+      "artifact": "candidate-final/existing-counts.json",
+      "sha256": "34d319a8af781279769b7a09946a19dffda2a14eca95d5ed3e0d7561b40231f2"
+    },
+    {
+      "artifact": "candidate-final-lint/source-freeze.json",
+      "sha256": "92218c709101e42413eaf391508ec67f18bec9e985eaeb8635e0cffb755b8d18"
+    },
+    {
+      "artifact": "candidate-final-lint/source-after.json",
+      "sha256": "32ee789a941169b2bd1663b1cb28dd9179e8d8182878fb36a46e2c5b0444b9ff"
+    },
+    {
+      "artifact": "candidate-final-lint/fatal-exit.json",
+      "sha256": "40aabb6900bc227abdd7805a78f4b2f97e849ec46b5a8954d9dd8da8cecb02d3"
+    },
+    {
+      "artifact": "candidate-final-lint/format-exit.json",
+      "sha256": "265b7a22d93d33a8d3e896b8081c2afbbc81d23d0858a5673f1496b501b41ed5"
+    },
+    {
+      "artifact": "candidate-final-lint/original17-refined-exit.json",
+      "sha256": "f7578b8d1d939331ef303c9d30f45c7732a0f5d482db3705ae88d61ea38842e8"
+    },
+    {
+      "artifact": "candidate-final-lint/original17-refined-counts.json",
+      "sha256": "92a54128b6fc0b675cdc314090eade715fc5aab1b5170eaffc889acec8fb94aa"
+    },
+    {
+      "artifact": "candidate-final-lint/original-inactive-modes-counts.json",
+      "sha256": "253d3afb7e4ae990f6c96ccadac872bb4dad3d72b5d6e6c04df340000662c0da"
+    },
+    {
+      "artifact": "candidate-final-lint/candidate-exit.json",
+      "sha256": "f4f5e4546ff0486149c0c4ae38f104f19f716c94d9f5d94dc12355cd7c25b973"
+    },
+    {
+      "artifact": "candidate-final-lint/candidate-counts.json",
+      "sha256": "b9a7a29497741fc7d08b6f6576a333ca529fe4a30b924958ea6c5b5ca2e731e5"
+    },
+    {
+      "artifact": "implementation-source-proof.json",
+      "sha256": "aab2a07dfed893dbd6f2259614a63d0d845c2278f94db1711765b8dcb4d2efd6"
+    },
+    {
+      "artifact": "pruned-cli-boundary/final-handoff.json",
+      "sha256": "a73075602dbc8eb0fbadc0f2998da76d74aaa924aed23e9432306ec4db1ee4b6"
+    },
+    {
+      "artifact": "Root/icc-resident-reload/proof-index.json",
+      "sha256": "4f28d56034873ff16f292d185afb9448c40a429156f4ddc07bfe5ee05ac9171c"
+    }
+  ],
+  "prunedCallerFollowup": {
+    "sourceBase": "db52151abbf86cd73e33634944dde3e7bcea20a6 plus2pathpatch",
+    "original": {
+      "executedCLI": "3b0b00541607ae21949fdb4dacf37dc4a379b172fd5276456b9b8afbad8ef72d",
+      "childExit": 255,
+      "testExit": 1,
+      "fatalExit": 0,
+      "sameFixture": true
+    },
+    "candidate": {
+      "childExit": 2,
+      "testExit": 0,
+      "matched": 3,
+      "mismatched": 0,
+      "infra": 1,
+      "existingPrunedTests": 6,
+      "fatalExit": 0,
+      "formatChanges": 0
+    },
+    "exitPolicy": "Existing CLI precedence preserved: infra-only exit2; real mismatch still exit1. No row silently dropped or treatedpassed.",
+    "sameOriginalAndCandidateFixtureSHA": "ac0afe53635b63e7faf4f3157f24d7b77d9d7938d4e3625f1802a83ead3551f5"
+  },
+  "pureDartResidentReload": {
+    "sourceReadHead": "e2b617b664232688cdde662e7829238e429e42cb",
+    "originalPixelSource": "4c28aaaeeb84fac3008bfa913b8971a682294412",
+    "reloadSuccess": true,
+    "loadedLibraries": 3,
+    "sameResidentPIDStateInputBuffers": true,
+    "seconds": 1.3139525829999998,
+    "actualExit": 0,
+    "caseTransitions": [
+      [
+        "same-colour",
+        false,
+        true
+      ],
+      [
+        "same-numbers-wide-gamut",
+        true,
+        false
+      ],
+      [
+        "immutable-status566",
+        false,
+        true
+      ]
+    ],
+    "isolatedHistoricalStatusAfter": {
+      "diffPixels": 2,
+      "totalPixels": 144,
+      "maxChannelDelta": 65,
+      "diffRatio": 0.013888888888888888
+    },
+    "metadataScope": "Independent232 copy from historical d7f graph, unchanged during VM run; not the later release-synchronized graph",
+    "notClaimed": [
+      "Flutter/browser/UI reload",
+      "Whole-dataset rejudgement",
+      "Pixel-identical Status image"
+    ]
+  },
+  "postIntegration": {
+    "main": "4c28aaaeeb84fac3008bfa913b8971a682294412",
+    "sourceHead": "e2b617b664232688cdde662e7829238e429e42cb",
+    "own14FilesExactAtIntegration": true,
+    "runtimeFullSuiteReexecutedAtIntegration": false,
+    "upstreamChanges": "N1 publisher removal, Scaffold publicAPI support and release versions; not ourCoUIAPI0 claim",
+    "metadata": {
+      "changes": [
+        {
+          "name": "coui_core",
+          "old": "0.190.1",
+          "new": "0.191.0",
+          "pubspec": "packages/coui_core/pubspec.yaml"
+        },
+        {
+          "name": "coui_flutter",
+          "old": "0.192.1",
+          "new": "0.193.0",
+          "pubspec": "packages/coui_flutter/pubspec.yaml"
+        },
+        {
+          "name": "coui_i10n",
+          "old": "0.10.0",
+          "new": "0.11.0",
+          "pubspec": "packages/coui_i10n/pubspec.yaml"
+        },
+        {
+          "name": "coui_web",
+          "old": "0.190.1",
+          "new": "0.191.0",
+          "pubspec": "packages/coui_web/pubspec.yaml"
+        }
+      ],
+      "packageCount": 232,
+      "own": 12,
+      "external": 220,
+      "configAllFieldsAndRawExact": true,
+      "graphExternal220AllFieldsExact": true,
+      "graphAllDependencySetsAndOtherFieldsExact": true,
+      "graphRawChanged": true,
+      "beforeConfigSHA": "74b1086a2c5816a84135b1587f467074fbb3afd87879548f8ab4f91c6c73e043",
+      "beforeGraphSHA": "d7f9ae49eac35742f9b76dba45bc9a662cf7bfc706c93025b9755222936f772b",
+      "afterConfigSHA": "74b1086a2c5816a84135b1587f467074fbb3afd87879548f8ab4f91c6c73e043",
+      "afterGraphSHA": "62e2f660818cde11191a43559063b2ca1fd6283a4ad090487b3c201d871032c1",
+      "lockSHA": "41866c70f556da2de00cf26ccd7997db6925bc36f9f33b1e9244d4333ea307b3",
+      "allPhysicalRootsVerified": true,
+      "historicalExecutionMetadataRelabelled": false
+    },
+    "method": "Declared workspace version labels only; source pubspec bodies/constraints unchanged beyond4version lines; no pub solve/get/download/cache copy",
+    "SDKUnversionedSentinels": [
+      {
+        "name": "flutter",
+        "declaredVersion": null,
+        "graphVersion": "0.0.0",
+        "classification": "Unversioned SDK pubspec vs pub graph sentinel distinguished; no fabricated equality"
+      },
+      {
+        "name": "flutter_driver",
+        "declaredVersion": null,
+        "graphVersion": "0.0.0",
+        "classification": "Unversioned SDK pubspec vs pub graph sentinel distinguished; no fabricated equality"
+      },
+      {
+        "name": "flutter_localizations",
+        "declaredVersion": null,
+        "graphVersion": "0.0.0",
+        "classification": "Unversioned SDK pubspec vs pub graph sentinel distinguished; no fabricated equality"
+      },
+      {
+        "name": "flutter_test",
+        "declaredVersion": null,
+        "graphVersion": "0.0.0",
+        "classification": "Unversioned SDK pubspec vs pub graph sentinel distinguished; no fabricated equality"
+      },
+      {
+        "name": "flutter_web_plugins",
+        "declaredVersion": null,
+        "graphVersion": "0.0.0",
+        "classification": "Unversioned SDK pubspec vs pub graph sentinel distinguished; no fabricated equality"
+      },
+      {
+        "name": "fuchsia_remote_debug_protocol",
+        "declaredVersion": null,
+        "graphVersion": "0.0.0",
+        "classification": "Unversioned SDK pubspec vs pub graph sentinel distinguished; no fabricated equality"
+      },
+      {
+        "name": "integration_test",
+        "declaredVersion": null,
+        "graphVersion": "0.0.0",
+        "classification": "Unversioned SDK pubspec vs pub graph sentinel distinguished; no fabricated equality"
+      },
+      {
+        "name": "sky_engine",
+        "declaredVersion": null,
+        "graphVersion": "0.0.0",
+        "classification": "Unversioned SDK pubspec vs pub graph sentinel distinguished; no fabricated equality"
+      }
+    ]
+  }
+}

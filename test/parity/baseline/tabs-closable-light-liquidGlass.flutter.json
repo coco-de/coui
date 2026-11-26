@@ -1,0 +1,49 @@
+{
+  "key": "tabs-closable-light-liquidGlass",
+  "byRole": {
+    "root": {
+      "key": "tabs-closable-light-liquidGlass",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 600,
+      "fontSizePx": 14.0,
+      "lineHeightPx": 19.6,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 31,
+        "g": 32,
+        "b": 33,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 244,
+        "g": 245,
+        "b": 246,
+        "a": 0.502
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        8.0,
+        8.0,
+        8.0,
+        8.0
+      ],
+      "paddingPx": [
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 353.21,
+      "heightPx": 77.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

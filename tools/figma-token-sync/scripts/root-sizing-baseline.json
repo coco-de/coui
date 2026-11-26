@@ -1,0 +1,4 @@
+{
+  "_comment": "#4805 — root sizing ratchet baseline. (컴포넌트|축) 쌍마다 하나: 어떤 변형 루트가 그 축에서 고정 박스로 읽힌다(또는 sizing 모드가 적히지 않아 고정으로 센다). 오직 줄어들 수만 있다 — 고정이 아니게 된 항목은 여기서 지워야 selftest 가 통과한다(stale 실패), 새 고정 박스는 net-new 로 즉시 실패. 의도적으로 고정인 축(Divider 두께 · Progress 트랙 높이 · Dot 지름)은 여기가 아니라 REGISTRY 엔트리의 `sizing: { width|height: 'fixed', why }` 로 뺀다. Epic #4804 성공 판정 = 이 목록이 [] 가 되는 것 (스토리 B #4806). 재생성: `npm run audit:sizing` 의 마지막 JSON 줄.",
+  "fixed": []
+}

@@ -1,0 +1,69 @@
+{
+  "key": "app-bar-prominent-dark-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "지도\n              \n                \n                  \n                    #co-button-8we5ma:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-8we5ma:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n                  \n                  목록으로",
+    "layout": {
+      "width": 800,
+      "height": 56,
+      "direction": "row",
+      "innerPaddingLeft": "16px",
+      "innerPaddingRight": "16px",
+      "children": [
+        {
+          "x": 4,
+          "y": 9,
+          "width": 708.15625,
+          "height": 34
+        },
+        {
+          "x": 716.15625,
+          "y": 6,
+          "width": 79.84375,
+          "height": 40
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "700",
+      "fontSize": "24px",
+      "lineHeight": "34px",
+      "letterSpacing": "-0.48px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(244, 245, 247)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "4px",
+      "paddingBottom": "0px",
+      "paddingLeft": "4px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 56
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "key": "basic-default-dark-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "사용자 프로필\n                \n                계정 설정을 관리해요\n                \n                alice@example.com 계정으로 로그인했어요",
+    "layout": {
+      "width": 294.65625,
+      "height": 67,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 20,
+          "height": 67
+        },
+        {
+          "x": 20,
+          "y": 0,
+          "width": 12,
+          "height": 67
+        },
+        {
+          "x": 32,
+          "y": 0,
+          "width": 230.65625,
+          "height": 67
+        },
+        {
+          "x": 262.65625,
+          "y": 0,
+          "width": 12,
+          "height": 67
+        },
+        {
+          "x": 274.65625,
+          "y": 0,
+          "width": 20,
+          "height": 67
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "15px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 294.65625,
+      "heightPx": 67
+    }
+  }
+}

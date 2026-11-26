@@ -1,0 +1,218 @@
+{
+  "issue": 6522,
+  "base": "b2a02cc9b52877783f6a43fcfd66a7bc0440f19b",
+  "actualCaptureBuildHead": "3fbb71620a25d0b4d0ae907287ed97e43af5493c",
+  "runtimeSourceUnchangedByTheseDocs": true,
+  "precommitCheckBinding": "26 new +98 existing checks/fatal/format ran at baseHEAD with identical owned source/test bytes later committed as3fbb; actual captures/build ran clean3fbb",
+  "phase": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr",
+  "productionPaths": [
+    "docs_core/lib/internal/preview/flutter_card_view.dart",
+    "docs_core/lib/internal/preview/flutter_stage.dart"
+  ],
+  "testPaths": [
+    "docs_core/test/shared/native_docs_card_tone_test.dart"
+  ],
+  "publicAPIConstructorConstChanges": 0,
+  "CoreAndLibraryDefaultChanges": 0,
+  "newDesignValues": 0,
+  "criteriaProbeNormalizerBaselineDependencyChanges": 0,
+  "packages": 232,
+  "workspaceRootsRebound": 12,
+  "externalRootTuplesExact": 220,
+  "originalNegativeCases": 4,
+  "newTestsPassed": 26,
+  "existingTestsPassed": 98,
+  "freshNativeKeys": 48,
+  "freshWebKeys": 48,
+  "toneKeys": 20,
+  "neutralDocsCardKeys": 22,
+  "ordinaryCardKeys": 6,
+  "NativePngChanges": 20,
+  "NativeChangedRootFieldCounts": {
+    "borderColor": 20
+  },
+  "NativeRootHeightChanges": 0,
+  "NativeBorderPropertyMismatchToMatch": 20,
+  "neutral22AndOrdinaryCard6NativePngAndFullRawByteExact": true,
+  "Web48PngAndRolesExact": true,
+  "WebRawChangedPaths": {
+    ".captureContext.docsScene.origins[0]": 42
+  },
+  "officialPixel": {
+    "actualExit": 1,
+    "pass": 6,
+    "fail": 42,
+    "infra": 0,
+    "skipped": 0
+  },
+  "officialProperty": {
+    "actualExit": 1,
+    "pass": 6,
+    "fail": 42,
+    "infra": 0,
+    "skipped": 0
+  },
+  "ownBaseline": {
+    "actualExit": 0,
+    "comparableKeys": 6,
+    "comparableImages": 12,
+    "passedImages": 12,
+    "failedImages": 0,
+    "docsKeysWithoutBaseline": 42,
+    "firstCaptureImages": 84,
+    "promotion": false
+  },
+  "docsBuild": {
+    "actualExit": 0,
+    "seconds": 303.06183545899995,
+    "routes": 361,
+    "htmlFiles": 363,
+    "cli": "0.24.0-beta.1",
+    "count": 1
+  },
+  "ownedHeadlessReload": {
+    "actualExit": 0,
+    "milliseconds": 213,
+    "librariesReloaded": 0,
+    "bothChangedLibrariesLoaded": true,
+    "frames": 2,
+    "stageStroke": 2,
+    "mediaInsets": [
+      1,
+      1,
+      1
+    ],
+    "limit": "Frozen source reassembly; not live edited-library replacement or physical-device proof"
+  },
+  "geometryControls": {
+    "strokeScale1": 2,
+    "strokeScale1_5": 3,
+    "hugScale1": [
+      88,
+      90
+    ],
+    "hugScale1_5": [
+      108,
+      111
+    ],
+    "controlledMinHeightsPreserved": [
+      140,
+      240
+    ],
+    "contentCenterMovesByNegativeHalfStroke": true,
+    "liveStateElementRenderFocusTransitions": 5
+  },
+  "preservedHOLD": [
+    "caption24H/20V and gap8",
+    "dark stage surfaceContainer role"
+  ],
+  "trackedProtectionBeforeTheseDocs": 22763,
+  "sourceDeltas": 0,
+  "rawArtifactHashes": 192,
+  "selectedOriginals": 8,
+  "remoteWritesByWorker": 0,
+  "refs": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/source-freeze.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/source-before.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/api-scope-proof.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/source-final.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/metadata-before.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/dependency-binding.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/target-source-reuse.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/global-descriptor-proof.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/original-negative/exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/original-negative/observations.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/candidate-final-lint/exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/candidate-final-lint/observations.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/existing-media-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/existing-docs-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/existing-card-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/fatal-final-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/format-final-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/capture-native-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/capture-web-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/capture-integrity.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/beforeAA8-comparison.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/tone20-effect.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/tone20-property-transition.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/report-exits.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/own-baseline-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/own-baseline-vrt.md"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/selected-evidence8.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/native-cli-first-attempt-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/native-cli-attempt2/native-cli-proof.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/docs-build-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/docs-metadata-after.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/docs-route-proof.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/docs-cleanup.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6522-docs-card-tone-20261119.9u0qb1nr/build-output-archive.json"
+    }
+  ]
+}

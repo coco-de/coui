@@ -1,0 +1,38 @@
+{
+  "key": "sidebar-collapsed-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "13px",
+      "lineHeight": "18.2px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(42, 43, 44)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(113, 114, 115)",
+      "borderRightColor": "rgb(113, 114, 115)",
+      "borderBottomColor": "rgb(113, 114, 115)",
+      "borderLeftColor": "rgb(113, 114, 115)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "16px",
+      "paddingRight": "12px",
+      "paddingBottom": "16px",
+      "paddingLeft": "12px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 64,
+      "heightPx": 400
+    }
+  }
+}

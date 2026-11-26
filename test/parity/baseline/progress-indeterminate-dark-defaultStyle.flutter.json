@@ -1,0 +1,40 @@
+{
+  "key": "progress-indeterminate-dark-defaultStyle",
+  "byRole": {
+    "root": {
+      "key": "progress-indeterminate-dark-defaultStyle",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSizePx": null,
+      "lineHeightPx": null,
+      "letterSpacingPx": null,
+      "color": null,
+      "backgroundColor": {
+        "r": 52,
+        "g": 53,
+        "b": 54,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        9999.0,
+        9999.0,
+        9999.0,
+        9999.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 800.0,
+      "heightPx": 6.0
+    }
+  },
+  "settled": true,
+  "capturePhase": "initial-frame",
+  "captureNotes": []
+}

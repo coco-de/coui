@@ -1,0 +1,50 @@
+# Timeline Examples
+
+This document contains example code for the timeline component.
+
+## Table of Contents
+
+- [Example 1: Basic Example](#example-1)
+
+## Example 1
+
+**Basic Example**
+
+```dart
+import 'package:coui_flutter/coui_flutter.dart';
+
+class TimelineExample1 extends StatelessWidget {
+  const TimelineExample1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Timeline(
+      data: [
+        TimelineData(
+          content: Text(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Odio euismod lacinia at quis risus sed vulputate odio ut. Quam viverra orci sagittis eu volutpat odio facilisis mauris.',
+          ),
+          time: Text('2022-01-01'),
+          title: Text('First event'),
+        ),
+        TimelineData(
+          content: Text(
+            'Aut eius excepturi ex recusandae eius est minima molestiae. Nam dolores iusto ad fugit reprehenderit hic dolorem quisquam et quia omnis non suscipit nihil sit libero distinctio. Ad dolorem tempora sit nostrum voluptatem qui tempora unde? Sit rerum magnam nam ipsam nesciunt aut rerum necessitatibus est quia esse non magni quae.',
+          ),
+          time: Text('2022-01-02'),
+          title: Text('Second event'),
+        ),
+        TimelineData(
+          content: Text(
+            'Sit culpa quas ex nulla animi qui deleniti minus rem placeat mollitia. Et enim doloremque et quia sequi ea dolores voluptatem ea rerum vitae. Aut itaque incidunt est aperiam vero sit explicabo fuga id optio quis et molestiae nulla ex quae quam. Ab eius dolores ab tempora dolorum eos beatae soluta At ullam placeat est incidunt cumque.',
+          ),
+          time: Text('2022-01-03'),
+          title: Text('Third event'),
+        ),
+      ],
+    );
+  }
+}
+
+```
+

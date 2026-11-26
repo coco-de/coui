@@ -1,0 +1,178 @@
+{
+  "_comment": [
+    "Shared vectors for how tall a Dock bar is.",
+    "Read by coui_core (the closed form of the sizing rule), coui_flutter (the rendered Dock) and a",
+    "real-Chrome probe of the Web markup, so a change on one platform fails the other.",
+    "Heights are logical px on Flutter and CSS px on the Web, at text scale 1 and a 16px root.",
+    "The rule: the bar is as tall as its item row asks, and never shorter than the minimum",
+    "CoreDockStyle.height states for its size. The row asks for the tallest item, plus the room the",
+    "bar keeps above and below it on both edges (CoreDockStyle.rowInsetFor: the larger of the",
+    "bar's padding side and the active plate's reach), plus the line around the bar on both edges.",
+    "Inputs: size (a CoreDockSize name); iconSize (the icon of every item, in px - no item has a",
+    "label, so an item is exactly as tall as its icon and no number here depends on a font);",
+    "padding ({top, bottom} in px), absent where the bar keeps its size's padding;",
+    "indicatorPadding ({top, bottom} in px), absent where the plate keeps its size's reach.",
+    "Expected: bar, the height of the bar's own box in px.",
+    "The first item is the active one: the room kept for the plate does not depend on which item is",
+    "selected, so the bar does not change height when the selection moves."
+  ],
+  "border": 1,
+  "tolerance": {
+    "flutter": 0.01,
+    "web": 0.5
+  },
+  "cases": [
+    {
+      "name": "xs: a 20px icon fits, the bar is the minimum",
+      "size": "xs",
+      "iconSize": 20,
+      "bar": 48
+    },
+    {
+      "name": "sm: a 22px icon fits, the bar is the minimum",
+      "size": "sm",
+      "iconSize": 22,
+      "bar": 56
+    },
+    {
+      "name": "md: a 24px icon fits, the bar is the minimum",
+      "size": "md",
+      "iconSize": 24,
+      "bar": 64
+    },
+    {
+      "name": "lg: a 28px icon fits, the bar is the minimum",
+      "size": "lg",
+      "iconSize": 28,
+      "bar": 72
+    },
+    {
+      "name": "xl: a 32px icon fits, the bar is the minimum",
+      "size": "xl",
+      "iconSize": 32,
+      "bar": 80
+    },
+    {
+      "name": "md: a 42px icon asks for exactly the minimum (42 + 20 + 2)",
+      "size": "md",
+      "iconSize": 42,
+      "bar": 64
+    },
+    {
+      "name": "md: a 43px icon asks for one px more (43 + 20 + 2)",
+      "size": "md",
+      "iconSize": 43,
+      "bar": 65
+    },
+    {
+      "name": "md: a 60px icon, the bar grows to 82",
+      "size": "md",
+      "iconSize": 60,
+      "bar": 82
+    },
+    {
+      "name": "xs: a 60px icon, the content sets the bar and not the size's own minimum (60 + 12 + 2)",
+      "size": "xs",
+      "iconSize": 60,
+      "bar": 74
+    },
+    {
+      "name": "xs: a 34px icon asks for exactly the minimum (34 + 12 + 2)",
+      "size": "xs",
+      "iconSize": 34,
+      "bar": 48
+    },
+    {
+      "name": "lg: a 50px icon asks for exactly the minimum (50 + 20 + 2)",
+      "size": "lg",
+      "iconSize": 50,
+      "bar": 72
+    },
+    {
+      "name": "lg: a 64px icon, the bar grows to 86",
+      "size": "lg",
+      "iconSize": 64,
+      "bar": 86
+    },
+    {
+      "name": "xl: a 70px icon, the bar grows to 92",
+      "size": "xl",
+      "iconSize": 70,
+      "bar": 92
+    },
+    {
+      "name": "md: a plate reaching 4 above and 12 below keeps the larger side clear on both (40 + 24 + 2)",
+      "size": "md",
+      "iconSize": 40,
+      "indicatorPadding": {
+        "top": 4,
+        "bottom": 12
+      },
+      "bar": 66
+    },
+    {
+      "name": "md: a plate reaching 12 above and 4 below asks the same - the larger side again",
+      "size": "md",
+      "iconSize": 40,
+      "indicatorPadding": {
+        "top": 12,
+        "bottom": 4
+      },
+      "bar": 66
+    },
+    {
+      "name": "md: a plate reaching 4, under the bar's padding of 10 - the padding is the room (43 + 20 + 2)",
+      "size": "md",
+      "iconSize": 43,
+      "indicatorPadding": {
+        "top": 4,
+        "bottom": 4
+      },
+      "bar": 65
+    },
+    {
+      "name": "md: a plate with no reach - the padding alone, a 60px icon (60 + 20 + 2)",
+      "size": "md",
+      "iconSize": 60,
+      "indicatorPadding": {
+        "top": 0,
+        "bottom": 0
+      },
+      "bar": 82
+    },
+    {
+      "name": "md: no padding above and below - the plate's reach of 5 is the room (60 + 10 + 2)",
+      "size": "md",
+      "iconSize": 60,
+      "padding": {
+        "top": 0,
+        "bottom": 0
+      },
+      "bar": 72
+    },
+    {
+      "name": "md: no padding, a 52px icon fits on the plate's room alone (52 + 10 + 2)",
+      "size": "md",
+      "iconSize": 52,
+      "padding": {
+        "top": 0,
+        "bottom": 0
+      },
+      "bar": 64
+    },
+    {
+      "name": "md: no padding and no reach - the line alone (70 + 2)",
+      "size": "md",
+      "iconSize": 70,
+      "padding": {
+        "top": 0,
+        "bottom": 0
+      },
+      "indicatorPadding": {
+        "top": 0,
+        "bottom": 0
+      },
+      "bar": 72
+    }
+  ]
+}

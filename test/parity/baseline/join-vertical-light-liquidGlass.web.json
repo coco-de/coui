@@ -1,0 +1,81 @@
+{
+  "key": "join-vertical-light-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-join-21:where(.co-join-rule-ssr-1s) > div > * { border-radius: var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-0) !important; min-width: 100%; }#co-join-21:where(.co-join-rule-ssr-1s) > div:first-of-type > * { border-radius: var(--coui-radius-10) var(--coui-radius-10) var(--coui-radius-0) var(--coui-radius-0) !important; }#co-join-21:where(.co-join-rule-ssr-1s) > div:last-of-type > * { border-radius: var(--coui-radius-0) var(--coui-radius-0) var(--coui-radius-10) var(--coui-radius-10) !important; }#co-join-21:where(.co-join-rule-ssr-1s) > div:focus-within { overflow: visible !important; position: relative; z-index: 1; }\n              \n              \n                \n                  \n                    #co-button-ssr-1t:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-1t:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                  \n                  A\n                \n              \n              \n                \n                  \n                    #co-button-ssr-1u:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-1u:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                  \n                  B\n                \n              \n              \n                \n                  \n                    #co-button-ssr-1v:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-1v:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                  \n                  C",
+    "layout": {
+      "width": 43.71875,
+      "height": 118,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 43.71875,
+          "height": 40
+        },
+        {
+          "x": 0,
+          "y": 39,
+          "width": 43.71875,
+          "height": 40
+        },
+        {
+          "x": 0,
+          "y": 78,
+          "width": 43.71875,
+          "height": 40
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 43.71875,
+      "heightPx": 118
+    }
+  }
+}

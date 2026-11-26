@@ -1,0 +1,8 @@
+node_modules/
+code.js
+*.log
+.selftest*.cjs
+reverse/.work/
+code.js.owner.json
+code.js.next
+code.js.next.owner.json

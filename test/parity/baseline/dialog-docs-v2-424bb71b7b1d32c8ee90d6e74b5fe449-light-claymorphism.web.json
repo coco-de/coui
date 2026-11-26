@@ -1,0 +1,333 @@
+{
+  "key": "dialog-docs-v2-424bb71b7b1d32c8ee90d6e74b5fe449-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Anatomy",
+      "attributes": {
+        "demo": "dialog/anatomy"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "dialog/anatomy",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/actions/cocodeui-macstudio-kentrosaurus/_work/coui/coui/docs_core/content/components/dialog.md:Anatomy[9]"
+      ],
+      "anatomyParts": [
+        "container@",
+        "leading@",
+        "[data-docs-part=title]@",
+        "trailing@",
+        "[data-docs-part=content]@left",
+        "[data-docs-part=actions]@left"
+      ],
+      "anatomyBody": [
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "Container",
+            "part": "container"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "패널. 배경은 ",
+                  "raw": false
+                },
+                {
+                  "tag": "code",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "text": "surfaceBright",
+                      "raw": false
+                    }
+                  ]
+                },
+                {
+                  "text": ", 테두리는 1px ",
+                  "raw": false
+                },
+                {
+                  "tag": "code",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "text": "outlineSubtle",
+                      "raw": false
+                    }
+                  ]
+                },
+                {
+                  "text": ", 모서리는 20(모달 역할), 그림자는 ",
+                  "raw": false
+                },
+                {
+                  "tag": "code",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "text": "xl",
+                      "raw": false
+                    }
+                  ]
+                },
+                {
+                  "text": " 단계입니다. 안쪽 여백은 위와 양옆 24, 아래 20입니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "leading",
+            "part": "leading"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "제목 앞의 아이콘 자리입니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "title",
+            "select": "[data-docs-part=title]"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "제목. 대화상자의 이름이 되어 스크린 리더가 열릴 때 읽습니다. 기본 글자는 ",
+                  "raw": false
+                },
+                {
+                  "tag": "code",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "text": "titleLarge",
+                      "raw": false
+                    }
+                  ]
+                },
+                {
+                  "text": "입니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "trailing",
+            "part": "trailing"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "제목 뒤의 자리. 닫기 버튼을 둡니다. 닫기 버튼은 저절로 생기지 않습니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "content",
+            "select": "[data-docs-part=content]",
+            "side": "left"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "본문. 기본 글자는 ",
+                  "raw": false
+                },
+                {
+                  "tag": "code",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "text": "bodyMedium",
+                      "raw": false
+                    }
+                  ]
+                },
+                {
+                  "text": ", 색은 ",
+                  "raw": false
+                },
+                {
+                  "tag": "code",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "text": "onSurfaceVariant",
+                      "raw": false
+                    }
+                  ]
+                },
+                {
+                  "text": "입니다. 패널보다 길면 본문만 스크롤됩니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        },
+        {
+          "tag": "AnatomyItem",
+          "attributes": {
+            "name": "actions",
+            "select": "[data-docs-part=actions]",
+            "side": "left"
+          },
+          "children": [
+            {
+              "tag": "p",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "아래 행동 줄. 넣은 순서대로 놓이고, 버튼의 종류는 넣는 ",
+                  "raw": false
+                },
+                {
+                  "tag": "code",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "text": "Button",
+                      "raw": false
+                    }
+                  ]
+                },
+                {
+                  "text": "이 정합니다.",
+                  "raw": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "text": "\n",
+          "raw": false
+        }
+      ]
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "변경 사항을 버릴까요?\n                          \n                          \n                            \n                              \n                            \n                          \n                        \n                        \n                        저장하지 않은 내용은 사라져요.\n                        \n                        \n                          \n                            \n                              #co-button-ssr-28:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-28:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                            \n                            취소\n                          \n                          버리기\n                        \n                      \n                    \n                  123456\n                  \n                    \n                      1Container\n                      \n                        \n                          패널. 배경은 surfaceBright, 테두리는 1px outlineSubtle, 모서리는 20(모달 역할), 그림자는 xl\n                           단계입니다. 안쪽 여백은 위와 양옆 24, 아래 20입니다.\n                        \n                      \n                    \n                    \n                      2leading\n                      제목 앞의 아이콘 자리입니다.\n                    \n                    \n                      3title\n                      제목. 대화상자의 이름이 되어 스크린 리더가 열릴 때 읽습니다. 기본 글자는 titleLarge입니다.\n                    \n                    \n                      4trailing\n                      제목 뒤의 자리. 닫기 버튼을 둡니다. 닫기 버튼은 저절로 생기지 않습니다.\n                    \n                    \n                      5content\n                      본문. 기본 글자는 bodyMedium, 색은 onSurfaceVariant입니다. 패널보다 길면 본문만 스크롤됩니다.\n                    \n                    \n                      6actions\n                      아래 행동 줄. 넣은 순서대로 놓이고, 버튼의 종류는 넣는 Button이 정합니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 646.5625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "15px",
+      "lineHeight": "22.5px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(244, 245, 246)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "24px",
+      "borderTopRightRadius": "24px",
+      "borderBottomRightRadius": "24px",
+      "borderBottomLeftRadius": "24px",
+      "paddingTop": "32px",
+      "paddingRight": "24px",
+      "paddingBottom": "32px",
+      "paddingLeft": "24px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 240
+    }
+  }
+}

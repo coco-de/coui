@@ -1,0 +1,251 @@
+{
+  "issue": 6614,
+  "runtimeSource": "2915cc026b58d666681b405afe5c3e0532f745c1",
+  "featureBase": "35786c4fed",
+  "originalNegativeSource": "84df6e1479b5824fdb94968165d91fec39359a9f",
+  "productAndTestSHA256": {
+    "packages/coui_web/lib/src/components/display/banner/banner_style.dart": "ad3d4af2f8c99536066602cba0abaab70a30190b438aa3ea600f0968d291c846",
+    "packages/coui_web/lib/src/components/overlay/alert/alert_style.dart": "c9ac1c73a6d2b1a5aff3de73641f798750cf4fb4d1e6010e00e81985b094184c",
+    "packages/coui_web/lib/src/components/overlay/toast/toast_style.dart": "3c38cf986ba433b4e41cb2830e37c1f59c1f56d55ac0eb50df6dda8016a7068a",
+    "tool/parity/test/web/surface_text_color_test.dart": "471d33d9b0688bce0800e4152d4cdcc1b35713cf1001d41deacbb09bcb8836e7"
+  },
+  "scope": "Only existing text-face fallback color composition; public APIs/Core/default values/widgets unchanged",
+  "tests": {
+    "originalSSR": {
+      "pass": 14,
+      "fail": 10,
+      "source": "84df original products; refined final24 fixture"
+    },
+    "candidateSame24": {
+      "pass": 24,
+      "fail": 0
+    },
+    "existingRelevantWeb": {
+      "pass": 59,
+      "fail": 0
+    },
+    "fatalTouched4": 0,
+    "formatChanged4": 0,
+    "EgoActualPublicCSS": {
+      "cases": 24,
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "space": 26,
+      "owner": "Root",
+      "rootAndAction24Preserved": true,
+      "default6AllObservedPropertiesPreserved": true
+    },
+    "testsExecutedBeforeCodeCommitThenReusedByExact4ByteClosure": true
+  },
+  "canonical": {
+    "actualALL": 170,
+    "actualDefault": 34,
+    "NativeFresh": {
+      "JSON": 34,
+      "PNG": 34,
+      "exit": 0
+    },
+    "WebFresh": {
+      "JSON": 34,
+      "PNG": 34,
+      "exit": 0,
+      "seconds": 23.761,
+      "backend": "Native Ego managed Chrome156; software rasterization not established"
+    },
+    "source": "2915cc026b58d666681b405afe5c3e0532f745c1",
+    "historicalComparisonSource": "566b1c55ae2a0ff6dfd5b73d787ef0fc5e2b475f",
+    "old566Subset136RawBytesExact": true,
+    "all68PNG_RGBAExact": true,
+    "all68JSONByRoleExact": true,
+    "historicalCaptureReuseForNewData": 0
+  },
+  "officialReports": {
+    "baselineSource": "35786c4fedce22e45ea6d14f6b85ae1d03999ebb",
+    "baselineInputBlobs": 136,
+    "baselineFromRealGitNotFreshControl": true,
+    "allowlistCriteriaNormalizerEdits": 0,
+    "results": {
+      "baseline": {
+        "exit": 1,
+        "seconds": 4.974640292,
+        "counts": {
+          "pass": 0,
+          "fail": 34,
+          "infra": 0,
+          "skipped": 0
+        }
+      },
+      "pixel": {
+        "exit": 1,
+        "seconds": 4.495812165999999,
+        "counts": {
+          "pass": 32,
+          "fail": 2,
+          "infra": 0,
+          "skipped": 0
+        }
+      },
+      "property": {
+        "exit": 1,
+        "seconds": 4.357912375,
+        "counts": {
+          "pass": 0,
+          "fail": 34,
+          "infra": 0,
+          "skipped": 0
+        }
+      }
+    },
+    "actualBeforeParitySubsetVerdictsAndRolesExact": true,
+    "actualBeforePropertyDiffPayloadExact": true,
+    "actualBeforeRegressionCommandRerun": false,
+    "remainingPixelFailKeys": [
+      "banner-narrow-light-defaultStyle",
+      "banner-narrow-dark-defaultStyle"
+    ],
+    "existingBaselineFail34AndPropertyFail34Preserved": true
+  },
+  "docs": {
+    "runtimeSource": "2915cc026b58d666681b405afe5c3e0532f745c1",
+    "exit": 0,
+    "buildSeconds": 100.039527334,
+    "routes": 361,
+    "jasprHTML": 363,
+    "allHTML": 365,
+    "outputHashManifestRows": 5044,
+    "representativeHTMLRetained": 3,
+    "wholeGeneratedBuildRetained": false,
+    "trackedSourceCount": 25145,
+    "allTrackedBytesModesLinksExact": true,
+    "metadata232NamesVersionsRootsFieldsEdgesSame": true,
+    "graphAndLockBytesExact": true,
+    "configRawRepresentationChanged": true,
+    "actualInternalFlutterAutomaticPubPreflight": true,
+    "workerDirectProjectPubCommands": 0,
+    "CLI": "Pinned isolated jaspr_cli0.24.0-beta.1/81 identities retained"
+  },
+  "reload": {
+    "scope": "Owned SSR Dart VM selectiveclone; no browserclient/Nativeapp reload claim",
+    "HTTPBeforeAfter": 200,
+    "publicControls": 3,
+    "loadedStyleLibraries": 3,
+    "loadedLibraryCount": 3,
+    "shapeChanges": [],
+    "semanticControlAttributesExact": true,
+    "wholeHTMLBytesExact": false,
+    "wholeHTMLDelta": "only co-scrollview-interceptor-0 -> -1; actual diff preserved",
+    "sourceWTUnmodified": true,
+    "ownedServerClosed": true,
+    "ownedPortsClosed": true
+  },
+  "limits": [
+    "Explicit nested text-color contract recovery is separate from remaining default parity failures.",
+    "Original setup failure and incorrect70vs75 opacity expectation are preserved as superseded fixture stages, not product failures.",
+    "Actual CSS observations are public SSR paint checks; no hydrated interaction suite claim.",
+    "Native/SSRVM and Ego156 transport scopes are distinct; no Chrome150 renderer equivalence or colour-cause claim."
+  ],
+  "evidence": [
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/source-freeze.json",
+      "SHA256": "569c4e9a737b077d58b7651fc1a8cc410616be5418804d755a763cc827b53bfe"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/original-final/exit.json",
+      "SHA256": "3cccbe8ee0a04c5259ebbb470c6eb79c3aa5e95d0489d4ff2d1051e76ccd9332"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/candidate-final/exit.json",
+      "SHA256": "c51f013b6e5217e3b2521b9c2090dfbde2b11552e4b55d47febd9a3505e51c10"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/candidate-final/existing-exit.json",
+      "SHA256": "7eab24bdcb098d34d58a9fe632c618a496393888c49b657f401cdfa7bb2c2dd8"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/candidate-final/fatal-exit.json",
+      "SHA256": "e07bfb92fe3d488d7afccd7f60232e27adbebdf0c60a8005b57c7861a2d308d3"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/Root/original-actual24.json",
+      "SHA256": "03e1047a09ccf07c328a719a732bb29908f1594eba76aa9cad81133a1a37512f"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/Root/candidate-actual24.json",
+      "SHA256": "64e76f79a96c0e2a65438628be9d9723fa7fb9efc1a5b7f5b3f5f8442d1d5e92"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/Root/actual24-comparison.json",
+      "SHA256": "6a60511200f0960e08b31eba682480049dee033023457180b5d2df8523bea973"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/docs-final/exit.json",
+      "SHA256": "dd21b7edc3db9e9d85155b957030ac7b03873903054f7624e3a25153c29fd09d"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/docs-final/output-index.json",
+      "SHA256": "b074415a96ed66949556303b851a20c36f65eef64d2ad7b8376de969f3d729db"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/docs-final/metadata-proof.json",
+      "SHA256": "294bc2e2ddbb6cec361bb385ea293f257d1889c5015b79de38ecbe4b620816e7"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/docs-final/automatic-pub-addendum.json",
+      "SHA256": "12185079a9b3b594d1a59a29d4514247a6283baba56bd9b79b161d7b3a271686"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/native-final/domain.json",
+      "SHA256": "5a4364a45d63dd8c64fe5f1f58cf63ca3bbfd63cd3d74339e04e1c4253c00014"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/native-final/capture-integrity.json",
+      "SHA256": "756e8eccd5fdd3e05d1056194140456f62ae0b352bc747a0915516fc276b8427"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/canonical-web-final/capture-exit.json",
+      "SHA256": "3e4f9694cc0fda7ec9741f801912a7a083bd26a453e3980df79f993cf8cade69"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/reports-final/inputs.json",
+      "SHA256": "a917929f81745c5cb2810e0a4c0c2460873f5f37d27c254626429d6d4f46fe0a"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/reports-final/summary.json",
+      "SHA256": "a024b0e883005fc3fc5acdcbe8ed8bd802ff9683ea2658a0eff7e6f6a4726ce2"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/reports-final/baseline-report.json",
+      "SHA256": "950b3bdbdba63ecf9f00fad932c0abe2661aa11ba7d454b88ce9d3993fe5618e"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/reports-final/pixel-report.json",
+      "SHA256": "152a9d59782531e12286fd688d48b7065b23c2dcb76e753186bb0b9287c40e9d"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/reports-final/property-report.json",
+      "SHA256": "88c75b94ea921f74fbc6805c8d96b5bc64f29f02e82784f966c8f3a785ff3c67"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/ssr-reload/ssr-reload-proof.json",
+      "SHA256": "76b4f9c38b5be17907c38a649fa78938a380b5793e2f77a3132039f781f49d28"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/ssr-reload/vm-responses.json",
+      "SHA256": "baffcf51fb93a887bbc95a3dd3296a689b1854df3a72bf5c9aa2ca47ed3b6e55"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/ssr-reload/whole-html-delta.json",
+      "SHA256": "a91fbf1909c2def8e31a7b3a021d39fc6921122a85e9321da2eef1fdf6b9325c"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/api-scope-final.json",
+      "SHA256": "d34dbf84212f9078256a3d85110a50142af86c3f9746aaf49d58f62787c453e5"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-parallel-residual-jjrdof5a/surfaces/evidence/generated-harness-reclaim-addendum.json",
+      "SHA256": "f612c521900f214b6071afbaef7fc71e6d8c0be31255987793e211aa7f92c969"
+    }
+  ]
+}

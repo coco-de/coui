@@ -1,0 +1,38 @@
+{
+  "key": "chip-removable-light-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "13px",
+      "lineHeight": "18.2px",
+      "letterSpacing": "-0.13px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgb(208, 209, 210)",
+      "borderRightColor": "rgb(208, 209, 210)",
+      "borderBottomColor": "rgb(208, 209, 210)",
+      "borderLeftColor": "rgb(208, 209, 210)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "20px",
+      "borderTopRightRadius": "20px",
+      "borderBottomRightRadius": "20px",
+      "borderBottomLeftRadius": "20px",
+      "paddingTop": "2px",
+      "paddingRight": "12px",
+      "paddingBottom": "2px",
+      "paddingLeft": "12px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "opacity": "1",
+      "widthPx": 95.46875,
+      "heightPx": 32
+    }
+  }
+}

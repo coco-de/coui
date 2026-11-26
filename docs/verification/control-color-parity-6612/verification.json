@@ -1,0 +1,337 @@
+{
+  "issue": 6612,
+  "originalSource": "84df6e1479b5824fdb94968165d91fec39359a9f",
+  "functionalSource": "84df6e plus exact frozen three files subsequently committed 69a73d6c02d775cf8cad0bd3b680fb6b2ecac5a5",
+  "runtimeSource": "ae3039c85729bfba8bc0306fe84ad6d46edebdb5",
+  "ownCodeCommit": "69a73d6c02d775cf8cad0bd3b680fb6b2ecac5a5",
+  "ownPathsSHA256": {
+    "packages/coui_web/lib/src/components/form/checkbox/checkbox_style.dart": "48c91be91746703d082f64d2f135fe3b0c39841f286cfb88ccbb90454de66d95",
+    "packages/coui_web/lib/src/components/display/chip/chip_style.dart": "cd01482c5be701537ee99169c70cdea4388619b5abf070170cc87d677fdc2015",
+    "tool/parity/test/web/controls_style_scope_test.dart": "355862c317e3b50e416b614782dd9096da17e20f1aa8f0d7be86cfeb26f4452a"
+  },
+  "ownProductScope": "Web Checkbox private CSS-rule identity plus Chip close-button foreground fallback; no own Core/Native/API/Resolved/default/helper/probe/criterion changes",
+  "tests": {
+    "immutableOriginal13Before": {
+      "pass": 6,
+      "fail": 7
+    },
+    "sameOriginal13Candidate": {
+      "pass": 13,
+      "fail": 0
+    },
+    "permanentRepo13": {
+      "pass": 13,
+      "fail": 0
+    },
+    "existingRelated6Files": {
+      "pass": 123,
+      "parts": [
+        72,
+        51
+      ],
+      "setupFailureAndBoundedRecoveryRetained": true
+    },
+    "logicalOverlapNotSummed": true,
+    "fatalTouched3Exit": 0,
+    "formatExit": 0
+  },
+  "actualBrowser": {
+    "owner": "Root managed Ego26/p1 Chrome156",
+    "originalAndCandidateThemeObservations": 52,
+    "haloInitialUnsettled8Preserved": true,
+    "correctedSettledHalo8": true,
+    "ringAndBandOriginalBothPoint8AfterPoint2Point8": true,
+    "haloOriginalBothPoint06AfterPoint01Point06": true,
+    "existingIntegerPercentSerializationUnchanged": true,
+    "ChipAuthoredForegroundUsedColorRestored8ThemeCases": true,
+    "controls12PairsExact": true,
+    "darkChipOpaquePrimaryControlNondiscriminating": true,
+    "normalIconButtonInheritancePolicyChanged": false
+  },
+  "canonical": {
+    "source": "ae3039c85729bfba8bc0306fe84ad6d46edebdb5",
+    "actualALL": 110,
+    "actualDefault": 22,
+    "NativeFreshJSON": 22,
+    "NativeFreshPNG": 22,
+    "NativeNoRoot": 0,
+    "NativeHiddenRunnerHooksExcluded": 3,
+    "WebFreshJSON": 22,
+    "WebFreshPNG": 22,
+    "oldCaptureReuse": 0,
+    "old566ComparedFiles": 88,
+    "old566ByteExactFiles": 82,
+    "old566All44PNGsBytesAndRGBAExact": true,
+    "old566All44JSONByRoleExact": true,
+    "changedSixFiles": "Web Checkbox captureContext/text only; private co-checkbox-sl-* scope identifier changed. Raw bytes remain changed.",
+    "old566PixelAndPropertyKeyRoleVerdictsExact": true,
+    "old566CompletePropertyDiff22RolePayloadExact": true
+  },
+  "controlledDefaultSSR": {
+    "scope": "Same current registry/clock/public inputs; only two styles replaced by their84df preimages in external coui_web package overlay. Not whole old-source execution.",
+    "effectivePackageRootsRebound": 1,
+    "remaining231Exact": true,
+    "entries": 22,
+    "wholeBytesExact": 16,
+    "wholeChip14Exact": true,
+    "disabledCheckbox2Exact": true,
+    "otherCheckbox6OnlyPrivateScopeNameChanged": true,
+    "probeNormalizerChanges": 0
+  },
+  "scopedReports": {
+    "source": "ae3039c85729bfba8bc0306fe84ad6d46edebdb5",
+    "baselineSource": "35786c4fedce22e45ea6d14f6b85ae1d03999ebb",
+    "genuineGitBaselineBlobs": 88,
+    "allowlistUnchanged": true,
+    "actualResults": {
+      "baseline": {
+        "exit": 1,
+        "counts": {
+          "pass": 0,
+          "fail": 22,
+          "infra": 0,
+          "skipped": 0
+        },
+        "seconds": 4.531458709
+      },
+      "pixel": {
+        "exit": 1,
+        "counts": {
+          "pass": 8,
+          "fail": 14,
+          "infra": 0,
+          "skipped": 0
+        },
+        "seconds": 4.527261458
+      },
+      "property": {
+        "exit": 1,
+        "counts": {
+          "pass": 8,
+          "fail": 14,
+          "infra": 0,
+          "skipped": 0
+        },
+        "seconds": 4.3907071250000005
+      }
+    },
+    "actualBeforeRegressionCommandRerun": false,
+    "defaultFailureReductionClaim": false,
+    "criteriaAllowlistPromotionChanges": 0
+  },
+  "documentationBuild": {
+    "source": "ae3039c85729bfba8bc0306fe84ad6d46edebdb5",
+    "exit": 0,
+    "seconds": 96.13805720799999,
+    "actualRoutes": 361,
+    "JasprHTML": 363,
+    "HTMLIncludingFlutter": 365,
+    "outputHashedFiles": 5044,
+    "representativeHTML": 3,
+    "allTrackedExact": 25145,
+    "actual232AllFieldsRootsGraphLockExact": true,
+    "rawConfigURISpellingChanges": [
+      "coui_workspace",
+      "coui_widgetbook",
+      "docs_app",
+      "docs_core",
+      "docs_site",
+      "coui",
+      "coui_core",
+      "coui_flutter",
+      "coui_i10n",
+      "coui_lints",
+      "coui_mcp",
+      "coui_web"
+    ],
+    "automaticRootExamplePubPreflightObserved": true,
+    "observedPubPreflightLines": [
+      "[FLUTTER] Resolving dependencies in `/Users/minhyeok/orca/workspaces/coui/controls-parity-20261123`...",
+      "[FLUTTER] Got dependencies in `/Users/minhyeok/orca/workspaces/coui/controls-parity-20261123`!",
+      "[FLUTTER] Got dependencies in `../packages/coui_flutter/example`."
+    ],
+    "directWorkerProjectPub": 0,
+    "totalPubZeroClaim": false,
+    "portClosed": true,
+    "wholeBuildReclaimed": true
+  },
+  "ownedSSRReload": {
+    "source": "ae3039c85729bfba8bc0306fe84ad6d46edebdb5",
+    "loadedTargetStyleLibraries": 2,
+    "reloadSourcesSuccess": true,
+    "HTTPBefore": 200,
+    "HTTPAfter": 200,
+    "publicOwnersEachResponse": 9,
+    "strictWholeAttributesComparison": false,
+    "originalWrapperActualExit": 1,
+    "difference": "Three auto-generated child Button SSR ids advance0..2 to3..5 across requests. Original strict proof and exit1 are preserved; readback verifies these are the only control-attribute differences.",
+    "publicRootAndButtonClassesStylesExact": true,
+    "CheckboxRulesExact": true,
+    "allRuleDifferencesOnlyThoseGeneratedButtonIDs": true,
+    "sourceHashesExact": true,
+    "portsClosed": true,
+    "pidAndJobboxClosed": true,
+    "scope": "Owned server-side Dart VM reload, not browser-client/Native-app hot reload. No rerun used to hide original strict exit."
+  },
+  "preservedSetupNotes": [
+    "First Chip fill fixture queried descendants although owner itself is .co-chip-body; separate companion fixes only root selector ownership. The first7 result is not counted as seven product failures.",
+    "Companion launcher first ownership-path error occurred before any tests.",
+    "Existing stroke suite shadow omitted a runtime-relative JSON; bounded recovery51 passes after exact input/CWD binding. Other72 passes remain distinct.",
+    "First repo fixture fatal5 infos were mechanically fixed; product2 remained identical.",
+    "Initial halo readings preceded CSS transition completion; Root retained those8 and separately observed correct settled8.",
+    "No compiler bootstrap spilled into source WT; all source suites execute in owned exact shadows.",
+    "Generated52 browser HTML files were hash/ownership-checked after Root EOF and reclaimed; source bodies and actual observations retained."
+  ],
+  "limits": [
+    "Private Checkbox scope hash strings intentionally change, including enabled defaults; default paint, token values and actual criteria are unchanged.",
+    "No fix attribution to historical default pixel failures; current default matrices remain the same as actual full566 selected22.",
+    "Raw custom Native/Web RGBA equivalence and whole-library parity are not claimed.",
+    "Button6395/currentColor, timing, typography AA, probe/padding coercion and unrelated holds are excluded.",
+    "Tests repeat overlapping public scenarios; execution totals are not independent scenario totals.",
+    "Historical full566 reference is its actual first795+manual43 dataset. It is not a fresh before run.",
+    "Later normal main integration must preserve executed runtimeSource and frozen3 hashes; separate integration receipt records the delta."
+  ],
+  "artifactRoot": "weever-parallel-residual-jjrdof5a/controls",
+  "refs": [
+    {
+      "label": "original-public-contract",
+      "artifactRelativePath": "evidence/original-contract.json",
+      "sha256": "ec215ac3ded5c2e7385a267100a33e41979c4da7c90f9a7809479a3e7b8283b6"
+    },
+    {
+      "label": "immutable-original13",
+      "artifactRelativePath": "evidence/original-confirmed/controls_scope_color_original_test.dart",
+      "sha256": "fb1aecfde78c35403a0b1f691b5dc38c218b3e809019ae7a37f0b4b16353455c"
+    },
+    {
+      "label": "original13-results",
+      "artifactRelativePath": "evidence/original-confirmed/original-summary.json",
+      "sha256": "f51bb684effda2858b0755e6fedee30784c1046b4cd5c354e006082e39179a44"
+    },
+    {
+      "label": "same-original13-after",
+      "artifactRelativePath": "evidence/candidate/original13-after-summary.json",
+      "sha256": "5bdfe1ac15d3a49845abc8d28634ee92388f373c0ce07cc67d4c872555a6a2de"
+    },
+    {
+      "label": "final-functional-static",
+      "artifactRelativePath": "evidence/candidate-final/final-summary.json",
+      "sha256": "3c9c8e3cf5f24db75439a50fe20c34e1aecff2fc78d982b30d9ff669b6f88890"
+    },
+    {
+      "label": "functional-shadow-binding",
+      "artifactRelativePath": "evidence/candidate-final/shadow-binding.json",
+      "sha256": "561d0731efee6ec6deab784a5ac04f39ad151880b118b19f276317e569e9544f"
+    },
+    {
+      "label": "source-API",
+      "artifactRelativePath": "evidence/api-source-proof.json",
+      "sha256": "210a7ff5a1ce11f16b116f03063aadff33c3a38fba3032700288a29cd4103458"
+    },
+    {
+      "label": "source-integration",
+      "artifactRelativePath": "evidence/main-integration.json",
+      "sha256": "fafa01720bc1cb889f0055dc2f436cbdfa84624f0efc22325730e1f4aa6d69f7"
+    },
+    {
+      "label": "actual-Ego52",
+      "artifactRelativePath": "evidence/Root/actual52.json",
+      "sha256": "ba222dd2def33b03900951aae9b921bd522edb13ebb52fea599c3738ed6f3748"
+    },
+    {
+      "label": "actual-halo-settled8",
+      "artifactRelativePath": "evidence/Root/halo-settled8.json",
+      "sha256": "a7bb7578087b0d3053d4b10540e0b13781798541902b8977648a4b93240151dc"
+    },
+    {
+      "label": "actual-browser-strict-readback",
+      "artifactRelativePath": "evidence/Root/actual-controls-comparison.json",
+      "sha256": "f4458f00d3d0ade1471cbc790d9faa015c8af1e349499fdaf3f00844fae69412"
+    },
+    {
+      "label": "fresh-Native22",
+      "artifactRelativePath": "evidence/native/handoff.json",
+      "sha256": "5483db3f67958a38a2c5851d398a49db8be3096fe194b1d09b6d5036b77c10ae"
+    },
+    {
+      "label": "fresh-Web22-exit",
+      "artifactRelativePath": "evidence/canonical-web-final/capture-exit.json",
+      "sha256": "7fb253973fb0345ccc38d829717e7e1c2e11365162173d9d581a76bafbdaacf3"
+    },
+    {
+      "label": "fresh-Web22-inputs",
+      "artifactRelativePath": "evidence/canonical-web-final/input-binding.json",
+      "sha256": "e61c8902b1ab8f75a82ec446908ddd817887ed575ffd0db9c9765e39444d96b5"
+    },
+    {
+      "label": "default-SSR22",
+      "artifactRelativePath": "evidence/owned-ssr-reload/default-ssr-comparison.json",
+      "sha256": "260ba93e32c409ccf244f69c1545d50f2f94bedf7efb52f11166aa9996ae641f"
+    },
+    {
+      "label": "default-SSR-overlay-binding",
+      "artifactRelativePath": "evidence/owned-ssr-reload/default-ssr-binding.json",
+      "sha256": "6193c304806f05a504b9d4f1424b1dd9898580caa7fcd6dc553ca81e88869561"
+    },
+    {
+      "label": "actual-scoped-reports",
+      "artifactRelativePath": "evidence/reports-final/summary.json",
+      "sha256": "9626eb3601e4ec7a05856ca1065c4172f9655a35273026aa22c0b4bac3c3361b"
+    },
+    {
+      "label": "real-Git-baseline-inputs",
+      "artifactRelativePath": "evidence/reports-final/inputs.json",
+      "sha256": "06b3ecce16aae106f5113f14b6cc817d7c71d8af50a04a62bc9c8a569bc56274"
+    },
+    {
+      "label": "raw-six-JSON-field-deltas",
+      "artifactRelativePath": "evidence/reports-final/raw-json-differences.json",
+      "sha256": "70fc15fb2fe0e758f1ff7bd5bc94a270a9eeee91e4da244f225087e01b3e0374"
+    },
+    {
+      "label": "private-scope-only-classification",
+      "artifactRelativePath": "evidence/reports-final/private-scope-difference-classification.json",
+      "sha256": "385ffb53be486c3b8ea1a0e34181cc7d53eaecd769c8fa0cd851f13a45315098"
+    },
+    {
+      "label": "docs-final",
+      "artifactRelativePath": "evidence/docs/docs-final/final-proof.json",
+      "sha256": "a9fb5a479760120d45d28d7fe64f6cb4723970d0494c74da55eebe6854ddb0b7"
+    },
+    {
+      "label": "docs-exit",
+      "artifactRelativePath": "evidence/docs/docs-final/exit.json",
+      "sha256": "cd4f7893ba2db6683e2d2b4d44349269e250544e97c5be4a61e43948d6402239"
+    },
+    {
+      "label": "docs-output-index",
+      "artifactRelativePath": "evidence/docs/docs-final/output-index.json",
+      "sha256": "4a9dc07e7457d08a7c6e219fd54873b4b231eb4f503fa15a3b87dcf310d67928"
+    },
+    {
+      "label": "SSR-VM-reload-original-strict",
+      "artifactRelativePath": "evidence/owned-ssr-reload/ssr-reload-proof.json",
+      "sha256": "996e24d3ce257f8e924eb47a9d116a24de4466fff174b8606857e1578de8a311"
+    },
+    {
+      "label": "SSR-VM-reload-public-control-readback",
+      "artifactRelativePath": "evidence/owned-ssr-reload/readback-addendum.json",
+      "sha256": "acfb0f241ed699ca00abdb40458e723bc84c92843d114dcffb6381ec95ea76ff"
+    },
+    {
+      "label": "SSR-VM-responses",
+      "artifactRelativePath": "evidence/owned-ssr-reload/vm-responses.json",
+      "sha256": "991f8f326ff38c97a4e87721e394205267d9d73d360858349167c57ff847c821"
+    },
+    {
+      "label": "SSR-jobbox-EOF",
+      "artifactRelativePath": "evidence/owned-ssr-reload/jobbox-exit.json",
+      "sha256": "9dd43ed1fbfa103ea0ed0dfc68729544dd26e2d6bb0fe7b90cee98010b289617"
+    },
+    {
+      "label": "owned52HTML-cleanup",
+      "artifactRelativePath": "evidence/candidate-final/browser-scratch-cleanup.json",
+      "sha256": "50d88c4618f7539629e10b4cc056af1a02b22cfcd0a38b6f504c77411521c55f"
+    }
+  ]
+}

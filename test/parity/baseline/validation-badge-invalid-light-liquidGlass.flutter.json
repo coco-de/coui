@@ -1,0 +1,49 @@
+{
+  "key": "validation-badge-invalid-light-liquidGlass",
+  "byRole": {
+    "root": {
+      "key": "validation-badge-invalid-light-liquidGlass",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 500,
+      "fontSizePx": 12.0,
+      "lineHeightPx": 16.8,
+      "letterSpacingPx": -0.12,
+      "color": {
+        "r": 184,
+        "g": 28,
+        "b": 30,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 255,
+        "g": 241,
+        "b": 238,
+        "a": 0.502
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ],
+      "paddingPx": [
+        0.0,
+        8.0,
+        0.0,
+        8.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 75.81,
+      "heightPx": 24.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

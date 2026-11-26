@@ -1,0 +1,2210 @@
+{
+  "productFiles": 10,
+  "initialFailure": {
+    "before": [
+      {
+        "component": "text-field",
+        "rendered": false,
+        "error": "Bad state: SSR 렌더가 500 를 돌려줌 — 컴포넌트 build 중 예외가 났을 가능성이 높다."
+      },
+      {
+        "component": "text-area",
+        "rendered": false,
+        "error": "Bad state: SSR 렌더가 500 를 돌려줌 — 컴포넌트 build 중 예외가 났을 가능성이 높다."
+      },
+      {
+        "component": "radio-group",
+        "rendered": false,
+        "error": "Bad state: SSR 렌더가 500 를 돌려줌 — 컴포넌트 build 중 예외가 났을 가능성이 높다."
+      },
+      {
+        "component": "input-otp",
+        "rendered": false,
+        "error": "Bad state: SSR 렌더가 500 를 돌려줌 — 컴포넌트 build 중 예외가 났을 가능성이 높다."
+      },
+      {
+        "component": "color-picker",
+        "rendered": false,
+        "error": "Bad state: SSR 렌더가 500 를 돌려줌 — 컴포넌트 build 중 예외가 났을 가능성이 높다."
+      },
+      {
+        "component": "sortable",
+        "rendered": false,
+        "error": "Bad state: SSR 렌더가 500 를 돌려줌 — 컴포넌트 build 중 예외가 났을 가능성이 높다."
+      },
+      {
+        "component": "tabs",
+        "rendered": false,
+        "error": "Bad state: SSR 렌더가 500 를 돌려줌 — 컴포넌트 build 중 예외가 났을 가능성이 높다."
+      },
+      {
+        "component": "tree",
+        "rendered": false,
+        "error": "Bad state: SSR 렌더가 500 를 돌려줌 — 컴포넌트 build 중 예외가 났을 가능성이 높다."
+      },
+      {
+        "component": "pagination",
+        "rendered": false,
+        "error": "Bad state: SSR 렌더가 500 를 돌려줌 — 컴포넌트 build 중 예외가 났을 가능성이 높다."
+      },
+      {
+        "component": "multi-answer-card",
+        "rendered": false,
+        "error": "Bad state: SSR 렌더가 500 를 돌려줌 — 컴포넌트 build 중 예외가 났을 가능성이 높다."
+      }
+    ],
+    "after": [
+      {
+        "component": "text-field",
+        "rendered": true,
+        "bytes": 7177
+      },
+      {
+        "component": "text-area",
+        "rendered": true,
+        "bytes": 7129
+      },
+      {
+        "component": "radio-group",
+        "rendered": true,
+        "bytes": 6967
+      },
+      {
+        "component": "input-otp",
+        "rendered": true,
+        "bytes": 12707
+      },
+      {
+        "component": "color-picker",
+        "rendered": true,
+        "bytes": 5976
+      },
+      {
+        "component": "sortable",
+        "rendered": true,
+        "bytes": 6224
+      },
+      {
+        "component": "tabs",
+        "rendered": true,
+        "bytes": 6360
+      },
+      {
+        "component": "tree",
+        "rendered": true,
+        "bytes": 7341
+      },
+      {
+        "component": "pagination",
+        "rendered": true,
+        "bytes": 8417
+      },
+      {
+        "component": "multi-answer-card",
+        "rendered": true,
+        "bytes": 9763
+      }
+    ],
+    "logs": [
+      "before.log",
+      "after-combined.log"
+    ]
+  },
+  "apiInitial2b": {
+    "graphs": [
+      {
+        "package": "coui_core",
+        "beforeFiles": 930,
+        "afterFiles": 930,
+        "same": true
+      },
+      {
+        "package": "coui_flutter",
+        "beforeFiles": 1350,
+        "afterFiles": 1350,
+        "same": true
+      },
+      {
+        "package": "coui_web",
+        "beforeFiles": 1295,
+        "afterFiles": 1295,
+        "same": true
+      }
+    ],
+    "rows": [
+      {
+        "path": "packages/coui_web/lib/src/components/form/color_picker/color_picker_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": false,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/input_otp/input_otp_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/multi_answer_card/multi_answer_card_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/radio_group/radio_group_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/sortable/sortable_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/text_area/text_area_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/text_field/text_field_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/layout/tree/tree_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/pagination/pagination_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      }
+    ],
+    "errors": [],
+    "methodology": "Function bodies elided; public top-level declarations in supported export closure compared. Existing bodies change while supported public declaration shapes are compared. Private helpers and unnamed library directive cleanup are reported separately."
+  },
+  "apiLatestIntegration": {
+    "graphs": [
+      {
+        "package": "coui_core",
+        "beforeFiles": 930,
+        "afterFiles": 930,
+        "same": true
+      },
+      {
+        "package": "coui_flutter",
+        "beforeFiles": 1350,
+        "afterFiles": 1350,
+        "same": true
+      },
+      {
+        "package": "coui_web",
+        "beforeFiles": 1295,
+        "afterFiles": 1295,
+        "same": true
+      }
+    ],
+    "rows": [
+      {
+        "path": "packages/coui_web/lib/src/components/form/color_picker/color_picker_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": false,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/input_otp/input_otp_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/multi_answer_card/multi_answer_card_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/radio_group/radio_group_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/sortable/sortable_style.dart",
+        "supportedExportGraph": true,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/text_area/text_area_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/text_field/text_field_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/layout/tree/tree_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/pagination/pagination_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart",
+        "supportedExportGraph": false,
+        "publicTopLevelShapesIdentical": true,
+        "allDeclarationsIdentical": true,
+        "directivesIdentical": true,
+        "parseErrorsBefore": [],
+        "parseErrorsAfter": []
+      }
+    ],
+    "errors": [],
+    "methodology": "Function bodies elided; public top-level declarations in supported export closure compared. Existing bodies change while supported public declaration shapes are compared. Private helpers and unnamed library directive cleanup are reported separately."
+  },
+  "initial2bMatrix": {
+    "base": "2b1a43f3e0331244ac7bd126b4e6974a2c8b6b79",
+    "baseFreshArtifacts": "/tmp/weever-main-matrix-20261118.zsojl31g",
+    "afterDefault": {
+      "base": "2b1a43f3e0331244ac7bd126b4e6974a2c8b6b79",
+      "afterHead": "f738c01c61d54d864b8e0969ac54bf3e872b3d65",
+      "defaultKeys": 40,
+      "PNGbytesSame": 40,
+      "PNGdifferent": [],
+      "rawJSONbyteSame": 36,
+      "rawJSONdifferent": 4,
+      "rawJSONdiffPaths": {
+        ".captureContext.text": 4
+      },
+      "noNormalizationOrGateFieldRemoval": true,
+      "before": "/tmp/weever-main-matrix-20261118.zsojl31g/captured",
+      "after": "/tmp/weever-duration-contracts-20261118.jsuh0jdq/combined-after"
+    },
+    "composite": {
+      "baseFresh": "/tmp/weever-main-matrix-20261118.zsojl31g",
+      "baseHead": "2b1a43f3e0331244ac7bd126b4e6974a2c8b6b79",
+      "newWebKeys": 40,
+      "unchangedReusedWebKeys": 712,
+      "reusedNativeKeys": 752,
+      "notClaimedAllAfterFresh": true,
+      "freshAfterFiles": 80,
+      "freshAfterPNGs": 40,
+      "allFreshPNGsSame": true,
+      "compositePNGCount": 1528,
+      "compositeJSONCount": 1504,
+      "source": "f738c01c61 + version-only143b79binding",
+      "fieldRemovalNormalizationBaselinePromotion": false
+    },
+    "verdictsAndOwnBaseline": {
+      "pixel": {
+        "before": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "after": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "changedEntries": [],
+        "reportExitBefore": 1,
+        "reportExitAfter": 1
+      },
+      "property": {
+        "before": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "after": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "changedEntries": [],
+        "reportExitBefore": 1,
+        "reportExitAfter": 1
+      },
+      "ownBaseline": {
+        "before": {
+          "pass": 34,
+          "fail": 6,
+          "infra": 0,
+          "skipped": 0
+        },
+        "after": {
+          "pass": 34,
+          "fail": 6,
+          "infra": 0,
+          "skipped": 0
+        },
+        "entriesEqual": true,
+        "failKeys": [
+          "color-picker-default-light-defaultStyle",
+          "color-picker-default-dark-defaultStyle",
+          "radio-group-default-light-defaultStyle",
+          "radio-group-default-dark-defaultStyle",
+          "tabs-line-light-defaultStyle",
+          "tabs-line-dark-defaultStyle"
+        ],
+        "exitBefore": 1,
+        "exitAfter": 1
+      }
+    }
+  },
+  "latestMatrix": {
+    "baseFreshArtifacts": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-main-navigation-matrix-20261118.ynn4kxcq",
+    "source": {
+      "frozenAllTracked": 22447,
+      "delta": [],
+      "status": "",
+      "locks": {
+        "pubspec.lock": "3503684b485aa82c20d5aae09870e92c44a1b5d579173114470266f34187be82",
+        "packages/coui_flutter/example/pubspec.lock": "cfadca57165fdb2650ff19a0c17945afaf23713491dbcb50d1e85ff0cdf429f5"
+      },
+      "lockDelta": [],
+      "head": "12ac99ce65d639f9a0b9eae75e663b0a3dc52f22",
+      "tree": "d7f8f3f1a7d956f839f03bd7a120ba166a36c7e4"
+    },
+    "captureIntegrity": {
+      "freshKeysEachPlatform": 752,
+      "png": 1528,
+      "json": 1504,
+      "originalRawFiles": 3032,
+      "missing": [],
+      "captureExits": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "retry": 0
+    },
+    "upstreamVerdicts": {
+      "pixel": {
+        "before": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "after": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "changedEntries": []
+      },
+      "property": {
+        "before": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "after": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "changedEntries": []
+      }
+    },
+    "upstreamRawDelta": {
+      "pngDifferent": [
+        {
+          "name": "navigation-bar-item-default-dark-defaultStyle.web.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            240,
+            166
+          ],
+          "after": [
+            240,
+            166
+          ]
+        },
+        {
+          "name": "navigation-bar-rail-light-defaultStyle.web.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            73,
+            296
+          ],
+          "after": [
+            73,
+            296
+          ]
+        },
+        {
+          "name": "navigation-bar-sidebar-light-defaultStyle.flutter.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            187,
+            309
+          ],
+          "after": [
+            187,
+            309
+          ]
+        },
+        {
+          "name": "navigation-bar-item-default-light-defaultStyle.flutter.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            240,
+            166
+          ],
+          "after": [
+            240,
+            166
+          ]
+        },
+        {
+          "name": "navigation-bar-sidebar-light-defaultStyle.web.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            188,
+            309
+          ],
+          "after": [
+            188,
+            309
+          ]
+        },
+        {
+          "name": "navigation-bar-item-default-dark-defaultStyle.flutter.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            240,
+            166
+          ],
+          "after": [
+            240,
+            166
+          ]
+        },
+        {
+          "name": "navigation-bar-default-light-defaultStyle.web.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            800,
+            80
+          ],
+          "after": [
+            800,
+            80
+          ]
+        },
+        {
+          "name": "navigation-bar-rail-dark-defaultStyle.flutter.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            73,
+            296
+          ],
+          "after": [
+            73,
+            296
+          ]
+        },
+        {
+          "name": "navigation-bar-default-dark-defaultStyle.flutter.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            800,
+            80
+          ],
+          "after": [
+            800,
+            80
+          ]
+        },
+        {
+          "name": "navigation-bar-default-light-defaultStyle.flutter.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            800,
+            80
+          ],
+          "after": [
+            800,
+            80
+          ]
+        },
+        {
+          "name": "navigation-bar-item-default-light-defaultStyle.web.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            240,
+            166
+          ],
+          "after": [
+            240,
+            166
+          ]
+        },
+        {
+          "name": "navigation-bar-rail-dark-defaultStyle.web.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            73,
+            296
+          ],
+          "after": [
+            73,
+            296
+          ]
+        },
+        {
+          "name": "navigation-bar-sidebar-dark-defaultStyle.web.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            188,
+            309
+          ],
+          "after": [
+            188,
+            309
+          ]
+        },
+        {
+          "name": "navigation-bar-sidebar-dark-defaultStyle.flutter.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            187,
+            309
+          ],
+          "after": [
+            187,
+            309
+          ]
+        },
+        {
+          "name": "navigation-bar-rail-light-defaultStyle.flutter.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            73,
+            296
+          ],
+          "after": [
+            73,
+            296
+          ]
+        },
+        {
+          "name": "navigation-bar-default-dark-defaultStyle.web.png",
+          "sameDecodedRGBA": false,
+          "before": [
+            800,
+            80
+          ],
+          "after": [
+            800,
+            80
+          ]
+        }
+      ],
+      "pngBytesSame": 1512,
+      "rawJsonBytesSame": 1352,
+      "rawJsonDifferent": [
+        "sidebar-collapsed-light-defaultStyle.web.json",
+        "file-input-default-dark-defaultStyle.web.json",
+        "filter-disabled-dark-defaultStyle.web.json",
+        "calendar-none-dark-defaultStyle.web.json",
+        "calendar-none-light-defaultStyle.web.json",
+        "drawer-default-dark-defaultStyle.web.json",
+        "option-item-default-light-defaultStyle.web.json",
+        "calendar-range-light-defaultStyle.web.json",
+        "filter-default-dark-defaultStyle.web.json",
+        "button-ghost-dark-defaultStyle.web.json",
+        "dot-indicator-default-dark-defaultStyle.web.json",
+        "app-bar-text-light-defaultStyle.web.json",
+        "bottom-action-bar-default-light-defaultStyle.web.json",
+        "tooltip-default-dark-defaultStyle.web.json",
+        "swiper-sheet-light-defaultStyle.web.json",
+        "tabs-closable-light-defaultStyle.web.json",
+        "bottom-sheet-close-dark-defaultStyle.web.json",
+        "button-tonal-light-defaultStyle.web.json",
+        "bottom-action-bar-horizontal-light-defaultStyle.web.json",
+        "app-bar-centered-dark-defaultStyle.web.json",
+        "button-outline-dark-defaultStyle.web.json",
+        "chip-input-default-light-defaultStyle.web.json",
+        "calendar-markers-light-defaultStyle.web.json",
+        "banner-info-light-defaultStyle.web.json",
+        "swipe-actions-scope-light-defaultStyle.web.json",
+        "filter-disabled-light-defaultStyle.web.json",
+        "carousel-banner-dark-defaultStyle.web.json",
+        "button-ghost-light-defaultStyle.web.json",
+        "option-item-multiple-dark-defaultStyle.web.json",
+        "indexed-switcher-default-dark-defaultStyle.web.json",
+        "calendar-range-dark-defaultStyle.web.json",
+        "bottom-action-bar-default-dark-defaultStyle.web.json",
+        "bottom-action-bar-scaffold-dark-defaultStyle.web.json",
+        "chip-removable-dark-defaultStyle.web.json",
+        "rich-editor-max-length-light-defaultStyle.web.json",
+        "join-vertical-light-defaultStyle.web.json",
+        "tab-pane-editor-strip-light-defaultStyle.web.json",
+        "sidebar-default-dark-defaultStyle.web.json",
+        "sidebar-two-pane-dark-defaultStyle.web.json",
+        "file-input-default-light-defaultStyle.web.json",
+        "dot-indicator-default-light-defaultStyle.web.json",
+        "calendar-single-dark-defaultStyle.web.json",
+        "bottom-action-bar-scaffold-light-defaultStyle.web.json",
+        "navigation-bar-sidebar-dark-defaultStyle.web.json",
+        "toolbar-group-default-dark-defaultStyle.web.json",
+        "banner-destructive-dark-defaultStyle.web.json",
+        "dot-indicator-vertical-dark-defaultStyle.web.json",
+        "menu-item-description-dark-defaultStyle.web.json",
+        "switcher-default-dark-defaultStyle.web.json",
+        "navigation-bar-rail-dark-defaultStyle.web.json",
+        "swiper-sheet-dark-defaultStyle.web.json",
+        "command-search-default-light-defaultStyle.web.json",
+        "navigation-bar-item-drawer-light-defaultStyle.web.json",
+        "swipe-actions-scope-dark-defaultStyle.web.json",
+        "navigation-bar-rail-light-defaultStyle.flutter.json",
+        "dropdown-menu-default-dark-defaultStyle.web.json",
+        "rich-editor-default-light-defaultStyle.web.json",
+        "banner-success-light-defaultStyle.web.json",
+        "navigation-bar-sidebar-light-defaultStyle.web.json",
+        "dropdown-menu-default-light-defaultStyle.web.json",
+        "join-default-dark-defaultStyle.web.json",
+        "page-header-default-dark-defaultStyle.web.json",
+        "app-bar-prominent-light-defaultStyle.web.json",
+        "banner-default-light-defaultStyle.web.json",
+        "navigation-bar-default-dark-defaultStyle.web.json",
+        "app-bar-text-dark-defaultStyle.web.json",
+        "option-item-default-dark-defaultStyle.web.json",
+        "app-bar-prominent-dark-defaultStyle.web.json",
+        "bottom-sheet-default-dark-defaultStyle.web.json",
+        "button-outline-light-defaultStyle.web.json",
+        "chip-removable-light-defaultStyle.web.json",
+        "calendar-multi-dark-defaultStyle.web.json",
+        "menu-item-critical-dark-defaultStyle.web.json",
+        "option-list-default-dark-defaultStyle.web.json",
+        "navigation-bar-rail-dark-defaultStyle.flutter.json",
+        "button-card-light-defaultStyle.web.json",
+        "app-bar-centered-light-defaultStyle.web.json",
+        "tooltip-default-light-defaultStyle.web.json",
+        "carousel-banner-light-defaultStyle.web.json",
+        "calendar-markers-dark-defaultStyle.web.json",
+        "banner-default-dark-defaultStyle.web.json",
+        "navigation-bar-item-drawer-dark-defaultStyle.web.json",
+        "progress-indeterminate-light-defaultStyle.web.json",
+        "banner-solid-dark-defaultStyle.web.json",
+        "menu-item-critical-light-defaultStyle.web.json",
+        "banner-destructive-light-defaultStyle.web.json",
+        "button-card-dark-defaultStyle.web.json",
+        "chip-input-default-dark-defaultStyle.web.json",
+        "carousel-default-dark-defaultStyle.web.json",
+        "responsive-grid-default-dark-defaultStyle.web.json",
+        "command-search-default-dark-defaultStyle.web.json",
+        "carousel-default-light-defaultStyle.web.json",
+        "option-item-multiple-light-defaultStyle.web.json",
+        "dot-indicator-vertical-light-defaultStyle.web.json",
+        "tab-pane-editor-strip-dark-defaultStyle.web.json",
+        "button-tonal-dark-defaultStyle.web.json",
+        "menu-item-description-light-defaultStyle.web.json",
+        "swiper-default-light-defaultStyle.web.json",
+        "rich-editor-no-toolbar-dark-defaultStyle.web.json",
+        "rich-editor-max-length-dark-defaultStyle.web.json",
+        "sidebar-collapsed-dark-defaultStyle.web.json",
+        "empty-state-failure-dark-defaultStyle.web.json",
+        "progress-indeterminate-dark-defaultStyle.web.json",
+        "navigation-bar-default-dark-defaultStyle.flutter.json",
+        "button-secondary-light-defaultStyle.web.json",
+        "navigation-bar-rail-light-defaultStyle.web.json",
+        "menu-item-default-dark-defaultStyle.web.json",
+        "bottom-sheet-close-light-defaultStyle.web.json",
+        "banner-warning-light-defaultStyle.web.json",
+        "swiper-default-dark-defaultStyle.web.json",
+        "calendar-multi-light-defaultStyle.web.json",
+        "option-list-default-light-defaultStyle.web.json",
+        "page-header-default-light-defaultStyle.web.json",
+        "join-default-light-defaultStyle.web.json",
+        "menu-default-light-defaultStyle.web.json",
+        "rich-editor-no-toolbar-light-defaultStyle.web.json",
+        "navigation-bar-item-default-light-defaultStyle.web.json",
+        "join-vertical-dark-defaultStyle.web.json",
+        "bottom-sheet-default-light-defaultStyle.web.json",
+        "switcher-default-light-defaultStyle.web.json",
+        "filter-default-light-defaultStyle.web.json",
+        "rich-editor-image-light-defaultStyle.web.json",
+        "drawer-default-light-defaultStyle.web.json",
+        "toolbar-group-vertical-light-defaultStyle.web.json",
+        "navigation-bar-item-default-dark-defaultStyle.flutter.json",
+        "swipe-actions-default-dark-defaultStyle.web.json",
+        "banner-success-dark-defaultStyle.web.json",
+        "menu-item-default-light-defaultStyle.web.json",
+        "banner-info-dark-defaultStyle.web.json",
+        "navigation-bar-item-default-dark-defaultStyle.web.json",
+        "responsive-grid-default-light-defaultStyle.web.json",
+        "navigation-bar-default-light-defaultStyle.web.json",
+        "banner-warning-dark-defaultStyle.web.json",
+        "calendar-single-light-defaultStyle.web.json",
+        "rich-editor-default-dark-defaultStyle.web.json",
+        "bottom-action-bar-horizontal-dark-defaultStyle.web.json",
+        "empty-state-failure-light-defaultStyle.web.json",
+        "sidebar-default-light-defaultStyle.web.json",
+        "button-secondary-dark-defaultStyle.web.json",
+        "tabs-closable-dark-defaultStyle.web.json",
+        "menu-default-dark-defaultStyle.web.json",
+        "popover-default-light-defaultStyle.web.json",
+        "navigation-bar-item-default-light-defaultStyle.flutter.json",
+        "popover-default-dark-defaultStyle.web.json",
+        "sidebar-two-pane-light-defaultStyle.web.json",
+        "toolbar-group-vertical-dark-defaultStyle.web.json",
+        "banner-solid-light-defaultStyle.web.json",
+        "indexed-switcher-default-light-defaultStyle.web.json",
+        "toolbar-group-default-light-defaultStyle.web.json",
+        "navigation-bar-default-light-defaultStyle.flutter.json",
+        "rich-editor-image-dark-defaultStyle.web.json",
+        "swipe-actions-default-light-defaultStyle.web.json"
+      ],
+      "noNormalization": true
+    },
+    "afterCapture": {
+      "baseHead": "12ac99ce65d639f9a0b9eae75e663b0a3dc52f22",
+      "baseTree": "d7f8f3f1a7d956f839f03bd7a120ba166a36c7e4",
+      "afterHead": "1746c4a321895dc3d770d78fe2277f4c54c963c0",
+      "afterTree": "77c0ce3b8bc8d265cb3bb50284a07454d757b5ce",
+      "defaultKeys": 40,
+      "pngByteSame": 40,
+      "rawJSONByteSame": 36,
+      "rawJSONDifferent": [
+        "input-otp-lg-light-defaultStyle",
+        "input-otp-lg-dark-defaultStyle",
+        "tabs-closable-light-defaultStyle",
+        "tabs-closable-dark-defaultStyle"
+      ],
+      "composite": {
+        "freshWeb": 40,
+        "reusedUnchangedWeb": 712,
+        "reusedNative": 752,
+        "PNG": 1528,
+        "JSON": 1504
+      },
+      "noBaselineOrFieldMutation": true,
+      "rawJSONDiffPaths": {
+        "input-otp-lg-light-defaultStyle": [
+          ".captureContext.text"
+        ],
+        "input-otp-lg-dark-defaultStyle": [
+          ".captureContext.text"
+        ],
+        "tabs-closable-light-defaultStyle": [
+          ".captureContext.text"
+        ],
+        "tabs-closable-dark-defaultStyle": [
+          ".captureContext.text"
+        ]
+      }
+    },
+    "afterVerdicts": {
+      "pixel": {
+        "before": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "after": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "newOrResolvedEntries": [],
+        "exitBefore": 1,
+        "exitAfter": 1
+      },
+      "property": {
+        "before": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "after": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "newOrResolvedEntries": [],
+        "exitBefore": 1,
+        "exitAfter": 1
+      }
+    }
+  },
+  "runtime": {
+    "inputCasesPerTheme": 56,
+    "inputFacesPerPhasePerTheme": 158,
+    "inputPhases": [
+      "normal",
+      "reduced",
+      "remapped",
+      "focused"
+    ],
+    "inputRecentSelectedUnselected": 2,
+    "inputHotReload": {
+      "ownedEntry": "/tmp/weever-duration-contracts-20261118.jsuh0jdq/input-ssr-server.dart",
+      "vmService": "http://127.0.0.1:61027/",
+      "httpPort": 61035,
+      "reloadSources": {
+        "type": "ReloadReport",
+        "success": true,
+        "details": {
+          "finalLibraryCount": 2221,
+          "receivedLibraryCount": 0,
+          "receivedLibrariesBytes": 0,
+          "receivedClassesCount": 0,
+          "receivedProceduresCount": 0,
+          "savedLibraryCount": 2221,
+          "loadedLibraryCount": 0
+        }
+      },
+      "beforeHTTP": 200,
+      "afterHTTP": 200,
+      "before123ms": 12,
+      "after123ms": 12,
+      "closeHTTP": 200,
+      "otherAppsTouched": false
+    },
+    "navigation": {
+      "sourceBase": "2b1a43f3e0331244ac7bd126b4e6974a2c8b6b79",
+      "productionFiles": 5,
+      "newTestFiles": 1,
+      "beforeSsr": {
+        "passed": 0,
+        "failed": 5,
+        "status": 500
+      },
+      "afterNewTests": {
+        "passed": 6,
+        "ssr": 5,
+        "chrome": 1
+      },
+      "existingUnitTests": {
+        "passed": 84,
+        "files": 6
+      },
+      "strictAnalyze": "No issues found!",
+      "format": "Formatted 6 files (0 changed)",
+      "defaultCapture": {
+        "registeredKeys": 10,
+        "pngByteExact": 10,
+        "jsonByteExact": 10,
+        "allBytesEqual": true
+      },
+      "hotReload": {
+        "success": true,
+        "affectedFaces": 46,
+        "beforeAfterExact": true,
+        "durationMs": 123,
+        "runtimeErrors": [],
+        "ownedVmAndBrowserClosed": true
+      },
+      "liveO2": {
+        "themes": [
+          "light",
+          "dark"
+        ],
+        "tabsClickKeyboardDisabled": "observed",
+        "treeArrowExpand": "observed",
+        "paginationPageChange": "observed",
+        "multiAnswerIdleHoverSelectedDisabled": "observed",
+        "sortablePointerReorder": "observed, source transition suppressed0s / sibling123ms / drop123ms restored",
+        "initialSortableKeyboard": "not certified; identical missing commit on token150 before and after; do not claim this scenario passed"
+      },
+      "preserved": {
+        "publicApi": true,
+        "coreDefaults": true,
+        "nativeSources": true,
+        "publicHelperOutputs": true,
+        "resolvedFields": true,
+        "productNodeTree": true,
+        "thresholdsBaselinesAllowlist": true
+      },
+      "renderAttrs": "duration class tokens intentionally removed, equivalent existing CSS token variables or exact durations emitted inline; no DOM/attribute byte-equality claim",
+      "allOwnedRuntimesClosed": true,
+      "commit": "c2da9252966fe7d9cc086473d5bd821a19290aab",
+      "worktreeClean": true
+    },
+    "reloadScope": "Owned SSR Dart VM no-op reloads. No source edits between calls; not Flutter app reload or live replacement proof."
+  },
+  "limits": [
+    "Whole default pixels remain180 failures; official pixel/property reports exit1.",
+    "After whole report is an explicit composite; not all-after-fresh.",
+    "Raw JSON contains scoped captureContext.text differences, preserved unnormalized.",
+    "Bare Sortable keyboard fixture did not commit before or after; pointer reorder independently passed.",
+    "No live Figma/designer approval, deployment or full manual CI claim.",
+    "Upstream NavigationBar design/default/API/baseline changes are not attributed to the duration patch.",
+    "Historical docs blocker6389 is resolved by merged6396; integrated405/359/140/40 validation is separately recorded.",
+    "Normal global CSS aimed directly at an internal carrier may lose to an explicit CoreStyle duration; public root css/classes forwarding remains, arbitrary internal override precedence is not certified unchanged."
+  ],
+  "artifacts": {
+    "root": "/tmp/weever-duration-contracts-20261118.jsuh0jdq",
+    "navigation": "/tmp/weever-6383-navigation-duration-20261118.cy0t5aey",
+    "foldScope": "/tmp/weever-6385-foldscope-20261118.ki7rbpsl"
+  },
+  "batchIssues": [
+    6383,
+    6386
+  ],
+  "colorPickerBatch": {
+    "worker": "2ef03b8590f1dae0052f981c184d0bba914413df",
+    "rootIntegration": "891f1582214ad8610093530460e9c4c2e72bf9c5",
+    "rootTree": "32185a4d62e42be2816881bb933cafb62a9a099d",
+    "source": {
+      "base": "9f78e5cb9f70c171027198ee757131a282d830e4",
+      "head": "891f1582214ad8610093530460e9c4c2e72bf9c5",
+      "tree": "32185a4d62e42be2816881bb933cafb62a9a099d",
+      "paths": [
+        "docs/verification/parity-web-duration-contracts-2026-11-18.json",
+        "docs/verification/parity-web-duration-contracts-2026-11-18.md",
+        "packages/coui_web/lib/src/components/form/color_picker/color_picker_style.dart",
+        "packages/coui_web/lib/src/components/form/input_otp/input_otp_style.dart",
+        "packages/coui_web/lib/src/components/form/multi_answer_card/multi_answer_card_style.dart",
+        "packages/coui_web/lib/src/components/form/radio_group/radio_group_style.dart",
+        "packages/coui_web/lib/src/components/form/sortable/sortable_style.dart",
+        "packages/coui_web/lib/src/components/form/text_area/text_area_style.dart",
+        "packages/coui_web/lib/src/components/form/text_field/text_field_style.dart",
+        "packages/coui_web/lib/src/components/layout/tree/tree_style.dart",
+        "packages/coui_web/lib/src/components/navigation/pagination/pagination_style.dart",
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart",
+        "packages/coui_web/test/components/form/color_picker_style_test.dart",
+        "packages/coui_web/test/components/form/input_otp_test.dart",
+        "packages/coui_web/test/components/form/radio_group_test.dart",
+        "tool/parity/test/web/color_picker_style_test.dart",
+        "tool/parity/test/web/input_duration_contracts_test.dart",
+        "tool/parity/test/web/navigation_duration_contracts_test.dart"
+      ],
+      "sha256": {
+        "packages/coui_web/lib/src/components/form/color_picker/color_picker_style.dart": "3042e0239cc68fd02e2d608ab2e11a1ccc8a7cb4b8a75c7f8b97a8263ad0e19b",
+        "packages/coui_web/lib/src/components/form/input_otp/input_otp_style.dart": "edca257d4a6413ec2bf5fa96dedac86654ae3968c3551fcbe8574ded57045ab8",
+        "packages/coui_web/lib/src/components/form/multi_answer_card/multi_answer_card_style.dart": "124dfcf3c7c12d2b70269c9a7a7d18285470158916df4022f3e7758034d9ecf1",
+        "packages/coui_web/lib/src/components/form/radio_group/radio_group_style.dart": "75f02803636a8840a3f393588ba67b4d91c800e45c9716bc829952056ad4c2eb",
+        "packages/coui_web/lib/src/components/form/sortable/sortable_style.dart": "e4f6fac04d7f9d0679beb712cdfdb91660812f3dbdf3d013e6c0d1361a8915b1",
+        "packages/coui_web/lib/src/components/form/text_area/text_area_style.dart": "2be17b5730180f826db4a9c3882e387d7186e5d2a2bb5b59a4036a59ba06eab7",
+        "packages/coui_web/lib/src/components/form/text_field/text_field_style.dart": "37f06fc1ce06a8a973c7c247c1050294c79de7d9b5f23a360b10840c40cb67fb",
+        "packages/coui_web/lib/src/components/layout/tree/tree_style.dart": "e8b79be76a0ea7f490055d46218fa23c79b940cae7dd72dbc541f9275190fe4b",
+        "packages/coui_web/lib/src/components/navigation/pagination/pagination_style.dart": "c0c818f3e7d15218ebfdf9d28acc1a78e5a7c74244ed086a80666fe7b578f02e",
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart": "18afb2135a1bad31ec0eac92f1df0632086d588c6ba77b2c8bde24ae8552b197",
+        "packages/coui_web/test/components/form/color_picker_style_test.dart": "4953c0a91a092de3243a622968a66dd64cbb75c5393a0a395beb607f6dec54da",
+        "packages/coui_web/test/components/form/input_otp_test.dart": "de4482297b920578440180638d9577d208a36e26cfb389d21e8f504cc05581b5",
+        "packages/coui_web/test/components/form/radio_group_test.dart": "6fdc186eddb3f4aae5d3582814478944951cb8b602eaac644ec0320f3c4638f0",
+        "tool/parity/test/web/color_picker_style_test.dart": "49d46a6ef236cb9053854992b1ffde1ba7c9a73af94be83bbc0e88959db3f309",
+        "tool/parity/test/web/input_duration_contracts_test.dart": "cf14a841566d2a1d623c9b88ed307e7f2fc015c44f20ef12c24792f10d7b2ec7",
+        "tool/parity/test/web/navigation_duration_contracts_test.dart": "385f98194f9f3e8520160fb25d105087befe4bc5224aa67ae4ba2297381606c0"
+      }
+    },
+    "tests": {
+      "passed": 343,
+      "changedDart": 16,
+      "strict": [
+        {
+          "name": "analyze",
+          "exit": 0
+        },
+        {
+          "name": "format",
+          "exit": 0
+        },
+        {
+          "name": "api",
+          "exit": 0
+        }
+      ],
+      "guards": [
+        {
+          "name": "tokens",
+          "exit": 0
+        },
+        {
+          "name": "contracts",
+          "exit": 0
+        },
+        {
+          "name": "chrome-passthrough",
+          "exit": 0
+        }
+      ]
+    },
+    "api": {
+      "graphs": [
+        {
+          "package": "coui_core",
+          "beforeFiles": 930,
+          "afterFiles": 930,
+          "same": true
+        },
+        {
+          "package": "coui_flutter",
+          "beforeFiles": 1350,
+          "afterFiles": 1350,
+          "same": true
+        },
+        {
+          "package": "coui_web",
+          "beforeFiles": 1295,
+          "afterFiles": 1295,
+          "same": true
+        }
+      ],
+      "rows": [
+        {
+          "path": "packages/coui_web/lib/src/components/form/color_picker/color_picker_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": false,
+          "directivesIdentical": false,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/input_otp/input_otp_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/multi_answer_card/multi_answer_card_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/radio_group/radio_group_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/sortable/sortable_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/text_area/text_area_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/text_field/text_field_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/layout/tree/tree_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/navigation/pagination/pagination_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        }
+      ],
+      "errors": [],
+      "methodology": "Function bodies elided; public top-level declarations in supported export closure compared. Existing bodies change while supported public declaration shapes are compared. Private helpers and unnamed library directive cleanup are reported separately."
+    },
+    "capture": {
+      "baseHead": "9f78e5cb9f70c171027198ee757131a282d830e4",
+      "sameBaseTree": "d7f8f3f1a7d956f839f03bd7a120ba166a36c7e4",
+      "afterHead": "891f1582214ad8610093530460e9c4c2e72bf9c5",
+      "freshWebKeys": 40,
+      "pngByteSame": 40,
+      "rawJSONByteSame": 36,
+      "rawJSONDifferent": [
+        "input-otp-lg-light-defaultStyle",
+        "input-otp-lg-dark-defaultStyle",
+        "tabs-closable-light-defaultStyle",
+        "tabs-closable-dark-defaultStyle"
+      ],
+      "composite": {
+        "freshWeb": 40,
+        "reusedWeb": 712,
+        "reusedNative": 752,
+        "png": 1528,
+        "json": 1504
+      },
+      "normalizationOrBaselinePromotion": false
+    },
+    "matrixVerdicts": {
+      "pixel": {
+        "before": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "after": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "changedKeyRoles": [],
+        "exitBefore": 1,
+        "exitAfter": 1
+      },
+      "property": {
+        "before": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "after": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "changedKeyRoles": [],
+        "exitBefore": 1,
+        "exitAfter": 1
+      }
+    },
+    "workerValidation": {
+      "base": "143b79ba76f7235657b27dbcc30758afc15c22a4",
+      "productFiles": 1,
+      "existingTestFiles": 1,
+      "newTestFiles": 1,
+      "originalSsrAndO2": {
+        "casesEach": 96,
+        "matchedEach": 56,
+        "disabledFailuresEach": 40,
+        "enabledFailuresEach": 0
+      },
+      "candidateSsrAndO2": {
+        "casesEach": 96,
+        "matchedNativeReferenceEach": 96,
+        "failuresEach": 0,
+        "runtimeErrors": 0
+      },
+      "native": {
+        "actualReferenceCases": 96,
+        "expectedMatches": 96,
+        "unchangedSources": {
+          "packages/coui_flutter/lib/src/components/form/color_picker/color_picker_style.dart": true,
+          "packages/coui_flutter/lib/src/components/form/color_picker/color_picker.dart": true,
+          "packages/coui_core/lib/src/component/contracts/color_picker/color_picker_style.dart": true
+        },
+        "reusedReference": true
+      },
+      "permanentChrome": {
+        "negative": "expected18 actual115",
+        "positiveTests": 1,
+        "caseStateChecks": 480,
+        "themes": 2,
+        "covers": [
+          "normal/empty",
+          "token/rawopaque/rawalpha",
+          "enabledraw+disabledtoken collision",
+          "theme/instance precedence",
+          "native disabled flip/restore",
+          "tokenvariable remap",
+          "multiple simultaneous instances",
+          "size/opacity"
+        ]
+      },
+      "existingUnitTests": 9,
+      "api": {
+        "publicDeclarationsCompared": 4,
+        "same": true,
+        "newPublicFieldsArgs": 0,
+        "newPrivateConstants": 3
+      },
+      "dom": {
+        "actualParsedNestedTreesSame": 192,
+        "rawAttributesIntentionallyChanged": true,
+        "newProductElements": 0
+      },
+      "defaultCapture": {
+        "registeredKeys": 2,
+        "variants": [
+          "default"
+        ],
+        "themes": [
+          "light",
+          "dark"
+        ],
+        "surfaceStyle": "defaultStyle",
+        "pngBytesSame": 2,
+        "rawJsonBytesSame": 2
+      },
+      "liveO2": {
+        "twoPickers": true,
+        "siblingInputNodeValueSelectionFocusPreserved": true,
+        "disabledClickNoPopover": true,
+        "disabledEmptySvgEdge": true,
+        "reEnabledRestoresOwnEdge": true,
+        "recentCount": 2,
+        "recentHoverOwnRawBorderAndRing": true,
+        "recentClickDraftBackground": "rgb(17, 34, 51)",
+        "runtimeErrors": 0
+      },
+      "strictAnalyze": "No issues found!",
+      "hotReload": {
+        "kind": "Owned Web Dart SSR VM, not Flutter app",
+        "success": true,
+        "samplesBeforeAfterExact": 96,
+        "runtimeErrors": 0,
+        "serverAndBrowserClosed": true
+      },
+      "noChanges": [
+        "Core/defaults",
+        "Native",
+        "public resolver/helper/Resolved declarations",
+        "widget sources",
+        "SDK/locks",
+        "Figma",
+        "threshold/baseline/allowlist",
+        "opacity/dash geometry",
+        "product nodes"
+      ],
+      "fullMatrixOrOptimizedDocsBuildClaimed": false,
+      "commit": "2ef03b8590f1dae0052f981c184d0bba914413df",
+      "worktreeClean": true
+    },
+    "artifacts": "/tmp/weever-6386-color-picker-disabled-20261118.juaz_8mo",
+    "notClaimedCustomPngParity": true,
+    "docsAfterColorBatchNotYetBuilt": true
+  },
+  "foldRelease": {
+    "run": 44218267912,
+    "head": "9f78e5cb9f70c171027198ee757131a282d830e4",
+    "status": "success",
+    "scope": "Release automation only, not full CI or deployment"
+  },
+  "historicalSectionsNote": "durationOnlyHistorical preserves original source/tests/docs including failed themes and readyToMerge=false. authoritativeFinalIntegration records final product execution, finalDocs the subsequent documentation phase. No historical failure relabelled passed.",
+  "authoritativeFinalIntegration": {
+    "source": {
+      "head": "f7fd7d88a010230ee4a1bebd01e955aa437d781f",
+      "tree": "a6fafa0633c7873b7af1ac1f9a599ea1bead8c6b",
+      "baselineHead": "32248839a21193ad819de8f960319059a7cbc3a0",
+      "baselineTree": "ef18950445c43d05c90cca12b4b3f5318f4e2a96",
+      "status": "",
+      "allTrackedFiles": 22455,
+      "buildPort": 51699,
+      "sdk": "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter",
+      "notClaimedHeadPRMerged": true,
+      "cliPackageConfig": "/tmp/weever-6389-head-full-20261118.lfmj8i_i/cli-tool/.dart_tool/package_config.json"
+    },
+    "actualMainHeadMerge": {
+      "pr": 6396,
+      "issue": 6389,
+      "main": "ce2cda121c98494c10f2f983b15f53772dd168b7",
+      "tree": "ef18950445c43d05c90cca12b4b3f5318f4e2a96",
+      "sameWholeTreeAsBeforeCandidate": true,
+      "ordinaryRootMerge": "6a2e84e0105c3bf78b947afcab1f29400f11ea68",
+      "rootTreeUnchanged": true
+    },
+    "tests": {
+      "passed": 405,
+      "uniqueFiles": 23,
+      "ownBatch": 343,
+      "upstreamHead": 19,
+      "upstreamCaptureClock": 43,
+      "exit": 0,
+      "testPaths": [
+        "packages/coui_web/test/components/form/text_field_test.dart",
+        "packages/coui_web/test/components/form/text_field_style_test.dart",
+        "packages/coui_web/test/components/form/text_area_style_test.dart",
+        "packages/coui_web/test/components/form/text_area_footer_test.dart",
+        "packages/coui_web/test/components/form/radio_group_test.dart",
+        "packages/coui_web/test/components/form/radio_group_card_test.dart",
+        "packages/coui_web/test/components/form/input_otp_test.dart",
+        "packages/coui_web/test/components/form/color_picker_style_test.dart",
+        "packages/coui_web/test/components/form/multi_answer_card_test.dart",
+        "packages/coui_web/test/components/form/sortable_style_test.dart",
+        "packages/coui_web/test/components/form/sortable_test.dart",
+        "packages/coui_web/test/components/layout/tree_style_test.dart",
+        "packages/coui_web/test/components/navigation/pagination_style_test.dart",
+        "packages/coui_web/test/components/navigation/tabs_test.dart",
+        "tool/parity/test/web/input_duration_contracts_test.dart",
+        "tool/parity/test/web/navigation_duration_contracts_test.dart",
+        "tool/parity/test/web/color_picker_style_test.dart",
+        "packages/coui_web/test/page/page_transition_test.dart",
+        "tool/parity/test/web/page_transition_probe_test.dart",
+        "tool/parity/test/web/page_transition_head_test.dart",
+        "tool/parity/test/web/capture_timeline_clock_test.dart",
+        "tool/parity/test/web/capture_state_test.dart",
+        "tool/parity/test/web/web_capture_backend_test.dart"
+      ],
+      "noRepeatClaimForDocsOnlyChange": true
+    },
+    "strict16": [
+      {
+        "name": "analyze",
+        "exit": 0
+      },
+      {
+        "name": "format",
+        "exit": 0
+      },
+      {
+        "name": "api",
+        "exit": 0
+      }
+    ],
+    "api": {
+      "graphs": [
+        {
+          "package": "coui_core",
+          "beforeFiles": 930,
+          "afterFiles": 930,
+          "same": true
+        },
+        {
+          "package": "coui_flutter",
+          "beforeFiles": 1350,
+          "afterFiles": 1350,
+          "same": true
+        },
+        {
+          "package": "coui_web",
+          "beforeFiles": 1295,
+          "afterFiles": 1295,
+          "same": true
+        }
+      ],
+      "rows": [
+        {
+          "path": "packages/coui_web/lib/src/components/form/color_picker/color_picker_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": false,
+          "directivesIdentical": false,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/input_otp/input_otp_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/multi_answer_card/multi_answer_card_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/radio_group/radio_group_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/sortable/sortable_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/text_area/text_area_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/text_field/text_field_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/layout/tree/tree_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/navigation/pagination/pagination_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        }
+      ],
+      "errors": [],
+      "methodology": "Function bodies elided; public top-level declarations in supported export closure compared. Existing bodies change while supported public declaration shapes are compared. Private helpers and unnamed library directive cleanup are reported separately."
+    },
+    "build": {
+      "routes": 359,
+      "unique": 359,
+      "exit": 0
+    },
+    "runtime": {
+      "actualDocsPages": 10,
+      "passed": true,
+      "records": 140,
+      "runtimeErrors": [],
+      "actionFailures": [],
+      "otpContract": "Partial123 keeps cursor/focus; completion123456 auto-blurs per existing public contract."
+    },
+    "capture": {
+      "afterHead": "f7fd7d88a010230ee4a1bebd01e955aa437d781f",
+      "afterTree": "a6fafa0633c7873b7af1ac1f9a599ea1bead8c6b",
+      "beforeCandidateHead": "32248839a21193ad819de8f960319059a7cbc3a0",
+      "beforeCandidateTree": "ef18950445c43d05c90cca12b4b3f5318f4e2a96",
+      "beforeFreshWebHead": "3ff445265df9d0f45ace075116a38acc2e4b62b1",
+      "beforeProductCodeSameAfterRelease": true,
+      "freshWebKeys": 40,
+      "PNGbyteSame": 40,
+      "rawJSONbyteSame": 36,
+      "rawJSONDiffPaths": {
+        "input-otp-lg-light-defaultStyle": [
+          ".captureContext.text"
+        ],
+        "input-otp-lg-dark-defaultStyle": [
+          ".captureContext.text"
+        ],
+        "tabs-closable-light-defaultStyle": [
+          ".captureContext.text"
+        ],
+        "tabs-closable-dark-defaultStyle": [
+          ".captureContext.text"
+        ]
+      },
+      "composite": {
+        "freshWeb": 40,
+        "reusedWeb": 712,
+        "reusedNative": 752,
+        "png": 1528,
+        "json": 1504
+      },
+      "fieldRemovalNormalizationBaselinePromotion": false
+    },
+    "verdict": {
+      "pixel": {
+        "counts": {
+          "pass": 572,
+          "fail": 180,
+          "infra": 0,
+          "skipped": 0
+        },
+        "sameComparedFields": {
+          "matrix": true,
+          "propertyDiffs": true,
+          "infraSkippedKeys": true,
+          "structuralSkippedKeys": true,
+          "passedCount": true,
+          "infraFailedCount": true
+        },
+        "keyCount": 752,
+        "exit": 1
+      },
+      "property": {
+        "counts": {
+          "pass": 416,
+          "fail": 278,
+          "infra": 12,
+          "skipped": 46
+        },
+        "sameComparedFields": {
+          "matrix": true,
+          "propertyDiffs": true,
+          "infraSkippedKeys": true,
+          "structuralSkippedKeys": true,
+          "passedCount": true,
+          "infraFailedCount": true
+        },
+        "keyCount": 752,
+        "exit": 1
+      }
+    },
+    "sourceAfter": {
+      "source": {
+        "head": "f7fd7d88a010230ee4a1bebd01e955aa437d781f",
+        "tree": "a6fafa0633c7873b7af1ac1f9a599ea1bead8c6b",
+        "baselineHead": "32248839a21193ad819de8f960319059a7cbc3a0",
+        "baselineTree": "ef18950445c43d05c90cca12b4b3f5318f4e2a96",
+        "status": "",
+        "allTrackedFiles": 22455,
+        "buildPort": 51699,
+        "sdk": "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter",
+        "notClaimedHeadPRMerged": true,
+        "cliPackageConfig": "/tmp/weever-6389-head-full-20261118.lfmj8i_i/cli-tool/.dart_tool/package_config.json"
+      },
+      "allTrackedFiles": 22455,
+      "changed": [],
+      "status": "",
+      "runtimePassed": true,
+      "runtimeRecords": 140,
+      "runtimeErrors": [],
+      "actionFailures": [],
+      "outputIndexHtml": 361,
+      "generatedRouteRecords": 359,
+      "uniqueGeneratedRoutes": 359
+    },
+    "cleanup": {
+      "ownServerPID": 43859,
+      "ownedCommand": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /tmp/weever-duration-contracts-20261118.jsuh0jdq/final-integration/serve-after.py",
+      "signal": "SIGTERM",
+      "buildPort": 51699,
+      "httpPort": 53146,
+      "serverReapedExit": 143,
+      "portsClosed": {
+        "51699": true,
+        "53146": true
+      },
+      "browserClosed": true,
+      "generated185EqualFrozenRootBefore": true,
+      "unrelatedAppsTouched": false
+    },
+    "cssPrecedence": {
+      "rootCssClassesPassthroughRetained": true,
+      "globalSelectorAimedAtInternalCarrierMayLoseToExplicitCoreDuration": true,
+      "known150Control": "normal global selector before200ms -> after150ms",
+      "sortableKnown300Control": "before150ms -> after300ms",
+      "publicGuaranteeOfArbitraryInternalOverrideFound": false,
+      "importantOrSelectorExceptionAdded": false
+    },
+    "artifactDirectory": "/tmp/weever-duration-contracts-20261118.jsuh0jdq/final-integration"
+  },
+  "finalDocs": {
+    "source": {
+      "head": "23c67266bb840fbee24b0ea2376aec4fceb37021",
+      "tree": "0ed0f20a8026e6e39a91b20313758886df048227",
+      "main": "ce2cda121c98494c10f2f983b15f53772dd168b7",
+      "mainTree": "ef18950445c43d05c90cca12b4b3f5318f4e2a96",
+      "files": 22455,
+      "status": "",
+      "port": 56512,
+      "productRuntimeSameAs": "f7fd7d88a010230ee4a1bebd01e955aa437d781f",
+      "postTestChanges": "ordinary main merge plus two Sortable documentation-only files; generated table from Core Dartdoc"
+    },
+    "buildExit": 0,
+    "routes": 359,
+    "uniqueRoutes": 359,
+    "runtimePassed": true,
+    "runtimeRecords": 140,
+    "runtimeErrors": [],
+    "actionFailures": [],
+    "allTrackedFiles": 22455,
+    "trackedHashDelta": [
+      "docs/verification/parity-web-duration-contracts-2026-11-18.json",
+      "docs/verification/parity-web-duration-contracts-2026-11-18.md",
+      "packages/coui_core/lib/src/component/contracts/color_picker/color_picker_style.dart",
+      "packages/coui_core/lib/src/component/contracts/radio_group/radio_group_style.dart",
+      "packages/coui_core/lib/src/component/contracts/text_field/text_field_style.dart",
+      "packages/coui_core/lib/src/component/contracts/tree/tree_style.dart"
+    ],
+    "deltaScope": "Two non-rendered verification reports and four default-duration Dartdoc comments; API parser verifies all five changed Core ASTs equal. Generator check five slugs drift0. No executable source/default/lock delta.",
+    "api": {
+      "graphs": [
+        {
+          "package": "coui_core",
+          "beforeFiles": 930,
+          "afterFiles": 930,
+          "same": true
+        },
+        {
+          "package": "coui_flutter",
+          "beforeFiles": 1350,
+          "afterFiles": 1350,
+          "same": true
+        },
+        {
+          "package": "coui_web",
+          "beforeFiles": 1295,
+          "afterFiles": 1295,
+          "same": true
+        }
+      ],
+      "rows": [
+        {
+          "path": "packages/coui_core/lib/src/component/contracts/color_picker/color_picker_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_core/lib/src/component/contracts/radio_group/radio_group_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_core/lib/src/component/contracts/sortable/sortable_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_core/lib/src/component/contracts/text_field/text_field_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_core/lib/src/component/contracts/tree/tree_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/color_picker/color_picker_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": false,
+          "directivesIdentical": false,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/input_otp/input_otp_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/multi_answer_card/multi_answer_card_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/radio_group/radio_group_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/sortable/sortable_style.dart",
+          "supportedExportGraph": true,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/text_area/text_area_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/form/text_field/text_field_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/layout/tree/tree_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/navigation/pagination/pagination_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        },
+        {
+          "path": "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart",
+          "supportedExportGraph": false,
+          "publicTopLevelShapesIdentical": true,
+          "allDeclarationsIdentical": true,
+          "directivesIdentical": true,
+          "parseErrorsBefore": [],
+          "parseErrorsAfter": []
+        }
+      ],
+      "errors": [],
+      "methodology": "Function bodies elided; public top-level declarations in supported export closure compared. Existing bodies change while supported public declaration shapes are compared. Private helpers and unnamed library directive cleanup are reported separately."
+    },
+    "ownHTTPServer": {
+      "pid": 61993,
+      "port": 56910,
+      "root": "/Users/minhyeok/orca/workspaces/coui/weever/docs_site/build/jaspr",
+      "commandPathVerifiedBeforeSIGTERM": true,
+      "script": "/tmp/weever-duration-contracts-20261118.jsuh0jdq/final-docs/serve-after.py",
+      "signal": "SIGTERM"
+    },
+    "ownBuildPort": 56512,
+    "portsClosed": {
+      "56910": true,
+      "56512": true
+    },
+    "browserClosed": {
+      "closed": true,
+      "serverPort": 56910
+    },
+    "unrelatedAppsTouched": false,
+    "initialReceiptDiagnostic": "First route counter assumed denominator359 for the first generated route; actual first log is(1/1). Counter corrected to actual unique generated paths; no product/runtime/build failure.",
+    "ownServerReapedExit": 143,
+    "coreDocAnalyzeExit": 0,
+    "coreDocFormatChanged": 0,
+    "styleTableCheck": {
+      "slugs": 5,
+      "drift": 0,
+      "written": 0
+    }
+  },
+  "durationOnlyHistorical": {
+    "source": {
+      "renderHead": "1746c4a321895dc3d770d78fe2277f4c54c963c0",
+      "renderTree": "77c0ce3b8bc8d265cb3bb50284a07454d757b5ce",
+      "docsWorkerHead": "6b59b6c3e137ab05e447f20e461cfa6a1642fe29",
+      "baseValidationHead": "12ac99ce65d639f9a0b9eae75e663b0a3dc52f22",
+      "baseValidationTree": "d7f8f3f1a7d956f839f03bd7a120ba166a36c7e4",
+      "baseMainBeforeFold": "2bca2b7a45b43cbed74cbad88d38d1c62951dcfb",
+      "issue": 6383,
+      "mergeReceipt": null,
+      "changedDartSha256": {
+        "packages/coui_web/lib/src/components/form/color_picker/color_picker_style.dart": "099a5bbe5ced0631ae45db8e87c4b5733e57f878410dccaf16ff9039d5d27c22",
+        "packages/coui_web/lib/src/components/form/input_otp/input_otp_style.dart": "edca257d4a6413ec2bf5fa96dedac86654ae3968c3551fcbe8574ded57045ab8",
+        "packages/coui_web/lib/src/components/form/multi_answer_card/multi_answer_card_style.dart": "124dfcf3c7c12d2b70269c9a7a7d18285470158916df4022f3e7758034d9ecf1",
+        "packages/coui_web/lib/src/components/form/radio_group/radio_group_style.dart": "75f02803636a8840a3f393588ba67b4d91c800e45c9716bc829952056ad4c2eb",
+        "packages/coui_web/lib/src/components/form/sortable/sortable_style.dart": "e4f6fac04d7f9d0679beb712cdfdb91660812f3dbdf3d013e6c0d1361a8915b1",
+        "packages/coui_web/lib/src/components/form/text_area/text_area_style.dart": "2be17b5730180f826db4a9c3882e387d7186e5d2a2bb5b59a4036a59ba06eab7",
+        "packages/coui_web/lib/src/components/form/text_field/text_field_style.dart": "37f06fc1ce06a8a973c7c247c1050294c79de7d9b5f23a360b10840c40cb67fb",
+        "packages/coui_web/lib/src/components/layout/tree/tree_style.dart": "e8b79be76a0ea7f490055d46218fa23c79b940cae7dd72dbc541f9275190fe4b",
+        "packages/coui_web/lib/src/components/navigation/pagination/pagination_style.dart": "c0c818f3e7d15218ebfdf9d28acc1a78e5a7c74244ed086a80666fe7b578f02e",
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart": "18afb2135a1bad31ec0eac92f1df0632086d588c6ba77b2c8bde24ae8552b197",
+        "packages/coui_web/test/components/form/input_otp_test.dart": "de4482297b920578440180638d9577d208a36e26cfb389d21e8f504cc05581b5",
+        "packages/coui_web/test/components/form/radio_group_test.dart": "6fdc186eddb3f4aae5d3582814478944951cb8b602eaac644ec0320f3c4638f0",
+        "tool/parity/test/web/input_duration_contracts_test.dart": "cf14a841566d2a1d623c9b88ed307e7f2fc015c44f20ef12c24792f10d7b2ec7",
+        "tool/parity/test/web/navigation_duration_contracts_test.dart": "385f98194f9f3e8520160fb25d105087befe4bc5224aa67ae4ba2297381606c0"
+      },
+      "foldMerge": {
+        "pr": 6387,
+        "issue": 6385,
+        "head": "12ac99ce65d639f9a0b9eae75e663b0a3dc52f22",
+        "main": "9f78e5cb9f70c171027198ee757131a282d830e4",
+        "treeExact": "d7f8f3f1a7d956f839f03bd7a120ba166a36c7e4",
+        "rootIntegration": "f84c5de9f875d4f75d7c82635c1c6af286dd6ba0",
+        "rootTreeUnchanged": "77c0ce3b8bc8d265cb3bb50284a07454d757b5ce"
+      },
+      "durationOnlyScopeNote": "Original source/test/matrix phase is preserved. The ColorPicker batch source below supersedes it without relabelling those executions."
+    },
+    "changedDartFiles": 14,
+    "tests": {
+      "passed": 342,
+      "existing": 335,
+      "newNavigationSsr": 5,
+      "actualChromeTests": 2,
+      "latestExit": {
+        "args": [
+          "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+          "test",
+          "packages/coui_web/test/components/form/text_field_test.dart",
+          "packages/coui_web/test/components/form/text_field_style_test.dart",
+          "packages/coui_web/test/components/form/text_area_style_test.dart",
+          "packages/coui_web/test/components/form/text_area_footer_test.dart",
+          "packages/coui_web/test/components/form/radio_group_test.dart",
+          "packages/coui_web/test/components/form/radio_group_card_test.dart",
+          "packages/coui_web/test/components/form/input_otp_test.dart",
+          "packages/coui_web/test/components/form/color_picker_style_test.dart",
+          "packages/coui_web/test/components/form/multi_answer_card_test.dart",
+          "packages/coui_web/test/components/form/sortable_style_test.dart",
+          "packages/coui_web/test/components/form/sortable_test.dart",
+          "packages/coui_web/test/components/layout/tree_style_test.dart",
+          "packages/coui_web/test/components/navigation/pagination_style_test.dart",
+          "packages/coui_web/test/components/navigation/tabs_test.dart",
+          "tool/parity/test/web/input_duration_contracts_test.dart",
+          "tool/parity/test/web/navigation_duration_contracts_test.dart",
+          "--concurrency=2",
+          "--reporter=expanded"
+        ],
+        "exit": 0
+      },
+      "fatalAnalyzeNoIssues": true,
+      "format14ZeroChanges": true,
+      "strictExits": [
+        {
+          "name": "analyze",
+          "exit": 0
+        },
+        {
+          "name": "format",
+          "exit": 0
+        }
+      ],
+      "latestGuards": [
+        {
+          "name": "tokens",
+          "args": [
+            "bash",
+            "scripts/guards/tokens/check_design_tokens.sh"
+          ],
+          "exit": 0
+        },
+        {
+          "name": "contracts",
+          "args": [
+            "bash",
+            "scripts/guards/resolver/verify_contracts.sh"
+          ],
+          "exit": 0
+        },
+        {
+          "name": "chrome-passthrough",
+          "args": [
+            "bash",
+            "scripts/guards/structure/check_chrome_passthrough.sh"
+          ],
+          "exit": 0
+        }
+      ]
+    },
+    "docs": {
+      "initial143Failure": "/tmp/weever-6383-docs-20261118.a0bkw250",
+      "integratedArtifacts": "/tmp/weever-6383-integrated-final-20261118.eavdv_ut",
+      "finalRuntimeReceipt": {
+        "sourceHead": "6b59b6c3e137ab05e447f20e461cfa6a1642fe29",
+        "tree": "77c0ce3b8bc8d265cb3bb50284a07454d757b5ce",
+        "hashDeltas": {
+          "source-inputs": [],
+          "generated": [],
+          "locks": []
+        },
+        "buildExit": 0,
+        "routes": 359,
+        "docsRuntimePassed": false,
+        "http10x200": true,
+        "themeTimeouts": 10,
+        "runtimeErrors": [],
+        "serverPid": 34925,
+        "serverCommand": "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /tmp/weever-6383-integrated-final-20261118.eavdv_ut/serve.py",
+        "serverTerminated": true,
+        "portsClosed": {
+          "50000": true,
+          "49349": true
+        },
+        "primaryBrowserClosed": true,
+        "diagnosticBrowserClosed": true,
+        "unrelatedProcessesTouched": false
+      },
+      "buildRoutes": 359,
+      "buildExit": 0,
+      "httpPages": 10,
+      "runtimeThemeChecks": "FAILED; live variable empty, root black while controller/light state correct",
+      "knownUpstreamIssue": 6389,
+      "readyToMerge": false,
+      "inventoryCorrection": {
+        "initialCount": 13954,
+        "correctedCount": 13963,
+        "addedUnicodeNamedEditorialFiles": 9,
+        "frozenGitBlobsEqualPostBuild": true,
+        "fullReceipt": "/tmp/weever-6383-integrated-final-20261118.eavdv_ut/inventory-correction.json"
+      },
+      "headRegressionScope": "Confirmed on SSR Document.head managed windows; plain unmanaged hosts preserve their initial head. Actual docs33 removed nodes/empty token, tiny managed enabled1/2root controls reproduce; JSoff/on and response CSS bytes prove CSS exists before takeover."
+    }
+  },
+  "source": {
+    "productExecution": {
+      "head": "f7fd7d88a010230ee4a1bebd01e955aa437d781f",
+      "tree": "a6fafa0633c7873b7af1ac1f9a599ea1bead8c6b",
+      "baselineHead": "32248839a21193ad819de8f960319059a7cbc3a0",
+      "baselineTree": "ef18950445c43d05c90cca12b4b3f5318f4e2a96",
+      "status": "",
+      "allTrackedFiles": 22455,
+      "buildPort": 51699,
+      "sdk": "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter",
+      "notClaimedHeadPRMerged": true,
+      "cliPackageConfig": "/tmp/weever-6389-head-full-20261118.lfmj8i_i/cli-tool/.dart_tool/package_config.json"
+    },
+    "optimizedDocsExecution": {
+      "head": "23c67266bb840fbee24b0ea2376aec4fceb37021",
+      "tree": "0ed0f20a8026e6e39a91b20313758886df048227",
+      "main": "ce2cda121c98494c10f2f983b15f53772dd168b7",
+      "mainTree": "ef18950445c43d05c90cca12b4b3f5318f4e2a96",
+      "files": 22455,
+      "status": "",
+      "port": 56512,
+      "productRuntimeSameAs": "f7fd7d88a010230ee4a1bebd01e955aa437d781f",
+      "postTestChanges": "ordinary main merge plus two Sortable documentation-only files; generated table from Core Dartdoc"
+    },
+    "commentsAndVerificationOnlyAfterProductExecution": true,
+    "headMerge": {
+      "pr": 6396,
+      "issue": 6389,
+      "main": "ce2cda121c98494c10f2f983b15f53772dd168b7",
+      "tree": "ef18950445c43d05c90cca12b4b3f5318f4e2a96",
+      "sameWholeTreeAsBeforeCandidate": true,
+      "ordinaryRootMerge": "6a2e84e0105c3bf78b947afcab1f29400f11ea68",
+      "rootTreeUnchanged": true
+    },
+    "mergeReceipt": null
+  },
+  "changedDartFiles": 21,
+  "commentOnlyCoreFiles": 5,
+  "tests": {
+    "passedUnique": 405,
+    "files": 23,
+    "ownBatch": 343,
+    "upstreamHead": 19,
+    "upstreamClock": 43,
+    "productSource": "f7fd7d88a010230ee4a1bebd01e955aa437d781f",
+    "strictWebAndTestFiles": 16,
+    "strictCommentOnlyCoreFiles": 5,
+    "analyzeAllNoIssues": true,
+    "formatAllZeroChanges": true,
+    "guards": [
+      {
+        "name": "tokens",
+        "phases": "1..7",
+        "exit": 0
+      },
+      {
+        "name": "contracts",
+        "exit": 0,
+        "SDK": "isolated Flutter3.50 Dart3.14",
+        "nonEnforcedWarningsRetained": true
+      },
+      {
+        "name": "chrome-passthrough",
+        "exit": 0
+      }
+    ],
+    "excludedDiagnostic": "A final contract-guard launch omitted the isolated per-command PATH; its output is preserved separately and is not authoritative."
+  },
+  "docs": {
+    "buildExit": 0,
+    "routes": 359,
+    "runtimePassed": true,
+    "runtimeRecords": 140,
+    "runtimeErrors": [],
+    "actionFailures": [],
+    "readyToMerge": true,
+    "upstreamBlockerResolvedBy": 6396,
+    "source": {
+      "head": "23c67266bb840fbee24b0ea2376aec4fceb37021",
+      "tree": "0ed0f20a8026e6e39a91b20313758886df048227",
+      "main": "ce2cda121c98494c10f2f983b15f53772dd168b7",
+      "mainTree": "ef18950445c43d05c90cca12b4b3f5318f4e2a96",
+      "files": 22455,
+      "status": "",
+      "port": 56512,
+      "productRuntimeSameAs": "f7fd7d88a010230ee4a1bebd01e955aa437d781f",
+      "postTestChanges": "ordinary main merge plus two Sortable documentation-only files; generated table from Core Dartdoc"
+    },
+    "trackedHashDelta": [
+      "docs/verification/parity-web-duration-contracts-2026-11-18.json",
+      "docs/verification/parity-web-duration-contracts-2026-11-18.md",
+      "packages/coui_core/lib/src/component/contracts/color_picker/color_picker_style.dart",
+      "packages/coui_core/lib/src/component/contracts/radio_group/radio_group_style.dart",
+      "packages/coui_core/lib/src/component/contracts/text_field/text_field_style.dart",
+      "packages/coui_core/lib/src/component/contracts/tree/tree_style.dart"
+    ],
+    "deltaScope": "Two non-rendered verification reports and four default-duration Dartdoc comments; API parser verifies all five changed Core ASTs equal. Generator check five slugs drift0. No executable source/default/lock delta.",
+    "ownedCleanup": {
+      "56910": true,
+      "56512": true
+    }
+  },
+  "independentReviews": {
+    "durationCallerCss": "/tmp/weever-duration-caller-css-20261118.uld1h776/README.md",
+    "codeApiDesignContract": "/tmp/weever-6391-independent-review-20261118.faz86ivs/README.md",
+    "codeBlockerFound": false,
+    "limits": "Static review and three-component representative CSS audit; actual Root runtime/test phases remain attributed separately."
+  },
+  "headRelease": {
+    "id": 44231720855,
+    "head": "ce2cda121c98494c10f2f983b15f53772dd168b7",
+    "conclusion": "success",
+    "notFullCIOrDeployment": true
+  }
+}

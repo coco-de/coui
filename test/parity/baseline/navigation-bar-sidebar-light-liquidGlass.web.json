@@ -1,0 +1,69 @@
+{
+  "key": "navigation-bar-sidebar-light-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": ".co-navbar-sl-185ost:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-low) / 100%));}:focus-visible>.co-navbar-sl-185ost{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-low) / 100%));}.co-navbar-sl-185ost:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-low) / 100%));}.co-navbar-sl-bs97ur:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-high) / 100%));}:focus-visible>.co-navbar-sl-bs97ur{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high) / 100%));}.co-navbar-sl-bs97ur:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high) / 100%));}\n                \n                메인\n                \n                  \n                    대시보드\n                  \n                \n                \n                  \n                    탐색\n                  \n                \n                \n                  \n                \n                계정\n                \n                  \n                    알림\n                    3\n                  \n                \n                \n                  \n                    설정\n                  \n                \n              \n              무료 플랜 · 좌석 5개 중 3개 사용",
+    "layout": {
+      "width": 187.5,
+      "height": 309,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 12,
+          "y": 16,
+          "width": 162.5,
+          "height": 257
+        },
+        {
+          "x": 12,
+          "y": 275,
+          "width": 162.5,
+          "height": 18
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "12px",
+      "lineHeight": "17px",
+      "letterSpacing": "-0.12px",
+      "color": "rgb(115, 116, 118)",
+      "backgroundColor": "rgba(249, 250, 251, 0.5)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "16px",
+      "paddingRight": "12px",
+      "paddingBottom": "16px",
+      "paddingLeft": "12px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 187.5,
+      "heightPx": 309
+    }
+  }
+}

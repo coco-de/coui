@@ -1,0 +1,778 @@
+name: coui_workspace
+description: A unified design system providing type-safe Dart implementations of
+  modern UI components for both Flutter mobile apps and Jaspr web applications.
+  Build beautiful, consistent interfaces across all platforms with a single
+  codebase.
+version: 0.127.15
+publish_to: none
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+  # Flutter 3.50's `flutter_test` pins test_api 0.7.14, whose only matching
+  # `test` (1.32) needs analyzer >=13 <15 — as do jaspr_builder 0.24 and
+  # coui_lints. The workspace does not resolve on 3.47.9 (3.48 and 3.49 were
+  # not tried). CI's FLUTTER_VERSION mirrors this floor. The member packages
+  # keep their own floors; those are what a consumer of them needs.
+  flutter: ">=3.50.0"
+
+dev_dependencies:
+  build_runner: ^2.10.4
+  # tool/parity 는 모든 캡처를 고정한 시각에 렌더한다(`withClock`) — 달력이
+  # 오늘을 시계에서 읽는다(`CoreCalendarView.currentTime`).
+  clock: any
+  # crypto · path · yaml · test 는 tool/parity/ (파리티 게이트 CLI) 가 쓴다.
+  # 셋 다 이미 전이 의존이라 새로 끌어오는 패키지는 없다.
+  crypto: ^3.0.7
+  flutter_lints: ^6.0.0
+  # `package:lint/strict.yaml` — 루트 analysis_options.yaml 의 두 번째
+  # include. 선언이 없으면 `package:` URI 가 풀리지 않아 옵션 파일이 통째로
+  # 버려진다(포매터 기본값으로 되돌아간다).
+  lint: ^2.14.0
+  melos: ^7.1.1
+  # @immutable 애노테이션 — tool/parity/ (#3604) 의 값 타입에 쓴다. 이미
+  # 전이 의존이라 새로 끌어오는 패키지는 없다.
+  meta: ^1.18.0
+  path: ^1.9.1
+  puppeteer: ^3.22.0
+  test: ^1.31.0
+  very_good_analysis: ^11.0.0
+  yaml: ^3.1.3
+  # coui_web · jaspr · jaspr_test 는 tool/parity/ 의 SPIKE-3(#3602) 오프라인
+  # Tailwind 하네스 PoC 가 쓴다. coui_web 은 워크스페이스 멤버
+  # (resolution: workspace) 라 로컬 경로로 해석되고 pub.dev 를 거치지 않는다.
+  coui_web: any
+  # coui_core 는 tool/parity/src/web/refraction_runtime_entry.dart (#4222) 가
+  # 쓴다 — 굴절 프로브가 shipped 런타임을 그대로 컴파일해 판정하므로 그 런타임의
+  # 값 타입이 필요하다. coui_web 과 같은 워크스페이스 멤버라 로컬 경로로
+  # 해석되고 pub.dev 를 거치지 않는다.
+  coui_core: any
+  jaspr: ^0.24.0-beta.1
+  jaspr_test: ^0.24.0-beta.1
+  # html — tool/parity/src/web/ssr_render.dart (#3605) 가 SSR 전체 문서에서
+  # <body> 내부만 잘라내는 데 쓴다. jaspr_test 의 전이 의존이라 새로 끌어오는
+  # 패키지는 없다.
+  html: ^0.15.0
+  # tool/parity/src/diff/pixel_diff.dart (#3607) 의 PixelDiff 신호가 쓴다.
+  # 이미 coui_flutter 가 같은 버전으로 직접 의존 중이라(호스트에 ImageMagick
+  # 부재 확인 — SPIKE-1 해소) 워크스페이스 해석 충돌을 피하려 버전을 맞춘다.
+  # `.bmad/architecture-*.md` Technology Stack 절이 명시한 유일한 신규
+  # 워크스페이스-루트 의존성.
+  image: ^4.5.4
+  # docs_core 는 tool/parity/manifest.dart (#3604) 가 쓴다 —
+  # `docs_core/lib/shared/component_catalog.dart` 가 카탈로그의 단일 출처라
+  # (docs_site/docs_app 이 이미 그렇게 쓴다), 매트릭스 도출기가 손으로
+  # 컴포넌트 목록을 복제하지 않고 그 파일을 직접 import 한다. 워크스페이스
+  # 멤버라 로컬 경로로 해석된다.
+  docs_core: any
+
+workspace:
+  - app/coui_widgetbook
+  - app/docs_app
+  - docs_core
+  - docs_site
+  - packages/coui
+  - packages/coui_core
+  - packages/coui_flutter
+  - packages/coui_i10n
+  - packages/coui_lints
+  - packages/coui_mcp
+  - packages/coui_web
+
+melos:
+  bootstrap:
+    environment:
+      sdk: ">=3.11.0 <4.0.0"
+    dependencies:
+    dev_dependencies:
+      build_runner: ^2.10.4
+      flutter_lints: ^6.0.0
+      jaspr_builder: ^0.24.0-beta.1
+      jaspr_lints: ^0.8.0-beta.0
+      lint: ^2.14.0
+      melos: ^7.1.1
+      very_good_analysis: ^11.0.0
+    hooks:
+      post: |
+        echo "📦 Running pub get for additional packages..."
+        cd packages/coui_flutter && flutter pub get
+        cd example && flutter pub get
+        cd ../../coui_web && dart pub get
+        cd ../..
+        echo "🌐 Generating locale files..."
+        melos run generate:locale
+        echo "✅ Bootstrap hooks completed!"
+  command:
+    # ⚠️ 버저닝·태깅·릴리즈 노트는 release-please 가 단독으로 소유한다
+    # (release-please-config.json + .github/workflows/release.yml).
+    # `melos version` 을 수동 실행하면 release-please 와 태그가 충돌하므로
+    # 사용하지 말 것. 아래 설정은 melos 의 다른 기능이 참조하는 잔존 설정이다.
+    version:
+      updateGitTagRefs: true
+      workspaceChangelog: true # CoUI 라이브러리는 통합 changelog가 유용
+      hooks:
+        preCommit: |
+          echo "🔄 Generating code and applying fixes..."
+          melos run generate
+          melos run fix:all
+          melos run format
+          git add .
+          echo "✅ Pre-commit hooks completed!"
+
+  scripts:
+    # =============================================================================
+    # 🎨 DESIGN TOKEN EXPORT
+    # =============================================================================
+
+    export:figma-tokens:
+      description: "Export CoUI design tokens to build/tokens.figma.json (for the tools/figma-token-sync plugin)"
+      run: dart run packages/coui_core/bin/export_figma_tokens.dart
+
+    export:figma-components:
+      description: "Export CoUI component visual defaults to tools/figma-token-sync/src/data/components.json (data-driven Figma builders)"
+      run: dart run packages/coui_core/bin/export_figma_components.dart
+
+    # =============================================================================
+    # 🧩 FIGMA PLUGIN (tools/figma-token-sync)
+    # =============================================================================
+
+    figma:install:
+      description: "tools/figma-token-sync npm 의존성을 lockfile 기준으로 설치한다 (npm ci)"
+      run: cd tools/figma-token-sync && npm ci
+
+    figma:build:
+      description: "Figma 토큰 동기화 플러그인을 code.js 로 번들링한다 (esbuild)"
+      run: cd tools/figma-token-sync && npm run build
+
+    figma:watch:
+      description: "Figma 토큰 동기화 플러그인을 변경 감지 시 재번들링한다 (esbuild --watch)"
+      run: cd tools/figma-token-sync && npm run watch
+
+    figma:typecheck:
+      description: "Figma 토큰 동기화 플러그인 타입체크 (tsc --noEmit) — CI 게이트 G6 재현"
+      run: cd tools/figma-token-sync && npm run typecheck
+
+    figma:selftest:
+      description: "Figma 토큰 동기화 플러그인 셀프테스트 실행 (variant-safety · compat-v1 · registry-runtime) — CI 게이트 G6 재현"
+      run: cd tools/figma-token-sync && npm run selftest
+
+    figma:check:
+      description: "로컬에서 Figma 플러그인 전체 게이트 실행: npm ci + typecheck + selftest (CI의 'Figma plugin typecheck (G6)' 잡을 그대로 재현)"
+      run: |
+        cd tools/figma-token-sync
+        npm ci
+        npm run typecheck
+        npm run selftest
+
+    figma:sync:
+      description: "Figma 플러그인 전체 갱신: coui_core 로부터 토큰 + 컴포넌트를 export 하고 code.js 를 재빌드한다"
+      run: |
+        melos run export:figma-tokens
+        melos run export:figma-components
+        melos run figma:build
+
+    # =============================================================================
+    # 🔍 ANALYSIS SCRIPTS
+    # =============================================================================
+
+    analyze:all:
+      description: "Run complete analysis on all packages"
+      run: |
+        echo "🔍 Running Dart analyzer..."
+        dart analyze .
+      exec:
+        concurrency: 1
+
+    analyze:dart:
+      description: "Run standard Dart analyzer"
+      run: dart analyze .
+      exec:
+        concurrency: 1
+
+    # =============================================================================
+    # 🧹 LINT SCRIPTS
+    # =============================================================================
+
+    lint:check:
+      description: "Run lint check with summary report"
+      run: |
+        echo "========================================="
+        echo "🔍 LINT CHECK"
+        echo "========================================="
+        echo ""
+        echo "=== DART ANALYZER ==="
+        dart analyze . 2>&1 | tee /tmp/dart_lint.log || true
+        echo ""
+        echo "========================================="
+        echo "📊 LINT SUMMARY"
+        echo "========================================="
+        DART_ERRORS=$(grep -c " error - " /tmp/dart_lint.log 2>/dev/null || echo "0")
+        DART_WARNINGS=$(grep -c " warning - " /tmp/dart_lint.log 2>/dev/null || echo "0")
+        DART_INFO=$(grep -c " info - " /tmp/dart_lint.log 2>/dev/null || echo "0")
+        echo "🔴 Dart Errors:   $DART_ERRORS"
+        echo "🟡 Dart Warnings: $DART_WARNINGS"
+        echo "🔵 Dart Info:     $DART_INFO"
+        echo "========================================="
+        rm -f /tmp/dart_lint.log
+      exec:
+        concurrency: 1
+
+    lint:flutter:
+      description: "Lint coui_flutter package only"
+      run: |
+        echo "🔍 Linting coui_flutter..."
+        dart analyze packages/coui_flutter
+      exec:
+        concurrency: 1
+
+    lint:web:
+      description: "Lint coui_web package only"
+      run: |
+        echo "🔍 Linting coui_web..."
+        dart analyze packages/coui_web
+      exec:
+        concurrency: 1
+
+    lint:widgetbook:
+      description: "Lint coui_widgetbook app only"
+      run: |
+        echo "🔍 Linting coui_widgetbook..."
+        dart analyze app/coui_widgetbook
+      exec:
+        concurrency: 1
+
+    lint:ci:
+      description: "CI lint check with strict exit codes"
+      run: dart analyze . --fatal-infos
+      exec:
+        concurrency: 1
+        failFast: true
+
+    translate:validate:
+      description: "Validate translation keys match code usage"
+      run: |
+        echo "🔍 Checking for missing translation keys..."
+        MISSING=$(dart analyze app/coui_widgetbook 2>&1 | grep -c "undefined_getter\|undefined_method" || echo "0")
+        echo "📊 Missing translation references: $MISSING"
+        if [ "$MISSING" -gt "0" ]; then
+          echo "⚠️  Run 'melos run generate:locale' to regenerate translations"
+        else
+          echo "✅ All translation keys are valid"
+        fi
+      exec:
+        concurrency: 1
+
+    # =============================================================================
+    # 🔧 CODE FIXES & FORMATTING
+    # =============================================================================
+
+    fix:all:
+      description: "Apply all fixes with before/after reporting"
+      run: |
+        echo "========================================="
+        echo "📊 BEFORE FIXES"
+        echo "========================================="
+        BEFORE_ERRORS=$(dart analyze . 2>&1 | grep -c " error - " || echo "0")
+        BEFORE_WARNINGS=$(dart analyze . 2>&1 | grep -c " warning - " || echo "0")
+        echo "Errors: $BEFORE_ERRORS, Warnings: $BEFORE_WARNINGS"
+        echo ""
+        echo "🔧 Step 1: Applying Dart SDK fixes..."
+        dart fix --apply || true
+        echo ""
+        echo "📐 Step 2: Formatting code..."
+        dart format . --set-exit-if-changed > /dev/null 2>&1 || dart format .
+        echo ""
+        echo "========================================="
+        echo "📊 AFTER FIXES"
+        echo "========================================="
+        AFTER_ERRORS=$(dart analyze . 2>&1 | grep -c " error - " || echo "0")
+        AFTER_WARNINGS=$(dart analyze . 2>&1 | grep -c " warning - " || echo "0")
+        echo "Errors: $AFTER_ERRORS, Warnings: $AFTER_WARNINGS"
+        echo ""
+        echo "✅ Fixed: $((BEFORE_ERRORS - AFTER_ERRORS)) errors, $((BEFORE_WARNINGS - AFTER_WARNINGS)) warnings"
+      exec:
+        concurrency: 1
+
+    fix:dart:
+      description: "Apply Dart SDK fixes only"
+      run: dart fix --apply
+      exec:
+        concurrency: 1
+
+    fix:dart:dry:
+      description: "Preview Dart SDK fixes without applying"
+      run: dart fix --dry-run
+      exec:
+        concurrency: 1
+
+    format:
+      description: "Format all Dart code"
+      run: dart format .
+      exec:
+        concurrency: 1
+
+    format:check:
+      description: "Check code formatting without changes"
+      run: dart format --set-exit-if-changed --output=none .
+      exec:
+        concurrency: 1
+
+    # =============================================================================
+    # 🧪 TESTING SCRIPTS
+    # =============================================================================
+
+    test:select:
+      description: "Run tests for selected packages"
+      run: |
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          echo "🧪 Running Flutter tests..."
+          flutter test --coverage
+        else
+          echo "🧪 Running Dart tests..."  
+          dart test --coverage=coverage
+        fi
+      exec:
+        failFast: true
+        concurrency: 3 # Flutter/Jaspr 패키지가 적으므로 동시성 조정
+      packageFilters:
+        dirExists: test
+
+    test:
+      description: "Run all tests in the project"
+      run: melos run test:select --no-select
+
+    test:flutter:
+      description: "Run tests for Flutter packages only"
+      # #3652 — `--exclude-tags parity` keeps the blocking suite from ever
+      # attempting `test/parity/flutter_capture_matrix_test.dart`, which
+      # depends on an external PARITY_MANIFEST (env var/--dart-define) this
+      # job never sets and can capture the entire T1/T2 matrix (hundreds of
+      # widgets) when one is provided — neither is appropriate for a
+      # per-PR, per-package `flutter test` run. Without a manifest the file
+      # already degrades to a single skipped test rather than failing
+      # (`flutter test --tags parity` with 0 matched tests exits 79), so
+      # this flag is defense-in-depth, not the only thing preventing a
+      # blocking-suite break.
+      # Golden tests have their own gate below with `CI=true`. Running them
+      # here without that define selects host-sensitive `goldens/macos/` and
+      # makes the general suite fail on a mixed self-hosted runner fleet.
+      run: flutter test --coverage --exclude-tags parity,golden
+      exec:
+        failFast: true
+        concurrency: 2
+      packageFilters:
+        flutter: true
+        dirExists: test
+
+    test:dart:
+      description: "Run tests for Dart packages only"
+      # #5058 — `--exclude-tags perf` keeps wall-clock cost measurements out
+      # of the blocking `Dart Test` step. Their threshold reads runner load,
+      # not algorithmic shape, so on a busy self-hosted runner they failed
+      # PRs that never touched them and passed on re-run. They run from
+      # `test:perf` below, in a job that is not a required check.
+      #
+      # No `--coverage` here: CI never reads the output, and with coverage on
+      # test_core opens one VM service connection per suite. Under concurrency
+      # those connections intermittently drop ("Connection closed before full
+      # header was received"), the suite fails to load, and test_core 0.6.20
+      # leaks that suite's isolate, so the process never exits after
+      # "Some tests failed." — the silent 45-minute hang. `test:coverage`
+      # still collects coverage on demand.
+      run: dart test --exclude-tags perf
+      exec:
+        failFast: true
+        concurrency: 3
+      packageFilters:
+        flutter: false
+        dirExists: test
+
+    test:perf:
+      description: "Run wall-clock perf tests (non-blocking CI job — observation only)"
+      # Counterpart of `--exclude-tags perf` in `test:dart`. Scoped to the
+      # packages that actually hold `perf`-tagged tests: `dart test --tags
+      # perf` in a package with 0 matching tests errors ("No tests match the
+      # requested tag selectors") instead of passing, the same trap
+      # `golden:test` avoids with its `dirExists` filter. A package gaining
+      # its first `perf` test must be added to `scope` (and declare the tag
+      # in its `dart_test.yaml`).
+      run: dart test --tags perf
+      exec:
+        failFast: false
+        concurrency: 1
+      packageFilters:
+        scope: coui_core
+
+    test:tool:
+      description: "Run tool/ CLI unit tests (parity baseline store · allowlist · shared browser launch)"
+      # `melos list` 는 워크스페이스 루트 패키지를 포함하지 않으므로 test:dart 가
+      # tool/ 을 훑지 않는다. 루트 컨텍스트에서 한 번 도는 이 스크립트가 없으면
+      # 아래 테스트는 CI 에서 실행되지 않는다(= 없는 테스트).
+      run: dart test tool/parity/test tool/test
+
+    # =============================================================================
+    # 🎯 PARITY GATE SCRIPTS
+    # =============================================================================
+
+    parity:vrt:
+      description: "Capture components on both platforms and write the per-component visual-regression report (`-- <component> [..]`)"
+      # 캡처(Flutter + Web) → own-baseline 픽셀 회귀 비교 →
+      # test/parity/report/vrt-report.md (영향 범위 · 회귀 상세 · 검증).
+      # baseline 없는 키는 "첫 캡처" 로 보고 — 검토 후 parity:promote 로 승격.
+      run: bash tool/parity/run_vrt.sh
+
+    parity:promote:
+      description: "Promote captured parity artifacts to baseline (all, or `-- <key>`)"
+      # 기본 동작은 승격 + 요약을 담은 커밋 생성이다. 잘못된 baseline 승격이
+      # 회귀를 정상으로 굳히는 가장 위험한 경로라, 리뷰어가 커밋만 보고도
+      # 무엇이 바뀌었는지 알 수 있어야 한다.
+      #
+      # ⚠️ melos 는 위치 인자(`-- <key>`)만 넘기고 플래그는 자기 옵션으로
+      #    해석한다. --dry-run / --no-commit 은
+      #    `dart run tool/parity/promote.dart --dry-run` 으로 직접 실행한다.
+      run: dart run tool/parity/promote.dart
+
+    # =============================================================================
+    # 🖼️ GOLDEN TEST SCRIPTS
+    # =============================================================================
+
+    golden:test:
+      description: "Run golden tests for Flutter packages"
+      run: flutter test --tags golden --dart-define=CI=true --no-pub
+      exec:
+        failFast: true
+        concurrency: 1
+      packageFilters:
+        flutter: true
+        # Scope to packages that actually hold golden tests. A bare `test/` dir
+        # (docs_core etc.) has no golden-tagged tests, so `flutter test --tags
+        # golden` there errors "No tests match the requested tag selectors" and
+        # fails the whole failFast run.
+        dirExists: test/src/golden
+
+    golden:update:
+      description: "Update golden images (macOS + CI) for Flutter packages"
+      # Two passes: default (macOS platform goldens) + CI=true (CI goldens under
+      # goldens/ci/). flutter_test_config gates the two golden sets on the CI
+      # define, so a single pass only writes one set — and golden:test compares
+      # the CI set, so a CI-less update leaves goldens/ci/ stale/absent and the
+      # CI job goes red on a "non-existent file" mismatch.
+      run: flutter test --tags golden --update-goldens --no-pub && flutter test --tags golden --dart-define=CI=true --update-goldens --no-pub
+      exec:
+        failFast: true
+        concurrency: 1
+      packageFilters:
+        flutter: true
+        dirExists: test/src/golden
+
+    # =============================================================================
+    # 📊 COVERAGE SCRIPTS
+    # =============================================================================
+
+    coverage:select:
+      description: "Generate coverage for selected packages"
+      run: |
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          flutter test --coverage
+          genhtml coverage/lcov.info -o coverage/html 2>/dev/null || echo "genhtml not available, raw lcov.info generated"
+        else
+          dart test --coverage=coverage
+          dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --report-on=lib
+        fi
+      exec:
+        failFast: true
+        concurrency: 2
+      packageFilters:
+        dirExists: test
+
+    coverage:
+      description: "Generate coverage for all packages"
+      run: melos run coverage:select --no-select
+
+    coverage:report:
+      description: "Generate unified coverage report"
+      run: |
+        echo "📊 Collecting coverage from all packages..."
+        find . -name "lcov.info" -path "*/coverage/*" -exec echo "Found: {}" \;
+        echo "📋 Coverage report generated in each package's coverage/ directory"
+
+    # =============================================================================
+    # ⚙️ CODE GENERATION SCRIPTS
+    # =============================================================================
+
+    generate:select:
+      description: "Run code generation for selected packages"
+      run: |
+        echo "⚙️ Running build_runner for $(basename $(pwd))..."
+        dart run build_runner build --delete-conflicting-outputs
+        echo "✅ Code generation completed!"
+      exec:
+        concurrency: 1
+        failFast: true
+      packageFilters:
+        dependsOn:
+          - build_runner
+
+    generate:
+      description: "Run code generation for all packages"
+      run: melos run generate:select --no-select
+
+    generate:clean:
+      description: "Clean and regenerate all generated code"
+      run: |
+        echo "🧹 Cleaning previous generated files..."
+        dart run build_runner clean
+        echo "⚙️ Regenerating all code..."
+        dart run build_runner build --delete-conflicting-outputs
+      exec:
+        concurrency: 1
+      packageFilters:
+        dependsOn:
+          - build_runner
+
+    generate:locale:
+      run: melos exec -- "dart run slang"
+      description: "JSON 파일로부터 번역을 생성합니다."
+      packageFilters:
+        dependsOn:
+          - "slang"
+          - "slang_flutter"
+
+    translate:chrome:
+      run: melos exec --scope=coui_i10n -- "dart run tool/translate_chrome.dart"
+      description: "컴포넌트 chrome 한글 원본(coui_i10n/chrome)을 slang_gpt 로 9개 언어로
+        번역합니다. 키는 OPENAI_API_KEY 환경 변수에서 읽습니다."
+
+    generate:chrome-l10n:
+      run: melos exec --scope=coui_i10n -- "dart run tool/gen_chrome_localizations.dart"
+      description: "chrome 원본 JSON 에서 coui_flutter · coui_web 로케일 클래스를 생성합니다."
+
+    translate:slang:
+      run: melos exec -- "dart run slang_gpt --target=gdp-10 --debug
+        --api-key=$OPENAI_API_KEY"
+      description: "한글 JSON 파일로부터 GDP 상위 10개국의 번역을 생성합니다. (zh-Hans, es, ja, de, fr,
+        pt, ar, it, ru, ko)"
+      packageFilters:
+        dependsOn:
+          - "slang"
+          - "slang_flutter"
+
+    translate:slang:en:
+      run: melos exec -- "dart run slang_gpt --target=en --debug
+        --api-key=$OPENAI_API_KEY"
+      description: "한글 JSON 파일로부터 영어 번역을 생성합니다. (en)"
+      packageFilters:
+        dependsOn:
+          - "slang"
+          - "slang_flutter"
+
+    translate:slang:fix:
+      run: melos exec -- "./fix_slang_gpt.sh"
+      description: "한글 JSON 파일로부터 GDP 상위 10개국의 번역을 생성합니다. (zh-Hans, en, es, ja, de,
+        fr, pt, ar, it, ru, ko)"
+      packageFilters:
+        dependsOn:
+          - "slang"
+          - "slang_flutter"
+
+    translate:slang:full:
+      run: melos exec -- "dart run slang_gpt --full --target=gdp-10 --debug
+        --api-key=$OPENAI_API_KEY"
+      description: "한글 JSON 파일로부터 GDP 상위 10개국의 번역을 다시 생성합니다. (zh-Hans, es, ja, de, fr,
+        pt, ar, it, ru, ko)"
+      packageFilters:
+        dependsOn:
+          - "slang"
+          - "slang_flutter"
+
+    translate:slang:full:en:
+      run: melos exec -- "dart run slang_gpt --full --target=en --debug
+        --api-key=$OPENAI_API_KEY"
+      description: "한글 JSON 파일로부터 영어 번역을 다시 생성합니다. (en)"
+      packageFilters:
+        dependsOn:
+          - "slang"
+          - "slang_flutter"
+
+    translate:slang:all:
+      run: |
+        melos run translate:slang:full && \
+        melos run translate:slang:full:en && \
+        melos run translate:slang:fix && \
+        melos run generate:locale
+      description: "한글 JSON 파일로부터 모든 번역을 전체 재생성합니다. (full)"
+
+    translate:slang:incremental:
+      run: |
+        melos run translate:slang && \
+        melos run translate:slang:en && \
+        melos run translate:slang:fix && \
+        melos run generate:locale
+      description: "한글 JSON 파일로부터 변경된 부분만 증분 번역합니다. (빠름)"
+
+    # =============================================================================
+    # 📚 DOCUMENTATION SCRIPTS
+    # =============================================================================
+
+    docs:generate:
+      description: "Generate API documentation"
+      run: |
+        echo "📚 Generating API documentation..."
+        dart doc --output docs/api
+      exec:
+        concurrency: 1
+      packageFilters:
+        dirExists: lib
+
+    docs:serve:
+      description: "Serve documentation locally"
+      run: |
+        if command -v python3 &> /dev/null; then
+          echo "🌐 Serving docs at http://localhost:8000"
+          cd docs && python3 -m http.server 8000
+        else
+          echo "📋 Python3 not found. Install python3 to serve docs locally."
+        fi
+
+    # =============================================================================
+    # 🚀 BUILD & DEPLOYMENT SCRIPTS
+    # =============================================================================
+
+    build:flutter:
+      description: "Build Flutter packages"
+      run: |
+        echo "🔨 Building Flutter package: $(basename $(pwd))"
+        flutter build appbundle --release || flutter build web --release
+      exec:
+        concurrency: 2
+      packageFilters:
+        flutter: true
+        dirExists: lib
+
+    build:web:
+      description: "Build Jaspr web packages"
+      run: |
+        echo "🌐 Building Jaspr web package: $(basename $(pwd))"
+        dart run jaspr build
+      exec:
+        concurrency: 2
+      packageFilters:
+        dependsOn:
+          - jaspr
+        dirExists: lib
+
+    # =============================================================================
+    # 🔍 DEPENDENCY MANAGEMENT
+    # =============================================================================
+
+    deps:get:
+      description: "Get dependencies for all packages"
+      run: |
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          flutter pub get
+        else
+          dart pub get
+        fi
+      exec:
+        concurrency: 4
+
+    deps:upgrade:
+      description: "Upgrade dependencies for all packages"
+      run: |
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          flutter pub upgrade
+        else
+          dart pub upgrade
+        fi
+      exec:
+        concurrency: 2
+
+    deps:outdated:
+      description: "Check for outdated dependencies"
+      run: |
+        echo "📋 Checking outdated dependencies for $(basename $(pwd)):"
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          flutter pub outdated
+        else
+          dart pub outdated
+        fi
+      exec:
+        concurrency: 1
+
+    # =============================================================================
+    # 🎯 CoUI SPECIFIC SCRIPTS
+    # =============================================================================
+
+    coui:check:
+      description: "Run complete CoUI health check"
+      run: |
+        echo "🎯 Running CoUI complete health check..."
+        melos run fix:all
+        melos run generate  
+        melos run analyze:all
+        melos run test
+        echo "✅ CoUI health check completed!"
+
+    coui:component:new:
+      description: "Scaffold new CoUI component (Usage: melos run coui:component:new
+        --component=Button)"
+      run: |
+        if [ -z "$COMPONENT" ]; then
+          echo "❌ Please specify component name: --component=ComponentName"
+          exit 1
+        fi
+        echo "🎨 Creating new CoUI component: $COMPONENT"
+        # TODO: 컴포넌트 스캐폴딩 스크립트 구현
+        echo "📁 Component structure created for $COMPONENT"
+
+    coui:release:prepare:
+      description: "Prepare CoUI for release"
+      run: |
+        echo "🚀 Preparing CoUI release..."
+        melos run coui:check
+        melos run docs:generate
+        melos run coverage
+        echo "📋 Release preparation completed!"
+        echo "📝 Next steps:"
+        echo "  1. Review CHANGELOG.md"
+        echo "  2. Update version numbers"
+        echo "  3. Run 'melos version'"
+        echo "  4. Publish to pub.dev"
+
+    # =============================================================================
+    # 🛠️ DEVELOPMENT WORKFLOW
+    # =============================================================================
+
+    dev:setup:
+      description: "Setup development environment"
+      run: |
+        echo "🛠️ Setting up CoUI development environment..."
+        melos clean
+        melos bootstrap
+        melos run generate
+        melos run fix:all
+        echo "✅ Development environment ready!"
+
+    clean:deep:
+      description: "Deep clean all packages"
+      run: |
+        echo "🧹 Deep cleaning $(basename $(pwd))..."
+        rm -rf .dart_tool build coverage .packages pubspec.lock
+        if [ -f "pubspec.yaml" ] && grep -q "flutter:" pubspec.yaml; then
+          flutter clean
+        fi
+      exec:
+        concurrency: 1
+
+    # =============================================================================
+    # 📊 METRICS & REPORTING  
+    # =============================================================================
+
+    metrics:summary:
+      description: "Generate project metrics summary"
+      run: |
+        echo "📊 CoUI Project Metrics Summary"
+        echo "================================"
+        echo "📦 Packages: $(find packages -name pubspec.yaml | wc -l)"
+        echo "📄 Dart files: $(find . -name "*.dart" -not -path "*/.*" -not -path "*/build/*" | wc -l)"
+        echo "🧪 Test files: $(find . -name "*_test.dart" -not -path "*/.*" -not -path "*/build/*" | wc -l)"
+        echo "⚙️ Generated files: $(find . -name "*.g.dart" -o -name "*.freezed.dart" | wc -l)"

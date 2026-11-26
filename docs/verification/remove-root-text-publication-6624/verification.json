@@ -1,0 +1,194 @@
+{
+  "issue": 6624,
+  "date": "2026-11-24",
+  "codeHead": "6af4b3dd61f77d55ee627876fe2f73d0dc59be48",
+  "codeTree": "5b4e19378b943d7fbf260fc894441968b0a17947",
+  "base": "d732060e4ace766ce305cfdf976a8c243a51d73d",
+  "purpose": "Remove production measurement-only style publication and parity hooks; keep incorrect legacy collector result visible.",
+  "finalSourceSHA256": {
+    "packages/coui_flutter/lib/src/components/menu/menubar/menubar.dart": "dcdac16731c2a2d048fe0a3c2ef92df1bceff7cc8095d0d16b725b6db516902a",
+    "packages/coui_flutter/test/parity/root_text_probe.dart": "98cf76afbb98700bae774c47d292f2dfa8fdd8725ce610fd6f0809ac42833659",
+    "packages/coui_flutter/test/parity/flutter_capture_matrix_test.dart": "dd4612a64dc3cddbf78ef3229f780e696dcaf0ca1597c363a0563c52b1527a65"
+  },
+  "deleted": [
+    "packages/coui_flutter/lib/src/util/root_text_style_owner.dart",
+    "packages/coui_flutter/test/parity/root_text_owner_contract_test.dart",
+    "packages/coui_flutter/test/parity/root_text_owner_protocol_test.dart"
+  ],
+  "unchanged": [
+    "public API",
+    "Core/defaults",
+    "inherited style and paint",
+    "Web and docs_site",
+    "normalizer/comparator/criteria/baseline/allowlist",
+    "historical6619verification"
+  ],
+  "functional": {
+    "passed": 49,
+    "failed": 0,
+    "parts": {
+      "rootProbe": 10,
+      "Menubar": 37,
+      "externalActualPaintDiagnostic": 2
+    },
+    "executionSource": "d732 plus intermediate parent-exact restoration; before equivalent retained lint cleanups",
+    "finalByteIdenticalRunClaim": false
+  },
+  "finalStatic": {
+    "formatExit": 0,
+    "analysisActualExit": 1,
+    "legacyMaterialINFO": 1,
+    "newINFO": 0
+  },
+  "freshNative": {
+    "actualSource": "6af4b3dd61f77d55ee627876fe2f73d0dc59be48",
+    "defaultKeys": 2,
+    "JSON": 2,
+    "PNG": 2,
+    "matrixPass": 2,
+    "rootOmitted": 0,
+    "captureActualExit": 0,
+    "captureSeconds": 9.840058958,
+    "trackedSourceFilesExact": 25158,
+    "PNGByteExactToPublisherRevision": 2,
+    "onlyRawDelta": "/byRole/root/fontWeight:400->500",
+    "actualPaintWeight": 400,
+    "incorrectCollectorWeight": 500,
+    "historicalCaptureReuse": 0
+  },
+  "residentReload": {
+    "actualNativeFlutterResident": true,
+    "fullRestart": false,
+    "code": 0,
+    "libraries": [
+      414,
+      3756
+    ],
+    "reportedMilliseconds": 1056,
+    "markerInstances": [
+      1,
+      0
+    ],
+    "paintWeight": [
+      400,
+      400
+    ],
+    "stateIdentitiesAndSizePreserved": true,
+    "disposalChecksPassed": 5,
+    "ownedAppStopped": true,
+    "ownedPortsClosed": 2,
+    "otherAppsOrDTD": 0
+  },
+  "nativeGitBaseline": {
+    "actualExit": 0,
+    "passed": 2,
+    "sourceCommit": "6af4b3dd61f77d55ee627876fe2f73d0dc59be48",
+    "baselineOrigin": "actual Git blobs at source commit, paths/blob/SHA in inputs proof",
+    "comparator": "unchanged canonical comparePixels",
+    "maxDiffRatio": 0.001,
+    "eachDiffPixels": 1,
+    "eachPixelCount": 7296,
+    "eachDiffRatio": 0.00013706140350877192,
+    "maxChannelDeltas": [
+      37,
+      44
+    ],
+    "baselinePromotion": 0,
+    "pairedReportDartRun": false
+  },
+  "freshWeb": {
+    "actualExit": 2,
+    "cause": "Ego task space26 not found",
+    "JSON": 0,
+    "PNG": 0,
+    "automaticRetry": 0,
+    "historicalSubstitution": 0
+  },
+  "metadata": {
+    "packages": 232,
+    "ownRoots": 12,
+    "externalRoots": 220,
+    "releaseIntegrationWorkspaceGraphVersionUpdates": 4,
+    "allEdgesOrderAndExternalRootsPreserved": true,
+    "lockUnchanged": true,
+    "projectPubgetInstallDownload": 0
+  },
+  "notRun": [
+    "paired Native/Web pixel/property report because fresh Web has0captures",
+    "Jaspr build (Native/tool-only scope)",
+    "Figma"
+  ],
+  "limitations": [
+    "Issue6619 collector500 vs actual paint400 unresolved.",
+    "Analysis actualexit1 is retained; not reported as fatal0.",
+    "No full parity, broad architecture approval or padding fix claim.",
+    "Earlier publisher architecture rationale is superseded; original docs/captures are preserved."
+  ],
+  "artifactRoot": "/Users/minhyeok/orca/artifacts/coui/weever-native-padding-owner-48tdmuk3",
+  "proofRefs": [
+    {
+      "path": "evidence/correction-index.json",
+      "sha256": "7966f98da6fda857d2afd68ec17b064cd75c32b83879e14ddf19a2fc763fcb0d"
+    },
+    {
+      "path": "evidence/operational-native-audit/ledger.json",
+      "sha256": "940b6bdd895af2832f3e6c950745bbaa13fc18c0decaff6119afc523021ca786"
+    },
+    {
+      "path": "evidence/correction-existing/source-binding.json",
+      "sha256": "7dec1d66367ecae5a22a173ff66bab2c6c89aecee1bcd6ce62f1ba832e75d9ef"
+    },
+    {
+      "path": "evidence/correction-existing/test-summary.json",
+      "sha256": "fd76a9d3fe1d56b9f1f26ff85847763e29ce67c2db448f11997473012121454a"
+    },
+    {
+      "path": "evidence/correction-final-analysis/source-freeze.json",
+      "sha256": "b9b507690d545392d65b02a83eefad4050702f8b3a3616fe05f43f12d3726530"
+    },
+    {
+      "path": "evidence/correction-final-analysis/analysis-exit.json",
+      "sha256": "71b683e1b8fa5a7f299225ac7512c485d60405f19b945c9a78c62b61f08d903c"
+    },
+    {
+      "path": "evidence/correction-final-analysis/format-exit.json",
+      "sha256": "b9b2067dd85cb35947ef5c41750d212750c51a3ee9eddf2b76915c5566555313"
+    },
+    {
+      "path": "evidence/canonical-native-final/capture-integrity.json",
+      "sha256": "31856f97f4e58282b4b89bc65bc577450c440cf68978ca8e9c4a462541539147"
+    },
+    {
+      "path": "evidence/canonical-native-final/removal-comparison.json",
+      "sha256": "215f3bc98515bc678e4f2172d9850a9c0080eb3c8fcef045bc5fa4b883950f2f"
+    },
+    {
+      "path": "evidence/correction-resident-attempt1/resident-reload-proof.json",
+      "sha256": "3c05b6666b73e8e83be94107678d1502bd5740ab4b03ac540de9f498932f2068"
+    },
+    {
+      "path": "evidence/correction-resident-attempt1/disposal.json",
+      "sha256": "5de1f641069007803e2f1d10918e5dc89a0df7e4a85be6ef88a6b63c8a7016a6"
+    },
+    {
+      "path": "evidence/metadata-d732/binding.json",
+      "sha256": "d20a73ef543b942e08e0420b39361fe0dcb0e28d92cea05d2370c7cf795c25a9"
+    },
+    {
+      "path": "evidence/Root/native-git-regression/inputs.json",
+      "sha256": "fa3066e1b9761feffb794038f04840d67c3aebb50e6f35e78a4e48243bd62c09"
+    },
+    {
+      "path": "evidence/Root/native-git-regression/observations.json",
+      "sha256": "10e29819f4b0694e4fb24b85874e547f1d17abb07b1524f6bb37961facb0f16e"
+    },
+    {
+      "path": "evidence/Root/native-git-regression/execution.json",
+      "sha256": "3cf45c41df537d39600db0450101e0528c920957eb42bf25a2c13dd9cfcc0feb"
+    },
+    {
+      "path": "evidence/canonical-web-final/exit.json",
+      "sha256": "54bdb5f7817d3b237493f743f01ea534f41eff857d5be4db524db2b5677b5d83"
+    }
+  ]
+}

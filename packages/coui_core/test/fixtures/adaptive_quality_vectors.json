@@ -1,0 +1,1608 @@
+{
+  "_comment": [
+    "Shared vectors for adaptive quality: the ladder of tiers, the frame budget, the refresh-rate estimate,",
+    "and synthetic frame sequences with the tier changes the governor must make on them",
+    "(CoreQualityLadder, CoreFrameBudget, CoreQualityGovernor and the Flutter / Web seats that feed it).",
+    "Read by coui_core (every table replayed on the pure types), coui_flutter (the `cost` traces are replayed",
+    "as FrameTimings through the app's host and the tier read back off the rendered theme), coui_web (the",
+    "`interval` traces are replayed as requestAnimationFrame timestamps through the DOM-free sampler and the",
+    "tier read back off the document attribute). A change on one seat fails the others.",
+    "",
+    "Every expected frame is stated by hand from the tuning constants, not computed by the code under test; each",
+    "trace says how (`derivation`).",
+    "",
+    "Frames. A trace is run-length steps: {frames: n, ratio: r} is n frames of r budgets, {frames: n, pattern:",
+    "[r1, r2, ...]} cycles the ratios, and {event: hold | release | reset} sits between frames. Frames are",
+    "numbered from 1 over every frame fed, skipped and held ones included; `expect[].frame` is the frame whose",
+    "arrival made the governor report the change.",
+    "",
+    "Costs and clocks. A frame of ratio r at refreshHz h has cost round(r * round(1e6 / h)) microseconds. The",
+    "clock a frame ends on advances by max(budget, cost) for the `cost` metric (a frame cannot end sooner than",
+    "the display shows it) and by the cost itself for `interval` (the cost IS the time since the last frame).",
+    "The first interval frame of a replay has a predecessor at time zero.",
+    "",
+    "Tuning is the default one (CoreQualityTuning). At 60 Hz that is: skip 90 frames, warm-up 180, window 120,",
+    "settle after a hold 60, cooldown 8 s; at 120 Hz twice those frame counts, at 30 Hz half.",
+    "",
+    "`hold` opens a hold and `release` releases it (CoreQualityGovernor.hold); `reset` is an app resume after a",
+    "pause (CoreQualityGovernor.reset). `rungs` are the tiers the governor steps between; `initial` skips the",
+    "warm-up."
+  ],
+  "budget": {
+    "microsFor": [
+      {
+        "hz": 60,
+        "micros": 16667
+      },
+      {
+        "hz": 120,
+        "micros": 8333
+      },
+      {
+        "hz": 144,
+        "micros": 6944
+      },
+      {
+        "hz": 30,
+        "micros": 33333
+      },
+      {
+        "hz": 59.94,
+        "micros": 16683
+      },
+      {
+        "hz": 0,
+        "micros": 16667,
+        "note": "a non-positive rate is not reported"
+      },
+      {
+        "hz": -5,
+        "micros": 16667
+      },
+      {
+        "hz": null,
+        "micros": 16667,
+        "note": "null: the platform reported nothing"
+      },
+      {
+        "hz": "NaN",
+        "micros": 16667
+      },
+      {
+        "hz": "Infinity",
+        "micros": 16667
+      },
+      {
+        "hz": 1000,
+        "micros": 2083,
+        "note": "clamped to 480 Hz"
+      }
+    ],
+    "estimate": [
+      {
+        "name": "a clean 60 Hz page",
+        "intervals": [
+          [
+            16667,
+            40
+          ]
+        ],
+        "hz": 60
+      },
+      {
+        "name": "60 Hz with a quarter of the frames dropped",
+        "intervals": [
+          [
+            16667,
+            30
+          ],
+          [
+            33333,
+            10
+          ]
+        ],
+        "hz": 60
+      },
+      {
+        "name": "a clean 120 Hz page",
+        "intervals": [
+          [
+            8333,
+            40
+          ]
+        ],
+        "hz": 120
+      },
+      {
+        "name": "the 59.94 Hz of an NTSC-derived panel",
+        "intervals": [
+          [
+            16683,
+            40
+          ]
+        ],
+        "hz": 60
+      },
+      {
+        "name": "90 Hz",
+        "intervals": [
+          [
+            11111,
+            40
+          ]
+        ],
+        "hz": 90
+      },
+      {
+        "name": "144 Hz",
+        "intervals": [
+          [
+            6944,
+            40
+          ]
+        ],
+        "hz": 144
+      },
+      {
+        "name": "75 Hz is not read as 72",
+        "intervals": [
+          [
+            13333,
+            40
+          ]
+        ],
+        "hz": 75
+      },
+      {
+        "name": "72 Hz is not read as 75",
+        "intervals": [
+          [
+            13889,
+            40
+          ]
+        ],
+        "hz": 72
+      },
+      {
+        "name": "between 72 and 75 the nearer wins",
+        "intervals": [
+          [
+            13605,
+            40
+          ]
+        ],
+        "hz": 75,
+        "note": "73.5 Hz is 2.0% from 75 and 2.1% from 72"
+      },
+      {
+        "name": "a page already dropping every frame is not read as a 30 Hz display",
+        "intervals": [
+          [
+            33333,
+            40
+          ]
+        ],
+        "hz": 60
+      },
+      {
+        "name": "one bunched-up frame in five does not make the display faster",
+        "intervals": [
+          [
+            1000,
+            8
+          ],
+          [
+            16667,
+            32
+          ]
+        ],
+        "hz": 60
+      },
+      {
+        "name": "too few intervals say nothing",
+        "intervals": [
+          [
+            16667,
+            29
+          ]
+        ],
+        "hz": null
+      }
+    ]
+  },
+  "tiers": [
+    {
+      "tier": "full",
+      "refraction": true,
+      "backdropPass": true
+    },
+    {
+      "tier": "noRefraction",
+      "refraction": false,
+      "backdropPass": true
+    },
+    {
+      "tier": "solid",
+      "refraction": false,
+      "backdropPass": false
+    }
+  ],
+  "reach": [
+    {
+      "drawable": [
+        "refraction",
+        "backdropPass"
+      ],
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ]
+    },
+    {
+      "drawable": [
+        "backdropPass"
+      ],
+      "rungs": [
+        "full",
+        "solid"
+      ]
+    },
+    {
+      "drawable": [
+        "refraction"
+      ],
+      "rungs": [
+        "full",
+        "noRefraction"
+      ]
+    },
+    {
+      "drawable": [],
+      "rungs": [
+        "full"
+      ]
+    }
+  ],
+  "traces": [
+    {
+      "name": "a comfortable device never leaves the top",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "warm-up P75 0.3 < 1.0 -> target 0; every runtime window P95 0.3 < 0.5 is comfortable; nothing to give up",
+      "steps": [
+        {
+          "frames": 870,
+          "ratio": 0.3
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "the warm-up settles a very heavy device on the floor in one decision",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "frames 1-90 skipped (ratio 4 ignored); frames 91-270 are the warm-up, P75 = 2.0; target = 1 + floor((2.0-1.0)/0.5) = 3, clamped to the last rung (2); decided on frame 270",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 4.0
+        },
+        {
+          "frames": 180,
+          "ratio": 2.0
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "solid",
+          "reason": "warmup"
+        }
+      ],
+      "final": "solid"
+    },
+    {
+      "name": "the warm-up gives up one rung for a device just over budget",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "P75 = 1.2; target = 1 + floor(0.2/0.5) = 1 -> noRefraction on frame 270",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 0.4
+        },
+        {
+          "frames": 180,
+          "ratio": 1.2
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "warmup"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "a warm-up just under the start line keeps the top",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "P75 = 0.99 < 1.0 -> target 0; the skipped frames (ratio 3) are not counted",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 3.0
+        },
+        {
+          "frames": 180,
+          "ratio": 0.99
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "a quarter of the warm-up frames over the line does not decide the tier",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "180 frames, 45 over (25%): nearest rank ceil(.75*180)=135 -> sorted index 134; indices 0-134 are the 135 comfortable frames -> P75 = 0.4 -> target 0",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 0.4
+        },
+        {
+          "frames": 180,
+          "pattern": [
+            0.4,
+            0.4,
+            0.4,
+            3.0
+          ]
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "one frame more than a quarter of the warm-up over the line does",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "warm-up frames 91-270: 2 at 3.0, then 178 cycling [.4,.4,.4,3.0] -> 44 more at 3.0 (the last two frames of the run are .4): 46 over, 134 comfortable; sorted index 134 (rank 135) is a 3.0 -> P75 = 3.0 -> target = 1 + floor(2.0/0.5) = 5, clamped to the last rung",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 0.4
+        },
+        {
+          "frames": 2,
+          "ratio": 3.0
+        },
+        {
+          "frames": 178,
+          "pattern": [
+            0.4,
+            0.4,
+            0.4,
+            3.0
+          ]
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "solid",
+          "reason": "warmup"
+        }
+      ],
+      "final": "solid"
+    },
+    {
+      "name": "two over windows in a row give up one rung",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "warm-up (frames 91-270) P75 0.5 -> stays; runtime windows are frames 271-390 and 391-510; both P95 1.3 > 1.0 -> over streak 2 on frame 510; no earlier change so the cooldown is clear",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 0.5
+        },
+        {
+          "frames": 240,
+          "ratio": 1.3
+        }
+      ],
+      "expect": [
+        {
+          "frame": 510,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "overrun"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "a single over window between comfortable ones changes nothing",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "windows: comfortable, over (streak 1), then comfortable clears it; never two in a row",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 0.5
+        },
+        {
+          "frames": 120,
+          "ratio": 0.4
+        },
+        {
+          "frames": 120,
+          "ratio": 1.3
+        },
+        {
+          "frames": 480,
+          "ratio": 0.4
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "a few slow frames do not make a window over: P95 skips the worst 5%",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "1 slow frame in 20 = 6 of 120 per window; nearest rank ceil(.95*120)=114 -> index 113; the 6 slow frames sort to indices 114-119 -> P95 = 0.4",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 0.5
+        },
+        {
+          "frames": 600,
+          "pattern": [
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            3.0
+          ]
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "one more slow frame in a window makes it over",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "1 in 17 -> 8 slow per 136? pattern length 17: 120 frames hold 7 slow (indices 16,33,...,118 -> 7); 7 slow sort to indices 113-119 -> P95 = 3.0 -> over; two windows -> frame 510",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 0.5
+        },
+        {
+          "frames": 240,
+          "pattern": [
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            0.4,
+            3.0
+          ]
+        }
+      ],
+      "expect": [
+        {
+          "frame": 510,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "overrun"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "the cooldown holds the next step down until eight seconds have passed",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "first change on frame 510. Frames cost 1.3 budget = 21667 us each. Windows end on 630, 750, 870, 990 (streak 1,2,3,4); the streak is 2 at 750 but 240 frames * 21667 = 5.2 s < 8 s; at 870 it is 360 * 21667 = 7.8 s < 8 s; at 990 it is 480 * 21667 = 10.4 s >= 8 s -> second change on frame 990",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 0.5
+        },
+        {
+          "frames": 720,
+          "ratio": 1.3
+        }
+      ],
+      "expect": [
+        {
+          "frame": 510,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "overrun"
+        },
+        {
+          "frame": 990,
+          "from": "noRefraction",
+          "to": "solid",
+          "reason": "overrun"
+        }
+      ],
+      "final": "solid"
+    },
+    {
+      "name": "the last rung cannot be given up",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "warm-up goes straight to the floor; over windows after that have nowhere to go",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 3.0
+        },
+        {
+          "frames": 1200,
+          "ratio": 3.0
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "solid",
+          "reason": "warmup"
+        }
+      ],
+      "final": "solid"
+    },
+    {
+      "name": "recovery is slow: ten comfortable windows take one rung back, ten more the next",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "floor on frame 270. Comfortable (0.2 < 0.5) windows end on 390 ... ; the 10th ends on 270 + 1200 = 1470 -> step up (cooldown long past: 1200 frames * 16667 us = 20 s). Streak resets; the 10th after is frame 2670",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 3.0
+        },
+        {
+          "frames": 2400,
+          "ratio": 0.2
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "solid",
+          "reason": "warmup"
+        },
+        {
+          "frame": 1470,
+          "from": "solid",
+          "to": "noRefraction",
+          "reason": "headroom"
+        },
+        {
+          "frame": 2670,
+          "from": "noRefraction",
+          "to": "full",
+          "reason": "headroom"
+        }
+      ],
+      "final": "full"
+    },
+    {
+      "name": "a window between the lines decays recovery instead of erasing it",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "initial": "solid",
+      "derivation": "start at the floor (no warm-up); skip frames 1-90; windows 1-9 comfortable (streak 9), window 10 at 0.8 is between 0.5 and 1.0 (streak 8), windows 11-12 comfortable (streak 10) -> step up on frame 90 + 12*120 = 1530. A reset-to-zero would need ten more windows",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 0.5
+        },
+        {
+          "frames": 1080,
+          "ratio": 0.2
+        },
+        {
+          "frames": 120,
+          "ratio": 0.8
+        },
+        {
+          "frames": 240,
+          "ratio": 0.2
+        }
+      ],
+      "expect": [
+        {
+          "frame": 1530,
+          "from": "solid",
+          "to": "noRefraction",
+          "reason": "headroom"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "without step up the tier only ever falls",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "allowStepUp": false,
+      "derivation": "comfortable windows pile up but a step up is not allowed",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 3.0
+        },
+        {
+          "frames": 2400,
+          "ratio": 0.2
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "solid",
+          "reason": "warmup"
+        }
+      ],
+      "final": "solid"
+    },
+    {
+      "name": "a rung taken back and lost again doubles the wait for the next",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "initial": "solid",
+      "derivation": "step up on 90 + 10*120 = 1290 (probation 5). Over windows end on 1410, 1530, 1650, 1770: streak is 2 at 1530 but 240 * 21667 us = 5.2 s < 8 s, 360 * 21667 = 7.8 s at 1650, 480 * 21667 = 10.4 s at 1770 -> step down on 1770 inside probation (decremented by windows 1-3 to 2 left, still > 0) -> failed step up, wait doubles to 20 windows. Then 2400 comfortable frames = 20 windows from frame 1770: step up on 1770 + 2400 = 4170",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 0.5
+        },
+        {
+          "frames": 1200,
+          "ratio": 0.2
+        },
+        {
+          "frames": 480,
+          "ratio": 1.3
+        },
+        {
+          "frames": 2400,
+          "ratio": 0.2
+        }
+      ],
+      "expect": [
+        {
+          "frame": 1290,
+          "from": "solid",
+          "to": "noRefraction",
+          "reason": "headroom"
+        },
+        {
+          "frame": 1770,
+          "from": "noRefraction",
+          "to": "solid",
+          "reason": "overrun"
+        },
+        {
+          "frame": 4170,
+          "from": "solid",
+          "to": "noRefraction",
+          "reason": "headroom"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "measurement held: frames under a hold and the second after are not judged",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "warm-up quiet. 400 frames of 3.0 under the hold: dropped. After the release 60 settle frames (1 s at 60 Hz) dropped. Windows then end on 671+60+120-1 = frame 850 and 970 (frames 731-850, 851-970): both over -> degrade on frame 970",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 0.5
+        },
+        {
+          "event": "hold"
+        },
+        {
+          "frames": 400,
+          "ratio": 3.0
+        },
+        {
+          "event": "release"
+        },
+        {
+          "frames": 60,
+          "ratio": 3.0
+        },
+        {
+          "frames": 240,
+          "ratio": 1.3
+        }
+      ],
+      "expect": [
+        {
+          "frame": 970,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "overrun"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "the same overload without a hold degrades while it lasts",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "control for the hold trace: windows end on 390 and 510 -> change on 510",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 0.5
+        },
+        {
+          "frames": 400,
+          "ratio": 3.0
+        }
+      ],
+      "expect": [
+        {
+          "frame": 510,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "overrun"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "a reset starts the warm-up over and may raise the tier",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "initial": "noRefraction",
+      "derivation": "started at noRefraction; 420 comfortable frames, no step up yet (windows 2..: first window ends 210, ten needed -> none by 420). Reset after frame 420: skip 90 + warm-up 180 -> decision on frame 690, P75 0.3 -> target 0 -> full",
+      "steps": [
+        {
+          "frames": 420,
+          "ratio": 0.3
+        },
+        {
+          "event": "reset"
+        },
+        {
+          "frames": 270,
+          "ratio": 0.3
+        }
+      ],
+      "expect": [
+        {
+          "frame": 690,
+          "from": "noRefraction",
+          "to": "full",
+          "reason": "warmup"
+        }
+      ],
+      "final": "full"
+    },
+    {
+      "name": "a reset with step up not allowed does not raise the tier",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "initial": "noRefraction",
+      "allowStepUp": false,
+      "derivation": "the warm-up after the reset finds room but a step up is not allowed",
+      "steps": [
+        {
+          "frames": 420,
+          "ratio": 0.3
+        },
+        {
+          "event": "reset"
+        },
+        {
+          "frames": 270,
+          "ratio": 0.3
+        }
+      ],
+      "expect": [],
+      "final": "noRefraction"
+    },
+    {
+      "name": "an initial tier skips the warm-up and judges windows after the skip",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "initial": "noRefraction",
+      "derivation": "skip frames 1-90; windows end on 210 and 330 -> two over -> step down on frame 330",
+      "steps": [
+        {
+          "frames": 330,
+          "ratio": 1.3
+        }
+      ],
+      "expect": [
+        {
+          "frame": 330,
+          "from": "noRefraction",
+          "to": "solid",
+          "reason": "overrun"
+        }
+      ],
+      "final": "solid"
+    },
+    {
+      "name": "an initial tier the rungs have no step for starts at the one that looks the same",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "solid"
+      ],
+      "initial": "noRefraction",
+      "derivation": "noRefraction is not a rung here (the engine draws no bend); the greatest rung not above it is full",
+      "steps": [
+        {
+          "frames": 300,
+          "ratio": 0.3
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "the counts follow the refresh rate: a window is two seconds at 120 Hz too",
+      "metric": "cost",
+      "refreshHz": 120,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "budget 8333 us: skip 1.5 s = 180 frames, warm-up 3 s = 360 frames; frames 181-540 at 1.3 -> P75 1.3 -> target 1 -> decided on frame 540",
+      "steps": [
+        {
+          "frames": 180,
+          "ratio": 0.4
+        },
+        {
+          "frames": 360,
+          "ratio": 1.3
+        }
+      ],
+      "expect": [
+        {
+          "frame": 540,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "warmup"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "at 30 Hz the same seconds are fewer frames",
+      "metric": "cost",
+      "refreshHz": 30,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "budget 33333 us: skip 1.5 s = 45 frames, warm-up 3 s = 90 frames",
+      "steps": [
+        {
+          "frames": 45,
+          "ratio": 0.4
+        },
+        {
+          "frames": 90,
+          "ratio": 1.3
+        }
+      ],
+      "expect": [
+        {
+          "frame": 135,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "warmup"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "a window exactly at the budget is not over",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "ratio 1.0 -> cost 16667 = the budget; over is strictly greater, and 1.0 is not below 0.5 either, so the windows are neither",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 0.5
+        },
+        {
+          "frames": 480,
+          "ratio": 1.0
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "a window a microsecond past the budget is over",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "ratio 1.00006 -> cost 16668 > 16667; two windows -> frame 510",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 0.5
+        },
+        {
+          "frames": 240,
+          "ratio": 1.00006
+        }
+      ],
+      "expect": [
+        {
+          "frame": 510,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "overrun"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "a warm-up exactly at the budget gives up one rung",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "P75 = 16667 = 1.0 budgets: the start line is inclusive; target = 1 + floor(0 / 0.5) = 1",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 0.4
+        },
+        {
+          "frames": 180,
+          "ratio": 1.0
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "warmup"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "a warm-up just under one and a half budgets takes one rung",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "target = 1 + floor(0.45 / 0.5) = 1",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 0.4
+        },
+        {
+          "frames": 180,
+          "ratio": 1.45
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "warmup"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "a warm-up at one and a half budgets takes the second rung",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "cost 25001 = 1.50006 budgets: target = 1 + floor(0.50006 / 0.5) = 2",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 0.4
+        },
+        {
+          "frames": 180,
+          "ratio": 1.5
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "solid",
+          "reason": "warmup"
+        }
+      ],
+      "final": "solid"
+    },
+    {
+      "name": "comfortable is strictly under half a budget",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "initial": "solid",
+      "derivation": "0.51 is not under 0.5: no comfortable window ever builds, so the floor holds",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 0.5
+        },
+        {
+          "frames": 1440,
+          "ratio": 0.51
+        }
+      ],
+      "expect": [],
+      "final": "solid"
+    },
+    {
+      "name": "under half a budget is comfortable",
+      "metric": "cost",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "initial": "solid",
+      "derivation": "0.49 < 0.5: ten comfortable windows end on 90 + 1200",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 0.5
+        },
+        {
+          "frames": 1200,
+          "ratio": 0.49
+        }
+      ],
+      "expect": [
+        {
+          "frame": 1290,
+          "from": "solid",
+          "to": "noRefraction",
+          "reason": "headroom"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "a page whose frames arrive on time is comfortable",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "warm-up P75 1.0 < 1.5; windows P95 1.0 < 1.15 are comfortable; nothing to give up",
+      "steps": [
+        {
+          "frames": 900,
+          "ratio": 1.0
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "a third of the frames dropped moves the warm-up one rung",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "60 of 180 intervals are 2.0: sorted index 134 (rank 135) is a 2.0 -> P75 = 2.0; target = 1 + floor((2.0-1.5)/1.0) = 1",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 1.0
+        },
+        {
+          "frames": 180,
+          "pattern": [
+            1.0,
+            1.0,
+            2.0
+          ]
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "warmup"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "a quarter of the frames dropped is not enough for the warm-up",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "45 of 180 intervals are 2.0: sorted index 134 is a 1.0 -> P75 1.0 -> target 0. The runtime then degrades (below)",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 1.0
+        },
+        {
+          "frames": 180,
+          "pattern": [
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ]
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "a quarter of the frames dropped degrades at runtime, after two windows",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "windows of 120 intervals hold 30 twos: P95 index 113 is a 2.0 -> 2.0 > 1.5 over; two windows -> frame 510 (cooldown clear)",
+      "steps": [
+        {
+          "frames": 270,
+          "pattern": [
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ]
+        },
+        {
+          "frames": 240,
+          "pattern": [
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ]
+        }
+      ],
+      "expect": [
+        {
+          "frame": 510,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "overrun"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "six dropped frames in every window do not make a window over",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "pattern of 20 gives 6 twos in each of the two 120-frame windows (indices 19,39,...,119 and 139,...,239): they sort to indices 114-119, and P95 (rank 114, index 113) is 1.0 -> comfortable, never over",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 1.0
+        },
+        {
+          "frames": 240,
+          "pattern": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ]
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "seven dropped frames in every window make it over",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "pattern of 17 gives 7 twos per 120 frames: P95 index 113 is a 2.0 -> over, twice in a row -> frame 510",
+      "steps": [
+        {
+          "frames": 270,
+          "ratio": 1.0
+        },
+        {
+          "frames": 240,
+          "pattern": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ]
+        }
+      ],
+      "expect": [
+        {
+          "frame": 510,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "overrun"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "an on-time page after a drop recovers after ten comfortable windows",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "initial": "solid",
+      "derivation": "intervals of exactly one budget are < 1.15 -> comfortable; the 10th window ends on 90 + 1200",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 1.0
+        },
+        {
+          "frames": 1200,
+          "ratio": 1.0
+        }
+      ],
+      "expect": [
+        {
+          "frame": 1290,
+          "from": "solid",
+          "to": "noRefraction",
+          "reason": "headroom"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "intervals between the lines are neither over nor comfortable",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "initial": "solid",
+      "derivation": "1.3 is above 1.15 (not comfortable) and below 1.5 (not over): no streak builds either way",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 1.0
+        },
+        {
+          "frames": 1440,
+          "ratio": 1.3
+        }
+      ],
+      "expect": [],
+      "final": "solid"
+    },
+    {
+      "name": "a page between the lines keeps the top",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "initial": "full",
+      "derivation": "the skip takes 90 frames, then windows of 120; each has P95 1.3 budgets, above 1.15 (not comfortable) and below 1.5 (not over): nothing to degrade and nothing banked, at the top rung where a threshold set too low would act",
+      "steps": [
+        {
+          "frames": 870,
+          "ratio": 1.3
+        }
+      ],
+      "expect": [],
+      "final": "full"
+    },
+    {
+      "name": "a warm-up exactly at the dropped-frame line takes one rung",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "cost 25001 = 1.50006 budgets >= 1.5; target = 1 + floor(0.00006 / 1.0) = 1",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 1.0
+        },
+        {
+          "frames": 180,
+          "ratio": 1.5
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "noRefraction",
+          "reason": "warmup"
+        }
+      ],
+      "final": "noRefraction"
+    },
+    {
+      "name": "three budgets between frames takes the second rung",
+      "metric": "interval",
+      "refreshHz": 60,
+      "rungs": [
+        "full",
+        "noRefraction",
+        "solid"
+      ],
+      "derivation": "P75 = 3.0: target = 1 + floor((3.0 - 1.5) / 1.0) = 2",
+      "steps": [
+        {
+          "frames": 90,
+          "ratio": 1.0
+        },
+        {
+          "frames": 180,
+          "ratio": 3.0
+        }
+      ],
+      "expect": [
+        {
+          "frame": 270,
+          "from": "full",
+          "to": "solid",
+          "reason": "warmup"
+        }
+      ],
+      "final": "solid"
+    }
+  ]
+}

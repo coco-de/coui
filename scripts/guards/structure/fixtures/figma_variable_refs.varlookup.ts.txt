@@ -1,0 +1,165 @@
+// G12 self-test fixture — never compiled. Each member below is one shape the
+// guard has to read; the verdict it must reach for each is in
+// figma_variable_refs.expected.txt, in the guard's own output format.
+//
+// The two functions at the bottom are a verbatim copy of the plugin's
+// `canonicalCollection` / `withoutOrderingPrefix`. They are the reference the
+// guard compares the real plugin against — when the plugin's rule changes, the
+// guard goes red until this copy and the guard's `canon()` change with it.
+
+export class VarLookup {
+  private byKey = new Map<string, Variable>();
+  constructor(vars: Variable[], collById: Map<string, string>) {
+    for (const v of vars) {
+      const coll = collById.get(v.variableCollectionId);
+      if (coll) this.byKey.set(`${canonicalCollection(coll)}/${v.name}`, v);
+    }
+  }
+  tryGet(coll: string, name: string): Variable | undefined {
+    return this.byKey.get(`${canonicalCollection(coll)}/${name}`);
+  }
+  get(coll: string, name: string): Variable {
+    const v = this.byKey.get(`${canonicalCollection(coll)}/${name}`);
+    if (!v) throw new Error(`variable not found: ${coll}/${name}`);
+    return v;
+  }
+  // The brand-qualified Semantic/Color collections fold to `Semantic`; a key
+  // held by only the FIRST brand must still resolve.
+  sem(name: string): Variable {
+    return this.get('Semantic', `color/${name}`);
+  }
+  // The plain case: the static prefix ends at a slash.
+  space(n: number): Variable {
+    return this.get('Primitives', `space/${n}`);
+  }
+  // BAD — an arrow-function property between methods. A line-based parser does
+  // not see it as a member and files its lookup under the member before it,
+  // where `space/` resolves and hides it.
+  radiusArrow = (n: number): Variable =>
+    this.get('Semantic/Dimension', `radius-arrow/${n}`);
+  // A double-quoted collection.
+  stroke(n: number): Variable {
+    return this.get("Primitives", `stroke/${n}`);
+  }
+  // Two names; the legacy one is absent from a current export.
+  fontSize(n: number): Variable {
+    const v = this.tryGet('Primitives', `font/size/${n}`);
+    if (v) return v;
+    return this.get('Primitives', `font-size/${n}`);
+  }
+  // The static prefix stops in the middle of a leaf, not at a slash.
+  letterSpacingOrNull(size: number): Variable | undefined {
+    return this.tryGet('Semantic/Typography', `letter-spacing/size-${size}`);
+  }
+  // The whole leaf is a parameter — the collection has to hold something.
+  typographyOrNull(name: string): Variable | undefined {
+    return this.tryGet('Semantic/Typography', name);
+  }
+  // A literal key with no interpolation.
+  touchTarget(): Variable {
+    return this.get('Semantic/Dimension', 'a11y/touch-target');
+  }
+  // BAD — the literal is a prefix of a real key, not a key.
+  touchTargetBad(): Variable {
+    return this.get('Semantic/Dimension', 'a11y/touch');
+  }
+  // Resolves by scanning the index for a prefix rather than asking for a key.
+  fontFamily(role: string): Variable {
+    const legacy = this.tryGet('Primitives', `font-family/${role}`);
+    if (legacy) return legacy;
+    let found: Variable | undefined;
+    this.byKey.forEach((v, key) => {
+      if (key.startsWith('Primitives/font/family/')) found = v;
+    });
+    return found!;
+  }
+  // BAD — a group the export does not have.
+  radiusRole(n: number): Variable {
+    return this.get('Semantic/Dimension', `radius-role/${n}`);
+  }
+  // BAD — a literal key that does not exist.
+  missingLiteral(): Variable {
+    return this.get('Primitives', 'radius/full');
+  }
+  // BAD — a nested generic that a one-level `<[^>]*>` does not get past, and
+  // two comments that quote lookups that DO resolve. Neither comment is a
+  // lookup of this member.
+  pick<T extends Record<string, Map<string, number>>>(n: T): Variable {
+    // Unlike this.get('Primitives', `space/${n}`) in `space()` — no fallback.
+    // Not a scan like key.startsWith('Primitives/font/family/') either.
+    return this.get('Semantic/Dimension', `radius-nested/${n}`);
+  }
+  // BAD — an ECMAScript private method; `#` is not a word character.
+  #privateBad(n: number): Variable {
+    return this.get('Semantic/Dimension', `radius-private/${n}`);
+  }
+  // BAD — text after the interpolation is part of the key.
+  tail(n: number): Variable {
+    return this.get('Primitives', `space/${n}px`);
+  }
+  // BAD — a startsWith that is not a scan of the index is not a lookup.
+  startsWithDecoy(coll: string, n: number): Variable {
+    if (!coll.startsWith('Semantic')) throw new Error('not semantic');
+    return this.get('Semantic/Dimension', `radius-decoy/${n}`);
+  }
+  // OK — a call wrapped over lines with a trailing comma is still a call.
+  radiusWrapped(n: number): Variable | undefined {
+    return this.tryGet(
+      'Primitives',
+      `radius/${n}`,
+    );
+  }
+  // OK — a lookup quoted in a string is not a lookup. This member has none.
+  describe(): string {
+    return "calls this.get('Nope', `ghost/${n}`) when it fails";
+  }
+  // UNREAD — the collection is not a literal, so there is nothing to check.
+  dynamic(coll: string, n: number): Variable {
+    return this.get(coll, `space/${n}`);
+  }
+  // UNREAD — the index read directly, past get/tryGet.
+  directRead(n: number): Variable {
+    const v = this.byKey.get(`Semantic/Dimension/radius-direct/${n}`);
+    if (!v) throw new Error('missing');
+    return v;
+  }
+  // UNREAD — the group is an argument, so the leaf cannot be read.
+  ladder(group: string, n: number): Variable {
+    return this.get('Primitives', `${group}/${n}`);
+  }
+  // UNREAD — hands a literal group to a helper; this member has no lookup of
+  // its own, so nothing else would ever look at it.
+  viaLadder(n: number): Variable {
+    return this.ladder('radius-role', n);
+  }
+  // Delegates an identifier; no lookup of its own, so it is not an accessor.
+  fontFamilyName(name: string): string {
+    return String(this.fontFamily(name).valuesByMode);
+  }
+}
+
+// After the class — must not be read as one of its accessors even though it
+// sits at the same indentation and asks for a group that does not exist.
+export class Other {
+  ghost(n: number): Variable {
+    return this.get('Nope', `ghost/${n}`);
+  }
+}
+
+export function canonicalCollection(name: string): string {
+  let n = withoutOrderingPrefix(name);
+  n = n.replace(/\/\s+/g, '/');
+  n = n.replace(/\s*·\s*.+$/, '');
+  if (n === 'Semantic/Color') return 'Semantic';
+  return n;
+}
+
+// A collection name without its leading ordering prefix ("0. Primitives" →
+// "Primitives", "1-1. Semantic/ Color · CoUI" → "Semantic/ Color · CoUI").
+// Unlike `canonicalCollection` it keeps the slash spacing and the brand
+// suffix, so the result is still a real collection name — Import uses it to
+// find a numbered collection the token file now names without the number,
+// and renames that one in place instead of creating a second.
+export function withoutOrderingPrefix(name: string): string {
+  return name.replace(/^\d+(?:-\d+)*\.\s*/, '');
+}

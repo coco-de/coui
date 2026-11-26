@@ -1,0 +1,100 @@
+[
+  {
+    "theme": "light",
+    "a": {
+      "color": "rgb(51, 68, 85)",
+      "image": "none",
+      "owned": true,
+      "base": "var(--co-toggle-state-fill, rgb(51, 68, 85))",
+      "hover": false,
+      "active": false,
+      "inline": "width: 2.25rem; height: 1.25rem; border-radius: var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999); padding: 0.125rem 0.125rem 0.125rem 0.125rem; transition: background-color var(--coui-duration-100) var(--easing-ease-in-out); background-color: var(--co-toggle-state-fill, rgb(51, 68, 85)); --co-toggle-hover-fill: color-mix(in srgb, rgb(var(--coui-surface)) 8%, rgb(51, 68, 85)); --co-toggle-pressed-fill: color-mix(in srgb, rgb(var(--coui-surface)) 16%, rgb(51, 68, 85))"
+    },
+    "preRemountPaint": [
+      "rgb(42, 43, 44)",
+      "color(srgb 0.231529 0.235137 0.238745)",
+      "color(srgb 0.298353 0.301647 0.304941)"
+    ],
+    "postRemountPaint": [
+      "rgb(42, 43, 44)",
+      "color(srgb 0.231529 0.235137 0.238745)",
+      "color(srgb 0.298353 0.301647 0.304941)"
+    ],
+    "b": {
+      "color": "rgb(51, 68, 85)",
+      "image": "none",
+      "owned": true,
+      "base": "var(--co-toggle-state-fill, rgb(51, 68, 85))",
+      "hover": false,
+      "active": false,
+      "inline": "width: 2.25rem; height: 1.25rem; border-radius: var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999); padding: 0.125rem 0.125rem 0.125rem 0.125rem; transition: background-color var(--coui-duration-100) var(--easing-ease-in-out); background-color: var(--co-toggle-state-fill, rgb(51, 68, 85)); --co-toggle-hover-fill: color-mix(in srgb, rgb(var(--coui-surface)) 8%, rgb(51, 68, 85)); --co-toggle-pressed-fill: color-mix(in srgb, rgb(var(--coui-surface)) 16%, rgb(51, 68, 85))"
+    },
+    "hovered": {
+      "color": "color(srgb 0.264 0.325333 0.386667)",
+      "image": "none",
+      "owned": true,
+      "base": "var(--co-toggle-state-fill, rgb(51, 68, 85))",
+      "hover": true,
+      "active": false,
+      "inline": "width: 2.25rem; height: 1.25rem; border-radius: var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999); padding: 0.125rem 0.125rem 0.125rem 0.125rem; transition: background-color var(--coui-duration-100) var(--easing-ease-in-out); background-color: var(--co-toggle-state-fill, rgb(51, 68, 85)); --co-toggle-hover-fill: color-mix(in srgb, rgb(var(--coui-surface)) 8%, rgb(51, 68, 85)); --co-toggle-pressed-fill: color-mix(in srgb, rgb(var(--coui-surface)) 16%, rgb(51, 68, 85))"
+    },
+    "sibling": {
+      "color": "rgb(51, 68, 85)",
+      "image": "none",
+      "owned": true,
+      "base": "var(--co-toggle-state-fill, rgb(51, 68, 85))",
+      "hover": false,
+      "active": false,
+      "inline": "width: 2.25rem; height: 1.25rem; border-radius: var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999); padding: 0.125rem 0.125rem 0.125rem 0.125rem; transition: background-color var(--coui-duration-100) var(--easing-ease-in-out); background-color: var(--co-toggle-state-fill, rgb(51, 68, 85)); --co-toggle-hover-fill: color-mix(in srgb, rgb(var(--coui-surface)) 8%, rgb(51, 68, 85)); --co-toggle-pressed-fill: color-mix(in srgb, rgb(var(--coui-surface)) 16%, rgb(51, 68, 85))"
+    }
+  },
+  {
+    "theme": "dark",
+    "a": {
+      "color": "rgb(51, 68, 85)",
+      "image": "none",
+      "owned": true,
+      "base": "var(--co-toggle-state-fill, rgb(51, 68, 85))",
+      "hover": false,
+      "active": false,
+      "inline": "width: 2.25rem; height: 1.25rem; border-radius: var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999); padding: 0.125rem 0.125rem 0.125rem 0.125rem; transition: background-color var(--coui-duration-100) var(--easing-ease-in-out); background-color: var(--co-toggle-state-fill, rgb(51, 68, 85)); --co-toggle-hover-fill: color-mix(in srgb, rgb(var(--coui-surface)) 8%, rgb(51, 68, 85)); --co-toggle-pressed-fill: color-mix(in srgb, rgb(var(--coui-surface)) 16%, rgb(51, 68, 85))"
+    },
+    "preRemountPaint": [
+      "rgb(244, 245, 246)",
+      "color(srgb 0.887216 0.891137 0.895059)",
+      "color(srgb 0.817569 0.82149 0.825412)"
+    ],
+    "postRemountPaint": [
+      "rgb(244, 245, 246)",
+      "color(srgb 0.887216 0.891137 0.895059)",
+      "color(srgb 0.817569 0.82149 0.825412)"
+    ],
+    "b": {
+      "color": "rgb(51, 68, 85)",
+      "image": "none",
+      "owned": true,
+      "base": "var(--co-toggle-state-fill, rgb(51, 68, 85))",
+      "hover": false,
+      "active": false,
+      "inline": "width: 2.25rem; height: 1.25rem; border-radius: var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999); padding: 0.125rem 0.125rem 0.125rem 0.125rem; transition: background-color var(--coui-duration-100) var(--easing-ease-in-out); background-color: var(--co-toggle-state-fill, rgb(51, 68, 85)); --co-toggle-hover-fill: color-mix(in srgb, rgb(var(--coui-surface)) 8%, rgb(51, 68, 85)); --co-toggle-pressed-fill: color-mix(in srgb, rgb(var(--coui-surface)) 16%, rgb(51, 68, 85))"
+    },
+    "hovered": {
+      "color": "color(srgb 0.190902 0.252549 0.314196)",
+      "image": "none",
+      "owned": true,
+      "base": "var(--co-toggle-state-fill, rgb(51, 68, 85))",
+      "hover": true,
+      "active": false,
+      "inline": "width: 2.25rem; height: 1.25rem; border-radius: var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999); padding: 0.125rem 0.125rem 0.125rem 0.125rem; transition: background-color var(--coui-duration-100) var(--easing-ease-in-out); background-color: var(--co-toggle-state-fill, rgb(51, 68, 85)); --co-toggle-hover-fill: color-mix(in srgb, rgb(var(--coui-surface)) 8%, rgb(51, 68, 85)); --co-toggle-pressed-fill: color-mix(in srgb, rgb(var(--coui-surface)) 16%, rgb(51, 68, 85))"
+    },
+    "sibling": {
+      "color": "rgb(51, 68, 85)",
+      "image": "none",
+      "owned": true,
+      "base": "var(--co-toggle-state-fill, rgb(51, 68, 85))",
+      "hover": false,
+      "active": false,
+      "inline": "width: 2.25rem; height: 1.25rem; border-radius: var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999) var(--coui-radius-9999); padding: 0.125rem 0.125rem 0.125rem 0.125rem; transition: background-color var(--coui-duration-100) var(--easing-ease-in-out); background-color: var(--co-toggle-state-fill, rgb(51, 68, 85)); --co-toggle-hover-fill: color-mix(in srgb, rgb(var(--coui-surface)) 8%, rgb(51, 68, 85)); --co-toggle-pressed-fill: color-mix(in srgb, rgb(var(--coui-surface)) 16%, rgb(51, 68, 85))"
+    }
+  }
+]

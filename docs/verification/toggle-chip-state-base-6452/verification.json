@@ -1,0 +1,249 @@
+{
+  "issue": 6452,
+  "parentIssue": 6131,
+  "baseMain": "b6b181aafb4375ee2c636b350ae31f36f4a7b3f4",
+  "frozenProductCommit": "97a036d82c1abb59708b1530651782c113bd5ab4",
+  "testOnlyFollowupCommit": "25effa121055cb79e81b68b14e6166cf38788db9",
+  "productHashes": {
+    "packages/coui_web/lib/src/components/form/toggle/toggle_style.dart": "2ada1c5a64407270775433a1a2e4d263f68a2dadf10adfe6981b6340d6989b22",
+    "packages/coui_web/lib/src/components/display/chip/chip_style.dart": "1d47181f5803680989b229ebda3acd821b6767f2c67a29c846cf9f6e71c52df2"
+  },
+  "productionPaths": [
+    "packages/coui_web/lib/src/components/form/toggle/toggle_style.dart",
+    "packages/coui_web/lib/src/components/display/chip/chip_style.dart"
+  ],
+  "widgetBytesExact": {
+    "packages/coui_web/lib/src/components/form/toggle/toggle.dart": true,
+    "packages/coui_web/lib/src/components/display/chip/chip.dart": true
+  },
+  "api": {
+    "defaultExportClosure": 361,
+    "allConditionalExportClosure": 365,
+    "membershipAndDirectivesExact": true,
+    "existingPublicAstSignaturesAndConstantsExact": true,
+    "exportedImplementationLibraryBytesChanged": true,
+    "protectedScopesDeltas": {
+      "packages/coui_core": [],
+      "packages/coui_flutter": [],
+      "packages/coui_web/lib/src/util/core_to_css.dart": [],
+      "packages/coui_web/lib/src/base/theme_config.dart": [],
+      "packages/coui_web/lib/src/components/form/toggle/toggle.dart": [],
+      "packages/coui_web/lib/src/components/display/chip/chip.dart": [],
+      "packages/coui_web/lib/coui_web.dart": [],
+      "pubspec.lock": []
+    }
+  },
+  "checks": {
+    "focusedTests": 160,
+    "focusedExit": 0,
+    "uniquePermanentBrowserTests": 9,
+    "initialFrozenBrowserTests": 8,
+    "additionalTargetedTests": 3,
+    "overlappingAdditionalTests": 2,
+    "uniqueArithmetic": "8+3-2=9; later remount reruns repeat one existing test",
+    "browser": "Chrome/150.0.7871.24",
+    "browserExecutable": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6131-native-refresh-20261119.f5b91re7/worktree/.dart_tool/puppeteer/local-chrome/150.0.7871.24/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing",
+    "originalMissingEvents": 52,
+    "finalMissingEvents": 0,
+    "settledNativeComparison": {
+      "rows": 52,
+      "exactRounded8Bit": 32,
+      "maxAbsoluteChannelDelta": 1,
+      "rasterOrParityCriteriaChange": false
+    },
+    "motion": {
+      "actualEvents": 48,
+      "durationsMs": [
+        0,
+        100,
+        250
+      ],
+      "allDurationsExplicitInputs": true,
+      "failures": 0,
+      "zeroDurationBackgroundAnimations": 0,
+      "standardCssBackgroundColorOnly": true,
+      "nativeMidpointRgbaExactClaim": false
+    },
+    "nativeReuse": {
+      "originalActualRows": 108,
+      "freshNativeRuns": 0,
+      "workspaceClosureFiles": 1990,
+      "changedClosureFiles": [],
+      "packageTuples": 232,
+      "tuplesExact": true,
+      "locksChanged": []
+    },
+    "remount": {
+      "finalAffectedTestExit": 0,
+      "seconds": 9.851639986038208,
+      "ownedPathExplicit": true,
+      "newNodeAndOldDisconnect": true,
+      "prePostRestHoverPressedExactLightDark": true
+    },
+    "fatalInfoExit": 0,
+    "formatExit": 0,
+    "contractGuard": {
+      "argv": [
+        "bash",
+        "scripts/guards/resolver/verify_contracts.sh"
+      ],
+      "exit": 0,
+      "seconds": 54.049808979034424
+    },
+    "docsBuild": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/tmp/weever-6345-optimized-20261117/cli-tool/.dart_tool/package_config.json",
+        "/Users/minhyeok/.pub-cache/hosted/pub.dev/jaspr_cli-0.24.0-beta.1/bin/jaspr.dart",
+        "build",
+        "--optimize=2",
+        "--port=56528"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6452-selected-state-20261119.dbh4srqa/worktree/docs_site",
+      "sourceHead": "97a036d82c1abb59708b1530651782c113bd5ab4",
+      "port": 56528,
+      "started": 1795044067.016337,
+      "pid": 64435,
+      "exit": 0,
+      "remainingOwnedGroupTerminated": false,
+      "groupClosed": true,
+      "finished": 1795044179.3146722,
+      "trackedCount": 22591,
+      "trackedDeltas": [],
+      "headAfter": "97a036d82c1abb59708b1530651782c113bd5ab4",
+      "statusAfter": ""
+    },
+    "docsHttpSmoke": "docs-http-smoke.json:5 routes200, server closed",
+    "vmReload": "reload-final/owned-reload.json:success, HTTP200 before/after, owned process closed"
+  },
+  "cleanup": {
+    "frozenProductSource": "97a036d82c1abb59708b1530651782c113bd5ab4",
+    "productHashesExact": true,
+    "observedOwnedRootPids": [
+      {
+        "receipt": "inline-owner-final/browser.json",
+        "pid": 56019,
+        "alive": false,
+        "version": "Chrome/150.0.7871.24"
+      },
+      {
+        "receipt": "final-owner-additional/browser.json",
+        "pid": 62502,
+        "alive": false,
+        "version": "Chrome/150.0.7871.24"
+      },
+      {
+        "receipt": "runtime-attempt1/browser.json",
+        "pid": 58673,
+        "alive": false,
+        "version": "Chrome/150.0.7871.24"
+      },
+      {
+        "receipt": "runtime-remount-followup/browser.json",
+        "pid": 73173,
+        "alive": false,
+        "version": "Chrome/150.0.7871.24"
+      },
+      {
+        "receipt": "runtime-owned-remount-final/browser.json",
+        "pid": 75180,
+        "alive": false,
+        "version": "Chrome/150.0.7871.24"
+      },
+      {
+        "receipt": "build-process.json",
+        "pid": 64435,
+        "alive": false
+      },
+      {
+        "receipt": "reload-final/owned-reload.json",
+        "pid": 73448,
+        "alive": false
+      }
+    ],
+    "ports": [
+      {
+        "port": 56528,
+        "open": false
+      },
+      {
+        "port": 57868,
+        "open": false
+      }
+    ],
+    "sourceProtectionFiles": 22591,
+    "changesAfterProductBuild": [
+      "tool/parity/test/web/selected_base_runtime_test.dart"
+    ],
+    "reason": "Root-requested test-only owned remount paint readback; no production/source dependency changes",
+    "browserCloseReceipts": [
+      "inline-owner-final/cleanup.json",
+      "final-owner-additional/cleanup.json",
+      "runtime-attempt1/cleanup.json",
+      "runtime-owned-remount-final/cleanup.json",
+      "motion-final/observations/cleanup.json",
+      "material-before-freeze/original/cleanup.json",
+      "material-before-freeze/candidate/cleanup.json"
+    ],
+    "nativeNewRun": false,
+    "cacheDuplication": false,
+    "pubget": false,
+    "docsBuilds": 1
+  },
+  "evidenceRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6452-selected-state-20261119.dbh4srqa",
+  "evidence": {
+    "product-freeze-final.json": "d71f13ed62ada9ca67ac349c131d019041f80298c1b4a6d43cf4b15396b8c647",
+    "inline-owner-runtime-attempt1-exit.json": "543ef6f6804e08d8ad8425eb0f038fd7d9ae06346efd3c6b8b44ecf0132601fd",
+    "inline-owner-final/original52.json": "39f3fbe8f6bcf76584c75adc5d12a5789d4d73cd265b53b80c975ee549e41e8d",
+    "inline-owner-final/cleanup.json": "7623429bdfcc3157163e2d736e8e014cdf9450a4f56c7c17708879c38f2b8da0",
+    "runtime-attempt1/live-modes.json": "0cf2a404314197111ca17007c3e4de1227dee4c441a8198898c2bc95e7ce6784",
+    "runtime-attempt1/nested-chips.json": "14a1d9199a13d6549055630bfb31f527162895cf1c53a171cad50ea3241da185",
+    "runtime-attempt1/cleanup.json": "6f731fd401186b2f35fe74647dd07555c780a87a3f2ad6de65774d80efb2e712",
+    "final-owner-additional-exit.json": "2e69de81740bc12ff75cf994ff6c8753999f8a46bc424969cae3489a1dcefad6",
+    "final-owner-additional/material-priority.json": "3e17c18ae1d79f353607d86cd4a1252731a6a9ab8e51c2146311921c74f76237",
+    "final-owner-additional/nested-owner.json": "de44e3f023b41343b7424b7aa3b85755db536f2c4d14eda108dd8de74d24defe",
+    "final-owner-additional/enabled-null-callback.json": "ca932d1004ebb1b3d0a91a31c85c0ae8d139a9e7c78b994189cd50d7cba3e213",
+    "runtime-owned-remount-final-exit.json": "a73b19b59ec30743dcbb7bb18ddd58a507bb7a8c78f9b058490265ecfbf94c87",
+    "runtime-owned-remount-final/config-lifetime.json": "72d2febe4cc0e26677c7949512039af97bad52ec0d5f90c0b3be88f74edbd07b",
+    "runtime-remount-analysis-exit.json": "93ceddcdc822fb00b9b6c7240123bb1743436f06b90981490e4a3e89719cda6c",
+    "focused-inline-final-exit.json": "941b33a8468f311df02464ca75464238bc0369ca782122ec9def1ddddcc77d04",
+    "fatal-source-final.json": "462d434415c310b5b6e67d868bc2032171558fc9e488064f616cde6d9e96e0a4",
+    "api/toggle-shape.json": "c21ea78ffc12b1f1962fca4fab9410a18a8e4b289ebfd1a911e055b257fed4c2",
+    "api/chip-shape.json": "55ec7de1d649994b70c29b603778a50a0d24035c297f4eadbbccc90ee57b7d95",
+    "api-export-source.json": "b665daeba2b74482e25ad94471f35d95c4878e3b18241a5e8fceaad406d3a03b",
+    "native-reuse-closure.json": "b09aece9e387fe69c65e9257b6cd7b9ae5967fa0802ee7f9991c7401865a26e1",
+    "native-52-settled-comparison.json": "378ffc999956a69c623feb98c231ed9c343ac0780756c28747432badbaf0c0b4",
+    "motion-final/render-exit.json": "4b4965db987c88a997dcdc06cbf7e0068e8b80c383fb2ed7144a94bfbc802667",
+    "motion-final/observations/records.json": "01fc4abb804e45b4906ce725ba4d4f6c61d60236238d097574312fa118b5627b",
+    "motion-final/observations/summary.json": "b707b0d1fd9ec3dd70918124a3efa97e14f3aa047d8d94150220745515316905",
+    "motion-final/observations/cleanup.json": "cc086fe5db542fc36026945b4590bfcbdc1546bc774e89468a36b654b75137f0",
+    "build-process.json": "4ef257fab296b26a0f26c715d0a7ca882d25698db7d7e09aa099c3b5c45b7ec4",
+    "docs-http-smoke.json": "33d768e5f8b271ebb8538fb2577d131becb3fceb29af1447f72e8666bdd17bb6",
+    "contract-guard-final-exit.json": "403ed9fdb33c482839eb21dd22a657fbd3169876ca84744d54bc13b65bc6bfc1",
+    "reload-final/owned-reload.json": "a5a9e66b2acaa6821761713176d27a5c0ce5b03e07d66f7935e2b6e0b4229ade",
+    "cleanup-source-final.json": "1060ce8cef4dd0c9c3cc8484c7da8492c7543edb806f67973aa2d6904c137691",
+    "selected-images-final/selected8-manifest.json": "3b42e46ca721283e089273c394cb30f5f5788568ae213448e0acfbcab05be404",
+    "selected-images-final/browser-records.json": "040518241b44153e89afcd6525f65c470fc43daac4e509ed8b886699d0fb22b3"
+  },
+  "independentReviews": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6452-independent-final-review-20261119.9dbeqvxc/review.json",
+      "sha256": "7b101044fd5214e0fdd2b438ed042edab473cb52925ac6a8cb1e3366a7a4c00a"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6452-material-inline-independent-20261119.lt8bmdau/summary.json",
+      "sha256": "006af45a1a4b07a44a59598bc37d18b806dfc46d9ecb30f071bd7810aad1ce1f"
+    }
+  ],
+  "noNewDefault816Capture": true,
+  "noPushPrMergeByWorker": true,
+  "selectedOriginalImages": {
+    "count": 8,
+    "manifest": "selected8-manifest.json",
+    "sha256": "3b42e46ca721283e089273c394cb30f5f5788568ae213448e0acfbcab05be404",
+    "beforeOriginals": 4,
+    "freshAfterOriginals": 4,
+    "fullMatrixRecapture": false,
+    "nativeFreshCapture": false
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "key": "navigation-bar-item-default-dark-defaultStyle",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": ".co-navbar-sl-185ost:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-low) / 100%));}:focus-visible>.co-navbar-sl-185ost{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-low) / 100%));}.co-navbar-sl-185ost:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-low) / 100%));}.co-navbar-sl-bs97ur:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-high) / 100%));}:focus-visible>.co-navbar-sl-bs97ur{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high) / 100%));}.co-navbar-sl-bs97ur:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high) / 100%));}\n                  \n                  받은편지함\n                  3\n                \n              \n              \n                \n                  \n                    .co-navbar-sl-185ost:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-low) / 100%));}:focus-visible>.co-navbar-sl-185ost{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-low) / 100%));}.co-navbar-sl-185ost:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-low) / 100%));}.co-navbar-sl-bs97ur:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-high) / 100%));}:focus-visible>.co-navbar-sl-bs97ur{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high) / 100%));}.co-navbar-sl-bs97ur:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high) / 100%));}\n                  \n                  알림\n                \n              \n              \n                \n                  \n                    .co-navbar-sl-185ost:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-low) / 100%));}:focus-visible>.co-navbar-sl-185ost{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-low) / 100%));}.co-navbar-sl-185ost:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-low) / 100%));}.co-navbar-sl-bs97ur:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-high) / 100%));}:focus-visible>.co-navbar-sl-bs97ur{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high) / 100%));}.co-navbar-sl-bs97ur:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high) / 100%));}\n                  \n                  설정\n                \n              \n              \n                \n                  \n                    .co-navbar-sl-185ost:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-low) / 100%));}:focus-visible>.co-navbar-sl-185ost{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-low) / 100%));}.co-navbar-sl-185ost:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-low) / 100%));}.co-navbar-sl-bs97ur:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container-high) / 100%));}:focus-visible>.co-navbar-sl-bs97ur{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high) / 100%));}.co-navbar-sl-bs97ur:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 8%, rgb(var(--coui-surface-container-high) / 100%));}\n                  \n                  관리자",
+    "layout": {
+      "width": 240,
+      "height": 166,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 240,
+          "height": 40
+        },
+        {
+          "x": 0,
+          "y": 42,
+          "width": 240,
+          "height": 40
+        },
+        {
+          "x": 0,
+          "y": 84,
+          "width": 240,
+          "height": 40
+        },
+        {
+          "x": 0,
+          "y": 126,
+          "width": 240,
+          "height": 40
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "14px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(52, 53, 54)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "10px",
+      "borderTopRightRadius": "10px",
+      "borderBottomRightRadius": "10px",
+      "borderBottomLeftRadius": "10px",
+      "paddingTop": "10px",
+      "paddingRight": "12px",
+      "paddingBottom": "10px",
+      "paddingLeft": "12px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 240,
+      "heightPx": 166
+    }
+  }
+}

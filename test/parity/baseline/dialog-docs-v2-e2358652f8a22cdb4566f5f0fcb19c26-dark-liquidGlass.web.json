@@ -1,0 +1,118 @@
+{
+  "key": "dialog-docs-v2-e2358652f8a22cdb4566f5f0fcb19c26-dark-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Card",
+      "attributes": {
+        "demo": "dialog/dont-no-close",
+        "eyebrow": "이렇게 하지 마세요",
+        "tone": "dont"
+      },
+      "selections": [
+        {
+          "kind": "demo",
+          "component": null,
+          "name": "dialog/dont-no-close",
+          "props": {},
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/actions/cocodeui-macstudio-kentrosaurus/_work/coui/coui/docs_core/content/components/dialog.md:Cards[48]:Card[11]"
+      ],
+      "anatomyParts": [],
+      "cardBody": [
+        {
+          "tag": "p",
+          "attributes": {},
+          "children": [
+            {
+              "text": "행동도 ",
+              "raw": false
+            },
+            {
+              "tag": "code",
+              "attributes": {},
+              "children": [
+                {
+                  "text": "onClose",
+                  "raw": false
+                }
+              ]
+            },
+            {
+              "text": "도 없으면 사용자가 대화상자에 갇혀 앱을 쓸 수 없습니다.",
+              "raw": false
+            }
+          ]
+        }
+      ],
+      "cardIndex": 0,
+      "captureUnit": "whole-card",
+      "nativeCardAttributes": {
+        "demo": "dialog/dont-no-close",
+        "eyebrow": "이렇게 하지 마세요",
+        "tone": "dont"
+      },
+      "nativeCardBody": "\n행동도 `onClose`도 없으면 사용자가 대화상자에 갇혀 앱을 쓸 수 없습니다.\n"
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "내보내기를 마쳤어요\n                        \n                        \n                        파일은 다운로드 폴더에 있어요.\n                      \n                    \n                    이렇게 하지 마세요\n                    행동도 onClose도 없으면 사용자가 대화상자에 갇혀 앱을 쓸 수 없습니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 258.09375
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "15px",
+      "lineHeight": "22.5px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(65, 35, 31)",
+      "borderRightColor": "rgb(65, 35, 31)",
+      "borderBottomColor": "rgb(65, 35, 31)",
+      "borderLeftColor": "rgb(65, 35, 31)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "16px",
+      "borderTopRightRadius": "16px",
+      "borderBottomRightRadius": "16px",
+      "borderBottomLeftRadius": "16px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(180, 181, 182)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 258.09375
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "issue": 6438,
+  "base": "f27dc733a85fb1af499112a4ebf8affab58674f9",
+  "product": "ce16bd3e35ee3a3e9144e752ba5964dc3cb7ecc2",
+  "proofRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_",
+  "nativeTests": 64,
+  "webTests": 59,
+  "existingBrowserTests": 2,
+  "newTests": 20,
+  "originalModuleFailures": {
+    "native": 6,
+    "web": 1
+  },
+  "nativeRenders": 216,
+  "webRenders": 216,
+  "extraWebCallerModeObservations": 80,
+  "extraWebAutoObservations": 8,
+  "nativeDeclaredBoxCorrect": 108,
+  "webDefaultViewportCorrect": 108,
+  "customAfterCrossPlatformRgbaExact": 48,
+  "customAfterCrossPlatformRows": 96,
+  "shippedGlyphNativeBeforeAfterPngByteExact": 12,
+  "shippedGlyphWebBeforeAfterPngByteExact": 12,
+  "explicitCallerBeforeAfterPngByteExact": 10,
+  "uppercaseSsrRejectedBeforeAfter": 4,
+  "defaultSweepReductionClaimed": false,
+  "publicApiChanged": false,
+  "designTokensChanged": false,
+  "intentionalBehaviorFix": "Loaded default glyph uses the existing declared square viewport; parent constraints and explicit Web dimensions retain priority.",
+  "receipts": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/source-api-scope.json",
+      "sha256": "45d5ec67249a5975b8483fd0fdc5bd0c579e79582ddf914ab63c430ab08d8782"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/native-negative-complete-exit.json",
+      "sha256": "4dae7a11c00af38df216d725f7ffcb1ce47a6e87ab557a5b2d8e9fcf9afc27b1"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/web-negative-complete-exit.json",
+      "sha256": "4dae7a11c00af38df216d725f7ffcb1ce47a6e87ab557a5b2d8e9fcf9afc27b1"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/native-positive-exit.json",
+      "sha256": "7449fd72551048d79305cb6d97e56f952ddfa0d6c2dd76b4a30d8b7e85a0d337"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/web-positive-corrected-exit.json",
+      "sha256": "7449fd72551048d79305cb6d97e56f952ddfa0d6c2dd76b4a30d8b7e85a0d337"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/fatal-final-exit.json",
+      "sha256": "24628047dfad37c802fec9bc81527724b019e9818654443ea3653e4f23670b17"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/format-final-exit.json",
+      "sha256": "d209898419a49dbb071d2294cb1142ec031181bb2c23a9512f29b156b1f30d4b"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/contracts-final-exit.json",
+      "sha256": "ef90b1ff9a6802b735e38c60bc037962488d26c18760f5e46960ebc8725a9bb9"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/existing-icon-browser-tests-exit.json",
+      "sha256": "7449fd72551048d79305cb6d97e56f952ddfa0d6c2dd76b4a30d8b7e85a0d337"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/build-process.json",
+      "sha256": "561c338f8bbab8cafa32e1003f6e4393bb0175577b200e305282b2ddc76a5320"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/selected-evidence8.json",
+      "sha256": "f0fa65899e77a6332477d7996f69a834210c0bfcc7c2638356949513fdec9e0b"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/cleanup-final.json",
+      "sha256": "1a156f64100d83fbe76023a97aeaf02a139eaba45a77ac7413d6a89e8a13e77a"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/artifact-index.json",
+      "sha256": "fecc986079544fa6041076410604e53ea610c0c38b7563caae3f409e4cbde11d"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/product-verification/native-exit.json",
+      "sha256": "16ff41aed99658c9039b24ae6f7d221142c4253ca100033c6a56e878509622d4"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/product-verification/browser-exit.json",
+      "sha256": "d1570ac2b5228035759ecd3cd8e37296ce013d6b73c1c8c0058e43727cc24a15"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/product-verification/comparison.json",
+      "sha256": "0e5068e3411a9859311de2ef7ba956561d5421c6442171da3f7c56e8342da3ad"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/product-verification/native-cli-proof.json",
+      "sha256": "9f540e41c6078a4c2c572eae7986fbe0c318a86c5412a6dab602ff5a65ebeee5"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/product-verification/caller-modes/comparison.json",
+      "sha256": "cdc93fb0cacc19359171f3217ce6196489ce331f99e1fcc6eb8eabd95fdde147"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/product-verification/caller-modes/native-mode-comparison.json",
+      "sha256": "eaddb1ded748df3299b37fece505eedec44d39ce5833bbb2766efee55a9c8dd6"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/product-verification/caller-modes/uppercase-ssr-results.json",
+      "sha256": "a5448417744eac999b6f2d5773938315d8059731d5f2413064b5ff2dad363e95"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-icon-box-proof-20261119.s5i4f_j_/product-verification/auto-mode/comparison.json",
+      "sha256": "de4e75f4d6d2d3acecc45375b3528681f8d9cad38263c6991c476dea2b30a928"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6438-icon-square-implementation-review-20261119._2_2iy_s/review.json",
+      "sha256": "9080ccd65de2e5a21ca9c366c79d0042620a20309d1541d0d45f082466fb400e"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6438-casing-review-correction-20261119.59xp1tgb/correction.json",
+      "sha256": "392800b128b8efe9a8d854da1e24ef813a8c798d39e4d2bd9176dde4e62cffdd"
+    }
+  ]
+}

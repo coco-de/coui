@@ -1,0 +1,107 @@
+{
+  "key": "dialog-docs-v2-1fff98b92d8ec43d34f0a23a8028474e-light-neumorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "Card",
+      "attributes": {
+        "component": "dialog",
+        "props": "actionsLayout=end;content",
+        "title": "end (기본)"
+      },
+      "selections": [
+        {
+          "kind": "props",
+          "component": "dialog",
+          "name": null,
+          "props": {
+            "actionsLayout": "end",
+            "content": "true"
+          },
+          "label": null
+        }
+      ],
+      "origins": [
+        "/Users/cocode/actions/cocodeui-macstudio-kentrosaurus/_work/coui/coui/docs_core/content/components/dialog.md:Cards[51]:Card[1]"
+      ],
+      "anatomyParts": [],
+      "cardBody": [
+        {
+          "tag": "p",
+          "attributes": {},
+          "children": [
+            {
+              "text": "각 행동이 자기 폭으로 패널의 끝 쪽에 붙습니다. 데스크톱 대화상자의 배치입니다.",
+              "raw": false
+            }
+          ]
+        }
+      ],
+      "cardIndex": 0,
+      "captureUnit": "whole-card",
+      "nativeCardAttributes": {
+        "component": "dialog",
+        "props": "actionsLayout=end;content",
+        "title": "end (기본)"
+      },
+      "nativeCardBody": "\n각 행동이 자기 폭으로 패널의 끝 쪽에 붙습니다. 데스크톱 대화상자의 배치입니다.\n"
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "연결이 끊겼어요\n                        \n                        \n                        네트워크를 확인한 뒤 다시 시도해 주세요.\n                        \n                        \n                          \n                            \n                              #co-button-ssr-5s:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface) / 100%)) !important;}#co-button-ssr-5s:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface) / 100%)) !important;}\n                            \n                            취소\n                          \n                          다시 시도\n                        \n                      \n                    \n                    end (기본)\n                    각 행동이 자기 폭으로 패널의 끝 쪽에 붙습니다. 데스크톱 대화상자의 배치입니다.",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 315.390625
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "400",
+      "fontSize": "15px",
+      "lineHeight": "22.5px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(255, 255, 255)",
+      "borderTopColor": "rgb(126, 127, 129)",
+      "borderRightColor": "rgb(126, 127, 129)",
+      "borderBottomColor": "rgb(126, 127, 129)",
+      "borderLeftColor": "rgb(126, 127, 129)",
+      "borderTopWidth": "1px",
+      "borderRightWidth": "1px",
+      "borderBottomWidth": "1px",
+      "borderLeftWidth": "1px",
+      "borderTopLeftRadius": "16px",
+      "borderTopRightRadius": "16px",
+      "borderBottomRightRadius": "16px",
+      "borderBottomLeftRadius": "16px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(88, 89, 90)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 315.390625
+    }
+  }
+}

@@ -1,0 +1,991 @@
+{
+  "_why": [
+    "G16 이 세던 것: 'components.json 이 실어 보냈는데 아무 빌더도 읽지 않는 필드'.",
+    "",
+    "이 게이트에는 baseline 이 없다. 조건은 '미판독 필드는 전부 여기 이름이 적혀 있어야 한다' 뿐이고,",
+    "통과하는 길이 숫자가 아니라 이름과 사유라서 새 필드가 배선 없이 들어오면 그 필드의 이름을",
+    "적어야 하고, 적는 행위는 리뷰에 보인다. 줄어드는 것은 세는 수가 아니라 이 파일의 길이다.",
+    "",
+    "category 는 두 종류로 갈린다 — 결론(배선할 것이 없다)과 남은 일(캔버스보다 앞에 할 일이 있다).",
+    "",
+    "  결론",
+    "  (모션은 이 파일에 없다 — 값이 duration/easing 토큰인 필드는 스크립트가 데이터에서",
+    "   판정한다. 같은 한 문장을 48 번 복사하는 것은 기록이 아니라 분량이고, 그 판정은",
+    "   사람의 주장이 아니라 exporter 가 실은 값의 모양이라 반증 가능하다.)",
+    "  ────",
+    "  gesture              진행 중인 포인터 제스처 동안에만 존재한다. 머무는 상태(hover)는 자세를",
+    "                       갖고 캔버스가 포즈로 그리지만, 끌고 있는 중(drag)은 머물지 않는다.",
+    "  no-op                값 자체가 '아무 일도 하지 않는다' 다. 그리지 않는 것이 그 값을 그리는 것이다.",
+    "  composition          자식 인스턴스가 이미 그린다. 부모가 다시 그리면 자식 default 에 reach 하는",
+    "                       것이다(core/style-contract.md).",
+    "  unreachable-default  값을 쓰는 분기의 스위치가 default 없는 nullable 이다 — 출하되는 컴포넌트는",
+    "                       그 분기에 들어가지 않는다. 그려 넣으면 있을 수 없는 상태를 주장한다.",
+    "  platform-absent      값이 호스트가 그리는 컨트롤에 착지한다(브라우저 파일 선택 버튼 류).",
+    "                       Figma 에 그 컨트롤이 없고, 흉내내면 실제로 그려지는 것과 다른 것을 주장한다.",
+    "  no-pixels            값이 히트 영역·입력 비율·임계값을 정한다. 보이는 것을 정하는 다른 필드가",
+    "                       따로 있고, 이 값 자체는 어느 자세에도 그려지지 않는다.",
+    "  motion-endpoint      전환의 한쪽 끝인 맨 수(배율·오프셋). duration 토큰이 아니라 구조 판정에",
+    "                       걸리지 않지만 이유는 같다 — 두 끝 사이를 지나가는 것이 값의 전부다.",
+    "",
+    "  남은 일",
+    "  ───────",
+    "  code-gap             양 플랫폼 resolver 가 그 값을 존중하지 않는다. 캔버스가 그리려면 코드가",
+    "                       먼저 그려야 한다. (규칙 위반인 경우 why 에 어느 규칙인지 적는다.)",
+    "  needs-pose           그 값이 실제로 emit 되는데 캔버스에 그 상태의 자세가 없다. why 는 추가할",
+    "                       축의 이름을 적는다.",
+    "  needs-component      그 값을 읽는 위젯이 존재하는데 REGISTRY 항목이 없다. why 는 추가할",
+    "                       컴포넌트 이름을 적는다.",
+    "  needs-export         값이 가리키는 것이 export 되지 않는다. 배선할 값이 JSON 에 없으므로 빌더가",
+    "                       고칠 수 있는 것이 아니고, exporter 가 그것을 실어와야 한다.",
+    "",
+    "판정할 때 `_style.dart` 를 소비처에서 빼면 안 된다 — Web 에서는 resolver 가 chrome 을 emit 하는",
+    "정본이다. 처음 분류가 그 실수로 네 건을 'code-gap' 이라 불렀고, 실제로는 전부 Web 이 그리고",
+    "있었다. 그래서 category 에 code-gap 이 없다: 그런 상태가 이 목록에 남아 있지 않다."
+  ],
+  "fields": {
+    "accordion.borderWidth": {
+      "category": "unreachable-default",
+      "why": "The accordion has no stroked node anywhere on the canvas, so there is no stroke weight to bind: `buildAccordionVariant` calls `applyPanelCompChrome(c, 'VERTICAL', lk, {})` (layout.ts:234) for the set frame and `panel('item', 'VERTICAL', lk, {})` (layout.ts:250) for each item card, both with an empty `ChromeOpts`, and `applyChrome` (helpers.ts:1701-1717) only reaches `setBorder` — the sole place `strokeWeight` is ever bound — inside `if (o.border)`, where `border` is the *colour*. The gating nullable-no-default field is `borderColor`, which sits in `accordion.absent` as `\"color\"` alongside `backgroundColor` and `borderRadius`; the builder comment at layout.ts:247-250 already states this outright (\"No chrome, and that is the data speaking: `backgroundColor`, `borderColor` and `borderRadius` are all under `accordion.absent`\"), and `CoreAccordionStyle.borderColor`'s doc explains why it can never get one — a colour constant \"would put a `border-*` class on every accordion to describe a stroke that has no width to draw it,\" because the shipped width is `CoreStrokeWidth.stroke0`. Passing `strokeN: ACCORDION.fields.borderWidth.v` into either `panel`/`applyPanelCompChrome` call would be a dead argument, silently dropped for want of `o.border`, so this is not fixable by wiring; the exported value is `0.0` in any case, and a zero-weight stroke on an unstroked frame paints nothing. Both pl"
+    },
+    "alert.borderColor": {
+      "category": "no-op",
+      "why": "값이 `CoreColor.transparent` 이고 짝인 `defaultBorderWidth` 가 `CoreStrokeWidth.stroke0` 다 — 둘이 함께 '보더를 그리지 않는다' 를 진술한다. 알림은 불투명한 `{tone}-container` 채움이 경계 전부이고(`CoreAlertStyle.defaultBorderWidth` 의 doc: \"불투명 tint 위의 보더는 진짜 가장자리 옆의 두 번째 흐린 가장자리로 읽힌다\"), 슬롯이 남아 있는 것은 호출자가 색과 두께를 **둘 다** 진술해 보더를 되살릴 수 있게 하기 위해서다 — 색만으로는 아무것도 그어지지 않는다. 그래서 캔버스에 획을 긋지 않는 것이 이 값을 그리는 것이고, 투명 보더를 그려 넣으면 값을 어긴다. 양 플랫폼 resolver 가 이 상수를 fallback 으로 읽는다(coui_flutter/.../alert_style.dart 의 `bdColor`, coui_web/.../alert_style.dart 의 `borderEmit`) — 그 전에도 같은 투명값을 각자 리터럴로 들고 있었고, Core 로 올린 것은 두 리터럴이 갈라질 수 있어서였다(`core/layer-mapping.md`). emit 되는 값은 그대로다."
+    },
+    "button.pressedScale": {
+      "category": "gesture",
+      "why": "눌린 동안만 존재하는 축소 배율(0.95). 양 플랫폼 모두 누르는 동안에만 적용되고(Flutter `Clickable.pressedScale`, Web `:active` 규칙) 손을 떼면 1 로 돌아가므로 머무는 자세가 없다. 캔버스의 `State=pressed` 멤버는 눌린 색(pressed 배경 · 상태 레이어, form.ts `buildButton`)으로 눌림을 그리고, 축소를 그리지 않는 것이 정적 자세와 같다 — Toggle·ColorPicker 의 `clickableStyle.pressedScale` 과 같은 자리."
+    },
+    "button.dashLength": {
+      "category": "unreachable-default",
+      "why": "`dashSpacing` 과 한 쌍으로 함께 읽히고, `fields.dashedBorder` 가 `false` 인 동안 둘 다 도달불가다 — Flutter 는 `if (resolved.dashedBorder)` 안에서 `dashLength` 를 읽고(button.dart:542-553) Web 도 같은 플래그 아래 SVG overlay 로만 emit 한다. Figma 는 담을 수 있으므로(FileInput 의 `dashPattern` 첫 멤버) 없는 이유는 스위치이지 플랫폼이 아니고, `dashedBorder` 가 축이 되거나 default 가 뒤집히면 해소된다."
+    },
+    "button.dashSpacing": {
+      "category": "unreachable-default",
+      "why": "Same chain and same switch as `dashLength` — the two are a pair read together, and neither is reachable while `fields.dashedBorder` is `{\"v\": false}`. Flutter reads it as `gap: resolved.dashSpacing` inside `if (resolved.dashedBorder)` at packages/coui_flutter/lib/src/components/control/button/button.dart:542-553; the Web resolver resolves it at button_style.dart:194 for an SVG overlay it only emits under the same flag, so the shipped component draws a solid border and there is no dashed stroke on the canvas for a gap to sit in. Figma could hold it (`dashPattern`'s second member, as FileInput does at form-fields.ts:684), so the absence is the switch's doing and not the platform's, and it resolves the moment `dashedBorder` becomes an axis or its default flips."
+    },
+    "button.dashedBorder": {
+      "category": "no-op",
+      "why": "값이 false — 파선 보더를 그리지 않는다는 진술이다. 실선만 그리는 것이 이 값이고, 파선을 그리면 값을 어긴다."
+    },
+    "button.dashedBorderColor": {
+      "category": "unreachable-default",
+      "why": "파선의 색이고 그 파선을 켜는 스위치(dashedBorder)의 default 가 false 다 — 출하되는 Button 에는 파선이 없으므로 이 색이 칠할 것이 없다."
+    },
+    "card.sizing": {
+      "category": "unreachable-default",
+      "why": "`sizing` does not style a box, it selects the wrapper that negotiates with the PARENT's constraints — `card_style.dart:16` calls it `{sizing wrapper: IntrinsicWidth | SizedBox | none}` and `card.dart:158-168` renders exactly that (`intrinsic` → `IntrinsicWidth`, `expand` → nothing / natural stretch, `fixed` → `SizedBox(width, height)`) — and a component-set member is the outermost node on its page, so there is no parent for `intrinsic` and `expand` to differ against; a designer's instance takes HUG/FILL from their own layout, not from the main component. The one member that would state numbers of its own cannot be drawn at all: `fixed` reads `width` / `height`, and `card_style.dart:252-277` gives both no default on purpose ('Deliberately has no `default*` — absence is the design'), so an axis member for it would need a width invented in the plugin, which is the decision `display.ts:482-486` already declines by name ('`sizing` is a mode, not a number, so binding either would assert a design decision the design system never made'). Nor is it a one-line HUG: the root is `counterAxisSizingMode = 'FIXED'` at `display.ts:558` with `comp.resize(kCardWidth /* 260 */, …)` at line 727, and its two flow children are set to FILL (`mediaStack` line 629, `content` line 656), so switching the root to hug means converting those and then letting the card's width fall out of the `Skeleton` place"
+    },
+    "card_image.hoverScale": {
+      "category": "motion-endpoint",
+      "why": "포인터가 올라갔을 때 이미지가 커지는 배율(1.05). 그 확대는 hover 전환의 끝이고, 쉬는 자세는 normalScale 쪽이다."
+    },
+    "card_image.normalScale": {
+      "category": "no-op",
+      "why": "값이 1.0 — 쉬는 자세에서는 확대하지 않는다는 진술이다. 그리지 않는 것이 그리는 것이다."
+    },
+    "carousel.indicatorSpacing": {
+      "category": "composition",
+      "why": "resolver 가 이 값을 CoreDotIndicatorStyle(spacing: merged.indicatorSpacing) 로 미리 합성해 DotIndicator 로 forward 하고, 넘기는 것은 caller override(기본 null)다. carousel 의 default 8 은 dot_indicator.spacing 의 default 8 과 같은 값이므로 합성된 인스턴스가 이미 그 간격으로 그린다 — 여기서 또 쓰면 자식 default 에 reach 하는 것이다."
+    },
+    "checkbox.clickableStyle": {
+      "category": "no-op",
+      "why": "이 슬롯이 캔버스에 말할 것이 없다 — `disabledOpacity` 1.0 은 '일반 fade 를 끈다' 이고 캔버스가 fade 를 그리지 않는 것이 그 값을 지키는 것이다(Checkbox 는 `State=disabled` 자세를 자기 disabled 토큰 넷 — `disabledBackgroundColor` / `disabledBorderColor` / `disabledForegroundColor` / `disabledCheckmarkColor` — 으로 그린다). `pressedScale` 은 눌린 동안만 존재하는 제스처다. `focusOutlineStyle` 은 이 컴포넌트에서 inert 다 — `checkbox.dart` 가 `Clickable(focusOutline: false)` 로 행의 링을 끄고 박스를 자기 `focusOutlineStyle` 슬롯으로 감싸므로, 빌더도 `CHECKBOX.fields.focusOutlineStyle` 을 읽어 `State=focus` 멤버의 박스에 링을 그린다(form.ts `buildCheckbox`)."
+    },
+    "chip.customLowSelectedBackgroundColor": {
+      "category": "needs-pose",
+      "why": "Both resolvers read this — `emphasis: low` is a live branch on Flutter and Web, and turning it off makes tests on both platforms fail. What the canvas lacks is the pose: the chip set has a Selected axis but no Emphasis one, so there is no variant whose fill the low row could land on. Add an Emphasis axis (low / high) to the chip set. A custom-seed chip has no container token to tint from, so the low row falls back to a quiet neutral fill unless the caller supplies one; the canvas has no custom-seed pose to draw either half in."
+    },
+    "chip.customLowSelectedForegroundColor": {
+      "category": "needs-pose",
+      "why": "Both resolvers read this — `emphasis: low` is a live branch on Flutter and Web, and turning it off makes tests on both platforms fail. What the canvas lacks is the pose: the chip set has a Selected axis but no Emphasis one, so there is no variant whose fill the low row could land on. Add an Emphasis axis (low / high) to the chip set. The label that pairs with the fill above."
+    },
+    "clickable.pressedTranslate": {
+      "category": "no-op",
+      "why": "값이 zero — 눌렀을 때 아무것도 움직이지 않는다는 진술이다. 옮기지 않는 것이 이 값을 그리는 것이고, 무엇을 그려도 값을 어기게 된다."
+    },
+    "color_picker.hexInputStyle": {
+      "category": "composition",
+      "why": "CoreColorPickerStyle.defaultHexInputStyle 가 빈 CoreTextFieldStyle() 다 — JSON 에 보이는 값은 전부 TextField 자신의 기본값이 forward 를 통과해 온 것이고, hex 필드는 그 TextField 의 INSTANCE 라 이미 그린다. 부모가 다시 assert 하면 자식 default 에 reach 하는 것이다."
+    },
+    "command.itemClickableStyle": {
+      "category": "composition",
+      "why": "`Clickable` 은 자기 chrome 이 없는 wrapper 라 인스턴스로 만들 노드가 없고 — 결과 행이 그것이 감싸는 대상이다 — 그 wrapper 의 chrome 중 Command 가 소유하는 조각은 자기 `itemDisabledForegroundColor`(color/disabled-content) 로 이미 그려진다. 나머지는 Clickable 의 resolver 가 채우는 자기 default 다."
+    },
+    "context_menu.menuStyle": {
+      "category": "composition",
+      "why": "ContextMenu 는 `Menu` 인스턴스를 합성한다(REGISTRY needs 에 있다). 이 슬롯은 그 Menu 로 raw-forward 되는 CoreMenuStyle 전체이고, 그 안의 값을 부모가 다시 그리면 자식 default 에 reach 하는 것이다 — 패널·항목·구분선을 두 번 그리게 된다."
+    },
+    "date_picker.calendarStyle": {
+      "category": "composition",
+      "why": "DatePicker 는 `Calendar` 인스턴스를 합성한다. 이 슬롯은 그 Calendar 로 통째 forward 되는 CoreCalendarStyle 이라 — 셀 크기·격자·화살표까지 — 부모가 읽으면 달력을 두 번 그린다."
+    },
+    "date_picker.dialogStyle": {
+      "category": "composition",
+      "why": "dialog 모드의 표면은 합성된 `Dialog` 인스턴스가 그린다. 이 슬롯은 그 Dialog 로 흐르는 chrome 이고, 부모가 패널 배경·보더·padding 을 다시 쓰면 이중 그리기가 된다."
+    },
+    "definition_list.monoDescriptionTextStyle": {
+      "category": "needs-pose",
+      "why": "Both resolvers read this — a `mono: true` list swaps the description role for `code-sm` (Flutter `definition_list_style.dart` layers `merged.monoDescriptionTextStyle` over the code role, Web does the same before `emitTypography`). What the canvas lacks is the pose: `mono` is a widget bool, not an enum, so it is not in the exported axes, and a BOOLEAN component property can bind a layer's visibility, a text string or an instance — never a text style, so it cannot switch `Label/Medium` for `Code/SM`. Drawing it needs a new variant axis (`Layout` × `Mono`, six members instead of three), which renames every variant and needs a structural migration in `renames.ts` so the instances already placed do not detach. That is a design decision about a new axis, not a wiring change, so the set draws each layout's own description role and states no Mono."
+    },
+    "description_card.clickableStyle": {
+      "category": "needs-pose",
+      "why": "카드나 행이 눌릴 때 두 플랫폼 리졸버가 읽는 슬롯이다. 기본값의 스칼라 둘(`pressedScale` 1, `disabledOpacity` 1)은 항등이다 — 넓은 면이 눌려 줄어들지 않고, 비활성은 카드가 `disabledContentOpacity` 로 내용만 흐리게 해서 이미 말하므로 캔버스가 더 바꿀 것이 없다. 남는 것은 포커스 링이다: DescriptionCard 세트는 Variant × Size × Disabled 이고 링이 앉을 포커스 멤버가 없다. 디자이너가 키보드 포커스 자세를 그리고 싶다면 포커스 State 멤버와 `Show focus ring` 을 더한다 — OptionItem 의 같은 슬롯과 같은 자리."
+    },
+    "description_card.shadowBaseColor": {
+      "category": "unreachable-default",
+      "why": "`shadowBaseColor` is never a chrome value on its own — it is only ever the `base:` tint handed to the shadow stack, and both resolvers gate that stack on the nullable `boxShadow` field: Flutter `packages/coui_flutter/lib/src/components/display/description_card/description_card_style.dart:239` computes `merged.boxShadow?.toValue(base: shadowBase, geometry: theme.geometry)` (null-aware, so `shadowBase` is discarded when `boxShadow` is null), and Web `packages/coui_web/lib/src/components/display/description_card/description_card_style.dart:339` only writes `raw['box-shadow'] = emitShadow(merged.boxShadow!, base: shadowBase)` inside `if (merged.boxShadow != null)`. `boxShadow` is the nullable switch field with no default, deliberately so — its Core doc at `packages/coui_core/lib/src/component/contracts/description_card/description_card_style.dart:203-214` says \"Deliberately without a `default*`: absence is what keeps the card flat… only its tint is design-system-owned, which is why [shadowBaseColor] has a default and this does not\" — and `components.json` bears that out: the `description_card.fields` map carries `shadowBaseColor` but no `boxShadow` key at all, so the exported component has zero shadow layers. The shipped DescriptionCard is therefore flat on every one of the 30 Variant×Size×Disabled frames `buildDescriptionCard` mounts, and `applyPanelCompChrome` is called with bg/b"
+    },
+    "dialog.contentClipMargin": {
+      "category": "needs-pose",
+      "why": "본문이 스크롤 영역이 되면서 생긴 클립 경계다 — 본문 상자 밖으로 이 거리(포커스 외곽선의 바깥 끝, 4)까지 그린 것만 남는다. 양 플랫폼이 실제로 쓴다: Flutter 는 본문의 `ClipRect` 를 이만큼 부풀리고, Web 은 스크롤 컨테이너를 음수 margin 과 같은 길이의 padding 으로 이만큼 넓힌다. 캔버스의 Dialog 는 짧은 텍스트 본문 하나라 이 경계에 닿는 페인트가 없고, Figma 프레임의 `clipsContent` 는 상자 경계에서만 자른다 — 경계 밖에 여유를 둘 수단이 없어 그대로 옮길 수도 없다. 이 값이 화면에 나타나는 자세는 본문 가장자리의 필드가 포커스됐거나 본문이 패널 높이를 넘어 스크롤되는 자세이고, 추가할 축은 본문의 길이(Content: Short · Long)다."
+    },
+    "dialog.scaleAnimationEnd": {
+      "category": "no-op",
+      "why": "값이 1.0 — 등장이 끝나면 크기 그대로라는 진술이다. 축소하지 않는 것이 이 값을 그리는 것이고, 무엇을 그려도 값을 어긴다."
+    },
+    "dialog.scaleAnimationStart": {
+      "category": "motion-endpoint",
+      "why": "다이얼로그가 등장하며 커지는 scale 의 시작값(0.9). 쉬는 자세는 끝값 쪽이다."
+    },
+    "diff.handleHitSize": {
+      "category": "no-pixels",
+      "why": "손잡이 둘레에서 포인터를 받는 띠의 폭. 보이지 않는 영역이라 그려지는 것이 없다 — 눈에 보이는 손잡이 원은 handleSize 가 말하고, 띠는 노드로 두지 않는다."
+    },
+    "diff.keyboardPageStep": {
+      "category": "no-pixels",
+      "why": "PageUp / PageDown 한 번에 분할선이 움직이는 비율. keyboardStep 과 같은 입력 증분이고 그려지는 것이 없다 — 분할선의 위치 자체는 initialPosition 이 말한다."
+    },
+    "diff.keyboardStep": {
+      "category": "no-pixels",
+      "why": "키보드 화살표 한 번에 분할선이 움직이는 비율. 입력 증분이고 그려지는 것이 없다 — 분할선의 위치 자체는 initialPosition 이 말한다."
+    },
+    "divider.childAlignment": {
+      "category": "needs-pose",
+      "why": "라벨이 divider 주축 위 어디에 앉는지(`center` / `start` / `end`, 논리 방향이라 읽기 방향을 따른다). 빌더는 `Label=Present` 를 이미 그리므로 그릴 자리는 있고 default `center` 가 지금 그것이다 — 나머지 두 선택지는 자세 축이 필요하고, 축을 얻으면 Divider 멤버가 4 → 12 가 되어 `VARIANT_RENAMES` 를 거쳐야 한다. 값이 emit 되고 그릴 자리가 있다는 점에서 결론이 아니라 남은 일."
+    },
+    "dot_indicator.hoverBorderColor": {
+      "category": "needs-pose",
+      "why": "포인터가 올라간 점의 테두리 색이고, 클릭 가능할 때만(`isClickable && _hovered`) 나타난다 — 머무는 자세라 축이 정답이다. 다만 DotIndicator 는 지금 단일 COMPONENT 이고 축을 얻으려면 ComponentSet 이 되어야 한다: 노드 정체성이 바뀌는 변경이라 `renames.ts` 의 STRUCTURAL_MIGRATIONS 를 거쳐야 하고, 그 이동은 이 필드 하나와 같이 오는 것이 아니라 따로 온다. 값이 진술되어 있고 그릴 자세가 있다는 점에서 결론이 아니라 남은 일이다."
+    },
+    "dropdown_menu.menuStyle": {
+      "category": "composition",
+      "why": "DropdownMenu 도 같은 `Menu` 인스턴스를 합성한다. 같은 슬롯, 같은 이유."
+    },
+    "fab.popoverStyle": {
+      "category": "platform-absent",
+      "why": "호스트 `Popover` 는 메인 원을 감싸 메뉴를 여는 래퍼다. Figma 인스턴스는 트리거를 감쌀 수 없으므로 캔버스에 그 인스턴스가 없다 — 벗겨 낼 크롬도 없다. 그 호스트는 채움 · 테두리 · 그림자 · 안쪽 여백을 모두 비우도록(`defaultPopoverStyle`) 진술돼 있어 보이는 패널은 `Popup` 인스턴스가 `popupStyle` 로 그리고, 메뉴와 FAB 사이 간격 `placementOffset` 은 `spacing` 이 같은 값으로 들고 있어 빌더가 그 필드로 읽는다(`Fab.Popover` 는 composition allowlist 의 wrapper)."
+    },
+    "fade_scroll.gradient": {
+      "category": "unreachable-default",
+      "why": "The value is shipped and genuine — components.json carries both stops ([Semantic/color/on-surface, argb 0]) and `f.gradient` has zero references in primitives-layout.ts, so this is a true unread field, not a naming artifact. It is unread because the node it belongs on is not minted: `gradient` is an ALPHA MASK, not a fill. Flutter hands the two stops to a `ShaderMask` with `blendMode: .dstIn` (coui_flutter/.../fade_scroll/fade_scroll.dart:204) and Web bakes them into `mask-image` (coui_web/.../fade_scroll/fade_scroll_style.dart:148-149); under `dstIn` only alpha survives, so `onSurface`'s RGB never reaches a pixel and filling the existing `extentBox`es with an on-surface→transparent ramp would darken the content instead of dissolving it — a worse picture than the unpainted band, which is what the builder's own leading comment already argues. The correct canvas expression is a layer mask over the scroll content, and that node does not exist: buildFadeScroll (primitives-layout.ts:922-954) mints only `content.column` (928), two unpainted extent boxes (935-944), and a scrollbar (945-951) as flat siblings of `c`. Closing it needs a new rectangle with a GRADIENT_LINEAR fill, `isMask = true` (zero hits for `isMask` anywhere in the exporter — first of its kind), and a regroup, because Figma masks apply to siblings below them in the same parent: a mask dropped into `c` would also clip `"
+    },
+    "file_input.clickableStyle": {
+      "category": "no-op",
+      "why": "이 슬롯의 두 스칼라가 모두 항등이다 — `disabledOpacity` 1.0, `pressedScale` 1.0. 값이 '아무것도 바꾸지 않는다'이고 캔버스가 아무것도 바꾸지 않는 것이 그것을 지키는 것이다. FileInput 은 Disabled 축을 이미 갖고 있고 그 자세는 자기 disabled 색으로 그린다. 남은 `focusOutlineStyle` 은 Focus 축이 생기면 그려질 ring 이다."
+    },
+    "file_input.saveButtonStyle": {
+      "category": "needs-pose",
+      "why": "양 플랫폼 resolver 가 슬롯을 그대로 흘려보내고 위젯도 raw-forward 한다 — `coui_flutter/.../file_input_style.dart` 와 `coui_web/.../file_input_style.dart` 가 `defaultSaveButtonStyle` 을 per-instance override 위에 merge 하고, 각 위젯이 plain `Button` 에 넘긴다. 캔버스에 없는 것은 그 자세다: 저장 어포던스는 컴포넌트가 실제로 파일을 받았고 `allowSave` 가 켜진 선택된 파일 행에만 붙는데, Figma FileInput 세트는 드롭존과 힌트까지만 그리고 파일 행 액션 노드가 없다 — 값을 그리면 컴포넌트 세트에 없는 디자인을 주장하게 된다. 파일 행에 저장 어포던스 노드를 더하는 것은 빌더 수정이 아니라 디자인 결정이다."
+    },
+    "frame.duration": {
+      "category": "platform-absent",
+      "why": "`Duration` is a Dart/Flutter runtime type whose whole content is a statement about a time axis, and a static component node has none — the only Figma surface that carries a transition is the prototyping `reactions` list, which `manifest.json`'s `documentAccess: \"dynamic-page\"` makes read-only in favour of async `setReactionsAsync` and therefore unreachable from a synchronous builder, the same wall the `Hidden` header already documents at primitives-layout.ts:1330-1345, and it would additionally need two states to interpolate between where this component has one. The value is also inert on its own terms: it is `Duration.zero` (`{v: 0.0}`), Core's doc calls that \"an unanimated frame, so a `Frame` only animates once a caller asks it to\" (frame_style.dart), Web gates its whole `transition` emit on `effectiveDurationMs > 0` (coui_web frame_style.dart:315) and so emits nothing, and Flutter would feed it to the `hasChrome` AnimatedContainer (frame.dart:370) that no default builds. So there is nothing to draw even on a canvas that had a time axis — the same conclusion OutlinedContainer records for its own zero duration (primitives-chrome.ts:434-435)."
+    },
+    "hero.appearOffset": {
+      "category": "motion-endpoint",
+      "why": "appearOffset is the upward travel of the centred content during the opt-in entrance (CoreSpace.space16 by default) — the hidden end of a one-shot fade+translate that only runs when the widget's `appear` is true. The resting pose the canvas draws is the shown end (offset 0); painting the travel as a permanent 16px shift would describe a hero the widget never ships as its default, and a static frame has no time axis for the transition between the two ends. appearDuration and appearCurve are the matching motion tokens and are classified from their exported value shape rather than listed here."
+    },
+    "hover.brightenFactor": {
+      "category": "motion-endpoint",
+      "why": "hover 시 밝아지는 배율(1.1). 밝아짐은 전환의 끝이고 쉬는 자세는 그 전이다 — 정지한 캔버스가 그리는 것은 쉬는 쪽이다."
+    },
+    "hover.minDuration": {
+      "category": "no-op",
+      "why": "값이 0 — 최소 표시 시간이 없다는 진술이다. 기다리지 않는 것이 이 값이고, 어느 자세에도 나타나지 않는다."
+    },
+    "icon.color": {
+      "category": "composition",
+      "why": "`Icon` is designer-owned and the plugin's REGISTRY entry only validates it (components/icon.ts), so nothing in the plugin paints that component's own colour any more. The value still lands on the canvas — every glyph in `CoUI Icons — Lucide` binds its strokes to `color/on-surface` in `1-1. Semantic/ Color · CoUI` (measured on the live set, node 2334:66: `boundVariables.strokes -> VariableID:e470571b…/2292:229`), which is the same token this field carries (`Semantic/color/on-surface`, from `CoreIconStyle.defaultColor = CoreColor.token(CoreColors.onSurface)`). Painting it again would write an instance override onto a REMOTE main the CoUI team does not own, which is the one failure mode components/icon.ts flags as having no plugin-side defence — a republish that restructures glyphs resets overrides. Use sites are unaffected: `makeIcon` still paints each instance through `paintIcon`, so a caller's `colorVar` (on-primary inside a filled button, destructive, …) still reaches the glyph. What is unread is only the component's own default, and the library already states it. NOTE: nothing enforces that the two stay equal — if `CoreIconStyle.defaultColor` ever moves off `onSurface`, the library binding has to move with it by hand."
+    },
+    "icon.size": {
+      "category": "unreachable-default",
+      "why": "`CoreIconStyle.defaultSize`(24) 는 Icon resolver 의 마지막 단계다 — 두 플랫폼 모두 `merged.size ?? ambient IconTheme size ?? defaultSize` 순서로 읽고, 앱 루트가 가운데 단계를 항상 채운다(Flutter `CoUIApp` 의 `theme.iconTheme.medium`, Web `CoUIWeb` 의 `IconTheme`, 둘 다 `CoreIconStyle.defaultAmbientSize` = 20). 그래서 앱 안에서 크기 없는 Icon 은 20 으로 그려지고 이 값에는 닿지 않는다(Flutter 는 `IconTheme.of` 가 늘 구체 크기를 돌려주므로 앱 밖에서도 닿지 않는다). 그 결과 빌더가 Icon 크기를 고르는 자리는 셋 중 하나다. 위젯이 호출자의 위젯을 크기도 `IconTheme` 도 없이 그대로 그리는 슬롯은 이 값이 아니라 `icon.constants.ambientSize` 를 읽고, 그 슬롯마다 빌더 주석이 왜 해당하는지 적는다. 위젯이 자기 `IconTheme` · `iconStyle` 이나 크기를 자르는 상자로 크기를 정하는 슬롯은 그 크기를 읽는다 — 두 플랫폼이 여기서 갈리는 자리(Flutter 는 크기를 주고 Web 은 받은 그대로 그리는 자리)는 Flutter 를 따른다. 글리프가 아이콘이 아니라 사진 · 호출자가 통째로 짜는 미리보기 콘텐츠처럼 다른 것을 대신하는 자리는 그 크기를 쓰고 이유를 그 자리에 적는다. 어느 쪽도 이 값을 읽지 않는다 — 24 를 그려 넣으면 앱이 들어갈 수 없는 상태를 주장하며, TabPane 칸과 RefreshTrigger 글리프가 실제로 그렇게 24 를 그렸다. `Icon` 세트 자체는 디자이너 소유라(components/icon.ts) 플러그인이 이 값을 실을 노드가 없다. NOTE: 그 세트의 기본 변형(Size=24)은 이 값과 같고 앱 안의 기본(20)과는 다르다 — 캔버스에 크기 없이 놓은 Icon 인스턴스가 코드와 갈리는 지점이고, 기본 변형을 바꾸는 것은 디자이너의 결정이다."
+    },
+    "item_picker.optionHoverTextStyle": {
+      "category": "no-pixels",
+      "why": "hover 쌍이 selected 쌍과 **값이 동일**하다 — `optionHoverColor` == `selectedColor`(tertiary), `optionHoverTextStyle` == `selectedTextStyle`(bodySmall + on-tertiary). 캔버스는 이미 선택된 행을 그 색으로 그리고 있으므로 Hover 축은 같은 그림을 한 번 더 그린다 — 디자이너가 클릭해 보고 나서야 두 자세가 같다는 걸 알게 되는 축이다. 두 값이 갈리는 날 이 항목이 지워지고 축이 생긴다(그 판정은 데이터가 하고, 이 사유가 그 조건을 적어둔다)."
+    },
+    "mask.half": {
+      "category": "needs-pose",
+      "why": "half-crop 은 원리상 그릴 수 있다(프레임을 반으로 줄이고 clip). 다만 default 가 `none`(전체 마스크)이라 잘리지 않은 박스가 곧 default 의 그림이고, `first`/`second` 두 자세는 축이 필요하다. shape 가 그려지지 않는 동안(위 항목) 반쪽만 자른 사각형은 마스크가 무엇을 하는지 오히려 덜 말한다 — shape 표현이 생기면 같이 그린다."
+    },
+    "mask.shape": {
+      "category": "platform-absent",
+      "why": "`mask.dart` 는 `ClipPath` 에 손으로 만든 `Path` 를 씌워 실루엣을 그리고, shape enum 은 12 멤버다(circle·squircle·square·heart·hexagon·hexagon2·decagon·pentagon·diamond·star·star2·triangle). 빌더는 auto-layout 프레임에 임의 clip path 를 얹을 수 없다 — Figma 에 그 표현이 없다. default(squircle)를 corner radius 로 근사하면 코드가 진술하지 않는 radius 를 주장하면서 12 중 9 에는 아예 틀린다. 값은 export 된다(`{choice: squircle}`) — 없는 것은 캔버스 쪽 표현이다."
+    },
+    "menu.leadingColumnWidth": {
+      "category": "composition",
+      "why": "토글 마크가 앉던 고정폭 열이었다. 그 자리는 이제 `MenuItem` 의 mark 좌석이고 폭은 행이 자기 `markIconStyle.size` 로 정한다 — 메뉴가 그 열을 더 이상 그리지 않으므로 읽을 자리가 없다. 필드는 아직 Core 에 살아 있어 삭제가 아니라 여기 적는다."
+    },
+    "menu_item.selectedBackgroundColor": {
+      "category": "needs-pose",
+      "why": "선택된 행의 채움. 이 세트의 축은 Size(3) × State(5) × Tone(2) 이고 Selected 축은 없다 — 60 변형이 되고, 선택 포즈는 행을 놓는 표면(Select · DropdownMenu)이 자기 캔버스에서 보여 준다. 축을 늘리는 것은 디자이너의 결정이라 여기 적고 기다린다."
+    },
+    "navigation_bar.compactScale": {
+      "category": "no-op",
+      "why": "값이 1.0 — 화면 끝에 붙은 바는 `compact` 가 줄어든 모습을 요청해도 그리는 크기가 그대로라는 진술이다. 줄이지 않는 것이 이 값을 그리는 것이다. 0.84 로 줄어드는 것은 리퀴드 글래스 프리셋(`glassBarStyle`)이 따로 진술하는 값이고, 본문을 스크롤하는 동안에만 머무는 자세다."
+    },
+    "object_input.charWidth": {
+      "category": "needs-pose",
+      "why": "필드 폭을 정하는 글자당 폭이다 — 두 플랫폼 모두 필드 폭을 `charWidth × (maxLength ?? placeholder.length)` 로 정하고, `maxLength` 가 있을 때만 그 길이로 고른 버킷의 최대 폭(`shortFieldMaxWidth` · `mediumFieldMaxWidth` · `longFieldMaxWidth`)으로 자른다(Flutter `object_input.dart` 의 `SizedBox(width: fieldWidth)`, Web `resolveObjectInputField` 의 `width` + `max-width`). 캔버스는 세 필드를 버킷 최대 폭 그대로 그리므로 이 값을 읽지 않는다. 그런데 그 세 폭 중 둘은 기본값에서 위젯이 그릴 수 없는 폭이다: short 버킷은 2자 이하라 `12 × 2 = 24` 가 32 에 닿지 않고, medium 버킷은 4자 이하라 `12 × 4 = 48` 이 56 에 닿지 않는다. 필드마다 대표 글자 수를 정해 그 식으로 폭을 그리면 이 값이 읽히고 캔버스가 위젯과 맞는다 — 결론이 아니라 남은 일."
+    },
+    "option_item.clickableStyle": {
+      "category": "needs-pose",
+      "why": "눌리는 행에서 두 플랫폼 리졸버가 읽는 슬롯이다. 스칼라 둘(`pressedScale` 1.0, `disabledOpacity` 1.0)은 항등이다 — 행 자신의 눌림 면과 비활성 글자색이 눌림·비활성의 모양을 이미 말하므로 캔버스가 더 바꿀 것이 없다. 남는 것은 포커스 링이다: OptionItem 세트는 State=enabled | pressed | disabled 이고 링이 앉을 포커스 멤버가 없다. 디자이너가 키보드 포커스 자세를 그리고 싶다면 포커스 State 멤버와 `Show focus ring` 을 더한다."
+    },
+    "outlined_container.duration": {
+      "category": "platform-absent",
+      "why": "`duration` is the chrome transition timing — `CoreOutlinedContainerStyle.duration` (outlined_container_style.dart:129, \"Animation duration for chrome property changes (color / radius / width / height). `null` or `Duration.zero` means no animation\"), consumed by Flutter as `AnimatedContainer(duration: resolved.duration)` (outlined_container.dart:74, :90) and by Web as a CSS `transition-duration` gated on `durationMs > 0` (outlined_container_style.dart:165-166, :302-303). The exported value is `{\"v\": 0.0}` — `defaultDuration = Duration.zero` (outlined_container_style.dart:196) — so on both platforms the shipped component animates nothing at all; there is no motion on the canvas to be missing, and `buildOutlinedContainer`'s own note already says so (primitives-chrome.ts:432-433: \"`duration` (0) is the chrome transition — `Duration.zero` here, and a static frame has no time axis to put it on either way\"). This is not the \"too quick\" version of that argument: the same question was fully litigated for `card.chromeAnimationDuration` (display.ts:1930-1960) and `dialog.scaleAnimation*` (overlay.ts:841-858), and the finding holds unchanged here. Figma stores a number of seconds in exactly one place, `Reaction.transition.duration` — a PROTOTYPE property, not a node property — and three independent blocks apply: (1) `manifest.json` sets `documentAccess: \"dynamic-page\"`, making `reactions` "
+    },
+    "outlined_container.shadowStrengthens": {
+      "category": "no-op",
+      "why": "다크 테마가 이 표면이 진술한 그림자 스택의 알파에 `CoreShadow.darkStrength` 를 곱하는지다(`CoreOutlinedContainerStyle.shadowStrengthens`). 캔버스는 라이트 세기만 싣는다 — `Semantic/ Surface` 모드는 스타일이지 밝기가 아니라서 행의 알파가 라이트 값이고(core/theme-axis-composition.md 그림자 세기 축), 라이트에서는 곱셈이 1 이라 `true` 와 `false` 가 같은 픽셀을 그린다. 캔버스에서 이 값은 아무 일도 하지 않는다."
+    },
+    "overflow_marquee.step": {
+      "category": "no-pixels",
+      "why": "스크롤 속도를 콘텐츠 길이에 맞추는 **비율 분모**다 — `durationMicros = duration * (diff / step)`. 픽셀 step 이라는 이름이지만 그려지는 픽셀이 아니라 \"넘치는 폭이 이만큼일 때 한 주기가 duration 이다\" 라는 rate 이고, 어느 자세에도 나타나지 않는다(scroll_view_interceptor.dragSpeed 와 같은 계열)."
+    },
+    "page_transition.slideDistance": {
+      "category": "motion-endpoint",
+      "why": "새 화면이 올라오기 시작하는 자리(제자리에서 16 아래). 화면 전환의 출발점이라 쉬는 화면은 제자리에 있고, 캔버스에는 화면 사이를 오가는 장면이 없다."
+    },
+    "phone_input.disabledOpacity": {
+      "category": "no-op",
+      "why": "값이 1.0 — 비활성이 아무것도 흐리게 하지 않는다는 진술이다. 위젯은 `Opacity(opacity: resolved.disabledOpacity)` 로 감싸지만 1.0 은 감싸지 않은 것과 같고, Disabled 축은 대신 필드마다의 disabled 색(dialCode/chevron/border)으로 자세를 그린다. 노드 opacity 를 낮추면 값을 어긴다."
+    },
+    "phone_input.popupBorderRadius": {
+      "category": "composition",
+      "why": "resolver 가 이 값을 popoverStyle.panelStyle.borderRadius 로 반사하고 빌더는 그 슬롯을 읽어 패널에 바인딩한다 — 같은 값이 이미 캔버스에 있고, 여기서 또 읽으면 한 반경에 두 출처가 생긴다."
+    },
+    "popover.viewportPadding": {
+      "category": "no-pixels",
+      "why": "패널이 뷰포트 밖으로 나갈 때 되밀어 넣는 여유다. 컴포넌트에는 뷰포트가 없으므로 이 값이 묶일 상대가 없고, 어느 자세에도 그려지지 않는다."
+    },
+    "progress.indeterminateFillRatio": {
+      "category": "needs-pose",
+      "why": "불확정 막대(`value: null`)의 움직이는 채움이 트랙의 몇 %인지를 정한다(35%). Progress 세트에는 `Indeterminate` 자세가 없어 어느 멤버도 이 채움을 그리지 않는다 — 추가할 축은 `Indeterminate`(false · true)다."
+    },
+    "resizable.dividerHitExtent": {
+      "category": "no-pixels",
+      "why": "분할선의 **히트 영역** 폭이다 — 보이는 선의 두께는 다른 필드(dividerThickness)가 정하고 이 값은 포인터가 잡을 수 있는 범위만 넓힌다. 그려지는 픽셀이 없으므로 어느 자세에도 나타나지 않는다."
+    },
+    "resizable.handleHitExtent": {
+      "category": "no-pixels",
+      "why": "손잡이의 히트 영역. 위와 같은 이유 — 보이는 손잡이는 자기 크기를 갖고, 이 값은 그 주변으로 넓힌 잡을 수 있는 범위다."
+    },
+    "responsive_container.maxWidth": {
+      "category": "code-gap",
+      "why": "The exporter's `FieldKind.choice` branch (packages/coui_core/bin/figma_reader/schema_v2.dart:172-179, `return {'choice': member}`) emits only the enum member's NAME, discarding the payload the member carries — `CoreResponsiveContainerMaxWidth.xl` is declared `xl(1280)` (core_responsive_container_max_width.dart:20) and both platforms paint that number (Flutter: `effectiveMaxWidthPreset.maxWidth! * scaling` → `BoxConstraints(maxWidth:)` in coui_flutter/.../responsive_container_style.dart; Web: `_maxWidthCss` → inline `max-width`), so the value is real and painted, but components.json flattens the field to `{\"choice\": \"xl\"}` with no numeric leaf. That makes it structurally unreadable by the builder rather than merely unread: every dimensional helper in helpers.ts takes `number | Dim`, and `Dim` is `{v, ref, via}` (compat/v1.ts:48) whose `v` is extracted by `dimVal` (compat/v1.ts:64) — a `{choice}` leaf has no `v`, so `lockWidth(constrained, RESPONSIVE_CONTAINER.fields.maxWidth)` would not even type-check, and all 39 choice leaves in components.json are equally payload-less (0 of them carry an extra key). This is not `no-node`: the node exists and is already named for the field (`autoFrame('maxWidth', 'VERTICAL')` at primitives-layout.ts:582, width set from the preview constant `kContainerWidth = 240` at :584), so only the value is missing, not the part. It is not `fixable` either "
+    },
+    "responsive_grid.responsive": {
+      "category": "no-pixels",
+      "why": "열 수를 뷰포트 폭의 breakpoint 에서 가져올지 정하는 스위치다. 컴포넌트에는 뷰포트가 없어 재배치가 일어날 상대가 없고, 캔버스는 한 폭에서의 결과만 그린다."
+    },
+    "scaffold.appBarRailPadding": {
+      "category": "needs-pose",
+      "why": "기기가 오른쪽 safe area 를 앱 바 레일이 들어설 만큼 넓게 보고할 때만 그려지는 값이다(`CoreScaffoldContract.hasAppBarControlRail` — 위·왼쪽 인셋이 0 이고 오른쪽 인셋이 컨트롤 폭 + 이 여백의 오른쪽 이상, 가로로 놓은 폴더블 모양). 그때 두 resolver 가 다 쓴다 — Flutter 는 `padding.top/right/bottom` 으로 레일을 앉히고 Web 은 같은 값을 인라인 `top`/`right`/`bottom` 으로 낸다. 캔버스의 Scaffold 세트에는 safe area 축이 없어 그 상태의 멤버가 없고, 묶을 자리가 없다. 추가할 축: Scaffold 의 오른쪽 safe area 인셋(레일) 자세."
+    },
+    "scaffold.appBarRailPopupStyle": {
+      "category": "needs-pose",
+      "why": "앱 바 레일이 들어설 때만 그려지는 값이다. 가로로 놓은 폴더블처럼 기기가 오른쪽 safe area 를 레일이 들어설 만큼 넓게 보고할 때(`CoreScaffoldContract.hasAppBarControlRail`) 레일의 세로 `ToolbarGroup` 이 이 스타일을 `popupStyle`(액션 캡슐의 재질과 chrome)로 받는다 — 앱 바가 자기 캡슐 스타일(`actionCapsuleStyle`)을 적었으면 그쪽이 이긴다. 두 플랫폼이 같이 읽는다(Flutter `scaffold.dart`, Web `scaffold_style.dart`). 캔버스의 Scaffold 세트에는 safe area 축이 없어 레일이 있는 멤버가 없고, 그래서 이 캡슐을 그릴 자리도 없다. `scaffold.appBarRailPadding` 과 같은 사정이다. 추가할 축: Scaffold 의 오른쪽 safe area 인셋(레일) 자세 — 그 축이 생기면 두 필드를 함께 묶는다."
+    },
+    "scroll_view_interceptor.dragSpeed": {
+      "category": "no-pixels",
+      "why": "드래그 오프셋을 속도로 바꾸는 계수(`velocity = ((-offset * dragSpeed) ^ cubicPower) / dt`). 입력이 스크롤로 번역되는 비율이고 그려지는 것이 없다."
+    },
+    "scroll_view_interceptor.maxScrollSpeed": {
+      "category": "no-pixels",
+      "why": "그 속도의 clamp 상한. 같은 이유로 픽셀이 없다."
+    },
+    "scrollbar.hoverThickness": {
+      "category": "needs-pose",
+      "why": "포인터가 thumb 위에 있거나 thumb 을 끄는 동안의 두께(`size/8`)다. 양쪽 위젯이 실제로 emit 한다(Flutter 는 hover 애니메이션이 두께를 옮기고, Web 은 thumb 의 `:hover`·`:active` 규칙이 투명 테두리를 줄인다). 머무는 자세라 추가할 축은 State(rest · hover)다. 다만 Scrollbar 는 지금 단일 COMPONENT 이고 축을 얻으려면 ComponentSet 이 되어야 한다: 노드 정체성이 바뀌는 변경이라 `renames.ts` 의 STRUCTURAL_MIGRATIONS 를 거쳐야 하고, 그 이동은 이 필드 하나와 같이 오는 것이 아니라 따로 온다. 디자이너가 이 리디자인에서 캔버스에 그리지 않기로 한 것은 범위의 결정이지 이 값이 그릴 수 없다는 결론이 아니다 — 값이 진술되어 있고 그릴 자세가 있으므로 결론이 아니라 남은 일이다."
+    },
+    "scrollbar.hoverThumbColor": {
+      "category": "needs-pose",
+      "why": "포인터가 thumb 위에 있거나 thumb 을 끄는 동안의 색(`on-surface` 70%)이다. 두께와 같은 자세에 속하므로 `scrollbar.hoverThickness` 와 같은 축(State · rest/hover)이 정답이고, 같은 이유로 단일 COMPONENT → ComponentSet 이동(STRUCTURAL_MIGRATIONS)이 먼저다. 그 전까지 쉬는 자세의 `thumbColor`(`on-surface` 50%)만 캔버스에 있다."
+    },
+    "sidebar.panelActionIconStyle": {
+      "category": "needs-pose",
+      "why": "Both platforms size and tint the two-pane panel title's action glyph with it. The Sidebar set draws the twoPane member with a title but no action; add the action glyph (behind a `Show panel action` property) to the twoPane member."
+    },
+    "sidebar.railHeaderGapStyle": {
+      "category": "needs-pose",
+      "why": "Both platforms put this gap under the rail's header slot (the workspace mark). The Sidebar set's rail draws destinations but no header; add the rail header (an Avatar instance) to the twoPane and collapsed members."
+    },
+    "sidebar_header.clickableStyle": {
+      "category": "needs-pose",
+      "why": "Both resolvers read this when the header is pressable (`onPressed` set) — it is the wash and focus ring of the workspace switcher. The SidebarHeader set has only a Variant axis (plain / card), so there is no hover / focus member for it to land on. Add a State axis (enabled / hover / focus) to the SidebarHeader set."
+    },
+    "skeleton.toOpacity": {
+      "category": "motion-endpoint",
+      "why": "맥동이 향하는 투명도. 스켈레톤의 맥동은 표시 tier 라 계속 순환하므로 두 끝 어느 쪽도 머물지 않는다."
+    },
+    "sortable.itemHoverColor": {
+      "category": "needs-pose",
+      "why": "행 배경을 **치환**한다(`effectiveBg = isHovered ? hoverColor : bgColor`) — 반투명 tertiary 0.5 라서 위에 겹치는 오버레이로는 같은 픽셀이 나오지 않고, 자세(축)만이 그 색을 정직하게 보여준다. Sortable 도 단일 COMPONENT 라 dot_indicator 와 같은 STRUCTURAL_MIGRATIONS 가 전제다."
+    },
+    "sortable.proxyElevation": {
+      "category": "gesture",
+      "why": "드래그 중 손가락을 따라다니는 프록시의 그림자 높이. 프록시는 잡고 있는 동안에만 존재하고 놓으면 사라지므로 머무는 자세가 없다 — hover 와 다르다."
+    },
+    "sortable.proxyScale": {
+      "category": "gesture",
+      "why": "같은 프록시의 확대 배율(1.02). 프록시 자체가 제스처 중에만 있으므로 같은 이유."
+    },
+    "stage_container.breakpoint": {
+      "category": "no-pixels",
+      "why": "자식을 어느 breakpoint 폭에 clamp 할지 고르는 표(`defaultBreakpoints`)다. 어느 breakpoint 가 적용되는지는 뷰포트 폭의 함수이고 컴포넌트에는 뷰포트가 없다 — 캔버스는 한 폭에서의 결과만 그린다."
+    },
+    "star_rating.focusBorderColor": {
+      "category": "composition",
+      "why": "Deprecated pair (since 0.173) that `CoreStarRatingStyle.focusRingStyle` still folds in UNDER `focusOutlineStyle` before both platforms hand the result to the composed `FocusOutline`, so the ring's colour and width are that component's `borderColor` / `borderWidth`. The canvas draws the ring from `STAR_RATING.fields.focusOutlineStyle` (the one ring around the whole group); this legacy pair carries no default of its own and is null unless a caller states it, so there is nothing for the builder to paint."
+    },
+    "stat.emptyValueColor": {
+      "category": "needs-pose",
+      "why": "두 resolver 가 읽는다 — `value` 가 `null` 이면 양 플랫폼이 값 자리에 `CoreStatContract.defaultEmptyValue`(—)를 값의 역할 · 이 색으로 그린다(Flutter `emptyValueTextStyle`, Web `emptyValueText`). 캔버스에 없는 것은 그 자세다: `Value` 는 TEXT 속성이라 글자만 바꿀 수 있고 칠은 바꿀 수 없어, 디자이너가 —를 덮어 써도 `valueColor` 로 그려진다. BOOLEAN 은 보이기만 켜고 끌 수 있어서 값과 대시를 한 속성으로 맞바꾸지 못한다 — 그리려면 `Empty` 자세 축(멤버 6 → 12, `VARIANT_RENAMES`)이나 두 BOOLEAN 이 필요하고, 그건 새 축에 대한 디자인 결정이라 아직 두지 않았다."
+    },
+    "tab_pane.dragOpacity": {
+      "category": "gesture",
+      "why": "탭을 끌고 있는 동안 원래 자리의 투명도. 놓으면 즉시 1 로 돌아가므로 머무는 자세가 아니다."
+    },
+    "table.frozenCellBackgroundColor": {
+      "category": "unreachable-default",
+      "why": "isFrozen ? frozenCellBackgroundColor 분기를 타려면 frozenCells 가 있어야 하는데 그 필드는 nullable 이고 default 가 없다 — 이 라이브러리가 출하하는 Table 은 셀을 한 패스로 그린다. 얼린 열을 그려 넣으면 기본 Table 이 있을 수 없는 상태를 주장한다."
+    },
+    "table.resizerColor": {
+      "category": "no-pixels",
+      "why": "리사이저의 **폴백 base** 다 — 쉬는 자세의 리사이저는 transparent 로 칠해지고(`_resizerVisual`), 색이 나타나는 곳은 hover 와 drag 뿐이다. 그 둘의 default 가 이 필드(`defaultResizerHoverColor = defaultResizerColor`)라서 값 자체는 이미 캔버스에 있다 — Hover 축의 리사이저가 그 색으로 칠해져 있다. 이 필드를 같은 노드에 또 쓰면 같은 색을 두 번 쓰는 것이고 그 노드가 무엇에 묶였는지 모호해진다."
+    },
+    "table.resizerDragColor": {
+      "category": "gesture",
+      "why": "열 경계를 끌고 있는 동안의 색. 같은 위젯의 hover 색은 자세가 있어 그려지지만(Hover 축), 끌고 있는 중은 머물지 않는다."
+    },
+    "tabs.swipeSensitivity": {
+      "category": "no-pixels",
+      "why": "탭을 넘기는 스와이프 임계값. 제스처가 얼마나 커야 전환으로 인정되는지의 수이고, 어떤 자세도 이 값을 보이지 않는다."
+    },
+    "text_area.backgroundCursorColor": {
+      "category": "gesture",
+      "why": "text_field 와 같은 필드, 같은 이유. 핸들 드래그 중에만 존재한다."
+    },
+    "text_area.selectionColor": {
+      "category": "platform-absent",
+      "why": "텍스트 선택 하이라이트다 — Web 은 `::selection`(`selection:bg-{token}` 클래스), Flutter 는 `TextSelectionThemeData.selectionColor`. 선택된 글자 **뒤에** 칠하는 배경이고, Figma 의 텍스트 노드는 범위별로 fill(글자색)만 받는다(`setRangeFills`) — 범위 배경이 없다. 글자색을 대신 바꾸면 선택이 아니라 다른 색 단어가 되고, 노드 전체에 칠하면 선택되지 않은 글자까지 칠한다. 값은 export 되고(primary) 없는 것은 캔버스 쪽 표현이다."
+    },
+    "text_field.backgroundCursorColor": {
+      "category": "gesture",
+      "why": "핸들을 끌고 있는 동안에만 보이는 두 번째 캐럿의 색(EditableText.backgroundCursorColor). 손가락이 붙어 있는 순간에만 존재하므로 머무는 자세가 없다 — hover 와 달리 놓으면 사라진다."
+    },
+    "text_field.fileLabelFontWeight": {
+      "category": "platform-absent",
+      "why": "Web 이 `file:font-*` 로 emit 하는데 그 대상은 브라우저가 그리는 파일 선택 버튼이다 — Figma 에는 그 컨트롤이 없고, div 로 흉내내면 브라우저가 실제로 그리는 것과 다른 것을 주장한다."
+    },
+    "text_field.selectionColor": {
+      "category": "platform-absent",
+      "why": "텍스트 선택 하이라이트다 — Web 은 `::selection`(`selection:bg-{token}` 클래스), Flutter 는 `TextSelectionThemeData.selectionColor`. 선택된 글자 **뒤에** 칠하는 배경이고, Figma 의 텍스트 노드는 범위별로 fill(글자색)만 받는다(`setRangeFills`) — 범위 배경이 없다. 글자색을 대신 바꾸면 선택이 아니라 다른 색 단어가 되고, 노드 전체에 칠하면 선택되지 않은 글자까지 칠한다. 값은 export 되고(primary) 없는 것은 캔버스 쪽 표현이다."
+    },
+    "theme_controller.clickableStyle": {
+      "category": "no-op",
+      "why": "Checkbox·Chip·Toggle 과 같은 자리다 — 이 컴포넌트도 자기 disabled 색 토큰 셋(`disabledBorderColor` / `disabledPreviewColor` / `disabledLabelColor`)을 그리고 `clickableStyle.disabledOpacity` 를 **1.0** 으로 진술한다. 즉 이 슬롯이 말하는 것은 \"일반 fade 를 끈다\" 이고, 캔버스가 fade 를 그리지 않는 것이 그 값을 지키는 것이다. 나머지 중 `pressedScale` 은 눌린 동안만 존재하는 제스처이고 `focusOutlineStyle` 은 Focus 축이 생기면 그려질 ring 인데 이 세트에는 그 축이 없다(스와치 State 는 enabled·hover·pressed·disabled 넷)."
+    },
+    "toggle.clickableStyle": {
+      "category": "no-op",
+      "why": "FileInput·ThemeController 와 같은 자리다 — 이 슬롯의 두 스칼라가 모두 항등이다: `disabledOpacity` 1.0(토글은 자기 disabled 토큰 — `disabledActiveTrack` / `disabledInactiveTrack` / `disabledThumb` / `disabledForegroundColor` — 을 그리므로 일반 fade 를 끈다), `pressedScale` 은 Clickable 기본값(축소)을 그대로 쓰지만 누르는 동안만 존재하는 제스처 모션이라 정적 포즈가 없다 — 캔버스의 `pressed` 는 트랙의 16% state layer 만 그린다(2026-09-09 결정: 코드는 축소 유지, 캔버스는 정적 상태만). 캔버스가 이 슬롯에서 아무것도 바꾸지 않는 것이 그 값을 지키는 것이다. 이 슬롯의 `focusOutlineStyle` 도 캔버스에 닿지 않는다 — Clickable 의 행 링은 `focusOutline: false` 로 꺼져 있고, 트랙을 감싸는 링은 별도 슬롯 `focusOutlineStyle` 이며 빌더는 그쪽을 읽는다(`focusRing(track, …)`)."
+    },
+    "toggle.lensContainerStyle": {
+      "category": "motion-endpoint",
+      "why": "썸이 움직이는 동안에만 마운트되는 전환 렌즈의 크롬(기본은 채움·테두리·그림자 없는 알약이라 보이는 것은 떠 있는 표면 재질뿐). 양 플랫폼 resolver 가 읽는다 — Flutter 는 `ResolvedToggle.lensContainerStyle` 로 `OutlinedContainer` 에 그대로 넘기고, Web 은 `ResolvedToggle.lens` 에 inline 으로 쓴다. — 정지 상태에는 렌즈가 트리·DOM 에 없고, 디자이너가 2026-10-02 'Toggle 세트에 전환 중 자세를 두지 않는다(전환 검수는 프리뷰·실기기)' 로 결정했으므로 캔버스에 이 값이 앉을 자세가 없는 것이 결론이다. 결론 카테고리 중 motion-endpoint 를 고른 것은 이유가 같아서다 — 이 값이 사는 곳은 두 정지 자세 사이를 지나가는 동안뿐이다. 끝점 스칼라는 아니지만 더 맞는 칸이 없다: gesture 는 포인터가 눌린 동안을 말하는데, 렌즈는 키보드 토글에도 뜨고 제스처가 끝난 뒤의 이동 동안 산다."
+    },
+    "toggle.lensFadeFraction": {
+      "category": "motion-endpoint",
+      "why": "썸이 움직이는 동안에만 마운트되는 전환 렌즈의 불투명도 envelope — 이동의 처음과 끝 몇 할에 걸쳐 나타나고 사라지는가. 양 플랫폼 resolver 가 읽는다(Flutter `ResolvedToggle.lensEnvelope`, Web envelope 키프레임의 stop). 값이 시간의 비율이라 모션 판정과 같은 이유인데, 수가 duration/easing 토큰이 아니라 구조 판정에 걸리지 않는다. — 정지 상태에는 렌즈가 트리·DOM 에 없고, 디자이너가 2026-10-02 'Toggle 세트에 전환 중 자세를 두지 않는다(전환 검수는 프리뷰·실기기)' 로 결정했으므로 캔버스에 이 값이 앉을 자세가 없는 것이 결론이다. 결론 카테고리 중 motion-endpoint 를 고른 것은 이유가 같아서다 — 이 값이 사는 곳은 두 정지 자세 사이를 지나가는 동안뿐이다. 끝점 스칼라는 아니지만 더 맞는 칸이 없다: gesture 는 포인터가 눌린 동안을 말하는데, 렌즈는 키보드 토글에도 뜨고 제스처가 끝난 뒤의 이동 동안 산다."
+    },
+    "toggle.lensOutset": {
+      "category": "motion-endpoint",
+      "why": "썸이 움직이는 동안에만 마운트되는 전환 렌즈의 기하(썸 대비 넘침). 양 플랫폼 resolver 가 읽는다(Flutter `ResolvedToggle.lensContainerStyle` 의 폭·높이·`lensOriginX`·`lensTop`, Web `ResolvedToggle.lens` 의 폭·높이·margin). — 정지 상태에는 렌즈가 트리·DOM 에 없고, 디자이너가 2026-10-02 'Toggle 세트에 전환 중 자세를 두지 않는다(전환 검수는 프리뷰·실기기)' 로 결정했으므로 캔버스에 이 값이 앉을 자세가 없는 것이 결론이다. 결론 카테고리 중 motion-endpoint 를 고른 것은 이유가 같아서다 — 이 값이 사는 곳은 두 정지 자세 사이를 지나가는 동안뿐이다. 끝점 스칼라는 아니지만 더 맞는 칸이 없다: gesture 는 포인터가 눌린 동안을 말하는데, 렌즈는 키보드 토글에도 뜨고 제스처가 끝난 뒤의 이동 동안 산다."
+    },
+    "tree.indentLineThickness": {
+      "category": "unreachable-default",
+      "why": "들여쓰기 가이드 전체의 스위치는 indentLineColor 이고 그 필드에는 default 가 없다(있으면 모든 트리의 모든 중첩 행에 선이 그려진다) — 그래서 출하되는 Tree 는 가이드가 없고, 두께는 스위치가 켜진 뒤에만 도달한다. Web resolver 는 켜지면 border-left-width 로 emit 한다."
+    },
+    "tree.dropTargetColor": {
+      "category": "gesture",
+      "why": "끌어 온 노드가 폴더 행 위에 있는 동안에만 그 행 뒤에 깔리는 틴트다. 포인터 드래그 중에만 존재하고 머무는 자세가 없어 캔버스에 그릴 포즈가 없다 — 두 플랫폼은 같은 필드에서 칠한다."
+    },
+    "tree.dropIndicatorColor": {
+      "category": "gesture",
+      "why": "끌어 온 노드가 놓일 수 있는 자리 위에 있는 동안에만 보이는 2px 삽입선(또는 행 윗가장자리)의 색이다. 드래그 중에만 존재해 쉬는 자세가 없으므로 캔버스에 그리지 않는다 — 두 플랫폼은 같은 필드에서 칠한다."
+    },
+    "window.closeAnimationScaleMax": {
+      "category": "motion-endpoint",
+      "why": "같은 쌍의 다른 끝. duration 토큰이 아니라 맨 수라 구조 판정에 걸리지 않으므로 여기 적는다."
+    },
+    "window.closeAnimationScaleMin": {
+      "category": "motion-endpoint",
+      "why": "창이 닫히며 지나가는 scale 의 시작값. 정지한 자세가 없다 — 두 끝 사이를 지나가는 것이 이 값의 전부이고, 쉬는 쪽은 1(=크기 그대로)이다."
+    },
+    "window.snapBarHiddenOffset": {
+      "category": "motion-endpoint",
+      "why": "스냅바 peek 자세(-0.85 는 FractionalTranslation 이 쓰는 자기 높이의 비율)이자 내용 페이드의 시작점. 그 자세에서 opacity 가 정확히 0 이라 — unlerp(value, hiddenOffset, max) — 그려도 빈 띠다. 캔버스가 그리는 fully-shown 자세가 내용을 가진 유일한 자세다."
+    },
+    "window.titleBarHeight": {
+      "category": "gesture",
+      "why": "This scalar paints nothing on either platform; it is the geometry of the navigator's invisible drag-time snap-arming regions. Neither resolver injects it into the panel bundle — `panelStyleFloating`/`panelStyleMaximized` are built solely from `defaultPanelStyle.merge(merged.panelStyle)` plus `copyWith(borderRadius: .zero)` (flutter window_style.dart:332-338, web window_style.dart:323-328), and `titleBarHeight` is returned as its own sibling Resolved field (flutter :340, web :330), so the painted title bar's height comes from `CoreWindowPanelStyle.defaultTitleBarHeight` and is already drawn by `buildWindowPanel` at primitives-chrome.ts:659-660 off `WINDOW_PANEL.fields.titleBarHeight`. That the two are both `CoreSpace.space32` is a coincidence with no code linking them, and the gate correctly refuses to credit the panel's read because its alias `f` maps to `WINDOW_PANEL`, not `WINDOW` (check_figma_unread_fields.py:239-240). Every consumer of the window's own copy is a pointer-held region: flutter window.dart:1470 pins `GroupPositioned(height: titleBarHeight, top: 0)` around `_createBorderSnapStrategy(fullMaximizeRect)` and :1484-1497 pin left/right strips of `width: titleBarHeight` around the half-screen strategies — regions that arm a snap and have no fill or stroke; :1286-1289 tests those same bands guarded on `_draggingWindow.value`; :591 uses `Size(floating.width, titleBarHei"
+    },
+    "calendar.markerBorderRadius": {
+      "category": "needs-pose",
+      "why": "Both resolvers emit this whenever the caller's `markerBuilder` returns a marker for a date — Flutter `resolveCalendarMarker` and Web `resolveCalendarMarker` read it from the same merge chain, and the widget and DOM tests on both platforms assert the dots. What the canvas lacks is the pose: a shipped `Calendar` has no `markerBuilder`, so its default draws no dots, and the calendar set's only axis is Selection (None / Single / Range). Add a Markers axis (Off / On) to that set whose On pose marks a few dates — one dot, two, and one past the cap — including a selected date and a date inside the range, so every marker field has a pixel to land on. This one is the dot's corner (round by default)."
+    },
+    "calendar.markerColor": {
+      "category": "needs-pose",
+      "why": "Both resolvers emit this whenever the caller's `markerBuilder` returns a marker for a date — Flutter `resolveCalendarMarker` and Web `resolveCalendarMarker` read it from the same merge chain, and the widget and DOM tests on both platforms assert the dots. What the canvas lacks is the pose: a shipped `Calendar` has no `markerBuilder`, so its default draws no dots, and the calendar set's only axis is Selection (None / Single / Range). Add a Markers axis (Off / On) to that set whose On pose marks a few dates — one dot, two, and one past the cap — including a selected date and a date inside the range, so every marker field has a pixel to land on. This one is the dot fill on an unselected date."
+    },
+    "calendar.markerMaxCount": {
+      "category": "needs-pose",
+      "why": "Both resolvers emit this whenever the caller's `markerBuilder` returns a marker for a date — Flutter `resolveCalendarMarker` and Web `resolveCalendarMarker` read it from the same merge chain, and the widget and DOM tests on both platforms assert the dots. What the canvas lacks is the pose: a shipped `Calendar` has no `markerBuilder`, so its default draws no dots, and the calendar set's only axis is Selection (None / Single / Range). Add a Markers axis (Off / On) to that set whose On pose marks a few dates — one dot, two, and one past the cap — including a selected date and a date inside the range, so every marker field has a pixel to land on. This one is the cap on dots per date — the On pose needs a date whose count exceeds it to show the cap."
+    },
+    "calendar.markerPadding": {
+      "category": "needs-pose",
+      "why": "Both resolvers emit this whenever the caller's `markerBuilder` returns a marker for a date — Flutter `resolveCalendarMarker` and Web `resolveCalendarMarker` read it from the same merge chain, and the widget and DOM tests on both platforms assert the dots. What the canvas lacks is the pose: a shipped `Calendar` has no `markerBuilder`, so its default draws no dots, and the calendar set's only axis is Selection (None / Single / Range). Add a Markers axis (Off / On) to that set whose On pose marks a few dates — one dot, two, and one past the cap — including a selected date and a date inside the range, so every marker field has a pixel to land on. This one is the dot row's inset from the cell's bottom edge."
+    },
+    "calendar.markerSize": {
+      "category": "needs-pose",
+      "why": "Both resolvers emit this whenever the caller's `markerBuilder` returns a marker for a date — Flutter `resolveCalendarMarker` and Web `resolveCalendarMarker` read it from the same merge chain, and the widget and DOM tests on both platforms assert the dots. What the canvas lacks is the pose: a shipped `Calendar` has no `markerBuilder`, so its default draws no dots, and the calendar set's only axis is Selection (None / Single / Range). Add a Markers axis (Off / On) to that set whose On pose marks a few dates — one dot, two, and one past the cap — including a selected date and a date inside the range, so every marker field has a pixel to land on. This one is the dot diameter."
+    },
+    "calendar.markerSpacing": {
+      "category": "needs-pose",
+      "why": "Both resolvers emit this whenever the caller's `markerBuilder` returns a marker for a date — Flutter `resolveCalendarMarker` and Web `resolveCalendarMarker` read it from the same merge chain, and the widget and DOM tests on both platforms assert the dots. What the canvas lacks is the pose: a shipped `Calendar` has no `markerBuilder`, so its default draws no dots, and the calendar set's only axis is Selection (None / Single / Range). Add a Markers axis (Off / On) to that set whose On pose marks a few dates — one dot, two, and one past the cap — including a selected date and a date inside the range, so every marker field has a pixel to land on. This one is the gap between dots in a row."
+    },
+    "calendar.rangeMarkerColor": {
+      "category": "needs-pose",
+      "why": "Both resolvers emit this whenever the caller's `markerBuilder` returns a marker for a date — Flutter `resolveCalendarMarker` and Web `resolveCalendarMarker` read it from the same merge chain, and the widget and DOM tests on both platforms assert the dots. What the canvas lacks is the pose: a shipped `Calendar` has no `markerBuilder`, so its default draws no dots, and the calendar set's only axis is Selection (None / Single / Range). Add a Markers axis (Off / On) to that set whose On pose marks a few dates — one dot, two, and one past the cap — including a selected date and a date inside the range, so every marker field has a pixel to land on. This one is the dot fill on a date inside a range — only the Range selection pose can show it."
+    },
+    "calendar.selectedMarkerColor": {
+      "category": "needs-pose",
+      "why": "Both resolvers emit this whenever the caller's `markerBuilder` returns a marker for a date — Flutter `resolveCalendarMarker` and Web `resolveCalendarMarker` read it from the same merge chain, and the widget and DOM tests on both platforms assert the dots. What the canvas lacks is the pose: a shipped `Calendar` has no `markerBuilder`, so its default draws no dots, and the calendar set's only axis is Selection (None / Single / Range). Add a Markers axis (Off / On) to that set whose On pose marks a few dates — one dot, two, and one past the cap — including a selected date and a date inside the range, so every marker field has a pixel to land on. This one is the dot fill on a selected date or range endpoint — the On pose needs one under each Selection value that has a selection."
+    },
+    "category_breakdown.barBorderRadius": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.barHeight": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.donutSegmentSpacing": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.donutSize": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.donutThickness": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.labelSpacing": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.labelStyle": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.legendSpacing": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.percentStyle": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.rowContentSpacing": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.rowSpacing": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.seriesColors": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.swatchBorderRadius": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.swatchSize": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.trackColor": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "category_breakdown.valueStyle": {
+      "category": "needs-component",
+      "why": "CategoryBreakdown (coco-de/coui#5359) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreCategoryBreakdownStyle field is read by the Flutter widget and the Web resolver, so the canvas needs a CategoryBreakdown component before this value has a node to bind to."
+    },
+    "trend_chart.axisLabelSpacing": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.axisLabelStyle": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.axisTickCount": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.barBorderRadius": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.barSpacing": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.gridColor": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.gridLineWidth": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.legendLabelStyle": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.legendSpacing": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.legendSwatchWidth": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.lineWidth": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.markerSize": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.periodChipStyle": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.periodSpacing": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.plotHeight": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.referenceColor": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.referenceDashSpacing": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.referenceDashLength": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.referenceLineWidth": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.sectionSpacing": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.seriesColor": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "trend_chart.markerBorderRadius": {
+      "category": "needs-component",
+      "why": "TrendChart (coco-de/coui#5256) ships on both platforms but has no Figma builder or REGISTRY entry yet; every CoreTrendChartStyle field is read by the Flutter painter and the Web resolver, so the canvas needs a TrendChart component before this value has a node to bind to."
+    },
+    "pagination.labelButtonPadding": {
+      "category": "needs-pose",
+      "why": "Both resolvers emit it — `labelHoverContainerStyle` / `labelIdleContainerStyle` (Flutter) and `labelButtonInactiveEnabled` / `labelButtonInactiveDisabled` (Web) pad the previous / next buttons with it when `showLabel: true`, and drop the square `buttonSize` width so the label sets the width (#5352). The Pagination set draws the end cells icon-only (`buildPagination` cells `{ icon: 'chevron-left' }` / `{ icon: 'chevron-right' }`), the `showLabel: false` default, so there is no labelled end cell to pad. Add a `Label=false|true` axis to the Pagination set: in `Label=true` the end cells carry the chevron plus the localized `buttonPrevious` / `buttonNext` label, hug their content and bind this padding."
+    },
+    "checkbox.minHeight": {
+      "category": "no-op",
+      "why": "The default is `CoreSpace.space0` — no floor: the pressable row is as tall as its content, which is exactly what the builder already draws. The field exists so a consuming app can *opt in* to a touch-target floor (e.g. `CoreA11ySize.touchTarget`) through its theme (#5350); the design decision D17 (#5306) keeps press areas unwidened by default, so there is no default floor for the canvas to show. A min-height of 0 constrains nothing, so binding it would paint no pixel."
+    },
+    "switch_field.minHeight": {
+      "category": "no-op",
+      "why": "The default is `CoreSpace.space0` — no floor: the pressable row is as tall as its content, which is exactly what the builder already draws. The field exists so a consuming app can *opt in* to a touch-target floor (e.g. `CoreA11ySize.touchTarget`) through its theme (#5350); the design decision D17 (#5306) keeps press areas unwidened by default, so there is no default floor for the canvas to show. A min-height of 0 constrains nothing, so binding it would paint no pixel."
+    },
+    "chip_input.hoverBorderColor": {
+      "category": "needs-pose",
+      "why": "양 플랫폼 resolver 가 모두 읽는다 — Flutter 는 `MouseRegion` 이 잡은 hover 에서 `resolved.hoverBorderColor` 를 골라 프레임 테두리에 칠하고, Web 은 `hover:border-*` 클래스(raw 색은 scoped rule)로 낸다. 캔버스에 없는 것은 그 자세다: ChipInput 세트에는 State 축이 없어 hover 를 놓을 변형이 없다. State 축(enabled · hover · focus · disabled)을 얻는 것은 구조 변경이라 디자이너의 결정이다 — #5375 는 구조 변경 없음으로 확정됐으므로 여기 적고 기다린다. 값은 테두리 색이고 머무는 자세(hover)라 오버레이가 아니라 축이 정답이다."
+    },
+    "object_input.hoverBorderColor": {
+      "category": "needs-pose",
+      "why": "양 플랫폼 resolver 가 모두 읽는다 — Flutter 는 `MouseRegion` 이 잡은 hover 에서 `hoveredContainerStyle` 로 컨테이너 테두리를 바꾸고, Web 은 `hover:border-*` 클래스(raw 색은 scoped rule)로 낸다. 캔버스에 없는 것은 그 자세다: ObjectInput 세트에는 State 축이 없어 hover 를 놓을 변형이 없다. State 축(enabled · hover · focus · disabled)을 얻는 것은 구조 변경이라 디자이너의 결정이다 — #5375 는 구조 변경 없음으로 확정됐으므로 여기 적고 기다린다. 값은 테두리 색이고 머무는 자세(hover)라 오버레이가 아니라 축이 정답이다."
+    },
+    "item_picker.hoverBorderColor": {
+      "category": "needs-pose",
+      "why": "양 플랫폼 resolver 가 모두 읽는다 — Flutter 는 `MouseRegion` 이 잡은 hover 에서 `hoveredContainerStyle` 로 패널 테두리를 바꾸고, Web 은 `hover:border-*` 클래스(raw 색은 scoped rule)로 낸다. 캔버스에 없는 것은 그 자세다: ItemPicker 세트에는 State 축이 없어 hover 를 놓을 변형이 없다. State 축(enabled · hover · focus · disabled)을 얻는 것은 구조 변경이라 디자이너의 결정이다 — #5375 는 구조 변경 없음으로 확정됐으므로 여기 적고 기다린다. 값은 테두리 색이고 머무는 자세(hover)라 오버레이가 아니라 축이 정답이다. ItemPicker 는 입력창이 아니라 패널형 표면이다 — 이슈 표가 아홉 컨트롤에 포함해 코드는 그대로 구현했으니, 캔버스 확인 때 패널이 hover 에서 테두리를 바꾸는 것이 의도인지 디자이너가 함께 본다."
+    },
+    "time_picker.errorTriggerStyle": {
+      "category": "needs-pose",
+      "why": "`errorText` 가 있으면 TimePicker 트리거는 `outline` 버튼에 이 슬롯(선 색 · 포커스 링 색)을 얹어 그린다 — 양 플랫폼이 같고, DatePicker 와 같은 오류 모양이다. 그런데 TimePicker 캔버스의 행렬은 `Enabled × Focus` 뿐이라 오류 자세가 없다. 디자이너가 이번 리디자인에서는 캔버스에 `Error` 변형을 추가하지 않기로 했다: TimePicker 는 코드에도 오류 문구와 `aria-invalid` 가 없어, 변형을 더하면 색으로만 알리는 상태가 되기 때문이다. TimePicker 의 오류 문구 · `aria-invalid` · 캔버스 `Error` 변형은 별도 이슈로 함께 다룬다 — 그때 DatePicker 가 `Enabled × Error` 로 그리는 방식(트리거 인스턴스에 `errorTriggerStyle` 의 선을 얹는다)을 그대로 쓰면 된다."
+    },
+    "time_picker.segmentStateLayer": {
+      "category": "needs-pose",
+      "why": "양 플랫폼 resolver 가 모두 읽는다 — Flutter 는 세그먼트 박스의 `MouseRegion` hover 에서 칸 위에 `foregroundDecoration` 으로 레이어를 깔고, Web 은 칸의 마커 클래스와 인라인 `--coui-state-layer-hover` 를 전역 규칙이 `:hover` 에서 `background-image` 로 깐다(`hover` 가중치만 읽는다). 캔버스에 없는 것은 그 자세다: 세그먼트는 열린 패널 안의 부품이고 TimePicker 세트의 포즈 축은 `Enabled × Focus`(닫힌 트리거)뿐이라 패널 안 칸에 hover 를 놓을 변형이 없다. 칸은 ToggleGroup 과 같은 규칙(공통 상태 레이어)이고 ToggleGroup 세트는 `Hover` 를 그린다 — TimePicker 패널의 칸에 포즈 축을 더하는 것은 구조 변경이라 이 줄에 적고 기다린다."
+    },
+    "time_picker.segmentStateLayerColor": {
+      "category": "needs-pose",
+      "why": "`time_picker.segmentStateLayer` 와 같은 이유 — 레이어의 색(`onSurface`)은 hover 자세에서만 쓰이는데 TimePicker 캔버스에는 패널 안 칸의 hover 변형이 없다."
+    },
+    "file_input.hoverBorderColor": {
+      "category": "needs-pose",
+      "why": "양 플랫폼 resolver 가 모두 읽는다 — Flutter 는 `Clickable(onHover:)` 로 잡은 hover 에서 `borderColorHover` 를 점선 테두리에 칠하고(드래그 오버 `primary` 가 우선), Web 은 그린 hover 를 `hover:` 클래스(raw 색은 scoped rule)로 낸다. 캔버스에 없는 것은 그 자세다: FileInput 세트에는 State 축이 없어 hover 를 놓을 변형이 없다. State 축(enabled · hover · focus · disabled)을 얻는 것은 구조 변경이라 디자이너의 결정이다 — #5375 는 구조 변경 없음으로 확정됐으므로 여기 적고 기다린다. 값은 테두리 색이고 머무는 자세(hover)라 오버레이가 아니라 축이 정답이다."
+    },
+    "steps.stepItemStyle": {
+      "category": "composition",
+      "why": "`Steps(variant: list)` 은 `StepItem` 을 합성하고 그 행의 look 은 `StepItem` 자기 기본값이 그린다 — 캔버스의 list 멤버는 `StepItem` 세트의 인스턴스(`step_item` 이 `minHeight`·`padding`·두 간격·글리프 크기·두 역할을 진술하고 빌더가 읽는다)라서 이 슬롯이 다시 칠할 것이 없다. `CoreStepsStyle.defaultStepItemStyle` 은 의도적으로 비어 있다(호스팅된 행이 단독 행과 다른 필드가 없다 — 자식 default 를 부모가 복제하면 두 번째 출처다). exporter 가 싣는 값은 그 슬롯을 자식 default 로 풀어 낸 것이라 `step_item` 의 값과 같고, 인스턴스에 같은 값을 override 로 다시 쓰면 자식 default 에 reach 하는 것이다. 호출자가 `stepItemStyle` 로 행을 바꾼 값은 caller override 라 기본 캔버스에 없다."
+    },
+    "multi_answer_card.checkboxStyle": {
+      "category": "composition",
+      "why": "The trailing `Checkbox` is a real `Checkbox` INSTANCE (`buildMultiAnswerCard`, `instanceOf(page, 'Checkbox', ...)` at size lg, `Checked` = `Selected`, `State` = `Enabled`) and the card forwards `checkboxStyle` raw to it. Measured against `checkbox.fields` in components.json: all 24 keys of `multi_answer_card.fields.checkboxStyle` exist on Checkbox and every value is identical (diff empty) - the exporter injected Checkbox's own resolved defaults through the child, the card states no divergence. The instance already draws each of them; re-applying them from the card would reach into the child's defaults (`core/style-contract.md` composition facet 3). If the card ever states a value that differs from Checkbox's, this entry has to be removed and the differing keys applied."
+    },
+    "rich_editor.activeToolbarButtonStyle": {
+      "category": "needs-pose",
+      "why": "Merged over `toolbarButtonStyle` for the button whose format is on at the caret (the held-down fill). Every member shows a resting toolbar. Axis to add: `Active format` (none / bold / … / quote) filling that one button."
+    },
+    "rich_editor.blockTypeMenuStyle": {
+      "category": "needs-pose",
+      "why": "Forwarded to the `DropdownMenu` the block-type button opens (Text · Heading 1–3, the current one checked). An open menu is an overlay, not a pose of this set, and `Menu` / `MenuItem` have sets of their own; the default is the empty `CoreDropdownMenuStyle()`, so an open-menu pose would draw the child's own values. Axis to add: `Block type menu` = closed / open, drawing that menu 4 under the button."
+    },
+    "rich_editor.selectionToolbarOffset": {
+      "category": "needs-pose",
+      "why": "The distance between the selected text and the `RichEditorSelectionToolbar` floating over it (8) — both resolvers hand it to the positioning engine (Flutter `rich_editor.dart#_openSelectionToolbar`, Web `resolveRichEditorSelectionToolbarConfig`). The toolbar is drawn as a component of its own, with no selection to sit over, and the RichEditor set draws the editor with nothing selected. Axis to add: `Selection` = none / selected on RichEditor, placing that component this far above the selected text."
+    },
+    "rich_editor.blockSpacing": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.listIndent": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart` `listItemIndent`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bulleted list, set in by this much for each level of nesting."
+    },
+    "rich_editor.codeBackgroundColor": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.codePadding": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.codeTextStyle": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.completedTaskColor": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.heading1TextStyle": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a heading of each level, a bold run, a link, inline code, a bulleted list, a checked task, a quote, a rule and an image."
+    },
+    "rich_editor.heading2TextStyle": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a heading of each level, a bold run, a link, inline code, a bulleted list, a checked task, a quote, a rule and an image."
+    },
+    "rich_editor.heading3TextStyle": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a heading of each level, a bold run, a link, inline code, a bulleted list, a checked task, a quote, a rule and an image."
+    },
+    "rich_editor.imageBackgroundColor": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a heading of each level, a bold run, a link, inline code, a bulleted list, a checked task, a quote, a rule and an image."
+    },
+    "rich_editor.imageBorderRadius": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a heading of each level, a bold run, a link, inline code, a bulleted list, a checked task, a quote, a rule and an image."
+    },
+    "rich_editor.imageMaxHeight": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a heading of each level, a bold run, a link, inline code, a bulleted list, a checked task, a quote, a rule and an image."
+    },
+    "rich_editor.kbdStyle": {
+      "category": "needs-pose",
+      "why": "Forwarded to the `Kbd` inside each toolbar button's tooltip (the shortcut caps, `Code ⌘ E`). Drawn only with the tooltip open — same missing pose as `rich_editor.tooltipStyle`."
+    },
+    "rich_editor.linkColor": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.maxHeight": {
+      "category": "no-pixels",
+      "why": "The height the editing area grows to before it scrolls — a bound reached only by content longer than the box, never by a pose. What is visible at rest is `minHeight`, which the builder reads."
+    },
+    "rich_editor.quoteBarColor": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.quoteBarWidth": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.quoteSpacing": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.quoteTextColor": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.ruleColor": {
+      "category": "needs-pose",
+      "why": "The set draws only the empty editor (toolbar + placeholder), so no formatted document is on the canvas for this mark to land on. It is emitted by both resolvers (Flutter `rich_editor_document.dart`, Web `resolveRichEditorRules`). Axis to add: `Content` = empty / formatted, the formatted member showing a bold run, a link, inline code, a bulleted list, a checked task, a quote and a rule."
+    },
+    "rich_editor.textAreaStyle": {
+      "category": "no-op",
+      "why": "`CoreRichEditorStyle.defaultTextAreaStyle` is the empty `CoreTextAreaStyle()` — both widgets hand it to TextArea's resolver unchanged, so the box is TextArea's own `md` row and clean variant row, and that is what `buildRichEditor` paints the box from (`text_area.sizes.defaultsBySize.md`, `text_area.variants.defaultsByVariant.default`). The box is a frame rather than a `TextArea` instance only because the toolbar strip sits inside its border and Figma takes no children into an instance; the empty slot states nothing to apply over those rows."
+    },
+    "rich_editor.toolbarGapStyle": {
+      "category": "needs-pose",
+      "why": "The gap between the box and the rows above it that report an image upload under way or failed — those rows are transient states of the widget, not poses of this set (same missing pose as `rich_editor.uploadAlertStyle`). Axis to add: `Upload` = none / uploading / failed, drawing the `Alert` row this gap above the box."
+    },
+    "rich_editor.toolbarRowSpacing": {
+      "category": "needs-pose",
+      "why": "The space between the rows of a toolbar that wraps — the strip puts `toolbarTrailing` on a row of its own below the buttons when it has no room beside them. The set draws one preview width at which the buttons and the trailing slot share a row, so no member wraps. Axis to add: a narrow member whose trailing control wraps, this far under the buttons."
+    },
+    "rich_editor.tooltipStyle": {
+      "category": "needs-pose",
+      "why": "Forwarded to the `Tooltip` around each toolbar button, which opens on hover — an overlay, not a pose of this set, and `Tooltip` has its own set. Axis to add: a hovered-button pose with its tooltip open (label + shortcut `Kbd`)."
+    },
+    "rich_editor.uploadAlertStyle": {
+      "category": "needs-pose",
+      "why": "Forwarded to the `Alert` row above the box that reports an image upload under way or failed, and to the `Alert` that stands in for an image that cannot be shown (Flutter) — transient states of the widget, not poses of this set. Each is an `Alert` instance and `Alert` has its own set. Axis to add: `Upload` = none / uploading / failed, drawing that `Alert` above the box."
+    },
+    "toggle_group.borderRadius": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "toggle_group.clickableStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "toggle_group.disabledLabelTextStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "toggle_group.itemHeight": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "toggle_group.itemPadding": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "toggle_group.labelTextStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "toggle_group.padding": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "toggle_group.selectedIconStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "toggle_group.selectedLabelTextStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "context_menu.liftCast": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "context_menu.liftDimOpacity": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "context_menu.liftRadius": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "context_menu.liftScale": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "context_menu.retractScale": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "hero.backgroundColor": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "hero.minHeight": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "hero.padding": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "hero.splitGapStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "time_picker.contentColor": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "time_picker.trailingIconStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "time_picker.triggerHeight": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "time_picker.triggerStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "bottom_sheet.footerDividerColor": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "bottom_sheet.footerDividerWidth": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "bottom_sheet.maxHeightFactor": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "date_picker.errorTriggerStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "date_picker.trailingIconStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "date_picker.triggerStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "multiple_choice.chipStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "navigation_bar.touchTargetSize": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "navigation_menu.triggerPadding": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "popup.contentColor": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "stepper.clickableStyle": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "timeline.connectorSpacing": {
+      "category": "needs-pose",
+      "why": "#6069 — the builder does not read this field yet; deciding the pose (or the wiring) is that issue's work. Listed so the gate can run to completion, not as a conclusion."
+    },
+    "chip_group.rowSpacing": {
+      "category": "needs-pose",
+      "why": "`rowSpacing` is the wrap layout's run gap (`Wrap.runSpacing` on Flutter, `row-gap` on Web) and both platforms emit it — but only under `CoreChipGroupLayout.wrap`. The canvas `ChipGroup` draws the scroll layout (`FadeScroll(child: Row(chips))`): one line of chips, no run, so `buildChipGroup` has no second row for the gap to sit between. Binding it to the chip row's `counterAxisSpacing` with `layoutWrap = 'WRAP'` drew a wrapped scroll layout no platform renders — the 126-tall card the redesign removed. Axis to add: `Layout` (`scroll` | `wrap`), whose `wrap` member would carry this gap."
+    },
+    "mockup_foldable.innerDeviceStyle": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 펼친 본체(가로 태블릿)의 MockupDevice 스타일. 세트가 생기면 그 얼굴의 MockupDevice 인스턴스가 받는다."
+    },
+    "mockup_foldable.coverDeviceStyle": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 커버(폰)의 MockupDevice 스타일. 세트가 생기면 닫힘 자세의 MockupDevice 인스턴스가 받는다."
+    },
+    "mockup_foldable.thickness": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 반쪽의 두께 — 반쪽이 옆으로 보일 때 드러나는 띠의 폭. 반접힘 자세가 있어야 그릴 자리가 생긴다."
+    },
+    "mockup_foldable.perspective": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 기기를 보는 거리. 반접힘 자세에서 가까운 반쪽이 얼마나 커 보이는지를 정하는 값이라, 그 자세를 그리는 빌더가 좌표를 구울 때 읽는다."
+    },
+    "mockup_foldable.edgeColor": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 반쪽 바깥 테두리의 색. 두께 띠를 그리는 반접힘 자세가 있어야 묶을 노드가 생긴다."
+    },
+    "mockup_foldable.screenOffColor": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 꺼진 화면의 색. 켜진 화면이 바뀌는 각도 근처에서만 보이므로, 세트가 그 자세를 갖기로 할 때 읽는다."
+    },
+    "mockup_foldable.shadeColor": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 보는 쪽에서 돌아선 반쪽 위에 덮는 색. 반접힘 자세가 있어야 묶을 노드가 생긴다."
+    },
+    "mockup_foldable.shadeOpacity": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 그 덮개의 세기. 반접힘 자세가 있어야 묶을 노드가 생긴다."
+    },
+    "mockup_foldable.islandWidth": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 상태 아일랜드가 서는 열의 너비 — 화면 오른쪽 끝에서 콘텐츠가 비우는 자리. 세트가 생기면 두 화면의 아일랜드 열이 받는다."
+    },
+    "mockup_foldable.islandOffset": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 화면 위 끝에서 상태 아일랜드의 첫 요소까지의 거리. 세트가 생기면 두 화면의 아일랜드가 받는다."
+    },
+    "mockup_foldable.islandCameraSize": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 커버 카메라의 지름. 닫힘 자세가 있어야 그릴 자리가 생긴다."
+    },
+    "mockup_foldable.islandCameraColor": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 커버 카메라의 채움. 닫힘 자세가 있어야 그릴 자리가 생긴다."
+    },
+    "mockup_foldable.islandTextStyle": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 상태 아일랜드의 시각 글자. 세트가 생기면 두 화면의 시각 라벨이 받는다."
+    },
+    "mockup_foldable.islandIconColor": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 상태 표시의 고리와 그 안 와이파이 글리프의 색. 세트가 생기면 두 화면의 상태 표시가 받는다."
+    },
+    "mockup_foldable.islandDotColor": {
+      "category": "needs-component",
+      "why": "MockupFoldable 은 두 플랫폼에 있고 Figma 빌더 · REGISTRY 항목이 없다. 캔버스의 세트는 멈춘 자세(펼침 · 반접힘 · 닫힘)를 실을 수 있고, 그 사이의 각도와 움직임은 싣지 못한다. 상태 표시의 고리를 닫는 점 넷의 색. 세트가 생기면 두 화면의 상태 표시가 받는다."
+    }
+  }
+}

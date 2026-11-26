@@ -1,0 +1,16 @@
+{
+  "name": "coui-figma-icon-export",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Figma plugin that generates a full App Icon + Splash Screen variant matrix (platform x flavor, safe-zone accurate) from one selected logo component, and exports each variant as a correctly-named PNG.",
+  "scripts": {
+    "build": "esbuild code.ts --bundle --target=es2016 --outfile=code.js",
+    "watch": "esbuild code.ts --bundle --target=es2016 --outfile=code.js --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.100.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.5.0"
+  }
+}

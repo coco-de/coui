@@ -1,0 +1,1684 @@
+{
+  "_comment": [
+    "Shared vectors for the glide of a ContextMenu: a finger that opened the menu with a long",
+    "press keeps moving, the row under it highlights, and lifting chooses it",
+    "(CoreContextMenuContract.defaultGlideSlop / exceedsGlideSlop and CoreContextMenuGlide).",
+    "Read by coui_core (the slop, the hit-test rule, and every trace replayed on the state",
+    "machine over a synthesized layout), coui_flutter (every trace is replayed on a real",
+    "ContextMenu as pointer events: the long-press recogniser opens the menu and the glide",
+    "follows the same pointer), coui_web (every trace is replayed on the press tracker with a",
+    "manual clock) and a real-Chrome probe (the same traces as touch events on the compiled",
+    "component). A change on one platform fails the others.",
+    "",
+    "Coordinates and times. A trace's first event is a 'down' at (x, y) in px, relative to the",
+    "top-left of the region that carries the menu. The menu opens 500 ms later (the hold is the",
+    "long-press table's), flush at that point. 'at' is ms since the down; every later event is",
+    "applied once the clock has reached it, and the menu has finished mounting by the first one.",
+    "",
+    "Where a later pointer event lands ('to') is written against the menu, not in pixels, so the",
+    "same trace is true of any layout: {offset: [dx, dy]} is relative to the point the menu opened",
+    "at; {row: i, at: [fx, fy]} is a fraction of interactive row i's box where the list has it, in",
+    "view or not (rows are the action, checkbox and radio items, counted from 0 in item order,",
+    "disabled ones included; labels, dividers and gaps are not rows); {between: [i, j]} is the",
+    "middle of the space between interactive rows i and j; {outside: side, by: n} is n px past the",
+    "panel's edge, centred on it; {same: true} is where the pointer already was.",
+    "",
+    "What each event leaves behind ('expect', every key optional): 'highlight' is the interactive",
+    "row that is lit, or null; 'cues' is how many selection ticks have played since the down;",
+    "'open' is whether the menu is still open; 'activated' is every row that was activated, in",
+    "order. Activating an action row closes the menu, as a tap on it does; activating a checkbox or",
+    "a radio row does not (toggling keeps the menu open).",
+    "",
+    "A trace may say 'glide': false (the default is true - the widget's glideToSelect), 'haptics':",
+    "true (default false), and 'menu' (a key of 'menus'; default 'basic'). 'platforms' names who",
+    "replays it (absent: all). The scroll event moves the list so that interactive row N is the",
+    "first one in view.",
+    "",
+    "'layout' is only what the Core test needs to turn the symbolic positions into pixels; the",
+    "seats measure their own menus. 'hits' is the pure hit-test rule over given boxes and is read",
+    "by the Core test alone."
+  ],
+  "slop": 18,
+  "layout": {
+    "panelWidth": 240,
+    "padding": 6,
+    "rowHeight": 36,
+    "spacing": 2,
+    "dividerHeight": 1,
+    "visibleRows": 8
+  },
+  "menus": {
+    "basic": {
+      "items": [
+        {
+          "kind": "action",
+          "label": "Copy"
+        },
+        {
+          "kind": "action",
+          "label": "Paste",
+          "disabled": true
+        },
+        {
+          "kind": "divider"
+        },
+        {
+          "kind": "action",
+          "label": "Cut"
+        },
+        {
+          "kind": "checkbox",
+          "label": "Show grid"
+        },
+        {
+          "kind": "action",
+          "label": "Delete"
+        }
+      ]
+    },
+    "tall": {
+      "items": [
+        {
+          "kind": "action",
+          "label": "Row 0"
+        },
+        {
+          "kind": "action",
+          "label": "Row 1"
+        },
+        {
+          "kind": "action",
+          "label": "Row 2"
+        },
+        {
+          "kind": "action",
+          "label": "Row 3"
+        },
+        {
+          "kind": "action",
+          "label": "Row 4"
+        },
+        {
+          "kind": "action",
+          "label": "Row 5"
+        },
+        {
+          "kind": "action",
+          "label": "Row 6"
+        },
+        {
+          "kind": "action",
+          "label": "Row 7",
+          "disabled": true
+        },
+        {
+          "kind": "action",
+          "label": "Row 8"
+        },
+        {
+          "kind": "action",
+          "label": "Row 9"
+        },
+        {
+          "kind": "action",
+          "label": "Row 10"
+        },
+        {
+          "kind": "action",
+          "label": "Row 11"
+        },
+        {
+          "kind": "action",
+          "label": "Row 12"
+        },
+        {
+          "kind": "action",
+          "label": "Row 13"
+        },
+        {
+          "kind": "action",
+          "label": "Row 14"
+        },
+        {
+          "kind": "action",
+          "label": "Row 15"
+        },
+        {
+          "kind": "action",
+          "label": "Row 16"
+        },
+        {
+          "kind": "action",
+          "label": "Row 17"
+        },
+        {
+          "kind": "action",
+          "label": "Row 18"
+        },
+        {
+          "kind": "action",
+          "label": "Row 19"
+        },
+        {
+          "kind": "action",
+          "label": "Row 20"
+        },
+        {
+          "kind": "action",
+          "label": "Row 21"
+        },
+        {
+          "kind": "action",
+          "label": "Row 22"
+        },
+        {
+          "kind": "action",
+          "label": "Row 23"
+        },
+        {
+          "kind": "action",
+          "label": "Row 24"
+        },
+        {
+          "kind": "action",
+          "label": "Row 25"
+        },
+        {
+          "kind": "action",
+          "label": "Row 26"
+        },
+        {
+          "kind": "action",
+          "label": "Row 27"
+        },
+        {
+          "kind": "action",
+          "label": "Row 28"
+        },
+        {
+          "kind": "action",
+          "label": "Row 29"
+        }
+      ]
+    }
+  },
+  "hits": [
+    {
+      "name": "a point inside the only box is on it",
+      "targets": [
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        50,
+        20
+      ],
+      "index": 0
+    },
+    {
+      "name": "a point outside every box is on none",
+      "targets": [
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        150,
+        20
+      ],
+      "index": null
+    },
+    {
+      "name": "the left edge belongs to the box",
+      "targets": [
+        {
+          "box": [
+            10,
+            0,
+            100,
+            40
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        10,
+        20
+      ],
+      "index": 0
+    },
+    {
+      "name": "the top edge belongs to the box",
+      "targets": [
+        {
+          "box": [
+            0,
+            10,
+            100,
+            40
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        50,
+        10
+      ],
+      "index": 0
+    },
+    {
+      "name": "the right edge does not",
+      "targets": [
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        100,
+        20
+      ],
+      "index": null
+    },
+    {
+      "name": "the bottom edge does not",
+      "targets": [
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        50,
+        40
+      ],
+      "index": null
+    },
+    {
+      "name": "the edge two boxes share belongs to the one that starts there",
+      "targets": [
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": true
+        },
+        {
+          "box": [
+            0,
+            40,
+            100,
+            80
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        50,
+        40
+      ],
+      "index": 1
+    },
+    {
+      "name": "a point in the space between two boxes is on neither",
+      "targets": [
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": true
+        },
+        {
+          "box": [
+            0,
+            42,
+            100,
+            82
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        50,
+        41
+      ],
+      "index": null
+    },
+    {
+      "name": "a disabled box lights nothing",
+      "targets": [
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": false
+        },
+        {
+          "box": [
+            0,
+            40,
+            100,
+            80
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        50,
+        20
+      ],
+      "index": null
+    },
+    {
+      "name": "a disabled box is not skipped to reach the one behind it",
+      "targets": [
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": false
+        },
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        50,
+        20
+      ],
+      "index": null
+    },
+    {
+      "name": "the first box that contains the point wins when boxes overlap",
+      "targets": [
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": true
+        },
+        {
+          "box": [
+            0,
+            20,
+            100,
+            60
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        50,
+        30
+      ],
+      "index": 0
+    },
+    {
+      "name": "no targets, nothing to hit",
+      "targets": [],
+      "point": [
+        50,
+        20
+      ],
+      "index": null
+    },
+    {
+      "name": "a box with no area contains no point",
+      "targets": [
+        {
+          "box": [
+            10,
+            10,
+            10,
+            50
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        10,
+        20
+      ],
+      "index": null
+    },
+    {
+      "name": "the index is the position in the list, enabled or not",
+      "targets": [
+        {
+          "box": [
+            0,
+            0,
+            100,
+            40
+          ],
+          "enabled": false
+        },
+        {
+          "box": [
+            0,
+            40,
+            100,
+            80
+          ],
+          "enabled": true
+        },
+        {
+          "box": [
+            0,
+            80,
+            100,
+            120
+          ],
+          "enabled": true
+        }
+      ],
+      "point": [
+        50,
+        100
+      ],
+      "index": 2
+    }
+  ],
+  "traces": [
+    {
+      "name": "a finger that lifts without moving leaves the menu open",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "highlight": null,
+            "open": true,
+            "activated": [],
+            "cues": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "a few pixels of drift is not a glide, and lifting leaves the menu open",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "offset": [
+              10,
+              6
+            ]
+          },
+          "expect": {
+            "highlight": null,
+            "cues": 0
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "highlight": null,
+            "open": true,
+            "activated": [],
+            "cues": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "drift during the hold does not move the point a glide is measured from",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 200,
+          "kind": "move",
+          "to": {
+            "offset": [
+              12,
+              0
+            ]
+          }
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "offset": [
+              24,
+              0
+            ]
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "exactly the slop away has not begun to glide, so lifting there leaves the menu open",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "offset": [
+              18,
+              0
+            ]
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": true,
+            "activated": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "a hair past the slop has begun to glide, and lifting over no row closes the menu",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "offset": [
+              18.01,
+              0
+            ]
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "a glide that comes back inside the slop is still a glide",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "offset": [
+              40,
+              0
+            ]
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 700,
+          "kind": "move",
+          "to": {
+            "offset": [
+              12,
+              12
+            ]
+          },
+          "expect": {
+            "highlight": 0,
+            "cues": 1
+          }
+        },
+        {
+          "at": 800,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "highlight": null,
+            "open": false,
+            "activated": [
+              0
+            ],
+            "cues": 2
+          }
+        }
+      ]
+    },
+    {
+      "name": "sliding onto a row and lifting chooses it",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 0,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 0,
+            "cues": 1
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "highlight": null,
+            "open": false,
+            "activated": [
+              0
+            ],
+            "cues": 2
+          }
+        }
+      ]
+    },
+    {
+      "name": "the highlight follows the finger from row to row and lifting chooses the last",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 0,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 0,
+            "cues": 1
+          }
+        },
+        {
+          "at": 700,
+          "kind": "move",
+          "to": {
+            "row": 2,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 2,
+            "cues": 2
+          }
+        },
+        {
+          "at": 800,
+          "kind": "move",
+          "to": {
+            "row": 4,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 4,
+            "cues": 3
+          }
+        },
+        {
+          "at": 900,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "highlight": null,
+            "open": false,
+            "activated": [
+              4
+            ],
+            "cues": 4
+          }
+        }
+      ]
+    },
+    {
+      "name": "moving within one row keeps it lit and ticks once",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 2,
+            "at": [
+              0.3,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 2,
+            "cues": 1
+          }
+        },
+        {
+          "at": 700,
+          "kind": "move",
+          "to": {
+            "row": 2,
+            "at": [
+              0.7,
+              0.4
+            ]
+          },
+          "expect": {
+            "highlight": 2,
+            "cues": 1
+          }
+        },
+        {
+          "at": 800,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": [
+              2
+            ],
+            "cues": 2
+          }
+        }
+      ]
+    },
+    {
+      "name": "a finger that leaves a row and returns to it lights it again",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 2,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 2,
+            "cues": 1
+          }
+        },
+        {
+          "at": 700,
+          "kind": "move",
+          "to": {
+            "outside": "below",
+            "by": 30
+          },
+          "expect": {
+            "highlight": null,
+            "cues": 1
+          }
+        },
+        {
+          "at": 800,
+          "kind": "move",
+          "to": {
+            "row": 2,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 2,
+            "cues": 2
+          }
+        },
+        {
+          "at": 900,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": [
+              2
+            ],
+            "cues": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "a checkbox row is toggled by lifting over it and the menu stays open",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 3,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 3,
+            "cues": 1
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "highlight": null,
+            "open": true,
+            "activated": [
+              3
+            ],
+            "cues": 2
+          }
+        }
+      ]
+    },
+    {
+      "name": "a disabled row lights nothing and lifting over it closes the menu",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 1,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": null,
+            "cues": 0
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": [],
+            "cues": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "sliding across a disabled row lights the rows either side of it, not it",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 0,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 0,
+            "cues": 1
+          }
+        },
+        {
+          "at": 700,
+          "kind": "move",
+          "to": {
+            "row": 1,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": null,
+            "cues": 1
+          }
+        },
+        {
+          "at": 800,
+          "kind": "move",
+          "to": {
+            "row": 2,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 2,
+            "cues": 2
+          }
+        },
+        {
+          "at": 900,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": [
+              2
+            ],
+            "cues": 3
+          }
+        }
+      ]
+    },
+    {
+      "name": "lifting over a divider closes the menu",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "between": [
+              1,
+              2
+            ]
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "lifting in the space between two rows closes the menu",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "between": [
+              2,
+              3
+            ]
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "lifting below the panel closes the menu",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "outside": "below",
+            "by": 30
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "lifting beside the panel closes the menu",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "outside": "right",
+            "by": 30
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "a finger the system takes mid-glide chooses nothing and leaves the menu open",
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 2,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 2,
+            "cues": 1
+          }
+        },
+        {
+          "at": 700,
+          "kind": "cancel",
+          "expect": {
+            "highlight": null,
+            "open": true,
+            "activated": [],
+            "cues": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "without haptics a glide ticks nothing",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 0,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 0,
+            "cues": 0
+          }
+        },
+        {
+          "at": 700,
+          "kind": "move",
+          "to": {
+            "row": 2,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 2,
+            "cues": 0
+          }
+        },
+        {
+          "at": 800,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": [
+              2
+            ],
+            "cues": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "without glideToSelect the finger that opened the menu chooses nothing by lifting",
+      "glide": false,
+      "haptics": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 0,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": null,
+            "cues": 0
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "highlight": null,
+            "open": true,
+            "activated": [],
+            "cues": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "a tall menu glides over the rows in view",
+      "menu": "tall",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 2,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 2
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": [
+              2
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "a list scrolled by another finger is hit where it is now",
+      "menu": "tall",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "scroll",
+          "to": {
+            "firstRow": 12
+          }
+        },
+        {
+          "at": 700,
+          "kind": "move",
+          "to": {
+            "row": 13,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 13
+          }
+        },
+        {
+          "at": 800,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": [
+              13
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "a list that scrolls under a still finger is read where the finger lifts",
+      "menu": "tall",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 2,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": 2
+          }
+        },
+        {
+          "at": 700,
+          "kind": "scroll",
+          "to": {
+            "firstRow": 12
+          }
+        },
+        {
+          "at": 800,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": [
+              14
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "a disabled row stays disabled after the list scrolls it into view",
+      "menu": "tall",
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "scroll",
+          "to": {
+            "firstRow": 5
+          }
+        },
+        {
+          "at": 700,
+          "kind": "move",
+          "to": {
+            "row": 7,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 800,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "a row the list has scrolled out of view is not under a finger over the panel's edge",
+      "menu": "tall",
+      "platforms": [
+        "core",
+        "flutter"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "scroll",
+          "to": {
+            "firstRow": 12
+          }
+        },
+        {
+          "at": 700,
+          "kind": "move",
+          "to": {
+            "row": 3,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 800,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "a row below the fold is not reachable until the list scrolls to it",
+      "menu": "tall",
+      "platforms": [
+        "core",
+        "flutter"
+      ],
+      "events": [
+        {
+          "at": 0,
+          "kind": "down",
+          "x": 60,
+          "y": 50
+        },
+        {
+          "at": 600,
+          "kind": "move",
+          "to": {
+            "row": 20,
+            "at": [
+              0.5,
+              0.5
+            ]
+          },
+          "expect": {
+            "highlight": null
+          }
+        },
+        {
+          "at": 700,
+          "kind": "up",
+          "to": {
+            "same": true
+          },
+          "expect": {
+            "open": false,
+            "activated": []
+          }
+        }
+      ]
+    }
+  ]
+}

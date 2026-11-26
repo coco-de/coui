@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        font: 12px/1.5 Inter, -apple-system, sans-serif;
+        margin: 0;
+        padding: 12px;
+        color: var(--figma-color-text);
+        background: var(--figma-color-bg);
+        overflow-y: auto;
+      }
+      h1 { font-size: 13px; margin: 0 0 8px; }
+      p.hint { margin: 0 0 8px; color: var(--figma-color-text-secondary); }
+      .row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+      input[type="text"] {
+        font: inherit;
+        box-sizing: border-box;
+        border: 1px solid var(--figma-color-border);
+        border-radius: 6px;
+        padding: 6px 8px;
+        background: var(--figma-color-bg-secondary);
+        color: var(--figma-color-text);
+      }
+      label.swatch-label { display: flex; align-items: center; gap: 6px; flex: 1; }
+      input[type="color"] {
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border: 1px solid var(--figma-color-border);
+        border-radius: 6px;
+        background: none;
+      }
+      button {
+        font: inherit;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 14px;
+        cursor: pointer;
+        background: var(--figma-color-bg-brand, #0d99ff);
+        color: var(--figma-color-text-onbrand, #fff);
+      }
+      button.secondary {
+        background: var(--figma-color-bg-secondary);
+        color: var(--figma-color-text);
+        border: 1px solid var(--figma-color-border);
+      }
+      button:disabled { opacity: 0.5; cursor: default; }
+      pre#log {
+        margin: 8px 0 0;
+        max-height: 260px;
+        overflow: auto;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 11px;
+        white-space: pre-wrap;
+        color: var(--figma-color-text-secondary);
+      }
+      pre#log.error { color: var(--figma-color-text-danger, #d33); }
+    </style>
+  </head>
+  <body>
+    <h1>CoUI Icon Export</h1>
+    <p class="hint">
+      1) Select your logo <strong>component</strong> on the canvas (not an
+      instance). 2) Pick a background color. 3) Generate. This builds a
+      36-variant App Icon + Splash Screen matrix (iOS/Android/macOS/Windows/
+      Linux × Production/Development/Staging) on an "App Icon Export" page,
+      with real Android/iOS safe-zone rules already applied.
+    </p>
+    <div class="row">
+      <label class="swatch-label">
+        Background
+        <input id="bg-hex" type="text" value="#0A56DB" style="flex: 1;" />
+        <input id="bg-swatch" type="color" value="#0a56db" />
+      </label>
+    </div>
+    <div class="row">
+      <button id="generate">Generate Icon System</button>
+    </div>
+    <hr style="border: none; border-top: 1px solid var(--figma-color-border); margin: 12px 0;" />
+    <p class="hint">
+      Export every variant as a PNG named after its real shipped code asset
+      (e.g. <code>ic_foreground_dev.png</code>, <code>splash_logo_android12.png</code>)
+      — no manual renaming. The safe-zone guide is always force-hidden at
+      export time, regardless of its current toggle state.
+    </p>
+    <div class="row">
+      <button id="export" class="secondary">Export All PNGs</button>
+    </div>
+    <pre id="log"></pre>
+
+    <script>
+      const logEl = document.getElementById('log');
+      const hexInput = document.getElementById('bg-hex');
+      const swatchInput = document.getElementById('bg-swatch');
+      const buttons = ['generate', 'export'].map((id) => document.getElementById(id));
+
+      function setBusy(busy) {
+        buttons.forEach((b) => (b.disabled = busy));
+      }
+
+      swatchInput.addEventListener('input', () => {
+        hexInput.value = swatchInput.value;
+      });
+
+      document.getElementById('generate').onclick = () => {
+        logEl.classList.remove('error');
+        logEl.textContent = 'Generating icon system…';
+        setBusy(true);
+        parent.postMessage(
+          { pluginMessage: { type: 'generate', bgLight: hexInput.value.trim() } },
+          '*',
+        );
+      };
+
+      document.getElementById('export').onclick = () => {
+        logEl.classList.remove('error');
+        logEl.textContent = 'Exporting PNGs…';
+        setBusy(true);
+        parent.postMessage({ pluginMessage: { type: 'export' } }, '*');
+      };
+
+      function downloadPng(name, bytes) {
+        const blob = new Blob([bytes], { type: 'image/png' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      }
+
+      onmessage = (event) => {
+        const msg = event.data.pluginMessage;
+        if (!msg) return;
+        setBusy(false);
+        if (msg.type === 'done') {
+          logEl.classList.remove('error');
+          logEl.textContent = msg.log.join('\n');
+        } else if (msg.type === 'png-files') {
+          logEl.classList.remove('error');
+          (msg.files || []).forEach((f) => downloadPng(f.name, f.bytes));
+          logEl.textContent = (Array.isArray(msg.log) ? msg.log.join('\n') : '');
+        } else if (msg.type === 'error') {
+          logEl.classList.add('error');
+          logEl.textContent = 'Error: ' + msg.message;
+        }
+      };
+    </script>
+  </body>
+</html>

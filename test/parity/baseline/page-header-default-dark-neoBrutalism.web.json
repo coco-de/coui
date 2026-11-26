@@ -1,0 +1,75 @@
+{
+  "key": "page-header-default-dark-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "워크스페이스\n              \n                \n                  설정\n                \n                \n                  \n                    \n                      #co-button-ssr-e:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 3%, rgb(var(--coui-secondary-container) / 100%)) !important;}#co-button-ssr-e:active{background-color:color-mix(in srgb, rgb(var(--coui-on-secondary-container)) 12%, rgb(var(--coui-secondary-container) / 100%)) !important;}\n                    \n                    취소\n                  \n                  변경 사항 저장\n                \n              \n              멤버, 결제, 연동을 관리해요.",
+    "layout": {
+      "width": 800,
+      "height": 90,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 21
+        },
+        {
+          "x": 0,
+          "y": 25,
+          "width": 800,
+          "height": 40
+        },
+        {
+          "x": 0,
+          "y": 69,
+          "width": 800,
+          "height": 21
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "15px",
+      "lineHeight": "21px",
+      "letterSpacing": "-0.15px",
+      "color": "rgb(180, 181, 182)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgba(0, 0, 0, 0)",
+      "borderRightColor": "rgba(0, 0, 0, 0)",
+      "borderBottomColor": "rgba(0, 0, 0, 0)",
+      "borderLeftColor": "rgba(0, 0, 0, 0)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "0px",
+      "outlineStyle": "none",
+      "outlineColor": null,
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 90
+    }
+  }
+}

@@ -1,0 +1,30 @@
+# Axis-carrier fields that no production code reads.
+# Net-new entries fail CI; this list may only shrink.
+#
+# Two different things are listed here and they are not the same problem.
+#
+# Dead seats, now deprecated with the reason stated on each field. They
+# were inputs to adapter methods that the adapter layer no longer offers:
+# corner shape cannot be drawn on the web without a clip path that would
+# cut away the border, and motion is stated through the duration and easing
+# tiers. They stay listed until the breaking release removes them.
+#
+# The annotation stops a new caller in the platform packages, where the
+# seats actually live: a cross-package deprecated use is reported and the
+# repository holds analyze at zero. It does not stop one written inside
+# coui_core itself — same-package deprecated use is not reported here — so
+# this list, not the annotation, is what keeps that case visible.
+#
+# A design record, consumed by review rather than by code. The preset
+# acceptance gate walks these three: they exist so a style has to answer
+# "what draws your boundary", "how is a disabled control identifiable" and
+# "do you depend on transparency" before it ships, and the answers are read
+# by a person. Listing them keeps that visible — the alternative is a guard
+# quietly treating a checklist as if it were wiring.
+#
+# `forcedColorsBoundary` is deliberately absent: it is the one field on
+# that contract promising a *drawn* result, and it now has a drawing path.
+# Removing that path fails this guard, which is the point.
+surface_a11y_contract.dart:boundaryMechanism
+surface_a11y_contract.dart:disabledSignal
+surface_a11y_contract.dart:usesTransparency

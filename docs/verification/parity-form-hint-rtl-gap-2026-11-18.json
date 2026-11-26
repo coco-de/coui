@@ -1,0 +1,1772 @@
+{
+  "sourceBinding": {
+    "worktree": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5",
+    "head": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+    "tree": "8a7c1e3eae709752ca48a15b10609bb92988a45d",
+    "base": "9364fcbe8d1c8c3569bb5ba3e4710a7989cb053e",
+    "branch": "fix/6422-form-hint-rtl-gap-20261118",
+    "productDartFiles": [
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/validator_hint/validator_hint_style.dart",
+        "sha256": "de078e23a1c69bcf537b4bab4528e8fe31d1bbe93d798d6783dfe2a66f9b27b4",
+        "blob": "f62bff9449181d2b3663f7172b151c2bba98cecf"
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/form_label/form_label_style.dart",
+        "sha256": "e502a5b75c01e059e96fef0d3269385021d01b495a3a22d40799b14dd9e35d2f",
+        "blob": "775c75d8690db0676845f0636e3a7f32d84f6f20"
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/validator_hint/validator_hint_style.dart",
+        "sha256": "a3ff0a23a19c9ccb2c0e09e1f0d1fadff8786cc8480be0a7af6fcc55b9e3015f",
+        "blob": "362730a8b903d5e4c87067703adf1ba6f1f99c01"
+      },
+      {
+        "path": "tool/parity/test/web/form_hint_directional_gap_test.dart",
+        "sha256": "d32eed594bfd7f6e874e2f51fea129b0871f06ea13e49f7eb2174e10aa5f56d4",
+        "blob": "73ae6f1ba80a707fce125c8242ffb1ff27af45bd"
+      }
+    ],
+    "originalBehaviorSource": "01cb65312b5bc96b6025f80cd546a4ab4ff09791",
+    "productWeb2AndTestByteExactOriginal": true,
+    "coreOnlyTwoDocumentationPropertyNamesChanged": true,
+    "main6419Included": true,
+    "newHeavyVerification": "completed; actual6dc docs359/runtime10/Web4",
+    "newDocsExecutionClaimed": true
+  },
+  "priorProofs": {
+    "worker": {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/validation-summary.json",
+      "sha256": "eb763ccdbc55972ed09a53d18e33d0bd7bbe5306d5f5d7e41b878538d267fd1d",
+      "data": {
+        "source": {
+          "head": "01cb65312b5bc96b6025f80cd546a4ab4ff09791",
+          "tree": "90884198d063e521f2459f1460505006a4bb8d96",
+          "base": "9f041ba37c87adfbeb28f2cdce7298fa4a7100d1",
+          "branch": "fix/6422-form-hint-rtl-gap-20261118",
+          "status": "",
+          "files": [
+            {
+              "path": "packages/coui_web/lib/src/components/form/form_label/form_label_style.dart",
+              "sha256": "e502a5b75c01e059e96fef0d3269385021d01b495a3a22d40799b14dd9e35d2f",
+              "blob": "775c75d8690db0676845f0636e3a7f32d84f6f20"
+            },
+            {
+              "path": "packages/coui_web/lib/src/components/form/validator_hint/validator_hint_style.dart",
+              "sha256": "a3ff0a23a19c9ccb2c0e09e1f0d1fadff8786cc8480be0a7af6fcc55b9e3015f",
+              "blob": "362730a8b903d5e4c87067703adf1ba6f1f99c01"
+            },
+            {
+              "path": "tool/parity/test/web/form_hint_directional_gap_test.dart",
+              "sha256": "d32eed594bfd7f6e874e2f51fea129b0871f06ea13e49f7eb2174e10aa5f56d4",
+              "blob": "73ae6f1ba80a707fce125c8242ffb1ff27af45bd"
+            }
+          ],
+          "scope": "2 existing Web style carriers only; logical margin names plus related comments. New actual-browser test. No Core/Native/default/public signature/DOM tagtree/caller order/dependency/lock changes. Inline style property names intentionally change.",
+          "worktree": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5"
+        },
+        "sdk": {
+          "flutter": "3.50.0",
+          "dartExecutable": "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+          "perCommandOnly": true,
+          "dart": "3.14.0",
+          "frameworkRevision": "ab2912035e160d9cad6306df307576da6128ebdb",
+          "engineRevision": "371f77202a73e8dff57a8b3bff75bca55c090aee"
+        },
+        "tests": {
+          "permanentActualBrowser": {
+            "result": "3 pass",
+            "source": "tool/parity/test/web/form_hint_directional_gap_test.dart",
+            "positive": "permanent-after-final.log",
+            "negative": "permanent-before-final.log",
+            "negativeResult": "3 real RTL actual-gap failures; expected4/actual0",
+            "compilation": "Optimized public renderer, dart compile js -O2 -Djaspr.flags.release=true",
+            "controls": "L/D × LTR/RTL × default Core4/caller9.25 × raw caller CSS; isRequired/enabled/visible branches",
+            "browser": "repo launchCaptureBrowser default (canonical capture version Chrome/150.0.7871.24)"
+          },
+          "existingWeb": {
+            "pass": 107,
+            "log": "existing-web.log"
+          },
+          "existingNative": {
+            "pass": 34,
+            "log": "existing-native.log"
+          },
+          "freshNativeGeometry": {
+            "cases": 24,
+            "exactGaps": 24,
+            "log": "native-gap.log",
+            "records": "native-gap-records.json"
+          },
+          "validExternalWeb": {
+            "casesPerPhase": 48,
+            "engine": "157.0.8103.79",
+            "targeted32AfterExactGaps": 32,
+            "beforeMatchesAll48": 16,
+            "afterMatchesAll48": 32,
+            "callerPublicIdClassesAttrsRawCssPreserved": 48,
+            "runtimeErrors": 0,
+            "records": [
+              "web-before/web-gap-records.json",
+              "web-after/web-gap-records.json"
+            ],
+            "comparison": "gap-comparison.json"
+          }
+        },
+        "canonicalLtrDefault": {
+          "freshBefore": true,
+          "freshAfter": true,
+          "pngByteAndRgbaExact": 4,
+          "jsonByteExact": 4,
+          "comparison": "canonical-ltr-comparison.json",
+          "captureBefore": "before-captured",
+          "captureAfter": "after-captured",
+          "currentManifestSelectionExact": true,
+          "browser": "Chrome/150.0.7871.24"
+        },
+        "api": {
+          "base": "9f041ba37c87adfbeb28f2cdce7298fa4a7100d1",
+          "rows": [
+            {
+              "path": "packages/coui_web/lib/src/components/form/form_label/form_label_style.dart",
+              "signaturesIdentical": true,
+              "classesIncludingResolvedIdentical": true
+            },
+            {
+              "path": "packages/coui_web/lib/src/components/form/validator_hint/validator_hint_style.dart",
+              "signaturesIdentical": true,
+              "classesIncludingResolvedIdentical": true
+            }
+          ],
+          "exportClosureUnchanged": true,
+          "exportFileCount": 1296,
+          "missingExports": []
+        },
+        "checks": {
+          "changedFatal": "No issues found!",
+          "format": "Formatted 3 files (0 changed)",
+          "tokenGuard": "phases1..7 exit0",
+          "contractGuard": "All checks passed exit0; pre-existing7 non-enforced WARN backlog retained",
+          "guardLogs": [
+            "changed-fatal-final.log",
+            "format-final.log",
+            "token-guard.log",
+            "contract-guard.log"
+          ],
+          "gitDiffCheck": "exit0"
+        },
+        "reload": {
+          "scope": "Owned loopback SSR debug VM only, no other application/service access",
+          "beforeStatus": 200,
+          "before": {
+            "logicalStart": true,
+            "logicalEnd": true,
+            "publicRootIds": true
+          },
+          "reloadExit": 0,
+          "reload": {
+            "isolate": "main",
+            "success": true,
+            "details": {
+              "type": "ReloadReport",
+              "success": true,
+              "details": {
+                "finalLibraryCount": 2225,
+                "receivedLibraryCount": 0,
+                "receivedLibrariesBytes": 0,
+                "receivedClassesCount": 0,
+                "receivedProceduresCount": 0,
+                "savedLibraryCount": 2225,
+                "loadedLibraryCount": 0
+              }
+            }
+          },
+          "afterStatus": 200,
+          "after": {
+            "logicalStart": true,
+            "logicalEnd": true,
+            "publicRootIds": true
+          },
+          "processExit": 0,
+          "closed": true
+        },
+        "limits": [
+          "Only the existing default indicator and hint icon carriers change to logical margin properties. Custom requiredIndicator bypasses its carrier and remains gap0 in16 external cases; not fixed or pinned as an expected permanent behavior.",
+          "No claim that the existing175 default LTR pixel failures are reduced; no full matrix run.",
+          "DOM tag tree/caller order/public attrs preserved; private inline style property names intentionally change.",
+          "No API/Core/Native/default/design values/dependency/lock/criteria change.",
+          "Initial Native fixture path setup failure and initial FormLabel cursor expectation failure are preserved separately; final negative3 failures reach actual RTL geometry.",
+          "Only owned browser/SSR debug VM used, closed by test teardown/finally; no GitHub operations or global login/config changes."
+        ]
+      }
+    },
+    "extra01cb": {
+      "path": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t/summary.json",
+      "sha256": "3e4da664bf01af8469ddb7569964a42f1821263b15379019fe714785f7bea16d",
+      "data": {
+        "head": "01cb65312b5bc96b6025f80cd546a4ab4ff09791",
+        "tree": "90884198d063e521f2459f1460505006a4bb8d96",
+        "branch": "fix/6422-form-hint-rtl-gap-20261118",
+        "clean": true,
+        "nativeFresh": {
+          "pass": 4,
+          "png": 4,
+          "json": 4,
+          "manifest": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/manifest4.json",
+          "output": "native-captured",
+          "proof": "raw8-proof.json",
+          "log": "native-capture.log",
+          "webAfterPng": 4,
+          "webAfterJson": 4,
+          "webFreshPriorPhase": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured",
+          "webSourceBinding": "product2file source hashes equal01cb committed-source.json",
+          "nativeWebExactPixelsClaimed": false
+        },
+        "optimizedDocs": {
+          "fresh": true,
+          "pages": 359,
+          "lastCounter": [
+            "359",
+            "359"
+          ],
+          "buildExit": 0,
+          "command": [
+            "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+            "--packages=/tmp/weever-6345-optimized-20261117/cli-tool/.dart_tool/package_config.json",
+            "/Users/minhyeok/.pub-cache/hosted/pub.dev/jaspr_cli-0.24.0-beta.1/bin/jaspr.dart",
+            "build",
+            "--optimize=2",
+            "--port=63551"
+          ],
+          "cwd": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/docs_site",
+          "sourceHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791",
+          "outputFiles": 3203,
+          "outputHashes": "build-output-hashes.json",
+          "trackedInputs": 22489,
+          "trackedInputsChanged": [],
+          "preexistingGenerated5Changed": [],
+          "managedGeneratedOutputFiles": 10039,
+          "managedGeneratedOutputHashes": "managed-generated-output-hashes.json",
+          "freshCache": "initial ownWT had no oldbuild, no deletion/rename needed",
+          "locksChanged": [],
+          "cliLockUnchanged": true
+        },
+        "runtime": {
+          "engine": "157.0.8103.79",
+          "routes": [
+            "/components/form-label/",
+            "/components/validator-hint/"
+          ],
+          "records": 10,
+          "lightDarkRefreshAndReturn": true,
+          "allActualDefaultGaps": [
+            4
+          ],
+          "nativeEmbeddedWarmupFramesObserved": true,
+          "fontManifestFinishedRequests": 6,
+          "fontManifestPending": 0,
+          "runtimeErrors": [],
+          "consoleErrors": [],
+          "requestFailures": [],
+          "initialBrowserErrorsPreserved": "First actual browser attempt passed; empty errors retained in browser-results.json",
+          "proof": "browser-results.json",
+          "offlineAssets": "Only canonical vendored Tailwind/Iconify runtime and same local font bytes serve CDN requests; actual optimizeddocs DOM/theme controls unmodified."
+        },
+        "cleanup": {
+          "browserClosed": true,
+          "serverClosed": true,
+          "httpPortClosed": true,
+          "httpPid": 30412,
+          "httpPort": 64101,
+          "serverExit": -15,
+          "buildGroupClosed": true,
+          "buildPortClosed": true,
+          "buildPid": 27826,
+          "buildPort": 63551,
+          "unrelatedAppsTouched": false
+        },
+        "limits": [
+          "01cb phase only; no main14merge/recapture claim. Await parent binding after latermain.",
+          "No fullmatrix run. Raw Native/Web4 existing pixel differences retained; RTL sourcefix verified by separatepermanent3 + Native24/Web48 sourcephase.",
+          "No product edits/commits/merge/push/PR/GitHub calls during extra validation.",
+          "Initial native-cwd-only metadata snapshot retained under native-cwd-setup-*; corrected root22489 snapshot taken beforebuild; Native4capture itself passed firstattempt."
+        ]
+      }
+    },
+    "raw8": {
+      "path": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t/raw8-proof.json",
+      "sha256": "dfd256f10dcf481ff5b25d37915dcfd6049945ac12d3ef5a23843adc845703e0",
+      "data": {
+        "scope": "Current official manifest default4 fresh Native01cb and prior fresh candidateWeb4 whose2productfile hashes equal committed01cb; actual Native/Web differences retained. No wholematrix or 4pair pass assertion.",
+        "sourceHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791",
+        "manifest": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/manifest4.json",
+        "manifestSha256": "183c06e0ad9dc4af8a24da2c42c084f3eeac503813158c8416f32de1aeb16ed9",
+        "freshNativePng": 4,
+        "freshNativeJson": 4,
+        "rows": [
+          {
+            "key": "form-label-default-dark-defaultStyle",
+            "nativePng": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t/native-captured/form-label-default-dark-defaultStyle.flutter.png",
+            "webPng": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/form-label-default-dark-defaultStyle.web.png",
+            "nativeSize": [
+              44,
+              18
+            ],
+            "webSize": [
+              44,
+              18
+            ],
+            "nativePngSha256": "04f2e579097dc51f806a319a6b183b79d2a0cc0b657f2e3312dd81b2ca0b49f7",
+            "webPngSha256": "082189d6e8a0e5921457c9b3be96117de26a37ed93977a53a1dd9a8ebe61dd19",
+            "rgbaExact": false,
+            "changedPixels": 353,
+            "maxChannelDelta": 240,
+            "nativeJsonSha256": "d5aedb54cae6550170450a84531e4f39211c27fdf39a2ddfdd14ab23d35181c1",
+            "webJsonSha256": "9d11ac824b1d452b859a0e3db8119a92d0df3025c8a63eb6570c3ece7bf54434"
+          },
+          {
+            "key": "form-label-default-light-defaultStyle",
+            "nativePng": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t/native-captured/form-label-default-light-defaultStyle.flutter.png",
+            "webPng": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/form-label-default-light-defaultStyle.web.png",
+            "nativeSize": [
+              44,
+              18
+            ],
+            "webSize": [
+              44,
+              18
+            ],
+            "nativePngSha256": "d8cd0320543f299f8e574454b06f54cbe2c3e356059097d9571f35847c5a430b",
+            "webPngSha256": "9376aa5a6c23c4a75dc13bfac81f34e52d55a28de58259be01011abf0dcc5c40",
+            "rgbaExact": false,
+            "changedPixels": 353,
+            "maxChannelDelta": 199,
+            "nativeJsonSha256": "2e6193eadeef9b27aba66d53ac6e9b12278adb6d2145d2ae5901628bf8a73fd5",
+            "webJsonSha256": "e240dcc4d11cc5e6d4b71c6c4e5c397f9364e90275f87186d15f3d26f5e4228b"
+          },
+          {
+            "key": "validator-hint-default-dark-defaultStyle",
+            "nativePng": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t/native-captured/validator-hint-default-dark-defaultStyle.flutter.png",
+            "webPng": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/validator-hint-default-dark-defaultStyle.web.png",
+            "nativeSize": [
+              182,
+              18
+            ],
+            "webSize": [
+              182,
+              18
+            ],
+            "nativePngSha256": "61b031990ddf08897d2fca57fdaa59c920449b5648aa71fec0981642c0a46a3e",
+            "webPngSha256": "043702e7e473820238557b9e98d519cbf105701577c9ad590dd82a3f2b60180e",
+            "rgbaExact": false,
+            "changedPixels": 1131,
+            "maxChannelDelta": 132,
+            "nativeJsonSha256": "0400880eaf82491f948135f1caa3bfe04b0fb819a5a1f37dc4ab3e3661c2db1d",
+            "webJsonSha256": "be07570164419372670fdb10d2b6026e758e65eaa7911282abc9e9b3ff709a67"
+          },
+          {
+            "key": "validator-hint-default-light-defaultStyle",
+            "nativePng": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t/native-captured/validator-hint-default-light-defaultStyle.flutter.png",
+            "webPng": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/validator-hint-default-light-defaultStyle.web.png",
+            "nativeSize": [
+              182,
+              18
+            ],
+            "webSize": [
+              182,
+              18
+            ],
+            "nativePngSha256": "afbc05c53fb2d3bda48297b13f47003fd9a8fce71522810d12a4c4a1c726bcc9",
+            "webPngSha256": "126c5a4371f31da4dbcc8ce20d0c515a90b7971f65aefb4950b1b32afabb0e18",
+            "rgbaExact": false,
+            "changedPixels": 1138,
+            "maxChannelDelta": 84,
+            "nativeJsonSha256": "406027f641f76ebbf55dde62b0e052c67a42d6c86bf51d6a4f15869e88a5eea2",
+            "webJsonSha256": "add78b35f8753c73b43247dce41239761c9ab49b2f7471ba6d64fb7e1aa48767"
+          }
+        ]
+      }
+    },
+    "independent": {
+      "path": "/tmp/weever-6423-independent-review-20261118.02ns7ifx/review.json",
+      "sha256": "a9173b38003f3f70cb02b023a0a8608066ac7286e21a518a6c17b91e505f6aa9",
+      "data": {
+        "reviewedSource": "01cb65312b5bc96b6025f80cd546a4ab4ff09791",
+        "base": "9f041ba37c87adfbeb28f2cdce7298fa4a7100d1",
+        "findings": [],
+        "blockingFindings": 0,
+        "ownSourceUnmodified": true,
+        "scopeFiles": [
+          "packages/coui_web/lib/src/components/form/form_label/form_label_style.dart",
+          "packages/coui_web/lib/src/components/form/validator_hint/validator_hint_style.dart",
+          "tool/parity/test/web/form_hint_directional_gap_test.dart"
+        ],
+        "product": [
+          {
+            "path": "packages/coui_web/lib/src/components/form/form_label/form_label_style.dart",
+            "allExecutableDeltaExactlyOnePropertyRename": true,
+            "from": "margin-left",
+            "to": "margin-inline-start"
+          },
+          {
+            "path": "packages/coui_web/lib/src/components/form/validator_hint/validator_hint_style.dart",
+            "allExecutableDeltaExactlyOnePropertyRename": true,
+            "from": "margin-right",
+            "to": "margin-inline-end"
+          }
+        ],
+        "contractEvidence": [
+          "Native FormLabel.Row child order: label,Gap(resolved.requiredIndicatorGapStyle),requiredIndicator/default. Native ambient Directionality reverses Row placement, preserving between-child gap.",
+          "Native ValidatorHint.Row: icon,Gap(resolved.iconLabelGapStyle),message. Core defines gap between those elements, not physical screen-left/right.",
+          "Web roots remain inline-flex flex-row items-center; their inherited direction controls row flow. Logical inline-start on trailing required carrier and inline-end on leading icon carrier match the inward edge in both directions.",
+          "Existing spaceCss/default+theme+widget merge/colour/typography emit paths untouched.",
+          "Widgets, constructors, Resolved classes, root id/key/classes/attributes/events and Styles.combine caller-last untouched. No DOM node/wrapper/reordering changes; only inline CSS property names intentionally change."
+        ],
+        "testsReview": "Permanent3 uses actual exported optimized public widgets and actual child bounding-box edge gap, not just CSS keyword checks; L/D xLTR/RTL xdefault4/raw9.25 xcaller rawCSS. Baseline failures reach RTL actual gap0; positive gap4/9.25 plus isRequired/enabled/visible branches preserve semantic tags/aria/colour/caller forwarding.",
+        "customIndicatorLimit": "FormLabel custom requiredIndicator bypasses default required carrier before and after;16 external custom cases remain gap0 while Native includes its Gap. This is not fixed, pinned as expected, or omitted from the external48 ledger. Permanent tests scope only corrected default carrier.",
+        "existingEvidence": "Validation summary reviewed: permanent3/existingWeb107/Native34/Nativegeometry24; external48 after32match and16customremain; LTRdefault4PNG+4JSONexact. ExtraNative4/docs359/runtime2routes10 are separatelylabelled01cb, no fullmatrix/NativeWebexactclaim.",
+        "nonBlockingDocumentationNote": "CoreValidatorHintStyle.defaultIconLabelGapStyle Dartdoc still calls the Web implementation margin-right; normative between-icon/message contract remains unambiguous. This is stale implementation prose, not an API/design restriction.",
+        "newRuntimeOrTestsRun": false
+      }
+    },
+    "assets": {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/root-pr/evidence/uploaded-assets.json",
+      "sha256": "fb66c112ed6859d1c3621ca5f1d9abc75f0031ada824af67c49896cbb1d50994",
+      "data": [
+        {
+          "id": 762775380,
+          "name": "pr6423-form-label-default-light-defaultStyle.flutter.png",
+          "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6423-form-label-default-light-defaultStyle.flutter.png",
+          "source": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t/native-captured/form-label-default-light-defaultStyle.flutter.png",
+          "sha256": "d8cd0320543f299f8e574454b06f54cbe2c3e356059097d9571f35847c5a430b",
+          "viewed": true,
+          "edited": false,
+          "sourceHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791"
+        },
+        {
+          "id": 762775443,
+          "name": "pr6423-form-label-default-light-defaultStyle.web.png",
+          "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6423-form-label-default-light-defaultStyle.web.png",
+          "source": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/form-label-default-light-defaultStyle.web.png",
+          "sha256": "9376aa5a6c23c4a75dc13bfac81f34e52d55a28de58259be01011abf0dcc5c40",
+          "viewed": true,
+          "edited": false,
+          "sourceHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791"
+        },
+        {
+          "id": 762775552,
+          "name": "pr6423-form-label-default-dark-defaultStyle.flutter.png",
+          "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6423-form-label-default-dark-defaultStyle.flutter.png",
+          "source": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t/native-captured/form-label-default-dark-defaultStyle.flutter.png",
+          "sha256": "04f2e579097dc51f806a319a6b183b79d2a0cc0b657f2e3312dd81b2ca0b49f7",
+          "viewed": true,
+          "edited": false,
+          "sourceHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791"
+        },
+        {
+          "id": 762775682,
+          "name": "pr6423-form-label-default-dark-defaultStyle.web.png",
+          "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6423-form-label-default-dark-defaultStyle.web.png",
+          "source": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/form-label-default-dark-defaultStyle.web.png",
+          "sha256": "082189d6e8a0e5921457c9b3be96117de26a37ed93977a53a1dd9a8ebe61dd19",
+          "viewed": true,
+          "edited": false,
+          "sourceHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791"
+        },
+        {
+          "id": 762775744,
+          "name": "pr6423-validator-hint-default-light-defaultStyle.flutter.png",
+          "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6423-validator-hint-default-light-defaultStyle.flutter.png",
+          "source": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t/native-captured/validator-hint-default-light-defaultStyle.flutter.png",
+          "sha256": "afbc05c53fb2d3bda48297b13f47003fd9a8fce71522810d12a4c4a1c726bcc9",
+          "viewed": true,
+          "edited": false,
+          "sourceHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791"
+        },
+        {
+          "id": 762775809,
+          "name": "pr6423-validator-hint-default-light-defaultStyle.web.png",
+          "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6423-validator-hint-default-light-defaultStyle.web.png",
+          "source": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/validator-hint-default-light-defaultStyle.web.png",
+          "sha256": "126c5a4371f31da4dbcc8ce20d0c515a90b7971f65aefb4950b1b32afabb0e18",
+          "viewed": true,
+          "edited": false,
+          "sourceHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791"
+        },
+        {
+          "id": 762775869,
+          "name": "pr6423-validator-hint-default-dark-defaultStyle.flutter.png",
+          "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6423-validator-hint-default-dark-defaultStyle.flutter.png",
+          "source": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t/native-captured/validator-hint-default-dark-defaultStyle.flutter.png",
+          "sha256": "61b031990ddf08897d2fca57fdaa59c920449b5648aa71fec0981642c0a46a3e",
+          "viewed": true,
+          "edited": false,
+          "sourceHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791"
+        },
+        {
+          "id": 762775964,
+          "name": "pr6423-validator-hint-default-dark-defaultStyle.web.png",
+          "url": "https://github.com/coco-de/coui/releases/download/untagged-5777cbc8f806c67a3301/pr6423-validator-hint-default-dark-defaultStyle.web.png",
+          "source": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/validator-hint-default-dark-defaultStyle.web.png",
+          "sha256": "043702e7e473820238557b9e98d519cbf105701577c9ad590dd82a3f2b60180e",
+          "viewed": true,
+          "edited": false,
+          "sourceHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791"
+        }
+      ]
+    }
+  },
+  "newIntegratedDocs": {
+    "status": "passed",
+    "actualSourceHead": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+    "actualSourceTree": "8a7c1e3eae709752ca48a15b10609bb92988a45d",
+    "build": {
+      "argv": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/tmp/weever-6345-optimized-20261117/cli-tool/.dart_tool/package_config.json",
+        "/Users/minhyeok/.pub-cache/hosted/pub.dev/jaspr_cli-0.24.0-beta.1/bin/jaspr.dart",
+        "build",
+        "--optimize=2",
+        "--port=52870"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/docs_site",
+      "port": 52870,
+      "sourceHead": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+      "scope": "Fresh own6dc integrated optimizeddocs build only",
+      "pid": 54572,
+      "pgid": 54572,
+      "exit": 0,
+      "remainingGroupTerminated": false,
+      "groupClosed": true
+    },
+    "buildSanity": {
+      "generatedRoutes": 359,
+      "uniqueRoutes": 359,
+      "requiredFilesPresent": [
+        "index.html",
+        "main.client.dart.js",
+        "main.dart.js",
+        "flutter.js",
+        "flutter_bootstrap.js",
+        "widgetbook/index.html",
+        "llms.txt"
+      ],
+      "deployCopies": [
+        {
+          "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/docs_site/build/flutter/main.dart.js",
+          "destination": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/docs_site/build/jaspr/main.dart.js",
+          "sha256": "46b1492fa46f889a5d3d4dda2cb7e2d6006cfef41ccad3ed014810c353199e5f",
+          "normalDeployStep": ".github/workflows/deploy.yaml:168-174"
+        },
+        {
+          "source": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/docs_site/build/flutter/flutter.js",
+          "destination": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/docs_site/build/jaspr/flutter.js",
+          "sha256": "d2e7708f08b4a5b2a1bcd9671d2ff96f07daa0fd58e847d073d4e4ebff96f98f",
+          "normalDeployStep": ".github/workflows/deploy.yaml:168-174"
+        }
+      ],
+      "runtimeUsedHybridBundleBeforeStandaloneCopies": true,
+      "fullDeploymentClaimed": false
+    },
+    "sourceProof": {
+      "actualHead": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+      "tree": "8a7c1e3eae709752ca48a15b10609bb92988a45d",
+      "trackedEntries": 22510,
+      "regularFiles": 22504,
+      "symlinks": 6,
+      "trackedHashDeltas": [],
+      "preexistingGenerated": 5,
+      "generatedDeltas": [],
+      "trackedLocks": 6,
+      "allTrackedLocksUnchanged": true,
+      "extraNativeExampleLockUnchanged": true,
+      "cliLockUnchanged": true,
+      "packageConfigs": [
+        {
+          "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/.dart_tool/package_config.json",
+          "entries": 232,
+          "allEntryTuplesSame": true
+        }
+      ],
+      "oldBuildPreserved": [
+        {
+          "from": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/docs_site/build",
+          "to": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/previous-docs-build",
+          "bytes": 271704184,
+          "method": "same-volume rename; no deletion"
+        }
+      ],
+      "newOutputFiles": 3205,
+      "newOutputHashes": "build-output-hashes.json",
+      "gitStatus": ""
+    },
+    "cleanup": {
+      "buildPid": 54572,
+      "buildGroupClosed": true,
+      "serverPid": 57356,
+      "serverExit": -15,
+      "browserClosed": true,
+      "portsClosed": {
+        "52870": true,
+        "53407": true
+      },
+      "captureRunnerExit": 0,
+      "allOwnCommandsAwaited": true,
+      "noUnrelatedAppsOrAuthSettingsChanged": true,
+      "noSourceEvidenceOrSharedCacheDeletionForSpace": true
+    },
+    "runtime": {
+      "passed": true,
+      "sourceHead": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+      "engine": "157.0.8103.79",
+      "records": [
+        {
+          "component": "form-label",
+          "stage": "first-light",
+          "theme": "light",
+          "themeToggleAria": "어두운 테마로 전환",
+          "rootColor": "rgb(31, 32, 33)",
+          "bodyBackground": "oklch(0.984 0.003 247.858)",
+          "rootTag": "LABEL",
+          "rootText": "이메일*",
+          "rootChildren": 2,
+          "direction": "ltr",
+          "gap": 4,
+          "rootRect": {
+            "x": 513.4375,
+            "y": 671.484375,
+            "width": 43.625,
+            "height": 18
+          },
+          "leadingRect": {
+            "x": 513.4375,
+            "y": 671.484375,
+            "width": 33.328125,
+            "height": 18
+          },
+          "trailingRect": {
+            "x": 550.765625,
+            "y": 671.484375,
+            "width": 6.296875,
+            "height": 18
+          },
+          "logicalStart": "4px",
+          "logicalEnd": "0px",
+          "inlineStyle": "margin-inline-start: var(--coui-space-4)",
+          "nativeViews": [
+            {
+              "id": "flutter-form-label-default",
+              "active": true,
+              "flutterView": true,
+              "rect": {
+                "x": 766.5,
+                "y": 663.484375,
+                "width": 364.5,
+                "height": 56
+              }
+            }
+          ],
+          "fontManifest": [
+            {
+              "name": "http://127.0.0.1:53407/assets/FontManifest.json",
+              "responseEnd": 703,
+              "duration": 4.800000190734863
+            }
+          ],
+          "fonts": "loaded"
+        },
+        {
+          "component": "form-label",
+          "stage": "theme-dark",
+          "theme": "dark",
+          "themeToggleAria": "밝은 테마로 전환",
+          "rootColor": "rgb(244, 245, 246)",
+          "bodyBackground": "oklch(0.141 0.005 285.823)",
+          "rootTag": "LABEL",
+          "rootText": "이메일*",
+          "rootChildren": 2,
+          "direction": "ltr",
+          "gap": 4,
+          "rootRect": {
+            "x": 513.4375,
+            "y": 671.484375,
+            "width": 43.625,
+            "height": 18
+          },
+          "leadingRect": {
+            "x": 513.4375,
+            "y": 671.484375,
+            "width": 33.328125,
+            "height": 18
+          },
+          "trailingRect": {
+            "x": 550.765625,
+            "y": 671.484375,
+            "width": 6.296875,
+            "height": 18
+          },
+          "logicalStart": "4px",
+          "logicalEnd": "0px",
+          "inlineStyle": "margin-inline-start: var(--coui-space-4)",
+          "nativeViews": [
+            {
+              "id": "flutter-form-label-default",
+              "active": true,
+              "flutterView": true,
+              "rect": {
+                "x": 766.5,
+                "y": 663.484375,
+                "width": 364.5,
+                "height": 56
+              }
+            }
+          ],
+          "fontManifest": [
+            {
+              "name": "http://127.0.0.1:53407/assets/FontManifest.json",
+              "responseEnd": 703,
+              "duration": 4.800000190734863
+            }
+          ],
+          "fonts": "loaded"
+        },
+        {
+          "component": "form-label",
+          "stage": "refresh-dark",
+          "theme": "dark",
+          "themeToggleAria": "밝은 테마로 전환",
+          "rootColor": "rgb(244, 245, 246)",
+          "bodyBackground": "oklch(0.141 0.005 285.823)",
+          "rootTag": "LABEL",
+          "rootText": "이메일*",
+          "rootChildren": 2,
+          "direction": "ltr",
+          "gap": 4,
+          "rootRect": {
+            "x": 513.4375,
+            "y": 671.484375,
+            "width": 43.625,
+            "height": 18
+          },
+          "leadingRect": {
+            "x": 513.4375,
+            "y": 671.484375,
+            "width": 33.328125,
+            "height": 18
+          },
+          "trailingRect": {
+            "x": 550.765625,
+            "y": 671.484375,
+            "width": 6.296875,
+            "height": 18
+          },
+          "logicalStart": "4px",
+          "logicalEnd": "0px",
+          "inlineStyle": "margin-inline-start: var(--coui-space-4)",
+          "nativeViews": [
+            {
+              "id": "flutter-form-label-default",
+              "active": true,
+              "flutterView": true,
+              "rect": {
+                "x": 766.5,
+                "y": 663.484375,
+                "width": 364.5,
+                "height": 56
+              }
+            }
+          ],
+          "fontManifest": [
+            {
+              "name": "http://127.0.0.1:53407/assets/FontManifest.json",
+              "responseEnd": 492.40000009536743,
+              "duration": 7.600000381469727
+            }
+          ],
+          "fonts": "loaded"
+        },
+        {
+          "component": "form-label",
+          "stage": "return-light",
+          "theme": "light",
+          "themeToggleAria": "어두운 테마로 전환",
+          "rootColor": "rgb(31, 32, 33)",
+          "bodyBackground": "oklch(0.984 0.003 247.858)",
+          "rootTag": "LABEL",
+          "rootText": "이메일*",
+          "rootChildren": 2,
+          "direction": "ltr",
+          "gap": 4,
+          "rootRect": {
+            "x": 513.4375,
+            "y": 671.484375,
+            "width": 43.625,
+            "height": 18
+          },
+          "leadingRect": {
+            "x": 513.4375,
+            "y": 671.484375,
+            "width": 33.328125,
+            "height": 18
+          },
+          "trailingRect": {
+            "x": 550.765625,
+            "y": 671.484375,
+            "width": 6.296875,
+            "height": 18
+          },
+          "logicalStart": "4px",
+          "logicalEnd": "0px",
+          "inlineStyle": "margin-inline-start: var(--coui-space-4)",
+          "nativeViews": [
+            {
+              "id": "flutter-form-label-default",
+              "active": true,
+              "flutterView": true,
+              "rect": {
+                "x": 766.5,
+                "y": 663.484375,
+                "width": 364.5,
+                "height": 56
+              }
+            }
+          ],
+          "fontManifest": [
+            {
+              "name": "http://127.0.0.1:53407/assets/FontManifest.json",
+              "responseEnd": 492.40000009536743,
+              "duration": 7.600000381469727
+            }
+          ],
+          "fonts": "loaded"
+        },
+        {
+          "component": "form-label",
+          "stage": "refresh-light",
+          "theme": "light",
+          "themeToggleAria": "어두운 테마로 전환",
+          "rootColor": "rgb(31, 32, 33)",
+          "bodyBackground": "oklch(0.984 0.003 247.858)",
+          "rootTag": "LABEL",
+          "rootText": "이메일*",
+          "rootChildren": 2,
+          "direction": "ltr",
+          "gap": 4,
+          "rootRect": {
+            "x": 513.4375,
+            "y": 671.484375,
+            "width": 43.625,
+            "height": 18
+          },
+          "leadingRect": {
+            "x": 513.4375,
+            "y": 671.484375,
+            "width": 33.328125,
+            "height": 18
+          },
+          "trailingRect": {
+            "x": 550.765625,
+            "y": 671.484375,
+            "width": 6.296875,
+            "height": 18
+          },
+          "logicalStart": "4px",
+          "logicalEnd": "0px",
+          "inlineStyle": "margin-inline-start: var(--coui-space-4)",
+          "nativeViews": [
+            {
+              "id": "flutter-form-label-default",
+              "active": true,
+              "flutterView": true,
+              "rect": {
+                "x": 766.5,
+                "y": 663.484375,
+                "width": 364.5,
+                "height": 56
+              }
+            }
+          ],
+          "fontManifest": [
+            {
+              "name": "http://127.0.0.1:53407/assets/FontManifest.json",
+              "responseEnd": 478.2999997138977,
+              "duration": 3.5999999046325684
+            }
+          ],
+          "fonts": "loaded"
+        },
+        {
+          "component": "validator-hint",
+          "stage": "first-light",
+          "theme": "light",
+          "themeToggleAria": "어두운 테마로 전환",
+          "rootColor": "rgb(31, 32, 33)",
+          "bodyBackground": "oklch(0.984 0.003 247.858)",
+          "rootTag": "P",
+          "rootText": "비밀번호는 8자 이상이어야 합니다.",
+          "rootChildren": 2,
+          "direction": "ltr",
+          "gap": 4,
+          "rootRect": {
+            "x": 444.109375,
+            "y": 671.484375,
+            "width": 182.28125,
+            "height": 18
+          },
+          "leadingRect": {
+            "x": 444.109375,
+            "y": 672.484375,
+            "width": 16,
+            "height": 16
+          },
+          "trailingRect": {
+            "x": 464.109375,
+            "y": 671.484375,
+            "width": 162.28125,
+            "height": 18
+          },
+          "logicalStart": "0px",
+          "logicalEnd": "4px",
+          "inlineStyle": "margin-inline-end: var(--coui-space-4); display: inline-flex; flex-shrink: 0",
+          "nativeViews": [
+            {
+              "id": "flutter-validator-hint-default",
+              "active": true,
+              "flutterView": true,
+              "rect": {
+                "x": 766.5,
+                "y": 663.484375,
+                "width": 364.5,
+                "height": 56
+              }
+            }
+          ],
+          "fontManifest": [
+            {
+              "name": "http://127.0.0.1:53407/assets/FontManifest.json",
+              "responseEnd": 488.7000002861023,
+              "duration": 2.200000286102295
+            }
+          ],
+          "fonts": "loaded"
+        },
+        {
+          "component": "validator-hint",
+          "stage": "theme-dark",
+          "theme": "dark",
+          "themeToggleAria": "밝은 테마로 전환",
+          "rootColor": "rgb(244, 245, 246)",
+          "bodyBackground": "oklch(0.141 0.005 285.823)",
+          "rootTag": "P",
+          "rootText": "비밀번호는 8자 이상이어야 합니다.",
+          "rootChildren": 2,
+          "direction": "ltr",
+          "gap": 4,
+          "rootRect": {
+            "x": 444.109375,
+            "y": 671.484375,
+            "width": 182.28125,
+            "height": 18
+          },
+          "leadingRect": {
+            "x": 444.109375,
+            "y": 672.484375,
+            "width": 16,
+            "height": 16
+          },
+          "trailingRect": {
+            "x": 464.109375,
+            "y": 671.484375,
+            "width": 162.28125,
+            "height": 18
+          },
+          "logicalStart": "0px",
+          "logicalEnd": "4px",
+          "inlineStyle": "margin-inline-end: var(--coui-space-4); display: inline-flex; flex-shrink: 0",
+          "nativeViews": [
+            {
+              "id": "flutter-validator-hint-default",
+              "active": true,
+              "flutterView": true,
+              "rect": {
+                "x": 766.5,
+                "y": 663.484375,
+                "width": 364.5,
+                "height": 56
+              }
+            }
+          ],
+          "fontManifest": [
+            {
+              "name": "http://127.0.0.1:53407/assets/FontManifest.json",
+              "responseEnd": 488.7000002861023,
+              "duration": 2.200000286102295
+            }
+          ],
+          "fonts": "loaded"
+        },
+        {
+          "component": "validator-hint",
+          "stage": "refresh-dark",
+          "theme": "dark",
+          "themeToggleAria": "밝은 테마로 전환",
+          "rootColor": "rgb(244, 245, 246)",
+          "bodyBackground": "oklch(0.141 0.005 285.823)",
+          "rootTag": "P",
+          "rootText": "비밀번호는 8자 이상이어야 합니다.",
+          "rootChildren": 2,
+          "direction": "ltr",
+          "gap": 4,
+          "rootRect": {
+            "x": 444.109375,
+            "y": 671.484375,
+            "width": 182.28125,
+            "height": 18
+          },
+          "leadingRect": {
+            "x": 444.109375,
+            "y": 672.484375,
+            "width": 16,
+            "height": 16
+          },
+          "trailingRect": {
+            "x": 464.109375,
+            "y": 671.484375,
+            "width": 162.28125,
+            "height": 18
+          },
+          "logicalStart": "0px",
+          "logicalEnd": "4px",
+          "inlineStyle": "margin-inline-end: var(--coui-space-4); display: inline-flex; flex-shrink: 0",
+          "nativeViews": [
+            {
+              "id": "flutter-validator-hint-default",
+              "active": true,
+              "flutterView": true,
+              "rect": {
+                "x": 766.5,
+                "y": 663.484375,
+                "width": 364.5,
+                "height": 56
+              }
+            }
+          ],
+          "fontManifest": [
+            {
+              "name": "http://127.0.0.1:53407/assets/FontManifest.json",
+              "responseEnd": 500,
+              "duration": 3.4000000953674316
+            }
+          ],
+          "fonts": "loaded"
+        },
+        {
+          "component": "validator-hint",
+          "stage": "return-light",
+          "theme": "light",
+          "themeToggleAria": "어두운 테마로 전환",
+          "rootColor": "rgb(31, 32, 33)",
+          "bodyBackground": "oklch(0.984 0.003 247.858)",
+          "rootTag": "P",
+          "rootText": "비밀번호는 8자 이상이어야 합니다.",
+          "rootChildren": 2,
+          "direction": "ltr",
+          "gap": 4,
+          "rootRect": {
+            "x": 444.109375,
+            "y": 671.484375,
+            "width": 182.28125,
+            "height": 18
+          },
+          "leadingRect": {
+            "x": 444.109375,
+            "y": 672.484375,
+            "width": 16,
+            "height": 16
+          },
+          "trailingRect": {
+            "x": 464.109375,
+            "y": 671.484375,
+            "width": 162.28125,
+            "height": 18
+          },
+          "logicalStart": "0px",
+          "logicalEnd": "4px",
+          "inlineStyle": "margin-inline-end: var(--coui-space-4); display: inline-flex; flex-shrink: 0",
+          "nativeViews": [
+            {
+              "id": "flutter-validator-hint-default",
+              "active": true,
+              "flutterView": true,
+              "rect": {
+                "x": 766.5,
+                "y": 663.484375,
+                "width": 364.5,
+                "height": 56
+              }
+            }
+          ],
+          "fontManifest": [
+            {
+              "name": "http://127.0.0.1:53407/assets/FontManifest.json",
+              "responseEnd": 500,
+              "duration": 3.4000000953674316
+            }
+          ],
+          "fonts": "loaded"
+        },
+        {
+          "component": "validator-hint",
+          "stage": "refresh-light",
+          "theme": "light",
+          "themeToggleAria": "어두운 테마로 전환",
+          "rootColor": "rgb(31, 32, 33)",
+          "bodyBackground": "oklch(0.984 0.003 247.858)",
+          "rootTag": "P",
+          "rootText": "비밀번호는 8자 이상이어야 합니다.",
+          "rootChildren": 2,
+          "direction": "ltr",
+          "gap": 4,
+          "rootRect": {
+            "x": 444.109375,
+            "y": 671.484375,
+            "width": 182.28125,
+            "height": 18
+          },
+          "leadingRect": {
+            "x": 444.109375,
+            "y": 672.484375,
+            "width": 16,
+            "height": 16
+          },
+          "trailingRect": {
+            "x": 464.109375,
+            "y": 671.484375,
+            "width": 162.28125,
+            "height": 18
+          },
+          "logicalStart": "0px",
+          "logicalEnd": "4px",
+          "inlineStyle": "margin-inline-end: var(--coui-space-4); display: inline-flex; flex-shrink: 0",
+          "nativeViews": [
+            {
+              "id": "flutter-validator-hint-default",
+              "active": true,
+              "flutterView": true,
+              "rect": {
+                "x": 766.5,
+                "y": 663.484375,
+                "width": 364.5,
+                "height": 56
+              }
+            }
+          ],
+          "fontManifest": [
+            {
+              "name": "http://127.0.0.1:53407/assets/FontManifest.json",
+              "responseEnd": 515.2999997138977,
+              "duration": 7.5
+            }
+          ],
+          "fonts": "loaded"
+        }
+      ],
+      "errors": [],
+      "consoleErrors": [],
+      "requests": [
+        {
+          "kind": "route",
+          "component": "form-label",
+          "status": 200
+        },
+        {
+          "kind": "fontmanifest-finished",
+          "url": "http://127.0.0.1:53407/assets/FontManifest.json"
+        },
+        {
+          "kind": "fontmanifest-finished",
+          "url": "http://127.0.0.1:53407/assets/FontManifest.json"
+        },
+        {
+          "kind": "fontmanifest-finished",
+          "url": "http://127.0.0.1:53407/assets/FontManifest.json"
+        },
+        {
+          "kind": "route",
+          "component": "validator-hint",
+          "status": 200
+        },
+        {
+          "kind": "fontmanifest-finished",
+          "url": "http://127.0.0.1:53407/assets/FontManifest.json"
+        },
+        {
+          "kind": "fontmanifest-finished",
+          "url": "http://127.0.0.1:53407/assets/FontManifest.json"
+        },
+        {
+          "kind": "fontmanifest-finished",
+          "url": "http://127.0.0.1:53407/assets/FontManifest.json"
+        }
+      ],
+      "failures": [],
+      "pendingFonts": 0,
+      "scope": "Actual optimized2 docs routes, L/D theme UI and refresh; Native hybrid warmup frames and FontManifest completion before navigation. No fullmatrix claim."
+    },
+    "manifest": {
+      "source": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+      "args": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/tool/parity/manifest.dart",
+        "--components=form-label,validator-hint",
+        "--out=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/manifest-components.json"
+      ],
+      "exit": 0,
+      "allComponentEntries": 16,
+      "defaultEntries": 4,
+      "oldRegisteredEntriesExact": true,
+      "oldManifest": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/manifest4.json",
+      "newManifestSha256": "183c06e0ad9dc4af8a24da2c42c084f3eeac503813158c8416f32de1aeb16ed9"
+    },
+    "webCurrentComparison": {
+      "sourceBeforeActual": "01cb65312b5bc96b6025f80cd546a4ab4ff09791 candidate source",
+      "sourceAfterActual": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff integrated source",
+      "oldRegisteredManifestEntriesExact": true,
+      "pngCount": 4,
+      "pngByteExact": 4,
+      "pngRgbaExact": 4,
+      "jsonCount": 4,
+      "jsonByteExact": 4,
+      "rows": [
+        {
+          "file": "form-label-default-dark-defaultStyle.web.json",
+          "old": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/form-label-default-dark-defaultStyle.web.json",
+          "new": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/web-current/form-label-default-dark-defaultStyle.web.json",
+          "byteExact": true,
+          "beforeSha256": "9d11ac824b1d452b859a0e3db8119a92d0df3025c8a63eb6570c3ece7bf54434",
+          "afterSha256": "9d11ac824b1d452b859a0e3db8119a92d0df3025c8a63eb6570c3ece7bf54434",
+          "changedPaths": []
+        },
+        {
+          "file": "form-label-default-dark-defaultStyle.web.png",
+          "old": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/form-label-default-dark-defaultStyle.web.png",
+          "new": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/web-current/form-label-default-dark-defaultStyle.web.png",
+          "byteExact": true,
+          "beforeSha256": "082189d6e8a0e5921457c9b3be96117de26a37ed93977a53a1dd9a8ebe61dd19",
+          "afterSha256": "082189d6e8a0e5921457c9b3be96117de26a37ed93977a53a1dd9a8ebe61dd19",
+          "sizeBefore": [
+            44,
+            18
+          ],
+          "sizeAfter": [
+            44,
+            18
+          ],
+          "rgbaExact": true
+        },
+        {
+          "file": "form-label-default-light-defaultStyle.web.json",
+          "old": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/form-label-default-light-defaultStyle.web.json",
+          "new": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/web-current/form-label-default-light-defaultStyle.web.json",
+          "byteExact": true,
+          "beforeSha256": "e240dcc4d11cc5e6d4b71c6c4e5c397f9364e90275f87186d15f3d26f5e4228b",
+          "afterSha256": "e240dcc4d11cc5e6d4b71c6c4e5c397f9364e90275f87186d15f3d26f5e4228b",
+          "changedPaths": []
+        },
+        {
+          "file": "form-label-default-light-defaultStyle.web.png",
+          "old": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/form-label-default-light-defaultStyle.web.png",
+          "new": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/web-current/form-label-default-light-defaultStyle.web.png",
+          "byteExact": true,
+          "beforeSha256": "9376aa5a6c23c4a75dc13bfac81f34e52d55a28de58259be01011abf0dcc5c40",
+          "afterSha256": "9376aa5a6c23c4a75dc13bfac81f34e52d55a28de58259be01011abf0dcc5c40",
+          "sizeBefore": [
+            44,
+            18
+          ],
+          "sizeAfter": [
+            44,
+            18
+          ],
+          "rgbaExact": true
+        },
+        {
+          "file": "validator-hint-default-dark-defaultStyle.web.json",
+          "old": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/validator-hint-default-dark-defaultStyle.web.json",
+          "new": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/web-current/validator-hint-default-dark-defaultStyle.web.json",
+          "byteExact": true,
+          "beforeSha256": "be07570164419372670fdb10d2b6026e758e65eaa7911282abc9e9b3ff709a67",
+          "afterSha256": "be07570164419372670fdb10d2b6026e758e65eaa7911282abc9e9b3ff709a67",
+          "changedPaths": []
+        },
+        {
+          "file": "validator-hint-default-dark-defaultStyle.web.png",
+          "old": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/validator-hint-default-dark-defaultStyle.web.png",
+          "new": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/web-current/validator-hint-default-dark-defaultStyle.web.png",
+          "byteExact": true,
+          "beforeSha256": "043702e7e473820238557b9e98d519cbf105701577c9ad590dd82a3f2b60180e",
+          "afterSha256": "043702e7e473820238557b9e98d519cbf105701577c9ad590dd82a3f2b60180e",
+          "sizeBefore": [
+            182,
+            18
+          ],
+          "sizeAfter": [
+            182,
+            18
+          ],
+          "rgbaExact": true
+        },
+        {
+          "file": "validator-hint-default-light-defaultStyle.web.json",
+          "old": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/validator-hint-default-light-defaultStyle.web.json",
+          "new": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/web-current/validator-hint-default-light-defaultStyle.web.json",
+          "byteExact": true,
+          "beforeSha256": "add78b35f8753c73b43247dce41239761c9ab49b2f7471ba6d64fb7e1aa48767",
+          "afterSha256": "add78b35f8753c73b43247dce41239761c9ab49b2f7471ba6d64fb7e1aa48767",
+          "changedPaths": []
+        },
+        {
+          "file": "validator-hint-default-light-defaultStyle.web.png",
+          "old": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/after-captured/validator-hint-default-light-defaultStyle.web.png",
+          "new": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/web-current/validator-hint-default-light-defaultStyle.web.png",
+          "byteExact": true,
+          "beforeSha256": "126c5a4371f31da4dbcc8ce20d0c515a90b7971f65aefb4950b1b32afabb0e18",
+          "afterSha256": "126c5a4371f31da4dbcc8ce20d0c515a90b7971f65aefb4950b1b32afabb0e18",
+          "sizeBefore": [
+            182,
+            18
+          ],
+          "sizeAfter": [
+            182,
+            18
+          ],
+          "rgbaExact": true
+        }
+      ],
+      "noPngEdits": true,
+      "fullMatrixClaimed": false
+    },
+    "native4ExplicitReuse": {
+      "beforeActualNativeCaptureHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791",
+      "currentIntegratedHead": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+      "unchangedNativeInputPaths": [
+        {
+          "path": "packages/coui_flutter",
+          "delta": []
+        },
+        {
+          "path": "docs_core",
+          "delta": []
+        },
+        {
+          "path": "tool/parity/src",
+          "delta": []
+        },
+        {
+          "path": "packages/coui_flutter/test/parity",
+          "delta": []
+        },
+        {
+          "path": "tool/browser_launch.dart",
+          "delta": []
+        },
+        {
+          "path": "pubspec.yaml",
+          "delta": []
+        },
+        {
+          "path": "pubspec.lock",
+          "delta": []
+        },
+        {
+          "path": ".fvmrc",
+          "delta": []
+        }
+      ],
+      "coreDifferenceOnlyDocumentation2Names": [
+        "packages/coui_core/lib/src/component/contracts/validator_hint/validator_hint_style.dart"
+      ],
+      "native4ImagesAreExplicit01cbReuse": true,
+      "nativeFreshAt6dcClaimed": false,
+      "web4NeedsCurrentCapture": true,
+      "fieldCatalogAndCurrentDocumentInputsUnchanged": true,
+      "comment": "Native/Core executable definitions, canonical scene factories, Native producer, SDK and lock inputs are unchanged. Native01cb PNG/JSON remain labelled01cb; Web may be freshly captured after resource release."
+    },
+    "pubget": [
+      {
+        "label": "root",
+        "args": [
+          "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+          "pub",
+          "get",
+          "--offline",
+          "--enforce-lockfile",
+          "--no-example"
+        ],
+        "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5",
+        "exit": 0,
+        "seconds": 2.4367313339999996
+      },
+      {
+        "label": "docs",
+        "args": [
+          "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+          "pub",
+          "get",
+          "--offline",
+          "--enforce-lockfile",
+          "--no-example"
+        ],
+        "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6422-rtl-gap-20261118.3glyivt5/docs_site",
+        "exit": 0,
+        "seconds": 2.111247624999999
+      }
+    ],
+    "deploymentNotClaimed": true,
+    "newFullMatrixClaimed": false,
+    "preservedOldPublishedOutputs": {
+      "oldPhase": "/tmp/weever-6422-docs-native-20261118.ibh6ur3t",
+      "oldPublishedOutputCount": 3203,
+      "preservedOutputDeltas": [],
+      "method": "same-volume directory rename"
+    }
+  },
+  "rootIntegration39": {
+    "status": "passed",
+    "head": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+    "uniqueTests": 39,
+    "notSummedWithWorker144": true,
+    "priorInterruptedPhase": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6422-integration-20261118.ud1rbmh9",
+    "priorAttemptNeverRelabelledPass": true,
+    "results": {
+      "tests": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6422-recheck-20261118.rihf_8d3/tests-exit.json",
+        "head": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+        "args": [
+          "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+          "test",
+          "--concurrency=1",
+          "tool/parity/test/web/element_scope_test.dart",
+          "tool/parity/test/web/navigation_element_scope_test.dart",
+          "tool/parity/test/web/stateful_scope_identity_test.dart",
+          "tool/parity/test/web/fade_scroll_timeline_test.dart",
+          "tool/parity/test/web/navigation_caption_gap_ownership_test.dart",
+          "packages/coui_web/test/components/fade_scroll_first_paint_test.dart",
+          "packages/coui_web/test/components/fade_scroll_selection_test.dart",
+          "tool/parity/test/web/form_hint_directional_gap_test.dart",
+          "--reporter=expanded"
+        ],
+        "exit": 0,
+        "seconds": 190.127514042,
+        "sourceUnchanged": true
+      },
+      "contracts": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6422-recheck-20261118.rihf_8d3/contracts-exit.json",
+        "head": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+        "args": [
+          "bash",
+          "scripts/guards/resolver/verify_contracts.sh"
+        ],
+        "exit": 0,
+        "seconds": 80.07932479200002,
+        "sourceUnchanged": true
+      },
+      "analyze": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6422-recheck-20261118.rihf_8d3/analyze-exit.json",
+        "head": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+        "args": [
+          "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+          "analyze",
+          "--fatal-infos",
+          "packages/coui_core/lib/src/component/contracts/validator_hint/validator_hint_style.dart",
+          "packages/coui_web/lib/src/components/form/form_label/form_label_style.dart",
+          "packages/coui_web/lib/src/components/form/validator_hint/validator_hint_style.dart",
+          "tool/parity/test/web/form_hint_directional_gap_test.dart"
+        ],
+        "exit": 0,
+        "seconds": 30.031692709000026,
+        "sourceUnchanged": true
+      },
+      "format": {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6422-recheck-20261118.rihf_8d3/format-exit.json",
+        "head": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+        "args": [
+          "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+          "format",
+          "--output=none",
+          "--set-exit-if-changed",
+          "packages/coui_core/lib/src/component/contracts/validator_hint/validator_hint_style.dart",
+          "packages/coui_web/lib/src/components/form/form_label/form_label_style.dart",
+          "packages/coui_web/lib/src/components/form/validator_hint/validator_hint_style.dart",
+          "tool/parity/test/web/form_hint_directional_gap_test.dart"
+        ],
+        "exit": 0,
+        "seconds": 10.01282766700001,
+        "sourceUnchanged": true
+      }
+    }
+  },
+  "historicalRawReceipts": [
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/permanent-before-final.log",
+      "sha256": "3fcab3d5332cb25d660c091f775db56660260f1a6eb57d382b09b4224ec66f12"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/permanent-after-final.log",
+      "sha256": "21929d24c4810b8405f9c848911d48c3f375d7e828eb70397c21b36751330104"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/existing-web.log",
+      "sha256": "7429b9cdca0c91cab75423ac74317dc1ea75d594c18a12e86650fd2c800eb1ba"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/existing-native.log",
+      "sha256": "b6446e0b765251b61ba220c3e6ba15c23abb09af744c7940cc166a7f22bac93e"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/native-gap.log",
+      "sha256": "ea3502544d34f879efe6081906d55526d06f5b35a3eae19567545acdaf1703e8"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/changed-fatal-final.log",
+      "sha256": "c985e099f6c7c9405da4827468a34054852a0975c9deace0be300975d901947c"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/format-final.log",
+      "sha256": "45677745de22edb703c8d6f33aa97667c853d61fd53a4d91027d6116d8b5d32f"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/token-guard.log",
+      "sha256": "c30d13f17bb7dfbf1b651f8623cd3964d5887cf51842dd8962dc93260d988839"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/contract-guard.log",
+      "sha256": "a9d58bb68c3d274bcfdbf8226416662d76385c999de2c75b11ae60d6fb98e3d7"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/api-contract.log",
+      "sha256": "b3e8300e6e1f9a3835788be5ca97e5a374291aee11ddab3bc3c8cbf229453140"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/owned-reload-run.log",
+      "sha256": "e51285c02b165445890cd1d65d69b626aa5bab71edaede3c27049dfc8005ebae"
+    },
+    {
+      "path": "/tmp/weever-6422-logical-gap-20261118.u8mnpl9v/canonical-ltr-comparison.json",
+      "sha256": "a832cb12056e749e82cc7a602a8ad494111c57f167bf473cb412ab46b3172913"
+    }
+  ],
+  "historicalExistingWebFilesFromRawLog": [
+    "packages/coui_web/test/components/form/form_field_label_row_test.dart",
+    "packages/coui_web/test/components/form/form_field_scope_test.dart",
+    "packages/coui_web/test/components/form/form_label_ladder_test.dart",
+    "packages/coui_web/test/components/form/form_state_announcement_test.dart",
+    "packages/coui_web/test/components/form/input_text_colour_tiers_test.dart",
+    "packages/coui_web/test/components/form/text_field_style_test.dart"
+  ],
+  "scope": {
+    "productPaths": [
+      "packages/coui_core/lib/src/component/contracts/validator_hint/validator_hint_style.dart",
+      "packages/coui_web/lib/src/components/form/form_label/form_label_style.dart",
+      "packages/coui_web/lib/src/components/form/validator_hint/validator_hint_style.dart",
+      "tool/parity/test/web/form_hint_directional_gap_test.dart"
+    ],
+    "executableChanges": "Two Web CSS property names: trailing required carrier margin-inline-start and leading icon carrier margin-inline-end. Core2 wording updates only.",
+    "publicApiChange": false,
+    "designValueChange": false,
+    "nativeRendererChange": false,
+    "domAdditionOrReorder": false,
+    "callerCssOrderingChange": false,
+    "comparisonCriteriaChange": false,
+    "newSdkDependencyLockChange": false
+  },
+  "nativeReuseBinding": {
+    "beforeActualNativeCaptureHead": "01cb65312b5bc96b6025f80cd546a4ab4ff09791",
+    "currentIntegratedHead": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+    "unchangedNativeInputPaths": [
+      {
+        "path": "packages/coui_flutter",
+        "delta": []
+      },
+      {
+        "path": "docs_core",
+        "delta": []
+      },
+      {
+        "path": "tool/parity/src",
+        "delta": []
+      },
+      {
+        "path": "packages/coui_flutter/test/parity",
+        "delta": []
+      },
+      {
+        "path": "tool/browser_launch.dart",
+        "delta": []
+      },
+      {
+        "path": "pubspec.yaml",
+        "delta": []
+      },
+      {
+        "path": "pubspec.lock",
+        "delta": []
+      },
+      {
+        "path": ".fvmrc",
+        "delta": []
+      }
+    ],
+    "coreDifferenceOnlyDocumentation2Names": [
+      "packages/coui_core/lib/src/component/contracts/validator_hint/validator_hint_style.dart"
+    ],
+    "native4ImagesAreExplicit01cbReuse": true,
+    "nativeFreshAt6dcClaimed": false,
+    "web4NeedsCurrentCapture": true,
+    "fieldCatalogAndCurrentDocumentInputsUnchanged": true,
+    "comment": "Native/Core executable definitions, canonical scene factories, Native producer, SDK and lock inputs are unchanged. Native01cb PNG/JSON remain labelled01cb; Web may be freshly captured after resource release."
+  },
+  "limits": [
+    "Custom requiredIndicator16 conditions still have Webgap0 and are not fixed or pinned as intended behavior.",
+    "No fullmatrix execution or175-default-failure reduction claim.",
+    "All four Native/Web default pairs retain raw RGBA differences, without assigning all differences to AA.",
+    "Previous01cb executions and reusedNative4 images remain labelled01cb.",
+    "No additionalPNGuploads, edits, baseline promotion, designer approval or deployment claim.",
+    "Root39 passed isolated same-source execution; the initial interruptedud1rb attempt retains a partial navigation timeout and has no completedpass claim.",
+    "Fresh6dc docs/runtime/Web4 are distinct from the earlier01cb proof. Native4 remains explicit01cb reuse with unchanged Native executable inputs.",
+    "Standard deploy.yaml two-asset copies were applied after the actual hybrid runtime check; the hybrid bundles and source inputs used by the routes were unchanged. No deployment is claimed."
+  ],
+  "schemaVersion": 1,
+  "date": "2026-11-18",
+  "issue": 6422,
+  "pr": 6423,
+  "currentRawReceipts": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/source-binding.json",
+      "sha256": "db1be5dd25610a4c72969f1f7bad8539cfa000805024f2ab38390b24f9e0e43f"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/native-reuse-binding.json",
+      "sha256": "02b18ff4aa335687c050fa393014c524d1630a10e4b8311a6ab85ad04fa3e398"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/source.json",
+      "sha256": "e438364b251968a0e8040dde34820d4968c9797df4ab60589a969eb677040fe3"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/build-process.json",
+      "sha256": "c0d9f935ea382b702008f6502082632421e2048bc62d1d43ae8b168610f92399"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/build-sanity.json",
+      "sha256": "4edd74cab4556a475d9530058b96186cba60dabeed12ed3f9bcf04d0602766f2"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/build-sanity-final.json",
+      "sha256": "8853585cf93dbb4b40f67b1da7488a6fd4644b00eec2615580659dc729fc52fd"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/deploy-artifact-copies.json",
+      "sha256": "28d53aec6d615158169ccfee481b979e7e4915509ccd52e45273a50b77c2d591"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/pubget-receipts.json",
+      "sha256": "fc0933f955ba443ae93bfc290e3b3099dd9ef27e8f5d3c6628bd303c7210d32f"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/manifest-binding.json",
+      "sha256": "560eccdb13fd03e4b473d33733c794d51a3ffc02863c392ed326b6f7134a6339"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/web-current-exit.json",
+      "sha256": "b778c60200bd13195530758791f1b823adc7c913e531b477d3f08c82de39f31f"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/web4-comparison.json",
+      "sha256": "49b34c4da0703ae7bf9894146b0fe3807cb0bc02cb7fe6ddbafde550b80f84cd"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/browser-results.json",
+      "sha256": "6016578c7c6636324bb848d64fdd73725307ec6f1d693d96616bd7ca06c403ad"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/browser-cleanup.json",
+      "sha256": "f557ef947dee2c22235fe7370f234376137d4e2cf36b4e91f51ae04951a10648"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/server-cleanup.json",
+      "sha256": "0e659dced40a7ab1cf9679d86c6f0e53e029d34a473415448784ac718a180615"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/source-hash-proof.json",
+      "sha256": "19d9bd8376865ac340de3599b333bae826784512d4bcfcc442a3c2b0627206ed"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/cleanup-final.json",
+      "sha256": "379ddee6be812fc482f3914585e062cb32e8977f2dcfe08b2709786eeba422a9"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/dependency-after.json",
+      "sha256": "c11000a8e5f9a508959f5de787ac4360263b840c07f5416019b28806fcc7d52c"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/tracked-source-before.json",
+      "sha256": "92b9d39407ab8541d38d59441cbdf35529ef177c11d680434cf727a91b73ffc8"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/tracked-source-after.json",
+      "sha256": "92b9d39407ab8541d38d59441cbdf35529ef177c11d680434cf727a91b73ffc8"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/build-output-hashes.json",
+      "sha256": "3c95326656b987cd613c96b340bbb63efb725921d9cc12b5fdf9f01d942ae697"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6423-final-docs-20261118.4amwv_do/preserved-old-output-proof.json",
+      "sha256": "08bbafdaed7cede86e47b9f00265259b143193aaf243e6216f741a900bc1fd80"
+    }
+  ],
+  "latestReleaseMainBinding": {
+    "actualVerifiedSource": "6dcbaad19b3e364d9186f79c47fddf6431ce56ff",
+    "currentProductHead": "226141de9f3916776e63ef1ed5f13d231c63bff0",
+    "main": "b909d9b76f29fe25aa74e6f7628d42a971a8daf1",
+    "upstreamOnlyVersionAndChangelog7": [
+      ".release-please-manifest.json",
+      "packages/coui_core/CHANGELOG.md",
+      "packages/coui_core/pubspec.yaml",
+      "packages/coui_flutter/CHANGELOG.md",
+      "packages/coui_flutter/pubspec.yaml",
+      "packages/coui_web/CHANGELOG.md",
+      "packages/coui_web/pubspec.yaml"
+    ],
+    "own4Same": [
+      {
+        "path": "packages/coui_core/lib/src/component/contracts/validator_hint/validator_hint_style.dart",
+        "sha256": "de078e23a1c69bcf537b4bab4528e8fe31d1bbe93d798d6783dfe2a66f9b27b4",
+        "same": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/form_label/form_label_style.dart",
+        "sha256": "e502a5b75c01e059e96fef0d3269385021d01b495a3a22d40799b14dd9e35d2f",
+        "same": true
+      },
+      {
+        "path": "packages/coui_web/lib/src/components/form/validator_hint/validator_hint_style.dart",
+        "sha256": "a3ff0a23a19c9ccb2c0e09e1f0d1fadff8786cc8480be0a7af6fcc55b9e3015f",
+        "same": true
+      },
+      {
+        "path": "tool/parity/test/web/form_hint_directional_gap_test.dart",
+        "sha256": "d32eed594bfd7f6e874e2f51fea129b0871f06ea13e49f7eb2174e10aa5f56d4",
+        "same": true
+      }
+    ],
+    "pubgetExit": 0,
+    "packageEntries": 232,
+    "allConfigTuplesSame": true,
+    "lockHashBeforeAfter": "3503684b485aa82c20d5aae09870e92c44a1b5d579173114470266f34187be82",
+    "docs39AndWeb4ReusedExplicitlyNotRerunAfterVersionMetadata": true,
+    "elapsedSeconds": 2.312157792
+  }
+}

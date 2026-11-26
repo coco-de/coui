@@ -1,0 +1,123 @@
+{
+  "_comment": [
+    "Shared Skeleton pulse vectors. Read by coui_core (CoreColor.scaleAlpha),",
+    "coui_flutter (the alpha the widget paints) and coui_web (the --pulse-from",
+    "/ --pulse-to it emits) tests, so a pulse that drifts on one platform fails",
+    "against the same numbers the other two produce.",
+    "",
+    "The pulse opacity is MULTIPLIED into the fill's own alpha: restAlpha is",
+    "fill alpha x fromOpacity, peakAlpha is fill alpha x toOpacity. A raw fill",
+    "rounds to a whole alpha byte (CoreColor.scaleAlpha), which is why",
+    "0x33000000 rests at 26/255 rather than 25.5/255.",
+    "",
+    "fill: null is the variant default (an opaque token); {token, opacity} is a",
+    "token fill; {argb} is a raw fill. Token fills assume an opaque scheme",
+    "colour, which every CoUI preset is."
+  ],
+  "cases": [
+    {
+      "name": "variant default (opaque token)",
+      "fill": null,
+      "fromOpacity": 0.7,
+      "toOpacity": 1.0,
+      "restAlpha": 0.7,
+      "peakAlpha": 1.0
+    },
+    {
+      "name": "transparent sentinel",
+      "fill": { "argb": "0x00000000" },
+      "fromOpacity": 0.5,
+      "toOpacity": 1.0,
+      "restAlpha": 0.0,
+      "peakAlpha": 0.0
+    },
+    {
+      "name": "token at 40%",
+      "fill": { "token": "primary", "opacity": 0.4 },
+      "fromOpacity": 0.5,
+      "toOpacity": 1.0,
+      "restAlpha": 0.2,
+      "peakAlpha": 0.4
+    },
+    {
+      "name": "token at 40%, custom pulse",
+      "fill": { "token": "primary", "opacity": 0.4 },
+      "fromOpacity": 0.2,
+      "toOpacity": 0.9,
+      "restAlpha": 0.08,
+      "peakAlpha": 0.36
+    },
+    {
+      "name": "raw at 40%",
+      "fill": { "argb": "0x66000000" },
+      "fromOpacity": 0.5,
+      "toOpacity": 1.0,
+      "restAlpha": 0.2,
+      "peakAlpha": 0.4
+    },
+    {
+      "name": "raw at 20% (byte rounding)",
+      "fill": { "argb": "0x33000000" },
+      "fromOpacity": 0.5,
+      "toOpacity": 1.0,
+      "restAlpha": 0.10196078431372549,
+      "peakAlpha": 0.2
+    }
+  ],
+  "timelines": {
+    "_comment": [
+      "Where the pulse is at a point in its period. Read by coui_core (the",
+      "Core default and a cubic-bezier evaluation), coui_flutter (the alpha",
+      "the controller paints at that time) and coui_web (the period, curve",
+      "and keyframes it emits). `t` is the fraction of one full pulse, rest",
+      "-> peak -> rest; `progress` is 0 at the rest end and 1 at the peak, so",
+      "the painted alpha is restAlpha + (peakAlpha - restAlpha) x progress.",
+      "",
+      "Each half eases FORWARD with the curve (rest -> peak, then peak ->",
+      "rest), the way a CSS timing function applies per keyframe interval.",
+      "The second case uses an asymmetric curve: a symmetric one (the",
+      "default) reads the same played forward or backward, so it could not",
+      "tell the two apart."
+    ],
+    "cases": [
+      {
+        "name": "default",
+        "periodMs": 2000,
+        "curve": [0.42, 0, 0.58, 1],
+        "samples": [
+        { "t": 0.0, "progress": 0.0 },
+        { "t": 0.1, "progress": 0.08166 },
+        { "t": 0.2, "progress": 0.331884 },
+        { "t": 0.25, "progress": 0.5 },
+        { "t": 0.3, "progress": 0.668116 },
+        { "t": 0.4, "progress": 0.91834 },
+        { "t": 0.5, "progress": 1.0 },
+        { "t": 0.6, "progress": 0.91834 },
+        { "t": 0.7, "progress": 0.668116 },
+        { "t": 0.75, "progress": 0.5 },
+        { "t": 0.8, "progress": 0.331884 },
+        { "t": 0.9, "progress": 0.08166 }
+        ]
+      },
+      {
+        "name": "override: 1200 ms, enter curve",
+        "periodMs": 1200,
+        "curve": [0, 0, 0.58, 1],
+        "samples": [
+        { "t": 0.0, "progress": 0.0 },
+        { "t": 0.1, "progress": 0.308366 },
+        { "t": 0.2, "progress": 0.57088 },
+        { "t": 0.25, "progress": 0.684643 },
+        { "t": 0.3, "progress": 0.785139 },
+        { "t": 0.4, "progress": 0.937718 },
+        { "t": 0.5, "progress": 1.0 },
+        { "t": 0.6, "progress": 0.691634 },
+        { "t": 0.7, "progress": 0.42912 },
+        { "t": 0.75, "progress": 0.315357 },
+        { "t": 0.8, "progress": 0.214861 },
+        { "t": 0.9, "progress": 0.062282 }
+        ]
+      }
+    ]
+  }
+}

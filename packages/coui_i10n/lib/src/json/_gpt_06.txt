@@ -1,0 +1,235 @@
+### Meta ###
+From: <ko> lib/src/json/ko.i18n.json
+To: <pt> lib/src/json/pt.i18n.json
+
+### Tokens ###
+Input: 683
+Output: 682
+Total: 1365
+
+### Conversation ###
+
+>> System:
+The user wants to internationalize the app. The user will provide you with a JSON file containing the Korean strings.
+You will translate it to Portuguese.
+Parameters are interpolated with {parameter}.
+Linked translations are denoted with the "@:path0.path1" syntax.
+
+Here is the app description. Respect this context when translating:
+"coui_flutter"는 90개 이상의 위젯을 제공하는 Flutter UI 컴포넌트 라이브러리입니다.
+재사용 가능한 UI 컴포넌트와 일관된 디자인 시스템을 제공하여
+Flutter 앱 개발을 더 빠르고 효율적으로 만들어줍니다.
+이 번역 파일은 문서 사이트의 컴포넌트 예제 및 설명을 다국어로 제공하기 위한 것입니다.
+
+>> User:
+{"widgetbook":{"dialog":{"basic_title":"기본 다이얼로그","basic_content":"제목과 내용이 있는 간단한 다이얼로그입니다.","show_basic":"기본 표시","confirm_title":"확인","confirm_content":"정말 이 작업을 수행하시겠습니까?","show_confirmation":"확인 표시","warning_title":"경고","show_warning":"경고 표시"},"popover":{"content_title":"팝오버 제목","content_description":"사용자 정의 가능한 콘텐츠가 있는 팝오버입니다."},"theme_preview":{"title":"테마 미리보기","description":"모든 테마 토큰과 컴포넌트 스타일의 종합적인 개요","color_palette":"색상 팔레트","brand_colors":"브랜드 색상","base_colors":"기본 색상","status_colors":"상태 색상","buttons":"버튼","primary_button":"Primary","secondary_button":"Secondary","outline_button":"Outline","ghost_button":"Ghost","destructive_button":"Destructive","disabled_button":"비활성화","cards":"카드","card_title":"카드 제목","card_description":"샘플 카드 설명입니다.","surface_card":"Surface 카드","filled_variant":"배경이 있는 filled 스타일","form_elements":"폼 요소","text_input_placeholder":"텍스트를 입력하세요...","checkbox_checked":"선택됨","checkbox_unchecked":"선택 안됨","toggle_on":"켜짐","toggle_off":"꺼짐","alerts":"알림","info_alert":"정보 알림","info_alert_message":"안내 메시지입니다.","error_alert":"오류 알림","error_alert_message":"문제가 발생했습니다.","badges_chips":"배지 & 칩","primary_badge":"Primary","secondary_badge":"Secondary","outline_badge":"Outline","destructive_badge":"Destructive","chip_example":"즐겨찾기","typography":"타이포그래피","heading_1":"제목 1","heading_2":"제목 2","heading_3":"제목 3","heading_4":"제목 4","body_text":"일반 두께의 본문 텍스트입니다.","small_text":"캡션용 작은 텍스트입니다.","muted_text":"부가 정보를 위한 흐린 텍스트입니다.","bold_text":"강조를 위한 굵은 텍스트입니다.","spacing_radius":"간격 & 둥글기","border_radius":"테두리 둥글기","loading_states":"로딩 상태"}}}
+
+>> Assistant:
+```json
+{
+  "widgetbook": {
+    "dialog": {
+      "basic_title": "Diálogo Básico",
+      "basic_content": "Um diálogo simples com título e conteúdo.",
+      "show_basic": "Mostrar Básico",
+      "confirm_title": "Confirmar",
+      "confirm_content": "Você realmente deseja realizar esta ação?",
+      "show_confirmation": "Mostrar Confirmação",
+      "warning_title": "Aviso",
+      "show_warning": "Mostrar Aviso"
+    },
+    "popover": {
+      "content_title": "Título do Popover",
+      "content_description": "Popover com conteúdo personalizável."
+    },
+    "theme_preview": {
+      "title": "Pré-visualização do Tema",
+      "description": "Uma visão abrangente de todos os tokens de tema e estilos de componentes.",
+      "color_palette": "Paleta de Cores",
+      "brand_colors": "Cores da Marca",
+      "base_colors": "Cores Base",
+      "status_colors": "Cores de Status",
+      "buttons": "Botões",
+      "primary_button": "Primário",
+      "secondary_button": "Secundário",
+      "outline_button": "Contorno",
+      "ghost_button": "Fantasma",
+      "destructive_button": "Destrutivo",
+      "disabled_button": "Desativado",
+      "cards": "Cartões",
+      "card_title": "Título do Cartão",
+      "card_description": "Descrição de exemplo do cartão.",
+      "surface_card": "Cartão Superfície",
+      "filled_variant": "Estilo preenchido com fundo",
+      "form_elements": "Elementos de Formulário",
+      "text_input_placeholder": "Digite o texto...",
+      "checkbox_checked": "Selecionado",
+      "checkbox_unchecked": "Não Selecionado",
+      "toggle_on": "Ligado",
+      "toggle_off": "Desligado",
+      "alerts": "Alertas",
+      "info_alert": "Alerta de Informação",
+      "info_alert_message": "Esta é uma mensagem informativa.",
+      "error_alert": "Alerta de Erro",
+      "error_alert_message": "Ocorreu um problema.",
+      "badges_chips": "Badges & Chips",
+      "primary_badge": "Primário",
+      "secondary_badge": "Secundário",
+      "outline_badge": "Contorno",
+      "destructive_badge": "Destrutivo",
+      "chip_example": "Favorito",
+      "typography": "Tipografia",
+      "heading_1": "Título 1",
+      "heading_2": "Título 2",
+      "heading_3": "Título 3",
+      "heading_4": "Título 4",
+      "body_text": "Texto do corpo com peso normal.",
+      "small_text": "Texto pequeno para legenda.",
+      "muted_text": "Texto desfocado para informações adicionais.",
+      "bold_text": "Texto em negrito para ênfase.",
+      "spacing_radius": "Espaçamento & Arredondamento",
+      "border_radius": "Arredondamento de Bordas",
+      "loading_states": "Estados de Carregamento"
+    }
+  }
+}
+```
+
+### JSON ###
+Input:
+{
+  "widgetbook": {
+    "dialog": {
+      "basic_title": "기본 다이얼로그",
+      "basic_content": "제목과 내용이 있는 간단한 다이얼로그입니다.",
+      "show_basic": "기본 표시",
+      "confirm_title": "확인",
+      "confirm_content": "정말 이 작업을 수행하시겠습니까?",
+      "show_confirmation": "확인 표시",
+      "warning_title": "경고",
+      "show_warning": "경고 표시"
+    },
+    "popover": {
+      "content_title": "팝오버 제목",
+      "content_description": "사용자 정의 가능한 콘텐츠가 있는 팝오버입니다."
+    },
+    "theme_preview": {
+      "title": "테마 미리보기",
+      "description": "모든 테마 토큰과 컴포넌트 스타일의 종합적인 개요",
+      "color_palette": "색상 팔레트",
+      "brand_colors": "브랜드 색상",
+      "base_colors": "기본 색상",
+      "status_colors": "상태 색상",
+      "buttons": "버튼",
+      "primary_button": "Primary",
+      "secondary_button": "Secondary",
+      "outline_button": "Outline",
+      "ghost_button": "Ghost",
+      "destructive_button": "Destructive",
+      "disabled_button": "비활성화",
+      "cards": "카드",
+      "card_title": "카드 제목",
+      "card_description": "샘플 카드 설명입니다.",
+      "surface_card": "Surface 카드",
+      "filled_variant": "배경이 있는 filled 스타일",
+      "form_elements": "폼 요소",
+      "text_input_placeholder": "텍스트를 입력하세요...",
+      "checkbox_checked": "선택됨",
+      "checkbox_unchecked": "선택 안됨",
+      "toggle_on": "켜짐",
+      "toggle_off": "꺼짐",
+      "alerts": "알림",
+      "info_alert": "정보 알림",
+      "info_alert_message": "안내 메시지입니다.",
+      "error_alert": "오류 알림",
+      "error_alert_message": "문제가 발생했습니다.",
+      "badges_chips": "배지 & 칩",
+      "primary_badge": "Primary",
+      "secondary_badge": "Secondary",
+      "outline_badge": "Outline",
+      "destructive_badge": "Destructive",
+      "chip_example": "즐겨찾기",
+      "typography": "타이포그래피",
+      "heading_1": "제목 1",
+      "heading_2": "제목 2",
+      "heading_3": "제목 3",
+      "heading_4": "제목 4",
+      "body_text": "일반 두께의 본문 텍스트입니다.",
+      "small_text": "캡션용 작은 텍스트입니다.",
+      "muted_text": "부가 정보를 위한 흐린 텍스트입니다.",
+      "bold_text": "강조를 위한 굵은 텍스트입니다.",
+      "spacing_radius": "간격 & 둥글기",
+      "border_radius": "테두리 둥글기",
+      "loading_states": "로딩 상태"
+    }
+  }
+}
+
+Output:
+{
+  "widgetbook": {
+    "dialog": {
+      "basic_title": "Diálogo Básico",
+      "basic_content": "Um diálogo simples com título e conteúdo.",
+      "show_basic": "Mostrar Básico",
+      "confirm_title": "Confirmar",
+      "confirm_content": "Você realmente deseja realizar esta ação?",
+      "show_confirmation": "Mostrar Confirmação",
+      "warning_title": "Aviso",
+      "show_warning": "Mostrar Aviso"
+    },
+    "popover": {
+      "content_title": "Título do Popover",
+      "content_description": "Popover com conteúdo personalizável."
+    },
+    "theme_preview": {
+      "title": "Pré-visualização do Tema",
+      "description": "Uma visão abrangente de todos os tokens de tema e estilos de componentes.",
+      "color_palette": "Paleta de Cores",
+      "brand_colors": "Cores da Marca",
+      "base_colors": "Cores Base",
+      "status_colors": "Cores de Status",
+      "buttons": "Botões",
+      "primary_button": "Primário",
+      "secondary_button": "Secundário",
+      "outline_button": "Contorno",
+      "ghost_button": "Fantasma",
+      "destructive_button": "Destrutivo",
+      "disabled_button": "Desativado",
+      "cards": "Cartões",
+      "card_title": "Título do Cartão",
+      "card_description": "Descrição de exemplo do cartão.",
+      "surface_card": "Cartão Superfície",
+      "filled_variant": "Estilo preenchido com fundo",
+      "form_elements": "Elementos de Formulário",
+      "text_input_placeholder": "Digite o texto...",
+      "checkbox_checked": "Selecionado",
+      "checkbox_unchecked": "Não Selecionado",
+      "toggle_on": "Ligado",
+      "toggle_off": "Desligado",
+      "alerts": "Alertas",
+      "info_alert": "Alerta de Informação",
+      "info_alert_message": "Esta é uma mensagem informativa.",
+      "error_alert": "Alerta de Erro",
+      "error_alert_message": "Ocorreu um problema.",
+      "badges_chips": "Badges & Chips",
+      "primary_badge": "Primário",
+      "secondary_badge": "Secundário",
+      "outline_badge": "Contorno",
+      "destructive_badge": "Destrutivo",
+      "chip_example": "Favorito",
+      "typography": "Tipografia",
+      "heading_1": "Título 1",
+      "heading_2": "Título 2",
+      "heading_3": "Título 3",
+      "heading_4": "Título 4",
+      "body_text": "Texto do corpo com peso normal.",
+      "small_text": "Texto pequeno para legenda.",
+      "muted_text": "Texto desfocado para informações adicionais.",
+      "bold_text": "Texto em negrito para ênfase.",
+      "spacing_radius": "Espaçamento & Arredondamento",
+      "border_radius": "Arredondamento de Bordas",
+      "loading_states": "Estados de Carregamento"
+    }
+  }
+}

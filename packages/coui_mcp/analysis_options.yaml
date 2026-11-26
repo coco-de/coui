@@ -1,0 +1,26 @@
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
+include: package:very_good_analysis/analysis_options.yaml
+
+##
+# 이 패키지는 루트 `analysis_options.yaml` 을 include 하지 않으므로 포매터를
+# 자기 파일에 명시한다 — very_good_analysis 11 의 기본값 `automate` 를 상속하면
+# `dart format` 이 이 트리만 다른 모양으로 접는다. 루트와 같은 값이다.
+##
+formatter:
+  trailing_commas: preserve
+  page_width: 80
+
+linter:
+  rules:
+    # Sequential `_server.registerTool(...)` / `registerResource(...)` builder
+    # registrations are intentionally explicit — one logical registration per
+    # statement (clearer diffs / readability) rather than one long cascade.
+    cascade_invocations: false

@@ -1,0 +1,110 @@
+{
+  "_comment": [
+    "Shared rows for surfaceRefractionBrowserSupported: a user agent, and whether that browser composites an SVG filter named in backdrop-filter.",
+    "Read by coui_core (the predicate itself) and by the Chrome probes in tool/parity, which load the shipped Web runtime and host under each user agent and read back what the surface's backdrop-filter became - so a browser the table says cannot draw the filter is handed none, and one it says can is.",
+    "renders is true only for Blink. WebKit accepts url() in a backdrop-filter list and then draws nothing for a list that names a filter, the surface's own blur included (Safari 27.0 on macOS, measured in a real window: a pane styled blur(10px) url(#f) from the start leaves the pixels behind it as none does, blur(10px) alone changes them all; a pane that was drawn with its chain first and has the reference appended keeps that layer until the browser builds it again - hidden and shown, or inserted again - and then draws nothing). CSS.supports says true, which is why the answer is read off the user agent. Firefox is recorded as behaving alike and has not been measured.",
+    "The user agents are the shapes each engine family sends. The Safari, HeadlessChrome and WebKit 26.6 rows are the strings those browsers reported when measured. Chrome, Edge and Firefox on iOS run WebKit and say CriOS, EdgiOS and FxiOS, none of which contains Chrome/."
+  ],
+  "cases": [
+    {
+      "name": "Chrome on macOS",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+      "renders": true
+    },
+    {
+      "name": "Chrome on Windows",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+      "renders": true
+    },
+    {
+      "name": "Chrome on Linux",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+      "renders": true
+    },
+    {
+      "name": "Chrome on an Android tablet",
+      "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-X520) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "renders": true
+    },
+    {
+      "name": "Headless Chrome (what the probes drive)",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+      "renders": true
+    },
+    {
+      "name": "Chromium on Linux",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/153.0.0.0 Chrome/153.0.0.0 Safari/537.36",
+      "renders": true
+    },
+    {
+      "name": "Edge on Windows",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 Edg/153.0.0.0",
+      "renders": true
+    },
+    {
+      "name": "Edge on Android",
+      "userAgent": "Mozilla/5.0 (Linux; Android 16; Pixel 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36 EdgA/153.0.0.0",
+      "renders": true
+    },
+    {
+      "name": "Opera on macOS",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36 OPR/118.0.0.0",
+      "renders": true
+    },
+    {
+      "name": "Samsung Internet",
+      "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-S938B) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/29.0 Chrome/141.0.0.0 Mobile Safari/537.36",
+      "renders": true
+    },
+    {
+      "name": "Android WebView",
+      "userAgent": "Mozilla/5.0 (Linux; Android 16; Pixel 10 Build/CP1A.260105.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/153.0.0.0 Mobile Safari/537.36",
+      "renders": true
+    },
+    {
+      "name": "Safari 27.0 on macOS (measured)",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0 Safari/605.1.15",
+      "renders": false
+    },
+    {
+      "name": "Safari 26.6 as Playwright's WebKit reports it",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15",
+      "renders": false
+    },
+    {
+      "name": "Safari on iPhone",
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 27_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0 Mobile/15E148 Safari/604.1",
+      "renders": false
+    },
+    {
+      "name": "Chrome on iPhone (WebKit, not Blink)",
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 27_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/153.0.0.0 Mobile/15E148 Safari/604.1",
+      "renders": false
+    },
+    {
+      "name": "Edge on iPhone (WebKit, not Blink)",
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 27_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) EdgiOS/153.0.0.0 Mobile/15E148 Safari/605.1.15",
+      "renders": false
+    },
+    {
+      "name": "Firefox on iPhone (WebKit, not Gecko)",
+      "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 27_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/150.0 Mobile/15E148 Safari/605.1.15",
+      "renders": false
+    },
+    {
+      "name": "Firefox on macOS",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:150.0) Gecko/20100101 Firefox/150.0",
+      "renders": false
+    },
+    {
+      "name": "Firefox on Android",
+      "userAgent": "Mozilla/5.0 (Android 16; Mobile; rv:150.0) Gecko/150.0 Firefox/150.0",
+      "renders": false
+    },
+    {
+      "name": "no navigator (a server)",
+      "userAgent": "",
+      "renders": false
+    }
+  ]
+}

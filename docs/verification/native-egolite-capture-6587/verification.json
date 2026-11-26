@@ -1,0 +1,348 @@
+{
+  "issue": 6587,
+  "kind": "Internal measurement-tool transport verification; no component UI change",
+  "implementation": {
+    "head": "961170ac1dcf883f5ebeed853a86316afc7fb073",
+    "base": "ee4f3b4309b5722587d0320e5e07fb379f625fd2",
+    "tree": "0ec7c68599beb6b0b84455b5ad8f8adc58c5d8b1",
+    "files": {
+      "tool/parity/capture_egolite.dart": "704a33a6a20c8643ab379e3f0b5d39596be89da81cc22ffaf1a5ba6998ac318d",
+      "tool/parity/src/web/computed_style_probe.dart": "cdafa56adbd253bada0c2e78429e50018efb66067b1d77d615deea83c9b50b38",
+      "tool/parity/src/web/element_capture.dart": "422763672c58446d5309c7821cf0a287a9eb770b178fb7904d80d5cc159347df",
+      "tool/parity/src/web/web_capture_backend.dart": "170936467d25dcb97698da48649fbb79c8cfa3400b3374045ae8368ad679600f",
+      "tool/parity/src/web/ego_capture_backend.dart": "595531759c91114f60d717d1b9c26ad933f8b584f98fc36a8ec03025c167dc97",
+      "tool/parity/src/web/ego_capture_transport.mjs": "e0fbf2066ea5fc2ccb43bc81b640acab6378f104aca6a811bc0688eda53a809a",
+      "tool/parity/test/web/ego_capture_backend_test.dart": "857493098981bd0d6c85413bb375dfcc470b9cb21d80f05f1b8ea2b8df36010c"
+    },
+    "productOrCorePublicAPIChanges": 0,
+    "baselineCriteriaThresholdChanges": 0
+  },
+  "existingExecutionBinding": {
+    "DartFormatAndFatalInfos": {
+      "sourceReceipt": "evidence/Web/implementation/integrated-ee4-final/exit.json",
+      "DartFiles": 6,
+      "formatExit": 0,
+      "formatChanges": 0,
+      "fatalInfosExit": 0,
+      "fatalSeconds": 32.465676458000004
+    },
+    "pureTests": {
+      "pass": 12,
+      "exit": 0,
+      "seconds": 11.795612291999994,
+      "scope": "Geometry, clip, stage crop, missing/degenerate input, HTTP-image classification, and2 owned-process cancellation tests; no browser mocks or live rendering proof."
+    },
+    "bindingTo961": "These six Dart bodies/test closure are byte exact at961; the later Node-only metrics fix has its own syntax exit0 and fresh A2 execution. Earlier executions are not relabeled as fresh961 tests.",
+    "NodeMetricsFixSyntaxExit": 0
+  },
+  "canonicalPolicyPreservation": {
+    "computedProbeScriptSHA256": "cbab7e4508b62c4c127303096d67c36ead7bfc2ef9be877f384e857eca7c988b",
+    "privateProbeJSLiteralBytesExact": true,
+    "readinessAndContextScriptLiteralsExact": true,
+    "pinnedPuppeteer": "3.25.1",
+    "clip": "Actual DOM.getBoxModel border quad, all-corner bounds and scroll, then existing Dart half-rounding policy; no JS geometry approximation.",
+    "existingElementCaptureBodyAndCaptureBodyHelperUnchanged": true,
+    "stage": "One stage PNG; existing Dart body-column crop and original alignment checks/tolerance unchanged. A2 stage800x675 produces body320x675 from columns240..559, all675rows RGBA exact.",
+    "existingPuppeteerCaptureCLIUnchanged": true,
+    "wholeModifiedHelperFilesByteExactClaim": false
+  },
+  "A2": {
+    "source": "961170ac1dcf883f5ebeed853a86316afc7fb073",
+    "captureExit": 0,
+    "captureSeconds": 23.710144875000005,
+    "manifestAll": 3904,
+    "manifestDefault": 834,
+    "selectedAndFresh": 4,
+    "JSON": 4,
+    "rootPNG": 4,
+    "stagePNG": 1,
+    "rawReuse": 0,
+    "keysRoles": {
+      "refresh-trigger-default-light-defaultStyle": [
+        "root"
+      ],
+      "number-ticker-default-light-defaultStyle": [
+        "root"
+      ],
+      "card-image-default-light-defaultStyle": [
+        "root"
+      ],
+      "mockup-phone-light-defaultStyle": [
+        "root",
+        "stage"
+      ]
+    },
+    "raws": [
+      {
+        "key": "card-image-default-light-defaultStyle",
+        "file": "card-image-default-light-defaultStyle.web.json",
+        "sha256": "e18ee73959154fad390cdd2d6e1ecd73ed1f35500418afbb1f6d4494ed47ddbe",
+        "roles": [
+          "root"
+        ]
+      },
+      {
+        "key": "mockup-phone-light-defaultStyle",
+        "file": "mockup-phone-light-defaultStyle.web.json",
+        "sha256": "3303867e4f5eb60470754eb0ca00494471a2d53d737ac1c22a6215dbea6afd18",
+        "roles": [
+          "root",
+          "stage"
+        ]
+      },
+      {
+        "key": "number-ticker-default-light-defaultStyle",
+        "file": "number-ticker-default-light-defaultStyle.web.json",
+        "sha256": "e8815409d4daa2db61d00804a1a9d75924dd91418b14145e2a4afb4213028adf",
+        "roles": [
+          "root"
+        ]
+      },
+      {
+        "key": "refresh-trigger-default-light-defaultStyle",
+        "file": "refresh-trigger-default-light-defaultStyle.web.json",
+        "sha256": "51401e342fb41c1f8841864c7680ea06a0fd337fa33dccd64129a9fc291790ef",
+        "roles": [
+          "root"
+        ]
+      }
+    ],
+    "PNGs": [
+      {
+        "file": "refresh-trigger-default-light-defaultStyle.web.png",
+        "width": 800,
+        "height": 258,
+        "bytes": 5063,
+        "sha256": "d80183706d1c9f8f0e3649736a111e67e1609b6d00d6580a2df8388dfdb04009"
+      },
+      {
+        "file": "number-ticker-default-light-defaultStyle.web.png",
+        "width": 50,
+        "height": 28,
+        "bytes": 1503,
+        "sha256": "f043f55aaab1d50b5b9f443f119a0d98c6600ee12d6f6e33855dd6fd023a9b0f"
+      },
+      {
+        "file": "card-image-default-light-defaultStyle.web.png",
+        "width": 240,
+        "height": 231,
+        "bytes": 4270,
+        "sha256": "4356f26ebf347b9d89309207c98822fec5328afcb027f41551c127a48b9276ea"
+      },
+      {
+        "file": "mockup-phone-light-defaultStyle.web.png",
+        "width": 320,
+        "height": 675,
+        "bytes": 8340,
+        "sha256": "c0c3bb90237a9fe165e281d69be6884b1d2cc628877f97e61d10947e55b29416"
+      },
+      {
+        "file": "mockup-phone-light-defaultStyle.stage.web.png",
+        "width": 800,
+        "height": 675,
+        "bytes": 13316,
+        "sha256": "b11b83821cc8e4f8de05b856e3729a4eb56894a3d2c7919fbecb144a9f5db51d"
+      }
+    ],
+    "allRolesNonNull": true,
+    "fileNavigationAndActualOfflineCases": 4,
+    "captureViewport": {
+      "width": 800,
+      "height": 1200,
+      "devicePixelRatio": 1
+    },
+    "runtime": "NumberTicker client-settled text1234",
+    "networkImage": {
+      "key": "card-image-default-light-defaultStyle",
+      "HTTPImageRequests": 1,
+      "networkImageSHA": "f8b8a9ba0bf7ad9dca7acf0a8e3366301260f1399970eb2c64ef4c0a071cf1b8",
+      "canonicalDecodeReadinessCompleted": true,
+      "fulfillSourcePolicy": {
+        "responseCode": 200,
+        "Content-Type": "image/png",
+        "access-control-allow-origin": "*"
+      },
+      "responsePolicyEvidence": "frozen native transport source plus successful Fetch.fulfillRequest and canonical decode readiness; not a separate CORS canvas readback"
+    },
+    "engine": "Managed Ego Lite native CDP / Chrome156.0.0.0",
+    "rasterBackend": "GPU/software unknown; earlier screenshot colour discrepancy cause unestablished",
+    "trackedSourceBeforeAfter": {
+      "count": 24998,
+      "workerRecordedBytesModesLinksExact": true,
+      "tool7AndMetadataConfigGraphLockRawExact": true
+    },
+    "cleanup": {
+      "all4WholeObservedBeforeAfterExact": true,
+      "FetchOfflineRemoteHandlesRestored": true,
+      "metricsStrategy": "clear-first, require whole observed environment equality; explicit fallback only when clearing differs",
+      "explicitFallbackActuallyUsed": false,
+      "terminalNativeStopActuallyInduced": false,
+      "hardKills": 0,
+      "hiddenPriorEmulationIdentityReconstructed": false,
+      "ownJobReclaimed": true,
+      "runtimeAndMetadataEOF": true,
+      "existingSpaceFinishOwner": "Root"
+    }
+  },
+  "A1Preserved": {
+    "source": "7f5bd713a332efa8fd77b0840d583c4510fc474c",
+    "exit": 2,
+    "attempted": 1,
+    "success": 0,
+    "unattempted": 3,
+    "officialJSON": 0,
+    "officialPNG": 0,
+    "failure": "Strict metrics restore detected screen.availHeight1050→1080.",
+    "provisionalWorkerPNG": "Not retained; reclaimed with owned scratch. Never salvaged, regenerated, or counted as official success.",
+    "separateRecovery": "One actual clearDeviceMetricsOverride restored the original entire environment exactly (including availHeight1050); it is not a successful canonical case.",
+    "correction": "Node-only clear-first restoration then strict readback, with explicit viewport/DPR fallback retaining native work area; A2 is a fresh source961 run."
+  },
+  "independentReview": {
+    "A2SHA256": "8c97fb7ebc2a83d94c7eea521720ee9a43aa3ec12f549be2ca847376d2bdbf23",
+    "A2Verdict": "Bounded four-case transport acceptance; findings[]; not complete parity or publication signoff.",
+    "indexedArtifactsIndependentlyVerified": {
+      "main": 24,
+      "worker": 32
+    },
+    "sourceScope": "Seven actual Git blobs and full tracked pathset checked; not an independent rehash of all24998 Git blob contents.",
+    "rootOriginal5PNGVisualReviewSHA256": "c3e3e345705908944c4bd607cb0e67b7d11160ee6f24da29f8607d829dc1fd66"
+  },
+  "limits": [
+    "Full834 capture was not run; no new overall pixel/property pass/fail count.",
+    "Chrome156 native Ego output is not asserted equivalent to historical Chrome150 transport or raster output; GPU/software mode and earlier screenshot color discrepancy cause remain unknown.",
+    "Actual selected roles were all non-null. Live absent/null selector and arbitrary HTTP non-image requests:0. Their source/pure coverage is distinct.",
+    "Explicit metrics fallback and terminal native/safety-stop paths were not induced in A2. Process-only cancellation tests do not prove browser restoration.",
+    "200/PNG/CORS* image policy is source-bound plus one actual successful Fetch.fulfillRequest/decode, without a separate cross-origin canvas readback.",
+    "Restoration covers observed supported desktop viewport/DPR/screen/visual state, not unknown prior hidden override identity."
+  ],
+  "reviewOnlyDocumentationWork": {
+    "newTestsBuildsOrBrowserCalls": 0,
+    "implementationEdits": 0,
+    "committedByDocumentationAuthor": false
+  },
+  "UIEvidence": {
+    "componentUIPathsChanged": 0,
+    "prEvidenceImages": "N/A — internal tool only;5 diagnostic originals retained and viewed, no PNG committed",
+    "docsSiteBuild": "N/A — no product/docs-site UI path changed"
+  },
+  "artifacts": {
+    "bundle": "weever-egolite-capture-boundary-476w4vdq",
+    "pathConvention": "Paths below are relative to the retained artifact bundle; SHA256 identifies content independently of machine location. Raw outputs are not committed or promoted as baselines.",
+    "refs": [
+      {
+        "artifact": "evidence/Web/implementation/acceptance4-attempt2/final-handoff.json",
+        "bytes": 4810,
+        "sha256": "8eaf07533a306583709d7ac657dfa9f516a05f1f530a6f5490be0214e9ca6f66"
+      },
+      {
+        "artifact": "evidence/Web/implementation/acceptance4-attempt2/artifact-index.json",
+        "bytes": 7131,
+        "sha256": "81a62a29fc5f3db58b533a089d6f17d4e330f868714ded253753f5cab6cddece"
+      },
+      {
+        "artifact": "evidence/Web/implementation/acceptance4-attempt2/worker-artifact-index.json",
+        "bytes": 6588,
+        "sha256": "fef90bebf45dc9980467eaec93e48a417430029e461402dafed10babbf8b6a13"
+      },
+      {
+        "artifact": "evidence/Web/implementation/acceptance4-attempt2/manifest-four.json",
+        "bytes": 3936,
+        "sha256": "f2d7305d2cbad355d56bbf2478d835f298e6361df24161ba20e95266cec16f52"
+      },
+      {
+        "artifact": "evidence/Web/implementation/acceptance4-attempt2/capture-exit.json",
+        "bytes": 769,
+        "sha256": "29e721759fabdcb9833af2aab423d6f6cd788395d8a5d84aa96769ad856e317b"
+      },
+      {
+        "artifact": "evidence/Web/implementation/acceptance4-attempt2/cleanup-handoff.json",
+        "bytes": 505,
+        "sha256": "b9c1803a648e9d54dffcee11292bfe678113edf66bfa7751242fef6c7ed77c9f"
+      },
+      {
+        "artifact": "evidence/Web/implementation/acceptance4-attempt2/integrity-readback.json",
+        "bytes": 5299,
+        "sha256": "8e4248e31f589cee8e0153c1cd55f5fca12b50f69dbfe8c273c37a535048e53d"
+      },
+      {
+        "artifact": "evidence/Web/implementation/acceptance4-attempt2/exit.json",
+        "bytes": 2281,
+        "sha256": "064c13cddf3bedf234f282b47ba8d4cd38cff12a5a84884de6ab457b9a1cefe1"
+      },
+      {
+        "artifact": "evidence/Root/candidate-tool-freeze-metrics.json",
+        "bytes": 1768,
+        "sha256": "1623ff2dfd2af7f3f4fd54f6b81e91328ff9ef361cee06a6a6b00c10abcb797b"
+      },
+      {
+        "artifact": "evidence/Root/a2-original-visual-review.json",
+        "bytes": 1877,
+        "sha256": "c3e3e345705908944c4bd607cb0e67b7d11160ee6f24da29f8607d829dc1fd66"
+      },
+      {
+        "artifact": "evidence/Review/ego-adapter-a2-four-case-acceptance-review.json",
+        "bytes": 10395,
+        "sha256": "8c97fb7ebc2a83d94c7eea521720ee9a43aa3ec12f549be2ca847376d2bdbf23"
+      },
+      {
+        "artifact": "evidence/Review/ego-adapter-integrated-source-review-ee4.json",
+        "bytes": 11793,
+        "sha256": "2fcaa83d19595ef08b3ec133ecef54b21bbc23e690df1f5c640057afdfc18c19"
+      },
+      {
+        "artifact": "evidence/Review/ego-adapter-metrics-fix-review.json",
+        "bytes": 5044,
+        "sha256": "da4300e0cb2d13e13b982a325af005217ab85236b3a1bc607bd4c75811545772"
+      },
+      {
+        "artifact": "evidence/Review/ego-adapter-a1-restoration-boundary-review.json",
+        "bytes": 4725,
+        "sha256": "ee05c8a5aaf19aa75b9186da9c1976e58e7c14ecd860e163109f14f4929c9a99"
+      },
+      {
+        "artifact": "evidence/Web/implementation/integrated-ee4-final/exit.json",
+        "bytes": 2987,
+        "sha256": "a4b58e9d5f8b213bf8c6afffc09acd49b8846fc158cbd17418c2236335b75cce"
+      },
+      {
+        "artifact": "evidence/Web/implementation/shared-script-protection.json",
+        "bytes": 1076,
+        "sha256": "28b976d8627e825d7b96b95957d4ee28a3ad8ba96b28a259fa99014ff0783731"
+      },
+      {
+        "artifact": "evidence/Web/implementation/pinned-clip-source.json",
+        "bytes": 344,
+        "sha256": "8161e373da1fba13f2b6dab0ffa27bd8e6e2cd87ef04f89f5ca458ca44901c30"
+      },
+      {
+        "artifact": "evidence/Web/implementation/metrics-fix-freeze.json",
+        "bytes": 1913,
+        "sha256": "848770bd27b8ece0c6e5d7c85e9613d268d3f47f1f2b1fe18f39f0ee9253233e"
+      },
+      {
+        "artifact": "evidence/Web/implementation/metrics-recovery/observations.json",
+        "bytes": 1155,
+        "sha256": "db521081d1bb837161d08c02d061e802869302f6822c668cba159cefd7527781"
+      },
+      {
+        "artifact": "evidence/Web/implementation/metrics-recovery/exit.json",
+        "bytes": 317,
+        "sha256": "1dbc943acedc079521e7614869a4bf0ae7c6bc1cecb03b16f1a9b4c0dc686741"
+      },
+      {
+        "artifact": "evidence/Web/implementation/acceptance4-attempt1/captured-web/egolite-capture-exit.json",
+        "bytes": 419,
+        "sha256": "a54b1b23795484ebb7ee3732c9cee00de6ab00394f3726c3ae78b45fbe2ec75b"
+      }
+    ]
+  },
+  "postAcceptanceMainIntegration": {
+    "source": "b8c1c7b2791ce5ee279d749c8d8666a554e14e70",
+    "upstream": "705502b2811687829f872f202f17c9e6ff4e1872",
+    "ordinaryMerge": true,
+    "all7ImplementationHashesExact": true,
+    "acceptanceRemainsSource961": true,
+    "latestFullManifestOrCaptureNotRun": true,
+    "ownDiffProductUIPaths": 0
+  }
+}

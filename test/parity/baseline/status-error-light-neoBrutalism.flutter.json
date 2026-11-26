@@ -1,0 +1,39 @@
+{
+  "key": "status-error-light-neoBrutalism",
+  "byRole": {
+    "root": {
+      "key": "status-error-light-neoBrutalism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": null,
+      "fontWeight": null,
+      "fontSizePx": null,
+      "lineHeightPx": null,
+      "letterSpacingPx": null,
+      "color": null,
+      "backgroundColor": {
+        "r": 215,
+        "g": 30,
+        "b": 34,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        9999.0,
+        9999.0,
+        9999.0,
+        9999.0
+      ],
+      "paddingPx": null,
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 1.0,
+      "widthPx": 12.0,
+      "heightPx": 12.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

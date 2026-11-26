@@ -1,0 +1,49 @@
+{
+  "key": "carousel-default-light-claymorphism",
+  "byRole": {
+    "root": {
+      "key": "carousel-default-light-claymorphism",
+      "platform": "flutter",
+      "probeRole": "root",
+      "fontFamily": "Pretendard",
+      "fontWeight": 400,
+      "fontSizePx": 18.0,
+      "lineHeightPx": 27.0,
+      "letterSpacingPx": -0.14,
+      "color": {
+        "r": 255,
+        "g": 255,
+        "b": 255,
+        "a": 1.0
+      },
+      "backgroundColor": {
+        "r": 59,
+        "g": 130,
+        "b": 246,
+        "a": 1.0
+      },
+      "borderColor": null,
+      "borderWidthPx": null,
+      "borderRadiusPx": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "paddingPx": [
+        64.0,
+        64.0,
+        64.0,
+        64.0
+      ],
+      "outlineWidthPx": null,
+      "outlineOffsetPx": null,
+      "boxShadow": null,
+      "opacity": 0.0,
+      "widthPx": 800.0,
+      "heightPx": 155.0
+    }
+  },
+  "settled": true,
+  "captureNotes": []
+}

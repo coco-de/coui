@@ -1,0 +1,63 @@
+{
+  "key": "filter-default-dark-claymorphism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "SvelteSvelte\n                  \n                \n                \n                  \n                    VueVue\n                  \n                \n                \n                  \n                    ReactReact\n                  \n                \n                \n                  \n                    \n                  \n                  \n                    \n                      #co-button-hpidmg:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-hpidmg:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface-variant)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}",
+    "layout": {
+      "width": 214.375,
+      "height": 40,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 4,
+          "y": 4,
+          "width": 206.375,
+          "height": 32
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(42, 43, 44)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "20px",
+      "borderTopRightRadius": "20px",
+      "borderBottomRightRadius": "20px",
+      "borderBottomLeftRadius": "20px",
+      "paddingTop": "4px",
+      "paddingRight": "4px",
+      "paddingBottom": "4px",
+      "paddingLeft": "4px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(244, 245, 246)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 214.375,
+      "heightPx": 40
+    }
+  }
+}

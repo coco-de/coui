@@ -1,0 +1,17 @@
+# ratchet 기준값 — packages/coui_web/lib 안 `Component.text(...)` 직접 호출 수.
+#
+# `coui_lints` 의 `prefer_text_chain` 룰(#4942)이 잡는 것과 같은 패턴이다 —
+# 그 룰은 INFO severity 라 `dart analyze . --fatal-warnings` 를 통과하고,
+# 실측(2026-09-17)으로는 이 SDK 의 CLI `dart analyze` 에 coui_lints 진단이
+# **아예 뜨지 않는다**(9 룰 전부 0건, severity 와 무관) — 그래서 이 가드가
+# 유일한 그물이다.
+#
+# 오늘의 1건은 빚이 아니라 룰 자신이 인가한 영구 예외다 —
+# `packages/coui_web/lib/src/overlay/overlay_host.dart` 의
+# `Component.element(tag: 'style', children: [Component.text(_kOverlayKeyframes)])`.
+# `<style>` 태그의 raw payload 는 `prefer_text_chain_rule.dart` 의
+# `_isRawTextElementPayload` 가 명시적으로 면제하고, 룰 자신의 테스트
+# `test_allows_style_tag_payload_text` 가 그 케이스를 고정한다. 이 가드는
+# 조상 체인을 못 보는 grep 이라 그 예외를 되짚지 못하므로, 파일 단위로
+# baseline 에 잡아 둔다.
+1

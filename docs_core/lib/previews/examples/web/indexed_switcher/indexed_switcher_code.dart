@@ -1,0 +1,141 @@
+/// Returns a Web code snippet string for the IndexedSwitcher component.
+String indexedSwitcherCode(String? variant) {
+  return switch (variant) {
+    'chain' => _chainCode,
+    _ => _defaultCode,
+  };
+}
+
+const _chainCode = '''
+class IndexedSwitcherChainExample extends StatefulComponent {
+  const IndexedSwitcherChainExample({super.key});
+
+  @override
+  State<IndexedSwitcherChainExample> createState() => _IndexedSwitcherChainExampleState();
+}
+
+class _IndexedSwitcherChainExampleState extends State<IndexedSwitcherChainExample> {
+  int _index = 0;
+
+  static const List<String> _labels = ['홈', '검색', '프로필'];
+
+  @override
+  Component build(BuildContext context) {
+    return div(
+      [
+        div(
+          [
+            IndexedSwitcher(
+              index: _index,
+              children: [
+                for (final label in _labels)
+                  div(
+                    [Text(label).titleMedium],
+                    classes: 'flex items-center justify-center h-full',
+                  ),
+              ],
+            ).withStyle(
+              const CoreIndexedSwitcherStyle(
+                exitDuration: Duration.zero,
+                enterDuration: Duration(milliseconds: CoreDuration.slow),
+              ),
+            ),
+          ],
+          styles: const Styles(
+            raw: {'width': '16rem', 'height': '6rem'},
+          ),
+        ),
+        Gap.space16(),
+        div(
+          [
+            for (var idx = 0; idx < _labels.length; idx++)
+              Button(
+                variant: idx == _index ? CoreButtonVariant.primary : CoreButtonVariant.outline,
+                onPressed: () => setState(() => _index = idx),
+                child: Text(_labels[idx]),
+              ),
+          ],
+          classes: 'flex flex-row flex-wrap justify-center gap-\${CoreSpace.scale.space8}',
+        ),
+      ],
+      classes: 'inline-flex flex-col items-center',
+    );
+  }
+}''';
+
+const _defaultCode = '''
+class IndexedSwitcherDefaultExample extends StatefulComponent {
+  const IndexedSwitcherDefaultExample({super.key});
+
+  @override
+  State<IndexedSwitcherDefaultExample> createState() => _IndexedSwitcherDefaultExampleState();
+}
+
+class _IndexedSwitcherDefaultExampleState extends State<IndexedSwitcherDefaultExample> {
+  int _index = 0;
+
+  static const List<String> _labels = ['홈', '검색', '프로필'];
+
+  @override
+  Component build(BuildContext context) {
+    return div(
+      [
+        div(
+          [
+            IndexedSwitcher(
+              index: _index,
+              children: [
+                for (final label in _labels) _CountedView(label: label),
+              ],
+            ),
+          ],
+          styles: const Styles(
+            raw: {'width': '16rem', 'height': '6rem'},
+          ),
+        ),
+        Gap.space16(),
+        div(
+          [
+            for (var idx = 0; idx < _labels.length; idx++)
+              Button(
+                variant: idx == _index ? CoreButtonVariant.primary : CoreButtonVariant.outline,
+                onPressed: () => setState(() => _index = idx),
+                child: Text(_labels[idx]),
+              ),
+          ],
+          classes: 'flex flex-row flex-wrap justify-center gap-\${CoreSpace.scale.space8}',
+        ),
+      ],
+      classes: 'inline-flex flex-col items-center',
+    );
+  }
+}
+
+/// A view that counts its own presses — the count lives in this view, so
+/// it is still there when the switcher comes back to it.
+class _CountedView extends StatefulComponent {
+  const _CountedView({required this.label});
+
+  final String label;
+
+  @override
+  State<_CountedView> createState() => _CountedViewState();
+}
+
+class _CountedViewState extends State<_CountedView> {
+  int _count = 0;
+
+  @override
+  Component build(BuildContext context) {
+    return div(
+      [
+        Button(
+          variant: CoreButtonVariant.secondary,
+          onPressed: () => setState(() => _count++),
+          child: Text('\${component.label} · \$_count'),
+        ),
+      ],
+      classes: 'flex items-center justify-center h-full',
+    );
+  }
+}''';

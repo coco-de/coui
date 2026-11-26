@@ -1,0 +1,27 @@
+# Flutter resolver guard violations standing when the gate first ran to completion (#6038).
+# Each is API work — promote a default to a Style field, or wire a contract field on both
+# platforms. Net-new lines fail; a fixed line must be removed, so this list only shrinks.
+D  control/filter/filter_style.dart  CoreToggleGroupStyle.defaultItemSpacing  (override 'itemSpacing' 존재하나 merged.itemSpacing 미참조)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultArcSweepDegrees  (override 'arcSweepDegrees' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultBarFillRatio  (override 'barFillRatio' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultBarHeightRatio  (override 'barHeightRatio' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultBarLengthRatio  (override 'barLengthRatio' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultDotSizeRatio  (override 'dotSizeRatio' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultPulseDotRatio  (override 'pulseDotRatio' 없음→contract 필드 승격 필요)
+D  display/loading/loading_style.dart  CoreLoadingStyle.defaultPulseHaloAlpha  (override 'pulseHaloAlpha' 없음→contract 필드 승격 필요)
+D  form/formatted_input/formatted_input_style.dart  CoreFormattedInputStyle.defaultSegmentInputSize  (override 'segmentInputSize' 없음→contract 필드 승격 필요)
+D  form/formatted_input/formatted_input_style.dart  CoreFormattedInputStyle.defaultSegmentInputVariant  (override 'segmentInputVariant' 없음→contract 필드 승격 필요)
+D  form/multi_answer_card/multi_answer_card_style.dart  CoreMultiAnswerCardStyle.defaultCheckboxSize  (override 'checkboxSize' 없음→contract 필드 승격 필요)
+D  form/object_input/object_input_style.dart  CoreObjectInputStyle.defaultFieldInputSize  (override 'fieldInputSize' 없음→contract 필드 승격 필요)
+D  form/object_input/object_input_style.dart  CoreObjectInputStyle.defaultFieldInputVariant  (override 'fieldInputVariant' 없음→contract 필드 승격 필요)
+D  form/star_rating/star_rating_style.dart  CoreStarRatingStyle.defaultDisabledTextColor  (override 'disabledTextColor' 없음→contract 필드 승격 필요)
+D  form/star_rating/star_rating_style.dart  CoreStarRatingStyle.defaultSize  (override 'size' 없음→contract 필드 승격 필요)
+D  overlay/drawer/drawer_style.dart  CoreDrawerStyle.defaultSheetPanelBorderWidth  (override 'sheetPanelBorderWidth' 없음→contract 필드 승격 필요)
+D  overlay/drawer/drawer_style.dart  CoreDrawerStyle.defaultSidePanelBorderRadius  (override 'sidePanelBorderRadius' 없음→contract 필드 승격 필요)
+# padsHorizontally is a CoreDescriptionCardVariantStyle row field, not a caller override; both resolvers read it through CoreDescriptionCardVariantStyle.paddingFor, which this rule's merged.X scan cannot see.
+E  description_card  'padsHorizontally'  (Web도 미반영)
+E  multiple_choice  'chipStyle'  (Web도 미반영)
+E  multiple_choice  'clickableStyle'  (Web도 미반영)
+E  multiple_choice  'transitionDuration'  (Web도 미반영)
+E  star_rating  'focusBorderColor'  (Web도 미반영)
+E  star_rating  'focusBorderWidth'  (Web도 미반영)

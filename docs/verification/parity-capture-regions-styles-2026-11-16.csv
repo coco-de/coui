@@ -1,0 +1,121 @@
+key,component,variant,theme,style,probe,before_key_status,after_key_status,parity_status,flutter_size,web_size,dimension_mismatch,diff_ratio,diff_pixels,total_pixels,flutter_baseline_status,web_baseline_status
+mockup-phone-light-defaultStyle,mockup,phone,light,defaultStyle,root,fail,pass,pass,320x675,320x675,,0.00837037037037037,1808,216000,fail,pass
+mockup-phone-light-defaultStyle,mockup,phone,light,defaultStyle,stage,fail,pass,pass,800x675,800x675,,0.004388888888888889,2370,540000,firstCapture,firstCapture
+mockup-phone-light-liquidGlass,mockup,phone,light,liquidGlass,root,not_measured,pass,pass,320x675,320x675,,0.017472222222222222,3774,216000,fail,pass
+mockup-phone-light-liquidGlass,mockup,phone,light,liquidGlass,stage,not_measured,pass,pass,800x675,800x675,,0.00802962962962963,4336,540000,firstCapture,firstCapture
+mockup-phone-light-neoBrutalism,mockup,phone,light,neoBrutalism,root,not_measured,pass,pass,320x675,320x675,,0.007388888888888889,1596,216000,fail,pass
+mockup-phone-light-neoBrutalism,mockup,phone,light,neoBrutalism,stage,not_measured,pass,pass,800x675,800x675,,0.00515,2781,540000,firstCapture,firstCapture
+mockup-phone-light-claymorphism,mockup,phone,light,claymorphism,root,not_measured,pass,pass,320x675,320x675,,0.00961574074074074,2077,216000,fail,pass
+mockup-phone-light-claymorphism,mockup,phone,light,claymorphism,stage,not_measured,pass,pass,800x675,800x675,,0.004887037037037037,2639,540000,firstCapture,firstCapture
+mockup-phone-light-neumorphism,mockup,phone,light,neumorphism,root,not_measured,pass,pass,320x675,320x675,,0.00837037037037037,1808,216000,fail,pass
+mockup-phone-light-neumorphism,mockup,phone,light,neumorphism,stage,not_measured,pass,pass,800x675,800x675,,0.004388888888888889,2370,540000,firstCapture,firstCapture
+mockup-phone-dark-defaultStyle,mockup,phone,dark,defaultStyle,root,fail,pass,pass,320x675,320x675,,0.007875,1701,216000,fail,pass
+mockup-phone-dark-defaultStyle,mockup,phone,dark,defaultStyle,stage,fail,pass,pass,800x675,800x675,,0.0042703703703703706,2306,540000,firstCapture,firstCapture
+mockup-phone-dark-liquidGlass,mockup,phone,dark,liquidGlass,root,not_measured,pass,pass,320x675,320x675,,0.0057314814814814815,1238,216000,fail,pass
+mockup-phone-dark-liquidGlass,mockup,phone,dark,liquidGlass,stage,not_measured,pass,pass,800x675,800x675,,0.003412962962962963,1843,540000,firstCapture,firstCapture
+mockup-phone-dark-neoBrutalism,mockup,phone,dark,neoBrutalism,root,not_measured,pass,pass,320x675,320x675,,0.006462962962962963,1396,216000,fail,pass
+mockup-phone-dark-neoBrutalism,mockup,phone,dark,neoBrutalism,stage,not_measured,pass,pass,800x675,800x675,,0.0037074074074074075,2002,540000,firstCapture,firstCapture
+mockup-phone-dark-claymorphism,mockup,phone,dark,claymorphism,root,not_measured,pass,pass,320x675,320x675,,0.007726851851851852,1669,216000,fail,pass
+mockup-phone-dark-claymorphism,mockup,phone,dark,claymorphism,stage,not_measured,pass,pass,800x675,800x675,,0.004211111111111111,2274,540000,firstCapture,firstCapture
+mockup-phone-dark-neumorphism,mockup,phone,dark,neumorphism,root,not_measured,pass,pass,320x675,320x675,,0.007875,1701,216000,fail,pass
+mockup-phone-dark-neumorphism,mockup,phone,dark,neumorphism,stage,not_measured,pass,pass,800x675,800x675,,0.0042703703703703706,2306,540000,firstCapture,firstCapture
+mockup-tablet-light-defaultStyle,mockup,tablet,light,defaultStyle,root,fail,pass,pass,320x454,320x454,,0.012169603524229074,1768,145280,fail,pass
+mockup-tablet-light-defaultStyle,mockup,tablet,light,defaultStyle,stage,fail,pass,pass,800x454,800x454,,0.006205947136563876,2254,363200,firstCapture,firstCapture
+mockup-tablet-light-liquidGlass,mockup,tablet,light,liquidGlass,root,not_measured,pass,pass,320x454,320x454,,0.019885737885462555,2889,145280,fail,pass
+mockup-tablet-light-liquidGlass,mockup,tablet,light,liquidGlass,stage,not_measured,pass,pass,800x454,800x454,,0.009292400881057268,3375,363200,firstCapture,firstCapture
+mockup-tablet-light-neoBrutalism,mockup,tablet,light,neoBrutalism,root,not_measured,pass,pass,320x454,320x454,,0.009175385462555067,1333,145280,fail,pass
+mockup-tablet-light-neoBrutalism,mockup,tablet,light,neoBrutalism,stage,not_measured,pass,pass,800x454,800x454,,0.006216960352422907,2258,363200,firstCapture,firstCapture
+mockup-tablet-light-claymorphism,mockup,tablet,light,claymorphism,root,not_measured,pass,pass,320x454,320x454,,0.015039922907488987,2185,145280,fail,pass
+mockup-tablet-light-claymorphism,mockup,tablet,light,claymorphism,stage,not_measured,pass,pass,800x454,800x454,,0.007354074889867841,2671,363200,firstCapture,firstCapture
+mockup-tablet-light-neumorphism,mockup,tablet,light,neumorphism,root,not_measured,pass,pass,320x454,320x454,,0.012155837004405286,1766,145280,fail,pass
+mockup-tablet-light-neumorphism,mockup,tablet,light,neumorphism,stage,not_measured,pass,pass,800x454,800x454,,0.006200440528634361,2252,363200,firstCapture,firstCapture
+mockup-tablet-dark-defaultStyle,mockup,tablet,dark,defaultStyle,root,fail,pass,pass,320x454,320x454,,0.012906112334801762,1875,145280,fail,pass
+mockup-tablet-dark-defaultStyle,mockup,tablet,dark,defaultStyle,stage,fail,pass,pass,800x454,800x454,,0.006574889867841409,2388,363200,firstCapture,firstCapture
+mockup-tablet-dark-liquidGlass,mockup,tablet,dark,liquidGlass,root,not_measured,pass,pass,320x454,320x454,,0.013085077092511013,1901,145280,fail,pass
+mockup-tablet-dark-liquidGlass,mockup,tablet,dark,liquidGlass,stage,not_measured,pass,pass,800x454,800x454,,0.00664647577092511,2414,363200,firstCapture,firstCapture
+mockup-tablet-dark-neoBrutalism,mockup,tablet,dark,neoBrutalism,root,not_measured,pass,pass,320x454,320x454,,0.009099669603524228,1322,145280,fail,pass
+mockup-tablet-dark-neoBrutalism,mockup,tablet,dark,neoBrutalism,stage,not_measured,pass,pass,800x454,800x454,,0.005049559471365639,1834,363200,firstCapture,firstCapture
+mockup-tablet-dark-claymorphism,mockup,tablet,dark,claymorphism,root,not_measured,pass,pass,320x454,320x454,,0.014213931718061673,2065,145280,fail,pass
+mockup-tablet-dark-claymorphism,mockup,tablet,dark,claymorphism,stage,not_measured,pass,pass,800x454,800x454,,0.007098017621145375,2578,363200,firstCapture,firstCapture
+mockup-tablet-dark-neumorphism,mockup,tablet,dark,neumorphism,root,not_measured,pass,pass,320x454,320x454,,0.012906112334801762,1875,145280,fail,pass
+mockup-tablet-dark-neumorphism,mockup,tablet,dark,neumorphism,stage,not_measured,pass,pass,800x454,800x454,,0.006574889867841409,2388,363200,firstCapture,firstCapture
+mockup-landscape-light-defaultStyle,mockup,landscape,light,defaultStyle,root,fail,fail,fail,320x157,320x156,320x157 vs 320x156,,0,0,fail,pass
+mockup-landscape-light-defaultStyle,mockup,landscape,light,defaultStyle,stage,fail,fail,fail,800x157,800x156,800x157 vs 800x156,,0,0,firstCapture,firstCapture
+mockup-landscape-light-liquidGlass,mockup,landscape,light,liquidGlass,root,not_measured,fail,fail,320x157,320x156,320x157 vs 320x156,,0,0,fail,pass
+mockup-landscape-light-liquidGlass,mockup,landscape,light,liquidGlass,stage,not_measured,fail,fail,800x157,800x156,800x157 vs 800x156,,0,0,firstCapture,firstCapture
+mockup-landscape-light-neoBrutalism,mockup,landscape,light,neoBrutalism,root,not_measured,fail,fail,320x157,320x156,320x157 vs 320x156,,0,0,fail,pass
+mockup-landscape-light-neoBrutalism,mockup,landscape,light,neoBrutalism,stage,not_measured,fail,fail,800x157,800x156,800x157 vs 800x156,,0,0,firstCapture,firstCapture
+mockup-landscape-light-claymorphism,mockup,landscape,light,claymorphism,root,not_measured,fail,fail,320x157,320x156,320x157 vs 320x156,,0,0,fail,pass
+mockup-landscape-light-claymorphism,mockup,landscape,light,claymorphism,stage,not_measured,fail,fail,800x157,800x156,800x157 vs 800x156,,0,0,firstCapture,firstCapture
+mockup-landscape-light-neumorphism,mockup,landscape,light,neumorphism,root,not_measured,fail,fail,320x157,320x156,320x157 vs 320x156,,0,0,fail,pass
+mockup-landscape-light-neumorphism,mockup,landscape,light,neumorphism,stage,not_measured,fail,fail,800x157,800x156,800x157 vs 800x156,,0,0,firstCapture,firstCapture
+mockup-landscape-dark-defaultStyle,mockup,landscape,dark,defaultStyle,root,fail,fail,fail,320x157,320x156,320x157 vs 320x156,,0,0,fail,pass
+mockup-landscape-dark-defaultStyle,mockup,landscape,dark,defaultStyle,stage,fail,fail,fail,800x157,800x156,800x157 vs 800x156,,0,0,firstCapture,firstCapture
+mockup-landscape-dark-liquidGlass,mockup,landscape,dark,liquidGlass,root,not_measured,fail,fail,320x157,320x156,320x157 vs 320x156,,0,0,fail,pass
+mockup-landscape-dark-liquidGlass,mockup,landscape,dark,liquidGlass,stage,not_measured,fail,fail,800x157,800x156,800x157 vs 800x156,,0,0,firstCapture,firstCapture
+mockup-landscape-dark-neoBrutalism,mockup,landscape,dark,neoBrutalism,root,not_measured,fail,fail,320x157,320x156,320x157 vs 320x156,,0,0,fail,pass
+mockup-landscape-dark-neoBrutalism,mockup,landscape,dark,neoBrutalism,stage,not_measured,fail,fail,800x157,800x156,800x157 vs 800x156,,0,0,firstCapture,firstCapture
+mockup-landscape-dark-claymorphism,mockup,landscape,dark,claymorphism,root,not_measured,fail,fail,320x157,320x156,320x157 vs 320x156,,0,0,fail,pass
+mockup-landscape-dark-claymorphism,mockup,landscape,dark,claymorphism,stage,not_measured,fail,fail,800x157,800x156,800x157 vs 800x156,,0,0,firstCapture,firstCapture
+mockup-landscape-dark-neumorphism,mockup,landscape,dark,neumorphism,root,not_measured,fail,fail,320x157,320x156,320x157 vs 320x156,,0,0,fail,pass
+mockup-landscape-dark-neumorphism,mockup,landscape,dark,neumorphism,stage,not_measured,fail,fail,800x157,800x156,800x157 vs 800x156,,0,0,firstCapture,firstCapture
+mockup-device-default-light-defaultStyle,mockup-device,default,light,defaultStyle,root,fail,pass,pass,320x675,320x675,,0.00837037037037037,1808,216000,fail,pass
+mockup-device-default-light-defaultStyle,mockup-device,default,light,defaultStyle,stage,fail,pass,pass,800x675,800x675,,0.004388888888888889,2370,540000,firstCapture,firstCapture
+mockup-device-default-light-liquidGlass,mockup-device,default,light,liquidGlass,root,not_measured,pass,pass,320x675,320x675,,0.017472222222222222,3774,216000,fail,pass
+mockup-device-default-light-liquidGlass,mockup-device,default,light,liquidGlass,stage,not_measured,pass,pass,800x675,800x675,,0.00802962962962963,4336,540000,firstCapture,firstCapture
+mockup-device-default-light-neoBrutalism,mockup-device,default,light,neoBrutalism,root,not_measured,pass,pass,320x675,320x675,,0.007388888888888889,1596,216000,fail,pass
+mockup-device-default-light-neoBrutalism,mockup-device,default,light,neoBrutalism,stage,not_measured,pass,pass,800x675,800x675,,0.00515,2781,540000,firstCapture,firstCapture
+mockup-device-default-light-claymorphism,mockup-device,default,light,claymorphism,root,not_measured,pass,pass,320x675,320x675,,0.00961574074074074,2077,216000,fail,pass
+mockup-device-default-light-claymorphism,mockup-device,default,light,claymorphism,stage,not_measured,pass,pass,800x675,800x675,,0.004887037037037037,2639,540000,firstCapture,firstCapture
+mockup-device-default-light-neumorphism,mockup-device,default,light,neumorphism,root,not_measured,pass,pass,320x675,320x675,,0.00837037037037037,1808,216000,fail,pass
+mockup-device-default-light-neumorphism,mockup-device,default,light,neumorphism,stage,not_measured,pass,pass,800x675,800x675,,0.004388888888888889,2370,540000,firstCapture,firstCapture
+mockup-device-default-dark-defaultStyle,mockup-device,default,dark,defaultStyle,root,fail,pass,pass,320x675,320x675,,0.007875,1701,216000,fail,pass
+mockup-device-default-dark-defaultStyle,mockup-device,default,dark,defaultStyle,stage,fail,pass,pass,800x675,800x675,,0.0042703703703703706,2306,540000,firstCapture,firstCapture
+mockup-device-default-dark-liquidGlass,mockup-device,default,dark,liquidGlass,root,not_measured,pass,pass,320x675,320x675,,0.0057314814814814815,1238,216000,fail,pass
+mockup-device-default-dark-liquidGlass,mockup-device,default,dark,liquidGlass,stage,not_measured,pass,pass,800x675,800x675,,0.003412962962962963,1843,540000,firstCapture,firstCapture
+mockup-device-default-dark-neoBrutalism,mockup-device,default,dark,neoBrutalism,root,not_measured,pass,pass,320x675,320x675,,0.006462962962962963,1396,216000,fail,pass
+mockup-device-default-dark-neoBrutalism,mockup-device,default,dark,neoBrutalism,stage,not_measured,pass,pass,800x675,800x675,,0.0037074074074074075,2002,540000,firstCapture,firstCapture
+mockup-device-default-dark-claymorphism,mockup-device,default,dark,claymorphism,root,not_measured,pass,pass,320x675,320x675,,0.007726851851851852,1669,216000,fail,pass
+mockup-device-default-dark-claymorphism,mockup-device,default,dark,claymorphism,stage,not_measured,pass,pass,800x675,800x675,,0.004211111111111111,2274,540000,firstCapture,firstCapture
+mockup-device-default-dark-neumorphism,mockup-device,default,dark,neumorphism,root,not_measured,pass,pass,320x675,320x675,,0.007875,1701,216000,fail,pass
+mockup-device-default-dark-neumorphism,mockup-device,default,dark,neumorphism,stage,not_measured,pass,pass,800x675,800x675,,0.0042703703703703706,2306,540000,firstCapture,firstCapture
+mockup-device-flat-light-defaultStyle,mockup-device,flat,light,defaultStyle,root,fail,pass,pass,256x496,256x496,,0.0001102570564516129,14,126976,fail,pass
+mockup-device-flat-light-defaultStyle,mockup-device,flat,light,defaultStyle,stage,fail,pass,pass,800x496,800x496,,3.528225806451613e-05,14,396800,firstCapture,firstCapture
+mockup-device-flat-light-liquidGlass,mockup-device,flat,light,liquidGlass,root,not_measured,pass,pass,256x496,256x496,,0.0001102570564516129,14,126976,fail,pass
+mockup-device-flat-light-liquidGlass,mockup-device,flat,light,liquidGlass,stage,not_measured,pass,pass,800x496,800x496,,3.528225806451613e-05,14,396800,firstCapture,firstCapture
+mockup-device-flat-light-neoBrutalism,mockup-device,flat,light,neoBrutalism,root,not_measured,pass,pass,256x496,256x496,,0.00043315272177419354,55,126976,fail,pass
+mockup-device-flat-light-neoBrutalism,mockup-device,flat,light,neoBrutalism,stage,not_measured,pass,pass,800x496,800x496,,0.00013860887096774194,55,396800,firstCapture,firstCapture
+mockup-device-flat-light-claymorphism,mockup-device,flat,light,claymorphism,root,not_measured,pass,pass,256x496,256x496,,0.00020476310483870969,26,126976,fail,pass
+mockup-device-flat-light-claymorphism,mockup-device,flat,light,claymorphism,stage,not_measured,pass,pass,800x496,800x496,,6.55241935483871e-05,26,396800,firstCapture,firstCapture
+mockup-device-flat-light-neumorphism,mockup-device,flat,light,neumorphism,root,not_measured,pass,pass,256x496,256x496,,0.0001102570564516129,14,126976,fail,pass
+mockup-device-flat-light-neumorphism,mockup-device,flat,light,neumorphism,stage,not_measured,pass,pass,800x496,800x496,,3.528225806451613e-05,14,396800,firstCapture,firstCapture
+mockup-device-flat-dark-defaultStyle,mockup-device,flat,dark,defaultStyle,root,fail,pass,pass,256x496,256x496,,0.0014097152217741936,179,126976,fail,pass
+mockup-device-flat-dark-defaultStyle,mockup-device,flat,dark,defaultStyle,stage,fail,pass,pass,800x496,800x496,,0.0004511088709677419,179,396800,firstCapture,firstCapture
+mockup-device-flat-dark-liquidGlass,mockup-device,flat,dark,liquidGlass,root,not_measured,pass,pass,256x496,256x496,,0.0014097152217741936,179,126976,fail,pass
+mockup-device-flat-dark-liquidGlass,mockup-device,flat,dark,liquidGlass,stage,not_measured,pass,pass,800x496,800x496,,0.0004511088709677419,179,396800,firstCapture,firstCapture
+mockup-device-flat-dark-neoBrutalism,mockup-device,flat,dark,neoBrutalism,root,not_measured,pass,pass,256x496,256x496,,0.0015672253024193547,199,126976,fail,pass
+mockup-device-flat-dark-neoBrutalism,mockup-device,flat,dark,neoBrutalism,stage,not_measured,pass,pass,800x496,800x496,,0.0005015120967741935,199,396800,firstCapture,firstCapture
+mockup-device-flat-dark-claymorphism,mockup-device,flat,dark,claymorphism,root,not_measured,pass,pass,256x496,256x496,,0.0021027595766129033,267,126976,fail,pass
+mockup-device-flat-dark-claymorphism,mockup-device,flat,dark,claymorphism,stage,not_measured,pass,pass,800x496,800x496,,0.0006728830645161291,267,396800,firstCapture,firstCapture
+mockup-device-flat-dark-neumorphism,mockup-device,flat,dark,neumorphism,root,not_measured,pass,pass,256x496,256x496,,0.0014097152217741936,179,126976,fail,pass
+mockup-device-flat-dark-neumorphism,mockup-device,flat,dark,neumorphism,stage,not_measured,pass,pass,800x496,800x496,,0.0004511088709677419,179,396800,firstCapture,firstCapture
+responsive-container-default-light-defaultStyle,responsive-container,default,light,defaultStyle,root,fail,pass,pass,640x74,640x74,,0.018074324324324324,856,47360,fail,pass
+responsive-container-default-light-defaultStyle,responsive-container,default,light,defaultStyle,stage,fail,pass,pass,800x74,800x74,,0.01445945945945946,856,59200,firstCapture,firstCapture
+responsive-container-default-light-liquidGlass,responsive-container,default,light,liquidGlass,root,not_measured,pass,pass,640x74,640x74,,0.016300675675675676,772,47360,fail,pass
+responsive-container-default-light-liquidGlass,responsive-container,default,light,liquidGlass,stage,not_measured,pass,pass,800x74,800x74,,0.013040540540540541,772,59200,firstCapture,firstCapture
+responsive-container-default-light-neoBrutalism,responsive-container,default,light,neoBrutalism,root,not_measured,pass,pass,640x74,640x74,,0.017419763513513514,825,47360,fail,pass
+responsive-container-default-light-neoBrutalism,responsive-container,default,light,neoBrutalism,stage,not_measured,pass,pass,800x74,800x74,,0.01393581081081081,825,59200,firstCapture,firstCapture
+responsive-container-default-light-claymorphism,responsive-container,default,light,claymorphism,root,not_measured,pass,pass,640x74,640x74,,0.018074324324324324,856,47360,fail,pass
+responsive-container-default-light-claymorphism,responsive-container,default,light,claymorphism,stage,not_measured,pass,pass,800x74,800x74,,0.01445945945945946,856,59200,firstCapture,firstCapture
+responsive-container-default-light-neumorphism,responsive-container,default,light,neumorphism,root,not_measured,pass,pass,640x74,640x74,,0.02060810810810811,976,47360,fail,pass
+responsive-container-default-light-neumorphism,responsive-container,default,light,neumorphism,stage,not_measured,pass,pass,800x74,800x74,,0.016486486486486488,976,59200,firstCapture,firstCapture
+responsive-container-default-dark-defaultStyle,responsive-container,default,dark,defaultStyle,root,fail,fail,fail,640x74,640x74,,0.07225506756756757,3422,47360,fail,pass
+responsive-container-default-dark-defaultStyle,responsive-container,default,dark,defaultStyle,stage,fail,fail,fail,800x74,800x74,,0.05780405405405405,3422,59200,firstCapture,firstCapture
+responsive-container-default-dark-liquidGlass,responsive-container,default,dark,liquidGlass,root,not_measured,fail,fail,640x74,640x74,,0.09199746621621621,4357,47360,fail,pass
+responsive-container-default-dark-liquidGlass,responsive-container,default,dark,liquidGlass,stage,not_measured,fail,fail,800x74,800x74,,0.07359797297297298,4357,59200,firstCapture,firstCapture
+responsive-container-default-dark-neoBrutalism,responsive-container,default,dark,neoBrutalism,root,not_measured,fail,fail,640x74,640x74,,0.07565456081081082,3583,47360,fail,pass
+responsive-container-default-dark-neoBrutalism,responsive-container,default,dark,neoBrutalism,stage,not_measured,fail,fail,800x74,800x74,,0.06052364864864865,3583,59200,firstCapture,firstCapture
+responsive-container-default-dark-claymorphism,responsive-container,default,dark,claymorphism,root,not_measured,fail,fail,640x74,640x74,,0.07225506756756757,3422,47360,fail,pass
+responsive-container-default-dark-claymorphism,responsive-container,default,dark,claymorphism,stage,not_measured,fail,fail,800x74,800x74,,0.05780405405405405,3422,59200,firstCapture,firstCapture
+responsive-container-default-dark-neumorphism,responsive-container,default,dark,neumorphism,root,not_measured,fail,fail,640x74,640x74,,0.07706925675675676,3650,47360,fail,pass
+responsive-container-default-dark-neumorphism,responsive-container,default,dark,neumorphism,stage,not_measured,fail,fail,800x74,800x74,,0.06165540540540541,3650,59200,firstCapture,firstCapture

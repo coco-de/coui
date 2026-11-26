@@ -1,0 +1,87 @@
+{
+  "key": "button-docs-v2-376457f4ad0ed032af6c02b5e1fbd5af-dark-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "docsScene": {
+      "tag": "VariantRow",
+      "attributes": {
+        "component": "button",
+        "label": "미리 보기",
+        "name": "tonal",
+        "props": "variant=tonal"
+      },
+      "selections": [
+        {
+          "kind": "props",
+          "component": "button",
+          "name": null,
+          "props": {
+            "variant": "tonal"
+          },
+          "label": "미리 보기"
+        }
+      ],
+      "origins": [
+        "/Users/cocode/orca/workspaces/coui/osprey/docs_core/content/components/button.md:VariantRow[14]"
+      ],
+      "anatomyParts": []
+    },
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "#co-button-ssr-8:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-primary-container)) 3%, rgb(var(--coui-primary-container) / 100%)) !important;}#co-button-ssr-8:active{background-color:color-mix(in srgb, rgb(var(--coui-on-primary-container)) 12%, rgb(var(--coui-primary-container) / 100%)) !important;}\n                    \n                    미리 보기",
+    "layout": {
+      "width": 800,
+      "height": 1200,
+      "direction": "row",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 88
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "500",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "letterSpacing": "-0.14px",
+      "color": "rgb(244, 245, 246)",
+      "backgroundColor": "rgb(22, 23, 24)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "16px",
+      "borderTopRightRadius": "16px",
+      "borderBottomRightRadius": "16px",
+      "borderBottomLeftRadius": "16px",
+      "paddingTop": "24px",
+      "paddingRight": "16px",
+      "paddingBottom": "24px",
+      "paddingLeft": "16px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(180, 181, 182)",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 88
+    }
+  }
+}

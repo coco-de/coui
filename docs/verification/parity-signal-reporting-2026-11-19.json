@@ -1,0 +1,191 @@
+{
+  "issue": 6434,
+  "base": "e8f89cd1a1696039feef7a53088d468b8713a5e5",
+  "productCheckpoint": "e112d2f680e63f30e06ca451ccc64595face87d9",
+  "behavior": "Human summaries distinguish absent propertyDiff from a measured passing result and do not infer rasterizer causation.",
+  "publicApiRendererThresholdFieldSkipBaselineJsonSchemaChanged": false,
+  "negativeOldImplementation": {
+    "regressionFailures": 3,
+    "exitCode": 1
+  },
+  "validation": {
+    "reportAndComparatorTests": 99,
+    "finalClassifierTestsSubset": 11,
+    "finalFatalDiagnostics": 0,
+    "formatFiles": 3,
+    "formatChanges": 0,
+    "canonicalReportComparison": {
+      "pixel": {
+        "execution": {
+          "argv": [
+            "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+            "run",
+            "tool/parity/report.dart",
+            "--manifest=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/manifest-default.json",
+            "--captured=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/captured-final",
+            "--signal=pixel",
+            "--mode=parity",
+            "--out=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/pixel-diff",
+            "--comment-out=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/pixel-comment.md",
+            "--vrt-out=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/pixel-vrt.md",
+            "--report-json=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/pixel-report.json"
+          ],
+          "exitCode": 1,
+          "seconds": 10.11
+        },
+        "semanticFieldsExact": {
+          "matrix": true,
+          "propertyDiffs": true,
+          "passedCount": true,
+          "infraFailedCount": true,
+          "infraSkippedKeys": true,
+          "structuralSkippedKeys": true
+        },
+        "matrixCounts": {
+          "pass": 582,
+          "fail": 234,
+          "infra": 0,
+          "skipped": 0
+        }
+      },
+      "property": {
+        "execution": {
+          "argv": [
+            "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+            "run",
+            "tool/parity/report.dart",
+            "--manifest=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/manifest-default.json",
+            "--captured=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6431-integrated-matrix-20261118.ijmvb_uw/captured-final",
+            "--signal=property",
+            "--mode=parity",
+            "--out=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/property-diff",
+            "--comment-out=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/property-comment.md",
+            "--vrt-out=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/property-vrt.md",
+            "--report-json=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/property-report.json"
+          ],
+          "exitCode": 1,
+          "seconds": 5.63
+        },
+        "semanticFieldsExact": {
+          "matrix": true,
+          "propertyDiffs": true,
+          "passedCount": true,
+          "infraFailedCount": true,
+          "infraSkippedKeys": true,
+          "structuralSkippedKeys": true
+        },
+        "matrixCounts": {
+          "pass": 402,
+          "fail": 368,
+          "infra": 0,
+          "skipped": 46
+        }
+      },
+      "notes": {
+        "oldFalseCompleteMatch": 235,
+        "newFalseCompleteMatch": 0,
+        "newUnmeasuredNote": 235,
+        "newRasterizerGuess": 0,
+        "rawFilesHashExact": 3288
+      }
+    }
+  },
+  "scopeProof": {
+    "changedProductPaths": [
+      "tool/parity/src/report/compare_result_classifier.dart",
+      "tool/parity/src/report/failure_category.dart",
+      "tool/parity/test/report/compare_result_classifier_test.dart"
+    ],
+    "productionExecutionHashes": {
+      "tool/parity/src/report/compare_result_classifier.dart": "611881276c1b82ecec8301da531c0def7b0cbfcd8868fe9f55d1b191032384bc",
+      "tool/parity/src/report/failure_category.dart": "7c213997bf510f0be1362f5dfe1f4b9212cbcb22f9740eb848fe021d444acf6f"
+    },
+    "snapshots": "Actual source555 Web816 / Native309 reuse; no new capture or latestHEADfresh claim.",
+    "noAdditionalUiBuild": "Only tool human-readable classification and tests changed; CoUI/app/docs UI/capture/diff code unchanged."
+  },
+  "evidenceRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm",
+  "evidenceFiles": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/negative-classifier-exit.json",
+      "sha256": "6eb0740ee2fb95461d01c0842c72fcb1f96671fd44fc6df06b3dfa17539c2c11"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/negative-classifier.log",
+      "sha256": "4de2954c1d7d33fdb774159468170ef803288ef543b0cbfea8cadd2459678c08"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/report-comparator-tests-exit.json",
+      "sha256": "f2fb048462e734dfd00eb5a3fd123a018412921534c2a68faf5109ae4debbf4c"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/report-comparator-tests.log",
+      "sha256": "05674145a320988c9eee8f4d4b9bc39332fad751ba25060dd585e16b5e0fab7f"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/classifier-final-exit.json",
+      "sha256": "7c39fca42c179a3c72af1d91eaa22e4340ba16b82246fa74ca418dcb4f906ae5"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/classifier-final.log",
+      "sha256": "11a38f14c05ad1f32038d4c9567f057d796034edf1114b2c639782c653b10645"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/touched-fatal-exit.json",
+      "sha256": "fce06fa3631ddbf4b5178f855446a315f53b80cbe82d0383c0419adfb4c685d8"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/touched-fatal.log",
+      "sha256": "815cccb04ca689f66d2670039e5ef91c34fb70261fcdfea711446ad8f13496cd"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/touched-fatal-final-exit.json",
+      "sha256": "12f43c89ad5441c8c32d97ad11bb7c3df5a96199033c37746f5b20149ddf2d07"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/touched-fatal-final.log",
+      "sha256": "41bc70aa63129abbd2bf13d5cfcbf215d03fc3e17e079ba0a99d692d4cce5c15"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/paired-report-verification.json",
+      "sha256": "371ce98d74861ab99c6b6908c34270cd175fd9e41a9a27dd9f81fe9b0fab0dd0"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/pixel-report-exit.json",
+      "sha256": "0a43950010758a2fbe950d1d268780ed66c8a7a40d2bca2f54dcfd94ea15f2d4"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/property-report-exit.json",
+      "sha256": "5465ed4e7031f545953677c9a64519f5e2d497a8b05830a7a0eef3a984a713bc"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/pixel-report.json",
+      "sha256": "faf6d8bca2f0c1a1977b3667e40cee48e4ddfdde9ca11e177250849a4fc5fd7c"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/property-report.json",
+      "sha256": "8a3975fea6be693631819c572a341984311f041c5d2051a40ae4b29fce757c7c"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/pixel-comment.md",
+      "sha256": "4140f3faf422b9c841bbf868a525f88e4b1409c3886e1562999b8aee4e570fba"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/property-comment.md",
+      "sha256": "2f204d2676e04415a76bd50c9a7e2f28befb242ea1d4c0d958391fd39fa10453"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/raw-before.json",
+      "sha256": "d12931507597180ac311ea6fb958fdfea9436da8f9b006265f9df1a9c125da9c"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6434-report-20261119.h72m8xrm/product-tested-source.json",
+      "sha256": "c16ac68679e7efa6d35dd01fda2444cb31ef6d58f797b2ea51a652be4228c799"
+    }
+  ],
+  "limits": [
+    "Both canonical reports retain exit1 and existing582/234pixel,402/368property+0infra/46structural results.",
+    "235 affected roles are not235 components or235 resolved pixel defects.",
+    "Initial touched-file analyzer found existing test import/order/default-argument lint; originals retained and cleanup verified by finalfatal0 and11test recheck.",
+    "ProbeSpec2 versus17executed and remaining measurement/renderer/design boundaries are untouched."
+  ]
+}

@@ -1,0 +1,12 @@
+# allowlist 항목 수의 상한.
+#
+# 왜 항목 수까지 재는가: 파일 단위 allowlist 는 그 파일의 리터럴을 카운트에서
+# 통째로 뺀다. 그러면 "리터럴을 allowlist 로 옮기기" 가 미설명 카운트를 낮추는
+# 우회가 된다 — 그래서 allowlist 의 항목 수 자체가 두 번째 ratchet 이다.
+#
+# 오늘 allowlist 는 비어 있다. 첫 항목을 추가하는 PR 이 이 값도 같은 diff 에서
+# 올리고, 각 항목에 판정 사유(builder-original — 바인딩할 CoreXxxStyle default 가
+# 없음)를 allowlist 파일에 함께 적는다.
+#
+# 값을 올리는 것은 완화다 — 그 diff 가 리뷰 대상이다.
+0

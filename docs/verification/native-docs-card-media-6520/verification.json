@@ -1,0 +1,181 @@
+{
+  "issue": 6520,
+  "base": "cd01397c02fc4af73786eb41eb2996935c125fe9",
+  "runtimeSourceUnchangedByTheseDocuments": true,
+  "phase": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709",
+  "productionPaths": [
+    "docs_core/lib/internal/preview/flutter_card_view.dart"
+  ],
+  "testPaths": [
+    "docs_core/test/shared/native_docs_card_media_test.dart"
+  ],
+  "publicAPISignatureConstructorConstChanges": 0,
+  "CoreAndLibraryComponentChanges": 0,
+  "newDesignValues": 0,
+  "newResolvedDependencies": 0,
+  "packages": 232,
+  "focusedPassed": 54,
+  "existingDocsPassed": 9,
+  "existingCardPassed": 35,
+  "freshNativeKeys": 48,
+  "freshWebKeys": 48,
+  "wholeDocsCardKeys": 42,
+  "ordinaryCardControlKeys": 6,
+  "officialPixel": {
+    "actualExit": 1,
+    "pass": 6,
+    "fail": 42,
+    "infra": 0,
+    "skipped": 0
+  },
+  "officialProperty": {
+    "actualExit": 1,
+    "pass": 6,
+    "fail": 42,
+    "infra": 0,
+    "skipped": 0
+  },
+  "ownBaseline": {
+    "actualExit": 0,
+    "comparableCardKeys": 6,
+    "comparableImages": 12,
+    "passedImages": 12,
+    "failedImages": 0,
+    "docsCardKeysWithoutBaseline": 42,
+    "firstCaptureImages": 84,
+    "promotion": false
+  },
+  "docsBuild": {
+    "actualExit": 0,
+    "seconds": 130.464222375,
+    "routes": 361,
+    "htmlFiles": 363,
+    "cli": "0.24.0-beta.1",
+    "actualCount": 1
+  },
+  "hotReload": {
+    "actualExit": 0,
+    "milliseconds": 76,
+    "loadedChangedHelper": true,
+    "frames": 2,
+    "mediaInsetsBothFrames": [
+      1,
+      1,
+      1
+    ]
+  },
+  "selectedImages": 8,
+  "trackedProtectionCountBeforeTheseDocs": 22760,
+  "sourceDeltas": 0,
+  "rawOriginalAndCombinedHashChecks": 192,
+  "rawChangesPreserved": {
+    "WebOriginPaths": 42,
+    "WebCaptureTextSSRStyleIDs": 16,
+    "WebPngChanges": 0,
+    "WebRoleChanges": 0,
+    "ordinaryCardControlBothPlatformPngAndFullRawChanges": 0
+  },
+  "intentionalBehaviorChanges": [
+    "unpadded media stage",
+    "resolved body top padding replaces stage-caption gap8",
+    "existing media antiAlias clip promotion",
+    "no empty padded body"
+  ],
+  "limits": [
+    "42 whole-card pixel/property failures remain",
+    "84 docs-card images have no committed baseline",
+    "no Figma canvas or physical-device validation",
+    "full interactive and arbitrary caller combinations not claimed"
+  ],
+  "refs": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/source-freeze.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/api-scope-proof.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/source-final.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/metadata-before.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/global-descriptor-proof.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/target-source-reuse.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/original-canonical-scale/exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/original-canonical-scale/observations.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/candidate-focused-2/exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/candidate-focused-2/observations.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/existing-docs-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/existing-card-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/fatal-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/format-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/capture-native-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/capture-web-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/capture-integrity.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/before4499-comparison.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/report-exits.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/own-baseline-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/own-baseline-vrt.md"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/selected-evidence8.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/native-cli-attempt2/native-cli-proof.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/native-cli-attempt1-cleanup.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/docs-build-exit.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/docs-metadata-after.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/docs-route-proof.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/docs-cleanup.json"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6520-native-docs-card-20261119.mopgx709/build-output-archive.json"
+    }
+  ],
+  "actualCaptureBuildHead": "aa8a77d02c60433f27bf13c0f812d37fd8511aaf",
+  "precommitCheckBinding": "Focused54 and existing suites/fatal/format ran before aa8 local commit with the same frozen product/test bytes; their execution HEAD was the cd013 base with this owned diff. Actual captures/build ran clean aa8."
+}

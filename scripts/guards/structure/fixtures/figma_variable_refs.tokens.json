@@ -1,0 +1,38 @@
+{
+  "collections": [
+    {
+      "name": "0. Primitives",
+      "variables": [
+        { "name": "space/4" },
+        { "name": "space/8" },
+        { "name": "stroke/1" },
+        { "name": "font/size/14" },
+        { "name": "font/family/Pretendard" },
+        { "name": "radius/8" }
+      ]
+    },
+    {
+      "name": "1-1. Semantic/ Color · CoUI",
+      "variables": [{ "name": "color/primary" }, { "name": "color/only-coui" }]
+    },
+    {
+      "name": "Semantic/ Color · Demo",
+      "variables": [{ "name": "color/primary" }, { "name": "color/only-demo" }]
+    },
+    {
+      "name": "Semantic/ Typography",
+      "variables": [
+        { "name": "letter-spacing/size-14" },
+        { "name": "font-size/label-large" }
+      ]
+    },
+    {
+      "name": "Semantic/ Dimension",
+      "variables": [{ "name": "a11y/touch-target" }]
+    },
+    {
+      "name": "Component",
+      "variables": [{ "name": "icon-size/16" }]
+    }
+  ]
+}

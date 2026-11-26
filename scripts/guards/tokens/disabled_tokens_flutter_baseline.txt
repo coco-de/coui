@@ -1,0 +1,6 @@
+# Flutter 에서 disabled 를 전용 토큰이 아니라 opacity 곱으로 그리는 자리의 수.
+#
+# 근거는 web 쪽과 같다 — disabled_tokens_web_baseline.txt 참조.
+#
+# 값을 올리는 것은 완화다 — 그 diff 가 리뷰 대상이다.
+3

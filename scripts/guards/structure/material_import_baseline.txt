@@ -1,0 +1,24 @@
+# check_material_import.sh 의 ratchet — packages/coui_flutter/lib 의
+# `package:flutter/material.dart` import/export. 형식:
+#
+#   <kind> | <파일 경로> | <정규화된 directive 전문> | <사유>
+#
+#   allow — 의도적 공개 재노출. 부채가 아니다.
+#   debt  — 줄여야 할 import. 이 목록은 줄어들기만 한다.
+#
+# 항목은 줄 번호가 아니라 directive 내용으로 맞춘다(show 목록 포함).
+# 이 파일을 늘리는 편집은 CODEOWNERS 리뷰 요청을 부른다.
+#
+# SelectableText 세 건(text.dart · code_snippet.dart · selectable_text.dart)은
+# 한 가지 이유로 생긴 것이다. CoUI SelectableText 가 Material 의 것을 감싸는
+# 구현(selectable_text.dart) 하나만 남고, 나머지 두 건은 Material 의
+# SelectableText 대신 그 CoUI 위젯을 쓰게 되면 사라질 것으로 기대한다(3 → 1).
+allow | packages/coui_flutter/lib/coui_flutter.dart | export 'package:flutter/material.dart' show Brightness, FlutterLogo, Icons, ReorderableListView, SliverAppBar; | 배럴의 show 제한 공개 재노출. CoUI 대응물이 없는 다섯 타입만 소비자에게 건넨다 — 소비자가 material 을 따로 import 하지 않게 하는 것이 목적이다(code-style/naming.md consumer 규칙). 목록이 바뀌면 새 공개 표면이라 여기서 멈춘다.
+debt | packages/coui_flutter/lib/src/components/display/code_snippet/code_snippet.dart | import 'package:flutter/material.dart' show SelectableText; | Material SelectableText 를 직접 쓴다. CoUI SelectableText 로 바꾸면 사라진다 (SelectableText 3 → 1 기대).
+debt | packages/coui_flutter/lib/src/components/text/selectable/selectable_text.dart | import 'package:flutter/material.dart' as m; | CoUI SelectableText 의 구현 — m.SelectableText(.rich) 를 감싼다. selection 을 그리는 위젯이 Material 에만 있어서다. SelectableText 3 건 중 끝까지 남을 것으로 기대하는 하나.
+debt | packages/coui_flutter/lib/src/components/text/text.dart | import 'package:flutter/material.dart' show SelectableText; | Text 체인이 Material SelectableText 를 타입으로 분기한다(배럴의 CoUI SelectableText 를 hide 하고). CoUI SelectableText 로 분기하게 되면 사라진다 (SelectableText 3 → 1 기대).
+debt | packages/coui_flutter/lib/src/coui_app.dart | import 'package:flutter/material.dart' as m; | 앱 셸이 Material 인프라에 닿는 자리 — MaterialPageRoute · Material 캔버스 · DefaultMaterialLocalizations.delegate · materialTheme 브리지(m.Theme). 소비자 앱의 Material 위젯이 CoUI 셸 아래에서도 동작하게 하는 호환층이다.
+debt | packages/coui_flutter/lib/src/page/route_page.dart | import 'package:flutter/material.dart' as m; | RoutePage/RoutePageRoute 의 전환을 직접 구현하지 않고 m.MaterialRouteTransitionMixin 에 위임한다. 플랫폼별 전환 애니메이션을 CoUI 가 따로 갖게 되면 사라진다.
+debt | packages/coui_flutter/lib/src/testing.dart | import 'package:flutter/material.dart' as material; | 테스트 하네스가 m.Material + m.Overlay 로 감싼다. 하네스가 CoUI 셸/Overlay 로 감싸게 되면 사라진다.
+debt | packages/coui_flutter/lib/src/components/form/text_area/text_area.dart | import 'package:flutter/material.dart' show TextMagnifier; | 확대경 기본값 TextMagnifier.adaptiveMagnifierConfiguration 을 쓴다(#3382). 플랫폼 확대경 위젯은 Material(Android)·Cupertino(iOS)에만 있고 widgets 층에 대응물이 없다. CoUI 가 자기 확대경을 그리게 되면 사라진다.
+debt | packages/coui_flutter/lib/src/components/form/text_field/text_field.dart | import 'package:flutter/material.dart' show TextMagnifier; | 확대경 기본값 TextMagnifier.adaptiveMagnifierConfiguration 을 쓴다(#3382). 플랫폼 확대경 위젯은 Material(Android)·Cupertino(iOS)에만 있고 widgets 층에 대응물이 없다. CoUI 가 자기 확대경을 그리게 되면 사라진다.

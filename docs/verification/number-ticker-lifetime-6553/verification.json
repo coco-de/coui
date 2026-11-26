@@ -1,0 +1,219 @@
+{
+  "issue": 6553,
+  "PR": 6554,
+  "originalSource": "7f18d4060eae7783742a91df782565242bc17ac1",
+  "firstCommit": "a1c0d70792",
+  "integratedTestedSource": "26f213753baa92ea5a54834734fb57414572dff3",
+  "upstreamMain": "a4416e4db9fc0f0748851abd7eed9efaaf4f3e62",
+  "upstreamPR": 6551,
+  "upstreamPathsPreserved": 178,
+  "upstreamOwnPathIntersection": 0,
+  "ownFiles": {
+    "packages/coui_web/lib/src/components/display/number_ticker/number_ticker.dart": "b04a0db5928376fd1ac7723d1cddd33ccf66ab38acb451873b275749451e93c3",
+    "packages/coui_web/test/browser/fixtures/number_ticker_lifetime_probe.dart": "a768ff697599efafdc771c9df9a95a0b1e18519ccea9b892063845b6e06b493e",
+    "packages/coui_web/test/browser/fixtures/number_ticker_lifetime_probe.client.dart": "1bb80586aa306ce81452ed67877216a7e87e3b09c269bb16a866e434a9ea9f7f",
+    "tool/parity/test/web/number_ticker_lifetime_test.dart": "1920eea530812058d82fdfedcedbd200b048c80d40f1b33813244b418fcd57ab",
+    "packages/coui_web/CHANGELOG.md": "70c632fbe549226176719fd4d6cd263128fd4d897cb5e418277195c13a60c4ed"
+  },
+  "privateChange": "mounted guard inside deferred startup; unawaited preserves scheduling/error propagation",
+  "ownPublicAPICoreStyleResolverDefaultsChanges": 0,
+  "criteriaBaselineProbeNormalizerChanges": 0,
+  "originalNegative": {
+    "Web": "public first-post-frame removal disposes4States; initialplain/builder/same each throw State.context before Timer creation, light/dark2FAIL; no-initial host1PASS/errors0",
+    "firstSetupFailure": "onClick fixture callback type compile error; zero runtime; preserved",
+    "noTimerLeakClaim": true,
+    "retainedDOMObservedSeparately": true
+  },
+  "stages": {
+    "sameFixtureInitialCandidate": "same fixture/client/test3SHA as original2; private guard cc54 candidate5PASS",
+    "finalCandidate": "b04a source with unawaited marker; fixture64ms→CoreDuration.fast150ms and format only; separate5PASS/fatal4/format0/existing6",
+    "integratedLatest": "same final source; newWeb5+existingWeb6 PASS after upstream Core context merge; Native external4 fresh PASS",
+    "historicalNativeExisting": "23PASS at original7f18, not rerun/relabelled integrated",
+    "uniqueFunctionalCases": 38,
+    "freshIntegratedCases": 15,
+    "historicalExistingCases": 23
+  },
+  "freshCanonical": {
+    "keys": 2,
+    "NativePlatformCaptures": 2,
+    "WebPlatformCaptures": 2,
+    "styles": "defaultStyle",
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "reuse": 0,
+    "legacyManifestFilename": "manifest6.json contains actual2 entries"
+  },
+  "reports": {
+    "regression": {
+      "actualExit": 1,
+      "counts": {
+        "pass": 1,
+        "fail": 1,
+        "infra": 0,
+        "skipped": 0
+      },
+      "seconds": 5.271602959
+    },
+    "pixel": {
+      "actualExit": 1,
+      "counts": {
+        "pass": 0,
+        "fail": 2,
+        "infra": 0,
+        "skipped": 0
+      },
+      "seconds": 5.121024082999999
+    },
+    "property": {
+      "actualExit": 0,
+      "counts": {
+        "pass": 2,
+        "fail": 0,
+        "infra": 0,
+        "skipped": 0
+      },
+      "seconds": 5.290304458
+    }
+  },
+  "existingBaselineControl": {
+    "historicalCaptureSource": "6882d1d41c872b6285b5f12d169b5c3d9b21f59a",
+    "actualExit": 1,
+    "counts": {
+      "pass": 1,
+      "fail": 1,
+      "infra": 0,
+      "skipped": 0
+    },
+    "sameMatrixAsCandidate": true,
+    "all8CurrentPNGJSONByteExactToHistorical": true,
+    "all8CommittedBaselinesExactGit6882ThroughA441": true,
+    "newStaticPixelDelta": 0,
+    "baselineFailureWaivedOrClaimedPass": false
+  },
+  "docs": {
+    "actualExit": 0,
+    "actualCLISeconds": 104.405854667,
+    "routes": 361,
+    "SSRHTML": 363,
+    "FlutterHTML": 2,
+    "tracked24986BytesModesLinksExact": true,
+    "generatedManifestRows": 5046,
+    "representativeHTMLRetained": 3,
+    "fullGeneratedOutputRetained": false,
+    "automaticFlutterPubPreflight": true,
+    "rawPackageConfigAndGraphRewritten": true,
+    "packageTupleRootEdgeSetsEquivalent": 232,
+    "lockByteExact": true,
+    "directProjectPubGetCommands": 0,
+    "internalSolverDownloadCountsMeasured": false
+  },
+  "ownedReload": {
+    "kind": "actual Jaspr SSR Dart VM reloadSources success; target NumberTicker library loaded",
+    "HTTPBeforeAfter": [
+      200,
+      200
+    ],
+    "rootsBeforeAfter": [
+      5,
+      5
+    ],
+    "bytesBeforeAfter": [
+      5165,
+      5165
+    ],
+    "HTMLBytesIdentical": false,
+    "sourceChangedBetweenRequests": false,
+    "browserClientHotReloadClaim": false,
+    "browserDeferredBranchExecutionClaim": false,
+    "ownedPortsClosed": [
+      53065,
+      53073
+    ]
+  },
+  "limits": [
+    "Duration/reduced-motion/easing hypotheses outside this lifetime fix",
+    "No full-main sweep after upstream6551/current scoped fix; last full6882 pixel606/228 of834 remains historical source bound",
+    "Native committed dark pixel failure and crosspixel2 failures remain explicit; no baseline promotion or threshold exemption",
+    "Upstream Checkbox/RadioGroup contract/default changes belong to6551; zero API/Core changes is scoped to this PR"
+  ],
+  "artifacts": [
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/integrated-source-freeze.json",
+      "sha256": "fd7d904d3a999b9179273aa012b64ba68685bcac2d399c20a9c4911f4cbf6f34"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Web/web-freeze.json",
+      "sha256": "57accdc767a9b04ccf3998cd06fa6d2df0f1d4cd870f0d36167beab54ea68b1a"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Web/final-summary.json",
+      "sha256": "f564f80c3017b6dcfbee61805bb45d4453dfafe5029ba339a8a62a1ba64020f5"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Web/execution-complete.json",
+      "sha256": "02a5de63624d9eeb2f780bf50a71c94495ef969c98bd10b4b0c99954cf774f47"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Native/handoff.json",
+      "sha256": "e8ff1abc387e953c66efc726f173d9be7ef8cecb1f8cbf051f8adb84e718e201"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Native/integrated-handoff.json",
+      "sha256": "7d634b75352b35950f2a128a59286c932bc80fad9ea927e4d8c31fea15438641"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Native/owned-ssr-reload/ssr-reload-proof.json",
+      "sha256": "66bc86f2ec6a24f5c91f8b70333489ad4448287913785280d4df4a2cfddf182d"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Review/source-and-runtime-binding.json",
+      "sha256": "88a3652a31bfbfeb3565e619cdeee6b64ed66ec46c1dcac87e7d26c5b489646e"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/canonical-reports/inputs.json",
+      "sha256": "2256cb56ecf410cc808641add0479800b4be171a2304dfbb18b08e179aab97ed"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/canonical-reports/exits.json",
+      "sha256": "0b04b2002aeee5f4e9003aeb4957f51ae8955b2e7c058ca13f85ca465f61db8d"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/canonical-reports/regression-report.json",
+      "sha256": "82d55e5e12989421a596a68385bc1235836af95f5dc27fa2beaebbd4b2a909e2"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/canonical-reports/pixel-report.json",
+      "sha256": "a18664e3fc74fd25932a44e74c4c1333e53d3a662d31bfdad548ef47aad95879"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/canonical-reports/property-report.json",
+      "sha256": "d178aaf10475b810315d941225964bd7a310ad562e78098a0204430dad98abaf"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/full6882-before-after-control.json",
+      "sha256": "a9077509d04cd4c38584ae9e707f1e07d11e1ee86ba56f588d0b40701cb9ffec"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/existing-baseline-control/report.json",
+      "sha256": "4473b881ff3d9af1e1618753154328f13d9b87cb6efd3e51d238855ae66e462b"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/existing-baseline-control/exit.json",
+      "sha256": "7990e940a98857c34b173f2c139cd72a51bfbd0a7d76dec0604a539a5a7cbdc1"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/existing-baseline-setup-failure.json",
+      "sha256": "36549fdffd02c68bd6e650d639d29aad478c64f9ef5622e84dd5e7eed01a19d5"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/selected-images4.json",
+      "sha256": "c2982d0edea97d63e814a2acb26af3e99e82f1230e2b8b5b42f13d775fbca5ec"
+    },
+    {
+      "path": "/Users/minhyeok/orca/artifacts/coui/weever-number-ticker-lifetime-ezjl866k/evidence/Root/uploaded-images4.json",
+      "sha256": "0ce216469c36fa2b1cce4fc3f5285c07d62f5f16f2716bd2e1392ebc19b9def3"
+    }
+  ]
+}

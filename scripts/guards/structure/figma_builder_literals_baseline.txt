@@ -1,0 +1,70 @@
+# G7 baseline (#3756) — total color+dimension literal count across
+# tools/figma-token-sync/src/components/**.ts, excluding allowlisted files
+# (scripts/guards/structure/figma_builder_literals_allowlist.txt).
+#
+# This is the project's success gate (see check_figma_builder_literals.sh's
+# header comment for why: G1~G6/G8/G9 only ever check "does the JSON have a
+# field", never "did the pixel actually move" — this is the one guard that
+# does, by counting the hardcoded literals a converted builder would no
+# longer contain). Ratchet: this number may only go DOWN (a builder moving
+# to data.ts-driven rendering removes its literals) or stay the same. A PR
+# that raises it is adding hardcoded color/dimension literals to a file
+# this guard already covers — every legitimate reason to still hardcode a
+# value routes through the allowlist (a whole *file*, with a stated reason
+# — see #3755's OQ-2 judgment), not through raising this number.
+#
+# 2026-08-04 (#3756, initial baseline): measured, not designed — this is
+# today's actual count. 10/101 components are data-driven today (Button /
+# Card / Badge / Input / Checkbox / Toggle / Radio / Alert / Status / Stat,
+# spread across form.ts/display.ts/display-data.ts, which is why those
+# three files' counts are already low relative to the other seven). The
+# PRD's target is SSOT builders ≥ 60/101 (#3725) — as #3754/#3755 convert
+# more builders, this number drops and gets ratcheted down with it.
+#
+# 2026-08-04 (#3754/#3755, ratcheted down): all 101 registry builders now
+# read from schema v2 (components.json) wherever the corresponding
+# CoreXxxStyle actually carries the field the old literal stood for — see
+# tools/figma-token-sync/README.md's OQ-2 table for the fields/components
+# that still carry a literal because no such field exists (a real gap
+# between the Figma preview's structure and the Dart Style class, not an
+# unconverted builder). 1131 -> 587.
+#
+# 2026-08-06 (#3996, ratcheted down): 41 components that had no builder at
+# all gained one, and those builders were written data-driven from the
+# start — so the total fell even while the file count grew. The bigger
+# share of the drop is elsewhere: `bindAxisSize` replaced six `bindSize`
+# calls that were binding a *preview* dimension to a real space token, so
+# the canvas stopped asserting a design-system source for numbers the
+# design system never stated. Note what this guard could not see there:
+# the numbers sat behind named constants, and its pattern looks for a digit
+# inside the call text — the same values written literally would have been
+# counted. A named constant is not evidence of a token. 587 -> 524.
+#
+# 2026-08-07 (#3996, 합성 파리티): 빌더가 자식을 손으로 그리는 대신
+# 인스턴스로 합성하면서 그 자식의 리터럴이 통째로 사라졌다 — 그림을 안 그리니
+# 셀 리터럴도 없다. 524 -> 388.
+#
+# 388 -> 326: 슬롯에 INSTANCE_SWAP/TEXT property 를 달면서 손으로 그리던
+# 자리표시자가 컴포넌트 인스턴스로 바뀌었고, `List<CoreShadowLayer>` 가
+# 리더에 도달하면서 그림자를 흉내내던 실루엣이 진짜 effect 로 바뀌었다.
+#
+# 326 -> 318: 2차 합성 패스가 손으로 그리던 자식을 마저 인스턴스로 바꿨다.
+#
+# 318 -> 304: 충실도 검증이 찾은 23건을 고치면서 `size: 14` 류 리터럴이
+# 데이터의 타이포 role 참조로 바뀌었다. 리터럴이 사라진 게 아니라 값이
+# 출처를 얻은 것이고, 그래서 이 수와 충실도 misses 가 같이 내려갔다.
+#
+# 304 -> 0: 미설명 리터럴이 실측 0 이 됐다. 이 수가 실측(92)보다 212 높게
+# 남아 있던 것은 마커 도입 때 이쪽을 같이 조이지 않았기 때문이고, 그 슬랙은
+# "하드코딩 212 개를 조용히 되돌릴 수 있는 구멍" 과 같은 뜻이었다. 이제 0 이므로
+# 사유 없는 새 리터럴은 전부 red 가 된다 — 정당한 자리는 두 경로 중 하나로 간다:
+# 값이 코드에 있으면 `components.json` 경유로 바인딩하고, 코드에 대응 필드가
+# 없으면 `// g7-preview-only: <사유>` 를 붙여 MARKED_BASELINE 쪽 래칫에 올린다.
+#
+# 주의(다음 사람에게) — 이 가드의 population FLOOR 은 200 인데 오늘 population
+# (미설명 0 + 발판 203) 은 203 이다. FLOOR 은 총합이 ~1131 이던 때 grep 붕괴
+# 탐지용으로 잡힌 값이라, 앞으로 발판 4 개가 정당하게 사라지면(예: 위 export gap
+# 6 건이 닫히면) 진짜 진척이 "grep 이 깨졌다" 로 오보된다. 그때 고칠 것은 카운트가
+# 아니라 FLOOR 이다 — 붕괴 탐지는 총량이 아니라 "패턴이 여전히 매칭하는가" 로
+# 물어야 한다.
+0

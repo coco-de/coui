@@ -1,0 +1,461 @@
+{
+  "issue": 6459,
+  "date": "2026-11-19",
+  "base": "cfb09223347ec213891178713a0b29c4bb55fc14",
+  "validatedProductHead": "25b887f566171fe9fed490312cea2985c8ea05b0",
+  "phase": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z",
+  "sourceProtection": {
+    "sourceHead": "25b887f566171fe9fed490312cea2985c8ea05b0",
+    "base": "cfb09223347ec213891178713a0b29c4bb55fc14",
+    "productionPaths": [
+      "packages/coui_flutter/lib/src/components/display/dot_indicator/dot_indicator.dart"
+    ],
+    "testPaths": [
+      "packages/coui_flutter/test/components/display/dot_indicator_input_updates_test.dart"
+    ],
+    "sourceSHA256": "ad6923ec6f5d4e6e41c46740bd7db4eca52e0167690e8401389dc4a3962d1603",
+    "testSHA256": "90b8a1a615e78bdd7357e1d62aa677183ac92a2aab5277713d6ddf415d6375fb",
+    "publicWidgetAndStyleChainAndFitHelperByteExact": {
+      "publicWidgetClass": true,
+      "publicStyleChain": true,
+      "naturalFitHelper": true
+    },
+    "publicASTExact": true,
+    "exportMembershipExact": {
+      "coui_core": true,
+      "coui_flutter": true,
+      "coui_web": true
+    },
+    "exportedImplementationLibraryBytesChanged": true,
+    "packageCount": 232,
+    "packageDescriptorsExceptOwnedWorkspaceRootsExact": true,
+    "packageGraphByteExact": true,
+    "otherTrackedPathsExactAtFrozenHead": true,
+    "unchanged": [
+      "Core/contracts/resolvers/tokens/defaults",
+      "Web/DOM/callerCSS",
+      "public constructor const/copyWith/exports",
+      "private widget types/keys/State and animation owners",
+      "callback branch/remount/keyboard/focus policy",
+      "natural-fit helper/capture helper/comparator/threshold/baseline",
+      "locks/dependency graph/SDK constraints/source markdown"
+    ],
+    "noGlobalAuthSDKCacheChanges": true
+  },
+  "originalNegative": {
+    "fail": 3,
+    "positivePass": 1,
+    "sameFixtureCandidatePass": 4,
+    "fixtureByteExact": true
+  },
+  "checks": [
+    {
+      "name": "same-fixture",
+      "command": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/worktree/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/repro_same_fixture_test.dart",
+        "--reporter=expanded",
+        "--timeout",
+        "30s",
+        "--concurrency=1"
+      ],
+      "expected": "Original3fail+callbackpositive1; fixed4pass",
+      "observed": "4pass/exit0",
+      "pass": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/candidate-same-fixture/exit.json"
+    },
+    {
+      "name": "focused54",
+      "command": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "test/components/display/dot_indicator_input_updates_test.dart",
+        "test/components/display/dot_indicator_natural_fit_test.dart",
+        "test/components/display/dot_indicator_test.dart",
+        "test/components/display/dot_indicator_semantics_test.dart",
+        "--reporter=expanded",
+        "--concurrency=1"
+      ],
+      "expected": "New6 plus existing48 pass",
+      "observed": "54pass/exit0",
+      "pass": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/focused-final-exit.json"
+    },
+    {
+      "name": "fatal",
+      "command": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/coui_flutter/lib/src/components/display/dot_indicator/dot_indicator.dart",
+        "packages/coui_flutter/test/components/display/dot_indicator_input_updates_test.dart"
+      ],
+      "expected": "No warnings or infos on two owned Dart paths",
+      "observed": "exit0/No issues found",
+      "pass": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/fatal-final-exit.json"
+    },
+    {
+      "name": "format",
+      "command": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "format",
+        "--set-exit-if-changed",
+        "--output=none",
+        "packages/coui_flutter/lib/src/components/display/dot_indicator/dot_indicator.dart",
+        "packages/coui_flutter/test/components/display/dot_indicator_input_updates_test.dart"
+      ],
+      "expected": "No formatting changes",
+      "observed": "2files/0changed",
+      "pass": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/format-final.json"
+    },
+    {
+      "name": "contracts",
+      "command": [
+        "bash",
+        "scripts/guards/resolver/verify_contracts.sh"
+      ],
+      "expected": "Required guard exits0",
+      "observed": "exit0; existing7 non-enforced migration warnings preserved",
+      "pass": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/contracts-exit.json"
+    },
+    {
+      "name": "docsO2",
+      "command": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/dart",
+        "--packages=/tmp/weever-6345-optimized-20261117/cli-tool/.dart_tool/package_config.json",
+        "/Users/minhyeok/.pub-cache/hosted/pub.dev/jaspr_cli-0.24.0-beta.1/bin/jaspr.dart",
+        "build",
+        "--optimize=2",
+        "--port=52423"
+      ],
+      "expected": "Optimized generation completes; tracked source unchanged",
+      "observed": "exit0/359 generated routes/111.112sec/22601 tracked deltas0/clean",
+      "pass": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/build-process.json"
+    },
+    {
+      "name": "static6",
+      "command": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "test/parity/flutter_capture_matrix_test.dart",
+        "--tags",
+        "parity",
+        "--reporter=expanded"
+      ],
+      "expected": "Current canonical6 equal original cfb Native6",
+      "observed": "6PNG+6JSON byteexact",
+      "pass": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/static-dot6-exit.json"
+    },
+    {
+      "name": "live-and-motion",
+      "command": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--packages=/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/worktree/.dart_tool/package_config.json",
+        "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live_evidence_test.dart",
+        "--reporter=expanded",
+        "--concurrency=1"
+      ],
+      "expected": "Public changes reach actual existing paint/animation owners",
+      "observed": "2tests pass,8PNG,8motion sequences",
+      "pass": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/exit.json"
+    },
+    {
+      "name": "ownedCLI",
+      "command": [
+        "/tmp/weever-flutter350-sdk-20261117.igvv0vp_/flutter/bin/flutter",
+        "--show-test-device",
+        "run",
+        "--no-pub",
+        "--debug",
+        "--no-dds",
+        "-d",
+        "flutter-tester",
+        "-t",
+        "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/debug_native_dot.dart"
+      ],
+      "expected": "Actual source app reloads and all owners close",
+      "observed": "reload0libraries42ms;2frames88x24/five8x8;exit0/CLI+VM+portclosed",
+      "pass": true,
+      "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/native-cli-proof.json"
+    }
+  ],
+  "publicExportClosureFiles": {
+    "coui_core": 931,
+    "coui_flutter": 1351,
+    "coui_web": 1296
+  },
+  "selected8": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/style-light-old.png",
+      "sha256": "918590cd6d379da2165fbcc18685f1541072a81f0267f562c79967168b9dde92",
+      "case": "style",
+      "dark": false,
+      "source": "old",
+      "rootAfter": [
+        104.0,
+        24.0
+      ],
+      "sameRootElement": true,
+      "sameAnimationStates": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/style-light-fixed.png",
+      "sha256": "e318931013e0a18c19971e51dffc425ecd742dfbda91fa56e6e0b22dbc10aefe",
+      "case": "style",
+      "dark": false,
+      "source": "fixed",
+      "rootAfter": [
+        128.0,
+        28.0
+      ],
+      "sameRootElement": true,
+      "sameAnimationStates": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/style-dark-old.png",
+      "sha256": "c7e44a0b1066b618b39760743826ee1244fe6c4e087b5d6464fc42d651291539",
+      "case": "style",
+      "dark": true,
+      "source": "old",
+      "rootAfter": [
+        104.0,
+        24.0
+      ],
+      "sameRootElement": true,
+      "sameAnimationStates": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/style-dark-fixed.png",
+      "sha256": "5657ee4647136c2d07fc9b56ecd19a75ee3ab78466f1734affa49576fd81a7f0",
+      "case": "style",
+      "dark": true,
+      "source": "fixed",
+      "rootAfter": [
+        128.0,
+        28.0
+      ],
+      "sameRootElement": true,
+      "sameAnimationStates": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/size-light-old.png",
+      "sha256": "365d7a2f8a06c3c7196d71e2b55759a2494ffcc34d6aff66eb826f60632cce38",
+      "case": "size",
+      "dark": false,
+      "source": "old",
+      "rootAfter": [
+        80.0,
+        24.0
+      ],
+      "sameRootElement": true,
+      "sameAnimationStates": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/size-light-fixed.png",
+      "sha256": "883f27e627683a12f262952425b974424cb5a05e98091b84dcbf6cf249a8b6b7",
+      "case": "size",
+      "dark": false,
+      "source": "fixed",
+      "rootAfter": [
+        70.0,
+        22.0
+      ],
+      "sameRootElement": true,
+      "sameAnimationStates": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/axis-dark-old.png",
+      "sha256": "1173ed5bd98712ffdf175fc8aefac15e52b54c6cdb49444dadde32565c65f7fc",
+      "case": "axis",
+      "dark": true,
+      "source": "old",
+      "rootAfter": [
+        36.0,
+        88.0
+      ],
+      "sameRootElement": true,
+      "sameAnimationStates": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/axis-dark-fixed.png",
+      "sha256": "5395554553f501e71cc0cb54329f55ae013254c5da05a527619f98b268dbe743",
+      "case": "axis",
+      "dark": true,
+      "source": "fixed",
+      "rootAfter": [
+        24.0,
+        100.0
+      ],
+      "sameRootElement": true,
+      "sameAnimationStates": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "motion": {
+    "defaultDurationMs": 200,
+    "permanentSampleCumulativeMs": [
+      16,
+      50
+    ],
+    "externalSampleCumulativeMs": [
+      0,
+      16,
+      50,
+      100
+    ],
+    "settledSeparate": true,
+    "sameExistingAnimationStates": true,
+    "currentChildFitFallbackObserved": true
+  },
+  "limits": [
+    "No fresh full816 or Native/Web all-pixel parity result in this change. Static6 is explicitly bounded.",
+    "Docs359 is optimized build output; no full-docs hydration or HTTP runtime claim.",
+    "Flutter tester app reload is a source-bound static smoke, not dynamic update evidence; dynamic evidence is in tests/live readbacks.",
+    "Headless dir_picker/file_saver_ffi symbol warnings preserved; neither feature is exercised.",
+    "Existing 5326/5327 hit-partition and capture-origin HOLDs are separate.",
+    "Default design values and input semantics unchanged. Live images use the same caller-supplied colors/sizes in old/fixed; their different bounds are expected consequences of correcting stale markers.",
+    "Public API shape and export membership are preserved; the exported implementation library bytes intentionally change."
+  ],
+  "retainedInitialFailures": [
+    "Original same-fixture3fail+1positive",
+    "Initial lint3infos corrected by WidgetsApp/import/key typing, no ignores"
+  ],
+  "evidence": [
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/product-freeze.json",
+      "sha256": "5e053ffe8d41f540bea0c179268234bed5c65503e263bcabc9a9c094b0dabd32"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-native-dot-invalidation-audit-20261119.54ku1d_a/results.json",
+      "sha256": "60fb04b70474694e548b4bd18b7a04703b0b69cbbb8727a1cfd3a3945c7fca8b"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/candidate-same-fixture/exit.json",
+      "sha256": "cadd5c73c66f5c656df23f15a8a8471c9ac562bb1d4a8442d47c2cc86deca55e"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/candidate-same-fixture/observations.json",
+      "sha256": "571c2c82947dc3e2ed16acb989902b542a50f068490f09d832cf6b654abaa659"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/focused-final-exit.json",
+      "sha256": "9af1ff468f41300e1a179a496def152307d6215ea24a893be7976f50f3fbff1e"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/fatal-final-exit.json",
+      "sha256": "9c246c5e8dd0e1f2b2d80bae14fcebc046167d15bddf7bb7604313b70b359cda"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/format-final.json",
+      "sha256": "0e9a302c6f9d51421bb3b2c1b5d33b1a1316ced16f5c84c515bdc6834f71c40b"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/contracts-exit.json",
+      "sha256": "db2126fa050346ea29490907651639d8a921e1c20958717eeae82fe834736b17"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/build-process.json",
+      "sha256": "7763bea00b13b65751b621775ef885d8678757de88936e15362e9fd2ed880955"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/api-shape.json",
+      "sha256": "9c7be1c3bbed821094f233f5bf97fdc98f0d90c30a7bf0cebe15b4fca7167693"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/export-closure.json",
+      "sha256": "e2a9c4cb038e3576aea25968633bec9bf69f4af07a13f6fff5d68e73888bb7d1"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/package-binding.json",
+      "sha256": "4947f73bdeadb3111bc6e585ecaab72a0206f84a38bcd1b8057b658e498208fd"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/source-protection.json",
+      "sha256": "4ecea50614d46c22727297e371d92662e288230b698b2467ed608eb76168e8e2"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/static-dot6-exit.json",
+      "sha256": "cecf39b166a0066ee2c9f27924b397f91be953d008066f72db2229caedbb82d6"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/exit.json",
+      "sha256": "fbfd9846a1029a2979915b5eb56b9a4649eecd9f13414e2630a5b30c6a2925b0"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/live-evidence/summary.json",
+      "sha256": "238dbbeabcb5c01be4ae2e9382bc4655ca69eca7ae64b9676ea0ec7bed5f48ec"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/selected-evidence8.json",
+      "sha256": "9dc8eda20fee322414281d2cd2a8947325970fe935ae47cf6209d82913646b95"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6459-native-dot-inputs-20261119.0wvlos2z/native-cli-proof.json",
+      "sha256": "43ececfe03ed18a19e76da636720091dce6e9fdfbad26b336ff9293cd70b59fd"
+    },
+    {
+      "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-dot-inputs-6459-20261119.5pporao3/root-live8-viewed.json",
+      "sha256": "71dd4782654e3d797371645b81c59f3f2ba87dab8fd46e6fcd18fe15950aa027"
+    }
+  ]
+}

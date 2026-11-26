@@ -1,0 +1,22 @@
+# Allowlist for check_gap_spacing_naming.sh
+#
+# Files exempt from the ambiguous `Gap` suffix check because they are:
+#   - SizeDefaults / VariantStyle holders (not CoreXxxStyle classes)
+#   - Where the field is a "default size" data field, not a Style field
+#
+# Format: one repo-relative path per line, `#` for comments.
+
+# EmptyState SizeDefaults class — iconTitleGap/titleDescriptionGap/descriptionActionGap
+# are defaultsBySize entries (raw double, not Style chrome).
+packages/coui_core/lib/src/component/contracts/empty_state/empty_state_style.dart
+
+# TextArea has labelGap/descriptionGap as DEPRECATED legacy fields (Padding semantic).
+# Renamed at consumer side to labelPadding / descriptionPadding pending Epic #1570 sweep.
+packages/coui_core/lib/src/component/contracts/text_area/text_area_style.dart
+
+# ValidationBadge's CoreValidationBadgeSizeStyle is a defaultsBySize VariantStyle
+# holder (non-nullable required fields — a fully-resolved per-size bundle, not a
+# CoreXxxStyle override slot). Its iconLabelGapStyle field is intentionally
+# `CoreGapStyle` (not `CoreGapStyle?`) — the sibling override slot on
+# CoreValidationBadgeStyle itself (same file) is correctly `CoreGapStyle?`.
+packages/coui_core/lib/src/component/contracts/validation_badge/validation_badge_style.dart

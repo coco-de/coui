@@ -1,0 +1,69 @@
+{
+  "key": "tab-pane-editor-strip-light-liquidGlass",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "renderPhase": "ssr",
+  "captureContext": {
+    "viewportWidth": 800,
+    "viewportHeight": 1200,
+    "text": "@media (forced-colors:active){.co-tab-pane-indicator-2{position:relative;}.co-tab-pane-indicator-2::before{content:\"\";position:absolute;top:0;left:0;right:0;height:0;pointer-events:none;border-top:var(--coui-stroke-width-2) solid Highlight;}}\n              \n              \n                #co-clickable-277{transition:transform 100ms var(--easing-ease-in-out), outline-color 150ms var(--easing-ease-in-out), box-shadow 150ms var(--easing-ease-in-out);}#co-clickable-277{outline-color:transparent;}:where(#co-clickable-277){outline-style:solid;}#co-clickable-277:focus-visible{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(0.0px - var(--coui-stroke-width-2));}main.dart#co-button-ssr-j9:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-ssr-j9:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n                #co-clickable-278{transition:transform 100ms var(--easing-ease-in-out), outline-color 150ms var(--easing-ease-in-out), box-shadow 150ms var(--easing-ease-in-out);}#co-clickable-278{outline-color:transparent;}:where(#co-clickable-278){outline-style:solid;}#co-clickable-278:focus-visible{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(0.0px - var(--coui-stroke-width-2));}pubspec.yaml#co-button-ssr-ja:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-ssr-ja:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}\n                #co-clickable-279{transition:transform 100ms var(--easing-ease-in-out), outline-color 150ms var(--easing-ease-in-out), box-shadow 150ms var(--easing-ease-in-out);}#co-clickable-279{outline-color:transparent;}:where(#co-clickable-279){outline-style:solid;}#co-clickable-279:focus-visible{outline-color:rgb(var(--coui-focus-ring));outline-width:var(--coui-stroke-width-2);outline-offset:calc(0.0px - var(--coui-stroke-width-2));}README.md#co-button-ssr-jb:hover{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 3%, rgb(var(--coui-surface-container) / 0%)) !important;}#co-button-ssr-jb:active{background-color:color-mix(in srgb, rgb(var(--coui-on-surface)) 12%, rgb(var(--coui-surface-container) / 0%)) !important;}",
+    "layout": {
+      "width": 800,
+      "height": 36,
+      "direction": "column",
+      "innerPaddingLeft": "0px",
+      "innerPaddingRight": "0px",
+      "children": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 36
+        }
+      ]
+    },
+    "animationTimes": [],
+    "animationStates": [],
+    "availableWidth": 800
+  },
+  "byRole": {
+    "root": {
+      "fontFamily": "\"Geist Mono\", Pretendard, monospace",
+      "fontWeight": "400",
+      "fontSize": "12px",
+      "lineHeight": "21px",
+      "letterSpacing": "normal",
+      "color": "rgb(31, 32, 33)",
+      "backgroundColor": "rgb(249, 250, 251)",
+      "borderTopColor": "rgb(229, 231, 235)",
+      "borderRightColor": "rgb(229, 231, 235)",
+      "borderBottomColor": "rgb(229, 231, 235)",
+      "borderLeftColor": "rgb(229, 231, 235)",
+      "borderTopWidth": "0px",
+      "borderRightWidth": "0px",
+      "borderBottomWidth": "0px",
+      "borderLeftWidth": "0px",
+      "borderTopLeftRadius": "0px",
+      "borderTopRightRadius": "0px",
+      "borderBottomRightRadius": "0px",
+      "borderBottomLeftRadius": "0px",
+      "paddingTop": "0px",
+      "paddingRight": "0px",
+      "paddingBottom": "0px",
+      "paddingLeft": "0px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineColor": "rgb(31, 32, 33)",
+      "outlineOffset": "0px",
+      "boxShadow": "rgb(208, 209, 210) 0px -1px 0px 0px inset",
+      "opacity": "1",
+      "widthPx": 800,
+      "heightPx": 36
+    }
+  }
+}

@@ -1,0 +1,233 @@
+### Meta ###
+From: <ko> lib/src/json/ko.i18n.json
+To: <zh-Hans> lib/src/json/zh-Hans.i18n.json
+
+### Tokens ###
+Input: 686
+Output: 641
+Total: 1327
+
+### Conversation ###
+
+>> System:
+The user wants to internationalize the app. The user will provide you with a JSON file containing the Korean strings.
+You will translate it to Chinese (Simplified).
+Parameters are interpolated with {parameter}.
+Linked translations are denoted with the "@:path0.path1" syntax.
+
+Here is the app description. Respect this context when translating:
+"coui_flutter"는 90개 이상의 위젯을 제공하는 Flutter UI 컴포넌트 라이브러리입니다.
+재사용 가능한 UI 컴포넌트와 일관된 디자인 시스템을 제공하여
+Flutter 앱 개발을 더 빠르고 효율적으로 만들어줍니다.
+이 번역 파일은 문서 사이트의 컴포넌트 예제 및 설명을 다국어로 제공하기 위한 것입니다.
+
+>> User:
+{"widgetbook":{"dialog":{"basic_title":"기본 다이얼로그","basic_content":"제목과 내용이 있는 간단한 다이얼로그입니다.","show_basic":"기본 표시","confirm_title":"확인","confirm_content":"정말 이 작업을 수행하시겠습니까?","show_confirmation":"확인 표시","warning_title":"경고","show_warning":"경고 표시"},"popover":{"content_title":"팝오버 제목","content_description":"사용자 정의 가능한 콘텐츠가 있는 팝오버입니다."},"theme_preview":{"title":"테마 미리보기","description":"모든 테마 토큰과 컴포넌트 스타일의 종합적인 개요","color_palette":"색상 팔레트","brand_colors":"브랜드 색상","base_colors":"기본 색상","status_colors":"상태 색상","buttons":"버튼","primary_button":"Primary","secondary_button":"Secondary","outline_button":"Outline","ghost_button":"Ghost","destructive_button":"Destructive","disabled_button":"비활성화","cards":"카드","card_title":"카드 제목","card_description":"샘플 카드 설명입니다.","surface_card":"Surface 카드","filled_variant":"배경이 있는 filled 스타일","form_elements":"폼 요소","text_input_placeholder":"텍스트를 입력하세요...","checkbox_checked":"선택됨","checkbox_unchecked":"선택 안됨","toggle_on":"켜짐","toggle_off":"꺼짐","alerts":"알림","info_alert":"정보 알림","info_alert_message":"안내 메시지입니다.","error_alert":"오류 알림","error_alert_message":"문제가 발생했습니다.","badges_chips":"배지 & 칩","primary_badge":"Primary","secondary_badge":"Secondary","outline_badge":"Outline","destructive_badge":"Destructive","chip_example":"즐겨찾기","typography":"타이포그래피","heading_1":"제목 1","heading_2":"제목 2","heading_3":"제목 3","heading_4":"제목 4","body_text":"일반 두께의 본문 텍스트입니다.","small_text":"캡션용 작은 텍스트입니다.","muted_text":"부가 정보를 위한 흐린 텍스트입니다.","bold_text":"강조를 위한 굵은 텍스트입니다.","spacing_radius":"간격 & 둥글기","border_radius":"테두리 둥글기","loading_states":"로딩 상태"}}}
+
+>> Assistant:
+{
+  "widgetbook": {
+    "dialog": {
+      "basic_title": "基本对话框",
+      "basic_content": "带有标题和内容的简单对话框。",
+      "show_basic": "展示基本",
+      "confirm_title": "确认",
+      "confirm_content": "您真的要执行此操作吗？",
+      "show_confirmation": "展示确认",
+      "warning_title": "警告",
+      "show_warning": "展示警告"
+    },
+    "popover": {
+      "content_title": "弹出框标题",
+      "content_description": "具有可自定义内容的弹出框。"
+    },
+    "theme_preview": {
+      "title": "主题预览",
+      "description": "所有主题令牌和组件样式的综合概述",
+      "color_palette": "颜色调色板",
+      "brand_colors": "品牌颜色",
+      "base_colors": "基本颜色",
+      "status_colors": "状态颜色",
+      "buttons": "按钮",
+      "primary_button": "主要",
+      "secondary_button": "次要",
+      "outline_button": "轮廓",
+      "ghost_button": "幽灵",
+      "destructive_button": "破坏性",
+      "disabled_button": "禁用",
+      "cards": "卡片",
+      "card_title": "卡片标题",
+      "card_description": "示例卡片说明。",
+      "surface_card": "表面卡片",
+      "filled_variant": "带背景的填充样式",
+      "form_elements": "表单元素",
+      "text_input_placeholder": "请输入文本...",
+      "checkbox_checked": "已选中",
+      "checkbox_unchecked": "未选中",
+      "toggle_on": "开启",
+      "toggle_off": "关闭",
+      "alerts": "通知",
+      "info_alert": "信息通知",
+      "info_alert_message": "这是引导消息。",
+      "error_alert": "错误通知",
+      "error_alert_message": "发生了问题。",
+      "badges_chips": "徽章 & 标签",
+      "primary_badge": "主要",
+      "secondary_badge": "次要",
+      "outline_badge": "轮廓",
+      "destructive_badge": "破坏性",
+      "chip_example": "收藏",
+      "typography": "排版",
+      "heading_1": "标题 1",
+      "heading_2": "标题 2",
+      "heading_3": "标题 3",
+      "heading_4": "标题 4",
+      "body_text": "普通粗细的正文文本。",
+      "small_text": "用于说明的较小文本。",
+      "muted_text": "用作附加信息的淡化文本。",
+      "bold_text": "用于强调的粗体文本。",
+      "spacing_radius": "间距 & 圆角",
+      "border_radius": "边框圆角",
+      "loading_states": "加载状态"
+    }
+  }
+}
+
+### JSON ###
+Input:
+{
+  "widgetbook": {
+    "dialog": {
+      "basic_title": "기본 다이얼로그",
+      "basic_content": "제목과 내용이 있는 간단한 다이얼로그입니다.",
+      "show_basic": "기본 표시",
+      "confirm_title": "확인",
+      "confirm_content": "정말 이 작업을 수행하시겠습니까?",
+      "show_confirmation": "확인 표시",
+      "warning_title": "경고",
+      "show_warning": "경고 표시"
+    },
+    "popover": {
+      "content_title": "팝오버 제목",
+      "content_description": "사용자 정의 가능한 콘텐츠가 있는 팝오버입니다."
+    },
+    "theme_preview": {
+      "title": "테마 미리보기",
+      "description": "모든 테마 토큰과 컴포넌트 스타일의 종합적인 개요",
+      "color_palette": "색상 팔레트",
+      "brand_colors": "브랜드 색상",
+      "base_colors": "기본 색상",
+      "status_colors": "상태 색상",
+      "buttons": "버튼",
+      "primary_button": "Primary",
+      "secondary_button": "Secondary",
+      "outline_button": "Outline",
+      "ghost_button": "Ghost",
+      "destructive_button": "Destructive",
+      "disabled_button": "비활성화",
+      "cards": "카드",
+      "card_title": "카드 제목",
+      "card_description": "샘플 카드 설명입니다.",
+      "surface_card": "Surface 카드",
+      "filled_variant": "배경이 있는 filled 스타일",
+      "form_elements": "폼 요소",
+      "text_input_placeholder": "텍스트를 입력하세요...",
+      "checkbox_checked": "선택됨",
+      "checkbox_unchecked": "선택 안됨",
+      "toggle_on": "켜짐",
+      "toggle_off": "꺼짐",
+      "alerts": "알림",
+      "info_alert": "정보 알림",
+      "info_alert_message": "안내 메시지입니다.",
+      "error_alert": "오류 알림",
+      "error_alert_message": "문제가 발생했습니다.",
+      "badges_chips": "배지 & 칩",
+      "primary_badge": "Primary",
+      "secondary_badge": "Secondary",
+      "outline_badge": "Outline",
+      "destructive_badge": "Destructive",
+      "chip_example": "즐겨찾기",
+      "typography": "타이포그래피",
+      "heading_1": "제목 1",
+      "heading_2": "제목 2",
+      "heading_3": "제목 3",
+      "heading_4": "제목 4",
+      "body_text": "일반 두께의 본문 텍스트입니다.",
+      "small_text": "캡션용 작은 텍스트입니다.",
+      "muted_text": "부가 정보를 위한 흐린 텍스트입니다.",
+      "bold_text": "강조를 위한 굵은 텍스트입니다.",
+      "spacing_radius": "간격 & 둥글기",
+      "border_radius": "테두리 둥글기",
+      "loading_states": "로딩 상태"
+    }
+  }
+}
+
+Output:
+{
+  "widgetbook": {
+    "dialog": {
+      "basic_title": "基本对话框",
+      "basic_content": "带有标题和内容的简单对话框。",
+      "show_basic": "展示基本",
+      "confirm_title": "确认",
+      "confirm_content": "您真的要执行此操作吗？",
+      "show_confirmation": "展示确认",
+      "warning_title": "警告",
+      "show_warning": "展示警告"
+    },
+    "popover": {
+      "content_title": "弹出框标题",
+      "content_description": "具有可自定义内容的弹出框。"
+    },
+    "theme_preview": {
+      "title": "主题预览",
+      "description": "所有主题令牌和组件样式的综合概述",
+      "color_palette": "颜色调色板",
+      "brand_colors": "品牌颜色",
+      "base_colors": "基本颜色",
+      "status_colors": "状态颜色",
+      "buttons": "按钮",
+      "primary_button": "主要",
+      "secondary_button": "次要",
+      "outline_button": "轮廓",
+      "ghost_button": "幽灵",
+      "destructive_button": "破坏性",
+      "disabled_button": "禁用",
+      "cards": "卡片",
+      "card_title": "卡片标题",
+      "card_description": "示例卡片说明。",
+      "surface_card": "表面卡片",
+      "filled_variant": "带背景的填充样式",
+      "form_elements": "表单元素",
+      "text_input_placeholder": "请输入文本...",
+      "checkbox_checked": "已选中",
+      "checkbox_unchecked": "未选中",
+      "toggle_on": "开启",
+      "toggle_off": "关闭",
+      "alerts": "通知",
+      "info_alert": "信息通知",
+      "info_alert_message": "这是引导消息。",
+      "error_alert": "错误通知",
+      "error_alert_message": "发生了问题。",
+      "badges_chips": "徽章 & 标签",
+      "primary_badge": "主要",
+      "secondary_badge": "次要",
+      "outline_badge": "轮廓",
+      "destructive_badge": "破坏性",
+      "chip_example": "收藏",
+      "typography": "排版",
+      "heading_1": "标题 1",
+      "heading_2": "标题 2",
+      "heading_3": "标题 3",
+      "heading_4": "标题 4",
+      "body_text": "普通粗细的正文文本。",
+      "small_text": "用于说明的较小文本。",
+      "muted_text": "用作附加信息的淡化文本。",
+      "bold_text": "用于强调的粗体文本。",
+      "spacing_radius": "间距 & 圆角",
+      "border_radius": "边框圆角",
+      "loading_states": "加载状态"
+    }
+  }
+}

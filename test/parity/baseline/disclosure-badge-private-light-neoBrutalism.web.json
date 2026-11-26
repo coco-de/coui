@@ -1,0 +1,38 @@
+{
+  "key": "disclosure-badge-private-light-neoBrutalism",
+  "chromeVersion": "Chrome/150.0.7871.24",
+  "byRole": {
+    "root": {
+      "fontFamily": "Pretendard, system-ui, sans-serif",
+      "fontWeight": "600",
+      "fontSize": "12px",
+      "lineHeight": "16.8px",
+      "letterSpacing": "-0.12px",
+      "color": "rgb(88, 89, 90)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderTopColor": "rgb(31, 32, 34)",
+      "borderRightColor": "rgb(31, 32, 34)",
+      "borderBottomColor": "rgb(31, 32, 34)",
+      "borderLeftColor": "rgb(31, 32, 34)",
+      "borderTopWidth": "4px",
+      "borderRightWidth": "4px",
+      "borderBottomWidth": "4px",
+      "borderLeftWidth": "4px",
+      "borderTopLeftRadius": "2px",
+      "borderTopRightRadius": "2px",
+      "borderBottomRightRadius": "2px",
+      "borderBottomLeftRadius": "2px",
+      "paddingTop": "2px",
+      "paddingRight": "6px",
+      "paddingBottom": "2px",
+      "paddingLeft": "6px",
+      "outlineWidth": "3px",
+      "outlineStyle": "none",
+      "outlineOffset": "0px",
+      "boxShadow": "none",
+      "opacity": "1",
+      "widthPx": 83.765625,
+      "heightPx": 28.796875
+    }
+  }
+}

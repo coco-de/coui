@@ -1,0 +1,8 @@
+repo: https://github.com/coco-de/coui
+docs: https://github.com/coco-de/coui/tree/main/docs_site
+flutter: https://github.com/coco-de/coui/releases?q=coui_flutter
+web: https://github.com/coco-de/coui/releases?q=coui_web
+changelogFlutter: https://github.com/coco-de/coui/blob/main/packages/coui_flutter/CHANGELOG.md
+changelogWeb: https://github.com/coco-de/coui/blob/main/packages/coui_web/CHANGELOG.md
+changelogCore: https://github.com/coco-de/coui/blob/main/packages/coui_core/CHANGELOG.md
+changelogArchive: https://github.com/coco-de/coui/blob/main/CHANGELOG.md

@@ -1,0 +1,725 @@
+{
+  "issue": 6447,
+  "issueUrl": "https://github.com/coco-de/coui/issues/6447",
+  "parent": 6131,
+  "branch": "fix/6447-dot-indicator-scope-20261119",
+  "initialNegativeHead": "b5a18a24b38481f853cc4770137fa60dfbbd7a5d",
+  "integratedMain": "64dd884831f12ee4d39aef9be3263481e94b168e",
+  "productCommit": "e9440417d104d0e241de0530242f25518d49fadf",
+  "productSha256": "b33687c37e160767033643f6e2c8fe18c3e1695ecf3c16075b970d145985756f",
+  "sourceBinding": {
+    "integratedMain": "64dd884831f12ee4d39aef9be3263481e94b168e",
+    "productCommit": "e9440417d104d0e241de0530242f25518d49fadf",
+    "currentHeadBeforeDocs": "e9440417d104d0e241de0530242f25518d49fadf",
+    "changedFromIntegratedMain": [
+      "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator_style.dart",
+      "packages/coui_web/test/components/display/dot_indicator_style_test.dart",
+      "tool/parity/test/fixtures/dot_indicator_scope_cases.dart",
+      "tool/parity/test/web/dot_indicator_scope_runtime_test.dart",
+      "tool/parity/test/web/dot_indicator_scope_test.dart"
+    ],
+    "sourceFiles": {
+      "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator_style.dart": {
+        "sha256": "b33687c37e160767033643f6e2c8fe18c3e1695ecf3c16075b970d145985756f",
+        "mode": 420
+      },
+      "packages/coui_web/test/components/display/dot_indicator_style_test.dart": {
+        "sha256": "c70c459dcd1dc7cb40204901fe9ae8566e0b9a831e0846d3e0cc8eed7aaa4457",
+        "mode": 420
+      },
+      "tool/parity/test/fixtures/dot_indicator_scope_cases.dart": {
+        "sha256": "0777fcea05ae49f33dc40a4e38dcc680b8d06fee691a374b2fab2640992e2c9b",
+        "mode": 420
+      },
+      "tool/parity/test/web/dot_indicator_scope_runtime_test.dart": {
+        "sha256": "1313206821c67d6ed5387ff889d5d49853b12f27134a1e89ff115236a4783742",
+        "mode": 420
+      },
+      "tool/parity/test/web/dot_indicator_scope_test.dart": {
+        "sha256": "2272734a7530a03a925a5a81426348b7863df20ca4388859fce5e8ecaad46ebc",
+        "mode": 420
+      }
+    },
+    "afterProductCommitDeltas": [
+      "tool/parity/test/web/dot_indicator_scope_runtime_test.dart",
+      "tool/parity/test/web/dot_indicator_scope_test.dart"
+    ],
+    "afterProductCommitOnlyTestHarnessCorrection": true,
+    "widget": {
+      "path": "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator.dart",
+      "sha256": "085ef17fa25fdf89907feaf21eebd956c49b0bcb1407802e9ce5f7922c36a73b",
+      "byteExact": true
+    },
+    "publicStyleASTShapes": 12,
+    "publicStyleASTExact": true,
+    "CoreNativeJoinGlobalHelpersThemeConfigDocsSourceManifestCriteriaNormalizerComparatorBaselinesSkipsDependenciesLocksAndExportsChanged": [],
+    "configuration": {
+      "packageTuples": 232,
+      "exact": true
+    }
+  },
+  "checks": {
+    "dot-controls-final": {
+      "argv": [
+        "dart",
+        "test",
+        "packages/coui_web/test/components/display/dot_indicator_style_test.dart",
+        "packages/coui_web/test/components/display/dot_indicator_semantics_test.dart",
+        "tool/parity/test/web/dot_indicator_scope_test.dart",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart",
+        "-r",
+        "expanded"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/worktree",
+      "pid": 67202,
+      "exit": 0,
+      "seconds": 11.803873625,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/dot-controls-final.log"
+    },
+    "foundation-regression": {
+      "argv": [
+        "dart",
+        "test",
+        "tool/parity/test/web/dot_indicator_scope_test.dart",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart",
+        "-r",
+        "expanded"
+      ],
+      "cwd": "worktree",
+      "pid": 93469,
+      "exit": 0,
+      "seconds": 10.765842875,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-regression.log"
+    },
+    "fatal-owned-final": {
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator_style.dart",
+        "packages/coui_web/test/components/display/dot_indicator_style_test.dart",
+        "tool/parity/test/fixtures/dot_indicator_scope_cases.dart",
+        "tool/parity/test/web/dot_indicator_scope_test.dart",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/worktree",
+      "pid": 68196,
+      "exit": 0,
+      "seconds": 25.767935208,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/fatal-owned-final.log"
+    },
+    "foundation-fatal": {
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "tool/parity/test/web/dot_indicator_scope_test.dart",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart"
+      ],
+      "cwd": "worktree",
+      "pid": 93731,
+      "exit": 0,
+      "seconds": 25.373678333,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-fatal.log"
+    },
+    "format-check-final": {
+      "argv": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator_style.dart",
+        "packages/coui_web/test/components/display/dot_indicator_style_test.dart",
+        "tool/parity/test/fixtures/dot_indicator_scope_cases.dart",
+        "tool/parity/test/web/dot_indicator_scope_test.dart",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/worktree",
+      "pid": 69134,
+      "exit": 0,
+      "seconds": 0.316361333,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/format-check-final.log"
+    },
+    "foundation-format": {
+      "argv": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "tool/parity/test/web/dot_indicator_scope_test.dart",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart"
+      ],
+      "cwd": "worktree",
+      "pid": 93995,
+      "exit": 0,
+      "seconds": 0.7324519580000001,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-format.log"
+    },
+    "contracts-final": {
+      "argv": [
+        "bash",
+        "scripts/guards/resolver/verify_contracts.sh"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/worktree",
+      "pid": 70223,
+      "exit": 0,
+      "seconds": 106.080958833,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/contracts-final.log"
+    },
+    "pub-get-offline": {
+      "argv": [
+        "flutter",
+        "pub",
+        "get",
+        "--offline",
+        "--no-example"
+      ],
+      "cwd": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/worktree",
+      "pid": 46525,
+      "exit": 0,
+      "seconds": 2.454336208,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/pub-get-offline.log"
+    }
+  },
+  "relatedTests": 33,
+  "officialFoundationFollowupTests": 10,
+  "officialFoundationRuntimeRecords": 68,
+  "officialFoundationSSRRecords": 4,
+  "actualDocsUIRecords": 12,
+  "docsUIRuntimeErrors": [],
+  "docsUIFailedRequests": [],
+  "build": {
+    "sourceHead": "e9440417d104d0e241de0530242f25518d49fadf",
+    "routes": 359,
+    "exit": 0,
+    "seconds": 109.7215187549591,
+    "trackedFiles": 22575,
+    "trackedDeltas": [],
+    "groupClosed": true
+  },
+  "reload": {
+    "sourceHead": "e9440417d104d0e241de0530242f25518d49fadf",
+    "sourceSha256": "b33687c37e160767033643f6e2c8fe18c3e1695ecf3c16075b970d145985756f",
+    "exit": 0,
+    "beforeAfterHtmlExact": true,
+    "pidClosed": true,
+    "httpClosed": true,
+    "vmClosed": true
+  },
+  "selectedEvidence": [
+    {
+      "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/before-light-shared-a-hover.png",
+      "sha256": "d2b31ceb9541c7a35aca1afc9f3341162e43b93c1735cf732e77a80626c526ca",
+      "dimensions": [
+        260,
+        72
+      ],
+      "phase": "before",
+      "theme": "light",
+      "owner": "shared-a",
+      "state": "hover",
+      "caption": "before, light: inactive dot index 1; existing authored CoreDotIndicatorStyle.inactiveBorderWidth=2, canonical foundation makes border solid; wrongly blue B before, red A after. Actual unchanged fixture with official docsContentTheme().styles foundation; no target border CSS, product defaults unchanged. Original PNG, no edits.",
+      "viewed": true,
+      "observations": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/evidence-records.json",
+      "productSource": "e9440417d104d0e241de0530242f25518d49fadf",
+      "beforeBinding": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/frozen-before-binding.json",
+      "foundationInput": "Style(styles: docsContentTheme().styles), matching tool/parity/src/web/web_capture_backend.dart:186",
+      "sameFrame": {
+        "index": 1,
+        "ariaCurrent": null,
+        "borderStyle": "solid",
+        "borderWidth": "2px",
+        "border": "rgb(20, 40, 180)",
+        "hover": true,
+        "focused": false
+      }
+    },
+    {
+      "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/before-dark-shared-a-hover.png",
+      "sha256": "09c90e1d79c5cf813561da4a60d0fc8acbbaff0db2462dd9f0d2abd4d6cbe0ca",
+      "dimensions": [
+        260,
+        72
+      ],
+      "phase": "before",
+      "theme": "dark",
+      "owner": "shared-a",
+      "state": "hover",
+      "caption": "before, dark: inactive dot index 1; existing authored CoreDotIndicatorStyle.inactiveBorderWidth=2, canonical foundation makes border solid; wrongly blue B before, red A after. Actual unchanged fixture with official docsContentTheme().styles foundation; no target border CSS, product defaults unchanged. Original PNG, no edits.",
+      "viewed": true,
+      "observations": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/evidence-records.json",
+      "productSource": "e9440417d104d0e241de0530242f25518d49fadf",
+      "beforeBinding": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/frozen-before-binding.json",
+      "foundationInput": "Style(styles: docsContentTheme().styles), matching tool/parity/src/web/web_capture_backend.dart:186",
+      "sameFrame": {
+        "index": 1,
+        "ariaCurrent": null,
+        "borderStyle": "solid",
+        "borderWidth": "2px",
+        "border": "rgb(20, 40, 180)",
+        "hover": true,
+        "focused": false
+      }
+    },
+    {
+      "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/before-light-shared-a-focus.png",
+      "sha256": "72ef3b62d342d45336d0b939213e87f0151a3b33045d8fd400de9d04381c2aec",
+      "dimensions": [
+        260,
+        72
+      ],
+      "phase": "before",
+      "theme": "light",
+      "owner": "shared-a",
+      "state": "focus",
+      "caption": "before, light: shared runtime red A focus ring wrongly uses blue B before; red A restored after. Actual unchanged fixture with official docsContentTheme().styles foundation; no target border CSS, product defaults unchanged. Original PNG, no edits.",
+      "viewed": true,
+      "observations": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/evidence-records.json",
+      "productSource": "e9440417d104d0e241de0530242f25518d49fadf",
+      "beforeBinding": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/frozen-before-binding.json",
+      "foundationInput": "Style(styles: docsContentTheme().styles), matching tool/parity/src/web/web_capture_backend.dart:186",
+      "sameFrame": {
+        "index": 0,
+        "ariaCurrent": "true",
+        "borderStyle": "solid",
+        "borderWidth": "0px",
+        "border": "rgb(31, 32, 33)",
+        "hover": false,
+        "focused": true
+      }
+    },
+    {
+      "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/before-light-mixed-band-b-focus.png",
+      "sha256": "89c8a5af2c3e6f077e9236a1150ec816b8d17e930201030eac53aafb4aaa009d",
+      "dimensions": [
+        260,
+        72
+      ],
+      "phase": "before",
+      "theme": "light",
+      "owner": "mixed-band-b",
+      "state": "focus",
+      "caption": "before, light: bandless B caller shadow: wrongly inherited A band before; correct B bandless boundary after. Actual unchanged fixture with official docsContentTheme().styles foundation; no target border CSS, product defaults unchanged. Original PNG, no edits.",
+      "viewed": true,
+      "observations": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/evidence-records.json",
+      "productSource": "e9440417d104d0e241de0530242f25518d49fadf",
+      "beforeBinding": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/frozen-before-binding.json",
+      "foundationInput": "Style(styles: docsContentTheme().styles), matching tool/parity/src/web/web_capture_backend.dart:186",
+      "sameFrame": {
+        "index": 0,
+        "ariaCurrent": "true",
+        "borderStyle": "solid",
+        "borderWidth": "0px",
+        "border": "rgb(31, 32, 33)",
+        "hover": false,
+        "focused": true
+      }
+    },
+    {
+      "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/after-light-shared-a-hover.png",
+      "sha256": "8e892a7575eb8445594fb64f33e2684d568da79eb984c9d6f88cc8d8c1754185",
+      "dimensions": [
+        260,
+        72
+      ],
+      "phase": "after",
+      "theme": "light",
+      "owner": "shared-a",
+      "state": "hover",
+      "caption": "after, light: inactive dot index 1; existing authored CoreDotIndicatorStyle.inactiveBorderWidth=2, canonical foundation makes border solid; wrongly blue B before, red A after. Actual unchanged fixture with official docsContentTheme().styles foundation; no target border CSS, product defaults unchanged. Original PNG, no edits.",
+      "viewed": true,
+      "observations": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/evidence-records.json",
+      "productSource": "e9440417d104d0e241de0530242f25518d49fadf",
+      "beforeBinding": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/frozen-before-binding.json",
+      "foundationInput": "Style(styles: docsContentTheme().styles), matching tool/parity/src/web/web_capture_backend.dart:186",
+      "sameFrame": {
+        "index": 1,
+        "ariaCurrent": null,
+        "borderStyle": "solid",
+        "borderWidth": "2px",
+        "border": "rgb(180, 20, 40)",
+        "hover": true,
+        "focused": false
+      }
+    },
+    {
+      "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/after-dark-shared-a-hover.png",
+      "sha256": "4ab0f909474349f0cd7b2af2ff38411994affb1263cede22d88787759bb14aba",
+      "dimensions": [
+        260,
+        72
+      ],
+      "phase": "after",
+      "theme": "dark",
+      "owner": "shared-a",
+      "state": "hover",
+      "caption": "after, dark: inactive dot index 1; existing authored CoreDotIndicatorStyle.inactiveBorderWidth=2, canonical foundation makes border solid; wrongly blue B before, red A after. Actual unchanged fixture with official docsContentTheme().styles foundation; no target border CSS, product defaults unchanged. Original PNG, no edits.",
+      "viewed": true,
+      "observations": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/evidence-records.json",
+      "productSource": "e9440417d104d0e241de0530242f25518d49fadf",
+      "beforeBinding": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/frozen-before-binding.json",
+      "foundationInput": "Style(styles: docsContentTheme().styles), matching tool/parity/src/web/web_capture_backend.dart:186",
+      "sameFrame": {
+        "index": 1,
+        "ariaCurrent": null,
+        "borderStyle": "solid",
+        "borderWidth": "2px",
+        "border": "rgb(180, 20, 40)",
+        "hover": true,
+        "focused": false
+      }
+    },
+    {
+      "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/after-light-shared-a-focus.png",
+      "sha256": "3b8ca150cfea8d7d1a1acd1f37a35241f131982e0bdcddfbec0c1c996c5c5917",
+      "dimensions": [
+        260,
+        72
+      ],
+      "phase": "after",
+      "theme": "light",
+      "owner": "shared-a",
+      "state": "focus",
+      "caption": "after, light: shared runtime red A focus ring wrongly uses blue B before; red A restored after. Actual unchanged fixture with official docsContentTheme().styles foundation; no target border CSS, product defaults unchanged. Original PNG, no edits.",
+      "viewed": true,
+      "observations": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/evidence-records.json",
+      "productSource": "e9440417d104d0e241de0530242f25518d49fadf",
+      "beforeBinding": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/frozen-before-binding.json",
+      "foundationInput": "Style(styles: docsContentTheme().styles), matching tool/parity/src/web/web_capture_backend.dart:186",
+      "sameFrame": {
+        "index": 0,
+        "ariaCurrent": "true",
+        "borderStyle": "solid",
+        "borderWidth": "0px",
+        "border": "rgb(31, 32, 33)",
+        "hover": false,
+        "focused": true
+      }
+    },
+    {
+      "file": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/after-light-mixed-band-b-focus.png",
+      "sha256": "82118015048055da78c6bbda11a05921c21c54b26eddc3846f6015e79db166c5",
+      "dimensions": [
+        260,
+        72
+      ],
+      "phase": "after",
+      "theme": "light",
+      "owner": "mixed-band-b",
+      "state": "focus",
+      "caption": "after, light: bandless B caller shadow: wrongly inherited A band before; correct B bandless boundary after. Actual unchanged fixture with official docsContentTheme().styles foundation; no target border CSS, product defaults unchanged. Original PNG, no edits.",
+      "viewed": true,
+      "observations": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/foundation-evidence/evidence-records.json",
+      "productSource": "e9440417d104d0e241de0530242f25518d49fadf",
+      "beforeBinding": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr/frozen-before-binding.json",
+      "foundationInput": "Style(styles: docsContentTheme().styles), matching tool/parity/src/web/web_capture_backend.dart:186",
+      "sameFrame": {
+        "index": 0,
+        "ariaCurrent": "true",
+        "borderStyle": "solid",
+        "borderWidth": "0px",
+        "border": "rgb(31, 32, 33)",
+        "hover": false,
+        "focused": true
+      }
+    }
+  ],
+  "cleanup": {
+    "ownedPids": [
+      {
+        "pid": 91954,
+        "closed": true
+      },
+      {
+        "pid": 74290,
+        "closed": true
+      },
+      {
+        "pid": 70443,
+        "closed": true
+      }
+    ],
+    "ownedPorts": [
+      {
+        "port": 50162,
+        "closed": true
+      },
+      {
+        "port": 62360,
+        "closed": true
+      },
+      {
+        "port": 62329,
+        "closed": true
+      },
+      {
+        "port": 61369,
+        "closed": true
+      }
+    ],
+    "browserCloseAwaited": true,
+    "runtimeHttpClosed": true,
+    "noForeignRuntimeAccess": true,
+    "filesDeleted": 0,
+    "evidencePreserved": true
+  },
+  "limits": [
+    "Style-only Web Dot scope repair, not a cross-platform pixel-parity measurement. No default816 remeasurement or legacy234 improvement claim.",
+    "Native #5327 and Join DOM-ID lifecycle remain separate. No generated runtime seed or public const/factory change.",
+    "Existing helper alpha serialization .625\u2192.62 and Chrome declaration2.5/3.75\u2192computed2/3 are unchanged and separately witnessed.",
+    "Initial evidence omitted official docsContentTheme reset; initial unpainted hover controls and explicit caller-border contrast are preserved, canonical foundation8 are primary evidence.",
+    "Initial setup/compile/lint/helper-expectation failures and transient root ScrollView ID reload difference are preserved in phase, not counted as successful validations."
+  ],
+  "phase": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-dot-scope-20261119.965fx6jr",
+  "retrospectiveLifecycleCorrection6451": {
+    "overridesHistoricalRemountCoverageClaim": true,
+    "reason": "Historical harness anchor div#mount and toggle button#mount collided, so page.click(#mount) targeted the app wrapper. Historical passing logs are insufficient removal/remount proof. They remain immutable historical results.",
+    "productChanged": false,
+    "dotProductHashes": {
+      "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator.dart": "085ef17fa25fdf89907feaf21eebd956c49b0bcb1407802e9ce5f7922c36a73b",
+      "packages/coui_web/lib/src/components/display/dot_indicator/dot_indicator_style.dart": "b33687c37e160767033643f6e2c8fe18c3e1695ecf3c16075b970d145985756f"
+    },
+    "correctedTestCommit": "5997c68e7748130874366773730c235fd56aa411",
+    "actualRunHead": "fc7ca504f7371278b4f74b28e79f8eb3c7dc0df7",
+    "actualRunBinding": "The Dot test ran with this exact corrected test SHA as the only working-tree change on fc7ca, then was committed unchanged as5997. It is not attributed to the untouched fc7 tree.",
+    "correctedTestFile": "tool/parity/test/web/dot_indicator_scope_runtime_test.dart",
+    "correctedTestSHA256": "31a50d88a2c1cf7b9f9cc2cf9b4f3d73e8a1f14148c0d733c27cbe707cfa1dfa",
+    "testReceipt": {
+      "argv": [
+        "dart",
+        "test",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart",
+        "-r",
+        "expanded"
+      ],
+      "cwd": "worktree",
+      "pid": 94644,
+      "exit": 0,
+      "seconds": 11.082583375,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/dot-retrospective-runtime.log"
+    },
+    "fatalReceipt": {
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart"
+      ],
+      "cwd": "worktree",
+      "pid": 94907,
+      "exit": 0,
+      "seconds": 25.976642875,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/fatal-dot-retrospective.log"
+    },
+    "formatReceipt": {
+      "argv": [
+        "dart",
+        "format",
+        "tool/parity/test/web/dot_indicator_scope_runtime_test.dart"
+      ],
+      "cwd": "worktree",
+      "pid": 94616,
+      "exit": 0,
+      "seconds": 0.28825716700000004,
+      "log": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/format-dot-retrospective.log"
+    },
+    "runtimeRecords": 78,
+    "actualLifecycleRecords": [
+      {
+        "theme": "light",
+        "action": "initial",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-8ihksx"
+        },
+        "beforeBuilds": 2
+      },
+      {
+        "theme": "light",
+        "action": "rebuild",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-8ihksx"
+        },
+        "beforeBuilds": 2
+      },
+      {
+        "theme": "light",
+        "action": "reorder",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-8ihksx"
+        },
+        "beforeBuilds": 3
+      },
+      {
+        "theme": "light",
+        "action": "mount",
+        "lifetime": {
+          "present": false,
+          "oldConnected": false,
+          "sameNode": false
+        },
+        "beforeBuilds": 4
+      },
+      {
+        "theme": "light",
+        "action": "mount",
+        "lifetime": {
+          "present": true,
+          "oldConnected": false,
+          "sameNode": false,
+          "legacyClass": "co-dot-h-co-dot-8ihksx"
+        },
+        "beforeBuilds": 5
+      },
+      {
+        "theme": "dark",
+        "action": "initial",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-ez8ib"
+        },
+        "beforeBuilds": 2
+      },
+      {
+        "theme": "dark",
+        "action": "rebuild",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-ez8ib"
+        },
+        "beforeBuilds": 2
+      },
+      {
+        "theme": "dark",
+        "action": "reorder",
+        "lifetime": {
+          "present": true,
+          "oldConnected": true,
+          "sameNode": true,
+          "legacyClass": "co-dot-h-co-dot-ez8ib"
+        },
+        "beforeBuilds": 3
+      },
+      {
+        "theme": "dark",
+        "action": "mount",
+        "lifetime": {
+          "present": false,
+          "oldConnected": false,
+          "sameNode": false
+        },
+        "beforeBuilds": 4
+      },
+      {
+        "theme": "dark",
+        "action": "mount",
+        "lifetime": {
+          "present": true,
+          "oldConnected": false,
+          "sameNode": false,
+          "legacyClass": "co-dot-h-co-dot-ez8ib"
+        },
+        "beforeBuilds": 5
+      }
+    ],
+    "actualAbsentRecords": 2,
+    "newNodeAfterRemount": true,
+    "legacyScopeClassPreserved": true,
+    "remountedFocus": [
+      {
+        "theme": "light",
+        "case": "remounted-focus",
+        "reference": {
+          "border": "rgb(31, 32, 33)",
+          "borderStyle": "solid",
+          "borderWidth": "0px",
+          "outline": "rgba(180, 20, 40, 0.62)",
+          "width": "2px",
+          "offset": "3px",
+          "style": "solid",
+          "shadow": "rgb(40, 50, 60) 0px 0px 3px 0px",
+          "classes": "transition-all bg-on-surface border-on-surface coui-touch-target co-dot-hit-h-co-dot-2dm500 co-dot-hit-horizontal outline-none co-dot-r-co-dot-2dm500 co-dot-raw-ring",
+          "declaredColor": "rgba(180, 20, 40, 0.62)",
+          "declaredWidth": "2.5px",
+          "declaredOffset": "3.75px"
+        },
+        "observed": {
+          "border": "rgb(31, 32, 33)",
+          "borderStyle": "solid",
+          "borderWidth": "0px",
+          "outline": "rgba(180, 20, 40, 0.62)",
+          "width": "2px",
+          "offset": "3px",
+          "style": "solid",
+          "shadow": "rgb(40, 50, 60) 0px 0px 3px 0px",
+          "classes": "transition-all bg-on-surface border-on-surface coui-touch-target co-dot-hit-h-co-dot-8ihksx co-dot-hit-horizontal outline-none co-dot-r-co-dot-8ihksx co-dot-raw-ring",
+          "declaredColor": "rgba(180, 20, 40, 0.62)",
+          "declaredWidth": "2.5px",
+          "declaredOffset": "3.75px"
+        }
+      },
+      {
+        "theme": "dark",
+        "case": "remounted-focus",
+        "reference": {
+          "border": "rgb(244, 245, 246)",
+          "borderStyle": "solid",
+          "borderWidth": "0px",
+          "outline": "rgba(180, 20, 40, 0.62)",
+          "width": "2px",
+          "offset": "3px",
+          "style": "solid",
+          "shadow": "rgb(40, 50, 60) 0px 0px 3px 0px",
+          "classes": "transition-all bg-on-surface border-on-surface coui-touch-target co-dot-hit-h-co-dot-128oqo co-dot-hit-horizontal outline-none co-dot-r-co-dot-128oqo co-dot-raw-ring",
+          "declaredColor": "rgba(180, 20, 40, 0.62)",
+          "declaredWidth": "2.5px",
+          "declaredOffset": "3.75px"
+        },
+        "observed": {
+          "border": "rgb(244, 245, 246)",
+          "borderStyle": "solid",
+          "borderWidth": "0px",
+          "outline": "rgba(180, 20, 40, 0.62)",
+          "width": "2px",
+          "offset": "3px",
+          "style": "solid",
+          "shadow": "rgb(40, 50, 60) 0px 0px 3px 0px",
+          "classes": "transition-all bg-on-surface border-on-surface coui-touch-target co-dot-hit-h-co-dot-ez8ib co-dot-hit-horizontal outline-none co-dot-r-co-dot-ez8ib co-dot-raw-ring",
+          "declaredColor": "rgba(180, 20, 40, 0.62)",
+          "declaredWidth": "2.5px",
+          "declaredOffset": "3.75px"
+        }
+      }
+    ],
+    "remountedFocusFieldComparisonIncludes": [
+      "style",
+      "shadow",
+      "outline",
+      "width",
+      "offset",
+      "declaredColor",
+      "declaredWidth",
+      "declaredOffset"
+    ],
+    "bandScope": "Painted/mixed/bandless and forced-colors/hit controls pass on separate cold pages in the same6-test suite. They are not described as band owners remounting or same-tree band continuity.",
+    "runtimeErrorObservationScope": "page.onError only; not a full console/network audit",
+    "errors": [],
+    "sourceProof": "/private/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6451-join-scope-20261119.1jxn2eyk/corrected-dot-runtime/observed.json",
+    "sourceProofSHA256": "273179e86770a43eaf96d6fa18d4ffae33c01abeeb31dcbe1b6bff491deb2169",
+    "originalProofsAndOldDotWorktreeModified": false,
+    "noNewDocsBuildNeeded": "Only runtime tests and verification docs differ after the dd602 docs build; all docs-site/Core/Native/Web product/capture source/dependency inputs remain byte-identical.",
+    "noFreshDefault816OrNativePixelClaim": true
+  }
+}

@@ -1,0 +1,753 @@
+{
+  "issue": 6440,
+  "parentIssue": 6131,
+  "productCommit": "74f4e34b705202c473552edc2d257355ba4134a5",
+  "previousProductCommit": "bb3bb59669f571f15e5cff50ecbe4bdb3c5cca40",
+  "previousEvidenceHead": "534d46463f33403d8da1756e6d634ab9933b9f8f",
+  "scope": "Raw-only Tabs standard CSS duration/easing restoration; no exact intermediate RGBA parity claim",
+  "sourceFiles": {
+    "packages/coui_web/lib/src/components/navigation/tabs/tabs.dart": "19f5a8ac226f9cd4324b989b77f4a29fe10742c5cc865f119c095ceecb401c02",
+    "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart": "44ad928f560025064acb9cc8d1ae36f105be60dce1e2e1573073e8d02969278f",
+    "packages/coui_web/test/components/navigation/tabs_state_layer_test.dart": "e1a250431033ae7ce218dca219fb36e4ebfa57841433959400883b448b2012d5"
+  },
+  "proofRoot": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-motion-20261119.e5mavic6",
+  "finalProof": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-motion-20261119.e5mavic6/final",
+  "tests": {
+    "passed": 63,
+    "newMotionCases": 2,
+    "beforeCases": {
+      "failed": 2,
+      "existingPassed": 10
+    },
+    "fatalInfos": 0,
+    "formatDrift": 0,
+    "contractGuardExit": 0,
+    "existingNonEnforcedWarnings": 7
+  },
+  "browserMotion": {
+    "chrome157": {
+      "version": "Chrome/157.0.8103.79",
+      "rows": 90,
+      "errors": [],
+      "externalRequests": [],
+      "animatedTransitions": 160,
+      "transitionsWithIntermediateFrames": 160,
+      "animationTimings": [
+        {
+          "durationMs": 100,
+          "easing": "cubic-bezier(0.42, 0, 0.58, 1)"
+        },
+        {
+          "durationMs": 250,
+          "easing": "cubic-bezier(0.42, 0, 0.58, 1)"
+        }
+      ],
+      "zeroDurationAnimations": 0,
+      "disabledAnimations": 0,
+      "transparentAnimations": 0,
+      "eventErrors": [],
+      "sharedHydration": [
+        {
+          "phase": "old-raw",
+          "frames": 20,
+          "notHoveredFrames": 0,
+          "nodePreserved": true
+        },
+        {
+          "phase": "new-raw",
+          "frames": 19,
+          "notHoveredFrames": 0,
+          "nodePreserved": true
+        },
+        {
+          "phase": "old-token",
+          "frames": 19,
+          "notHoveredFrames": 0,
+          "nodePreserved": true
+        },
+        {
+          "phase": "new-token",
+          "frames": 20,
+          "notHoveredFrames": 1,
+          "nodePreserved": true
+        }
+      ]
+    },
+    "chrome150": {
+      "version": "Chrome/150.0.7871.24",
+      "rows": 90,
+      "errors": [],
+      "externalRequests": [],
+      "animatedTransitions": 160,
+      "transitionsWithIntermediateFrames": 160,
+      "animationTimings": [
+        {
+          "durationMs": 100,
+          "easing": "cubic-bezier(0.42, 0, 0.58, 1)"
+        },
+        {
+          "durationMs": 250,
+          "easing": "cubic-bezier(0.42, 0, 0.58, 1)"
+        }
+      ],
+      "zeroDurationAnimations": 0,
+      "disabledAnimations": 0,
+      "transparentAnimations": 0,
+      "eventErrors": [],
+      "sharedHydration": [
+        {
+          "phase": "old-raw",
+          "frames": 19,
+          "notHoveredFrames": 1,
+          "nodePreserved": true
+        },
+        {
+          "phase": "new-raw",
+          "frames": 19,
+          "notHoveredFrames": 1,
+          "nodePreserved": true
+        },
+        {
+          "phase": "old-token",
+          "frames": 19,
+          "notHoveredFrames": 1,
+          "nodePreserved": true
+        },
+        {
+          "phase": "new-token",
+          "frames": 19,
+          "notHoveredFrames": 1,
+          "nodePreserved": true
+        }
+      ]
+    }
+  },
+  "native": {
+    "actualTimelineRows": 120,
+    "events": [
+      "hover",
+      "press",
+      "release",
+      "leave"
+    ],
+    "points": [
+      "start",
+      "middle",
+      "end"
+    ],
+    "reads": "Actual DecoratedBox colour; not AnimatedContainer target",
+    "endpointRows": 144,
+    "canonicalFontMasters": 13
+  },
+  "endpointSummary": {
+    "after": {
+      "rowCount": 144,
+      "errors": [],
+      "externalRequests": [],
+      "paintSamples": 24,
+      "exactPaintSamples": 20,
+      "maxChannelDelta": 1
+    },
+    "hydrated": {
+      "rowCount": 144,
+      "errors": [],
+      "externalRequests": [],
+      "paintSamples": 24,
+      "exactPaintSamples": 20,
+      "maxChannelDelta": 1
+    }
+  },
+  "ssrHydrationEndpointDifferences": 0,
+  "allTokenDefaultHtml": {
+    "count": 4,
+    "allByteEqual": true
+  },
+  "oldFinalEndpointPngs": {
+    "count": 24,
+    "byteEqual": 24,
+    "binding": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-motion-20261119.e5mavic6/final/old-final-endpoint-png-binding.json"
+  },
+  "publicApi": {
+    "tabsAstEqual": true,
+    "existingInternalSignaturesEqual": true,
+    "defaultTargetLocalExportClosure": 361,
+    "conditionalAlternativesUnion": 365,
+    "tabsStyleExportedByEither": false,
+    "unchangedCoreNativeHelperDependencyPaths": 11,
+    "allUnchanged": true,
+    "packageCount": 232
+  },
+  "docsBuild": {
+    "routes": 359,
+    "exit": 0,
+    "seconds": 81.13,
+    "trackedPaths": 22552,
+    "trackedDeltas": 0,
+    "head": "74f4e34b705202c473552edc2d257355ba4134a5",
+    "ownedProcessGroupClosed": true
+  },
+  "reload": {
+    "scope": "Owned real Tabs SSR Dart VM reload smoke, not a Flutter app source-migration test",
+    "pid": 94816,
+    "beforeStatus": 200,
+    "before": {
+      "actualTabs": true,
+      "rawLayer": true,
+      "privateScope": true
+    },
+    "reloadExit": 0,
+    "reload": {
+      "isolate": "main",
+      "success": true,
+      "details": {
+        "type": "ReloadReport",
+        "success": true,
+        "details": {
+          "finalLibraryCount": 2228,
+          "receivedLibraryCount": 0,
+          "receivedLibrariesBytes": 0,
+          "receivedClassesCount": 0,
+          "receivedProceduresCount": 0,
+          "savedLibraryCount": 2228,
+          "loadedLibraryCount": 0
+        }
+      }
+    },
+    "afterStatus": 200,
+    "after": {
+      "actualTabs": true,
+      "rawLayer": true,
+      "privateScope": true
+    },
+    "processExit": 0,
+    "closed": true
+  },
+  "boundaries": [
+    "CSS premultiplied intermediate colour differs from Native Color.lerp on transparent bases; material, not rounding.",
+    "One-frame hovered hydration reset is shared by old/new raw and token controls; no workaround added.",
+    "Only Chrome150 and157 motion runs; no Safari/Firefox execution or unsupported-browser motion guarantee.",
+    "Pure-token composition and CoreOpacity utility registration are separate.",
+    "Official40-cell/816/full sweep not rerun; no whole parity count reduction claimed."
+  ],
+  "evidenceSelection": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-tabs-raw-motion-20261119.e5mavic6/final/selected-evidence8.json",
+  "publication": "None by worker: local code and docs commits only; Root reviews/pushes/PR/merge.",
+  "finalIntegration": {
+    "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+    "mainIncluded": "b5a18a24b38481f853cc4770137fa60dfbbd7a5d",
+    "priorIntegration": "660e66c6dbad02f5f14692001472fcd9656e40d7",
+    "rawMotionProduct": "74f4e34b705202c473552edc2d257355ba4134a5",
+    "pr": 6446,
+    "sourcePreservation": {
+      "tabsStyleAndMotionTestExact": true,
+      "tabsDartOnlyExpectedRovingImportAndHostExpression": true,
+      "sourceHashes": {
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs.dart": "f533eae243ba746e62a29cfa3009ec8ecae0d7ae4eda1f0f5efcdfc0215bbc19",
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart": "44ad928f560025064acb9cc8d1ae36f105be60dce1e2e1573073e8d02969278f",
+        "packages/coui_web/test/components/navigation/tabs_state_layer_test.dart": "e1a250431033ae7ce218dca219fb36e4ebfa57841433959400883b448b2012d5"
+      },
+      "ownProductPathsAgainstMain": [
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs.dart",
+        "packages/coui_web/lib/src/components/navigation/tabs/tabs_style.dart"
+      ]
+    },
+    "freshChecks": {
+      "tabs63": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 63,
+        "seconds": 3.5707609999999996,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/tabs63-exit.json"
+      },
+      "roving160": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 160,
+        "seconds": 3.959132833,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving160-exit.json"
+      },
+      "roving4": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 4,
+        "seconds": 5.924285500000001,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving4-exit.json"
+      },
+      "fatal3": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 3,
+        "seconds": 27.274717416999998,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/fatal3-exit.json"
+      },
+      "format3": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 3,
+        "seconds": 0.345058125,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/format3-exit.json"
+      },
+      "client-compile": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 1,
+        "seconds": 3.650374792,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/client-compile-exit.json"
+      },
+      "ssr-after": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 1,
+        "seconds": 4.615163875,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/ssr-after-exit.json"
+      },
+      "ssr-natural": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 1,
+        "seconds": 4.371641083,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/ssr-natural-exit.json"
+      },
+      "endpoints-retry": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 1,
+        "seconds": 14.455683958,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/endpoints-retry-exit.json"
+      },
+      "motion90": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 90,
+        "seconds": 98.939187541,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/motion90-exit.json"
+      },
+      "reload": {
+        "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+        "exit": 0,
+        "count": 1,
+        "seconds": 5.281041333,
+        "receipt": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/reload-exit.json"
+      }
+    },
+    "testCountNote": "63 Tabs and160 related tests overlap and are not summed",
+    "freshWebEndpoints": {
+      "browser": "Chrome/150.0.7871.24",
+      "ssrRows": 144,
+      "hydratedRows": 144,
+      "fieldDifferences": 0,
+      "fields": [
+        "color",
+        "image",
+        "rootImage",
+        "faceSize",
+        "sample",
+        "disabled",
+        "selected"
+      ],
+      "errors": 0,
+      "externalRequests": 0,
+      "originalContainingPixelMethod": {
+        "method": "int/truncation/floor for positive local image coordinates, same as original worker",
+        "paintSamplesPerPhase": 24,
+        "exactPerPhase": 20,
+        "maxChannelDelta": 1
+      },
+      "independentNearestPixelDiagnostic": {
+        "method": "round to nearest local pixel, separate diagnostic only",
+        "paintSamplesPerPhase": 24,
+        "exactPerPhase": 18,
+        "maxChannelDelta": 1,
+        "explanation": "underline-alpha index1 pressed light/dark; recorded y3.600006103515625 -> containing row3 versus nearest row4. Web row3=[224,190,212], row4=[223,189,211], Native=[224,190,212]. All24 original recorded RGBA values reproduced under original containing-pixel method; no old-count-error or product-regression claim."
+      },
+      "webPngsWith74": {
+        "ssrByteExact": 24,
+        "hydratedByteExact": 24,
+        "pairsPerPhase": 24
+      },
+      "differencesAgainst74": {
+        "fields": 32,
+        "ids": [
+          "pill-default",
+          "underline-default"
+        ],
+        "scope": "Inherited main0a23 CoreOpacity8/16 utility registration; not raw source changes; previous74 all-token DOM/paint evidence is not relabeled fresh."
+      }
+    },
+    "freshChrome150Motion": {
+      "sourceHead": "274f4ee3200d3df30551394985315f35dc681ba6",
+      "version": "Chrome/150.0.7871.24",
+      "counts": {
+        "negative-flat": {
+          "rows": 12,
+          "animatedTransitions": 0,
+          "observedIntermediateTransitions": 0,
+          "zeroDurationAnimations": 0,
+          "disabledAnimations": 0,
+          "transparentAnimations": 0
+        },
+        "natural": {
+          "rows": 78,
+          "animatedTransitions": 160,
+          "observedIntermediateTransitions": 160,
+          "zeroDurationAnimations": 0,
+          "disabledAnimations": 0,
+          "transparentAnimations": 0
+        }
+      },
+      "timings": [
+        [
+          100,
+          "cubic-bezier(0.42, 0, 0.58, 1)"
+        ],
+        [
+          250,
+          "cubic-bezier(0.42, 0, 0.58, 1)"
+        ]
+      ],
+      "errors": [],
+      "externalRequests": [],
+      "negativeFlatInput": "Archived prior flat-product HTML; browser run fresh, input explicitly reused",
+      "hoveredHydration": [
+        {
+          "theme": "light",
+          "frames": 17,
+          "notHoveredFrames": 1,
+          "nodePreserved": true
+        },
+        {
+          "theme": "dark",
+          "frames": 17,
+          "notHoveredFrames": 1,
+          "nodePreserved": true
+        }
+      ]
+    },
+    "nativeReusedFrom660": {
+      "freshSource": "274f4ee3200d3df30551394985315f35dc681ba6",
+      "nativeProofSource": "660e66c6dbad02f5f14692001472fcd9656e40d7",
+      "comparison": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/integrated-native/comparison.json",
+      "nativeEndpointRows": 144,
+      "nativeTimelineRows": 120,
+      "pngPairs28HashVerified": 28,
+      "sourceClosureProof": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/source-before.json",
+      "freshNativeAt274": false
+    },
+    "freshDocs": {
+      "routes": 359,
+      "optimize": 2,
+      "exit": 0,
+      "seconds": 79.143,
+      "trackedFiles": 22572,
+      "hashModeDeltas": 0,
+      "gitClean": true,
+      "processGroupClosed": true,
+      "previousBuild": {
+        "from": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-6440-tabs-raw-20261119.fj24_5nw/worktree/docs_site/build",
+        "to": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/previous-docs-build",
+        "method": "same-volume rename; no deletion"
+      }
+    },
+    "freshDocsRuntime": {
+      "routes": [
+        "tabs",
+        "tab-pane"
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "recordsIncludingRefresh": 8,
+      "runtimeErrors": 0,
+      "consoleErrors": 0,
+      "failedRequests": 0,
+      "pidServerPortsClosed": true
+    },
+    "freshReload": {
+      "scope": "Owned real Tabs SSR Dart VM reload smoke, not a Flutter app source-migration test",
+      "pid": 33243,
+      "beforeStatus": 200,
+      "before": {
+        "actualTabs": true,
+        "rawLayer": true,
+        "privateScope": true
+      },
+      "reloadExit": 0,
+      "reload": {
+        "isolate": "main",
+        "success": true,
+        "details": {
+          "type": "ReloadReport",
+          "success": true,
+          "details": {
+            "finalLibraryCount": 2228,
+            "receivedLibraryCount": 0,
+            "receivedLibrariesBytes": 0,
+            "receivedClassesCount": 0,
+            "receivedProceduresCount": 0,
+            "savedLibraryCount": 2228,
+            "loadedLibraryCount": 0
+          }
+        }
+      },
+      "afterStatus": 200,
+      "after": {
+        "actualTabs": true,
+        "rawLayer": true,
+        "privateScope": true
+      },
+      "processExit": 0,
+      "closed": true
+    },
+    "originalDocs": {
+      "rootPhase": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14",
+      "copies": "worker-original-parity-tabs-raw-state-motion-2026-11-19.md/json remain untouched"
+    },
+    "retainedFailure": "First endpoint server did not handle favicon.ico; observed404 RangeError, initial144 SSR rows/log/owner retained. New standalone retry changes only harness favicon response204; source/assertions unchanged. Natural motion server handles same favicon before first run.",
+    "limits": [
+      "Intermediate CSS premultiplied vs Native Color.lerp difference remains material and disclosed.",
+      "Hovered hydration node preserved but one non-hover frame per17 observed on both themes; previous shared reset not claimed fixed.",
+      "All-token selected composition and full global matrix remain separate.",
+      "Native144/120/28PNG is fresh660 evidence closure-verified for reuse, not newly executed at274.",
+      "Original74 guard/API/export/evidence remain historical; fresh checks are explicitly listed here.",
+      "No full816/3814 or global count reduction claims; Root separate0a23 audit is not reused as this source."
+    ],
+    "proofReferences": [
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/source-before.json",
+        "sha256": "50a03c7064205cb42748ddfb5da3e103ade0850317a1cac40a9016e4499ef475"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/preparation.json",
+        "sha256": "63b9a2dc12eb46dcaa956a742515a39d2b476e70c4c3b47f99eda667b8ea490f"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/browser-cache-reuse.json",
+        "sha256": "4e7342f4840c93f1229e37b244f4aece952dc08511c35e0c019cc04fbb057696"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/native-reuse-closure.json",
+        "sha256": "f54b771c6b278ca1f9961ac731c6608355077cd41b12d3758c3e5d1338d7b2c3"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/endpoint-comparison.json",
+        "sha256": "18be8a95b2bd33415234453a26e1d2ca26d2a6df2b1eb8b567ba9ce2cae4d0c7"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/endpoint-comparison.nearest-pixel-diagnostic.json",
+        "sha256": "9ef3a9ba35c11e7d6c0baf56f124d7c98a00ba8a172a12a81086639641eec85f"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/sample-coordinate-diagnosis.json",
+        "sha256": "8662b4dea7daa8c806f99242722f2a13b2f95620fe37164cc95d8864d1b8d8fd"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/motion-summary.json",
+        "sha256": "3ede10e8c9dae6699d313936d90e9261ac0257c00e4a18fc81f8633c3eeaa11b"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/browser-motion-records.json",
+        "sha256": "366f00513c84fbf7c90b043707671cb320c611562f822d962529d16dd7c1a68a"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/motion-browser-ownership.json",
+        "sha256": "aef18e0ef77dc288f9e75ff1331b79b5214d500208edb30595a5d0884f5070dc"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/endpoints-retry/after/browser-records.json",
+        "sha256": "4d93420690c1219844056532730f9d0b2a9fce3fafde9bb73204d80537e053d5"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/endpoints-retry/hydrated/browser-records.json",
+        "sha256": "466b8f32d4adb71e7726cd57ceb5f513e950e7e75996a65b65f04e051d7afb02"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/endpoints-retry/browser-ownership.json",
+        "sha256": "3297ce285b158543fdbd5064dd4cec8db7bd382ed7e6b1b047ab5a8cdd8e5e64"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/endpoints-exit.json",
+        "sha256": "51b22285e5f0f983a751ba7cea6f7624dfeffc391f15dc80b5525c418efcddce"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/endpoints.log",
+        "sha256": "2bf9a790c968da9fa868e1eaf93395f35ac5168958c390d67b7e3043f1921c9c"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/diagnose404.json",
+        "sha256": "d16c5da1b6a83950f4dd5870e042448bf1d0d6f66d36de5403e93397347c76e2"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/favicon-fix-boundary.json",
+        "sha256": "8565a8ab2ab47989f2417205994d50bbb8eff4c0ab38b8d0825b2c2669313c5a"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/build-process.json",
+        "sha256": "2b34bedf160299f0ab4cd736e91673bd920289b61cca3c110f8b9b307033f814"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/build-preserved.json",
+        "sha256": "f5ab0970b4758b22e5f0b35f7c2138a0ab756d8903fc3cad7ea0ee36500f70b0"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/build-source-before.json",
+        "sha256": "d4bb6f67646995d4e23338f0551a905b4e4345bbe4ce2719abfd1f13fb45517f"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/build-source-after.json",
+        "sha256": "d4bb6f67646995d4e23338f0551a905b4e4345bbe4ce2719abfd1f13fb45517f"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/docs-build.log",
+        "sha256": "025cf622caed51c01022bbdf3aed96b542a748b783ee659ae5fa44fe3125f36b"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/docs-ui-records.json",
+        "sha256": "1f8ee517af5a54a2fd717638a569e9ca0d35d840ab0accdc6051b79d3317f13d"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/docs-ui-owner.json",
+        "sha256": "c2de1c684962ab121b7fdcc60ce132d85a692525a1e4dfb0500608cb7a87ae83"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/owned-reload.json",
+        "sha256": "74f6a6ada355d3d333752c21422082883c2e1c02dd7410e0b46ee77530552fa2"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/owned-vm-info.json",
+        "sha256": "5bef06175bf2a01082a8c3c8b7527e27d4595fe28efa5635fe4490e5d38adac9"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/owned-reload.log",
+        "sha256": "904fe48fc99797968cc875ea12c79e014b7b8dcd551d83774cc3b47fddb633d9"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving-browser/browser.json",
+        "sha256": "49b9cf7661059c769b48faef45dec077a7ad5c700b4aa114e7d681855263b1e6"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving-browser/cleanup.json",
+        "sha256": "e7fe9aad798951cff66a0a0fd3d69f929b10366309b1d78838318344b2febba0"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving-browser/ssr-owners.json",
+        "sha256": "929b88ff3180cdfbed6b2715f44fd9924930c5ab69d249572c24072ddfeb4973"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving-browser/tabs-keys.json",
+        "sha256": "55d34875432b02d236d0b078cc27c79c1102bf60a91bebca958a58aed9e7faa2"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving-browser/toggle-keys.json",
+        "sha256": "f7de05fd4bb06cc6d9bbafba73f0e364d600b094adcb6a1b4fb7db5162f8f658"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving-browser/lifetime.json",
+        "sha256": "8879d4ca646edf329e7a8d3815fe1501dfdf302faf77f3faddd2006084d6daec"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/tabs63-exit.json",
+        "sha256": "0b95099ac0abd0894ad586287c4d1d8925bc412d00cf262f9b5a2dfdee230d24"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/tabs63.log",
+        "sha256": "0c26eb3602580963b236a69897f49aef31f8c3f02903f7dd1939b031482c6c46"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving160-exit.json",
+        "sha256": "16610427a3583d36c501260b73578371342f1c47e73481172b2a18467ad37d33"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving160.log",
+        "sha256": "4a77408b39bb1b5394ef73d417e1e821c8f6a4aaf88337f3d752e3e89324285f"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving4-exit.json",
+        "sha256": "537482390d267682fbd7a0c9db79b7872adbe244845acec7ece3d36639b94175"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/roving4.log",
+        "sha256": "5b3ad4bcb325d79fc56328bafd6d69aff86753a6bce075f301ff03ed55c66781"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/fatal3-exit.json",
+        "sha256": "eae8ce240cfecb0ef9163e374bbfeef4f3b5e0f484268be652e6f6d5d8863d51"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/fatal3.log",
+        "sha256": "11a5174493e15e3e601b8022996b46aa3cd53009ab7ce5404f51661c9be91f45"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/format3-exit.json",
+        "sha256": "4de6ba4d0f54a0a314c4d9785f8534a46d626788b5532d185015f18e1c1b4cba"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/format3.log",
+        "sha256": "a8665628d3d8dc8a51632550dfb214cf87c098912f4250420d0df700431790e6"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/client-compile-exit.json",
+        "sha256": "e22f303f55da38d91c36048ae2c4c4e396bbb4eded2f0236ed4c39186918083a"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/client-compile.log",
+        "sha256": "1471058bb7b503c0170d454ef875fba4dcb3cb463a4c737bbe71ba0feec07e15"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/ssr-after-exit.json",
+        "sha256": "9a13a85e0202beac7bbf158230a8a35475f35d01231c2dca252d8541ff7c9f50"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/ssr-after.log",
+        "sha256": "cc6ccbccf0cc1575edbd8957a48be5582e4c4dac3ba9b772d8f272b01daa41e8"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/ssr-natural-exit.json",
+        "sha256": "b95883c22a57d7d9870d731a4d5183c5cbebecf3a239743cfb0f95bf9548b4b1"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/ssr-natural.log",
+        "sha256": "4782b3deb5f4e140184b7b62bbe08a6dd3fa386e4a4553486f02b5f5c60d108a"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/endpoints-retry-exit.json",
+        "sha256": "b6394b0ddf7f030b7e609ef6c5b8e94a02c479bbe72a0b92ceac67cd0a4a4778"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/endpoints-retry.log",
+        "sha256": "c9b5b0062778a59fe08432c04bfe338547ad79e038cb13a58269b9269d8433b8"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/motion90-exit.json",
+        "sha256": "e52e5cfaed5f3fbde3fdcd92dbae153d0bed5355f68ffdaa00ad2c1d5b57281d"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/motion90.log",
+        "sha256": "b5376b5c11ebd95f4353b14900f90cabf0c864fbd88636ae4953700949c7813c"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/reload-exit.json",
+        "sha256": "e1e5f593a867b19ebd1edaca2890524fe3d4d92fcc172e767e20ba1ca45c372e"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/final-roving-integration/reload.log",
+        "sha256": "973c08deae802240354b97461764ded815b6b9e3d9d5486a7670c20a45a506f3"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/integrated-native/comparison.json",
+        "sha256": "d7ef4e08fa60b78dad7fee57845b96629820a0f6a37192b47407fcc6b5115fcc"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/integrated-native/source-binding.json",
+        "sha256": "54680dbad538421139b355688e63e682969e22aa92f80c2133ca9ee91cd096fe"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/worker-original-parity-tabs-raw-state-motion-2026-11-19.md",
+        "sha256": "394e5eed24062e72f85a9eed20768cbc3bb0e0a810588d5d2beef895b6d7a9f4"
+      },
+      {
+        "path": "/var/folders/_4/xbybljsj3s3c93fmpc7djtrh0000gn/T/weever-root-6440-integration-20261119.pbumyt14/worker-original-parity-tabs-raw-state-motion-2026-11-19.json",
+        "sha256": "230c96a3da583c71d05bdeb7fe94130260e35b8ac5fefd1bcbe53dc336ebb6ed"
+      }
+    ]
+  }
+}
