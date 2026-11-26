@@ -85,19 +85,19 @@ Component _extended(CoreFabSize size) => Fab(
 
 /// 열린 메뉴의 그림. 실제 Fab 은 메뉴를 오버레이 층에 열어 문서 상자 안에
 /// 그릴 수 없다. 판과 행은 킷의 `Popup` · `MenuItem` 이고, 값은 Fab 의
-/// 기본값을 읽는다.
+/// 기본 크기의 값을 읽는다.
 Component _openMenu() => div(
   styles: Styles(
     raw: {
       'display': 'flex',
       'flex-direction': 'column',
       'align-items': 'flex-end',
-      'gap': spaceCss(CoreFabStyle.defaultSpacing),
+      'gap': spaceCss(_defaultSizeStyle.spacing!),
     },
   ),
   [
     Popup(
-      popupStyle: CoreFabStyle.defaultPopupStyle,
+      popupStyle: CoreFabStyle.defaultPopupStyle.merge(_defaultSizeStyle.popupStyle),
       children: [for (final action in fabPreviewActions) _menuRow(action)],
     ),
     div(
@@ -110,11 +110,13 @@ Component _openMenu() => div(
   ],
 );
 
+final CoreFabStyle _defaultSizeStyle = CoreFabStyle.defaultsBySize[CoreFabSize.defaultSize]!;
+
 Component _menuRow(FabPreviewAction action) => MenuItem(
   label: div(classes: WebLayout.truncate, [Text(action.label)]),
   size: CoreFabContract.actionItemSize,
   leading: Icon(action.icon),
-  menuItemStyle: CoreFabStyle.defaultActionItemStyle,
+  menuItemStyle: CoreFabStyle.defaultActionItemStyle.merge(_defaultSizeStyle.actionItemStyle),
   onPressed: () {},
 );
 

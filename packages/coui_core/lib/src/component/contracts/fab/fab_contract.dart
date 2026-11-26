@@ -31,8 +31,10 @@ abstract interface class CoreFabContract<W> {
   /// stated as a height because the ladder's height is a **minimum** — a
   /// larger text scale has to be able to grow the row.
   ///
-  /// The rows do not follow the FAB's own [size]: how large a row is
-  /// follows the finger and the text, not the circle.
+  /// This is the ladder row every size starts from. What differs by the
+  /// FAB's own [size] — the insets, icon, gap and label, and a taller row
+  /// for `large` — is stated in `CoreFabStyle.defaultsBySize`, which never
+  /// takes a row below this height.
   ///
   /// Both platform widgets read this constant (stating it on one side only
   /// would let the two drift silently).

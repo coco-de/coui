@@ -43,9 +43,10 @@ class ResolvedFab {
   /// 정한다. 인스턴스에서 그것을 덮으면 다음 Button 개편에서 깨진다.
   final CoreButtonStyle extendedButtonStyle;
 
-  /// Action-row `MenuItem` chrome — raw-forwarded to every row, which
-  /// resolves its own insets, corner, icon and label typography (and its
-  /// own scaling) at [CoreFabContract.actionItemSize].
+  /// Action-row `MenuItem` chrome — raw-forwarded to every row. The FAB's
+  /// size row states the inset, icon, icon-label gap and label role (and,
+  /// for `large`, the height floor); the rest, and the scaling, the row
+  /// resolves itself at [CoreFabContract.actionItemSize].
   final CoreMenuItemStyle actionItemStyle;
 
   /// Menu panel chrome — raw-forwarded to the composed `Popup` that holds
@@ -143,12 +144,14 @@ ResolvedFab resolveFab(
   // guard-nested-override: actionItemStyle — `merged.actionItemStyle` is
   // merged on top inside `effectiveActionItemStyle`, so it wins field by
   // field over the folded deprecated slots.
-  final actionItemStyle = CoreFabStyle.defaultActionItemStyle.merge(
-    merged.effectiveActionItemStyle,
-  );
+  final actionItemStyle = CoreFabStyle.defaultActionItemStyle
+      .merge(ss.actionItemStyle)
+      .merge(merged.effectiveActionItemStyle);
 
   // ─── Menu panel (raw-forward to composed Popup) ──────
-  final popupStyle = CoreFabStyle.defaultPopupStyle.merge(merged.popupStyle);
+  final popupStyle = CoreFabStyle.defaultPopupStyle
+      .merge(ss.popupStyle)
+      .merge(merged.popupStyle);
 
   // ─── Overlay host (raw-forward to composed Popover) ──
   // The chrome-less panel lets the `Popup` be the visible box. The
@@ -157,7 +160,7 @@ ResolvedFab resolveFab(
   // the caller pinned an offset in `popoverStyle`. `duration` is the
   // menu's open / close motion, so it lands on the host panel's own
   // animation fields unless the caller pinned those too.
-  final spacing = merged.spacing ?? CoreFabStyle.defaultSpacing;
+  final spacing = merged.spacing ?? ss.spacing!;
   final duration = merged.duration ?? CoreFabStyle.defaultDuration;
   final mergedPopover = CoreFabStyle.defaultPopoverStyle.merge(
     merged.popoverStyle,
