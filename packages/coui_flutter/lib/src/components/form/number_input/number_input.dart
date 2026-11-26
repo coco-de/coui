@@ -140,8 +140,10 @@ class _NumberInputState extends State<NumberInput> {
   late final TextEditingController _controller;
   late final FocusNode _focusNode;
   late double _value;
+  CoreFormFieldScope? _formFieldScope;
 
-  bool get _enabled => widget.enabled ?? true;
+  bool get _enabled =>
+      (widget.enabled ?? true) && _formFieldScope?.disabled != true;
 
   @override
   void initState() {
@@ -153,6 +155,12 @@ class _NumberInputState extends State<NumberInput> {
       text: CoreNumberInputMath.format(_value),
     );
     _focusNode = FocusNode()..addListener(_handleFocusChange);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _formFieldScope = FormFieldScope.maybeOf(context);
   }
 
   @override

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:coui_flutter/coui_flutter.dart';
 import 'package:flutter/foundation.dart' show listEquals;
 import 'package:flutter/services.dart'
@@ -149,6 +147,10 @@ class _AutocompleteState extends State<Autocomplete> {
   late final ValueNotifier<int> _highlight;
 
   String _currentValue = '';
+  CoreFormFieldScope? _formFieldScope;
+
+  bool get _effectiveEnabled =>
+      widget.enabled && _formFieldScope?.disabled != true;
 
   @override
   void initState() {
@@ -158,6 +160,19 @@ class _AutocompleteState extends State<Autocomplete> {
     _visible = ValueNotifier<List<String>>(_filteredFor(_query));
     _highlight = ValueNotifier<int>(_kNoHighlight);
     _focusNode.addListener(_handleFocusChanged);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final wasEnabled = _effectiveEnabled;
+    _formFieldScope = FormFieldScope.maybeOf(context);
+    if (wasEnabled == _effectiveEnabled) return;
+    // Ambient constraints can change while the same input stays mounted.
+    // Reconcile the existing overlay after build, as prop updates do.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _syncPopover();
+    });
   }
 
   List<String> _filteredFor(String raw) {
@@ -226,6 +241,7 @@ class _AutocompleteState extends State<Autocomplete> {
     if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
       return .ignored;
     }
+    if (!_effectiveEnabled) return .ignored;
     final key = event.logicalKey;
 
     if (key == .escape) {
@@ -264,7 +280,7 @@ class _AutocompleteState extends State<Autocomplete> {
   /// Whether the suggestion panel should be open right now — focused,
   /// enabled, and at least one suggestion matches.
   bool get _shouldShow =>
-      _focusNode.hasFocus && widget.enabled && _visible.value.isNotEmpty;
+      _focusNode.hasFocus && _effectiveEnabled && _visible.value.isNotEmpty;
 
   /// Reconciles the [PopoverController] with [_shouldShow]. Driven from
   /// the focus / input / select handlers and from [didUpdateWidget]'s
@@ -286,6 +302,7 @@ class _AutocompleteState extends State<Autocomplete> {
   }
 
   void _handleInput(String value) {
+    if (!_effectiveEnabled) return;
     // Keeps the trigger `Input.value` prop in sync; the portaled panel
     // reads the refreshed `_visible` via its own `ValueListenableBuilder`.
     _suppressReopen = false;
@@ -314,6 +331,7 @@ class _AutocompleteState extends State<Autocomplete> {
   }
 
   void _handleSelect(String suggestion) {
+    if (!_effectiveEnabled) return;
     final (next, caret) = _applySelection(suggestion);
     // Set before `onChanged` fires: a controlled parent reacts to that
     // callback synchronously, and the resulting `didUpdateWidget` must
@@ -532,7 +550,7 @@ class _AutocompleteOptionState extends State<_AutocompleteOption> {
     if (widget.highlighted && !oldWidget.highlighted) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
-        unawaited(Scrollable.ensureVisible(context, alignment: 0.5));
+        Scrollable.ensureVisible(context, alignment: 0.5);
       });
     }
   }
