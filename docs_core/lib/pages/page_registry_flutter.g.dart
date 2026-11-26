@@ -35,6 +35,9 @@ import 'hover_card/hover_card_flutter.dart' as hover_card;
 import 'indexed_switcher/indexed_switcher_flutter.dart' as indexed_switcher;
 import 'input_otp/input_otp_flutter.dart' as input_otp;
 import 'item_picker/item_picker_flutter.dart' as item_picker;
+import 'kbd/kbd_flutter.dart' as kbd;
+import 'label/label_flutter.dart' as label;
+import 'link/link_flutter.dart' as link;
 import 'menu/menu_flutter.dart' as menu;
 import 'menu_item/menu_item_flutter.dart' as menu_item;
 import 'menubar/menubar_flutter.dart' as menubar;
@@ -62,11 +65,13 @@ import 'sidebar/sidebar_flutter.dart' as sidebar;
 import 'slider/slider_flutter.dart' as slider;
 import 'sortable/sortable_flutter.dart' as sortable;
 import 'star_rating/star_rating_flutter.dart' as star_rating;
+import 'status/status_flutter.dart' as status;
 import 'swiper/swiper_flutter.dart' as swiper;
 import 'switch_field/switch_field_flutter.dart' as switch_field;
 import 'switcher/switcher_flutter.dart' as switcher;
 import 'tab_pane/tab_pane_flutter.dart' as tab_pane;
 import 'tabs/tabs_flutter.dart' as tabs;
+import 'tag/tag_flutter.dart' as tag;
 import 'text_area/text_area_flutter.dart' as text_area;
 import 'text_block/text_block_flutter.dart' as text_block;
 import 'text_field/text_field_flutter.dart' as text_field;
@@ -112,6 +117,9 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (indexed_switcher.propPreview case final builder?) 'indexed-switcher': builder,
   if (input_otp.propPreview case final builder?) 'input-otp': builder,
   if (item_picker.propPreview case final builder?) 'item-picker': builder,
+  if (kbd.propPreview case final builder?) 'kbd': builder,
+  if (label.propPreview case final builder?) 'label': builder,
+  if (link.propPreview case final builder?) 'link': builder,
   if (menu.propPreview case final builder?) 'menu': builder,
   if (menu_item.propPreview case final builder?) 'menu-item': builder,
   if (menubar.propPreview case final builder?) 'menubar': builder,
@@ -139,11 +147,13 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (slider.propPreview case final builder?) 'slider': builder,
   if (sortable.propPreview case final builder?) 'sortable': builder,
   if (star_rating.propPreview case final builder?) 'star-rating': builder,
+  if (status.propPreview case final builder?) 'status': builder,
   if (swiper.propPreview case final builder?) 'swiper': builder,
   if (switch_field.propPreview case final builder?) 'switch-field': builder,
   if (switcher.propPreview case final builder?) 'switcher': builder,
   if (tab_pane.propPreview case final builder?) 'tab-pane': builder,
   if (tabs.propPreview case final builder?) 'tabs': builder,
+  if (tag.propPreview case final builder?) 'tag': builder,
   if (text_area.propPreview case final builder?) 'text-area': builder,
   if (text_block.propPreview case final builder?) 'text-block': builder,
   if (text_field.propPreview case final builder?) 'text-field': builder,
@@ -190,6 +200,9 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...indexed_switcher.demos,
   ...input_otp.demos,
   ...item_picker.demos,
+  ...kbd.demos,
+  ...label.demos,
+  ...link.demos,
   ...menu.demos,
   ...menu_item.demos,
   ...menubar.demos,
@@ -217,11 +230,13 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...slider.demos,
   ...sortable.demos,
   ...star_rating.demos,
+  ...status.demos,
   ...swiper.demos,
   ...switch_field.demos,
   ...switcher.demos,
   ...tab_pane.demos,
   ...tabs.demos,
+  ...tag.demos,
   ...text_area.demos,
   ...text_block.demos,
   ...text_field.demos,

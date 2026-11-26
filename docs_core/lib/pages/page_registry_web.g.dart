@@ -35,6 +35,9 @@ import 'hover_card/hover_card_web.dart' as hover_card;
 import 'indexed_switcher/indexed_switcher_web.dart' as indexed_switcher;
 import 'input_otp/input_otp_web.dart' as input_otp;
 import 'item_picker/item_picker_web.dart' as item_picker;
+import 'kbd/kbd_web.dart' as kbd;
+import 'label/label_web.dart' as label;
+import 'link/link_web.dart' as link;
 import 'menu/menu_web.dart' as menu;
 import 'menu_item/menu_item_web.dart' as menu_item;
 import 'menubar/menubar_web.dart' as menubar;
@@ -62,11 +65,13 @@ import 'sidebar/sidebar_web.dart' as sidebar;
 import 'slider/slider_web.dart' as slider;
 import 'sortable/sortable_web.dart' as sortable;
 import 'star_rating/star_rating_web.dart' as star_rating;
+import 'status/status_web.dart' as status;
 import 'swiper/swiper_web.dart' as swiper;
 import 'switch_field/switch_field_web.dart' as switch_field;
 import 'switcher/switcher_web.dart' as switcher;
 import 'tab_pane/tab_pane_web.dart' as tab_pane;
 import 'tabs/tabs_web.dart' as tabs;
+import 'tag/tag_web.dart' as tag;
 import 'text_area/text_area_web.dart' as text_area;
 import 'text_block/text_block_web.dart' as text_block;
 import 'text_field/text_field_web.dart' as text_field;
@@ -112,6 +117,9 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (indexed_switcher.propPreview case final builder?) 'indexed-switcher': builder,
   if (input_otp.propPreview case final builder?) 'input-otp': builder,
   if (item_picker.propPreview case final builder?) 'item-picker': builder,
+  if (kbd.propPreview case final builder?) 'kbd': builder,
+  if (label.propPreview case final builder?) 'label': builder,
+  if (link.propPreview case final builder?) 'link': builder,
   if (menu.propPreview case final builder?) 'menu': builder,
   if (menu_item.propPreview case final builder?) 'menu-item': builder,
   if (menubar.propPreview case final builder?) 'menubar': builder,
@@ -139,11 +147,13 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (slider.propPreview case final builder?) 'slider': builder,
   if (sortable.propPreview case final builder?) 'sortable': builder,
   if (star_rating.propPreview case final builder?) 'star-rating': builder,
+  if (status.propPreview case final builder?) 'status': builder,
   if (swiper.propPreview case final builder?) 'swiper': builder,
   if (switch_field.propPreview case final builder?) 'switch-field': builder,
   if (switcher.propPreview case final builder?) 'switcher': builder,
   if (tab_pane.propPreview case final builder?) 'tab-pane': builder,
   if (tabs.propPreview case final builder?) 'tabs': builder,
+  if (tag.propPreview case final builder?) 'tag': builder,
   if (text_area.propPreview case final builder?) 'text-area': builder,
   if (text_block.propPreview case final builder?) 'text-block': builder,
   if (text_field.propPreview case final builder?) 'text-field': builder,
@@ -190,6 +200,9 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...indexed_switcher.demos,
   ...input_otp.demos,
   ...item_picker.demos,
+  ...kbd.demos,
+  ...label.demos,
+  ...link.demos,
   ...menu.demos,
   ...menu_item.demos,
   ...menubar.demos,
@@ -217,11 +230,13 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...slider.demos,
   ...sortable.demos,
   ...star_rating.demos,
+  ...status.demos,
   ...swiper.demos,
   ...switch_field.demos,
   ...switcher.demos,
   ...tab_pane.demos,
   ...tabs.demos,
+  ...tag.demos,
   ...text_area.demos,
   ...text_block.demos,
   ...text_field.demos,
