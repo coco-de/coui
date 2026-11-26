@@ -14,6 +14,7 @@ import 'box_padding_display_parameter_units_probe.dart';
 import 'box_padding_explicit_content_inset_units_probe.dart';
 import 'box_padding_extended_component_units_probe.dart';
 import 'box_padding_form_collection_units_probe.dart';
+import 'box_padding_framed_collection_units_probe.dart';
 import 'box_padding_inline_host_units_probe.dart';
 import 'box_padding_layout_host_units_probe.dart';
 import 'box_padding_loading_host_units_probe.dart';
@@ -73,6 +74,7 @@ String get boxPaddingObservationScript =>
       ...BoxObservationSourceSpec.navigationTriggerParameterFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.dataOverlayLayoutFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.visualValueFrames.map((source) => source.toJson()),
+      ...BoxObservationSourceSpec.framedCollectionFrames.map((source) => source.toJson()),
     ])};
   if (!relations.some(known => known.logicalUnitId === source.logicalUnitId && known.nativeAdapterId === source.nativeAdapterId && known.webAdapterId === source.webAdapterId)) return JSON.stringify(incomplete('BOX_SOURCE_ADAPTER_UNIT_MISMATCH'));
   if (typeof request.layoutSelector !== 'string' || !request.layoutSelector) return JSON.stringify(incomplete('MISSING_LAYOUT_SOURCE_SELECTOR'));
@@ -91,10 +93,10 @@ String get boxPaddingObservationScript =>
   let registryIsLayoutRoot = null;
   let currentClientWitness = null;
   let currentClientEvidence = null;
-  const currentSsrRaw = kind => {
+  const currentSsrRaw = (kind, registryRoot = layoutRoot) => {
     const receipt = request.currentSsrSource;
     if (!receipt || receipt.error || receipt.kind !== kind) return {error:'MISSING_ACTUAL_SSR_BOX_SOURCE'};
-    const capture = layoutRoot.parentElement;
+    const capture = registryRoot && registryRoot.parentElement;
     if (!capture || receipt.entryKey !== capture.getAttribute('data-parity-key') || typeof location === 'undefined' || location.href !== receipt.harnessURL) return {error:'SSR_BOX_INPUT_CHANGED'};
     const tuple = receipt.source;
     if (!tuple || Object.keys(tuple).length !== Object.keys(source).length || Object.keys(source).some(key => tuple[key] !== source[key])) return {error:'SSR_BOX_SOURCE_CHANGED'};
@@ -126,6 +128,37 @@ String get boxPaddingObservationScript =>
     case 'declared-layout-root-v1':
       owner = layoutRoot;
       break;
+    case 'mockup-device-generated-body-frame-content-inset-v1':
+    case 'join-generated-strip-layout-host-v1':
+    case 'table-generated-grid-content-inset-v1': {
+      if (request.requiredCurrentSsrKind !== 'canonical-ssr-framed-collection-v1')
+        return JSON.stringify(incomplete('MISSING_FRAMED_COLLECTION_REQUIREMENT'));
+      const device = source.webAdapterId === 'mockup-device-generated-body-frame-content-inset-v1';
+      const registry = device ? layoutRoot.parentElement : layoutRoot;
+      const current = currentSsrRaw('canonical-ssr-framed-collection-v1',registry);
+      if (current.error) return JSON.stringify(incomplete(current.error));
+      const receipt = request.currentSsrSource;
+      const header = ['kind','entryKey','source','currentRaw','completeRawSlotCount','rawOrderFromPublicProducerLists','harnessURL'];
+      if (Array.isArray(receipt) || Object.keys(receipt).length !== header.length ||
+          header.some(key => !Object.hasOwn(receipt,key)) || receipt.rawOrderFromPublicProducerLists !== true ||
+          !Number.isInteger(receipt.completeRawSlotCount) || receipt.completeRawSlotCount < 0 ||
+          receipt.completeRawSlotCount !== current.raw?.rawSlotCount)
+        return JSON.stringify(incomplete('FRAMED_COLLECTION_CURRENT_HEADER_CHANGED'));
+      // Existing stage-mode root selector already chooses the Device body.
+      // Its exact parent is the source-declared registry width wrapper.
+      const binding = ($framedCollectionBoxSourceResolverScript)(layoutRoot,source,current.raw);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (typeof binding.authority !== 'string' || !binding.authority ||
+          binding.registryResultElement !== registry || binding.fieldUnitElement !== layoutRoot ||
+          binding.paddingSource !== layoutRoot || binding.frameSource !== layoutRoot ||
+          binding.registryIsLayoutRoot !== !device ||
+          !(registry === layoutRoot || registry.contains(layoutRoot)))
+        return JSON.stringify(incomplete('FRAMED_COLLECTION_FIELD_UNIT_CHANGED'));
+      owner = layoutRoot;
+      sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = !device;
+      break;
+    }
     case 'icon-generated-visual-frame-content-inset-v1':
     case 'number-ticker-generated-text-layout-host-v1':
     case 'skeleton-text-generated-lines-layout-host-v1':
@@ -219,7 +252,22 @@ String get boxPaddingObservationScript =>
     case 'item-picker-generated-frame-v1':
     case 'mockup-browser-generated-frame-v1':
     case 'object-input-generated-frame-v1': {
-      const binding = ($componentBoxSourceResolverScript)(layoutRoot, source);
+      let browserRaw = null;
+      if (source.webAdapterId === 'mockup-browser-generated-frame-v1' &&
+          (request.requiredCurrentSsrKind != null || request.currentSsrSource != null)) {
+        if (request.requiredCurrentSsrKind !== 'canonical-ssr-framed-collection-v1')
+          return JSON.stringify(incomplete('MISSING_FRAMED_COLLECTION_REQUIREMENT'));
+        const current = currentSsrRaw('canonical-ssr-framed-collection-v1');
+        if (current.error) return JSON.stringify(incomplete(current.error));
+        const receipt = request.currentSsrSource;
+        const header = ['kind','entryKey','source','currentRaw','completeRawSlotCount','rawOrderFromPublicProducerLists','harnessURL'];
+        if (Array.isArray(receipt) || Object.keys(receipt).length !== header.length ||
+            header.some(key => !Object.hasOwn(receipt,key)) || receipt.rawOrderFromPublicProducerLists !== true ||
+            receipt.completeRawSlotCount !== 1 || current.raw?.rawSlotCount !== 1)
+          return JSON.stringify(incomplete('FRAMED_COLLECTION_CURRENT_HEADER_CHANGED'));
+        browserRaw = current.raw;
+      }
+      const binding = ($componentBoxSourceResolverScript)(layoutRoot, source, browserRaw);
       if (binding.error) return JSON.stringify(incomplete(binding.error));
       const within = (outer, inner) => outer === inner || outer.contains(inner);
       if (typeof binding.authority !== 'string' || !binding.authority || binding.registryResultElement !== layoutRoot || !binding.fieldUnitElement || !binding.paddingSource || binding.paddingSource !== binding.frameSource || !within(layoutRoot,binding.fieldUnitElement) || !within(binding.fieldUnitElement,binding.paddingSource)) return JSON.stringify(incomplete('COMPONENT_FIELD_UNIT_CHANGED'));

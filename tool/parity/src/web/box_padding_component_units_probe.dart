@@ -12,7 +12,7 @@ import '../model/box_observation_source_spec.dart';
 /// resolver performs no CSS/numeric reads, global searches or DOM writes.
 String get componentBoxSourceResolverScript =>
     '''
-(layoutRoot, source) => {
+(layoutRoot, source, currentRaw = null) => {
   const fail = error => ({error});
   if (!source || source.schemaVersion !== 1) return fail('UNSUPPORTED_BOX_SOURCE_VERSION');
   if (source.quantityId !== ${jsonEncode(BoxObservationSourceSpec.quantity)}) return fail('UNSUPPORTED_BOX_QUANTITY');
@@ -59,6 +59,43 @@ String get componentBoxSourceResolverScript =>
       authority = 'ItemPickerDefaultExample -> ItemPicker root div; title/items/options excluded';
       break;
     case 'mockup-browser-generated-frame-v1':
+      if (currentRaw !== null) {
+        const keys = ['kind','logicalUnitId','rawSlotCount','slotPresence',
+          'showControls','addressSupplied','route','generatedTree'];
+        const exact = (value,names) => value && typeof value === 'object' &&
+          !Array.isArray(value) && Object.keys(value).length === names.length &&
+          names.every(name => Object.hasOwn(value,name));
+        const htmlNS = 'http://www.w3.org/1999/xhtml';
+        const formatting = node => node.nodeType === 3 && /^[\\t\\n\\f\\r ]*\$/.test(node.data);
+        if (!exact(currentRaw,keys) || currentRaw.kind !== 'current-framed-collection-raw-v1' ||
+            currentRaw.logicalUnitId !== source.logicalUnitId || currentRaw.rawSlotCount !== 1 ||
+            !Array.isArray(currentRaw.slotPresence) || currentRaw.slotPresence.length !== 1 ||
+            typeof currentRaw.slotPresence[0] !== 'boolean' || typeof currentRaw.showControls !== 'boolean' ||
+            typeof currentRaw.addressSupplied !== 'boolean' ||
+            !['browser-sized','browser-direct'].includes(currentRaw.route))
+          return fail('MOCKUP_BROWSER_CURRENT_SOURCE_CHANGED');
+        const match = (node,tree) => {
+          if (exact(tree,['foreignSlot'])) return !!node && tree.foreignSlot === 0 &&
+            currentRaw.slotPresence[0] === true;
+          if (!node || !exact(tree,['namespaceURI','localName','role','nodeKinds','children']) ||
+              node.namespaceURI !== tree.namespaceURI || node.localName !== tree.localName ||
+              node.getAttribute('role') !== tree.role || !Array.isArray(tree.children) ||
+              node.children.length !== tree.children.length || !Array.isArray(tree.nodeKinds)) return false;
+          const kinds = Array.from(node.childNodes).filter(n => !formatting(n)).map(n => n.nodeType);
+          return kinds.length === tree.nodeKinds.length && tree.nodeKinds.every((kind,i) =>
+            Number.isInteger(kind) && [1,3,8].includes(kind) && kinds[i] === kind) &&
+            tree.children.every((child,i) => match(node.children[i],child));
+        };
+        if (layoutRoot.namespaceURI !== htmlNS ||
+            Array.from(capture.childNodes).some(n => n !== layoutRoot && !formatting(n)) ||
+            !match(layoutRoot,currentRaw.generatedTree)) return fail('MOCKUP_BROWSER_WHOLE_SOURCE_CHANGED');
+        unit = currentRaw.route === 'browser-sized' ? onlyDiv(layoutRoot) : layoutRoot;
+        if (!classes(unit,['w-full','h-full'])) return fail('MOCKUP_BROWSER_COMPONENT_ROOT_CHANGED');
+        frame = onlyDiv(unit);
+        if (!outlined(frame)) return fail('MOCKUP_BROWSER_DECLARED_FRAME_CHANGED');
+        authority = 'original public MockupBrowser app/browser producer -> exact authored route -> existing Outlined frame';
+        break;
+      }
       unit = onlyDiv(layoutRoot);
       if (!classes(unit,['w-full','h-full'])) return fail('MOCKUP_BROWSER_COMPONENT_ROOT_CHANGED');
       frame = onlyDiv(unit);

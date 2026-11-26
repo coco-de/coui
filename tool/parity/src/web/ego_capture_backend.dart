@@ -19,6 +19,7 @@ import 'box_padding_observation_probe.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'element_capture.dart';
+import 'framed_collection_ssr_source.dart';
 import 'runtime_capture.dart';
 import 'web_capture_backend.dart';
 
@@ -338,6 +339,9 @@ Future<WebCaptureResult> captureEgoEntry({
     entry,
     additiveBoxObservations: additiveBoxObservations,
   );
+  final requiredCurrentSsrKind = additiveBoxObservations
+      ? requiredFramedCollectionSsrKind(entry)
+      : null;
   Map<String, Object?>? currentSsrSource;
   final file = await prepareWebCaptureHarness(
     entry: entry,
@@ -416,6 +420,7 @@ Future<WebCaptureResult> captureEgoEntry({
         if (additiveBoxObservations) 'additiveBoxObservations': true,
         'currentClientBoxSource': ?currentClientBoxSource,
         'runtimeOperationReceipt': ?runtimeOperationReceipt,
+        'requiredCurrentSsrKind': ?requiredCurrentSsrKind,
         if (currentSsrSource != null)
           'currentSsrSource': {
             ...currentSsrSource!,
