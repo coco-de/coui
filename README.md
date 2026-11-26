@@ -1,216 +1,41 @@
 # CoUI
 
-**Flutter + Jaspr => CoUI**
+CoUI is a design system for Flutter apps and Jaspr websites. Design a button, a form, or a navigation pattern in Figma, then use the same component names and shared design tokens to build it in Dart. [CoUI documentation](https://coui.cocode.im/) · [한국어](README.ko-kr.md)
 
-A unified design system for **Flutter** mobile/desktop apps and **Jaspr** web applications. Type-safe Dart components, shared design tokens, and consistent APIs across all platforms.
+[![Package checks](https://github.com/coco-de/coui/actions/workflows/public-ci.yml/badge.svg)](https://github.com/coco-de/coui/actions/workflows/public-ci.yml)
 
-[![CI](https://github.com/coco-de/coui/actions/workflows/ci.yaml/badge.svg)](https://github.com/coco-de/coui/actions/workflows/ci.yaml)
+## Start with a button
 
-> [!WARNING]
-> **Experimental** — CoUI is currently in an experimental stage. Breaking changes can occur before `1.0.0`; review the release notes and [deprecation policy](docs/contributing/upgrading.md#deprecation) when upgrading. Feedback and contributions are welcome.
+| Platform | Install | App setup |
+| --- | --- | --- |
+| Flutter | `flutter pub add coui_flutter` | Apply the theme at the root with `CoUIApp`. [Flutter setup](packages/coui_flutter/README.md) |
+| Jaspr Web | `dart pub add coui_web` | Wrap your app in `CoUIWeb` and load the theme's CSS variables and Tailwind configuration. [Web setup](packages/coui_web/README.md) |
 
-[한국어](README.ko-kr.md) · [Docs Site](https://coui.cocode.im/) · [Design Tokens](https://coui.cocode.im/tokens/overview) · [Widgetbook](https://coui.cocode.studio/)
-
-Improving CoUI itself? Start with [Contributing](CONTRIBUTING.md) or the
-[한국어 단계별 가이드](docs/contributing/README.md) for Core → Flutter/Web → Figma.
-
-## Key Features
-
-- **Cross-Platform** — One component library for Flutter (mobile/desktop) and Jaspr (web)
-- **161 Components, Both Platforms** — every component contract is implemented on Flutter *and* Web, with the same parameter names; CI fails if one side falls behind
-- **Design Tokens** — colour, typography, spacing, radius and motion scales, all in `coui_core` and shared by both platforms ([token reference](https://coui.cocode.im/tokens/overview))
-- **3 Design Systems** — CoUI Web, M3 Expressive (Flutter), Liquid Glass (visionOS/AR)
-- **Dark Mode** — Full light/dark support on both platforms
-- **Type-Safe** — Compile-time checked styling, no stringly-typed CSS classes in Flutter
-
-## Quick Start
-
-### Flutter
-
-Install the Flutter beta from pub.dev:
-
-```sh
-flutter pub add coui_flutter
-```
-
-Set up your app:
+The primary button uses the same name and properties on both platforms. Import `coui_flutter.dart` or `coui_web.dart` for your target.
 
 ```dart
-import 'package:coui_flutter/coui_flutter.dart';
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return CoUIApp(
-      theme: const ThemeData(),
-      darkTheme: const ThemeData.dark(),
-      home: MyHomePage(),
-    );
-  }
-}
-```
-
-Use components:
-
-```dart
-Column(
-  children: [
-    Button(
-      variant: CoreButtonVariant.primary,
-      onPressed: handleSubmit,
-      child: const Text('Submit'),
-    ),
-    const TextField(placeholder: Text('Enter your name...')),
-    const Badge(tone: CoreBadgeTone.primary, child: Text('New')),
-  ],
-)
-```
-
-### Jaspr Web
-
-Install a published release from pub.dev:
-
-```sh
-dart pub add coui_web
-```
-
-Requires Tailwind CSS configured in your Jaspr project.
-
-The API is the same one you just saw on Flutter — same names, same slots:
-
-```dart
-import 'package:coui_web/coui_web.dart';
-
 Button(
   variant: CoreButtonVariant.primary,
-  onPressed: handleClick,
-  child: const Text('Click me'),
+  onPressed: saveChanges,
+  child: const Text('Save changes'),
 )
-
-TextField(placeholder: const Text('Search...'))
 ```
 
-## Component Categories
+The quick start walks through the app root and the first component for each platform. [Getting Started](https://coui.cocode.im/getting-started/) · [Button preview and code](https://coui.cocode.im/components/button/)
 
-| Category | Flutter | Web |
-|----------|--------:|----:|
-| Display | 36 | 36 |
-| Layout | 35 | 35 |
-| Form | 31 | 32 |
-| Infra | 14 | 11 |
-| Overlay | 9 | 9 |
-| Control | 6 | 6 |
-| Navigation | 5 | 5 |
-| Menu | 5 | 5 |
-| Text | 3 | 3 |
-| Icon | 1 | 1 |
-| Locale | — | 1 |
+## Explore the design system
 
-**161 component contracts are implemented on both platforms** — `tool/api_sync_check.dart`
-gates that number in CI, so it cannot drift. The per-category counts differ only where a
-platform needs extra infrastructure files (Flutter overlay/render plumbing, Web locale
-scope); no contract is missing on either side.
+- **Foundations** covers the colors, type, spacing, shape, and motion shared across platforms. Core defines the values. Flutter resolves them into widget styles, and Jaspr uses them through CSS variables and Tailwind utilities. [Foundations](https://coui.cocode.im/tokens/overview/) · [CoUI Core](packages/coui_core/README.md)
+- **Components** pairs live previews with Flutter and Web examples. Use the docs theme picker to see how surface styles such as Liquid Glass change the same components. [Component catalog](https://coui.cocode.im/components-overview/)
+- **Blocks** gives you starting layouts for page sections such as a hero or footer. [Block catalog](https://coui.cocode.im/blocks/)
+- **Resources** takes you to the Figma library, theme setup, and the MCP guide for looking up components and tokens from an editor. [Figma library](https://coui.cocode.im/guides/figma-library/) · [Theming](https://coui.cocode.im/guides/theming/) · [AI and MCP](https://coui.cocode.im/guides/mcp/)
 
-The component list itself lives in one place and is not duplicated here — a hand-written
-list goes stale and then lies. Browse it at **[coui.cocode.im](https://coui.cocode.im/)**,
-or read `docs_core/lib/shared/component_catalog.dart`, which is what the docs site,
-the search index and the native docs app all read.
+## Contribute to CoUI
 
-## Package Structure
+The contributor guide covers workspace setup, shared component changes, and verification across Flutter, Web, and Figma. [Contributing](CONTRIBUTING.md) · [한국어 기여 가이드](docs/contributing/README.md)
 
-```
-packages/
-  coui/           # Umbrella package
-  coui_core/      # Platform-agnostic design tokens, contracts, shared logic
-  coui_flutter/   # Flutter implementation (Material + CoUI theme)
-  coui_web/       # Jaspr web implementation (CoUI themes + Tailwind CSS)
-  coui_i10n/      # Shared localization strings
-  coui_lints/     # Lint rules used across the workspace
-  coui_mcp/       # MCP server for AI-assisted development (not a workspace member)
-```
+CoUI is pre-1.0 and public APIs can change between releases. Check the release notes and deprecation policy when upgrading. [Changelog](https://coui.cocode.im/changelog/) · [Deprecation policy](docs/contributing/upgrading.md#deprecation)
 
-| Package | Description | README |
-|---------|-------------|--------|
-| `coui_core` | Design tokens (colour · typography · spacing · radius · motion), 3 design systems | — |
-| `coui_flutter` | Flutter widgets, themes, controllers | [README](packages/coui_flutter/README.md) |
-| `coui_web` | Jaspr web components | [README](packages/coui_web/README.md) |
+## License and credits
 
-## Design Token System (`coui_core`)
-
-CoUI uses a unified design token system supporting 3 design systems:
-
-| Design System | Target | Shape | Motion | Surface |
-|---------------|--------|-------|--------|---------|
-| **CoUI Web** | Web (Jaspr) | rounded | CSS transition | flat |
-| **M3 Expressive** | Flutter App | squircle | Spring physics | tonalElevation |
-| **Liquid Glass** | visionOS/AR | glassRounded | Glass physics | glass |
-
-### Token Categories
-
-| Category | Class | Tokens |
-|----------|-------|--------|
-| Color | `CoreColorScheme` | semantic slots, resolved per brightness / contrast |
-| Typography | `CoreTypography` | 22 roles (display · headline · title · body · label · code) |
-| Spacing | `CoreSpace` | 46 steps (`space0`–`space256`) |
-| Shape | `CoreRadius` | 19 levels (`radius0`–`radius64`, `radius9999`) |
-| Size | `CoreComponentSize` | 5 (xs/sm/md/lg/xl) |
-| Motion | `CoreDuration` + `CoreEasing` + `CoreSpringConfig` | semantic duration aliases, easing curves, 5 spring presets |
-| Surface | `CoreSurfaceToken` | 3 types (flat/tonalElevation/glass) |
-
-### CoreThemeData
-
-```dart
-import 'package:coui_core/coui_core.dart';
-
-final theme = CoreThemeData(
-  // CoUI's own colours — a brand palette is CouiSemanticColors(palette)
-  colorScheme: CouiSemanticColors.from(CouiColorPresets.source).light,
-  brightness: CoreBrightness.light,          // light | dark
-  designSystem: DesignSystem.couiWeb,        // couiWeb | m3Expressive | liquidGlass
-  typography: CoreTypography.coui,
-);
-
-// Dark mode variant
-final darkTheme = theme.copyWith(
-  colorScheme: darkColors,
-  brightness: CoreBrightness.dark,
-);
-```
-
-### Web Theme
-
-Theme switching via the `data-theme` attribute on `<html>`. `ThemeConfig`
-defines `--coui-*` variables for two themes — `light` and `dark`:
-
-```dart
-CoUIThemeController.setTheme(CoUIThemeController.dark);
-CoUIThemeController.toggleDarkMode();
-
-// A custom palette is pushed as CSS variables instead of a theme name.
-CoUIThemeController.setCustomTheme(myColorScheme);
-```
-
-## Development
-
-This is a Dart workspace managed with [Melos](https://melos.invertase.dev/).
-
-```bash
-# Install Melos
-dart pub global activate melos
-
-# Bootstrap workspace
-melos bootstrap
-
-# Run analysis
-melos run analyze:all
-
-# Run tests
-melos run test
-```
-
-
-
-
----
-
-Built for the Dart & Flutter community.
+Cocode Inc. maintains CoUI. The repository notice documents the upstream projects and third-party terms. [License](LICENSE) · [Third-party notices](NOTICE) · [Cocode](https://cocode.im/)
