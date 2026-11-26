@@ -35,6 +35,58 @@ Iterable<DomComponent> _buttons() => find
     .map((e) => e.component)
     .whereType<DomComponent>();
 
+void _expectDisabled(bool disabled) {
+  final input = find.tag('input').evaluate().single.component as DomComponent;
+  expect(_attr(input, 'disabled') != null, disabled);
+  final buttons = _buttons().toList();
+  expect(buttons, hasLength(2));
+  for (final button in buttons) {
+    expect(_attr(button, 'disabled') != null, disabled);
+  }
+}
+
+class _ScopeHost extends StatefulComponent {
+  const _ScopeHost({required this.onMount, this.child});
+
+  final void Function(_ScopeHostState) onMount;
+  final Component? child;
+
+  @override
+  State<_ScopeHost> createState() => _ScopeHostState();
+}
+
+class _ScopeHostState extends State<_ScopeHost> {
+  bool _enabled = true;
+  double _value = 2;
+  final changes = <double>[];
+
+  @override
+  void initState() {
+    super.initState();
+    component.onMount(this);
+  }
+
+  void update({bool? enabled, double? value}) {
+    setState(() {
+      _enabled = enabled ?? _enabled;
+      _value = value ?? _value;
+    });
+  }
+
+  @override
+  Component build(BuildContext context) => Fieldset(
+    enabled: _enabled,
+    children: [
+      component.child ??
+          NumberInput(
+            key: const ValueKey('controlled-number'),
+            value: _value,
+            onChanged: changes.add,
+          ),
+    ],
+  );
+}
+
 void main() {
   testComponents('error replaces helper and marks the field invalid', (
     tester,
@@ -196,6 +248,124 @@ void main() {
       for (final b in _buttons()) {
         expect(_attr(b, 'disabled'), isNotNull);
       }
+    });
+  });
+
+  group('NumberInput form scope', () {
+    testComponents('a disabled Fieldset disables the input and both buttons', (
+      tester,
+    ) async {
+      pumpWithTheme(
+        tester,
+        const Fieldset(
+          enabled: false,
+          children: [NumberInput(value: 2, enabled: true)],
+        ),
+      );
+      _expectDisabled(true);
+    });
+
+    testComponents('a disabled FormField disables the input and both buttons', (
+      tester,
+    ) async {
+      pumpWithTheme(
+        tester,
+        const FormField(
+          enabled: false,
+          child: NumberInput(value: 2, enabled: true),
+        ),
+      );
+      _expectDisabled(true);
+    });
+
+    testComponents('an enabled inner scope cannot override disabled Fieldset', (
+      tester,
+    ) async {
+      pumpWithTheme(
+        tester,
+        const Fieldset(
+          enabled: false,
+          children: [
+            Fieldset(
+              children: [
+                FormField(child: NumberInput(value: 2, enabled: true)),
+              ],
+            ),
+          ],
+        ),
+      );
+      _expectDisabled(true);
+    });
+
+    testComponents('an enabled Fieldset cannot override own disabled input', (
+      tester,
+    ) async {
+      pumpWithTheme(
+        tester,
+        const Fieldset(children: [NumberInput(value: 2, enabled: false)]),
+      );
+      _expectDisabled(true);
+    });
+
+    testComponents('ancestor-only changes update the same mounted input', (
+      tester,
+    ) async {
+      late _ScopeHostState host;
+      const number = NumberInput(value: 2, enabled: true);
+      pumpWithTheme(
+        tester,
+        _ScopeHost(onMount: (state) => host = state, child: number),
+      );
+      final original = find.byType(NumberInput).evaluate().single;
+      expect(identical(original.component, number), isTrue);
+      _expectDisabled(false);
+
+      host.update(enabled: false);
+      await tester.pump();
+      expect(
+        identical(find.byType(NumberInput).evaluate().single, original),
+        isTrue,
+      );
+      _expectDisabled(true);
+
+      host.update(enabled: true);
+      await tester.pump();
+      expect(
+        identical(find.byType(NumberInput).evaluate().single, original),
+        isTrue,
+      );
+      _expectDisabled(false);
+    });
+
+    testComponents('controlled values still synchronize while disabled', (
+      tester,
+    ) async {
+      late _ScopeHostState host;
+      pumpWithTheme(tester, _ScopeHost(onMount: (state) => host = state));
+      final original = find.byType(NumberInput).evaluate().single;
+
+      host.update(enabled: false);
+      await tester.pump();
+      _expectDisabled(true);
+      host.update(value: 7);
+      await tester.pump();
+      final input =
+          find.tag('input').evaluate().single.component as DomComponent;
+      expect(_attr(input, 'value'), '7');
+      expect(host.changes, isEmpty);
+      expect(
+        identical(find.byType(NumberInput).evaluate().single, original),
+        isTrue,
+      );
+      _expectDisabled(true);
+
+      host.update(enabled: true);
+      await tester.pump();
+      _expectDisabled(false);
+      final enabledInput =
+          find.tag('input').evaluate().single.component as DomComponent;
+      expect(_attr(enabledInput, 'value'), '7');
+      expect(host.changes, isEmpty);
     });
   });
 }

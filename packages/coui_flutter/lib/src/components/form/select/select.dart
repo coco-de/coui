@@ -203,6 +203,10 @@ class _SelectState<T> extends State<Select<T>> {
   final _popover = PopoverController();
   final _focusNode = FocusNode();
   T? _value;
+  CoreFormFieldScope? _formFieldScope;
+
+  bool get _effectiveEnabled =>
+      widget.enabled && _formFieldScope?.disabled != true;
 
   /// Which row the keyboard is on while the panel is open. `-1` before
   /// the first move — the selected row, if any, is where it starts.
@@ -222,6 +226,21 @@ class _SelectState<T> extends State<Select<T>> {
   void didUpdateWidget(covariant Select<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.value != widget.value) _value = widget.value;
+    _closeWhenDisabled();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _formFieldScope = FormFieldScope.maybeOf(context);
+    _closeWhenDisabled();
+  }
+
+  void _closeWhenDisabled() {
+    if (_effectiveEnabled || !_popover.isOpen) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && !_effectiveEnabled) _popover.close();
+    });
   }
 
   @override
@@ -287,7 +306,7 @@ class _SelectState<T> extends State<Select<T>> {
   }
 
   void _handleSelect(CoreSelectItem<T> option) {
-    if (!option.enabled) return;
+    if (!_effectiveEnabled || !option.enabled) return;
     setState(() => _value = option.value);
     widget.onChanged?.call(option.value);
     _popover.close();
@@ -295,7 +314,7 @@ class _SelectState<T> extends State<Select<T>> {
   }
 
   void _handleToggle() {
-    if (!widget.enabled) return;
+    if (!_effectiveEnabled) return;
     if (_popover.isOpen) {
       _popover.close();
     } else {
@@ -334,6 +353,7 @@ class _SelectState<T> extends State<Select<T>> {
   /// Selecting while the panel is closed — the value moves, the panel
   /// stays shut.
   void _handleSelectClosed(CoreSelectItem<T> option) {
+    if (!_effectiveEnabled) return;
     setState(() => _value = option.value);
     widget.onChanged?.call(option.value);
   }
@@ -370,7 +390,7 @@ class _SelectState<T> extends State<Select<T>> {
     if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
       return .ignored;
     }
-    if (!widget.enabled) return .ignored;
+    if (!_effectiveEnabled) return .ignored;
     final key = event.logicalKey;
     if (key == LogicalKeyboardKey.arrowDown) {
       // Alt+Down opens without moving the value — the WAI-ARIA select
@@ -502,8 +522,7 @@ class _SelectState<T> extends State<Select<T>> {
       // (an enclosing `Fieldset(enabled: false)` wins); the colours Select
       // hands it must follow the same answer, or a scope-disabled select
       // keeps the enabled placeholder tint.
-      enabled:
-          widget.enabled && FormFieldScope.maybeOf(context)?.disabled != true,
+      enabled: _effectiveEnabled,
     );
     final selectedLabel = _selectedLabel;
 
