@@ -34,6 +34,9 @@ import 'hover_card/hover_card_page.dart' as hover_card;
 import 'indexed_switcher/indexed_switcher_page.dart' as indexed_switcher;
 import 'input_otp/input_otp_page.dart' as input_otp;
 import 'item_picker/item_picker_page.dart' as item_picker;
+import 'kbd/kbd_page.dart' as kbd;
+import 'label/label_page.dart' as label;
+import 'link/link_page.dart' as link;
 import 'menu/menu_page.dart' as menu;
 import 'menu_item/menu_item_page.dart' as menu_item;
 import 'menubar/menubar_page.dart' as menubar;
@@ -61,11 +64,13 @@ import 'sidebar/sidebar_page.dart' as sidebar;
 import 'slider/slider_page.dart' as slider;
 import 'sortable/sortable_page.dart' as sortable;
 import 'star_rating/star_rating_page.dart' as star_rating;
+import 'status/status_page.dart' as status;
 import 'swiper/swiper_page.dart' as swiper;
 import 'switch_field/switch_field_page.dart' as switch_field;
 import 'switcher/switcher_page.dart' as switcher;
 import 'tab_pane/tab_pane_page.dart' as tab_pane;
 import 'tabs/tabs_page.dart' as tabs;
+import 'tag/tag_page.dart' as tag;
 import 'text_area/text_area_page.dart' as text_area;
 import 'text_block/text_block_page.dart' as text_block;
 import 'text_field/text_field_page.dart' as text_field;
@@ -111,6 +116,9 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (indexed_switcher.playground case final spec?) indexed_switcher.slug: spec,
   if (input_otp.playground case final spec?) input_otp.slug: spec,
   if (item_picker.playground case final spec?) item_picker.slug: spec,
+  if (kbd.playground case final spec?) kbd.slug: spec,
+  if (label.playground case final spec?) label.slug: spec,
+  if (link.playground case final spec?) link.slug: spec,
   if (menu.playground case final spec?) menu.slug: spec,
   if (menu_item.playground case final spec?) menu_item.slug: spec,
   if (menubar.playground case final spec?) menubar.slug: spec,
@@ -138,11 +146,13 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (slider.playground case final spec?) slider.slug: spec,
   if (sortable.playground case final spec?) sortable.slug: spec,
   if (star_rating.playground case final spec?) star_rating.slug: spec,
+  if (status.playground case final spec?) status.slug: spec,
   if (swiper.playground case final spec?) swiper.slug: spec,
   if (switch_field.playground case final spec?) switch_field.slug: spec,
   if (switcher.playground case final spec?) switcher.slug: spec,
   if (tab_pane.playground case final spec?) tab_pane.slug: spec,
   if (tabs.playground case final spec?) tabs.slug: spec,
+  if (tag.playground case final spec?) tag.slug: spec,
   if (text_area.playground case final spec?) text_area.slug: spec,
   if (text_block.playground case final spec?) text_block.slug: spec,
   if (text_field.playground case final spec?) text_field.slug: spec,
@@ -189,6 +199,9 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (indexed_switcher.sizeSpec case final spec?) indexed_switcher.slug: spec,
   if (input_otp.sizeSpec case final spec?) input_otp.slug: spec,
   if (item_picker.sizeSpec case final spec?) item_picker.slug: spec,
+  if (kbd.sizeSpec case final spec?) kbd.slug: spec,
+  if (label.sizeSpec case final spec?) label.slug: spec,
+  if (link.sizeSpec case final spec?) link.slug: spec,
   if (menu.sizeSpec case final spec?) menu.slug: spec,
   if (menu_item.sizeSpec case final spec?) menu_item.slug: spec,
   if (menubar.sizeSpec case final spec?) menubar.slug: spec,
@@ -216,11 +229,13 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (slider.sizeSpec case final spec?) slider.slug: spec,
   if (sortable.sizeSpec case final spec?) sortable.slug: spec,
   if (star_rating.sizeSpec case final spec?) star_rating.slug: spec,
+  if (status.sizeSpec case final spec?) status.slug: spec,
   if (swiper.sizeSpec case final spec?) swiper.slug: spec,
   if (switch_field.sizeSpec case final spec?) switch_field.slug: spec,
   if (switcher.sizeSpec case final spec?) switcher.slug: spec,
   if (tab_pane.sizeSpec case final spec?) tab_pane.slug: spec,
   if (tabs.sizeSpec case final spec?) tabs.slug: spec,
+  if (tag.sizeSpec case final spec?) tag.slug: spec,
   if (text_area.sizeSpec case final spec?) text_area.slug: spec,
   if (text_block.sizeSpec case final spec?) text_block.slug: spec,
   if (text_field.sizeSpec case final spec?) text_field.slug: spec,
