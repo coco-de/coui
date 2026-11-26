@@ -39,11 +39,9 @@ Widget _host(Widget child, coui.ThemeData theme) => coui.Theme(
 Future<Uint8List> _pixels(WidgetTester tester, GlobalKey boundaryKey) async {
   final boundary =
       boundaryKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
-  final image = (await tester.runAsync(() => boundary.toImage()))!;
+  final image = (await tester.runAsync(boundary.toImage))!;
   try {
-    final data = (await tester.runAsync(
-      () => image.toByteData(format: ui.ImageByteFormat.rawRgba),
-    ))!;
+    final data = (await tester.runAsync(image.toByteData))!;
     return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
   } finally {
     image.dispose();
