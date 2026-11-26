@@ -1,150 +1,232 @@
-// Adapted from Wonky Work's `wonky_rich_editor` (BSD-3-Clause, Copyright 2026
+// Adapted from Wonky Work's wonky_rich_editor (BSD-3-Clause, Copyright 2026
 // The Wonky Work authors) — see NOTICE.
 
-/// Markdown ⇄ super_editor document for the lightweight editor.
-library;
-
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:coui_core/coui_core.dart' show CoreRichEditorImage;
 import 'package:coui_flutter/src/components/form/rich_editor/markdown/block_syntax.dart';
 import 'package:coui_flutter/src/components/form/rich_editor/markdown/inline_codec.dart';
 import 'package:coui_flutter/src/components/form/rich_editor/markdown/markdown_features.dart';
+import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:flutter_quill/quill_delta.dart';
 import 'package:markdown/markdown.dart' as md;
-import 'package:super_editor/super_editor.dart';
 
-/// Converts Markdown to a super_editor document and back.
-///
-/// **Subset.** Paragraphs (their lines stay lines: `"\n"` in the node
-/// text), `#` headings 1–6, bullet and numbered items with nesting levels,
-/// task items (`- [ ]`, `- [x]`), `>` quotes, `---` rules, images on a line
-/// of their own (`![alt](url)`, an `ImageNode`), and inline bold, italic,
-/// strikethrough, code and links ([InlineMarkdownCodec]). [features] turns
-/// headings, quotes, rules and images off for comments: their lines then
-/// stay text.
-///
-/// **Everything else is kept, never lost.** Fenced and indented code (the
-/// editor has no code blocks: a fence is literal text the user edits or
-/// deletes like any other block), tables, HTML blocks, link reference
-/// definitions and any block whose
-/// inline content the editor cannot represent (an image among other text, an
-/// image whose address [CoreRichEditorImage.normalizeSource] refuses, raw
-/// inline HTML, links with titles or other schemes, styles spanning lines, a
-/// list item holding a quote …) become a *literal* block: a code-styled
-/// paragraph (metadata [MarkdownNodeMetadata.raw]) written back verbatim.
-///
-/// **Untouched blocks keep their text.** Every block remembers its source
-/// and the Markdown the codec would write for it
-/// ([MarkdownNodeMetadata.canonical]); while it still writes to that, the
-/// source is written instead, and the text between two such neighbours
-/// is kept too. Editing one paragraph therefore changes only that
-/// paragraph's Markdown, which keeps diffs (the prompt editor's) small.
-///
-/// [encode] is stable: `encode(decode(encode(d)))` equals `encode(d)`.
+/// Converts CoUI's Markdown value to and from Quill's document model.
 class MarkdownDocumentCodec {
-  /// Creates a codec for the blocks [features] allows.
   const MarkdownDocumentCodec({this.features = MarkdownBlockFeatures.all});
 
-  /// The block kinds turned into structure.
   final MarkdownBlockFeatures features;
 
-  /// [markdown] as a document (at least one node; a trailing paragraph
-  /// follows a final rule so the caret can get past it).
-  MutableDocument decode(String markdown) =>
-      MutableDocument(nodes: decodeNodes(markdown));
+  static const imageType = 'coui-image';
+  static const ruleType = 'coui-rule';
 
-  /// [markdown] as document nodes (see [decode]).
-  List<DocumentNode> decodeNodes(String markdown) {
-    final lines = markdown
-        .replaceAll('\r\n', '\n')
-        .replaceAll('\r', '\n')
-        .split('\n');
+  /// Quill reserves LF for block boundaries. A Unicode line separator
+  /// retains soft breaks inside paragraphs, list items and literals.
+  static const softBreak = '\u2028';
+
+  static final _sources = Expando<_SourceBlock>();
+  static final _ids = Expando<String>();
+  static int _nextId = 0;
+
+  static Iterable<quill.Line> lines(quill.Document document) sync* {
+    for (final node in document.root.children) {
+      if (node is quill.Line) yield node;
+      if (node is quill.Block) yield* node.children.whereType<quill.Line>();
+    }
+  }
+
+  static String createId() => 'coui-rich-editor-${++_nextId}';
+  static String lineId(quill.Line line) => _ids[line] ??= createId();
+
+  static Map<String, dynamic> image(String id, String url, String alt) => {
+    imageType: jsonEncode({'id': id, 'url': url, 'alt': alt}),
+  };
+
+  static ({String id, String url, String alt})? imageData(Object? insert) {
+    if (insert is! Map || insert[imageType] is! String) return null;
+    final data =
+        jsonDecode(insert[imageType] as String) as Map<String, dynamic>;
+    return (
+      id: data['id'] as String,
+      url: data['url'] as String,
+      alt: data['alt'] as String,
+    );
+  }
+
+  static String kindOf(quill.Line line) => _readLine(line.toDelta()).kind;
+
+  static bool isPlain(quill.Line line) => kindOf(line) == 'p';
+
+  static int indentOf(quill.Line line) =>
+      (line.toDelta().last.attributes?[quill.Attribute.indent.key] as int?) ??
+      0;
+
+  static Delta runDelta(Iterable<InlineRun> runs) {
+    final delta = Delta();
+    for (final run in runs) {
+      if (run.text.isEmpty) continue;
+      final style = <String, dynamic>{
+        if (run.bold) quill.Attribute.bold.key: true,
+        if (run.italic) quill.Attribute.italic.key: true,
+        if (run.strike) quill.Attribute.strikeThrough.key: true,
+        if (run.code) quill.Attribute.inlineCode.key: true,
+        if (run.link != null) quill.Attribute.link.key: run.link,
+      };
+      delta.insert(
+        run.text.replaceAll('\n', softBreak),
+        style.isEmpty ? null : style,
+      );
+    }
+    return delta;
+  }
+
+  quill.Document decode(String markdown) {
+    final input = markdown.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
+    final inputLines = input.split('\n');
     final mdDoc = md.Document(extensionSet: richEditorGfm);
-    final definitions = [
-      for (final l in lines)
-        if (linkDefinitionLine.hasMatch(l)) l,
-    ];
+    final definitions = inputLines.where(linkDefinitionLine.hasMatch).toList();
     if (definitions.isNotEmpty) mdDoc.parseLines(definitions);
     final inline = InlineMarkdownCodec(document: mdDoc)
       ..bareBrackets = definitions.isEmpty;
-
-    final blocks = _Scanner(lines, features).scan();
-    final nodes = <DocumentNode>[];
-    final sources = <String>[];
+    final scanned = _Scanner(inputLines, features).scan();
+    final blocks = <_EditorBlock>[];
+    final original = <String>[];
     final gaps = <String?>[];
-    var previousEnd = -1;
-    for (final b in blocks) {
-      final source = lines.sublist(b.start, b.end).join('\n');
-      final node = _node(b, inline) ?? _literal(source);
-      nodes.add(node);
-      sources.add(source);
-      final between = lines.sublist(math.max(previousEnd, 0), b.start);
+    var previousEnd = 0;
+
+    for (final block in scanned) {
+      final source = inputLines.sublist(block.start, block.end).join('\n');
+      blocks.add(_readBlock(block, inline, source));
+      original.add(source);
+      final between = inputLines.sublist(previousEnd, block.start);
       gaps.add(
-        previousEnd < 0 ? null : '\n${between.map((l) => '$l\n').join()}',
+        blocks.length == 1
+            ? null
+            : '\n${between.map((line) => '$line\n').join()}',
       );
-      previousEnd = b.end;
+      previousEnd = block.end;
     }
-    if (nodes.isEmpty || nodes.last is! TextNode) {
-      nodes.add(_paragraph(AttributedText()));
-      sources.add('');
+    if (blocks.isEmpty || blocks.last.embed != null) {
+      blocks.add(const _EditorBlock('p'));
+      original.add('');
       gaps.add(null);
     }
 
-    // What the codec writes for each block now, in context.
-    final encoder = _Encoder(MutableDocument(nodes: nodes), features);
-    final out = <DocumentNode>[];
-    for (var i = 0; i < nodes.length; i++) {
-      final node = nodes[i];
-      final canonical = encoder.next(node);
-      if (canonical == null && sources[i].isEmpty) {
-        out.add(node);
-        continue;
+    final delta = Delta();
+    for (final block in blocks) {
+      final embed = block.embed;
+      if (embed != null) delta.insert(embed);
+      for (final operation in runDelta(block.runs).toList()) {
+        delta.push(operation);
       }
-      out.add(
-        node.copyWithAddedMetadata({
-          MarkdownNodeMetadata.source: sources[i],
-          MarkdownNodeMetadata.canonical: canonical ?? '',
-          MarkdownNodeMetadata.kind: kindOf(node),
-          MarkdownNodeMetadata.gap: ?gaps[i],
-          if (i > 0) MarkdownNodeMetadata.previous: nodes[i - 1].id,
-        }),
-      );
+      final attrs = <String, dynamic>{
+        if (block.kind.startsWith('h') && block.kind != 'hr')
+          quill.Attribute.header.key: int.parse(block.kind.substring(1)),
+        if (block.kind == 'quote') quill.Attribute.blockQuote.key: true,
+        if (block.kind == 'raw') quill.Attribute.codeBlock.key: true,
+        if (_listKinds.contains(block.kind))
+          quill.Attribute.list.key: switch (block.kind) {
+            'ul' => 'bullet',
+            'ol' => 'ordered',
+            _ => block.checked ? 'checked' : 'unchecked',
+          },
+        if (block.indent != 0) quill.Attribute.indent.key: block.indent,
+      };
+      delta.insert('\n', attrs.isEmpty ? null : attrs);
     }
-    return out;
+
+    final document = quill.Document.fromDelta(delta);
+    final encoder = _Encoder(blocks);
+    quill.Line? previous;
+    for (final (index, line) in lines(document).indexed) {
+      final block = blocks[index];
+      _sources[line] = _SourceBlock(
+        original[index],
+        encoder.next(block),
+        block.kind,
+        gaps[index],
+        previous == null ? null : lineId(previous),
+      );
+      previous = line;
+    }
+    return document;
   }
 
-  /// [document] as Markdown.
-  String encode(Document document) {
-    final encoder = _Encoder(document, features);
-    final b = StringBuffer();
-    DocumentNode? previous;
-    for (final node in document) {
-      final fresh = encoder.next(node);
-      if (fresh == null) continue;
-      final kind = kindOf(node);
-      var text = fresh;
-      final source = node.getMetadataValue(MarkdownNodeMetadata.source);
-      if (source is String &&
-          node.getMetadataValue(MarkdownNodeMetadata.canonical) == fresh &&
-          node.getMetadataValue(MarkdownNodeMetadata.kind) == kind) {
-        text = source;
-      }
-      if (previous != null) {
-        final gap = node.getMetadataValue(MarkdownNodeMetadata.gap);
-        final keepGap =
-            gap is String &&
-            node.getMetadataValue(MarkdownNodeMetadata.previous) ==
-                previous.id &&
-            node.getMetadataValue(MarkdownNodeMetadata.kind) == kind &&
-            previous.getMetadataValue(MarkdownNodeMetadata.kind) ==
-                kindOf(previous);
-        b.write(keepGap ? gap : _defaultGap(kindOf(previous), kind));
-      }
-      b.write(text);
-      previous = node;
+  /// Transfers exact source fragments after an external document replacement.
+  void preserveSources(quill.Document from, quill.Document to) {
+    final destination = lines(to).iterator;
+    for (final origin in lines(from)) {
+      if (!destination.moveNext()) return;
+      final dest = destination.current;
+      _ids[dest] = lineId(origin);
+      final source = _sources[origin];
+      if (source != null) _sources[dest] = source;
     }
-    return b.toString().trimRight();
   }
+
+  String encode(quill.Document document, {int? start, int? end}) {
+    final blocks = <(quill.Line, _EditorBlock, bool)>[];
+    for (final line in lines(document)) {
+      final offset = line.documentOffset;
+      final lineEnd = offset + line.length - 1;
+      if (end != null && offset >= end || start != null && lineEnd < start) {
+        continue;
+      }
+      final from = math.max(0, (start ?? offset) - offset);
+      final to = math.min(line.length - 1, (end ?? lineEnd) - offset);
+      final whole = from == 0 && to == line.length - 1;
+      final data = line.toDelta();
+      blocks.add((
+        line,
+        whole
+            ? _readLine(data)
+            : _readLine(
+                data.slice(from, to)..insert('\n', data.last.attributes),
+              ),
+        whole,
+      ));
+    }
+    final encoder = _Encoder(blocks.map((entry) => entry.$2));
+    final output = StringBuffer();
+    quill.Line? previous;
+    _EditorBlock? previousBlock;
+
+    // Inside a single line the clipboard carries only the selected text.
+    if (start != null && blocks.length == 1 && !blocks.single.$3) {
+      final selected = blocks.single.$2;
+      return selected.kind == 'raw'
+          ? selected.text
+          : encoder.inline.writeLines(selected.runs).join('\n');
+    }
+
+    for (final (line, block, whole) in blocks) {
+      final canonical = encoder.next(block);
+      if (canonical == null) continue;
+      final source = whole ? _sources[line] : null;
+      if (previous != null) {
+        final keepsGap =
+            source?.previousId == lineId(previous) &&
+            source?.kind == block.kind &&
+            _sources[previous]?.kind == previousBlock!.kind;
+        output.write(
+          keepsGap && source?.gap != null
+              ? source!.gap
+              : _defaultGap(previousBlock!.kind, block.kind),
+        );
+      }
+      output.write(
+        source?.canonical == canonical && source?.kind == block.kind
+            ? source!.text
+            : canonical,
+      );
+      previous = line;
+      previousBlock = block;
+    }
+    return output.toString().trimRight();
+  }
+
+  static const _listKinds = {'ul', 'ol', 'task'};
 
   static String _defaultGap(String before, String after) {
     if (_listKinds.contains(before) && _listKinds.contains(after)) return '\n';
@@ -152,230 +234,178 @@ class MarkdownDocumentCodec {
     return '\n\n';
   }
 
-  static const _listKinds = {'ul', 'ol', 'task'};
-
-  /// The block kind of [node] (`p`, `h1`…`h6`, `ul`, `ol`, `task`, `quote`,
-  /// `raw`, `hr`, `img`, or `other`). Every code-styled paragraph is a
-  /// literal block (`raw`): the editor has no code blocks.
-  static String kindOf(DocumentNode node) {
-    if (node is ListItemNode) {
-      return node.type == ListItemType.ordered ? 'ol' : 'ul';
-    }
-    if (node is TaskNode) return 'task';
-    if (node is HorizontalRuleNode) return 'hr';
-    if (node is ImageNode) return 'img';
-    if (node is ParagraphNode) {
-      final type = node.getMetadataValue(NodeMetadata.blockType);
-      if (type == codeAttribution) return 'raw';
-      if (type == blockquoteAttribution) return 'quote';
-      final h = headingLevelOf(node);
-      if (h != null) return 'h$h';
-      return 'p';
-    }
-    return 'other';
-  }
-
-  /// The heading level (1–6) of [node], or null.
-  static int? headingLevelOf(DocumentNode node) {
-    final type = node.getMetadataValue(NodeMetadata.blockType);
-    for (var i = 0; i < _headers.length; i++) {
-      if (type == _headers[i]) return i + 1;
-    }
-    return null;
-  }
-
-  static const List<NamedAttribution> _headers = [
-    header1Attribution,
-    header2Attribution,
-    header3Attribution,
-    header4Attribution,
-    header5Attribution,
-    header6Attribution,
-  ];
-
-  /// The block attribution of heading [level] (1–6).
-  static Attribution headerAttribution(int level) =>
-      _headers[(level - 1).clamp(0, 5)];
-
-  // ------------------------------------------------------------- reading
-
-  DocumentNode? _node(_Block b, InlineMarkdownCodec inline) {
-    switch (b.kind) {
-      case _K.paragraph:
-        final image = features.images ? inline.readImage(b.content) : null;
-        if (image != null) {
-          return ImageNode(
-            id: Editor.createNodeId(),
-            imageUrl: image.url,
-            altText: image.alt,
-          );
-        }
-        final t = inline.read(b.content);
-        return t == null ? null : _paragraph(t);
-      case _K.heading:
-        final t = inline.read(b.content);
-        return t == null
-            ? null
-            : ParagraphNode(
-                id: Editor.createNodeId(),
-                text: t,
-                metadata: {NodeMetadata.blockType: headerAttribution(b.level)},
-              );
-      case _K.quote:
-        final t = inline.read(b.content);
-        return t == null
-            ? null
-            : ParagraphNode(
-                id: Editor.createNodeId(),
-                text: t,
-                metadata: const {NodeMetadata.blockType: blockquoteAttribution},
-              );
-      case _K.bullet || _K.ordered:
-        final t = inline.read(b.content);
-        return t == null
-            ? null
-            : ListItemNode(
-                id: Editor.createNodeId(),
-                itemType: b.kind == _K.ordered
-                    ? ListItemType.ordered
-                    : ListItemType.unordered,
-                text: t,
-                indent: b.level,
-              );
-      case _K.task:
-        final t = inline.read(b.content);
-        return t == null
-            ? null
-            : TaskNode(
-                id: Editor.createNodeId(),
-                text: t,
-                isComplete: b.checked,
-                indent: b.level,
-              );
-      case _K.rule:
-        return HorizontalRuleNode(id: Editor.createNodeId());
-      case _K.raw:
-        return null;
-    }
-  }
-
-  static ParagraphNode _paragraph(AttributedText text) =>
-      ParagraphNode(id: Editor.createNodeId(), text: text);
-
-  /// A literal block: [source] kept as is.
-  static ParagraphNode _literal(String source) => ParagraphNode(
-    id: Editor.createNodeId(),
-    text: AttributedText(source),
-    metadata: const {
-      NodeMetadata.blockType: codeAttribution,
-      MarkdownNodeMetadata.raw: true,
-    },
-  );
-}
-
-// ------------------------------------------------------------------ writing
-
-/// Writes nodes one after the other (list levels and numbering need the
-/// nodes before).
-class _Encoder {
-  _Encoder(this.document, this.features) {
-    // `[label]` could become a link next to a reference definition.
-    for (final node in document) {
-      if (node is ParagraphNode &&
-          node.getMetadataValue(MarkdownNodeMetadata.raw) == true &&
-          node.text
-              .toPlainText()
-              .split('\n')
-              .any(linkDefinitionLine.hasMatch)) {
-        _bareBrackets = false;
-        break;
+  _EditorBlock _readBlock(
+    _Block block,
+    InlineMarkdownCodec inline,
+    String original,
+  ) {
+    if (block.kind == _K.paragraph && features.images) {
+      final found = inline.readImage(block.content);
+      if (found != null) {
+        return _EditorBlock(
+          'img',
+          embed: image(createId(), found.url, found.alt),
+        );
       }
     }
-    _inline = InlineMarkdownCodec()..bareBrackets = _bareBrackets;
+    if (block.kind == _K.rule) {
+      return const _EditorBlock('hr', embed: {ruleType: 'rule'});
+    }
+    final text = block.kind == _K.raw ? null : inline.read(block.content);
+    if (text == null) return _EditorBlock('raw', runs: [InlineRun(original)]);
+    final kind = switch (block.kind) {
+      _K.paragraph => 'p',
+      _K.heading => 'h${block.level}',
+      _K.quote => 'quote',
+      _K.bullet => 'ul',
+      _K.ordered => 'ol',
+      _K.task => 'task',
+      _ => 'raw',
+    };
+    return _EditorBlock(
+      kind,
+      runs: text,
+      indent: _listKinds.contains(kind) ? block.level : 0,
+      checked: block.checked,
+    );
   }
 
-  final Document document;
-  final MarkdownBlockFeatures features;
-  late final InlineMarkdownCodec _inline;
-  var _bareBrackets = true;
+  static _EditorBlock _readLine(Delta data) {
+    final lineEnd = data.last;
+    final operations = data
+        .slice(
+          0,
+          data.toList().fold<int>(0, (length, op) => length + op.length!) - 1,
+        )
+        .toList();
+    final attrs = lineEnd.attributes ?? const <String, dynamic>{};
+    final first = operations.firstOrNull?.data;
+    if (first is Map) {
+      if (first.containsKey(imageType)) {
+        return _EditorBlock('img', embed: Map<String, dynamic>.from(first));
+      }
+      if (first.containsKey(ruleType)) {
+        return const _EditorBlock('hr', embed: {ruleType: 'rule'});
+      }
+    }
+    final list = attrs[quill.Attribute.list.key];
+    final heading = attrs[quill.Attribute.header.key];
+    final kind = switch (list) {
+      'ordered' => 'ol',
+      'bullet' => 'ul',
+      'checked' || 'unchecked' => 'task',
+      _ when attrs[quill.Attribute.codeBlock.key] == true => 'raw',
+      _ when attrs[quill.Attribute.blockQuote.key] == true => 'quote',
+      _ when heading is int => 'h$heading',
+      _ => 'p',
+    };
+    return _EditorBlock(
+      kind,
+      runs: [
+        for (final op in operations)
+          if (op.data case final String text)
+            InlineRun(
+              text.replaceAll(softBreak, '\n'),
+              bold: op.attributes?[quill.Attribute.bold.key] == true,
+              italic: op.attributes?[quill.Attribute.italic.key] == true,
+              strike: op.attributes?[quill.Attribute.strikeThrough.key] == true,
+              code: op.attributes?[quill.Attribute.inlineCode.key] == true,
+              link: op.attributes?[quill.Attribute.link.key] as String?,
+            ),
+      ],
+      indent: attrs[quill.Attribute.indent.key] as int? ?? 0,
+      checked: list == 'checked',
+    );
+  }
+}
 
-  /// The content columns of the open list levels.
+class _EditorBlock {
+  const _EditorBlock(
+    this.kind, {
+    this.runs = const [],
+    this.indent = 0,
+    this.checked = false,
+    this.embed,
+  });
+
+  final String kind;
+  final List<InlineRun> runs;
+  final int indent;
+  final bool checked;
+  final Map<String, dynamic>? embed;
+
+  String get text => runs.map((run) => run.text).join();
+}
+
+class _SourceBlock {
+  const _SourceBlock(
+    this.text,
+    this.canonical,
+    this.kind,
+    this.gap,
+    this.previousId,
+  );
+
+  final String text;
+  final String? canonical;
+  final String kind;
+  final String? gap;
+  final String? previousId;
+}
+
+/// Writes one block at a time, accounting for list numbering and indentation.
+class _Encoder {
+  _Encoder(Iterable<_EditorBlock> blocks)
+    : inline = InlineMarkdownCodec()
+        ..bareBrackets = !blocks.any(
+          (block) =>
+              block.kind == 'raw' &&
+              block.text.split('\n').any(linkDefinitionLine.hasMatch),
+        );
+
+  final InlineMarkdownCodec inline;
   final _columns = <int>[];
-
-  /// The numbers of the open numbered lists per level (super_editor's
-  /// numbering: a task or another block ends them, a bullet ends its
-  /// level's, a lower item the deeper ones).
   final _numbers = <int>[];
 
-  static final _cache = Expando<_Lines>('coui.richEditor.md.lines');
-
-  List<String> _lines(TextNode node, {bool heading = false}) {
-    final cached = _cache[node];
-    if (cached != null &&
-        cached.bareBrackets == _bareBrackets &&
-        cached.heading == heading) {
-      return cached.lines;
-    }
-    final lines = _inline.writeLines(node.text, heading: heading);
-    _cache[node] = _Lines(lines, bareBrackets: _bareBrackets, heading: heading);
-    return lines;
-  }
-
-  /// The Markdown of [node], or null when it writes nothing (an empty
-  /// paragraph, heading or quote).
-  String? next(DocumentNode node) {
-    final kind = MarkdownDocumentCodec.kindOf(node);
-    if (node is ListItemNode || node is TaskNode) {
-      return _item(node as TextNode);
-    }
+  String? next(_EditorBlock block) {
+    final kind = block.kind;
+    if (MarkdownDocumentCodec._listKinds.contains(kind)) return _item(block);
     if (kind != 'raw') _columns.clear();
     _numbers.clear();
     switch (kind) {
       case 'hr':
         return '---';
       case 'img':
-        final image = node as ImageNode;
-        return CoreRichEditorImage.markdown(
-          alt: image.altText,
-          url: image.imageUrl,
-        );
+        final image = MarkdownDocumentCodec.imageData(block.embed)!;
+        return CoreRichEditorImage.markdown(alt: image.alt, url: image.url);
       case 'raw':
-        final t = (node as ParagraphNode).text.toPlainText();
-        return t.trim().isEmpty ? null : t;
+        return block.text.trim().isEmpty ? null : block.text;
       case 'quote':
-        final lines = _lines(node as ParagraphNode);
-        if (lines.every((l) => l.isEmpty)) return null;
-        return [for (final l in lines) '> $l'.trimRight()].join('\n');
+        final lines = inline.writeLines(block.runs);
+        if (lines.every((line) => line.isEmpty)) return null;
+        return [for (final line in lines) '> $line'.trimRight()].join('\n');
       case 'p':
-        final lines = _lines(node as ParagraphNode);
-        if (lines.every((l) => l.isEmpty)) return null;
-        return lines.join('\n').trim();
-      case 'other':
-        return null;
+        final text = inline.writeLines(block.runs).join('\n').trim();
+        return text.isEmpty ? null : text;
     }
-    // Headings: one line (breaks become spaces).
-    final level = MarkdownDocumentCodec.headingLevelOf(node)!;
-    final p = node as ParagraphNode;
-    final line = _inline.writeLine(
-      InlineMarkdownCodec.textToRuns(
-        p.text,
-      ).map((r) => r.copyWith(text: r.text.replaceAll('\n', ' '))).toList(),
+    final level = int.parse(kind.substring(1));
+    final text = inline.writeLine(
+      [
+        for (final run in block.runs)
+          run.copyWith(text: run.text.replaceAll('\n', ' ')),
+      ],
       heading: true,
     );
-    if (line.isEmpty) return null;
-    return '${'#' * level} $line';
+    return text.isEmpty ? null : '${'#' * level} $text';
   }
 
-  String _item(TextNode node) {
-    final indent = node is ListItemNode
-        ? node.indent
-        : (node as TaskNode).indent;
-    final level = math.min(indent, _columns.length);
+  String _item(_EditorBlock block) {
+    final level = math.min(block.indent, _columns.length);
     _columns.length = level;
-    final pad = level == 0 ? 0 : _columns[level - 1];
+    final pad = level == 0 ? 0 : _columns.last;
     final String marker;
-    if (node is TaskNode) {
-      marker = node.isComplete ? '- [x] ' : '- [ ] ';
+    if (block.kind == 'task') {
+      marker = block.checked ? '- [x] ' : '- [ ] ';
       _columns.add(pad + 2);
       _numbers.clear();
     } else {
@@ -383,37 +413,26 @@ class _Encoder {
         _numbers.add(0);
       }
       _numbers.length = level + 1;
-      if ((node as ListItemNode).type == ListItemType.ordered) {
+      if (block.kind == 'ol') {
         _numbers[level]++;
         marker = '${_numbers[level]}. ';
-        _columns.add(pad + marker.length);
       } else {
         _numbers[level] = 0;
         marker = '- ';
-        _columns.add(pad + 2);
       }
+      _columns.add(pad + marker.length);
     }
-    final lines = _lines(node).where((l) => l.isNotEmpty).toList();
-    // An empty item keeps its marker's space (`- `), so it stays an item.
+    final lines = inline
+        .writeLines(block.runs)
+        .where((line) => line.isNotEmpty)
+        .toList();
     if (lines.isEmpty) return '${' ' * pad}$marker';
     final continuation = ' ' * _columns.last;
     return [
       '${' ' * pad}$marker${lines.first}',
-      for (final l in lines.skip(1)) '$continuation$l',
+      for (final line in lines.skip(1)) '$continuation$line',
     ].join('\n');
   }
-}
-
-class _Lines {
-  const _Lines(
-    this.lines, {
-    required this.bareBrackets,
-    required this.heading,
-  });
-
-  final List<String> lines;
-  final bool bareBrackets;
-  final bool heading;
 }
 
 // ------------------------------------------------------------------ scanning

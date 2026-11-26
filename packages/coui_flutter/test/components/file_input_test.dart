@@ -2,22 +2,21 @@ import 'dart:async';
 
 import 'package:coui_flutter/coui_flutter.dart';
 import 'package:dir_picker/dir_picker.dart' as dir_picker;
-import 'package:file_picker/file_picker.dart';
+import 'package:file_drop/file_drop.dart' show DesktopDrop;
 import 'package:file_saver_ffi/file_saver_ffi.dart' as saver;
 import 'package:file_saver_ffi/src/platform_interface/file_saver_platform.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../support/file_drop_picker_fake.dart';
+
 void main() {
-  late FilePickerPlatform originalPicker;
-  late _FakeFilePicker picker;
+  late FileDropPickerFake picker;
   late _FakeDirPicker dirPicker;
   late _FakeFileSaver fileSaver;
 
   setUp(() {
-    originalPicker = FilePickerPlatform.instance;
-    picker = _FakeFilePicker();
-    FilePickerPlatform.instance = picker;
+    picker = FileDropPickerFake()..install();
 
     dirPicker = _FakeDirPicker();
     dir_picker.DirPickerPlatform.instance = dirPicker;
@@ -26,14 +25,10 @@ void main() {
     FileSaverPlatform.instance = fileSaver;
   });
 
-  tearDown(() {
-    FilePickerPlatform.instance = originalPicker;
-  });
-
   testWidgets('single selection preserves the readable platform XFile', (
     tester,
   ) async {
-    final file = _MemoryPlatformFile('report.pdf', [1, 2, 3]);
+    final file = PickedFileFixture('report.pdf', [1, 2, 3]);
     picker.singleResult = Future.value(file);
     List<XFile>? selected;
     await _pump(
@@ -46,10 +41,9 @@ void main() {
 
     expect(picker.singleCalls, 1);
     expect(picker.multipleCalls, 0);
-    expect(picker.type, FileType.any);
     expect(picker.allowedExtensions, isNull);
     expect(selected, hasLength(1));
-    expect(selected!.single, same(file.xFile));
+    expect(file.reads, 0);
     expect(selected!.single.name, 'report.pdf');
     expect(await selected!.single.readAsBytes(), [1, 2, 3]);
   });
@@ -57,8 +51,8 @@ void main() {
   testWidgets('multiple selection preserves order and extension filters', (
     tester,
   ) async {
-    final first = _MemoryPlatformFile('first.pdf', [4, 5]);
-    final second = _MemoryPlatformFile('second.png', [6]);
+    final first = PickedFileFixture('first.pdf', [4, 5]);
+    final second = PickedFileFixture('second.png', [6]);
     picker.multipleResult = Future.value([first, second]);
     List<XFile>? selected;
     await _pump(
@@ -75,9 +69,9 @@ void main() {
 
     expect(picker.singleCalls, 0);
     expect(picker.multipleCalls, 1);
-    expect(picker.type, FileType.custom);
     expect(picker.allowedExtensions, ['pdf', 'png']);
-    expect(selected, [same(first.xFile), same(second.xFile)]);
+    expect(selected?.map((file) => file.name), ['first.pdf', 'second.png']);
+    expect(first.reads + second.reads, 0);
     expect(await selected![0].readAsBytes(), [4, 5]);
     expect(await selected![1].readAsBytes(), [6]);
   });
@@ -106,8 +100,8 @@ void main() {
     testWidgets('disposed input ignores late selection (multiple=$multiple)', (
       tester,
     ) async {
-      final single = Completer<PlatformFile?>();
-      final many = Completer<List<PlatformFile>>();
+      final single = Completer<PickedFileFixture?>();
+      final many = Completer<List<PickedFileFixture>>();
       picker
         ..singleResult = single.future
         ..multipleResult = many.future;
@@ -123,7 +117,7 @@ void main() {
       expect(picker.singleCalls + picker.multipleCalls, 1);
       await tester.pumpWidget(const SizedBox.shrink());
 
-      final file = _MemoryPlatformFile('late.txt', [7]);
+      final file = PickedFileFixture('late.txt', [7]);
       single.complete(file);
       many.complete([file]);
       await tester.pump();
@@ -294,7 +288,7 @@ void main() {
       tester,
     ) async {
       picker.singleResult = Future.value(
-        _MemoryPlatformFile('report.pdf', [1, 2, 3]),
+        PickedFileFixture('report.pdf', [1, 2, 3]),
       );
       await _pump(
         tester,
@@ -326,7 +320,7 @@ void main() {
       tester,
     ) async {
       picker.singleResult = Future.value(
-        _MemoryPlatformFile('report.pdf', [1, 2, 3]),
+        PickedFileFixture('report.pdf', [1, 2, 3]),
       );
       await _pump(
         tester,
@@ -368,7 +362,7 @@ void main() {
       tester,
     ) async {
       picker.singleResult = Future.value(
-        _MemoryPlatformFile('report.pdf', [1, 2, 3]),
+        PickedFileFixture('report.pdf', [1, 2, 3]),
       );
       await _pump(
         tester,
@@ -968,7 +962,7 @@ void main() {
   });
 }
 
-/// Delivers a `desktop_drop` platform message, as the OS would.
+/// Delivers a `file_drop` platform message, as the OS would.
 Future<void> _sendDropMessage(
   WidgetTester tester,
   String method, [
@@ -976,7 +970,7 @@ Future<void> _sendDropMessage(
 ]) async {
   await TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
       .handlePlatformMessage(
-        'desktop_drop',
+        DesktopDrop.channel.name,
         const StandardMethodCodec().encodeMethodCall(
           MethodCall(method, arguments),
         ),
@@ -1003,84 +997,6 @@ Future<void> _pump(WidgetTester tester, Widget input) => tester.pumpWidget(
   ),
 );
 
-class _FakeFilePicker extends FilePickerPlatform {
-  Future<PlatformFile?> singleResult = Future.value();
-  Future<List<PlatformFile>> multipleResult = Future.value([]);
-  int singleCalls = 0;
-  int multipleCalls = 0;
-  FileType? type;
-  List<String>? allowedExtensions;
-
-  @override
-  Future<PlatformFile?> pickFile({
-    String? dialogTitle,
-    String? initialDirectory,
-    FileType type = FileType.any,
-    List<String>? allowedExtensions,
-    void Function(FilePickerStatus)? onFileLoading,
-    int compressionQuality = 0,
-    AndroidOptions androidOptions = const AndroidOptions(),
-    DarwinOptions darwinOptions = const DarwinOptions(),
-    WindowsOptions windowsOptions = const WindowsOptions(),
-    LinuxOptions linuxOptions = const LinuxOptions(),
-    WebOptions webOptions = const WebOptions(),
-  }) {
-    singleCalls++;
-    this.type = type;
-    this.allowedExtensions = allowedExtensions;
-    return singleResult;
-  }
-
-  @override
-  Future<List<PlatformFile>> pickFiles({
-    String? dialogTitle,
-    String? initialDirectory,
-    FileType type = FileType.any,
-    List<String>? allowedExtensions,
-    void Function(FilePickerStatus)? onFileLoading,
-    int compressionQuality = 0,
-    AndroidOptions androidOptions = const AndroidOptions(),
-    DarwinOptions darwinOptions = const DarwinOptions(),
-    WindowsOptions windowsOptions = const WindowsOptions(),
-    LinuxOptions linuxOptions = const LinuxOptions(),
-    WebOptions webOptions = const WebOptions(),
-  }) {
-    multipleCalls++;
-    this.type = type;
-    this.allowedExtensions = allowedExtensions;
-    return multipleResult;
-  }
-}
-
-final class _MemoryPlatformFile extends PlatformFile {
-  _MemoryPlatformFile(this.name, List<int> bytes)
-    : xFile = XFile.fromData(Uint8List.fromList(bytes), path: name, name: name);
-
-  @override
-  final String name;
-
-  @override
-  final XFile xFile;
-
-  // No local path: conversion must also work for browser-backed files.
-  @override
-  Uri get uri => Uri.parse('blob:https://example.test/$name');
-
-  @override
-  int? lengthSync() => null;
-
-  @override
-  Future<int> length() => xFile.length();
-
-  @override
-  Future<Uint8List> readAsBytes() =>
-      throw StateError('FileInput must not eagerly load picked files');
-
-  @override
-  Stream<Uint8List> readAsByteStream() =>
-      throw StateError('FileInput must not eagerly load picked files');
-}
-
 class _FakeDirPicker extends dir_picker.DirPickerPlatform {
   Future<dir_picker.PickedLocation?> pickResult = Future.value();
   List<dir_picker.FileSystemEntry> entries = const [];
@@ -1090,6 +1006,7 @@ class _FakeDirPicker extends dir_picker.DirPickerPlatform {
   @override
   Future<dir_picker.PickedLocation?> pick({
     dir_picker.PickOptions? options,
+    dir_picker.PickedLocation? initialDirectory,
   }) {
     pickCalls++;
 

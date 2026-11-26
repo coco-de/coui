@@ -768,9 +768,4 @@ class _ScrollableClientChildVicinity extends ChildVicinity {
   final Size viewportSize;
 
   // viewportSize is deliberately excluded from identity — see the class doc.
-  @override
-  bool operator ==(Object other) => super == other;
-
-  @override
-  int get hashCode => super.hashCode;
 }

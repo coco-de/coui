@@ -65,7 +65,7 @@ FileInput(
 
 - Flutter 는 `package:coui_flutter/coui_flutter.dart` 하나만 가져오면 됩니다 — `XFile` 도 거기서 나와, 따로 가져올 패키지가 없습니다.
 - Flutter 는 `List<XFile>` 을, Web 은 브라우저의 `FileList` 를 받습니다. Flutter 에서 파일 내용은 필요할 때 `readAsBytes()` · `openRead()` 로 읽습니다.
-- Flutter 의 파일 선택 창은 `file_picker`(^12.2.0)가 열고, iOS 14.0 이상이 필요합니다.
+- Flutter의 파일 선택 창은 `file_drop`이 열고, iOS 14.0 이상이 필요합니다.
 
 ## 구조
 
@@ -153,7 +153,7 @@ FileInput 은 점선 테두리의 드롭 영역 하나입니다. 그 안에 위�
 
 ### 파일 선택
 
-- 드롭 영역 어디를 누르거나 파일 선택 버튼을 누르면 파일 선택 창이 열립니다. Flutter 는 `file_picker` 의 창을, Web 은 숨긴 `<input type="file">` 의 창을 엽니다.
+- 드롭 영역 어디를 누르거나 파일 선택 버튼을 누르면 파일 선택 창이 열립니다. Flutter는 `file_drop`의 선택창을, Web은 숨긴 `<input type="file">`의 선택창을 엽니다.
 - `multiple: true` 면 창에서 여러 파일을 고를 수 있습니다. `multiple: false` 여도 끌어다 놓기와 폴더 선택은 받은 파일을 모두 넘깁니다 — 하나로 자르지 않습니다.
 - 선택을 취소하거나 `accept` 를 통과한 파일이 없으면 `onFilesSelected` 를 부르지 않습니다.
 - Web 은 숨긴 입력이 바뀔 때만 파일을 받고, 그 입력의 값을 비우지 않습니다. 그래서 직전과 같은 파일을 창에서 다시 고르면 브라우저가 변경을 알리지 않아 `onFilesSelected` 가 불리지 않을 수 있습니다(→ 알려진 제약). Flutter 는 고를 때마다 부릅니다.
@@ -175,7 +175,7 @@ Flutter 에서는 고른 파일 · 끌어다 놓은 파일 · 폴더의 파일�
 ### 드래그 앤 드롭
 
 - 운영체제의 파일을 영역 위로 끌어 오면 드래그 모양으로 바뀌고, 놓으면 `onFilesSelected` 로 넘어갑니다.
-- Flutter 는 `desktop_drop`(macOS · Windows · Linux · Web, Android 는 미리 보기)으로, Web 은 HTML5 drop 으로 받습니다. 끌어다 놓기가 없는 iOS 에서는 파일 선택만 됩니다.
+- Flutter는 `file_drop`으로 OS와 브라우저의 드롭을 받고, Web은 HTML5 drop으로 받습니다.
 - Web 에서 폴더를 떨어뜨리면 그 안의 파일을 하위 폴더까지 모아 넘깁니다. Flutter 는 폴더 안을 모으지 않고, 떨어뜨린 폴더를 항목 하나로 그대로 넘깁니다 — `accept` 가 있으면 확장자가 없는 그 항목은 빠집니다.
 - 끌어다 놓은 파일에도 `accept` 가 적용됩니다.
 
@@ -534,10 +534,10 @@ API 는 같지만, 파일을 받는 방법과 몇 가지 색은 각 플랫폼을
 | 항목 | Flutter | Jaspr Web |
 | --- | --- | --- |
 | 받는 파일 | `List<XFile>` | 브라우저 `FileList` |
-| 파일 선택 창 | `file_picker` — iOS 14.0 이상 | 숨긴 `<input type="file">` |
+| 파일 선택 창 | `file_drop` — iOS 14.0 이상 | 숨긴 `<input type="file">` |
 | 선택 창의 거르기 | 확장자만 — 와일드카드는 창에서 거르지 않음 | 브라우저의 `accept` 그대로 |
 | 받은 파일의 MIME 정보 | 없음(웹으로 빌드한 앱의 끌어다 놓기만 있음) — 와일드카드만 적은 `accept` 가 모든 파일을 버림 | 브라우저가 채움 |
-| 끌어다 놓기 | `desktop_drop` — iOS 없음 | HTML5 drop |
+| 끌어다 놓기 | `file_drop` | HTML5 drop |
 | 떨어뜨린 폴더 | 풀지 않고 항목 하나로 넘김 | 안의 파일을 하위 폴더까지 모아 넘김 |
 | 폴더 선택 | `dir_picker` | `showDirectoryPicker` — 없는 브라우저와 서버가 그린 첫 화면에서는 버튼이 비활성 |
 | 폴더 안 파일의 이름 | 네이티브는 이름만, 웹으로 빌드한 앱은 폴더 안 경로 포함 | 이름만 |

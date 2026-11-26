@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:coui_flutter/coui_flutter.dart' hide SelectableText;
 import 'package:flutter/foundation.dart' show listEquals;
-import 'package:flutter/material.dart' show SelectableText;
+import 'package:material_ui/material_ui.dart' show SelectableText;
 import 'package:flutter/semantics.dart'
     show OrdinalSortKey, SemanticsProperties;
 import 'package:flutter/services.dart';

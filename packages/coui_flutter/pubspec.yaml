@@ -1,14 +1,14 @@
 name: coui_flutter
 description: "CoUI components for Flutter with shared design tokens, type-safe theming, and a matching component API for Jaspr."
 # x-release-please-start-version
-version: 0.194.2-beta.1
+version: 0.195.0
 # x-release-please-end
 homepage: https://github.com/coco-de/coui
 repository: https://github.com/coco-de/coui/tree/main/packages/coui_flutter
 issue_tracker: https://github.com/coco-de/coui/issues
 
 environment:
-  sdk: ">=3.11.0 <4.0.0"
+  sdk: ">=3.12.0 <4.0.0"
   flutter: ">=3.47.0"
 
 resolution: workspace
@@ -17,25 +17,24 @@ dependencies:
   collection: ^1.19.1
   coui_core: ^0.192.0
   country_flags: ^4.0.1
-  cross_file: ^0.3.4+2
+  cupertino_ui: ^1.0.0
   data_widget: ^0.0.2
-  desktop_drop: ^0.8.4
-  dir_picker: ^0.4.1
+  dir_picker: ^0.8.1
   email_validator: ^3.0.0
   expressions: ^0.2.5+2
-  file_picker: ^12.2.0
-  file_saver_ffi: ^0.9.1
+  file_drop: ^1.0.1
+  file_saver_ffi: ^0.12.2
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_quill: ^11.6.0
   flutter_svg: ^2.0.16
   heroicons: ^0.11.0
   image: ^4.5.4
   markdown: ^7.3.1
-  skeletonizer: ^2.1.0+1
-  # RichEditor uses the dev.52 document and editing APIs.
-  super_editor: ">=0.3.0-dev.52 <0.3.0-dev.53"
+  material_ui: ^1.0.0
+  skeletonizer: ^3.0.0
   syntax_highlight_lite: ^0.0.1
   web: ^1.1.1
 

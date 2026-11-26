@@ -1,5 +1,5 @@
 import 'package:coui_flutter/coui_flutter.dart';
-import 'package:flutter/material.dart' as material;
+import 'package:material_ui/material_ui.dart' as material;
 
 /// Wraps a widget in a lightweight CoUI widget tree for widget testing.
 ///

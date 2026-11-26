@@ -1,22 +1,16 @@
-// Adapted from Wonky Work's `wonky_rich_editor` (BSD-3-Clause, Copyright 2026
+// Adapted from Wonky Work's wonky_rich_editor (BSD-3-Clause, Copyright 2026
 // The Wonky Work authors) — see NOTICE.
 
-/// The Markdown text of a [RichEditor] and the editing operations of
-/// its toolbar and shortcuts.
-library;
+import 'dart:math' as math;
 
-import 'package:collection/collection.dart';
-import 'package:coui_core/coui_core.dart' show CoreDuration;
-import 'package:coui_flutter/coui_flutter.dart' show RichEditor;
+import 'package:coui_core/coui_core.dart' show CoreRichEditorImage;
 import 'package:coui_flutter/src/components/form/rich_editor/markdown/inline_codec.dart';
 import 'package:coui_flutter/src/components/form/rich_editor/markdown/markdown_document_codec.dart';
 import 'package:coui_flutter/src/components/form/rich_editor/markdown/markdown_features.dart';
-import 'package:coui_flutter/src/components/form/rich_editor/markdown/rich_editor_reactions.dart';
-import 'package:coui_flutter/src/components/form/rich_editor/rich_editor.dart'
-    show RichEditor;
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart' show TextAffinity;
-import 'package:super_editor/super_editor.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:flutter_quill/quill_delta.dart';
 
 /// Inline styles of the toolbar.
 enum InlineFormat {
@@ -60,470 +54,321 @@ enum BlockFormat {
   quote,
 }
 
-/// The Markdown of a rich text field, like a `TextEditingController` holds
-/// a text field's text.
+/// The editable Markdown value, selection, and formatting of a RichEditor.
 ///
-/// [markdown] reads the document as Markdown ([MarkdownDocumentCodec]):
-/// until the user edits, it is exactly the text that was set; afterwards
-/// only the edited blocks are rewritten. Setting it replaces the content
-/// (one local undo step) and puts the caret at the end.
-///
-/// Undo and redo are the field's own ([undo], [redo]): typing within a
-/// second is one step, every format change and autoformat one more; an
-/// app-wide undo stack is not involved.
-///
-/// Listeners are notified on every change of the content, the selection
-/// and the typing styles (the toolbar's state).
+/// Input and history are handled by the editor. The controller retains the
+/// original Markdown until a document change and preserves the source of
+/// untouched blocks when another block is edited.
 class RichEditorController extends ChangeNotifier {
-  /// Creates a controller holding [markdown].
   RichEditorController({
     String markdown = '',
     MarkdownBlockFeatures features = MarkdownBlockFeatures.all,
   }) : _features = features,
        _source = markdown {
-    document = MutableDocument(
-      nodes: MarkdownDocumentCodec(features: features).decodeNodes(markdown),
-    );
-    composer = MutableDocumentComposer();
-    editor = Editor(
-      editables: {Editor.documentKey: document, Editor.composerKey: composer},
-      requestHandlers: [
-        _guard,
-        (editor, request) => request is ReplaceDocumentRequest
-            ? ReplaceDocumentCommand(request.nodes)
-            : null,
-        _literalNewline,
-        ...defaultRequestHandlers.cast<EditRequestHandler>(),
-      ],
-      reactionPipeline: [
-        UpdateComposerTextStylesReaction(),
-        const OutsideCodeReaction(LinkifyReaction()),
-        BlockPrefixReaction(() => _features),
-        const InlineMarkdownReaction(),
-        UpdateSubTaskIndentAfterTaskDeletionReaction(),
-        const TrailingParagraphReaction(),
-      ],
-      isHistoryEnabled: true,
-      historyGroupingPolicy: const _HistoryPolicy(),
-    );
-    editor.addListener(FunctionalEditListener(_onEdit));
-    composer.preferences.addListener(notifyListeners);
+    editor = quill.QuillController(
+      document: codec.decode(markdown),
+      selection: const TextSelection.collapsed(offset: 0),
+      keepStyleOnNewLine: false,
+      onReplaceText: _handleAllowInput,
+      onSelectionChanged: (_) => _hasSelection = true,
+    )..addListener(_editorChanged);
+    _observed = document.toDelta();
   }
 
-  /// The super_editor document.
-  late final MutableDocument document;
-
-  /// The selection and typing styles.
-  late final MutableDocumentComposer composer;
-
-  /// The editor running every change.
-  late final Editor editor;
+  late final quill.QuillController editor;
+  quill.Document get document => editor.document;
 
   MarkdownBlockFeatures _features;
-
-  /// The blocks the field supports (comments: no headings, quotes, rules).
   MarkdownBlockFeatures get features => _features;
-
-  /// Changes the supported blocks (the content is read again).
   set features(MarkdownBlockFeatures value) {
     if (value == _features) return;
-    final text = markdown;
+    final before = markdown;
     _features = value;
-    _replace(text);
+    _replace(before);
   }
 
-  /// The codec for the current [features].
   MarkdownDocumentCodec get codec => MarkdownDocumentCodec(features: _features);
 
-  /// Refuses edits (the selection still moves).
-  bool readOnly = false;
-
-  /// Refuses typing once [markdown] is this long (a paste that would pass
-  /// it is refused too).
+  bool get readOnly => editor.readOnly;
+  set readOnly(bool value) => editor.readOnly = value;
   int? maxLength;
 
   String _source;
-  bool _edited = false;
   String? _cache;
-  bool _external = false;
+  bool _edited = false;
+  bool _hasSelection = false;
+  bool _updating = false;
+  bool _nativeInput = false;
+  late Delta _observed;
   int _replacements = 0;
 
-  /// How many times the content was replaced from outside — by setting
-  /// [markdown] or [features] — which is not the user removing what was
-  /// there. The editor forgets the images it uploaded when this changes.
+  /// Counts external values, independently of edits and undo.
   int get replacements => _replacements;
 
-  /// The content as Markdown.
-  String get markdown {
-    if (!_edited) return _source;
-    return _cache ??= codec.encode(document);
-  }
-
-  /// Replaces the content with [value] (caret at the end).
+  String get markdown =>
+      _edited ? (_cache ??= codec.encode(document)) : _source;
   set markdown(String value) {
-    if (value == markdown) return;
-    _replace(value);
+    if (value != markdown) _replace(value);
   }
 
-  /// The length of [markdown].
   int get length => markdown.length;
-
-  /// Whether the content is empty.
   bool get isEmpty => markdown.trim().isEmpty;
 
   void _replace(String value) {
-    final nodes = codec.decodeNodes(value);
-    _run([
-      ReplaceDocumentRequest(nodes),
-      ChangeSelectionRequest(
-        DocumentSelection.collapsed(position: _endOf(nodes.last)),
-        SelectionChangeType.placeCaret,
-        SelectionReason.contentChange,
-      ),
-    ]);
-    _source = value;
-    _edited = false;
-    _cache = null;
-    _replacements++;
-    notifyListeners();
-  }
-
-  /// Runs [requests] past the read-only and length guards.
-  void _run(List<EditRequest> requests) {
-    _external = true;
+    final parsed = codec.decode(value);
+    final next = parsed.toDelta();
+    _updating = true;
     try {
-      editor.execute(requests);
-    } finally {
-      _external = false;
-    }
-  }
-
-  void _onEdit(List<EditEvent> changes) {
-    // Undo and redo report no changes.
-    final content = changes.isEmpty || changes.any((e) => e is DocumentEdit);
-    if (content) {
+      _replacements++;
+      _apply(
+        _observed.diff(next),
+        TextSelection.collapsed(offset: parsed.length - 1),
+      );
+      codec.preserveSources(parsed, document);
+      _source = value;
       _cache = null;
-      if (!_external) _edited = true;
+      _edited = false;
+    } finally {
+      parsed.close();
+      _updating = false;
     }
     notifyListeners();
   }
 
-  // ------------------------------------------------------------- guards
-
-  EditCommand? _guard(Editor editor, EditRequest request) {
-    if (_external) return null;
-    if (readOnly && !_isNonMutating(request)) return const _NoOpCommand();
-    final max = maxLength;
-    if (max != null && _isTyping(request) && length >= max) {
-      return const _NoOpCommand();
-    }
-    return null;
-  }
-
-  static bool _isNonMutating(EditRequest r) =>
-      r is ChangeSelectionRequest ||
-      r is ClearSelectionRequest ||
-      r is ChangeComposingRegionRequest ||
-      r is ClearComposingRegionRequest ||
-      r is ChangeInteractionModeRequest ||
-      r is RemoveComposerPreferenceStylesRequest;
-
-  static bool _isTyping(EditRequest r) =>
-      r is InsertTextRequest ||
-      r is InsertCharacterAtCaretRequest ||
-      r is InsertPlainTextAtCaretRequest ||
-      r is InsertStyledTextAtCaretRequest ||
-      r is InsertNewlineAtCaretRequest ||
-      r is InsertSoftNewlineAtCaretRequest ||
-      r is PasteEditorRequest;
-
-  /// Enter in a literal block inserts a line break at the caret.
-  /// super_editor's code-block newline always appends it at the block's end
-  /// (and Enter over a selection there did the same); at the end of the
-  /// block its rules stay (a second Enter leaves the block).
-  EditCommand? _literalNewline(Editor editor, EditRequest request) {
-    if (request is! InsertNewlineAtCaretRequest) return null;
-    final s = composer.selection;
-    if (s == null) return null;
-    final base = document.getNodeById(s.base.nodeId);
-    final extent = document.getNodeById(s.extent.nodeId);
-    if (!isCodeLike(base) && !isCodeLike(extent)) return null;
-    return _LiteralNewlineCommand(request.newNodeId);
-  }
-
-  // ------------------------------------------------------------ history
-
-  bool _hasContent(CommandTransaction t) =>
-      t.changes.any((c) => c is DocumentEdit);
-
-  /// Whether [undo] changes something.
-  bool get canUndo => editor.history.any(_hasContent);
-
-  /// Whether [redo] changes something.
-  bool get canRedo => editor.future.any(_hasContent);
-
-  /// Undoes the last change of the field.
-  void undo() {
-    while (editor.history.isNotEmpty) {
-      final content = _hasContent(editor.history.last);
-      editor.undo();
-      if (content) break;
-    }
-  }
-
-  /// Redoes the last undone change of the field.
-  void redo() {
-    while (editor.future.isNotEmpty) {
-      final content = _hasContent(editor.future.last);
-      editor.redo();
-      if (content) break;
-    }
-  }
-
-  // ---------------------------------------------------------- selection
-
-  /// The selection, or null when there is none.
-  DocumentSelection? get selection => _liveSelection;
-
-  /// The composer's selection, or null when it points at a node that is no
-  /// longer in the document. After a block is deleted (a literal block, a
-  /// selection across blocks) the toolbar can rebuild before the editor
-  /// moves the selection, and normalizing a stale selection throws.
-  DocumentSelection? get _liveSelection {
-    final s = composer.selection;
-    if (s == null) return null;
-    if (document.getNodeById(s.base.nodeId) == null ||
-        document.getNodeById(s.extent.nodeId) == null) {
-      return null;
-    }
-    return s;
-  }
-
-  static DocumentPosition _endOf(DocumentNode node) =>
-      DocumentPosition(nodeId: node.id, nodePosition: node.endPosition);
-
-  /// Puts the caret at the end of the content.
-  void moveCaretToEnd() {
-    editor.execute([
-      ChangeSelectionRequest(
-        DocumentSelection.collapsed(position: _endOf(document.last)),
-        SelectionChangeType.placeCaret,
-        SelectionReason.userInteraction,
-      ),
-    ]);
-  }
-
-  /// Selects the whole content.
-  void selectAll() {
-    editor.execute([
-      ChangeSelectionRequest(
-        DocumentSelection(
-          base: DocumentPosition(
-            nodeId: document.first.id,
-            nodePosition: document.first.beginningPosition,
-          ),
-          extent: _endOf(document.last),
-        ),
-        SelectionChangeType.expandSelection,
-        SelectionReason.userInteraction,
-      ),
-    ]);
-  }
-
-  DocumentRange? get _range {
-    final s = _liveSelection;
-    if (s == null || s.isCollapsed) return null;
-    return s.normalize(document);
-  }
-
-  /// The text nodes of the selection (the caret's node when collapsed).
-  List<TextNode> get _selectedTextNodes {
-    final s = _liveSelection;
-    if (s == null) return const [];
-    final r = s.normalize(document);
-    return document
-        .getNodesInside(r.start, r.end)
-        .whereType<TextNode>()
-        .toList();
-  }
-
-  /// Whether a run of text is selected: the selection is not a caret and
-  /// covers at least one character. A selected image or rule alone is not
-  /// text. What brings up the toolbar that floats over a selection.
-  bool get hasSelectedText {
-    final r = _range;
-    if (r == null) return false;
-    for (final node in _selectedTextNodes) {
-      final (start, end) = _rangeIn(node, r);
-      if (end > start) return true;
-    }
-    return false;
-  }
-
-  /// The `[start, end)` offsets of the selection inside [node].
-  (int, int) _rangeIn(TextNode node, DocumentRange r) {
-    final start = r.start.nodeId == node.id
-        ? (r.start.nodePosition as TextNodePosition).offset
-        : 0;
-    final end = r.end.nodeId == node.id
-        ? (r.end.nodePosition as TextNodePosition).offset
-        : node.text.length;
-    return (start, end);
-  }
-
-  // ------------------------------------------------------ inline styles
-
-  static Attribution _attribution(InlineFormat f) => switch (f) {
-    InlineFormat.bold => boldAttribution,
-    InlineFormat.italic => italicsAttribution,
-    InlineFormat.strikethrough => strikethroughAttribution,
-    InlineFormat.code => codeAttribution,
-  };
-
-  /// Whether inline styles apply at the selection (not in literal blocks).
-  bool get canFormatInline {
-    final s = _liveSelection;
-    if (s == null || readOnly) return false;
-    return _selectedTextNodes.any((n) => !isCodeLike(n));
-  }
-
-  /// The selected ranges [format] applies to (not literal
-  /// blocks; bold, italic and strikethrough not on inline code), as
-  /// document ranges of single text nodes.
-  List<DocumentRange> _eligible(InlineFormat format, DocumentRange r) {
-    final out = <DocumentRange>[];
-    for (final node in _selectedTextNodes) {
-      if (isCodeLike(node)) continue;
-      final (start, end) = _rangeIn(node, r);
-      int? from;
-      for (var i = start; i <= end; i++) {
-        final ok =
-            i < end &&
-            (format == InlineFormat.code ||
-                !node.text.hasAttributionAt(i, attribution: codeAttribution));
-        if (ok) {
-          from ??= i;
-        } else if (from != null) {
-          out.add(
-            DocumentRange(
-              start: DocumentPosition(
-                nodeId: node.id,
-                nodePosition: TextNodePosition(offset: from),
-              ),
-              end: DocumentPosition(
-                nodeId: node.id,
-                nodePosition: TextNodePosition(offset: i),
-              ),
-            ),
-          );
-          from = null;
-        }
-      }
-    }
-    return out;
-  }
-
-  /// Whether the whole selection (or the typing style at the caret) has
-  /// [format].
-  bool isActive(InlineFormat format) {
-    final a = _attribution(format);
-    final r = _range;
-    if (r == null) {
-      return composer.preferences.currentAttributions.contains(a);
-    }
-    final ranges = _eligible(format, r);
-    if (ranges.isEmpty) return false;
-    for (final range in ranges) {
-      final node = document.getNodeById(range.start.nodeId)! as TextNode;
-      final start = (range.start.nodePosition as TextNodePosition).offset;
-      final end = (range.end.nodePosition as TextNodePosition).offset;
-      for (var i = start; i < end; i++) {
-        if (!node.text.hasAttributionAt(i, attribution: a)) return false;
-      }
+  bool _handleAllowInput(int index, int removed, Object? inserted) {
+    if (readOnly) return false;
+    if (inserted is String && inserted.isNotEmpty) {
+      final limit = maxLength;
+      if (limit != null && length >= limit && removed == 0) return false;
+      _nativeInput = true;
     }
     return true;
   }
 
-  /// Toggles [format] on the selection, or in the typing style at a caret
-  ///: removed when the whole selection has it, added
-  /// otherwise; one undo step. Code removes bold, italic and
-  /// strikethrough; those skip inline code.
-  void toggleInline(InlineFormat format) {
-    if (!canFormatInline) return;
-    final a = _attribution(format);
-    final r = _range;
-    if (r == null) {
-      final prefs = composer.preferences;
-      if (prefs.currentAttributions.contains(a)) {
-        prefs.removeStyle(a);
-      } else {
-        prefs.addStyle(a);
-        if (format == InlineFormat.code) {
-          prefs.removeStyles({
-            boldAttribution,
-            italicsAttribution,
-            strikethroughAttribution,
-          });
-        }
-      }
+  void _editorChanged() {
+    final updated = document.toDelta();
+    final changed = updated != _observed;
+    _observed = updated;
+    if (changed) {
+      _edited = true;
+      _cache = null;
+    }
+    final autoformat = changed && _nativeInput && !_updating;
+    _nativeInput = false;
+    if (_updating) return;
+    if (autoformat && _autoformat()) return;
+    notifyListeners();
+  }
+
+  void _apply(Delta change, TextSelection selected) {
+    _hasSelection = true;
+    change.trim();
+    if (change.isNotEmpty) {
+      // Toolbar, clipboard, and embed operations each get a history step.
+      document.history.lastRecorded = 0;
+      document.compose(change, quill.ChangeSource.local);
+      document.history.lastRecorded = 0;
+    }
+    final last = document.length - 1;
+    editor.updateSelection(
+      selected.copyWith(
+        baseOffset: selected.baseOffset.clamp(0, last),
+        extentOffset: selected.extentOffset.clamp(0, last),
+      ),
+      quill.ChangeSource.local,
+    );
+  }
+
+  bool get canUndo => editor.hasUndo;
+  bool get canRedo => editor.hasRedo;
+  void undo() {
+    if (!readOnly) editor.undo();
+  }
+
+  void redo() {
+    if (!readOnly) editor.redo();
+  }
+
+  TextSelection? get selection => _hasSelection ? editor.selection : null;
+
+  void setSelection(TextSelection value) {
+    final last = document.length - 1;
+    _apply(
+      Delta(),
+      value.copyWith(
+        baseOffset: value.baseOffset.clamp(0, last),
+        extentOffset: value.extentOffset.clamp(0, last),
+      ),
+    );
+  }
+
+  void moveCaretToEnd() =>
+      setSelection(TextSelection.collapsed(offset: document.length - 1));
+  void selectAll() => setSelection(
+    TextSelection(baseOffset: 0, extentOffset: document.length - 1),
+  );
+
+  quill.Line? _lineAt(int offset) =>
+      document.queryChild(offset).node as quill.Line?;
+  quill.Line? get _caretLine {
+    final current = selection;
+    return current == null ? null : _lineAt(current.extentOffset);
+  }
+
+  String? get selectedLineId {
+    final line = _caretLine;
+    return line == null ? null : MarkdownDocumentCodec.lineId(line);
+  }
+
+  Iterable<quill.Line> get _selectedLines sync* {
+    final selected = selection;
+    if (selected == null) return;
+    if (selected.isCollapsed) {
+      final line = _caretLine;
+      if (line != null) yield line;
       return;
     }
-    final ranges = _eligible(format, r);
-    if (ranges.isEmpty) return;
+    for (final line in MarkdownDocumentCodec.lines(document)) {
+      final start = line.documentOffset;
+      if (start >= selected.end) break;
+      if (start + line.length > selected.start) yield line;
+    }
+  }
+
+  bool get inLiteralBlock {
+    final line = _caretLine;
+    return line != null && MarkdownDocumentCodec.kindOf(line) == 'raw';
+  }
+
+  bool get hasSelectedText {
+    final selected = selection;
+    if (selected == null || selected.isCollapsed) return false;
+    return _selectedLines.any(
+      (line) =>
+          !line.hasEmbed &&
+          math.min(selected.end, line.documentOffset + line.length - 1) >
+              math.max(selected.start, line.documentOffset),
+    );
+  }
+
+  static quill.Attribute<bool> _attribute(InlineFormat format) =>
+      switch (format) {
+        InlineFormat.bold => quill.Attribute.bold,
+        InlineFormat.italic => quill.Attribute.italic,
+        InlineFormat.strikethrough => quill.Attribute.strikeThrough,
+        InlineFormat.code => quill.Attribute.inlineCode,
+      };
+
+  bool get canFormatInline =>
+      !readOnly &&
+      _selectedLines.any(
+        (line) => !line.hasEmbed && MarkdownDocumentCodec.kindOf(line) != 'raw',
+      );
+
+  Iterable<({int start, int end, Map<String, dynamic> attrs})> _inlineRanges(
+    TextSelection selected, {
+    bool excludeCode = false,
+  }) sync* {
+    for (final line in _selectedLines) {
+      if (line.hasEmbed || MarkdownDocumentCodec.kindOf(line) == 'raw') {
+        continue;
+      }
+      var cursor = line.documentOffset;
+      final limit = cursor + line.length - 1;
+      for (final op in line.toDelta().toList()) {
+        final end = cursor + op.length!;
+        final start = math.max(selected.start, cursor);
+        final last = math.min(math.min(selected.end, end), limit);
+        final attributes = op.attributes ?? const <String, dynamic>{};
+        if (last > start &&
+            (!excludeCode ||
+                attributes[quill.Attribute.inlineCode.key] != true)) {
+          yield (start: start, end: last, attrs: attributes);
+        }
+        cursor = end;
+      }
+    }
+  }
+
+  bool isActive(InlineFormat format) {
+    final current = selection;
+    if (current == null) return false;
+    final attribute = _attribute(format).key;
+    if (current.isCollapsed) {
+      return editor.getSelectionStyle().attributes[attribute]?.value == true;
+    }
+    final ranges = _inlineRanges(
+      current,
+      excludeCode: format != InlineFormat.code,
+    ).toList();
+    return ranges.isNotEmpty &&
+        ranges.every((run) => run.attrs[attribute] == true);
+  }
+
+  void toggleInline(InlineFormat format) {
+    if (!canFormatInline) return;
+    final current = selection!;
+    final attribute = _attribute(format);
     final remove = isActive(format);
-    editor.execute([
-      for (final range in ranges) ...[
-        if (remove)
-          RemoveTextAttributionsRequest(documentRange: range, attributions: {a})
-        else ...[
-          if (format == InlineFormat.code)
-            RemoveTextAttributionsRequest(
-              documentRange: range,
-              attributions: {
-                boldAttribution,
-                italicsAttribution,
-                strikethroughAttribution,
-              },
-            ),
-          AddTextAttributionsRequest(documentRange: range, attributions: {a}),
-        ],
-      ],
-      ChangeSelectionRequest(
-        _liveSelection,
-        SelectionChangeType.alteredContent,
-        SelectionReason.userInteraction,
-      ),
-    ]);
+    final key = attribute.key;
+    if (current.isCollapsed) {
+      var style = editor.toggledStyle.put(
+        quill.Attribute<bool?>(key, attribute.scope, remove ? null : true),
+      );
+      if (format == InlineFormat.code && !remove) {
+        for (final other in [
+          quill.Attribute.bold,
+          quill.Attribute.italic,
+          quill.Attribute.strikeThrough,
+        ]) {
+          style = style.put(
+            quill.Attribute<bool?>(other.key, other.scope, null),
+          );
+        }
+      }
+      editor.forceToggledStyle(style);
+      return;
+    }
+    final diff = Delta();
+    var end = 0;
+    for (final range in _inlineRanges(
+      current,
+      excludeCode: format != InlineFormat.code,
+    )) {
+      diff.retain(range.start - end);
+      diff.retain(range.end - range.start, {
+        key: remove ? null : true,
+        if (format == InlineFormat.code && !remove) ...{
+          quill.Attribute.bold.key: null,
+          quill.Attribute.italic.key: null,
+          quill.Attribute.strikeThrough.key: null,
+        },
+      });
+      end = range.end;
+    }
+    _apply(diff, current);
   }
 
-  // ------------------------------------------------------------- blocks
-
-  /// The block kind at the caret (the selection's extent).
   BlockFormat? get blockFormat {
-    final s = _liveSelection;
-    if (s == null) return null;
-    return formatOf(document.getNodeById(s.extent.nodeId));
+    final line = _caretLine;
+    return line == null ? null : _formatOf(line);
   }
 
-  /// The block kind of [node] (null for rules and literal blocks).
-  static BlockFormat? formatOf(DocumentNode? node) {
-    if (node == null) return null;
-    return switch (MarkdownDocumentCodec.kindOf(node)) {
-      'p' => BlockFormat.paragraph,
-      'h1' => BlockFormat.heading1,
-      'h2' => BlockFormat.heading2,
-      'h3' || 'h4' || 'h5' || 'h6' => BlockFormat.heading3,
-      'ul' => BlockFormat.bulletList,
-      'ol' => BlockFormat.numberedList,
-      'task' => BlockFormat.taskList,
-      'quote' => BlockFormat.quote,
-      _ => null,
-    };
-  }
+  static BlockFormat? _formatOf(quill.Line line) =>
+      switch (MarkdownDocumentCodec.kindOf(line)) {
+        'p' => BlockFormat.paragraph,
+        'h1' => BlockFormat.heading1,
+        'h2' => BlockFormat.heading2,
+        'h3' || 'h4' || 'h5' || 'h6' => BlockFormat.heading3,
+        'ul' => BlockFormat.bulletList,
+        'ol' => BlockFormat.numberedList,
+        'task' => BlockFormat.taskList,
+        'quote' => BlockFormat.quote,
+        _ => null,
+      };
 
-  /// Whether [format] is supported here (features, read-only).
   bool canFormatBlock(BlockFormat format) {
-    if (readOnly || _liveSelection == null) return false;
+    if (readOnly || selection == null) return false;
     return switch (format) {
       BlockFormat.heading1 ||
       BlockFormat.heading2 ||
@@ -533,569 +378,514 @@ class RichEditorController extends ChangeNotifier {
     };
   }
 
-  /// Turns the selected blocks into [format], or back into paragraphs when
-  /// they all are one already. Literal blocks stay as they
-  /// are.
+  static bool _isList(BlockFormat? format) =>
+      format == BlockFormat.bulletList ||
+      format == BlockFormat.numberedList ||
+      format == BlockFormat.taskList;
+
+  static Map<String, dynamic> _blockAttributes(
+    BlockFormat format, {
+    int indent = 0,
+  }) => {
+    quill.Attribute.header.key: switch (format) {
+      BlockFormat.heading1 => 1,
+      BlockFormat.heading2 => 2,
+      BlockFormat.heading3 => 3,
+      _ => null,
+    },
+    quill.Attribute.list.key: switch (format) {
+      BlockFormat.bulletList => 'bullet',
+      BlockFormat.numberedList => 'ordered',
+      BlockFormat.taskList => 'unchecked',
+      _ => null,
+    },
+    quill.Attribute.indent.key: _isList(format) && indent > 0 ? indent : null,
+    quill.Attribute.blockQuote.key: format == BlockFormat.quote ? true : null,
+  };
+
   void toggleBlock(BlockFormat format) {
     if (!canFormatBlock(format)) return;
-    final nodes = _selectedTextNodes
-        .where((n) => n.getMetadataValue(MarkdownNodeMetadata.raw) != true)
+    final lines = _selectedLines
+        .where((line) => _formatOf(line) != null)
         .toList();
-    if (nodes.isEmpty) return;
-    final off = nodes.every((n) => formatOf(n) == format);
-    final target = off ? BlockFormat.paragraph : format;
-    final selection = _liveSelection!;
-    editor.execute([
-      for (final n in nodes)
-        ReplaceNodeRequest(
-          existingNodeId: n.id,
-          newNode: _convert(n, target, n.text),
-        ),
-      ChangeSelectionRequest(
-        selection,
-        SelectionChangeType.alteredContent,
-        SelectionReason.userInteraction,
-      ),
-    ]);
+    if (lines.isEmpty) return;
+    final target = lines.every((line) => _formatOf(line) == format)
+        ? BlockFormat.paragraph
+        : format;
+    final diff = Delta();
+    var end = 0;
+    for (final line in lines) {
+      final at = line.documentOffset + line.length - 1;
+      diff.retain(at - end);
+      diff.retain(
+        1,
+        _blockAttributes(target, indent: MarkdownDocumentCodec.indentOf(line)),
+      );
+      end = at + 1;
+    }
+    _apply(diff, selection!);
   }
 
-  /// [node] as a [format] block with [text] (same id; list levels kept).
-  static TextNode _convert(
-    TextNode node,
-    BlockFormat format,
-    AttributedText text,
-  ) {
-    final indent = switch (node) {
-      ListItemNode(:final indent) => indent,
-      TaskNode(:final indent) => indent,
-      _ => 0,
-    };
-    // Literal text has no inline styles.
-    final plain = isCodeLike(node) ? AttributedText(text.toPlainText()) : text;
-    ParagraphNode paragraph(Attribution type) => ParagraphNode(
-      id: node.id,
-      text: plain,
-      metadata: {NodeMetadata.blockType: type},
-    );
-    return switch (format) {
-      BlockFormat.paragraph => paragraph(paragraphAttribution),
-      BlockFormat.heading1 => paragraph(header1Attribution),
-      BlockFormat.heading2 => paragraph(header2Attribution),
-      BlockFormat.heading3 => paragraph(header3Attribution),
-      BlockFormat.quote => paragraph(blockquoteAttribution),
-      BlockFormat.bulletList => ListItemNode.unordered(
-        id: node.id,
-        text: plain,
-        indent: indent,
-      ),
-      BlockFormat.numberedList => ListItemNode.ordered(
-        id: node.id,
-        text: plain,
-        indent: indent,
-      ),
-      BlockFormat.taskList => TaskNode(
-        id: node.id,
-        text: plain,
-        isComplete: false,
-        indent: indent,
-      ),
-    };
-  }
-
-  /// Indents (or with [outdent], outdents) the selected list and task
-  /// items; returns whether the selection had any.
   bool indentItems({bool outdent = false}) {
     if (readOnly) return false;
-    final items = _selectedTextNodes
-        .where((n) => n is ListItemNode || n is TaskNode)
+    final items = _selectedLines
+        .where((line) => _isList(_formatOf(line)))
         .toList();
     if (items.isEmpty) return false;
-    editor.execute([
-      for (final n in items)
-        if (n is ListItemNode && outdent)
-          UnIndentListItemRequest(nodeId: n.id)
-        else if (n is ListItemNode)
-          IndentListItemRequest(nodeId: n.id)
-        else if (outdent)
-          UnIndentTaskRequest(n.id)
-        else
-          IndentTaskRequest(n.id),
-    ]);
+    final diff = Delta();
+    var end = 0;
+    for (final line in items) {
+      final indent = MarkdownDocumentCodec.indentOf(line);
+      final previous = line.documentOffset > 0
+          ? _lineAt(line.documentOffset - 1)
+          : null;
+      final maxIndent = previous == null || !_isList(_formatOf(previous))
+          ? 0
+          : MarkdownDocumentCodec.indentOf(previous) + 1;
+      final updated = outdent
+          ? math.max(0, indent - 1)
+          : math.min(indent + 1, maxIndent);
+      if (updated == indent) continue;
+      final at = line.documentOffset + line.length - 1;
+      diff.retain(at - end);
+      diff.retain(1, {
+        quill.Attribute.indent.key: updated == 0 ? null : updated,
+      });
+      end = at + 1;
+    }
+    _apply(diff, selection!);
     return true;
   }
 
-  // -------------------------------------------------------------- links
-
-  /// The link at the selection's start (or the caret), or null.
-  String? get link {
-    final s = _liveSelection;
-    if (s == null) return null;
-    final p = _range?.start ?? s.extent;
-    final node = document.getNodeById(p.nodeId);
-    final np = p.nodePosition;
-    if (node is! TextNode || np is! TextNodePosition || node.text.isEmpty) {
-      return null;
+  ({int start, int end, String url})? _linkAt(int offset) {
+    final line = _lineAt(offset);
+    if (line == null) return null;
+    final key = quill.Attribute.link.key;
+    var start = line.documentOffset;
+    final links = <({int start, int end, String url})>[];
+    for (final op in line.toDelta().toList()) {
+      final end = start + op.length!;
+      final url = op.attributes?[key];
+      if (url is String) {
+        final last = links.lastOrNull;
+        if (last != null && last.url == url && last.end == start) {
+          links[links.length - 1] = (start: last.start, end: end, url: url);
+        } else {
+          links.add((start: start, end: end, url: url));
+        }
+      }
+      start = end;
     }
-    // At a link's end the caret is still "on" it.
-    for (final o in [np.offset, np.offset - 1]) {
-      if (o < 0 || o >= node.text.length) continue;
-      final a = node.text
-          .getAllAttributionsAt(o)
-          .whereType<LinkAttribution>()
-          .firstOrNull;
-      if (a != null) return a.plainTextUri;
-    }
-    return null;
+    return links
+        .where((link) => link.start <= offset && offset <= link.end)
+        .firstOrNull;
   }
 
-  /// Whether a link can be added or edited here.
+  String? get link {
+    final current = selection;
+    return current == null ? null : _linkAt(current.start)?.url;
+  }
+
   bool get canLink => canFormatInline;
 
-  /// Makes the selection a link to [url]; with a caret on a link, changes
-  /// (or with null removes) that link; with a caret elsewhere, inserts
-  /// [url] as linked text. [url] is made canonical
-  /// ([normalizeLinkTarget]); an invalid URL does nothing.
   void setLink(String? url) {
     if (!canLink) return;
     final target = url == null ? null : normalizeLinkTarget(url);
     if (url != null && target == null) return;
-    final s = _liveSelection!;
-    final range = _range ?? _linkRangeAt(s.extent);
-    if (range == null) {
-      if (target == null) return;
-      final caret = s.extent;
-      final text = AttributedText(url!.trim())
-        ..addAttribution(
-          LinkAttribution(target),
-          SpanRange(0, url.trim().length - 1),
-        );
-      editor.execute([
-        InsertAttributedTextRequest(caret, text),
-        ChangeSelectionRequest(
-          DocumentSelection.collapsed(
-            position: DocumentPosition(
-              nodeId: caret.nodeId,
-              nodePosition: TextNodePosition(
-                offset:
-                    (caret.nodePosition as TextNodePosition).offset +
-                    text.length,
-              ),
-            ),
-          ),
-          SelectionChangeType.insertContent,
-          SelectionReason.userInteraction,
-        ),
-      ]);
-      return;
+    final current = selection!;
+    var start = current.start;
+    var end = current.end;
+    final key = quill.Attribute.link.key;
+    if (current.isCollapsed) {
+      final existing = _linkAt(start);
+      if (existing != null) {
+        start = existing.start;
+        end = existing.end;
+      } else {
+        if (target == null) return;
+        final label = url!.trim();
+        final change = Delta()
+          ..retain(start)
+          ..insert(label, {key: target});
+        _apply(change, TextSelection.collapsed(offset: start + label.length));
+        return;
+      }
     }
-    final existing = <Attribution>{
-      for (final node in document.getNodesInside(range.start, range.end))
-        if (node is TextNode)
-          for (
-            var o = _spanIn(node, range).start;
-            o <= _spanIn(node, range).end && o < node.text.length;
-            o++
-          )
-            ...node.text.getAllAttributionsAt(o).whereType<LinkAttribution>(),
-    };
-    editor.execute([
-      if (existing.isNotEmpty)
-        RemoveTextAttributionsRequest(
-          documentRange: range,
-          attributions: existing,
-        ),
-      if (target != null)
-        AddTextAttributionsRequest(
-          documentRange: range,
-          attributions: {LinkAttribution(target)},
-        ),
-    ]);
+    final diff = Delta();
+    var last = 0;
+    for (final range in _inlineRanges(
+      TextSelection(baseOffset: start, extentOffset: end),
+    )) {
+      diff.retain(range.start - last);
+      diff.retain(range.end - range.start, {key: target});
+      last = range.end;
+    }
+    _apply(diff, current);
   }
 
-  SpanRange _spanIn(TextNode node, DocumentRange r) {
-    final (start, end) = _rangeIn(node, r);
-    return SpanRange(start, end <= start ? start : end - 1);
-  }
-
-  /// The range of the link around [p], or null.
-  DocumentRange? _linkRangeAt(DocumentPosition p) {
-    final node = document.getNodeById(p.nodeId);
-    final np = p.nodePosition;
-    if (node is! TextNode || np is! TextNodePosition || node.text.isEmpty) {
-      return null;
-    }
-    for (final o in [np.offset, np.offset - 1]) {
-      if (o < 0 || o >= node.text.length) continue;
-      final spans = node.text.getAttributionSpansInRange(
-        attributionFilter: (a) => a is LinkAttribution,
-        range: SpanRange(o, o),
-      );
-      final span = spans.firstOrNull;
-      if (span == null) continue;
-      return DocumentRange(
-        start: DocumentPosition(
-          nodeId: node.id,
-          nodePosition: TextNodePosition(offset: span.start),
-        ),
-        end: DocumentPosition(
-          nodeId: node.id,
-          nodePosition: TextNodePosition(offset: span.end + 1),
-        ),
-      );
-    }
-    return null;
-  }
-
-  // ------------------------------------------------------------- images
-
-  /// The addresses of the images in the document.
   Set<String> get imageUrls => {
-    for (final node in document)
-      if (node is ImageNode) node.imageUrl,
+    for (final op in document.toDelta().toList())
+      if (MarkdownDocumentCodec.imageData(op.data) case final image?) image.url,
   };
 
-  /// How many blocks of the document are not text (images, rules).
-  ///
-  /// A block that stops being one — Backspace over an image leaves an empty
-  /// paragraph under the same id, undo brings the image back — changes what
-  /// kind of component an id stands for while the selection already speaks
-  /// the new kind's positions. The editor widget watches this count to
-  /// rebuild from the top in that frame (see `RichEditorState._onChange`).
-  int get embedCount {
-    var count = 0;
-    for (final node in document) {
-      if (node is! TextNode) count++;
-    }
-    return count;
-  }
+  int get embedCount => MarkdownDocumentCodec.lines(
+    document,
+  ).where((line) => line.hasEmbed).length;
 
-  /// Puts an image block showing [url] into the document, after the block
-  /// [afterNodeId] (after the last block when that is null or gone). An empty
-  /// paragraph there is replaced by the image rather than left above it.
-  ///
-  /// A text block always follows the image — an empty one is added when the
-  /// next block is not one — and the caret goes to its start, so typing
-  /// continues below the image. One undo step.
-  ///
-  /// Returns the id of the image's node, or null when the field is
-  /// read-only.
   String? insertImage({
     required String url,
     String alt = '',
     String? afterNodeId,
   }) {
     if (readOnly) return null;
-    final given = afterNodeId == null
-        ? null
-        : document.getNodeById(afterNodeId);
-    final anchor = given ?? document.last;
-    final image = ImageNode(
-      id: Editor.createNodeId(),
-      imageUrl: url,
-      altText: alt,
-    );
-    final replaces =
-        isPlainParagraph(anchor) && (anchor as ParagraphNode).text.isEmpty;
-    final follower = document.getNodeAfterById(anchor.id);
-    final reusable =
+    final source = CoreRichEditorImage.normalizeSource(url);
+    if (source == null) return null;
+    final lines = MarkdownDocumentCodec.lines(document).toList();
+    final index = afterNodeId == null
+        ? -1
+        : lines.indexWhere(
+            (line) => MarkdownDocumentCodec.lineId(line) == afterNodeId,
+          );
+    final anchor = index < 0 ? lines.last : lines[index];
+    final follower = index >= 0 && index < lines.length - 1
+        ? lines[index + 1]
+        : null;
+    final id = MarkdownDocumentCodec.createId();
+    final image = MarkdownDocumentCodec.image(id, source, alt);
+    final emptyAnchor =
+        anchor.length == 1 && MarkdownDocumentCodec.isPlain(anchor);
+    final emptyFollower =
         follower != null &&
-        isPlainParagraph(follower) &&
-        (follower as ParagraphNode).text.isEmpty;
-    final caretNode = reusable
-        ? follower
-        : ParagraphNode(id: Editor.createNodeId(), text: AttributedText());
-    editor.execute([
-      if (replaces)
-        ReplaceNodeRequest(existingNodeId: anchor.id, newNode: image)
-      else
-        InsertNodeAfterNodeRequest(existingNodeId: anchor.id, newNode: image),
-      if (!reusable)
-        InsertNodeAfterNodeRequest(
-          existingNodeId: image.id,
-          newNode: caretNode,
-        ),
-      ChangeSelectionRequest(
-        DocumentSelection.collapsed(
-          position: DocumentPosition(
-            nodeId: caretNode.id,
-            nodePosition: const TextNodePosition(offset: 0),
-          ),
-        ),
-        SelectionChangeType.insertContent,
-        SelectionReason.userInteraction,
-      ),
-    ]);
-    return image.id;
-  }
-
-  // ---------------------------------------------------------- clipboard
-
-  /// The selection as Markdown (copy and cut), or null when
-  /// nothing is selected. Text inside one block is its inline Markdown (the
-  /// plain text inside a literal block); a selection across blocks, or a
-  /// whole block, keeps the blocks (headings, lists, tasks, quotes, literal
-  /// blocks, rules),
-  /// cut at the selection's ends. Untouched blocks keep their Markdown
-  /// source. [paste] reads it back into the same content.
-  String? get selectedMarkdown {
-    final r = _range;
-    if (r == null) return null;
-    final nodes = document.getNodesInside(r.start, r.end);
-    if (nodes.isEmpty) return null;
-    if (nodes.length == 1 && nodes.single is TextNode) {
-      final node = nodes.single as TextNode;
-      final (start, end) = _rangeIn(node, r);
-      if (start > 0 || end < node.text.length) {
-        final text = node.text.copyText(start, end);
-        if (isCodeLike(node)) return text.toPlainText();
-        final md = codec.encode(
-          MutableDocument(
-            nodes: [ParagraphNode(id: Editor.createNodeId(), text: text)],
-          ),
-        );
-        return md.isEmpty ? null : md;
+        follower.length == 1 &&
+        MarkdownDocumentCodec.isPlain(follower);
+    final diff = Delta();
+    final int cursor;
+    if (emptyAnchor) {
+      final at = anchor.documentOffset;
+      diff.retain(at);
+      diff.insert(image);
+      diff.insert('\n');
+      if (emptyFollower) diff.delete(1);
+      cursor = at + 2;
+    } else if (follower != null) {
+      final at = follower.documentOffset;
+      diff.retain(at);
+      diff.insert(image);
+      diff.insert(emptyFollower ? '\n' : '\n\n');
+      cursor = at + 2;
+    } else {
+      final at = anchor.documentOffset + anchor.length - 1;
+      diff.retain(at);
+      diff.insert('\n', anchor.toDelta().last.attributes);
+      diff.insert(image);
+      diff.insert('\n');
+      final oldStyle = anchor.toDelta().last.attributes;
+      if (oldStyle != null) {
+        diff.retain(1, {for (final key in oldStyle.keys) key: null});
       }
+      cursor = at + 3;
     }
-    final md = codec.encode(
-      MutableDocument(
-        nodes: [
-          for (final n in nodes)
-            if (n is TextNode)
-              _cut(n, r)
-            else
-              n.copyWithAddedMetadata(const {}),
-        ],
-      ),
+    _apply(diff, TextSelection.collapsed(offset: cursor));
+    return id;
+  }
+
+  String? get selectedMarkdown {
+    final current = selection;
+    if (current == null || current.isCollapsed) return null;
+    final value = codec.encode(
+      document,
+      start: current.start,
+      end: current.end,
     );
-    return md.isEmpty ? null : md;
+    return value.isEmpty ? null : value;
   }
 
-  /// [node] cut to the part inside [r].
-  TextNode _cut(TextNode node, DocumentRange r) {
-    final (start, end) = _rangeIn(node, r);
-    if (start == 0 && end == node.text.length) return node.copyTextNodeWith();
-    return node.copyTextNodeWith(text: node.text.copyText(start, end));
-  }
-
-  /// Deletes the selection (cut); false when there is none or the field is
-  /// read-only.
   bool deleteSelection() {
-    if (readOnly || _range == null) return false;
-    editor.execute([const DeleteSelectionRequest(TextAffinity.downstream)]);
+    final current = selection;
+    if (readOnly || current == null || current.isCollapsed) return false;
+    editor.replaceText(
+      current.start,
+      current.end - current.start,
+      '',
+      TextSelection.collapsed(offset: current.start),
+    );
     return true;
   }
 
-  /// Replaces `[start, end)` of text node [nodeId] with [replacement] (a
-  /// spelling suggestion) keeping the styles at [start], caret after it;
-  /// one undo step. False when refused ([readOnly], a bad range).
   bool replaceText(String nodeId, int start, int end, String replacement) {
     if (readOnly) return false;
-    final node = document.getNodeById(nodeId);
-    if (node is! TextNode ||
+    final line = MarkdownDocumentCodec.lines(
+      document,
+    ).where((line) => MarkdownDocumentCodec.lineId(line) == nodeId).firstOrNull;
+    if (line == null ||
+        line.hasEmbed ||
         start < 0 ||
-        end > node.text.length ||
-        start > end) {
+        start > end ||
+        end >= line.length) {
       return false;
     }
-    DocumentPosition at(int offset) => DocumentPosition(
-      nodeId: nodeId,
-      nodePosition: TextNodePosition(offset: offset),
+    final offset = line.documentOffset + start;
+    final style = document.collectStyle(offset, 1).toJson();
+    final change = Delta()..retain(offset);
+    if (replacement.isNotEmpty) {
+      change.insert(
+        replacement.replaceAll('\n', MarkdownDocumentCodec.softBreak),
+        {
+          for (final entry in (style ?? const <String, dynamic>{}).entries)
+            if (quill.Attribute.inlineKeys.contains(entry.key))
+              entry.key: entry.value,
+        },
+      );
+    }
+    if (end > start) change.delete(end - start);
+    _apply(
+      change,
+      TextSelection.collapsed(offset: offset + replacement.length),
     );
-    final styles = start < node.text.length
-        ? node.text.getAllAttributionsAt(start)
-        : const <Attribution>{};
-    // Run past the length guard (a correction may be a little longer),
-    // but as an edit of the user's.
-    _edited = true;
-    _cache = null;
-    _run([
-      if (end > start)
-        DeleteContentRequest(
-          documentRange: DocumentRange(start: at(start), end: at(end)),
-        ),
-      InsertTextRequest(
-        documentPosition: at(start),
-        textToInsert: replacement,
-        attributions: styles,
-      ),
-      ChangeSelectionRequest(
-        DocumentSelection.collapsed(position: at(start + replacement.length)),
-        SelectionChangeType.alteredContent,
-        SelectionReason.userInteraction,
-      ),
-    ]);
     return true;
   }
 
-  // -------------------------------------------------------------- paste
-
-  /// Pastes [text]: Markdown is converted into blocks and styles (in
-  /// literal blocks, and with [plain], it is inserted as is; a fenced code
-  /// block becomes a literal block). A URL pasted over a
-  /// selection makes it a link. Returns false when the
-  /// paste was refused ([readOnly], [maxLength]).
   bool paste(String text, {bool plain = false}) {
-    final s = _liveSelection;
-    if (s == null || readOnly || text.isEmpty) return false;
+    final current = selection;
+    if (readOnly || current == null || text.isEmpty) return false;
     final max = maxLength;
     if (max != null && length + text.length > max) return false;
     final url = text.trim();
     if (!plain &&
-        !s.isCollapsed &&
+        !current.isCollapsed &&
         !url.contains(RegExp(r'\s')) &&
         isSafeLink(url)) {
       setLink(url);
       return true;
     }
-    if (!s.isCollapsed) {
-      editor.execute([const DeleteSelectionRequest(TextAffinity.downstream)]);
-    }
-    final caret = _liveSelection!.extent;
-    final node = document.getNodeById(caret.nodeId);
-    if (node is! TextNode) return false;
-    if (isCodeLike(node)) {
-      final offset = (caret.nodePosition as TextNodePosition).offset;
-      editor.execute([
-        InsertTextRequest(
-          documentPosition: caret,
-          textToInsert: text,
-          attributions: const {},
-        ),
-        ChangeSelectionRequest(
-          DocumentSelection.collapsed(
-            position: DocumentPosition(
-              nodeId: node.id,
-              nodePosition: TextNodePosition(offset: offset + text.length),
-            ),
-          ),
-          SelectionChangeType.insertContent,
-          SelectionReason.userInteraction,
-        ),
-      ]);
+    if (plain || inLiteralBlock) {
+      final normalized = text.replaceAll('\r\n', '\n').replaceAll('\r', '\n');
+      final value = inLiteralBlock
+          ? normalized.replaceAll('\n', MarkdownDocumentCodec.softBreak)
+          : normalized
+                .split(RegExp(r'\n\s*\n'))
+                .where((paragraph) => paragraph.trim().isNotEmpty)
+                .map(
+                  (paragraph) => paragraph.replaceAll(
+                    '\n',
+                    MarkdownDocumentCodec.softBreak,
+                  ),
+                )
+                .join('\n');
+      if (value.isEmpty) return false;
+      final change = Delta()
+        ..retain(current.start)
+        ..insert(value)
+        ..delete(current.end - current.start);
+      _apply(
+        change,
+        TextSelection.collapsed(offset: current.start + value.length),
+      );
       return true;
     }
-    if (plain) {
-      // Paragraphs at blank lines; other lines stay lines.
-      final chunks = text
-          .replaceAll('\r\n', '\n')
-          .split(RegExp(r'\n\s*\n'))
-          .where((c) => c.trim().isNotEmpty)
-          .toList();
-      if (chunks.isEmpty) return false;
-      editor.execute([
-        PasteStructuredContentEditorRequest(
-          content: MutableDocument(
-            nodes: [
-              for (final c in chunks)
-                ParagraphNode(
-                  id: Editor.createNodeId(),
-                  text: AttributedText(c),
-                ),
-            ],
-          ),
-          pastePosition: caret,
+
+    final fragment = codec.decode(text);
+    try {
+      final lines = MarkdownDocumentCodec.lines(fragment);
+      final structured =
+          lines.length > 1 || !MarkdownDocumentCodec.isPlain(lines.first);
+      if (!structured) {
+        final data = fragment.toDelta().slice(0, fragment.length - 1);
+        final change = Delta()..retain(current.start);
+        for (final op in data.toList()) {
+          change.push(op);
+        }
+        change.delete(current.end - current.start);
+        _apply(
+          change,
+          TextSelection.collapsed(offset: current.start + fragment.length - 1),
+        );
+        return true;
+      }
+      final at = current.start;
+      final line = _lineAt(at)!;
+      final preceding = at > line.documentOffset;
+      final change = Delta()..retain(at);
+      if (preceding) change.insert('\n', line.toDelta().last.attributes);
+      final fragmentData = fragment.toDelta();
+      final last = lines.last;
+      final trailing = last.length == 1 && MarkdownDocumentCodec.isPlain(last);
+      final fragmentLength = fragment.length - (trailing ? 1 : 0);
+      for (final op in fragmentData.slice(0, fragmentLength).toList()) {
+        change.push(op);
+      }
+      change.delete(current.end - current.start);
+      _apply(
+        change,
+        TextSelection.collapsed(
+          offset: at + fragmentLength + (preceding ? 1 : 0),
         ),
-      ]);
+      );
       return true;
+    } finally {
+      fragment.close();
     }
-    final nodes = codec.decodeNodes(text);
-    // A trailing empty paragraph is only there for the caret.
-    if (nodes.length > 1 &&
-        nodes.last is ParagraphNode &&
-        (nodes.last as ParagraphNode).text.isEmpty) {
-      nodes.removeLast();
-    }
-    editor.execute([
-      PasteStructuredContentEditorRequest(
-        content: MutableDocument(nodes: nodes),
-        pastePosition: caret,
-      ),
-    ]);
+  }
+
+  /// Inserts a soft line break or a tab in a literal block.
+  bool insertLiteral(String text) {
+    final current = selection;
+    if (readOnly || current == null) return false;
+    final change = Delta()
+      ..retain(current.start)
+      ..insert(text)
+      ..delete(current.end - current.start);
+    _apply(
+      change,
+      TextSelection.collapsed(offset: current.start + text.length),
+    );
     return true;
+  }
+
+  bool insertRule() {
+    final current = selection;
+    final line = _caretLine;
+    if (!features.rules ||
+        readOnly ||
+        current == null ||
+        !current.isCollapsed ||
+        line == null ||
+        !MarkdownDocumentCodec.isPlain(line) ||
+        current.start != line.documentOffset + line.length - 1) {
+      return false;
+    }
+    if (!_rulePrefix.hasMatch(line.toPlainText().trimRight())) return false;
+    _replaceWithRule(line);
+    return true;
+  }
+
+  void _replaceWithRule(quill.Line line) {
+    final start = line.documentOffset;
+    final change = Delta()
+      ..retain(start)
+      ..insert({MarkdownDocumentCodec.ruleType: 'rule'})
+      ..insert('\n')
+      ..delete(line.length - 1);
+    _apply(change, TextSelection.collapsed(offset: start + 2));
+  }
+
+  bool _autoformat() {
+    final current = selection;
+    final line = _caretLine;
+    if (current == null ||
+        !current.isCollapsed ||
+        line == null ||
+        line.hasEmbed ||
+        inLiteralBlock) {
+      return false;
+    }
+    final position = current.start - line.documentOffset;
+    if (position <= 0) return false;
+    final prefix = line.toPlainText().substring(0, position);
+    final paragraph = MarkdownDocumentCodec.isPlain(line);
+    if (paragraph &&
+        features.rules &&
+        position == line.length - 1 &&
+        prefix.endsWith(' ') &&
+        _rulePrefix.hasMatch(prefix.trimRight())) {
+      _replaceWithRule(line);
+      return true;
+    }
+    final attributes = _prefixAttributes(prefix, line, paragraph: paragraph);
+    if (attributes != null) {
+      final start = line.documentOffset;
+      final change = Delta()
+        ..retain(start)
+        ..delete(position)
+        ..retain(line.length - position - 1)
+        ..retain(1, attributes);
+      _apply(change, TextSelection.collapsed(offset: start));
+      return true;
+    }
+    final lineStart = prefix.lastIndexOf(MarkdownDocumentCodec.softBreak) + 1;
+    final candidate = _inlineSuffix.firstMatch(prefix.substring(lineStart));
+    if (candidate == null) return false;
+    final relativeStart = lineStart + candidate.start;
+    final start = line.documentOffset + relativeStart;
+    final previous = relativeStart == 0 ? null : prefix[relativeStart - 1];
+    if (previous == candidate.group(0)![0] ||
+        document
+                .collectStyle(start, 1)
+                .attributes[quill.Attribute.inlineCode.key]
+                ?.value ==
+            true) {
+      return false;
+    }
+    final source = candidate.group(0)!;
+    final runs = InlineMarkdownCodec().read([source]);
+    if (runs == null ||
+        runs.every(
+          (run) =>
+              !run.bold &&
+              !run.italic &&
+              !run.strike &&
+              !run.code &&
+              run.link == null,
+        )) {
+      return false;
+    }
+    final change = Delta()..retain(start);
+    for (final op in MarkdownDocumentCodec.runDelta(runs).toList()) {
+      change.push(op);
+    }
+    change.delete(source.length);
+    final end =
+        start + runs.fold<int>(0, (length, run) => length + run.text.length);
+    _apply(change, TextSelection.collapsed(offset: end));
+    return true;
+  }
+
+  static final _inlineSuffix = RegExp(
+    r'(?:\*\*[^*\n]+\*\*|__[^_\n]+__|\*[^*\n]+\*|_[^_\n]+_|~~[^~\n]+~~|`[^`\n]+`|\[[^\]\n]+\]\([^)\n]+\))$',
+  );
+
+  static final _headingPrefix = RegExp(r'^(#{1,6}) $');
+  static final _orderedPrefix = RegExp(r'^\d{1,9}[.)] $');
+  static final _taskPrefix = RegExp(r'^(- )?\[( |x|X)?\] $');
+  static final _rulePrefix = RegExp(r'^(---|\*\*\*|___)$');
+
+  Map<String, dynamic>? _prefixAttributes(
+    String prefix,
+    quill.Line line, {
+    required bool paragraph,
+  }) {
+    final list = _isList(_formatOf(line));
+    final heading = _headingPrefix.firstMatch(prefix);
+    if (features.headings && (paragraph || list) && heading != null) {
+      return _blockAttributes(BlockFormat.paragraph)
+        ..[quill.Attribute.header.key] = heading.group(1)!.length;
+    }
+
+    final task = _taskPrefix.firstMatch(prefix);
+    if ((paragraph || list) && task != null) {
+      return _blockAttributes(
+          BlockFormat.taskList,
+          indent: MarkdownDocumentCodec.indentOf(line),
+        )
+        ..[quill.Attribute.list.key] = task.group(2)?.toLowerCase() == 'x'
+            ? 'checked'
+            : 'unchecked';
+    }
+    if (!paragraph) return null;
+
+    final format = switch (prefix) {
+      '- ' || '* ' || '+ ' => BlockFormat.bulletList,
+      '> ' when features.quotes => BlockFormat.quote,
+      _ when _orderedPrefix.hasMatch(prefix) => BlockFormat.numberedList,
+      _ => null,
+    };
+    return format == null ? null : _blockAttributes(format);
   }
 
   @override
   void dispose() {
-    composer.preferences.removeListener(notifyListeners);
+    editor.removeListener(_editorChanged);
     editor.dispose();
     super.dispose();
   }
-}
-
-/// History grouping of the field: typing within a second is one step, and
-/// selection changes join the step before them (undo never only moves the
-/// caret).
-class _HistoryPolicy implements HistoryGroupingPolicy {
-  const _HistoryPolicy();
-
-  static const _kTypingWindow = Duration(milliseconds: CoreDuration.ms1000);
-  static const _typing = MergeRapidTextInputPolicy(_kTypingWindow);
-
-  @override
-  TransactionMerge shouldMergeLatestTransaction(
-    CommandTransaction newTransaction,
-    CommandTransaction previousTransaction,
-  ) {
-    final content = newTransaction.changes.any((c) => c is DocumentEdit);
-    if (!content) return TransactionMerge.mergeOnTop;
-    return _typing.shouldMergeLatestTransaction(
-      newTransaction,
-      previousTransaction,
-    );
-  }
-}
-
-/// Enter in (or over a selection touching) a literal block: the selection
-/// is deleted, then a line break goes in at the caret; at the end of a
-/// literal block, or when the caret is no longer in one, super_editor's
-/// rules apply.
-class _LiteralNewlineCommand extends EditCommand {
-  const _LiteralNewlineCommand(this.newNodeId);
-
-  final String newNodeId;
-
-  @override
-  HistoryBehavior get historyBehavior => HistoryBehavior.undoable;
-
-  @override
-  void execute(EditContext context, CommandExecutor executor) {
-    final composer = context.find<MutableDocumentComposer>(Editor.composerKey);
-    if (composer.selection case final s? when !s.isCollapsed) {
-      executor.executeCommand(
-        DeleteSelectionCommand(affinity: TextAffinity.downstream),
-      );
-    }
-    final s = composer.selection;
-    if (s == null) return;
-    final node = context.document.getNodeById(s.extent.nodeId);
-    final p = s.extent.nodePosition;
-    if (node is TextNode &&
-        isCodeLike(node) &&
-        p is TextNodePosition &&
-        p.offset < node.text.length) {
-      executor.executeCommand(
-        InsertTextCommand(
-          documentPosition: s.extent,
-          textToInsert: '\n',
-          attributions: const {},
-        ),
-      );
-      return;
-    }
-    executor.executeCommand(
-      isCodeLike(node)
-          ? InsertNewlineInCodeBlockAtCaretCommand(newNodeId)
-          : DefaultInsertNewlineAtCaretCommand(newNodeId),
-    );
-  }
-}
-
-class _NoOpCommand extends EditCommand {
-  const _NoOpCommand();
-
-  @override
-  HistoryBehavior get historyBehavior => HistoryBehavior.nonHistorical;
-
-  @override
-  void execute(EditContext context, CommandExecutor executor) {}
 }

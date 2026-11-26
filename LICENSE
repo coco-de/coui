@@ -7,8 +7,8 @@ packages listed below, which contain portions derived from third-party open
 source projects and are governed by the LICENSE file inside each package:
 
     packages/coui_flutter   — see packages/coui_flutter/LICENSE
-                              (includes BSD 3-Clause terms from shadcn_flutter
-                              and syntax_highlight)
+                              (BSD 3-Clause; see packages/coui_flutter/NOTICE
+                              for third-party license notices)
     packages/coui_web       — see packages/coui_web/LICENSE
                               (includes MIT terms from Deepyr and BSD 3-Clause
                               terms from syntax_highlight)

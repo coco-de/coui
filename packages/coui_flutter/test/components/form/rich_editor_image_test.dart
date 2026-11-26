@@ -10,14 +10,16 @@ import 'dart:convert';
 import 'dart:ui' as ui;
 
 import 'package:coui_flutter/coui_flutter.dart';
+import 'package:coui_flutter/src/components/form/rich_editor/markdown/markdown_document_codec.dart';
 import 'package:coui_flutter/src/components/form/rich_editor/markdown/markdown_features.dart'
     show MarkdownBlockFeatures;
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:super_editor/super_editor.dart' as se;
+
+import '../../support/file_drop_picker_fake.dart';
+import 'package:flutter_quill/flutter_quill.dart' as quill;
 
 /// A valid 1×1 PNG.
 final Uint8List _png = base64Decode(
@@ -87,60 +89,70 @@ LogicalKeyboardKey get _mod => defaultTargetPlatform == TargetPlatform.macOS
 
 Finder _row(int id) => find.byKey(ValueKey<String>('richEditor.imageRow.$id'));
 
-Future<void> _pick(WidgetTester tester, _FakePicker picker, String name) async {
-  picker.next = Future.value(_MemoryFile(name, _png));
+Future<void> _pick(
+  WidgetTester tester,
+  FileDropPickerFake picker,
+  String name,
+) async {
+  picker.singleResult = Future.value(PickedFileFixture(name, _png));
   await tester.tap(_imageButton);
   await _flow(tester);
 }
 
-String _imageNodeId(RichEditorController c) =>
-    c.document.firstWhere((node) => node is se.ImageNode).id;
+List<quill.Line> _lines(RichEditorController controller) =>
+    MarkdownDocumentCodec.lines(controller.document).toList();
 
-int _imageNodes(RichEditorController c) =>
-    c.document.whereType<se.ImageNode>().length;
+quill.Line _imageLine(RichEditorController controller) => _lines(
+  controller,
+).firstWhere((line) => MarkdownDocumentCodec.kindOf(line) == 'img');
 
-void _select(RichEditorController c, String nodeId, {required bool whole}) {
-  se.DocumentPosition at(se.NodePosition p) =>
-      se.DocumentPosition(nodeId: nodeId, nodePosition: p);
-  c.editor.execute([
-    se.ChangeSelectionRequest(
-      whole
-          ? se.DocumentSelection(
-              base: at(const se.UpstreamDownstreamNodePosition.upstream()),
-              extent: at(const se.UpstreamDownstreamNodePosition.downstream()),
-            )
-          : se.DocumentSelection.collapsed(
-              position: at(
-                const se.UpstreamDownstreamNodePosition.downstream(),
-              ),
-            ),
-      whole
-          ? se.SelectionChangeType.expandSelection
-          : se.SelectionChangeType.placeCaret,
-      se.SelectionReason.userInteraction,
+String _imageNodeId(RichEditorController controller) =>
+    MarkdownDocumentCodec.lineId(_imageLine(controller));
+
+int _imageNodes(RichEditorController controller) => _lines(
+  controller,
+).where((line) => MarkdownDocumentCodec.kindOf(line) == 'img').length;
+
+void _select(
+  RichEditorController controller,
+  String nodeId, {
+  required bool whole,
+}) {
+  final line = _lines(
+    controller,
+  ).singleWhere((line) => MarkdownDocumentCodec.lineId(line) == nodeId);
+  final start = line.documentOffset;
+  controller.setSelection(
+    TextSelection(
+      baseOffset: whole ? start : start + 1,
+      extentOffset: start + 1,
     ),
-  ]);
+  );
 }
 
-void _caretIn(RichEditorController c, String nodeId, int offset) {
-  c.editor.execute([
-    se.ChangeSelectionRequest(
-      se.DocumentSelection.collapsed(
-        position: se.DocumentPosition(
-          nodeId: nodeId,
-          nodePosition: se.TextNodePosition(offset: offset),
-        ),
-      ),
-      se.SelectionChangeType.placeCaret,
-      se.SelectionReason.userInteraction,
-    ),
-  ]);
+void _caretIn(RichEditorController controller, quill.Line line, int offset) =>
+    controller.setSelection(
+      TextSelection.collapsed(offset: line.documentOffset + offset),
+    );
+
+quill.Line _caretLine(RichEditorController controller) =>
+    controller.document.queryChild(controller.selection!.extentOffset).node!
+        as quill.Line;
+
+void _newLine(RichEditorController controller) {
+  final at = controller.selection!.extentOffset;
+  controller.editor.replaceText(
+    at,
+    0,
+    '\n',
+    TextSelection.collapsed(offset: at + 1),
+  );
 }
 
 /// Uploads one image into [controller]'s document, caret at the end first.
 Future<String> _upload(
   WidgetTester tester,
-  _FakePicker picker,
+  FileDropPickerFake picker,
   RichEditorController controller, {
   String name = 'photo.png',
 }) async {
@@ -151,17 +163,10 @@ Future<String> _upload(
 }
 
 void main() {
-  late FilePickerPlatform originalPicker;
-  late _FakePicker picker;
+  late FileDropPickerFake picker;
 
   setUp(() {
-    originalPicker = FilePickerPlatform.instance;
-    picker = _FakePicker();
-    FilePickerPlatform.instance = picker;
-  });
-
-  tearDown(() {
-    FilePickerPlatform.instance = originalPicker;
+    picker = FileDropPickerFake()..install();
   });
 
   group('the image button', () {
@@ -187,8 +192,7 @@ void main() {
       expect(_imageButton, findsOneWidget);
       await tester.tap(_imageButton);
       await _flow(tester);
-      expect(picker.calls, 1);
-      expect(picker.type, FileType.custom);
+      expect(picker.singleCalls, 1);
       expect(picker.allowedExtensions, CoreRichEditorImage.extensions);
     });
 
@@ -197,7 +201,7 @@ void main() {
       expect(tester.widget<Button>(_imageButton).enabled, isFalse);
       await tester.tap(_imageButton, warnIfMissed: false);
       await _flow(tester);
-      expect(picker.calls, 0);
+      expect(picker.singleCalls, 0);
     });
 
     testWidgets('a cancelled picker changes nothing', (tester) async {
@@ -212,7 +216,7 @@ void main() {
           return _pngUrl;
         },
       );
-      picker.next = Future.value();
+      picker.singleResult = Future.value();
       await tester.tap(_imageButton);
       await _flow(tester);
       expect(uploads, 0);
@@ -253,9 +257,9 @@ void main() {
       expect(controller.markdown, 'hello\n\n![photo]($_pngUrl)');
       expect(controller.imageUrls, {_pngUrl});
       // The caret waits below the image.
-      final caret = controller.selection!.extent;
-      expect(controller.document.getNodeById(caret.nodeId), isA<se.TextNode>());
-      expect(controller.document.last.id, caret.nodeId);
+      final caret = _caretLine(controller);
+      expect(caret.hasEmbed, isFalse);
+      expect(caret, same(_lines(controller).last));
     });
 
     testWidgets('goes below the block the caret was in when it was pressed', (
@@ -265,7 +269,7 @@ void main() {
       addTearDown(controller.dispose);
       final gate = Completer<String>();
       await _pump(tester, controller: controller, upload: (_) => gate.future);
-      _caretIn(controller, controller.document.first.id, 1);
+      _caretIn(controller, _lines(controller).first, 1);
 
       await _pick(tester, picker, 'photo.png');
       controller.moveCaretToEnd(); // the user keeps going while it uploads
@@ -281,17 +285,19 @@ void main() {
       final controller = RichEditorController(markdown: 'a');
       addTearDown(controller.dispose);
       await _pump(tester, controller: controller, upload: _echo);
-      controller
-        ..moveCaretToEnd()
-        ..editor.execute([se.InsertNewlineAtCaretRequest('blank')]);
-      expect(controller.document.nodeCount, 2);
+      controller.moveCaretToEnd();
+      _newLine(controller);
+      expect(_lines(controller).length, 2);
 
       await _pick(tester, picker, 'photo.png');
       await tester.pumpAndSettle();
 
       expect(
-        [for (final n in controller.document) n.runtimeType],
-        [se.ParagraphNode, se.ImageNode, se.ParagraphNode],
+        [
+          for (final line in _lines(controller))
+            MarkdownDocumentCodec.kindOf(line),
+        ],
+        ['p', 'img', 'p'],
       );
       expect(controller.markdown, 'a\n\n![photo]($_pngUrl)');
     });
@@ -348,7 +354,7 @@ void main() {
       final controller = RichEditorController(markdown: 'a');
       addTearDown(controller.dispose);
       var uploads = 0;
-      final big = _MemoryFile('big.png', Uint8List(10));
+      final big = PickedFileFixture('big.png', Uint8List(10));
       await _pump(
         tester,
         controller: controller,
@@ -358,7 +364,7 @@ void main() {
           return _pngUrl;
         },
       );
-      picker.next = Future.value(big);
+      picker.singleResult = Future.value(big);
       await tester.tap(_imageButton);
       await _flow(tester);
 
@@ -383,7 +389,9 @@ void main() {
         maxImageBytes: null,
         upload: _echo,
       );
-      picker.next = Future.value(_MemoryFile('big.png', Uint8List(2000)));
+      picker.singleResult = Future.value(
+        PickedFileFixture('big.png', Uint8List(2000)),
+      );
       controller.moveCaretToEnd();
       await tester.tap(_imageButton);
       await _flow(tester);
@@ -854,7 +862,7 @@ void main() {
       handle.dispose();
     });
 
-    for (final (side, key, affinity) in [
+    for (final (side, key, _) in [
       ('left', LogicalKeyboardKey.delete, TextAffinity.upstream),
       ('right', LogicalKeyboardKey.backspace, TextAffinity.downstream),
     ]) {
@@ -886,16 +894,12 @@ void main() {
                 : box.centerRight - const Offset(10, 0),
           );
           await tester.pump();
-          final caret = controller.selection!.extent;
-          expect(caret.nodeId, _imageNodeId(controller));
-          expect(controller.selection!.isCollapsed, isTrue);
+          final caret = controller.selection!;
+          final imageOffset = _imageLine(controller).documentOffset;
+          expect(caret.isCollapsed, isTrue);
           expect(
-            caret.nodePosition,
-            isA<se.UpstreamDownstreamNodePosition>().having(
-              (p) => p.affinity,
-              'affinity',
-              affinity,
-            ),
+            caret.extentOffset,
+            side == 'left' ? imageOffset : imageOffset + 1,
           );
 
           await tester.sendKeyEvent(key);
@@ -954,7 +958,7 @@ void main() {
       final image = tester.widget<material.Image>(find.byType(material.Image));
       _select(controller, _imageNodeId(controller), whole: true);
       await tester.pump();
-      _caretIn(controller, controller.document.first.id, 0);
+      _caretIn(controller, _lines(controller).first, 0);
       await tester.pump();
       final after = tester.widget<material.Image>(find.byType(material.Image));
       expect(after.image, image.image, reason: 'same provider, no re-decode');
@@ -989,9 +993,11 @@ void main() {
           markdown: '![holiday photo](https://x.test/a.png "t")',
         );
         addTearDown(controller.dispose);
-        final image = controller.document.first as se.ImageNode;
-        expect(image.imageUrl, 'https://x.test/a.png');
-        expect(image.altText, 'holiday photo');
+        final data = MarkdownDocumentCodec.imageData(
+          _imageLine(controller).toDelta().first.data,
+        )!;
+        expect(data.url, 'https://x.test/a.png');
+        expect(data.alt, 'holiday photo');
       },
     );
 
@@ -1000,8 +1006,8 @@ void main() {
         markdown: '![a](https://x.test/a.png)',
       );
       addTearDown(controller.dispose);
-      expect(controller.document.last, isA<se.TextNode>());
-      expect(controller.document.nodeCount, 2);
+      expect(_lines(controller).last.hasEmbed, isFalse);
+      expect(_lines(controller).length, 2);
     });
 
     test('an edited image block is written as the canonical form', () {
@@ -1012,7 +1018,7 @@ void main() {
       controller.insertImage(
         url: 'https://x.test/b.png',
         alt: 'b [x]',
-        afterNodeId: controller.document.first.id,
+        afterNodeId: MarkdownDocumentCodec.lineId(_lines(controller).first),
       );
       expect(
         controller.markdown,
@@ -1033,7 +1039,7 @@ void main() {
         final controller = RichEditorController(markdown: markdown);
         addTearDown(controller.dispose);
         expect(controller.imageUrls, isEmpty);
-        expect(controller.document.first, isA<se.ParagraphNode>());
+        expect(MarkdownDocumentCodec.kindOf(_lines(controller).first), 'raw');
         expect(controller.markdown, markdown);
       });
     }
@@ -1063,7 +1069,7 @@ void main() {
       addTearDown(controller.dispose);
       expect(controller.paste('![z](https://x.test/z.png)'), isTrue);
       expect(controller.imageUrls, {'https://x.test/z.png'});
-      expect(controller.document.last, isA<se.TextNode>());
+      expect(_lines(controller).last.hasEmbed, isFalse);
     });
   });
 
@@ -1074,14 +1080,17 @@ void main() {
       final id = controller.insertImage(
         url: 'https://x.test/a.png',
         alt: 'pic',
-        afterNodeId: controller.document.first.id,
+        afterNodeId: MarkdownDocumentCodec.lineId(_lines(controller).first),
       );
       expect(id, isNotNull);
       expect(controller.markdown, 'a\n\n![pic](https://x.test/a.png)\n\nb');
-      final caret = controller.selection!.extent;
-      expect(caret.nodePosition, const se.TextNodePosition(offset: 0));
-      final node = controller.document.getNodeById(caret.nodeId)!;
-      expect(controller.document.getNodeBefore(node), isA<se.ImageNode>());
+      final line = _caretLine(controller);
+      expect(controller.selection!.extentOffset, line.documentOffset);
+      final lines = _lines(controller);
+      expect(
+        MarkdownDocumentCodec.kindOf(lines[lines.indexOf(line) - 1]),
+        'img',
+      );
     });
 
     test('a missing block means the end', () {
@@ -1094,13 +1103,17 @@ void main() {
     test('an empty paragraph is replaced, not left above', () {
       final controller = RichEditorController(markdown: 'a')..moveCaretToEnd();
       addTearDown(controller.dispose);
-      controller.editor.execute([
-        se.InsertNewlineAtCaretRequest('blank'),
-      ]);
-      controller.insertImage(url: 'https://x.test/a.png', afterNodeId: 'blank');
+      _newLine(controller);
+      controller.insertImage(
+        url: 'https://x.test/a.png',
+        afterNodeId: controller.selectedLineId,
+      );
       expect(
-        [for (final n in controller.document) n.runtimeType],
-        [se.ParagraphNode, se.ImageNode, se.ParagraphNode],
+        [
+          for (final line in _lines(controller))
+            MarkdownDocumentCodec.kindOf(line),
+        ],
+        ['p', 'img', 'p'],
       );
     });
 
@@ -1156,80 +1169,4 @@ Future<Uint8List> _picture(WidgetTester tester, int width, int height) async {
     return data!.buffer.asUint8List();
   });
   return bytes!;
-}
-
-class _FakePicker extends FilePickerPlatform {
-  Future<PlatformFile?> next = Future.value();
-  int calls = 0;
-  FileType? type;
-  List<String>? allowedExtensions;
-
-  @override
-  Future<PlatformFile?> pickFile({
-    String? dialogTitle,
-    String? initialDirectory,
-    FileType type = FileType.any,
-    List<String>? allowedExtensions,
-    void Function(FilePickerStatus)? onFileLoading,
-    int compressionQuality = 0,
-    AndroidOptions androidOptions = const AndroidOptions(),
-    DarwinOptions darwinOptions = const DarwinOptions(),
-    WindowsOptions windowsOptions = const WindowsOptions(),
-    LinuxOptions linuxOptions = const LinuxOptions(),
-    WebOptions webOptions = const WebOptions(),
-  }) {
-    calls++;
-    this.type = type;
-    this.allowedExtensions = allowedExtensions;
-    return next;
-  }
-
-  @override
-  Future<List<PlatformFile>> pickFiles({
-    String? dialogTitle,
-    String? initialDirectory,
-    FileType type = FileType.any,
-    List<String>? allowedExtensions,
-    void Function(FilePickerStatus)? onFileLoading,
-    int compressionQuality = 0,
-    AndroidOptions androidOptions = const AndroidOptions(),
-    DarwinOptions darwinOptions = const DarwinOptions(),
-    WindowsOptions windowsOptions = const WindowsOptions(),
-    LinuxOptions linuxOptions = const LinuxOptions(),
-    WebOptions webOptions = const WebOptions(),
-  }) => throw UnimplementedError('the image button picks one file');
-}
-
-final class _MemoryFile extends PlatformFile {
-  _MemoryFile(this.name, this.bytes)
-    : xFile = XFile.fromData(bytes, path: name, name: name);
-
-  @override
-  final String name;
-
-  final Uint8List bytes;
-
-  /// How often the content was read.
-  int reads = 0;
-
-  @override
-  final XFile xFile;
-
-  @override
-  Uri get uri => Uri.parse('blob:https://example.test/$name');
-
-  @override
-  int? lengthSync() => bytes.length;
-
-  @override
-  Future<int> length() async => bytes.length;
-
-  @override
-  Future<Uint8List> readAsBytes() async {
-    reads++;
-    return bytes;
-  }
-
-  @override
-  Stream<Uint8List> readAsByteStream() => Stream.value(bytes);
 }

@@ -2,8 +2,6 @@
 
 CoUI publishes three packages. `coui_core` provides the shared types and
 tokens. `coui_flutter` and `coui_web` use its published version.
-The first Flutter release is a beta because RichEditor uses a prerelease of
-`super_editor`.
 
 | Package | Publishing tag pattern |
 |---|---|

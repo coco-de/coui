@@ -353,12 +353,14 @@ class _WebSurfaceBackdropState extends State<WebSurfaceBackdrop> {
                       return _ancestors.contains(record.target);
                     }
                     for (var i = 0; i < record.addedNodes.length; i++) {
-                      if (!_opticalNode(record.addedNodes.item(i)!))
+                      if (!_opticalNode(record.addedNodes.item(i)!)) {
                         return true;
+                      }
                     }
                     for (var i = 0; i < record.removedNodes.length; i++) {
-                      if (!_opticalNode(record.removedNodes.item(i)!))
+                      if (!_opticalNode(record.removedNodes.item(i)!)) {
                         return true;
+                      }
                     }
                     return false;
                   });

@@ -1,7 +1,7 @@
 /// The entrypoint for the **client** environment.
 library;
 
-import 'package:desktop_drop/desktop_drop.dart';
+import 'package:file_drop/file_drop.dart';
 import 'package:flutter/widgets.dart' show WidgetsFlutterBinding;
 import 'package:jaspr/client.dart';
 
