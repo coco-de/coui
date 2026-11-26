@@ -37,3 +37,10 @@ String chainCodeElementId(String panelId, {required bool forFlutter}) =>
 /// chain 패널 copy 버튼 id — 셔플 시 `data-code` 를 현재 순열 코드로
 /// 갱신할 대상.
 String chainCopyElementId(String panelId) => 'copy-$panelId';
+
+/// 플레이그라운드의 **실제** 컴포넌트를 표시하는 DOM 속성. 값은 컴포넌트 slug 다.
+///
+/// 열린 모습을 합성한 그림에는 달지 않는다. 브라우저 프로브
+/// (`tool/parity/oscillation_probe.dart`)가 이 속성으로 실제 컴포넌트를 찾고, 그
+/// VM 테스트가 페이지의 플레이그라운드를 서버 렌더해 같은 속성을 확인한다.
+const String kDocsLiveComponentAttribute = 'data-docs-live';
