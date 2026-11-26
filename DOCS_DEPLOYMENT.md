@@ -10,6 +10,18 @@ and Widgetbook is deployed to Firebase Hosting.
 > previews) plus a separate Widgetbook app, both orchestrated by
 > `.github/workflows/deploy.yaml`.
 
+## Current state in this repository
+
+`.github/workflows/deploy.yaml` builds and publishes the **docs site only**. It
+runs on GitHub-hosted runners and is started by hand. With `publish` off (the
+default) it builds and checks the site without publishing it. Publishing needs
+GitHub Pages enabled for this repository with GitHub Actions as the source.
+
+It does not deploy Widgetbook and does not archive version snapshots (the
+tests for the snapshot steps are skipped). Where the
+sections below describe those, or self-hosted runners, they do not apply to this
+workflow.
+
 ## 📚 What gets deployed
 
 ### 🌐 `docs_site` (unified component docs)
