@@ -1,5 +1,12 @@
 Earlier releases are available in the [changelog archive](https://github.com/coco-de/coui/blob/main/docs/changelog/coui_flutter.md).
 
+## [0.196.1](https://github.com/coco-de/coui/compare/coui_flutter-v0.196.0...coui_flutter-v0.196.1) (2026-11-26)
+
+
+### 버그 수정
+
+* **swap:** isolate inactive Native face input ([#21](https://github.com/coco-de/coui/issues/21)) ([88f73dd](https://github.com/coco-de/coui/commit/88f73dd8641fbe30ef92c6d6a9b308b2ba35a8f5))
+
 ## [0.196.0](https://github.com/coco-de/coui/compare/coui_flutter-v0.195.0...coui_flutter-v0.196.0) (2026-11-26)
 
 
