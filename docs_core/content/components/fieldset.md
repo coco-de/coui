@@ -142,9 +142,9 @@ Fieldset 의 상태는 `enabled` 하나입니다. hover · 눌림 · 포커스 �
 | --- | --- |
 | `TextField` | 비활성 모양이 되고 글자를 입력할 수 없습니다. Flutter 에서는 `Tab` 포커스를 여전히 받습니다. |
 | `FormField` | 라벨이 비활성 모양이 되고, `FormField` 에 담은 것 전체가 마우스 · 터치 입력을 받지 않습니다. 설정을 읽지 않는 컨트롤은 키보드로 계속 조작됩니다. |
-| `Select` · `Autocomplete` | 비활성 모양이 되고 눌러서는 목록이 열리지 않습니다. Jaspr Web 은 키보드로도 열리지 않습니다. Flutter 는 `Tab` 으로 들어가 키보드로 값을 고를 수 있습니다([알려진 제약](/components/fieldset#알려진-제약)). |
+| `Select` · `Autocomplete` | 비활성 모양이 되고 포인터나 키보드로 목록을 열거나 값을 고를 수 없습니다. Flutter 에서는 `Tab` 정지점으로 남지만 입력 동작은 막힙니다. |
 | `DatePicker` · `DateRangePicker` · `TimePicker` | Flutter 는 달력이나 시각 패널이 열리지 않습니다. Jaspr Web 은 입력 칸을 비활성 모양으로 그리지만, 팝오버 방식(기본)에서는 칸을 누르면 패널이 열립니다. |
-| `NumberInput` | 글자를 입력할 수 없습니다. −/+ 버튼은 계속 눌리고, Flutter 에서는 칸에 `Tab` 으로 들어가면 방향키로도 값이 바뀝니다. |
+| `NumberInput` | 글자 입력과 −/+ 버튼 조작이 막힙니다. Flutter 에서는 칸에 `Tab` 으로 들어가도 방향키 · 페이지 키와 보조 기술의 값 늘리기 · 줄이기로 값이 바뀌지 않습니다. |
 | `ChipInput` · `PhoneInput` | 글자를 입력할 수 없습니다. `ChipInput` 칩의 지우기 버튼과 `PhoneInput` 의 국가 선택은 계속 눌립니다. |
 | `InputOtp` · `FormattedInput` | Flutter 는 안의 입력 칸이 설정을 읽어 입력이 막힙니다. Jaspr Web 은 계속 입력됩니다. |
 | `Checkbox` · `RadioGroup` · `Toggle` · `SwitchField` · `Slider` · `TextArea` · `Button` 처럼 설정을 읽지 않는 것 | 흐려지기만 하고 그대로 조작됩니다(`FormField` 에 담은 것은 위 행). 컴포넌트마다 `enabled: false` 를 줍니다. |
@@ -540,7 +540,7 @@ Semantics(
 
 `Fieldset` 자체는 포커스를 받지 않아 Tab 정지점이 아니고, 묶음을 한 번에 건너뛰는 키도 없습니다.
 
-비활성 묶음에서는 두 플랫폼이 다릅니다. Jaspr Web 에서는 비활성이 된 `<input>` 을 `Tab` 이 건너뜁니다. Flutter 에서는 비활성 설정을 읽은 `TextField` 도 `Tab` 정지점으로 남고 글자 입력만 막히므로, `Select` · `Autocomplete` · `NumberInput` 은 여전히 키에 반응합니다([알려진 제약](/components/fieldset#알려진-제약)). 설정을 읽지 않는 컨트롤은 두 플랫폼 모두 평소처럼 포커스를 받습니다.
+비활성 묶음에서는 두 플랫폼이 다릅니다. Jaspr Web 에서는 비활성이 된 `<input>` 을 `Tab` 이 건너뜁니다. Flutter 에서는 비활성 설정을 읽은 `TextField` 도 `Tab` 정지점으로 남지만, `Select` · `Autocomplete` · `NumberInput` 의 키보드 입력은 값을 바꾸지 않습니다. 설정을 읽지 않는 컨트롤은 두 플랫폼 모두 평소처럼 포커스를 받습니다([알려진 제약](/components/fieldset#알려진-제약)).
 
 ### 스크린 리더
 
@@ -557,9 +557,9 @@ Semantics(
 | 플랫폼 | 내용 |
 | --- | --- |
 | 공통 | `enabled: false` 는 비활성 설정을 읽는 부분만 막습니다. Fieldset 은 읽지 않는 컴포넌트를 흐리게 그릴 뿐 Flutter 의 `IgnorePointer` 나 Web 의 포인터 차단 · `aria-disabled` 를 더하지 않아, 여전히 Tab 으로 닿고 누를 수 있습니다. `FormField` 에 담으면 마우스 · 터치는 막히지만 키보드 조작은 남습니다. 각자 `enabled: false` 를 줍니다([함께 꺼지는 입력](/components/fieldset#함께-꺼지는-입력)). |
-| Flutter | 비활성 설정을 읽는 `TextField` 도 `Tab` 정지점으로 남습니다. 키보드로 들어가면 `Select` 는 `Enter` · `Space` · `Alt` + 아래 방향키로 목록이 열리고, 닫힌 채 방향키 · `Home` · `End` · 글자 입력만으로도 값이 바뀝니다. `Autocomplete` 는 보여 줄 추천이 있으면 목록이 열려 항목을 고를 수 있습니다. `NumberInput` 은 방향키 · `PageUp` · `PageDown` 과 보조 기술의 값 늘리기 · 줄이기 동작으로 값이 바뀝니다. 비활성 묶음 안에서는 이 컴포넌트에도 `enabled: false` 를 줍니다. |
+| Flutter | 비활성 설정을 읽는 `TextField` 도 `Tab` 정지점으로 남습니다. `Select` · `Autocomplete` · `NumberInput` 에도 포커스가 닿지만, 해당 입력의 키보드 조작은 막힙니다. |
 | Jaspr Web | `DatePicker` · `DateRangePicker` · `TimePicker` 는 팝오버 방식(기본)에서 입력 칸을 누르면 패널이 열리고, 거기서 값을 바꿀 수 있습니다. 비활성 묶음 안에서는 이 컴포넌트에도 `enabled: false` 를 줍니다. |
-| 공통 | `NumberInput` · `ChipInput` · `PhoneInput` 의 버튼은 계속 눌립니다. 이 컴포넌트에도 `enabled: false` 를 줍니다. |
+| 공통 | `ChipInput` · `PhoneInput` 의 버튼은 계속 눌립니다. 이 컴포넌트에도 `enabled: false` 를 줍니다. |
 | Jaspr Web | `InputOtp` 와 `FormattedInput` 은 자기 `<input>` 을 직접 그려, 비활성 묶음 안에서도 입력됩니다. 이 컴포넌트에도 `enabled: false` 를 줍니다. |
 | 공통 | 범례가 묶음의 이름으로 이어지지 않습니다. 위 [묶음에 이름 붙이기](/components/fieldset#묶음에-이름-붙이기)처럼 호출하는 쪽에서 붙입니다. |
 | Flutter | 상자가 내용을 가장자리에서 잘라 냅니다. 안쪽 여백이 4 보다 작으면(`plain` 의 기본은 0) 안쪽 입력의 키보드 포커스 링(바깥으로 4)이 가장자리에서 잘립니다. |

@@ -2,6 +2,7 @@ import 'package:coui_core/coui_core.dart';
 import 'package:coui_web/src/base/ui_events.dart';
 import 'package:coui_web/src/base/ui_stateful_component.dart';
 import 'package:coui_web/src/components/control/button/button.dart';
+import 'package:coui_web/src/components/form/form_field/form_field_scope.dart';
 import 'package:coui_web/src/components/form/number_input/number_input_style.dart';
 import 'package:coui_web/src/components/form/text_field/text_field.dart';
 import 'package:coui_web/src/components/icon/icon.dart';
@@ -187,13 +188,15 @@ num? _wholeOrNull(double? bound) {
 
 class _NumberInputState extends State<NumberInput> {
   late double _value;
+  CoreFormFieldScope? _formFieldScope;
 
   /// The text the field shows. Held apart from [_value] so a half-typed
   /// entry (`-`, or `1` on the way to `15`) is not rewritten under the
   /// caret; it is settled on [_commit].
   late String _text;
 
-  bool get _enabled => component.enabled ?? true;
+  bool get _enabled =>
+      (component.enabled ?? true) && _formFieldScope?.disabled != true;
 
   @override
   void initState() {
@@ -202,6 +205,12 @@ class _NumberInputState extends State<NumberInput> {
       component.value ?? component.initialValue ?? component.min ?? 0,
     );
     _text = CoreNumberInputMath.format(_value);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _formFieldScope = FormFieldScope.maybeOf(context);
   }
 
   @override
@@ -246,6 +255,7 @@ class _NumberInputState extends State<NumberInput> {
   /// A typed number moves the value as soon as it is inside the bounds; one
   /// outside waits for [_commit] so `1` on the way to `15` is not rejected.
   void _handleTextChanged(String text) {
+    if (!_enabled) return;
     _text = text;
     final parsed = CoreNumberInputMath.parse(text);
     if (parsed == null || parsed == _value) return;
@@ -259,6 +269,7 @@ class _NumberInputState extends State<NumberInput> {
 
   /// Settles what is typed: a number is bounded, anything else reverts.
   void _commit() {
+    if (!_enabled) return;
     final parsed = CoreNumberInputMath.parse(_text);
     _setValue(parsed ?? _value);
   }
