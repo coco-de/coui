@@ -468,11 +468,7 @@ String get boxPaddingObservationScript =>
 }
 ''';
 
-/// Both observations run in one JS task; the original probe body is unchanged.
+/// Both observations run in one JS task. Opted-in Device paint is validated
+/// against its separate current source before any credited paint CSS is read.
 String get computedStyleAndBoxObservationScript =>
-    '''
-(request) => JSON.stringify({
-  legacy: JSON.parse(($computedStyleProbeScript)(request.selector)),
-  box: JSON.parse(($boxPaddingObservationScript)(request))
-})
-''';
+    sourceValidatedComputedStyleAndBoxScript(boxPaddingObservationScript);

@@ -23,13 +23,28 @@ String get framedCollectionBoxSourceResolverScript =>
   if (!adapter || source.nativeAdapterId !== adapter || source.webAdapterId !== adapter) return fail('FRAMED_COLLECTION_CLOSED_ADAPTER_CHANGED');
   const device = source.logicalUnitId === 'mockup-device-generated-body-frame-content-inset';
   const join = source.logicalUnitId === 'join-generated-strip-layout-host';
-  const extra = device ? [] : join ? ['vertical'] : ['resizable','rows'];
+  const extra = device ? (Object.hasOwn(currentRaw || {},'bodyPaintSource') ? ['bodyPaintSource'] : []) : join ? ['vertical'] : ['resizable','rows'];
   if (!sameKeys(currentRaw,['kind','logicalUnitId','rawSlotCount','slotPresence','route','generatedTree',...extra]) ||
       currentRaw.kind !== 'current-framed-collection-raw-v1' || currentRaw.logicalUnitId !== source.logicalUnitId ||
       !Number.isInteger(currentRaw.rawSlotCount) || currentRaw.rawSlotCount < 0 ||
       !Array.isArray(currentRaw.slotPresence) || currentRaw.slotPresence.length !== currentRaw.rawSlotCount ||
       !currentRaw.slotPresence.every(value => value === true) ||
       currentRaw.route !== (device ? 'device' : join ? 'join' : 'table')) return fail('FRAMED_COLLECTION_CURRENT_RAW_REQUIRED');
+  // This optional Device record grants no padding authority. The separate
+  // closed paint resolver validates its actual node before reading paint CSS.
+  if (device && extra.length) {
+    const paint = currentRaw.bodyPaintSource;
+    const fields = ['backgroundColor','borderColor','borderWidthPx','borderRadiusPx','boxShadow'];
+    if (!sameKeys(paint,['kind','paintAuthorityId','fieldScope','ownerPathFromRegistry','ownerIdentity']) ||
+        paint.kind !== 'mockup-device-body-outlined-paint-v1' ||
+        paint.paintAuthorityId !== 'public-generated-outlined-body-paint-v1' ||
+        !Array.isArray(paint.fieldScope) || paint.fieldScope.length !== fields.length ||
+        !fields.every((name,index) => paint.fieldScope[index] === name) ||
+        !Array.isArray(paint.ownerPathFromRegistry) || !paint.ownerPathFromRegistry.length ||
+        !paint.ownerPathFromRegistry.every(index => Number.isInteger(index) && index >= 0) ||
+        !paint.ownerIdentity || typeof paint.ownerIdentity !== 'object' || Array.isArray(paint.ownerIdentity))
+      return fail('FRAMED_COLLECTION_DEVICE_PAINT_RECORD_CHANGED');
+  }
   const htmlNS = 'http://www.w3.org/1999/xhtml';
   const isDiv = node => node && node.namespaceURI === htmlNS && node.localName === 'div';
   const elementSeatsOnly = node => Array.from(node.childNodes).every(child =>

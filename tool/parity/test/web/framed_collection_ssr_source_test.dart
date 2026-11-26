@@ -1,5 +1,7 @@
 import 'package:coui_web/coui_web.dart' as coui;
 import 'package:docs_core/previews/web_registry.dart';
+import 'package:html/dom.dart' as html;
+import 'package:html/parser.dart' show parseFragment;
 import 'package:jaspr/dom.dart' show div;
 import 'package:jaspr/server.dart' hide Document;
 import 'package:test/test.dart';
@@ -52,6 +54,98 @@ MatrixEntry _entry(String component, String variant, String theme) =>
       ],
     });
 
+const _paintFields = [
+  'backgroundColor',
+  'borderColor',
+  'borderWidthPx',
+  'borderRadiusPx',
+  'boxShadow',
+];
+
+List<Element> _paintChildren(Element node) {
+  final result = <Element>[];
+  node.visitChildren(result.add);
+  return result;
+}
+
+Iterable<Element> _paintWalk(Element node) sync* {
+  yield node;
+  for (final child in _paintChildren(node)) {
+    yield* _paintWalk(child);
+  }
+}
+
+List<Element> _paintDomFrontier(Element node) => node.component is DomComponent
+    ? [node]
+    : [for (final child in _paintChildren(node)) ..._paintDomFrontier(child)];
+
+List<int>? _paintPath(Element node, Element target) {
+  if (identical(node, target)) return [];
+  final children = [
+    for (final child in _paintChildren(node)) ..._paintDomFrontier(child),
+  ];
+  for (var i = 0; i < children.length; i++) {
+    final found = _paintPath(children[i], target);
+    if (found != null) return [i, ...found];
+  }
+  return null;
+}
+
+Map<String, Object?> _paintNodeIdentity(html.Element node) => {
+  'namespaceURI': node.namespaceUri,
+  'localName': node.localName,
+  'attributes': {
+    for (final entry in node.attributes.entries)
+      entry.key.toString(): entry.value,
+  },
+  'childNodes': [
+    for (final child in node.nodes)
+      if (child is html.Element)
+        _paintNodeIdentity(child)
+      else
+        {
+          'nodeType': child.nodeType,
+          'data': child is html.Text
+              ? child.data
+              : child is html.Comment
+              ? child.data
+              : '',
+        },
+  ],
+};
+
+Map<String, Object?> _expectedDevicePaint(Element mountedRoot) {
+  final producer = _paintWalk(
+    mountedRoot,
+  ).where((node) => node.component.runtimeType == coui.MockupDevice).single;
+  final deviceDom = _paintDomFrontier(producer).single;
+  final declared = (deviceDom.component as DomComponent).children!;
+  final outlined = declared
+      .where((child) => child.runtimeType == coui.OutlinedContainer)
+      .single;
+  expect((outlined as coui.OutlinedContainer).child, isNull);
+  final outlinedElement = _paintChildren(
+    deviceDom,
+  ).where((node) => identical(node.component, outlined)).single;
+  final bodyDom = _paintDomFrontier(outlinedElement).single;
+  var registry = deviceDom.parent!;
+  while (registry.component is! DomComponent) {
+    registry = registry.parent!;
+  }
+  final render = (bodyDom as RenderObjectElement).renderObject;
+  final markup = (render as MarkupRenderObject).renderToHtml();
+  final parsed = parseFragment(markup).children.single;
+  final ownerPath =
+      _paintPath(registry, bodyDom) ?? fail('No current typed body DOM path');
+  return {
+    'kind': 'mockup-device-body-outlined-paint-v1',
+    'paintAuthorityId': 'public-generated-outlined-body-paint-v1',
+    'fieldScope': _paintFields,
+    'ownerPathFromRegistry': ownerPath,
+    'ownerIdentity': _paintNodeIdentity(parsed),
+  };
+}
+
 void main() {
   for (final (component, variant) in _recipes) {
     for (final theme in ['light', 'dark']) {
@@ -61,6 +155,7 @@ void main() {
         var builds = 0;
         var observations = 0;
         Map<String, Object?>? receipt;
+        Map<String, Object?>? expectedPaint;
         await renderComponentToDocumentHtml(
           coui.CoUIWeb(
             theme: .coui,
@@ -72,6 +167,10 @@ void main() {
                 (root as RenderObjectElement).renderObject
                     as MarkupRenderObject;
             final before = markup.renderToHtml();
+            if (_source(component, variant) ==
+                BoxObservationSourceSpec.mockupDeviceBodyFrame) {
+              expectedPaint = _expectedDevicePaint(root);
+            }
             receipt = recorder.observe(root);
             expect(markup.renderToHtml(), before);
           },
@@ -83,6 +182,13 @@ void main() {
         expect(receipt!['source'], _source(component, variant).toJson());
         expect(receipt!['rawOrderFromPublicProducerLists'], true);
         final raw = receipt!['currentRaw']! as Map;
+        // Paint authority comes from the independently located actual public
+        // OutlinedContainer, never the layout host used for padding absence.
+        if (expectedPaint != null) {
+          expect(raw['bodyPaintSource'], expectedPaint);
+        } else {
+          expect(raw.containsKey('bodyPaintSource'), isFalse);
+        }
         expect(raw['generatedTree'], isA<Map<String, Object?>>());
         final count = component == 'join'
             ? (variant == 'input' ? 2 : 3)
@@ -244,6 +350,65 @@ void main() {
         throwsStateError,
       );
     });
+  }
+  for (final foreign in [false, true]) {
+    test(
+      foreign
+          ? 'Device paint authority leaves the whole supplied child opaque'
+          : 'Device paint source rejects undeclared body markup',
+      () async {
+        final entry = _entry('mockup', 'phone', 'light');
+        final recorder = FramedCollectionSsrSource.forEntry(entry)!;
+        await renderComponentToDocumentHtml(
+          coui.CoUIWeb(
+            theme: .coui,
+            child: _Capture(entry, recorder),
+          ),
+          onMountedRoot: (root) {
+            final before = recorder.observe(root);
+            final producer = _paintWalk(root)
+                .where(
+                  (node) => node.component.runtimeType == coui.MockupDevice,
+                )
+                .single;
+            final deviceDom = _paintDomFrontier(producer).single;
+            final outlined = (deviceDom.component as DomComponent).children!
+                .where((child) => child.runtimeType == coui.OutlinedContainer)
+                .single;
+            final target = foreign
+                ? _paintDomFrontier(
+                    currentSsrIdentityElement(
+                      producer,
+                      (producer.component as coui.MockupDevice).child,
+                    ),
+                  ).single
+                : _paintDomFrontier(
+                    _paintChildren(deviceDom)
+                        .where((node) => identical(node.component, outlined))
+                        .single,
+                  ).single;
+            final markup =
+                (target as RenderObjectElement).renderObject
+                    as MarkupRenderObject;
+            final injected = MarkupRenderText(
+              'foreign paint must not win',
+              false,
+            );
+            markup.attach(injected);
+            try {
+              if (foreign) {
+                expect(recorder.observe(root), before);
+              } else {
+                expect(() => recorder.observe(root), throwsStateError);
+              }
+            } finally {
+              markup.remove(injected);
+            }
+            expect(recorder.observe(root), before);
+          },
+        );
+      },
+    );
   }
   for (final component in ['join', 'table']) {
     for (final text in ['outside', '\u00a0']) {

@@ -394,7 +394,7 @@ class FramedCollectionSsrSource implements CurrentSsrBoxSource {
         foreign[frontier] = i;
       }
     }
-    if (route == 'device') _devicePath(owner, raw);
+    final paintOwner = route == 'device' ? _devicePath(owner, raw) : null;
     if (route == 'join') _joinPath(owner, raw);
     if (route == 'table') _tablePath(owner, raw);
     if (route.startsWith('browser-')) _browserPath(owner, raw);
@@ -402,6 +402,27 @@ class FramedCollectionSsrSource implements CurrentSsrBoxSource {
     final before = markup.renderToHtml();
     final parsed = _singleMarkup(before);
     final tree = _tree(registryDom, parsed, foreign);
+    final paintMarkup = paintOwner == null
+        ? null
+        : _markup(paintOwner).renderToHtml();
+    final paintPath = paintOwner == null
+        ? null
+        : _devicePaintPath(registryDom, paintOwner, foreign);
+    final bodyPaintSource = paintOwner == null
+        ? null
+        : {
+            'kind': 'mockup-device-body-outlined-paint-v1',
+            'paintAuthorityId': 'public-generated-outlined-body-paint-v1',
+            'fieldScope': const [
+              'backgroundColor',
+              'borderColor',
+              'borderWidthPx',
+              'borderRadiusPx',
+              'boxShadow',
+            ],
+            'ownerPathFromRegistry': paintPath,
+            'ownerIdentity': _devicePaintIdentity(_singleMarkup(paintMarkup!)),
+          };
     raw.validateExistingCurrentBinding();
     if (!identical(captureElement.component, _capture) ||
         !identical(
@@ -409,7 +430,14 @@ class FramedCollectionSsrSource implements CurrentSsrBoxSource {
           _registryResult,
         ) ||
         !identical(producerElement.component, raw.producer) ||
-        markup.renderToHtml() != before) {
+        markup.renderToHtml() != before ||
+        (paintOwner != null &&
+            (!identical(_devicePath(owner, raw), paintOwner) ||
+                _markup(paintOwner).renderToHtml() != paintMarkup ||
+                jsonEncode(
+                      _devicePaintPath(registryDom, paintOwner, foreign),
+                    ) !=
+                    jsonEncode(paintPath)))) {
       throw StateError('FRAMED_COLLECTION_CURRENT_SOURCE_CHANGED');
     }
     return {
@@ -420,6 +448,7 @@ class FramedCollectionSsrSource implements CurrentSsrBoxSource {
         ...raw.currentDomContract,
         'route': route,
         'generatedTree': tree,
+        'bodyPaintSource': ?bodyPaintSource,
       },
       'completeRawSlotCount': raw.rawSlots.length,
       'rawOrderFromPublicProducerLists': true,
@@ -505,7 +534,7 @@ DomComponent _dom(Element element, String tag) {
   return component;
 }
 
-void _devicePath(Element owner, FramedCollectionWebRawSource raw) {
+Element _devicePath(Element owner, FramedCollectionWebRawSource raw) {
   final root = _dom(owner, 'div');
   final children = root.children ?? const <Component>[];
   if (children.length < 2 ||
@@ -532,7 +561,71 @@ void _devicePath(Element owner, FramedCollectionWebRawSource raw) {
   if (input.length != 1 || !identical(input.single, raw.rawSlots.single)) {
     throw StateError('FRAMED_COLLECTION_DEVICE_WHOLE_CHILD_CHANGED');
   }
+  final declaredBody = children
+      .where((child) => child.runtimeType == coui.OutlinedContainer)
+      .single;
+  final mountedBody = _children(
+    owner,
+  ).where((element) => identical(element.component, declaredBody)).single;
+  // The composed public body is distinct from the Device layout/padding host.
+  // Retain its already-mounted frontier; never replay OutlinedContainer.build.
+  return _firstDom(mountedBody);
 }
+
+List<int> _devicePaintPath(
+  Element registry,
+  Element paintOwner,
+  Map<Element, int> foreign,
+) {
+  if (identical(registry, paintOwner) ||
+      foreign.keys.any(
+        (boundary) =>
+            _inside(boundary, paintOwner) || _inside(paintOwner, boundary),
+      )) {
+    throw StateError('FRAMED_COLLECTION_DEVICE_PAINT_FOREIGN_OWNER');
+  }
+  List<int>? locate(Element node) {
+    if (identical(node, paintOwner)) return [];
+    if (foreign.containsKey(node)) return null;
+    final children = [
+      for (final child in _children(node)) ..._domFrontier(child),
+    ];
+    for (var i = 0; i < children.length; i++) {
+      final rest = locate(children[i]);
+      if (rest != null) return [i, ...rest];
+    }
+    return null;
+  }
+
+  final path = locate(registry);
+  if (path == null || path.isEmpty) {
+    throw StateError('FRAMED_COLLECTION_DEVICE_PAINT_PATH_CHANGED');
+  }
+  return path;
+}
+
+Map<String, Object?> _devicePaintIdentity(dom.Element node) => {
+  'namespaceURI': node.namespaceUri,
+  'localName': node.localName,
+  'attributes': {
+    for (final attribute in node.attributes.entries)
+      attribute.key.toString(): attribute.value,
+  },
+  'childNodes': [
+    for (final child in node.nodes)
+      if (child is dom.Element)
+        _devicePaintIdentity(child)
+      else
+        {
+          'nodeType': child.nodeType,
+          'data': child is dom.Text
+              ? child.data
+              : child is dom.Comment
+              ? child.data
+              : '',
+        },
+  ],
+};
 
 void _joinPath(Element owner, FramedCollectionWebRawSource raw) {
   final seats = _children(owner);
