@@ -2,12 +2,11 @@
 export 'package:coui_core/coui_core.dart';
 // bundle from https://pub.dev/packages/country_flags
 export 'package:country_flags/country_flags.dart' show CountryFlag;
-// bundle cross_file
-export 'package:cross_file/cross_file.dart' show XFile;
 // bundle from data_widget
 export 'package:data_widget/data_widget.dart';
 export 'package:data_widget/extension.dart';
-export 'package:flutter/cupertino.dart'
+export 'package:file_drop/file_drop.dart' show XFile;
+export 'package:cupertino_ui/cupertino_ui.dart'
     show
         cupertinoDesktopTextSelectionControls,
         cupertinoDesktopTextSelectionHandleControls;
@@ -20,7 +19,7 @@ export 'package:flutter/gestures.dart' show PointerDeviceKind;
 // 선언형 `RoutePage`(#3209) / 명령형 `RoutePageRoute`(#3258) 다. 같은 일을
 // 하는 API 를 둘로 노출하지 않는다는 원칙(`Separator`→`Divider` 선례,
 // code-style/naming.md) 을 따른다. (#3248 S2/S3)
-export 'package:flutter/material.dart'
+export 'package:material_ui/material_ui.dart'
     show Brightness, FlutterLogo, Icons, ReorderableListView, SliverAppBar;
 export 'package:flutter/widgets.dart'
     hide

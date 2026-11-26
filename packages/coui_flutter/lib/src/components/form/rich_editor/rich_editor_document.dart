@@ -1,696 +1,296 @@
-// Adapted from Wonky Work's `wonky_rich_editor` (BSD-3-Clause, Copyright 2026
+// Adapted from Wonky Work's wonky_rich_editor (BSD-3-Clause, Copyright 2026
 // The Wonky Work authors) — see NOTICE.
 
-/// How a `RichEditor`'s document is laid out: block spacing, headings,
-/// quotes with a bar, literal blocks in a box, tasks with a CoUI
-/// `Checkbox`, rules, images — on super_editor.
-library;
-
+import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:coui_flutter/coui_flutter.dart';
 import 'package:coui_flutter/src/components/form/rich_editor/markdown/markdown_document_codec.dart';
-import 'package:coui_flutter/src/components/form/rich_editor/markdown/rich_editor_reactions.dart';
-import 'package:super_editor/super_editor.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/rendering.dart' show RenderParagraph;
+import 'package:flutter_quill/flutter_quill.dart' as quill;
 
-/// The text styles and component builders of the editor's document.
 class RichEditorDocumentStyle {
-  /// Creates a [RichEditorDocumentStyle].
   const RichEditorDocumentStyle({
     required this.resolved,
     required this.base,
     required this.placeholder,
     required this.padding,
+    required this.onImagePressed,
   });
 
-  /// The resolved chrome.
   final ResolvedRichEditor resolved;
-
-  /// Paragraph text — the `TextArea`'s value text.
   final TextStyle base;
-
-  /// The empty editor's hint — the `TextArea`'s placeholder text.
   final TextStyle placeholder;
-
-  /// Inset of the document inside the box — the `TextArea`'s padding.
   final EdgeInsets padding;
+  final ValueChanged<int>? onImagePressed;
 
-  /// Where a list item's text starts, in from the list's edge, at nesting
-  /// depth [indent] (0 for a top-level list) — one [ResolvedRichEditor
-  /// .listIndent] per level, the Web twin's padding on each nested list.
-  double listItemIndent(int indent) => resolved.listIndent * (indent + 1);
+  TextStyle _role(TextStyle style) =>
+      base.merge(style.copyWith(color: base.color));
 
-  TextStyle get _code => base.merge(
-    resolved.codeTextStyle.copyWith(color: base.color),
-  );
+  quill.DefaultStyles get styles {
+    const noHorizontal = quill.HorizontalSpacing(0, 0);
+    const noVertical = quill.VerticalSpacing(0, 0);
+    final spacing = quill.VerticalSpacing(0, resolved.blockSpacing);
+    final code = _role(resolved.codeTextStyle);
+    quill.DefaultTextBlockStyle textBlock(TextStyle style) =>
+        quill.DefaultTextBlockStyle(
+          style,
+          noHorizontal,
+          spacing,
+          noVertical,
+          null,
+        );
 
-  /// [role] over the paragraph text, in the paragraph's colour.
-  TextStyle _role(TextStyle role) =>
-      base.merge(role.copyWith(color: base.color));
-
-  /// The stylesheet of the document.
-  Stylesheet stylesheet() {
-    final gap = resolved.blockSpacing;
-    final codePadding = resolved.codePadding;
-    // One text per level: the resolved title roles, over the paragraph text
-    // (whose colour they keep). Levels 4–6 are not offered by the toolbar
-    // and read as the smallest.
-    final headings = [
-      _role(resolved.heading1TextStyle),
-      _role(resolved.heading2TextStyle),
-      _role(resolved.heading3TextStyle),
-    ];
-    return Stylesheet(
-      documentPadding: padding,
-      inlineTextStyler: _inline,
-      rules: [
-        StyleRule(
-          BlockSelector.all,
-          (doc, node) => {
-            Styles.maxWidth: double.infinity,
-            Styles.padding: CascadingPadding.only(bottom: gap),
-            Styles.textStyle: base,
-          },
-        ),
-        // A list is one block on the Web: the space is below the list, none
-        // between its items.
-        StyleRule(
-          BlockSelector.all,
-          (doc, node) => _continuesList(doc, node)
-              ? {Styles.padding: const CascadingPadding.only(bottom: 0)}
-              : const {},
-        ),
-        for (final (level, name) in const [
-          (0, 'header1'),
-          (1, 'header2'),
-          (2, 'header3'),
-          (2, 'header4'),
-          (2, 'header5'),
-          (2, 'header6'),
-        ])
-          StyleRule(
-            BlockSelector(name),
-            (doc, node) => {Styles.textStyle: headings[level]},
+    return quill.DefaultStyles(
+      paragraph: textBlock(base),
+      h1: textBlock(_role(resolved.heading1TextStyle)),
+      h2: textBlock(_role(resolved.heading2TextStyle)),
+      h3: textBlock(_role(resolved.heading3TextStyle)),
+      h4: textBlock(_role(resolved.heading3TextStyle)),
+      h5: textBlock(_role(resolved.heading3TextStyle)),
+      h6: textBlock(_role(resolved.heading3TextStyle)),
+      bold: const TextStyle(fontWeight: FontWeight.w600),
+      italic: const TextStyle(fontStyle: FontStyle.italic),
+      strikeThrough: const TextStyle(decoration: TextDecoration.lineThrough),
+      link: TextStyle(
+        color: resolved.linkColor,
+        decoration: TextDecoration.underline,
+        decorationColor: resolved.linkColor,
+      ),
+      inlineCode: quill.InlineCodeStyle(
+        style: resolved.codeTextStyle,
+        backgroundColor: resolved.codeBackgroundColor,
+      ),
+      placeHolder: textBlock(placeholder),
+      leading: textBlock(base),
+      lists: quill.DefaultListBlockStyle(
+        base,
+        noHorizontal,
+        spacing,
+        noVertical,
+        null,
+        null,
+        indentWidthBuilder: (block, _, _, _) {
+          final attributes = block.style.attributes;
+          if (attributes.containsKey(quill.Attribute.list.key)) {
+            final depth =
+                attributes[quill.Attribute.indent.key]?.value as int? ?? 0;
+            return quill.HorizontalSpacing(
+              resolved.listIndent * (depth + 1),
+              0,
+            );
+          }
+          if (attributes.containsKey(quill.Attribute.blockQuote.key)) {
+            return quill.HorizontalSpacing(
+              resolved.quoteBarWidth + resolved.quoteSpacing,
+              0,
+            );
+          }
+          if (attributes.containsKey(quill.Attribute.codeBlock.key)) {
+            return quill.HorizontalSpacing(
+              resolved.codePadding.left,
+              resolved.codePadding.right,
+            );
+          }
+          return noHorizontal;
+        },
+      ),
+      quote: quill.DefaultTextBlockStyle(
+        base.copyWith(color: resolved.quoteTextColor),
+        noHorizontal,
+        spacing,
+        noVertical,
+        BoxDecoration(
+          border: BorderDirectional(
+            start: BorderSide(
+              color: resolved.quoteBarColor,
+              width: resolved.quoteBarWidth,
+            ),
           ),
-        StyleRule(
-          const BlockSelector('blockquote'),
-          (doc, node) => {
-            Styles.padding: CascadingPadding.only(
-              left: resolved.quoteBarWidth + resolved.quoteSpacing,
-            ),
-            Styles.textStyle: base.copyWith(color: resolved.quoteTextColor),
-          },
         ),
-        StyleRule(
-          const BlockSelector('blockquote').after('blockquote'),
-          (doc, node) => {Styles.padding: const CascadingPadding.only(top: 0)},
+      ),
+      code: quill.DefaultTextBlockStyle(
+        code,
+        noHorizontal,
+        spacing,
+        quill.VerticalSpacing(
+          resolved.codePadding.top,
+          resolved.codePadding.bottom,
         ),
-        StyleRule(
-          const BlockSelector('code'),
-          (doc, node) => {
-            // The box's padding is added around the component.
-            Styles.padding: CascadingPadding.only(
-              left: codePadding.left,
-              right: codePadding.right,
-              bottom: gap + codePadding.bottom,
-            ),
-            Styles.textStyle: _code,
-          },
-        ),
-        StyleRule(
-          BlockSelector.all.last(),
-          (doc, node) => {
-            Styles.padding: CascadingPadding.only(
-              bottom: isCodeLike(node) ? codePadding.bottom : 0,
-            ),
-          },
-        ),
-      ],
+        BoxDecoration(color: resolved.codeBackgroundColor),
+      ),
     );
   }
 
-  TextStyle _inline(Set<Attribution> attributions, TextStyle style) {
-    var s = style;
-    if (attributions.contains(boldAttribution)) {
-      s = s.copyWith(fontWeight: FontWeight.w600);
-    }
-    if (attributions.contains(italicsAttribution)) {
-      s = s.copyWith(fontStyle: FontStyle.italic);
-    }
-    final link = attributions.any((a) => a is LinkAttribution);
-    final decorations = [
-      if (attributions.contains(strikethroughAttribution))
-        TextDecoration.lineThrough,
-      if (link) TextDecoration.underline,
-    ];
-    if (decorations.isNotEmpty) {
-      s = s.copyWith(
-        decoration: TextDecoration.combine(decorations),
-        decorationColor: link ? resolved.linkColor : null,
-      );
-    }
-    if (link) s = s.copyWith(color: resolved.linkColor);
-    if (attributions.contains(codeAttribution)) {
-      s = s.merge(
-        resolved.codeTextStyle.copyWith(
-          color: s.color,
-          backgroundColor: resolved.codeBackgroundColor,
-        ),
-      );
-    }
-    return s;
-  }
-
-  /// The component builders: the hint, paragraphs (quote bar, literal box,
-  /// headings), list items, tasks, rules and images.
-  List<ComponentBuilder> componentBuilders(Editor editor, {String? hint}) => [
-    if (hint != null && hint.isNotEmpty) _HintBuilder(hint, placeholder),
-    _ParagraphBuilder(this),
-    _ListItemBuilder(this),
-    _TaskBuilder(editor, this),
-    _RuleBuilder(this),
-    _ImageBuilder(this),
-  ];
-}
-
-/// The placeholder in the empty editor's paragraph, wrapped over as many
-/// lines as it takes — the `TextArea`'s placeholder.
-class _HintBuilder extends HintComponentBuilder {
-  _HintBuilder(String hint, TextStyle style) : super(hint, (_) => style);
-
-  @override
-  SingleColumnLayoutComponentViewModel? createViewModel(
-    Document document,
-    DocumentNode node,
-  ) {
-    if (document.nodeCount != 1 ||
-        !isPlainParagraph(node) ||
-        (node as ParagraphNode).text.isNotEmpty) {
+  Widget? leading(quill.Node node, quill.LeadingConfig config) {
+    if (node is! quill.Line ||
+        config.attribute.key != quill.Attribute.list.key) {
       return null;
     }
-    return super.createViewModel(document, node);
-  }
-
-  /// `super_editor`'s component, but the hint clipped rather than ellipsized.
-  /// It asks for an ellipsis with no line limit, and a paragraph ellipsized
-  /// with no line limit ends at its first line that overflows: the hint was
-  /// always one line, cut off with "…".
-  @override
-  Widget? createComponent(
-    SingleColumnDocumentComponentContext componentContext,
-    SingleColumnLayoutComponentViewModel componentViewModel,
-  ) {
-    if (componentViewModel is! HintComponentViewModel) return null;
-    return TextWithHintComponent(
-      key: componentContext.componentKey,
-      text: componentViewModel.text,
-      inlineWidgetBuilders: componentViewModel.inlineWidgetBuilders,
-      textStyleBuilder: componentViewModel.textStyleBuilder,
-      hintText: AttributedText(componentViewModel.hintText),
-      hintOverflow: TextOverflow.clip,
-      hintStyleBuilder: (_) => hintStyleBuilder(componentContext.context),
-      textSelection: componentViewModel.selection,
-      selectionColor: componentViewModel.selectionColor,
-      underlines: componentViewModel.createUnderlines(),
-      metadata: {
-        if (componentViewModel.blockType != null)
-          NodeMetadata.blockType: componentViewModel.blockType,
-      },
-    );
-  }
-}
-
-class _ParagraphBuilder implements ComponentBuilder {
-  const _ParagraphBuilder(this.style);
-
-  final RichEditorDocumentStyle style;
-  static const _inner = ParagraphComponentBuilder();
-
-  @override
-  SingleColumnLayoutComponentViewModel? createViewModel(
-    Document document,
-    DocumentNode node,
-  ) {
-    if (node is! ParagraphNode) return null;
-    return _inner.createViewModel(document, node);
-  }
-
-  @override
-  Widget? createComponent(
-    SingleColumnDocumentComponentContext componentContext,
-    SingleColumnLayoutComponentViewModel viewModel,
-  ) {
-    if (viewModel is! ParagraphComponentViewModel) return null;
-    final blockType = viewModel.blockType;
-    // super_editor adds the block type to every span's attributions; for
-    // code that would draw every character as inline code.
-    final component = _inner.createComponent(
-      componentContext,
-      blockType == codeAttribution
-          ? (viewModel.copy()..blockType = null)
-          : viewModel,
-    );
-    if (component == null) return null;
-    if (blockType == blockquoteAttribution) {
-      return CustomPaint(
-        painter: _QuoteBar(style.resolved),
-        child: component,
+    final indent = MarkdownDocumentCodec.indentOf(node);
+    final width = resolved.listIndent * (indent + 1);
+    final value = config.attribute.value;
+    final Widget marker;
+    if (value == 'checked' || value == 'unchecked') {
+      marker = Checkbox(
+        checked: config.value,
+        onChanged: config.enabled == true
+            ? (checked) => config.onCheckboxTap(checked == true)
+            : null,
+      );
+    } else {
+      marker = Text(
+        value == 'ordered' ? '${config.getIndexNumberByIndent}.' : '•',
+        style: config.style,
       );
     }
-    if (blockType == codeAttribution) {
-      return _CodeBox(style: style, child: component);
-    }
-    final level = MarkdownDocumentCodec.headingLevelOf(
-      _BlockTypeNode(blockType),
-    );
-    if (level != null) {
-      return Semantics(header: true, headingLevel: level, child: component);
-    }
-    return component;
-  }
-}
-
-/// A node stand-in to read a heading level from a block type.
-class _BlockTypeNode extends ParagraphNode {
-  _BlockTypeNode(Attribution? type)
-    : super(
-        id: '',
-        text: AttributedText(),
-        metadata: {NodeMetadata.blockType: type},
-      );
-}
-
-class _QuoteBar extends CustomPainter {
-  _QuoteBar(this.resolved);
-
-  final ResolvedRichEditor resolved;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    canvas.drawRect(
-      Rect.fromLTWH(
-        -(resolved.quoteBarWidth + resolved.quoteSpacing),
-        0,
-        resolved.quoteBarWidth,
-        size.height,
-      ),
-      Paint()..color = resolved.quoteBarColor,
-    );
-  }
-
-  @override
-  bool shouldRepaint(_QuoteBar oldDelegate) =>
-      oldDelegate.resolved.quoteBarColor != resolved.quoteBarColor ||
-      oldDelegate.resolved.quoteBarWidth != resolved.quoteBarWidth ||
-      oldDelegate.resolved.quoteSpacing != resolved.quoteSpacing;
-}
-
-/// A block kept as literal Markdown (fenced code, tables, HTML …) as one
-/// filled box. The box ignores pointers and its padding is outside the
-/// component, so taps, caret and selection stay aligned with the text.
-class _CodeBox extends StatelessWidget {
-  const _CodeBox({required this.style, required this.child});
-
-  final RichEditorDocumentStyle style;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    final p = style.resolved.codePadding;
-    return Semantics(
-      label: 'Markdown',
-      child: Stacks(
-        clipBehavior: .none,
-        children: [
-          Position(
-            left: -p.left,
-            right: -p.right,
-            top: 0,
-            bottom: -p.bottom,
-            child: IgnorePointer(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: style.resolved.codeBackgroundColor,
-                  borderRadius: BorderRadius.circular(p.top * 0.75),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: p.top),
-            child: child,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Tasks with the CoUI `Checkbox` (super_editor's uses Material's).
-/// Whether [node] is followed by another item of the same list — an item of
-/// the same kind, or a task after a task.
-bool _continuesList(Document doc, DocumentNode node) {
-  final next = doc.getNodeAfterById(node.id);
-  return switch ((node, next)) {
-    (final ListItemNode item, final ListItemNode following) =>
-      item.type == following.type,
-    (TaskNode(), TaskNode()) => true,
-    _ => false,
-  };
-}
-
-/// The list items: `super_editor`'s own, with the text set in by the Core list
-/// indent. Its builder does not hand the view model's indent calculator on to
-/// the component, which then sets the text in by a share of the font size — so
-/// the component is built here.
-class _ListItemBuilder implements ComponentBuilder {
-  const _ListItemBuilder(this.style);
-
-  static const _inner = ListItemComponentBuilder();
-
-  final RichEditorDocumentStyle style;
-
-  @override
-  SingleColumnLayoutComponentViewModel? createViewModel(
-    Document document,
-    DocumentNode node,
-  ) => _inner.createViewModel(document, node);
-
-  @override
-  Widget? createComponent(
-    SingleColumnDocumentComponentContext componentContext,
-    SingleColumnLayoutComponentViewModel viewModel,
-  ) {
-    double indentOf(TextStyle textStyle, int indent) =>
-        style.listItemIndent(indent);
-    return switch (viewModel) {
-      final UnorderedListItemComponentViewModel item =>
-        UnorderedListItemComponent(
-          componentKey: componentContext.componentKey,
-          text: item.text,
-          styleBuilder: item.textStyleBuilder,
-          indent: item.indent,
-          indentCalculator: indentOf,
-          dotStyle: item.dotStyle,
-          textSelection: item.selection,
-          textDirection: item.textDirection,
-          textAlignment: item.textAlignment,
-          selectionColor: item.selectionColor,
-          highlightWhenEmpty: item.highlightWhenEmpty,
-          underlines: item.createUnderlines(),
-          inlineWidgetBuilders: item.inlineWidgetBuilders,
+    return SizedBox(
+      width: width,
+      child: Align(
+        alignment: AlignmentDirectional.centerEnd,
+        child: Padding(
+          padding: EdgeInsetsDirectional.only(end: resolved.listIndent / 4),
+          child: marker,
         ),
-      final OrderedListItemComponentViewModel item => OrderedListItemComponent(
-        componentKey: componentContext.componentKey,
-        indent: item.indent,
-        indentCalculator: indentOf,
-        listIndex: item.ordinalValue!,
-        text: item.text,
-        textDirection: item.textDirection,
-        textAlignment: item.textAlignment,
-        styleBuilder: item.textStyleBuilder,
-        numeralStyle: item.numeralStyle,
-        textSelection: item.selection,
-        selectionColor: item.selectionColor,
-        highlightWhenEmpty: item.highlightWhenEmpty,
-        underlines: item.createUnderlines(),
-        inlineWidgetBuilders: item.inlineWidgetBuilders,
-      ),
-      _ => null,
-    };
-  }
-}
-
-class _TaskBuilder implements ComponentBuilder {
-  _TaskBuilder(Editor editor, this.style)
-    : _inner = TaskComponentBuilder(editor);
-
-  final TaskComponentBuilder _inner;
-  final RichEditorDocumentStyle style;
-
-  @override
-  SingleColumnLayoutComponentViewModel? createViewModel(
-    Document document,
-    DocumentNode node,
-  ) => _inner.createViewModel(document, node);
-
-  @override
-  Widget? createComponent(
-    SingleColumnDocumentComponentContext componentContext,
-    SingleColumnLayoutComponentViewModel viewModel,
-  ) {
-    if (viewModel is! TaskComponentViewModel) return null;
-    return _TaskComponent(
-      key: componentContext.componentKey,
-      viewModel: viewModel,
-      completedColor: style.resolved.completedTaskColor,
-      indentOf: style.listItemIndent,
-    );
-  }
-}
-
-class _TaskComponent extends StatefulWidget {
-  const _TaskComponent({
-    required this.viewModel,
-    required this.completedColor,
-    required this.indentOf,
-    super.key,
-  });
-
-  final TaskComponentViewModel viewModel;
-  final Color completedColor;
-
-  /// Where the text of a task at a nesting depth starts, in from the edge —
-  /// the bullets' indent, so a checkbox stands where a dot would.
-  final double Function(int indent) indentOf;
-
-  @override
-  State<_TaskComponent> createState() => _TaskComponentState();
-}
-
-class _TaskComponentState extends State<_TaskComponent>
-    with ProxyDocumentComponent<_TaskComponent>, ProxyTextComposable {
-  final GlobalKey<State<StatefulWidget>> _textKey = GlobalKey();
-
-  /// The checkbox's seat — wide enough for the box and a gap, like a
-  /// bullet's.
-  static const double _seat = 24;
-
-  @override
-  GlobalKey<State<StatefulWidget>> get childDocumentComponentKey => _textKey;
-
-  @override
-  TextComposable get childTextComposable =>
-      childDocumentComponentKey.currentState! as TextComposable;
-
-  TextStyle _styles(Set<Attribution> attributions) {
-    final style = widget.viewModel.textStyleBuilder(attributions);
-    if (!widget.viewModel.isComplete) return style;
-    return style.copyWith(
-      color: widget.completedColor,
-      decoration: style.decoration == null
-          ? TextDecoration.lineThrough
-          : TextDecoration.combine([
-              TextDecoration.lineThrough,
-              style.decoration!,
-            ]),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final m = widget.viewModel;
-    final base = m.textStyleBuilder({});
-    final lineHeight = (base.fontSize ?? 14) * (base.height ?? 1.45);
-    final setComplete = m.setComplete;
-    return Semantics(
-      checked: m.isComplete,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // The checkbox sits where a bullet's dot would (same indents).
-          SizedBox(
-            width: (widget.indentOf(m.indent) - _seat).clamp(
-              0.0,
-              double.infinity,
-            ),
-          ),
-          SizedBox(
-            width: _seat,
-            height: lineHeight,
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Checkbox(
-                checked: m.isComplete,
-                enabled: setComplete != null,
-                onChanged: setComplete == null
-                    ? null
-                    : (value) => setComplete(value ?? false),
-              ),
-            ),
-          ),
-          Expanded(
-            child: TextComponent(
-              key: _textKey,
-              text: m.text,
-              textDirection: m.textDirection,
-              textAlign: m.textAlignment,
-              textStyleBuilder: _styles,
-              inlineWidgetBuilders: m.inlineWidgetBuilders,
-              textSelection: m.selection,
-              selectionColor: m.selectionColor,
-              highlightWhenEmpty: m.highlightWhenEmpty,
-              underlines: m.createUnderlines(),
-            ),
-          ),
-        ],
       ),
     );
   }
-}
 
-/// Rules in the resolved rule colour.
-class _RuleBuilder implements ComponentBuilder {
-  const _RuleBuilder(this.style);
-
-  final RichEditorDocumentStyle style;
-  static const _inner = HorizontalRuleComponentBuilder();
-
-  @override
-  SingleColumnLayoutComponentViewModel? createViewModel(
-    Document document,
-    DocumentNode node,
-  ) => _inner.createViewModel(document, node);
-
-  @override
-  Widget? createComponent(
-    SingleColumnDocumentComponentContext componentContext,
-    SingleColumnLayoutComponentViewModel viewModel,
-  ) {
-    if (viewModel is! HorizontalRuleComponentViewModel) return null;
-    return HorizontalRuleComponent(
-      componentKey: componentContext.componentKey,
-      color: style.resolved.ruleColor,
-      selection:
-          viewModel.selection?.nodeSelection
-              as UpstreamDownstreamNodeSelection?,
-      selectionColor: viewModel.selectionColor,
-      showCaret: viewModel.caret != null,
-      caretColor: viewModel.caretColor,
-      opacity: viewModel.opacity,
-    );
-  }
-}
-
-/// An image block's view model: [ImageComponentViewModel] plus the alternative
-/// text, which the stock one does not carry.
-class _ImageViewModel extends ImageComponentViewModel {
-  _ImageViewModel({
-    required super.nodeId,
-    required super.imageUrl,
-    required this.altText,
-    super.createdAt,
-    super.maxWidth,
-    super.padding,
-    super.opacity,
-    super.selection,
-    super.selectionColor,
-  });
-
-  /// What the image shows, in words.
-  final String altText;
-
-  @override
-  _ImageViewModel copy() => _ImageViewModel(
-    nodeId: nodeId,
-    createdAt: createdAt,
-    maxWidth: maxWidth,
-    padding: padding,
-    opacity: opacity,
-    imageUrl: imageUrl,
-    altText: altText,
-    selection: selection,
-    selectionColor: selectionColor,
+  static InlineSpan textSpan(
+    BuildContext context,
+    quill.Node node,
+    int offset,
+    String text,
+    TextStyle? style,
+    GestureRecognizer? recognizer,
+  ) => _EditorTextSpan(
+    node,
+    offset,
+    text: text,
+    style: style,
+    recognizer: recognizer,
   );
-}
 
-/// Images in the editor's own chrome — corner, height cap, loading and
-/// unavailable states — in place of super_editor's centred, uncapped one.
-class _ImageBuilder implements ComponentBuilder {
-  const _ImageBuilder(this.style);
-
-  final RichEditorDocumentStyle style;
-
-  @override
-  SingleColumnLayoutComponentViewModel? createViewModel(
-    Document document,
-    DocumentNode node,
+  /// Geometry from the rendered glyph boxes, excluding cursor/strut padding.
+  static Rect? selectionBounds(
+    quill.RenderEditor layout,
+    TextSelection selection,
   ) {
-    if (node is! ImageNode) return null;
-    return _ImageViewModel(
-      nodeId: node.id,
-      createdAt: node.metadata[NodeMetadata.createdAt] as DateTime?,
-      imageUrl: node.imageUrl,
-      altText: node.altText,
-    );
+    Rect? selected;
+
+    void collect(RenderObject object) {
+      if (object is! RenderParagraph || !object.hasSize) {
+        object.visitChildren(collect);
+        return;
+      }
+      int? firstOffset;
+      var length = 0;
+      object.text.visitChildren((span) {
+        if (span is _EditorTextSpan) {
+          firstOffset ??= span.node.documentOffset + span.offset - length;
+        }
+        length += switch (span) {
+          TextSpan(:final text) => text?.length ?? 0,
+          PlaceholderSpan() => 1,
+          _ => 0,
+        };
+        return true;
+      });
+      final start = firstOffset;
+      if (start == null) return;
+      final left = math.max(0, selection.start - start);
+      final right = math.min(length, selection.end - start);
+      if (left >= right) return;
+      for (final box in object.getBoxesForSelection(
+        TextSelection(baseOffset: left, extentOffset: right),
+      )) {
+        final rect = Rect.fromPoints(
+          object.localToGlobal(box.toRect().topLeft),
+          object.localToGlobal(box.toRect().bottomRight),
+        );
+        selected = selected?.expandToInclude(rect) ?? rect;
+      }
+    }
+
+    layout.visitChildren(collect);
+    return selected;
   }
 
-  @override
-  Widget? createComponent(
-    SingleColumnDocumentComponentContext componentContext,
-    SingleColumnLayoutComponentViewModel viewModel,
-  ) {
-    if (viewModel is! _ImageViewModel) return null;
-    return _ImageComponent(
-      componentKey: componentContext.componentKey,
-      viewModel: viewModel,
-      style: style,
-    );
-  }
+  List<quill.EmbedBuilder> get embeds => [_ImageEmbed(this), _RuleEmbed(this)];
 }
 
-/// `ImageComponent`'s structure — pointer-transparent, a selection overlay
-/// around a `BoxComponent` — with the image aligned to the text's start
-/// rather than centred.
-class _ImageComponent extends StatelessWidget {
-  const _ImageComponent({
-    required this.componentKey,
-    required this.viewModel,
-    required this.style,
+class _EditorTextSpan extends TextSpan {
+  const _EditorTextSpan(
+    this.node,
+    this.offset, {
+    super.text,
+    super.style,
+    super.recognizer,
   });
 
-  final GlobalKey componentKey;
-  final _ImageViewModel viewModel;
+  final quill.Node node;
+  final int offset;
+}
+
+class _ImageEmbed extends quill.EmbedBuilder {
+  const _ImageEmbed(this.style);
+
   final RichEditorDocumentStyle style;
 
   @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.basic,
-      hitTestBehavior: HitTestBehavior.translucent,
-      child: IgnorePointer(
-        child: Align(
-          alignment: AlignmentDirectional.centerStart,
-          child: SelectableBox(
-            selection:
-                viewModel.selection?.nodeSelection
-                    as UpstreamDownstreamNodeSelection?,
-            selectionColor: viewModel.selectionColor,
-            child: BoxComponent(
-              key: componentKey,
-              opacity: viewModel.opacity,
-              child: Semantics(
-                image: true,
-                label: viewModel.altText,
-                child: _ImageView(
-                  url: viewModel.imageUrl,
-                  alt: viewModel.altText,
-                  style: style,
-                ),
-              ),
+  String get key => MarkdownDocumentCodec.imageType;
+
+  @override
+  Widget build(BuildContext context, quill.EmbedContext embedContext) {
+    final image = MarkdownDocumentCodec.imageData(
+      embedContext.node.value.toJson(),
+    )!;
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.basic,
+        child: Builder(
+          builder: (context) => GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTapUp: style.onImagePressed == null
+                ? null
+                : (details) {
+                    final trailing =
+                        details.localPosition.dx >= context.size!.width / 2;
+                    final rtl = Directionality.of(context) == TextDirection.rtl;
+                    style.onImagePressed!(
+                      embedContext.node.documentOffset +
+                          (trailing != rtl ? 1 : 0),
+                    );
+                  },
+            child: Semantics(
+              image: true,
+              label: image.alt,
+              child: _ImageView(url: image.url, alt: image.alt, style: style),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _RuleEmbed extends quill.EmbedBuilder {
+  const _RuleEmbed(this.style);
+
+  final RichEditorDocumentStyle style;
+
+  @override
+  String get key => MarkdownDocumentCodec.ruleType;
+
+  @override
+  Widget build(BuildContext context, quill.EmbedContext embedContext) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: style.resolved.blockSpacing / 2),
+      child: SizedBox(
+        height: 1,
+        child: ColoredBox(color: style.resolved.ruleColor),
       ),
     );
   }

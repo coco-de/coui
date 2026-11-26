@@ -1,7 +1,7 @@
 // Adapted from Wonky Work's `wonky_rich_editor` (BSD-3-Clause, Copyright 2026
 // The Wonky Work authors) — see NOTICE.
 
-/// Inline Markdown ⇄ super_editor [AttributedText]: bold, italic,
+/// Inline Markdown ⇄ styled text runs: bold, italic,
 /// strikethrough, inline code and links, and nothing else.
 library;
 
@@ -11,7 +11,6 @@ import 'package:coui_core/coui_core.dart'
 import 'package:coui_flutter/src/components/form/rich_editor/markdown/block_syntax.dart';
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:markdown/markdown.dart' as md;
-import 'package:super_editor/super_editor.dart';
 
 /// GitHub-flavoured Markdown as the editor reads it: fenced code, tables
 /// and task lists for blocks; strikethrough and bare URLs inline. Inline
@@ -147,8 +146,8 @@ class InlineMarkdownCodec {
   /// Returns null when the content holds something the editor cannot
   /// represent (images, raw HTML, unsafe links …): the caller keeps the
   /// block as literal text.
-  AttributedText? read(List<String> lines) {
-    if (lines.isEmpty) return AttributedText();
+  List<InlineRun>? read(List<String> lines) {
+    if (lines.isEmpty) return const [];
     final runs = <InlineRun>[];
     for (final (i, line) in lines.indexed) {
       if (i > 0) runs.add(const InlineRun('\n'));
@@ -156,7 +155,7 @@ class InlineMarkdownCodec {
       if (parsed == null) return null;
       runs.addAll(parsed);
     }
-    return runsToText(InlineRun.merge(runs));
+    return InlineRun.merge(runs);
   }
 
   /// The image [lines] hold when they are exactly one image and nothing
@@ -230,9 +229,9 @@ class InlineMarkdownCodec {
   // ----------------------------------------------------------------- write
 
   /// The Markdown lines of [text] (one per `"\n"`-separated line).
-  List<String> writeLines(AttributedText text, {bool heading = false}) {
+  List<String> writeLines(List<InlineRun> runs, {bool heading = false}) {
     final lines = <List<InlineRun>>[[]];
-    for (final r in textToRuns(text)) {
+    for (final r in runs) {
       final parts = r.text.split('\n');
       for (var i = 0; i < parts.length; i++) {
         if (i > 0) lines.add([]);
@@ -397,52 +396,6 @@ class InlineMarkdownCodec {
       merged = merged.sublist(0, merged.length - 1);
     }
     return merged;
-  }
-
-  // ------------------------------------------------- runs ⇄ attributed text
-
-  /// The runs of [text] (bold, italic, strikethrough, code and links; other
-  /// attributions are not Markdown and are dropped).
-  static List<InlineRun> textToRuns(AttributedText text) {
-    final plain = text.toPlainText();
-    if (plain.isEmpty) return const [];
-    final runs = <InlineRun>[];
-    for (final span in text.computeAttributionSpans()) {
-      final a = span.attributions;
-      final link = a.whereType<LinkAttribution>().firstOrNull;
-      runs.add(
-        InlineRun(
-          plain.substring(span.start, span.end + 1),
-          bold: a.contains(boldAttribution),
-          italic: a.contains(italicsAttribution),
-          strike: a.contains(strikethroughAttribution),
-          code: a.contains(codeAttribution),
-          link: link?.plainTextUri,
-        ),
-      );
-    }
-    return InlineRun.merge(runs);
-  }
-
-  /// [runs] as attributed text.
-  static AttributedText runsToText(List<InlineRun> runs) {
-    final text = AttributedText(runs.map((r) => r.text).join());
-    var at = 0;
-    for (final r in runs) {
-      final end = at + r.text.length;
-      if (r.text.isNotEmpty) {
-        final range = SpanRange(at, end - 1);
-        if (r.bold) text.addAttribution(boldAttribution, range);
-        if (r.italic) text.addAttribution(italicsAttribution, range);
-        if (r.strike) text.addAttribution(strikethroughAttribution, range);
-        if (r.code) text.addAttribution(codeAttribution, range);
-        if (r.link != null) {
-          text.addAttribution(LinkAttribution(r.link!), range);
-        }
-      }
-      at = end;
-    }
-    return text;
   }
 }
 

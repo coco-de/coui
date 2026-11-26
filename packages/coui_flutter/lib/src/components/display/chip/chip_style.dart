@@ -1,6 +1,4 @@
 import 'package:coui_flutter/coui_flutter.dart';
-import 'package:coui_flutter/src/components/layout/frame/frame_style.dart'
-    show coreMainAxisAlignmentToFlutter;
 
 // ═══════════════════════════════════════════════════
 // Resolved output

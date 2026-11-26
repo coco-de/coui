@@ -4,7 +4,7 @@ import 'package:coui_flutter/coui_flutter.dart';
 import 'package:coui_flutter/src/util/input_focus_ring.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart' show TextMagnifier;
+import 'package:material_ui/material_ui.dart' show TextMagnifier;
 import 'package:flutter/services.dart';
 
 /// Unified cross-platform multi-line text area with token-based rendering.

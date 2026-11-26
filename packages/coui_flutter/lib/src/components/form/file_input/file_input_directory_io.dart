@@ -1,5 +1,5 @@
-import 'package:cross_file/cross_file.dart';
 import 'package:dir_picker/dir_picker.dart';
+import 'package:file_drop/file_drop.dart' show XFile;
 
 /// Every native platform `dir_picker` supports has a system directory
 /// dialog, so the folder button is always offered there.

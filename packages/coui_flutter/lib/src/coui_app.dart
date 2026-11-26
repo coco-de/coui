@@ -2,12 +2,13 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart' as c;
+import 'package:cupertino_ui/cupertino_ui.dart' as c;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart'
     show GestureVelocityTrackerBuilder, MultitouchDragStrategy;
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter/material.dart' as m;
+import 'package:flutter_localizations/flutter_localizations.dart'
+    show GlobalWidgetsLocalizations;
+import 'package:material_ui/material_ui.dart' as m;
 import 'package:flutter/rendering.dart' as r show Selectable;
 import 'package:flutter/services.dart';
 import 'package:coui_flutter/coui_flutter.dart';
@@ -499,8 +500,9 @@ class _CoUIAppState extends State<CoUIApp> {
     }
     if (!styles.any(
       (id) => id != null && CoreSurfaceRecipe.of(id).refraction != null,
-    ))
+    )) {
       return;
+    }
 
     unawaited(SurfaceRefractionProgram.warmUp());
   }
@@ -673,8 +675,8 @@ class _CoUIAppState extends State<CoUIApp> {
       // Consumer delegates still come first, so an app that supplies
       // its own keeps winning.
       GlobalWidgetsLocalizations.delegate,
-      GlobalMaterialLocalizations.delegate,
-      GlobalCupertinoLocalizations.delegate,
+      m.GlobalMaterialLocalizations.delegate,
+      c.GlobalCupertinoLocalizations.delegate,
       m.DefaultMaterialLocalizations.delegate,
       c.DefaultCupertinoLocalizations.delegate,
       DefaultWidgetsLocalizations.delegate,

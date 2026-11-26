@@ -39,11 +39,15 @@ jobs:
           dart test --coverage-path=../../.dart_tool/coverage/coui_core.lcov
           test/token_scale_test.dart test/button_style_test.dart
 
-      - name: Test the Flutter button
+      - name: Test Flutter controls and file handling
         working-directory: packages/coui_flutter
         run: >-
           flutter test --coverage --coverage-path=../../.dart_tool/coverage/coui_flutter.lcov
           test/components/control/button_test.dart
+          test/components/form/rich_editor*_test.dart
+          test/components/file_input_test.dart
+          test/components/layout/tree_test.dart
+          test/components/layout/tree_presentation_test.dart
 
       - name: Test the Jaspr button
         working-directory: packages/coui_web

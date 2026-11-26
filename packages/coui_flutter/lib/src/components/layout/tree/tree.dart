@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:coui_flutter/coui_flutter.dart';
-import 'package:desktop_drop/desktop_drop.dart';
+import 'package:file_drop/file_drop.dart'
+    show DropTarget, DropItemFile, DropItemKind;
 import 'package:flutter/services.dart' show KeyDownEvent, LogicalKeyboardKey;
 
 /// Platform-native leading content for a tree node.
@@ -1049,6 +1050,7 @@ class _TreeState extends State<Tree> {
         !isRenaming) {
       final id = node.id!;
       row = DropTarget(
+        acceptedKinds: const {DropItemKind.file},
         onDragEntered: (details) {
           final target = _externalTargetAt(node, details.localPosition.dy);
           setState(() {

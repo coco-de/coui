@@ -6,7 +6,6 @@
 
 import 'package:jaspr/client.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:desktop_drop/desktop_drop_web.dart' as _desktop_drop_web;
 import 'package:dir_picker/dir_picker.dart' as _dir_picker;
 import 'package:docs_core/components/web_preview.dart' deferred as _web_preview;
 import 'package:docs_site/components/chain_shuffle_control.dart'
@@ -22,10 +21,14 @@ import 'package:docs_site/components/site_theme_controls.dart'
     deferred as _site_theme_controls;
 import 'package:docs_site/components/site_theme_toggle.dart'
     deferred as _site_theme_toggle;
-import 'package:file_picker_web/file_picker_web.dart' as _file_picker_web;
+import 'package:file_drop/file_drop_web.dart' as _file_drop_web;
 import 'package:file_saver_ffi/file_saver_ffi.dart' as _file_saver_ffi;
+import 'package:flutter_keyboard_visibility_temp_fork/flutter_keyboard_visibility_web.dart'
+    as _flutter_keyboard_visibility_web;
 import 'package:jaspr_content/components/_internal/zoomable_image.dart'
     deferred as _zoomable_image;
+import 'package:quill_native_bridge_web/quill_native_bridge_web.dart'
+    as _quill_native_bridge_web;
 import 'package:url_launcher_web/url_launcher_web.dart' as _url_launcher_web;
 
 /// Default [ClientOptions] for use with your Jaspr project.
@@ -47,10 +50,12 @@ import 'package:url_launcher_web/url_launcher_web.dart' as _url_launcher_web;
 ClientOptions get defaultClientOptions => ClientOptions(
   initialize: () {
     final Registrar registrar = webPluginRegistrar;
-    _desktop_drop_web.DesktopDropWeb.registerWith(registrar);
     _dir_picker.DirPickerWeb.registerWith(registrar);
-    _file_picker_web.FilePickerWeb.registerWith(registrar);
+    _file_drop_web.FileDropWeb.registerWith(registrar);
     _file_saver_ffi.FileSaverWeb.registerWith(registrar);
+    _flutter_keyboard_visibility_web
+        .FlutterKeyboardVisibilityTempForkWeb.registerWith(registrar);
+    _quill_native_bridge_web.QuillNativeBridgeWeb.registerWith(registrar);
     _url_launcher_web.UrlLauncherPlugin.registerWith(registrar);
     registrar.registerMessageHandler();
   },

@@ -2,7 +2,7 @@ import 'package:coui_flutter/src/page/page_transition_style.dart';
 import 'package:coui_flutter/src/theme/theme.dart';
 import 'package:coui_flutter/src/util/motion.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
-import 'package:flutter/material.dart' as m;
+import 'package:material_ui/material_ui.dart' as m;
 import 'package:flutter/widgets.dart';
 
 /// CoUI 의 라우트 페이지 primitive — Navigator 2.0 `Page` 구현체.

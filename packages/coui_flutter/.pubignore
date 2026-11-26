@@ -1,6 +1,5 @@
 docs/
 .dart_tool/
-analysis_options.yaml
 build/
 coverage/
 reports/

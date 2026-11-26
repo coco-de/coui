@@ -11,7 +11,7 @@ environment:
 dependencies:
   # The client starts the drop receiver alongside generated web-plugin
   # registration, before a deferred Flutter DropTarget mounts.
-  desktop_drop: ^0.8.4
+  file_drop: ^1.0.1
   flutter:
     sdk: flutter
   jaspr: ^0.24.0-beta.1

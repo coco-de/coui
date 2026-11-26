@@ -1,5 +1,5 @@
 import 'package:coui_flutter/coui_flutter.dart';
-import 'package:flutter/material.dart' as m;
+import 'package:material_ui/material_ui.dart' as m;
 
 /// Unified cross-platform selectable-text component.
 ///

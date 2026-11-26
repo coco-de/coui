@@ -30,7 +30,7 @@ Core → Flutter/Web → Figma 흐름을 따라가세요. [영문 기여 안내]
 pub.dev에서 Flutter 베타를 설치합니다.
 
 ```sh
-flutter pub add 'coui_flutter:^0.194.2-beta.1'
+flutter pub add coui_flutter
 ```
 
 앱 설정:

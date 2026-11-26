@@ -1,5 +1,18 @@
 Earlier releases are available in the [changelog archive](https://github.com/coco-de/coui/blob/main/docs/changelog/coui_flutter.md).
 
+## 0.195.0
+
+- RichEditor now uses Flutter Quill for editing, preserving the Markdown value,
+  toolbar, and image callbacks. For code that accesses the editor internals,
+  controller selections now use Flutter's `TextSelection`, and the engine
+  document and controller are Quill types.
+- Use the standalone Material and Cupertino packages for Flutter integrations.
+- Use `file_drop` for file selection and OS drag-and-drop. FileInput and Tree
+  callbacks use the `XFile` exported by `coui_flutter.dart`. Update imports that
+  refer directly to the former `cross_file` type.
+- Update directory picking, file saving, and skeleton loading dependencies.
+  Include a standalone BSD 3-Clause license and third-party notices.
+
 ## 0.194.2-beta.1
 
 - Prepare the first pub.dev release and declare the compatible CoUI Core range.

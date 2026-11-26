@@ -1,7 +1,7 @@
 import 'package:coui_flutter/coui_flutter.dart' hide SelectableText;
 import 'package:coui_flutter/src/components/text/keep_all_text.dart';
 import 'package:flutter/gestures.dart' show GestureRecognizer;
-import 'package:flutter/material.dart' show SelectableText;
+import 'package:material_ui/material_ui.dart' show SelectableText;
 
 /// The widget a Text chain returns.
 ///
