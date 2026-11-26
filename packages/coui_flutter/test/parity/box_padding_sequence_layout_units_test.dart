@@ -5,7 +5,11 @@ import 'package:flutter/widgets.dart'
     show
         EdgeInsets,
         Element,
+        ExcludeFocus,
+        Focus,
         GlobalKey,
+        IgnorePointer,
+        InheritedWidget,
         KeyedSubtree,
         Padding,
         Row,
@@ -96,6 +100,13 @@ Future<({GlobalKey capture, SequenceLayoutBoxSourceBinding binding})> _mount(
 }
 
 Matcher get _sourceError => throwsA(isA<BoxObservationError>());
+
+class _WrongFocusForwarder extends InheritedWidget {
+  const _WrongFocusForwarder({required super.child});
+
+  @override
+  bool updateShouldNotify(_WrongFocusForwarder oldWidget) => false;
+}
 
 class _UnknownStacks extends coui.Stacks {
   const _UnknownStacks() : super(children: const [SizedBox()]);
@@ -369,6 +380,125 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+  for (final animation in [
+    coui.CoreSwapAnimation.none,
+    coui.CoreSwapAnimation.rotate,
+  ]) {
+    for (final checked in [false, true]) {
+      testWidgets(
+        '${animation.name} checked=$checked keeps exact inactive slot guards',
+        (tester) async {
+          final result = coui.Swap(
+            checked: checked,
+            animation: animation,
+            onToggle: (_) {},
+            offContent: const Padding(
+              padding: EdgeInsets.all(71),
+              child: SizedBox(width: 8, height: 8),
+            ),
+            onContent: const Padding(
+              padding: EdgeInsets.all(83),
+              child: SizedBox(width: 8, height: 8),
+            ),
+          );
+          final mounted = await _mount(tester, result, _kSwap);
+          final binding = mounted.binding;
+          final children = (binding.frameSource.widget as Stack).children;
+          expect(children, hasLength(2));
+          for (var i = 0; i < children.length; i++) {
+            final inactive = i == 0 ? checked : !checked;
+            final pointer = children[i] as IgnorePointer;
+            final exclusion = pointer.child! as ExcludeFocus;
+            expect(pointer.ignoring, inactive);
+            expect(exclusion.excluding, inactive);
+          }
+          binding.validateExistingCurrentBinding();
+          expect(binding.readDeclaredAbsence().value, EdgeInsets.zero);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+  }
+
+  for (final checked in [false, true]) {
+    testWidgets(
+      'checked=$checked rejects a changed ExcludeFocus forwarding operation',
+      (tester) async {
+        final result = coui.Swap(
+          checked: checked,
+          onToggle: (_) {},
+          offContent: const coui.Text('off'),
+          onContent: const coui.Text('on'),
+        );
+        final mounted = await _mount(tester, result, _kSwap);
+        final binding = mounted.binding;
+        expect(binding.readDeclaredAbsence().value, EdgeInsets.zero);
+        final pointer =
+            (binding.frameSource.widget as Stack).children.first
+                as IgnorePointer;
+        final exclusion = pointer.child! as ExcludeFocus;
+        final excludeElement = tester.element(find.byWidget(exclusion));
+        final children = <Element>[];
+        excludeElement.visitChildren(children.add);
+        expect(children, hasLength(1));
+        final focusElement = children.single;
+        final original = focusElement.widget as Focus;
+        tester.binding.buildOwner!.buildScope(focusElement, () {
+          focusElement.update(
+            Focus(
+              canRequestFocus: original.canRequestFocus,
+              skipTraversal: original.skipTraversal,
+              includeSemantics: original.includeSemantics,
+              descendantsAreFocusable: !original.descendantsAreFocusable,
+              child: original.child,
+            ),
+          );
+        });
+        await tester.pump();
+        expect(binding.readDeclaredAbsence, _sourceError);
+
+        // A positive after restoration ensures the negative reached a valid
+        // current binding rather than accepting a pre-existing source failure.
+        tester.binding.buildOwner!.buildScope(focusElement, () {
+          focusElement.update(original);
+        });
+        await tester.pump();
+        expect(binding.readDeclaredAbsence().value, EdgeInsets.zero);
+
+        // Insert an ordinary inherited wrapper through the actual public
+        // Focus input. Updating the private bridge Element to a different
+        // Widget class would be a framework error, not a source negative.
+        tester.binding.buildOwner!.buildScope(focusElement, () {
+          focusElement.update(
+            Focus(
+              canRequestFocus: original.canRequestFocus,
+              skipTraversal: original.skipTraversal,
+              includeSemantics: original.includeSemantics,
+              descendantsAreFocusable: original.descendantsAreFocusable,
+              child: _WrongFocusForwarder(child: original.child),
+            ),
+          );
+        });
+        await tester.pump();
+        expect(binding.readDeclaredAbsence, _sourceError);
+        tester.binding.buildOwner!.buildScope(focusElement, () {
+          focusElement.update(original);
+        });
+        await tester.pump();
+        // Inserting/removing the wrapper recreated the raw mounted Elements:
+        // the original held binding must remain stale even after restoration.
+        expect(binding.readDeclaredAbsence, _sourceError);
+        final restored = bindSequenceLayoutBoxSource(
+          captureRoot: mounted.capture.currentContext! as Element,
+          registryResult: result,
+          source: _kSwap,
+        )!;
+        expect(restored.readDeclaredAbsence().value, EdgeInsets.zero);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   testWidgets('framework-valid source host corruption is incomplete', (
     tester,
   ) async {

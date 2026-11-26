@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:math' show pi;
 
 import 'package:coui_flutter/coui_flutter.dart';
@@ -32,11 +31,11 @@ const _kFlipMidpoint = 0.5;
 class Swap extends StatefulWidget implements CoreSwapContract<Widget> {
   /// Creates a [Swap].
   const Swap({
+    required this.offContent,
+    required this.onContent,
     super.key,
     this.animation = CoreSwapAnimation.none,
     this.checked = false,
-    required this.offContent,
-    required this.onContent,
     this.onToggle,
     this.swapStyle,
   });
@@ -140,8 +139,22 @@ class _SwapState extends State<Swap> with SingleTickerProviderStateMixin {
       child: Stacks(
         alignment: .center,
         children: [
-          Opacity(opacity: 1 - value, child: widget.offContent),
-          Opacity(opacity: value, child: widget.onContent),
+          // Keep both faces mounted for size/state continuity, while the
+          // checked input alone selects participation, matching Web inert.
+          IgnorePointer(
+            ignoring: widget.checked,
+            child: ExcludeFocus(
+              excluding: widget.checked,
+              child: Opacity(opacity: 1 - value, child: widget.offContent),
+            ),
+          ),
+          IgnorePointer(
+            ignoring: !widget.checked,
+            child: ExcludeFocus(
+              excluding: !widget.checked,
+              child: Opacity(opacity: value, child: widget.onContent),
+            ),
+          ),
         ],
       ),
     );
@@ -152,9 +165,9 @@ class _SwapState extends State<Swap> with SingleTickerProviderStateMixin {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.checked != widget.checked) {
       if (widget.checked) {
-        unawaited(_controller.forward());
+        _controller.forward();
       } else {
-        unawaited(_controller.reverse());
+        _controller.reverse();
       }
     }
   }
