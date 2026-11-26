@@ -39,7 +39,7 @@ Widget _host(Widget child, coui.ThemeData theme) => coui.Theme(
 Future<Uint8List> _pixels(WidgetTester tester, GlobalKey boundaryKey) async {
   final boundary =
       boundaryKey.currentContext!.findRenderObject()! as RenderRepaintBoundary;
-  final image = (await tester.runAsync(() => boundary.toImage(pixelRatio: 1)))!;
+  final image = (await tester.runAsync(() => boundary.toImage()))!;
   try {
     final data = (await tester.runAsync(
       () => image.toByteData(format: ui.ImageByteFormat.rawRgba),
@@ -80,7 +80,10 @@ void main() {
       material.Localizations.localeOf(context),
       canonical.supportedLocales.single,
     );
-    expect(material.WidgetsLocalizations.of(context).textDirection, .ltr);
+    expect(
+      material.WidgetsLocalizations.of(context).textDirection,
+      ui.TextDirection.ltr,
+    );
     expect(
       material.MaterialLocalizations.of(context).okButtonLabel,
       isNotEmpty,
