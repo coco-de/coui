@@ -2,8 +2,28 @@ import 'dart:convert';
 
 import 'package:puppeteer/puppeteer.dart';
 
+import 'device_paint_source_probe.dart';
+
 /// The canonical raw probe shared by browser transports.
-String get computedStyleProbeScript => _kComputedStyleJs;
+/// Extra arguments cannot supply an unwitnessed paint node to this legacy API.
+String get computedStyleProbeScript =>
+    '(selector) => ($_kComputedStyleJs)(selector)';
+
+/// Runs both samplers with the Device paint node kept inside this validated
+/// request wrapper. Only this module can supply the private paint argument.
+String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
+    '''
+(request) => {
+  const paint = ($devicePaintSourceResolverScript)(request);
+  if (paint.error) throw new Error(paint.error);
+  if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
+  const legacy = JSON.parse(($_kComputedStyleJs)(request.selector,paint.applied ? paint.sourcePaintElement : null));
+  if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
+  const box = JSON.parse(($boxSamplerScript)(request));
+  if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
+  return JSON.stringify({legacy,box});
+}
+''';
 
 /// Reads raw `getComputedStyle()` values for whatever [selector] matches.
 ///
@@ -445,7 +465,7 @@ function boxRoot(el) {
 
 const String _kComputedStyleJs =
     '''
-(sel) => {
+(sel, sourcePaintElement = null) => {
   $_kDeclaresOwnColorJs
   $_kFindTextSourceJs
   $_kFindChromeJs
@@ -458,6 +478,9 @@ const String _kComputedStyleJs =
   // wrapper would attribute example layout padding (Text's `p-16`
   // column) to a component that has no box of its own (#4872).
   const box = chrome ? getComputedStyle(chrome) : null;
+  // A closed current-producer witness may supply paint authority separately.
+  // Padding/outline stay on the existing chrome path; root/text stay below.
+  const paintBox = sourcePaintElement ? getComputedStyle(sourcePaintElement) : box;
   const rootStyle = getComputedStyle(el);
   const source = findTextSource(el);
   // Null when the root paints no text — the six text fields below then
@@ -483,19 +506,19 @@ const String _kComputedStyleJs =
       : text ? text.lineHeight : null,
     letterSpacing: text ? text.letterSpacing : null,
     color: text ? text.color : null,
-    backgroundColor: box ? box.backgroundColor : 'rgba(0, 0, 0, 0)',
-    borderTopColor: box ? box.borderTopColor : 'rgba(0, 0, 0, 0)',
-    borderRightColor: box ? box.borderRightColor : 'rgba(0, 0, 0, 0)',
-    borderBottomColor: box ? box.borderBottomColor : 'rgba(0, 0, 0, 0)',
-    borderLeftColor: box ? box.borderLeftColor : 'rgba(0, 0, 0, 0)',
-    borderTopWidth: box ? box.borderTopWidth : '0px',
-    borderRightWidth: box ? box.borderRightWidth : '0px',
-    borderBottomWidth: box ? box.borderBottomWidth : '0px',
-    borderLeftWidth: box ? box.borderLeftWidth : '0px',
-    borderTopLeftRadius: box ? box.borderTopLeftRadius : '0px',
-    borderTopRightRadius: box ? box.borderTopRightRadius : '0px',
-    borderBottomRightRadius: box ? box.borderBottomRightRadius : '0px',
-    borderBottomLeftRadius: box ? box.borderBottomLeftRadius : '0px',
+    backgroundColor: paintBox ? paintBox.backgroundColor : 'rgba(0, 0, 0, 0)',
+    borderTopColor: paintBox ? paintBox.borderTopColor : 'rgba(0, 0, 0, 0)',
+    borderRightColor: paintBox ? paintBox.borderRightColor : 'rgba(0, 0, 0, 0)',
+    borderBottomColor: paintBox ? paintBox.borderBottomColor : 'rgba(0, 0, 0, 0)',
+    borderLeftColor: paintBox ? paintBox.borderLeftColor : 'rgba(0, 0, 0, 0)',
+    borderTopWidth: paintBox ? paintBox.borderTopWidth : '0px',
+    borderRightWidth: paintBox ? paintBox.borderRightWidth : '0px',
+    borderBottomWidth: paintBox ? paintBox.borderBottomWidth : '0px',
+    borderLeftWidth: paintBox ? paintBox.borderLeftWidth : '0px',
+    borderTopLeftRadius: paintBox ? paintBox.borderTopLeftRadius : '0px',
+    borderTopRightRadius: paintBox ? paintBox.borderTopRightRadius : '0px',
+    borderBottomRightRadius: paintBox ? paintBox.borderBottomRightRadius : '0px',
+    borderBottomLeftRadius: paintBox ? paintBox.borderBottomLeftRadius : '0px',
     paddingTop: box ? box.paddingTop : '0px',
     paddingRight: box ? box.paddingRight : '0px',
     paddingBottom: box ? box.paddingBottom : '0px',
@@ -512,7 +535,7 @@ const String _kComputedStyleJs =
     // Preserve the unrounded browser string; faint positive alpha is paint.
     outlineColor: box ? box.outlineColor : null,
     outlineOffset: box ? box.outlineOffset : '0px',
-    boxShadow: box ? box.boxShadow : 'none',
+    boxShadow: paintBox ? paintBox.boxShadow : 'none',
     opacity: rootStyle.opacity,
     widthPx: rect.width,
     heightPx: rect.height,

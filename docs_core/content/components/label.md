@@ -1,88 +1,327 @@
 ---
 title: Label
-description: 폼 필드용 정적 텍스트 라벨 컴포넌트
+description: 글자에 앞 아이콘과 필수 표시를 붙여 보이는 정적 라벨입니다. 놓는 것만으로는 입력과 연결되지 않습니다.
 category: display
 platforms: [flutter, web]
 related: [form, form-field, fieldset, validation-badge]
 tags: [form, label, text]
+template: v2
+source: display/label
 ---
 
 # Label
 
-폼 필드 위 또는 옆에 표시하는 정적 텍스트 라벨 컴포넌트입니다. 선택적으로 leading 아이콘과 필수 필드 표시(`*`)를 지원하며, 비활성 상태(`disabled`)도 양쪽 플랫폼 동일하게 적용됩니다.
+<a id="live-preview"></a>
+<a id="기본-사용법-basic-usage"></a>
 
-<Callout type="warning">
+## 플레이그라운드
 
-**`Label` 단독으로는 폼 컨트롤과 연결되지 않습니다.** 라벨과 입력을 실제로 연결(클릭 시 포커스 이동, 스크린 리더 관계)하려면 **[FormField](/components/form-field)** 를 쓰세요 — Flutter `Semantics` container+label, Web `aria-labelledby` 로 이미 그 연결을 제공합니다.
+앞 아이콘 · 필수 표시 · 비활성을 바꿔 보며 Label 을 확인하고, 만들어진 코드를 복사하세요.
 
-</Callout>
+<Playground component="label" />
 
-## Live Preview
+Label 은 글자(`text`)를 보이고, 필요하면 앞 아이콘(`icon`)과 필수 표시(`*`)를 붙입니다. 폼 입력의 위나 옆에 놓는 이름 글자에 씁니다. Flutter 와 Jaspr Web 이 같은 `Label` 을 씁니다.
 
-<LivePreview component="label" variants="default,required,with-icon,disabled" />
+<Note>
 
-## 사용 시기 (When to Use)
+Label 을 입력 옆에 놓아도 둘은 연결되지 않습니다. 라벨을 눌러도 입력에 포커스가 가지 않고, Label 은 자기 글자를 입력의 이름으로 지정하지 않습니다. 자세한 내용은 [입력과 연결하기](#입력과-연결하기)를 보세요.
 
-**이 컴포넌트를 사용하세요:**
-- Input / Textarea / Checkbox 등 폼 컨트롤 옆에 라벨 텍스트가 필요할 때
-- 필수 필드(`*`)를 시각적으로 표시할 때
-- 라벨에 leading 아이콘(메일, 사용자 아이콘 등)을 함께 표시할 때
-- 폼 필드의 상태(`disabled`)를 라벨에서도 함께 반영할 때
+</Note>
 
-**대신 다른 컴포넌트를 사용하세요:**
-- **[Text](/components/text)**: 폼과 무관한 일반 텍스트 표시
-- **[FormField](/components/form-field)**: 입력과 라벨·설명·오류·검증 컨텍스트를 함께 구성해야 할 때. 라벨 클릭으로 입력을 포커스하는 동작을 자동 보장하는 래퍼는 아닙니다
-- **[Fieldset](/components/fieldset)**: 여러 라벨·입력에 공통 legend·비활성 스코프가 필요할 때
-- **[ValidationBadge](/components/validation-badge)**: 필드 이름 대신 valid/invalid 상태를 표시할 때
+## 구조
 
-## 기본 사용법 (Basic Usage)
+가로 한 줄에 앞 아이콘 · 글자 · 필수 표시를 차례로 놓습니다. 글자는 늘 있고, 나머지는 선택 사항입니다.
 
-<Tabs groupId="platform">
-  <TabItem label="Flutter" value="flutter">
+<Anatomy demo="label/anatomy">
+<AnatomyItem part="container" side="left" name="Label">
+
+세 부분을 세로 가운데에 맞춰 가로로 놓습니다. Flutter 는 `Row`, Jaspr Web 은 `<span>` 입니다. 배경 · 테두리 · 안쪽 여백은 없습니다.
+
+</AnatomyItem>
+<AnatomyItem part="leading" side="top" name="icon">
+
+`icon` 을 줄 때만 그립니다. 기본 크기는 16 이고, 글자와의 간격은 6 입니다.
+
+</AnatomyItem>
+<AnatomyItem part="label" side="top" name="text">
+
+라벨 글자입니다. 기본은 `labelLarge` 역할에 medium 굵기, `onSurface` 색입니다.
+
+</AnatomyItem>
+<AnatomyItem select="div + span:last-child" side="right" name="isRequired">
+
+`isRequired: true` 일 때만 붙는 `*` 입니다. 기본 색은 `error` 이고, 글자와의 간격은 4 입니다.
+
+</AnatomyItem>
+</Anatomy>
+
+## 내용 구성
+
+variant 나 크기 속성은 없습니다. `icon` 과 `isRequired` 로 라벨에 담을 것을 고릅니다.
+
+<Preview demo="label/content" />
 
 ```dart
-// 단순 라벨
+// 글자만
 const Label(text: '이메일')
 
-// 필수 필드
+// 필수 표시
 const Label(text: '이메일', isRequired: true)
 
-// 아이콘 함께
-const Label(
-  text: '이메일',
-  icon: Icon(LucideIcons.mail),
-)
+// 앞 아이콘
+const Label(text: '이메일', icon: Icon(LucideIcons.mail))
 
-// 비활성 상태
+// 비활성
 const Label(text: '이메일', disabled: true)
 ```
 
-  </TabItem>
-  <TabItem label="Web" value="web">
+### 아이콘
+
+`icon` 은 `Widget`(Web 은 `Component`)을 받습니다. Label 은 그 안의 [Icon](/components/icon) 에 크기 16 을 내려 주고, 색은 라벨 글자색을 따르게 합니다.
+
+| 정한 곳 | 결과 |
+| --- | --- |
+| 아무것도 정하지 않음 | 크기 16, 라벨 글자색. 비활성이면 비활성 글자색입니다. |
+| `labelStyle` 의 `iconStyle.size` | 그 크기를 씁니다. `iconStyle` 에서 Label 이 읽는 값은 `size` 뿐입니다. |
+| 넘긴 `Icon` 의 `iconStyle`, 또는 앱 테마의 `CoreComponentTheme.icon` | 여기서 정한 크기와 색이 Label 이 내려 주는 값보다 앞섭니다. 이렇게 정한 아이콘 색은 비활성에서도 그대로입니다. |
+
+<Note>
+
+Flutter 에서 테마의 `scaling` 이 1 이 아니면, Label 이 크기를 내려 준 아이콘에는 배율이 두 번 곱해집니다. 예를 들어 `scaling: 1.25` 면 크기 16 인 아이콘이 20 이 아니라 25 로 그려집니다. 간격에는 한 번만 곱해집니다. `Icon(LucideIcons.mail, iconStyle: CoreIconStyle(size: CoreIconSize.size16))` 처럼 아이콘에 크기를 직접 정하면 한 번만 곱해집니다.
+
+</Note>
+
+<a id="동작-스펙-behavior"></a>
+<a id="인터랙션"></a>
+
+## 상태
+
+<Preview demo="label/states" />
+
+| 항목 | 동작 |
+| --- | --- |
+| 기본 | 글자와 아이콘은 `onSurface`, 필수 표시는 `error` 색입니다. |
+| 필수 | `isRequired: true` 면 `*` 를 붙입니다. 값이 비었는지 검사하지는 않습니다. |
+| 비활성 | `disabled: true` 면 글자 · `*` · 아이콘이 `disabledTextStyle` 의 색 하나(기본 `disabledContent`)를 따릅니다. 색을 직접 정한 [아이콘](#아이콘)은 그 색이 남습니다. 포인터를 올리면 Flutter 는 `forbidden` 커서를, Jaspr Web 은 `not-allowed` 커서를 보입니다. |
+| 상호작용 | 표시 전용입니다. hover · 눌림 · 포커스 상태가 없고, 클릭이나 탭 콜백도 없습니다. |
+| 감싼 묶음 | [FormField](/components/form-field) · [Fieldset](/components/fieldset) 의 비활성 설정을 읽지 않습니다. 그 안에 직접 놓은 Label 도 `disabled` 를 따로 줘야 비활성 색이 됩니다. 비활성 Fieldset 이 묶음 전체를 흐리게 그리면 Label 도 함께 흐려집니다. |
+
+### 비활성일 때 쓰는 값
+
+| 항목 | 동작 |
+| --- | --- |
+| 색 | `disabledTextStyle` 의 색을 바꾸면 글자 · `*` · 아이콘이 함께 바뀝니다. `requiredColor` 는 활성 상태에만 적용됩니다. 비활성 필드에 붉은 `*` 가 남으면 지금 입력해야 한다는 뜻으로 읽히기 때문입니다. |
+| 글자 모양 | `disabledTextStyle` 은 `textStyle` 이 아니라 비활성 기본값 위에 얹힙니다. `textStyle` 로 글자 역할이나 굵기를 바꿨다면 `disabledTextStyle` 에도 같은 값을 줘야 비활성에서도 유지됩니다. |
+| 투명도 | `disabledOpacity` 의 기본값은 1 입니다. 비활성 라벨은 전용 색을 쓰고 있어, 투명도를 더 곱하면 대비가 뒤의 배경에 따라 달라집니다. 더 흐리게 하려면 `labelStyle` 에서 낮춥니다. |
 
 ```dart
-// 단순 라벨
-const Label(text: '이메일')
-
-// 필수 필드
-const Label(text: '이메일', isRequired: true)
-
-// 아이콘 함께
 const Label(
   text: '이메일',
-  icon: Icon(LucideIcons.mail),
+  disabled: true,
+  labelStyle: CoreLabelStyle(
+    textStyle: CoreTextStyle.token(CoreTextStyles.titleMedium),
+    disabledTextStyle: CoreTextStyle.token(CoreTextStyles.titleMedium),
+  ),
 )
-
-// 비활성 상태
-const Label(text: '이메일', disabled: true)
 ```
 
-  </TabItem>
-</Tabs>
+<a id="사용-시기-when-to-use"></a>
+<a id="사용-가이드라인-usage-guidelines"></a>
 
-### 빠른 오버라이드 (Chain)
+## 사용 가이드
 
-이미 만든 `Label` 인스턴스에 스타일을 빠르게 덧붙이고 싶다면 `withStyle` 체인을 쓸 수 있습니다. 생성자의 style 슬롯 인자와 동일하게 동작하지만, 이미 구성된 위젯 위에서 바로 이어 쓸 수 있습니다.
+### 이럴 때 씁니다
+
+- 컨트롤이나 설정 항목의 위나 옆에 이름 글자를 놓을 때
+- 필수 항목을 `*` 로 보여야 할 때
+- 이름 글자 앞에 메일 · 사용자 같은 아이콘을 함께 보일 때
+- 컨트롤이 비활성이라는 것을 이름 글자에도 보여야 할 때
+
+### 다른 컴포넌트가 더 맞는 경우
+
+| 이런 경우에는 | 대신 쓸 것 |
+| --- | --- |
+| 폼과 관계없는 일반 글자 | [Text](/components/text) |
+| `label` 속성이 있는 입력의 라벨 | 그 입력의 `label` — [TextField](/components/text-field) 등 |
+| 크기(`size`)에 맞춘 글자, 위젯으로 만드는 라벨, 좁은 자리에서 줄을 바꾸는 긴 라벨 | [FormLabel](/components/form-label) |
+| 라벨 · 도움말 · 오류 · 검증을 입력과 한 필드로 묶을 때 | [FormField](/components/form-field). 라벨을 눌러 입력에 포커스를 옮겨 주지는 않습니다. |
+| 여러 라벨과 입력에 공통 제목(`legend`)과 비활성 설정이 필요할 때 | [Fieldset](/components/fieldset) |
+| 필드 이름이 아니라 검증 결과(통과 · 실패 · 대기)를 보일 때 | [ValidationBadge](/components/validation-badge) |
+
+### 비활성과 필수 표시
+
+`Label` 의 `disabled` 는 라벨의 모습만 바꿉니다. 입력의 활성 상태와 같은 값에서 정해야 라벨과 입력이 서로 다른 상태로 보이지 않습니다.
+
+```dart
+// canEdit 하나로 둘을 함께 정합니다.
+Label(text: '이메일', disabled: !canEdit)
+TextField(enabled: canEdit)
+```
+
+<a id="do"></a>
+
+<Cards columns="2">
+<Card demo="label/do-sync-disabled" tone="do" eyebrow="이렇게 하세요">
+
+입력이 비활성이면 라벨에도 `disabled: true` 를 줍니다.
+
+</Card>
+<Card demo="label/dont-unsynced" tone="dont" eyebrow="이렇게 하지 마세요">
+
+입력만 비활성으로 두면 라벨은 활성처럼 보입니다.
+
+</Card>
+<Card demo="label/do-is-required" tone="do" eyebrow="이렇게 하세요">
+
+필수 항목은 `isRequired` 로 표시합니다. `*` 가 `error` 색이 되고, 비활성일 때는 글자색을 따릅니다.
+
+</Card>
+<Card demo="label/dont-typed-asterisk" tone="dont" eyebrow="이렇게 하지 마세요">
+
+별표를 글자에 직접 적으면 라벨 글자와 같은 색이 되고, `requiredColor` 로 따로 바꿀 수 없습니다.
+
+</Card>
+</Cards>
+
+<a id="dont"></a>
+
+### 입력과 연결하기
+
+Label 을 컨트롤 옆에 놓기만 하고 둘이 연결됐다고 여기지 않습니다. 폐기가 예고된 `htmlFor` 를 줘도 연결되지 않습니다. 입력에 이름이 필요하면 입력 쪽에 지정합니다. Jaspr Web 의 [TextField](/components/text-field) 는 `label` 속성을 줘도 그 라벨이 `<input>` 에 연결되지 않습니다([TextField 의 알려진 제약](/components/text-field#알려진-제약)). 대신 `attributes` 로 받은 `aria-*` 속성을 안쪽 `<input>` 에 붙이므로, Label 에 `id` 를 주고 `aria-labelledby` 로 가리킬 수 있습니다. 이 방법으로도 라벨을 눌러 입력에 포커스를 옮길 수는 없습니다.
+
+<Split>
+
+<Code language="dart" title="Jaspr Web — 이렇게 하지 마세요">
+// 보기에는 한 쌍이지만 입력에는 이름이 없습니다.
+div(classes: 'flex flex-col', [
+  Label(text: '이메일', isRequired: true),
+  const Gap.space6(),
+  TextField(),
+])
+</Code>
+
+<Code language="dart" title="Jaspr Web — 입력에 이름 지정">
+div(classes: 'flex flex-col', [
+  Label(id: 'email-label', text: '이메일', isRequired: true),
+  const Gap.space6(),
+  TextField(
+    required: true,
+    attributes: {'aria-labelledby': 'email-label'},
+  ),
+])
+</Code>
+
+</Split>
+
+Label 의 `*` 는 보조 기술에서 숨기지 않으므로 이렇게 만든 이름에는 별표도 들어갑니다. 별표를 이름에서 빼야 하면 기본 별표를 숨기는 [FormLabel](/components/form-label) 을 씁니다.
+
+라벨 · 도움말 · 오류를 한 묶음으로 만들려면 [FormField](/components/form-field) 를 씁니다. `FormField` 의 `label` 은 필드 묶음의 이름이 됩니다. FormField 가 입력 요소에 이름을 지정하지는 않고, 라벨을 눌러도 입력에 포커스가 가지 않습니다.
+
+```dart
+FormField(
+  label: '이메일',
+  child: TextField(),
+)
+```
+
+<a id="레이아웃"></a>
+
+## 배치
+
+라벨은 컨트롤의 위나 옆에 놓습니다.
+
+<Preview demo="label/layout" />
+
+| 항목 | 동작 |
+| --- | --- |
+| 순서 | 아이콘 → 글자 → `*` 순서로 놓고 세로 가운데를 맞춥니다. 오른쪽에서 왼쪽으로 쓰는 방향에서는 좌우가 바뀝니다. |
+| 폭 | 부모가 폭을 늘리지 않으면 내용만큼 차지합니다. |
+| 바깥 여백 | 없습니다. 컨트롤과의 간격은 [Gap](/components/gap) 이나 부모의 간격으로 둡니다. |
+| 긴 글자 | Flutter 는 줄을 바꾸지 않아, 놓인 폭보다 길면 넘침 오류(`RenderFlex overflowed`)가 납니다. `Flexible` 로 감싸도 같습니다. Jaspr Web 은 폭이 모자라면 브라우저의 줄바꿈 규칙을 따릅니다. |
+| 줄 수 · 말줄임 | `maxLines` · `overflow` 속성이 없습니다. 긴 라벨에는 [FormLabel](/components/form-label) 을 씁니다. |
+
+<a id="스타일-시스템-style-system"></a>
+
+## 테마와 스타일
+
+무엇을 보일지는 위젯 파라미터(`text` · `icon` · `isRequired` · `disabled`)로 정합니다. 겉모습(색 · 크기 · 간격)과 글자 모양은 `labelStyle`(`CoreLabelStyle`) 하나로 바꿉니다.
+
+### 토큰
+
+| 항목 | 기본값 | 바꾸는 필드 |
+| --- | --- | --- |
+| 글자 | `labelLarge` 역할, `CoreFontWeight.medium`(500) | `textStyle` |
+| 글자색 | `onSurface` | `textStyle` 의 `color` |
+| 비활성 글자 | `labelLarge` 역할, medium, `disabledContent` | `disabledTextStyle` |
+| 필수 표시 색 | `error`. 비활성이면 비활성 글자색 | `requiredColor`(활성 상태에만) |
+| 아이콘 크기 | `CoreIconSize.size16` | `iconStyle` 의 `size` |
+| 아이콘과 글자 사이 | `CoreSpace.space6` | `iconLabelGapStyle` |
+| 글자와 `*` 사이 | `CoreSpace.space4` | `labelRequiredGapStyle` |
+| 비활성 투명도 | `CoreOpacity.opacity100`(1) | `disabledOpacity` |
+
+색은 토큰이라 라이트 · 다크 모드를 따라 바뀝니다. Jaspr Web 은 글자 역할과 토큰 색을 `text-label-large` · `text-on-surface` · `text-disabled-content` · `text-error` 같은 클래스로 붙이고, medium 굵기는 인라인 스타일로 붙입니다.
+
+`textStyle` 에 색만 주면 `labelLarge` 역할과 medium 굵기는 그대로입니다. `*` 는 `textStyle` 의 글자 모양을 함께 쓰고 색만 `requiredColor` 를 따릅니다. 글자 역할을 바꿔도 medium 굵기는 남으므로, 굵기까지 바꾸려면 `copyWith` 로 함께 정합니다.
+
+```dart
+Label(
+  text: '이메일',
+  labelStyle: CoreLabelStyle(
+    textStyle: const CoreTextStyle.token(CoreTextStyles.titleMedium)
+        .copyWith(fontWeight: CoreFontWeight.semiBold),
+  ),
+)
+```
+
+<Split>
+
+<Code language="dart" title="Label 하나만 바꾸기">
+Label(
+  text: '이메일',
+  icon: Icon(LucideIcons.mail),
+  isRequired: true,
+  labelStyle: CoreLabelStyle(
+    iconStyle: CoreIconStyle(size: CoreIconSize.size20),
+    iconLabelGapStyle: CoreGapStyle(size: CoreSpace.space8),
+    requiredColor: CoreColor.token(CoreColors.tertiary),
+  ),
+)
+</Code>
+
+<Code language="dart" title="앱 전체 기본값 바꾸기">
+ThemeData.fromCore(
+  CoreThemePresets.light,
+  coreComponentTheme: CoreComponentTheme(
+    label: CoreLabelTheme(
+      style: CoreLabelStyle(
+        requiredColor: CoreColor.token(CoreColors.tertiary),
+      ),
+    ),
+  ),
+)
+</Code>
+
+</Split>
+
+<a id="resolve-chain"></a>
+
+### 값이 정해지는 순서
+
+```text
+CoreLabelStyle 의 default 값           // 디자인 시스템 기본값
+  → CoreComponentTheme.label.style    // 앱 전체
+  → labelStyle                        // Label 하나
+```
+
+뒤로 갈수록 우선합니다. 비운 필드는 앞의 값을 유지합니다. `iconStyle` · `textStyle` · `disabledTextStyle` 과 두 간격 스타일도 안의 값을 하나씩 합칩니다. 글자 모양은 상태에 따라 한쪽만 씁니다. 활성이면 `textStyle` 쪽을, 비활성이면 `disabledTextStyle` 쪽을 위 순서로 합칩니다.
+
+<a id="빠른-오버라이드-chain"></a>
+
+### 빠른 덮어쓰기 (체인)
+
+이미 만든 `Label` 에 `withStyle` 로 스타일을 덧붙일 수 있습니다. 생성자의 `labelStyle` 과 같게 동작하고, 겹치는 필드는 뒤에 붙인 값이 이깁니다. 아래 예제의 `disabledOpacity` 는 `disabled: true` 일 때만 보입니다.
+
+<Preview component="label" example="chain" />
 
 <!-- CHAIN_SNIPPET:BEGIN — auto-generated by `dart run tool/generate_chain_artifacts.dart` (write mode). Do not hand-edit between these markers; edit the chain example sources (`*_chain_example.dart` / `*_code.dart`) and regenerate. -->
 <Tabs groupId="platform">
@@ -137,23 +376,132 @@ class LabelChainExample extends StatelessComponent {
 </Tabs>
 <!-- CHAIN_SNIPPET:END -->
 
-## Props / Parameters
+<a id="접근성-accessibility"></a>
 
-`W` 는 Flutter의 `Widget`, Web의 Jaspr `Component` 입니다. `W?` 는 선택 슬롯입니다.
+## 접근성
 
-| 속성 | 타입 | 기본값 | 설명 |
-|------|------|--------|------|
-| `text` | `String` | 필수 | 라벨 텍스트 |
-| `icon` | `W?` | `null` | leading 아이콘 (선택) |
-| `isRequired` | `bool` | `false` | 필수 필드 표시(`*`) |
-| `disabled` | `bool` | `false` | 비활성 상태 (전용 `disabledContent` 텍스트 색) |
-| `semanticLabel` | `String?` | `null` | 스크린 리더용 라벨 (Flutter `Semantics`, Web `aria-label`) |
-| `htmlFor` | `String?` | `null` | **Deprecated** — 어느 플랫폼에서도 라벨↔컨트롤을 잇지 않습니다. 대신 [FormField](/components/form-field) 를 쓰세요. |
-| `labelStyle` | `CoreLabelStyle?` | `null` | 아이콘 크기 · 간격 · 텍스트 겉모습을 바꾸는 값 묶음 |
+Label 은 글자를 보이는 표시 전용 컴포넌트입니다. 입력과의 관계나 필수 · 비활성 상태는 보조 기술에 알리지 않습니다.
 
-## 스타일 시스템 (Style System)
+### 역할
 
-겉모습(색 · 크기 · 간격)과 텍스트 스타일은 전부 `labelStyle` 슬롯 하나로 바꿉니다.
+| 플랫폼 | 역할 |
+| --- | --- |
+| Flutter | Label 은 역할을 정하지 않습니다. `semanticLabel` 을 주면 `Semantics(label:)` 로, `htmlFor` 를 주면 `Semantics(identifier:)` 로 감싸지만 어느 쪽도 역할을 정하지 않습니다. 다만 `icon` 에 넘긴 [Icon](/components/icon) 의 그림에는 이름 없는 이미지 표시(`Semantics(image: true)`)가 붙습니다. |
+| Jaspr Web | 루트는 늘 `<span>` 이고 `role` 을 붙이지 않습니다. `<label>` 요소가 아닙니다. 아이콘을 감싼 `<span>` 과 `*` 를 담은 `<span>` 에도 역할이 없습니다. |
+
+### 키보드
+
+없습니다. 처리하는 키가 없고 `Tab` 순서에 들어가지 않습니다. Flutter 구현에는 `Focus` 가 없고, Jaspr Web 은 `<span>` 에 `tabindex` 를 붙이지 않습니다.
+
+### 스크린 리더
+
+- 보이는 글자(`text`)를 읽습니다.
+- `isRequired` 는 `*` 글자 하나로만 전합니다. `*` 를 숨기지 않으며, "필수" 라는 글자나 필수 상태를 더하지 않습니다. `*` 를 어떻게 읽는지는 보조 기술과 그 설정에 따라 다릅니다.
+- Label 은 아이콘에 이름을 붙이지 않습니다. 아이콘만으로 뜻을 전하지 마세요. 아이콘의 역할 표시는 [역할](#역할)을 보세요.
+- `disabled` 는 알리지 않습니다.
+- live region 이 아니므로 글자가 바뀌어도 따로 알리지 않습니다.
+
+#### `semanticLabel`
+
+두 플랫폼에서 읽히는 결과가 다릅니다.
+
+| 플랫폼 | 동작 |
+| --- | --- |
+| Flutter | 보이는 글자를 대신하지 않고 그 앞에 덧붙습니다. `semanticLabel: '이메일 입력'` 에 `isRequired: true` 면 `semanticLabel` · 라벨 글자 · `*` 가 모두 읽는 내용에 들어갑니다. |
+| Jaspr Web | 루트 `<span>` 의 `aria-label` 이 됩니다. ARIA 는 역할이 없는 `<span>` 에 이름을 붙이는 것을 금지하므로, 브라우저와 보조 기술에 따라 무시될 수 있습니다. |
+
+필수라는 것을 확실히 알려야 하면 `text` 에 글자로 적거나(`'이메일 (필수)'`), 입력 쪽에서 알립니다. Jaspr Web 의 TextField 는 `required: true` 면 `<input>` 에 `required` 속성을 붙입니다.
+
+Flutter 에서 읽히는 글자를 통째로 바꾸려면 `excludeSemantics: true` 인 `Semantics` 로 감쌉니다.
+
+```dart
+// Flutter
+Semantics(
+  label: '이메일, 필수',
+  excludeSemantics: true,
+  child: const Label(text: '이메일', isRequired: true),
+)
+```
+
+#### 입력의 이름
+
+Label 은 자기 글자를 입력의 이름으로 지정하지 않습니다. 입력의 이름은 입력 쪽에서 정합니다. Jaspr Web 의 예는 [입력과 연결하기](#입력과-연결하기)에 있습니다.
+
+### 포커스 관리
+
+없습니다. 오버레이가 아니고 포커스를 받지 않아, 포커스를 옮기거나 가두거나 되돌리지 않습니다. 라벨을 눌러도 컨트롤로 포커스가 가지 않습니다.
+
+### 알려진 제약
+
+| 플랫폼 | 내용 |
+| --- | --- |
+| 공통 | 폐기가 예고된 `htmlFor` 는 라벨과 컨트롤을 잇지 않습니다. Jaspr Web 은 `<span>` 에 `for` 를 붙이는데, HTML 은 `<span>` 의 `for` 로 관계를 만들지 않습니다. Flutter 는 그 값을 `Semantics(identifier:)` 로만 전합니다. |
+| 공통 | 라벨을 눌러도 컨트롤에 포커스가 가지 않습니다. |
+| 공통 | 필수 여부는 `*` 글자로만 보이고, 필수 상태로 알리지 않습니다. |
+| 공통 | `disabled: true` 를 상태로 알리지 않습니다. `aria-disabled` 와 `Semantics(enabled: false)` 를 붙이지 않습니다. |
+| 공통 | 기본 `disabledOpacity` 가 1 이라, 기본값에서 비활성과 활성의 차이는 색과 포인터를 올렸을 때의 커서뿐입니다. |
+| Flutter | `semanticLabel` 은 보이는 글자를 대신하지 않고 덧붙습니다. |
+| Flutter | 긴 글자는 줄을 바꾸지 않고 넘칩니다. |
+| Flutter | 테마의 `scaling` 이 1 이 아니면 Label 이 크기를 내려 준 아이콘에 배율이 두 번 곱해집니다. |
+| Jaspr Web | `semanticLabel` 은 역할이 없는 `<span>` 의 `aria-label` 이라 무시될 수 있습니다. |
+| Jaspr Web | 강제 색 모드(`forced-colors`)는 글자색을 시스템 색으로 바꾸므로, 색만으로는 비활성 라벨을 구분할 수 없습니다. |
+
+<a id="크로스-플랫폼-차이점-platform-differences"></a>
+
+## 플랫폼 차이
+
+공통 속성의 이름은 같습니다. 그리는 방식과 보조 기술에 전하는 방식이 다릅니다.
+
+| 항목 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 그리는 방식 | 내용 크기의 가로 `Row`(`MainAxisSize.min`) | `inline-flex` 인 `<span>`. `<label>` 요소가 아닙니다. |
+| 긴 글자 | 줄을 바꾸지 않고 넘칩니다. | 줄을 바꿉니다. |
+| 아이콘에 전하는 값 | `IconTheme` 로 크기와 색 | `IconTheme` 로 크기를 전하고, 색은 글자색을 상속합니다. |
+| `scaling` | 간격에 한 번, Label 이 크기를 내려 준 아이콘에 두 번 곱합니다. | `scaling` 설정이 없습니다. 아이콘 크기는 `rem` 입니다. |
+| `semanticLabel` | `Semantics(label:)`. 보이는 글자 앞에 덧붙습니다. | 루트 `<span>` 의 `aria-label` |
+| `htmlFor`(폐기 예고) | `Semantics(identifier:)` | `<span>` 의 `for` 속성. 입력과 이어지지 않습니다. |
+| 비활성 표시 | 비활성 글자색, `Opacity`, `SystemMouseCursors.forbidden` | 비활성 글자색, 인라인 `opacity`, `cursor-not-allowed` |
+| Web 전용 속성 | — | `id` · `classes` · `css` · `attributes` |
+
+<a id="props-parameters"></a>
+
+## API
+
+Flutter 와 Jaspr Web 이 같은 속성을 씁니다. `W` 는 Flutter 의 `Widget`, Web 의 Jaspr `Component` 입니다.
+
+### 속성
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `text` | `String` | 필수 | 라벨 글자 |
+| `icon` | `W?` | `null` | 글자 앞의 아이콘 |
+| `isRequired` | `bool` | `false` | 글자 뒤에 `*` 를 붙입니다. 검사는 하지 않습니다. |
+| `disabled` | `bool` | `false` | 비활성 모습으로 그립니다. 컨트롤에는 전해지지 않습니다. |
+| `semanticLabel` | `String?` | `null` | 보조 기술에 전하는 글자. 플랫폼마다 결과가 다릅니다([스크린 리더](#스크린-리더)). |
+| `htmlFor` | `String?` | `null` | **폐기 예고(Deprecated).** 어느 플랫폼에서도 라벨과 컨트롤을 잇지 않습니다([입력과 연결하기](#입력과-연결하기)). |
+| `labelStyle` | `CoreLabelStyle?` | `null` | 색 · 크기 · 간격 · 글자 모양 덮어쓰기 |
+
+### Web 전용
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `id` | `String?` | `null` | 루트 `<span>` 의 `id`. 입력의 `aria-labelledby` 가 가리킬 수 있습니다. |
+| `classes` | `String?` | `null` | 루트에 덧붙이는 클래스 |
+| `css` | `Styles?` | `null` | 루트의 인라인 스타일. Label 이 붙이는 인라인 값과 같은 속성이면 `css` 가 앞섭니다. |
+| `attributes` | `Map<String, String>?` | `null` | 루트에 붙이는 HTML 속성. `htmlFor` · `semanticLabel` 을 주면 `for` · `aria-label` 은 그 값이 됩니다. |
+
+### 그 밖의 멤버
+
+| 이름 | 설명 |
+| --- | --- |
+| `withStyle(CoreLabelStyle patch)` | `labelStyle` 에 `patch` 를 합친 사본을 돌려줍니다. 겹치는 필드는 `patch` 가 이깁니다. |
+| `copyWith({text, icon, …})` | 바꾼 값으로 사본을 만듭니다. 넘기지 않았거나 `null` 인 인자는 지금 값을 유지합니다. Web 은 `id` · `classes` · `css` · `attributes` 도 받고, `classes` 는 지금 클래스 뒤에 덧붙입니다. |
+
+### 테마
+
+| 이름 | 타입 | 설명 |
+| --- | --- | --- |
+| `CoreComponentTheme.label` | `CoreLabelTheme?` | 앱 전체 기본값. `style: CoreLabelStyle?` 하나를 가집니다. |
 
 <!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
 
@@ -171,155 +519,41 @@ class LabelChainExample extends StatelessComponent {
 
 <!-- STYLE_TABLE:END -->
 
-<a id="resolve-chain"></a>
+<Note>
 
-### 값이 정해지는 순서
+표의 설명과 함께 알아 둘 지금 동작입니다.
 
-```text
-design system default (CoreLabelStyle.defaultX)
-  → CoreLabelTheme.style                          // 프로젝트 공통
-  → parent component slot override
-  → widget.labelStyle                             // 인스턴스별
-```
+- `iconStyle` 에서 Label 이 읽는 값은 `size` 뿐입니다. `color` 같은 다른 값은 두 플랫폼 모두 적용되지 않습니다. 아이콘 색을 따로 정하려면 넘기는 `Icon` 의 `iconStyle` 에 줍니다.
+- `iconLabelGapStyle` · `labelRequiredGapStyle` 은 기본 간격(6 · 4) 위에 합친 값이 `Gap` 에 전해집니다.
+- `textStyle` 은 `*` 의 글자 모양과 아이콘의 색에도 닿습니다. `*` 의 색은 `requiredColor` 가 정합니다.
 
-## 동작 스펙 (Behavior)
+</Note>
 
-### 인터랙션
+<a id="관련-컴포넌트-related-components"></a>
 
-- 표시 전용 컴포넌트 — 클릭/호버 인터랙션 없음
-- `disabled` 일 때 전용 `disabledContent` 색 (`CoreLabelStyle.defaultDisabledTextStyle`) 이 적용되고, 커서는 `forbidden` 으로 바뀝니다
-- 글자 · 필수 표시(`*`) · 아이콘은 이 비활성 글자 스타일(`disabledTextStyle`)의 색 하나를 따릅니다. 그래서 `disabledTextStyle` 의 색을 바꾸면 셋이 함께 바뀌고, `requiredColor` 는 활성 상태에서만 쓰입니다 — 비활성 필드에 붉은 `*` 가 남아 "지금 입력해야 한다"는 잘못된 신호를 주지 않습니다
-- `disabledOpacity` 기본값은 `1` — 비활성 라벨은 이미 전용 색을 들고 있어서 투명도를 더 곱하면 대비가 놓인 배경에 따라 달라지기 때문입니다. 필요하면 `labelStyle` 로 낮출 수 있습니다
+## 관련 컴포넌트
 
-### 레이아웃
+입력 값을 모아 검증하는 묶음은 [Form](/components/form) 으로 만듭니다.
 
-- 루트는 `inline-flex` row — leading 아이콘 → 텍스트 → 필수(`*`) 순서
-- 아이콘 크기: `CoreLabelStyle.defaultIconStyle` (`CoreIconSize.size16`, 16px)
-- 아이콘-텍스트 간격: `CoreSpace.space6`
-- 텍스트-필수(`*`) 간격: `CoreSpace.space4`
+<Cards columns="2">
+<Card demo="label/related-form-field" title="FormField">
 
-### 토큰
+라벨 · 도움말 · 오류 · 검증을 입력과 한 필드로 묶습니다.
 
-| 항목 | Flutter | Web |
-|------|---------|-----|
-| 폰트 | `labelLarge` 역할 | `text-${ts.labelLarge}` |
-| 굵기 | `CoreFontWeight.medium` | `font-${CoreFontWeight.scale.medium}` |
-| 색상 (기본) | `colorScheme.onSurface` | `text-${cs.onSurface}` |
-| 색상 (disabled) | `colorScheme.disabledContent` | `text-${cs.disabledContent}` |
-| 필수(`*`) 색상 | `colorScheme.error` | `text-${cs.error}` |
-| 필수(`*`) 색상 (disabled) | `colorScheme.disabledContent` (글자색과 같음) | `text-${cs.disabledContent}` (글자색과 같음) |
+</Card>
+<Card demo="label/related-form-label" title="FormLabel">
 
-## 사용 가이드라인 (Usage Guidelines)
+크기에 맞춰 글자가 바뀌고, 라벨과 필수 표시를 위젯으로 넘길 수 있는 폼 라벨입니다.
 
-### ✅ Do
+</Card>
+<Card demo="label/related-fieldset" title="Fieldset">
 
-<Callout type="tip">
+여러 라벨과 입력을 제목이 있는 한 묶음으로 만듭니다.
 
-**`disabled` 를 실제 폼 컨트롤의 상태와 동기화**
+</Card>
+<Card demo="label/related-validation-badge" title="ValidationBadge">
 
-```dart
-Label(text: '이메일', disabled: !emailField.enabled)
-```
+검증 결과를 아이콘과 글자로 보입니다.
 
-이유: `Label` 은 클릭/호버 인터랙션이 없는 표시 전용 컴포넌트라 `disabled` 는 시각적 색상만 바꿉니다. 실제 입력 필드의 활성 상태와 따로 관리하면 라벨과 필드가 서로 다른 상태로 보여 사용자에게 혼란을 줍니다.
-
-</Callout>
-
----
-
-### ❌ Don't
-
-<Callout type="warning">
-
-**`Label` 을 폼 컨트롤 옆에 시각적으로만 배치하고 연결됐다고 가정하지 않기**
-
-```dart
-// ❌ Label 은 컨트롤과 연결되지 않는다 — htmlFor 를 줘도 마찬가지
-Column(
-  children: [
-    const Label(text: '이메일'),
-    TextField(id: 'email-input'),
-  ],
-)
-
-// ✅ FormField 가 라벨-컨트롤 연결을 실제로 만든다
-FormField(
-  label: '이메일',
-  child: TextField(),
-)
-```
-
-이유: `Label` 은 정적 텍스트 표시 컴포넌트라 라벨을 클릭/탭해도 컨트롤이 포커스를 받지 못하고, 스크린 리더도 라벨과 필드의 관계를 알 수 없습니다. 그 연결은 `FormField` 가 담당합니다.
-
-</Callout>
-
-## 접근성 (Accessibility)
-
-### 역할
-
-- **Flutter** — role 없음. `semanticLabel` 을 주면 `Semantics(label:)` 로, `htmlFor` 를
-  주면 `Semantics(identifier:)` 로 한 겹씩 감싸지지만 어느 쪽도 role 을 세우지 않습니다.
-- **Web** — 루트 태그가 `<span>` 으로 고정이고 `role` 을 붙이지 않습니다. `htmlFor` 는
-  그 `<span>` 의 `for` 속성으로, `semanticLabel` 은 `aria-label` 로 실립니다. 내부의
-  아이콘 래퍼와 필수 표시(`*`) `<span>` 에도 역할이 없습니다.
-
-### 키보드
-
-**없음.** 라벨은 어느 플랫폼에서도 포커스를 받지 않습니다 — Flutter 구현에
-`Focus` / `FocusNode` 가 없고 Web `<span>` 에 `tabindex` 가 붙지 않아 tab stop 이
-아니며, 키 핸들러도 양쪽 모두 없습니다. 라벨을 눌러 연결된 컨트롤로 넘어가는
-동작도 없습니다(→ 알려진 제약).
-
-### 스크린 리더
-
-- 접근 가능한 이름의 출처는 표시 텍스트(`text`)입니다. `semanticLabel` 을 주면 그 값이
-  대신 읽힙니다 — Flutter 는 `Semantics(label:)`, Web 은 `aria-label` 로 나가며 Web 쪽
-  도달성에는 제약이 있습니다(→ 알려진 제약).
-- `isRequired: true` 는 `*` 글리프 하나로만 표현됩니다. `aria-required` 같은 상태나
-  "필수" 라는 텍스트로는 나가지 않으므로, 필수임을 확실히 알려야 하면
-  `semanticLabel: 'Email (필수)'` 처럼 이름에 직접 담으세요.
-- 상태 통보 없음 — 라벨은 정적 텍스트이고 live region 이 아닙니다.
-
-### 포커스 관리
-
-**해당 없음.** 오버레이가 아니고 포커스를 받지도 않으므로 진입·이탈·트랩 모두
-대상이 아닙니다. `Tab` 은 라벨을 건너뜁니다.
-
-### 알려진 제약
-
-- **`htmlFor` 는 어느 플랫폼에서도 라벨과 컨트롤을 실제로 잇지 않습니다.** Web 의 루트는
-  `tag: 'span'` 으로 고정인데 `for` 는 `<label>` / `<output>` 에서만 의미를 갖는 속성이라
-  `<span for="...">` 는 아무 관계도 만들지 않고, Flutter 는 그 값을
-  `Semantics(identifier:)` 메타로만 실을 뿐입니다. 두 구현 모두 탭/클릭 핸들러가 없어 라벨을
-  눌러도 컨트롤이 포커스를 받지 않습니다. 루트 태그는 호출부가 바꿀 수 없으므로 우회할
-  방법도 없습니다. `htmlFor` 는 deprecated 이며, 실제 라벨-컨트롤 연결이 필요하면
-  [FormField](/components/form-field) 를 쓰세요.
-- **Web 의 `semanticLabel` 은 `role` 이 없는 `<span>` 에 `aria-label` 로 실립니다.** ARIA 는
-  제네릭 요소에 이름을 붙이는 것을 금지하므로 브라우저가 이 값을 접근성 트리에 노출하지
-  않을 수 있습니다. Flutter 는 `Semantics(label:)` 로 감싸 값을 그대로 전달하므로 같은
-  코드가 두 플랫폼에서 다르게 읽힙니다.
-- **`disabled: true` 는 상태로 통보되지 않고 시각으로만 전달됩니다.** Web 은
-  `cursor-not-allowed` 와 텍스트 색을 바꾸고 `disabledOpacity` 를 인라인 `opacity` 로
-  내보내며, Flutter 도 `SystemMouseCursors.forbidden` 과 `Opacity` 를 씌웁니다. 하지만
-  어느 쪽도 `aria-disabled` 나 `Semantics(enabled: false)` 를 세우지 않아 스크린 리더에는
-  활성 라벨과 구별되지 않습니다. 게다가 `disabledOpacity` 의 기본값이
-  `CoreOpacity.opacity100`(= 1) 이라 기본 경로에서는 알파 감쇠가 일어나지 않고, 남는 시각
-  차이는 색 토큰(`onSurface` ↔ `disabledContent`)과 커서뿐입니다 — 색 강제 모드에서는 두
-  색이 같은 시스템 색으로 접히고 커서는 마우스 사용자에게만 보입니다. 감쇠가 필요하면
-  `CoreLabelStyle(disabledOpacity: …)` 로 직접 낮추세요.
-
-## 크로스 플랫폼 차이점 (Platform Differences)
-
-| 항목 | Flutter | Web |
-|------|---------|-----|
-| 표시 루트 | Row | label 태그가 아닌 span |
-| semanticLabel | Semantics.label | generic span의 aria-label |
-| deprecated htmlFor | 시맨틱 identifier | span의 for 속성. 입력 연결 효과는 없음 |
-| 비활성 표시 | 해석된 텍스트 색·선택적 Opacity·커서 | CSS 비활성 색·opacity·커서 |
-
-## 관련 컴포넌트 (Related Components)
-
-- **[Form](/components/form)**: 폼 필드 그룹화 + 검증
-- **[FormField](/components/form-field)**: 라벨-컨트롤을 실제로 연결하는 폼 필드 래퍼
-- **[Fieldset](/components/fieldset)**: 여러 라벨/입력의 그룹 컨테이너
-- **[ValidationBadge](/components/validation-badge)**: 라벨 옆 valid/invalid 인디케이터
+</Card>
+</Cards>

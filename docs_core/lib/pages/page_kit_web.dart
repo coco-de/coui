@@ -10,6 +10,7 @@ import 'package:coui_web/coui_web.dart';
 Component? docsWebIcon(String? name) => switch (name) {
   'layout-grid' => Icon(LucideIcons.layoutGrid),
   'list' => Icon(LucideIcons.list),
+  'mail' => Icon(LucideIcons.mail),
   'minus' => Icon(LucideIcons.minus),
   'phone' => Icon(LucideIcons.phone),
   'plus' => Icon(LucideIcons.plus),

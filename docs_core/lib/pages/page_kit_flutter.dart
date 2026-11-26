@@ -10,6 +10,7 @@ import 'package:coui_flutter/coui_flutter.dart';
 Widget? docsFlutterIcon(String? name) => switch (name) {
   'layout-grid' => Icon(LucideIcons.layoutGrid),
   'list' => Icon(LucideIcons.list),
+  'mail' => Icon(LucideIcons.mail),
   'minus' => Icon(LucideIcons.minus),
   'phone' => Icon(LucideIcons.phone),
   'plus' => Icon(LucideIcons.plus),
