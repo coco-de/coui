@@ -489,7 +489,7 @@ class _ButtonState extends State<Button> {
 
     // Aggregate the interaction states the chrome keys on. Button owns
     // its own state tracking now that the deprecated `Clickable` transport
-    // is gone (#2365): hover / focus come from [Clickable] callbacks,
+    // is gone (#2365): hover / focus / press come from [Clickable] callbacks,
     // `disabled` from `enabled`, and `selected` from an ambient
     // `WidgetStatesData` (e.g. a button group) or the external
     // `statesController`. Clickable drives the gesture / focus / cursor /
@@ -503,6 +503,7 @@ class _ButtonState extends State<Button> {
       if (!enabled) WidgetState.disabled,
       if (_hovered && !disableHoverEffect) WidgetState.hovered,
       if (_focused) WidgetState.focused,
+      if (_pressed) WidgetState.pressed,
       if (selected) WidgetState.selected,
     };
 
