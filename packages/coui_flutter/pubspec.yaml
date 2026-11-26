@@ -1,6 +1,6 @@
 name: coui_flutter
 description: "CoUI components for Flutter with shared design tokens, type-safe theming, and a matching component API for Jaspr."
-version: 0.194.2-beta.1
+version: 0.194.3-beta.1+-beta.1
 homepage: https://github.com/coco-de/coui
 repository: https://github.com/coco-de/coui/tree/main/packages/coui_flutter
 issue_tracker: https://github.com/coco-de/coui/issues
