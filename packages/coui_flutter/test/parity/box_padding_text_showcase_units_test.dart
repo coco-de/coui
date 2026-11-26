@@ -8,7 +8,9 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../tool/parity/src/model/box_observation_source_spec.dart';
 import '../helpers/test_app.dart';
 import 'box_padding_observation.dart';
+import 'box_padding_paired.dart';
 import 'box_padding_text_showcase_units.dart';
+import 'parity_matrix_entry.dart';
 
 const _variants = <String>[
   'typography-display',
@@ -62,6 +64,32 @@ TextShowcaseBoxSourceBinding _bind(GlobalKey capture, Widget result) =>
       registryResult: result,
       source: kTextShowcaseOuterPaddingSource,
     )!;
+
+Map<String, Object?> _sharedRoot(
+  GlobalKey capture,
+  Widget result, {
+  required Map<String, Object?>? source,
+  bool omitted = false,
+  Set<String> fields = const {'paddingPx'},
+}) {
+  final payload = observePairedNativePadding(
+    key: 'source-only-dispatch',
+    probes: [
+      ParityProbeSpec(
+        role: 'root',
+        flutterFinder: 'source-only',
+        fields: fields,
+        boxObservationSource: source,
+      ),
+    ],
+    captureRoot: capture.currentContext! as Element,
+    registryResult: result,
+    legacyRootOmitted: omitted,
+  );
+  expect(payload['canonicalComparisonEligible'], isFalse);
+  expect(payload['legacyRootOmitted'], omitted);
+  return ((payload['byRole']! as Map)['root']! as Map).cast<String, Object?>();
+}
 
 class _UnknownShowcase extends TextModifiersExample {
   const _UnknownShowcase(this.onBuild);
@@ -346,5 +374,176 @@ void main() {
     expect(_bind(capture, replacement).readActualPadding().owner, isNotNull);
     await tester.pumpWidget(const SizedBox.shrink());
     expect(held.readActualPadding, throwsA(isA<BoxObservationError>()));
+  });
+
+  group('shared Text showcase dispatch', () {
+    for (final variant in _variants) {
+      for (final dark in [false, true]) {
+        testWidgets('$variant/$dark retains the actual outer allocation', (
+          tester,
+        ) async {
+          final result = kFlutterPreviewRegistry['text']!(variant);
+          final capture = GlobalKey();
+          await _mount(tester, result, capture, dark: dark);
+          final bound = _bind(capture, result);
+          final current = bound.readActualPadding().toJson();
+          for (final omitted in [false, true]) {
+            final observed = _sharedRoot(
+              capture,
+              result,
+              source: kTextShowcaseOuterPaddingSource.toJson(),
+              omitted: omitted,
+            );
+            expect(observed['status'], 'source-complete', reason: '$observed');
+            expect(observed['sourceUnitValidated'], isTrue);
+            expect(
+              observed['source'],
+              kTextShowcaseOuterPaddingSource.toJson(),
+            );
+            expect(observed['sourceReaderId'], bound.readerId);
+            expect(observed['sourceBindingAuthority'], bound.authority);
+            expect(observed['quantityKind'], 'frameworkOwnParameter');
+            expect(observed['value'], current['value']);
+            expect(
+              observed['currentRenderPadding'],
+              current['currentRenderPadding'],
+            );
+            expect(
+              observed['fieldUnitElement'],
+              identityHashCode(bound.fieldUnitElement),
+            );
+            expect(
+              observed['declaredPaddingSourceElement'],
+              identityHashCode(bound.paddingSource),
+            );
+            expect(
+              observed['declaredFrameSourceElement'],
+              identityHashCode(bound.frameSource),
+            );
+            expect(
+              observed['frameSourceOwnerElement'],
+              observed['declaredFrameSourceElement'],
+            );
+            expect(
+              observed['contentBoundaryElement'],
+              current['contentBoundaryElement'],
+            );
+            expect(observed['legacyRoleEligible'], !omitted);
+            expect(observed['canonicalComparisonEligible'], isFalse);
+            expect(observed['paintRequired'], isFalse);
+          }
+          expect(tester.takeException(), isNull);
+        });
+      }
+    }
+
+    testWidgets('missing declaration stays incomplete', (tester) async {
+      final result = kFlutterPreviewRegistry['text']!('modifiers');
+      final capture = GlobalKey();
+      await _mount(tester, result, capture);
+      final observed = _sharedRoot(capture, result, source: null);
+      expect(observed['status'], 'incomplete');
+      expect(observed['error'], 'MISSING_PAIRED_BOX_SOURCE');
+      expect(observed.containsKey('value'), isFalse);
+    });
+
+    testWidgets('malformed or forged declarations never borrow the binder', (
+      tester,
+    ) async {
+      final result = kFlutterPreviewRegistry['text']!('modifiers');
+      final capture = GlobalKey();
+      await _mount(tester, result, capture);
+      for (final (field, value) in const <(String, Object?)>[
+        ('schemaVersion', 2),
+        ('quantityId', 'unreviewed-quantity'),
+        ('logicalUnitId', 'unreviewed-unit'),
+        ('nativeAdapterId', 'unreviewed-adapter'),
+        ('webAdapterId', 'unreviewed-adapter'),
+        ('webAdapterId', null),
+        ('unreviewedExtraField', true),
+      ]) {
+        final declared = kTextShowcaseOuterPaddingSource.toJson()
+          ..[field] = value;
+        final observed = _sharedRoot(capture, result, source: declared);
+        expect(observed['status'], 'incomplete', reason: '$observed');
+        expect(observed.containsKey('value'), isFalse);
+        expect(observed.containsKey('sourceUnitValidated'), isFalse);
+      }
+    });
+
+    testWidgets('unknown subclass is incomplete without another build', (
+      tester,
+    ) async {
+      var builds = 0;
+      final result = _UnknownShowcase(() => builds++);
+      final capture = GlobalKey();
+      await _mount(tester, result, capture);
+      final before = builds;
+      final observed = _sharedRoot(
+        capture,
+        result,
+        source: kTextShowcaseOuterPaddingSource.toJson(),
+      );
+      expect(observed['status'], 'incomplete');
+      expect(observed.containsKey('value'), isFalse);
+      expect(builds, before);
+    });
+
+    testWidgets('copied registry input is incomplete', (tester) async {
+      final result = TextModifiersExample(key: UniqueKey());
+      final copied = TextModifiersExample(key: UniqueKey());
+      final capture = GlobalKey();
+      await _mount(tester, result, capture);
+      final observed = _sharedRoot(
+        capture,
+        copied,
+        source: kTextShowcaseOuterPaddingSource.toJson(),
+      );
+      expect(observed['status'], 'incomplete');
+      expect(observed.containsKey('value'), isFalse);
+    });
+
+    testWidgets('outer wrapper cannot supply another showcase owner', (
+      tester,
+    ) async {
+      final inner = kFlutterPreviewRegistry['text']!('modifiers');
+      final result = Padding(padding: const EdgeInsets.all(97), child: inner);
+      final capture = GlobalKey();
+      await _mount(tester, result, capture);
+      final observed = _sharedRoot(
+        capture,
+        result,
+        source: kTextShowcaseOuterPaddingSource.toJson(),
+      );
+      expect(observed['status'], 'incomplete');
+      expect(observed.containsKey('value'), isFalse);
+    });
+
+    testWidgets('existing outlined route stays separate', (tester) async {
+      final result = kFlutterPreviewRegistry['outlined-container']!(null);
+      final capture = GlobalKey();
+      await _mount(tester, result, capture);
+      final observed = _sharedRoot(
+        capture,
+        result,
+        source: BoxObservationSourceSpec.outlined.toJson(),
+      );
+      expect(observed['status'], 'source-complete', reason: '$observed');
+      expect(observed['source'], BoxObservationSourceSpec.outlined.toJson());
+      expect(observed['sourceReaderId'], isNull);
+    });
+
+    testWidgets('nonpadding role stays not requested', (tester) async {
+      final result = kFlutterPreviewRegistry['text']!('modifiers');
+      final capture = GlobalKey();
+      await _mount(tester, result, capture);
+      final observed = _sharedRoot(
+        capture,
+        result,
+        source: null,
+        fields: const {'widthPx', 'heightPx'},
+      );
+      expect(observed, {'status': 'not-requested'});
+    });
   });
 }

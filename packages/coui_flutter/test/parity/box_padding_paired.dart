@@ -31,6 +31,7 @@ import 'box_padding_solid_layout_units.dart';
 import 'box_padding_source_bindings.dart';
 import 'box_padding_structured_root_units.dart';
 import 'box_padding_surface_component_units.dart';
+import 'box_padding_text_showcase_units.dart';
 import 'box_padding_validation_viewport_units.dart';
 import 'box_padding_visual_value_units.dart';
 import 'parity_matrix_entry.dart';
@@ -105,6 +106,57 @@ Map<String, Object?> _observe(
     final BoxPaddingObservation observation;
     var sourceBindingProvenance = <String, Object?>{};
     switch (source.nativeAdapterId) {
+      case 'classic-text-showcase-outer-padding-v1':
+        final declared = probe.boxObservationSource!;
+        final expected = kTextShowcaseOuterPaddingSource.toJson();
+        if (declared.length != expected.length ||
+            expected.entries.any(
+              (entry) => declared[entry.key] != entry.value,
+            )) {
+          throw const BoxObservationError(
+            'TEXT_SHOWCASE_SOURCE_CHANGED',
+            'The complete declared Text showcase tuple must match exactly.',
+          );
+        }
+        final binding = bindTextShowcaseBoxSource(
+          captureRoot: captureRoot,
+          registryResult: registryResult,
+          source: source,
+        );
+        if (binding == null ||
+            !identical(binding.registryResultElement, resultElement) ||
+            !identical(binding.scope.producer, resultElement) ||
+            binding.authority.isEmpty ||
+            binding.readerId != 'text-showcase-actual-framework-padding-v1') {
+          throw const BoxObservationError(
+            'MISMATCHED_TEXT_SHOWCASE_SOURCE',
+            'The current closed showcase must own its declared allocation.',
+          );
+        }
+        binding.scope
+          ..requireOwned(binding.fieldUnitElement)
+          ..requireOwned(binding.paddingSource)
+          ..requireOwned(binding.frameSource);
+        observation = binding.readActualPadding();
+        binding.scope.requireOwned(observation.owner);
+        if (!identical(observation.producer, resultElement) ||
+            !identical(observation.owner, binding.paddingSource) ||
+            !identical(observation.paddingElement, binding.paddingSource) ||
+            !identical(observation.frameOwner, binding.frameSource)) {
+          throw const BoxObservationError(
+            'MISMATCHED_TEXT_SHOWCASE_OBSERVATION',
+            'Keep the actual producer, padding source and frame identities.',
+          );
+        }
+        sourceBindingProvenance = {
+          'sourceBindingAuthority': binding.authority,
+          'fieldUnitElement': identityHashCode(binding.fieldUnitElement),
+          'declaredPaddingSourceElement': identityHashCode(
+            binding.paddingSource,
+          ),
+          'declaredFrameSourceElement': identityHashCode(binding.frameSource),
+          'sourceReaderId': binding.readerId,
+        };
       case 'docs-playground-stage-frame-v1':
         if (previewReceiptError != null) throw previewReceiptError;
         if (previewReceipt == null) {

@@ -20,15 +20,10 @@ import 'package:flutter/widgets.dart'
 import '../../../../tool/parity/src/model/box_observation_source_spec.dart';
 import 'box_padding_observation.dart';
 
-/// Prototype identity only; no manifest or shared registry enables this tuple.
-/// The unit is the showcase's outer allocation, never a Text glyph/span box.
-const kTextShowcaseOuterPaddingSource = BoxObservationSourceSpec(
-  schemaVersion: 1,
-  logicalUnitId: 'classic-text-showcase-generated-padding-host',
-  quantityId: BoxObservationSourceSpec.quantity,
-  nativeAdapterId: 'classic-text-showcase-outer-padding-v1',
-  webAdapterId: 'classic-text-showcase-outer-padding-v1',
-);
+/// The exact declared outer allocation, never a Text glyph/span box.
+/// A declaration still requires the original current closed Example mount.
+const BoxObservationSourceSpec kTextShowcaseOuterPaddingSource =
+    BoxObservationSourceSpec.textShowcaseOuterPadding;
 
 const _kExamples = <Type>{
   TextTypographyDisplayExample,

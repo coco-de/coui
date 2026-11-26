@@ -56,6 +56,10 @@ void requireCaptureProbes({
             ) ||
             BoxObservationSourceSpec.visualValueFrames.contains(source) ||
             BoxObservationSourceSpec.framedCollectionFrames.contains(source) ||
+            source?.logicalUnitId ==
+                BoxObservationSourceSpec
+                    .textShowcaseOuterPadding
+                    .logicalUnitId ||
             BoxObservationSourceSpec.documentationBubbleFrames.contains(
               source,
             )) &&
@@ -137,6 +141,25 @@ BoxObservationSourceSpec? _componentBoxSource(
   String component,
   String variant,
 ) => switch ((component, variant)) {
+  (
+    'text',
+    'typography-display' ||
+        'typography-headline' ||
+        'typography-title' ||
+        'typography-body' ||
+        'typography-weight' ||
+        'typography-primitive' ||
+        'colors-brand' ||
+        'colors-status' ||
+        'colors-surface' ||
+        'modifiers' ||
+        'wrap' ||
+        'keep-all' ||
+        'textstyle' ||
+        'opacity' ||
+        'rich',
+  ) =>
+    BoxObservationSourceSpec.textShowcaseOuterPadding,
   ('icon', 'default' || 'search' || 'favorite') =>
     BoxObservationSourceSpec.iconVisualFrame,
   ('number-ticker', 'default') =>

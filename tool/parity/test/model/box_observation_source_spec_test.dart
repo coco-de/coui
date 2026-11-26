@@ -7,6 +7,141 @@ import '../../src/model/box_observation_source_spec.dart';
 import '../../src/model/probe_spec.dart';
 
 void main() {
+  // The pre-change literal wire tuple is preserved in the frozen RED input.
+  // Use its identical registered constant after production registration.
+  const textShowcase = BoxObservationSourceSpec.textShowcaseOuterPadding;
+  const textVariants = [
+    'typography-display',
+    'typography-headline',
+    'typography-title',
+    'typography-body',
+    'typography-weight',
+    'typography-primitive',
+    'colors-brand',
+    'colors-status',
+    'colors-surface',
+    'modifiers',
+    'wrap',
+    'keep-all',
+    'textstyle',
+    'opacity',
+    'rich',
+  ];
+  test('classic Text showcase tuple is registered exactly', () {
+    expect(textShowcase.toJson(), const {
+      'schemaVersion': 1,
+      'logicalUnitId': 'classic-text-showcase-generated-padding-host',
+      'quantityId': 'inside-frame-own-content-inset-v1',
+      'nativeAdapterId': 'classic-text-showcase-outer-padding-v1',
+      'webAdapterId': 'classic-text-showcase-outer-padding-v1',
+    });
+    expect(textShowcase.validationError, isNull);
+    expect(
+      BoxObservationSourceSpec.fromJson(textShowcase.toJson()),
+      textShowcase,
+    );
+  });
+  for (final variant in textVariants) {
+    for (final theme in ['light', 'dark']) {
+      test('classic text/$variant/$theme retains its legacy probe', () {
+        final key = 'text-$variant-$theme-defaultStyle';
+        final probes = captureProbes(
+          key: key,
+          component: 'text',
+          variant: variant,
+          flutterClassName: 'Text',
+        );
+        expect(probes, hasLength(1));
+        final root = probes.single;
+        expect(root.boxObservationSource, textShowcase);
+        expect(
+          root.toJson()..remove('boxObservationSource'),
+          rootProbeSpec(key: key, flutterClassName: 'Text').toJson(),
+        );
+        expect(
+          () => requireCaptureProbes(
+            component: 'text',
+            variant: variant,
+            roles: [root.role],
+            boxObservationSources: [textShowcase],
+          ),
+          returnsNormally,
+        );
+      });
+    }
+  }
+  test('Text showcase source has no key or finder routing', () {
+    for (final key in [
+      'caller-owned-key',
+      'button-default-dark-defaultStyle',
+    ]) {
+      expect(
+        captureProbes(
+          key: key,
+          component: 'text',
+          variant: 'rich',
+          flutterClassName: 'UnrelatedFinderName',
+        ).single.boxObservationSource,
+        textShowcase,
+      );
+    }
+  });
+  test('Text showcase source cannot be borrowed by other recipes', () {
+    for (final (component, variant) in const [
+      ('text', 'default'),
+      ('text', 'typography-body-unreviewed'),
+      ('text', 'docs-v2-unreviewed'),
+      ('text', 'TextRichExample'),
+      ('button', 'typography-display'),
+      ('skeleton', 'text'),
+      ('diff', 'text'),
+      ('mockup-device', 'default'),
+    ]) {
+      final probes = captureProbes(
+        key: 'cross-recipe-key',
+        component: component,
+        variant: variant,
+        flutterClassName: 'Text',
+      );
+      expect(
+        probes.map((probe) => probe.boxObservationSource),
+        isNot(contains(textShowcase)),
+      );
+      expect(
+        () => requireCaptureProbes(
+          component: component,
+          variant: variant,
+          roles: probes.map((probe) => probe.role),
+          boxObservationSources: [textShowcase],
+        ),
+        throwsFormatException,
+      );
+    }
+  });
+  test('claimed Text unit rejects a malformed schema or adapter tuple', () {
+    for (final change in <Map<String, Object?>>[
+      {'schemaVersion': 99},
+      {'quantityId': 'unreviewed-quantity'},
+      {'nativeAdapterId': BoxObservationSourceSpec.outlined.nativeAdapterId},
+      {'webAdapterId': BoxObservationSourceSpec.outlined.webAdapterId},
+    ]) {
+      final malformed = BoxObservationSourceSpec.fromJson({
+        ...textShowcase.toJson(),
+        ...change,
+      });
+      expect(malformed.validationError, isNotNull);
+      expect(
+        () => requireCaptureProbes(
+          component: 'text',
+          variant: 'rich',
+          roles: const ['root'],
+          boxObservationSources: [malformed],
+        ),
+        throwsFormatException,
+      );
+    }
+  });
+
   const nextParameterRecipes =
       <
         ({
