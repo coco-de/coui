@@ -413,7 +413,9 @@ body .catalog-grid .catalog-stage--edge { align-items: end; padding: 0; }
 #docs-shell[data-component-template] .content > h2:first-child { margin-top: 0; }
 #docs-shell[data-component-template] .docs-table thead { background: var(--foundation-panel); }
 #docs-shell[data-component-template] .docs-table :is(th, td):first-child { padding-inline-start: var(--coui-space-16); }
-[data-component-template] .docs-playground .docs-code-head { background: rgb(var(--site-page)); color: rgb(var(--site-ink-muted)); }
+/* 플레이그라운드의 머리글은 아래의 어두운 코드와 면이 다르다 — 이름표 아래에도
+   위와 같은 여백을 둔다. 면이 하나인 다른 코드 블록은 코드 쪽 여백이 맡는다. */
+[data-component-template] .docs-playground .docs-code-head { padding-bottom: var(--coui-space-16); background: rgb(var(--site-page)); color: rgb(var(--site-ink-muted)); }
 [data-component-template] .docs-playground .docs-code-head button { --coui-neutral-500: var(--site-ink-muted); }
 
 /* Blocks use the same wireframes in the index and the layout reference. */
