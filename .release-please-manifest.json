@@ -1,9 +1,9 @@
 {
   "packages/coui": "0.2.0",
-  "packages/coui_core": "0.192.0",
-  "packages/coui_flutter": "0.195.0",
+  "packages/coui_core": "0.192.1",
+  "packages/coui_flutter": "0.196.0",
   "packages/coui_i10n": "0.11.0",
   "packages/coui_lints": "0.6.0",
   "packages/coui_mcp": "4.0.1",
-  "packages/coui_web": "0.192.0"
+  "packages/coui_web": "0.192.1"
 }
