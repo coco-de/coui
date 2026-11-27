@@ -247,6 +247,7 @@ class Footer extends UiComponent implements CoreFooterContract<Component> {
     return Footer(
       key: key ?? this.key,
       sections: sections ?? this.sections,
+      tag: tag,
       id: id ?? this.id,
       classes: mergeClasses(this.classes, classes),
       css: css ?? this.css,
@@ -412,6 +413,10 @@ class Footer extends UiComponent implements CoreFooterContract<Component> {
 /// Footer(sections: sections).surface
 /// ```
 extension FooterStyleChain on Footer {
+  /// Sets the background paint and preserves the other style fields.
+  Footer backgroundColor(CoreColor value) =>
+      withStyle(CoreFooterStyle(backgroundColor: value));
+
   /// Returns a copy of this [Footer] with [patch] merged into
   /// [footerStyle] (patch fields win on conflict).
   Footer withStyle(CoreFooterStyle patch) => copyWith(

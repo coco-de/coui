@@ -338,26 +338,13 @@ class Banner extends UiComponent implements CoreBannerContract<Component> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreBannerStyle.merge` right-side-wins semantics).
 ///
-/// The getters below are shorter sugar for the same [withStyle] call.
-/// Each one is a direct 1:1 alias for a `CoreRadius` / `CoreColors`
-/// primitive — the getter *name* is the token name, so `.radius4`
-/// always means `CoreRadius.radius4` and `.primary` always means
-/// `CoreColors.primary`, no matter which component it's called on.
-/// That fixed name-to-value mapping is what makes a short getter safe
-/// to reuse across components — a curated nickname (`.rounded`,
-/// `.compact`) would silently map to a different value per component,
-/// but a primitive-token getter cannot.
-///
-/// These are intentionally primitive (not semantic) for now: `.radius4`
-/// sets [CoreBannerStyle.borderRadius] and `.primary` sets
-/// [CoreBannerStyle.backgroundColor]. A semantic layer that names these
-/// after component-specific intent (decided together with design) is
-/// a follow-up once more components adopt this pattern.
-///
-/// ```dart
-/// Banner(message: text('Note')).radius4.primary
-/// ```
+/// `.info`, `.success`, `.warning` select component options.
+/// Use `backgroundColor(.primary)` to set the background explicitly.
 extension BannerStyleChain on Banner {
+  /// Sets the background paint and preserves the other style fields.
+  Banner backgroundColor(CoreColor value) =>
+      withStyle(CoreBannerStyle(backgroundColor: value));
+
   /// Returns a copy of this [Banner] with [patch] merged into
   /// [bannerStyle] (patch fields win on conflict).
   Banner withStyle(CoreBannerStyle patch) => copyWith(
@@ -537,20 +524,14 @@ extension BannerStyleChain on Banner {
     const CoreBannerStyle(backgroundColor: CoreColor.token(CoreColors.error)),
   );
 
-  /// `backgroundColor: CoreColor.token(CoreColors.success)`.
-  Banner get success => withStyle(
-    const CoreBannerStyle(backgroundColor: CoreColor.token(CoreColors.success)),
-  );
+  /// Selects `variant: .success` using the component theme.
+  Banner get success => copyWith(variant: .success);
 
-  /// `backgroundColor: CoreColor.token(CoreColors.warning)`.
-  Banner get warning => withStyle(
-    const CoreBannerStyle(backgroundColor: CoreColor.token(CoreColors.warning)),
-  );
+  /// Selects `variant: .warning` using the component theme.
+  Banner get warning => copyWith(variant: .warning);
 
-  /// `backgroundColor: CoreColor.token(CoreColors.info)`.
-  Banner get info => withStyle(
-    const CoreBannerStyle(backgroundColor: CoreColor.token(CoreColors.info)),
-  );
+  /// Selects `variant: .info` using the component theme.
+  Banner get info => copyWith(variant: .info);
 
   /// `backgroundColor: CoreColor.token(CoreColors.outline)`.
   Banner get outline => withStyle(

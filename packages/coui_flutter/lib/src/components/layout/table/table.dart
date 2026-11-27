@@ -524,6 +524,10 @@ class _HoveredCell {
 /// Table(rows: rows).radius4.surface
 /// ```
 extension TableStyleChain on Table {
+  /// Sets the background paint and preserves the other style fields.
+  Table backgroundColor(CoreColor value) =>
+      withStyle(CoreTableStyle(backgroundColor: value));
+
   /// Returns a copy of this [Table] with [patch] merged into
   /// [tableStyle] (patch fields win on conflict).
   Table withStyle(CoreTableStyle patch) =>

@@ -293,6 +293,10 @@ class MenuItem extends UiComponent implements CoreMenuItemContract<Component> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreMenuItemStyle.merge` right-side-wins semantics).
 extension MenuItemStyleChain on MenuItem {
+  /// Sets the background paint and preserves the other style fields.
+  MenuItem backgroundColor(CoreColor value) =>
+      withStyle(CoreMenuItemStyle(backgroundColor: value));
+
   /// Returns a copy of this [MenuItem] with [patch] merged into
   /// [menuItemStyle] (patch fields win on conflict).
   MenuItem withStyle(CoreMenuItemStyle patch) => copyWith(

@@ -438,6 +438,10 @@ class _DockState extends State<Dock> {
 /// Dock(items: items).surface
 /// ```
 extension DockStyleChain on Dock {
+  /// Sets the background paint and preserves the other style fields.
+  Dock backgroundColor(CoreColor value) =>
+      withStyle(CoreDockStyle(backgroundColor: value));
+
   /// Returns a copy of this [Dock] with [patch] merged into [dockStyle]
   /// (patch fields win on conflict).
   Dock withStyle(CoreDockStyle patch) =>

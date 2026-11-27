@@ -170,6 +170,10 @@ class Tag extends StatelessWidget implements CoreTagContract<Widget> {
 /// )
 /// ```
 extension TagStyleChain on Tag {
+  /// Sets the background paint and preserves the other style fields.
+  Tag backgroundColor(CoreColor value) =>
+      withStyle(CoreTagStyle(backgroundColor: value));
+
   /// Returns a copy of this [Tag] with [patch] merged into [tagStyle]
   /// (patch fields win on conflict).
   Tag withStyle(CoreTagStyle patch) =>

@@ -236,26 +236,13 @@ class Stat extends StatelessWidget implements CoreStatContract<Widget?> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreStatStyle.merge` right-side-wins semantics).
 ///
-/// The getters below are shorter sugar for the same [withStyle] call.
-/// Each one is a direct 1:1 alias for a `CoreRadius` / `CoreColors`
-/// primitive — the getter *name* is the token name, so `.radius4`
-/// always means `CoreRadius.radius4` and `.primary` always means
-/// `CoreColors.primary`, no matter which component it's called on.
-/// That fixed name-to-value mapping is what makes a short getter safe
-/// to reuse across components — a curated nickname (`.rounded`,
-/// `.compact`) would silently map to a different value per component,
-/// but a primitive-token getter cannot.
-///
-/// These are intentionally primitive (not semantic) for now: `.radius4`
-/// sets [CoreStatStyle.borderRadius] and `.primary` sets
-/// [CoreStatStyle.backgroundColor]. A semantic layer that names these
-/// after component-specific intent (decided together with design) is
-/// a follow-up once more components adopt this pattern.
-///
-/// ```dart
-/// Stat(label: 'Total Revenue', value: r'$45,231').radius4.surface
-/// ```
+/// `.outline` selects component options.
+/// Use `backgroundColor(.primary)` to set the background explicitly.
 extension StatStyleChain on Stat {
+  /// Sets the background paint and preserves the other style fields.
+  Stat backgroundColor(CoreColor value) =>
+      withStyle(CoreStatStyle(backgroundColor: value));
+
   /// Returns a copy of this [Stat] with [patch] merged into [statStyle]
   /// (patch fields win on conflict).
   Stat withStyle(CoreStatStyle patch) =>
@@ -435,10 +422,8 @@ extension StatStyleChain on Stat {
     const CoreStatStyle(backgroundColor: CoreColor.token(CoreColors.info)),
   );
 
-  /// `backgroundColor: CoreColor.token(CoreColors.outline)`.
-  Stat get outline => withStyle(
-    const CoreStatStyle(backgroundColor: CoreColor.token(CoreColors.outline)),
-  );
+  /// Selects `variant: .outlined` using the component theme.
+  Stat get outline => copyWith(variant: .outlined);
 
   /// `backgroundColor: CoreColor.transparent`.
   Stat get transparent =>

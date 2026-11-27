@@ -34,6 +34,7 @@ class ChainTargetSurface {
     required this.hasWithStyle,
     required this.radiusGetters,
     required this.colorGetters,
+    this.optionGetters = const [],
   });
 
   /// extension target 클래스명.
@@ -48,6 +49,9 @@ class ChainTargetSurface {
   /// 색 축 필드(`backgroundColor` · 채움이 주 색인 부품은 `color`)를
   /// patch 하는 getter 이름 (사전순).
   final List<String> colorGetters;
+
+  /// Getters selecting a constructor option through copyWith.
+  final List<String> optionGetters;
 }
 
 /// 한 컴포넌트의 실측 행.
@@ -211,16 +215,18 @@ const List<ChainAxisEntry> kChainAxisTable = [
         ],
         colorGetters: [
           'error',
-          'info',
           'outline',
           'primary',
           'secondary',
-          'success',
           'surface',
           'surfaceContainer',
           'tertiary',
           'transparent',
+        ],
+        optionGetters: [
+          'success',
           'warning',
+          'info',
         ],
       ),
     ],
@@ -251,16 +257,18 @@ const List<ChainAxisEntry> kChainAxisTable = [
         ],
         colorGetters: [
           'error',
-          'info',
           'outline',
           'primary',
           'secondary',
-          'success',
           'surface',
           'surfaceContainer',
           'tertiary',
           'transparent',
+        ],
+        optionGetters: [
+          'success',
           'warning',
+          'info',
         ],
       ),
     ],
@@ -507,16 +515,18 @@ const List<ChainAxisEntry> kChainAxisTable = [
         ],
         colorGetters: [
           'error',
-          'info',
-          'outline',
-          'primary',
           'secondary',
-          'success',
           'surface',
           'surfaceContainer',
           'tertiary',
           'transparent',
+        ],
+        optionGetters: [
+          'primary',
+          'success',
           'warning',
+          'info',
+          'outline',
         ],
       ),
     ],
@@ -547,16 +557,18 @@ const List<ChainAxisEntry> kChainAxisTable = [
         ],
         colorGetters: [
           'error',
-          'info',
-          'outline',
-          'primary',
           'secondary',
-          'success',
           'surface',
           'surfaceContainer',
           'tertiary',
           'transparent',
+        ],
+        optionGetters: [
+          'primary',
+          'success',
           'warning',
+          'info',
+          'outline',
         ],
       ),
     ],
@@ -595,16 +607,18 @@ const List<ChainAxisEntry> kChainAxisTable = [
         ],
         colorGetters: [
           'error',
-          'info',
           'outline',
           'primary',
           'secondary',
-          'success',
           'surface',
           'surfaceContainer',
           'tertiary',
           'transparent',
+        ],
+        optionGetters: [
+          'success',
           'warning',
+          'info',
         ],
       ),
     ],
@@ -635,16 +649,18 @@ const List<ChainAxisEntry> kChainAxisTable = [
         ],
         colorGetters: [
           'error',
-          'info',
           'outline',
           'primary',
           'secondary',
-          'success',
           'surface',
           'surfaceContainer',
           'tertiary',
           'transparent',
+        ],
+        optionGetters: [
+          'success',
           'warning',
+          'info',
         ],
       ),
     ],
@@ -780,15 +796,17 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
-          'primary',
-          'secondary',
           'success',
           'surface',
           'surfaceContainer',
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'primary',
+          'secondary',
+          'outline',
         ],
       ),
     ],
@@ -820,15 +838,17 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
-          'primary',
-          'secondary',
           'success',
           'surface',
           'surfaceContainer',
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'primary',
+          'secondary',
+          'outline',
         ],
       ),
     ],
@@ -892,7 +912,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
           'primary',
           'secondary',
           'success',
@@ -901,6 +920,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'outline',
         ],
       ),
     ],
@@ -932,7 +954,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
           'primary',
           'secondary',
           'success',
@@ -941,6 +962,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'outline',
         ],
       ),
     ],
@@ -1240,8 +1264,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
-          'primary',
           'secondary',
           'success',
           'surface',
@@ -1249,6 +1271,10 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'primary',
+          'outline',
         ],
       ),
     ],
@@ -1280,8 +1306,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
-          'primary',
           'secondary',
           'success',
           'surface',
@@ -1289,6 +1313,10 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'primary',
+          'outline',
         ],
       ),
     ],
@@ -1890,7 +1918,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
           'primary',
           'secondary',
           'success',
@@ -1899,6 +1926,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'outline',
         ],
       ),
     ],
@@ -1930,7 +1960,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
           'primary',
           'secondary',
           'success',
@@ -1939,6 +1968,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'outline',
         ],
       ),
     ],
@@ -2406,7 +2438,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
           'primary',
           'secondary',
           'success',
@@ -2415,6 +2446,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'outline',
         ],
       ),
     ],
@@ -2446,7 +2480,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
           'primary',
           'secondary',
           'success',
@@ -2455,6 +2488,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'outline',
         ],
       ),
     ],
@@ -4859,13 +4895,15 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'error',
           'info',
           'outline',
-          'primary',
           'secondary',
-          'success',
           'surface',
           'surfaceContainer',
           'tertiary',
           'transparent',
+        ],
+        optionGetters: [
+          'primary',
+          'success',
           'warning',
         ],
       ),
@@ -4899,13 +4937,15 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'error',
           'info',
           'outline',
-          'primary',
           'secondary',
-          'success',
           'surface',
           'surfaceContainer',
           'tertiary',
           'transparent',
+        ],
+        optionGetters: [
+          'primary',
+          'success',
           'warning',
         ],
       ),
@@ -5756,7 +5796,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
           'primary',
           'secondary',
           'success',
@@ -5765,6 +5804,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'outline',
         ],
       ),
     ],
@@ -5796,7 +5838,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
         colorGetters: [
           'error',
           'info',
-          'outline',
           'primary',
           'secondary',
           'success',
@@ -5805,6 +5846,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'outline',
         ],
       ),
     ],
@@ -6134,6 +6178,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'transparent',
           'warning',
         ],
+        optionGetters: [
+          'editorStrip',
+        ],
       ),
     ],
     webTargets: [
@@ -6173,6 +6220,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'editorStrip',
         ],
       ),
     ],
@@ -6446,7 +6496,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'radius9999',
         ],
         colorGetters: [
-          'error',
           'info',
           'outline',
           'primary',
@@ -6457,6 +6506,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'error',
         ],
       ),
     ],
@@ -6486,7 +6538,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'radius9999',
         ],
         colorGetters: [
-          'error',
           'info',
           'outline',
           'primary',
@@ -6497,6 +6548,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'error',
         ],
       ),
     ],
@@ -6558,7 +6612,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'radius9999',
         ],
         colorGetters: [
-          'error',
           'info',
           'outline',
           'primary',
@@ -6569,6 +6622,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'error',
         ],
       ),
     ],
@@ -6598,7 +6654,6 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'radius9999',
         ],
         colorGetters: [
-          'error',
           'info',
           'outline',
           'primary',
@@ -6609,6 +6664,9 @@ const List<ChainAxisEntry> kChainAxisTable = [
           'tertiary',
           'transparent',
           'warning',
+        ],
+        optionGetters: [
+          'error',
         ],
       ),
     ],

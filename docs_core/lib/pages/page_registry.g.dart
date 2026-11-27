@@ -13,6 +13,8 @@ import 'banner/banner_page.dart' as banner;
 import 'breadcrumb/breadcrumb_page.dart' as breadcrumb;
 import 'button/button_page.dart' as button;
 import 'card_image/card_image_page.dart' as card_image;
+import 'carousel/carousel_page.dart' as carousel;
+import 'carousel_banner/carousel_banner_page.dart' as carousel_banner;
 import 'checkbox/checkbox_page.dart' as checkbox;
 import 'chip/chip_page.dart' as chip;
 import 'chip_group/chip_group_page.dart' as chip_group;
@@ -25,10 +27,12 @@ import 'date_picker/date_picker_page.dart' as date_picker;
 import 'dialog/dialog_page.dart' as dialog;
 import 'disclosure_badge/disclosure_badge_page.dart' as disclosure_badge;
 import 'divider/divider_page.dart' as divider;
+import 'dot_indicator/dot_indicator_page.dart' as dot_indicator;
 import 'drawer/drawer_page.dart' as drawer;
 import 'dropdown_menu/dropdown_menu_page.dart' as dropdown_menu;
 import 'empty_state/empty_state_page.dart' as empty_state;
 import 'fab/fab_page.dart' as fab;
+import 'fade_scroll/fade_scroll_page.dart' as fade_scroll;
 import 'fieldset/fieldset_page.dart' as fieldset;
 import 'file_input/file_input_page.dart' as file_input;
 import 'filter/filter_page.dart' as filter;
@@ -40,6 +44,7 @@ import 'formatter/formatter_page.dart' as formatter;
 import 'gap/gap_page.dart' as gap;
 import 'hover/hover_page.dart' as hover;
 import 'hover_card/hover_card_page.dart' as hover_card;
+import 'hover_gallery/hover_gallery_page.dart' as hover_gallery;
 import 'icon/icon_page.dart' as icon;
 import 'indexed_switcher/indexed_switcher_page.dart' as indexed_switcher;
 import 'indicator/indicator_page.dart' as indicator;
@@ -125,6 +130,8 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (breadcrumb.playground case final spec?) breadcrumb.slug: spec,
   if (button.playground case final spec?) button.slug: spec,
   if (card_image.playground case final spec?) card_image.slug: spec,
+  if (carousel.playground case final spec?) carousel.slug: spec,
+  if (carousel_banner.playground case final spec?) carousel_banner.slug: spec,
   if (checkbox.playground case final spec?) checkbox.slug: spec,
   if (chip.playground case final spec?) chip.slug: spec,
   if (chip_group.playground case final spec?) chip_group.slug: spec,
@@ -137,10 +144,12 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (dialog.playground case final spec?) dialog.slug: spec,
   if (disclosure_badge.playground case final spec?) disclosure_badge.slug: spec,
   if (divider.playground case final spec?) divider.slug: spec,
+  if (dot_indicator.playground case final spec?) dot_indicator.slug: spec,
   if (drawer.playground case final spec?) drawer.slug: spec,
   if (dropdown_menu.playground case final spec?) dropdown_menu.slug: spec,
   if (empty_state.playground case final spec?) empty_state.slug: spec,
   if (fab.playground case final spec?) fab.slug: spec,
+  if (fade_scroll.playground case final spec?) fade_scroll.slug: spec,
   if (fieldset.playground case final spec?) fieldset.slug: spec,
   if (file_input.playground case final spec?) file_input.slug: spec,
   if (filter.playground case final spec?) filter.slug: spec,
@@ -152,6 +161,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (gap.playground case final spec?) gap.slug: spec,
   if (hover.playground case final spec?) hover.slug: spec,
   if (hover_card.playground case final spec?) hover_card.slug: spec,
+  if (hover_gallery.playground case final spec?) hover_gallery.slug: spec,
   if (icon.playground case final spec?) icon.slug: spec,
   if (indexed_switcher.playground case final spec?) indexed_switcher.slug: spec,
   if (indicator.playground case final spec?) indicator.slug: spec,
@@ -238,6 +248,8 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (breadcrumb.sizeSpec case final spec?) breadcrumb.slug: spec,
   if (button.sizeSpec case final spec?) button.slug: spec,
   if (card_image.sizeSpec case final spec?) card_image.slug: spec,
+  if (carousel.sizeSpec case final spec?) carousel.slug: spec,
+  if (carousel_banner.sizeSpec case final spec?) carousel_banner.slug: spec,
   if (checkbox.sizeSpec case final spec?) checkbox.slug: spec,
   if (chip.sizeSpec case final spec?) chip.slug: spec,
   if (chip_group.sizeSpec case final spec?) chip_group.slug: spec,
@@ -250,10 +262,12 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (dialog.sizeSpec case final spec?) dialog.slug: spec,
   if (disclosure_badge.sizeSpec case final spec?) disclosure_badge.slug: spec,
   if (divider.sizeSpec case final spec?) divider.slug: spec,
+  if (dot_indicator.sizeSpec case final spec?) dot_indicator.slug: spec,
   if (drawer.sizeSpec case final spec?) drawer.slug: spec,
   if (dropdown_menu.sizeSpec case final spec?) dropdown_menu.slug: spec,
   if (empty_state.sizeSpec case final spec?) empty_state.slug: spec,
   if (fab.sizeSpec case final spec?) fab.slug: spec,
+  if (fade_scroll.sizeSpec case final spec?) fade_scroll.slug: spec,
   if (fieldset.sizeSpec case final spec?) fieldset.slug: spec,
   if (file_input.sizeSpec case final spec?) file_input.slug: spec,
   if (filter.sizeSpec case final spec?) filter.slug: spec,
@@ -265,6 +279,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (gap.sizeSpec case final spec?) gap.slug: spec,
   if (hover.sizeSpec case final spec?) hover.slug: spec,
   if (hover_card.sizeSpec case final spec?) hover_card.slug: spec,
+  if (hover_gallery.sizeSpec case final spec?) hover_gallery.slug: spec,
   if (icon.sizeSpec case final spec?) icon.slug: spec,
   if (indexed_switcher.sizeSpec case final spec?) indexed_switcher.slug: spec,
   if (indicator.sizeSpec case final spec?) indicator.slug: spec,

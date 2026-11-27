@@ -287,6 +287,10 @@ class Sidebar extends StatelessWidget implements CoreSidebarContract<Widget> {
 /// Chain sugar for merging a [CoreSidebarStyle] patch into
 /// [Sidebar.sidebarStyle]. Mirrors the Web extension.
 extension SidebarStyleChain on Sidebar {
+  /// Sets the background paint and preserves the other style fields.
+  Sidebar backgroundColor(CoreColor value) =>
+      withStyle(CoreSidebarStyle(backgroundColor: value));
+
   /// Returns a copy with [patch] merged into [sidebarStyle] (patch fields
   /// win on conflict).
   Sidebar withStyle(CoreSidebarStyle patch) => copyWith(

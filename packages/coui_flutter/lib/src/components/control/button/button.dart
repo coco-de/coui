@@ -766,26 +766,13 @@ class _ButtonState extends State<Button> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreButtonStyle.merge` right-side-wins semantics).
 ///
-/// The getters below are shorter sugar for the same [withStyle] call.
-/// Each one is a direct 1:1 alias for a `CoreRadius` / `CoreColors`
-/// primitive — the getter *name* is the token name, so `.radius4`
-/// always means `CoreRadius.radius4` and `.primary` always means
-/// `CoreColors.primary`, no matter which component it's called on.
-/// That fixed name-to-value mapping is what makes a short getter safe
-/// to reuse across components — a curated nickname (`.rounded`,
-/// `.compact`) would silently map to a different value per component,
-/// but a primitive-token getter cannot.
-///
-/// These are intentionally primitive (not semantic) for now: `.radius4`
-/// sets [CoreButtonStyle.borderRadius] and `.primary` sets
-/// [CoreButtonStyle.backgroundColor]. A semantic layer that names these
-/// after component-specific intent (decided together with design) is
-/// a follow-up once more components adopt this pattern.
-///
-/// ```dart
-/// Button(child: Text('Submit')).radius4.primary
-/// ```
+/// `.primary`, `.secondary`, `.outline` select component options.
+/// Use `backgroundColor(.primary)` to set the background explicitly.
 extension ButtonStyleChain on Button {
+  /// Sets the background paint and preserves the other style fields.
+  Button backgroundColor(CoreColor value) =>
+      withStyle(CoreButtonStyle(backgroundColor: value));
+
   /// Returns a copy of this [Button] with [patch] merged into
   /// [buttonStyle] (patch fields win on conflict).
   Button withStyle(CoreButtonStyle patch) => copyWith(
@@ -927,17 +914,11 @@ extension ButtonStyleChain on Button {
 
   // ─── backgroundColor (CoreColors base palette) ───────────────────
 
-  /// `backgroundColor: CoreColor.token(CoreColors.primary)`.
-  Button get primary => withStyle(
-    const CoreButtonStyle(backgroundColor: CoreColor.token(CoreColors.primary)),
-  );
+  /// Selects `variant: .primary` using the component theme.
+  Button get primary => copyWith(variant: .primary);
 
-  /// `backgroundColor: CoreColor.token(CoreColors.secondary)`.
-  Button get secondary => withStyle(
-    const CoreButtonStyle(
-      backgroundColor: CoreColor.token(CoreColors.secondary),
-    ),
-  );
+  /// Selects `variant: .secondary` using the component theme.
+  Button get secondary => copyWith(variant: .secondary);
 
   /// `backgroundColor: CoreColor.token(CoreColors.tertiary)`.
   Button get tertiary => withStyle(
@@ -978,10 +959,8 @@ extension ButtonStyleChain on Button {
     const CoreButtonStyle(backgroundColor: CoreColor.token(CoreColors.info)),
   );
 
-  /// `backgroundColor: CoreColor.token(CoreColors.outline)`.
-  Button get outline => withStyle(
-    const CoreButtonStyle(backgroundColor: CoreColor.token(CoreColors.outline)),
-  );
+  /// Selects `variant: .outline` using the component theme.
+  Button get outline => copyWith(variant: .outline);
 
   /// `backgroundColor: CoreColor.transparent`.
   Button get transparent =>

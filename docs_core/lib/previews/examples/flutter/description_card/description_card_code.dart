@@ -12,7 +12,7 @@ class DescriptionCardChainExample extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         const DescriptionCard(
           title: '주문 상세',
           rows: [
@@ -24,7 +24,7 @@ class DescriptionCardChainExample extends StatelessWidget {
               isEmphasized: true,
             ),
           ],
-        ).radius16.primary,
+        ).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
         const DescriptionCard(
@@ -40,7 +40,7 @@ class DescriptionCardChainExample extends StatelessWidget {
           ],
         ).withStyle(
           const CoreDescriptionCardStyle(
-            backgroundColor: CoreColor.token(CoreColors.tertiary),
+            backgroundColor: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             rowSpacing: CoreSpace.space12,
             padding: CoreEdgeInsets.symmetric(

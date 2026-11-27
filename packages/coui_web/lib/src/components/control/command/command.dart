@@ -753,6 +753,10 @@ class _CommandState extends State<Command> {
 /// Command(groups: groups).radius4.surface
 /// ```
 extension CommandStyleChain on Command {
+  /// Sets the background paint and preserves the other style fields.
+  Command backgroundColor(CoreColor value) =>
+      withStyle(CoreCommandStyle(backgroundColor: value));
+
   /// Returns a copy of this [Command] with [patch] merged into
   /// [commandStyle] (patch fields win on conflict).
   Command withStyle(CoreCommandStyle patch) => copyWith(

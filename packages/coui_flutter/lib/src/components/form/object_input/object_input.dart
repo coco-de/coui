@@ -311,6 +311,10 @@ class _ObjectInputState extends State<ObjectInput> {
 /// ObjectInput(fields: fields).radius4.surface
 /// ```
 extension ObjectInputStyleChain on ObjectInput {
+  /// Sets the background paint and preserves the other style fields.
+  ObjectInput backgroundColor(CoreColor value) =>
+      withStyle(CoreObjectInputStyle(backgroundColor: value));
+
   /// Returns a copy of this [ObjectInput] with [patch] merged into
   /// [objectInputStyle] (patch fields win on conflict).
   ObjectInput withStyle(CoreObjectInputStyle patch) => copyWith(

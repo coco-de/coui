@@ -842,6 +842,10 @@ class _HoveredCell {
 /// ResizableTable(rows: rows, controller: controller).radius4.surface
 /// ```
 extension ResizableTableStyleChain on ResizableTable {
+  /// Sets the background paint and preserves the other style fields.
+  ResizableTable backgroundColor(CoreColor value) =>
+      withStyle(CoreTableStyle(backgroundColor: value));
+
   /// Returns a copy of this [ResizableTable] with [patch] merged into
   /// [tableStyle] (patch fields win on conflict).
   ResizableTable withStyle(CoreTableStyle patch) => copyWith(

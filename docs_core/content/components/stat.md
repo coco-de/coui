@@ -85,6 +85,10 @@ source: display/stat
 - 기본 서페이스 스타일에서는 두 variant 모두 그림자가 없습니다.
 - `Dialog` · `Popup` · `Drawer` 의 기본 면(`surfaceBright`) 위에서는 `filled` 카드의 면이 그 패널보다 어둡게 놓입니다. 패널 안에서는 기본 `outlined` 가 어울립니다.
 
+### 의미 체인
+
+`Stat`의 `.outline`은 `variant: .outlined`를 선택합니다. 테마가 윤곽선과 배경을 결정합니다.
+
 ## 크기
 
 `Stat` 에 정해진 크기는 `md`(기본)와 `sm` 둘입니다. `sm` 은 대시보드의 좁은 칸에 씁니다. 여백과 줄 간격이 줄고 글자 역할이 모두 작아집니다.
@@ -515,13 +519,13 @@ class _StatChainExampleState extends State<StatChainExample> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         const Stat(
           label: '총매출',
           value: '4,523만 원',
           change: '+20.1%',
           changeType: CoreStatChangeType.positive,
-        ).radius16.primary,
+        ).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
         const Stat(
@@ -531,7 +535,7 @@ class _StatChainExampleState extends State<StatChainExample> {
           changeType: CoreStatChangeType.positive,
         ).withStyle(
           const CoreStatStyle(
-            backgroundColor: CoreColor.token(CoreColors.tertiary),
+            backgroundColor: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             padding: CoreEdgeInsets.symmetric(
               horizontal: CoreSpace.space24,
@@ -561,13 +565,13 @@ class _StatChainExampleState extends State<StatChainExample> {
   Component build(BuildContext context) {
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         Stat(
           label: '총매출',
           value: '4,523만 원',
           change: '+20.1%',
           changeType: CoreStatChangeType.positive,
-        ).radius16.primary,
+        ).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
         Stat(
@@ -577,7 +581,7 @@ class _StatChainExampleState extends State<StatChainExample> {
           changeType: CoreStatChangeType.positive,
         ).withStyle(
           const CoreStatStyle(
-            backgroundColor: CoreColor.token(CoreColors.tertiary),
+            backgroundColor: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             padding: CoreEdgeInsets.symmetric(
               horizontal: CoreSpace.space24,

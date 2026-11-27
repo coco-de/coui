@@ -195,6 +195,10 @@ class Skeleton extends UiComponent implements CoreSkeletonContract {
 /// Skeleton(width: '200px', height: '20px').radius4.primary
 /// ```
 extension SkeletonStyleChain on Skeleton {
+  /// Sets the background paint and preserves the other style fields.
+  Skeleton backgroundColor(CoreColor value) =>
+      withStyle(CoreSkeletonStyle(backgroundColor: value));
+
   /// Returns a copy of this [Skeleton] with [patch] merged into
   /// [skeletonStyle] (patch fields win on conflict).
   Skeleton withStyle(CoreSkeletonStyle patch) => copyWith(

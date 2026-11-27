@@ -205,6 +205,10 @@ class NavigationBarItem extends StatefulWidget
 /// )
 /// ```
 extension NavigationBarItemStyleChain on NavigationBarItem {
+  /// Sets the background paint and preserves the other style fields.
+  NavigationBarItem backgroundColor(CoreColor value) =>
+      withStyle(CoreNavigationBarStyle(backgroundColor: value));
+
   /// Returns a copy of this [NavigationBarItem] with [patch] merged into
   /// [navigationBarStyle] (patch fields win on conflict).
   NavigationBarItem withStyle(CoreNavigationBarStyle patch) => copyWith(

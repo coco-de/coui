@@ -15,13 +15,13 @@ class _TextAreaChainExampleState extends State<TextAreaChainExample> {
   Component build(BuildContext context) {
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
-        TextArea(placeholder: '내용을 입력해 주세요', rows: 4).radius16.primary,
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
+        TextArea(placeholder: '내용을 입력해 주세요', rows: 4).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(borderWidth)까지 한 번에.
         TextArea(placeholder: '내용을 입력해 주세요', rows: 4).withStyle(
           const CoreTextAreaStyle(
-            borderColor: CoreColor.token(CoreColors.tertiary),
+            borderColor: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             borderWidth: CoreStrokeWidth.stroke2,
           ),

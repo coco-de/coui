@@ -114,16 +114,29 @@ ChainPermutation chainPermutationAt(int step, {int seed = kChainShuffleSeed}) {
 }
 
 /// [permutation] 의 사용자-표기 라벨 — 칩·SR 통보·네이티브 컨트롤이
-/// 공유하는 단일 표기 (`.radius16.primary`).
+/// 공유하는 단일 표기 (`radius16 · primary`).
 ///
 /// 실재 getter 이름 그대로다 — 치환 어휘 밖 표기를 각 UI 가 따로 만들면
 /// 표기끼리 갈라진다 (jaspr 칩과 네이티브 칩이 두 번째 사본이 되는 것을
 /// 막는 자리).
 String chainPermutationLabel(ChainPermutation permutation) =>
-    '.${kChainRadiusGetters[permutation.radiusIndex]}'
-    '.${kChainColorGetters[permutation.colorIndex]}';
+    '${kChainRadiusGetters[permutation.radiusIndex]} · '
+    '${kChainColorGetters[permutation.colorIndex]}';
 
 final List<ChainPermutation> _defaultCycle = _buildCycle(kChainShuffleSeed);
+
+/// The palette example explicitly paints one style field when token getters
+/// select component options. Capture the entire chain, including Dart-format
+/// line breaks, to keep the code panel and the generated renderer in sync.
+final explicitPaletteAnchor = RegExp(
+  r'\.radius16\s*\.(backgroundColor|fillColor)\(\s*\.primary\s*\)',
+);
+
+/// Transparent clears the background, including the track of a Progress.
+String explicitPaletteChain(String anchor, String radius, String color) {
+  final chain = anchor.replaceFirst('.radius16', '.$radius').replaceFirst('.primary', '.$color');
+  return color == 'transparent' ? chain.replaceFirst('.fillColor(', '.backgroundColor(') : chain;
+}
 
 /// Park-Miller LCG (a=48271, m=2³¹−1) 기반 Fisher-Yates.
 ///
@@ -179,7 +192,21 @@ String substituteChainTokens(String baseSnippet, ChainPermutation permutation) {
 
   final radiusMatch = _soleAxisMatch(baseSnippet, kChainRadiusGetters);
   final colorMatch = _soleAxisMatch(baseSnippet, kChainColorGetters);
-  if (radiusMatch == null || colorMatch == null) return baseSnippet;
+  if (radiusMatch == null) return baseSnippet;
+  final explicit = explicitPaletteAnchor.firstMatch(baseSnippet);
+  if (explicit != null) {
+    if (colorMatch != null) return baseSnippet;
+    return baseSnippet.replaceRange(
+      explicit.start,
+      explicit.end,
+      explicitPaletteChain(
+        explicit[0]!,
+        kChainRadiusGetters[permutation.radiusIndex],
+        kChainColorGetters[permutation.colorIndex],
+      ),
+    );
+  }
+  if (colorMatch == null) return baseSnippet;
 
   final replacements = [
     (match: radiusMatch, name: kChainRadiusGetters[permutation.radiusIndex]),

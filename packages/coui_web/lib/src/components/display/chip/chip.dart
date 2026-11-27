@@ -191,6 +191,10 @@ class Chip extends UiComponent implements CoreChipContract<Component> {
       maxLength: maxLength ?? this.maxLength,
       chipStyle: chipStyle ?? this.chipStyle,
       id: id ?? this.id,
+      classes: classes ?? this.classes,
+      css: css ?? this.css,
+      attributes: attributes ?? userAttributes,
+      eventHandlers: eventHandlers,
       child: child ?? this.child,
     );
   }
@@ -471,26 +475,13 @@ class Chip extends UiComponent implements CoreChipContract<Component> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreChipStyle.merge` right-side-wins semantics).
 ///
-/// The getters below are shorter sugar for the same [withStyle] call.
-/// Each one is a direct 1:1 alias for a `CoreRadius` / `CoreColors`
-/// primitive — the getter *name* is the token name, so `.radius4`
-/// always means `CoreRadius.radius4` and `.primary` always means
-/// `CoreColors.primary`, no matter which component it's called on.
-/// That fixed name-to-value mapping is what makes a short getter safe
-/// to reuse across components — a curated nickname (`.rounded`,
-/// `.compact`) would silently map to a different value per component,
-/// but a primitive-token getter cannot.
-///
-/// These are intentionally primitive (not semantic) for now: `.radius4`
-/// sets [CoreChipStyle.borderRadius] and `.primary` sets
-/// [CoreChipStyle.backgroundColor]. A semantic layer that names these
-/// after component-specific intent (decided together with design) is
-/// a follow-up once more components adopt this pattern.
-///
-/// ```dart
-/// Chip(label: 'Flutter').radius4.primary
-/// ```
+/// `.primary`, `.outline` select component options.
+/// Use `backgroundColor(.primary)` to set the background explicitly.
 extension ChipStyleChain on Chip {
+  /// Sets the background paint and preserves the other style fields.
+  Chip backgroundColor(CoreColor value) =>
+      withStyle(CoreChipStyle(backgroundColor: value));
+
   /// Returns a copy of this [Chip] with [patch] merged into
   /// [chipStyle] (patch fields win on conflict).
   Chip withStyle(CoreChipStyle patch) =>
@@ -622,10 +613,8 @@ extension ChipStyleChain on Chip {
 
   // ─── backgroundColor (CoreColors base palette) ───────────────────
 
-  /// `backgroundColor: CoreColor.token(CoreColors.primary)`.
-  Chip get primary => withStyle(
-    const CoreChipStyle(backgroundColor: CoreColor.token(CoreColors.primary)),
-  );
+  /// Selects `chipColor: .primary` using the component theme.
+  Chip get primary => copyWith(chipColor: .primary);
 
   /// `backgroundColor: CoreColor.token(CoreColors.secondary)`.
   ///
@@ -675,10 +664,8 @@ extension ChipStyleChain on Chip {
     const CoreChipStyle(backgroundColor: CoreColor.token(CoreColors.info)),
   );
 
-  /// `backgroundColor: CoreColor.token(CoreColors.outline)`.
-  Chip get outline => withStyle(
-    const CoreChipStyle(backgroundColor: CoreColor.token(CoreColors.outline)),
-  );
+  /// Selects `variant: .outlined` using the component theme.
+  Chip get outline => copyWith(variant: .outlined);
 
   /// `backgroundColor: CoreColor.transparent`.
   Chip get transparent =>

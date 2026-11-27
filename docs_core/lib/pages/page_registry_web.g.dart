@@ -14,6 +14,8 @@ import 'banner/banner_web.dart' as banner;
 import 'breadcrumb/breadcrumb_web.dart' as breadcrumb;
 import 'button/button_web.dart' as button;
 import 'card_image/card_image_web.dart' as card_image;
+import 'carousel/carousel_web.dart' as carousel;
+import 'carousel_banner/carousel_banner_web.dart' as carousel_banner;
 import 'checkbox/checkbox_web.dart' as checkbox;
 import 'chip/chip_web.dart' as chip;
 import 'chip_group/chip_group_web.dart' as chip_group;
@@ -26,10 +28,12 @@ import 'date_picker/date_picker_web.dart' as date_picker;
 import 'dialog/dialog_web.dart' as dialog;
 import 'disclosure_badge/disclosure_badge_web.dart' as disclosure_badge;
 import 'divider/divider_web.dart' as divider;
+import 'dot_indicator/dot_indicator_web.dart' as dot_indicator;
 import 'drawer/drawer_web.dart' as drawer;
 import 'dropdown_menu/dropdown_menu_web.dart' as dropdown_menu;
 import 'empty_state/empty_state_web.dart' as empty_state;
 import 'fab/fab_web.dart' as fab;
+import 'fade_scroll/fade_scroll_web.dart' as fade_scroll;
 import 'fieldset/fieldset_web.dart' as fieldset;
 import 'file_input/file_input_web.dart' as file_input;
 import 'filter/filter_web.dart' as filter;
@@ -41,6 +45,7 @@ import 'formatter/formatter_web.dart' as formatter;
 import 'gap/gap_web.dart' as gap;
 import 'hover/hover_web.dart' as hover;
 import 'hover_card/hover_card_web.dart' as hover_card;
+import 'hover_gallery/hover_gallery_web.dart' as hover_gallery;
 import 'icon/icon_web.dart' as icon;
 import 'indexed_switcher/indexed_switcher_web.dart' as indexed_switcher;
 import 'indicator/indicator_web.dart' as indicator;
@@ -126,6 +131,8 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (breadcrumb.propPreview case final builder?) 'breadcrumb': builder,
   if (button.propPreview case final builder?) 'button': builder,
   if (card_image.propPreview case final builder?) 'card-image': builder,
+  if (carousel.propPreview case final builder?) 'carousel': builder,
+  if (carousel_banner.propPreview case final builder?) 'carousel-banner': builder,
   if (checkbox.propPreview case final builder?) 'checkbox': builder,
   if (chip.propPreview case final builder?) 'chip': builder,
   if (chip_group.propPreview case final builder?) 'chip-group': builder,
@@ -138,10 +145,12 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (dialog.propPreview case final builder?) 'dialog': builder,
   if (disclosure_badge.propPreview case final builder?) 'disclosure-badge': builder,
   if (divider.propPreview case final builder?) 'divider': builder,
+  if (dot_indicator.propPreview case final builder?) 'dot-indicator': builder,
   if (drawer.propPreview case final builder?) 'drawer': builder,
   if (dropdown_menu.propPreview case final builder?) 'dropdown-menu': builder,
   if (empty_state.propPreview case final builder?) 'empty-state': builder,
   if (fab.propPreview case final builder?) 'fab': builder,
+  if (fade_scroll.propPreview case final builder?) 'fade-scroll': builder,
   if (fieldset.propPreview case final builder?) 'fieldset': builder,
   if (file_input.propPreview case final builder?) 'file-input': builder,
   if (filter.propPreview case final builder?) 'filter': builder,
@@ -153,6 +162,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (gap.propPreview case final builder?) 'gap': builder,
   if (hover.propPreview case final builder?) 'hover': builder,
   if (hover_card.propPreview case final builder?) 'hover-card': builder,
+  if (hover_gallery.propPreview case final builder?) 'hover-gallery': builder,
   if (icon.propPreview case final builder?) 'icon': builder,
   if (indexed_switcher.propPreview case final builder?) 'indexed-switcher': builder,
   if (indicator.propPreview case final builder?) 'indicator': builder,
@@ -239,6 +249,8 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...breadcrumb.demos,
   ...button.demos,
   ...card_image.demos,
+  ...carousel.demos,
+  ...carousel_banner.demos,
   ...checkbox.demos,
   ...chip.demos,
   ...chip_group.demos,
@@ -251,10 +263,12 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...dialog.demos,
   ...disclosure_badge.demos,
   ...divider.demos,
+  ...dot_indicator.demos,
   ...drawer.demos,
   ...dropdown_menu.demos,
   ...empty_state.demos,
   ...fab.demos,
+  ...fade_scroll.demos,
   ...fieldset.demos,
   ...file_input.demos,
   ...filter.demos,
@@ -266,6 +280,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...gap.demos,
   ...hover.demos,
   ...hover_card.demos,
+  ...hover_gallery.demos,
   ...icon.demos,
   ...indexed_switcher.demos,
   ...indicator.demos,
