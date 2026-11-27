@@ -281,6 +281,18 @@ class Stat extends UiComponent implements CoreStatContract<Component?> {
 /// `.outline` selects component options.
 /// Use `backgroundColor(.primary)` to set the background explicitly.
 extension StatStyleChain on Stat {
+  /// Sets the content padding.
+  Stat contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreStatStyle(padding: value));
+
+  /// Sets the border color.
+  Stat borderColor(CoreColor value) =>
+      withStyle(CoreStatStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Stat borderWidth(double value) =>
+      withStyle(CoreStatStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   Stat backgroundColor(CoreColor value) =>
       withStyle(CoreStatStyle(backgroundColor: value));

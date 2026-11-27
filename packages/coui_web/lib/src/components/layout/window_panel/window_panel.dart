@@ -439,6 +439,10 @@ class WindowPanel extends UiComponent
 /// WindowPanel(title: Text('Editor')).radius4
 /// ```
 extension WindowPanelStyleChain on WindowPanel {
+  /// Sets the border color.
+  WindowPanel borderColor(CoreColor value) =>
+      withStyle(CoreWindowPanelStyle(borderColor: value));
+
   /// Returns a copy of this [WindowPanel] with [patch] merged into
   /// [windowPanelStyle] (patch fields win on conflict).
   WindowPanel withStyle(CoreWindowPanelStyle patch) => copyWith(

@@ -357,6 +357,22 @@ class Banner extends StatelessWidget implements CoreBannerContract<Widget> {
 /// `.info`, `.success`, `.warning` select component options.
 /// Use `backgroundColor(.primary)` to set the background explicitly.
 extension BannerStyleChain on Banner {
+  /// Sets the content padding.
+  Banner contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreBannerStyle(padding: value));
+
+  /// Sets the border color.
+  Banner borderColor(CoreColor value) =>
+      withStyle(CoreBannerStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Banner borderWidth(double value) =>
+      withStyle(CoreBannerStyle(borderWidth: value));
+
+  /// Sets the content foreground color.
+  Banner foregroundColor(CoreColor value) =>
+      withStyle(CoreBannerStyle(foregroundColor: value));
+
   /// Sets the background paint and preserves the other style fields.
   Banner backgroundColor(CoreColor value) =>
       withStyle(CoreBannerStyle(backgroundColor: value));

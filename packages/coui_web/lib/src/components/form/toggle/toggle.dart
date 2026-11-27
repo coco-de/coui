@@ -501,6 +501,10 @@ class _ToggleState extends State<Toggle> with FormValueSupplier<bool, Toggle> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreToggleStyle.merge` right-side-wins semantics).
 extension ToggleStyleChain on Toggle {
+  /// Sets the content padding.
+  Toggle contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreToggleStyle(padding: value));
+
   /// Returns a copy of this [Toggle] with [patch] merged into
   /// [toggleStyle] (patch fields win on conflict).
   Toggle withStyle(CoreToggleStyle patch) => copyWith(

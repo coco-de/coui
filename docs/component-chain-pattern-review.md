@@ -6,6 +6,8 @@
 
 SwiftUI는 `.foregroundStyle(.primary)`처럼 속성과 값을 함께 읽게 한다. 여기서 `.primary`는 전경의 강조 단계다. Compose Material 3는 `ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)`로 버튼 컨테이너의 색 역할을 지정한다. CoUI는 Dart가 인자 타입으로 정적 멤버를 찾는 표기를 사용한다. `button.primary.backgroundColor(.secondary)`에서 앞의 getter는 버튼 variant를, 괄호 안의 값은 `CoreColor.secondary`를 선택한다. [SwiftUI foregroundStyle](https://developer.apple.com/documentation/swiftui/view/foregroundstyle%28_%3A%29) · [Compose ButtonDefaults](https://developer.android.com/reference/kotlin/androidx/compose/material3/ButtonDefaults) · [Dart dot shorthands](https://dart.dev/language/dot-shorthands)
 
+같은 스타일 체인을 입력·표시·탐색·레이아웃 컴포넌트 63종에 추가했다. [메서드별 지원 표](../docs_core/content/guides/cross-platform.md#스타일-체인)에서 각 컴포넌트의 범위를 확인할 수 있다.
+
 ## 검토 범위
 
 [체인 실측표](chain-axis-table.md)의 대표 컴포넌트 157개를 기준으로 Flutter와 Web의 기본 생성자, 양쪽 `withStyle`이 받는 Core 스타일 타입, 그 타입의 생성자 필드를 Dart 구문 트리로 대조했다. 기존 체인 집계에서 빠진 디렉터리 22개는 마지막에 따로 다룬다. 보조 컴포넌트와 이름 있는 생성자는 157개 집계에 포함하지 않았다.

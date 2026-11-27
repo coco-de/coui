@@ -554,6 +554,10 @@ class ToggleController extends ValueNotifier<bool>
 /// )
 /// ```
 extension ToggleStyleChain on Toggle {
+  /// Sets the content padding.
+  Toggle contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreToggleStyle(padding: value));
+
   /// Returns a copy of this [Toggle] with [patch] merged into
   /// [toggleStyle] (patch fields win on conflict).
   Toggle withStyle(CoreToggleStyle patch) => copyWith(

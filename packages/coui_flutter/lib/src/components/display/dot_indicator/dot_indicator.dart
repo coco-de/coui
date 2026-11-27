@@ -337,6 +337,10 @@ class _InactiveDotItemState extends State<_InactiveDotItem> {
 /// DotIndicator(index: 0, length: 3).radius4
 /// ```
 extension DotIndicatorStyleChain on DotIndicator {
+  /// Sets the content padding.
+  DotIndicator contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreDotIndicatorStyle(padding: value));
+
   /// Returns a copy of this [DotIndicator] with [patch] merged into
   /// [dotIndicatorStyle] (patch fields win on conflict).
   DotIndicator withStyle(CoreDotIndicatorStyle patch) => copyWith(

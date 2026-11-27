@@ -413,6 +413,10 @@ class Footer extends UiComponent implements CoreFooterContract<Component> {
 /// Footer(sections: sections).surface
 /// ```
 extension FooterStyleChain on Footer {
+  /// Sets the content padding.
+  Footer contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreFooterStyle(padding: value));
+
   /// Sets the background paint and preserves the other style fields.
   Footer backgroundColor(CoreColor value) =>
       withStyle(CoreFooterStyle(backgroundColor: value));

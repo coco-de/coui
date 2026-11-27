@@ -232,6 +232,8 @@ Chip(
 
 칩의 `.primary`는 `chipColor: .primary`를 선택합니다. 선택 시 사용하는 색이며, `.outline`은 `variant: .outlined`를 선택합니다. `Chip(label: '태그', selected: true).primary.outline`처럼 조합할 수 있습니다.
 
+선택 상태를 유지하면서 윤곽선만 꾸미려면 `Chip(label: '태그', selected: true).outline.borderColor(.primary).borderWidth(CoreStrokeWidth.stroke2)`처럼 씁니다.
+
 ## 크기
 
 크기는 `CoreChipSize` 의 `sm` · `md` · `lg` 세 단계이고 기본값은 `md` 입니다. Button 이나 Badge 가 쓰는 `CoreComponentSize` 와는 다른 타입이라, 28 보다 작거나 40 보다 큰 단계는 없습니다.

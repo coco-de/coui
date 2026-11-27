@@ -492,6 +492,18 @@ class _DockItem extends StatelessWidget {
 /// Dock(items: items).surface
 /// ```
 extension DockStyleChain on Dock {
+  /// Sets the content padding.
+  Dock contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreDockStyle(padding: value));
+
+  /// Sets the border color.
+  Dock borderColor(CoreColor value) =>
+      withStyle(CoreDockStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Dock borderWidth(double value) =>
+      withStyle(CoreDockStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   Dock backgroundColor(CoreColor value) =>
       withStyle(CoreDockStyle(backgroundColor: value));

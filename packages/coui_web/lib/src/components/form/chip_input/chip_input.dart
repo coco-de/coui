@@ -328,6 +328,18 @@ const int _kComposingKeyCode = 229;
 /// ChipInput(chips: ['apple', 'banana']).radius4.surface
 /// ```
 extension ChipInputStyleChain on ChipInput {
+  /// Sets the content padding.
+  ChipInput contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreChipInputStyle(padding: value));
+
+  /// Sets the border color.
+  ChipInput borderColor(CoreColor value) =>
+      withStyle(CoreChipInputStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  ChipInput borderWidth(double value) =>
+      withStyle(CoreChipInputStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   ChipInput backgroundColor(CoreColor value) =>
       withStyle(CoreChipInputStyle(backgroundColor: value));

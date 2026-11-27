@@ -152,6 +152,10 @@ class CarouselBanner extends StatelessWidget
 /// [CarouselBanner.carouselBannerStyle] without hand-reconstructing every
 /// field. Mirrors the Web extension so both platforms read identically.
 extension CarouselBannerStyleChain on CarouselBanner {
+  /// Sets the content padding.
+  CarouselBanner contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreCarouselBannerStyle(padding: value));
+
   /// Sets the background paint and preserves the other style fields.
   CarouselBanner backgroundColor(CoreColor value) =>
       withStyle(CoreCarouselBannerStyle(backgroundColor: value));

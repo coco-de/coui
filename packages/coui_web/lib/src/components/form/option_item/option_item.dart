@@ -224,6 +224,18 @@ class OptionItem extends UiComponent
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreOptionItemStyle.merge` right-side-wins semantics).
 extension OptionItemStyleChain on OptionItem {
+  /// Sets the content padding.
+  OptionItem contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreOptionItemStyle(padding: value));
+
+  /// Sets the border color.
+  OptionItem borderColor(CoreColor value) =>
+      withStyle(CoreOptionItemStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  OptionItem borderWidth(double value) =>
+      withStyle(CoreOptionItemStyle(borderWidth: value));
+
   /// Returns a copy of this [OptionItem] with [patch] merged into
   /// [optionItemStyle] (patch fields win on conflict).
   OptionItem withStyle(CoreOptionItemStyle patch) => copyWith(

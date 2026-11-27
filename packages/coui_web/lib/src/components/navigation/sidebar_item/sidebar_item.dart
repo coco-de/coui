@@ -200,6 +200,10 @@ class SidebarItem extends UiComponent
 
 /// Chain sugar mirroring the Flutter `SidebarItem.withStyle` extension.
 extension SidebarItemStyleChain on SidebarItem {
+  /// Sets the content padding.
+  SidebarItem contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreSidebarItemStyle(padding: value));
+
   /// Sets the background paint and preserves the other style fields.
   SidebarItem backgroundColor(CoreColor value) =>
       withStyle(CoreSidebarItemStyle(backgroundColor: value));

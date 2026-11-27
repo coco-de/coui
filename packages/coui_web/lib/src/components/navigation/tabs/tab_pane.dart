@@ -546,6 +546,14 @@ class _TabPaneState extends State<TabPane> {
 /// TabPane(tabs: tabs, selectedIndex: index).radius4.surface
 /// ```
 extension TabPaneStyleChain on TabPane {
+  /// Sets the border color.
+  TabPane borderColor(CoreColor value) =>
+      withStyle(CoreTabPaneStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  TabPane borderWidth(double value) =>
+      withStyle(CoreTabPaneStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   TabPane backgroundColor(CoreColor value) =>
       withStyle(CoreTabPaneStyle(backgroundColor: value));

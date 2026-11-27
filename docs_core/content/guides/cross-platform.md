@@ -43,6 +43,28 @@ Card(
 )
 </Code>
 
+## 스타일 체인
+
+종류와 상태는 컴포넌트가 정하고, 개별 속성을 바꿀 때는 메서드에 값을 전달합니다. 예를 들어 성공 알림의 안쪽 여백을 줄이거나 입력 필드의 기본 테두리 색을 고를 수 있습니다.
+
+<Code language="dart" title="Flutter · Web">
+Alert(title: '저장 완료').success.contentPadding(.all(CoreSpace.space8))
+TextField().borderColor(.outlineVariant).borderWidth(CoreStrokeWidth.stroke2)
+</Code>
+
+| 지원 메서드 | 컴포넌트 |
+| --- | --- |
+| `.contentPadding(...)`, `.borderColor(...)`, `.borderWidth(...)`, `.foregroundColor(...)` | Alert, Badge, Banner, Button, Chip, DisclosureBadge, Tag |
+| `.contentPadding(...)`, `.borderColor(...)`, `.borderWidth(...)` | Card, ChipInput, CodeSnippet, DescriptionCard, Dock, Fieldset, FileInput, FormattedInput, MultiAnswerCard, ObjectInput, OptionItem, OutlinedContainer, PhoneInput, Popup, SidebarHeader, SidebarSearch, Stat, TextArea, TextField |
+| `.borderColor(...)`, `.borderWidth(...)`, `.foregroundColor(...)` | ResizableTable, Table |
+| `.borderColor(...)`, `.borderWidth(...)` | Accordion, AvatarBadge, AvatarGroup, ColorPicker, Command, Diff, FocusOutline, InputOtp, ItemPicker, MockupBrowser, MockupDevice, Sidebar, TabPane, Tabs |
+| `.contentPadding(...)`, `.foregroundColor(...)` | CommandSearch, MenuItem |
+| `.contentPadding(...)` | AppBar, Basic, BottomActionBar, CarouselBanner, DotIndicator, EmptyState, Filter, Footer, Hero, ListRow, Listing, MockupCode, NavigationBar, PanelHeader, SidebarItem, SidebarSection, StepItem, Toggle, ToggleGroup |
+| `.borderWidth(...)` | CodeDiff, ValidationBadge |
+| `.borderColor(...)` | WindowPanel |
+
+체인은 기존 Core 스타일에 해당 필드 하나를 병합합니다. 같은 필드를 다시 지정하면 마지막 값이 적용됩니다. `Filter<T>.contentPadding(...)`은 필터 트랙의 안쪽 여백입니다. 각 항목의 여백은 `toggleGroupStyle.itemPadding`으로 정합니다.
+
 ## 다른 것
 
 렌더링 방식과 앱 루트, 테스트만 플랫폼마다 다릅니다.

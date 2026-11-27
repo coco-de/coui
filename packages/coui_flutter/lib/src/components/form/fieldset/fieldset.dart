@@ -208,6 +208,18 @@ class Fieldset extends StatelessWidget implements CoreFieldsetContract<Widget> {
 /// `.outline` selects component options.
 /// Use `backgroundColor(.primary)` to set the background explicitly.
 extension FieldsetStyleChain on Fieldset {
+  /// Sets the content padding.
+  Fieldset contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreFieldsetStyle(padding: value));
+
+  /// Sets the border color.
+  Fieldset borderColor(CoreColor value) =>
+      withStyle(CoreFieldsetStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Fieldset borderWidth(double value) =>
+      withStyle(CoreFieldsetStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   Fieldset backgroundColor(CoreColor value) =>
       withStyle(CoreFieldsetStyle(backgroundColor: value));
