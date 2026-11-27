@@ -547,6 +547,10 @@ const kDocsPreviewConstraints = <String, DocsPreviewConstraints>{
   // The playground draws it 560 tall (320 collapsed), 576 with the insets;
   // the full-page tier would leave an 1800 Flutter pane around it.
   'sidebar/playground': kDocsExtraTallConstraints,
+  // The Mockup playgrounds switch frames up to a 320-wide phone, 675 tall
+  // with its insets 691; the full-page tier would leave an 1800 Flutter pane.
+  'mockup/playground': kDocsTallConstraints,
+  'mockup-device/playground': DocsPreviewConstraints(minHeight: 704, maxHeight: 704),
   'kbd': kDocsCompactConstraints,
   'label': kDocsCompactConstraints,
   'divider': kDocsCompactConstraints,
