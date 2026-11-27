@@ -500,6 +500,8 @@ const kDocsPreviewConstraints = <String, DocsPreviewConstraints>{
   // spreads the four gaps (201).
   'stat/default': DocsPreviewConstraints(minHeight: 220, maxHeight: 220),
   'stat/outlined': DocsPreviewConstraints(minHeight: 220, maxHeight: 220),
+  // The playground can show the same four rows.
+  'stat/playground': DocsPreviewConstraints(minHeight: 220, maxHeight: 220),
   // Two stat cards over a gap (314 under spacious).
   'stat/chain': DocsPreviewConstraints(minHeight: 330, maxHeight: 330),
   'description-card': DocsPreviewConstraints(

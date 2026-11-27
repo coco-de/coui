@@ -85,6 +85,7 @@ import 'skeleton/skeleton_web.dart' as skeleton;
 import 'slider/slider_web.dart' as slider;
 import 'sortable/sortable_web.dart' as sortable;
 import 'star_rating/star_rating_web.dart' as star_rating;
+import 'stat/stat_web.dart' as stat;
 import 'status/status_web.dart' as status;
 import 'swiper/swiper_web.dart' as swiper;
 import 'switch_field/switch_field_web.dart' as switch_field;
@@ -97,12 +98,16 @@ import 'text_block/text_block_web.dart' as text_block;
 import 'text_field/text_field_web.dart' as text_field;
 import 'theme_controller/theme_controller_web.dart' as theme_controller;
 import 'time_picker/time_picker_web.dart' as time_picker;
+import 'timeline/timeline_web.dart' as timeline;
 import 'toast/toast_web.dart' as toast;
 import 'toggle/toggle_web.dart' as toggle;
 import 'toggle_group/toggle_group_web.dart' as toggle_group;
 import 'toolbar_group/toolbar_group_web.dart' as toolbar_group;
 import 'tooltip/tooltip_web.dart' as tooltip;
+import 'tracker/tracker_web.dart' as tracker;
+import 'trend_chart/trend_chart_web.dart' as trend_chart;
 import 'validated/validated_web.dart' as validated;
+import 'validation_badge/validation_badge_web.dart' as validation_badge;
 import 'validator_hint/validator_hint_web.dart' as validator_hint;
 
 /// 문서 슬러그 → 속성 빌더.
@@ -187,6 +192,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (slider.propPreview case final builder?) 'slider': builder,
   if (sortable.propPreview case final builder?) 'sortable': builder,
   if (star_rating.propPreview case final builder?) 'star-rating': builder,
+  if (stat.propPreview case final builder?) 'stat': builder,
   if (status.propPreview case final builder?) 'status': builder,
   if (swiper.propPreview case final builder?) 'swiper': builder,
   if (switch_field.propPreview case final builder?) 'switch-field': builder,
@@ -199,12 +205,16 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (text_field.propPreview case final builder?) 'text-field': builder,
   if (theme_controller.propPreview case final builder?) 'theme-controller': builder,
   if (time_picker.propPreview case final builder?) 'time-picker': builder,
+  if (timeline.propPreview case final builder?) 'timeline': builder,
   if (toast.propPreview case final builder?) 'toast': builder,
   if (toggle.propPreview case final builder?) 'toggle': builder,
   if (toggle_group.propPreview case final builder?) 'toggle-group': builder,
   if (toolbar_group.propPreview case final builder?) 'toolbar-group': builder,
   if (tooltip.propPreview case final builder?) 'tooltip': builder,
+  if (tracker.propPreview case final builder?) 'tracker': builder,
+  if (trend_chart.propPreview case final builder?) 'trend-chart': builder,
   if (validated.propPreview case final builder?) 'validated': builder,
+  if (validation_badge.propPreview case final builder?) 'validation-badge': builder,
   if (validator_hint.propPreview case final builder?) 'validator-hint': builder,
 };
 
@@ -290,6 +300,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...slider.demos,
   ...sortable.demos,
   ...star_rating.demos,
+  ...stat.demos,
   ...status.demos,
   ...swiper.demos,
   ...switch_field.demos,
@@ -302,11 +313,15 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...text_field.demos,
   ...theme_controller.demos,
   ...time_picker.demos,
+  ...timeline.demos,
   ...toast.demos,
   ...toggle.demos,
   ...toggle_group.demos,
   ...toolbar_group.demos,
   ...tooltip.demos,
+  ...tracker.demos,
+  ...trend_chart.demos,
   ...validated.demos,
+  ...validation_badge.demos,
   ...validator_hint.demos,
 };

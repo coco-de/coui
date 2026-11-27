@@ -84,6 +84,7 @@ import 'skeleton/skeleton_page.dart' as skeleton;
 import 'slider/slider_page.dart' as slider;
 import 'sortable/sortable_page.dart' as sortable;
 import 'star_rating/star_rating_page.dart' as star_rating;
+import 'stat/stat_page.dart' as stat;
 import 'status/status_page.dart' as status;
 import 'swiper/swiper_page.dart' as swiper;
 import 'switch_field/switch_field_page.dart' as switch_field;
@@ -96,12 +97,16 @@ import 'text_block/text_block_page.dart' as text_block;
 import 'text_field/text_field_page.dart' as text_field;
 import 'theme_controller/theme_controller_page.dart' as theme_controller;
 import 'time_picker/time_picker_page.dart' as time_picker;
+import 'timeline/timeline_page.dart' as timeline;
 import 'toast/toast_page.dart' as toast;
 import 'toggle/toggle_page.dart' as toggle;
 import 'toggle_group/toggle_group_page.dart' as toggle_group;
 import 'toolbar_group/toolbar_group_page.dart' as toolbar_group;
 import 'tooltip/tooltip_page.dart' as tooltip;
+import 'tracker/tracker_page.dart' as tracker;
+import 'trend_chart/trend_chart_page.dart' as trend_chart;
 import 'validated/validated_page.dart' as validated;
+import 'validation_badge/validation_badge_page.dart' as validation_badge;
 import 'validator_hint/validator_hint_page.dart' as validator_hint;
 
 /// 문서 슬러그 → 플레이그라운드.
@@ -186,6 +191,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (slider.playground case final spec?) slider.slug: spec,
   if (sortable.playground case final spec?) sortable.slug: spec,
   if (star_rating.playground case final spec?) star_rating.slug: spec,
+  if (stat.playground case final spec?) stat.slug: spec,
   if (status.playground case final spec?) status.slug: spec,
   if (swiper.playground case final spec?) swiper.slug: spec,
   if (switch_field.playground case final spec?) switch_field.slug: spec,
@@ -198,12 +204,16 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (text_field.playground case final spec?) text_field.slug: spec,
   if (theme_controller.playground case final spec?) theme_controller.slug: spec,
   if (time_picker.playground case final spec?) time_picker.slug: spec,
+  if (timeline.playground case final spec?) timeline.slug: spec,
   if (toast.playground case final spec?) toast.slug: spec,
   if (toggle.playground case final spec?) toggle.slug: spec,
   if (toggle_group.playground case final spec?) toggle_group.slug: spec,
   if (toolbar_group.playground case final spec?) toolbar_group.slug: spec,
   if (tooltip.playground case final spec?) tooltip.slug: spec,
+  if (tracker.playground case final spec?) tracker.slug: spec,
+  if (trend_chart.playground case final spec?) trend_chart.slug: spec,
   if (validated.playground case final spec?) validated.slug: spec,
+  if (validation_badge.playground case final spec?) validation_badge.slug: spec,
   if (validator_hint.playground case final spec?) validator_hint.slug: spec,
 };
 
@@ -289,6 +299,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (slider.sizeSpec case final spec?) slider.slug: spec,
   if (sortable.sizeSpec case final spec?) sortable.slug: spec,
   if (star_rating.sizeSpec case final spec?) star_rating.slug: spec,
+  if (stat.sizeSpec case final spec?) stat.slug: spec,
   if (status.sizeSpec case final spec?) status.slug: spec,
   if (swiper.sizeSpec case final spec?) swiper.slug: spec,
   if (switch_field.sizeSpec case final spec?) switch_field.slug: spec,
@@ -301,11 +312,15 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (text_field.sizeSpec case final spec?) text_field.slug: spec,
   if (theme_controller.sizeSpec case final spec?) theme_controller.slug: spec,
   if (time_picker.sizeSpec case final spec?) time_picker.slug: spec,
+  if (timeline.sizeSpec case final spec?) timeline.slug: spec,
   if (toast.sizeSpec case final spec?) toast.slug: spec,
   if (toggle.sizeSpec case final spec?) toggle.slug: spec,
   if (toggle_group.sizeSpec case final spec?) toggle_group.slug: spec,
   if (toolbar_group.sizeSpec case final spec?) toolbar_group.slug: spec,
   if (tooltip.sizeSpec case final spec?) tooltip.slug: spec,
+  if (tracker.sizeSpec case final spec?) tracker.slug: spec,
+  if (trend_chart.sizeSpec case final spec?) trend_chart.slug: spec,
   if (validated.sizeSpec case final spec?) validated.slug: spec,
+  if (validation_badge.sizeSpec case final spec?) validation_badge.slug: spec,
   if (validator_hint.sizeSpec case final spec?) validator_hint.slug: spec,
 };
