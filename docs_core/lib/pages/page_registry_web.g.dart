@@ -53,6 +53,11 @@ import 'loading_region/loading_region_web.dart' as loading_region;
 import 'menu/menu_web.dart' as menu;
 import 'menu_item/menu_item_web.dart' as menu_item;
 import 'menubar/menubar_web.dart' as menubar;
+import 'mockup/mockup_web.dart' as mockup;
+import 'mockup_browser/mockup_browser_web.dart' as mockup_browser;
+import 'mockup_code/mockup_code_web.dart' as mockup_code;
+import 'mockup_device/mockup_device_web.dart' as mockup_device;
+import 'mockup_foldable/mockup_foldable_web.dart' as mockup_foldable;
 import 'multi_answer_card/multi_answer_card_web.dart' as multi_answer_card;
 import 'multiple_choice/multiple_choice_web.dart' as multiple_choice;
 import 'navigation_bar/navigation_bar_web.dart' as navigation_bar;
@@ -150,6 +155,11 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (menu.propPreview case final builder?) 'menu': builder,
   if (menu_item.propPreview case final builder?) 'menu-item': builder,
   if (menubar.propPreview case final builder?) 'menubar': builder,
+  if (mockup.propPreview case final builder?) 'mockup': builder,
+  if (mockup_browser.propPreview case final builder?) 'mockup-browser': builder,
+  if (mockup_code.propPreview case final builder?) 'mockup-code': builder,
+  if (mockup_device.propPreview case final builder?) 'mockup-device': builder,
+  if (mockup_foldable.propPreview case final builder?) 'mockup-foldable': builder,
   if (multi_answer_card.propPreview case final builder?) 'multi-answer-card': builder,
   if (multiple_choice.propPreview case final builder?) 'multiple-choice': builder,
   if (navigation_bar.propPreview case final builder?) 'navigation-bar': builder,
@@ -248,6 +258,11 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...menu.demos,
   ...menu_item.demos,
   ...menubar.demos,
+  ...mockup.demos,
+  ...mockup_browser.demos,
+  ...mockup_code.demos,
+  ...mockup_device.demos,
+  ...mockup_foldable.demos,
   ...multi_answer_card.demos,
   ...multiple_choice.demos,
   ...navigation_bar.demos,
