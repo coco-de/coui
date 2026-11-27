@@ -6,7 +6,9 @@ import 'package:coui_web/coui_web.dart' show Component;
 
 import '../previews/props/web_prop_previews.dart';
 import 'alert/alert_web.dart' as alert;
+import 'aspect_ratio_box/aspect_ratio_box_web.dart' as aspect_ratio_box;
 import 'autocomplete/autocomplete_web.dart' as autocomplete;
+import 'avatar/avatar_web.dart' as avatar;
 import 'badge/badge_web.dart' as badge;
 import 'breadcrumb/breadcrumb_web.dart' as breadcrumb;
 import 'button/button_web.dart' as button;
@@ -18,6 +20,7 @@ import 'command_search/command_search_web.dart' as command_search;
 import 'context_menu/context_menu_web.dart' as context_menu;
 import 'date_picker/date_picker_web.dart' as date_picker;
 import 'dialog/dialog_web.dart' as dialog;
+import 'divider/divider_web.dart' as divider;
 import 'drawer/drawer_web.dart' as drawer;
 import 'dropdown_menu/dropdown_menu_web.dart' as dropdown_menu;
 import 'fab/fab_web.dart' as fab;
@@ -32,7 +35,9 @@ import 'formatter/formatter_web.dart' as formatter;
 import 'gap/gap_web.dart' as gap;
 import 'hover/hover_web.dart' as hover;
 import 'hover_card/hover_card_web.dart' as hover_card;
+import 'icon/icon_web.dart' as icon;
 import 'indexed_switcher/indexed_switcher_web.dart' as indexed_switcher;
+import 'indicator/indicator_web.dart' as indicator;
 import 'input_otp/input_otp_web.dart' as input_otp;
 import 'item_picker/item_picker_web.dart' as item_picker;
 import 'kbd/kbd_web.dart' as kbd;
@@ -88,7 +93,9 @@ import 'validator_hint/validator_hint_web.dart' as validator_hint;
 /// 문서 슬러그 → 속성 빌더.
 final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (alert.propPreview case final builder?) 'alert': builder,
+  if (aspect_ratio_box.propPreview case final builder?) 'aspect-ratio-box': builder,
   if (autocomplete.propPreview case final builder?) 'autocomplete': builder,
+  if (avatar.propPreview case final builder?) 'avatar': builder,
   if (badge.propPreview case final builder?) 'badge': builder,
   if (breadcrumb.propPreview case final builder?) 'breadcrumb': builder,
   if (button.propPreview case final builder?) 'button': builder,
@@ -100,6 +107,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (context_menu.propPreview case final builder?) 'context-menu': builder,
   if (date_picker.propPreview case final builder?) 'date-picker': builder,
   if (dialog.propPreview case final builder?) 'dialog': builder,
+  if (divider.propPreview case final builder?) 'divider': builder,
   if (drawer.propPreview case final builder?) 'drawer': builder,
   if (dropdown_menu.propPreview case final builder?) 'dropdown-menu': builder,
   if (fab.propPreview case final builder?) 'fab': builder,
@@ -114,7 +122,9 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (gap.propPreview case final builder?) 'gap': builder,
   if (hover.propPreview case final builder?) 'hover': builder,
   if (hover_card.propPreview case final builder?) 'hover-card': builder,
+  if (icon.propPreview case final builder?) 'icon': builder,
   if (indexed_switcher.propPreview case final builder?) 'indexed-switcher': builder,
+  if (indicator.propPreview case final builder?) 'indicator': builder,
   if (input_otp.propPreview case final builder?) 'input-otp': builder,
   if (item_picker.propPreview case final builder?) 'item-picker': builder,
   if (kbd.propPreview case final builder?) 'kbd': builder,
@@ -171,7 +181,9 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
 /// 장면 이름 → 장면.
 final Map<String, Component Function()> kWebDocDemos = {
   ...alert.demos,
+  ...aspect_ratio_box.demos,
   ...autocomplete.demos,
+  ...avatar.demos,
   ...badge.demos,
   ...breadcrumb.demos,
   ...button.demos,
@@ -183,6 +195,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...context_menu.demos,
   ...date_picker.demos,
   ...dialog.demos,
+  ...divider.demos,
   ...drawer.demos,
   ...dropdown_menu.demos,
   ...fab.demos,
@@ -197,7 +210,9 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...gap.demos,
   ...hover.demos,
   ...hover_card.demos,
+  ...icon.demos,
   ...indexed_switcher.demos,
+  ...indicator.demos,
   ...input_otp.demos,
   ...item_picker.demos,
   ...kbd.demos,
