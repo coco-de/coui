@@ -352,6 +352,18 @@ class _ObjectInputState extends State<ObjectInput>
 /// ObjectInput(fields: fields).radius4.surface
 /// ```
 extension ObjectInputStyleChain on ObjectInput {
+  /// Sets the content padding.
+  ObjectInput contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreObjectInputStyle(padding: value));
+
+  /// Sets the border color.
+  ObjectInput borderColor(CoreColor value) =>
+      withStyle(CoreObjectInputStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  ObjectInput borderWidth(double value) =>
+      withStyle(CoreObjectInputStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   ObjectInput backgroundColor(CoreColor value) =>
       withStyle(CoreObjectInputStyle(backgroundColor: value));

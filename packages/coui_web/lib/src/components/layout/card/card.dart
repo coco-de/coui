@@ -276,6 +276,18 @@ extension CardStyleChain on Card {
   Card backgroundColor(CoreColor value) =>
       withStyle(CoreCardStyle(backgroundColor: value));
 
+  /// Sets the padding around the child or the header, body and footer slots.
+  Card contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreCardStyle(padding: value));
+
+  /// Sets the border color.
+  Card borderColor(CoreColor value) =>
+      withStyle(CoreCardStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Card borderWidth(double value) =>
+      withStyle(CoreCardStyle(borderWidth: value));
+
   /// Returns a copy of this [Card] with [patch] merged into
   /// [cardStyle] (patch fields win on conflict).
   Card withStyle(CoreCardStyle patch) =>

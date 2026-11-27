@@ -147,6 +147,10 @@ class MockupCode extends StatelessWidget implements CoreMockupCodeContract {
 /// MockupCode.fromString('...').radius4.surface
 /// ```
 extension MockupCodeStyleChain on MockupCode {
+  /// Sets the content padding.
+  MockupCode contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreMockupCodeStyle(padding: value));
+
   /// Sets the background paint and preserves the other style fields.
   MockupCode backgroundColor(CoreColor value) =>
       withStyle(CoreMockupCodeStyle(backgroundColor: value));

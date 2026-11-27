@@ -208,6 +208,10 @@ class Basic extends StatelessWidget implements CoreBasicContract<Widget> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreBasicStyle.merge` right-side-wins semantics).
 extension BasicStyleChain on Basic {
+  /// Sets the content padding.
+  Basic contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreBasicStyle(padding: value));
+
   /// Returns a copy of this [Basic] with [patch] merged into
   /// [basicStyle] (patch fields win on conflict).
   Basic withStyle(CoreBasicStyle patch) =>

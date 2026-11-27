@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart'
 import '../../../../tool/parity/src/model/box_observation_source_spec.dart';
 import 'box_padding_bottom_action_bar_source.dart';
 import 'box_padding_breakpoint_showcase_units.dart';
+import 'box_padding_card_accordion_frame_source.dart';
 import 'box_padding_chat_bubble_units.dart';
 import 'box_padding_collection_layout_host_units.dart';
 import 'box_padding_component_units.dart';
@@ -25,6 +26,7 @@ import 'box_padding_observation.dart';
 import 'box_padding_playground_units.dart';
 import 'box_padding_preview_receipts.dart';
 import 'box_padding_proxy_host_units.dart';
+import 'box_padding_public_wrapper_units.dart';
 import 'box_padding_responsive_layout_units.dart';
 import 'box_padding_scene_units.dart';
 import 'box_padding_scope_allocation_units.dart';
@@ -180,9 +182,73 @@ Map<String, Object?> _observe(
         'canonicalComparisonEligible': false,
       };
     }
+    if (BoxObservationSourceSpec.cardAccordionSurfaceFrames.contains(source)) {
+      final declared = probe.boxObservationSource!;
+      final expected = source.toJson();
+      if (declared.length != expected.length ||
+          expected.entries.any((e) => declared[e.key] != e.value)) {
+        throw const BoxObservationError(
+          'SURFACE_FRAME_SOURCE_CHANGED',
+          'The complete exact frame tuple is required.',
+        );
+      }
+      final binding = bindCardAccordionEntryFrame(
+        captureRoot: captureRoot,
+        registryResult: registryResult,
+        source: source,
+      );
+      final identity = binding.sourceIdentity;
+      final observed = binding.readActualPadding();
+      binding.validateCurrentBinding();
+      return {
+        ...observed.toJson(),
+        'sourceIdentity': identity,
+        'status': 'source-complete',
+        'sourceUnitValidated': true,
+        'source': source.toJson(),
+        'layoutRootElement': identityHashCode(resultElement),
+        'fieldUnitElement': identityHashCode(binding.producer),
+        'sourceReaderId': 'card-accordion-current-outlined-frame-v1',
+        'sourceBindingAuthority': [
+          'original exact public surface -> actual outlined ',
+          'frame -> immediate generated opaque content; ',
+          'distributed slot and item insets excluded',
+        ].join(),
+        'legacyRoleEligible': !legacyRootOmitted,
+        'paintRequired': false,
+        'canonicalComparisonEligible': false,
+      };
+    }
     final BoxPaddingObservation observation;
     var sourceBindingProvenance = <String, Object?>{};
     switch (source.nativeAdapterId) {
+      case 'media-query-generated-visibility-layout-host-v1':
+      case 'swipe-actions-generated-outer-layout-host-v1':
+        final declared = probe.boxObservationSource!;
+        if (declared.length != 5) {
+          throw const BoxObservationError(
+            'PUBLIC_WRAPPER_SOURCE_CHANGED',
+            'Exact five-field tuple required.',
+          );
+        }
+        final binding = bindPublicWrapperBoxSource(
+          captureRoot: captureRoot,
+          registryResult: registryResult,
+          source: source,
+        )!;
+        observation = binding.readDeclaredAbsence();
+        sourceBindingProvenance = {
+          'sourceBindingAuthority': binding.authority,
+          'fieldUnitElement': identityHashCode(binding.fieldUnitElement),
+          'declaredPaddingSourceElement': identityHashCode(
+            binding.fieldUnitElement,
+          ),
+          'declaredFrameSourceElement': identityHashCode(
+            binding.fieldUnitElement,
+          ),
+          'sourceReaderId': binding.readerId,
+        };
+
       case 'classic-scope-showcase-allocation-host-v1':
         final expected = BoxObservationSourceSpec.scopeAllocationHost.toJson();
         final declared = probe.boxObservationSource!;

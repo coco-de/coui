@@ -129,6 +129,18 @@ class SidebarSearch extends UiComponent
 
 /// Chain sugar mirroring the Flutter `SidebarSearch.withStyle` extension.
 extension SidebarSearchStyleChain on SidebarSearch {
+  /// Sets the content padding.
+  SidebarSearch contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreSidebarSearchStyle(padding: value));
+
+  /// Sets the border color.
+  SidebarSearch borderColor(CoreColor value) =>
+      withStyle(CoreSidebarSearchStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  SidebarSearch borderWidth(double value) =>
+      withStyle(CoreSidebarSearchStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   SidebarSearch backgroundColor(CoreColor value) =>
       withStyle(CoreSidebarSearchStyle(backgroundColor: value));

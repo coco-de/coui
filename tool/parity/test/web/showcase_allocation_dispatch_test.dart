@@ -322,7 +322,7 @@ global.getComputedStyle=node=>{const css=prior(node);
     });
   }
   test(
-    'the remaining twelve product roots do not inherit this declaration',
+    'other product roots do not inherit the showcase declaration',
     () {
       for (final recipe in [
         ('progress', 'default'),
@@ -333,7 +333,12 @@ global.getComputedStyle=node=>{const css=prior(node);
         ('accordion', 'default'),
       ]) {
         final entry = _entry(recipe, 'light');
-        expect(entry.probes.single.boxObservationSource, isNull);
+        expect(
+          entry.probes.single.boxObservationSource,
+          recipe == ('accordion', 'default')
+              ? BoxObservationSourceSpec.accordionSurfaceFrame
+              : isNull,
+        );
         expect(ShowcaseAllocationSsrSource.forEntry(entry), isNull);
         final wire = entry.toJson();
         ((wire['probes']! as List).single as Map)['boxObservationSource'] =

@@ -254,6 +254,10 @@ class ValidationBadge extends UiComponent
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreValidationBadgeStyle.merge` right-side-wins semantics).
 extension ValidationBadgeStyleChain on ValidationBadge {
+  /// Sets the border width in logical pixels.
+  ValidationBadge borderWidth(double value) =>
+      withStyle(CoreValidationBadgeStyle(borderWidth: value));
+
   /// Returns a copy of this [ValidationBadge] with [patch] merged into
   /// [style] (patch fields win on conflict).
   ValidationBadge withStyle(CoreValidationBadgeStyle patch) =>

@@ -222,6 +222,18 @@ class _MultiAnswerCardState<T> extends State<MultiAnswerCard<T>> {
 /// ).radius4.surface
 /// ```
 extension MultiAnswerCardStyleChain<T> on MultiAnswerCard<T> {
+  /// Sets the content padding.
+  MultiAnswerCard<T> contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreMultiAnswerCardStyle(padding: value));
+
+  /// Sets the border color.
+  MultiAnswerCard<T> borderColor(CoreColor value) =>
+      withStyle(CoreMultiAnswerCardStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  MultiAnswerCard<T> borderWidth(double value) =>
+      withStyle(CoreMultiAnswerCardStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   MultiAnswerCard<T> backgroundColor(CoreColor value) =>
       withStyle(CoreMultiAnswerCardStyle(backgroundColor: value));

@@ -244,6 +244,10 @@ class BottomActionBar extends UiComponent
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreBottomActionBarStyle.merge` right-side-wins semantics).
 extension BottomActionBarStyleChain on BottomActionBar {
+  /// Sets the content padding.
+  BottomActionBar contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreBottomActionBarStyle(padding: value));
+
   /// Sets the background paint and preserves the other style fields.
   BottomActionBar backgroundColor(CoreColor value) =>
       withStyle(CoreBottomActionBarStyle(backgroundColor: value));

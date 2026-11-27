@@ -232,6 +232,11 @@ class Filter<T> extends StatelessWidget
 /// Filter<String>(...).radius4.surface
 /// ```
 extension FilterStyleChain<T> on Filter<T> {
+  /// Sets the inset around the group of filter segments.
+  Filter<T> contentPadding(CoreEdgeInsets value) => withStyle(
+    CoreFilterStyle(toggleGroupStyle: CoreToggleGroupStyle(padding: value)),
+  );
+
   /// Sets the background paint and preserves the other style fields.
   Filter<T> backgroundColor(CoreColor value) => withStyle(
     CoreFilterStyle(

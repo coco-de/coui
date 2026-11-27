@@ -97,6 +97,10 @@ class SidebarSection extends UiComponent
 
 /// Chain sugar mirroring the Flutter `SidebarSection.withStyle` extension.
 extension SidebarSectionStyleChain on SidebarSection {
+  /// Sets the content padding.
+  SidebarSection contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreSidebarSectionStyle(padding: value));
+
   /// Returns a copy with [patch] merged into [sidebarSectionStyle] (patch
   /// fields win on conflict).
   SidebarSection withStyle(CoreSidebarSectionStyle patch) => copyWith(

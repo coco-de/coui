@@ -264,6 +264,10 @@ class ValidationBadge extends StatelessWidget
 /// )
 /// ```
 extension ValidationBadgeStyleChain on ValidationBadge {
+  /// Sets the border width in logical pixels.
+  ValidationBadge borderWidth(double value) =>
+      withStyle(CoreValidationBadgeStyle(borderWidth: value));
+
   /// Returns a copy of this [ValidationBadge] with [patch] merged into
   /// [style] (patch fields win on conflict).
   ValidationBadge withStyle(CoreValidationBadgeStyle patch) =>

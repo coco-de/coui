@@ -772,6 +772,14 @@ class _CommandState extends State<Command> {
 /// Command(groups: groups).radius4.surface
 /// ```
 extension CommandStyleChain on Command {
+  /// Sets the border color.
+  Command borderColor(CoreColor value) =>
+      withStyle(CoreCommandStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Command borderWidth(double value) =>
+      withStyle(CoreCommandStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   Command backgroundColor(CoreColor value) =>
       withStyle(CoreCommandStyle(backgroundColor: value));

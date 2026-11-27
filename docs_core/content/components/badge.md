@@ -146,6 +146,14 @@ source: display/badge
 
 배지의 `.primary`, `.info`, `.success`, `.warning`은 `tone`을 선택하고 `.outline`은 `variant: .outlined`를 선택합니다. `Badge(child: const Text('완료')).success.outline`은 성공 톤의 윤곽 배지입니다.
 
+라벨·숫자 배지에서는 안쪽 여백과 전경색을 지정할 수 있습니다. 점 배지의 지름은 기존 `dotSize`가 정합니다.
+
+```dart
+Badge(child: const Text('완료')).success.outline
+    .contentPadding(.symmetric(horizontal: CoreSpace.space8))
+    .borderWidth(CoreStrokeWidth.stroke2)
+```
+
 ## 크기
 
 높이 18부터 36까지 6단계입니다. 세로 여백은 없습니다 — 그 높이(`minHeight`)를 바닥으로 두고 내용을 가로 · 세로 가운데에 둡니다. 글자 역할, 아이콘, 점 지름이 높이에 맞춰 함께 바뀝니다.
@@ -449,7 +457,7 @@ class BadgeChainExample extends StatelessWidget {
           child: const Text('주요'),
         ).radius16.backgroundColor(.primary),
         const Gap.space12(),
-        // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
+        // 여러 속성을 한 스타일로 지정합니다.
         Badge(
           child: const Text('직접 지정'),
         ).withStyle(
@@ -484,7 +492,7 @@ class BadgeChainExample extends StatelessComponent {
           child: Text('주요'),
         ).radius16.backgroundColor(.primary),
         const Gap.space12(),
-        // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
+        // 여러 속성을 한 스타일로 지정합니다.
         Badge(
           child: Text('직접 지정'),
         ).withStyle(

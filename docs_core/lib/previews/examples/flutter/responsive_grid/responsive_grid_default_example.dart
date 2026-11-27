@@ -16,12 +16,7 @@ class ResponsiveGridDefaultExample extends StatelessWidget {
       cellSpacing: CoreSpace.space16,
       children: [
         for (var i = 1; i <= 5; i += 1)
-          Card(
-            cardStyle: const CoreCardStyle(
-              padding: CoreEdgeInsets.all(CoreSpace.space16),
-            ),
-            child: Text('항목 $i', style: textStyle),
-          ),
+          Card(child: Text('항목 $i', style: textStyle)).contentPadding(.all(CoreSpace.space16)),
       ],
     );
   }

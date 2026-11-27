@@ -575,6 +575,22 @@ class _PressableChipState extends State<_PressableChip> {
 /// `.primary`, `.outline` select component options.
 /// Use `backgroundColor(.primary)` to set the background explicitly.
 extension ChipStyleChain on Chip {
+  /// Sets the content padding.
+  Chip contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreChipStyle(padding: value));
+
+  /// Sets the border color.
+  Chip borderColor(CoreColor value) =>
+      withStyle(CoreChipStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Chip borderWidth(double value) =>
+      withStyle(CoreChipStyle(borderWidth: value));
+
+  /// Sets the content foreground color.
+  Chip foregroundColor(CoreColor value) =>
+      withStyle(CoreChipStyle(foregroundColor: value));
+
   /// Sets the background paint and preserves the other style fields.
   Chip backgroundColor(CoreColor value) =>
       withStyle(CoreChipStyle(backgroundColor: value));
