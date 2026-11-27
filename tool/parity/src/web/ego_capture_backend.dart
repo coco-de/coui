@@ -21,6 +21,7 @@ import 'computed_style_probe.dart';
 import 'element_capture.dart';
 import 'framed_collection_ssr_source.dart';
 import 'runtime_capture.dart';
+import 'text_showcase_ssr_source.dart';
 import 'web_capture_backend.dart';
 
 // Operational file-bridge polling; unrelated to product animation timing.
@@ -340,7 +341,8 @@ Future<WebCaptureResult> captureEgoEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredFramedCollectionSsrKind(entry)
+      ? requiredTextShowcaseSsrKind(entry) ??
+            requiredFramedCollectionSsrKind(entry)
       : null;
   Map<String, Object?>? currentSsrSource;
   final file = await prepareWebCaptureHarness(
