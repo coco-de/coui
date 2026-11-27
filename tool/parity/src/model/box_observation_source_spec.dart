@@ -969,6 +969,15 @@ class BoxObservationSourceSpec {
     webAdapterId: 'classic-text-showcase-outer-padding-v1',
   );
 
+  /// Exact original public scope forwarding and its owned allocation prefix.
+  static const scopeAllocationHost = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'classic-scope-showcase-allocation-host',
+    quantityId: quantity,
+    nativeAdapterId: 'classic-scope-showcase-allocation-host-v1',
+    webAdapterId: 'classic-scope-showcase-allocation-host-v1',
+  );
+
   /// The classic compound showcase allocation, not any contained product.
   static const showcaseAllocationHost = BoxObservationSourceSpec(
     schemaVersion: 1,
@@ -1025,6 +1034,7 @@ class BoxObservationSourceSpec {
       showcaseAllocationHost,
       bottomActionBarContentInset,
       ...cardAccordionSurfaceFrames,
+      scopeAllocationHost,
       breakpointShowcaseContentInset,
     ]) {
       if (logicalUnitId == supported.logicalUnitId &&
