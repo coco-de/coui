@@ -55,7 +55,7 @@ Flutter의 `*StyleChain` 대상 168개와 Web의 166개를 조사했다. 대상 
 | 대표 Core 스타일 생성자의 `padding:` | 9 | 9 | 양쪽 모두 Card 8개 파일, OutlinedContainer 1개 파일. 스타일 필드가 있는 49개를 한꺼번에 확장할 만큼 수요가 넓게 관측되지는 않았다. |
 | 같은 방식의 `borderRadius:` | 1 | 1 | 두 플랫폼 모두 Button 예제에서 직접 지정했다. 이 수치는 기존 반경 getter 사용을 포함하지 않는다. |
 
-**첫 비교 대상은 Card의 안쪽 여백이다.** 반응형 레이아웃 예제에서 `CoreCardStyle(padding: CoreEdgeInsets.all(CoreSpace.space16))`가 반복된다. 기존 생성자 표기를 짧게 쓴 `cardStyle: .new(padding: .all(CoreSpace.space16))`와, 후보 API인 `.contentPadding(.all(CoreSpace.space16))`를 같은 화면 코드에서 비교할 수 있다. 후자는 제안 문법이다. Card에서 media와 본문의 여백 적용 범위가 다르므로 이름을 읽은 사용자가 실제 여백 위치를 맞히는지, 기존 const 생성이 필요한 호출부에도 적합한지 확인한 뒤 채택한다. [사용 예](../docs_core/lib/previews/examples/flutter/responsive_grid/responsive_grid_default_example.dart) · [Card의 슬롯별 여백](../packages/coui_flutter/lib/src/components/layout/card/card.dart)
+Card·Button·Badge에 `.contentPadding(...)`, `.borderColor(...)`, `.borderWidth(...)`를 시범 적용했다. 전경색 필드가 있는 Button·Badge에는 `.foregroundColor(...)`도 제공한다. ResponsiveGrid의 카드 예제는 `Card(child: ...).contentPadding(.all(CoreSpace.space16))`으로 줄었다. 각 메서드는 기존 Core 스타일의 한 필드를 병합한다. [Flutter 예제](../docs_core/lib/previews/examples/flutter/responsive_grid/responsive_grid_default_example.dart) · [Web 예제](../docs_core/lib/previews/examples/web/responsive_grid/responsive_grid_default_example.dart)
 
 ## 컴포넌트별 적용 지도
 

@@ -17,7 +17,7 @@ class BadgeChainExample extends StatelessWidget {
           child: const Text('주요'),
         ).radius16.backgroundColor(.primary),
         const Gap.space12(),
-        // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
+        // 여러 속성을 한 스타일로 지정합니다.
         Badge(
           child: const Text('직접 지정'),
         ).withStyle(

@@ -560,6 +560,22 @@ extension ButtonStyleChain on Button {
   Button backgroundColor(CoreColor value) =>
       withStyle(CoreButtonStyle(backgroundColor: value));
 
+  /// Sets the padding inside a rectangular button.
+  Button contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreButtonStyle(padding: value));
+
+  /// Sets the border color.
+  Button borderColor(CoreColor value) =>
+      withStyle(CoreButtonStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Button borderWidth(double value) =>
+      withStyle(CoreButtonStyle(borderWidth: value));
+
+  /// Sets the foreground color of the content.
+  Button foregroundColor(CoreColor value) =>
+      withStyle(CoreButtonStyle(foregroundColor: value));
+
   /// Returns a copy of this [Button] with [patch] merged into
   /// [buttonStyle] (patch fields win on conflict).
   Button withStyle(CoreButtonStyle patch) => copyWith(

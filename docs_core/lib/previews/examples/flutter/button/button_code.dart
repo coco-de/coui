@@ -19,7 +19,7 @@ class ButtonChainExample extends StatelessWidget {
           child: Text('기본').lineLimit(1).ellipsis,
         ).radius16.backgroundColor(.primary),
         const Gap.space12(),
-        // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
+        // 여러 속성을 한 스타일로 지정합니다.
         Button(
           variant: CoreButtonVariant.primary,
           onPressed: () {},
