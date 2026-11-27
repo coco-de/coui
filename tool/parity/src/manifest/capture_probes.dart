@@ -61,6 +61,8 @@ void requireCaptureProbes({
                     .textShowcaseOuterPadding
                     .logicalUnitId ||
             source?.logicalUnitId ==
+                BoxObservationSourceSpec.scopeAllocationHost.logicalUnitId ||
+            source?.logicalUnitId ==
                 BoxObservationSourceSpec.showcaseAllocationHost.logicalUnitId ||
             source?.logicalUnitId ==
                 BoxObservationSourceSpec
@@ -174,6 +176,8 @@ BoxObservationSourceSpec? _componentBoxSource(
     BoxObservationSourceSpec.textShowcaseOuterPadding,
   ('icon', 'default' || 'search' || 'favorite') =>
     BoxObservationSourceSpec.iconVisualFrame,
+  ('drag', 'default' || 'board' || 'overlay') ||
+  ('subfocus', 'default') => BoxObservationSourceSpec.scopeAllocationHost,
   ('number-ticker', 'default') =>
     BoxObservationSourceSpec.numberTickerTextLayoutHost,
   ('card-image', 'default') ||
