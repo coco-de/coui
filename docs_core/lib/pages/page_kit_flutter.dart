@@ -8,6 +8,7 @@ import 'package:coui_flutter/coui_flutter.dart';
 
 /// 아이콘 이름 → 아이콘. 이름은 Lucide 의 kebab-case 를 쓴다.
 Widget? docsFlutterIcon(String? name) => switch (name) {
+  'chevron-down' => Icon(LucideIcons.chevronDown),
   'layout-grid' => Icon(LucideIcons.layoutGrid),
   'list' => Icon(LucideIcons.list),
   'mail' => Icon(LucideIcons.mail),
