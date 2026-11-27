@@ -390,8 +390,26 @@ void main() {
         '$componentsWithVariants with named variants, '
         '$totalVariants total variants',
       );
+    });
 
-      expect(totalComponents, greaterThanOrEqualTo(80));
+    test('every component page shows a preview', () {
+      // A page shows its component with `<LivePreview>`, or with
+      // `<Playground>` once it is on the v2 template. Counting one tag would
+      // report every migrated page as lost coverage, and a fixed floor over
+      // both would let many pages lose their preview unnoticed.
+      final preview = RegExp(r'<(?:LivePreview|Playground)\s+component="[^"]+"');
+      final pages = Directory('content/components').listSync().whereType<File>().where((f) => f.path.endsWith('.md'));
+      final without = [
+        for (final page in pages)
+          if (!preview.hasMatch(page.readAsStringSync())) page.uri.pathSegments.last,
+      ]..sort();
+
+      expect(pages, isNotEmpty);
+      expect(
+        without,
+        isEmpty,
+        reason: 'Component pages without a preview:\n${without.join('\n')}',
+      );
     });
   });
 }
