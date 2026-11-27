@@ -1281,6 +1281,18 @@ class _TextAreaDragHandlePainter extends CustomPainter {
 /// `.error` selects component options.
 /// Use `backgroundColor(.primary)` to set the background explicitly.
 extension TextAreaStyleChain on TextArea {
+  /// Sets the content padding.
+  TextArea contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreTextAreaStyle(padding: value));
+
+  /// Sets the border color.
+  TextArea borderColor(CoreColor value) =>
+      withStyle(CoreTextAreaStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  TextArea borderWidth(double value) =>
+      withStyle(CoreTextAreaStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   TextArea backgroundColor(CoreColor value) =>
       withStyle(CoreTextAreaStyle(backgroundColor: value));

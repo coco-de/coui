@@ -1821,6 +1821,18 @@ class _CoTextFieldSelectionGestureBuilder
 /// `.error` selects component options.
 /// Use `backgroundColor(.primary)` to set the background explicitly.
 extension TextFieldStyleChain on TextField {
+  /// Sets the content padding.
+  TextField contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreTextFieldStyle(padding: value));
+
+  /// Sets the border color.
+  TextField borderColor(CoreColor value) =>
+      withStyle(CoreTextFieldStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  TextField borderWidth(double value) =>
+      withStyle(CoreTextFieldStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   TextField backgroundColor(CoreColor value) =>
       withStyle(CoreTextFieldStyle(backgroundColor: value));

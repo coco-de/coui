@@ -136,6 +136,14 @@ class FocusOutline extends UiComponent
 /// FocusOutline(child: triggerDiv).radius4
 /// ```
 extension FocusOutlineStyleChain on FocusOutline {
+  /// Sets the border color.
+  FocusOutline borderColor(CoreColor value) =>
+      withStyle(CoreFocusOutlineStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  FocusOutline borderWidth(double value) =>
+      withStyle(CoreFocusOutlineStyle(borderWidth: value));
+
   /// Returns a copy of this [FocusOutline] with [patch] merged into
   /// [focusOutlineStyle] (patch fields win on conflict).
   FocusOutline withStyle(CoreFocusOutlineStyle patch) => copyWith(

@@ -502,6 +502,14 @@ class MenuRowScope extends InheritedWidget {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreMenuItemStyle.merge` right-side-wins semantics).
 extension MenuItemStyleChain on MenuItem {
+  /// Sets the content padding.
+  MenuItem contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreMenuItemStyle(padding: value));
+
+  /// Sets the content foreground color.
+  MenuItem foregroundColor(CoreColor value) =>
+      withStyle(CoreMenuItemStyle(foregroundColor: value));
+
   /// Sets the background paint and preserves the other style fields.
   MenuItem backgroundColor(CoreColor value) =>
       withStyle(CoreMenuItemStyle(backgroundColor: value));

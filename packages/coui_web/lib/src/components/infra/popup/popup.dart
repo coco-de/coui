@@ -158,6 +158,18 @@ class Popup extends UiComponent implements CorePopupContract<Component> {
 /// Popup(children: [text('Profile')]).radius4.surface
 /// ```
 extension PopupStyleChain on Popup {
+  /// Sets the content padding.
+  Popup contentPadding(CoreEdgeInsets value) =>
+      withStyle(CorePopupStyle(padding: value));
+
+  /// Sets the border color.
+  Popup borderColor(CoreColor value) =>
+      withStyle(CorePopupStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Popup borderWidth(double value) =>
+      withStyle(CorePopupStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   Popup backgroundColor(CoreColor value) =>
       withStyle(CorePopupStyle(backgroundColor: value));

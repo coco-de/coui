@@ -389,6 +389,18 @@ class _TableShape {
 /// Table(rows: rows).radius4.surface
 /// ```
 extension TableStyleChain on Table {
+  /// Sets the border color.
+  Table borderColor(CoreColor value) =>
+      withStyle(CoreTableStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Table borderWidth(double value) =>
+      withStyle(CoreTableStyle(borderWidth: value));
+
+  /// Sets the content foreground color.
+  Table foregroundColor(CoreColor value) =>
+      withStyle(CoreTableStyle(foregroundColor: value));
+
   /// Sets the background paint and preserves the other style fields.
   Table backgroundColor(CoreColor value) =>
       withStyle(CoreTableStyle(backgroundColor: value));

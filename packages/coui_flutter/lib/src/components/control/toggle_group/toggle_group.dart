@@ -198,6 +198,10 @@ class ToggleGroup<T> extends StatelessWidget
 /// )
 /// ```
 extension ToggleGroupStyleChain<T> on ToggleGroup<T> {
+  /// Sets the content padding.
+  ToggleGroup<T> contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreToggleGroupStyle(padding: value));
+
   /// Sets the background paint and preserves the other style fields.
   ToggleGroup<T> backgroundColor(CoreColor value) =>
       withStyle(CoreToggleGroupStyle(backgroundColor: value));

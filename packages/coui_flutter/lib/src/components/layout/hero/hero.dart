@@ -200,6 +200,10 @@ class Hero extends StatelessWidget implements CoreHeroContract<Widget> {
 /// Hero(child: Text('Welcome')).primary
 /// ```
 extension HeroStyleChain on Hero {
+  /// Sets the content padding.
+  Hero contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreHeroStyle(padding: value));
+
   /// Sets the background paint and preserves the other style fields.
   Hero backgroundColor(CoreColor value) =>
       withStyle(CoreHeroStyle(backgroundColor: value));

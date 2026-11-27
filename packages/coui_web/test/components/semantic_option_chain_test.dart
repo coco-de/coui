@@ -24,6 +24,52 @@ void main() {
     expect(footer.backgroundColor(.surface).tag, 'aside');
   });
 
+  test('Tag style chains compose with the category color and emphasis', () {
+    const base = Tag(color: CoreCategoryColor.blue, child: Text('Design'));
+    const insets = CoreEdgeInsets.symmetric(horizontal: CoreSpace.space8);
+    final styled = base
+        .borderWidth(CoreStrokeWidth.stroke2)
+        .contentPadding(insets)
+        .borderColor(.outline)
+        .foregroundColor(.onSurface)
+        .borderColor(.primary);
+    expect(
+      styled.tagStyle,
+      const CoreTagStyle(
+        padding: insets,
+        borderWidth: CoreStrokeWidth.stroke2,
+        borderColor: .primary,
+        foregroundColor: .onSurface,
+      ),
+    );
+    expect(styled.color, base.color);
+    expect(styled.emphasis, base.emphasis);
+    expect(styled.child, same(base.child));
+    expect(base.tagStyle, isNull);
+  });
+
+  test(
+    'Filter content padding merges into the track and keeps item padding',
+    () {
+      const itemPadding = CoreEdgeInsets.all(CoreSpace.space4);
+      const trackPadding = CoreEdgeInsets.all(CoreSpace.space12);
+      final filter = Filter<String>(
+        groupValue: 'open',
+        items: const [CoreFilterItem(value: 'open', label: 'Open')],
+        onValueChanged: (_) {},
+        filterStyle: const CoreFilterStyle(
+          toggleGroupStyle: CoreToggleGroupStyle(itemPadding: itemPadding),
+        ),
+      );
+      final Filter<String> styled = filter.contentPadding(trackPadding);
+      final track = styled.filterStyle!.toggleGroupStyle!;
+      expect(track.padding, trackPadding);
+      expect(track.itemPadding, itemPadding);
+      expect(styled.items, same(filter.items));
+      expect(styled.onValueChanged, same(filter.onValueChanged));
+    },
+  );
+
   test('Button option getters compose with explicit style', () {
     const style = CoreButtonStyle(
       backgroundColor: .tertiary,

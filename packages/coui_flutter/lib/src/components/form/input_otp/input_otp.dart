@@ -678,6 +678,14 @@ class _InputOtpState extends State<InputOtp>
 /// InputOtp(length: 6).radius4.primary
 /// ```
 extension InputOtpStyleChain on InputOtp {
+  /// Sets the border color.
+  InputOtp borderColor(CoreColor value) =>
+      withStyle(CoreInputOtpStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  InputOtp borderWidth(double value) =>
+      withStyle(CoreInputOtpStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   InputOtp backgroundColor(CoreColor value) =>
       withStyle(CoreInputOtpStyle(backgroundColor: value));
