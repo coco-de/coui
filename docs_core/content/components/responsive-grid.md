@@ -35,12 +35,7 @@ ResponsiveGrid(
   cellSpacing: CoreSpace.space16,
   children: [
     for (var i = 1; i <= 6; i++)
-      Card(
-        cardStyle: const CoreCardStyle(
-          padding: CoreEdgeInsets.all(CoreSpace.space16),
-        ),
-        child: Text('항목 $i'),
-      ),
+      Card(child: Text('항목 $i')).contentPadding(.all(CoreSpace.space16)),
   ],
 )
 ```
