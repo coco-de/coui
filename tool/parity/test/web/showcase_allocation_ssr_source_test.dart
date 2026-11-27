@@ -1,4 +1,6 @@
 import 'package:coui_web/coui_web.dart' as coui;
+import 'package:docs_core/previews/examples/web/mockup_foldable/mockup_foldable_angle_example.dart';
+import 'package:docs_core/previews/examples/web/mockup_foldable/mockup_foldable_default_example.dart';
 import 'package:docs_core/previews/web_registry.dart';
 import 'package:jaspr/dom.dart' show div;
 import 'package:jaspr/server.dart' hide Document;
@@ -10,19 +12,20 @@ import '../../src/web/showcase_allocation_ssr_source.dart';
 import '../../src/web/ssr_render.dart';
 import '../../src/web/ssr_source_identity.dart';
 
-MatrixEntry _entry() => MatrixEntry.fromJson({
-  'component': 'chip',
-  'variant': 'variant',
-  'theme': 'light',
-  'surfaceStyle': 'defaultStyle',
-  'tier': 't2',
-  'probes': captureProbes(
-    key: 'chip-variant-light-defaultStyle',
-    component: 'chip',
-    variant: 'variant',
-    flutterClassName: 'actual-canonical',
-  ).map((probe) => probe.toJson()).toList(),
-});
+MatrixEntry _entry({(String, String) recipe = ('chip', 'variant')}) =>
+    MatrixEntry.fromJson({
+      'component': recipe.$1,
+      'variant': recipe.$2,
+      'theme': 'light',
+      'surfaceStyle': 'defaultStyle',
+      'tier': 't2',
+      'probes': captureProbes(
+        key: '${recipe.$1}-${recipe.$2}-light-defaultStyle',
+        component: recipe.$1,
+        variant: recipe.$2,
+        flutterClassName: 'actual-canonical',
+      ).map((probe) => probe.toJson()).toList(),
+    });
 
 Future<void> _mounted(
   void Function(
@@ -31,9 +34,10 @@ Future<void> _mounted(
     div declaration,
     ShowcaseAllocationSsrSource source,
   )
-  run,
-) async {
-  final entry = _entry();
+  run, {
+  (String, String) recipe = ('chip', 'variant'),
+}) async {
+  final entry = _entry(recipe: recipe);
   final source = ShowcaseAllocationSsrSource.forEntry(entry)!;
   div? capture;
   var builds = 0;
@@ -53,7 +57,9 @@ Future<void> _mounted(
         capture!,
       );
       final example = soleCurrentSsrChild(captureDom);
-      final returned = soleCurrentSsrChild(example);
+      // The registry returns its owned width DIV for this exact recipe.
+      final registryWidth = recipe == ('mockup-foldable', 'default');
+      final returned = registryWidth ? example : soleCurrentSsrChild(example);
       final declaration = returned.component as div;
       final owner = currentSsrGeneratedDiv(returned, declaration);
       run(root, owner, declaration, source);
@@ -63,6 +69,152 @@ Future<void> _mounted(
 }
 
 void main() {
+  test(
+    'actual default registry width host owns one opaque Example seat',
+    () async {
+      await _mounted((root, owner, declaration, source) {
+        expect(declaration.runtimeType, div);
+        expect(declaration.children, hasLength(1));
+        expect(
+          declaration.children.single.runtimeType,
+          MockupFoldableDefaultExample,
+        );
+        final seats = <Element>[];
+        owner.visitChildren(seats.add);
+        expect(seats, hasLength(1));
+        expect(seats.single.component, same(declaration.children.single));
+        expect(seats.single.parent, same(owner));
+        final receipt = source.observe(root);
+        expect(receipt['completeRawSlotCount'], 1);
+        expect((receipt['currentRaw']! as Map)['opaqueSlots'], hasLength(1));
+        for (final mode in [
+          'drop',
+          'extra',
+          'different Example',
+          'double wrapper',
+        ]) {
+          final original = declaration.children.single;
+          try {
+            if (mode == 'drop') declaration.children.clear();
+            if (mode == 'extra') declaration.children.add(original);
+            if (mode == 'different Example') {
+              declaration.children[0] = const MockupFoldableAngleExample();
+            }
+            if (mode == 'double wrapper') {
+              declaration.children[0] = div([original]);
+            }
+            expect(() => source.observe(root), throwsStateError);
+          } finally {
+            declaration.children
+              ..clear()
+              ..add(original);
+          }
+          expect(source.observe(root)['completeRawSlotCount'], 1);
+        }
+        final original = declaration.children.single;
+        const createSameTypeCopy = MockupFoldableDefaultExample.new;
+        final sameTypeCopy = createSameTypeCopy();
+        expect(sameTypeCopy.runtimeType, original.runtimeType);
+        expect(sameTypeCopy, isNot(same(original)));
+        try {
+          declaration.children[0] = sameTypeCopy;
+          expect(
+            () => source.observe(root),
+            throwsA(
+              isA<StateError>().having(
+                (error) => error.message,
+                'message',
+                'SHOWCASE_ALLOCATION_REGISTRY_EXAMPLE_CHANGED',
+              ),
+            ),
+          );
+        } finally {
+          declaration.children[0] = original;
+        }
+        expect(source.observe(root)['completeRawSlotCount'], 1);
+        // A source cannot replace the actual registry route with an inner
+        // Example or a second allocation wrapper before mounting either.
+        final entry = _entry(recipe: ('mockup-foldable', 'default'));
+        for (final result in <Component>[
+          declaration.children.single,
+          div([declaration]),
+          const div([]),
+          div([declaration.children.single, declaration.children.single]),
+          const div([MockupFoldableAngleExample()]),
+        ]) {
+          final other = ShowcaseAllocationSsrSource.forEntry(entry)!;
+          final capture = div(
+            [result],
+            attributes: {'data-parity-key': entry.key},
+          );
+          expect(() => other.recordBuild(result, capture), throwsStateError);
+        }
+      }, recipe: ('mockup-foldable', 'default'));
+    },
+  );
+
+  for (final entry in const <(String, String), int>{
+    ('card-image', 'default'): 1,
+    ('hidden', 'default'): 3,
+    ('window', 'default'): 3,
+    ('draggable-panel', 'default'): 1,
+    ('draggable-panel', 'outside'): 1,
+    ('scrollable-client', 'default'): 1,
+    ('table', 'scrollable'): 1,
+    ('mockup-foldable', 'angle'): 2,
+    ('mockup-foldable', 'default'): 1,
+    ('scaffold', 'default'): 1,
+    ('bottom-action-bar', 'scaffold'): 1,
+    ('scrollview', 'default'): 1,
+  }.entries) {
+    test(
+      '${entry.key} original product is a complete opaque raw boundary',
+      () async {
+        await _mounted((root, owner, declaration, source) {
+          final raw = declaration.children;
+          final seats = <Element>[];
+          owner.visitChildren(seats.add);
+          expect(raw, hasLength(entry.value));
+          expect(seats, hasLength(raw.length));
+          expect(Set<Element>.identity()..addAll(seats), hasLength(raw.length));
+          final frontiers = <MarkupRenderObject>[];
+          for (var i = 0; i < raw.length; i++) {
+            expect(seats[i].component, same(raw[i]));
+            expect(seats[i].parent, same(owner));
+            frontiers.addAll(_frontier(seats[i]));
+          }
+          final markup =
+              (owner as RenderObjectElement).renderObject as MarkupRenderObject;
+          expect(markup.children.toList(), orderedEquals(frontiers));
+          expect(
+            Set<MarkupRenderObject>.identity()..addAll(frontiers),
+            hasLength(frontiers.length),
+          );
+          final receipt = source.observe(root);
+          expect(receipt['completeRawSlotCount'], raw.length);
+          final records =
+              (receipt['currentRaw']! as Map)['opaqueSlots']! as List;
+          expect(records, hasLength(raw.length));
+          for (var i = 0; i < raw.length; i++) {
+            final record = records[i] as Map;
+            expect(record.keys.toSet(), {'seat', 'sourceAliasOf', 'nodes'});
+            expect(record['seat'], i);
+            // Top frontier shapes do not expose product attrs, children,
+            // controllers or builder callbacks; interiors remain opaque.
+            for (final node in record['nodes']! as List) {
+              expect(
+                (node as Map).keys.toSet(),
+                node['nodeType'] == 1
+                    ? {'nodeType', 'namespaceURI', 'localName'}
+                    : {'nodeType'},
+              );
+            }
+          }
+        }, recipe: entry.key);
+      },
+    );
+  }
+
   test(
     'real nonempty repeated Components have distinct current mounted seats',
     () async {

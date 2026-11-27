@@ -8,6 +8,7 @@ import '../../src/model/box_observation_source_spec.dart';
 import '../../src/model/probe_spec.dart';
 
 void main() {
+  _additionalShowcaseAllocationTests();
   _showcaseAllocationTests();
   const breakpointSource =
       BoxObservationSourceSpec.breakpointShowcaseContentInset;
@@ -1324,4 +1325,103 @@ void _showcaseAllocationTests() {
       );
     });
   }
+}
+
+void _additionalShowcaseAllocationTests() {
+  const source = BoxObservationSourceSpec.showcaseAllocationHost;
+  test('existing showcase tuple remains exact for additional recipes', () {
+    expect(source.toJson(), const {
+      'schemaVersion': 1,
+      'logicalUnitId': 'classic-compound-showcase-allocation-host',
+      'quantityId': 'inside-frame-own-content-inset-v1',
+      'nativeAdapterId': 'classic-compound-showcase-allocation-host-v1',
+      'webAdapterId': 'classic-compound-showcase-allocation-host-v1',
+    });
+    expect(source.validationError, isNull);
+  });
+  const recipes = <(String, String)>[
+    ('card-image', 'default'),
+    ('hidden', 'default'),
+    ('window', 'default'),
+    ('draggable-panel', 'default'),
+    ('draggable-panel', 'outside'),
+    ('scrollable-client', 'default'),
+    ('table', 'scrollable'),
+    ('mockup-foldable', 'angle'),
+    ('mockup-foldable', 'default'),
+    ('scaffold', 'default'),
+    ('bottom-action-bar', 'scaffold'),
+    ('scrollview', 'default'),
+  ];
+  for (final recipe in recipes) {
+    for (final style in CoreSurfaceStyleId.values) {
+      for (final theme in ['light', 'dark']) {
+        test('$recipe/$theme/${style.name} retains its original root', () {
+          final key = '${recipe.$1}-${recipe.$2}-$theme-${style.name}';
+          final actual = captureProbes(
+            key: key,
+            component: recipe.$1,
+            variant: recipe.$2,
+            flutterClassName: 'UnchangedFinder',
+          );
+          expect(actual, hasLength(1));
+          expect(actual.single.boxObservationSource, source);
+          expect(
+            actual.single.toJson()..remove('boxObservationSource'),
+            rootProbeSpec(
+              key: key,
+              flutterClassName: 'UnchangedFinder',
+            ).toJson(),
+          );
+        });
+      }
+    }
+  }
+  test('additional showcase routes cannot be borrowed or malformed', () {
+    for (final recipe in const [
+      ('card-image', 'chain'),
+      ('hidden', 'chain'),
+      ('window', 'chain'),
+      ('draggable-panel', 'unreviewed'),
+      ('scrollable-client', 'chain'),
+      ('chat', 'unreviewed-allocation'),
+      ('mockup-foldable', 'unreviewed'),
+      ('scaffold', 'unreviewed'),
+      ('bottom-action-bar', 'unreviewed'),
+      ('scrollview', 'unreviewed'),
+      ('card', 'default'),
+      ('hidden', 'docs-v2-unreviewed'),
+    ]) {
+      expect(
+        () => requireCaptureProbes(
+          component: recipe.$1,
+          variant: recipe.$2,
+          roles: const ['root'],
+          boxObservationSources: const [source],
+        ),
+        throwsFormatException,
+      );
+    }
+    for (final change in <Map<String, Object?>>[
+      {'schemaVersion': 2},
+      {'quantityId': 'product-padding'},
+      {'nativeAdapterId': 'foreign'},
+      {'webAdapterId': 'foreign'},
+    ]) {
+      final wrong = BoxObservationSourceSpec.fromJson({
+        ...source.toJson(),
+        ...change,
+      });
+      expect(wrong.validationError, isNotNull);
+      expect(
+        () => requireCaptureProbes(
+          component: 'hidden',
+          variant: 'default',
+          roles: const ['root'],
+          boxObservationSources: [wrong],
+        ),
+        throwsFormatException,
+      );
+    }
+  });
 }

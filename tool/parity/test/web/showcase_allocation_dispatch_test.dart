@@ -39,6 +39,18 @@ const _kRecipes = <(String, String)>[
   ('chip', 'prefix'),
   ('skeleton', 'default'),
   ('step-item', 'default'),
+  ('card-image', 'default'),
+  ('hidden', 'default'),
+  ('window', 'default'),
+  ('draggable-panel', 'default'),
+  ('draggable-panel', 'outside'),
+  ('scrollable-client', 'default'),
+  ('table', 'scrollable'),
+  ('mockup-foldable', 'angle'),
+  ('mockup-foldable', 'default'),
+  ('scaffold', 'default'),
+  ('bottom-action-bar', 'scaffold'),
+  ('scrollview', 'default'),
 ];
 
 MatrixEntry _entry(
@@ -208,6 +220,37 @@ console.log(JSON.stringify({observed,error,cssReads,originalDOMUnchanged}));
 }
 
 void main() {
+  for (final duringBox in [false, true]) {
+    test(
+      'registry width held selectors remain unique during '
+      '${duringBox ? 'box' : 'legacy'} CSS',
+      () async {
+        const mutateQuery = '''
+const prior=getComputedStyle;
+global.getComputedStyle=node=>{const css=prior(node);
+ Object.defineProperty(css,'paddingTop',{get(){
+ document.querySelectorAll=()=>[root,root];return '0px';}});return css;};
+''';
+        final result = await _sample(
+          await _actual(('mockup-foldable', 'default')),
+          combined: true,
+          mutation: duringBox ? '' : mutateQuery,
+          boxScript: duringBox
+              ? '(request)=>{\n'
+                    '$mutateQuery\n'
+                    'return ($boxPaddingObservationScript)(request);\n'
+                    '}'
+              : null,
+        );
+        expect(
+          result['error'],
+          contains('SHOWCASE_ALLOCATION_BINDING_CHANGED'),
+        );
+        expect(result['originalDOMUnchanged'], true);
+      },
+    );
+  }
+
   test(
     'declaration and factory cover every actual surface-style enum value',
     () {
