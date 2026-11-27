@@ -37,6 +37,7 @@ import 'navigation_trigger_ssr_source.dart';
 import 'offline_tailwind_harness.dart';
 import 'runtime_capture.dart';
 import 'ssr_render.dart';
+import 'text_showcase_ssr_source.dart';
 import 'visual_value_ssr_source.dart';
 
 /// The `data-parity-key` wrapper's `display` value.
@@ -237,7 +238,8 @@ Future<String> renderCaptureBodyHtml(
 }) async {
   final sourceRecorder = onCurrentBoxSource == null
       ? null
-      : FramedCollectionSsrSource.forEntry(entry) ??
+      : TextShowcaseSsrSource.forEntry(entry) ??
+            FramedCollectionSsrSource.forEntry(entry) ??
             NavigationTriggerSsrSource.forEntry(entry) ??
             DataOverlaySsrSource.forEntry(entry) ??
             VisualValueSsrSource.forEntry(entry);
@@ -442,7 +444,8 @@ Future<WebCaptureResult> captureWebEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredFramedCollectionSsrKind(entry)
+      ? requiredTextShowcaseSsrKind(entry) ??
+            requiredFramedCollectionSsrKind(entry)
       : null;
   Map<String, Object?>? currentSsrSource;
   final harnessFile = await prepareWebCaptureHarness(

@@ -932,6 +932,15 @@ class BoxObservationSourceSpec {
     tableGridContentInset,
   ];
 
+  /// The classic showcase's outer allocation, not Text glyphs or line boxes.
+  static const textShowcaseOuterPadding = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'classic-text-showcase-generated-padding-host',
+    quantityId: quantity,
+    nativeAdapterId: 'classic-text-showcase-outer-padding-v1',
+    webAdapterId: 'classic-text-showcase-outer-padding-v1',
+  );
+
   String? get validationError {
     if (schemaVersion != 1) return 'UNSUPPORTED_BOX_SOURCE_VERSION';
     if (quantityId != quantity) return 'UNSUPPORTED_BOX_QUANTITY';
@@ -965,6 +974,7 @@ class BoxObservationSourceSpec {
       ...navigationTriggerParameterFrames,
       ...visualValueFrames,
       ...framedCollectionFrames,
+      textShowcaseOuterPadding,
     ]) {
       if (logicalUnitId == supported.logicalUnitId &&
           nativeAdapterId == supported.nativeAdapterId &&

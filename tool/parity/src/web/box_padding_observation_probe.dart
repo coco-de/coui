@@ -33,6 +33,7 @@ import 'box_padding_validation_viewport_units_probe.dart';
 import 'box_padding_visual_value_units_probe.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
+import 'text_showcase_ssr_source.dart';
 
 /// Current CSS padding of a declared box, independent of painted chrome.
 /// This is separate from the historical computed-style payload.
@@ -52,6 +53,7 @@ String get boxPaddingObservationScript =>
       BoxObservationSourceSpec.wholeDocCard.toJson(),
       BoxObservationSourceSpec.docsSizePreview.toJson(),
       BoxObservationSourceSpec.docsPlayground.toJson(),
+      BoxObservationSourceSpec.textShowcaseOuterPadding.toJson(),
       ...BoxObservationSourceSpec.componentFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.extendedComponentFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.displayComponentFrames.map((source) => source.toJson()),
@@ -93,6 +95,7 @@ String get boxPaddingObservationScript =>
   let registryIsLayoutRoot = null;
   let currentClientWitness = null;
   let currentClientEvidence = null;
+  let validateCurrentBoxBinding = null;
   const currentSsrRaw = (kind, registryRoot = layoutRoot) => {
     const receipt = request.currentSsrSource;
     if (!receipt || receipt.error || receipt.kind !== kind) return {error:'MISSING_ACTUAL_SSR_BOX_SOURCE'};
@@ -103,6 +106,20 @@ String get boxPaddingObservationScript =>
     return {raw:receipt.currentRaw};
   };
   switch(source.webAdapterId) {
+    case 'classic-text-showcase-outer-padding-v1': {
+      const binding = ($textShowcaseRequestBindingScript)(request);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (!binding.applied || binding.registryResultElement !== layoutRoot ||
+          binding.fieldUnitElement !== layoutRoot || binding.paddingSource !== layoutRoot ||
+          binding.frameSource !== layoutRoot || binding.registryIsLayoutRoot !== true ||
+          typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('TEXT_SHOWCASE_FIELD_UNIT_CHANGED'));
+      owner = layoutRoot;
+      sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true;
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      break;
+    }
     case 'matched-outlined-root-v1':
       if (!${jsonEncode([kWebSurfaceMarker, kWebLocalSurfaceMarker])}.some(name => layoutRoot.classList.contains(name))) return JSON.stringify(incomplete('OUTLINED_ROOT_SOURCE_CHANGED'));
       owner = layoutRoot;
@@ -456,9 +473,12 @@ String get boxPaddingObservationScript =>
   if (raw.some(text => !/^[+-]?(?:[0-9]+(?:[.][0-9]*)?|[.][0-9]+)(?:[eE][+-]?[0-9]+)?px\$/.test(text))) return JSON.stringify(incomplete('UNRESOLVED_CSS_PADDING_UNIT'));
   const value = raw.map(text => Number.parseFloat(text));
   if (value.some(number => !Number.isFinite(number))) return JSON.stringify(incomplete('UNRESOLVED_CSS_PADDING'));
+  const ownerTag = owner.tagName, ownerClasses = Array.from(owner.classList);
+  if (validateCurrentBoxBinding && !validateCurrentBoxBinding())
+    return JSON.stringify(incomplete('TEXT_SHOWCASE_BINDING_CHANGED_DURING_CSS_READ'));
   return JSON.stringify({status:'source-complete', sourceUnitValidated:true, source, value, rawCss:raw,
-    ownerIsLayoutRoot:owner === layoutRoot, ownerTag:owner.tagName,
-    ownerClasses:Array.from(owner.classList), paintRequired:false,
+    ownerIsLayoutRoot:owner === layoutRoot, ownerTag,
+    ownerClasses, paintRequired:false,
     sourceBindingAuthority, registryIsLayoutRoot,
     ...(currentClientWitness ? {currentClientSource:currentClientWitness,
       clientEvidence:currentClientEvidence,
