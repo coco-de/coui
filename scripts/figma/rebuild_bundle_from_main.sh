@@ -31,7 +31,18 @@
 #
 # 환경변수:
 #   COUI_BUNDLE_DEST      번들 목적지 디렉터리 (기본 $HOME/orca/coui/tools/figma-token-sync)
-#   COUI_BUNDLE_WORKTREE  빌드 전용 워크트리 (기본 $HOME/orca/coui-bundle)
+#   COUI_BUNDLE_WORKTREE  빌드 전용 워크트리 (기본 $HOME/orca/coui-public-bundle)
+#
+# 이 저장소의 것만 굽고, 이 저장소가 구운 것만 승격한다:
+#   - 빌드 워크트리는 이 스크립트가 있는 저장소의 워크트리여야 한다. 다른 저장소의
+#     워크트리에서 `checkout --detach origin/main` 하면 방금 fetch 한 main 이 아니라
+#     그 저장소의 main 이 구워지고, 에러 없이 성공으로 보인다. 아니면 exit 4 —
+#     --force 로도 넘지 않는다(다른 저장소를 구우려면 그 저장소의 스크립트를 쓴다).
+#   - 적재 파일의 자리는 목적지마다 하나라, 같은 목적지를 쓰는 다른 저장소의
+#     스크립트가 덮어 놓을 수 있다. 승격은 이 저장소의 워크트리가 구운 적재물만
+#     갈아끼운다. 아니면 exit 3 — 그래도 쓰려면 --force.
+#   저장소는 원격 주소가 아니라 공용 git 디렉터리로 가른다 — 한 저장소의 워크트리는
+#   그것을 나눠 쓴다.
 #
 # 오르카 자동화 등록 예 (main 카드에서, 머지 뒤 한 번):
 #   orca automations create --name "CoUI 번들 자동 재빌드" --trigger "*/15 * * * *" \
@@ -46,7 +57,7 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 DEST="${COUI_BUNDLE_DEST:-$HOME/orca/coui/tools/figma-token-sync}"
-BUILD_WT="${COUI_BUNDLE_WORKTREE:-$HOME/orca/coui-bundle}"
+BUILD_WT="${COUI_BUNDLE_WORKTREE:-$HOME/orca/coui-public-bundle}"
 TOOL_REL="tools/figma-token-sync"
 MODE="stage"
 FORCE="${COUI_BUNDLE_FORCE:-0}"
@@ -56,7 +67,7 @@ for a in "$@"; do
     --promote) MODE="promote" ;;
     --now) MODE="now" ;;
     --force) FORCE=1 ;;
-    -h|--help) sed -n '2,44p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,55p' "$0"; exit 0 ;;
     *) echo "unknown arg: $a" >&2; exit 2 ;;
   esac
 done
@@ -64,7 +75,24 @@ done
 STAGED="$DEST/code.js.next"
 STAGED_SIDECAR="$DEST/code.js.next.owner.json"
 
-read_sha() { [ -f "$1" ] && python3 -c 'import json,sys;print(json.load(open(sys.argv[1])).get("sha",""))' "$1" || printf ''; }
+read_field() { [ -f "$1" ] && python3 -c 'import json,sys;print(json.load(open(sys.argv[1])).get(sys.argv[2],""))' "$1" "$2" || printf ''; }
+read_sha() { read_field "$1" sha; }
+
+# 경로가 속한 저장소의 공용 git 디렉터리. 빈 경로와 git 이 아닌 경로는 빈 값이다.
+# `git -C ""` 는 현재 디렉터리를 읽으므로 빈 경로를 먼저 거른다.
+repo_of() {
+  local common
+  [ -n "$1" ] || return 0
+  common="$(git -C "$1" rev-parse --git-common-dir 2>/dev/null)" || return 0
+  (cd "$1" && cd "$common" && pwd -P)
+}
+
+# 그 경로가 이 스크립트가 있는 저장소의 것인가. 읽지 못하면 아니라고 답한다.
+is_this_repo() {
+  local theirs
+  theirs="$(repo_of "$1")"
+  [ -n "$theirs" ] && [ "$theirs" = "$(repo_of "$REPO_ROOT")" ]
+}
 
 # 승격 — 적재된 번들을 `code.js` 로 갈아끼운다. 같은 디렉터리 안 `mv` 라 원자적이고,
 # 플러그인이 반쯤 쓰인 파일을 읽을 창이 없다.
@@ -79,6 +107,14 @@ promote() {
     log "⛔ 적재된 번들에 출처 스탬프가 없다 ($STAGED_SIDECAR)."
     log "   승격하면 code.js 와 사이드카가 어긋난다. 플래그 없이 다시 구워라."
     return 1
+  fi
+  # 이 저장소가 구운 적재물만 갈아끼운다 (머리말 참조).
+  local staged_wt
+  staged_wt="$(read_field "$STAGED_SIDECAR" worktree)"
+  if [ "$FORCE" != "1" ] && ! is_this_repo "$staged_wt"; then
+    log "⛔ 적재된 번들은 이 저장소가 구운 것이 아니다 (${staged_wt:-출처 없음}) — code.js 는 그대로다."
+    log "   플래그 없이 다시 구운 뒤 승격하라. 이 적재물을 그대로 쓰려면 --force."
+    return 3
   fi
   # 내용이 같으면 파일을 다시 쓰지 않는다. mtime 만 움직여도 핫리로드가 돈다.
   if [ -f "$DEST/code.js" ] && cmp -s "$STAGED" "$DEST/code.js"; then
@@ -139,6 +175,12 @@ if [ ! -d "$BUILD_WT/.git" ] && [ ! -f "$BUILD_WT/.git" ]; then
   log "빌드 워크트리 생성: $BUILD_WT (origin/main detached)"
   git -C "$REPO_ROOT" worktree add --detach "$BUILD_WT" origin/main -q
 else
+  if ! is_this_repo "$BUILD_WT"; then
+    log "⛔ 빌드 워크트리가 이 저장소의 것이 아니다: $BUILD_WT"
+    log "   여기서 구우면 방금 fetch 한 main 이 아니라 다른 저장소의 main 이 나온다. 그 워크트리와 목적지는 그대로다."
+    log "   COUI_BUNDLE_WORKTREE 에 이 저장소 전용 경로를 지정하라."
+    exit 4
+  fi
   git -C "$BUILD_WT" checkout -q --detach origin/main
 fi
 BUILT_SHA="$(git -C "$BUILD_WT" rev-parse --short=9 HEAD)"
