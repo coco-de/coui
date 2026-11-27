@@ -67,6 +67,7 @@ source: control/fab
 - 원형은 크기마다 지름과 아이콘이 정해집니다. 지름은 밀도를 바꿔도 그대로입니다.
 - `regular` 를 기본으로 쓰고, `mini` 는 덜 중요한 보조 행동에, `large` 는 특히 강조할 때 씁니다.
 - `mini` 가 48 인 것은 터치 화면의 권장 크기가 48 이기 때문입니다. FAB 은 그보다 작아질 이유가 없습니다.
+- `actions` 로 여는 메뉴도 크기를 따라 커집니다(액션 메뉴의 표를 봅니다).
 - Extended 는 높이가 원형의 지름과 같고 폭만 라벨을 따라 늘어납니다. `mini` · `regular` · `large` 의 아이콘과 라벨 글자는 차례로 `Button` 의 `lg` · `xl` · `xl2` 크기 값입니다. `large` 는 높이가 72 이지만 아이콘과 글자는 높이 64 인 `xl2` 의 값입니다.
 - 그래서 `fabStyle` 의 `iconStyle` 과 `buttonStyle` 은 Extended 에 닿지 않습니다. Extended 는 `extendedButtonStyle` 로 바꿉니다(아이콘은 `extendedButtonStyle.leadingIconStyle`).
 
@@ -169,7 +170,17 @@ Hover · Pressed · Focus 칸은 그 상태를 고정해 그린 것입니다. Pr
 
 `actions` 의 각 `FabAction` 은 `MenuItem` 행 하나가 됩니다.
 
-- 행 크기는 FAB 크기와 상관없이 `MenuItem` 의 `lg` 입니다(`CoreFabContract.actionItemSize`). 표준 밀도에서 최소 높이 48, 안쪽 여백 좌우 16 · 위아래 12, 아이콘 24, 아이콘과 라벨 사이 12 입니다. `Menu` 의 기본 행(`sm`, 32)보다 큽니다.
+- 메뉴는 FAB 크기를 따라 커집니다. 값은 표준 밀도 기준이고 `CoreFabStyle.defaultsBySize` 의 각 크기에 있습니다. 행은 `MenuItem` 의 `lg`(`CoreFabContract.actionItemSize`)에서 출발하며 어느 크기에서도 48 보다 낮아지지 않습니다.
+
+| 값 | `mini` | `regular` | `large` |
+|---|---|---|---|
+| FAB 과 판 사이 간격 | 12 | 12 | 16 |
+| 판의 최소 너비 · 안쪽 여백 | 160 · 8 | 176 · 8 | 224 · 10 |
+| 행의 최소 높이 | 48 | 48 | 56 |
+| 행의 좌우 여백 (위아래는 12) | 8 | 8 | 10 |
+| 아이콘 · 아이콘과 라벨 사이 | 20 · 8 | 20 · 10 | 24 · 12 |
+| 라벨 글자 | `labelLarge`(14) | `labelXl`(15) | `labelXl2`(16) |
+
 - 최소 높이는 밀도를 따라 compact 에서 40, spacious 에서 56 이 됩니다.
 - 행은 열리는 방향과 상관없이 `actions` 에 적은 순서대로 위에서 아래로 놓입니다.
 - `label` 이 없으면 아이콘만 있는 행이 되고, `onPressed` 가 없는 행도 누를 수 있으며 누르면 메뉴가 닫힙니다.
@@ -216,12 +227,12 @@ Fab(
 | `fan` | `up` 과 같습니다. 부채꼴 배치는 없습니다 |
 
 - 판은 표준 밀도에서 화면 가장자리와 8 이상 떨어지게 놓입니다(compact 는 4, spacious 는 12). 자리가 모자라면 반대쪽으로 뒤집거나 화면 안으로 밀어 넣습니다.
-- FAB 과 판 사이 간격은 `fabStyle.spacing`(기본 16)입니다. `popoverStyle.placementOffset` 을 주면 그 값이 우선합니다.
+- FAB 과 판 사이 간격은 `fabStyle.spacing` 으로 바꿉니다. 주지 않으면 크기에 따라 12 · 12 · 16(`mini` · `regular` · `large`)입니다. `popoverStyle.placementOffset` 을 주면 그 값이 우선합니다.
 - `up` · `down` 의 끝 맞춤은 늘 **오른쪽**입니다. 오른쪽에서 왼쪽으로 쓰는 로케일에서도 판은 좌우로 뒤집히지 않습니다.
 
 ### 메뉴 너비
 
-- 판의 너비는 내용을 따르되 160(`layout/160`)에서 280(`layout/280`) 사이이고, 행은 판의 너비를 채웁니다.
+- 판의 너비는 내용을 따르되 크기마다 정한 최소 너비(160 · 176 · 224)에서 280(`layout/280`) 사이이고, 행은 판의 너비를 채웁니다.
 - 라벨은 줄을 바꾸지 않습니다. 판이 280 까지 넓어져도 라벨이 다 들어가지 않으면 Flutter 는 말줄임(…)으로 끝내고 행 높이는 그대로입니다. Web 은 말줄임표 없이 판 가장자리에서 잘립니다(알려진 제약).
 
 ### 패널 여백과 행 모서리
@@ -658,16 +669,16 @@ MergeSemantics(
 |------|------|------|
 | `buttonStyle` | `CoreButtonStyle?` | Look of the main FAB circle — background, foreground, shadow, radius, focus ring. Passed to the `Button` inside as is. `null` (or any unset field) defers to [defaultButtonStyle]. |
 | `extendedButtonStyle` | `CoreButtonStyle?` | **Extended** (라벨을 가진) FAB 의 버튼 모양 — 배경, 글자색, 그림자, 모서리 등. 안에 있는 `Button` 에 그대로 전달된다. |
-| `actionItemStyle` | `CoreMenuItemStyle?` | Look of each action row, passed as is to the row's `MenuItem`. `null` (or any unset field) defers to [defaultActionItemStyle], which sets only the row corner (8): otherwise the row is the `MenuItem` at `CoreFabContract.actionItemSize` as it draws itself. |
+| `actionItemStyle` | `CoreMenuItemStyle?` | Look of each action row, passed as is to the row's `MenuItem`. `null` (or any unset field) defers to the size's row in [defaultsBySize] — insets, icon, icon-label gap, label role and, for `large`, minimum height — over [defaultActionItemStyle] (the row corner, 8). What neither states is the `MenuItem` at `CoreFabContract.actionItemSize`. |
 | `actionButtonStyle` | `CoreButtonStyle?` | **Deprecated (since 0.164)** — Use actionItemStyle — the action rows are MenuItem rows now, so their look is a CoreMenuItemStyle. Look of the action rows, given as a `Button` style. |
 | `actionLabelTextStyle` | `CoreTextStyle?` | **Deprecated (since 0.164)** — Use actionItemStyle.labelStyle — the label belongs to the composed MenuItem row. The action-row label style of the `Button` rows. Still honoured as the row's `labelStyle` under [actionItemStyle] (see [effectiveActionItemStyle]). |
 | `actionIconStyle` | `CoreIconStyle?` | **Deprecated (since 0.164)** — Use actionItemStyle.leadingIconStyle — the glyph belongs to the composed MenuItem row. The action-row leading icon style of the `Button` rows. Still honoured as the row's `leadingIconStyle` under [actionItemStyle] (see [effectiveActionItemStyle]). |
 | `diameter` | `double?` | Main FAB circular diameter override (logical px). `null` defers to [defaultsBySize] for the active size. Forwarded to the composed `Button`'s `width` / `height` — the single entry point for both, so a `height` / `width` in [buttonStyle] is overridden by this. |
 | `iconStyle` | `CoreIconStyle?` | Main FAB icon style override — styles the icon glyph the FAB passes as the composed `Button`'s child (its `size` is the only source of the glyph size; a `color` pins the glyph colour). `null` defers to [defaultsBySize] for the active size. A `leadingIconStyle` stated in [buttonStyle] merges on top of this for every field except `size`. |
-| `spacing` | `double?` | Gap between the main FAB and the menu panel (logical px) override. Pure placement-offset scalar — never consumed as a flex gap by `Gap` / CSS `gap`. |
+| `spacing` | `double?` | Gap between the main FAB and the menu panel (logical px) override. `null` defers to the size's row in [defaultsBySize] (12 / 12 / 16 for `mini` / `regular` / `large`). |
 | `duration` | `Duration?` | Menu open / close animation duration override — the panel's own open / close motion, unless [popupStyle] pins one. |
 | `popoverStyle` | `CorePopoverStyle?` | Style of the `Popover` that hosts the menu, passed to it as is. `null` (or any unset field) defers to [defaultPopoverStyle], which draws no box, because the visible box is the `Popup` in [popupStyle]. Override it e.g. to tune the placement offset. |
-| `popupStyle` | `CorePopupStyle?` | Look of the menu panel — the `Popup` that holds the action rows, passed to it as is. `null` (or any unset field) defers to [defaultPopupStyle] — the Fab's own card. |
+| `popupStyle` | `CorePopupStyle?` | Look of the menu panel — the `Popup` that holds the action rows, passed to it as is. `null` (or any unset field) defers to the size's row in [defaultsBySize] (inset and minimum width) over [defaultPopupStyle] — the Fab's own card. |
 
 <!-- STYLE_TABLE:END -->
 

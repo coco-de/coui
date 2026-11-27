@@ -6394,6 +6394,55 @@ if (processArgvHas('--audit-layout')) {
     }
     openMenus += 1;
   }
+  // The open menu grows with the circle. Each `Size` member reads its own row
+  // of `fab.sizes.defaultsBySize` — a builder reading the flat entries instead
+  // draws three menus alike, which no other check here can tell apart.
+  const ladder = COMPONENTS.fab.sizes.defaultsBySize;
+  const ladderSizes = new Set<string>();
+  let ladderRows = 0;
+  for (const variant of fab.children) {
+    const fabMenu = variant.children.find((k) => k.name === 'menu') as FakeNode | undefined;
+    if (!fabMenu) continue;
+    const size = parseVariantKey(String(variant.name))['Size'];
+    const want = ladder[size as keyof typeof ladder];
+    const row = want.actionItemStyle;
+    const expect = (what: string, got: unknown, wanted: unknown): void => {
+      if (got !== wanted) {
+        console.error(`✗ Fab menu ladder: Fab / ${variant.name} ${what} is ${String(got)}, want ${String(wanted)}`);
+        process.exit(1);
+      }
+    };
+    const minWidth = ((fabMenu.boundVariables ?? {}) as Record<string, { arg?: unknown } | undefined>).minWidth;
+    expect('gap to the circle', (variant as unknown as FakeNode).itemSpacing, want.spacing.v);
+    expect('menu inset', fabMenu.paddingLeft, want.popupStyle.padding.l.v);
+    expect('menu floor', minWidth?.arg, want.popupStyle.minWidth.v);
+    const rows = (fabMenu.children ?? []).filter((k) => k.type === 'INSTANCE' && k.name !== 'Popup');
+    expect('has action rows', rows.length > 0, true);
+    for (const item of rows) {
+      const parts: FakeNode[] = [];
+      const collect = (n: FakeNode): void => {
+        parts.push(n);
+        for (const k of n.children ?? []) collect(k);
+      };
+      collect(item as FakeNode);
+      expect('row inset', item.paddingLeft, row.padding.l.v);
+      expect('row icon-label gap', item.itemSpacing, row.contentGapStyle.size.v);
+      expect('row icon', parts.find((n) => n.name === 'leading')?.width, row.leadingIconStyle.size.v);
+      expect(
+        'row label size',
+        parts.find((n) => n.type === 'TEXT' && n.name === 'label')?.fontSize,
+        textStyleData(row.labelStyle).fontSize,
+      );
+      if ('minHeight' in row) expect('row floor', item.minHeight, (row.minHeight as { v: number }).v);
+      ladderRows += 1;
+    }
+    ladderSizes.add(size);
+  }
+  if (ladderSizes.size !== Object.keys(ladder).length) {
+    console.error(`✗ Fab menu ladder: open menus seen for ${[...ladderSizes].join(', ')} only`);
+    process.exit(1);
+  }
+  console.log(`Fab menu ladder: ${ladderRows} action row(s) across ${ladderSizes.size} sizes draw their size row.`);
   // The main circle's paint is its `material` layer, not the instance root:
   // the layer has to take the 9999 the root took, or the circle paints Button
   // md's corner under a round shadow.

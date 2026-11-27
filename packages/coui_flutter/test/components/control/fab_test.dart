@@ -292,9 +292,10 @@ void main() {
       expect(CoreFabContract.actionItemSize, CoreMenuItemSize.lg);
     });
 
-    test('메뉴 행 chrome 은 MenuItem lg 계약 그대로다 — 48 · 16/12 · gap 12 · 24', () {
-      // Fab 은 행 값을 다시 진술하지 않는다: 패널이 담는 행의 모서리(8 —
-      // 같은 판 안 목록 행과 같은 값)만 고정하고 나머지는 행이 자기 사다리에서 채운다.
+    test('크기와 무관한 행 기본값은 모서리뿐이고 바탕은 MenuItem lg 행이다', () {
+      // 평면 기본값이 고정하는 것은 패널이 담는 행의 모서리(8 — 같은 판 안
+      // 목록 행과 같은 값)뿐이다. 크기별 값은 `defaultsBySize` 가 얹고,
+      // 거기서 말하지 않는 것은 행이 `lg` 사다리에서 채운다.
       expect(
         CoreFabStyle.defaultActionItemStyle,
         const CoreMenuItemStyle(
@@ -327,6 +328,66 @@ void main() {
       expect(a.copyWith(extendedButtonStyle: b.extendedButtonStyle), equals(b));
       expect(a, isNot(equals(b)));
     });
+  });
+
+  group('Fab 메뉴는 FAB 크기를 따라간다', () {
+    // size: (메뉴 폭, 행 높이, 아이콘, FAB 과 판 사이)
+    const expected = {
+      CoreFabSize.mini: (160.0, 48.0, 20.0, 12.0),
+      CoreFabSize.regular: (176.0, 48.0, 20.0, 12.0),
+      CoreFabSize.large: (224.0, 56.0, 24.0, 16.0),
+    };
+
+    for (final MapEntry(key: size, value: values) in expected.entries) {
+      testWidgets('${size.name} — 열린 메뉴를 잰다', (tester) async {
+        final (width, rowHeight, icon, gap) = values;
+        await pumpTestApp(
+          tester,
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(CoreSpace.space48),
+              child: Fab(
+                trigger: const Icon(LucideIcons.plus),
+                size: size,
+                actions: const [
+                  FabAction(icon: Icon(LucideIcons.pencil), label: Text('편집')),
+                  FabAction(icon: Icon(LucideIcons.share), label: Text('공유')),
+                ],
+              ),
+            ),
+          ),
+        );
+
+        await tester.tap(find.byType(Fab));
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 600));
+
+        // 트리에는 `Popup` 이 둘이다 — 행을 감싸는 가장 가까운 쪽이 메뉴 판.
+        final panel = tester.getRect(
+          find
+              .ancestor(
+                of: find.byType(MenuItem).first,
+                matching: find.byType(Popup),
+              )
+              .first,
+        );
+        final row = tester.getRect(find.byType(MenuItem).first);
+        final fab = tester.getRect(find.byType(Button).first);
+        final glyph = tester.getSize(
+          find.descendant(
+            of: find.byType(MenuItem).first,
+            matching: find.byType(Icon),
+          ),
+        );
+
+        expect(panel.width, moreOrLessEquals(width, epsilon: 0.5));
+        expect(row.height, moreOrLessEquals(rowHeight, epsilon: 0.5));
+        expect(glyph.width, moreOrLessEquals(icon, epsilon: 0.5));
+        expect(fab.top - panel.bottom, moreOrLessEquals(gap, epsilon: 0.5));
+        expect(panel.right, moreOrLessEquals(fab.right, epsilon: 0.5));
+      });
+    }
   });
 
   // `withStyle` rebuilds through `copyWith`. The Web twin carries `label`
@@ -403,8 +464,13 @@ void main() {
       expect(resolved.buttonStyle.width, CoreSize.size56 * theme.scaling);
       expect(resolved.buttonStyle.height, CoreSize.size56 * theme.scaling);
       // The rows are a `MenuItem`: with nothing stated the slot is the
-      // (empty) default and the row resolves its own icon.
-      expect(resolved.actionItemStyle, CoreFabStyle.defaultActionItemStyle);
+      // defaults of this size, and no caller colour reaches the row.
+      expect(
+        resolved.actionItemStyle,
+        CoreFabStyle.defaultActionItemStyle.merge(
+          CoreFabStyle.defaultsBySize[CoreFabSize.regular]!.actionItemStyle,
+        ),
+      );
     });
 
     testWidgets('iconStyle.color reaches the trigger slot', (tester) async {
@@ -454,11 +520,11 @@ void main() {
         ),
       );
 
-      // Not pre-scaled and not restated — the `MenuItem` resolves its own
-      // icon size and scaling, so the slot arrives exactly as stated.
+      // Not pre-scaled: the `MenuItem` scales the slot itself. The caller's
+      // colour merges over the size's own icon size.
       final icon = resolved.actionItemStyle.leadingIconStyle!;
       expect(icon.color, slotPinned);
-      expect(icon.size, isNull);
+      expect(icon.size, CoreIconSize.size20);
     });
 
     testWidgets('the rendered trigger glyph takes the pinned colour', (
@@ -559,13 +625,13 @@ void main() {
       }
     });
 
-    testWidgets('짧은 라벨의 패널 너비는 최소 160 이다', (tester) async {
+    testWidgets('짧은 라벨의 패널 너비는 기본 크기의 최소 176 이다', (tester) async {
       await openMenu(tester, shortActions);
 
       final theme = Theme.of(tester.element(find.byType(Fab)));
       expect(
         tester.getSize(menuPanel).width,
-        CoreLayout.layout160 * theme.scaling,
+        CoreSpace.space176 * theme.scaling,
       );
     });
 
@@ -710,8 +776,8 @@ void main() {
                 backgroundColor: CoreColor.token(CoreColors.surfaceBright),
                 borderColor: CoreColor.token(CoreColors.outlineVariant),
                 boxShadow: CoreShadow.lg,
-                padding: CorePopupStyle.defaultListPadding,
-                minWidth: CoreLayout.layout160,
+                padding: CoreEdgeInsets.all(CoreSpace.space8),
+                minWidth: CoreSpace.space176,
                 maxWidth: CoreLayout.layout280,
               ),
             );
@@ -732,7 +798,7 @@ void main() {
 
     // 행 모서리는 같은 판 안 목록 행과 같은 8 이고, 패널 모서리 12 보다
     // 둥글지 않다.
-    testWidgets('행 8 은 패널 12 보다 둥글지 않고 패널 여백은 6', (tester) async {
+    testWidgets('행 8 은 패널 12 보다 둥글지 않고 mini 패널 여백은 8', (tester) async {
       late ResolvedFab fab;
       late ResolvedPopup popup;
       late double scaling;
@@ -748,7 +814,7 @@ void main() {
         ),
       );
       final row = fab.actionItemStyle.borderRadius!.topLeft;
-      expect(popup.padding, EdgeInsets.all(6 * scaling));
+      expect(popup.padding, EdgeInsets.all(8 * scaling));
       expect(row, 8);
       expect(popup.borderRadius.topLeft.x, greaterThan(row * scaling));
     });

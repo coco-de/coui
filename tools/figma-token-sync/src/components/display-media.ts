@@ -2615,15 +2615,6 @@ function buildCodeDiff(page: PageNode, lk: VarLookup): ComponentNode {
 // one. Each chip is also an exposed instance, so the Badge's own properties
 // (its words, tone, size) are edited from Diff's panel — a set property
 // cannot bind to a node inside an instance.
-//
-// ─── The glyph ────────────────────────────────────────────────────────────
-//
-// The handle wears Lucide `chevrons-left-right`. That glyph's published
-// component key is not in `src/data/icon-keys.json` (the file only the Lucide
-// library can supply), so the canvas draws `chevrons-up-down` turned a
-// quarter — Lucide draws the two as one shape on a square 24 grid, so the
-// turned glyph is the same picture. A designer swapping the glyph in the set
-// is unaffected.
 const kDiffStates = stateAxisSpec(['enabled', 'hover', 'focus', 'pressed', 'disabled']);
 type DiffState = 'enabled' | 'hover' | 'focus' | 'pressed' | 'disabled';
 
@@ -2636,7 +2627,6 @@ const kDiffLabelBadgePose = {
   Size: 'sm',
   Style: 'label',
 } as const;
-const kDiffQuarterTurn = 90;
 // The words on the two stand-in chips — what a designer reads as "this side is
 // the old one". They live in the swap's default `Badge`, so a designer's own
 // chip replaces them.
@@ -2811,24 +2801,15 @@ async function buildDiff(page: PageNode, lk: VarLookup): Promise<ComponentSetNod
       setShadow(disc, castData, lk);
       await linkShadowStyle(disc, castData, `Diff/handle ${state}`);
 
-      // `chevrons-left-right`, drawn as the turned `chevrons-up-down` (see the
-      // note above).
       const glyph = makeIcon(
-        'chevrons-up-down',
+        'chevrons-left-right',
         lk,
         glyphOpts(lk, colorData(f.handleIconStyle.color), f.handleIconStyle.size, 'size'),
       );
       glyph.name = 'glyph';
       host.appendChild(glyph);
-      // Figma turns counter-clockwise and rotates about the node's own origin
-      // (`x` / `y` stay the origin), so a quarter turn of a square sends its
-      // box to `x ∈ [x, x + s]`, `y ∈ [y − s, y]` — centring that box on the
-      // disc is these two numbers, and which way the glyph turns does not
-      // matter, because the two chevrons are the same shape either way.
-      const glyphSide = glyph.width;
-      glyph.rotation = kDiffQuarterTurn;
-      glyph.x = (side - glyphSide) / kDiffHalf;
-      glyph.y = (side + glyphSide) / kDiffHalf;
+      glyph.x = (side - glyph.width) / kDiffHalf;
+      glyph.y = (side - glyph.height) / kDiffHalf;
 
       // `FocusOutline(focused: _showFocusOutline, focusOutlineStyle:
       // resolved.focusOutlineStyle)` wraps the handle. Visible in the `focus`
