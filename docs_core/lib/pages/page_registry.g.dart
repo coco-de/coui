@@ -9,9 +9,12 @@ import 'aspect_ratio_box/aspect_ratio_box_page.dart' as aspect_ratio_box;
 import 'autocomplete/autocomplete_page.dart' as autocomplete;
 import 'avatar/avatar_page.dart' as avatar;
 import 'badge/badge_page.dart' as badge;
+import 'banner/banner_page.dart' as banner;
 import 'breadcrumb/breadcrumb_page.dart' as breadcrumb;
 import 'button/button_page.dart' as button;
 import 'checkbox/checkbox_page.dart' as checkbox;
+import 'chip/chip_page.dart' as chip;
+import 'chip_group/chip_group_page.dart' as chip_group;
 import 'chip_input/chip_input_page.dart' as chip_input;
 import 'color_picker/color_picker_page.dart' as color_picker;
 import 'command/command_page.dart' as command;
@@ -19,9 +22,11 @@ import 'command_search/command_search_page.dart' as command_search;
 import 'context_menu/context_menu_page.dart' as context_menu;
 import 'date_picker/date_picker_page.dart' as date_picker;
 import 'dialog/dialog_page.dart' as dialog;
+import 'disclosure_badge/disclosure_badge_page.dart' as disclosure_badge;
 import 'divider/divider_page.dart' as divider;
 import 'drawer/drawer_page.dart' as drawer;
 import 'dropdown_menu/dropdown_menu_page.dart' as dropdown_menu;
+import 'empty_state/empty_state_page.dart' as empty_state;
 import 'fab/fab_page.dart' as fab;
 import 'fieldset/fieldset_page.dart' as fieldset;
 import 'file_input/file_input_page.dart' as file_input;
@@ -96,9 +101,12 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (autocomplete.playground case final spec?) autocomplete.slug: spec,
   if (avatar.playground case final spec?) avatar.slug: spec,
   if (badge.playground case final spec?) badge.slug: spec,
+  if (banner.playground case final spec?) banner.slug: spec,
   if (breadcrumb.playground case final spec?) breadcrumb.slug: spec,
   if (button.playground case final spec?) button.slug: spec,
   if (checkbox.playground case final spec?) checkbox.slug: spec,
+  if (chip.playground case final spec?) chip.slug: spec,
+  if (chip_group.playground case final spec?) chip_group.slug: spec,
   if (chip_input.playground case final spec?) chip_input.slug: spec,
   if (color_picker.playground case final spec?) color_picker.slug: spec,
   if (command.playground case final spec?) command.slug: spec,
@@ -106,9 +114,11 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (context_menu.playground case final spec?) context_menu.slug: spec,
   if (date_picker.playground case final spec?) date_picker.slug: spec,
   if (dialog.playground case final spec?) dialog.slug: spec,
+  if (disclosure_badge.playground case final spec?) disclosure_badge.slug: spec,
   if (divider.playground case final spec?) divider.slug: spec,
   if (drawer.playground case final spec?) drawer.slug: spec,
   if (dropdown_menu.playground case final spec?) dropdown_menu.slug: spec,
+  if (empty_state.playground case final spec?) empty_state.slug: spec,
   if (fab.playground case final spec?) fab.slug: spec,
   if (fieldset.playground case final spec?) fieldset.slug: spec,
   if (file_input.playground case final spec?) file_input.slug: spec,
@@ -184,9 +194,12 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (autocomplete.sizeSpec case final spec?) autocomplete.slug: spec,
   if (avatar.sizeSpec case final spec?) avatar.slug: spec,
   if (badge.sizeSpec case final spec?) badge.slug: spec,
+  if (banner.sizeSpec case final spec?) banner.slug: spec,
   if (breadcrumb.sizeSpec case final spec?) breadcrumb.slug: spec,
   if (button.sizeSpec case final spec?) button.slug: spec,
   if (checkbox.sizeSpec case final spec?) checkbox.slug: spec,
+  if (chip.sizeSpec case final spec?) chip.slug: spec,
+  if (chip_group.sizeSpec case final spec?) chip_group.slug: spec,
   if (chip_input.sizeSpec case final spec?) chip_input.slug: spec,
   if (color_picker.sizeSpec case final spec?) color_picker.slug: spec,
   if (command.sizeSpec case final spec?) command.slug: spec,
@@ -194,9 +207,11 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (context_menu.sizeSpec case final spec?) context_menu.slug: spec,
   if (date_picker.sizeSpec case final spec?) date_picker.slug: spec,
   if (dialog.sizeSpec case final spec?) dialog.slug: spec,
+  if (disclosure_badge.sizeSpec case final spec?) disclosure_badge.slug: spec,
   if (divider.sizeSpec case final spec?) divider.slug: spec,
   if (drawer.sizeSpec case final spec?) drawer.slug: spec,
   if (dropdown_menu.sizeSpec case final spec?) dropdown_menu.slug: spec,
+  if (empty_state.sizeSpec case final spec?) empty_state.slug: spec,
   if (fab.sizeSpec case final spec?) fab.slug: spec,
   if (fieldset.sizeSpec case final spec?) fieldset.slug: spec,
   if (file_input.sizeSpec case final spec?) file_input.slug: spec,
