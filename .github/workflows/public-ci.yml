@@ -57,6 +57,7 @@ jobs:
           test/components/control/clickable_double_tap_test.dart
           test/components/control/clickable_reduced_motion_test.dart
           test/components/control/button_pressed_state_test.dart
+          test/components/display/mockup_code_themed_padding_test.dart
           test/components/menu/dropdown_menu_premount_close_test.dart
           test/components/overlay/popover_test.dart
           test/components/overlay/popover_offset_test.dart
@@ -90,11 +91,13 @@ jobs:
           tool/parity/test/web/device_paint_source_probe_test.dart
           tool/parity/test/web/computed_style_probe_test.dart
 
-      - name: Test the Jaspr button
+      - name: Test Jaspr button and MockupCode
         working-directory: packages/coui_web
         run: >-
           dart test --coverage-path=../../.dart_tool/coverage/coui_web.lcov
           test/components/control/button_test.dart
+          test/components/display/mockup_code_style_test.dart
+          test/components/display/mockup_code_themed_padding_test.dart
 
       - name: Make LCOV paths repository-relative
         run: |

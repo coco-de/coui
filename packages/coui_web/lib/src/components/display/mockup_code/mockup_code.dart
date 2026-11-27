@@ -115,8 +115,8 @@ class MockupCode extends UiComponent implements CoreMockupCodeContract {
         // `<div>` (`core/style-contract.md`'s child-component-composition
         // rule). It only accepts a single `child`, so the N code-line
         // rows are grouped under one content wrapper — the element that
-        // carries the four-side inset, because the primitive's Web emit
-        // writes a single padding value for every side.
+        // carries MockupCode's complete four-side inset. The composed
+        // frame explicitly contributes no additional content padding.
         OutlinedContainer(
           containerStyle: resolved.frameStyle,
           child: div(
@@ -214,7 +214,7 @@ extension MockupCodeStyleChain on MockupCode {
   /// `borderRadius: CoreBorderRadius.all(CoreRadius.radius0)`.
   MockupCode get radius0 => withStyle(
     const CoreMockupCodeStyle(
-      borderRadius: CoreBorderRadius.all(CoreRadius.radius0),
+      borderRadius: CoreBorderRadius.zero,
     ),
   );
 
