@@ -18,6 +18,7 @@ import 'package:coui_core/src/motion/duration_token.dart';
 import 'package:coui_core/src/shape/border_radius.dart';
 import 'package:coui_core/src/shape/radius_scale.dart';
 import 'package:coui_core/src/shape/stroke_width.dart';
+import 'package:coui_core/src/size/control_size.dart';
 import 'package:coui_core/src/size/icon_size.dart';
 import 'package:coui_core/src/size/layout.dart';
 import 'package:coui_core/src/size/size.dart';
@@ -105,9 +106,11 @@ class CoreFabStyle implements CoreStyle<CoreFabStyle> {
   // 2. Defaults — action row (composed MenuItem)
   // ═══════════════════════════════════════════════════
 
-  /// Default action-row chrome — a partial that diverges from the row's
-  /// own defaults in one field, the corner; everything else is left `null`
-  /// for the `MenuItem` resolver to fill from its size ladder at
+  /// The size-independent part of the action-row chrome; the size's row in
+  /// [defaultsBySize] merges its insets, icon, gap and label over this.
+  /// On its own it diverges from the row's defaults in one field, the
+  /// corner; what neither states is left `null` for the `MenuItem` resolver
+  /// to fill from its size ladder at
   /// `CoreFabContract.actionItemSize` (`lg`: a 48 minimum height, 16 / 12
   /// insets, a 12 gap, a 24 icon, the `labelXl` label). A full copy of
   /// those here would be a second source of them.
@@ -165,9 +168,10 @@ class CoreFabStyle implements CoreStyle<CoreFabStyle> {
   // 3. Defaults — single (FAB-specific chrome)
   // ═══════════════════════════════════════════════════
 
-  /// Default gap between the main FAB and the menu panel (logical px).
-  /// Pure placement-offset scalar — never consumed as a flex gap, so this
-  /// stays a raw double rather than a `CoreGapStyle` slot.
+  /// Baseline gap between the main FAB and the menu panel (logical px),
+  /// the one the `large` row takes; each row of [defaultsBySize] states its
+  /// own gap. Pure placement-offset scalar — never consumed as a flex gap,
+  /// so this stays a raw double rather than a `CoreGapStyle` slot.
   static const double defaultSpacing = CoreSpace.space16;
 
   /// Default menu open / close animation duration — applied to the panel's
@@ -177,7 +181,9 @@ class CoreFabStyle implements CoreStyle<CoreFabStyle> {
     milliseconds: CoreDuration.normal,
   );
 
-  /// Default menu panel chrome — the floating box is a `Popup`, so the
+  /// The size-independent part of the menu panel chrome; the inset and the
+  /// minimum width come from the size's row in [defaultsBySize], which
+  /// merges over this. The floating box is a `Popup`, so the
   /// Fab only states the fields that diverge from the popup's own
   /// defaults: the list inset, the width band and the small inter-row `space2`
   /// gap. The `surface-bright` fill, the `outline-subtle` stroke-1 border,
@@ -225,7 +231,17 @@ class CoreFabStyle implements CoreStyle<CoreFabStyle> {
   /// Per-size default chrome — single source of truth shared by Flutter
   /// and Web. The map value is `CoreFabStyle` itself so the flat slot
   /// fields stay 1:1 with the per-size defaults. Both resolvers read
-  /// `CoreFabStyle.defaultsBySize[size]!` for `diameter` / `iconStyle`.
+  /// `CoreFabStyle.defaultsBySize[size]!` for the circle (`diameter` /
+  /// `iconStyle` / `extendedButtonStyle`) and for the menu the circle opens
+  /// (`spacing` / `popupStyle` / `actionItemStyle`).
+  ///
+  /// The menu grows with the circle: the gap to it, the panel's minimum
+  /// width and inset, and the row's inset, icon, icon-label gap and label
+  /// role. A row is never lower than the 48 touch target — `mini` and
+  /// `regular` keep the height of the `CoreFabContract.actionItemSize` row
+  /// and `large` states 56. The menu entries are partial: they merge over
+  /// [defaultPopupStyle] / [defaultActionItemStyle], and a theme or an
+  /// instance style merges over them.
   static const Map<CoreFabSize, CoreFabStyle> defaultsBySize = {
     CoreFabSize.mini: CoreFabStyle(
       diameter: CoreSize.size48,
@@ -237,6 +253,23 @@ class CoreFabStyle implements CoreStyle<CoreFabStyle> {
         padding: CoreEdgeInsets.symmetric(horizontal: CoreSpace.space20),
         iconLabelGapStyle: CoreGapStyle(size: CoreSpace.space8),
       ),
+      spacing: CoreSpace.space12,
+      popupStyle: CorePopupStyle(
+        padding: CoreEdgeInsets.all(CoreSpace.space8),
+        minWidth: CoreLayout.layout160,
+      ),
+      actionItemStyle: CoreMenuItemStyle(
+        padding: CoreEdgeInsets.symmetric(
+          horizontal: CoreSpace.space8,
+          vertical: CoreSpace.space12,
+        ),
+        contentGapStyle: CoreGapStyle(
+          size: CoreSpace.space8,
+          crossAxisExtent: 0,
+        ),
+        leadingIconStyle: CoreIconStyle(size: CoreIconSize.size20),
+        labelStyle: CoreTextStyle.token(CoreTextStyles.labelLarge),
+      ),
     ),
     CoreFabSize.regular: CoreFabStyle(
       diameter: CoreSize.size56,
@@ -245,6 +278,23 @@ class CoreFabStyle implements CoreStyle<CoreFabStyle> {
         padding: CoreEdgeInsets.symmetric(horizontal: CoreSpace.space24),
         iconLabelGapStyle: CoreGapStyle(size: CoreSpace.space12),
       ),
+      spacing: CoreSpace.space12,
+      popupStyle: CorePopupStyle(
+        padding: CoreEdgeInsets.all(CoreSpace.space8),
+        minWidth: CoreSpace.space176,
+      ),
+      actionItemStyle: CoreMenuItemStyle(
+        padding: CoreEdgeInsets.symmetric(
+          horizontal: CoreSpace.space8,
+          vertical: CoreSpace.space12,
+        ),
+        contentGapStyle: CoreGapStyle(
+          size: CoreSpace.space10,
+          crossAxisExtent: 0,
+        ),
+        leadingIconStyle: CoreIconStyle(size: CoreIconSize.size20),
+        labelStyle: CoreTextStyle.token(CoreTextStyles.labelXl),
+      ),
     ),
     CoreFabSize.large: CoreFabStyle(
       diameter: CoreSize.size72,
@@ -252,6 +302,24 @@ class CoreFabStyle implements CoreStyle<CoreFabStyle> {
       extendedButtonStyle: CoreButtonStyle(
         padding: CoreEdgeInsets.symmetric(horizontal: CoreSpace.space28),
         iconLabelGapStyle: CoreGapStyle(size: CoreSpace.space12),
+      ),
+      spacing: defaultSpacing,
+      popupStyle: CorePopupStyle(
+        padding: CoreEdgeInsets.all(CoreSpace.space10),
+        minWidth: CoreSpace.space224,
+      ),
+      actionItemStyle: CoreMenuItemStyle(
+        minHeight: CoreControlSize.heightXl,
+        padding: CoreEdgeInsets.symmetric(
+          horizontal: CoreSpace.space10,
+          vertical: CoreSpace.space12,
+        ),
+        contentGapStyle: CoreGapStyle(
+          size: CoreSpace.space12,
+          crossAxisExtent: 0,
+        ),
+        leadingIconStyle: CoreIconStyle(size: CoreIconSize.size24),
+        labelStyle: CoreTextStyle.token(CoreTextStyles.labelXl2),
       ),
     ),
   };
@@ -289,9 +357,10 @@ class CoreFabStyle implements CoreStyle<CoreFabStyle> {
   // ═══════════════════════════════════════════════════
 
   /// Look of each action row, passed as is to the row's `MenuItem`. `null`
-  /// (or any unset field) defers to [defaultActionItemStyle], which sets
-  /// only the row corner (8): otherwise the row is the `MenuItem` at
-  /// `CoreFabContract.actionItemSize` as it draws itself.
+  /// (or any unset field) defers to the size's row in [defaultsBySize] —
+  /// insets, icon, icon-label gap, label role and, for `large`, minimum
+  /// height — over [defaultActionItemStyle] (the row corner, 8). What
+  /// neither states is the `MenuItem` at `CoreFabContract.actionItemSize`.
   ///
   /// The row's leading icon, label typography, insets, gap and corner are
   /// this slot's `leadingIconStyle` / `labelStyle` / `padding` /
@@ -397,6 +466,9 @@ class CoreFabStyle implements CoreStyle<CoreFabStyle> {
   final CoreIconStyle? iconStyle;
 
   /// Gap between the main FAB and the menu panel (logical px) override.
+  /// `null` defers to the size's row in [defaultsBySize] (12 / 12 / 16 for
+  /// `mini` / `regular` / `large`).
+  ///
   /// Pure placement-offset scalar — never consumed as a flex gap by `Gap`
   /// / CSS `gap`.
   final double? spacing;
@@ -422,7 +494,8 @@ class CoreFabStyle implements CoreStyle<CoreFabStyle> {
   final CorePopoverStyle? popoverStyle;
 
   /// Look of the menu panel — the `Popup` that holds the action rows,
-  /// passed to it as is. `null` (or any unset field) defers to
+  /// passed to it as is. `null` (or any unset field) defers to the size's
+  /// row in [defaultsBySize] (inset and minimum width) over
   /// [defaultPopupStyle] — the Fab's own card.
   final CorePopupStyle? popupStyle;
 

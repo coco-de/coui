@@ -95,10 +95,15 @@ void main() {
     ) async {
       final context = _themedContext(tester);
       final base = resolveFab(context, size: CoreFabSize.regular);
-      expect(base.actionItemStyle, CoreFabStyle.defaultActionItemStyle);
+      expect(
+        base.actionItemStyle,
+        CoreFabStyle.defaultActionItemStyle.merge(
+          CoreFabStyle.defaultsBySize[CoreFabSize.regular]!.actionItemStyle,
+        ),
+      );
 
-      // 행이 자기 사다리(48 · 16/12 · 12 · 24)에서 스스로 채우므로 Fab 은
-      // 아이콘 크기도 패딩도 다시 진술하지 않는다.
+      // 호출자가 준 필드는 크기 기본값 위에 얹히고, 행은 받은 슬롯을
+      // 스스로 해석한다.
       const stated = CoreMenuItemStyle(
         leadingIconStyle: CoreIconStyle(
           color: CoreColor.token(CoreColors.error),
@@ -110,10 +115,13 @@ void main() {
         fabStyle: const CoreFabStyle(actionItemStyle: stated),
       );
       expect(
-        forwarded.actionItemStyle.leadingIconStyle,
-        stated.leadingIconStyle,
+        forwarded.actionItemStyle.leadingIconStyle!.color,
+        stated.leadingIconStyle!.color,
       );
-      expect(forwarded.actionItemStyle.leadingIconStyle!.size, isNull);
+      expect(
+        forwarded.actionItemStyle.leadingIconStyle!.size,
+        CoreIconSize.size20,
+      );
     });
 
     testComponents('메뉴 패널은 Fab 자신의 카드다 — 12 · surface-bright · 160~280', (
@@ -144,8 +152,47 @@ void main() {
         CoreStrokeWidth.stroke1,
       );
       expect(panel.boxShadow ?? CorePopupStyle.defaultBoxShadow, CoreShadow.lg);
-      expect(panel.minWidth, CoreLayout.layout160);
+      expect(panel.minWidth, CoreSpace.space176);
       expect(panel.maxWidth, CoreLayout.layout280);
+    });
+
+    testComponents('메뉴는 FAB 크기를 따라간다 — 폭 · 간격 · 행', (tester) async {
+      final context = _themedContext(tester);
+      for (final size in CoreFabSize.values) {
+        final row = CoreFabStyle.defaultsBySize[size]!;
+        final resolved = resolveFab(context, size: size);
+
+        expect(resolved.popupStyle.minWidth, row.popupStyle!.minWidth);
+        expect(resolved.popupStyle.padding, row.popupStyle!.padding);
+        expect(resolved.popoverStyle.placementOffset, row.spacing);
+        expect(
+          resolved.actionItemStyle,
+          CoreFabStyle.defaultActionItemStyle.merge(row.actionItemStyle),
+        );
+      }
+    });
+
+    testComponents('직접 준 값은 크기 기본값보다 우선한다', (tester) async {
+      final resolved = resolveFab(
+        _themedContext(tester),
+        size: CoreFabSize.large,
+        fabStyle: const CoreFabStyle(
+          spacing: CoreSpace.space24,
+          popupStyle: CorePopupStyle(minWidth: 200),
+          actionItemStyle: CoreMenuItemStyle(
+            leadingIconStyle: CoreIconStyle(size: CoreIconSize.size16),
+          ),
+        ),
+      );
+
+      expect(resolved.popoverStyle.placementOffset, CoreSpace.space24);
+      expect(resolved.popupStyle.minWidth, 200);
+      expect(resolved.popupStyle.padding!.left, CoreSpace.space10);
+      expect(
+        resolved.actionItemStyle.leadingIconStyle!.size,
+        CoreIconSize.size16,
+      );
+      expect(resolved.actionItemStyle.minHeight, CoreControlSize.heightXl);
     });
 
     testComponents('280 을 넘는 라벨은 한 줄로 말줄임한다 — 라벨 래퍼는 truncate', (

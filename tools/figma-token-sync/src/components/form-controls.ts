@@ -73,7 +73,7 @@ import {
   optField,
   textStyleData,
 } from '../compat/v1';
-import { setIconGlyph } from '../icon-nodes';
+import { alignSlotIconMode, iconVariantById, setIconGlyph } from '../icon-nodes';
 import { kAmbientInkKey } from '../paint';
 import { hidePopupContent, popupInstance } from '../popup-composition';
 import { mainId } from '../overlay-composition';
@@ -94,7 +94,14 @@ import {
 } from '../axis-combos';
 import { setInstanceBoolNamed, setInstanceTextNamed } from '../component-props';
 import { setFieldValue } from '../field-value';
-import { kFieldInputName, kFieldRowName, kFieldValueName, paintPlaceholder } from '../instance-reach';
+import {
+  kFieldInputName,
+  kFieldRowName,
+  kFieldValueName,
+  ownTextNodes,
+  paintPlaceholder,
+} from '../instance-reach';
+import { queueTextStyleAttach } from '../text-nodes';
 import { parseVariantKey } from '../variant-safety';
 
 const SELECT = COMPONENTS.select;
@@ -2313,9 +2320,14 @@ async function buildFab(page: PageNode, lk: VarLookup): Promise<ComponentSetNode
     const ext = sz.extendedButtonStyle;
     const open = combo.values['Open'] === 'true';
     const extended = combo.values['Extended'] === 'true';
+    // The menu grows with the circle: each size row states its own gap, card
+    // inset and floor, and row. Both entries are partial and lie over the flat
+    // ones, the way both resolvers merge them.
+    const menuStyle = { ...popupStyle, ...sz.popupStyle };
+    const rowStyle = sz.actionItemStyle;
     const state = combo.values['State'] as FabState;
     const c = mount.getOrCreate(combo.name);
-    applyPanelCompChrome(c, 'VERTICAL', lk, { gap: FAB.fields.spacing });
+    applyPanelCompChrome(c, 'VERTICAL', lk, { gap: sz.spacing });
     // An open member is end-aligned (the header says why); a closed one has
     // nothing wider than the circle, so the shown `Tooltip` stays centred on it.
     c.counterAxisAlignItems = open ? 'MAX' : 'CENTER';
@@ -2333,25 +2345,27 @@ async function buildFab(page: PageNode, lk: VarLookup): Promise<ComponentSetNode
       // instance is the bottom-most child stretched to the frame so every row
       // draws over it.
       const menu = panel('menu', 'VERTICAL', lk, {
-        pl: popupStyle.padding.l,
-        pr: popupStyle.padding.r,
-        pt: popupStyle.padding.t,
-        pb: popupStyle.padding.b,
-        gap: popupStyle.spacing,
+        pl: menuStyle.padding.l,
+        pr: menuStyle.padding.r,
+        pt: menuStyle.padding.t,
+        pb: menuStyle.padding.b,
+        gap: menuStyle.spacing,
       });
       // Content-driven between a floor and a ceiling — the widget's own rule
-      // (`popupStyle.minWidth` / `maxWidth`): the card hugs its widest row, is
-      // never narrower than `layout/160`, and stops growing at `layout/280`.
+      // (`menuStyle.minWidth` / `maxWidth`): the card hugs its widest row, is
+      // never narrower than its size row's floor, and stops growing at
+      // `layout/280`.
       // Not locked to the floor: a longer label has to widen it.
-      bindLayoutBound(menu, lk, 'minWidth', dimVal(popupStyle.minWidth));
-      bindLayoutBound(menu, lk, 'maxWidth', boundOrNull(popupStyle.maxWidth));
+      bindLayoutBound(menu, lk, 'minWidth', dimVal(menuStyle.minWidth));
+      bindLayoutBound(menu, lk, 'maxWidth', boundOrNull(menuStyle.maxWidth));
       // Unclipped, like the Menu set's own panel: the card's cast falls OUTSIDE
       // this frame, and a clipped frame cuts it at its straight edges — the
       // shadow then reads as a square plate behind the round card, so the
       // menu looked angular on the canvas while the app draws a soft cast.
       menu.clipsContent = false;
-      // The Fab states the list inset (`popupStyle.padding` = 6, what it opens is
-      // a list of actions), so the backdrop is the `Padding=list` member.
+      // What the Fab opens is a list of actions, so the backdrop is the
+      // `Padding=list` member — picked by the flat list inset. Its content is
+      // hidden, and the inset a size row states is the one `menu` draws above.
       const surface = popupInstance(page, popupStyle.padding);
       const surfacePin = pinAbsolute(menu, surface, 0, 0, {
         horizontal: 'STRETCH',
@@ -2362,13 +2376,13 @@ async function buildFab(page: PageNode, lk: VarLookup): Promise<ComponentSetNode
       // so the instance wears it. The `Popup` set still draws its own defaults;
       // what the Fab says over them is written from the contract, not by hand.
       applyForwardedPanelStyle(surface, lk, {
-        borderRadius: popupStyle.borderRadius,
-        borderWidth: popupStyle.borderWidth,
-        backgroundColor: colorData(popupStyle.backgroundColor),
-        borderColor: colorData(popupStyle.borderColor),
+        borderRadius: menuStyle.borderRadius,
+        borderWidth: menuStyle.borderWidth,
+        backgroundColor: colorData(menuStyle.backgroundColor),
+        borderColor: colorData(menuStyle.borderColor),
       });
-      setShadow(surface, popupStyle.boxShadow, lk, colorData(popupStyle.shadowBaseColor));
-      await linkShadowStyle(surface, popupStyle.boxShadow, `Fab/${combo.name} menu`);
+      setShadow(surface, menuStyle.boxShadow, lk, colorData(menuStyle.shadowBaseColor));
+      await linkShadowStyle(surface, menuStyle.boxShadow, `Fab/${combo.name} menu`);
       // The rows are `MenuItem` instances at the size `actionItemSize` names:
       // the row owns its fill, wash, ring, typography and glyph tint, and the
       // Fab only says which of its slots are filled — the label, and the
@@ -2396,7 +2410,37 @@ async function buildFab(page: PageNode, lk: VarLookup): Promise<ComponentSetNode
           (n) => n.type === 'INSTANCE' && n.name === 'leading',
         );
         if (leadingIcon && leadingIcon.type === 'INSTANCE') {
+          // The size row's glyph. Figma refuses a size override inside an
+          // instance, so the slot is swapped to the `Icon` member of that side
+          // — `Chip`'s close glyph does the same.
+          const side = dimVal(rowStyle.leadingIconStyle.size);
+          const resized = Math.abs(leadingIcon.width - side) > kSizeEpsilon;
+          if (resized) {
+            const target = iconVariantById(iconMainIdAt(page, side));
+            if (target == null) throw new Error(`Fab: no Icon variant for ${side}.`);
+            leadingIcon.swapComponent(target);
+          }
           setIconGlyph(leadingIcon, icon, kPreserveGlyphPaint);
+          if (resized) alignSlotIconMode(leadingIcon, side, 1);
+        }
+        // The rest of the size row, over the `lg` member the row is drawn
+        // from: inset, icon-label gap, height floor and label role.
+        bindPad(row, lk, rowStyle.padding);
+        bindSpaceField(row, 'itemSpacing', lk, dimVal(rowStyle.contentGapStyle.size));
+        const minHeight = optField<Dim>(rowStyle, 'minHeight');
+        if (minHeight != null) {
+          const side = dimVal(minHeight);
+          row.minHeight = side;
+          const variable = lk.controlHeightOrNull(side) ?? lk.sizeOrNull(side);
+          if (variable) row.setBoundVariable('minHeight', variable);
+        }
+        const labelStyle = textStyleData(rowStyle.labelStyle);
+        const isLabel = (node: TextNode): boolean => node.name === 'label';
+        applyInstanceTextStyle(row, lk, { ...labelStyle, color: null }, isLabel);
+        // The copied label never went through `makeLabel`, so the role's text
+        // style is queued here, after the overrides it states.
+        for (const node of ownTextNodes(row).filter(isLabel)) {
+          if (labelStyle.role != null) queueTextStyleAttach(node, labelStyle.role);
         }
         // `menuItemStyle: resolved.actionItemStyle` — the card states its
         // rows' corner (8, the corner every list row of a panel shares): the lg row's

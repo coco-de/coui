@@ -27991,6 +27991,318 @@
                   "via": null
                 }
               }
+            },
+            "spacing": {
+              "v": 12.0,
+              "ref": "Primitives/space/12",
+              "via": "CoreSpace.space12"
+            },
+            "popupStyle": {
+              "padding": {
+                "l": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                },
+                "t": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                },
+                "r": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                },
+                "b": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                }
+              },
+              "borderRadius": {
+                "topLeft": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                },
+                "topRight": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                },
+                "bottomLeft": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                },
+                "bottomRight": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                }
+              },
+              "borderWidth": {
+                "v": 1.0,
+                "ref": "Primitives/stroke/1",
+                "via": "CoreStrokeWidth.stroke1"
+              },
+              "backgroundColor": {
+                "ref": "Semantic/color/surface-bright",
+                "argb": 4294967295,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "borderColor": {
+                "ref": "Semantic/color/outline-variant",
+                "argb": 4291875282,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "boxShadow": {
+                "layers": [
+                  {
+                    "x": 0.0,
+                    "y": 16.0,
+                    "blur": 40.0,
+                    "spread": 0.0,
+                    "opacity": 0.125,
+                    "inset": false
+                  }
+                ],
+                "step": "lg"
+              },
+              "shadowBaseColor": {
+                "ref": "Semantic/color/shadow",
+                "argb": 4278190080,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "minWidth": {
+                "v": 160.0,
+                "ref": "Primitives/layout/160",
+                "via": "CoreLayout.layout160"
+              },
+              "maxWidth": {
+                "unbounded": true,
+                "ref": null,
+                "via": null
+              },
+              "spacing": {
+                "v": 0.0,
+                "ref": null,
+                "via": null
+              },
+              "contentColor": {
+                "ref": "Semantic/color/on-surface",
+                "argb": 4280229921,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "openAnimationDuration": {
+                "v": 150.0,
+                "ref": "Primitives/duration/150",
+                "via": "CoreDuration.fast -> ms150"
+              },
+              "closeAnimationDuration": {
+                "v": 100.0,
+                "ref": "Primitives/duration/100",
+                "via": "CoreDuration.instant -> ms100"
+              }
+            },
+            "actionItemStyle": {
+              "labelDescriptionGapStyle": {
+                "size": {
+                  "v": 2.0,
+                  "ref": "Primitives/space/2",
+                  "via": "CoreSpace.space2"
+                }
+              },
+              "markIconStyle": {
+                "size": {
+                  "v": 16.0,
+                  "ref": "Component/icon-size/16",
+                  "via": "CoreIconSize.size16 -> CoreSize.size16"
+                }
+              },
+              "chevronIconStyle": {
+                "size": {
+                  "v": 16.0,
+                  "ref": "Component/icon-size/16",
+                  "via": "CoreIconSize.size16 -> CoreSize.size16"
+                }
+              },
+              "backgroundColor": {
+                "ref": null,
+                "argb": 0,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "selectedBackgroundColor": {
+                "ref": "Semantic/color/primary",
+                "argb": 4280953644,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "selectedForegroundColor": {
+                "ref": "Semantic/color/on-primary",
+                "argb": 4294967295,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "disabledForegroundColor": {
+                "ref": "Semantic/color/disabled-content",
+                "argb": 4290033078,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "stateLayer": {
+                "hover": 0.08,
+                "focus": 0.08,
+                "pressed": 0.12
+              },
+              "clickableStyle": {
+                "borderRadius": {
+                  "topLeft": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  },
+                  "topRight": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  },
+                  "bottomLeft": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  },
+                  "bottomRight": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  }
+                },
+                "focusOutlineStyle": {
+                  "align": {
+                    "v": 4.0,
+                    "ref": null,
+                    "via": "CoreFocusOutlineStyle.defaultAlign -> CoreFocusRing.ringOffset -> ringWidth -> CoreFocusRing.ringWidth"
+                  },
+                  "borderWidth": {
+                    "v": 2.0,
+                    "ref": null,
+                    "via": "CoreFocusOutlineStyle.defaultBorderWidth -> CoreFocusRing.ringWidth"
+                  },
+                  "ringOpacity": {
+                    "v": 1.0,
+                    "ref": null,
+                    "via": "CoreFocusRing.ringOpacity"
+                  },
+                  "borderColor": {
+                    "ref": "Semantic/color/focus-ring",
+                    "argb": 4282401091,
+                    "opacity": 1.0,
+                    "fallbacks": []
+                  },
+                  "offsetColor": {
+                    "ref": null,
+                    "argb": 0,
+                    "opacity": 1.0,
+                    "fallbacks": []
+                  },
+                  "duration": {
+                    "v": 150.0,
+                    "ref": "Primitives/duration/150",
+                    "via": "CoreDuration.fast -> ms150"
+                  },
+                  "circleBorderRadius": {
+                    "topLeft": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    },
+                    "topRight": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    },
+                    "bottomLeft": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    },
+                    "bottomRight": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    }
+                  }
+                },
+                "pressedScale": {
+                  "v": 0.97,
+                  "ref": null,
+                  "via": null
+                },
+                "pressedTranslate": {
+                  "choice": "zero"
+                },
+                "disabledOpacity": {
+                  "v": 0.5,
+                  "ref": "Primitives/opacity/50",
+                  "via": "CoreOpacity.opacity50"
+                },
+                "duration": {
+                  "v": 150.0,
+                  "ref": "Primitives/duration/150",
+                  "via": "CoreDuration.fast -> ms150"
+                },
+                "pressDuration": {
+                  "v": 100.0,
+                  "ref": "Primitives/duration/100",
+                  "via": "CoreDuration.instant -> ms100"
+                }
+              },
+              "padding": {
+                "l": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                },
+                "t": {
+                  "v": 12.0,
+                  "ref": "Primitives/space/12",
+                  "via": "CoreSpace.space12"
+                },
+                "r": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                },
+                "b": {
+                  "v": 12.0,
+                  "ref": "Primitives/space/12",
+                  "via": "CoreSpace.space12"
+                }
+              },
+              "contentGapStyle": {
+                "size": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                }
+              },
+              "leadingIconStyle": {
+                "size": {
+                  "v": 20.0,
+                  "ref": "Component/icon-size/20",
+                  "via": "CoreIconSize.size20 -> CoreSize.size20"
+                }
+              },
+              "labelStyle": {
+                "role": "labelLarge"
+              }
             }
           },
           "regular": {
@@ -28176,6 +28488,318 @@
                   "via": null
                 }
               }
+            },
+            "spacing": {
+              "v": 12.0,
+              "ref": "Primitives/space/12",
+              "via": "CoreSpace.space12"
+            },
+            "popupStyle": {
+              "padding": {
+                "l": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                },
+                "t": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                },
+                "r": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                },
+                "b": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                }
+              },
+              "borderRadius": {
+                "topLeft": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                },
+                "topRight": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                },
+                "bottomLeft": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                },
+                "bottomRight": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                }
+              },
+              "borderWidth": {
+                "v": 1.0,
+                "ref": "Primitives/stroke/1",
+                "via": "CoreStrokeWidth.stroke1"
+              },
+              "backgroundColor": {
+                "ref": "Semantic/color/surface-bright",
+                "argb": 4294967295,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "borderColor": {
+                "ref": "Semantic/color/outline-variant",
+                "argb": 4291875282,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "boxShadow": {
+                "layers": [
+                  {
+                    "x": 0.0,
+                    "y": 16.0,
+                    "blur": 40.0,
+                    "spread": 0.0,
+                    "opacity": 0.125,
+                    "inset": false
+                  }
+                ],
+                "step": "lg"
+              },
+              "shadowBaseColor": {
+                "ref": "Semantic/color/shadow",
+                "argb": 4278190080,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "minWidth": {
+                "v": 176.0,
+                "ref": "Primitives/space/176",
+                "via": "CoreSpace.space176"
+              },
+              "maxWidth": {
+                "unbounded": true,
+                "ref": null,
+                "via": null
+              },
+              "spacing": {
+                "v": 0.0,
+                "ref": null,
+                "via": null
+              },
+              "contentColor": {
+                "ref": "Semantic/color/on-surface",
+                "argb": 4280229921,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "openAnimationDuration": {
+                "v": 150.0,
+                "ref": "Primitives/duration/150",
+                "via": "CoreDuration.fast -> ms150"
+              },
+              "closeAnimationDuration": {
+                "v": 100.0,
+                "ref": "Primitives/duration/100",
+                "via": "CoreDuration.instant -> ms100"
+              }
+            },
+            "actionItemStyle": {
+              "labelDescriptionGapStyle": {
+                "size": {
+                  "v": 2.0,
+                  "ref": "Primitives/space/2",
+                  "via": "CoreSpace.space2"
+                }
+              },
+              "markIconStyle": {
+                "size": {
+                  "v": 16.0,
+                  "ref": "Component/icon-size/16",
+                  "via": "CoreIconSize.size16 -> CoreSize.size16"
+                }
+              },
+              "chevronIconStyle": {
+                "size": {
+                  "v": 16.0,
+                  "ref": "Component/icon-size/16",
+                  "via": "CoreIconSize.size16 -> CoreSize.size16"
+                }
+              },
+              "backgroundColor": {
+                "ref": null,
+                "argb": 0,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "selectedBackgroundColor": {
+                "ref": "Semantic/color/primary",
+                "argb": 4280953644,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "selectedForegroundColor": {
+                "ref": "Semantic/color/on-primary",
+                "argb": 4294967295,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "disabledForegroundColor": {
+                "ref": "Semantic/color/disabled-content",
+                "argb": 4290033078,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "stateLayer": {
+                "hover": 0.08,
+                "focus": 0.08,
+                "pressed": 0.12
+              },
+              "clickableStyle": {
+                "borderRadius": {
+                  "topLeft": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  },
+                  "topRight": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  },
+                  "bottomLeft": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  },
+                  "bottomRight": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  }
+                },
+                "focusOutlineStyle": {
+                  "align": {
+                    "v": 4.0,
+                    "ref": null,
+                    "via": "CoreFocusOutlineStyle.defaultAlign -> CoreFocusRing.ringOffset -> ringWidth -> CoreFocusRing.ringWidth"
+                  },
+                  "borderWidth": {
+                    "v": 2.0,
+                    "ref": null,
+                    "via": "CoreFocusOutlineStyle.defaultBorderWidth -> CoreFocusRing.ringWidth"
+                  },
+                  "ringOpacity": {
+                    "v": 1.0,
+                    "ref": null,
+                    "via": "CoreFocusRing.ringOpacity"
+                  },
+                  "borderColor": {
+                    "ref": "Semantic/color/focus-ring",
+                    "argb": 4282401091,
+                    "opacity": 1.0,
+                    "fallbacks": []
+                  },
+                  "offsetColor": {
+                    "ref": null,
+                    "argb": 0,
+                    "opacity": 1.0,
+                    "fallbacks": []
+                  },
+                  "duration": {
+                    "v": 150.0,
+                    "ref": "Primitives/duration/150",
+                    "via": "CoreDuration.fast -> ms150"
+                  },
+                  "circleBorderRadius": {
+                    "topLeft": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    },
+                    "topRight": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    },
+                    "bottomLeft": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    },
+                    "bottomRight": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    }
+                  }
+                },
+                "pressedScale": {
+                  "v": 0.97,
+                  "ref": null,
+                  "via": null
+                },
+                "pressedTranslate": {
+                  "choice": "zero"
+                },
+                "disabledOpacity": {
+                  "v": 0.5,
+                  "ref": "Primitives/opacity/50",
+                  "via": "CoreOpacity.opacity50"
+                },
+                "duration": {
+                  "v": 150.0,
+                  "ref": "Primitives/duration/150",
+                  "via": "CoreDuration.fast -> ms150"
+                },
+                "pressDuration": {
+                  "v": 100.0,
+                  "ref": "Primitives/duration/100",
+                  "via": "CoreDuration.instant -> ms100"
+                }
+              },
+              "padding": {
+                "l": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                },
+                "t": {
+                  "v": 12.0,
+                  "ref": "Primitives/space/12",
+                  "via": "CoreSpace.space12"
+                },
+                "r": {
+                  "v": 8.0,
+                  "ref": "Primitives/space/8",
+                  "via": "CoreSpace.space8"
+                },
+                "b": {
+                  "v": 12.0,
+                  "ref": "Primitives/space/12",
+                  "via": "CoreSpace.space12"
+                }
+              },
+              "contentGapStyle": {
+                "size": {
+                  "v": 10.0,
+                  "ref": "Primitives/space/10",
+                  "via": "CoreSpace.space10"
+                }
+              },
+              "leadingIconStyle": {
+                "size": {
+                  "v": 20.0,
+                  "ref": "Component/icon-size/20",
+                  "via": "CoreIconSize.size20 -> CoreSize.size20"
+                }
+              },
+              "labelStyle": {
+                "role": "labelXl"
+              }
             }
           },
           "large": {
@@ -28360,6 +28984,323 @@
                   "ref": null,
                   "via": null
                 }
+              }
+            },
+            "spacing": {
+              "v": 16.0,
+              "ref": "Primitives/space/16",
+              "via": "defaultSpacing -> CoreSpace.space16"
+            },
+            "popupStyle": {
+              "padding": {
+                "l": {
+                  "v": 10.0,
+                  "ref": "Primitives/space/10",
+                  "via": "CoreSpace.space10"
+                },
+                "t": {
+                  "v": 10.0,
+                  "ref": "Primitives/space/10",
+                  "via": "CoreSpace.space10"
+                },
+                "r": {
+                  "v": 10.0,
+                  "ref": "Primitives/space/10",
+                  "via": "CoreSpace.space10"
+                },
+                "b": {
+                  "v": 10.0,
+                  "ref": "Primitives/space/10",
+                  "via": "CoreSpace.space10"
+                }
+              },
+              "borderRadius": {
+                "topLeft": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                },
+                "topRight": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                },
+                "bottomLeft": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                },
+                "bottomRight": {
+                  "v": 12.0,
+                  "ref": "Primitives/radius/12",
+                  "via": "CoreRadiusRole.panel -> CoreRadius.radius12"
+                }
+              },
+              "borderWidth": {
+                "v": 1.0,
+                "ref": "Primitives/stroke/1",
+                "via": "CoreStrokeWidth.stroke1"
+              },
+              "backgroundColor": {
+                "ref": "Semantic/color/surface-bright",
+                "argb": 4294967295,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "borderColor": {
+                "ref": "Semantic/color/outline-variant",
+                "argb": 4291875282,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "boxShadow": {
+                "layers": [
+                  {
+                    "x": 0.0,
+                    "y": 16.0,
+                    "blur": 40.0,
+                    "spread": 0.0,
+                    "opacity": 0.125,
+                    "inset": false
+                  }
+                ],
+                "step": "lg"
+              },
+              "shadowBaseColor": {
+                "ref": "Semantic/color/shadow",
+                "argb": 4278190080,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "minWidth": {
+                "v": 224.0,
+                "ref": "Primitives/space/224",
+                "via": "CoreSpace.space224"
+              },
+              "maxWidth": {
+                "unbounded": true,
+                "ref": null,
+                "via": null
+              },
+              "spacing": {
+                "v": 0.0,
+                "ref": null,
+                "via": null
+              },
+              "contentColor": {
+                "ref": "Semantic/color/on-surface",
+                "argb": 4280229921,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "openAnimationDuration": {
+                "v": 150.0,
+                "ref": "Primitives/duration/150",
+                "via": "CoreDuration.fast -> ms150"
+              },
+              "closeAnimationDuration": {
+                "v": 100.0,
+                "ref": "Primitives/duration/100",
+                "via": "CoreDuration.instant -> ms100"
+              }
+            },
+            "actionItemStyle": {
+              "labelDescriptionGapStyle": {
+                "size": {
+                  "v": 2.0,
+                  "ref": "Primitives/space/2",
+                  "via": "CoreSpace.space2"
+                }
+              },
+              "markIconStyle": {
+                "size": {
+                  "v": 16.0,
+                  "ref": "Component/icon-size/16",
+                  "via": "CoreIconSize.size16 -> CoreSize.size16"
+                }
+              },
+              "chevronIconStyle": {
+                "size": {
+                  "v": 16.0,
+                  "ref": "Component/icon-size/16",
+                  "via": "CoreIconSize.size16 -> CoreSize.size16"
+                }
+              },
+              "backgroundColor": {
+                "ref": null,
+                "argb": 0,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "selectedBackgroundColor": {
+                "ref": "Semantic/color/primary",
+                "argb": 4280953644,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "selectedForegroundColor": {
+                "ref": "Semantic/color/on-primary",
+                "argb": 4294967295,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "disabledForegroundColor": {
+                "ref": "Semantic/color/disabled-content",
+                "argb": 4290033078,
+                "opacity": 1.0,
+                "fallbacks": []
+              },
+              "stateLayer": {
+                "hover": 0.08,
+                "focus": 0.08,
+                "pressed": 0.12
+              },
+              "clickableStyle": {
+                "borderRadius": {
+                  "topLeft": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  },
+                  "topRight": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  },
+                  "bottomLeft": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  },
+                  "bottomRight": {
+                    "v": 4.0,
+                    "ref": "Primitives/radius/4",
+                    "via": "CoreRadius.radius4"
+                  }
+                },
+                "focusOutlineStyle": {
+                  "align": {
+                    "v": 4.0,
+                    "ref": null,
+                    "via": "CoreFocusOutlineStyle.defaultAlign -> CoreFocusRing.ringOffset -> ringWidth -> CoreFocusRing.ringWidth"
+                  },
+                  "borderWidth": {
+                    "v": 2.0,
+                    "ref": null,
+                    "via": "CoreFocusOutlineStyle.defaultBorderWidth -> CoreFocusRing.ringWidth"
+                  },
+                  "ringOpacity": {
+                    "v": 1.0,
+                    "ref": null,
+                    "via": "CoreFocusRing.ringOpacity"
+                  },
+                  "borderColor": {
+                    "ref": "Semantic/color/focus-ring",
+                    "argb": 4282401091,
+                    "opacity": 1.0,
+                    "fallbacks": []
+                  },
+                  "offsetColor": {
+                    "ref": null,
+                    "argb": 0,
+                    "opacity": 1.0,
+                    "fallbacks": []
+                  },
+                  "duration": {
+                    "v": 150.0,
+                    "ref": "Primitives/duration/150",
+                    "via": "CoreDuration.fast -> ms150"
+                  },
+                  "circleBorderRadius": {
+                    "topLeft": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    },
+                    "topRight": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    },
+                    "bottomLeft": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    },
+                    "bottomRight": {
+                      "v": 9999.0,
+                      "ref": "Primitives/radius/9999",
+                      "via": "CoreRadius.radius9999"
+                    }
+                  }
+                },
+                "pressedScale": {
+                  "v": 0.97,
+                  "ref": null,
+                  "via": null
+                },
+                "pressedTranslate": {
+                  "choice": "zero"
+                },
+                "disabledOpacity": {
+                  "v": 0.5,
+                  "ref": "Primitives/opacity/50",
+                  "via": "CoreOpacity.opacity50"
+                },
+                "duration": {
+                  "v": 150.0,
+                  "ref": "Primitives/duration/150",
+                  "via": "CoreDuration.fast -> ms150"
+                },
+                "pressDuration": {
+                  "v": 100.0,
+                  "ref": "Primitives/duration/100",
+                  "via": "CoreDuration.instant -> ms100"
+                }
+              },
+              "minHeight": {
+                "v": 56.0,
+                "ref": "Semantic/Dimension/control-size/xl",
+                "via": "CoreControlSize.heightXl -> CoreSize.size56"
+              },
+              "padding": {
+                "l": {
+                  "v": 10.0,
+                  "ref": "Primitives/space/10",
+                  "via": "CoreSpace.space10"
+                },
+                "t": {
+                  "v": 12.0,
+                  "ref": "Primitives/space/12",
+                  "via": "CoreSpace.space12"
+                },
+                "r": {
+                  "v": 10.0,
+                  "ref": "Primitives/space/10",
+                  "via": "CoreSpace.space10"
+                },
+                "b": {
+                  "v": 12.0,
+                  "ref": "Primitives/space/12",
+                  "via": "CoreSpace.space12"
+                }
+              },
+              "contentGapStyle": {
+                "size": {
+                  "v": 12.0,
+                  "ref": "Primitives/space/12",
+                  "via": "CoreSpace.space12"
+                }
+              },
+              "leadingIconStyle": {
+                "size": {
+                  "v": 24.0,
+                  "ref": "Component/icon-size/24",
+                  "via": "CoreIconSize.size24 -> CoreSize.size24"
+                }
+              },
+              "labelStyle": {
+                "role": "labelXl2"
               }
             }
           }

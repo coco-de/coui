@@ -91,19 +91,21 @@ Widget _extended(CoreFabSize size) => Fab(
 );
 
 /// 열린 메뉴의 그림 — Web 과 같은 구성. 판과 행은 킷의 `Popup` · `MenuItem`
-/// 이고, 값은 Fab 의 기본값을 읽는다.
+/// 이고, 값은 Fab 의 기본 크기 값을 읽는다.
 Widget _openMenu() => Column(
   mainAxisSize: MainAxisSize.min,
   crossAxisAlignment: CrossAxisAlignment.end,
-  spacing: CoreFabStyle.defaultSpacing,
+  spacing: _defaultSizeStyle.spacing!,
   children: [
     Popup(
-      popupStyle: CoreFabStyle.defaultPopupStyle,
+      popupStyle: CoreFabStyle.defaultPopupStyle.merge(_defaultSizeStyle.popupStyle),
       children: [for (final action in fabPreviewActions) _menuRow(action)],
     ),
     Fab(trigger: const Icon(LucideIcons.x), onPressed: () {}),
   ],
 );
+
+final CoreFabStyle _defaultSizeStyle = CoreFabStyle.defaultsBySize[CoreFabSize.defaultSize]!;
 
 Widget _menuRow(FabPreviewAction action) => MenuItem(
   label: DefaultTextStyle.merge(
@@ -114,7 +116,7 @@ Widget _menuRow(FabPreviewAction action) => MenuItem(
   ),
   size: CoreFabContract.actionItemSize,
   leading: Icon(action.icon),
-  menuItemStyle: CoreFabStyle.defaultActionItemStyle,
+  menuItemStyle: CoreFabStyle.defaultActionItemStyle.merge(_defaultSizeStyle.actionItemStyle),
   onPressed: () {},
 );
 

@@ -227,4 +227,43 @@ void main() {
       expect(a.copyWith(diameter: 40).actionIconStyle, a.actionIconStyle);
     });
   });
+
+  group('CoreFabStyle menu ladder — the menu grows with the circle', () {
+    // size: (gap, panel inset, panel min width, row min height, row inset,
+    // icon, icon-label gap, label role)
+    const ladder = {
+      CoreFabSize.mini: (12, 8, 160, 48, 8, 20, 8, CoreTextStyles.labelLarge),
+      CoreFabSize.regular: (12, 8, 176, 48, 8, 20, 10, CoreTextStyles.labelXl),
+      CoreFabSize.large: (16, 10, 224, 56, 10, 24, 12, CoreTextStyles.labelXl2),
+    };
+    final base =
+        CoreMenuItemStyle.defaultsBySize[CoreFabContract.actionItemSize]!;
+
+    for (final MapEntry(key: size, value: expected) in ladder.entries) {
+      test('${size.name} states its menu values', () {
+        final (gap, inset, width, height, rowInset, icon, content, role) =
+            expected;
+        final row = CoreFabStyle.defaultsBySize[size]!;
+        final panel = CoreFabStyle.defaultPopupStyle.merge(row.popupStyle);
+        final item = base.merge(
+          CoreFabStyle.defaultActionItemStyle.merge(row.actionItemStyle),
+        );
+
+        expect(row.spacing, gap);
+        expect(panel.padding, CoreEdgeInsets.all(inset.toDouble()));
+        expect(panel.minWidth, width);
+        expect(panel.maxWidth, CoreLayout.layout280);
+        expect(panel.spacing, CoreSpace.space2);
+        expect(item.minHeight, height);
+        expect(item.minHeight, greaterThanOrEqualTo(48));
+        expect(item.padding!.left, rowInset);
+        expect(item.padding!.right, rowInset);
+        expect(item.padding!.top, CoreSpace.space12);
+        expect(item.leadingIconStyle!.size, icon);
+        expect(item.contentGapStyle!.size, content);
+        expect(item.labelStyle, CoreTextStyle.token(role));
+        expect(item.borderRadius!.topLeft, CoreRadius.radius8);
+      });
+    }
+  });
 }

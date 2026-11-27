@@ -365,7 +365,17 @@ import 'figma_reader/token_scale.dart';
 ///   `CoreFocusOutlineStyle` of the handle's ring. Both still reach the
 ///   canvas through the exporter's nested-slot spread; only the reader's
 ///   own default-constant census cannot give them a kind.
-const _kG3MaxDeficit = 195;
+///
+/// 195 → 201: the FAB's size rows state nested component Style slots inside
+/// `defaultsBySize`, the same shape as the entries above — and no emitted
+/// leaf dropped:
+///
+/// - `Fab` (+6): `popupStyle` (`CorePopupStyle`) and `actionItemStyle`
+///   (`CoreMenuItemStyle`) in each of the `mini`, `regular` and `large` rows.
+///   All six reach the exported `components.json` with their fields, and the
+///   plugin's runtime self-test reads them back from the drawn Fab menu; only
+///   this census cannot give the slot a kind.
+const _kG3MaxDeficit = 201;
 
 /// G4 — exact structural exception counts. Not a ceiling: both a rise
 /// (new exception appeared uncounted) and a fall (an exception was fixed
