@@ -41,6 +41,7 @@ import 'runtime_capture.dart';
 import 'scope_allocation_ssr_source.dart';
 import 'showcase_allocation_ssr_source.dart';
 import 'ssr_render.dart';
+import 'stage_callback_ssr_source.dart';
 import 'text_showcase_ssr_source.dart';
 import 'visual_value_ssr_source.dart';
 
@@ -243,6 +244,7 @@ Future<String> renderCaptureBodyHtml(
   final sourceRecorder = onCurrentBoxSource == null
       ? null
       : BottomActionBarSsrSource.forEntry(entry) ??
+            StageCallbackSsrSource.forEntry(entry) ??
             ScopeAllocationSsrSource.forEntry(entry) ??
             ShowcaseAllocationSsrSource.forEntry(entry) ??
             BreakpointShowcaseSsrSource.forEntry(entry) ??
@@ -297,6 +299,14 @@ Future<String> renderCaptureBodyHtml(
     ),
   );
   var witness = sourceWitness;
+  if (sourceRecorder is StageCallbackSsrSource &&
+      witness?['stageAwaitingExactNormalSerializedBody'] == true) {
+    try {
+      witness = sourceRecorder.completeWithSerializedBody(html);
+    } on Object catch (error) {
+      witness = {'error': '$error'};
+    }
+  }
   if (sourceRecorder is ScopeAllocationSsrSource &&
       witness?['scopeSourceAwaitingExactSerializedBody'] == true) {
     try {
@@ -460,7 +470,8 @@ Future<WebCaptureResult> captureWebEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredScopeAllocationSsrKind(entry) ??
+      ? requiredStageCallbackSsrKind(entry) ??
+            requiredScopeAllocationSsrKind(entry) ??
             requiredShowcaseAllocationSsrKind(entry) ??
             requiredBreakpointShowcaseSsrKind(entry) ??
             requiredBottomActionBarSsrKind(entry) ??

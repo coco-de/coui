@@ -37,6 +37,7 @@ import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'scope_allocation_binding.dart';
 import 'showcase_allocation_ssr_source.dart';
+import 'stage_callback_binding.dart';
 import 'text_showcase_ssr_source.dart';
 
 /// Current CSS padding of a declared box, independent of painted chrome.
@@ -61,6 +62,7 @@ String get boxPaddingObservationScript =>
       BoxObservationSourceSpec.bottomActionBarContentInset.toJson(),
       BoxObservationSourceSpec.showcaseAllocationHost.toJson(),
       BoxObservationSourceSpec.scopeAllocationHost.toJson(),
+      BoxObservationSourceSpec.stageCallbackContentInset.toJson(),
       BoxObservationSourceSpec.breakpointShowcaseContentInset.toJson(),
       ...BoxObservationSourceSpec.componentFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.extendedComponentFrames.map((source) => source.toJson()),
@@ -115,6 +117,23 @@ String get boxPaddingObservationScript =>
     return {raw:receipt.currentRaw};
   };
   switch(source.webAdapterId) {
+    case 'stage-current-callback-content-inset-v1': {
+      const binding = ($stageCallbackRequestBindingScript)(request);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (!binding.applied || binding.registryResultElement !== layoutRoot ||
+          binding.fieldUnitElement !== layoutRoot || binding.frameSource !== layoutRoot ||
+          binding.paddingSource === layoutRoot || binding.paddingSource?.parentElement !== layoutRoot ||
+          layoutRoot.children.length !== 1 || layoutRoot.children[0] !== binding.paddingSource ||
+          binding.registryIsLayoutRoot !== true || typeof binding.validateCurrentBinding !== 'function' ||
+          !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('STAGE_FRAME_PADDING_RELATION_CHANGED'));
+      owner = binding.paddingSource;
+      sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true;
+      currentBoxBindingFailure = 'STAGE_CALLBACK_BINDING_CHANGED_DURING_CSS_READ';
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      break;
+    }
     case 'bottom-action-bar-owned-content-inset-v1': {
       const binding = ($bottomActionBarRequestBindingScript)(request);
       if (binding.error) return JSON.stringify(incomplete(binding.error));

@@ -948,6 +948,15 @@ class BoxObservationSourceSpec {
     webAdapterId: 'classic-text-showcase-outer-padding-v1',
   );
 
+  /// Current already executed Stage callback padding inside its original frame.
+  static const stageCallbackContentInset = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'stage-container-callback-content-inset',
+    quantityId: quantity,
+    nativeAdapterId: 'stage-current-callback-content-inset-v1',
+    webAdapterId: 'stage-current-callback-content-inset-v1',
+  );
+
   /// Exact original public scope forwarding and its owned allocation prefix.
   static const scopeAllocationHost = BoxObservationSourceSpec(
     schemaVersion: 1,
@@ -1012,6 +1021,7 @@ class BoxObservationSourceSpec {
       textShowcaseOuterPadding,
       showcaseAllocationHost,
       bottomActionBarContentInset,
+      stageCallbackContentInset,
       scopeAllocationHost,
       breakpointShowcaseContentInset,
     ]) {
