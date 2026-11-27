@@ -52,6 +52,11 @@ import 'loading_region/loading_region_page.dart' as loading_region;
 import 'menu/menu_page.dart' as menu;
 import 'menu_item/menu_item_page.dart' as menu_item;
 import 'menubar/menubar_page.dart' as menubar;
+import 'mockup/mockup_page.dart' as mockup;
+import 'mockup_browser/mockup_browser_page.dart' as mockup_browser;
+import 'mockup_code/mockup_code_page.dart' as mockup_code;
+import 'mockup_device/mockup_device_page.dart' as mockup_device;
+import 'mockup_foldable/mockup_foldable_page.dart' as mockup_foldable;
 import 'multi_answer_card/multi_answer_card_page.dart' as multi_answer_card;
 import 'multiple_choice/multiple_choice_page.dart' as multiple_choice;
 import 'navigation_bar/navigation_bar_page.dart' as navigation_bar;
@@ -149,6 +154,11 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (menu.playground case final spec?) menu.slug: spec,
   if (menu_item.playground case final spec?) menu_item.slug: spec,
   if (menubar.playground case final spec?) menubar.slug: spec,
+  if (mockup.playground case final spec?) mockup.slug: spec,
+  if (mockup_browser.playground case final spec?) mockup_browser.slug: spec,
+  if (mockup_code.playground case final spec?) mockup_code.slug: spec,
+  if (mockup_device.playground case final spec?) mockup_device.slug: spec,
+  if (mockup_foldable.playground case final spec?) mockup_foldable.slug: spec,
   if (multi_answer_card.playground case final spec?) multi_answer_card.slug: spec,
   if (multiple_choice.playground case final spec?) multiple_choice.slug: spec,
   if (navigation_bar.playground case final spec?) navigation_bar.slug: spec,
@@ -247,6 +257,11 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (menu.sizeSpec case final spec?) menu.slug: spec,
   if (menu_item.sizeSpec case final spec?) menu_item.slug: spec,
   if (menubar.sizeSpec case final spec?) menubar.slug: spec,
+  if (mockup.sizeSpec case final spec?) mockup.slug: spec,
+  if (mockup_browser.sizeSpec case final spec?) mockup_browser.slug: spec,
+  if (mockup_code.sizeSpec case final spec?) mockup_code.slug: spec,
+  if (mockup_device.sizeSpec case final spec?) mockup_device.slug: spec,
+  if (mockup_foldable.sizeSpec case final spec?) mockup_foldable.slug: spec,
   if (multi_answer_card.sizeSpec case final spec?) multi_answer_card.slug: spec,
   if (multiple_choice.sizeSpec case final spec?) multiple_choice.slug: spec,
   if (navigation_bar.sizeSpec case final spec?) navigation_bar.slug: spec,
