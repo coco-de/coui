@@ -229,6 +229,14 @@ class ColorPicker extends UiStatefulComponent
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreColorPickerStyle.merge` right-side-wins semantics).
 extension ColorPickerStyleChain on ColorPicker {
+  /// Sets the border color.
+  ColorPicker borderColor(CoreColor value) =>
+      withStyle(CoreColorPickerStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  ColorPicker borderWidth(double value) =>
+      withStyle(CoreColorPickerStyle(borderWidth: value));
+
   /// Returns a copy of this [ColorPicker] with [patch] merged into
   /// [colorPickerStyle] (patch fields win on conflict).
   ColorPicker withStyle(CoreColorPickerStyle patch) => copyWith(

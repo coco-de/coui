@@ -186,6 +186,10 @@ class CodeDiff extends StatelessWidget implements CoreCodeDiffContract {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreCodeDiffStyle.merge` right-side-wins semantics).
 extension CodeDiffStyleChain on CodeDiff {
+  /// Sets the border width in logical pixels.
+  CodeDiff borderWidth(double value) =>
+      withStyle(CoreCodeDiffStyle(borderWidth: value));
+
   /// Returns a copy of this [CodeDiff] with [patch] merged into
   /// [codeDiffStyle] (patch fields win on conflict).
   CodeDiff withStyle(CoreCodeDiffStyle patch) => copyWith(

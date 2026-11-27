@@ -38,7 +38,7 @@ class _CardChainPermutationView extends StatelessWidget {
           ),
         ).chainPermuted(permutation),
         const Gap.space12(),
-        // withStyle full-control — getter 가 없는 필드(borderWidth/padding)까지.
+        // 여러 속성을 한 스타일로 지정합니다.
         Card(
           header: const Text('프로젝트 요약'),
           body: const Text('이번 주 진행 상황을 확인해 보세요.'),

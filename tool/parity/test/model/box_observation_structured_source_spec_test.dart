@@ -82,6 +82,7 @@ void main() {
     ),
     ('tree', 'default', BoxObservationSourceSpec.treeOuterLayoutHost),
     ('tree', 'selected', BoxObservationSourceSpec.treeOuterLayoutHost),
+    ('tree', 'trailing', BoxObservationSourceSpec.treeOuterLayoutHost),
     (
       'timeline',
       'default',
@@ -145,53 +146,56 @@ void main() {
     ('kbd', 'four', BoxObservationSourceSpec.kbdKeySequenceLayoutHost),
     ('hover', 'shadow', BoxObservationSourceSpec.hoverEffectHost),
   ];
-  test('only the reviewed thirty recipes declare the new sources', () {
-    expect(recipes, hasLength(30));
-    for (final (component, variant, source) in recipes) {
-      for (final key in ['caller-owned-key', 'rawStyle:arbitrary']) {
-        final probe = captureProbes(
-          key: key,
-          component: component,
-          variant: variant,
-          flutterClassName: 'public-constructor',
-        ).single;
-        expect(probe.boxObservationSource, source);
-        final payload = probe.toJson()..remove('boxObservationSource');
-        expect(
-          payload,
-          rootProbeSpec(
+  test(
+    'only the reviewed thirty-one recipes declare the structured sources',
+    () {
+      expect(recipes, hasLength(31));
+      for (final (component, variant, source) in recipes) {
+        for (final key in ['caller-owned-key', 'rawStyle:arbitrary']) {
+          final probe = captureProbes(
             key: key,
+            component: component,
+            variant: variant,
             flutterClassName: 'public-constructor',
-          ).toJson(),
-        );
+          ).single;
+          expect(probe.boxObservationSource, source);
+          final payload = probe.toJson()..remove('boxObservationSource');
+          expect(
+            payload,
+            rootProbeSpec(
+              key: key,
+              flutterClassName: 'public-constructor',
+            ).toJson(),
+          );
+          expect(
+            () => requireCaptureProbes(
+              component: component,
+              variant: variant,
+              roles: [probe.role],
+              boxObservationSources: [source],
+            ),
+            returnsNormally,
+          );
+        }
         expect(
           () => requireCaptureProbes(
             component: component,
-            variant: variant,
-            roles: [probe.role],
+            variant: 'unproved',
+            roles: ['root'],
             boxObservationSources: [source],
           ),
-          returnsNormally,
+          throwsFormatException,
         );
       }
-      expect(
-        () => requireCaptureProbes(
-          component: component,
-          variant: 'unproved',
-          roles: ['root'],
-          boxObservationSources: [source],
-        ),
-        throwsFormatException,
-      );
-    }
-  });
+    },
+  );
   test('private, callbacks and unproved recipes retain no source grant', () {
     for (final (component, variant) in <(String, String)>[
       ('disclosure-badge', 'private'),
       ('dock', 'chain'),
       ('rich-editor', 'default'),
       ('rich-editor', 'toolbar'),
-      ('tree', 'trailing'),
+      ('tree', 'unknown-callback'),
       ('tab-pane', 'unknown'),
       ('formatter', 'unknown'),
       ('kbd', 'unknown'),

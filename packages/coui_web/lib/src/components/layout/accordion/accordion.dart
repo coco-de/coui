@@ -478,6 +478,14 @@ class _AccordionItemRendererState extends State<_AccordionItemRenderer> {
 /// Accordion(items: [...]).radius4.surface
 /// ```
 extension AccordionStyleChain on Accordion {
+  /// Sets the border color.
+  Accordion borderColor(CoreColor value) =>
+      withStyle(CoreAccordionStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Accordion borderWidth(double value) =>
+      withStyle(CoreAccordionStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   Accordion backgroundColor(CoreColor value) =>
       withStyle(CoreAccordionStyle(backgroundColor: value));

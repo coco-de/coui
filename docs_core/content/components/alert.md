@@ -129,6 +129,8 @@ neutral을 뺀 네 톤에는 이름 있는 생성자가 있습니다: `Alert.inf
 
 알림의 `.info`, `.success`, `.warning`은 같은 이름의 `variant`를 선택합니다. 예를 들어 `Alert(title: '저장 완료').success`는 성공 알림의 테마를 따릅니다.
 
+성공 톤의 여백만 줄이려면 `Alert(title: '저장 완료').success.contentPadding(.all(CoreSpace.space8))`처럼 씁니다.
+
 <a id="레이아웃-layout"></a>
 <a id="inline-한-줄-상태-띠"></a>
 

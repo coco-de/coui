@@ -46,6 +46,7 @@ void requireCaptureProbes({
             BoxObservationSourceSpec.formCollectionFrames.contains(source) ||
             BoxObservationSourceSpec.sectionLayoutFrames.contains(source) ||
             BoxObservationSourceSpec.structuredRootFrames.contains(source) ||
+            BoxObservationSourceSpec.publicWrapperFrames.contains(source) ||
             BoxObservationSourceSpec.validationViewportFrames.contains(
               source,
             ) ||
@@ -383,7 +384,11 @@ BoxObservationSourceSpec? _componentBoxSource(
     BoxObservationSourceSpec.sidebarOuterLayoutHost,
   ('tab-pane', 'default' || 'editor-strip') =>
     BoxObservationSourceSpec.tabPaneBarContentInset,
-  ('tree', 'default' || 'selected') =>
+  ('media-query', 'default') =>
+    BoxObservationSourceSpec.mediaQueryVisibilityHost,
+  ('swipe-actions', 'default') =>
+    BoxObservationSourceSpec.swipeActionsOuterHost,
+  ('tree', 'default' || 'selected' || 'trailing') =>
     BoxObservationSourceSpec.treeOuterLayoutHost,
   ('timeline', 'default') =>
     BoxObservationSourceSpec.timelineSequenceLayoutHost,

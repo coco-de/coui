@@ -38,6 +38,7 @@ import 'element_capture.dart';
 import 'framed_collection_ssr_source.dart';
 import 'navigation_trigger_ssr_source.dart';
 import 'offline_tailwind_harness.dart';
+import 'public_wrapper_ssr_source.dart';
 import 'runtime_capture.dart';
 import 'scope_allocation_ssr_source.dart';
 import 'showcase_allocation_ssr_source.dart';
@@ -243,7 +244,8 @@ Future<String> renderCaptureBodyHtml(
 }) async {
   final sourceRecorder = onCurrentBoxSource == null
       ? null
-      : CardAccordionFrameSsrSource.forEntry(entry) ??
+      : PublicWrapperSsrSource.forEntry(entry) ??
+            CardAccordionFrameSsrSource.forEntry(entry) ??
             BottomActionBarSsrSource.forEntry(entry) ??
             ScopeAllocationSsrSource.forEntry(entry) ??
             ShowcaseAllocationSsrSource.forEntry(entry) ??
@@ -299,6 +301,14 @@ Future<String> renderCaptureBodyHtml(
     ),
   );
   var witness = sourceWitness;
+  if (sourceRecorder is PublicWrapperSsrSource &&
+      witness?['publicWrapperSourceAwaitingExactSerializedBody'] == true) {
+    try {
+      witness = sourceRecorder.completeWithSerializedBody(html);
+    } on Object catch (error) {
+      witness = {'error': '$error'};
+    }
+  }
   if (sourceRecorder is CardAccordionFrameSsrSource &&
       witness?['surfaceFrameAwaitingExactNormalBody'] == true) {
     try {
@@ -470,7 +480,8 @@ Future<WebCaptureResult> captureWebEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredCardAccordionFrameSsrKind(entry) ??
+      ? requiredPublicWrapperSsrKind(entry) ??
+            requiredCardAccordionFrameSsrKind(entry) ??
             requiredScopeAllocationSsrKind(entry) ??
             requiredShowcaseAllocationSsrKind(entry) ??
             requiredBreakpointShowcaseSsrKind(entry) ??

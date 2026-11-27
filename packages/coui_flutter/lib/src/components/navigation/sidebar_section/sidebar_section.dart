@@ -83,6 +83,10 @@ class SidebarSection extends StatelessWidget
 /// Chain sugar for merging a [CoreSidebarSectionStyle] patch into
 /// [SidebarSection.sidebarSectionStyle]. Mirrors the Web extension.
 extension SidebarSectionStyleChain on SidebarSection {
+  /// Sets the content padding.
+  SidebarSection contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreSidebarSectionStyle(padding: value));
+
   /// Returns a copy with [patch] merged into [sidebarSectionStyle] (patch
   /// fields win on conflict).
   SidebarSection withStyle(CoreSidebarSectionStyle patch) => copyWith(

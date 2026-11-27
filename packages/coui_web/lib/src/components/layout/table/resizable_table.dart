@@ -582,6 +582,18 @@ class _TableShape {
 /// ResizableTable(rows: rows, controller: controller).radius4.surface
 /// ```
 extension ResizableTableStyleChain on ResizableTable {
+  /// Sets the border color.
+  ResizableTable borderColor(CoreColor value) =>
+      withStyle(CoreTableStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  ResizableTable borderWidth(double value) =>
+      withStyle(CoreTableStyle(borderWidth: value));
+
+  /// Sets the content foreground color.
+  ResizableTable foregroundColor(CoreColor value) =>
+      withStyle(CoreTableStyle(foregroundColor: value));
+
   /// Sets the background paint and preserves the other style fields.
   ResizableTable backgroundColor(CoreColor value) =>
       withStyle(CoreTableStyle(backgroundColor: value));

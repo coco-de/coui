@@ -139,6 +139,18 @@ class CodeSnippet extends StatefulWidget
 /// CodeSnippet(code: '...', mode: 'dart').radius4.primary
 /// ```
 extension CodeSnippetStyleChain on CodeSnippet {
+  /// Sets the content padding.
+  CodeSnippet contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreCodeSnippetStyle(padding: value));
+
+  /// Sets the border color.
+  CodeSnippet borderColor(CoreColor value) =>
+      withStyle(CoreCodeSnippetStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  CodeSnippet borderWidth(double value) =>
+      withStyle(CoreCodeSnippetStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   CodeSnippet backgroundColor(CoreColor value) =>
       withStyle(CoreCodeSnippetStyle(backgroundColor: value));

@@ -109,6 +109,10 @@ class Listing extends UiComponent implements CoreListingContract<Component> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreListingStyle.merge` right-side-wins semantics).
 extension ListingStyleChain on Listing {
+  /// Sets the content padding.
+  Listing contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreListingStyle(padding: value));
+
   /// Returns a copy of this [Listing] with [patch] merged into
   /// [listingStyle] (patch fields win on conflict).
   Listing withStyle(CoreListingStyle patch) => copyWith(
@@ -210,6 +214,10 @@ class ListRow extends UiComponent implements CoreListRowContract<Component> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreListingStyle.merge` right-side-wins semantics).
 extension ListRowStyleChain on ListRow {
+  /// Sets the content padding.
+  ListRow contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreListingStyle(padding: value));
+
   /// Returns a copy of this [ListRow] with [patch] merged into
   /// [listingStyle] (patch fields win on conflict).
   ListRow withStyle(CoreListingStyle patch) => copyWith(

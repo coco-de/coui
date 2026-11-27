@@ -378,6 +378,22 @@ extension BadgeStyleChain on Badge {
   Badge backgroundColor(CoreColor value) =>
       withStyle(CoreBadgeStyle(backgroundColor: value));
 
+  /// Sets the padding around label or count content.
+  Badge contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreBadgeStyle(padding: value));
+
+  /// Sets the border color.
+  Badge borderColor(CoreColor value) =>
+      withStyle(CoreBadgeStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Badge borderWidth(double value) =>
+      withStyle(CoreBadgeStyle(borderWidth: value));
+
+  /// Sets the foreground color of the content.
+  Badge foregroundColor(CoreColor value) =>
+      withStyle(CoreBadgeStyle(foregroundColor: value));
+
   /// Returns a copy of this [Badge] with [patch] merged into
   /// [badgeStyle] (patch fields win on conflict).
   Badge withStyle(CoreBadgeStyle patch) =>

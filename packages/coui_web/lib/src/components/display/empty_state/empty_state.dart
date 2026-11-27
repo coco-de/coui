@@ -234,6 +234,10 @@ class EmptyState extends UiComponent
 /// )
 /// ```
 extension EmptyStateStyleChain on EmptyState {
+  /// Sets the content padding.
+  EmptyState contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreEmptyStateStyle(padding: value));
+
   /// Returns a copy of this [EmptyState] with [patch] merged into
   /// [emptyStateStyle] (patch fields win on conflict).
   EmptyState withStyle(CoreEmptyStateStyle patch) => copyWith(

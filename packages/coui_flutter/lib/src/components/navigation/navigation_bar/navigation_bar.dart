@@ -203,6 +203,10 @@ class NavigationBar extends StatefulWidget
 /// NavigationBar(items: items).surface
 /// ```
 extension NavigationBarStyleChain on NavigationBar {
+  /// Sets the content padding.
+  NavigationBar contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreNavigationBarStyle(padding: value));
+
   /// Sets the background paint and preserves the other style fields.
   NavigationBar backgroundColor(CoreColor value) =>
       withStyle(CoreNavigationBarStyle(backgroundColor: value));

@@ -293,6 +293,22 @@ class _DashedOutlinePainter extends CustomPainter {
 ///     .withStyle(const CoreDisclosureBadgeStyle(borderWidth: 2))
 /// ```
 extension DisclosureBadgeStyleChain on DisclosureBadge {
+  /// Sets the content padding.
+  DisclosureBadge contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreDisclosureBadgeStyle(padding: value));
+
+  /// Sets the border color.
+  DisclosureBadge borderColor(CoreColor value) =>
+      withStyle(CoreDisclosureBadgeStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  DisclosureBadge borderWidth(double value) =>
+      withStyle(CoreDisclosureBadgeStyle(borderWidth: value));
+
+  /// Sets the content foreground color.
+  DisclosureBadge foregroundColor(CoreColor value) =>
+      withStyle(CoreDisclosureBadgeStyle(foregroundColor: value));
+
   /// Returns a copy of this [DisclosureBadge] with [patch] merged into
   /// [DisclosureBadge.disclosureBadgeStyle] (patch fields win on
   /// conflict).

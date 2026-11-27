@@ -439,6 +439,14 @@ class Tabs extends UiComponent implements CoreTabsContract<Component> {
 /// Tabs(tabs: const [], selectedIndex: 0).primary
 /// ```
 extension TabsStyleChain on Tabs {
+  /// Sets the border color.
+  Tabs borderColor(CoreColor value) =>
+      withStyle(CoreTabsStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Tabs borderWidth(double value) =>
+      withStyle(CoreTabsStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   Tabs backgroundColor(CoreColor value) =>
       withStyle(CoreTabsStyle(backgroundColor: value));

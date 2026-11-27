@@ -161,7 +161,7 @@ class CardChainExample extends StatelessWidget {
           ),
         ).radius16.backgroundColor(.primary),
         const Gap.space12(),
-        // withStyle full-control — getter 가 없는 필드(borderWidth/padding)까지.
+        // 여러 속성을 한 스타일로 지정합니다.
         Card(
           header: const Text('프로젝트 요약'),
           body: const Text('이번 주 진행 상황을 확인해 보세요.'),
@@ -207,7 +207,7 @@ class CardChainExample extends StatelessComponent {
           ),
         ).radius16.backgroundColor(.primary),
         const Gap.space12(),
-        // withStyle full-control — getter 가 없는 필드(borderWidth/padding)까지.
+        // 여러 속성을 한 스타일로 지정합니다.
         Card(
           header: Text('프로젝트 요약'),
           body: Text('이번 주 진행 상황을 확인해 보세요.'),
@@ -383,6 +383,14 @@ Card(
 ### 의미 체인
 
 `Card`의 `.outline`은 `variant: .outlined`를 선택합니다. 테마가 윤곽선과 배경을 결정합니다. 배경만 바꾸려면 `Card(body: const Text('요약')).outline.backgroundColor(.surfaceContainer)`처럼 씁니다. 상수 스타일에서는 `const CoreCardStyle(backgroundColor: .surfaceContainer)`로 같은 색을 지정합니다.
+
+헤더·본문·푸터 또는 단일 자식의 안쪽 여백은 `.contentPadding(...)`으로 정합니다. 미디어 슬롯은 카드 가장자리까지 채웁니다.
+
+```dart
+Card(body: const Text('요약')).outline
+    .borderColor(.outlineVariant)
+    .contentPadding(.all(CoreSpace.space16))
+```
 
 ## 동작 스펙 (Behavior)
 

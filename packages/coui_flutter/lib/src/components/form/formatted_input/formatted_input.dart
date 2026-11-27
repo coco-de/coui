@@ -419,6 +419,18 @@ class _FormattedInputMaskFormatter extends TextInputFormatter {
 /// FormattedInput.phone().radius4.surface
 /// ```
 extension FormattedInputStyleChain on FormattedInput {
+  /// Sets the content padding.
+  FormattedInput contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreFormattedInputStyle(padding: value));
+
+  /// Sets the border color.
+  FormattedInput borderColor(CoreColor value) =>
+      withStyle(CoreFormattedInputStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  FormattedInput borderWidth(double value) =>
+      withStyle(CoreFormattedInputStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   FormattedInput backgroundColor(CoreColor value) =>
       withStyle(CoreFormattedInputStyle(backgroundColor: value));

@@ -541,6 +541,10 @@ class _CenteredTitleLayout extends MultiChildLayoutDelegate {
 /// AppBar(title: Text('Dashboard')).surface
 /// ```
 extension AppBarStyleChain on AppBar {
+  /// Sets the content padding.
+  AppBar contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreAppBarStyle(padding: value));
+
   /// Sets the background paint and preserves the other style fields.
   AppBar backgroundColor(CoreColor value) =>
       withStyle(CoreAppBarStyle(backgroundColor: value));

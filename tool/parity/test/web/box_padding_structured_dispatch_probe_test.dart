@@ -10,7 +10,7 @@ import '../../src/model/matrix_entry.dart';
 import '../../src/web/box_padding_observation_probe.dart';
 import '../../src/web/web_capture_backend.dart';
 
-const _recipes = <(String, String, BoxObservationSourceSpec)>[
+const _kRecipes = <(String, String, BoxObservationSourceSpec)>[
   ('basic', 'default', BoxObservationSourceSpec.basicContentInset),
   (
     'disclosure-badge',
@@ -148,18 +148,31 @@ console.log(JSON.stringify({result,cssReads}));
 }
 
 void main() {
-  for (final recipe in _recipes) {
+  for (final recipe in _kRecipes) {
     for (final theme in ['light', 'dark']) {
-      test('full source dispatch ${recipe.$1}/${recipe.$2}/$theme', () async {
-        final readback = await _observe(recipe, theme);
-        final actual = readback['result']! as Map;
-        expect(actual['status'], 'source-complete');
-        expect(actual['source'], recipe.$3.toJson());
-        expect(actual['value'], [7.25, 13, 19.5, 23]);
-        expect(actual['registryIsLayoutRoot'], true);
-        expect(actual['canonicalComparisonEligible'], false);
-        expect(readback['cssReads'], hasLength(1));
-      });
+      test(
+        '${recipe.$1 == 'tree' ? 'missing SSR rejects' : 'full source dispatch'} ${recipe.$1}/${recipe.$2}/$theme',
+        () async {
+          final readback = await _observe(recipe, theme);
+          final actual = readback['result']! as Map;
+          if (recipe.$1 == 'tree') {
+            // The whole Tree unit now needs the original normal-SSR receipt.
+            // Class-only current requests cannot inherit the former authority.
+            // Public default/selected/trailing positives live in the final-body
+            // dispatch suite, including all six original theme entries.
+            expect(actual['status'], 'incomplete');
+            expect(actual.containsKey('value'), false);
+            expect(readback['cssReads'], isEmpty);
+            return;
+          }
+          expect(actual['status'], 'source-complete');
+          expect(actual['source'], recipe.$3.toJson());
+          expect(actual['value'], [7.25, 13, 19.5, 23]);
+          expect(actual['registryIsLayoutRoot'], true);
+          expect(actual['canonicalComparisonEligible'], false);
+          expect(readback['cssReads'], hasLength(1));
+        },
+      );
     }
   }
   for (final mutation in [
@@ -171,7 +184,7 @@ void main() {
   ]) {
     test('invalid dispatch reads no CSS: $mutation', () async {
       final readback = await _observe(
-        _recipes.first,
+        _kRecipes.first,
         'light',
         mutation: mutation,
       );

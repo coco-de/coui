@@ -23,6 +23,7 @@ import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'element_capture.dart';
 import 'framed_collection_ssr_source.dart';
+import 'public_wrapper_ssr_source.dart';
 import 'runtime_capture.dart';
 import 'scope_allocation_ssr_source.dart';
 import 'showcase_allocation_ssr_source.dart';
@@ -346,7 +347,8 @@ Future<WebCaptureResult> captureEgoEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredCardAccordionFrameSsrKind(entry) ??
+      ? requiredPublicWrapperSsrKind(entry) ??
+            requiredCardAccordionFrameSsrKind(entry) ??
             requiredScopeAllocationSsrKind(entry) ??
             requiredShowcaseAllocationSsrKind(entry) ??
             requiredBreakpointShowcaseSsrKind(entry) ??
