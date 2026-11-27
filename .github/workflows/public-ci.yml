@@ -48,8 +48,14 @@ jobs:
           test/components/file_input_test.dart
           test/components/layout/tree_test.dart
           test/components/layout/tree_presentation_test.dart
-          test/components/menu/dropdown_menu_premount_close_test.dart
+          test/components/menu/dropdown_menu_activation_test.dart
           test/components/menu/dropdown_menu_test.dart
+          test/components/overlay/trigger_tap_detector_test.dart
+          test/components/control/clickable_keyboard_press_test.dart
+          test/components/control/clickable_double_tap_test.dart
+          test/components/control/clickable_reduced_motion_test.dart
+          test/components/control/button_pressed_state_test.dart
+          test/components/menu/dropdown_menu_premount_close_test.dart
           test/components/overlay/popover_test.dart
           test/components/overlay/popover_offset_test.dart
           test/components/overlay/popover_flip_report_test.dart
