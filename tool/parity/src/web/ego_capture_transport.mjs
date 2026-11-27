@@ -210,9 +210,9 @@ try {
     try{await operation();cleanup.steps[name]={status:'restored'};}
     catch(error){cleanup.steps[name]={status:'failed',error:errorInfo(error)};if(terminalError(error))stopNative(`cleanup:${name}`,error);}
   };
-  const restore=async(method,params)=>{
+  const restore=async(method,params,timeout=input.cleanupCallTimeoutMs)=>{
     journal(method,'cleanup-begin');
-    try{const value=await page.cdp(method,params,{timeout:input.cleanupCallTimeoutMs});journal(method,'cleanup-end');return value;}
+    try{const value=await page.cdp(method,params,{timeout});journal(method,'cleanup-end');return value;}
     catch(error){journal(method,'cleanup-error',error);throw error;}
   };
   for(const objectId of remoteHandles){
@@ -223,22 +223,39 @@ try {
   await step('metrics',metrics,async()=>{
     cleanup.metricsRestoration={strategy:'clear-first, visible-size, observable equality'};
     await restore('Emulation.clearDeviceMetricsOverride');
-    const readback=async()=>{
+    const readback=async(timeout=input.cleanupCallTimeoutMs)=>{
       const response=await restore('Runtime.evaluate',{
-        expression:expression(environmentScript),returnByValue:true});
+        expression:expression(environmentScript),returnByValue:true},timeout);
       if(response.exceptionDetails)throw new Error('Metrics restoration readback failed');
       return response.result.value;
     };
+    // Native viewport and screen updates can arrive after the CDP response.
+    // Split one existing restore-call budget across the three stages. Poll
+    // only the full observed environment; never repeat a restoration command.
+    const settle=async(first,stage)=>{
+      let observed=first;
+      const deadline=performance.now()+Math.floor(input.cleanupCallTimeoutMs/3);
+      while(JSON.stringify(before)!==JSON.stringify(observed)){
+        const remaining=deadline-performance.now();
+        if(remaining<=10)break;
+        await new Promise(done=>setTimeout(done,10));
+        const readTimeout=Math.floor(deadline-performance.now());
+        if(readTimeout<=0)break;
+        observed=await readback(Math.min(input.cleanupCallTimeoutMs,readTimeout));
+      }
+      cleanup.metricsRestoration[stage]=observed;
+      return JSON.stringify(before)===JSON.stringify(observed);
+    };
     const cleared=await readback();
     cleanup.metricsRestoration.afterClear=cleared;
-    if(JSON.stringify(before)===JSON.stringify(cleared))return;
+    if(await settle(cleared,'settledAfterClear'))return;
     // Resize the cleared viewport without replacing its native screen work area.
     const visibleSize={width:before.width,height:before.height};
     cleanup.metricsRestoration.visibleSizeParameters=visibleSize;
     await restore('Emulation.setVisibleSize',visibleSize);
     const visible=await readback();
     cleanup.metricsRestoration.afterVisibleSize=visible;
-    if(JSON.stringify(before)===JSON.stringify(visible))return;
+    if(await settle(visible,'settledAfterVisibleSize'))return;
     const explicitMetrics={width:before.width,height:before.height,
       deviceScaleFactor:before.dpr,mobile:false,scale:before.visual.scale};
     // Retain the native work area when only the viewport/DPR needs restoring.
@@ -251,7 +268,7 @@ try {
     await restore('Emulation.setDeviceMetricsOverride',explicitMetrics);
     const explicit=await readback();
     cleanup.metricsRestoration.afterExplicit=explicit;
-    if(JSON.stringify(before)!==JSON.stringify(explicit)){
+    if(!await settle(explicit,'settledAfterExplicit')){
       throw new Error('Observed desktop metrics were not restored');
     }
   });
