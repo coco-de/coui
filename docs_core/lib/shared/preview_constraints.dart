@@ -125,6 +125,11 @@ const kDocsPreviewConstraints = <String, DocsPreviewConstraints>{
   'avatar/playground': kDocsMediumConstraints,
   'divider/playground': kDocsMediumConstraints,
   'icon/playground': kDocsDefaultConstraints,
+  // Loading and Progress stand in the compact stage elsewhere. Their
+  // playgrounds reach past it: an xl2 Loading (48, on a 64 box in the
+  // inverse tone) and a Progress with its label and caption rows.
+  'loading/playground': kDocsMediumConstraints,
+  'progress/playground': kDocsMediumConstraints,
   'form-field': kDocsMediumConstraints,
   'formatter': kDocsDefaultConstraints,
   'scrollview': kDocsMediumConstraints,
