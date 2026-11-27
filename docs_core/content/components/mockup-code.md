@@ -393,7 +393,7 @@ CoUI 기본 팔레트의 라이트와 다크에서, 기본 배경(`surfaceContai
 | 글 선택 | `Text` 는 `SelectionArea` 안에서 선택됩니다. Flutter Web 의 `CoUIApp` 은 기본값(`enableWebTextSelection`)으로 선택 영역을 둡니다. | 브라우저의 글 선택을 그대로 씁니다. 접두도 선택할 수 있는 글입니다. |
 | 폭 | 폭이 정해진 부모가 필요합니다. | 블록 폭(`w-full`)으로 부모를 채웁니다. |
 | 크기 배율 | 여백, 모서리, 줄 간격, 접두 칸에 테마의 크기 배율을 곱합니다. | 여백, 줄 간격, 접두 칸을 `rem` 으로 그려 브라우저의 글자 크기를 따릅니다. |
-| 앱 테마의 `outlinedContainer` 에 둔 `padding` · `width` | 적용되지 않습니다. MockupCode 의 값이 우선합니다. | 틀에 적용됩니다. `padding` 은 MockupCode 의 안쪽 여백에 더해집니다. |
+| 앱 테마의 `outlinedContainer` 에 둔 `padding` · `width` | 적용되지 않습니다. MockupCode 의 값이 우선합니다. | `padding` 은 적용되지 않고 MockupCode 의 안쪽 여백만 남습니다. `width` 는 틀에 적용됩니다. |
 | 이벤트 · 의미 더하기 | `GestureDetector` · `Semantics` 같은 감싸는 위젯으로 더합니다. | 루트 요소의 `attributes` · `eventHandlers` 로 더합니다. |
 | 웹 전용 속성 | 해당 없음. `key` 를 받습니다. | `tag` · `id` · `classes` · `css` · `attributes` · `eventHandlers` |
 
