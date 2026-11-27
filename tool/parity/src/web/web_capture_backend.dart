@@ -28,6 +28,7 @@ import '../model/matrix_entry.dart';
 import '../model/network_image_fixture.dart';
 import '../model/property_field.dart';
 import 'box_padding_observation_probe.dart';
+import 'breakpoint_showcase_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'data_overlay_ssr_source.dart';
@@ -240,6 +241,7 @@ Future<String> renderCaptureBodyHtml(
   final sourceRecorder = onCurrentBoxSource == null
       ? null
       : ShowcaseAllocationSsrSource.forEntry(entry) ??
+            BreakpointShowcaseSsrSource.forEntry(entry) ??
             TextShowcaseSsrSource.forEntry(entry) ??
             FramedCollectionSsrSource.forEntry(entry) ??
             NavigationTriggerSsrSource.forEntry(entry) ??
@@ -447,6 +449,7 @@ Future<WebCaptureResult> captureWebEntry({
   );
   final requiredCurrentSsrKind = additiveBoxObservations
       ? requiredShowcaseAllocationSsrKind(entry) ??
+            requiredBreakpointShowcaseSsrKind(entry) ??
             requiredTextShowcaseSsrKind(entry) ??
             requiredFramedCollectionSsrKind(entry)
       : null;

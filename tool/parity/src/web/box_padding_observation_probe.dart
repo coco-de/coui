@@ -31,6 +31,7 @@ import 'box_padding_surface_component_units_probe.dart';
 import 'box_padding_text_field_units_probe.dart';
 import 'box_padding_validation_viewport_units_probe.dart';
 import 'box_padding_visual_value_units_probe.dart';
+import 'breakpoint_showcase_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'showcase_allocation_ssr_source.dart';
@@ -56,6 +57,7 @@ String get boxPaddingObservationScript =>
       BoxObservationSourceSpec.docsPlayground.toJson(),
       BoxObservationSourceSpec.textShowcaseOuterPadding.toJson(),
       BoxObservationSourceSpec.showcaseAllocationHost.toJson(),
+      BoxObservationSourceSpec.breakpointShowcaseContentInset.toJson(),
       ...BoxObservationSourceSpec.componentFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.extendedComponentFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.displayComponentFrames.map((source) => source.toJson()),
@@ -98,6 +100,7 @@ String get boxPaddingObservationScript =>
   let currentClientWitness = null;
   let currentClientEvidence = null;
   let validateCurrentBoxBinding = null;
+  let currentBoxBindingFailure = 'TEXT_SHOWCASE_BINDING_CHANGED_DURING_CSS_READ';
   const currentSsrRaw = (kind, registryRoot = layoutRoot) => {
     const receipt = request.currentSsrSource;
     if (!receipt || receipt.error || receipt.kind !== kind) return {error:'MISSING_ACTUAL_SSR_BOX_SOURCE'};
@@ -116,6 +119,22 @@ String get boxPaddingObservationScript =>
           binding.frameSource !== layoutRoot || binding.registryIsLayoutRoot !== true ||
           typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
         return JSON.stringify(incomplete('SHOWCASE_ALLOCATION_FIELD_UNIT_CHANGED'));
+      currentBoxBindingFailure = 'SHOWCASE_ALLOCATION_BINDING_CHANGED_DURING_CSS_READ';
+      owner = layoutRoot;
+      sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true;
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      break;
+    }
+    case 'classic-breakpoint-showcase-content-inset-v1': {
+      const binding = ($breakpointShowcaseRequestBindingScript)(request);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (!binding.applied || binding.registryResultElement !== layoutRoot ||
+          binding.fieldUnitElement !== layoutRoot || binding.paddingSource !== layoutRoot ||
+          binding.frameSource !== layoutRoot || binding.registryIsLayoutRoot !== true ||
+          typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('BREAKPOINT_SHOWCASE_FIELD_UNIT_CHANGED'));
+      currentBoxBindingFailure = 'BREAKPOINT_SHOWCASE_BINDING_CHANGED_DURING_CSS_READ';
       owner = layoutRoot;
       sourceBindingAuthority = binding.authority;
       registryIsLayoutRoot = true;
@@ -491,9 +510,7 @@ String get boxPaddingObservationScript =>
   if (value.some(number => !Number.isFinite(number))) return JSON.stringify(incomplete('UNRESOLVED_CSS_PADDING'));
   const ownerTag = owner.tagName, ownerClasses = Array.from(owner.classList);
   if (validateCurrentBoxBinding && !validateCurrentBoxBinding())
-    return JSON.stringify(incomplete(source.webAdapterId === 'classic-compound-showcase-allocation-host-v1'
-      ? 'SHOWCASE_ALLOCATION_BINDING_CHANGED_DURING_CSS_READ'
-      : 'TEXT_SHOWCASE_BINDING_CHANGED_DURING_CSS_READ'));
+    return JSON.stringify(incomplete(currentBoxBindingFailure));
   return JSON.stringify({status:'source-complete', sourceUnitValidated:true, source, value, rawCss:raw,
     ownerIsLayoutRoot:owner === layoutRoot, ownerTag,
     ownerClasses, paintRequired:false,

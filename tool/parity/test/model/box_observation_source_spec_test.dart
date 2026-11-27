@@ -9,6 +9,66 @@ import '../../src/model/probe_spec.dart';
 
 void main() {
   _showcaseAllocationTests();
+  const breakpointSource =
+      BoxObservationSourceSpec.breakpointShowcaseContentInset;
+  test('only classic Breakpoint/default maps its separate content inset', () {
+    expect(breakpointSource.toJson(), const {
+      'schemaVersion': 1,
+      'logicalUnitId': 'classic-breakpoint-showcase-content-inset',
+      'quantityId': 'inside-frame-own-content-inset-v1',
+      'nativeAdapterId': 'classic-breakpoint-showcase-content-inset-v1',
+      'webAdapterId': 'classic-breakpoint-showcase-content-inset-v1',
+    });
+    expect(breakpointSource.validationError, isNull);
+    for (final theme in ['light', 'dark']) {
+      final key = 'breakpoint-default-$theme-defaultStyle';
+      final actual = captureProbes(
+        key: key,
+        component: 'breakpoint',
+        variant: 'default',
+        flutterClassName: 'Breakpoint',
+      );
+      expect(actual, hasLength(1));
+      expect(actual.single.boxObservationSource, breakpointSource);
+      expect(
+        actual.single.toJson()..remove('boxObservationSource'),
+        rootProbeSpec(key: key, flutterClassName: 'Breakpoint').toJson(),
+      );
+    }
+  });
+  test('Breakpoint source does not grant other recipes or forged adapters', () {
+    for (final pair in [
+      ('breakpoint', 'chain'),
+      ('breakpoint', 'docs-v2-unreviewed'),
+      ('text', 'default'),
+      ('button', 'default'),
+    ]) {
+      expect(
+        () => requireCaptureProbes(
+          component: pair.$1,
+          variant: pair.$2,
+          roles: const ['root'],
+          boxObservationSources: const [breakpointSource],
+        ),
+        throwsFormatException,
+      );
+    }
+    final wrong = BoxObservationSourceSpec.fromJson({
+      ...breakpointSource.toJson(),
+      'webAdapterId': 'foreign',
+    });
+    expect(wrong.validationError, isNotNull);
+    expect(
+      () => requireCaptureProbes(
+        component: 'breakpoint',
+        variant: 'default',
+        roles: const ['root'],
+        boxObservationSources: [wrong],
+      ),
+      throwsFormatException,
+    );
+  });
+
   // The pre-change literal wire tuple is preserved in the frozen RED input.
   // Use its identical registered constant after production registration.
   const textShowcase = BoxObservationSourceSpec.textShowcaseOuterPadding;

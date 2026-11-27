@@ -178,14 +178,23 @@ try{observed=JSON.parse((${combined
                 : sourceValidatedComputedStyleAndBoxScript(boxScript)
           : boxPaddingObservationScript})(request));}
 catch(e){error=String(e);}
-console.log(JSON.stringify({observed,error,cssReads}));
+console.log(JSON.stringify({observed,error,cssReads,
+ heldOriginalRootAttached:root.isConnected && capture.isConnected &&
+  root.parentElement===capture && capture.children[0]===root}));
 ''';
-  final result = await Process.run(
-    Platform.environment['PARITY_NODE'] ?? 'node',
-    ['-e', program],
-  );
-  expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
-  return (jsonDecode(result.stdout as String) as Map).cast<String, Object?>();
+  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  try {
+    final file = File('${directory.path}/probe.cjs');
+    await file.writeAsString(program);
+    final result = await Process.run(
+      Platform.environment['PARITY_NODE'] ?? 'node',
+      [file.path],
+    );
+    expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+    return (jsonDecode(result.stdout as String) as Map).cast<String, Object?>();
+  } finally {
+    await directory.delete(recursive: true);
+  }
 }
 
 void main() {
@@ -362,6 +371,107 @@ Object.defineProperty(css,'paddingLeft',{get(){root.setAttribute('changed','yes'
     expect(box['error'], 'TEXT_SHOWCASE_BINDING_CHANGED_DURING_CSS_READ');
     expect(box.containsKey('value'), false);
   });
+
+  // Each query mutation retains the original connected owner and capture.
+  // The sibling comes from the same actual SSR fixture; values never select it.
+  final selectorChanges = <String, String>{
+    'duplicate field': 'fieldMatches=[root,siblingRoot];',
+    'duplicate layout': 'layoutMatches=[root,siblingRoot];',
+    'retarget field': 'fieldMatches=[siblingRoot];',
+    'retarget layout': 'layoutMatches=[siblingRoot];',
+    'retarget both': 'fieldMatches=[siblingRoot];layoutMatches=[siblingRoot];',
+    'layout query exception': 'failLayoutQuery=true;',
+  };
+  for (final phase in ['legacy', 'box']) {
+    for (final change in selectorChanges.entries) {
+      test(
+        'held selectors ${change.key} during $phase reject results',
+        () async {
+          final setup =
+              '''
+const siblingCapture=capture.cloneNode(true);
+const siblingRoot=siblingCapture.children[0];
+const separateLayoutSelector=selector+' /* same current owner */';
+request.layoutSelector=separateLayoutSelector;
+let fieldMatches=[root],layoutMatches=[root],failLayoutQuery=false;
+document.querySelectorAll=sel=>{
+ if(sel===selector)return fieldMatches;
+ if(sel===separateLayoutSelector){
+  if(failLayoutQuery)throw new SyntaxError('test query exception');
+  return layoutMatches;
+ }
+ return [];
+};
+document.querySelector=sel=>document.querySelectorAll(sel)[0]||null;
+const moveSelection=()=>{${change.value}};
+''';
+          final result = await _sample(
+            await _actual('typography-display'),
+            combined: true,
+            mutation: phase == 'legacy'
+                ? '$setup'
+                      '''
+const originalStyle=getComputedStyle;
+let selectionMoved=false;
+global.getComputedStyle=node=>{
+ const css=originalStyle(node);
+ if(!selectionMoved){selectionMoved=true;moveSelection();}
+ return css;
+};
+'''
+                : setup,
+            boxScript: phase == 'box'
+                ? '''
+(request)=>{const result=($boxPaddingObservationScript)(request);
+moveSelection();return result;}
+'''
+                : null,
+          );
+          expect(result['heldOriginalRootAttached'], isTrue);
+          expect(result['cssReads'], greaterThan(phase == 'legacy' ? 0 : 1));
+          expect(result['observed'], isNull);
+          expect(
+            result['error'],
+            contains(
+              phase == 'legacy'
+                  ? 'TEXT_SHOWCASE_BINDING_CHANGED_DURING_LEGACY_READ'
+                  : 'TEXT_SHOWCASE_BINDING_CHANGED_DURING_BOX_READ',
+            ),
+          );
+        },
+      );
+    }
+  }
+
+  test(
+    'held selectors duplicate query during standalone CSS rejects value',
+    () async {
+      final result = await _sample(
+        await _actual('typography-display'),
+        mutation: '''
+const siblingCapture=capture.cloneNode(true);
+const siblingRoot=siblingCapture.children[0];
+const originalStyle=getComputedStyle;
+global.getComputedStyle=node=>{
+ const css=originalStyle(node);
+ Object.defineProperty(css,'paddingLeft',{get(){
+  document.querySelectorAll=sel=>sel===selector?[root,siblingRoot]:[];
+  return '11px';
+ }});
+ return css;
+};
+''',
+      );
+      expect(result['heldOriginalRootAttached'], isTrue);
+      final box = result['observed']! as Map;
+      expect(box['status'], 'incomplete');
+      expect(
+        box['error'],
+        'TEXT_SHOWCASE_BINDING_CHANGED_DURING_CSS_READ',
+      );
+      expect(box.containsKey('value'), isFalse);
+    },
+  );
 
   test('post-box change cannot return either combined result', () async {
     final result = await _sample(

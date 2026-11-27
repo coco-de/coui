@@ -950,6 +950,16 @@ class BoxObservationSourceSpec {
     webAdapterId: 'classic-compound-showcase-allocation-host-v1',
   );
 
+  /// Exact classic Breakpoint showcase Container/DIV content allocation.
+  /// The viewport readout remains an opaque child, not a source authority.
+  static const breakpointShowcaseContentInset = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'classic-breakpoint-showcase-content-inset',
+    quantityId: quantity,
+    nativeAdapterId: 'classic-breakpoint-showcase-content-inset-v1',
+    webAdapterId: 'classic-breakpoint-showcase-content-inset-v1',
+  );
+
   String? get validationError {
     if (schemaVersion != 1) return 'UNSUPPORTED_BOX_SOURCE_VERSION';
     if (quantityId != quantity) return 'UNSUPPORTED_BOX_QUANTITY';
@@ -985,6 +995,7 @@ class BoxObservationSourceSpec {
       ...framedCollectionFrames,
       textShowcaseOuterPadding,
       showcaseAllocationHost,
+      breakpointShowcaseContentInset,
     ]) {
       if (logicalUnitId == supported.logicalUnitId &&
           nativeAdapterId == supported.nativeAdapterId &&
