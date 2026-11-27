@@ -1,3 +1,5 @@
+import 'package:coui_flutter/coui_flutter.dart' show SwipeActionScope;
+import 'package:docs_core/previews/examples/flutter/app_bar/app_bar_foldable_example.dart';
 import 'package:docs_core/previews/examples/flutter/bottom_action_bar/bottom_action_bar_scaffold_example.dart';
 import 'package:docs_core/previews/examples/flutter/card_image/card_image_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/chat/chat_default_example.dart';
@@ -20,6 +22,7 @@ import 'package:docs_core/previews/examples/flutter/scrollable_client/scrollable
 import 'package:docs_core/previews/examples/flutter/scrollview/scrollview_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/skeleton/skeleton_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/step_item/step_item_default_example.dart';
+import 'package:docs_core/previews/examples/flutter/swipe_actions/swipe_actions_scope_example.dart';
 import 'package:docs_core/previews/examples/flutter/table/table_scrollable_example.dart';
 import 'package:docs_core/previews/examples/flutter/window/window_default_example.dart';
 import 'package:flutter/rendering.dart'
@@ -40,6 +43,8 @@ import '../../../../tool/parity/src/model/box_observation_source_spec.dart';
 import 'box_padding_observation.dart';
 
 const _kExamples = <Type, ({Type host, int seats})>{
+  AppBarFoldableExample: (host: SizedBox, seats: 1),
+  SwipeActionsScopeExample: (host: Column, seats: 3),
   CardImageDefaultExample: (host: SizedBox, seats: 1),
   HiddenDefaultExample: (host: Column, seats: 3),
   WindowDefaultExample: (host: Column, seats: 3),
@@ -68,6 +73,8 @@ const _kExamples = <Type, ({Type host, int seats})>{
 
 typedef _Route = ({
   Element result,
+  Element? publicScope,
+  Widget? scopeDeclaration,
   Element host,
   Widget declaration,
   RenderObject render,
@@ -100,8 +107,9 @@ class ShowcaseAllocationBoxSourceBinding {
   List<Element> get allOriginalMountedSeats => _route.seats;
   String get readerId => 'showcase-allocation-current-framework-host-v1';
   String get authority =>
-      'Exact current classic showcase returns its own public '
-      'Row/Column/SizedBox allocation; every original child occurrence is a '
+      'Exact current classic registry mount binds its original public '
+      'Row/Column/SizedBox allocation, directly or through its exact public '
+      'SwipeActionScope.child; every original child occurrence is a '
       'complete '
       'opaque boundary with distinct mounted Element and renderer in order; '
       'this actual framework host has no padding operation; contained '
@@ -113,6 +121,8 @@ class ShowcaseAllocationBoxSourceBinding {
     }
     final now = _locate(_capture, _registry, _source);
     if (!identical(now.result, _route.result) ||
+        !identical(now.publicScope, _route.publicScope) ||
+        !identical(now.scopeDeclaration, _route.scopeDeclaration) ||
         !identical(now.host, _route.host) ||
         !identical(now.declaration, _route.declaration) ||
         !identical(now.render, _route.render) ||
@@ -210,9 +220,33 @@ _Route _locate(
   if (!result.mounted || !identical(result.widget, registry)) {
     throw _changed('original current registry result');
   }
-  final host = _only(result);
+  final returned = _only(result);
+  final Element host;
+  final Element allocationParent;
+  final Element? publicScope;
+  final Widget? scopeDeclaration;
+  if (registry.runtimeType == SwipeActionsScopeExample) {
+    requireConcreteBoxSourceType(returned.widget, SwipeActionScope);
+    if (!returned.mounted || !identical(_parent(returned), result)) {
+      throw _changed('original direct current public SwipeActionScope');
+    }
+    final scope = returned.widget as SwipeActionScope;
+    host = _only(returned);
+    if (!identical(scope.child, host.widget)) {
+      throw _changed('original exact public SwipeActionScope.child');
+    }
+    allocationParent = returned;
+    publicScope = returned;
+    scopeDeclaration = scope;
+  } else {
+    host = returned;
+    allocationParent = result;
+    publicScope = null;
+    scopeDeclaration = null;
+  }
   requireConcreteBoxSourceType(host.widget, shape.host);
-  if (host is! RenderObjectElement || !identical(_parent(host), result)) {
+  if (host is! RenderObjectElement ||
+      !identical(_parent(host), allocationParent)) {
     throw _changed('direct current framework render-object host');
   }
   final input = host.widget;
@@ -281,6 +315,8 @@ _Route _locate(
   }
   return (
     result: result,
+    publicScope: publicScope,
+    scopeDeclaration: scopeDeclaration,
     host: host,
     declaration: input,
     render: render,

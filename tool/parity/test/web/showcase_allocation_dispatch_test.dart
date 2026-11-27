@@ -27,6 +27,9 @@ const _kNullEntryMutation =
     'capture.removeAttribute("data-parity-key");';
 
 const _kRecipes = <(String, String)>[
+  ('app-bar', 'glass'),
+  ('app-bar', 'foldable'),
+  ('swipe-actions', 'scope'),
   ('progress', 'tone'),
   ('chat', 'default'),
   ('chat', 'plain'),

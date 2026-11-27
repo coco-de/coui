@@ -37,6 +37,9 @@ const _kWire = <String, Object?>{
   'webAdapterId': 'classic-compound-showcase-allocation-host-v1',
 };
 const _kRecipes = <(String, String), ({Type host, int count})>{
+  ('app-bar', 'glass'): (host: SizedBox, count: 1),
+  ('app-bar', 'foldable'): (host: SizedBox, count: 1),
+  ('swipe-actions', 'scope'): (host: Column, count: 3),
   ('card-image', 'default'): (host: SizedBox, count: 1),
   ('hidden', 'default'): (host: Column, count: 3),
   ('window', 'default'): (host: Column, count: 3),
@@ -79,6 +82,7 @@ void _environment() {
 typedef _Mount = ({
   Widget result,
   GlobalKey capture,
+  Element? publicScope,
   Element host,
   List<Widget?> raw,
   List<Element> seats,
@@ -150,10 +154,25 @@ Future<void> _mounted(
       final captureElement = capture.currentContext! as Element;
       final example = _children(captureElement).single;
       expect(example.widget, same(result));
-      final host = _children(example).single;
+      final returned = _children(example).single;
+      final Element host;
+      final Element? publicScope;
+      if (recipe == ('swipe-actions', 'scope')) {
+        expect(returned.widget.runtimeType, coui.SwipeActionScope);
+        expect(_parent(returned), same(example));
+        publicScope = returned;
+        host = _children(returned).single;
+        expect(
+          (returned.widget as coui.SwipeActionScope).child,
+          same(host.widget),
+        );
+      } else {
+        publicScope = null;
+        host = returned;
+      }
       final shape = _kRecipes[recipe]!;
       expect(host.widget.runtimeType, shape.host);
-      expect(_parent(host), same(example));
+      expect(_parent(host), same(publicScope ?? example));
       final raw = host.widget is SizedBox
           ? <Widget?>[(host.widget as SizedBox).child]
           : List<Widget?>.of((host.widget as Column).children);
@@ -189,6 +208,7 @@ Future<void> _mounted(
       await run((
         result: result,
         capture: capture,
+        publicScope: publicScope,
         host: host,
         raw: raw,
         seats: seats,
@@ -277,6 +297,70 @@ void main() {
       });
     }
   }
+  for (final mode in ['fresh scope same child', 'extra scope wrapper']) {
+    testWidgets('$mode cannot reuse a held public scope binding', (
+      tester,
+    ) async {
+      await _mounted(tester, ('swipe-actions', 'scope'), false, (
+        mounted,
+      ) async {
+        final binding = _bind(mounted);
+        final scope = mounted.publicScope!;
+        final original = scope.widget as coui.SwipeActionScope;
+        final replacement = coui.SwipeActionScope(
+          child: mode == 'fresh scope same child'
+              ? original.child
+              : coui.SwipeActionScope(child: original.child),
+        );
+        expect(replacement, isNot(same(original)));
+        try {
+          scope.owner!.buildScope(scope, () => scope.update(replacement));
+          await tester.pump();
+          if (mode == 'fresh scope same child') {
+            expect(_children(scope).single, same(mounted.host));
+          } else {
+            expect(
+              _children(scope).single.widget.runtimeType,
+              coui.SwipeActionScope,
+            );
+            expect(() => _bind(mounted), throwsA(isA<BoxObservationError>()));
+          }
+          expect(
+            binding.readDeclaredAbsence,
+            throwsA(isA<BoxObservationError>()),
+          );
+        } finally {
+          scope.owner!.buildScope(scope, () => scope.update(original));
+          await tester.pump();
+        }
+        expect(_bind(mounted).fieldUnitElement.widget, same(original.child));
+      });
+    });
+  }
+  testWidgets('public scope route preserves every original Column occurrence', (
+    tester,
+  ) async {
+    await _mounted(tester, ('swipe-actions', 'scope'), false, (mounted) async {
+      final binding = _bind(mounted);
+      final raw = (mounted.host.widget as Column).children;
+      final original = List<Widget>.of(raw);
+      try {
+        final first = raw[0];
+        raw[0] = raw[2];
+        raw[2] = first;
+        expect(
+          binding.readDeclaredAbsence,
+          throwsA(isA<BoxObservationError>()),
+        );
+        expect(() => _bind(mounted), throwsA(isA<BoxObservationError>()));
+      } finally {
+        raw
+          ..clear()
+          ..addAll(original);
+      }
+      binding.validateExistingCurrentBinding();
+    });
+  });
   for (final mutation in ['drop', 'reorder', 'extra repeated occurrence']) {
     testWidgets('$mutation cannot erase a Hidden raw seat', (tester) async {
       await _mounted(tester, ('hidden', 'default'), false, (mounted) async {

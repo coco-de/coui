@@ -181,7 +181,9 @@ BoxObservationSourceSpec? _componentBoxSource(
   ('mockup-foldable', 'angle' || 'default') ||
   ('scaffold', 'default') ||
   ('bottom-action-bar', 'scaffold') ||
-  ('scrollview', 'default') => BoxObservationSourceSpec.showcaseAllocationHost,
+  ('scrollview', 'default') ||
+  ('app-bar', 'glass' || 'foldable') ||
+  ('swipe-actions', 'scope') => BoxObservationSourceSpec.showcaseAllocationHost,
   ('chat', 'default' || 'plain' || 'tail-corner' || 'tail-top') =>
     BoxObservationSourceSpec.showcaseAllocationHost,
   ('chip', 'selected' || 'variant' || 'shape' || 'cast-motion' || 'prefix') =>

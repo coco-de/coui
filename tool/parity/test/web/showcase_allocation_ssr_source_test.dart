@@ -1,6 +1,8 @@
 import 'package:coui_web/coui_web.dart' as coui;
+import 'package:docs_core/previews/examples/web/app_bar/app_bar_foldable_example.dart';
 import 'package:docs_core/previews/examples/web/mockup_foldable/mockup_foldable_angle_example.dart';
 import 'package:docs_core/previews/examples/web/mockup_foldable/mockup_foldable_default_example.dart';
+import 'package:docs_core/previews/examples/web/swipe_actions/swipe_actions_scope_example.dart';
 import 'package:docs_core/previews/web_registry.dart';
 import 'package:jaspr/dom.dart' show div;
 import 'package:jaspr/server.dart' hide Document;
@@ -58,7 +60,12 @@ Future<void> _mounted(
       );
       final example = soleCurrentSsrChild(captureDom);
       // The registry returns its owned width DIV for this exact recipe.
-      final registryWidth = recipe == ('mockup-foldable', 'default');
+      final registryWidth = const {
+        ('mockup-foldable', 'default'),
+        ('app-bar', 'glass'),
+        ('app-bar', 'foldable'),
+        ('swipe-actions', 'scope'),
+      }.contains(recipe);
       final returned = registryWidth ? example : soleCurrentSsrChild(example);
       final declaration = returned.component as div;
       final owner = currentSsrGeneratedDiv(returned, declaration);
@@ -153,7 +160,58 @@ void main() {
     },
   );
 
+  for (final recipe in const [
+    ('app-bar', 'glass'),
+    ('app-bar', 'foldable'),
+    ('swipe-actions', 'scope'),
+  ]) {
+    test('$recipe binds the original outer registry allocation only', () async {
+      await _mounted((root, owner, declaration, source) {
+        final original = declaration.children.single;
+        final expectedType = recipe.$1 == 'app-bar'
+            ? AppBarFoldableExample
+            : SwipeActionsScopeExample;
+        expect(original.runtimeType, expectedType);
+        final first = source.observe(root);
+        expect(first['completeRawSlotCount'], 1);
+        final Component copy;
+        if (recipe.$1 == 'app-bar') {
+          const createCopy = AppBarFoldableExample.new;
+          copy = createCopy(controlRail: recipe.$2 == 'foldable');
+        } else {
+          const createCopy = SwipeActionsScopeExample.new;
+          copy = createCopy();
+        }
+        expect(copy.runtimeType, original.runtimeType);
+        expect(copy, isNot(same(original)));
+        for (final mode in [
+          'drop',
+          'extra',
+          'double wrapper',
+          'same type copy',
+        ]) {
+          try {
+            if (mode == 'drop') declaration.children.clear();
+            if (mode == 'extra') declaration.children.add(original);
+            if (mode == 'double wrapper') {
+              declaration.children[0] = div([original]);
+            }
+            if (mode == 'same type copy') declaration.children[0] = copy;
+            expect(() => source.observe(root), throwsStateError);
+          } finally {
+            declaration.children
+              ..clear()
+              ..add(original);
+          }
+          expect(source.observe(root)['completeRawSlotCount'], 1);
+        }
+      }, recipe: recipe);
+    });
+  }
   for (final entry in const <(String, String), int>{
+    ('app-bar', 'glass'): 1,
+    ('app-bar', 'foldable'): 1,
+    ('swipe-actions', 'scope'): 1,
     ('card-image', 'default'): 1,
     ('hidden', 'default'): 3,
     ('window', 'default'): 3,

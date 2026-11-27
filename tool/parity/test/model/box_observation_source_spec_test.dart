@@ -923,6 +923,8 @@ void main() {
         flutterClassName: 'sanity-only',
       ).firstWhere((probe) => probe.role == 'root');
       const allocations = {
+        ('app-bar', 'glass'),
+        ('app-bar', 'foldable'),
         ('chat', 'default'),
         ('chat', 'plain'),
         ('chat', 'tail-corner'),
@@ -1352,6 +1354,9 @@ void _additionalShowcaseAllocationTests() {
     ('scaffold', 'default'),
     ('bottom-action-bar', 'scaffold'),
     ('scrollview', 'default'),
+    ('app-bar', 'glass'),
+    ('app-bar', 'foldable'),
+    ('swipe-actions', 'scope'),
   ];
   for (final recipe in recipes) {
     for (final style in CoreSurfaceStyleId.values) {
@@ -1389,6 +1394,8 @@ void _additionalShowcaseAllocationTests() {
       ('scaffold', 'unreviewed'),
       ('bottom-action-bar', 'unreviewed'),
       ('scrollview', 'unreviewed'),
+      ('app-bar', 'unreviewed-allocation'),
+      ('swipe-actions', 'default'),
       ('card', 'default'),
       ('hidden', 'docs-v2-unreviewed'),
     ]) {
