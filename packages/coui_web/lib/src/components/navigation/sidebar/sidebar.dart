@@ -279,6 +279,10 @@ class Sidebar extends UiComponent implements CoreSidebarContract<Component> {
 
 /// Chain sugar mirroring the Flutter `Sidebar.withStyle` extension.
 extension SidebarStyleChain on Sidebar {
+  /// Sets the background paint and preserves the other style fields.
+  Sidebar backgroundColor(CoreColor value) =>
+      withStyle(CoreSidebarStyle(backgroundColor: value));
+
   /// Returns a copy with [patch] merged into [sidebarStyle] (patch fields
   /// win on conflict).
   Sidebar withStyle(CoreSidebarStyle patch) => copyWith(

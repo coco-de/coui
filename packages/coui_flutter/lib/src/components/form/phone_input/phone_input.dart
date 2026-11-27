@@ -160,6 +160,10 @@ class PhoneInput extends StatefulWidget
 /// PhoneInput().radius4.surface
 /// ```
 extension PhoneInputStyleChain on PhoneInput {
+  /// Sets the background paint and preserves the other style fields.
+  PhoneInput backgroundColor(CoreColor value) =>
+      withStyle(CorePhoneInputStyle(backgroundColor: value));
+
   /// Returns a copy of this [PhoneInput] with [patch] merged into
   /// [phoneInputStyle] (patch fields win on conflict).
   PhoneInput withStyle(CorePhoneInputStyle patch) => copyWith(

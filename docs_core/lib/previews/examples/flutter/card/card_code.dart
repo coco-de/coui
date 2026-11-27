@@ -12,7 +12,7 @@ class CardChainExample extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         Card(
           header: const Text('프로젝트 요약'),
           body: const Text('이번 주 진행 상황을 확인해 보세요.'),
@@ -21,7 +21,7 @@ class CardChainExample extends StatelessWidget {
             onPressed: () {},
             child: const Text('자세히 보기'),
           ),
-        ).radius16.primary,
+        ).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(borderWidth/padding)까지.
         Card(
@@ -37,10 +37,8 @@ class CardChainExample extends StatelessWidget {
             padding: CoreEdgeInsets.all(CoreSpace.space24),
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             borderWidth: CoreStrokeWidth.stroke2,
-            backgroundColor: CoreColor.token(
-              CoreColors.surfaceContainerHighest,
-            ),
-            borderColor: CoreColor.token(CoreColors.tertiary),
+            backgroundColor: .surfaceContainerHighest,
+            borderColor: .tertiary,
           ),
         ),
       ],

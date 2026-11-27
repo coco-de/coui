@@ -386,26 +386,13 @@ class Alert extends UiComponent implements CoreAlertContract<Component> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreAlertStyle.merge` right-side-wins semantics).
 ///
-/// The getters below are shorter sugar for the same [withStyle] call.
-/// Each one is a direct 1:1 alias for a `CoreRadius` / `CoreColors`
-/// primitive — the getter *name* is the token name, so `.radius4`
-/// always means `CoreRadius.radius4` and `.primary` always means
-/// `CoreColors.primary`, no matter which component it's called on.
-/// That fixed name-to-value mapping is what makes a short getter safe
-/// to reuse across components — a curated nickname (`.rounded`,
-/// `.compact`) would silently map to a different value per component,
-/// but a primitive-token getter cannot.
-///
-/// These are intentionally primitive (not semantic) for now: `.radius4`
-/// sets [CoreAlertStyle.borderRadius] and `.primary` sets
-/// [CoreAlertStyle.backgroundColor]. A semantic layer that names these
-/// after component-specific intent (decided together with design) is
-/// a follow-up once more components adopt this pattern.
-///
-/// ```dart
-/// Alert(description: 'Heads up!').radius4.surface
-/// ```
+/// `.info`, `.success`, `.warning` select component options.
+/// Use `backgroundColor(.primary)` to set the background explicitly.
 extension AlertStyleChain on Alert {
+  /// Sets the background paint and preserves the other style fields.
+  Alert backgroundColor(CoreColor value) =>
+      withStyle(CoreAlertStyle(backgroundColor: value));
+
   /// Returns a copy of this [Alert] with [patch] merged into
   /// [alertStyle] (patch fields win on conflict).
   Alert withStyle(CoreAlertStyle patch) =>
@@ -582,20 +569,14 @@ extension AlertStyleChain on Alert {
     const CoreAlertStyle(backgroundColor: CoreColor.token(CoreColors.error)),
   );
 
-  /// `backgroundColor: CoreColor.token(CoreColors.success)`.
-  Alert get success => withStyle(
-    const CoreAlertStyle(backgroundColor: CoreColor.token(CoreColors.success)),
-  );
+  /// Selects `variant: .success` using the component theme.
+  Alert get success => copyWith(variant: .success);
 
-  /// `backgroundColor: CoreColor.token(CoreColors.warning)`.
-  Alert get warning => withStyle(
-    const CoreAlertStyle(backgroundColor: CoreColor.token(CoreColors.warning)),
-  );
+  /// Selects `variant: .warning` using the component theme.
+  Alert get warning => copyWith(variant: .warning);
 
-  /// `backgroundColor: CoreColor.token(CoreColors.info)`.
-  Alert get info => withStyle(
-    const CoreAlertStyle(backgroundColor: CoreColor.token(CoreColors.info)),
-  );
+  /// Selects `variant: .info` using the component theme.
+  Alert get info => copyWith(variant: .info);
 
   /// `backgroundColor: CoreColor.token(CoreColors.outline)`.
   Alert get outline => withStyle(

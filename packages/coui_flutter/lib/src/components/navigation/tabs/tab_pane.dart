@@ -549,6 +549,10 @@ class _TabPaneState extends State<TabPane> {
 /// TabPane(tabs: tabs, selectedIndex: index).radius4.surface
 /// ```
 extension TabPaneStyleChain on TabPane {
+  /// Sets the background paint and preserves the other style fields.
+  TabPane backgroundColor(CoreColor value) =>
+      withStyle(CoreTabPaneStyle(backgroundColor: value));
+
   /// Returns a copy of this [TabPane] with [patch] merged into
   /// [tabPaneStyle] (patch fields win on conflict).
   TabPane withStyle(CoreTabPaneStyle patch) => copyWith(

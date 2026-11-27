@@ -567,6 +567,10 @@ class _AccordionStyleScope extends InheritedWidget {
 /// Accordion(items: [...]).radius4.surface
 /// ```
 extension AccordionStyleChain on Accordion {
+  /// Sets the background paint and preserves the other style fields.
+  Accordion backgroundColor(CoreColor value) =>
+      withStyle(CoreAccordionStyle(backgroundColor: value));
+
   /// Returns a copy of this [Accordion] with [patch] merged into
   /// [accordionStyle] (patch fields win on conflict).
   Accordion withStyle(CoreAccordionStyle patch) => copyWith(

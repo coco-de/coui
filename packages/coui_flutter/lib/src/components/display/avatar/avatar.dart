@@ -333,6 +333,10 @@ class Avatar extends StatelessWidget implements CoreAvatarContract<Widget> {
 /// Avatar(initials: 'JD').radius4.primary
 /// ```
 extension AvatarStyleChain on Avatar {
+  /// Sets the background paint and preserves the other style fields.
+  Avatar backgroundColor(CoreColor value) =>
+      withStyle(CoreAvatarStyle(backgroundColor: value));
+
   /// Returns a copy of this [Avatar] with [patch] merged into
   /// [avatarStyle] (patch fields win on conflict).
   Avatar withStyle(CoreAvatarStyle patch) => copyWith(
@@ -719,6 +723,10 @@ class AvatarBadge extends StatelessWidget
 /// AvatarBadge().success
 /// ```
 extension AvatarBadgeStyleChain on AvatarBadge {
+  /// Sets the background paint and preserves the other style fields.
+  AvatarBadge backgroundColor(CoreColor value) =>
+      withStyle(CoreAvatarBadgeStyle(backgroundColor: value));
+
   /// Returns a copy of this [AvatarBadge] with [patch] merged into
   /// [avatarBadgeStyle] (patch fields win on conflict).
   AvatarBadge withStyle(CoreAvatarBadgeStyle patch) => copyWith(

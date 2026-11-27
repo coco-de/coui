@@ -235,26 +235,13 @@ class Fieldset extends UiComponent implements CoreFieldsetContract<Component> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreFieldsetStyle.merge` right-side-wins semantics).
 ///
-/// The getters below are shorter sugar for the same [withStyle] call.
-/// Each one is a direct 1:1 alias for a `CoreRadius` / `CoreColors`
-/// primitive — the getter *name* is the token name, so `.radius4`
-/// always means `CoreRadius.radius4` and `.primary` always means
-/// `CoreColors.primary`, no matter which component it's called on.
-/// That fixed name-to-value mapping is what makes a short getter safe
-/// to reuse across components — a curated nickname (`.rounded`,
-/// `.compact`) would silently map to a different value per component,
-/// but a primitive-token getter cannot.
-///
-/// These are intentionally primitive (not semantic) for now: `.radius4`
-/// sets [CoreFieldsetStyle.borderRadius] and `.primary` sets
-/// [CoreFieldsetStyle.backgroundColor]. A semantic layer that names
-/// these after component-specific intent (decided together with
-/// design) is a follow-up once more components adopt this pattern.
-///
-/// ```dart
-/// Fieldset(legend: Text('Info')).radius4.surface
-/// ```
+/// `.outline` selects component options.
+/// Use `backgroundColor(.primary)` to set the background explicitly.
 extension FieldsetStyleChain on Fieldset {
+  /// Sets the background paint and preserves the other style fields.
+  Fieldset backgroundColor(CoreColor value) =>
+      withStyle(CoreFieldsetStyle(backgroundColor: value));
+
   /// Returns a copy of this [Fieldset] with [patch] merged into
   /// [fieldsetStyle] (patch fields win on conflict).
   Fieldset withStyle(CoreFieldsetStyle patch) => copyWith(
@@ -461,12 +448,8 @@ extension FieldsetStyleChain on Fieldset {
     ),
   );
 
-  /// `backgroundColor: CoreColor.token(CoreColors.outline)`.
-  Fieldset get outline => withStyle(
-    const CoreFieldsetStyle(
-      backgroundColor: CoreColor.token(CoreColors.outline),
-    ),
-  );
+  /// Selects `variant: .outlined` using the component theme.
+  Fieldset get outline => copyWith(variant: .outlined);
 
   /// `backgroundColor: CoreColor.transparent`.
   Fieldset get transparent => withStyle(

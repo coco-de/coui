@@ -1052,13 +1052,11 @@ void main() {
       );
     });
 
-    test('.primary getter sets backgroundColor via withStyle', () {
+    test('.primary selects the primary tone', () {
       const badge = Badge(child: Text('New'));
 
-      expect(
-        badge.primary.badgeStyle?.backgroundColor,
-        const CoreColor.token(CoreColors.primary),
-      );
+      expect(badge.primary.tone, CoreBadgeTone.primary);
+      expect(badge.primary.badgeStyle?.backgroundColor, isNull);
     });
 
     test('chained primitive getters compose like withStyle chains', () {
@@ -1070,10 +1068,8 @@ void main() {
         patched.badgeStyle?.borderRadius,
         const CoreBorderRadius.all(CoreRadius.radius4),
       );
-      expect(
-        patched.badgeStyle?.backgroundColor,
-        const CoreColor.token(CoreColors.primary),
-      );
+      expect(patched.tone, CoreBadgeTone.primary);
+      expect(patched.badgeStyle?.backgroundColor, isNull);
     });
 
     test('later chained getter wins on conflicting field', () {

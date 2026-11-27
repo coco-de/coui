@@ -48,7 +48,7 @@ class DescriptionCardChainExample extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         const DescriptionCard(
           title: '주문 상세',
           rows: [
@@ -60,7 +60,7 @@ class DescriptionCardChainExample extends StatelessWidget {
               isEmphasized: true,
             ),
           ],
-        ).radius16.primary,
+        ).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
         const DescriptionCard(
@@ -76,7 +76,7 @@ class DescriptionCardChainExample extends StatelessWidget {
           ],
         ).withStyle(
           const CoreDescriptionCardStyle(
-            backgroundColor: CoreColor.token(CoreColors.tertiary),
+            backgroundColor: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             rowSpacing: CoreSpace.space12,
             padding: CoreEdgeInsets.symmetric(
@@ -102,7 +102,7 @@ class DescriptionCardChainExample extends StatelessComponent {
   Component build(BuildContext context) {
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         const DescriptionCard(
           title: '주문 상세',
           rows: [
@@ -114,7 +114,7 @@ class DescriptionCardChainExample extends StatelessComponent {
               isEmphasized: true,
             ),
           ],
-        ).radius16.primary,
+        ).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
         const DescriptionCard(
@@ -130,7 +130,7 @@ class DescriptionCardChainExample extends StatelessComponent {
           ],
         ).withStyle(
           const CoreDescriptionCardStyle(
-            backgroundColor: CoreColor.token(CoreColors.tertiary),
+            backgroundColor: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             rowSpacing: CoreSpace.space12,
             padding: CoreEdgeInsets.symmetric(
@@ -194,6 +194,14 @@ class DescriptionCardChainExample extends StatelessComponent {
 | `labelTextStyle` | `CoreTextStyle?` | `null` | 행 단위 라벨 텍스트 슬롯 오버라이드 (`fontSize` / `fontWeight` / `letterSpacing` / `color` / `lineHeight` / `fontFamily`) |
 | `valueTextStyle` | `CoreTextStyle?` | `null` | 행 단위 값 텍스트 슬롯 오버라이드 |
 | `isEmphasized` | `bool` | `false` | 이 행에 카드의 강조 라벨/값 텍스트 스타일 적용 |
+
+## Variant
+
+`filled`는 면을 채우고, `outlined`는 테두리로 내용을 묶습니다. `ghost`는 배경과 테두리를 생략합니다.
+
+### 의미 체인
+
+`DescriptionCard`의 `.outline`은 `variant: .outlined`를 선택합니다. 테마가 윤곽선과 배경을 결정합니다.
 
 ## 스타일 시스템 (Style System)
 

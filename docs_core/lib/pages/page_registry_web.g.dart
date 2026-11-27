@@ -13,6 +13,9 @@ import 'badge/badge_web.dart' as badge;
 import 'banner/banner_web.dart' as banner;
 import 'breadcrumb/breadcrumb_web.dart' as breadcrumb;
 import 'button/button_web.dart' as button;
+import 'card_image/card_image_web.dart' as card_image;
+import 'carousel/carousel_web.dart' as carousel;
+import 'carousel_banner/carousel_banner_web.dart' as carousel_banner;
 import 'checkbox/checkbox_web.dart' as checkbox;
 import 'chip/chip_web.dart' as chip;
 import 'chip_group/chip_group_web.dart' as chip_group;
@@ -25,10 +28,12 @@ import 'date_picker/date_picker_web.dart' as date_picker;
 import 'dialog/dialog_web.dart' as dialog;
 import 'disclosure_badge/disclosure_badge_web.dart' as disclosure_badge;
 import 'divider/divider_web.dart' as divider;
+import 'dot_indicator/dot_indicator_web.dart' as dot_indicator;
 import 'drawer/drawer_web.dart' as drawer;
 import 'dropdown_menu/dropdown_menu_web.dart' as dropdown_menu;
 import 'empty_state/empty_state_web.dart' as empty_state;
 import 'fab/fab_web.dart' as fab;
+import 'fade_scroll/fade_scroll_web.dart' as fade_scroll;
 import 'fieldset/fieldset_web.dart' as fieldset;
 import 'file_input/file_input_web.dart' as file_input;
 import 'filter/filter_web.dart' as filter;
@@ -40,6 +45,7 @@ import 'formatter/formatter_web.dart' as formatter;
 import 'gap/gap_web.dart' as gap;
 import 'hover/hover_web.dart' as hover;
 import 'hover_card/hover_card_web.dart' as hover_card;
+import 'hover_gallery/hover_gallery_web.dart' as hover_gallery;
 import 'icon/icon_web.dart' as icon;
 import 'indexed_switcher/indexed_switcher_web.dart' as indexed_switcher;
 import 'indicator/indicator_web.dart' as indicator;
@@ -77,6 +83,7 @@ import 'radio_group/radio_group_web.dart' as radio_group;
 import 'range/range_web.dart' as range;
 import 'refresh_trigger/refresh_trigger_web.dart' as refresh_trigger;
 import 'rich_editor/rich_editor_web.dart' as rich_editor;
+import 'scroll_area/scroll_area_web.dart' as scroll_area;
 import 'scrollbar/scrollbar_web.dart' as scrollbar;
 import 'select/select_web.dart' as select;
 import 'selectable_text/selectable_text_web.dart' as selectable_text;
@@ -85,25 +92,33 @@ import 'skeleton/skeleton_web.dart' as skeleton;
 import 'slider/slider_web.dart' as slider;
 import 'sortable/sortable_web.dart' as sortable;
 import 'star_rating/star_rating_web.dart' as star_rating;
+import 'stat/stat_web.dart' as stat;
 import 'status/status_web.dart' as status;
+import 'swap/swap_web.dart' as swap;
 import 'swiper/swiper_web.dart' as swiper;
 import 'switch_field/switch_field_web.dart' as switch_field;
 import 'switcher/switcher_web.dart' as switcher;
 import 'tab_pane/tab_pane_web.dart' as tab_pane;
 import 'tabs/tabs_web.dart' as tabs;
 import 'tag/tag_web.dart' as tag;
+import 'text/text_web.dart' as text;
 import 'text_area/text_area_web.dart' as text_area;
 import 'text_block/text_block_web.dart' as text_block;
 import 'text_field/text_field_web.dart' as text_field;
 import 'theme_controller/theme_controller_web.dart' as theme_controller;
 import 'time_picker/time_picker_web.dart' as time_picker;
+import 'timeline/timeline_web.dart' as timeline;
 import 'toast/toast_web.dart' as toast;
 import 'toggle/toggle_web.dart' as toggle;
 import 'toggle_group/toggle_group_web.dart' as toggle_group;
 import 'toolbar_group/toolbar_group_web.dart' as toolbar_group;
 import 'tooltip/tooltip_web.dart' as tooltip;
+import 'tracker/tracker_web.dart' as tracker;
+import 'trend_chart/trend_chart_web.dart' as trend_chart;
 import 'validated/validated_web.dart' as validated;
+import 'validation_badge/validation_badge_web.dart' as validation_badge;
 import 'validator_hint/validator_hint_web.dart' as validator_hint;
+import 'window/window_web.dart' as window;
 
 /// 문서 슬러그 → 속성 빌더.
 final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
@@ -115,6 +130,9 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (banner.propPreview case final builder?) 'banner': builder,
   if (breadcrumb.propPreview case final builder?) 'breadcrumb': builder,
   if (button.propPreview case final builder?) 'button': builder,
+  if (card_image.propPreview case final builder?) 'card-image': builder,
+  if (carousel.propPreview case final builder?) 'carousel': builder,
+  if (carousel_banner.propPreview case final builder?) 'carousel-banner': builder,
   if (checkbox.propPreview case final builder?) 'checkbox': builder,
   if (chip.propPreview case final builder?) 'chip': builder,
   if (chip_group.propPreview case final builder?) 'chip-group': builder,
@@ -127,10 +145,12 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (dialog.propPreview case final builder?) 'dialog': builder,
   if (disclosure_badge.propPreview case final builder?) 'disclosure-badge': builder,
   if (divider.propPreview case final builder?) 'divider': builder,
+  if (dot_indicator.propPreview case final builder?) 'dot-indicator': builder,
   if (drawer.propPreview case final builder?) 'drawer': builder,
   if (dropdown_menu.propPreview case final builder?) 'dropdown-menu': builder,
   if (empty_state.propPreview case final builder?) 'empty-state': builder,
   if (fab.propPreview case final builder?) 'fab': builder,
+  if (fade_scroll.propPreview case final builder?) 'fade-scroll': builder,
   if (fieldset.propPreview case final builder?) 'fieldset': builder,
   if (file_input.propPreview case final builder?) 'file-input': builder,
   if (filter.propPreview case final builder?) 'filter': builder,
@@ -142,6 +162,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (gap.propPreview case final builder?) 'gap': builder,
   if (hover.propPreview case final builder?) 'hover': builder,
   if (hover_card.propPreview case final builder?) 'hover-card': builder,
+  if (hover_gallery.propPreview case final builder?) 'hover-gallery': builder,
   if (icon.propPreview case final builder?) 'icon': builder,
   if (indexed_switcher.propPreview case final builder?) 'indexed-switcher': builder,
   if (indicator.propPreview case final builder?) 'indicator': builder,
@@ -179,6 +200,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (range.propPreview case final builder?) 'range': builder,
   if (refresh_trigger.propPreview case final builder?) 'refresh-trigger': builder,
   if (rich_editor.propPreview case final builder?) 'rich-editor': builder,
+  if (scroll_area.propPreview case final builder?) 'scroll-area': builder,
   if (scrollbar.propPreview case final builder?) 'scrollbar': builder,
   if (select.propPreview case final builder?) 'select': builder,
   if (selectable_text.propPreview case final builder?) 'selectable-text': builder,
@@ -187,25 +209,33 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (slider.propPreview case final builder?) 'slider': builder,
   if (sortable.propPreview case final builder?) 'sortable': builder,
   if (star_rating.propPreview case final builder?) 'star-rating': builder,
+  if (stat.propPreview case final builder?) 'stat': builder,
   if (status.propPreview case final builder?) 'status': builder,
+  if (swap.propPreview case final builder?) 'swap': builder,
   if (swiper.propPreview case final builder?) 'swiper': builder,
   if (switch_field.propPreview case final builder?) 'switch-field': builder,
   if (switcher.propPreview case final builder?) 'switcher': builder,
   if (tab_pane.propPreview case final builder?) 'tab-pane': builder,
   if (tabs.propPreview case final builder?) 'tabs': builder,
   if (tag.propPreview case final builder?) 'tag': builder,
+  if (text.propPreview case final builder?) 'text': builder,
   if (text_area.propPreview case final builder?) 'text-area': builder,
   if (text_block.propPreview case final builder?) 'text-block': builder,
   if (text_field.propPreview case final builder?) 'text-field': builder,
   if (theme_controller.propPreview case final builder?) 'theme-controller': builder,
   if (time_picker.propPreview case final builder?) 'time-picker': builder,
+  if (timeline.propPreview case final builder?) 'timeline': builder,
   if (toast.propPreview case final builder?) 'toast': builder,
   if (toggle.propPreview case final builder?) 'toggle': builder,
   if (toggle_group.propPreview case final builder?) 'toggle-group': builder,
   if (toolbar_group.propPreview case final builder?) 'toolbar-group': builder,
   if (tooltip.propPreview case final builder?) 'tooltip': builder,
+  if (tracker.propPreview case final builder?) 'tracker': builder,
+  if (trend_chart.propPreview case final builder?) 'trend-chart': builder,
   if (validated.propPreview case final builder?) 'validated': builder,
+  if (validation_badge.propPreview case final builder?) 'validation-badge': builder,
   if (validator_hint.propPreview case final builder?) 'validator-hint': builder,
+  if (window.propPreview case final builder?) 'window': builder,
 };
 
 /// 장면 이름 → 장면.
@@ -218,6 +248,9 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...banner.demos,
   ...breadcrumb.demos,
   ...button.demos,
+  ...card_image.demos,
+  ...carousel.demos,
+  ...carousel_banner.demos,
   ...checkbox.demos,
   ...chip.demos,
   ...chip_group.demos,
@@ -230,10 +263,12 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...dialog.demos,
   ...disclosure_badge.demos,
   ...divider.demos,
+  ...dot_indicator.demos,
   ...drawer.demos,
   ...dropdown_menu.demos,
   ...empty_state.demos,
   ...fab.demos,
+  ...fade_scroll.demos,
   ...fieldset.demos,
   ...file_input.demos,
   ...filter.demos,
@@ -245,6 +280,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...gap.demos,
   ...hover.demos,
   ...hover_card.demos,
+  ...hover_gallery.demos,
   ...icon.demos,
   ...indexed_switcher.demos,
   ...indicator.demos,
@@ -282,6 +318,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...range.demos,
   ...refresh_trigger.demos,
   ...rich_editor.demos,
+  ...scroll_area.demos,
   ...scrollbar.demos,
   ...select.demos,
   ...selectable_text.demos,
@@ -290,23 +327,31 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...slider.demos,
   ...sortable.demos,
   ...star_rating.demos,
+  ...stat.demos,
   ...status.demos,
+  ...swap.demos,
   ...swiper.demos,
   ...switch_field.demos,
   ...switcher.demos,
   ...tab_pane.demos,
   ...tabs.demos,
   ...tag.demos,
+  ...text.demos,
   ...text_area.demos,
   ...text_block.demos,
   ...text_field.demos,
   ...theme_controller.demos,
   ...time_picker.demos,
+  ...timeline.demos,
   ...toast.demos,
   ...toggle.demos,
   ...toggle_group.demos,
   ...toolbar_group.demos,
   ...tooltip.demos,
+  ...tracker.demos,
+  ...trend_chart.demos,
   ...validated.demos,
+  ...validation_badge.demos,
   ...validator_hint.demos,
+  ...window.demos,
 };

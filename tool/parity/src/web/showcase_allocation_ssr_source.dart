@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:docs_core/previews/examples/web/app_bar/app_bar_foldable_example.dart';
 import 'package:docs_core/previews/examples/web/bottom_action_bar/bottom_action_bar_scaffold_example.dart';
 import 'package:docs_core/previews/examples/web/card_image/card_image_default_example.dart';
 import 'package:docs_core/previews/examples/web/chat/chat_default_example.dart';
@@ -22,6 +23,7 @@ import 'package:docs_core/previews/examples/web/scrollable_client/scrollable_cli
 import 'package:docs_core/previews/examples/web/scrollview/scrollview_default_example.dart';
 import 'package:docs_core/previews/examples/web/skeleton/skeleton_default_example.dart';
 import 'package:docs_core/previews/examples/web/step_item/step_item_default_example.dart';
+import 'package:docs_core/previews/examples/web/swipe_actions/swipe_actions_scope_example.dart';
 import 'package:docs_core/previews/examples/web/table/table_scrollable_example.dart';
 import 'package:docs_core/previews/examples/web/window/window_default_example.dart';
 import 'package:html/dom.dart' as dom;
@@ -35,6 +37,9 @@ import 'ssr_source_identity.dart';
 
 /// The exact classic compound allocation, never a contained product frame.
 const _kExampleTypes = <(String, String), Type>{
+  ('app-bar', 'glass'): AppBarFoldableExample,
+  ('app-bar', 'foldable'): AppBarFoldableExample,
+  ('swipe-actions', 'scope'): SwipeActionsScopeExample,
   ('card-image', 'default'): CardImageDefaultExample,
   ('hidden', 'default'): HiddenDefaultExample,
   ('window', 'default'): WindowDefaultExample,
@@ -61,6 +66,9 @@ const _kExampleTypes = <(String, String), Type>{
   ('step-item', 'default'): StepItemDefaultExample,
 };
 const _kSlotCounts = <(String, String), int>{
+  ('app-bar', 'glass'): 1,
+  ('app-bar', 'foldable'): 1,
+  ('swipe-actions', 'scope'): 1,
   ('card-image', 'default'): 1,
   ('hidden', 'default'): 3,
   ('window', 'default'): 3,
@@ -133,7 +141,12 @@ class ShowcaseAllocationSsrSource implements CurrentSsrBoxSource {
   Component? _registryWidthOriginalChild;
 
   bool get _isRegistryWidthAllocation =>
-      entry.component == 'mockup-foldable' && entry.variant == 'default';
+      switch ((entry.component, entry.variant)) {
+        ('mockup-foldable', 'default') ||
+        ('app-bar', 'glass' || 'foldable') ||
+        ('swipe-actions', 'scope') => true,
+        _ => false,
+      };
 
   @override
   void recordBuild(Component result, div capture) {
@@ -234,7 +247,7 @@ class ShowcaseAllocationSsrSource implements CurrentSsrBoxSource {
     if (!identical(example.parent, captureDom)) {
       throw StateError('SHOWCASE_ALLOCATION_REGISTRY_EDGE_CHANGED');
     }
-    // The exact closed default recipe has a public registry width DIV.
+    // These exact closed recipes have a public registry width DIV.
     // Its ONE original Example child is opaque; never unwrap to its DIV.
     // All other recipes retain the original Example -> direct typed DIV route.
     final Element returned;

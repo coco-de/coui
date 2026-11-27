@@ -41,7 +41,9 @@ design: true
 `onX` 는 짝인 `X` 위에서만 대비가 보장됩니다. 역할 색 글자는 `onXContainer` 나 `primaryText`, 링크는 `link` 를 씁니다. `onSurfaceSubtle` 은 라이트 모드의 회색 컨테이너 위에서 4.5:1 에 못 미쳐, 그 위에서는 `onSurfaceVariant` 를 씁니다. 컨테이너 톤(`surfaceContainerLowest` … `Highest`)은 라이트에서 단계가 오를수록 어두워지고 다크에서는 밝아집니다.
 
 <Code language="dart" title="Flutter · Web">
-CoreColor.token(CoreColors.onSurface) // 컴포넌트 스타일
+const CoreCardStyle(backgroundColor: .primary) // const 스타일
+Card(body: const Text('요약')).backgroundColor(.primary) // 카드 배경
+Button(child: const Text('저장')).primary // 버튼 variant
 theme.colorScheme.onSurface.toValue() // Flutter
 'rgb(var(--coui-on-surface))' // Web
 </Code>

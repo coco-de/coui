@@ -57,6 +57,7 @@ import 'dart:io';
 
 import 'package:docs_core/previews/code_registry.dart';
 import 'package:docs_core/previews/flutter_code_registry.dart';
+import 'package:docs_core/shared/chain_permutations.dart';
 import 'package:docs_core/shared/preview_variants.dart';
 
 // ── Output locations ─────────────────────────────────────────────────────
@@ -85,6 +86,9 @@ class TargetSurface {
   /// ([_colorAxisField]) — reported, never silently classified into an
   /// axis.
   final List<String> otherGetters = [];
+
+  /// Getters that select a component option via copyWith.
+  final List<String> optionGetters = [];
 }
 
 class ComponentSurface {
@@ -271,6 +275,10 @@ List<TargetSurface> parseChainExtensions(String source) {
         surface.radiusGetters.add(name);
       } else if (_colorAxisField.hasMatch(expr)) {
         surface.colorGetters.add(name);
+      } else if (RegExp(
+        r'^\s*copyWith\(\s*(?:variant|tone|chipColor):',
+      ).hasMatch(expr)) {
+        surface.optionGetters.add(name);
       } else {
         final field = _patchedField.firstMatch(expr)?.group(1) ?? '?';
         surface.otherGetters.add('$name→$field');
@@ -429,8 +437,14 @@ String _renderTargetSurface(TargetSurface surface, String indent) {
     ..writeln(
       '$indent  colorGetters: '
       '${_dartStringList(surface.colorGetters, '$indent  ')},',
-    )
-    ..write('$indent)');
+    );
+  if (surface.optionGetters.isNotEmpty) {
+    buffer.writeln(
+      '$indent  optionGetters: '
+      '${_dartStringList(surface.optionGetters, '$indent  ')},',
+    );
+  }
+  buffer.write('$indent)');
   return buffer.toString();
 }
 
@@ -486,6 +500,7 @@ String renderAxisTableDart(
     ..writeln('    required this.hasWithStyle,')
     ..writeln('    required this.radiusGetters,')
     ..writeln('    required this.colorGetters,')
+    ..writeln('    this.optionGetters = const [],')
     ..writeln('  });')
     ..writeln()
     ..writeln('  /// extension target 클래스명.')
@@ -502,6 +517,9 @@ String renderAxisTableDart(
     )
     ..writeln('  /// patch 하는 getter 이름 (사전순).')
     ..writeln('  final List<String> colorGetters;')
+    ..writeln()
+    ..writeln('  /// Getters selecting a constructor option through copyWith.')
+    ..writeln('  final List<String> optionGetters;')
     ..writeln('}')
     ..writeln()
     ..writeln('/// 한 컴포넌트의 실측 행.')
@@ -856,19 +874,27 @@ String renderChainPermutationsDart({
   final accessor = isStateful
       ? (isFlutter ? 'widget.permutation' : 'component.permutation')
       : 'permutation';
-  if (!body.contains(_kRendererAnchor)) {
+  final paintAnchor = explicitPaletteAnchor.firstMatch(body)?[0];
+  final anchor = paintAnchor ?? _kRendererAnchor;
+  if (!body.contains(anchor)) {
     throw StateError(
       '$slug/$platform: combo anchor `$_kRendererAnchor` not found — the '
       'authoring gate should have caught this',
     );
   }
-  body = body.replaceFirst(_kRendererAnchor, '.chainPermuted($accessor)');
+  body = body.replaceFirst(anchor, '.chainPermuted($accessor)');
 
   final radiusCases = [
     for (final name in _kRadiusGetterNames) "      '$name' => $name,",
   ].join('\n');
+  String paint(String color) {
+    if (paintAnchor == null) return 'radiused.$color';
+    final patch = explicitPaletteChain(paintAnchor, 'radius16', color);
+    return 'radiused${patch.substring('.radius16'.length).trimLeft()}';
+  }
+
   final colorCases = [
-    for (final name in _kColorGetterNames) "      '$name' => radiused.$name,",
+    for (final name in _kColorGetterNames) "      '$name' => ${paint(name)},",
   ].join('\n');
 
   return '''
@@ -902,7 +928,7 @@ $radiusCases
     };
     return switch (kChainColorGetters[permutation.colorIndex]) {
 $colorCases
-      _ => radiused.primary,
+      _ => ${paint('primary')},
     };
   }
 }

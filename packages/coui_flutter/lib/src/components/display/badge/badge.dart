@@ -362,26 +362,13 @@ class _BadgeState extends State<Badge> {
 /// )
 /// ```
 ///
-/// The getters below are shorter sugar for the same [withStyle] call.
-/// Each one is a direct 1:1 alias for a `CoreRadius` / `CoreColors`
-/// primitive — the getter *name* is the token name, so `.radius4`
-/// always means `CoreRadius.radius4` and `.primary` always means
-/// `CoreColors.primary`, no matter which component it's called on.
-/// That fixed name-to-value mapping is what makes a short getter safe
-/// to reuse across components — a curated nickname (`.rounded`,
-/// `.compact`) would silently map to a different value per component,
-/// but a primitive-token getter cannot.
-///
-/// These are intentionally primitive (not semantic) for now: `.radius4`
-/// sets [CoreBadgeStyle.borderRadius] and `.primary` sets
-/// [CoreBadgeStyle.backgroundColor]. A semantic layer that names these
-/// after component-specific intent (decided together with design) is
-/// a follow-up once more components adopt this pattern.
-///
-/// ```dart
-/// Badge(child: Text('New')).radius4.primary
-/// ```
+/// `.primary`, `.info`, `.success`, `.warning`, `.outline` select component options.
+/// Use `backgroundColor(.primary)` to set the background explicitly.
 extension BadgeStyleChain on Badge {
+  /// Sets the background paint and preserves the other style fields.
+  Badge backgroundColor(CoreColor value) =>
+      withStyle(CoreBadgeStyle(backgroundColor: value));
+
   /// Returns a copy of this [Badge] with [patch] merged into
   /// [badgeStyle] (patch fields win on conflict).
   Badge withStyle(CoreBadgeStyle patch) =>
@@ -522,10 +509,8 @@ extension BadgeStyleChain on Badge {
 
   // ─── backgroundColor (CoreColors base palette) ───────────────────
 
-  /// `backgroundColor: CoreColor.token(CoreColors.primary)`.
-  Badge get primary => withStyle(
-    const CoreBadgeStyle(backgroundColor: CoreColor.token(CoreColors.primary)),
-  );
+  /// Selects `tone: .primary` using the component theme.
+  Badge get primary => copyWith(tone: .primary);
 
   /// `backgroundColor: CoreColor.token(CoreColors.secondary)`.
   Badge get secondary => withStyle(
@@ -556,25 +541,17 @@ extension BadgeStyleChain on Badge {
     const CoreBadgeStyle(backgroundColor: CoreColor.token(CoreColors.error)),
   );
 
-  /// `backgroundColor: CoreColor.token(CoreColors.success)`.
-  Badge get success => withStyle(
-    const CoreBadgeStyle(backgroundColor: CoreColor.token(CoreColors.success)),
-  );
+  /// Selects `tone: .success` using the component theme.
+  Badge get success => copyWith(tone: .success);
 
-  /// `backgroundColor: CoreColor.token(CoreColors.warning)`.
-  Badge get warning => withStyle(
-    const CoreBadgeStyle(backgroundColor: CoreColor.token(CoreColors.warning)),
-  );
+  /// Selects `tone: .warning` using the component theme.
+  Badge get warning => copyWith(tone: .warning);
 
-  /// `backgroundColor: CoreColor.token(CoreColors.info)`.
-  Badge get info => withStyle(
-    const CoreBadgeStyle(backgroundColor: CoreColor.token(CoreColors.info)),
-  );
+  /// Selects `tone: .info` using the component theme.
+  Badge get info => copyWith(tone: .info);
 
-  /// `backgroundColor: CoreColor.token(CoreColors.outline)`.
-  Badge get outline => withStyle(
-    const CoreBadgeStyle(backgroundColor: CoreColor.token(CoreColors.outline)),
-  );
+  /// Selects `variant: .outlined` using the component theme.
+  Badge get outline => copyWith(variant: .outlined);
 
   /// `backgroundColor: CoreColor.transparent`.
   Badge get transparent =>

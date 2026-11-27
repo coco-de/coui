@@ -34,7 +34,7 @@ void main() {
           );
           // 색은 실측표가 사전순, 어휘는 시맨틱 순 — 집합 동일성이 계약.
           expect(
-            primary.colorGetters.toSet(),
+            {...primary.colorGetters, ...primary.optionGetters.where(kChainColorGetters.contains)},
             kChainColorGetters.toSet(),
             reason: '${entry.component} ${primary.target}: 색 어휘 불일치',
           );
@@ -57,15 +57,15 @@ void main() {
       );
     });
 
-    test('좌표 라벨은 실재 getter 이름 그대로 (.radius16.primary)', () {
+    test('좌표 라벨은 반경과 색 토큰을 함께 표시한다', () {
       // jaspr 칩·네이티브 칩·SR 통보가 공유하는 단일 표기 — 사본이 아니라
       // 이 헬퍼 하나에서 파생돼야 두 UI 의 표기가 갈라질 수 없다.
-      expect(chainPermutationLabel(kChainBasePermutation), '.radius16.primary');
+      expect(chainPermutationLabel(kChainBasePermutation), 'radius16 · primary');
       expect(
         chainPermutationLabel(
           const ChainPermutation(radiusIndex: 0, colorIndex: 10),
         ),
-        '.${kChainRadiusGetters[0]}.${kChainColorGetters[10]}',
+        '${kChainRadiusGetters[0]} · ${kChainColorGetters[10]}',
       );
     });
   });
@@ -123,6 +123,20 @@ Button(
       radiusIndex: kChainRadiusGetters.indexOf(radius),
       colorIndex: kChainColorGetters.indexOf(color),
     );
+
+    test('explicit paint patches the named slot and preserves constructor colors', () {
+      const card = 'Card(cardStyle: const CoreCardStyle(borderColor: .primary)).radius16.backgroundColor(.primary)';
+      expect(
+        substituteChainTokens(card, at('radius8', 'info')),
+        'Card(cardStyle: const CoreCardStyle(borderColor: .primary)).radius8.backgroundColor(.info)',
+      );
+      const progress = 'Progress().radius16.fillColor(.primary)';
+      expect(substituteChainTokens(progress, at('radius4', 'info')), 'Progress().radius4.fillColor(.info)');
+      expect(
+        substituteChainTokens(progress, at('radius4', 'transparent')),
+        'Progress().radius4.backgroundColor(.transparent)',
+      );
+    });
 
     test('base 좌표 치환은 문자열 항등이다', () {
       expect(substituteChainTokens(base, kChainBasePermutation), base);

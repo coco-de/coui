@@ -124,6 +124,10 @@ class Tag extends UiComponent implements CoreTagContract<Component> {
 /// [CoreTagStyle] patch into [Tag.tagStyle] without hand-reconstructing
 /// every field. The label keeps using the `Text(...)` chain directly.
 extension TagStyleChain on Tag {
+  /// Sets the background paint and preserves the other style fields.
+  Tag backgroundColor(CoreColor value) =>
+      withStyle(CoreTagStyle(backgroundColor: value));
+
   /// Returns a copy of this [Tag] with [patch] merged into [tagStyle]
   /// (patch fields win on conflict).
   Tag withStyle(CoreTagStyle patch) =>

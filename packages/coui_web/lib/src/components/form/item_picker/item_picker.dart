@@ -196,6 +196,10 @@ class ItemPicker extends UiStatefulComponent
 /// ItemPicker(items: const ['Apple']).radius4.surface
 /// ```
 extension ItemPickerStyleChain on ItemPicker {
+  /// Sets the background paint and preserves the other style fields.
+  ItemPicker backgroundColor(CoreColor value) =>
+      withStyle(CoreItemPickerStyle(backgroundColor: value));
+
   /// Returns a copy of this [ItemPicker] with [patch] merged into
   /// [itemPickerStyle] (patch fields win on conflict).
   ItemPicker withStyle(CoreItemPickerStyle patch) => copyWith(

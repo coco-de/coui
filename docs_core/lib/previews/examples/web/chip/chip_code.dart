@@ -18,12 +18,12 @@ class _ChipChainExampleState extends State<ChipChainExample> {
   Component build(BuildContext context) {
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         Chip(
           label: '디자인',
           selected: _comboSelected,
           onTap: () => setState(() => _comboSelected = !_comboSelected),
-        ).radius16.primary,
+        ).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
         Chip(
@@ -32,8 +32,8 @@ class _ChipChainExampleState extends State<ChipChainExample> {
           onTap: () => setState(() => _fullSelected = !_fullSelected),
         ).withStyle(
           const CoreChipStyle(
-            backgroundColor: CoreColor.token(CoreColors.tertiaryContainer),
-            foregroundColor: CoreColor.token(CoreColors.onTertiaryContainer),
+            backgroundColor: .tertiaryContainer,
+            foregroundColor: .onTertiaryContainer,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             padding: CoreEdgeInsets.symmetric(
               horizontal: CoreSpace.space12,

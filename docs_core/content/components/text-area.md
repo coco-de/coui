@@ -86,6 +86,10 @@ error 는 보통 직접 고르지 않습니다. 활성 영역에 `errorText` 를
 
 </Note>
 
+### 의미 체인
+
+`TextArea().error`는 `variant: .error`의 시각 스타일을 선택합니다. 검증에 실패하면 `errorText` 또는 폼 검증을 통해 실제 오류와 메시지를 전달합니다.
+
 <a id="크기-토큰"></a>
 
 ## 크기
@@ -317,13 +321,13 @@ class _TextAreaChainExampleState extends State<TextAreaChainExample> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
-        TextArea(placeholder: '내용을 입력해 주세요', rows: 4).radius16.primary,
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
+        TextArea(placeholder: '내용을 입력해 주세요', rows: 4).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(borderWidth)까지 한 번에.
         TextArea(placeholder: '내용을 입력해 주세요', rows: 4).withStyle(
           const CoreTextAreaStyle(
-            borderColor: CoreColor.token(CoreColors.tertiary),
+            borderColor: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             borderWidth: CoreStrokeWidth.stroke2,
           ),
@@ -350,13 +354,13 @@ class _TextAreaChainExampleState extends State<TextAreaChainExample> {
   Component build(BuildContext context) {
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
-        TextArea(placeholder: '내용을 입력해 주세요', rows: 4).radius16.primary,
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
+        TextArea(placeholder: '내용을 입력해 주세요', rows: 4).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(borderWidth)까지 한 번에.
         TextArea(placeholder: '내용을 입력해 주세요', rows: 4).withStyle(
           const CoreTextAreaStyle(
-            borderColor: CoreColor.token(CoreColors.tertiary),
+            borderColor: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             borderWidth: CoreStrokeWidth.stroke2,
           ),

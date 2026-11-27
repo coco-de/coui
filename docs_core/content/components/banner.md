@@ -117,6 +117,10 @@ neutral을 뺀 네 종류에는 이름 있는 생성자 `Banner.info` · `Banner
 
 </Note>
 
+### 의미 체인
+
+배너의 `.info`, `.success`, `.warning`은 같은 이름의 `variant`를 선택합니다. 예를 들어 `Banner(message: const Text('저장 완료')).success`는 성공 배너의 테마를 따릅니다.
+
 <a id="두-축-variant-와-emphasis"></a>
 
 ## 강조
@@ -455,7 +459,7 @@ ThemeData.fromCore(
 
 <Note>
 
-색 getter는 배경만 바꿉니다. 글자와 아이콘 색은 그대로이고, `.info` · `.success` · `.warning` getter도 `variant`를 바꾸지 않습니다. 아래 예제의 첫 배너처럼 `weak` 배너에 `.primary`를 붙이면 `info`의 글자색이 `primary` 배경에 놓입니다. CoUI 기본 색의 라이트 · 다크 모드 모두 대비가 낮아 읽기 어렵습니다. 둘째 배너의 `foregroundColor`는 글자만 바꾸고 아이콘과 닫기 ✕ 색은 바꾸지 않습니다. 종류와 세기는 `variant`와 `emphasis`로 고르세요.
+`.backgroundColor(...)`는 배경만 바꿉니다. 글자와 아이콘은 기존 variant의 색을 따릅니다. 아래 예제의 첫 배너처럼 `weak` 배너에 `.backgroundColor(.primary)`를 붙이면 `info`의 글자색이 `primary` 배경에 놓입니다. CoUI 기본 색의 라이트 · 다크 모드 모두 대비가 낮아 읽기 어렵습니다. 둘째 배너의 `foregroundColor`는 글자만 바꾸고 아이콘과 닫기 ✕ 색은 바꾸지 않습니다. 종류와 세기는 `variant`와 `emphasis`로 고르세요.
 
 </Note>
 
@@ -481,12 +485,12 @@ class _BannerChainExampleState extends State<BannerChainExample> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         if (_showCombo)
           Banner.info(
             message: const Text('일반 안내예요.'),
             onDismiss: () => setState(() => _showCombo = false),
-          ).radius16.primary
+          ).radius16.backgroundColor(.primary)
         else
           Button(
             variant: CoreButtonVariant.outline,
@@ -501,10 +505,8 @@ class _BannerChainExampleState extends State<BannerChainExample> {
             onDismiss: () => setState(() => _showFull = false),
           ).withStyle(
             const CoreBannerStyle(
-              backgroundColor: CoreColor.token(CoreColors.tertiaryContainer),
-              foregroundColor: CoreColor.token(
-                CoreColors.onTertiaryContainer,
-              ),
+              backgroundColor: .tertiaryContainer,
+              foregroundColor: .onTertiaryContainer,
               borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
               padding: CoreEdgeInsets.symmetric(
                 horizontal: CoreSpace.space24,
@@ -543,12 +545,12 @@ class _BannerChainExampleState extends State<BannerChainExample> {
   Component build(BuildContext context) {
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         if (_showCombo)
           Banner.info(
             message: const Text('일반 안내예요.'),
             onDismiss: () => setState(() => _showCombo = false),
-          ).radius16.primary
+          ).radius16.backgroundColor(.primary)
         else
           Button(
             variant: CoreButtonVariant.outline,
@@ -563,10 +565,8 @@ class _BannerChainExampleState extends State<BannerChainExample> {
             onDismiss: () => setState(() => _showFull = false),
           ).withStyle(
             const CoreBannerStyle(
-              backgroundColor: CoreColor.token(CoreColors.tertiaryContainer),
-              foregroundColor: CoreColor.token(
-                CoreColors.onTertiaryContainer,
-              ),
+              backgroundColor: .tertiaryContainer,
+              foregroundColor: .onTertiaryContainer,
               borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
               padding: CoreEdgeInsets.symmetric(
                 horizontal: CoreSpace.space24,

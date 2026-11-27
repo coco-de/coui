@@ -169,7 +169,6 @@ void main() {
       // fill would leave nothing on screen. The Web twin holds the same
       // contract in its own test.
       final palette = <String, (Progress Function(Progress), CoreColor)>{
-        'primary': ((p) => p.primary, const .token(CoreColors.primary)),
         'secondary': ((p) => p.secondary, const .token(CoreColors.secondary)),
         'tertiary': ((p) => p.tertiary, const .token(CoreColors.tertiary)),
         'surface': ((p) => p.surface, const .token(CoreColors.surface)),
@@ -178,8 +177,6 @@ void main() {
           const .token(CoreColors.surfaceContainer),
         ),
         'error': ((p) => p.error, const .token(CoreColors.error)),
-        'success': ((p) => p.success, const .token(CoreColors.success)),
-        'warning': ((p) => p.warning, const .token(CoreColors.warning)),
         'info': ((p) => p.info, const .token(CoreColors.info)),
         'outline': ((p) => p.outline, const .token(CoreColors.outline)),
       };

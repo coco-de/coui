@@ -79,6 +79,10 @@ error는 직접 고르지 않습니다. errorText를 지정하면 켜지고, 비
 
 </Note>
 
+### 의미 체인
+
+`TextField().error`는 `variant: .error`의 시각 스타일을 선택합니다. 검증에 실패하면 `errorText` 또는 폼 검증을 통해 실제 오류와 메시지를 전달합니다.
+
 ## 크기
 
 Button과 같은 높이 사다리를 써서 한 줄에 함께 놓을 수 있습니다.
