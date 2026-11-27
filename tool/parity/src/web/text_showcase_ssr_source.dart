@@ -500,9 +500,18 @@ String get textShowcaseRequestBindingScript =>
   const bound=($textShowcaseBoxSourceResolverScript)(roots[0],source,request.currentSsrSource);
   if(bound.error) return bound;
   const receipt=request.currentSsrSource,selector=request.selector,layoutSelector=request.layoutSelector;
-  const validateCurrentBinding=()=>request.source===source && request.currentSsrSource===receipt &&
-    request.requested===true && request.requiredCurrentSsrKind==='canonical-ssr-text-showcase-v1' &&
-    request.selector===selector && request.layoutSelector===layoutSelector && bound.validateCurrentBinding();
+  const originalField=fields[0],originalRoot=roots[0];
+  const validateCurrentBinding=()=>{
+    try {
+      const currentFields=Array.from(document.querySelectorAll(selector));
+      const currentRoots=Array.from(document.querySelectorAll(layoutSelector));
+      return currentFields.length===1 && currentRoots.length===1 &&
+        currentFields[0]===originalField && currentRoots[0]===originalRoot &&
+        request.source===source && request.currentSsrSource===receipt &&
+        request.requested===true && request.requiredCurrentSsrKind==='canonical-ssr-text-showcase-v1' &&
+        request.selector===selector && request.layoutSelector===layoutSelector && bound.validateCurrentBinding();
+    } catch(error) {return false;}
+  };
   if(!validateCurrentBinding()) return {error:'TEXT_SHOWCASE_REQUEST_BINDING_CHANGED'};
   return {...bound,applied:true,validateCurrentBinding};
 }

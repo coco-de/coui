@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'packages/**'
+      - 'tool/parity/**'
       - '**/pubspec.yaml'
       - 'pubspec.lock'
       - '.github/workflows/public-ci.yml'
@@ -12,6 +13,7 @@ on:
     branches: [main]
     paths:
       - 'packages/**'
+      - 'tool/parity/**'
       - '**/pubspec.yaml'
       - 'pubspec.lock'
       - '.github/workflows/public-ci.yml'
@@ -67,6 +69,22 @@ jobs:
           test/hover_card_engine_decoupling_test.dart
           test/tooltip_engine_decoupling_test.dart
           test/components/modal_live_motion_test.dart
+          test/parity/box_padding_breakpoint_showcase_units_test.dart
+          test/parity/box_padding_text_showcase_units_test.dart
+          test/parity/box_padding_observation_test.dart
+          test/parity/box_padding_paired_test.dart
+
+      - name: Test parity source contracts
+        run: >-
+          dart test --concurrency=1
+          tool/parity/test/model/box_observation_source_spec_test.dart
+          tool/parity/test/manifest/parity_manifest_test.dart
+          tool/parity/test/web/breakpoint_showcase_ssr_source_test.dart
+          tool/parity/test/web/breakpoint_showcase_dispatch_test.dart
+          tool/parity/test/web/text_showcase_ssr_source_test.dart
+          tool/parity/test/web/text_showcase_dispatch_test.dart
+          tool/parity/test/web/device_paint_source_probe_test.dart
+          tool/parity/test/web/computed_style_probe_test.dart
 
       - name: Test the Jaspr button
         working-directory: packages/coui_web

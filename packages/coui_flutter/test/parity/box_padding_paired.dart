@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart'
     show AnimatedContainer, Container, Element, KeyedSubtree, Widget;
 
 import '../../../../tool/parity/src/model/box_observation_source_spec.dart';
+import 'box_padding_breakpoint_showcase_units.dart';
 import 'box_padding_chat_bubble_units.dart';
 import 'box_padding_collection_layout_host_units.dart';
 import 'box_padding_component_units.dart';
@@ -106,6 +107,62 @@ Map<String, Object?> _observe(
     final BoxPaddingObservation observation;
     var sourceBindingProvenance = <String, Object?>{};
     switch (source.nativeAdapterId) {
+      case 'classic-breakpoint-showcase-content-inset-v1':
+        final declared = probe.boxObservationSource!;
+        final expected = kBreakpointShowcaseContentInsetSource.toJson();
+        if (declared.length != expected.length ||
+            expected.entries.any(
+              (entry) => declared[entry.key] != entry.value,
+            )) {
+          throw const BoxObservationError(
+            'BREAKPOINT_SHOWCASE_SOURCE_CHANGED',
+            'The complete declared Breakpoint showcase tuple must match '
+                'exactly.',
+          );
+        }
+        final binding = bindBreakpointShowcaseBoxSource(
+          captureRoot: captureRoot,
+          registryResult: registryResult,
+          source: source,
+        );
+        if (binding == null ||
+            !identical(binding.registryResultElement, resultElement) ||
+            !identical(binding.scope.producer, resultElement) ||
+            binding.authority.isEmpty ||
+            binding.readerId !=
+                'breakpoint-showcase-actual-container-padding-v1') {
+          throw const BoxObservationError(
+            'MISMATCHED_BREAKPOINT_SHOWCASE_SOURCE',
+            'The current closed showcase must own its declared allocation.',
+          );
+        }
+        binding.scope
+          ..requireOwned(binding.fieldUnitElement)
+          ..requireOwned(binding.paddingSource)
+          ..requireOwned(binding.frameSource);
+        observation = binding.readActualPadding();
+        binding.scope.requireOwned(observation.owner);
+        if (!identical(observation.producer, resultElement) ||
+            !identical(observation.owner, binding.paddingSource) ||
+            !identical(
+              observation.paddingElement,
+              binding.actualPaddingElement,
+            ) ||
+            !identical(observation.frameOwner, binding.frameSource)) {
+          throw const BoxObservationError(
+            'MISMATCHED_BREAKPOINT_SHOWCASE_OBSERVATION',
+            'Keep the actual producer, padding source and frame identities.',
+          );
+        }
+        sourceBindingProvenance = {
+          'sourceBindingAuthority': binding.authority,
+          'fieldUnitElement': identityHashCode(binding.fieldUnitElement),
+          'declaredPaddingSourceElement': identityHashCode(
+            binding.paddingSource,
+          ),
+          'declaredFrameSourceElement': identityHashCode(binding.frameSource),
+          'sourceReaderId': binding.readerId,
+        };
       case 'classic-text-showcase-outer-padding-v1':
         final declared = probe.boxObservationSource!;
         final expected = kTextShowcaseOuterPaddingSource.toJson();

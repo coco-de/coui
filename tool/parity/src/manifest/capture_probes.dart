@@ -60,6 +60,10 @@ void requireCaptureProbes({
                 BoxObservationSourceSpec
                     .textShowcaseOuterPadding
                     .logicalUnitId ||
+            source?.logicalUnitId ==
+                BoxObservationSourceSpec
+                    .breakpointShowcaseContentInset
+                    .logicalUnitId ||
             BoxObservationSourceSpec.documentationBubbleFrames.contains(
               source,
             )) &&
@@ -141,6 +145,8 @@ BoxObservationSourceSpec? _componentBoxSource(
   String component,
   String variant,
 ) => switch ((component, variant)) {
+  ('breakpoint', 'default') =>
+    BoxObservationSourceSpec.breakpointShowcaseContentInset,
   (
     'text',
     'typography-display' ||

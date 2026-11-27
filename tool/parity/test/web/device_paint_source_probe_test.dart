@@ -83,12 +83,19 @@ const request={selector:'[data-parity-key] > * > *',layoutSelector:'[data-parity
       'const legacyProbe=($computedStyleProbeScript);\n'
       'const observe=($computedStyleAndBoxObservationScript);\n'
       '$action\nconsole.log(JSON.stringify({passed:true,cssReads}));';
-  final result = await Process.run('node', ['-e', script]);
-  expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
-  expect(
-    (jsonDecode((result.stdout as String).trim()) as Map)['passed'],
-    isTrue,
-  );
+  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  try {
+    final file = File('${directory.path}/probe.cjs');
+    await file.writeAsString(script);
+    final result = await Process.run('node', [file.path]);
+    expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+    expect(
+      (jsonDecode((result.stdout as String).trim()) as Map)['passed'],
+      isTrue,
+    );
+  } finally {
+    await directory.delete(recursive: true);
+  }
 }
 
 void main() {

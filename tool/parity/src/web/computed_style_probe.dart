@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:puppeteer/puppeteer.dart';
 
+import 'breakpoint_showcase_ssr_source.dart';
 import 'device_paint_source_probe.dart';
 import 'text_showcase_ssr_source.dart';
 
@@ -15,6 +16,9 @@ String get computedStyleProbeScript =>
 String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
     '''
 (request) => {
+  const breakpoint = ($breakpointShowcaseRequestBindingScript)(request);
+  if (breakpoint.error) throw new Error(breakpoint.error);
+  if (breakpoint.applied && !breakpoint.validateCurrentBinding()) throw new Error('BREAKPOINT_SHOWCASE_CURRENT_BINDING_CHANGED');
   const text = ($textShowcaseRequestBindingScript)(request);
   if (text.error) throw new Error(text.error);
   if (text.applied && !text.validateCurrentBinding()) throw new Error('TEXT_SHOWCASE_CURRENT_BINDING_CHANGED');
@@ -22,9 +26,11 @@ String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
   if (paint.error) throw new Error(paint.error);
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
   const legacy = JSON.parse(($_kComputedStyleJs)(request.selector,paint.applied ? paint.sourcePaintElement : null));
+  if (breakpoint.applied && !breakpoint.validateCurrentBinding()) throw new Error('BREAKPOINT_SHOWCASE_BINDING_CHANGED_DURING_LEGACY_READ');
   if (text.applied && !text.validateCurrentBinding()) throw new Error('TEXT_SHOWCASE_BINDING_CHANGED_DURING_LEGACY_READ');
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
   const box = JSON.parse(($boxSamplerScript)(request));
+  if (breakpoint.applied && !breakpoint.validateCurrentBinding()) throw new Error('BREAKPOINT_SHOWCASE_BINDING_CHANGED_DURING_BOX_READ');
   if (text.applied && !text.validateCurrentBinding()) throw new Error('TEXT_SHOWCASE_BINDING_CHANGED_DURING_BOX_READ');
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
   return JSON.stringify({legacy,box});
