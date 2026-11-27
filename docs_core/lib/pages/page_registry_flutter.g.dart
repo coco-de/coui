@@ -13,6 +13,7 @@ import 'badge/badge_flutter.dart' as badge;
 import 'banner/banner_flutter.dart' as banner;
 import 'breadcrumb/breadcrumb_flutter.dart' as breadcrumb;
 import 'button/button_flutter.dart' as button;
+import 'card_image/card_image_flutter.dart' as card_image;
 import 'checkbox/checkbox_flutter.dart' as checkbox;
 import 'chip/chip_flutter.dart' as chip;
 import 'chip_group/chip_group_flutter.dart' as chip_group;
@@ -77,6 +78,7 @@ import 'radio_group/radio_group_flutter.dart' as radio_group;
 import 'range/range_flutter.dart' as range;
 import 'refresh_trigger/refresh_trigger_flutter.dart' as refresh_trigger;
 import 'rich_editor/rich_editor_flutter.dart' as rich_editor;
+import 'scroll_area/scroll_area_flutter.dart' as scroll_area;
 import 'scrollbar/scrollbar_flutter.dart' as scrollbar;
 import 'select/select_flutter.dart' as select;
 import 'selectable_text/selectable_text_flutter.dart' as selectable_text;
@@ -85,25 +87,33 @@ import 'skeleton/skeleton_flutter.dart' as skeleton;
 import 'slider/slider_flutter.dart' as slider;
 import 'sortable/sortable_flutter.dart' as sortable;
 import 'star_rating/star_rating_flutter.dart' as star_rating;
+import 'stat/stat_flutter.dart' as stat;
 import 'status/status_flutter.dart' as status;
+import 'swap/swap_flutter.dart' as swap;
 import 'swiper/swiper_flutter.dart' as swiper;
 import 'switch_field/switch_field_flutter.dart' as switch_field;
 import 'switcher/switcher_flutter.dart' as switcher;
 import 'tab_pane/tab_pane_flutter.dart' as tab_pane;
 import 'tabs/tabs_flutter.dart' as tabs;
 import 'tag/tag_flutter.dart' as tag;
+import 'text/text_flutter.dart' as text;
 import 'text_area/text_area_flutter.dart' as text_area;
 import 'text_block/text_block_flutter.dart' as text_block;
 import 'text_field/text_field_flutter.dart' as text_field;
 import 'theme_controller/theme_controller_flutter.dart' as theme_controller;
 import 'time_picker/time_picker_flutter.dart' as time_picker;
+import 'timeline/timeline_flutter.dart' as timeline;
 import 'toast/toast_flutter.dart' as toast;
 import 'toggle/toggle_flutter.dart' as toggle;
 import 'toggle_group/toggle_group_flutter.dart' as toggle_group;
 import 'toolbar_group/toolbar_group_flutter.dart' as toolbar_group;
 import 'tooltip/tooltip_flutter.dart' as tooltip;
+import 'tracker/tracker_flutter.dart' as tracker;
+import 'trend_chart/trend_chart_flutter.dart' as trend_chart;
 import 'validated/validated_flutter.dart' as validated;
+import 'validation_badge/validation_badge_flutter.dart' as validation_badge;
 import 'validator_hint/validator_hint_flutter.dart' as validator_hint;
+import 'window/window_flutter.dart' as window;
 
 /// 문서 슬러그 → 속성 빌더.
 final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
@@ -115,6 +125,7 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (banner.propPreview case final builder?) 'banner': builder,
   if (breadcrumb.propPreview case final builder?) 'breadcrumb': builder,
   if (button.propPreview case final builder?) 'button': builder,
+  if (card_image.propPreview case final builder?) 'card-image': builder,
   if (checkbox.propPreview case final builder?) 'checkbox': builder,
   if (chip.propPreview case final builder?) 'chip': builder,
   if (chip_group.propPreview case final builder?) 'chip-group': builder,
@@ -179,6 +190,7 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (range.propPreview case final builder?) 'range': builder,
   if (refresh_trigger.propPreview case final builder?) 'refresh-trigger': builder,
   if (rich_editor.propPreview case final builder?) 'rich-editor': builder,
+  if (scroll_area.propPreview case final builder?) 'scroll-area': builder,
   if (scrollbar.propPreview case final builder?) 'scrollbar': builder,
   if (select.propPreview case final builder?) 'select': builder,
   if (selectable_text.propPreview case final builder?) 'selectable-text': builder,
@@ -187,25 +199,33 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (slider.propPreview case final builder?) 'slider': builder,
   if (sortable.propPreview case final builder?) 'sortable': builder,
   if (star_rating.propPreview case final builder?) 'star-rating': builder,
+  if (stat.propPreview case final builder?) 'stat': builder,
   if (status.propPreview case final builder?) 'status': builder,
+  if (swap.propPreview case final builder?) 'swap': builder,
   if (swiper.propPreview case final builder?) 'swiper': builder,
   if (switch_field.propPreview case final builder?) 'switch-field': builder,
   if (switcher.propPreview case final builder?) 'switcher': builder,
   if (tab_pane.propPreview case final builder?) 'tab-pane': builder,
   if (tabs.propPreview case final builder?) 'tabs': builder,
   if (tag.propPreview case final builder?) 'tag': builder,
+  if (text.propPreview case final builder?) 'text': builder,
   if (text_area.propPreview case final builder?) 'text-area': builder,
   if (text_block.propPreview case final builder?) 'text-block': builder,
   if (text_field.propPreview case final builder?) 'text-field': builder,
   if (theme_controller.propPreview case final builder?) 'theme-controller': builder,
   if (time_picker.propPreview case final builder?) 'time-picker': builder,
+  if (timeline.propPreview case final builder?) 'timeline': builder,
   if (toast.propPreview case final builder?) 'toast': builder,
   if (toggle.propPreview case final builder?) 'toggle': builder,
   if (toggle_group.propPreview case final builder?) 'toggle-group': builder,
   if (toolbar_group.propPreview case final builder?) 'toolbar-group': builder,
   if (tooltip.propPreview case final builder?) 'tooltip': builder,
+  if (tracker.propPreview case final builder?) 'tracker': builder,
+  if (trend_chart.propPreview case final builder?) 'trend-chart': builder,
   if (validated.propPreview case final builder?) 'validated': builder,
+  if (validation_badge.propPreview case final builder?) 'validation-badge': builder,
   if (validator_hint.propPreview case final builder?) 'validator-hint': builder,
+  if (window.propPreview case final builder?) 'window': builder,
 };
 
 /// 장면 이름 → 장면.
@@ -218,6 +238,7 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...banner.demos,
   ...breadcrumb.demos,
   ...button.demos,
+  ...card_image.demos,
   ...checkbox.demos,
   ...chip.demos,
   ...chip_group.demos,
@@ -282,6 +303,7 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...range.demos,
   ...refresh_trigger.demos,
   ...rich_editor.demos,
+  ...scroll_area.demos,
   ...scrollbar.demos,
   ...select.demos,
   ...selectable_text.demos,
@@ -290,23 +312,31 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...slider.demos,
   ...sortable.demos,
   ...star_rating.demos,
+  ...stat.demos,
   ...status.demos,
+  ...swap.demos,
   ...swiper.demos,
   ...switch_field.demos,
   ...switcher.demos,
   ...tab_pane.demos,
   ...tabs.demos,
   ...tag.demos,
+  ...text.demos,
   ...text_area.demos,
   ...text_block.demos,
   ...text_field.demos,
   ...theme_controller.demos,
   ...time_picker.demos,
+  ...timeline.demos,
   ...toast.demos,
   ...toggle.demos,
   ...toggle_group.demos,
   ...toolbar_group.demos,
   ...tooltip.demos,
+  ...tracker.demos,
+  ...trend_chart.demos,
   ...validated.demos,
+  ...validation_badge.demos,
   ...validator_hint.demos,
+  ...window.demos,
 };
