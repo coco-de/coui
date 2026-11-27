@@ -1329,7 +1329,7 @@ void _showcaseAllocationTests() {
 
 void _additionalShowcaseAllocationTests() {
   const source = BoxObservationSourceSpec.showcaseAllocationHost;
-  test('existing showcase tuple remains exact for six additional recipes', () {
+  test('existing showcase tuple remains exact for additional recipes', () {
     expect(source.toJson(), const {
       'schemaVersion': 1,
       'logicalUnitId': 'classic-compound-showcase-allocation-host',
@@ -1347,6 +1347,11 @@ void _additionalShowcaseAllocationTests() {
     ('draggable-panel', 'outside'),
     ('scrollable-client', 'default'),
     ('table', 'scrollable'),
+    ('mockup-foldable', 'angle'),
+    ('mockup-foldable', 'default'),
+    ('scaffold', 'default'),
+    ('bottom-action-bar', 'scaffold'),
+    ('scrollview', 'default'),
   ];
   for (final recipe in recipes) {
     for (final style in CoreSurfaceStyleId.values) {
@@ -1380,6 +1385,10 @@ void _additionalShowcaseAllocationTests() {
       ('draggable-panel', 'unreviewed'),
       ('scrollable-client', 'chain'),
       ('chat', 'unreviewed-allocation'),
+      ('mockup-foldable', 'unreviewed'),
+      ('scaffold', 'unreviewed'),
+      ('bottom-action-bar', 'unreviewed'),
+      ('scrollview', 'unreviewed'),
       ('card', 'default'),
       ('hidden', 'docs-v2-unreviewed'),
     ]) {

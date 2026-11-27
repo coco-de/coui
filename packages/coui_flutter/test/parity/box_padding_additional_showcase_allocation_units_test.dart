@@ -4,7 +4,17 @@ import 'dart:typed_data';
 import 'package:coui_flutter/coui_flutter.dart' as coui;
 import 'package:docs_core/previews/flutter_registry.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart'
+    show
+        Column,
+        Element,
+        GlobalKey,
+        KeyedSubtree,
+        MediaQuery,
+        MediaQueryData,
+        SingleChildScrollView,
+        SizedBox,
+        Widget;
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../tool/parity/src/model/box_observation_source_spec.dart';
@@ -16,6 +26,8 @@ import 'capture_localizations.dart';
 import 'parity_fonts.dart';
 import 'parity_matrix_entry.dart';
 import 'parity_network_image_stub.dart';
+
+const _kMountFrameWait = Duration(milliseconds: 100);
 
 const _kWire = <String, Object?>{
   'schemaVersion': 1,
@@ -32,6 +44,11 @@ const _kRecipes = <(String, String), ({Type host, int count})>{
   ('draggable-panel', 'outside'): (host: SizedBox, count: 1),
   ('scrollable-client', 'default'): (host: SizedBox, count: 1),
   ('table', 'scrollable'): (host: SizedBox, count: 1),
+  ('mockup-foldable', 'angle'): (host: SizedBox, count: 1),
+  ('mockup-foldable', 'default'): (host: Column, count: 2),
+  ('scaffold', 'default'): (host: SizedBox, count: 1),
+  ('bottom-action-bar', 'scaffold'): (host: SizedBox, count: 1),
+  ('scrollview', 'default'): (host: SizedBox, count: 1),
 };
 late Uint8List _stubImageBytes;
 
@@ -121,7 +138,7 @@ Future<void> _mounted(
         ),
       );
       await tester.pump();
-      await tester.pump(const Duration(milliseconds: 100));
+      await tester.pump(_kMountFrameWait);
       await settleImagesInTree(tester);
       // HTTP, locale/provider, overflow and async framework errors invalidate
       // the fixture BEFORE any missing-source expectation can count as RED.

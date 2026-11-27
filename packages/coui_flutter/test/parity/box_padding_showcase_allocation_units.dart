@@ -1,3 +1,4 @@
+import 'package:docs_core/previews/examples/flutter/bottom_action_bar/bottom_action_bar_scaffold_example.dart';
 import 'package:docs_core/previews/examples/flutter/card_image/card_image_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/chat/chat_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/chat/chat_plain_example.dart';
@@ -11,8 +12,12 @@ import 'package:docs_core/previews/examples/flutter/chip/chip_variant_example.da
 import 'package:docs_core/previews/examples/flutter/draggable_panel/draggable_panel_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/draggable_panel/draggable_panel_outside_example.dart';
 import 'package:docs_core/previews/examples/flutter/hidden/hidden_default_example.dart';
+import 'package:docs_core/previews/examples/flutter/mockup_foldable/mockup_foldable_angle_example.dart';
+import 'package:docs_core/previews/examples/flutter/mockup_foldable/mockup_foldable_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/progress/progress_tone_example.dart';
+import 'package:docs_core/previews/examples/flutter/scaffold/scaffold_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/scrollable_client/scrollable_client_default_example.dart';
+import 'package:docs_core/previews/examples/flutter/scrollview/scrollview_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/skeleton/skeleton_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/step_item/step_item_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/table/table_scrollable_example.dart';
@@ -42,6 +47,11 @@ const _kExamples = <Type, ({Type host, int seats})>{
   DraggablePanelOutsideExample: (host: SizedBox, seats: 1),
   ScrollableClientDefaultExample: (host: SizedBox, seats: 1),
   TableScrollableExample: (host: SizedBox, seats: 1),
+  MockupFoldableAngleExample: (host: SizedBox, seats: 1),
+  MockupFoldableDefaultExample: (host: Column, seats: 2),
+  ScaffoldDefaultExample: (host: SizedBox, seats: 1),
+  BottomActionBarScaffoldExample: (host: SizedBox, seats: 1),
+  ScrollViewInterceptorDefaultExample: (host: SizedBox, seats: 1),
   ProgressToneExample: (host: Column, seats: 7),
   ChatDefaultExample: (host: Column, seats: 3),
   ChatPlainExample: (host: Column, seats: 3),

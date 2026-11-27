@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:docs_core/previews/examples/web/bottom_action_bar/bottom_action_bar_scaffold_example.dart';
 import 'package:docs_core/previews/examples/web/card_image/card_image_default_example.dart';
 import 'package:docs_core/previews/examples/web/chat/chat_default_example.dart';
 import 'package:docs_core/previews/examples/web/chat/chat_plain_example.dart';
@@ -13,8 +14,12 @@ import 'package:docs_core/previews/examples/web/chip/chip_variant_example.dart';
 import 'package:docs_core/previews/examples/web/draggable_panel/draggable_panel_default_example.dart';
 import 'package:docs_core/previews/examples/web/draggable_panel/draggable_panel_outside_example.dart';
 import 'package:docs_core/previews/examples/web/hidden/hidden_default_example.dart';
+import 'package:docs_core/previews/examples/web/mockup_foldable/mockup_foldable_angle_example.dart';
+import 'package:docs_core/previews/examples/web/mockup_foldable/mockup_foldable_default_example.dart';
 import 'package:docs_core/previews/examples/web/progress/progress_tone_example.dart';
+import 'package:docs_core/previews/examples/web/scaffold/scaffold_default_example.dart';
 import 'package:docs_core/previews/examples/web/scrollable_client/scrollable_client_default_example.dart';
+import 'package:docs_core/previews/examples/web/scrollview/scrollview_default_example.dart';
 import 'package:docs_core/previews/examples/web/skeleton/skeleton_default_example.dart';
 import 'package:docs_core/previews/examples/web/step_item/step_item_default_example.dart';
 import 'package:docs_core/previews/examples/web/table/table_scrollable_example.dart';
@@ -37,6 +42,11 @@ const _kExampleTypes = <(String, String), Type>{
   ('draggable-panel', 'outside'): DraggablePanelOutsideExample,
   ('scrollable-client', 'default'): ScrollableClientDefaultExample,
   ('table', 'scrollable'): TableScrollableExample,
+  ('mockup-foldable', 'angle'): MockupFoldableAngleExample,
+  ('mockup-foldable', 'default'): MockupFoldableDefaultExample,
+  ('scaffold', 'default'): ScaffoldDefaultExample,
+  ('bottom-action-bar', 'scaffold'): BottomActionBarScaffoldExample,
+  ('scrollview', 'default'): ScrollViewInterceptorDefaultExample,
   ('progress', 'tone'): ProgressToneExample,
   ('chat', 'default'): ChatDefaultExample,
   ('chat', 'plain'): ChatPlainExample,
@@ -58,6 +68,11 @@ const _kSlotCounts = <(String, String), int>{
   ('draggable-panel', 'outside'): 1,
   ('scrollable-client', 'default'): 1,
   ('table', 'scrollable'): 1,
+  ('mockup-foldable', 'angle'): 2,
+  ('mockup-foldable', 'default'): 1,
+  ('scaffold', 'default'): 1,
+  ('bottom-action-bar', 'scaffold'): 1,
+  ('scrollview', 'default'): 1,
   ('progress', 'tone'): 7,
   ('chat', 'default'): 3,
   ('chat', 'plain'): 3,
@@ -115,11 +130,26 @@ class ShowcaseAllocationSsrSource implements CurrentSsrBoxSource {
   Component? _registry;
   div? _capture;
   _Current? _bound;
+  Component? _registryWidthOriginalChild;
+
+  bool get _isRegistryWidthAllocation =>
+      entry.component == 'mockup-foldable' && entry.variant == 'default';
 
   @override
   void recordBuild(Component result, div capture) {
     if (_registry != null || _capture != null) {
       throw StateError('SHOWCASE_ALLOCATION_BUILD_REPEATED');
+    }
+    if (_isRegistryWidthAllocation) {
+      if (result.runtimeType != div) {
+        throw StateError('SHOWCASE_ALLOCATION_TYPED_REGISTRY_DIV_REQUIRED');
+      }
+      final width = result as div;
+      if (width.children.length != 1 ||
+          width.children.single.runtimeType != exampleType) {
+        throw StateError('SHOWCASE_ALLOCATION_REGISTRY_EXAMPLE_CHANGED');
+      }
+      _registryWidthOriginalChild = width.children.single;
     }
     _registry = result;
     _capture = capture;
@@ -189,9 +219,10 @@ class ShowcaseAllocationSsrSource implements CurrentSsrBoxSource {
   _Current _locate(Element root) {
     final registry = _registry;
     final capture = _capture;
+    final registryWidthAllocation = _isRegistryWidthAllocation;
     if (registry == null ||
         capture == null ||
-        registry.runtimeType != exampleType ||
+        registry.runtimeType != (registryWidthAllocation ? div : exampleType) ||
         capture.children.length != 1 ||
         !identical(capture.children.single, registry) ||
         capture.attributes?['data-parity-key'] != entry.key) {
@@ -203,13 +234,29 @@ class ShowcaseAllocationSsrSource implements CurrentSsrBoxSource {
     if (!identical(example.parent, captureDom)) {
       throw StateError('SHOWCASE_ALLOCATION_REGISTRY_EDGE_CHANGED');
     }
-    // The only owner route is this exact Example's direct typed DIV. Foreign
-    // frontier walks below can never supply or replace this owner.
-    final returned = soleCurrentSsrChild(example);
-    if (returned.component.runtimeType != div) {
-      throw StateError('SHOWCASE_ALLOCATION_DIRECT_DIV_REQUIRED');
+    // The exact closed default recipe has a public registry width DIV.
+    // Its ONE original Example child is opaque; never unwrap to its DIV.
+    // All other recipes retain the original Example -> direct typed DIV route.
+    final Element returned;
+    final div declaration;
+    if (registryWidthAllocation) {
+      returned = example;
+      declaration = registry as div;
+      if (declaration.children.length != 1 ||
+          !identical(
+            declaration.children.single,
+            _registryWidthOriginalChild,
+          ) ||
+          declaration.children.single.runtimeType != exampleType) {
+        throw StateError('SHOWCASE_ALLOCATION_REGISTRY_EXAMPLE_CHANGED');
+      }
+    } else {
+      returned = soleCurrentSsrChild(example);
+      if (returned.component.runtimeType != div) {
+        throw StateError('SHOWCASE_ALLOCATION_DIRECT_DIV_REQUIRED');
+      }
+      declaration = returned.component as div;
     }
-    final declaration = returned.component as div;
     final raw = List<Component>.unmodifiable(declaration.children);
     if (raw.length != expectedRawCount ||
         raw.any(
@@ -575,7 +622,7 @@ String get showcaseAllocationBoxSourceResolverScript =>
   return {registryResultElement:layoutRoot,fieldUnitElement:layoutRoot,
     paddingSource:layoutRoot,frameSource:layoutRoot,registryIsLayoutRoot:true,
     validateCurrentBinding,
-    authority:'original exact compound Example -> direct typed DIV -> complete declared opaque slot frontiers'};
+    authority:'original exact public registry mount -> audited typed DIV allocation -> complete declared opaque slot frontiers'};
 }
 ''';
 
