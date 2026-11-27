@@ -395,7 +395,7 @@ ThemeData.fromCore(
 
 <Note>
 
-`.success` · `.warning` · `.info` · `.error` getter는 variant를 바꾸지 않고 배경만 그 색으로 칠합니다. 톤을 고르려면 `variant`나 `Alert.success(...)`를 씁니다.
+`.success` · `.warning` · `.info`는 해당 variant를 선택합니다. 오류 색으로 배경만 칠할 때는 `.backgroundColor(.error)`를 씁니다. 기존 `.error` getter도 같은 배경색을 지정합니다.
 
 </Note>
 
