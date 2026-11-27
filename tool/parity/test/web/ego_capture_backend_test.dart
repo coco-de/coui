@@ -116,6 +116,12 @@ const mockBefore={width:960,height:891,dpr:2,offline:false,mobile:false,touchPoi
   screen:{width:1728,height:1117,availWidth:1728,availHeight:1084,colorDepth:30,pixelDepth:30,orientation:'landscape-primary',angle:0},
   visual:{width:960,height:891,scale:1,offsetLeft:0,offsetTop:0}};
 let mockEnvironment=mockCopy(mockBefore), mockOverrides=0;
+let mockPendingRestoration=null, mockRestorationReads=0, mockSettled=false;
+const mockDelayRestoration=()=>{
+  mockPendingRestoration=mockCopy(mockEnvironment);
+  mockEnvironment.screen.availHeight=1000;
+  mockRestorationReads=0;
+};
 const mockPage={
   async cdp(method,params){
     mockCalls.push({method,params});
@@ -126,7 +132,16 @@ const mockPage={
       const code=params.expression;
       if(params.returnByValue===false)return {result:{objectId:'owned-root'}};
       let value=true;
-      if(code.includes('screen:{width:screen.width'))value=mockCopy(mockEnvironment);
+      if(code.includes('screen:{width:screen.width')){
+        if(mockPendingRestoration && ++mockRestorationReads===3){
+          mockEnvironment=mockPendingRestoration;mockPendingRestoration=null;mockSettled=true;
+        }
+        if(mockMode==='clear-settling-native-error' && mockPendingRestoration && mockRestorationReads===2){
+          const error=new Error('EGO_USER_TAKEOVER');error.code='EGO_USER_TAKEOVER';throw error;
+        }
+        if(mockMode==='clear-settled-then-drift' && mockSettled && !mockPendingRestoration && ++mockRestorationReads>4)mockEnvironment.screen.availHeight=1000;
+        value=mockCopy(mockEnvironment);
+      }
       else if(code==='navigator.onLine')value=!mockEnvironment.offline;
       else if(code==='navigator.userAgent')value='Mock protocol only';
       else if(code.includes('mockContext')||code.includes('mockProbe'))value='{}';
@@ -142,17 +157,19 @@ const mockPage={
         mockEnvironment.visual.width=params.width;mockEnvironment.visual.height=params.height;
       }else{
         mockEnvironment=mockCopy(mockBefore);
-        if(mockMode!=='fallback-exact')mockEnvironment.screen.availHeight=1117;
+        if(mockMode!=='fallback-exact' && mockMode!=='explicit-delayed')mockEnvironment.screen.availHeight=1117;
+        if(mockMode==='explicit-delayed')mockDelayRestoration();
       }
     }
     if(method==='Emulation.clearDeviceMetricsOverride'){
       const offline=mockEnvironment.offline;
       mockEnvironment=mockCopy(mockBefore);mockEnvironment.offline=offline;
-      if(mockMode!=='clear-exact'){
+      if(mockMode!=='clear-exact' && mockMode!=='clear-delayed' && mockMode!=='clear-settling-native-error' && mockMode!=='clear-settled-then-drift'){
         mockEnvironment.width=800;mockEnvironment.height=1200;
         mockEnvironment.visual.width=800;mockEnvironment.visual.height=1200;
-        if(mockMode.startsWith('fallback-'))mockEnvironment.dpr=1;
+        if(mockMode.startsWith('fallback-') || mockMode==='explicit-delayed')mockEnvironment.dpr=1;
       }
+      if(mockMode==='clear-delayed' || mockMode==='clear-settling-native-error' || mockMode==='clear-settled-then-drift')mockDelayRestoration();
     }
     if(method==='Emulation.setVisibleSize'){
       if(mockMode==='visible-native-error'){
@@ -161,6 +178,7 @@ const mockPage={
       if(mockMode==='visible-unsupported')throw new Error('Emulation.setVisibleSize method not supported');
       mockEnvironment.width=params.width;mockEnvironment.height=params.height;
       mockEnvironment.visual.width=params.width;mockEnvironment.visual.height=params.height;
+      if(mockMode==='visible-delayed')mockDelayRestoration();
     }
     if(method==='Network.emulateNetworkConditions')mockEnvironment.offline=params.offline;
     if(method==='DOM.getBoxModel')return {model:{border:[0,0,100,0,100,20,0,20]}};
@@ -326,6 +344,60 @@ void main() {
         hasLength(1),
       );
     });
+    for (final mode in [
+      'clear-delayed',
+      'visible-delayed',
+      'explicit-delayed',
+    ]) {
+      test('waits for exact environment restoration after $mode', () async {
+        final result = await transportProtocol(mode);
+        final cleanup = result['cleanup']! as Map;
+        expect(result['exit'], 0);
+        expect(cleanup['complete'], isTrue);
+        expect(cleanup['observedEnvironmentEqual'], isTrue);
+        final mock = result['mock']! as Map;
+        expect(mock['after'], mock['before']);
+        final calls = protocolCalls(result);
+        expect(
+          calls.where((call) => call['method'] == 'Page.captureScreenshot'),
+          hasLength(1),
+        );
+        expect(
+          calls.where((call) => call['method'] == 'Emulation.setVisibleSize'),
+          hasLength(mode == 'clear-delayed' ? 0 : 1),
+        );
+        expect(
+          calls.where(
+            (call) => call['method'] == 'Emulation.setDeviceMetricsOverride',
+          ),
+          hasLength(mode == 'explicit-delayed' ? 2 : 1),
+        );
+      });
+    }
+    test('native stop while waiting permits no further Page calls', () async {
+      final result = await transportProtocol('clear-settling-native-error');
+      final cleanup = result['cleanup']! as Map;
+      expect(result['exit'], 1);
+      expect(cleanup['complete'], isFalse);
+      expect(
+        (cleanup['terminalStop']! as Map)['error'],
+        containsPair('code', 'EGO_USER_TAKEOVER'),
+      );
+      expect(protocolCalls(result).last['method'], 'Runtime.evaluate');
+    });
+    test(
+      'final observation rejects drift after an exact settled read',
+      () async {
+        final result = await transportProtocol('clear-settled-then-drift');
+        final cleanup = result['cleanup']! as Map;
+        expect(result['exit'], 1);
+        expect(cleanup['complete'], isFalse);
+        expect(cleanup['observedEnvironmentEqual'], isFalse);
+        final metrics = cleanup['metricsRestoration']! as Map;
+        expect(metrics['settledAfterClear'], cleanup['beforeEnvironment']);
+        expect(protocolCalls(result).last['method'], 'Runtime.evaluate');
+      },
+    );
     test('native screenshot stop permits no cleanup Page calls', () async {
       final result = await transportProtocol('screenshot-native-error');
       final cleanup = result['cleanup']! as Map;

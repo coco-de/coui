@@ -95,6 +95,7 @@ jobs:
           tool/parity/test/web/text_showcase_dispatch_test.dart
           tool/parity/test/web/device_paint_source_probe_test.dart
           tool/parity/test/web/computed_style_probe_test.dart
+          tool/parity/test/web/ego_capture_backend_test.dart
 
       - name: Test Jaspr button and MockupCode
         working-directory: packages/coui_web
