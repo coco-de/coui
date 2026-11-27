@@ -923,6 +923,8 @@ void main() {
         flutterClassName: 'sanity-only',
       ).firstWhere((probe) => probe.role == 'root');
       const allocations = {
+        ('app-bar', 'glass'),
+        ('app-bar', 'foldable'),
         ('chat', 'default'),
         ('chat', 'plain'),
         ('chat', 'tail-corner'),
