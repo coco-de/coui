@@ -18,6 +18,7 @@ import '../source/playground_value_authority.dart';
 import 'bottom_action_bar_ssr_source.dart';
 import 'box_padding_observation_probe.dart';
 import 'breakpoint_showcase_ssr_source.dart';
+import 'card_accordion_frame_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'element_capture.dart';
@@ -344,7 +345,8 @@ Future<WebCaptureResult> captureEgoEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredShowcaseAllocationSsrKind(entry) ??
+      ? requiredCardAccordionFrameSsrKind(entry) ??
+            requiredShowcaseAllocationSsrKind(entry) ??
             requiredBreakpointShowcaseSsrKind(entry) ??
             requiredBottomActionBarSsrKind(entry) ??
             requiredTextShowcaseSsrKind(entry) ??

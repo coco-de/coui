@@ -47,6 +47,27 @@ class BoxObservationSourceSpec {
     nativeAdapterId: 'bottom-action-bar-owned-content-inset-v1',
     webAdapterId: 'bottom-action-bar-owned-content-inset-v1',
   );
+
+  /// Exact outer primitive frame, excluding distributed slot/item insets.
+  static const cardSurfaceFrame = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'card-surface-frame-content-inset',
+    quantityId: quantity,
+    nativeAdapterId: 'card-current-outlined-frame-content-v1',
+    webAdapterId: 'card-current-outlined-frame-content-v1',
+  );
+  static const accordionSurfaceFrame = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'accordion-surface-frame-content-inset',
+    quantityId: quantity,
+    nativeAdapterId: 'accordion-current-outlined-frame-content-v1',
+    webAdapterId: 'accordion-current-outlined-frame-content-v1',
+  );
+  static const List<BoxObservationSourceSpec> cardAccordionSurfaceFrames = [
+    cardSurfaceFrame,
+    accordionSurfaceFrame,
+  ];
+
   static const outlined = BoxObservationSourceSpec(
     schemaVersion: 1,
     logicalUnitId: 'own-generated-frame',
@@ -1003,6 +1024,7 @@ class BoxObservationSourceSpec {
       textShowcaseOuterPadding,
       showcaseAllocationHost,
       bottomActionBarContentInset,
+      ...cardAccordionSurfaceFrames,
       breakpointShowcaseContentInset,
     ]) {
       if (logicalUnitId == supported.logicalUnitId &&

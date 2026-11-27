@@ -4,6 +4,7 @@ import 'package:puppeteer/puppeteer.dart';
 
 import 'bottom_action_bar_ssr_source.dart';
 import 'breakpoint_showcase_ssr_source.dart';
+import 'card_accordion_frame_binding.dart';
 import 'device_paint_source_probe.dart';
 import 'showcase_allocation_ssr_source.dart';
 import 'text_showcase_ssr_source.dart';
@@ -18,6 +19,9 @@ String get computedStyleProbeScript =>
 String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
     '''
 (request) => {
+  const surfaceFrame = ($cardAccordionFrameRequestBindingScript)(request);
+  if (surfaceFrame.error) throw new Error(surfaceFrame.error);
+  if (surfaceFrame.applied && !surfaceFrame.validateCurrentBinding()) throw new Error('SURFACE_FRAME_CURRENT_BINDING_CHANGED');
   const bottom = ($bottomActionBarRequestBindingScript)(request);
   if (bottom.error) throw new Error(bottom.error);
   if (bottom.applied && !bottom.validateCurrentBinding()) throw new Error('BOTTOM_ACTION_BAR_CURRENT_BINDING_CHANGED');
@@ -39,12 +43,14 @@ String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
   if (breakpoint.applied && !breakpoint.validateCurrentBinding()) throw new Error('BREAKPOINT_SHOWCASE_BINDING_CHANGED_DURING_LEGACY_READ');
   if (text.applied && !text.validateCurrentBinding()) throw new Error('TEXT_SHOWCASE_BINDING_CHANGED_DURING_LEGACY_READ');
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
+  if (surfaceFrame.applied && !surfaceFrame.validateCurrentBinding()) throw new Error('SURFACE_FRAME_BINDING_CHANGED_DURING_LEGACY_READ');
   const box = JSON.parse(($boxSamplerScript)(request));
   if (bottom.applied && !bottom.validateCurrentBinding()) throw new Error('BOTTOM_ACTION_BAR_BINDING_CHANGED_DURING_BOX_READ');
   if (showcase.applied && !showcase.validateCurrentBinding()) throw new Error('SHOWCASE_ALLOCATION_BINDING_CHANGED_DURING_BOX_READ');
   if (breakpoint.applied && !breakpoint.validateCurrentBinding()) throw new Error('BREAKPOINT_SHOWCASE_BINDING_CHANGED_DURING_BOX_READ');
   if (text.applied && !text.validateCurrentBinding()) throw new Error('TEXT_SHOWCASE_BINDING_CHANGED_DURING_BOX_READ');
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
+  if (surfaceFrame.applied && !surfaceFrame.validateCurrentBinding()) throw new Error('SURFACE_FRAME_BINDING_CHANGED_DURING_BOX_READ');
   return JSON.stringify({legacy,box});
 }
 ''';

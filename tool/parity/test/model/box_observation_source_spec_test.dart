@@ -8,6 +8,7 @@ import '../../src/model/box_observation_source_spec.dart';
 import '../../src/model/probe_spec.dart';
 
 void main() {
+  _cardAccordionFrameTests();
   _additionalShowcaseAllocationTests();
   _showcaseAllocationTests();
   const breakpointSource =
@@ -950,6 +951,26 @@ void main() {
           ),
           throwsFormatException,
         );
+      } else if (recipe.$1 == 'card' &&
+              const ['default', 'filled', 'elevated'].contains(recipe.$2) ||
+          recipe == ('accordion', 'default')) {
+        expect(
+          probe.boxObservationSource,
+          recipe.$1 == 'card'
+              ? BoxObservationSourceSpec.cardSurfaceFrame
+              : BoxObservationSourceSpec.accordionSurfaceFrame,
+        );
+        expect(
+          () => requireCaptureProbes(
+            component: recipe.$1,
+            variant: recipe.$2,
+            roles: ['root'],
+            boxObservationSources: [
+              BoxObservationSourceSpec.showcaseAllocationHost,
+            ],
+          ),
+          throwsFormatException,
+        );
       } else if (recipe == ('bottom-action-bar', 'default')) {
         expect(probe.boxObservationSource?.toJson(), {
           'schemaVersion': 1,
@@ -1300,14 +1321,13 @@ void _showcaseAllocationTests() {
       });
     }
   }
-  test('remaining twelve nullable/product roots remain undeclared', () {
+  test('other nullable/product roots remain undeclared', () {
     for (final recipe in [
       ('progress', 'default'),
       ('progress', 'labelled'),
       ('progress', 'segments'),
       ('progress', 'indeterminate'),
       ('progress', 'radial'),
-      ('accordion', 'default'),
     ]) {
       final probe = captureProbes(
         key: 'held',
@@ -1450,4 +1470,96 @@ void _additionalShowcaseAllocationTests() {
       );
     }
   });
+}
+
+void _cardAccordionFrameTests() {
+  for (final (component, variants, source) in [
+    (
+      'card',
+      ['default', 'filled', 'elevated'],
+      BoxObservationSourceSpec.cardSurfaceFrame,
+    ),
+    ('accordion', ['default'], BoxObservationSourceSpec.accordionSurfaceFrame),
+  ]) {
+    test('$component has a distinct literal frame-only tuple', () {
+      expect(source.toJson(), {
+        'schemaVersion': 1,
+        'logicalUnitId': '$component-surface-frame-content-inset',
+        'quantityId': 'inside-frame-own-content-inset-v1',
+        'nativeAdapterId': '$component-current-outlined-frame-content-v1',
+        'webAdapterId': '$component-current-outlined-frame-content-v1',
+      });
+      expect(source.validationError, isNull);
+    });
+    for (final variant in variants) {
+      for (final style in CoreSurfaceStyleId.values) {
+        test(
+          [
+            '$component/$variant/${style.name} preserves fields ',
+            'and declares only its frame',
+          ].join(),
+          () {
+            final key = '$component-$variant-light-${style.name}';
+            final before = rootProbeSpec(
+              key: key,
+              flutterClassName: 'OriginalClass',
+            );
+            final after = captureProbes(
+              key: key,
+              component: component,
+              variant: variant,
+              flutterClassName: 'OriginalClass',
+            ).single;
+            expect(after.toJson(), {
+              ...before.toJson(),
+              'boxObservationSource': source.toJson(),
+            });
+            expect(
+              () => requireCaptureProbes(
+                component: component,
+                variant: variant,
+                roles: ['root'],
+                boxObservationSources: [source],
+              ),
+              returnsNormally,
+            );
+            expect(
+              () => requireCaptureProbes(
+                component: component,
+                variant: variant,
+                roles: ['root'],
+                boxObservationSources: [
+                  BoxObservationSourceSpec.showcaseAllocationHost,
+                ],
+              ),
+              throwsFormatException,
+            );
+          },
+        );
+      }
+    }
+    test(
+      '$component frame cannot attach to an unsupported variant or product',
+      () {
+        expect(
+          () => requireCaptureProbes(
+            component: component,
+            variant: 'unreviewed',
+            roles: ['root'],
+            boxObservationSources: [source],
+          ),
+          throwsFormatException,
+        );
+        expect(
+          () => requireCaptureProbes(
+            component: 'chat',
+            variant: 'default',
+            roles: ['root'],
+            boxObservationSources: [source],
+          ),
+          throwsFormatException,
+        );
+      },
+    );
+  }
 }

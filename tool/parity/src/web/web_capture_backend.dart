@@ -30,6 +30,7 @@ import '../model/property_field.dart';
 import 'bottom_action_bar_ssr_source.dart';
 import 'box_padding_observation_probe.dart';
 import 'breakpoint_showcase_ssr_source.dart';
+import 'card_accordion_frame_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'data_overlay_ssr_source.dart';
@@ -241,7 +242,8 @@ Future<String> renderCaptureBodyHtml(
 }) async {
   final sourceRecorder = onCurrentBoxSource == null
       ? null
-      : BottomActionBarSsrSource.forEntry(entry) ??
+      : CardAccordionFrameSsrSource.forEntry(entry) ??
+            BottomActionBarSsrSource.forEntry(entry) ??
             ShowcaseAllocationSsrSource.forEntry(entry) ??
             BreakpointShowcaseSsrSource.forEntry(entry) ??
             TextShowcaseSsrSource.forEntry(entry) ??
@@ -294,6 +296,14 @@ Future<String> renderCaptureBodyHtml(
             },
     ),
   );
+  if (sourceRecorder is CardAccordionFrameSsrSource &&
+      sourceWitness?['surfaceFrameAwaitingExactNormalBody'] == true) {
+    try {
+      sourceWitness = sourceRecorder.completeWithSerializedBody(html);
+    } on Object catch (error) {
+      sourceWitness = {'error': '$error'};
+    }
+  }
   final witness = sourceWitness;
   if (witness != null) onCurrentBoxSource?.call(witness);
   return html;
@@ -450,7 +460,8 @@ Future<WebCaptureResult> captureWebEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredShowcaseAllocationSsrKind(entry) ??
+      ? requiredCardAccordionFrameSsrKind(entry) ??
+            requiredShowcaseAllocationSsrKind(entry) ??
             requiredBreakpointShowcaseSsrKind(entry) ??
             requiredBottomActionBarSsrKind(entry) ??
             requiredTextShowcaseSsrKind(entry) ??
