@@ -1,84 +1,381 @@
 ---
 title: Divider
-description: 콘텐츠 영역을 구분하는 통일 구분선 컴포넌트
+description: 내용 묶음 사이를 가르는 선입니다. 가로 · 세로 방향이 있고, 선 사이에 "또는" 같은 라벨을 둘 수 있습니다.
 category: display
 platforms: [flutter, web]
-related: [gap]
+related: [gap, resizable]
 tags: [layout, visual-separator]
+template: v2
+source: display/divider
 ---
 
 # Divider
 
-콘텐츠 영역을 시각적으로 구분하는 통일 구분선 컴포넌트입니다. `Divider`는 Flutter/Web 동일한 파라미터 이름을 가지며, 수평/수직 orientation, 두께, 색상, 들여쓰기, 중앙 child 슬롯을 지원합니다.
+<a id="live-preview"></a>
+<a id="기본-사용법"></a>
 
-## Live Preview
+## 플레이그라운드
 
-<LivePreview component="divider" variants="default,vertical,with-child" />
+속성을 바꿔 보며 구분선을 확인하고, 만들어진 코드를 그대로 복사하세요. 아무 값도 주지 않은 `Divider()` 는 부모의 폭을 채우는 가로선입니다.
 
-## 사용 시기
+<Playground component="divider" />
 
-- 리스트 항목 사이나 섹션 사이에 시각적 경계선이 필요할 때
-- 폼 필드나 메뉴 항목 사이를 구분할 때
-- "또는" 구분선처럼 라벨이 있는 구분선이 필요할 때
+<Note>
 
-## 기본 사용법
+무대의 글자와 부모 레이아웃은 선이 놓일 자리를 보여 주려고 둔 것입니다. 부모를 만드는 코드는 Flutter(`Column` · `Row`)와 Web(flex `div`)이 다릅니다. `child 위치` 를 `none` 으로 두면 라벨 없는 선이 됩니다.
+
+</Note>
+
+## 구조
+
+라벨이 없는 구분선은 선 하나입니다. `child` 를 넣으면 앞 선 · 라벨 · 뒤 선으로 나뉩니다.
+
+<Anatomy demo="divider/anatomy">
+<AnatomyItem part="container" name="Container">
+
+선과 라벨이 함께 놓이는 상자입니다.
+
+</AnatomyItem>
+<AnatomyItem select="[data-docs-part='divider'] > div:first-child" side="top" name="leading line">
+
+라벨 앞의 선입니다. `indent` 는 이 선의 시작 쪽을 줄입니다.
+
+</AnatomyItem>
+<AnatomyItem part="label" name="child">
+
+라벨 슬롯입니다. 라벨과 선 사이의 여백은 `childPadding` 이 정합니다.
+
+</AnatomyItem>
+<AnatomyItem select="[data-docs-part='divider'] > div:last-child" side="top" name="trailing line">
+
+라벨 뒤의 선입니다. `endIndent` 는 이 선의 끝 쪽을 줄입니다.
+
+</AnatomyItem>
+</Anatomy>
+
+<a id="web-dom-구조-라벨이-있을-때"></a>
+
+### Web 마크업
+
+Web 의 라벨 없는 구분선은 `<div>` 하나입니다. 라벨이 있으면 바깥 `<div>` 가 격자(grid)가 되고, 그 안의 세 요소가 트랙을 하나씩 차지합니다. 아래는 기본 색과 기본 정렬의 가로선입니다.
+
+```html
+<!-- 라벨 없음 -->
+<div class="shrink-0 w-full bg-outline-variant"
+     style="height: …; margin-inline-start: …; margin-inline-end: …"></div>
+
+<!-- 라벨 있음 -->
+<div class="grid w-full items-center"
+     style="grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr)">
+  <div class="bg-outline-variant" style="height: …; margin-inline-start: …"></div>
+  <div style="padding-left: …; padding-right: …">라벨</div>
+  <div class="bg-outline-variant" style="height: …; margin-inline-end: …"></div>
+</div>
+```
+
+- 비율이 있는 선 조각의 트랙은 `minmax(0, 1fr)` 입니다. 최솟값이 `0` 이라 라벨이 축 전체를 차지해도 선의 `margin` 이 트랙을 붙들지 않습니다. 비율이 0 인 조각의 트랙은 `auto` 이고, 길이가 그 조각의 여백이 됩니다.
+- 가운데 트랙(`auto`)의 길이는 라벨을 따릅니다.
+- 선의 여백은 `margin` 이고 트랙 안에 있습니다. 선은 트랙에서 자기 `margin` 을 뺀 만큼만 늘어나므로, 여백이 트랙의 비율을 바꾸지 않습니다.
+- 가로선의 읽기 방향은 `dir` 이 정합니다. 격자의 첫 트랙과 `margin-inline-start` 가 같은 방향을 따르므로, `dir="rtl"` 에서는 앞 선이 오른쪽에 놓이고 `indent` 만큼 오른쪽에서 들여씁니다.
+- 세로선은 `grid justify-items-center h-full` 과 `grid-template-rows` 를 쓰고, 여백은 `margin-top` · `margin-bottom` 입니다.
+- 라벨 없는 선에 `indent` 나 `endIndent` 를 주면 `w-full` · `h-full` 대신 `calc(100% - 두 여백)` 길이를 인라인으로 정합니다. `100%` 에 `margin` 을 더하면 선이 반대쪽 가장자리 밖으로 넘치기 때문입니다.
+
+## 방향
+
+`orientation` 은 선이 놓이는 방향입니다. 선은 한 축을 부모만큼 채우고, 다른 축의 크기는 `thickness` 입니다.
+
+| 값 | 채우는 길이 | `thickness` 가 정하는 것 |
+| --- | --- | --- |
+| `horizontal` (기본) | 부모의 폭 | 선의 높이 |
+| `vertical` | 부모의 높이 | 선의 폭 |
+
+<Preview demo="divider/orientation" />
+
+세로선은 높이가 정해진 부모 안에 둡니다. 부모를 만드는 코드는 플랫폼마다 다릅니다.
 
 <Tabs groupId="platform">
   <TabItem label="Flutter" value="flutter">
 
 ```dart
-// 기본 수평 구분선
-Divider()
-
-// 수직 구분선 (부모가 높이를 제공해야 함)
 SizedBox(
   height: CoreSpace.space64,
-  child: const Divider(orientation: .vertical),
+  child: Divider(orientation: CoreDividerOrientation.vertical),
 )
-
-// 들여쓰기
-Divider(
-  dividerStyle: CoreDividerStyle(
-    indent: CoreSpace.space16,
-    endIndent: CoreSpace.space16,
-  ),
-)
-
-// 라벨이 있는 구분선
-Divider(child: Text('또는').labelMedium.onSurfaceVariant)
 ```
 
   </TabItem>
   <TabItem label="Web" value="web">
 
 ```dart
-// 기본 수평 구분선
-Divider()
-
-// 수직 구분선 (부모가 높이를 제공해야 함)
 div(
-  [const Divider(orientation: .vertical)],
+  [Divider(orientation: CoreDividerOrientation.vertical)],
   styles: Styles(raw: {'height': '${CoreSpace.space64}px'}),
 )
+```
 
-// 들여쓰기
+  </TabItem>
+</Tabs>
+
+<a id="동작-스펙-behavior"></a>
+
+## 라벨
+
+`child` 슬롯(Flutter `Widget`, Web Jaspr `Component`)에 넣은 내용이 두 선 사이에 놓입니다. `Divider` 는 라벨의 글자 모양을 따로 정하지 않으므로 넣는 쪽에서 정합니다.
+
+```dart
+Divider(child: Text('또는').labelMedium.onSurfaceVariant)
+```
+
+### 라벨 위치
+
+라벨은 라벨 여백까지 자기 길이를 그대로 갖고, 두 선 조각이 남은 길이를 나눠 갖습니다. `dividerStyle` 의 `childAlignment` 가 그 비율을 정합니다.
+
+<Preview demo="divider/label-alignment" />
+
+| 값 | 앞 조각 : 뒤 조각 | 결과 |
+| --- | --- | --- |
+| `center` (기본) | 1 : 1 | 두 조각의 길이가 같습니다. |
+| `start` | 0 : 1 | 라벨이 시작 쪽으로 붙습니다. |
+| `end` | 1 : 0 | 라벨이 끝 쪽으로 붙습니다. |
+
+비율이 0 인 쪽에는 선이 그려지지 않고, 그 조각의 길이는 그쪽 여백(`indent` 또는 `endIndent`)과 같습니다. 가로선의 `start` · `end` 는 읽기 방향을 따르므로 오른쪽에서 왼쪽으로 읽는 환경에서는 좌우가 바뀝니다. 세로선의 `start` 는 위, `end` 는 아래입니다.
+
+라벨과 라벨 여백을 합친 길이가 상자보다 길면 두 선은 모두 길이가 0 이 됩니다. 이때 라벨이 놓이는 위치는 [플랫폼 차이](#플랫폼-차이)에 있습니다.
+
+### 라벨 여백
+
+`childPadding` 은 라벨과 선 사이의 여백이고, 기본값은 `CoreEdgeInsets.symmetric(horizontal: CoreSpace.space8)` 입니다. 두 방향 모두 `horizontal` 값으로 정합니다. 세로선은 그 값을 라벨의 위 · 아래에 둡니다.
+
+```dart
+Divider(
+  dividerStyle: CoreDividerStyle(
+    childPadding: CoreEdgeInsets.symmetric(horizontal: CoreSpace.space16),
+  ),
+  child: Text('또는').labelMedium.onSurfaceVariant,
+)
+```
+
+<Note>
+
+`childPadding` 은 `CoreEdgeInsets.symmetric(horizontal: …)` 모양으로 넘기세요. 두 플랫폼이 같은 모양으로 그리는 것은 `directional` 로 만들지 않았고, `left` 와 `right` 가 같으며, `top` · `bottom` 이 0 인 값입니다. 그 밖의 값에서 Flutter 는 네 값을 모두 적용하고(세로선에서는 위와 왼쪽, 아래와 오른쪽을 맞바꿉니다), Web 은 `left` 값 하나를 라벨 앞뒤에 똑같이 둡니다. `CoreEdgeInsets.directional` 값은 Flutter 에서 라벨이 없어도 `ArgumentError` 가 납니다.
+
+</Note>
+
+## 들여쓰기
+
+`dividerStyle` 의 `indent` 는 선이 시작하는 쪽, `endIndent` 는 끝나는 쪽의 여백입니다. 기본값은 둘 다 0 이고, 단위는 논리 픽셀입니다.
+
+| 방향 | `indent` | `endIndent` |
+| --- | --- | --- |
+| 가로 | 읽기 시작 쪽 (왼쪽에서 오른쪽으로 읽으면 왼쪽) | 읽기 끝 쪽 |
+| 세로 | 위 | 아래 |
+
+<Preview demo="divider/indent" />
+
+```dart
 Divider(
   dividerStyle: CoreDividerStyle(
     indent: CoreSpace.space16,
     endIndent: CoreSpace.space16,
   ),
 )
+```
 
-// 라벨이 있는 구분선
-Divider(child: Text('또는').labelMedium.onSurfaceVariant)
+- 라벨이 없으면 선의 길이는 부모의 길이에서 두 여백을 뺀 값입니다.
+- 라벨이 있으면 `indent` 는 앞 선에, `endIndent` 는 뒤 선에 적용됩니다.
+- 비율이 있는 조각의 여백은 자기 조각 안에서 선만 줄이고 라벨은 움직이지 않습니다. 기본 정렬에서 라벨이 상자에 들어가고 라벨 여백이 앞뒤로 같으면, 두 여백이 달라도 라벨은 상자의 정중앙에 있습니다.
+- `start` · `end` 정렬에서 비율이 0 인 쪽의 여백은 라벨을 그만큼 안쪽으로 밉니다.
+- 조각의 길이가 여백보다 짧으면 그 선은 그려지지 않습니다.
+
+<a id="사용-시기"></a>
+<a id="사용-가이드라인-usage-guidelines"></a>
+
+## 사용 가이드
+
+- 목록의 항목 묶음이나 화면의 섹션 사이에 눈에 보이는 경계가 필요할 때
+- 폼이나 설정 화면에서 성격이 다른 항목을 가를 때
+- "또는"처럼 라벨을 단 구분선이 필요할 때
+
+<Cards columns="2">
+<Card demo="divider/do-group" tone="do" eyebrow="이렇게 하세요" title="묶음의 경계에 둡니다">
+
+성격이 다른 묶음 사이에만 선을 둡니다.
+
+</Card>
+<Card demo="divider/dont-every-row" tone="dont" eyebrow="이렇게 하지 마세요" title="줄마다 넣지 않습니다">
+
+모든 줄 사이에 선이 있으면 어디가 묶음의 경계인지 알기 어렵습니다.
+
+</Card>
+</Cards>
+
+### 다른 컴포넌트가 더 맞는 경우
+
+| 이런 경우에는 | 대신 쓸 것 |
+| --- | --- |
+| 선 없이 빈 자리만 필요할 때 | [Gap](/components/gap) |
+| 끌어서 영역의 크기를 바꾸는 경계일 때 | [Resizable](/components/resizable) |
+| `Menu` 안에서 항목 묶음을 나눌 때 | `CoreMenuItem.divider()` 항목. `Menu` 가 `Divider` 를 대신 그립니다. |
+
+<a id="dont"></a>
+
+### 의미가 있는 경계
+
+`orientation` 은 선의 방향만 정합니다. 세로선으로 바꿔도 보조 기술에 구분선으로 알려지지 않습니다. 묶음의 경계라는 뜻까지 전해야 하면 `semantic: true` 를 줍니다. 플랫폼마다 붙는 정보는 접근성의 [역할](#역할)에 있습니다.
+
+```dart
+Divider(semantic: true)
+```
+
+<a id="do"></a>
+
+## 배치
+
+구분선은 자기 방향의 길이를 부모에게서 받습니다. 그 길이를 정해 주지 않는 부모 안에서는 따로 처리가 필요합니다.
+
+### 세로선의 높이
+
+Flutter 에서는 높이 제한이 없는 자리(`Column` 바로 아래의 `Row`, 세로 스크롤 안의 `Row` 등)에 둔 세로선은 길이가 0 이 됩니다. 에러는 나지 않습니다. `SizedBox` 로 높이를 정하거나, 옆 내용의 높이에 맞추려면 `IntrinsicHeight` 로 `Row` 를 감쌉니다. Web 의 세로선은 `height: 100%` 를 기준으로 하므로 부모에 높이를 정합니다.
+
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+```dart
+IntrinsicHeight(
+  child: Row(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    spacing: CoreSpace.space12,
+    children: [
+      Text('왼쪽'),
+      Divider(orientation: CoreDividerOrientation.vertical),
+      Text('오른쪽'),
+    ],
+  ),
+)
+```
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+```dart
+div(
+  [
+    Text('왼쪽'),
+    Divider(orientation: CoreDividerOrientation.vertical),
+    Text('오른쪽'),
+  ],
+  classes: 'flex items-center gap-space12',
+  styles: Styles(raw: {'height': '${CoreSpace.space24}px'}),
+)
 ```
 
   </TabItem>
 </Tabs>
 
-### 빠른 오버라이드 (Chain)
+### 행 안의 가로선
 
-이미 만든 `Divider` 인스턴스에 스타일을 빠르게 덧붙이고 싶다면 `withStyle` 체인을 쓸 수 있습니다. 생성자의 style 슬롯 인자와 동일하게 동작하지만, 이미 구성된 위젯 위에서 바로 이어 쓸 수 있습니다.
+행에 라벨 없는 가로선을 그대로 넣으면 의도대로 놓이지 않습니다. Flutter 의 `Row` 는 `Expanded` 같은 래퍼가 없는 자식의 폭을 제한하지 않아 선의 길이가 0 이 됩니다. Web 의 선은 컨테이너 전체를 기준으로 폭을 잡고 줄어들지 않아(`shrink-0`), 옆 요소와 합치면 행을 넘칠 수 있습니다. 남은 폭만 채우려면 선을 감쌉니다.
+
+<Preview demo="divider/in-row" />
+
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+```dart
+Row(
+  spacing: CoreSpace.space12,
+  children: [
+    Text('이전 기록'),
+    Expanded(child: Divider()),
+  ],
+)
+```
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+```dart
+div(
+  [
+    Text('이전 기록'),
+    div([Divider()], classes: 'flex-1'),
+  ],
+  classes: 'flex items-center gap-space12',
+)
+```
+
+  </TabItem>
+</Tabs>
+
+### 굵기 방향의 크기를 고정하는 부모
+
+Flutter 에서는 부모가 선의 굵기 방향 크기를 하나로 고정하면, 라벨 없는 선이 `thickness` 대신 그 크기로 칠해집니다. `SizedBox(height: CoreSpace.space32, child: Divider())` 는 높이 32 의 띠가 되고, `Column` 안에서 `Expanded` 로 감싼 가로선도 남은 높이를 모두 칠합니다. 선 위아래에 빈 자리가 필요하면 선의 앞뒤에 [Gap](/components/gap) 을 두거나 `Padding` 을 씁니다. Web 은 선의 굵기를 CSS `height` · `width` 로 직접 정하므로 부모의 크기를 정해도 굵기가 그대로입니다.
+
+### 내용 폭을 따르는 부모
+
+부모가 내용의 폭을 따르면(Flutter `IntrinsicWidth`, Web 의 `inline-block` 등) 라벨 있는 가로선은 남는 폭을 스스로 만들지 못합니다. 기본 정렬에서 구분선이 필요로 하는 폭은 라벨과 라벨 여백에, `indent` 와 `endIndent` 중 큰 값의 두 배를 더한 값입니다. 부모 안에 이보다 넓은 다른 내용이 없고 두 여백이 0 이면 선이 보이지 않으므로, 선이 보여야 하면 부모의 폭을 정합니다.
+
+<a id="색상-토큰"></a>
+
+## 테마와 스타일
+
+겉모습은 `dividerStyle: CoreDividerStyle(...)` 하나로 바꿉니다. 아무 값도 정하지 않으면 아래 기본값을 씁니다.
+
+| 항목 | 필드 | 기본값 |
+| --- | --- | --- |
+| 선 색 | `color` | `CoreColors.outlineVariant` 토큰 |
+| 선 굵기 | `thickness` | `CoreStrokeWidth.stroke1` (1) |
+| 선 여백 | `indent` · `endIndent` | 0 |
+| 라벨 위치 | `childAlignment` | `center` |
+| 라벨 여백 | `childPadding` | 가로 값 8 |
+
+`CoreColor.token(...)` 으로 정한 색은 라이트 · 다크 같은 테마의 색 구성을 따라 바뀌고, `CoreColor(0xFF…)` 처럼 직접 적은 색은 그대로입니다.
+
+<Split>
+
+<Code language="dart" title="Divider 하나만 바꾸기">
+Divider(
+  dividerStyle: CoreDividerStyle(
+    color: CoreColor.token(CoreColors.primary),
+    thickness: CoreStrokeWidth.stroke2,
+  ),
+)
+</Code>
+
+<Code language="dart" title="앱 전체 기본값 바꾸기">
+ThemeData.fromCore(
+  CoreThemePresets.light,
+  coreComponentTheme: CoreComponentTheme(
+    divider: CoreDividerTheme(
+      style: CoreDividerStyle(thickness: CoreStrokeWidth.stroke2),
+    ),
+  ),
+)
+</Code>
+
+</Split>
+
+### 값이 정해지는 순서
+
+뒤로 갈수록 우선합니다.
+
+```text
+CoreDividerStyle 의 default 값       // 디자인 시스템 기본값
+  → CoreComponentTheme.divider.style // 앱 전체
+  → dividerStyle                     // Divider 하나
+```
+
+값은 필드마다 따로 합칩니다. 뒤 단계에서 정하지 않은 필드에는 앞 단계의 값이 남습니다.
+
+앱 전체 값은 `Command` 의 구분선처럼 다른 컴포넌트가 안에서 그리는 `Divider` 에도 닿습니다. 그 컴포넌트가 직접 정해 넘기는 필드는 그 값이 우선합니다. 예를 들어 `Menu` 는 구분선의 색을 직접 넘기므로, 앱 전체의 `color` 는 `Menu` 의 선에 적용되지 않습니다.
+
+<a id="빠른-오버라이드-chain"></a>
+
+### 빠른 덮어쓰기
+
+이미 만든 `Divider` 에 `withStyle` 로 스타일을 덧붙일 수 있습니다. 생성자의 `dividerStyle` 과 같은 필드를 받고, 이미 정한 필드와 겹치면 나중에 붙인 값이 이깁니다.
+
+<Preview demo="divider/chain" />
 
 <!-- CHAIN_SNIPPET:BEGIN — auto-generated by `dart run tool/generate_chain_artifacts.dart` (write mode). Do not hand-edit between these markers; edit the chain example sources (`*_chain_example.dart` / `*_code.dart`) and regenerate. -->
 <Tabs groupId="platform">
@@ -127,17 +424,149 @@ class DividerChainExample extends StatelessComponent {
 </Tabs>
 <!-- CHAIN_SNIPPET:END -->
 
+<a id="접근성-accessibility"></a>
+
+## 접근성
+
+기본 구분선은 장식입니다. `semantic: true` 를 준 구분선만 의미 있는 경계라는 정보를 더합니다.
+
+### 역할
+
+| 설정 | Flutter | Web |
+| --- | --- | --- |
+| `semantic: false` (기본) | 선과 배치에 시맨틱 정보를 더하지 않습니다. | `role` · `aria-*` 를 붙이지 않은 `<div>` 입니다. 직접 넘긴 `attributes` 만 붙습니다. |
+| `semantic: true` | 이름을 가진 `Semantics(container: true)` 로 감쌉니다. 구분선을 뜻하는 역할이나 조절 컨트롤(`slider`) 표시는 붙이지 않습니다. | `role="separator"` 와 `aria-label` 을 붙입니다. |
+
+이름은 로케일 문자열 `dividerSeparatorLabel` 입니다. 한국어는 `구분선`, 영어는 `Separator` 이고, 번역이 없는 언어는 영어를 씁니다. `Menu` 의 `CoreMenuItem.divider()` 항목은 두 플랫폼 모두 `semantic: true` 로 그립니다.
+
+### 키보드
+
+없음. 누르거나 조절하는 컨트롤이 아니라서 처리하는 키가 없습니다.
+
+### 스크린 리더
+
+`semantic: false` 인 선에는 읽을 정보가 없습니다. `child` 에 넣은 글자는 자기 접근성 정보를 그대로 갖지만, 양옆의 선이 구분선이라는 정보는 더해지지 않습니다. `semantic: true` 면 위의 이름이 경계에 붙습니다. 실제로 읽는 방식은 플랫폼과 스크린 리더에 따라 다를 수 있습니다.
+
+### 포커스 관리
+
+없음. 포커스를 받지 않고 포커스 링도 그리지 않습니다. Flutter 구현에는 `Focus` · `FocusNode` 가 없고, Web 은 `tabindex` 를 붙이지 않아 Tab 순서에 들어가지 않습니다.
+
+### 알려진 제약
+
+- **방향을 알리지 않습니다.** 두 플랫폼 모두 `orientation` 을 접근성 정보로 넘기지 않습니다. Web 에서 세로 방향까지 알려야 하면 `semantic: true` 와 함께 `attributes: {'aria-orientation': 'vertical'}` 를 넘깁니다. Flutter 의 `Divider` 에는 방향을 전할 파라미터가 없습니다.
+- **이름을 바꾸는 파라미터가 없습니다.** `semantic: true` 면 Web 에서 `attributes` 로 넘긴 `role` · `aria-label` 은 컴포넌트의 값으로 덮입니다. 다른 이름이 필요하면 `semantic` 을 끈 채로, Web 은 `attributes` 에 `role` 과 `aria-label` 을 직접 넘기고 Flutter 는 `Semantics` 로 감쌉니다.
+- **`semantic: true` 와 `child` 를 함께 쓸 때는 주의합니다.** Web 은 라벨까지 감싼 바깥 요소에 `role="separator"` 를 붙입니다. WAI-ARIA 는 이 역할의 자식을 표현용(children presentational)으로 정하므로, 라벨 글자가 따로 전달된다고 기대하지 마세요. 라벨이 읽혀야 하면 `semantic` 을 켜지 않습니다.
+- **Web 에는 구분선을 위한 강제 색상 모드 규칙이 없습니다.** 선은 테두리가 아니라 배경색으로 그립니다. 그 모드를 지원해야 하면 실제 환경에서 선이 보이는지 확인하세요.
+
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+```dart
+// 이름을 직접 정하는 구분선
+Semantics(
+  container: true,
+  label: '지난 알림',
+  child: Divider(),
+)
+```
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+```dart
+// 이름을 직접 정하는 구분선
+Divider(attributes: {'role': 'separator', 'aria-label': '지난 알림'})
+```
+
+  </TabItem>
+</Tabs>
+
+감소된 모션 · 고대비처럼 컴포넌트 전반에 걸친 항목은 [전역 접근성 축](/accessibility)을 참고하세요.
+
+<a id="크로스-플랫폼-차이점-platform-differences"></a>
+
+## 플랫폼 차이
+
+파라미터 이름은 같고, 그리는 방식과 아래 항목이 다릅니다.
+
+| 항목 | Flutter | Web |
+| --- | --- | --- |
+| 그리는 방식 | 색을 칠한 `Container` 와 `Padding`. 라벨이 있으면 `Row` · `Column` | `<div>` 하나. 라벨이 있으면 격자 `<div>` 안의 세 요소 |
+| 라벨과 선의 배치 | `Flexible` 조각이 남은 길이를 나누고, 각 조각이 자기 여백을 가집니다. | 격자 트랙 하나가 조각 하나이고, 선의 `margin` 이 트랙 안에 있습니다. |
+| 가로선의 여백 방향 | `EdgeInsetsDirectional` 의 `start` · `end` | CSS `margin-inline-start` · `margin-inline-end` |
+| 세로선의 부모 높이가 정해지지 않았을 때 | 선의 길이가 0 이고 에러는 나지 않습니다. | `height: 100%` 의 기준이 되는 높이가 필요합니다. |
+| 부모가 굵기 방향 크기를 고정했을 때 | 라벨 없는 선이 그 크기로 두꺼워집니다. | 직접 정한 CSS 굵기를 씁니다. |
+| 라벨이 상자보다 길 때 | 가로선의 글자 라벨은 줄이 바뀌지 않고, 레이아웃 넘침 오류가 보고됩니다. 가로선은 오른쪽에서 왼쪽으로 읽는 환경에서도 왼쪽 가장자리부터 놓입니다. | 오류 보고 없이 읽기 시작 쪽부터 놓입니다. 글자 라벨은 상자 폭 안에서 줄을 바꿀 수 있습니다. |
+| 의미 있는 경계 | 이름 붙은 `Semantics` 컨테이너 | `role="separator"` 와 `aria-label` |
+| `childPadding` | 네 값을 모두 적용합니다. | `left` 값 하나를 라벨 앞뒤에 둡니다. |
+| `CoreEdgeInsets.directional` 인 `childPadding` | `ArgumentError` 가 납니다. | `start` 값을 라벨 앞뒤에 둡니다. |
+| 밀도 | `indent` · `endIndent` · `childPadding` 이 밀도를 따라 움직입니다. 4 이하는 그대로입니다. | `CoreSpace` 단계의 값만 밀도를 따라 움직입니다. 단계 밖 숫자는 그대로입니다. |
+| 테마의 크기 배율(`scaling`) | 굵기 · 선 여백 · 라벨 여백에 곱합니다. | 배율을 곱하지 않습니다. 여백은 `rem`, 굵기는 `px` 기준입니다. |
+| 표면 스타일의 선 굵기 하한 | 0 이 아닌 모든 `thickness` 에 적용합니다. | `CoreStrokeWidth` 단계의 값에만 적용합니다. |
+| 웹 전용 파라미터 | 없음 | `id` · `classes` · `css` · `attributes` · `eventHandlers` |
+
+<a id="레거시-vs-통일-비교-migration-notes"></a>
+
+## 이전 API 에서 옮기기
+
+이전 버전의 CoUI 를 쓰던 코드에는 선을 그리던 `Separator` 가 남아 있을 수 있습니다. 지금 두 플랫폼 패키지에는 `Separator` 위젯이 없고, 그 자리에는 `Divider` 를 씁니다.
+
+| 옮기는 것 | `Divider` 에서 쓰는 곳 |
+| --- | --- |
+| 선 색 | `dividerStyle` 의 `color` |
+| 선 굵기 | `dividerStyle` 의 `thickness` |
+| 양쪽에 같은 여백 | `dividerStyle` 의 `indent` 와 `endIndent` 에 같은 값 |
+| 양쪽이 다른 여백 | `indent` 와 `endIndent` 를 따로 |
+| 선 사이의 글 | `child` |
+
+```dart
+Divider(
+  dividerStyle: CoreDividerStyle(
+    color: CoreColor.token(CoreColors.outline),
+    thickness: CoreStrokeWidth.stroke2,
+    indent: CoreSpace.space16,
+    endIndent: CoreSpace.space16,
+  ),
+)
+```
+
 <a id="props"></a>
-## Props / Parameters
+<a id="props-parameters"></a>
 
-`W` 는 Flutter의 `Widget`, Web의 Jaspr `Component` 입니다. `W?` 는 선택 슬롯입니다.
+## API
 
-| 속성 | 타입 | 기본값 | 설명 |
-|------|------|--------|------|
-| `orientation` | `CoreDividerOrientation` | `horizontal` | 구분선 방향 |
-| `child` | `W?` | `null` | 선 사이에 표시할 슬롯 ("또는" 등) |
-| `semantic` | `bool` | `false` | 장식 선이 아닌 의미 있는 그룹 경계로 알릴지 |
-| `dividerStyle` | `CoreDividerStyle?` | `null` | 겉모습을 바꾸는 값 묶음 (아래 표 참고) |
+공통 파라미터는 두 플랫폼의 이름이 같고, 슬롯 타입은 Flutter 가 `Widget`, Web 이 Jaspr `Component` 입니다. 비활성 · 선택 같은 상태나 누름 콜백 파라미터는 없습니다.
+
+### 생성자
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `orientation` | `CoreDividerOrientation` | `CoreDividerOrientation.horizontal` | 선의 방향 |
+| `child` | `Widget?` · `Component?` | `null` | 선 사이에 놓는 라벨 슬롯 |
+| `dividerStyle` | `CoreDividerStyle?` | `null` | 색 · 굵기 · 여백 · 라벨 위치 · 라벨 여백 |
+| `semantic` | `bool` | `false` | 장식이 아니라 의미 있는 경계로 알릴지 |
+| `key` | `Key?` | `null` | 위젯 · 컴포넌트의 키 |
+
+Web 의 `Divider` 는 `id` · `classes` · `css` · `attributes` · `eventHandlers` 도 받습니다. 모두 바깥 요소에 붙으며, 라벨이 있으면 그 요소는 선과 라벨을 담는 격자 `<div>` 입니다.
+
+### 그 밖의 멤버
+
+| 이름 | 설명 |
+| --- | --- |
+| `withStyle(CoreDividerStyle patch)` | `dividerStyle` 에 `patch` 를 합친 사본을 돌려줍니다. 겹치는 필드는 `patch` 가 이깁니다. |
+| `copyWith({orientation, child, dividerStyle, semantic, key})` | 준 값을 바꾼 사본을 만듭니다. `null` 로 넘긴 값은 기존 값이 남습니다. Web 은 `id` · `classes` · `css` · `attributes` · `eventHandlers` 도 받고, `classes` 는 기존 값에 더해집니다. |
+
+### 값 타입
+
+- `CoreDividerOrientation`: `horizontal` · `vertical`
+- `CoreDividerChildAlignment`: `center` · `start` · `end`
+
+### 테마
+
+| 이름 | 타입 | 설명 |
+| --- | --- | --- |
+| `CoreComponentTheme.divider` | `CoreDividerTheme?` | `Divider` 의 앱 전체 설정 |
+| `CoreDividerTheme.style` | `CoreDividerStyle?` | 모든 `Divider` 에 먼저 적용하는 스타일 |
 
 <!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
 
@@ -154,133 +583,23 @@ class DividerChainExample extends StatelessComponent {
 
 <!-- STYLE_TABLE:END -->
 
-## 색상 토큰
+<Note>
 
-기본 색상은 `CoreColorScheme.outlineVariant` — M3 표준 divider 토큰. 프로젝트 전역 변경은 `CoreComponentTheme.divider` 의 `style` 로 설정.
+위 표의 `childPadding` 설명은 선 방향에만 적용된다고 적혀 있지만 지금 동작은 다릅니다. Flutter 는 네 값을 모두 적용하고 Web 은 `left` 값 하나만 읽습니다. 자세한 규칙은 [라벨 여백](#라벨-여백)에 있습니다.
 
-## 동작 스펙 (Behavior)
-
-- child가 없으면 한 줄, 있으면 선 → child → 선 구조입니다. orientation이 세로면 선·여백 축을 바꿉니다. thickness / indent / endIndent 단위는 논리 px입니다.
-- `indent` 는 선이 시작하는 쪽, `endIndent` 는 끝나는 쪽의 여백입니다. 가로 구분선에서 두 값은 읽기 방향을 따르는 논리 방향이라, 왼쪽→오른쪽 로케일에서는 왼쪽·오른쪽이고 오른쪽→왼쪽 로케일(`ar` 등)에서는 오른쪽·왼쪽입니다. 라벨이 있으면 라벨 앞의 선이 `indent` 를, 뒤의 선이 `endIndent` 를 받으므로 어느 방향에서든 `indent` 는 텍스트가 시작하는 가장자리에서 들여쓰는 값입니다. 세로 구분선은 방향과 무관하게 위쪽이 `indent`, 아래쪽이 `endIndent` 입니다.
-- 들여쓴 단독 선은 컨테이너의 길이에서 두 여백을 뺀 길이입니다. Flutter 는 선의 폭이 그 길이이고, Web 은 `width: calc(100% - 두 여백)` 가 같은 길이를 정합니다 — `100%` 에 여백을 더하면 선이 시작점에서 밀려 반대쪽 가장자리 밖으로 넘치기 때문입니다. 여백이 없으면 `w-full` / `h-full` 이 그대로입니다.
-- 라벨이 있으면 라벨과 그 패딩(`childPadding`)은 자기 길이를 지키고, 앞뒤 두 조각이 남은 길이를 `childAlignment` 의 가중치대로 나눠 가집니다(기본 `center` 는 1 : 1). 각 조각은 자기 여백을 **자기 몫 안에** 두므로 `indent` 와 `endIndent` 가 달라도 라벨은 움직이지 않고, 선만 여백만큼 짧아집니다. 기본 정렬에서 라벨이 상자에 들어가면 라벨의 중심은 가로 · 세로 · 두 읽기 방향 어디서나 상자의 정중앙입니다. 여백이 몫 밖에 있으면 두 여백 차이의 절반만큼 라벨이 한쪽으로 치우치기 때문에, 여백은 몫 안에 둡니다. 몫이 여백보다 작은 조각은 선의 길이가 없습니다.
-- `start` / `end` 정렬에서 가중치가 0 인 조각은 자기 여백만큼의 길이이고, 라벨은 그 여백 뒤에서 시작합니다. 나머지 조각이 남는 길이를 모두 가져갑니다.
-- 라벨(패딩 포함)이 상자보다 길면 두 조각은 길이가 없고, 라벨은 읽기 시작 가장자리에서 시작해 반대쪽으로 넘칩니다.
-- 부모가 내용의 폭을 따르면(Flutter `IntrinsicWidth`, Web 의 `inline-block` 등) 나눌 상자가 없으므로 가중치가 있는 조각은 자기 여백이 허락하는 만큼만 깁니다. 기본 정렬의 구분선은 라벨과 패딩에 더 큰 여백의 두 배를 더한 폭이 되고 라벨은 그 가운데에 놓입니다.
-- 자체 이벤트·포커스·비활성 상태는 없습니다. 기본은 장식용이며 `semantic: true` 일 때 그룹 경계의 의미·로컬라이즈된 이름을 추가합니다.
-- 선이 필요 없고 빈 공간만 필요하면 **[Gap](/components/gap)** 입니다. 드래그로 패널 크기를 조정하는 경계이면 **[Resizable](/components/resizable)** 을 씁니다.
-
-### Web DOM 구조 (라벨이 있을 때)
-
-라벨이 있는 구분선은 격자(grid) 하나에 세 요소를 담습니다. 요소마다 트랙 하나를 받고, 두 선 요소의 `margin` 이 각자의 여백입니다.
-
-```html
-<!-- 가로: 기본 정렬, indent / endIndent 가 있을 때 -->
-<div class="grid w-full items-center"
-     style="grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr)">
-  <div style="height: …; margin-inline-start: <indent>"></div>       <!-- 앞 선: 첫 트랙 -->
-  <div style="padding-left: …; padding-right: …">라벨</div>           <!-- 라벨: 내용 길이 트랙 -->
-  <div style="height: …; margin-inline-end: <endIndent>"></div>      <!-- 뒤 선: 마지막 트랙 -->
-</div>
-```
-
-- 선 요소는 격자 항목이라 트랙을 가로질러 늘어나고 자기 `margin` 만큼만 짧아집니다. 그래서 트랙의 길이는 여백과 무관하고, 두 트랙이 라벨이 남긴 길이를 가중치대로 나눠 가집니다 — Flutter 에서 `Flexible` 이 자기 `Padding` 을 안고 있는 것과 같은 분할입니다. 가운데 트랙은 라벨의 길이를 따릅니다.
-- 가중치가 양수인 조각은 `minmax(0, Nfr)` 트랙입니다. 최솟값이 `0` 이라 라벨이 축 전체를 차지해도 선의 `margin` 이 트랙을 붙들지 않습니다. 가중치가 `0` 인 조각(`start` / `end` 정렬)은 `auto` 트랙이라 자기 여백만큼의 길이가 됩니다.
-- 세로 구분선은 같은 구조에 `grid-template-rows` 와 `grid justify-items-center h-full` 을 쓰고 선의 `margin-top` / `margin-bottom` 이 여백입니다. 세로는 읽기 방향과 무관합니다.
-- 읽기 방향은 `dir` 이 정합니다. 격자의 첫 트랙이 읽기 시작 쪽이고, `margin-inline-*` 가 같은 방향을 따르므로 오른쪽→왼쪽 로케일에서도 앞 선이 오른쪽에서 `indent` 만큼 들여써집니다.
-- 라벨이 없는 구분선은 격자가 아니라 선 하나(`<div>`)이고, 위 구조와 무관합니다.
-
-## 사용 가이드라인 (Usage Guidelines)
-
-### ✅ Do
-
-<Callout type="tip">
-
-**수직 구분선은 높이가 있는 부모로 감싸기**
-
-```dart
-SizedBox(
-  height: CoreSpace.space64,
-  child: const Divider(orientation: .vertical),
-)
-```
-
-수직 `Divider`는 내부적으로 `height: double.infinity`로 선을 그리므로, 부모가 명시적 높이를 주지 않으면 선이 렌더링되지 않거나 레이아웃 오류가 납니다.
-
-</Callout>
-
----
-
-### ❌ Don't
-
-<Callout type="warning">
-
-**구분선 의미 전달을 `orientation` 파라미터에 기대지 않기**
-
-```dart
-// ❌ orientation만 주면 접근성 트리에도 구분선으로 전달될 거라 기대
-Divider(orientation: .vertical)
-```
-
-`orientation`은 레이아웃만 바꿉니다. 리더에게 구분 의미를 전달하려면 `semantic: true` 를 줍니다 — Web 은 `role="separator"` 와 로케일 이름(`aria-label`)을, Flutter 는 같은 이름을 가진 `Semantics` 컨테이너를 붙입니다. 방향(`aria-orientation`)은 어느 쪽도 알리지 않으므로, Web 에서 방향까지 알려야 하면 `attributes: {'aria-orientation': 'vertical'}` 를 함께 넘깁니다.
-
-</Callout>
-
-## 접근성 (Accessibility)
-
-### 역할
-
-기본(`semantic: false`)에서는 **양 플랫폼 모두 아무 역할도 내보내지 않습니다** — 장식 선으로 남습니다. Flutter 는 `Padding` / `Row` / `Column` 과 선을 그리는 `Container` 만 조립하고, Web 은 `role` 도 `aria-*` 도 없는 `<div>` 를 내보내며 붙는 속성은 호출자가 `attributes` 로 넘긴 것뿐입니다.
-
-`semantic: true` 이면 그룹 경계로 알립니다. Web 은 `role="separator"` 와 로케일 이름(`aria-label`)을 붙이고, Flutter 는 같은 이름을 가진 `Semantics(container: true)` 로 감쌉니다 — Flutter 에는 움직이지 않는 구분선만을 위한 역할이 없어서, 조절하는 컨트롤로 잘못 읽히지 않도록 이름만 붙입니다.
-
-`orientation` (`CoreDividerOrientation.horizontal` / `vertical`) 은 레이아웃만 바꾸고 `aria-orientation` 으로 노출되지 않습니다.
-
-### 키보드
-
-키 입력을 처리하지 않습니다.
-
-### 포커스 관리
-
-포커스를 받지 않습니다 — 양 플랫폼 모두 `FocusNode` / `Focus` / `tabindex` 가 없고 포커스 링도 없습니다.
-
-### 스크린 리더
-
-기본 상태의 선은 아무것도 읽히지 않습니다. `child` 슬롯을 쓴 경우(예: "또는" 라벨) 그 자식의 텍스트는 읽히지만, `semantic: false` 이면 양옆의 선이 구분선으로 식별되지 않으므로 리더 사용자에게는 구조적 의미 없이 단어 하나가 떠 있는 것으로 들립니다. `semantic: true` 면 경계의 이름이 함께 읽힙니다.
-
-### 알려진 제약
-
-- 구분선 의미가 필요하면 `semantic: true` 를 줍니다. 방향까지 알려야 하면 Web 은 `attributes: {'aria-orientation': 'vertical'}` 를 함께 넘기면 그 속성이 그대로 붙습니다.
-- Flutter 는 방향을 알리는 수단이 없습니다 — 경계의 이름만 읽힙니다.
-- 반대로 순수 장식으로 두고 싶다면 기본값(`semantic: false`)으로 충분합니다. 아무것도 읽히지 않으므로 추가 작업이 필요 없습니다.
-
-전역으로 적용되는 항목(감소된 모션·고대비·강제 색상 등)은 [전역 접근성 축](/accessibility)을 참고하세요.
-
-## 크로스 플랫폼 차이점 (Platform Differences)
-
-| 항목 | Flutter | Web |
-|------|---------|-----|
-| 라벨과 선 배치 | `Row` / `Column` 의 `Flexible` 조각이 남은 길이를 나눠 갖고 각 조각이 자기 `Padding` 을 안음 | 격자 트랙 하나가 조각 하나이고 선의 `margin` 이 트랙 안에 있음 — 라벨의 자리가 같음 |
-| 여백 방향 | `EdgeInsetsDirectional` (`start` / `end`) | CSS `margin-inline-start` / `margin-inline-end` |
-| 라벨이 상자보다 길 때 | 라벨이 한 줄로 넘치고 `RenderFlex` 가 넘침을 보고하며, 물리 왼쪽 가장자리에서 시작(오른쪽→왼쪽에서도) | 읽기 시작 가장자리에서 시작하고 보고는 없음, 텍스트 라벨은 상자 안에서 줄바꿈 |
-| 의미 있는 경계 | separator 전용 역할 대신 이름 있는 Semantics container | role=separator와 로케일 aria-label |
-| child 의미 | 자식 의미 유지 | 자식 DOM 의미 유지 |
-
-## 레거시 vs 통일 비교 (Migration Notes)
-
-이전 버전의 CoUI 를 참조하는 코드에는 순수 얇은 선 전용 컴포넌트인 구버전 클래스가 남아 있을 수 있습니다(옛 이름: `Separator`). `Divider` 는 그 기능을 전부 포함하는 상위 집합이라 별도 컴포넌트 없이 하나로 통합되었습니다.
-
-| 항목 | 구버전 클래스 | 통일 `Divider` |
-|------|---------------|-----------------|
-| 순수 선 | ✅ | ✅ |
-| 중앙 라벨 슬롯("또는" 등) | ❌ 없음 | ✅ `child` |
-| 비대칭 여백 | 대칭 여백만 | `indent` + `endIndent` (비대칭 가능) |
-| 겉모습 바꾸기 | 낱개 파라미터로 분산 | `dividerStyle: CoreDividerStyle(...)` 하나 |
-
-**마이그레이션**: 색상 · 두께 파라미터는 `dividerStyle` 슬롯의 `color`/`thickness` 필드로, 대칭 여백은 `indent`(시작)·`endIndent`(끝) 로 그대로 옮기면 됩니다 — 위 Props 표를 참고하세요.
-
-같은 얇은 선을 두 컴포넌트로 노출하면 "어느 걸 쓰지" 혼란이 생기므로, 새/수정 코드는 `Divider` 만 사용하세요.
+</Note>
 
 ## 관련 컴포넌트
 
-- **[Gap](/components/gap)** — 시각적 선 없이 순수 간격.
+<Cards columns="2">
+<Card demo="divider/related-gap" title="Gap">
+
+선 없이 빈 자리만 둡니다.
+
+</Card>
+<Card demo="divider/related-resizable" title="Resizable">
+
+끌어서 영역의 크기를 바꾸는 경계입니다.
+
+</Card>
+</Cards>

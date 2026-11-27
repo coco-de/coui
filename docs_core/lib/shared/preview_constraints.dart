@@ -120,6 +120,11 @@ const kDocsPreviewConstraints = <String, DocsPreviewConstraints>{
   // description and error has to fit without the view clipping it.
   'button/playground': kDocsMediumConstraints,
   'text-field/playground': kDocsMediumConstraints,
+  // Playgrounds whose tallest option is taller than the component's own
+  // stage: a vertical Divider between two items, an xl2 Avatar, a 48px Icon.
+  'avatar/playground': kDocsMediumConstraints,
+  'divider/playground': kDocsMediumConstraints,
+  'icon/playground': kDocsDefaultConstraints,
   'form-field': kDocsMediumConstraints,
   'formatter': kDocsDefaultConstraints,
   'scrollview': kDocsMediumConstraints,

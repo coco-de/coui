@@ -5,7 +5,9 @@
 import '../shared/playground_spec.dart';
 import '../shared/size_spec.dart';
 import 'alert/alert_page.dart' as alert;
+import 'aspect_ratio_box/aspect_ratio_box_page.dart' as aspect_ratio_box;
 import 'autocomplete/autocomplete_page.dart' as autocomplete;
+import 'avatar/avatar_page.dart' as avatar;
 import 'badge/badge_page.dart' as badge;
 import 'breadcrumb/breadcrumb_page.dart' as breadcrumb;
 import 'button/button_page.dart' as button;
@@ -17,6 +19,7 @@ import 'command_search/command_search_page.dart' as command_search;
 import 'context_menu/context_menu_page.dart' as context_menu;
 import 'date_picker/date_picker_page.dart' as date_picker;
 import 'dialog/dialog_page.dart' as dialog;
+import 'divider/divider_page.dart' as divider;
 import 'drawer/drawer_page.dart' as drawer;
 import 'dropdown_menu/dropdown_menu_page.dart' as dropdown_menu;
 import 'fab/fab_page.dart' as fab;
@@ -31,7 +34,9 @@ import 'formatter/formatter_page.dart' as formatter;
 import 'gap/gap_page.dart' as gap;
 import 'hover/hover_page.dart' as hover;
 import 'hover_card/hover_card_page.dart' as hover_card;
+import 'icon/icon_page.dart' as icon;
 import 'indexed_switcher/indexed_switcher_page.dart' as indexed_switcher;
+import 'indicator/indicator_page.dart' as indicator;
 import 'input_otp/input_otp_page.dart' as input_otp;
 import 'item_picker/item_picker_page.dart' as item_picker;
 import 'kbd/kbd_page.dart' as kbd;
@@ -87,7 +92,9 @@ import 'validator_hint/validator_hint_page.dart' as validator_hint;
 /// 문서 슬러그 → 플레이그라운드.
 final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (alert.playground case final spec?) alert.slug: spec,
+  if (aspect_ratio_box.playground case final spec?) aspect_ratio_box.slug: spec,
   if (autocomplete.playground case final spec?) autocomplete.slug: spec,
+  if (avatar.playground case final spec?) avatar.slug: spec,
   if (badge.playground case final spec?) badge.slug: spec,
   if (breadcrumb.playground case final spec?) breadcrumb.slug: spec,
   if (button.playground case final spec?) button.slug: spec,
@@ -99,6 +106,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (context_menu.playground case final spec?) context_menu.slug: spec,
   if (date_picker.playground case final spec?) date_picker.slug: spec,
   if (dialog.playground case final spec?) dialog.slug: spec,
+  if (divider.playground case final spec?) divider.slug: spec,
   if (drawer.playground case final spec?) drawer.slug: spec,
   if (dropdown_menu.playground case final spec?) dropdown_menu.slug: spec,
   if (fab.playground case final spec?) fab.slug: spec,
@@ -113,7 +121,9 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (gap.playground case final spec?) gap.slug: spec,
   if (hover.playground case final spec?) hover.slug: spec,
   if (hover_card.playground case final spec?) hover_card.slug: spec,
+  if (icon.playground case final spec?) icon.slug: spec,
   if (indexed_switcher.playground case final spec?) indexed_switcher.slug: spec,
+  if (indicator.playground case final spec?) indicator.slug: spec,
   if (input_otp.playground case final spec?) input_otp.slug: spec,
   if (item_picker.playground case final spec?) item_picker.slug: spec,
   if (kbd.playground case final spec?) kbd.slug: spec,
@@ -170,7 +180,9 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
 /// 문서 슬러그 → 크기 표.
 final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (alert.sizeSpec case final spec?) alert.slug: spec,
+  if (aspect_ratio_box.sizeSpec case final spec?) aspect_ratio_box.slug: spec,
   if (autocomplete.sizeSpec case final spec?) autocomplete.slug: spec,
+  if (avatar.sizeSpec case final spec?) avatar.slug: spec,
   if (badge.sizeSpec case final spec?) badge.slug: spec,
   if (breadcrumb.sizeSpec case final spec?) breadcrumb.slug: spec,
   if (button.sizeSpec case final spec?) button.slug: spec,
@@ -182,6 +194,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (context_menu.sizeSpec case final spec?) context_menu.slug: spec,
   if (date_picker.sizeSpec case final spec?) date_picker.slug: spec,
   if (dialog.sizeSpec case final spec?) dialog.slug: spec,
+  if (divider.sizeSpec case final spec?) divider.slug: spec,
   if (drawer.sizeSpec case final spec?) drawer.slug: spec,
   if (dropdown_menu.sizeSpec case final spec?) dropdown_menu.slug: spec,
   if (fab.sizeSpec case final spec?) fab.slug: spec,
@@ -196,7 +209,9 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (gap.sizeSpec case final spec?) gap.slug: spec,
   if (hover.sizeSpec case final spec?) hover.slug: spec,
   if (hover_card.sizeSpec case final spec?) hover_card.slug: spec,
+  if (icon.sizeSpec case final spec?) icon.slug: spec,
   if (indexed_switcher.sizeSpec case final spec?) indexed_switcher.slug: spec,
+  if (indicator.sizeSpec case final spec?) indicator.slug: spec,
   if (input_otp.sizeSpec case final spec?) input_otp.slug: spec,
   if (item_picker.sizeSpec case final spec?) item_picker.slug: spec,
   if (kbd.sizeSpec case final spec?) kbd.slug: spec,
