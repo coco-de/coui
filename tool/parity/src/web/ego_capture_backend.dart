@@ -21,6 +21,7 @@ import 'computed_style_probe.dart';
 import 'element_capture.dart';
 import 'framed_collection_ssr_source.dart';
 import 'runtime_capture.dart';
+import 'showcase_allocation_ssr_source.dart';
 import 'text_showcase_ssr_source.dart';
 import 'web_capture_backend.dart';
 
@@ -341,7 +342,8 @@ Future<WebCaptureResult> captureEgoEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredTextShowcaseSsrKind(entry) ??
+      ? requiredShowcaseAllocationSsrKind(entry) ??
+            requiredTextShowcaseSsrKind(entry) ??
             requiredFramedCollectionSsrKind(entry)
       : null;
   Map<String, Object?>? currentSsrSource;

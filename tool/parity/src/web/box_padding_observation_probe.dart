@@ -33,6 +33,7 @@ import 'box_padding_validation_viewport_units_probe.dart';
 import 'box_padding_visual_value_units_probe.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
+import 'showcase_allocation_ssr_source.dart';
 import 'text_showcase_ssr_source.dart';
 
 /// Current CSS padding of a declared box, independent of painted chrome.
@@ -54,6 +55,7 @@ String get boxPaddingObservationScript =>
       BoxObservationSourceSpec.docsSizePreview.toJson(),
       BoxObservationSourceSpec.docsPlayground.toJson(),
       BoxObservationSourceSpec.textShowcaseOuterPadding.toJson(),
+      BoxObservationSourceSpec.showcaseAllocationHost.toJson(),
       ...BoxObservationSourceSpec.componentFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.extendedComponentFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.displayComponentFrames.map((source) => source.toJson()),
@@ -106,6 +108,20 @@ String get boxPaddingObservationScript =>
     return {raw:receipt.currentRaw};
   };
   switch(source.webAdapterId) {
+    case 'classic-compound-showcase-allocation-host-v1': {
+      const binding = ($showcaseAllocationRequestBindingScript)(request);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (!binding.applied || binding.registryResultElement !== layoutRoot ||
+          binding.fieldUnitElement !== layoutRoot || binding.paddingSource !== layoutRoot ||
+          binding.frameSource !== layoutRoot || binding.registryIsLayoutRoot !== true ||
+          typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('SHOWCASE_ALLOCATION_FIELD_UNIT_CHANGED'));
+      owner = layoutRoot;
+      sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true;
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      break;
+    }
     case 'classic-text-showcase-outer-padding-v1': {
       const binding = ($textShowcaseRequestBindingScript)(request);
       if (binding.error) return JSON.stringify(incomplete(binding.error));
@@ -475,7 +491,9 @@ String get boxPaddingObservationScript =>
   if (value.some(number => !Number.isFinite(number))) return JSON.stringify(incomplete('UNRESOLVED_CSS_PADDING'));
   const ownerTag = owner.tagName, ownerClasses = Array.from(owner.classList);
   if (validateCurrentBoxBinding && !validateCurrentBoxBinding())
-    return JSON.stringify(incomplete('TEXT_SHOWCASE_BINDING_CHANGED_DURING_CSS_READ'));
+    return JSON.stringify(incomplete(source.webAdapterId === 'classic-compound-showcase-allocation-host-v1'
+      ? 'SHOWCASE_ALLOCATION_BINDING_CHANGED_DURING_CSS_READ'
+      : 'TEXT_SHOWCASE_BINDING_CHANGED_DURING_CSS_READ'));
   return JSON.stringify({status:'source-complete', sourceUnitValidated:true, source, value, rawCss:raw,
     ownerIsLayoutRoot:owner === layoutRoot, ownerTag,
     ownerClasses, paintRequired:false,

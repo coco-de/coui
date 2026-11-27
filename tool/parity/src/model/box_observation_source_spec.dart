@@ -941,6 +941,15 @@ class BoxObservationSourceSpec {
     webAdapterId: 'classic-text-showcase-outer-padding-v1',
   );
 
+  /// The classic compound showcase allocation, not any contained product.
+  static const showcaseAllocationHost = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'classic-compound-showcase-allocation-host',
+    quantityId: quantity,
+    nativeAdapterId: 'classic-compound-showcase-allocation-host-v1',
+    webAdapterId: 'classic-compound-showcase-allocation-host-v1',
+  );
+
   String? get validationError {
     if (schemaVersion != 1) return 'UNSUPPORTED_BOX_SOURCE_VERSION';
     if (quantityId != quantity) return 'UNSUPPORTED_BOX_QUANTITY';
@@ -975,6 +984,7 @@ class BoxObservationSourceSpec {
       ...visualValueFrames,
       ...framedCollectionFrames,
       textShowcaseOuterPadding,
+      showcaseAllocationHost,
     ]) {
       if (logicalUnitId == supported.logicalUnitId &&
           nativeAdapterId == supported.nativeAdapterId &&

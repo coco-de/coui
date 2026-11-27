@@ -36,6 +36,7 @@ import 'framed_collection_ssr_source.dart';
 import 'navigation_trigger_ssr_source.dart';
 import 'offline_tailwind_harness.dart';
 import 'runtime_capture.dart';
+import 'showcase_allocation_ssr_source.dart';
 import 'ssr_render.dart';
 import 'text_showcase_ssr_source.dart';
 import 'visual_value_ssr_source.dart';
@@ -238,7 +239,8 @@ Future<String> renderCaptureBodyHtml(
 }) async {
   final sourceRecorder = onCurrentBoxSource == null
       ? null
-      : TextShowcaseSsrSource.forEntry(entry) ??
+      : ShowcaseAllocationSsrSource.forEntry(entry) ??
+            TextShowcaseSsrSource.forEntry(entry) ??
             FramedCollectionSsrSource.forEntry(entry) ??
             NavigationTriggerSsrSource.forEntry(entry) ??
             DataOverlaySsrSource.forEntry(entry) ??
@@ -444,7 +446,8 @@ Future<WebCaptureResult> captureWebEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredTextShowcaseSsrKind(entry) ??
+      ? requiredShowcaseAllocationSsrKind(entry) ??
+            requiredTextShowcaseSsrKind(entry) ??
             requiredFramedCollectionSsrKind(entry)
       : null;
   Map<String, Object?>? currentSsrSource;

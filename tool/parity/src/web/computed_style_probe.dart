@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:puppeteer/puppeteer.dart';
 
 import 'device_paint_source_probe.dart';
+import 'showcase_allocation_ssr_source.dart';
 import 'text_showcase_ssr_source.dart';
 
 /// The canonical raw probe shared by browser transports.
@@ -15,6 +16,9 @@ String get computedStyleProbeScript =>
 String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
     '''
 (request) => {
+  const showcase = ($showcaseAllocationRequestBindingScript)(request);
+  if (showcase.error) throw new Error(showcase.error);
+  if (showcase.applied && !showcase.validateCurrentBinding()) throw new Error('SHOWCASE_ALLOCATION_CURRENT_BINDING_CHANGED');
   const text = ($textShowcaseRequestBindingScript)(request);
   if (text.error) throw new Error(text.error);
   if (text.applied && !text.validateCurrentBinding()) throw new Error('TEXT_SHOWCASE_CURRENT_BINDING_CHANGED');
@@ -24,7 +28,9 @@ String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
   const legacy = JSON.parse(($_kComputedStyleJs)(request.selector,paint.applied ? paint.sourcePaintElement : null));
   if (text.applied && !text.validateCurrentBinding()) throw new Error('TEXT_SHOWCASE_BINDING_CHANGED_DURING_LEGACY_READ');
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
+  if (showcase.applied && !showcase.validateCurrentBinding()) throw new Error('SHOWCASE_ALLOCATION_BINDING_CHANGED_DURING_LEGACY_READ');
   const box = JSON.parse(($boxSamplerScript)(request));
+  if (showcase.applied && !showcase.validateCurrentBinding()) throw new Error('SHOWCASE_ALLOCATION_BINDING_CHANGED_DURING_BOX_READ');
   if (text.applied && !text.validateCurrentBinding()) throw new Error('TEXT_SHOWCASE_BINDING_CHANGED_DURING_BOX_READ');
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
   return JSON.stringify({legacy,box});
