@@ -1,5 +1,3 @@
-library;
-
 import 'package:coui_core/coui_core.dart';
 import 'package:coui_web/src/base/web_element_chrome.dart';
 import 'package:coui_web/src/base/web_layout.dart';
@@ -64,18 +62,16 @@ class ResolvedMockupCode implements WebResolvedChrome {
   /// that widget's own resolver owns border / radius / background /
   /// padding emit and the control-shadow-at-rest fallback (no
   /// className / inlineStyles assembly here). `borderColor` is forced
-  /// transparent — `MockupCode` never drew a border of its own. It
-  /// states no `padding`: the primitive's Web emit carries one value for
-  /// all four sides, so the inset lives on [body].
+  /// transparent — `MockupCode` never drew a border of its own. Padding
+  /// is explicitly zero here: [body] owns the MockupCode content inset,
+  /// so an outlined-container theme must not add a second inset.
   final CoreOutlinedContainerStyle frameStyle;
 
   /// Paint-ready chrome for the content wrapper `<div>` inside the
-  /// frame — carries the four-side inset as inline `padding`. The
-  /// `OutlinedContainer` Web emit writes a single value (the top side)
-  /// for every side, so an asymmetric inset (vertical 10 / horizontal
-  /// 16) can only render on this element; Flutter hands the same
-  /// `CoreEdgeInsets` to its `OutlinedContainer`, which resolves each
-  /// side.
+  /// frame — carries the four-side inset as inline `padding`. Flutter
+  /// forwards the same MockupCode inset to its `OutlinedContainer`.
+  /// Keep this existing body allocation and its directional longhands;
+  /// the composed Web frame contributes no additional content padding.
   final WebElementChrome body;
 
   /// Paint-ready chrome for a single code-line `<div>` — `flex
@@ -159,13 +155,10 @@ ResolvedMockupCode resolveMockupCode(
   // `OutlinedContainer`'s default border to nothing — `MockupCode`
   // never drew a border of its own.
   //
-  // No `padding` is stated on the frame: `OutlinedContainer`'s Web emit
-  // writes ONE `padding` value (its top side) for all four sides, so the
-  // asymmetric default inset (vertical 10 / horizontal 16) would render
-  // as 10 all round. The inset is emitted on the content wrapper
-  // instead (`buildBodyInlineStyles`) as a four-side declaration, the
-  // way `CodeSnippet` pads its own `<pre>`. Flutter still forwards the
-  // padding to its `OutlinedContainer`, which resolves each side.
+  // The existing content wrapper owns MockupCode's complete inset.
+  // Explicitly suppress the composed frame's inherited padding so an
+  // outlined-container theme cannot add a second inset around the body.
+  // Flutter already overrides that theme with MockupCode's own padding.
   final frameStyle = CoreOutlinedContainerStyle(
     backgroundColor:
         merged.backgroundColor ??
@@ -173,6 +166,7 @@ ResolvedMockupCode resolveMockupCode(
         CoreMockupCodeStyle.defaultBackgroundColor,
     borderColor: .transparent,
     borderRadius: borderRadiusCore,
+    padding: CoreEdgeInsets.zero,
   );
 
   // ─── Stage 2 EMIT — Web class XOR inline (theme-free) ──

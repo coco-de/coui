@@ -5,17 +5,12 @@
 /// vertical 10 / horizontal 16 inset, the `codeSm` text and gutter roles,
 /// and the 28px gutter.
 ///
-/// The inset is the claim that needs the markup. `OutlinedContainer`'s Web
-/// emit writes one `padding` value for all four sides, so a four-side inset
-/// stated on the frame renders as 10 all round on this platform. These read
-/// what the page actually carries — the resolved inline CSS and, through the
-/// real SSR binding, the `style` attribute of the elements in the document.
+/// The inset is the claim that needs the markup. The existing content body
+/// owns it; the composed frame explicitly suppresses inherited padding.
+/// These read the emitted inline CSS and the real SSR document.
 library;
 
 import 'package:coui_web/coui_web.dart';
-// The composed frame's resolver is internal chrome — import it directly to
-// read the classes the frame emits.
-import 'package:coui_web/src/components/infra/outlined_container/outlined_container_style.dart';
 import 'package:jaspr_test/jaspr_test.dart';
 import 'package:jaspr_test/server_test.dart' as server;
 
@@ -75,10 +70,10 @@ void main() {
       );
     });
 
-    testComponents('the frame states no padding of its own', (tester) async {
-      // `OutlinedContainer` would collapse any inset it was handed to its
-      // top side on all four sides — the inset must not travel through it.
-      expect(_resolve(tester).frameStyle.padding, isNull);
+    testComponents('the frame explicitly suppresses inherited padding', (
+      tester,
+    ) async {
+      expect(_resolve(tester).frameStyle.padding, CoreEdgeInsets.zero);
     });
 
     testComponents('a caller inset reaches the body on every side', (
@@ -100,7 +95,7 @@ void main() {
         'var(--coui-space-4) var(--coui-space-8) '
         'var(--coui-space-12) 1.375rem',
       );
-      expect(resolved.frameStyle.padding, isNull);
+      expect(resolved.frameStyle.padding, CoreEdgeInsets.zero);
     });
 
     testComponents('a directional inset becomes logical longhands', (
@@ -230,7 +225,7 @@ void main() {
 
   group('MockupCode SSR — the inset is in the document', () {
     server.testServer('the content wrapper carries the 10 / 16 padding, the '
-        'frame carries none', (tester) async {
+        'frame adds no padding', (tester) async {
       tester.pumpComponent(
         CoUIWeb(
           theme: .coui,
@@ -254,10 +249,13 @@ void main() {
         'var(--coui-space-10) var(--coui-space-16)',
       );
 
-      // The frame is the composed primitive — it must not state a single
-      // all-round value that the wrapper's four-side one would sit under.
+      // The frame is the composed primitive. It must suppress inherited
+      // padding while the body retains the complete four-side allocation.
       final frame = body.parent!;
-      expect(frame.attributes['style'] ?? '', isNot(contains('padding')));
+      expect(
+        _declarations(frame.attributes['style'] ?? '')['padding'],
+        'var(--coui-space-0)',
+      );
 
       // The face the page paints: the lighter container step, as a token
       // class the browser re-resolves per theme.
