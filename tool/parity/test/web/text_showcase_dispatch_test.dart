@@ -180,12 +180,19 @@ try{observed=JSON.parse((${combined
 catch(e){error=String(e);}
 console.log(JSON.stringify({observed,error,cssReads}));
 ''';
-  final result = await Process.run(
-    Platform.environment['PARITY_NODE'] ?? 'node',
-    ['-e', program],
-  );
-  expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
-  return (jsonDecode(result.stdout as String) as Map).cast<String, Object?>();
+  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  try {
+    final file = File('${directory.path}/probe.cjs');
+    await file.writeAsString(program);
+    final result = await Process.run(
+      Platform.environment['PARITY_NODE'] ?? 'node',
+      [file.path],
+    );
+    expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
+    return (jsonDecode(result.stdout as String) as Map).cast<String, Object?>();
+  } finally {
+    await directory.delete(recursive: true);
+  }
 }
 
 void main() {
