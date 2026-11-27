@@ -67,6 +67,7 @@ const ICON_NAMES = [
   'chevron-down', //   accordion · collapsible · select · phone-input
   'chevron-right', //  breadcrumb · tree · pagination
   'chevron-left', //   pagination
+  'chevrons-left-right', // diff handle
   'arrow-left', //     calendar · command (fullscreen back)
   'arrow-right', //    calendar
   'grip-vertical', //  sortable handle
