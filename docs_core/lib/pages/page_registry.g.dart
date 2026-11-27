@@ -47,6 +47,8 @@ import 'item_picker/item_picker_page.dart' as item_picker;
 import 'kbd/kbd_page.dart' as kbd;
 import 'label/label_page.dart' as label;
 import 'link/link_page.dart' as link;
+import 'loading/loading_page.dart' as loading;
+import 'loading_region/loading_region_page.dart' as loading_region;
 import 'menu/menu_page.dart' as menu;
 import 'menu_item/menu_item_page.dart' as menu_item;
 import 'menubar/menubar_page.dart' as menubar;
@@ -56,6 +58,7 @@ import 'navigation_bar/navigation_bar_page.dart' as navigation_bar;
 import 'navigation_bar_item/navigation_bar_item_page.dart' as navigation_bar_item;
 import 'navigation_menu/navigation_menu_page.dart' as navigation_menu;
 import 'number_input/number_input_page.dart' as number_input;
+import 'number_ticker/number_ticker_page.dart' as number_ticker;
 import 'object_input/object_input_page.dart' as object_input;
 import 'option_item/option_item_page.dart' as option_item;
 import 'option_list/option_list_page.dart' as option_list;
@@ -63,6 +66,7 @@ import 'pagination/pagination_page.dart' as pagination;
 import 'phone_input/phone_input_page.dart' as phone_input;
 import 'popover/popover_page.dart' as popover;
 import 'popup/popup_page.dart' as popup;
+import 'progress/progress_page.dart' as progress;
 import 'radio_group/radio_group_page.dart' as radio_group;
 import 'range/range_page.dart' as range;
 import 'refresh_trigger/refresh_trigger_page.dart' as refresh_trigger;
@@ -71,6 +75,7 @@ import 'scrollbar/scrollbar_page.dart' as scrollbar;
 import 'select/select_page.dart' as select;
 import 'selectable_text/selectable_text_page.dart' as selectable_text;
 import 'sidebar/sidebar_page.dart' as sidebar;
+import 'skeleton/skeleton_page.dart' as skeleton;
 import 'slider/slider_page.dart' as slider;
 import 'sortable/sortable_page.dart' as sortable;
 import 'star_rating/star_rating_page.dart' as star_rating;
@@ -139,6 +144,8 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (kbd.playground case final spec?) kbd.slug: spec,
   if (label.playground case final spec?) label.slug: spec,
   if (link.playground case final spec?) link.slug: spec,
+  if (loading.playground case final spec?) loading.slug: spec,
+  if (loading_region.playground case final spec?) loading_region.slug: spec,
   if (menu.playground case final spec?) menu.slug: spec,
   if (menu_item.playground case final spec?) menu_item.slug: spec,
   if (menubar.playground case final spec?) menubar.slug: spec,
@@ -148,6 +155,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (navigation_bar_item.playground case final spec?) navigation_bar_item.slug: spec,
   if (navigation_menu.playground case final spec?) navigation_menu.slug: spec,
   if (number_input.playground case final spec?) number_input.slug: spec,
+  if (number_ticker.playground case final spec?) number_ticker.slug: spec,
   if (object_input.playground case final spec?) object_input.slug: spec,
   if (option_item.playground case final spec?) option_item.slug: spec,
   if (option_list.playground case final spec?) option_list.slug: spec,
@@ -155,6 +163,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (phone_input.playground case final spec?) phone_input.slug: spec,
   if (popover.playground case final spec?) popover.slug: spec,
   if (popup.playground case final spec?) popup.slug: spec,
+  if (progress.playground case final spec?) progress.slug: spec,
   if (radio_group.playground case final spec?) radio_group.slug: spec,
   if (range.playground case final spec?) range.slug: spec,
   if (refresh_trigger.playground case final spec?) refresh_trigger.slug: spec,
@@ -163,6 +172,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (select.playground case final spec?) select.slug: spec,
   if (selectable_text.playground case final spec?) selectable_text.slug: spec,
   if (sidebar.playground case final spec?) sidebar.slug: spec,
+  if (skeleton.playground case final spec?) skeleton.slug: spec,
   if (slider.playground case final spec?) slider.slug: spec,
   if (sortable.playground case final spec?) sortable.slug: spec,
   if (star_rating.playground case final spec?) star_rating.slug: spec,
@@ -232,6 +242,8 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (kbd.sizeSpec case final spec?) kbd.slug: spec,
   if (label.sizeSpec case final spec?) label.slug: spec,
   if (link.sizeSpec case final spec?) link.slug: spec,
+  if (loading.sizeSpec case final spec?) loading.slug: spec,
+  if (loading_region.sizeSpec case final spec?) loading_region.slug: spec,
   if (menu.sizeSpec case final spec?) menu.slug: spec,
   if (menu_item.sizeSpec case final spec?) menu_item.slug: spec,
   if (menubar.sizeSpec case final spec?) menubar.slug: spec,
@@ -241,6 +253,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (navigation_bar_item.sizeSpec case final spec?) navigation_bar_item.slug: spec,
   if (navigation_menu.sizeSpec case final spec?) navigation_menu.slug: spec,
   if (number_input.sizeSpec case final spec?) number_input.slug: spec,
+  if (number_ticker.sizeSpec case final spec?) number_ticker.slug: spec,
   if (object_input.sizeSpec case final spec?) object_input.slug: spec,
   if (option_item.sizeSpec case final spec?) option_item.slug: spec,
   if (option_list.sizeSpec case final spec?) option_list.slug: spec,
@@ -248,6 +261,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (phone_input.sizeSpec case final spec?) phone_input.slug: spec,
   if (popover.sizeSpec case final spec?) popover.slug: spec,
   if (popup.sizeSpec case final spec?) popup.slug: spec,
+  if (progress.sizeSpec case final spec?) progress.slug: spec,
   if (radio_group.sizeSpec case final spec?) radio_group.slug: spec,
   if (range.sizeSpec case final spec?) range.slug: spec,
   if (refresh_trigger.sizeSpec case final spec?) refresh_trigger.slug: spec,
@@ -256,6 +270,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (select.sizeSpec case final spec?) select.slug: spec,
   if (selectable_text.sizeSpec case final spec?) selectable_text.slug: spec,
   if (sidebar.sizeSpec case final spec?) sidebar.slug: spec,
+  if (skeleton.sizeSpec case final spec?) skeleton.slug: spec,
   if (slider.sizeSpec case final spec?) slider.slug: spec,
   if (sortable.sizeSpec case final spec?) sortable.slug: spec,
   if (star_rating.sizeSpec case final spec?) star_rating.slug: spec,

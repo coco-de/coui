@@ -48,6 +48,8 @@ import 'item_picker/item_picker_flutter.dart' as item_picker;
 import 'kbd/kbd_flutter.dart' as kbd;
 import 'label/label_flutter.dart' as label;
 import 'link/link_flutter.dart' as link;
+import 'loading/loading_flutter.dart' as loading;
+import 'loading_region/loading_region_flutter.dart' as loading_region;
 import 'menu/menu_flutter.dart' as menu;
 import 'menu_item/menu_item_flutter.dart' as menu_item;
 import 'menubar/menubar_flutter.dart' as menubar;
@@ -57,6 +59,7 @@ import 'navigation_bar/navigation_bar_flutter.dart' as navigation_bar;
 import 'navigation_bar_item/navigation_bar_item_flutter.dart' as navigation_bar_item;
 import 'navigation_menu/navigation_menu_flutter.dart' as navigation_menu;
 import 'number_input/number_input_flutter.dart' as number_input;
+import 'number_ticker/number_ticker_flutter.dart' as number_ticker;
 import 'object_input/object_input_flutter.dart' as object_input;
 import 'option_item/option_item_flutter.dart' as option_item;
 import 'option_list/option_list_flutter.dart' as option_list;
@@ -64,6 +67,7 @@ import 'pagination/pagination_flutter.dart' as pagination;
 import 'phone_input/phone_input_flutter.dart' as phone_input;
 import 'popover/popover_flutter.dart' as popover;
 import 'popup/popup_flutter.dart' as popup;
+import 'progress/progress_flutter.dart' as progress;
 import 'radio_group/radio_group_flutter.dart' as radio_group;
 import 'range/range_flutter.dart' as range;
 import 'refresh_trigger/refresh_trigger_flutter.dart' as refresh_trigger;
@@ -72,6 +76,7 @@ import 'scrollbar/scrollbar_flutter.dart' as scrollbar;
 import 'select/select_flutter.dart' as select;
 import 'selectable_text/selectable_text_flutter.dart' as selectable_text;
 import 'sidebar/sidebar_flutter.dart' as sidebar;
+import 'skeleton/skeleton_flutter.dart' as skeleton;
 import 'slider/slider_flutter.dart' as slider;
 import 'sortable/sortable_flutter.dart' as sortable;
 import 'star_rating/star_rating_flutter.dart' as star_rating;
@@ -140,6 +145,8 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (kbd.propPreview case final builder?) 'kbd': builder,
   if (label.propPreview case final builder?) 'label': builder,
   if (link.propPreview case final builder?) 'link': builder,
+  if (loading.propPreview case final builder?) 'loading': builder,
+  if (loading_region.propPreview case final builder?) 'loading-region': builder,
   if (menu.propPreview case final builder?) 'menu': builder,
   if (menu_item.propPreview case final builder?) 'menu-item': builder,
   if (menubar.propPreview case final builder?) 'menubar': builder,
@@ -149,6 +156,7 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (navigation_bar_item.propPreview case final builder?) 'navigation-bar-item': builder,
   if (navigation_menu.propPreview case final builder?) 'navigation-menu': builder,
   if (number_input.propPreview case final builder?) 'number-input': builder,
+  if (number_ticker.propPreview case final builder?) 'number-ticker': builder,
   if (object_input.propPreview case final builder?) 'object-input': builder,
   if (option_item.propPreview case final builder?) 'option-item': builder,
   if (option_list.propPreview case final builder?) 'option-list': builder,
@@ -156,6 +164,7 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (phone_input.propPreview case final builder?) 'phone-input': builder,
   if (popover.propPreview case final builder?) 'popover': builder,
   if (popup.propPreview case final builder?) 'popup': builder,
+  if (progress.propPreview case final builder?) 'progress': builder,
   if (radio_group.propPreview case final builder?) 'radio-group': builder,
   if (range.propPreview case final builder?) 'range': builder,
   if (refresh_trigger.propPreview case final builder?) 'refresh-trigger': builder,
@@ -164,6 +173,7 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (select.propPreview case final builder?) 'select': builder,
   if (selectable_text.propPreview case final builder?) 'selectable-text': builder,
   if (sidebar.propPreview case final builder?) 'sidebar': builder,
+  if (skeleton.propPreview case final builder?) 'skeleton': builder,
   if (slider.propPreview case final builder?) 'slider': builder,
   if (sortable.propPreview case final builder?) 'sortable': builder,
   if (star_rating.propPreview case final builder?) 'star-rating': builder,
@@ -233,6 +243,8 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...kbd.demos,
   ...label.demos,
   ...link.demos,
+  ...loading.demos,
+  ...loading_region.demos,
   ...menu.demos,
   ...menu_item.demos,
   ...menubar.demos,
@@ -242,6 +254,7 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...navigation_bar_item.demos,
   ...navigation_menu.demos,
   ...number_input.demos,
+  ...number_ticker.demos,
   ...object_input.demos,
   ...option_item.demos,
   ...option_list.demos,
@@ -249,6 +262,7 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...phone_input.demos,
   ...popover.demos,
   ...popup.demos,
+  ...progress.demos,
   ...radio_group.demos,
   ...range.demos,
   ...refresh_trigger.demos,
@@ -257,6 +271,7 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...select.demos,
   ...selectable_text.demos,
   ...sidebar.demos,
+  ...skeleton.demos,
   ...slider.demos,
   ...sortable.demos,
   ...star_rating.demos,

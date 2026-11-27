@@ -1,194 +1,578 @@
 ---
 title: Skeleton
-description: 콘텐츠 로딩 중 자리 표시자를 표시하는 스켈레톤 컴포넌트
+description: 내용이 도착하기 전에 그 자리의 모양을 잡아 두는 자리표시입니다. 상자 · 원 · 글줄 모양이 있고, 채움이 천천히 옅어졌다 짙어집니다.
 category: display
 platforms: [flutter, web]
 related: [loading-region, loading, empty-state, avatar]
 tags: [loading, placeholder, feedback]
+template: v2
+source: display/skeleton
 ---
 
 # Skeleton
 
-데이터 로딩 중에 콘텐츠 레이아웃을 미리 표시하는 스켈레톤 컴포넌트입니다. 사용자에게 로딩 상태를 시각적으로 전달합니다.
+<a id="live-preview"></a>
+<a id="기본-사용법-basic-usage"></a>
 
-## Live Preview
+## 플레이그라운드
 
-<LivePreview component="skeleton" variants="default,circle,text" />
+데이터를 기다리는 동안 도착할 내용의 모양을 미리 보여 줍니다. 속성을 바꿔 보며 확인하고, 만들어진 코드를 복사하세요.
 
-## 사용 시기 (When to Use)
+<Playground component="skeleton" />
 
-**이 컴포넌트를 사용하세요:**
-- API 요청이나 비동기 데이터 로딩 중에 콘텐츠의 대략적인 형태를 미리 보여줄 때
-- 목록 항목, 카드, 텍스트 블록 등 콘텐츠 레이아웃이 예측 가능할 때
-- 로딩 중에 레이아웃 점프(layout shift)를 방지하고 싶을 때
+- 크기를 받는 타입이 다릅니다. Flutter는 숫자(논리 픽셀), Jaspr Web은 CSS 문자열(`'240px'`)이라 코드가 플랫폼마다 따로 나옵니다.
+- `lines`와 `fromOpacity`는 `skeletonStyle`의 값입니다. `lines`는 `text`에만 닿습니다.
+- `Skeleton.text`에는 폭 파라미터가 없어 부모의 폭을 씁니다. 미리보기는 폭 240인 상자 안에 그립니다.
 
-**대신 다른 컴포넌트를 사용하세요:**
-- `Loading`: 콘텐츠 구조를 예측할 수 없거나 단순히 진행 중임만 표시할 때
-- `EmptyState`: 데이터가 없는 상태를 안내할 때 (로딩이 끝난 후)
+`Skeleton` 하나는 자리표시 하나입니다. `child` 슬롯이 없고, 데이터를 요청하거나 실제 값을 대신 채우지 않습니다. 화면의 모양은 `Skeleton` 여러 개를 조합해 만듭니다.
 
-## 기본 사용법 (Basic Usage)
+<a id="변형-variants"></a>
 
-<Tabs groupId="platform">
-  <TabItem label="Flutter" value="flutter">
+## Variant
 
-```dart
-// 기본 직사각형 스켈레톤
-Skeleton(
-  width: 200,
-  height: 20,
-)
+`variant`가 모양을 고릅니다. 기본값은 `rectangular`이고, `circular`와 `text`에는 이름 있는 생성자가 있습니다.
 
-// 원형 스켈레톤 (아바타)
-Skeleton.circle(size: 48)
+<a id="rectangular"></a>
 
-// 텍스트 스켈레톤 (여러 줄)
+<VariantRow name="rectangular" component="skeleton" props="variant=rectangular">
+
+상자 하나입니다. 기본 모서리는 8입니다. 이미지 · 버튼 · 한 줄 막대처럼 `width`와 `height`로 크기를 정하는 자리에 씁니다.
+
+</VariantRow>
+
+<a id="circular"></a>
+
+<VariantRow name="circular" component="skeleton" props="variant=circular">
+
+아바타나 둥근 아이콘의 자리입니다. `Skeleton.circle`은 `size` 하나로 폭과 높이를 같게 둡니다.
+
+</VariantRow>
+
+<a id="text"></a>
+
+<VariantRow name="text" component="skeleton" props="variant=text">
+
+글줄 여러 개입니다. 기본은 3줄이고 줄 높이 12, 줄 간격 12, 모서리 4이며 마지막 줄은 폭의 60%입니다. 줄 수와 마지막 줄 폭은 `skeletonStyle`로 정합니다.
+
+</VariantRow>
+
+<Split>
+
+<Code language="dart" title="Flutter">
+Skeleton(width: 300, height: 150)
+
+Skeleton.circle(size: 56)
+
 Skeleton.text(
-  skeletonStyle: CoreSkeletonStyle(lines: 3),
+  skeletonStyle: CoreSkeletonStyle(lines: 4, lastLineWidth: 0.6),
 )
+</Code>
 
-// 카드 스켈레톤 조합
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    Skeleton(
-      width: double.infinity,
-      height: 200,
-      skeletonStyle: CoreSkeletonStyle(
-        borderRadius: CoreBorderRadius.all(CoreRadius.radius12),
-      ),
+<Code language="dart" title="Jaspr Web">
+Skeleton(width: '300px', height: '150px')
+
+Skeleton.circle(size: '56px')
+
+Skeleton.text(
+  skeletonStyle: CoreSkeletonStyle(lines: 4, lastLineWidth: 0.6),
+)
+</Code>
+
+</Split>
+
+기본 생성자에 `variant`를 직접 줄 수도 있습니다.
+
+- `variant: CoreSkeletonVariant.text`이면 `width`와 `height`를 줘도 쓰지 않습니다.
+- `variant: CoreSkeletonVariant.circular`에 폭과 높이를 다르게 주면 원이 아니라 양 끝이 둥근 알약 모양이 됩니다.
+
+## 크기
+
+`size`로 고르는 크기 단계가 없습니다. `rectangular`는 `width`와 `height`, `circular`는 `Skeleton.circle`의 `size`로 정합니다.
+
+<Preview demo="skeleton/sizing" />
+
+| 항목 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 값 | 숫자(논리 픽셀). 테마의 크기 배율(`theme.scaling`)을 곱합니다. | CSS 문자열. 테마의 크기 배율은 곱하지 않습니다. |
+| 부모 폭 채우기 | `width: double.infinity`. 폭에 한계가 있는 부모에서만 씁니다. | `width: '100%'` |
+| 부모보다 넓은 폭 | 부모에 한계가 있으면 그 안으로 줄어듭니다. `Row`처럼 한계가 없으면 정한 폭 그대로라 넘칠 수 있습니다. | `width`를 주면 `max-width: 100%`가 함께 붙어 부모보다 넓어지지 않습니다. |
+
+### 값을 비운 축
+
+| 플랫폼 | `width`나 `height`를 비우면 |
+| --- | --- |
+| Flutter | 그 축은 부모가 허락하는 최대 크기를 채웁니다. 부모가 그 축에 한계를 두지 않으면 0이 됩니다. `Column` 안의 `Skeleton(height: 16)`은 폭을 채우지만 `Row` 안에서는 폭이 0이고, `Column` 안의 `Skeleton(width: 200)`은 높이가 0입니다. |
+| Jaspr Web | CSS의 `auto`를 따릅니다. 블록 부모나 자식을 늘이는 세로 flex 부모에서는 폭이 부모를 채우고, 비운 높이는 0입니다. 가로 flex 부모에서는 비운 폭이 0이고, 비운 높이는 기본 정렬에서 행의 높이까지 늘어납니다. |
+
+크기가 0인 `Skeleton`은 보이지 않습니다. `rectangular`는 두 값을 함께 정하면 부모에 덜 좌우됩니다.
+
+### 부모가 크기를 정할 때
+
+Flutter에서는 부모가 폭이나 높이를 고정하면 `Skeleton`에 준 값 대신 부모의 크기가 됩니다. 세로 `ListView`의 항목, `crossAxisAlignment: CrossAxisAlignment.stretch`인 `Column`, 폭을 정한 `SizedBox`의 바로 아래, `Expanded`가 그런 자리입니다. 원도 길게 늘어납니다. `Align`으로 감싸면 정한 크기로 그립니다.
+
+<Code language="dart" title="Flutter">
+ListView(
+  children: const [
+    Align(
+      alignment: Alignment.centerLeft,
+      child: Skeleton.circle(size: 48),
     ),
-    Gap(size: CoreSpace.space12),
-    Skeleton.text(
-      skeletonStyle: CoreSkeletonStyle(lines: 2),
-    ),
-    Gap(size: CoreSpace.space8),
-    Skeleton(width: 100, height: 16),
   ],
 )
-```
+</Code>
 
-  </TabItem>
-  <TabItem label="Web" value="web">
+Web에서 정한 `width`는 flex의 늘이기(`stretch`)보다 우선합니다. 다만 가로 flex 행에서 자리가 모자라면 `Skeleton`도 다른 flex 항목처럼 폭이 줄어듭니다. 높이는 그대로라 원은 좁아진 모양이 됩니다. 원 옆에 글줄을 둘 때는 [배치](#배치)의 방법을 씁니다.
 
-```dart
-// 기본 직사각형 스켈레톤 (CSS 크기값 사용)
-Skeleton(width: '200px', height: '20px')
+### 글줄의 크기
 
-// 원형 스켈레톤 (아바타)
-Skeleton.circle(size: '48px')
+- 높이는 `줄 수 × 줄 높이 + (줄 수 − 1) × 줄 간격`입니다. 기본값은 3 × 12 + 2 × 12 = 60입니다. Flutter에서는 여기에 테마의 크기 배율이 곱해집니다.
+- 폭은 부모를 따릅니다. Flutter의 `Skeleton.text`는 폭에 한계가 있는 부모가 필요합니다. `Row` 안에 `Expanded`나 폭을 정한 상자 없이 두면 레이아웃 오류가 납니다. Web의 글줄 묶음은 폭이 `100%`입니다.
 
-// 텍스트 스켈레톤 (여러 줄)
-Skeleton.text(
-  skeletonStyle: const CoreSkeletonStyle(lines: 3),
-)
+<a id="동작-스펙-behavior"></a>
 
-// 카드 스켈레톤 조합
-div([
-  Skeleton(
-    width: '100%',
-    height: '200px',
-    skeletonStyle: const CoreSkeletonStyle(
-      borderRadius: CoreBorderRadius.all(CoreRadius.radius16),
-    ),
-  ),
-  div([
-    Skeleton(width: '70%', height: '20px'),
-    Skeleton(width: '50%', height: '16px'),
-  ]),
-])
-```
+## 상태
 
-  </TabItem>
-</Tabs>
+Skeleton에는 hover · pressed · focus · disabled 상태와 켜고 끄는 파라미터가 없습니다.
 
-## Props / Parameters
+| 상태 | 언제 | 보이는 모습 |
+| --- | --- | --- |
+| 맥동 | 기본 | 채움의 불투명도가 70%와 100% 사이를 천천히 오갑니다. |
+| 멈춤 | 동작 줄이기를 켰을 때 | 쉼 끝(기본 70%)에 멈춥니다. |
+| 없음 | 렌더하지 않을 때 | 아무것도 그리지 않고 자리도 남기지 않습니다. |
 
-### Skeleton (Flutter) / Skeleton (Web)
+<Preview demo="skeleton/pulse-ends" />
 
-| 속성 | 타입 (Flutter / Web) | 기본값 | 설명 |
-|------|------|--------|------|
-| `width` | `double?` / `String?` | `null` | 스켈레톤 너비 |
-| `height` | `double?` / `String?` | `null` | 스켈레톤 높이 |
-| `variant` | `CoreSkeletonVariant` | `CoreSkeletonVariant.defaultVariant` (`rectangular`) | 스켈레톤 형태 |
-| `skeletonStyle` | `CoreSkeletonStyle?` | `null` | 겉모습(색 · 크기 · 간격)과 애니메이션을 바꾸는 값 묶음 |
+앞의 두 막대는 맥동의 양 끝을 보이려고 `fromOpacity`와 `toOpacity`를 같게 둔 것입니다. 마지막 막대가 기본 설정입니다.
 
-<!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
+### 인터랙션
 
-### `CoreSkeletonStyle` 필드
+Skeleton은 누르거나 입력하는 요소가 아닙니다. 콜백 파라미터가 없습니다.
 
-| 필드 | 타입 | 설명 |
-|------|------|------|
-| `backgroundColor` | `CoreColor?` | Skeleton fill (background) colour override. |
-| `borderRadius` | `CoreBorderRadius?` | Border radius override. |
-| `lineSpacing` | `double?` | Gap between text-variant lines (logical px) — applied to the native `Column.spacing` paint-API on Flutter and to the flex `row-gap` inline CSS on Web. `null` defers to [defaultLineSpacing]. |
-| `lineHeight` | `double?` | Per-line height for the text variant (logical px). `null` defers to [defaultLineHeight]. Applied as `Container.height` on Flutter and inline `height` CSS on Web. |
-| `lastLineWidth` | `double?` | Width fraction of the last line in text variant (0.0–1.0). |
-| `lines` | `int?` | Default number of lines for text variant. |
-| `duration` | `Duration?` | Length of one full pulse — rest → peak → rest — on both platforms. `null` → [defaultDuration]. |
-| `curve` | `CoreCubicBezier?` | Easing of each half of the pulse, as cubic-bezier control points — applied forward to rest → peak and again to peak → rest, the way a CSS timing function applies per keyframe interval. `null` → [defaultCurve]. |
-| `fromOpacity` | `double?` | Pulse animation start opacity (0.0–1.0), multiplied into the fill's own alpha at the resting end — a transparent fill stays transparent. |
-| `toOpacity` | `double?` | Pulse animation end opacity (0.0–1.0), multiplied into the fill's own alpha at the peak. |
+### 상태 전환
 
-### `CoreSkeletonStyle` 변형별 기본값 (`CoreSkeletonVariantStyle`)
+- **로딩 시작**: 조건이 참일 때 렌더하면 맥동이 시작됩니다.
+- **로딩 완료**: 조건에서 빼고 실제 콘텐츠로 바꿉니다. Skeleton은 사라질 때의 전환 효과를 따로 넣지 않습니다. Flutter에서 교체를 부드럽게 하려면 `AnimatedSwitcher`로 감쌉니다.
 
-| 필드 | `rectangular` | `circular` | `text` |
-|------|------|------|------|
-| `borderRadius` | CoreBorderRadius.all(CoreRadius.radius8) | CoreBorderRadius.all(CoreRadius.radius9999) | CoreBorderRadius.all(CoreRadius.radius4) |
-| `backgroundColor` | surfaceContainerHighest | surfaceContainerHighest | surfaceContainerHighest |
+### 애니메이션
 
-<!-- STYLE_TABLE:END -->
+- 맥동은 채움 색의 알파만 바꿉니다. 서페이스 스타일이 넣는 테두리는 함께 옅어지지 않습니다.
+- `fromOpacity`(기본 0.7)에서 `toOpacity`(기본 1.0)까지 갔다가 돌아오기를 계속 반복합니다.
+- 두 값은 채움 색이 가진 알파에 곱합니다. 투명한 채움(`.transparent`)은 내내 투명하고, 알파가 0.4인 채움은 기본값에서 0.28과 0.4 사이를 오갑니다.
+- `duration`(기본 2000ms)은 왕복 한 번의 길이입니다. 올라가는 절반과 내려오는 절반에 각각 `curve`(기본 `CoreEasing.move`)를 앞 방향으로 적용합니다.
+- 두 플랫폼이 `duration`과 `curve`를 같은 뜻으로 읽으므로, 같은 값을 주면 같은 속도로 맥동합니다. Flutter는 `AnimationController` 한 주기를 두 절반으로 나눠 알파를 바꾸고, Web은 `0%` · `100%`(쉼)와 `50%`(정점) CSS 키프레임으로 `background-color`를 바꿉니다.
 
-### 팩토리 생성자
+### 동작 줄이기
 
-| 생성자 | 파라미터 | 설명 |
-|------|------|------|
-| `Skeleton.circle` | `size` (`double` / `String`, 필수) + `skeletonStyle` | `width` = `height` = `size`, variant 는 `circular` 고정 |
-| `Skeleton.text` | `skeletonStyle` | `width` / `height` 없음 (줄 수·높이는 `skeletonStyle` 로), variant 는 `text` 고정 |
+동작 줄이기를 켜면 맥동이 멈추고 쉼 끝(`fromOpacity`)의 채움이 남습니다. 로딩 알림은 그대로입니다. 스피너처럼 표시를 위한 반복은 보통 동작 줄이기에서도 이어지지만, 자리표시는 멈춥니다. 멈춘 스피너와 달리 멈춘 블록은 여전히 자리표시로 읽히기 때문입니다. `duration` 값은 줄이지 않고 반복만 멈춥니다. 두 플랫폼의 이 규칙은 `CoreReducedMotion.runsPlaceholderPulse`가 정합니다.
+
+| 플랫폼 | 따르는 설정 |
+| --- | --- |
+| Flutter | `MediaQuery.disableAnimations`(Android의 애니메이션 제거) 또는 `AccessibilityFeatures.reduceMotion`(iOS의 동작 줄이기). 설정을 끄면 다시 맥동합니다. 실행 중에 바꾼 iOS 설정이 이미 그려진 화면에 바로 반영되는 것은 `CoUIApp`(또는 직접 둔 `ReducedMotionScope`) 아래에서입니다. |
+| Jaspr Web | `prefers-reduced-motion: reduce`. CSS 변수 `--coui-skeleton-pulse`를 바꿔, 맥동 대신 쉼 끝을 붙드는 키프레임을 씁니다. |
+
+<a id="사용-시기-when-to-use"></a>
+<a id="사용-가이드라인-usage-guidelines"></a>
+
+## 사용 가이드
+
+### 이럴 때 씁니다
+
+- API 요청이나 비동기 데이터 로딩 중에 콘텐츠의 대략적인 형태를 미리 보여 줄 때
+- 목록 항목 · 카드 · 글 블록처럼 도착할 콘텐츠의 레이아웃을 예측할 수 있을 때
+- 콘텐츠가 들어올 자리를 미리 잡아 화면이 밀리는 현상(layout shift)을 줄이고 싶을 때
+
+### 다른 컴포넌트가 더 맞는 경우
+
+| 이런 경우에는 | 대신 쓸 컴포넌트 |
+| --- | --- |
+| 콘텐츠의 모양을 예측할 수 없거나, 작업 중이라는 것만 알리면 될 때 | [Loading](/components/loading) |
+| 완료 비율을 아는 작업 | [Progress](/components/progress) |
+| 로딩이 끝났는데 보여 줄 내용이 없을 때 | [EmptyState](/components/empty-state) |
+| 콘텐츠는 그대로 두고 한 작업이 실패했음을 알릴 때 | [Alert](/components/alert) |
 
 ### 표시 여부는 호출하는 쪽 조건으로
 
-`Skeleton` 에는 켜고 끄는 파라미터가 없습니다. 로딩 중인지는 호출하는 쪽이 이미 알고
-있으므로, 그 조건으로 스켈레톤을 렌더하거나 렌더하지 않습니다. 화면 전체를 한 번에
-스켈레톤으로 바꾸던 Flutter 의 `asSkeleton(enabled:)` 는 폐기 예고 상태입니다(0.156) — 서드파티
-skeletonizer 가 위젯 트리를 칠하는 방식이라 색 · 맥동이 CoUI 토큰이 아니고, Web 대응이 없고,
-아무것도 알리지 않습니다. 자리마다 `Skeleton` 을 두고 영역은 [LoadingRegion](/components/loading-region) 으로 감싸세요.
+`Skeleton`에는 켜고 끄는 파라미터가 없습니다. 로딩 중인지는 호출하는 쪽이 이미 알고 있으므로, 그 조건으로 렌더하거나 렌더하지 않습니다. 렌더하지 않으면 자리도 남지 않습니다.
+
+<Split>
+
+<Code language="dart" title="Flutter">
+Column(
+  children: [
+    if (isLoading)
+      Skeleton(width: 200, height: 20)
+    else
+      Text(title).bodyMedium,
+  ],
+)
+</Code>
+
+<Code language="dart" title="Jaspr Web">
+div([
+  if (isLoading)
+    Skeleton(width: '200px', height: '20px')
+  else
+    Text(title).bodyMedium,
+])
+</Code>
+
+</Split>
+
+`Skeleton` 여러 개가 한 영역을 채우면 자리마다 `Skeleton`을 두고 영역을 [LoadingRegion](/components/loading-region)으로 감쌉니다. 로딩 알림이 영역에 한 번만 생깁니다. `enabled`나 `asSkeleton`을 쓰던 코드는 [이전 API에서 옮기기](#이전-api에서-옮기기)를 보세요.
+
+<a id="do"></a>
+<a id="dont"></a>
+
+### 모양과 개수
+
+<Cards columns="2">
+<Card demo="skeleton/do-match-layout" tone="do" eyebrow="이렇게 하세요">
+
+도착할 콘텐츠와 같은 구조로 놓습니다. 모양이 비슷할수록 화면이 덜 밀리고, 바뀌는 순간이 덜 낯섭니다.
+
+</Card>
+<Card demo="skeleton/dont-single-block" tone="dont" eyebrow="이렇게 하지 마세요">
+
+여러 부분으로 된 콘텐츠를 큰 상자 하나로 대신하면 무엇이 어디에 올지 알 수 없고, 바뀔 때 화면이 크게 달라집니다.
+
+</Card>
+<Card demo="skeleton/do-list" tone="do" eyebrow="이렇게 하세요">
+
+목록의 자리표시는 3~5개 항목으로 두고, 목록 전체를 `LoadingRegion`으로 감쌉니다. 실제 개수를 모를 때 너무 많이 두면 오히려 어색합니다.
+
+</Card>
+<Card demo="skeleton/dont-spinner" tone="dont" eyebrow="이렇게 하지 마세요">
+
+`Loading` 스피너를 함께 두지 않습니다. Skeleton이 이미 로딩 중임을 보여 주고, 둘 다 따로 알리면 라이브 영역도 둘이 됩니다.
+
+</Card>
+</Cards>
+
+### 로딩이 끝나면 바로 바꾸기
+
+Skeleton은 데이터를 기다리는 동안에만 둡니다. 오류가 났는데 남아 있으면 사용자는 끝없이 기다리게 됩니다. 오류와 빈 결과는 [EmptyState](/components/empty-state)로 보여 주고, 로딩이 끝나면 실제 콘텐츠로 바꿉니다. 아래의 `orderSkeletons`는 `Skeleton`을 담은 묶음이고, `OrderList`는 앱의 목록입니다.
+
+<Split>
+
+<Code language="dart" title="이렇게 하세요">
+if (hasError) {
+  return EmptyState(
+    tone: CoreEmptyStateTone.failure,
+    title: Text('주문을 불러오지 못했습니다'),
+  );
+}
+if (isLoading) {
+  return LoadingRegion(child: orderSkeletons);
+}
+return OrderList(orders: orders);
+</Code>
+
+<Code language="dart" title="이렇게 하지 마세요">
+// 오류가 나도 Skeleton이 남아 계속 기다리게 됩니다.
+if (isLoading || hasError) {
+  return Skeleton.text(
+    skeletonStyle: CoreSkeletonStyle(lines: 5),
+  );
+}
+// 로딩이 끝나도 Skeleton이 남습니다.
+// Flutter 예제입니다. Web에서는 Column 자리에 div를 씁니다.
+return Column(
+  children: [
+    Skeleton.text(),
+    OrderList(orders: orders),
+  ],
+);
+</Code>
+
+</Split>
+
+### 회색 면 위에서는
+
+기본 채움은 `surfaceContainerHighest`입니다. `surfaceContainerHigh` 이상의 회색 면 위에서는 바탕과 거의 구분되지 않으므로, Skeleton 대신 간격이나 면의 차이로 자리를 나눕니다.
+
+## 배치
+
+`Skeleton`은 한 칸씩만 그리므로 배치는 레이아웃이 정합니다. 아바타 옆에 글줄 두 줄을 두는 행은 다음처럼 만듭니다.
+
+<Preview demo="skeleton/avatar-row" />
+
+<Split>
+
+<Code language="dart" title="Flutter">
+Row(
+  children: [
+    const Skeleton.circle(size: 40),
+    const Gap.space12(),
+    const Expanded(
+      child: Skeleton.text(
+        skeletonStyle: CoreSkeletonStyle(lines: 2),
+      ),
+    ),
+  ],
+)
+</Code>
+
+<Code language="dart" title="Jaspr Web">
+div(
+  [
+    Skeleton.circle(size: '40px'),
+    const Gap.space12(),
+    div(
+      [
+        Skeleton.text(
+          skeletonStyle: CoreSkeletonStyle(lines: 2),
+        ),
+      ],
+      classes: 'flex-1',
+    ),
+  ],
+  classes: 'flex items-center',
+)
+</Code>
+
+</Split>
+
+- Flutter는 `Expanded`가 글줄에 남은 폭을 줍니다. 없으면 레이아웃 오류가 납니다.
+- Web은 남은 폭을 받는 래퍼(`flex-1`)에 글줄을 넣습니다. 폭이 `100%`인 글줄 묶음을 원 옆에 바로 두면 원의 폭이 줄어듭니다.
+- Web의 Skeleton은 `<div>`를 그립니다. `<p>`나 `<span>` 안에는 두지 않습니다.
+
+### 조합 예제
+
+이미지, 아바타 행, 짧은 줄로 이루어진 카드의 자리표시입니다.
+
+<Split>
+
+<Code language="dart" title="Flutter">
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    const Skeleton(width: double.infinity, height: 180),
+    const Gap.space12(),
+    Row(
+      children: [
+        const Skeleton.circle(size: 40),
+        const Gap.space8(),
+        const Expanded(
+          child: Skeleton.text(
+            skeletonStyle: CoreSkeletonStyle(lines: 2),
+          ),
+        ),
+      ],
+    ),
+    const Gap.space8(),
+    const Skeleton(width: 80, height: 14),
+  ],
+)
+</Code>
+
+<Code language="dart" title="Jaspr Web">
+div(
+  [
+    Skeleton(width: '100%', height: '180px'),
+    const Gap.space12(),
+    div(
+      [
+        Skeleton.circle(size: '40px'),
+        const Gap.space8(),
+        div(
+          [
+            Skeleton.text(
+              skeletonStyle: CoreSkeletonStyle(lines: 2),
+            ),
+          ],
+          classes: 'flex-1',
+        ),
+      ],
+      classes: 'flex items-center',
+    ),
+    const Gap.space8(),
+    Skeleton(width: '80px', height: '14px'),
+  ],
+  classes: 'flex flex-col',
+)
+</Code>
+
+</Split>
+
+목록 하나의 로딩 · 빈 결과 · 콘텐츠를 이어 쓰면 다음과 같습니다. `users`와 `UserListTile`(Web 예제의 `userList`)은 앱의 것입니다.
 
 <Tabs groupId="platform">
   <TabItem label="Flutter" value="flutter">
 
 ```dart
-Column(
-  children: [
-    if (isLoading) Skeleton(width: 200, height: 20) else Text(title).bodyMedium,
-  ],
-)
+Widget buildUserList() {
+  if (isLoading) {
+    return LoadingRegion(
+      semanticLabel: '사용자 목록 불러오는 중',
+      child: Column(
+        spacing: CoreSpace.space12,
+        children: List.generate(
+          4,
+          (_) => const Row(
+            children: [
+              Skeleton.circle(size: 48),
+              Gap.space12(),
+              Expanded(
+                child: Skeleton.text(
+                  skeletonStyle: CoreSkeletonStyle(lines: 2),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  if (users.isEmpty) {
+    return EmptyState(
+      icon: Icon(LucideIcons.users),
+      title: Text('사용자가 없습니다'),
+    );
+  }
+
+  return ListView.builder(
+    itemCount: users.length,
+    itemBuilder: (context, index) => UserListTile(user: users[index]),
+  );
+}
 ```
 
   </TabItem>
   <TabItem label="Web" value="web">
 
 ```dart
-div([
-  if (isLoading) Skeleton(width: '200px', height: '20px') else Text(title).bodyMedium,
-])
+Component buildUserList() {
+  if (isLoading) {
+    return LoadingRegion(
+      semanticLabel: '사용자 목록 불러오는 중',
+      child: div(
+        [
+          for (var i = 0; i < 4; i++)
+            div(
+              [
+                Skeleton.circle(size: '48px'),
+                const Gap.space12(),
+                div(
+                  [
+                    Skeleton.text(
+                      skeletonStyle: const CoreSkeletonStyle(lines: 2),
+                    ),
+                  ],
+                  classes: 'flex-1',
+                ),
+              ],
+              classes: 'flex items-center',
+            ),
+        ],
+        classes: 'flex flex-col gap-space12',
+      ),
+    );
+  }
+
+  if (users.isEmpty) {
+    return EmptyState(
+      icon: Icon(LucideIcons.users),
+      title: Text('사용자가 없습니다'),
+    );
+  }
+
+  return userList(users);
+}
 ```
 
   </TabItem>
 </Tabs>
 
-<Callout type="warning">
+## 테마와 스타일
 
-이전 버전의 `enabled:` 를 쓰던 코드를 옮길 때 — `enabled: false` 는 자리를 완전히
-비우지 않았습니다(Flutter 는 크기 0 위젯, Web 은 숨긴 `<div>`). 그래서 형제를 세어
-간격을 주는 레이아웃(Flutter `Column.spacing`, Web `space-y-*`)에서는 그 자리에 간격이
-한 칸 남았습니다. 조건부 렌더는 자리를 남기지 않으므로, 옮긴 뒤 간격이 한 칸 줄어드는지
-확인하세요.
+### 파라미터와 스타일
 
-</Callout>
+- **모양과 크기**는 위젯 파라미터입니다: `variant`, `width`, `height`.
+- **겉모습(색 · 모서리 · 줄)과 맥동**은 `skeletonStyle` 하나로 넘깁니다: `backgroundColor`, `borderRadius`, `lines`, `lineHeight`, `lineSpacing`, `lastLineWidth`, `duration`, `curve`, `fromOpacity`, `toOpacity`.
+- `lines` · `lineHeight` · `lineSpacing` · `lastLineWidth`는 `text`에만 닿습니다.
 
-### 빠른 오버라이드 (Chain)
+<Preview demo="skeleton/styles" />
 
-이미 만든 `Skeleton` 인스턴스에 스타일을 빠르게 덧붙이고 싶다면 `withStyle` 체인을 쓸 수 있습니다. 생성자의 style 슬롯 인자와 동일하게 동작하지만, 이미 구성된 위젯 위에서 바로 이어 쓸 수 있습니다. `.radius24`처럼 Core 토큰 상수 이름과 똑같은 이름의 getter도 있습니다 — `withStyle`을 한 번 더 줄인 sugar로, 이름이 곧 값이라(radius24 == `CoreRadius.radius24`) 어느 컴포넌트에서 써도 뜻이 갈리지 않습니다.
+### 값이 정해지는 순서
+
+뒤로 갈수록 우선하고, 필드마다 따로 합칩니다. 어떤 단계에서 비운 필드는 앞 단계의 값이 남습니다.
+
+```text
+CoreSkeletonStyle 의 기본값 상수 · defaultsByVariant[variant]   // 디자인 시스템 기본값
+  → CoreComponentTheme.skeleton.style                            // 앱 전체
+  → CoreComponentTheme.skeleton.variantStyles[variant]           // 앱 전체, variant 별
+  → skeletonStyle                                                // Skeleton 하나
+```
+
+테마는 `variant` 자체를 바꾸지 않습니다. 모양은 위젯 파라미터가 정합니다.
+
+### 사용 예
+
+<Split>
+
+<Code language="dart" title="Skeleton 하나만 바꾸기">
+Skeleton.text(
+  skeletonStyle: CoreSkeletonStyle(
+    lines: 4,
+    lastLineWidth: 0.4,
+    lineHeight: CoreSize.size16,
+    lineSpacing: CoreSpace.space8,
+  ),
+)
+</Code>
+
+<Code language="dart" title="앱 전체 기본값 바꾸기">
+ThemeData.fromCore(
+  CoreThemePresets.light,
+  coreComponentTheme: CoreComponentTheme(
+    skeleton: CoreSkeletonTheme(
+      style: CoreSkeletonStyle(
+        duration: Duration(milliseconds: CoreDuration.ms3000),
+      ),
+      variantStyles: {
+        CoreSkeletonVariant.text: CoreSkeletonStyle(lines: 2),
+      },
+    ),
+  ),
+)
+</Code>
+
+</Split>
+
+- 서페이스 스타일은 모서리를 바꿀 수 있습니다. 기본값뿐 아니라 `skeletonStyle`로 준 `CoreRadius` 값도 스타일의 범위로 옮겨질 수 있습니다. 컨트롤에 테두리를 넣는 스타일에서는 Skeleton(글줄은 줄마다)에도 `outline` 색 테두리가 생깁니다.
+- 맥동을 없애려고 `duration`에 `Duration.zero`를 주지 않습니다. Flutter는 길이가 0인 반복을 시작할 수 없어 디버그 빌드에서 단언 오류가 납니다. 한 밝기에 세워 두려면 `fromOpacity`와 `toOpacity`를 같게 둡니다.
+
+<a id="토큰-기반-스타일링"></a>
+
+### 기본값이 있는 곳
+
+기본값은 `coui_core`의 `CoreSkeletonStyle`에 있고, Flutter와 Web이 같은 값을 읽습니다.
+
+| 상수 | 값 | 뜻 |
+| --- | --- | --- |
+| `defaultsByVariant[variant]` | 채움 `surfaceContainerHighest`. 모서리 8(`rectangular`) · 9999(`circular`) · 4(`text`) | variant별 겉모습 |
+| `defaultLines` | 3 | 글줄 수 |
+| `defaultLineHeight` | `CoreSize.size12` | 줄 높이 |
+| `defaultLineSpacing` | `CoreSpace.space12` | 줄 간격 |
+| `defaultLastLineWidth` | 0.6 | 마지막 줄의 폭 비율 |
+| `defaultDuration` | `CoreDuration.ms2000` | 맥동 왕복 한 번 |
+| `defaultCurve` | `CoreEasing.move` | 맥동의 각 절반에 적용하는 곡선 |
+| `defaultFromOpacity` | `CoreOpacity.opacity70` | 쉼 끝의 불투명도 |
+| `defaultToOpacity` | 1.0 | 정점의 불투명도 |
+
+<a id="빠른-오버라이드-chain"></a>
+
+### 빠른 덮어쓰기 (체인)
+
+이미 만든 `Skeleton` 위에 `withStyle`로 스타일을 덧붙일 수 있습니다. 생성자의 `skeletonStyle`과 같게 동작하고, 겹치는 필드는 뒤에 붙인 값이 이깁니다. 이름이 곧 토큰인 getter도 있습니다.
+
+- `.radius0`부터 `.radius9999`까지: `borderRadius`를 같은 이름의 `CoreRadius` 값으로 둡니다. 예를 들어 `.radius24`는 `CoreRadius.radius24`입니다.
+- `.primary` · `.secondary` · `.tertiary` · `.surface` · `.surfaceContainer` · `.error` · `.success` · `.warning` · `.info` · `.outline` · `.transparent`: `backgroundColor`를 정합니다.
+
+getter 이름이 곧 값이라, 같은 이름은 어느 컴포넌트에서 써도 같은 토큰을 가리킵니다.
+
+<Preview component="skeleton" example="chain" />
 
 <!-- CHAIN_SNIPPET:BEGIN — auto-generated by `dart run tool/generate_chain_artifacts.dart` (write mode). Do not hand-edit between these markers; edit the chain example sources (`*_chain_example.dart` / `*_code.dart`) and regenerate. -->
 <Tabs groupId="platform">
@@ -264,292 +648,198 @@ class _SkeletonChainExampleState extends State<SkeletonChainExample> {
 </Tabs>
 <!-- CHAIN_SNIPPET:END -->
 
-## 변형 (Variants)
+<a id="접근성-accessibility"></a>
 
-### rectangular
-기본 직사각형 형태입니다.
-```dart
-Skeleton(width: 300, height: 150, variant: CoreSkeletonVariant.rectangular)
-```
+## 접근성
 
-### text
-텍스트 줄을 흉내 내는 여러 줄 형태입니다. 줄 수와 마지막 줄 너비는
-`skeletonStyle` 로 지정합니다.
-```dart
-Skeleton.text(
-  skeletonStyle: CoreSkeletonStyle(lines: 4, lastLineWidth: 0.6),
-)
-```
-
-### circular
-아바타나 원형 요소를 위한 형태입니다.
-```dart
-Skeleton.circle(size: 56)
-```
-
-## 동작 스펙 (Behavior)
-
-### 인터랙션
-
-- Skeleton은 인터랙티브 요소가 아닙니다.
-
-### 상태 전환
-
-- 로딩 시작: 스켈레톤 표시 (pulse 애니메이션 시작)
-- 로딩 완료: 실제 콘텐츠로 교체 (`AnimatedSwitcher` 사용 권장)
-
-### 애니메이션
-
-- pulse 효과: 배경색 opacity 를 `fromOpacity`(0.7) → `toOpacity`(1.0) → `fromOpacity`
-  로 오가며 무한 반복합니다. `duration`(기본 2000ms)은 이 **왕복 한 번**의 길이이고,
-  쉼 → 정점과 정점 → 쉼 두 반쪽에 각각 `curve`(기본 `CoreEasing.move`)를 앞으로
-  적용합니다. 두 플랫폼이 같은 `duration` · `curve` 를 같은 뜻으로 읽으므로 같은 값을
-  넘기면 같은 속도로 맥동합니다
-- `fromOpacity` · `toOpacity` 는 채움색 자신의 알파에 **곱해집니다**. 투명한 채움
-  (`.transparent`)은 맥동 내내 투명하고, 불투명도 0.4 인 채움은 기본값에서 0.28 ↔ 0.4 사이를
-  오갑니다
-- Flutter 는 한 주기짜리 `AnimationController` 를 두 반쪽으로 나눠 alpha 를 보간하고,
-  Web 은 `0%,100%`(쉼) · `50%`(정점) 키프레임에 같은 주기와 곡선을 줍니다
-
-## 사용 가이드라인 (Usage Guidelines)
-
-최종 콘텐츠의 자리·모양을 예약하는 로딩에는 호출자가 Skeleton 트리를 구성합니다. 완료 비율이 알려진 작업은 [Progress](/components/progress), 모양 예약 없이 작업 중임을 알리려면 [Loading](/components/loading)을 사용합니다. 완료 후 보여줄 내용이 없으면 [EmptyState](/components/empty-state), 콘텐츠를 유지한 채 한 작업이 실패하면 [Alert](/components/alert)를 선택합니다. Skeleton 자체는 데이터를 요청하거나 자식의 실제 값을 자동 대체하지 않습니다. `surface-container-high` 이상 회색 면 안에서는 Skeleton 대신 간격이나 면 차이로 구분합니다.
-
-### ✅ Do
-
-<Callout type="tip">
-
-**실제 콘텐츠 레이아웃과 동일한 구조로 구성**
-
-```dart
-// 실제 카드와 동일한 구조의 스켈레톤
-Widget buildSkeletonCard() {
-  return Card(
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Skeleton(
-          width: double.infinity,
-          height: 180,
-          skeletonStyle: CoreSkeletonStyle(
-            borderRadius: CoreBorderRadius.all(CoreRadius.radius8),
-          ),
-        ),
-        Gap(size: CoreSpace.space12),
-        Row(children: [
-          Skeleton.circle(size: 40),
-          Gap(size: CoreSpace.space8),
-          Expanded(
-            child: Skeleton.text(
-              skeletonStyle: CoreSkeletonStyle(lines: 2),
-            ),
-          ),
-        ]),
-        Gap(size: CoreSpace.space8),
-        Skeleton(width: 80, height: 14),
-      ],
-    ),
-  );
-}
-```
-
-스켈레톤이 실제 콘텐츠와 유사한 구조를 가지면 레이아웃 점프(CLS)를 방지하고 사용자의 기대를 정확히 설정합니다.
-
-</Callout>
-
----
-
-### ❌ Don't
-
-<Callout type="warning">
-
-**스켈레톤을 너무 오래 표시 금지**
-
-```dart
-// ❌ 오류 발생 후에도 스켈레톤 유지
-if (isLoading || hasError) {
-  // 오류 상태에서도 스켈레톤
-  return Skeleton.text(skeletonStyle: CoreSkeletonStyle(lines: 5));
-}
-```
-
-오류가 발생했을 때 스켈레톤이 계속 표시되면 사용자가 영원히 기다리게 됩니다. 오류 상태는 `EmptyState`로 처리하세요.
-
-</Callout>
-
-### ✅ Do
-
-<Callout type="tip">
-
-**목록 스켈레톤은 3~5개 항목으로 제한**
-
-```dart
-// 목록 스켈레톤: 실제 개수가 아닌 적당한 수 표시
-if (isLoading) {
-  return Column(
-    spacing: CoreSpace.space12,
-    children: List.generate(
-      4,
-      (index) => Skeleton.text(
-        skeletonStyle: CoreSkeletonStyle(lines: 2),
-      ),
-    ),
-  );
-}
-```
-
-실제 데이터가 몇 개인지 모를 때 너무 많은 스켈레톤은 오히려 어색합니다. 3~5개가 자연스럽습니다.
-
-</Callout>
-
----
-
-### ❌ Don't
-
-<Callout type="warning">
-
-**`Loading` 스피너와 스켈레톤을 동시에 사용 금지**
-
-```dart
-// ❌ 스켈레톤과 로딩 스피너 동시 표시
-Stacks(
-  children: [
-    Skeleton.text(skeletonStyle: CoreSkeletonStyle(lines: 5)),
-    Center(child: Loading()), // 중복
-  ],
-)
-```
-
-스켈레톤 자체가 로딩 상태를 나타냅니다. 스피너를 함께 표시하면 중복되어 혼란스럽습니다.
-
-</Callout>
-
-### ✅ Do
-
-<Callout type="tip">
-
-**실제 콘텐츠 레이아웃과 유사한 형태로 Skeleton을 구성하세요.**
-
-```dart
-// 실제 카드와 동일한 구조의 Skeleton
-Column(
-  spacing: CoreSpace.space8,
-  children: [
-    Skeleton(width: double.infinity, height: 200),  // 이미지
-    Skeleton(width: 200, height: 20),               // 제목
-    Skeleton(width: double.infinity, height: 60),   // 설명
-  ],
-)
-```
-
-Skeleton 은 자리 표시자 하나를 그리는 leaf 요소입니다 — `child` 슬롯이 없으므로
-실제 레이아웃은 여러 `Skeleton` 을 조합해서 만듭니다. Skeleton 레이아웃이 실제
-콘텐츠와 유사할수록 사용자가 로딩 후 콘텐츠 변화에 덜 놀라고 자연스럽게 전환을
-경험합니다.
-
-</Callout>
-
----
-
-### ❌ Don't
-
-<Callout type="warning">
-
-**로딩이 완료된 후에도 Skeleton을 표시하지 마세요.**
-
-```dart
-// ❌ 데이터 로드 완료 후에도 Skeleton 유지
-Widget build(BuildContext context) {
-  return Column(children: [
-    Skeleton(width: 200, height: 20),  // 항상 Skeleton 표시
-    DataContent(data: loadedData),
-  ]);
-}
-```
-
-Skeleton은 데이터 로딩 중에만 표시해야 합니다. 로딩 완료 후에는 반드시 실제 콘텐츠로 교체하세요.
-
-</Callout>
-
-## 접근성 (Accessibility)
+> 전역 축(동작 줄이기 · 고대비 · 색 강제 모드 · 시맨틱 역할 · 최소 터치 타겟)은 [접근성](/accessibility) 페이지가 한 곳에서 다룹니다.
 
 ### 역할
 
-- **Flutter** — `Semantics(liveRegion: true, label: …)`. ARIA 의 role 에 해당하는 값은 설정하지 않고 **라이브 리전 표시와 이름만** 붙입니다.
-- **Web** — 루트에 `role="status"` + `aria-label`, 그리고 그 안에 시각적으로 숨긴(`sr-only`) 문구 텍스트. `progressbar` 가 아닌 이유는 그 role 에 암묵적 라이브 리전 시맨틱이 없어 실제로는 아무것도 통보되지 않았기 때문입니다 — 같은 "아직 로딩 중" 을 말하는 `Loading` 컴포넌트와 같은 role 로 맞췄습니다.
+| 플랫폼 | 따로 둔 Skeleton | `LoadingRegion` 안 |
+| --- | --- | --- |
+| Flutter | `Semantics(liveRegion: true, label: …)`. 시맨틱 역할(`SemanticsRole`)은 지정하지 않고 라이브 영역 표시와 이름만 붙입니다. | 아무것도 붙이지 않습니다. |
+| Jaspr Web | 루트 `<div>`에 `role="status"`와 `aria-label`을 붙이고, 눈에 보이지 않게 숨긴 같은 문구의 글자를 안에 둡니다. `progressbar` 역할은 라이브 영역이 아니어서 쓰지 않으며, [Loading](/components/loading)과 같은 `status`입니다. | `role` · `aria-label` · 숨긴 글자가 없는 `<div>`입니다. |
 
 ### 키보드
 
-**없음.** 양 플랫폼 모두 포커스를 받지 않고 키 핸들러가 하나도 없어 `Tab` 은 스켈레톤을 그냥 지나갑니다. Web 생성자는 `onClick` / `onKeyDown` 같은 이벤트 파라미터를 아예 노출하지 않아 호출자가 키 조작을 붙일 수도 없습니다.
+없음. 두 플랫폼 모두 포커스를 받지 않고 처리하는 키가 없어 `Tab`은 Skeleton을 지나갑니다. Web 생성자에는 `onClick` · `onKeyDown` 같은 이벤트 파라미터가 없습니다.
 
 ### 스크린 리더
 
-- **이름의 출처** — 양 플랫폼 모두 활성 로케일의 로딩 문구(`loadingLabel` — 기본 `Loading`, 한국어 `로딩 중`)입니다. 컴파일타임 상수가 아니라 **렌더 시점에** 조회하므로 로케일을 바꾸면 양쪽이 같이 따라옵니다.
-- **통보됩니다** — Flutter 는 `liveRegion: true`, Web 은 `role="status"` 의 암묵적 `aria-live="polite"` 로 둘 다 라이브 리전입니다.
-- 스켈레톤 자체는 빈 상자라 읽을 콘텐츠가 없습니다. 리더가 듣는 것은 위 문구뿐입니다. Web 은 그 문구를 이름(`aria-label`)만이 아니라 **텍스트로도** 담습니다 — 라이브 리전은 이름이 아니라 내용을 읽기 때문입니다.
-- **[LoadingRegion](/components/loading-region) 안에서는 알리지 않습니다.** 영역이 한 번 알리고, 안쪽 스켈레톤은 `role` · `aria-label` · 문구 텍스트(Web), 라이브 리전(Flutter)을 내지 않습니다.
-
-로딩이 끝나 호출부의 조건에서 스켈레톤이 빠지면 이 안내도 사라집니다.
+- 이름은 두 플랫폼 모두 지금 로케일의 로딩 문구(`loadingLabel`)입니다. 영어는 `Loading`, 한국어는 `로딩 중`입니다. 화면을 그리는 시점에 읽으므로 로케일을 바꾸면 따라 바뀝니다.
+- 따로 둔 Skeleton은 두 플랫폼 모두 라이브 영역입니다. Web의 `status`는 정중한(polite) 알림이 기본입니다. 실제로 언제 어떻게 읽는지는 스크린 리더와 브라우저 · 운영체제에 따라 다릅니다.
+- 그림 자체에는 읽을 콘텐츠가 없습니다. Web은 문구를 `aria-label`뿐 아니라 글자로도 담습니다. 라이브 영역은 이름이 아니라 내용을 읽기 때문입니다.
+- [LoadingRegion](/components/loading-region) 안의 Skeleton은 스스로 알리지 않고, 영역이 한 번 알립니다. 영역에서 연 오버레이처럼 영역 바깥에 만들어지는 내용의 처리는 LoadingRegion 문서를 보세요.
+- 동작 줄이기를 켜도 알림은 그대로입니다.
 
 ### 포커스 관리
 
-**없음.** 오버레이가 아니어서 진입 시 포커스 이동이 없고, 이탈·트랩도 해당하지 않습니다. 로딩이 끝나 스켈레톤이 사라져도 잃을 포커스가 없습니다.
+없음. 오버레이가 아니어서 포커스를 옮기거나 가두지 않습니다. 포커스를 받지 않으므로, 로딩이 끝나 Skeleton이 사라져도 Skeleton 때문에 잃는 포커스는 없습니다.
 
 ### 알려진 제약
 
-- **스켈레톤 자신의 문구는 바꿀 수 없습니다.** Flutter 에는 `semanticLabel` 파라미터가 없고, Web 은 `attributes` / `classes` / `css` 를 생성자에 노출하지 않는 데다 `role` 과 `aria-label` 을 `componentAttributes` **뒤에** 병합해 언제나 컴포넌트 값이 이깁니다. "무엇이" 로딩 중인지는 **[LoadingRegion](/components/loading-region)** 의 `semanticLabel` 로 말합니다.
-- **단독 스켈레톤은 하나가 라이브 리전 하나입니다.** 감싸지 않고 N 개를 놓으면 같은 문구를 가진 라이브 리전이 N 개 생깁니다. 한 영역을 채우는 스켈레톤들은 `LoadingRegion` 으로 감싸 영역 단위 한 번으로 알리세요.
-- **"동작 줄이기" 를 켜면 맥동이 멈춥니다.** 쉼 끝(`fromOpacity`) 채움으로 정지하고 로딩 알림은 그대로입니다. 표시 tier 이지만 멈춥니다 — 멈춘 회색 블록은 여전히 자리표시로 읽히기 때문입니다(멈춘 스피너와 다릅니다). 정책은 `CoreReducedMotion.runsPlaceholderPulse` 한 곳에 있습니다. Flutter 는 컨트롤러를 멈추고 쉼 끝을 그리며(주기는 0 으로 접지 않습니다), Web 은 `prefers-reduced-motion` 에서 `animation-name` 이 읽는 `--coui-skeleton-pulse` 변수를 쉼 끝을 붙드는 키프레임으로 바꿉니다.
+| 플랫폼 | 내용 |
+| --- | --- |
+| 공통 | Skeleton 하나의 알림 문구는 파라미터로 바꿀 수 없습니다. Flutter에는 `semanticLabel`이 없고, Web 생성자는 `attributes` · `classes` · `css`를 받지 않습니다. 무엇이 로딩 중인지는 [LoadingRegion](/components/loading-region)의 `semanticLabel`로 말합니다. |
+| 공통 | 따로 둔 Skeleton은 하나마다 라이브 영역이 하나씩 생깁니다. N개를 놓으면 같은 문구의 라이브 영역이 N개이므로, 한 영역의 것은 `LoadingRegion`으로 감쌉니다. |
+| 공통 | 로딩이 끝난 것은 알리지 않습니다. 조건에서 Skeleton이 빠지면 안내도 함께 사라집니다. |
+| 공통 | 기본 라이트 테마의 채움은 흰 바탕과의 대비가 3:1에 못 미칩니다. 로딩 중이라는 정보는 위의 알림 문구가 함께 전합니다. |
+| Flutter | 따로 둔 Skeleton은 알림을 위한 시맨틱 노드를 따로 만들도록 지정하지 않습니다(`container`를 쓰지 않습니다). 옆의 글이나 감싼 부모의 시맨틱 노드와 합쳐질 수 있습니다. `LoadingRegion`은 노드를 따로 만듭니다. |
+| Jaspr Web | 알림 요소는 문구가 이미 든 상태로 삽입됩니다. 새로 삽입된 `status`를 바로 읽는지는 스크린 리더마다 다를 수 있으므로, 이 알림이 중요하면 지원하는 스크린 리더에서 확인하세요. |
+| Jaspr Web | 자리표시를 배경색으로 그리고, 색 강제 모드(`forced-colors`)를 위한 Skeleton 전용 테두리 규칙은 없습니다. 브라우저가 배경색을 시스템 색으로 바꾸면 테두리가 없는 자리표시는 보이지 않을 수 있습니다. |
 
-> 전역 축(동작 줄이기 · 고대비 · 색 강제 모드 · 시맨틱 역할 · 최소 터치 타겟)은
-> [접근성](/accessibility) 페이지가 한 곳에서 다룹니다.
+<a id="크로스-플랫폼-차이점-platform-differences"></a>
 
-## 크로스 플랫폼 차이점 (Platform Differences)
+## 플랫폼 차이
 
-| 항목 | Flutter | Web |
-|------|---------|-----|
-| pulse 구현 | 한 주기 `AnimationController` 를 두 반쪽(쉼 → 정점 · 정점 → 쉼)으로 나눠 alpha 보간 | `0%,100%` · `50%` CSS 키프레임 — 같은 `duration` · `curve` · opacity 값 |
-| 크기 타입 | `double?` (logical pixels) | `String?` (CSS 값, 예: `'200px'` / `'100%'`) |
-| HTML 속성 통과 | 없음 | `id` |
+파라미터 이름과 `variant` · `skeletonStyle`은 같습니다. 크기를 받는 타입과 크기를 정하는 방식은 각 플랫폼의 레이아웃을 따릅니다.
 
-## 관련 컴포넌트 (Related Components)
+| 항목 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 크기 타입 | `double?`(논리 픽셀). `Skeleton.circle`의 `size`는 `double` | `String?`(CSS 값, 예: `'200px'` · `'100%'`). `Skeleton.circle`의 `size`는 `String` |
+| 크기 배율 | `width` · `height` · 모서리 · 줄 높이 · 줄 간격에 `theme.scaling`을 곱합니다. | 적은 크기에는 배율을 곱하지 않습니다. 줄 높이는 `rem`이고, 기본 모서리와 줄 간격은 CSS 변수를 따릅니다. |
+| 값을 비운 축 | 부모의 최대 크기. 한계가 없으면 0 | CSS `auto` |
+| 부모가 폭을 고정할 때 | 정한 `width` 대신 부모 폭 | 정한 `width`가 `stretch`보다 우선합니다. 가로 flex 행에서는 줄어들 수 있습니다. |
+| 글줄의 폭 | 폭에 한계가 있는 부모가 필요합니다. | 글줄 묶음의 폭이 `100%` |
+| `lastLineWidth` | 비율 그대로 | 백분율의 소수점 아래를 버립니다. |
+| 그리는 방식 | `Container`와 `BoxDecoration` | `<div>`와 클래스 · 인라인 CSS |
+| 맥동 | `AnimationController`로 채움 알파를 바꿉니다. | CSS 키프레임으로 `background-color`를 바꿉니다. |
+| 동작 줄이기 | `MediaQuery.disableAnimations` · `AccessibilityFeatures.reduceMotion` | `prefers-reduced-motion` |
+| 알림 | `Semantics(liveRegion: true)` | `role="status"`와 숨긴 글자 |
+| 생성자 | `const`를 쓸 수 있습니다. | `const` 생성자가 아닙니다. |
+| HTML 속성 | 없음 | `id` |
 
-- **[LoadingRegion](/components/loading-region)**: 스켈레톤 여러 개를 감싸 영역 단위로 한 번 알리는 래퍼
-- **[Loading](/components/loading)**: 콘텐츠 구조를 예측할 수 없는 로딩 상태 표시
-- **[EmptyState](/components/empty-state)**: 로딩 완료 후 데이터가 없는 상태 처리
-- **[Avatar](/components/avatar)**: `Skeleton.circle()`을 아바타 로딩 자리 표시자로 사용
+<a id="props-parameters"></a>
 
-### 조합 예제
+## API
 
-```dart
-// 완전한 로딩 → 빈 상태 → 콘텐츠 패턴
-Widget buildUserList() {
-  if (isLoading) {
-    // 스켈레톤으로 로딩 표시
-    return Column(
-      spacing: CoreSpace.space12,
-      children: List.generate(4, (_) => Row(children: [
-        Skeleton.circle(size: 48),
-        Gap(size: CoreSpace.space12),
-        Expanded(
-          child: Skeleton.text(
-            skeletonStyle: CoreSkeletonStyle(lines: 2, lastLineWidth: 0.6),
-          ),
-        ),
-      ])),
-    );
-  }
+<a id="skeleton-flutter-skeleton-web"></a>
 
-  if (users.isEmpty) {
-    return EmptyState(
-      icon: Icon(LucideIcons.users),
-      title: Text('사용자가 없습니다'),
-    );
-  }
+### 생성자
 
-  return ListView.builder(
-    itemCount: users.length,
-    itemBuilder: (context, index) => UserListTile(user: users[index]),
-  );
-}
-```
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `width` | `double?` (Flutter) · `String?` (Web) | `null` | 자리표시의 폭. `text`에서는 쓰지 않습니다. |
+| `height` | `double?` (Flutter) · `String?` (Web) | `null` | 자리표시의 높이. `text`에서는 쓰지 않습니다. |
+| `variant` | `CoreSkeletonVariant` | `CoreSkeletonVariant.defaultVariant` (`rectangular`) | 모양. `rectangular` · `circular` · `text` |
+| `skeletonStyle` | `CoreSkeletonStyle?` | `null` | 색 · 모서리 · 글줄 · 맥동을 바꾸는 값 묶음 |
+
+두 플랫폼 모두 `key`를 받습니다.
+
+### 웹 전용
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `id` | `String?` | `null` | 루트 `<div>`의 id. 세 생성자가 모두 받습니다. |
+
+<a id="팩토리-생성자"></a>
+
+### 이름 있는 생성자
+
+| 생성자 | 파라미터 | 설명 |
+| --- | --- | --- |
+| `Skeleton.circle` | `size`(필수, Flutter `double` · Web `String`), `skeletonStyle` | 폭과 높이가 `size`이고 `variant`는 `circular`입니다. |
+| `Skeleton.text` | `skeletonStyle` | `width` · `height`가 없고 `variant`는 `text`입니다. 줄 수와 줄 높이는 `skeletonStyle`로 정합니다. |
+
+### 그 밖의 멤버
+
+| 이름 | 설명 |
+| --- | --- |
+| `withStyle(CoreSkeletonStyle patch)` | `skeletonStyle`에 `patch`를 합친 사본을 돌려줍니다. 겹치는 필드는 `patch`가 이깁니다. |
+| `copyWith({width, height, variant, skeletonStyle, key})` | 넘긴 값만 바꾼 사본을 만듭니다. `null`을 넘기면 기존 값이 남습니다. Web의 `copyWith`는 `id`도 받습니다. `attributes` · `classes` · `css` 인자도 있지만 사본에 반영하지 않습니다. |
+
+### 테마
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `CoreComponentTheme.skeleton` | `CoreSkeletonTheme?` | `null` | 앱 전체의 Skeleton 테마 |
+| `style` | `CoreSkeletonStyle?` | `null` | `CoreSkeletonTheme`의 값. 모든 Skeleton에 적용합니다. |
+| `variantStyles` | `Map<CoreSkeletonVariant, CoreSkeletonStyle>?` | `null` | `CoreSkeletonTheme`의 값. variant마다 `style` 위에 덮습니다. |
+
+<!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
+
+### `CoreSkeletonStyle` 필드
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| `backgroundColor` | `CoreColor?` | Skeleton fill (background) colour override. |
+| `borderRadius` | `CoreBorderRadius?` | Border radius override. |
+| `lineSpacing` | `double?` | Gap between text-variant lines (logical px) — applied to the native `Column.spacing` paint-API on Flutter and to the flex `row-gap` inline CSS on Web. `null` defers to [defaultLineSpacing]. |
+| `lineHeight` | `double?` | Per-line height for the text variant (logical px). `null` defers to [defaultLineHeight]. Applied as `Container.height` on Flutter and inline `height` CSS on Web. |
+| `lastLineWidth` | `double?` | Width fraction of the last line in text variant (0.0–1.0). |
+| `lines` | `int?` | Default number of lines for text variant. |
+| `duration` | `Duration?` | Length of one full pulse — rest → peak → rest — on both platforms. `null` → [defaultDuration]. |
+| `curve` | `CoreCubicBezier?` | Easing of each half of the pulse, as cubic-bezier control points — applied forward to rest → peak and again to peak → rest, the way a CSS timing function applies per keyframe interval. `null` → [defaultCurve]. |
+| `fromOpacity` | `double?` | Pulse animation start opacity (0.0–1.0), multiplied into the fill's own alpha at the resting end — a transparent fill stays transparent. |
+| `toOpacity` | `double?` | Pulse animation end opacity (0.0–1.0), multiplied into the fill's own alpha at the peak. |
+
+### `CoreSkeletonStyle` 변형별 기본값 (`CoreSkeletonVariantStyle`)
+
+| 필드 | `rectangular` | `circular` | `text` |
+|------|------|------|------|
+| `borderRadius` | CoreBorderRadius.all(CoreRadius.radius8) | CoreBorderRadius.all(CoreRadius.radius9999) | CoreBorderRadius.all(CoreRadius.radius4) |
+| `backgroundColor` | surfaceContainerHighest | surfaceContainerHighest | surfaceContainerHighest |
+
+<!-- STYLE_TABLE:END -->
+
+## 이전 API에서 옮기기
+
+### enabled를 쓰던 코드
+
+`Skeleton`의 생성자 · `Skeleton.circle` · `Skeleton.text` · `copyWith`에는 `enabled`가 없습니다. 조건부 렌더로 옮깁니다.
+
+<Code language="dart" title="옮기기 전">
+Skeleton(width: 200, height: 20, enabled: isLoading)
+</Code>
+
+<Code language="dart" title="옮긴 뒤 (Flutter의 children 안)">
+if (isLoading) const Skeleton(width: 200, height: 20),
+</Code>
+
+<Note>
+
+`enabled: false`는 자리를 완전히 비우지 않았습니다(Flutter는 크기 0인 위젯, Web은 숨긴 `<div>`). 그래서 형제를 세어 간격을 주는 레이아웃(Flutter `Column(spacing:)`, Web `space-y-*`)에서는 그 자리에 간격이 한 칸 남았습니다. 조건부 렌더는 자리를 남기지 않으므로, 옮긴 뒤 간격이 한 칸 줄어드는지 확인하세요.
+
+</Note>
+
+### asSkeleton을 쓰던 코드
+
+화면의 위젯 전체를 한 번에 자리표시로 바꾸던 Flutter의 `asSkeleton(enabled:)`는 0.156부터 폐기 예고 상태입니다. 외부 패키지 `skeletonizer`가 위젯 트리를 칠하는 방식이라 색과 맥동이 `CoreSkeletonStyle`을 따르지 않고, Web에 대응하는 기능이 없으며, 로딩을 알리지 않습니다. 함께 쓰이던 `SkeletonTheme` · `CoUISkeletonizerConfigLayer` · `Bone` · `BoneMock`도 폐기 예고 상태입니다.
+
+자리마다 `Skeleton`을 두고 영역은 [LoadingRegion](/components/loading-region)으로 감쌉니다.
+
+<Code language="dart" title="옮기기 전 (Flutter)">
+orderList.asSkeleton(enabled: isLoading)
+</Code>
+
+<Code language="dart" title="옮긴 뒤">
+isLoading ? LoadingRegion(child: orderSkeletons) : orderList
+</Code>
+
+<a id="관련-컴포넌트-related-components"></a>
+
+## 관련 컴포넌트
+
+<Cards columns="2">
+<Card demo="skeleton/related-loading-region" title="LoadingRegion" href="/components/loading-region" more="LoadingRegion 보기">
+
+Skeleton 여러 개를 감싸 영역마다 한 번 알립니다.
+
+</Card>
+<Card demo="skeleton/related-loading" title="Loading" href="/components/loading" more="Loading 보기">
+
+콘텐츠의 모양을 예측할 수 없는 로딩에 씁니다.
+
+</Card>
+<Card demo="skeleton/related-empty-state" title="EmptyState" href="/components/empty-state" more="EmptyState 보기">
+
+로딩이 끝났는데 보여 줄 내용이 없을 때 씁니다.
+
+</Card>
+<Card demo="skeleton/related-avatar" title="Avatar" href="/components/avatar" more="Avatar 보기">
+
+아바타의 로딩 자리에는 `Skeleton.circle`을 씁니다. 크기는 `Skeleton.circle`의 `size`로 따로 맞춥니다.
+
+</Card>
+</Cards>
