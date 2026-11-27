@@ -255,6 +255,10 @@ class _MultiAnswerCardState<T> extends State<MultiAnswerCard<T>> {
 /// ).radius4.surface
 /// ```
 extension MultiAnswerCardStyleChain<T> on MultiAnswerCard<T> {
+  /// Sets the background paint and preserves the other style fields.
+  MultiAnswerCard<T> backgroundColor(CoreColor value) =>
+      withStyle(CoreMultiAnswerCardStyle(backgroundColor: value));
+
   /// Returns a copy of this [MultiAnswerCard] with [patch] merged into
   /// [multiAnswerCardStyle] (patch fields win on conflict).
   MultiAnswerCard<T> withStyle(CoreMultiAnswerCardStyle patch) => copyWith(

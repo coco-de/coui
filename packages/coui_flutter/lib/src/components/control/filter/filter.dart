@@ -232,6 +232,13 @@ class Filter<T> extends StatelessWidget
 /// Filter<String>(...).radius4.surface
 /// ```
 extension FilterStyleChain<T> on Filter<T> {
+  /// Sets the background paint and preserves the other style fields.
+  Filter<T> backgroundColor(CoreColor value) => withStyle(
+    CoreFilterStyle(
+      toggleGroupStyle: CoreToggleGroupStyle(backgroundColor: value),
+    ),
+  );
+
   /// Returns a copy of this [Filter] with [patch] merged into
   /// [filterStyle] (patch fields win on conflict).
   Filter<T> withStyle(CoreFilterStyle patch) => copyWith(

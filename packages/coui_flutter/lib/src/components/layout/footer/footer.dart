@@ -350,6 +350,10 @@ class Footer extends StatelessWidget implements CoreFooterContract<Widget> {
 /// Footer(sections: sections).surface
 /// ```
 extension FooterStyleChain on Footer {
+  /// Sets the background paint and preserves the other style fields.
+  Footer backgroundColor(CoreColor value) =>
+      withStyle(CoreFooterStyle(backgroundColor: value));
+
   /// Returns a copy of this [Footer] with [patch] merged into
   /// [footerStyle] (patch fields win on conflict).
   Footer withStyle(CoreFooterStyle patch) => copyWith(

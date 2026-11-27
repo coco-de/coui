@@ -201,6 +201,10 @@ class MockupCode extends UiComponent implements CoreMockupCodeContract {
 /// MockupCode.fromString('...').radius4.surface
 /// ```
 extension MockupCodeStyleChain on MockupCode {
+  /// Sets the background paint and preserves the other style fields.
+  MockupCode backgroundColor(CoreColor value) =>
+      withStyle(CoreMockupCodeStyle(backgroundColor: value));
+
   /// Returns a copy of this [MockupCode] with [patch] merged into
   /// [mockupCodeStyle] (patch fields win on conflict).
   MockupCode withStyle(CoreMockupCodeStyle patch) => copyWith(

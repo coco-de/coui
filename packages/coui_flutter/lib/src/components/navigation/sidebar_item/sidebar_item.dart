@@ -241,6 +241,10 @@ class _SidebarItemState extends State<SidebarItem> {
 /// Chain sugar for merging a [CoreSidebarItemStyle] patch into
 /// [SidebarItem.sidebarItemStyle]. Mirrors the Web extension.
 extension SidebarItemStyleChain on SidebarItem {
+  /// Sets the background paint and preserves the other style fields.
+  SidebarItem backgroundColor(CoreColor value) =>
+      withStyle(CoreSidebarItemStyle(backgroundColor: value));
+
   /// Returns a copy with [patch] merged into [sidebarItemStyle] (patch
   /// fields win on conflict).
   SidebarItem withStyle(CoreSidebarItemStyle patch) => copyWith(

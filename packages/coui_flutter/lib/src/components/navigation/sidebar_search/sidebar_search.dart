@@ -159,6 +159,10 @@ class _SidebarSearchState extends State<SidebarSearch> {
 /// Chain sugar for merging a [CoreSidebarSearchStyle] patch into
 /// [SidebarSearch.sidebarSearchStyle]. Mirrors the Web extension.
 extension SidebarSearchStyleChain on SidebarSearch {
+  /// Sets the background paint and preserves the other style fields.
+  SidebarSearch backgroundColor(CoreColor value) =>
+      withStyle(CoreSidebarSearchStyle(backgroundColor: value));
+
   /// Returns a copy with [patch] merged into [sidebarSearchStyle] (patch
   /// fields win on conflict).
   SidebarSearch withStyle(CoreSidebarSearchStyle patch) => copyWith(

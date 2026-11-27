@@ -1,10 +1,6 @@
 import 'package:coui_flutter/coui_flutter.dart';
 
-/// T1 저작 규약 형태의 chain 예제 — 두 인스턴스로 구성한다:
-/// (1) 토큰-정확 getter **combo 체인** 1개 (`.radius16.primary` — radius
-/// 축·색 축 getter 가 base 전체에서 정확히 1회씩, 랜덤 순열 토글의 치환
-/// 앵커), (2) **withStyle full-control** 1개 — getter 밖 필드까지 조합해
-/// `CoreFieldsetStyle` 슬롯 전체를 여는 경로.
+/// Demonstrates radius and explicit paint on [Fieldset].
 class FieldsetChainExample extends StatelessWidget {
   const FieldsetChainExample({super.key});
 
@@ -18,7 +14,7 @@ class FieldsetChainExample extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         SizedBox(
           width: CoreSpace.space256,
           child: Fieldset(
@@ -33,7 +29,7 @@ class FieldsetChainExample extends StatelessWidget {
                 placeholder: const Text('이메일'),
               ),
             ],
-          ).radius16.primary,
+          ).radius16.backgroundColor(.primary),
         ),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
@@ -54,7 +50,7 @@ class FieldsetChainExample extends StatelessWidget {
                 ],
               ).withStyle(
                 const CoreFieldsetStyle(
-                  backgroundColor: CoreColor.token(CoreColors.tertiary),
+                  backgroundColor: .tertiary,
                   borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
                   fieldSpacing: CoreSpace.space12,
                   padding: CoreEdgeInsets.symmetric(

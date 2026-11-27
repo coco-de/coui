@@ -31,7 +31,7 @@ class _FieldsetChainPermutationView extends StatelessComponent {
     // the fieldset stretch to the pane's full inline-axis.
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         div(
           [
             Fieldset(
@@ -68,7 +68,7 @@ class _FieldsetChainPermutationView extends StatelessComponent {
               ],
             ).withStyle(
               const CoreFieldsetStyle(
-                backgroundColor: CoreColor.token(CoreColors.tertiary),
+                backgroundColor: .tertiary,
                 borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
                 fieldSpacing: CoreSpace.space12,
                 padding: CoreEdgeInsets.symmetric(
@@ -114,18 +114,18 @@ extension _FieldsetChainPermutations on Fieldset {
       _ => radius16,
     };
     return switch (kChainColorGetters[permutation.colorIndex]) {
-      'primary' => radiused.primary,
-      'secondary' => radiused.secondary,
-      'tertiary' => radiused.tertiary,
-      'surface' => radiused.surface,
-      'surfaceContainer' => radiused.surfaceContainer,
-      'error' => radiused.error,
-      'success' => radiused.success,
-      'warning' => radiused.warning,
-      'info' => radiused.info,
-      'outline' => radiused.outline,
-      'transparent' => radiused.transparent,
-      _ => radiused.primary,
+      'primary' => radiused.backgroundColor(.primary),
+      'secondary' => radiused.backgroundColor(.secondary),
+      'tertiary' => radiused.backgroundColor(.tertiary),
+      'surface' => radiused.backgroundColor(.surface),
+      'surfaceContainer' => radiused.backgroundColor(.surfaceContainer),
+      'error' => radiused.backgroundColor(.error),
+      'success' => radiused.backgroundColor(.success),
+      'warning' => radiused.backgroundColor(.warning),
+      'info' => radiused.backgroundColor(.info),
+      'outline' => radiused.backgroundColor(.outline),
+      'transparent' => radiused.backgroundColor(.transparent),
+      _ => radiused.backgroundColor(.primary),
     };
   }
 }

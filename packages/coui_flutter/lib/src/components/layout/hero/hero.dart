@@ -200,6 +200,10 @@ class Hero extends StatelessWidget implements CoreHeroContract<Widget> {
 /// Hero(child: Text('Welcome')).primary
 /// ```
 extension HeroStyleChain on Hero {
+  /// Sets the background paint and preserves the other style fields.
+  Hero backgroundColor(CoreColor value) =>
+      withStyle(CoreHeroStyle(backgroundColor: value));
+
   /// Returns a copy of this [Hero] with [patch] merged into
   /// [heroStyle] (patch fields win on conflict).
   Hero withStyle(CoreHeroStyle patch) => copyWith(

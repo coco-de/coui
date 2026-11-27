@@ -310,6 +310,10 @@ class ToggleGroup<T> extends UiComponent
 /// )
 /// ```
 extension ToggleGroupStyleChain<T> on ToggleGroup<T> {
+  /// Sets the background paint and preserves the other style fields.
+  ToggleGroup<T> backgroundColor(CoreColor value) =>
+      withStyle(CoreToggleGroupStyle(backgroundColor: value));
+
   /// Returns a copy of this [ToggleGroup] with [patch] merged into
   /// [toggleGroupStyle] (patch fields win on conflict).
   ToggleGroup<T> withStyle(CoreToggleGroupStyle patch) => copyWith(

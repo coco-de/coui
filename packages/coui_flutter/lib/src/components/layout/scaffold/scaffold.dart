@@ -566,6 +566,10 @@ class _MainLandmarkScope extends InheritedWidget {
 /// Scaffold(child: Text('Body')).surface
 /// ```
 extension ScaffoldStyleChain on Scaffold {
+  /// Sets the background paint and preserves the other style fields.
+  Scaffold backgroundColor(CoreColor value) =>
+      withStyle(CoreScaffoldStyle(backgroundColor: value));
+
   /// Returns a copy of this [Scaffold] with [patch] merged into
   /// [scaffoldStyle] (patch fields win on conflict).
   Scaffold withStyle(CoreScaffoldStyle patch) => copyWith(

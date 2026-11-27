@@ -31,13 +31,13 @@ class _TextAreaChainPermutationState extends State<_TextAreaChainPermutationView
   Component build(BuildContext context) {
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         TextArea(placeholder: '내용을 입력해 주세요', rows: 4).chainPermuted(component.permutation),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(borderWidth)까지 한 번에.
         TextArea(placeholder: '내용을 입력해 주세요', rows: 4).withStyle(
           const CoreTextAreaStyle(
-            borderColor: CoreColor.token(CoreColors.tertiary),
+            borderColor: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             borderWidth: CoreStrokeWidth.stroke2,
           ),
@@ -76,18 +76,18 @@ extension _TextAreaChainPermutations on TextArea {
       _ => radius16,
     };
     return switch (kChainColorGetters[permutation.colorIndex]) {
-      'primary' => radiused.primary,
-      'secondary' => radiused.secondary,
-      'tertiary' => radiused.tertiary,
-      'surface' => radiused.surface,
-      'surfaceContainer' => radiused.surfaceContainer,
-      'error' => radiused.error,
-      'success' => radiused.success,
-      'warning' => radiused.warning,
-      'info' => radiused.info,
-      'outline' => radiused.outline,
-      'transparent' => radiused.transparent,
-      _ => radiused.primary,
+      'primary' => radiused.backgroundColor(.primary),
+      'secondary' => radiused.backgroundColor(.secondary),
+      'tertiary' => radiused.backgroundColor(.tertiary),
+      'surface' => radiused.backgroundColor(.surface),
+      'surfaceContainer' => radiused.backgroundColor(.surfaceContainer),
+      'error' => radiused.backgroundColor(.error),
+      'success' => radiused.backgroundColor(.success),
+      'warning' => radiused.backgroundColor(.warning),
+      'info' => radiused.backgroundColor(.info),
+      'outline' => radiused.backgroundColor(.outline),
+      'transparent' => radiused.backgroundColor(.transparent),
+      _ => radiused.backgroundColor(.primary),
     };
   }
 }

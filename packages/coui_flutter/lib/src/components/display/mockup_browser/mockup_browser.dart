@@ -315,6 +315,10 @@ class _ControlDot extends StatelessWidget {
 /// MockupBrowser(addressBar: '...', child: Text('...')).radius4.surface
 /// ```
 extension MockupBrowserStyleChain on MockupBrowser {
+  /// Sets the background paint and preserves the other style fields.
+  MockupBrowser backgroundColor(CoreColor value) =>
+      withStyle(CoreMockupBrowserStyle(backgroundColor: value));
+
   /// Returns a copy of this [MockupBrowser] with [patch] merged into
   /// [mockupBrowserStyle] (patch fields win on conflict).
   MockupBrowser withStyle(CoreMockupBrowserStyle patch) => copyWith(

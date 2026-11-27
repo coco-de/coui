@@ -1520,26 +1520,13 @@ const int _kComposingKeyCode = 229;
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreTextFieldStyle.merge` right-side-wins semantics).
 ///
-/// The getters below are shorter sugar for the same [withStyle] call.
-/// Each one is a direct 1:1 alias for a `CoreRadius` / `CoreColors`
-/// primitive — the getter *name* is the token name, so `.radius4`
-/// always means `CoreRadius.radius4` and `.primary` always means
-/// `CoreColors.primary`, no matter which component it's called on.
-/// That fixed name-to-value mapping is what makes a short getter safe
-/// to reuse across components — a curated nickname (`.rounded`,
-/// `.compact`) would silently map to a different value per component,
-/// but a primitive-token getter cannot.
-///
-/// These are intentionally primitive (not semantic) for now: `.radius4`
-/// sets [CoreTextFieldStyle.borderRadius] and `.primary` sets
-/// [CoreTextFieldStyle.backgroundColor]. A semantic layer that names
-/// these after component-specific intent (decided together with
-/// design) is a follow-up once more components adopt this pattern.
-///
-/// ```dart
-/// TextField(placeholder: Text('Enter text...')).radius4.surface
-/// ```
+/// `.error` selects component options.
+/// Use `backgroundColor(.primary)` to set the background explicitly.
 extension TextFieldStyleChain on TextField {
+  /// Sets the background paint and preserves the other style fields.
+  TextField backgroundColor(CoreColor value) =>
+      withStyle(CoreTextFieldStyle(backgroundColor: value));
+
   /// Returns a copy of this [TextField] with [patch] merged into
   /// [textFieldStyle] (patch fields win on conflict).
   TextField withStyle(CoreTextFieldStyle patch) => copyWith(
@@ -1718,12 +1705,8 @@ extension TextFieldStyleChain on TextField {
     ),
   );
 
-  /// `backgroundColor: CoreColor.token(CoreColors.error)`.
-  TextField get error => withStyle(
-    const CoreTextFieldStyle(
-      backgroundColor: CoreColor.token(CoreColors.error),
-    ),
-  );
+  /// Selects `variant: .error` using the component theme.
+  TextField get error => copyWith(variant: .error);
 
   /// `backgroundColor: CoreColor.token(CoreColors.success)`.
   TextField get success => withStyle(

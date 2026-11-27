@@ -39,13 +39,14 @@ jobs:
         working-directory: packages/coui_core
         run: >-
           dart test --coverage-path=../../.dart_tool/coverage/coui_core.lcov
-          test/token_scale_test.dart test/button_style_test.dart
+          test/token_scale_test.dart test/button_style_test.dart test/core_color_test.dart
 
       - name: Test Flutter controls and file handling
         working-directory: packages/coui_flutter
         run: >-
           flutter test --coverage --coverage-path=../../.dart_tool/coverage/coui_flutter.lcov
           test/components/control/button_test.dart
+          test/components/semantic_option_chain_test.dart
           test/components/form/rich_editor*_test.dart
           test/components/file_input_test.dart
           test/components/layout/tree_test.dart
@@ -96,6 +97,7 @@ jobs:
         run: >-
           dart test --coverage-path=../../.dart_tool/coverage/coui_web.lcov
           test/components/control/button_test.dart
+          test/components/semantic_option_chain_test.dart
           test/components/display/mockup_code_style_test.dart
           test/components/display/mockup_code_themed_padding_test.dart
 

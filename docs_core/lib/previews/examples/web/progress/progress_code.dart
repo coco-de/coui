@@ -15,13 +15,13 @@ class _ProgressChainExampleState extends State<ProgressChainExample> {
   Component build(BuildContext context) {
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
-        Progress(value: 0.65).radius16.primary,
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
+        Progress(value: 0.65).radius16.fillColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(minHeight)까지 한 번에.
         Progress(value: 0.65).withStyle(
           const CoreProgressStyle(
-            color: CoreColor.token(CoreColors.tertiary),
+            color: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             minHeight: CoreSpace.space16,
           ),

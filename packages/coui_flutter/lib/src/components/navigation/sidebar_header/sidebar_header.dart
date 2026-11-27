@@ -191,6 +191,10 @@ class _SidebarHeaderState extends State<SidebarHeader> {
 /// Chain sugar for merging a [CoreSidebarHeaderStyle] patch into
 /// [SidebarHeader.sidebarHeaderStyle]. Mirrors the Web extension.
 extension SidebarHeaderStyleChain on SidebarHeader {
+  /// Sets the background paint and preserves the other style fields.
+  SidebarHeader backgroundColor(CoreColor value) =>
+      withStyle(CoreSidebarHeaderStyle(backgroundColor: value));
+
   /// Returns a copy with [patch] merged into [sidebarHeaderStyle] (patch
   /// fields win on conflict).
   SidebarHeader withStyle(CoreSidebarHeaderStyle patch) => copyWith(

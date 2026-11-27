@@ -341,6 +341,10 @@ class _FooterBarTheme extends StatelessComponent {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreBottomSheetStyle.merge` right-side-wins semantics).
 extension BottomSheetStyleChain on BottomSheet {
+  /// Sets the background paint and preserves the other style fields.
+  BottomSheet backgroundColor(CoreColor value) =>
+      withStyle(CoreBottomSheetStyle(backgroundColor: value));
+
   /// Returns a copy of this [BottomSheet] with [patch] merged into
   /// [bottomSheetStyle] (patch fields win on conflict).
   BottomSheet withStyle(CoreBottomSheetStyle patch) => copyWith(

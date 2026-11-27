@@ -231,6 +231,10 @@ class InputOtp extends UiStatefulComponent
 /// InputOtp(length: 6).radius4.primary
 /// ```
 extension InputOtpStyleChain on InputOtp {
+  /// Sets the background paint and preserves the other style fields.
+  InputOtp backgroundColor(CoreColor value) =>
+      withStyle(CoreInputOtpStyle(backgroundColor: value));
+
   /// Returns a copy of this [InputOtp] with [patch] merged into
   /// [inputOtpStyle] (patch fields win on conflict).
   InputOtp withStyle(CoreInputOtpStyle patch) => copyWith(
