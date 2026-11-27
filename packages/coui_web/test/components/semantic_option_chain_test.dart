@@ -6,7 +6,7 @@ void main() {
     final chip = Chip(
       label: 'One',
       classes: 'tag',
-      attributes: {'aria-label': 'Label'},
+      attributes: const {'aria-label': 'Label'},
       eventHandlers: {
         'click': [(_) {}],
       },
@@ -61,7 +61,7 @@ void main() {
           toggleGroupStyle: CoreToggleGroupStyle(itemPadding: itemPadding),
         ),
       );
-      final Filter<String> styled = filter.contentPadding(trackPadding);
+      final styled = filter.contentPadding(trackPadding);
       final track = styled.filterStyle!.toggleGroupStyle!;
       expect(track.padding, trackPadding);
       expect(track.itemPadding, itemPadding);

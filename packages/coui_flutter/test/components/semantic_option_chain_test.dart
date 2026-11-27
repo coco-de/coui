@@ -39,7 +39,7 @@ void main() {
           toggleGroupStyle: CoreToggleGroupStyle(itemPadding: itemPadding),
         ),
       );
-      final Filter<String> styled = filter.contentPadding(trackPadding);
+      final styled = filter.contentPadding(trackPadding);
       final track = styled.filterStyle!.toggleGroupStyle!;
       expect(track.padding, trackPadding);
       expect(track.itemPadding, itemPadding);
