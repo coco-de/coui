@@ -33,6 +33,7 @@ import 'box_padding_text_field_units_probe.dart';
 import 'box_padding_validation_viewport_units_probe.dart';
 import 'box_padding_visual_value_units_probe.dart';
 import 'breakpoint_showcase_ssr_source.dart';
+import 'card_accordion_frame_binding.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'public_wrapper_ssr_source.dart';
@@ -60,6 +61,7 @@ String get boxPaddingObservationScript =>
       BoxObservationSourceSpec.docsPlayground.toJson(),
       BoxObservationSourceSpec.textShowcaseOuterPadding.toJson(),
       BoxObservationSourceSpec.bottomActionBarContentInset.toJson(),
+      ...BoxObservationSourceSpec.cardAccordionSurfaceFrames.map((s) => s.toJson()),
       BoxObservationSourceSpec.showcaseAllocationHost.toJson(),
       BoxObservationSourceSpec.scopeAllocationHost.toJson(),
       BoxObservationSourceSpec.breakpointShowcaseContentInset.toJson(),
@@ -132,6 +134,20 @@ String get boxPaddingObservationScript =>
       break;
     }
 
+    case 'card-current-outlined-frame-content-v1':
+    case 'accordion-current-outlined-frame-content-v1': {
+      const binding = ($cardAccordionFrameRequestBindingScript)(request);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (!binding.applied || binding.registryResultElement !== layoutRoot ||
+          binding.fieldUnitElement !== layoutRoot || binding.paddingSource !== layoutRoot ||
+          binding.frameSource !== layoutRoot || binding.registryIsLayoutRoot !== true ||
+          typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('SURFACE_FRAME_FIELD_UNIT_CHANGED'));
+      currentBoxBindingFailure = 'SURFACE_FRAME_BINDING_CHANGED_DURING_CSS_READ';
+      owner = layoutRoot; sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true; validateCurrentBoxBinding = binding.validateCurrentBinding;
+      break;
+    }
     case 'bottom-action-bar-owned-content-inset-v1': {
       const binding = ($bottomActionBarRequestBindingScript)(request);
       if (binding.error) return JSON.stringify(incomplete(binding.error));

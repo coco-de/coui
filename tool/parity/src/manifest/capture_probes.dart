@@ -26,7 +26,8 @@ void requireCaptureProbes({
     );
   }
   for (final source in boxObservationSources) {
-    if ((BoxObservationSourceSpec.displayComponentFrames.contains(source) ||
+    if ((BoxObservationSourceSpec.cardAccordionSurfaceFrames.contains(source) ||
+            BoxObservationSourceSpec.displayComponentFrames.contains(source) ||
             BoxObservationSourceSpec.controlShellFrames.contains(source) ||
             BoxObservationSourceSpec.solidLayoutFrames.contains(source) ||
             BoxObservationSourceSpec.inlineHostFrames.contains(source) ||
@@ -175,6 +176,9 @@ BoxObservationSourceSpec? _componentBoxSource(
         'rich',
   ) =>
     BoxObservationSourceSpec.textShowcaseOuterPadding,
+  ('card', 'default' || 'filled' || 'elevated') =>
+    BoxObservationSourceSpec.cardSurfaceFrame,
+  ('accordion', 'default') => BoxObservationSourceSpec.accordionSurfaceFrame,
   ('icon', 'default' || 'search' || 'favorite') =>
     BoxObservationSourceSpec.iconVisualFrame,
   ('drag', 'default' || 'board' || 'overlay') ||

@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart'
 import '../../../../tool/parity/src/model/box_observation_source_spec.dart';
 import 'box_padding_bottom_action_bar_source.dart';
 import 'box_padding_breakpoint_showcase_units.dart';
+import 'box_padding_card_accordion_frame_source.dart';
 import 'box_padding_chat_bubble_units.dart';
 import 'box_padding_collection_layout_host_units.dart';
 import 'box_padding_component_units.dart';
@@ -142,6 +143,43 @@ Map<String, Object?> _observe(
             'Padding; '
             'two current parameters inside frame, border and foreign content '
             'excluded',
+        'legacyRoleEligible': !legacyRootOmitted,
+        'paintRequired': false,
+        'canonicalComparisonEligible': false,
+      };
+    }
+    if (BoxObservationSourceSpec.cardAccordionSurfaceFrames.contains(source)) {
+      final declared = probe.boxObservationSource!;
+      final expected = source.toJson();
+      if (declared.length != expected.length ||
+          expected.entries.any((e) => declared[e.key] != e.value)) {
+        throw const BoxObservationError(
+          'SURFACE_FRAME_SOURCE_CHANGED',
+          'The complete exact frame tuple is required.',
+        );
+      }
+      final binding = bindCardAccordionEntryFrame(
+        captureRoot: captureRoot,
+        registryResult: registryResult,
+        source: source,
+      );
+      final identity = binding.sourceIdentity;
+      final observed = binding.readActualPadding();
+      binding.validateCurrentBinding();
+      return {
+        ...observed.toJson(),
+        'sourceIdentity': identity,
+        'status': 'source-complete',
+        'sourceUnitValidated': true,
+        'source': source.toJson(),
+        'layoutRootElement': identityHashCode(resultElement),
+        'fieldUnitElement': identityHashCode(binding.producer),
+        'sourceReaderId': 'card-accordion-current-outlined-frame-v1',
+        'sourceBindingAuthority': [
+          'original exact public surface -> actual outlined ',
+          'frame -> immediate generated opaque content; ',
+          'distributed slot and item insets excluded',
+        ].join(),
         'legacyRoleEligible': !legacyRootOmitted,
         'paintRequired': false,
         'canonicalComparisonEligible': false,
