@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:puppeteer/puppeteer.dart';
 
+import 'bottom_action_bar_ssr_source.dart';
 import 'breakpoint_showcase_ssr_source.dart';
 import 'device_paint_source_probe.dart';
 import 'showcase_allocation_ssr_source.dart';
@@ -17,6 +18,9 @@ String get computedStyleProbeScript =>
 String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
     '''
 (request) => {
+  const bottom = ($bottomActionBarRequestBindingScript)(request);
+  if (bottom.error) throw new Error(bottom.error);
+  if (bottom.applied && !bottom.validateCurrentBinding()) throw new Error('BOTTOM_ACTION_BAR_CURRENT_BINDING_CHANGED');
   const showcase = ($showcaseAllocationRequestBindingScript)(request);
   if (showcase.error) throw new Error(showcase.error);
   if (showcase.applied && !showcase.validateCurrentBinding()) throw new Error('SHOWCASE_ALLOCATION_CURRENT_BINDING_CHANGED');
@@ -30,11 +34,13 @@ String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
   if (paint.error) throw new Error(paint.error);
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
   const legacy = JSON.parse(($_kComputedStyleJs)(request.selector,paint.applied ? paint.sourcePaintElement : null));
+  if (bottom.applied && !bottom.validateCurrentBinding()) throw new Error('BOTTOM_ACTION_BAR_BINDING_CHANGED_DURING_LEGACY_READ');
   if (showcase.applied && !showcase.validateCurrentBinding()) throw new Error('SHOWCASE_ALLOCATION_BINDING_CHANGED_DURING_LEGACY_READ');
   if (breakpoint.applied && !breakpoint.validateCurrentBinding()) throw new Error('BREAKPOINT_SHOWCASE_BINDING_CHANGED_DURING_LEGACY_READ');
   if (text.applied && !text.validateCurrentBinding()) throw new Error('TEXT_SHOWCASE_BINDING_CHANGED_DURING_LEGACY_READ');
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
   const box = JSON.parse(($boxSamplerScript)(request));
+  if (bottom.applied && !bottom.validateCurrentBinding()) throw new Error('BOTTOM_ACTION_BAR_BINDING_CHANGED_DURING_BOX_READ');
   if (showcase.applied && !showcase.validateCurrentBinding()) throw new Error('SHOWCASE_ALLOCATION_BINDING_CHANGED_DURING_BOX_READ');
   if (breakpoint.applied && !breakpoint.validateCurrentBinding()) throw new Error('BREAKPOINT_SHOWCASE_BINDING_CHANGED_DURING_BOX_READ');
   if (text.applied && !text.validateCurrentBinding()) throw new Error('TEXT_SHOWCASE_BINDING_CHANGED_DURING_BOX_READ');

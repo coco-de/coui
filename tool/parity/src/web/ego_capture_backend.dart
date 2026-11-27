@@ -15,6 +15,7 @@ import '../model/capture_surface.dart';
 import '../model/matrix_entry.dart';
 import '../model/network_image_fixture.dart';
 import '../source/playground_value_authority.dart';
+import 'bottom_action_bar_ssr_source.dart';
 import 'box_padding_observation_probe.dart';
 import 'breakpoint_showcase_ssr_source.dart';
 import 'client_box_source_protocol.dart';
@@ -345,6 +346,7 @@ Future<WebCaptureResult> captureEgoEntry({
   final requiredCurrentSsrKind = additiveBoxObservations
       ? requiredShowcaseAllocationSsrKind(entry) ??
             requiredBreakpointShowcaseSsrKind(entry) ??
+            requiredBottomActionBarSsrKind(entry) ??
             requiredTextShowcaseSsrKind(entry) ??
             requiredFramedCollectionSsrKind(entry)
       : null;

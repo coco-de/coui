@@ -40,6 +40,13 @@ class BoxObservationSourceSpec {
   final String webAdapterId;
 
   static const quantity = 'inside-frame-own-content-inset-v1';
+  static const bottomActionBarContentInset = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'bottom-action-bar-owned-content-inset',
+    quantityId: quantity,
+    nativeAdapterId: 'bottom-action-bar-owned-content-inset-v1',
+    webAdapterId: 'bottom-action-bar-owned-content-inset-v1',
+  );
   static const outlined = BoxObservationSourceSpec(
     schemaVersion: 1,
     logicalUnitId: 'own-generated-frame',
@@ -995,6 +1002,7 @@ class BoxObservationSourceSpec {
       ...framedCollectionFrames,
       textShowcaseOuterPadding,
       showcaseAllocationHost,
+      bottomActionBarContentInset,
       breakpointShowcaseContentInset,
     ]) {
       if (logicalUnitId == supported.logicalUnitId &&

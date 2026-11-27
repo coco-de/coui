@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart'
     show AnimatedContainer, Container, Element, KeyedSubtree, Widget;
 
 import '../../../../tool/parity/src/model/box_observation_source_spec.dart';
+import 'box_padding_bottom_action_bar_source.dart';
 import 'box_padding_breakpoint_showcase_units.dart';
 import 'box_padding_chat_bubble_units.dart';
 import 'box_padding_collection_layout_host_units.dart';
@@ -105,6 +106,45 @@ Map<String, Object?> _observe(
       ),
       'the actual registry construction result',
     );
+
+    if (source == BoxObservationSourceSpec.bottomActionBarContentInset) {
+      final declared = probe.boxObservationSource!;
+      final expected = BoxObservationSourceSpec.bottomActionBarContentInset
+          .toJson();
+      if (declared.length != expected.length ||
+          expected.entries.any((entry) => declared[entry.key] != entry.value)) {
+        throw const BoxObservationError(
+          'BOTTOM_ACTION_BAR_TUPLE_CHANGED',
+          'The complete exact tuple is required.',
+        );
+      }
+      final binding = bindBottomActionBarEntrySource(
+        captureRoot: captureRoot,
+        registryResult: registryResult,
+        source: source,
+      );
+      final observed = binding.readActualPadding();
+      return {
+        ...observed.toJson(),
+        'status': 'source-complete',
+        'sourceUnitValidated': true,
+        'source': source.toJson(),
+        'layoutRootElement': identityHashCode(resultElement),
+        'fieldUnitElement': identityHashCode(binding.producer),
+        'sourceReaderId': 'bottom-action-bar-two-current-render-paddings-v1',
+        'sourceBindingAuthority':
+            'Exact original public Example -> BottomActionBar '
+            '-> CoUISemantics/optional public SurfaceBlur.child -> Container '
+            '-> '
+            'SafeArea current Padding -> MediaQuery -> original explicit '
+            'Padding; '
+            'two current parameters inside frame, border and foreign content '
+            'excluded',
+        'legacyRoleEligible': !legacyRootOmitted,
+        'paintRequired': false,
+        'canonicalComparisonEligible': false,
+      };
+    }
     final BoxPaddingObservation observation;
     var sourceBindingProvenance = <String, Object?>{};
     switch (source.nativeAdapterId) {
