@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:coui_flutter/coui_flutter.dart';
+import 'package:coui_flutter/src/components/infra/clickable/clickable_activation_scope.dart';
 import 'package:flutter/gestures.dart' show kPrimaryButton;
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
@@ -434,6 +435,7 @@ class _ClickableState extends State<Clickable> {
     if (_tapCount == 2 && widget.onDoubleTap != null) {
       widget.onDoubleTap!();
       _tapCount = 0;
+      if (mounted) ClickableActivationScope.activate(context);
       return;
     }
     final onPressed = widget.onPressed;
@@ -442,6 +444,7 @@ class _ClickableState extends State<Clickable> {
       if (widget.enableFeedback) {
         unawaited(_feedbackForTap());
       }
+      if (mounted) ClickableActivationScope.activate(context);
     }
   }
 

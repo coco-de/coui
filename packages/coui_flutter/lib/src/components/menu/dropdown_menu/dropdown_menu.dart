@@ -1,7 +1,15 @@
 import 'dart:async';
 
 import 'package:coui_flutter/coui_flutter.dart';
+import 'package:coui_flutter/src/components/infra/clickable/clickable_activation_scope.dart';
 import 'package:coui_flutter/src/components/overlay/trigger_tap_detector.dart';
+import 'package:flutter/rendering.dart'
+    show
+        RenderSemanticsAnnotations,
+        SemanticsAction,
+        SemanticsConfiguration,
+        SemanticsNode,
+        SemanticsProperties;
 
 /// A unified dropdown-menu component.
 ///
@@ -131,7 +139,7 @@ class _DropdownMenuState extends State<DropdownMenu> {
   }
 
   void _handleOpen() {
-    if (_activeEntry != null) return;
+    if (!mounted || _activeEntry != null) return;
     // Resolve the placement-axis gap through the style chain (rather than
     // hardcoding the token) so it is user-overridable via
     // `CoreDropdownMenuTheme.style.menuOffset` — same source the panel
@@ -232,23 +240,138 @@ class _DropdownMenuState extends State<DropdownMenu> {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      container: true,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        // A `Listener`-based detector (not `GestureDetector`) so an
-        // interactive trigger (e.g. `Button`) does not win the gesture
-        // arena and swallow the open tap — mirrors Web DOM bubbling.
-        child: TriggerTapDetector(
-          onTap: _handleToggle,
-          child: Semantics(
-            button: true,
-            expanded: _activeEntry != null,
-            child: widget.trigger,
+    return Actions(
+      actions: const {},
+      dispatcher: _DropdownActionDispatcher(
+        delegate: Actions.of(context),
+        onActivate: _handleOpen,
+      ),
+      child: _DropdownTriggerSemantics(
+        onActivate: _handleOpen,
+        child: ClickableActivationScope(
+          onActivate: _handleOpen,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            // A `Listener`-based detector (not `GestureDetector`) so an
+            // interactive trigger (e.g. `Button`) does not win the gesture
+            // arena and swallow the open tap — mirrors Web DOM bubbling.
+            child: TriggerTapDetector(
+              onTap: _handleToggle,
+              child: Semantics(
+                button: true,
+                expanded: _activeEntry != null,
+                child: widget.trigger,
+              ),
+            ),
           ),
         ),
       ),
     );
+  }
+}
+
+// The dispatcher composes with the action the descendant actually selected.
+// Shortcuts calls invokeActionIfEnabled directly, while Actions.invoke calls
+// invokeAction, so both entry points preserve their normal delegate/result.
+class _DropdownActionDispatcher extends ActionDispatcher {
+  const _DropdownActionDispatcher({
+    required this.delegate,
+    required this.onActivate,
+  });
+
+  final ActionDispatcher delegate;
+  final VoidCallback onActivate;
+
+  bool _opensMenu(Intent intent) =>
+      intent is ActivateIntent || intent is ButtonActivateIntent;
+
+  @override
+  Object? invokeAction(
+    covariant Action<Intent> action,
+    covariant Intent intent, [
+    BuildContext? context,
+  ]) {
+    final result = delegate.invokeAction(action, intent, context);
+    if (_opensMenu(intent)) onActivate();
+    return result;
+  }
+
+  @override
+  (bool, Object?) invokeActionIfEnabled(
+    covariant Action<Intent> action,
+    covariant Intent intent, [
+    BuildContext? context,
+  ]) {
+    final result = delegate.invokeActionIfEnabled(action, intent, context);
+    if (result.$1 && _opensMenu(intent)) onActivate();
+    return result;
+  }
+}
+
+// Replaces only the existing outer Semantics(container: true) boundary.
+// RenderSemanticsAnnotations retains its canonical default properties/flags,
+// layout, painting and child traversal. No descendant node is replaced.
+class _DropdownTriggerSemantics extends SingleChildRenderObjectWidget {
+  const _DropdownTriggerSemantics({
+    required this.onActivate,
+    required Widget super.child,
+  });
+
+  final VoidCallback onActivate;
+
+  @override
+  RenderObject createRenderObject(BuildContext context) =>
+      _RenderDropdownTriggerSemantics(onActivate);
+
+  @override
+  void updateRenderObject(
+    BuildContext context,
+    covariant _RenderDropdownTriggerSemantics renderObject,
+  ) {
+    renderObject.onActivate = onActivate;
+  }
+}
+
+class _RenderDropdownTriggerSemantics extends RenderSemanticsAnnotations {
+  _RenderDropdownTriggerSemantics(this._onActivate)
+    : super(container: true, properties: const SemanticsProperties());
+
+  VoidCallback _onActivate;
+
+  VoidCallback get onActivate => _onActivate;
+
+  set onActivate(VoidCallback value) {
+    if (_onActivate == value) return;
+    _onActivate = value;
+    markNeedsSemanticsUpdate();
+  }
+
+  @override
+  void assembleSemanticsNode(
+    SemanticsNode node,
+    SemanticsConfiguration config,
+    Iterable<SemanticsNode> children,
+  ) {
+    // Child tap handlers replace parent annotations when configurations merge.
+    // Compose the actual effective action here, preserving every other field,
+    // action and child node. Separate descendant boundaries stay untouched.
+    if (config.isEnabled == false || config.isBlockingUserActions) {
+      super.assembleSemanticsNode(node, config, children);
+      return;
+    }
+    final originalTap = config.getActionHandler(SemanticsAction.tap);
+    // Do not invent another action above an independently bounded child.
+    // The opt-in callback handles a CoUI trigger's own activation instead.
+    if (originalTap == null && children.isNotEmpty) {
+      super.assembleSemanticsNode(node, config, children);
+      return;
+    }
+    final composed = config.copy()
+      ..onTap = () {
+        originalTap?.call(null);
+        if (attached) _onActivate();
+      };
+    super.assembleSemanticsNode(node, composed, children);
   }
 }
 
