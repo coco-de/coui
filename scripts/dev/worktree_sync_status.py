@@ -94,7 +94,7 @@ def describe(root: str, wt: dict, prs: dict[str, dict]) -> dict:
     up = run(['git', 'rev-parse', '--abbrev-ref', '--symbolic-full-name', '@{u}'], cwd=p, check=False).strip()
     names = [n for n in (up.split('/', 1)[1] if up.startswith('origin/') else None, wt.get('branch')) if n]
     d['pr'] = next((prs[n] for n in names if n in prs), None)
-    d['role'] = 'main' if Path(p).resolve() == Path(root).resolve() else ('bundle' if p.rstrip('/').endswith('coui-bundle') else 'work')
+    d['role'] = 'main' if Path(p).resolve() == Path(root).resolve() else ('bundle' if p.rstrip('/').endswith(('coui-bundle', 'coui-public-bundle')) else 'work')
     return d
 
 
