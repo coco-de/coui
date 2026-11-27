@@ -34,6 +34,7 @@ const _kRecipes = <({String component, String variant})>[
   (component: 'tab-pane', variant: 'editor-strip'),
   (component: 'tree', variant: 'default'),
   (component: 'tree', variant: 'selected'),
+  (component: 'tree', variant: 'trailing'),
   (component: 'timeline', variant: 'default'),
   (component: 'category-breakdown', variant: 'default'),
   (component: 'category-breakdown', variant: 'donut'),

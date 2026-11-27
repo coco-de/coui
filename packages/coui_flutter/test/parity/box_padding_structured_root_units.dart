@@ -14,6 +14,7 @@ import 'package:docs_core/previews/examples/flutter/tab_pane/tab_pane_example.da
 import 'package:docs_core/previews/examples/flutter/timeline/timeline_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/tree/tree_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/tree/tree_selected_example.dart';
+import 'package:docs_core/previews/examples/flutter/tree/tree_trailing_example.dart';
 import 'package:docs_core/previews/examples/flutter/trend_chart/trend_chart_bar_example.dart';
 import 'package:docs_core/previews/examples/flutter/trend_chart/trend_chart_default_example.dart';
 import 'package:docs_core/previews/examples/flutter/window_panel/window_panel_default_example.dart';
@@ -289,7 +290,9 @@ bool _example(Widget w, _Kind kind) => switch (kind) {
     w.runtimeType == TabPaneExample ||
         w.runtimeType == TabPaneEditorStripExample,
   _Kind.tree =>
-    w.runtimeType == TreeDefaultExample || w.runtimeType == TreeSelectedExample,
+    w.runtimeType == TreeDefaultExample ||
+        w.runtimeType == TreeSelectedExample ||
+        w.runtimeType == TreeTrailingExample,
   _Kind.timeline => w.runtimeType == TimelineDefaultExample,
   _Kind.category =>
     w.runtimeType == CategoryBreakdownDefaultExample ||
@@ -494,7 +497,8 @@ _Route _locate(
     case _Kind.tree:
       final input = producer.widget as coui.Tree;
       if (input.leadingBuilder != null ||
-          input.trailingBuilder != null ||
+          (input.trailingBuilder != null &&
+              registry.runtimeType != TreeTrailingExample) ||
           input.loadingBuilder != null ||
           input.errorBuilder != null ||
           input.nodeContextMenu != null ||
@@ -510,7 +514,28 @@ _Route _locate(
       // This is the current outer Column. No inference about private expanded
       // state or initial CoreTreeNode.expanded is needed for its own absence.
       _concrete(field, Column);
-      witness.addAll([input.showRoots, ...input.nodes]);
+      // A trailing callback is authorized only by the exact original Example.
+      // These are complete GENERATED row boundaries, not caller Widget slots.
+      // No callback is invoked and no private expansion state is inspected.
+      final declared = (field.widget as Column).children;
+      final children = <Element>[];
+      field.visitChildren(children.add);
+      if (children.length != declared.length ||
+          List.generate(
+            declared.length,
+            (i) =>
+                !identical(children[i].widget, declared[i]) ||
+                !identical(_parent(children[i]), field) ||
+                !children[i].mounted,
+          ).any((bad) => bad)) {
+        throw _changed('complete current generated Tree row order');
+      }
+      witness.addAll([
+        input.showRoots,
+        input.trailingBuilder,
+        ...input.nodes,
+        for (var i = 0; i < declared.length; i++) ...[declared[i], children[i]],
+      ]);
     case _Kind.timeline:
       final input = producer.widget as coui.Timeline;
       _concrete(field, Column);
@@ -719,3 +744,12 @@ BoxObservationError _changed(String part) => BoxObservationError(
   'STRUCTURED_ROOT_SOURCE_CHANGED',
   'Unsupported $part; no owner, quantity or absence is inferred.',
 );
+
+Element? _parent(Element e) {
+  Element? parent;
+  e.visitAncestorElements((a) {
+    parent = a;
+    return false;
+  });
+  return parent;
+}

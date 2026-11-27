@@ -47,6 +47,28 @@ class BoxObservationSourceSpec {
     nativeAdapterId: 'bottom-action-bar-owned-content-inset-v1',
     webAdapterId: 'bottom-action-bar-owned-content-inset-v1',
   );
+
+  /// Public visibility/interaction wrapper operations, separate from child
+  /// content, per-action platter insets and layout constraints.
+  static const mediaQueryVisibilityHost = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'media-query-generated-visibility-layout-host',
+    quantityId: quantity,
+    nativeAdapterId: 'media-query-generated-visibility-layout-host-v1',
+    webAdapterId: 'media-query-generated-visibility-layout-host-v1',
+  );
+  static const swipeActionsOuterHost = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'swipe-actions-generated-outer-layout-host',
+    quantityId: quantity,
+    nativeAdapterId: 'swipe-actions-generated-outer-layout-host-v1',
+    webAdapterId: 'swipe-actions-generated-outer-layout-host-v1',
+  );
+  static const List<BoxObservationSourceSpec> publicWrapperFrames = [
+    mediaQueryVisibilityHost,
+    swipeActionsOuterHost,
+  ];
+
   static const outlined = BoxObservationSourceSpec(
     schemaVersion: 1,
     logicalUnitId: 'own-generated-frame',
@@ -995,6 +1017,7 @@ class BoxObservationSourceSpec {
       ...formCollectionFrames,
       ...sectionLayoutFrames,
       ...structuredRootFrames,
+      ...publicWrapperFrames,
       ...validationViewportFrames,
       ...dataOverlayLayoutFrames,
       ...navigationTriggerParameterFrames,

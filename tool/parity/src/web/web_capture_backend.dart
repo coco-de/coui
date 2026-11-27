@@ -37,6 +37,7 @@ import 'element_capture.dart';
 import 'framed_collection_ssr_source.dart';
 import 'navigation_trigger_ssr_source.dart';
 import 'offline_tailwind_harness.dart';
+import 'public_wrapper_ssr_source.dart';
 import 'runtime_capture.dart';
 import 'showcase_allocation_ssr_source.dart';
 import 'ssr_render.dart';
@@ -241,7 +242,8 @@ Future<String> renderCaptureBodyHtml(
 }) async {
   final sourceRecorder = onCurrentBoxSource == null
       ? null
-      : BottomActionBarSsrSource.forEntry(entry) ??
+      : PublicWrapperSsrSource.forEntry(entry) ??
+            BottomActionBarSsrSource.forEntry(entry) ??
             ShowcaseAllocationSsrSource.forEntry(entry) ??
             BreakpointShowcaseSsrSource.forEntry(entry) ??
             TextShowcaseSsrSource.forEntry(entry) ??
@@ -294,6 +296,15 @@ Future<String> renderCaptureBodyHtml(
             },
     ),
   );
+  if (sourceRecorder is PublicWrapperSsrSource &&
+      sourceWitness?['publicWrapperSourceAwaitingExactSerializedBody'] ==
+          true) {
+    try {
+      sourceWitness = sourceRecorder.completeWithSerializedBody(html);
+    } on Object catch (error) {
+      sourceWitness = {'error': '$error'};
+    }
+  }
   final witness = sourceWitness;
   if (witness != null) onCurrentBoxSource?.call(witness);
   return html;
@@ -450,7 +461,8 @@ Future<WebCaptureResult> captureWebEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredShowcaseAllocationSsrKind(entry) ??
+      ? requiredPublicWrapperSsrKind(entry) ??
+            requiredShowcaseAllocationSsrKind(entry) ??
             requiredBreakpointShowcaseSsrKind(entry) ??
             requiredBottomActionBarSsrKind(entry) ??
             requiredTextShowcaseSsrKind(entry) ??

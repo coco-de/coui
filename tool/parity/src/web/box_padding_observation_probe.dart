@@ -35,6 +35,7 @@ import 'box_padding_visual_value_units_probe.dart';
 import 'breakpoint_showcase_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
+import 'public_wrapper_ssr_source.dart';
 import 'showcase_allocation_ssr_source.dart';
 import 'text_showcase_ssr_source.dart';
 
@@ -78,6 +79,7 @@ String get boxPaddingObservationScript =>
       ...BoxObservationSourceSpec.formCollectionFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.sectionLayoutFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.structuredRootFrames.map((source) => source.toJson()),
+      ...BoxObservationSourceSpec.publicWrapperFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.validationViewportFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.navigationTriggerParameterFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.dataOverlayLayoutFrames.map((source) => source.toJson()),
@@ -113,6 +115,21 @@ String get boxPaddingObservationScript =>
     return {raw:receipt.currentRaw};
   };
   switch(source.webAdapterId) {
+    case 'tree-generated-outer-layout-host-v1':
+    case 'media-query-generated-visibility-layout-host-v1':
+    case 'swipe-actions-generated-outer-layout-host-v1': {
+      const binding = ($publicWrapperRequestBindingScript)(request);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (!binding.applied || binding.registryResultElement !== layoutRoot || !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('PUBLIC_WRAPPER_FIELD_UNIT_CHANGED'));
+      owner = binding.paddingSource;
+      sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true;
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      currentBoxBindingFailure = 'PUBLIC_WRAPPER_BINDING_CHANGED_DURING_CSS_READ';
+      break;
+    }
+
     case 'bottom-action-bar-owned-content-inset-v1': {
       const binding = ($bottomActionBarRequestBindingScript)(request);
       if (binding.error) return JSON.stringify(incomplete(binding.error));
@@ -413,7 +430,6 @@ String get boxPaddingObservationScript =>
     case 'page-header-generated-layout-host-v1':
     case 'sidebar-generated-outer-layout-host-v1':
     case 'tab-pane-generated-bar-content-inset-v1':
-    case 'tree-generated-outer-layout-host-v1':
     case 'timeline-generated-sequence-layout-host-v1':
     case 'category-breakdown-generated-layout-host-v1':
     case 'trend-chart-generated-outer-layout-host-v1':

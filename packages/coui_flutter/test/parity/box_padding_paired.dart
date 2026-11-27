@@ -25,6 +25,7 @@ import 'box_padding_observation.dart';
 import 'box_padding_playground_units.dart';
 import 'box_padding_preview_receipts.dart';
 import 'box_padding_proxy_host_units.dart';
+import 'box_padding_public_wrapper_units.dart';
 import 'box_padding_responsive_layout_units.dart';
 import 'box_padding_scene_units.dart';
 import 'box_padding_section_layout_units.dart';
@@ -148,6 +149,33 @@ Map<String, Object?> _observe(
     final BoxPaddingObservation observation;
     var sourceBindingProvenance = <String, Object?>{};
     switch (source.nativeAdapterId) {
+      case 'media-query-generated-visibility-layout-host-v1':
+      case 'swipe-actions-generated-outer-layout-host-v1':
+        final declared = probe.boxObservationSource!;
+        if (declared.length != 5) {
+          throw const BoxObservationError(
+            'PUBLIC_WRAPPER_SOURCE_CHANGED',
+            'Exact five-field tuple required.',
+          );
+        }
+        final binding = bindPublicWrapperBoxSource(
+          captureRoot: captureRoot,
+          registryResult: registryResult,
+          source: source,
+        )!;
+        observation = binding.readDeclaredAbsence();
+        sourceBindingProvenance = {
+          'sourceBindingAuthority': binding.authority,
+          'fieldUnitElement': identityHashCode(binding.fieldUnitElement),
+          'declaredPaddingSourceElement': identityHashCode(
+            binding.fieldUnitElement,
+          ),
+          'declaredFrameSourceElement': identityHashCode(
+            binding.fieldUnitElement,
+          ),
+          'sourceReaderId': binding.readerId,
+        };
+
       case 'classic-compound-showcase-allocation-host-v1':
         final declared = probe.boxObservationSource!;
         final expected = BoxObservationSourceSpec.showcaseAllocationHost
