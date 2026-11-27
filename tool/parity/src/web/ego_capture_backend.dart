@@ -16,6 +16,7 @@ import '../model/matrix_entry.dart';
 import '../model/network_image_fixture.dart';
 import '../source/playground_value_authority.dart';
 import 'box_padding_observation_probe.dart';
+import 'breakpoint_showcase_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'element_capture.dart';
@@ -341,7 +342,8 @@ Future<WebCaptureResult> captureEgoEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredTextShowcaseSsrKind(entry) ??
+      ? requiredBreakpointShowcaseSsrKind(entry) ??
+            requiredTextShowcaseSsrKind(entry) ??
             requiredFramedCollectionSsrKind(entry)
       : null;
   Map<String, Object?>? currentSsrSource;
