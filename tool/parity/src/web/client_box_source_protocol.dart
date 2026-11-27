@@ -3,6 +3,10 @@ import 'dart:convert';
 import '../model/box_observation_source_spec.dart';
 import '../model/matrix_entry.dart';
 
+const kClientStageCallbackSourceKind = 'canonical-client-stage-callback-v1';
+const kClientStageCallbackSourceEvent =
+    'coui-parity-current-client-stage-source';
+
 const kClientBoxSourceKind = 'canonical-client-visual-value-v1';
 const kClientBoxSourcePhase = 'client-settled';
 const kClientBoxSourceEvent = 'coui-parity-current-client-box-source';
@@ -13,6 +17,31 @@ Map<String, Object?>? clientBoxSourceDescriptor(
   MatrixEntry entry, {
   required bool additiveBoxObservations,
 }) {
+  const stageSource = BoxObservationSourceSpec.stageCallbackContentInset;
+  final stageClaim = entry.probes.any((probe) {
+    final source = probe.boxObservationSource;
+    return source != null &&
+        (source.logicalUnitId == stageSource.logicalUnitId ||
+            source.nativeAdapterId == stageSource.nativeAdapterId ||
+            source.webAdapterId == stageSource.webAdapterId);
+  });
+  if (additiveBoxObservations && stageClaim) {
+    final roots = entry.probes.where((probe) => probe.role == 'root').toList();
+    if (entry.component != 'stage-container' ||
+        entry.variant != 'default' ||
+        entry.probes.length != 1 ||
+        roots.length != 1 ||
+        roots.single.boxObservationSource !=
+            BoxObservationSourceSpec.stageCallbackContentInset) {
+      throw StateError('CLIENT_STAGE_DESCRIPTOR_CHANGED');
+    }
+    return {
+      'kind': kClientStageCallbackSourceKind,
+      'entryKey': entry.key,
+      'source': roots.single.boxObservationSource!.toJson(),
+      'renderPhase': kClientBoxSourcePhase,
+    };
+  }
   if (!additiveBoxObservations ||
       entry.component != 'number-ticker' ||
       entry.variant != 'default') {

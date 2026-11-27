@@ -82,6 +82,10 @@ jobs:
           test/parity/box_padding_structured_root_units_test.dart
           test/parity/box_padding_structured_root_dispatch_test.dart
           test/parity/scope_original_entry_source_test.dart
+          test/parity/stage_callback_original_entry_source_test.dart
+          test/parity/box_padding_stage_callback_source_test.dart
+          test/parity/stepper_horizontal_original_entry_source_test.dart
+          test/parity/box_padding_stepper_horizontal_source_test.dart
           test/parity/card_accordion_original_entry_source_test.dart
           test/parity/box_padding_observation_test.dart
           test/parity/box_padding_paired_test.dart
@@ -91,6 +95,8 @@ jobs:
           dart test --concurrency=1
           tool/parity/test/model/box_observation_source_spec_test.dart
           tool/parity/test/model/bottom_action_bar_source_spec_test.dart
+          tool/parity/test/model/stage_callback_source_spec_test.dart
+          tool/parity/test/model/stepper_horizontal_source_spec_test.dart
           tool/parity/test/model/public_wrapper_source_spec_test.dart
           tool/parity/test/model/box_observation_structured_source_spec_test.dart
           tool/parity/test/web/public_wrapper_real_entry_test.dart
@@ -100,6 +106,10 @@ jobs:
           tool/parity/test/web/bottom_action_bar_dispatch_test.dart
           tool/parity/test/web/scope_original_entry_source_test.dart
           tool/parity/test/web/scope_dispatch_controls_test.dart
+          tool/parity/test/web/stage_callback_original_entry_source_test.dart
+          tool/parity/test/web/stage_callback_dispatch_controls_test.dart
+          tool/parity/test/web/stepper_horizontal_original_entry_source_test.dart
+          tool/parity/test/web/stepper_horizontal_dispatch_controls_test.dart
           tool/parity/test/web/card_accordion_original_entry_source_test.dart
           tool/parity/test/web/card_accordion_frame_dispatch_test.dart
           tool/parity/test/manifest/parity_manifest_test.dart

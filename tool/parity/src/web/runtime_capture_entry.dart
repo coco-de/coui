@@ -10,7 +10,9 @@ import 'package:docs_core/previews/web_registry.dart';
 import 'package:docs_core/site_head.dart' show docsContentTheme;
 import 'package:jaspr/client.dart' as client show runApp;
 
+import 'client_stage_callback_source.dart';
 import 'client_visual_value_source.dart';
+import 'current_client_box_source.dart';
 
 void main() {
   final config = (jsonDecode(Uri.decodeComponent(Uri.base.fragment)) as Map)
@@ -20,7 +22,9 @@ void main() {
 
 /// The exact client harness, also mountable by browser contract tests.
 Component runtimeCaptureApp(Map<String, Object?> config) {
-  final observer = ClientVisualValueSource.fromConfig(config);
+  final observer =
+      ClientStageCallbackSource.fromConfig(config) ??
+      ClientVisualValueSource.fromConfig(config);
   return Component.fragment([
     Style(styles: docsContentTheme().styles),
     CoUIWeb(
@@ -47,7 +51,7 @@ class _ObservedCaptureStage extends StatefulComponent {
   const _ObservedCaptureStage(this.config, this.observer);
 
   final Map<String, Object?> config;
-  final ClientVisualValueSource observer;
+  final CurrentClientBoxSource observer;
 
   @override
   State<_ObservedCaptureStage> createState() => _ObservedCaptureStageState();

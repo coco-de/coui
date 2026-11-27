@@ -8,6 +8,7 @@ import 'package:jaspr/dom.dart' show div, span;
 
 import '../model/box_observation_source_spec.dart';
 import 'client_box_source_protocol.dart';
+import 'current_client_box_source.dart';
 import 'visual_value_web_raw_source.dart';
 
 @JS('location.href')
@@ -48,7 +49,7 @@ typedef _Mounted = ({
 
 /// A one-shot, read-only observer owned solely by the parity client harness.
 /// It retains original build objects, never a product State or a new render.
-class ClientVisualValueSource {
+class ClientVisualValueSource implements CurrentClientBoxSource {
   ClientVisualValueSource._(this.descriptor);
 
   static ClientVisualValueSource? fromConfig(Map<String, Object?> config) {
@@ -80,6 +81,7 @@ class ClientVisualValueSource {
   void Function()? _removeListener;
 
   /// Called once per actual harness build, before framework child inflation.
+  @override
   void recordBuild(Component registryResult, div capture) {
     if (_disposed) throw StateError('CLIENT_BOX_SOURCE_DISPOSED');
     _removeListener?.call();
@@ -90,6 +92,7 @@ class ClientVisualValueSource {
   }
 
   /// Called by the harness's public postframe callback, not during build.
+  @override
   void arm(Element root, {required bool Function() isMounted}) {
     if (_disposed || !isMounted()) return;
     final generation = _generation;
@@ -163,6 +166,7 @@ class ClientVisualValueSource {
     node.addEventListener(kClientBoxSourceEvent, listener);
   }
 
+  @override
   void dispose() {
     _removeListener?.call();
     _removeListener = null;
