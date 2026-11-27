@@ -76,6 +76,7 @@ jobs:
           test/parity/box_padding_showcase_allocation_dispatch_test.dart
           test/parity/box_padding_text_showcase_units_test.dart
           test/parity/box_padding_bottom_action_bar_source_test.dart
+          test/parity/scope_original_entry_source_test.dart
           test/parity/box_padding_observation_test.dart
           test/parity/box_padding_paired_test.dart
 
@@ -86,6 +87,8 @@ jobs:
           tool/parity/test/model/bottom_action_bar_source_spec_test.dart
           tool/parity/test/web/bottom_action_bar_real_entry_test.dart
           tool/parity/test/web/bottom_action_bar_dispatch_test.dart
+          tool/parity/test/web/scope_original_entry_source_test.dart
+          tool/parity/test/web/scope_dispatch_controls_test.dart
           tool/parity/test/manifest/parity_manifest_test.dart
           tool/parity/test/web/breakpoint_showcase_ssr_source_test.dart
           tool/parity/test/web/breakpoint_showcase_dispatch_test.dart
