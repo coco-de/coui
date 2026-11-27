@@ -55,6 +55,18 @@ jobs:
           test/components/control/clickable_double_tap_test.dart
           test/components/control/clickable_reduced_motion_test.dart
           test/components/control/button_pressed_state_test.dart
+          test/components/menu/dropdown_menu_premount_close_test.dart
+          test/components/overlay/popover_test.dart
+          test/components/overlay/popover_offset_test.dart
+          test/components/overlay/popover_flip_report_test.dart
+          test/components/overlay/popover_panel_rect_test.dart
+          test/components/overlay/popover_glass_fade_test.dart
+          test/components/popover_morph_test.dart
+          test/components/overlay/tooltip_test.dart
+          test/components/overlay/hover_card_test.dart
+          test/hover_card_engine_decoupling_test.dart
+          test/tooltip_engine_decoupling_test.dart
+          test/components/modal_live_motion_test.dart
 
       - name: Test the Jaspr button
         working-directory: packages/coui_web
