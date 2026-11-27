@@ -10,19 +10,20 @@ import '../../src/web/showcase_allocation_ssr_source.dart';
 import '../../src/web/ssr_render.dart';
 import '../../src/web/ssr_source_identity.dart';
 
-MatrixEntry _entry() => MatrixEntry.fromJson({
-  'component': 'chip',
-  'variant': 'variant',
-  'theme': 'light',
-  'surfaceStyle': 'defaultStyle',
-  'tier': 't2',
-  'probes': captureProbes(
-    key: 'chip-variant-light-defaultStyle',
-    component: 'chip',
-    variant: 'variant',
-    flutterClassName: 'actual-canonical',
-  ).map((probe) => probe.toJson()).toList(),
-});
+MatrixEntry _entry({(String, String) recipe = ('chip', 'variant')}) =>
+    MatrixEntry.fromJson({
+      'component': recipe.$1,
+      'variant': recipe.$2,
+      'theme': 'light',
+      'surfaceStyle': 'defaultStyle',
+      'tier': 't2',
+      'probes': captureProbes(
+        key: '${recipe.$1}-${recipe.$2}-light-defaultStyle',
+        component: recipe.$1,
+        variant: recipe.$2,
+        flutterClassName: 'actual-canonical',
+      ).map((probe) => probe.toJson()).toList(),
+    });
 
 Future<void> _mounted(
   void Function(
@@ -31,9 +32,10 @@ Future<void> _mounted(
     div declaration,
     ShowcaseAllocationSsrSource source,
   )
-  run,
-) async {
-  final entry = _entry();
+  run, {
+  (String, String) recipe = ('chip', 'variant'),
+}) async {
+  final entry = _entry(recipe: recipe);
   final source = ShowcaseAllocationSsrSource.forEntry(entry)!;
   div? capture;
   var builds = 0;
@@ -63,6 +65,63 @@ Future<void> _mounted(
 }
 
 void main() {
+  for (final entry in const <(String, String), int>{
+    ('card-image', 'default'): 1,
+    ('hidden', 'default'): 3,
+    ('window', 'default'): 3,
+    ('draggable-panel', 'default'): 1,
+    ('draggable-panel', 'outside'): 1,
+    ('scrollable-client', 'default'): 1,
+    ('table', 'scrollable'): 1,
+  }.entries) {
+    test(
+      '${entry.key} original product is a complete opaque raw boundary',
+      () async {
+        await _mounted((root, owner, declaration, source) {
+          final raw = declaration.children;
+          final seats = <Element>[];
+          owner.visitChildren(seats.add);
+          expect(raw, hasLength(entry.value));
+          expect(seats, hasLength(raw.length));
+          expect(Set<Element>.identity()..addAll(seats), hasLength(raw.length));
+          final frontiers = <MarkupRenderObject>[];
+          for (var i = 0; i < raw.length; i++) {
+            expect(seats[i].component, same(raw[i]));
+            expect(seats[i].parent, same(owner));
+            frontiers.addAll(_frontier(seats[i]));
+          }
+          final markup =
+              (owner as RenderObjectElement).renderObject as MarkupRenderObject;
+          expect(markup.children.toList(), orderedEquals(frontiers));
+          expect(
+            Set<MarkupRenderObject>.identity()..addAll(frontiers),
+            hasLength(frontiers.length),
+          );
+          final receipt = source.observe(root);
+          expect(receipt['completeRawSlotCount'], raw.length);
+          final records =
+              (receipt['currentRaw']! as Map)['opaqueSlots']! as List;
+          expect(records, hasLength(raw.length));
+          for (var i = 0; i < raw.length; i++) {
+            final record = records[i] as Map;
+            expect(record.keys.toSet(), {'seat', 'sourceAliasOf', 'nodes'});
+            expect(record['seat'], i);
+            // Top frontier shapes do not expose product attrs, children,
+            // controllers or builder callbacks; interiors remain opaque.
+            for (final node in record['nodes']! as List) {
+              expect(
+                (node as Map).keys.toSet(),
+                node['nodeType'] == 1
+                    ? {'nodeType', 'namespaceURI', 'localName'}
+                    : {'nodeType'},
+              );
+            }
+          }
+        }, recipe: entry.key);
+      },
+    );
+  }
+
   test(
     'real nonempty repeated Components have distinct current mounted seats',
     () async {

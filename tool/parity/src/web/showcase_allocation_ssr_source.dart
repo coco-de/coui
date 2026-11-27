@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:docs_core/previews/examples/web/card_image/card_image_default_example.dart';
 import 'package:docs_core/previews/examples/web/chat/chat_default_example.dart';
 import 'package:docs_core/previews/examples/web/chat/chat_plain_example.dart';
 import 'package:docs_core/previews/examples/web/chat/chat_tail_corner_example.dart';
@@ -9,9 +10,15 @@ import 'package:docs_core/previews/examples/web/chip/chip_prefix_example.dart';
 import 'package:docs_core/previews/examples/web/chip/chip_selected_example.dart';
 import 'package:docs_core/previews/examples/web/chip/chip_shape_example.dart';
 import 'package:docs_core/previews/examples/web/chip/chip_variant_example.dart';
+import 'package:docs_core/previews/examples/web/draggable_panel/draggable_panel_default_example.dart';
+import 'package:docs_core/previews/examples/web/draggable_panel/draggable_panel_outside_example.dart';
+import 'package:docs_core/previews/examples/web/hidden/hidden_default_example.dart';
 import 'package:docs_core/previews/examples/web/progress/progress_tone_example.dart';
+import 'package:docs_core/previews/examples/web/scrollable_client/scrollable_client_default_example.dart';
 import 'package:docs_core/previews/examples/web/skeleton/skeleton_default_example.dart';
 import 'package:docs_core/previews/examples/web/step_item/step_item_default_example.dart';
+import 'package:docs_core/previews/examples/web/table/table_scrollable_example.dart';
+import 'package:docs_core/previews/examples/web/window/window_default_example.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as html;
 import 'package:jaspr/dom.dart' show div;
@@ -23,6 +30,13 @@ import 'ssr_source_identity.dart';
 
 /// The exact classic compound allocation, never a contained product frame.
 const _kExampleTypes = <(String, String), Type>{
+  ('card-image', 'default'): CardImageDefaultExample,
+  ('hidden', 'default'): HiddenDefaultExample,
+  ('window', 'default'): WindowDefaultExample,
+  ('draggable-panel', 'default'): DraggablePanelDefaultExample,
+  ('draggable-panel', 'outside'): DraggablePanelOutsideExample,
+  ('scrollable-client', 'default'): ScrollableClientDefaultExample,
+  ('table', 'scrollable'): TableScrollableExample,
   ('progress', 'tone'): ProgressToneExample,
   ('chat', 'default'): ChatDefaultExample,
   ('chat', 'plain'): ChatPlainExample,
@@ -37,6 +51,13 @@ const _kExampleTypes = <(String, String), Type>{
   ('step-item', 'default'): StepItemDefaultExample,
 };
 const _kSlotCounts = <(String, String), int>{
+  ('card-image', 'default'): 1,
+  ('hidden', 'default'): 3,
+  ('window', 'default'): 3,
+  ('draggable-panel', 'default'): 1,
+  ('draggable-panel', 'outside'): 1,
+  ('scrollable-client', 'default'): 1,
+  ('table', 'scrollable'): 1,
   ('progress', 'tone'): 7,
   ('chat', 'default'): 3,
   ('chat', 'plain'): 3,

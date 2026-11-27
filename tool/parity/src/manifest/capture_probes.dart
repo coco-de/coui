@@ -172,6 +172,12 @@ BoxObservationSourceSpec? _componentBoxSource(
     BoxObservationSourceSpec.iconVisualFrame,
   ('number-ticker', 'default') =>
     BoxObservationSourceSpec.numberTickerTextLayoutHost,
+  ('card-image', 'default') ||
+  ('hidden', 'default') ||
+  ('window', 'default') ||
+  ('draggable-panel', 'default' || 'outside') ||
+  ('scrollable-client', 'default') ||
+  ('table', 'scrollable') => BoxObservationSourceSpec.showcaseAllocationHost,
   ('chat', 'default' || 'plain' || 'tail-corner' || 'tail-top') =>
     BoxObservationSourceSpec.showcaseAllocationHost,
   ('chip', 'selected' || 'variant' || 'shape' || 'cast-motion' || 'prefix') =>

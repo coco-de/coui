@@ -39,6 +39,13 @@ const _kRecipes = <(String, String)>[
   ('chip', 'prefix'),
   ('skeleton', 'default'),
   ('step-item', 'default'),
+  ('card-image', 'default'),
+  ('hidden', 'default'),
+  ('window', 'default'),
+  ('draggable-panel', 'default'),
+  ('draggable-panel', 'outside'),
+  ('scrollable-client', 'default'),
+  ('table', 'scrollable'),
 ];
 
 MatrixEntry _entry(

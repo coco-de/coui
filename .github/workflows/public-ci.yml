@@ -70,7 +70,7 @@ jobs:
           test/tooltip_engine_decoupling_test.dart
           test/components/modal_live_motion_test.dart
           test/parity/box_padding_breakpoint_showcase_units_test.dart
-          test/parity/box_padding_showcase_allocation_units_test.dart
+          test/parity/box_padding_showcase_allocation_units_test.dart test/parity/box_padding_additional_showcase_allocation_units_test.dart
           test/parity/box_padding_showcase_allocation_dispatch_test.dart
           test/parity/box_padding_text_showcase_units_test.dart
           test/parity/box_padding_observation_test.dart
