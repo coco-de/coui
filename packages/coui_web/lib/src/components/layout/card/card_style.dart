@@ -143,7 +143,7 @@ ResolvedCard resolveCard(
   final variantStyle = CoreCardStyle.defaultsByVariant[variant]!;
 
   // ─── Resolved chrome values ───────────────────────────
-  final padding = (merged.padding ?? CoreCardStyle.defaultPadding).toValue();
+  final padding = merged.padding ?? CoreCardStyle.defaultPadding;
   // Border radius is **always** emitted inline (`(merged ?? default)
   // .toValue()`) — no `rounded-*` Tailwind class. This keeps the
   // override path and the default path on the same CSS surface so the
@@ -446,8 +446,9 @@ ResolvedCard resolveCard(
   }
 
   /// Composes the content-wrapper inline-CSS — applies the resolved
-  /// padding shorthand.
-  Styles buildContentInlineStyles() => .new(raw: {'padding': padding});
+  /// physical shorthand or logical sides, preserving reading direction.
+  Styles buildContentInlineStyles() =>
+      .new(raw: padding.toLogicalDeclarations('padding'));
 
   /// Composes the header `<div>` Tailwind className — the `text-{role}`
   /// (+ token colour) class from [headerEmit] for the default / token-

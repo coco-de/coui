@@ -47,6 +47,7 @@ jobs:
           flutter test --coverage --coverage-path=../../.dart_tool/coverage/coui_flutter.lcov
           test/components/control/button_test.dart
           test/components/semantic_option_chain_test.dart
+          test/components/layout/card_directional_padding_test.dart
           test/components/form/rich_editor*_test.dart
           test/components/file_input_test.dart
           test/components/layout/tree_test.dart
@@ -117,6 +118,7 @@ jobs:
           test/components/semantic_option_chain_test.dart
           test/components/display/mockup_code_style_test.dart
           test/components/display/mockup_code_themed_padding_test.dart
+          test/components/layout/card_directional_padding_test.dart
 
       - name: Make LCOV paths repository-relative
         run: |
