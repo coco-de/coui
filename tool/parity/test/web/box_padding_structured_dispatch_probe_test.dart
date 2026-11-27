@@ -102,9 +102,8 @@ Future<Map<String, Object?>> _observe(
     ),
     _ => root,
   };
-  final result = await Process.run('node', [
-    '-e',
-    '''
+  final program =
+      '''
 const observe=($boxPaddingObservationScript);
 const node=(data,parent=null)=>{
   const attrs=data.attrs;
@@ -131,10 +130,21 @@ const source=${jsonEncode(recipe.$3.toJson())};
 $mutation
 const result=JSON.parse(observe({requested:true,selector:'#root',layoutSelector:'#root',source}));
 console.log(JSON.stringify({result,cssReads}));
-''',
-  ]);
-  expect(result.exitCode, 0, reason: result.stderr.toString());
-  return (jsonDecode(result.stdout.toString()) as Map).cast<String, Object?>();
+''';
+  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  try {
+    final file = File('${directory.path}/probe.cjs');
+    await file.writeAsString(program);
+    final result = await Process.run(
+      Platform.environment['PARITY_NODE'] ?? 'node',
+      [file.path],
+    );
+    expect(result.exitCode, 0, reason: result.stderr.toString());
+    return (jsonDecode(result.stdout.toString()) as Map)
+        .cast<String, Object?>();
+  } finally {
+    await directory.delete(recursive: true);
+  }
 }
 
 void main() {

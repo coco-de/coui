@@ -28,6 +28,7 @@ import 'box_padding_proxy_host_units.dart';
 import 'box_padding_public_wrapper_units.dart';
 import 'box_padding_responsive_layout_units.dart';
 import 'box_padding_scene_units.dart';
+import 'box_padding_scope_allocation_units.dart';
 import 'box_padding_section_layout_units.dart';
 import 'box_padding_sequence_layout_units.dart';
 import 'box_padding_showcase_allocation_units.dart';
@@ -176,6 +177,68 @@ Map<String, Object?> _observe(
           'sourceReaderId': binding.readerId,
         };
 
+      case 'classic-scope-showcase-allocation-host-v1':
+        final expected = BoxObservationSourceSpec.scopeAllocationHost.toJson();
+        final declared = probe.boxObservationSource!;
+        if (declared.length != expected.length ||
+            expected.entries.any(
+              (entry) => declared[entry.key] != entry.value,
+            )) {
+          throw const BoxObservationError(
+            'SCOPE_ALLOCATION_SOURCE_CHANGED',
+            'Require the exact declared public scope tuple.',
+          );
+        }
+        final binding = bindScopeAllocationBoxSource(
+          captureRoot: captureRoot,
+          registryResult: registryResult,
+          source: source,
+        );
+        if (binding == null ||
+            !identical(binding.registryResultElement, resultElement) ||
+            !identical(binding.scope.producer, resultElement) ||
+            binding.readerId !=
+                'scope-allocation-current-public-forwarding-v1') {
+          throw const BoxObservationError(
+            'SCOPE_ALLOCATION_SOURCE_CHANGED',
+            'Require the current original public scope forwarding prefix.',
+          );
+        }
+        binding.scope
+          ..requireOwned(binding.fieldUnitElement)
+          ..requireOwned(binding.paddingSource)
+          ..requireOwned(binding.frameSource);
+        if (!BoxProducerScope.contains(
+          binding.fieldUnitElement,
+          binding.paddingSource,
+        )) {
+          throw const BoxObservationError(
+            'SCOPE_ALLOCATION_SOURCE_CHANGED',
+            'The public scope must contain the actual original layout.',
+          );
+        }
+        observation = binding.readDeclaredAbsence();
+        // This distinct typed route keeps the forwarding scope separate from
+        // the actual Row/Column allocation; all old same-owner cases stay exact.
+        if (!identical(observation.producer, resultElement) ||
+            !identical(observation.owner, binding.paddingSource) ||
+            !identical(observation.frameOwner, binding.frameSource) ||
+            observation.paddingElement != null ||
+            observation.quantity != PaddingQuantityKind.declaredNoOwnPadding) {
+          throw const BoxObservationError(
+            'SCOPE_ALLOCATION_SOURCE_CHANGED',
+            'Retain the actual owned layout, structural operation and prefix.',
+          );
+        }
+        sourceBindingProvenance = {
+          'sourceBindingAuthority': binding.authority,
+          'fieldUnitElement': identityHashCode(binding.fieldUnitElement),
+          'declaredPaddingSourceElement': identityHashCode(
+            binding.paddingSource,
+          ),
+          'declaredFrameSourceElement': identityHashCode(binding.frameSource),
+          'sourceReaderId': binding.readerId,
+        };
       case 'classic-compound-showcase-allocation-host-v1':
         final declared = probe.boxObservationSource!;
         final expected = BoxObservationSourceSpec.showcaseAllocationHost

@@ -39,6 +39,7 @@ import 'navigation_trigger_ssr_source.dart';
 import 'offline_tailwind_harness.dart';
 import 'public_wrapper_ssr_source.dart';
 import 'runtime_capture.dart';
+import 'scope_allocation_ssr_source.dart';
 import 'showcase_allocation_ssr_source.dart';
 import 'ssr_render.dart';
 import 'text_showcase_ssr_source.dart';
@@ -244,6 +245,7 @@ Future<String> renderCaptureBodyHtml(
       ? null
       : PublicWrapperSsrSource.forEntry(entry) ??
             BottomActionBarSsrSource.forEntry(entry) ??
+            ScopeAllocationSsrSource.forEntry(entry) ??
             ShowcaseAllocationSsrSource.forEntry(entry) ??
             BreakpointShowcaseSsrSource.forEntry(entry) ??
             TextShowcaseSsrSource.forEntry(entry) ??
@@ -296,16 +298,23 @@ Future<String> renderCaptureBodyHtml(
             },
     ),
   );
+  var witness = sourceWitness;
   if (sourceRecorder is PublicWrapperSsrSource &&
-      sourceWitness?['publicWrapperSourceAwaitingExactSerializedBody'] ==
-          true) {
+      witness?['publicWrapperSourceAwaitingExactSerializedBody'] == true) {
     try {
-      sourceWitness = sourceRecorder.completeWithSerializedBody(html);
+      witness = sourceRecorder.completeWithSerializedBody(html);
     } on Object catch (error) {
-      sourceWitness = {'error': '$error'};
+      witness = {'error': '$error'};
     }
   }
-  final witness = sourceWitness;
+  if (sourceRecorder is ScopeAllocationSsrSource &&
+      witness?['scopeSourceAwaitingExactSerializedBody'] == true) {
+    try {
+      witness = sourceRecorder.completeWithSerializedBody(html);
+    } on Object catch (error) {
+      witness = {'error': '$error'};
+    }
+  }
   if (witness != null) onCurrentBoxSource?.call(witness);
   return html;
 }
@@ -462,6 +471,7 @@ Future<WebCaptureResult> captureWebEntry({
   );
   final requiredCurrentSsrKind = additiveBoxObservations
       ? requiredPublicWrapperSsrKind(entry) ??
+            requiredScopeAllocationSsrKind(entry) ??
             requiredShowcaseAllocationSsrKind(entry) ??
             requiredBreakpointShowcaseSsrKind(entry) ??
             requiredBottomActionBarSsrKind(entry) ??

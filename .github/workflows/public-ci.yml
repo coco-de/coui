@@ -80,6 +80,7 @@ jobs:
           test/parity/box_padding_public_wrapper_units_test.dart
           test/parity/box_padding_structured_root_units_test.dart
           test/parity/box_padding_structured_root_dispatch_test.dart
+          test/parity/scope_original_entry_source_test.dart
           test/parity/box_padding_observation_test.dart
           test/parity/box_padding_paired_test.dart
 
@@ -95,6 +96,8 @@ jobs:
           tool/parity/test/web/box_padding_structured_dispatch_probe_test.dart
           tool/parity/test/web/bottom_action_bar_real_entry_test.dart
           tool/parity/test/web/bottom_action_bar_dispatch_test.dart
+          tool/parity/test/web/scope_original_entry_source_test.dart
+          tool/parity/test/web/scope_dispatch_controls_test.dart
           tool/parity/test/manifest/parity_manifest_test.dart
           tool/parity/test/web/breakpoint_showcase_ssr_source_test.dart
           tool/parity/test/web/breakpoint_showcase_dispatch_test.dart
@@ -104,6 +107,7 @@ jobs:
           tool/parity/test/web/text_showcase_dispatch_test.dart
           tool/parity/test/web/device_paint_source_probe_test.dart
           tool/parity/test/web/computed_style_probe_test.dart
+          tool/parity/test/web/ego_capture_backend_test.dart
 
       - name: Test Jaspr button and MockupCode
         working-directory: packages/coui_web
