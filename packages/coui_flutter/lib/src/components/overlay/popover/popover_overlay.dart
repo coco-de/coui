@@ -225,6 +225,7 @@ class PopoverOverlayHandler {
     final completer = popoverEntry.completer;
     final animationCompleter = popoverEntry.animationCompleter;
     final isClosed = ValueNotifier(false);
+    var hasCreatedAnimationTween = false;
 
     void handleDismiss() {
       if (isClosed.value) return;
@@ -341,6 +342,20 @@ class PopoverOverlayHandler {
           child: ListenableBuilder(
             listenable: isClosed,
             builder: (_, _) {
+              // A close before the first tween is created has no running
+              // animation whose onEnd could remove the inserted entries.
+              if (!hasCreatedAnimationTween && isClosed.value) {
+                SchedulerBinding.instance.addPostFrameCallback((_) {
+                  if (animationCompleter.isCompleted) return;
+                  popoverEntry
+                    ..remove()
+                    ..dispose();
+                  animationCompleter.complete();
+                });
+
+                return const SizedBox.shrink();
+              }
+              hasCreatedAnimationTween = true;
               final scope = FocusScope(
                 node: scopeNode,
                 // A `FocusScope` only contains Tab once focus is inside
@@ -1522,38 +1537,23 @@ class _PanelGeometry {
 ///    open / close animation.
 class _PopoverLayoutRender extends RenderShiftedBox {
   _PopoverLayoutRender({
-    required Alignment alignment,
-    required Alignment anchorAlignment,
-    required EdgeInsets? fitInsets,
-    required CorePopoverConstraint heightConstraint,
-    required EdgeInsets margin,
-    required Offset position,
-    required double scale,
-    required Alignment scaleAlignment,
-    required CorePopoverConstraint widthConstraint,
-    bool allowInvertHorizontal = true,
-    bool allowInvertVertical = true,
-    Size? anchorSize,
+    required this._alignment,
+    required this._anchorAlignment,
+    required this._fitInsets,
+    required this._heightConstraint,
+    required this._margin,
+    required this._position,
+    required this._scale,
+    required this._scaleAlignment,
+    required this._widthConstraint,
+    this._allowInvertHorizontal = true,
+    this._allowInvertVertical = true,
+    this._anchorSize,
     RenderBox? child,
-    Offset? offset,
-    _PopoverFlipCallback? onFlipResolved,
-    ValueSetter<_PanelGeometry>? onGeometry,
-  }) : _onFlipResolved = onFlipResolved,
-       _onGeometry = onGeometry,
-       _alignment = alignment,
-       _position = position,
-       _anchorAlignment = anchorAlignment,
-       _fitInsets = fitInsets,
-       _widthConstraint = widthConstraint,
-       _heightConstraint = heightConstraint,
-       _anchorSize = anchorSize,
-       _offset = offset,
-       _margin = margin,
-       _scale = scale,
-       _scaleAlignment = scaleAlignment,
-       _allowInvertHorizontal = allowInvertHorizontal,
-       _allowInvertVertical = allowInvertVertical,
-       super(child);
+    this._offset,
+    this._onFlipResolved,
+    this._onGeometry,
+  }) : super(child);
 
   /// Where to report the panel's box, or null when nobody is listening.
   ValueSetter<_PanelGeometry>? _onGeometry;
