@@ -35,6 +35,7 @@ import 'box_padding_visual_value_units_probe.dart';
 import 'breakpoint_showcase_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
+import 'scope_allocation_binding.dart';
 import 'showcase_allocation_ssr_source.dart';
 import 'text_showcase_ssr_source.dart';
 
@@ -59,6 +60,7 @@ String get boxPaddingObservationScript =>
       BoxObservationSourceSpec.textShowcaseOuterPadding.toJson(),
       BoxObservationSourceSpec.bottomActionBarContentInset.toJson(),
       BoxObservationSourceSpec.showcaseAllocationHost.toJson(),
+      BoxObservationSourceSpec.scopeAllocationHost.toJson(),
       BoxObservationSourceSpec.breakpointShowcaseContentInset.toJson(),
       ...BoxObservationSourceSpec.componentFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.extendedComponentFrames.map((source) => source.toJson()),
@@ -122,6 +124,21 @@ String get boxPaddingObservationScript =>
           typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
         return JSON.stringify(incomplete('BOTTOM_ACTION_BAR_FIELD_UNIT_CHANGED'));
       currentBoxBindingFailure = 'BOTTOM_ACTION_BAR_BINDING_CHANGED_DURING_CSS_READ';
+      owner = layoutRoot;
+      sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true;
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      break;
+    }
+    case 'classic-scope-showcase-allocation-host-v1': {
+      const binding = ($scopeAllocationRequestBindingScript)(request);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (!binding.applied || binding.registryResultElement !== layoutRoot ||
+          binding.fieldUnitElement !== layoutRoot || binding.paddingSource !== layoutRoot ||
+          binding.frameSource !== layoutRoot || binding.registryIsLayoutRoot !== true ||
+          typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('SCOPE_ALLOCATION_FIELD_UNIT_CHANGED'));
+      currentBoxBindingFailure = 'SCOPE_ALLOCATION_BINDING_CHANGED_DURING_CSS_READ';
       owner = layoutRoot;
       sourceBindingAuthority = binding.authority;
       registryIsLayoutRoot = true;
