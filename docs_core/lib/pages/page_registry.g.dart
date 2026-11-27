@@ -12,6 +12,7 @@ import 'badge/badge_page.dart' as badge;
 import 'banner/banner_page.dart' as banner;
 import 'breadcrumb/breadcrumb_page.dart' as breadcrumb;
 import 'button/button_page.dart' as button;
+import 'card_image/card_image_page.dart' as card_image;
 import 'checkbox/checkbox_page.dart' as checkbox;
 import 'chip/chip_page.dart' as chip;
 import 'chip_group/chip_group_page.dart' as chip_group;
@@ -76,6 +77,7 @@ import 'radio_group/radio_group_page.dart' as radio_group;
 import 'range/range_page.dart' as range;
 import 'refresh_trigger/refresh_trigger_page.dart' as refresh_trigger;
 import 'rich_editor/rich_editor_page.dart' as rich_editor;
+import 'scroll_area/scroll_area_page.dart' as scroll_area;
 import 'scrollbar/scrollbar_page.dart' as scrollbar;
 import 'select/select_page.dart' as select;
 import 'selectable_text/selectable_text_page.dart' as selectable_text;
@@ -86,12 +88,14 @@ import 'sortable/sortable_page.dart' as sortable;
 import 'star_rating/star_rating_page.dart' as star_rating;
 import 'stat/stat_page.dart' as stat;
 import 'status/status_page.dart' as status;
+import 'swap/swap_page.dart' as swap;
 import 'swiper/swiper_page.dart' as swiper;
 import 'switch_field/switch_field_page.dart' as switch_field;
 import 'switcher/switcher_page.dart' as switcher;
 import 'tab_pane/tab_pane_page.dart' as tab_pane;
 import 'tabs/tabs_page.dart' as tabs;
 import 'tag/tag_page.dart' as tag;
+import 'text/text_page.dart' as text;
 import 'text_area/text_area_page.dart' as text_area;
 import 'text_block/text_block_page.dart' as text_block;
 import 'text_field/text_field_page.dart' as text_field;
@@ -108,6 +112,7 @@ import 'trend_chart/trend_chart_page.dart' as trend_chart;
 import 'validated/validated_page.dart' as validated;
 import 'validation_badge/validation_badge_page.dart' as validation_badge;
 import 'validator_hint/validator_hint_page.dart' as validator_hint;
+import 'window/window_page.dart' as window;
 
 /// 문서 슬러그 → 플레이그라운드.
 final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
@@ -119,6 +124,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (banner.playground case final spec?) banner.slug: spec,
   if (breadcrumb.playground case final spec?) breadcrumb.slug: spec,
   if (button.playground case final spec?) button.slug: spec,
+  if (card_image.playground case final spec?) card_image.slug: spec,
   if (checkbox.playground case final spec?) checkbox.slug: spec,
   if (chip.playground case final spec?) chip.slug: spec,
   if (chip_group.playground case final spec?) chip_group.slug: spec,
@@ -183,6 +189,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (range.playground case final spec?) range.slug: spec,
   if (refresh_trigger.playground case final spec?) refresh_trigger.slug: spec,
   if (rich_editor.playground case final spec?) rich_editor.slug: spec,
+  if (scroll_area.playground case final spec?) scroll_area.slug: spec,
   if (scrollbar.playground case final spec?) scrollbar.slug: spec,
   if (select.playground case final spec?) select.slug: spec,
   if (selectable_text.playground case final spec?) selectable_text.slug: spec,
@@ -193,12 +200,14 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (star_rating.playground case final spec?) star_rating.slug: spec,
   if (stat.playground case final spec?) stat.slug: spec,
   if (status.playground case final spec?) status.slug: spec,
+  if (swap.playground case final spec?) swap.slug: spec,
   if (swiper.playground case final spec?) swiper.slug: spec,
   if (switch_field.playground case final spec?) switch_field.slug: spec,
   if (switcher.playground case final spec?) switcher.slug: spec,
   if (tab_pane.playground case final spec?) tab_pane.slug: spec,
   if (tabs.playground case final spec?) tabs.slug: spec,
   if (tag.playground case final spec?) tag.slug: spec,
+  if (text.playground case final spec?) text.slug: spec,
   if (text_area.playground case final spec?) text_area.slug: spec,
   if (text_block.playground case final spec?) text_block.slug: spec,
   if (text_field.playground case final spec?) text_field.slug: spec,
@@ -215,6 +224,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (validated.playground case final spec?) validated.slug: spec,
   if (validation_badge.playground case final spec?) validation_badge.slug: spec,
   if (validator_hint.playground case final spec?) validator_hint.slug: spec,
+  if (window.playground case final spec?) window.slug: spec,
 };
 
 /// 문서 슬러그 → 크기 표.
@@ -227,6 +237,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (banner.sizeSpec case final spec?) banner.slug: spec,
   if (breadcrumb.sizeSpec case final spec?) breadcrumb.slug: spec,
   if (button.sizeSpec case final spec?) button.slug: spec,
+  if (card_image.sizeSpec case final spec?) card_image.slug: spec,
   if (checkbox.sizeSpec case final spec?) checkbox.slug: spec,
   if (chip.sizeSpec case final spec?) chip.slug: spec,
   if (chip_group.sizeSpec case final spec?) chip_group.slug: spec,
@@ -291,6 +302,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (range.sizeSpec case final spec?) range.slug: spec,
   if (refresh_trigger.sizeSpec case final spec?) refresh_trigger.slug: spec,
   if (rich_editor.sizeSpec case final spec?) rich_editor.slug: spec,
+  if (scroll_area.sizeSpec case final spec?) scroll_area.slug: spec,
   if (scrollbar.sizeSpec case final spec?) scrollbar.slug: spec,
   if (select.sizeSpec case final spec?) select.slug: spec,
   if (selectable_text.sizeSpec case final spec?) selectable_text.slug: spec,
@@ -301,12 +313,14 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (star_rating.sizeSpec case final spec?) star_rating.slug: spec,
   if (stat.sizeSpec case final spec?) stat.slug: spec,
   if (status.sizeSpec case final spec?) status.slug: spec,
+  if (swap.sizeSpec case final spec?) swap.slug: spec,
   if (swiper.sizeSpec case final spec?) swiper.slug: spec,
   if (switch_field.sizeSpec case final spec?) switch_field.slug: spec,
   if (switcher.sizeSpec case final spec?) switcher.slug: spec,
   if (tab_pane.sizeSpec case final spec?) tab_pane.slug: spec,
   if (tabs.sizeSpec case final spec?) tabs.slug: spec,
   if (tag.sizeSpec case final spec?) tag.slug: spec,
+  if (text.sizeSpec case final spec?) text.slug: spec,
   if (text_area.sizeSpec case final spec?) text_area.slug: spec,
   if (text_block.sizeSpec case final spec?) text_block.slug: spec,
   if (text_field.sizeSpec case final spec?) text_field.slug: spec,
@@ -323,4 +337,5 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (validated.sizeSpec case final spec?) validated.slug: spec,
   if (validation_badge.sizeSpec case final spec?) validation_badge.slug: spec,
   if (validator_hint.sizeSpec case final spec?) validator_hint.slug: spec,
+  if (window.sizeSpec case final spec?) window.slug: spec,
 };

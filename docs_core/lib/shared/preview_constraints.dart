@@ -130,6 +130,11 @@ const kDocsPreviewConstraints = <String, DocsPreviewConstraints>{
   // inverse tone) and a Progress with its label and caption rows.
   'loading/playground': kDocsMediumConstraints,
   'progress/playground': kDocsMediumConstraints,
+  // The CardImage playground's tallest card is about 203 tall, and the Window
+  // playground is a 240 navigator over a small button; their component tiers
+  // would leave most of a 600 or 700 pane empty.
+  'card-image/playground': DocsPreviewConstraints(minHeight: 260, maxHeight: 260),
+  'window/playground': DocsPreviewConstraints(minHeight: 320, maxHeight: 320),
   'form-field': kDocsMediumConstraints,
   'formatter': kDocsDefaultConstraints,
   'scrollview': kDocsMediumConstraints,

@@ -5,148 +5,91 @@ category: display
 platforms: [flutter, web]
 related: [link, badge]
 tags: [typography, content, display]
+template: v2
+source: text
 ---
 
 # Text
 
-`Text` 는 시멘틱 typography 토큰을 적용해 일관된 텍스트 렌더링을 제공하는 컴포넌트입니다. Flutter 와 Web 양쪽이 거의 동일한 사용 패턴을 갖도록 설계되어, 같은 코드 모양으로 양쪽 플랫폼 모두 작성 가능합니다.
+<a id="live-preview"></a>
 
-## ⚡ 권장 패턴: chain 사용
+## 플레이그라운드
 
-CoUI Text 의 권장 사용법은 **chain modifier** 입니다. `.bodyMedium` / `.onPrimaryContainer` / `.semiBold` / `.italic` 처럼 token 이름을 chain 으로 적용하면 양쪽 플랫폼이 일관된 결과를 보장합니다.
+역할 · 색 · 꾸밈 · 줄바꿈을 바꿔 보고, 만들어진 코드를 복사하세요. 코드는 두 플랫폼이 같습니다. 미리보기는 줄바꿈을 볼 수 있도록 폭 240 의 상자에 담습니다. 이 폭은 코드에 들어 있지 않습니다.
+
+<Playground component="text" />
+
+<a id="권장-패턴-chain-사용"></a>
+<a id="기본-사용법-basic-usage"></a>
+<a id="chain-동작-메커니즘"></a>
+<a id="동작-스펙-behavior"></a>
+
+## 체인으로 쓰기
+
+`Text` 는 두 플랫폼에서 이름이 같습니다. Flutter 에서는 SDK 의 `Text` 위젯 그대로이고, Jaspr Web 에서는 CoUI 의 `Text` 컴포넌트입니다. 글의 모양은 `.bodyMedium` · `.onPrimaryContainer` · `.semiBold` · `.italic` 처럼 점으로 이어 붙이는 chain 으로 정하기를 권합니다. 역할과 색은 지금 테마의 값을 따르므로 라이트 · 다크 전환과 테마 교체가 함께 반영됩니다.
+
+<Code language="dart" title="Flutter · Jaspr Web">
+// 아무것도 붙이지 않으면 둘러싼 글자 스타일을 따릅니다
+Text('안녕하세요')
+// 글자 역할
+Text('헤딩').headlineLarge
+Text('본문').bodyMedium
+// 글자색
+Text('강조').onPrimaryContainer
+Text('에러 메시지').onErrorContainer
+// 이어 붙이기
+Text('제목').headlineSmall.semiBold.onPrimaryContainer
+Text('안내').headlineSmall.italic.onTertiaryContainer
+Text('오류').bodySmall.onErrorContainer.underline
+Text('긴 문장').s14.lineLimit(2).ellipsis
+</Code>
+
+`style:` 파라미터로 `TextStyle` 을 직접 넘길 수도 있습니다. 다른 디자인 시스템의 코드와 맞출 때를 위해 남겨 둔 방법이고, 두 플랫폼의 타입이 달라 권하지 않습니다([TextStyle](#textstyle)).
 
 ```dart
-// ✅ 권장: chain only
-Text('안녕하세요').bodyMedium.semiBold.onPrimaryContainer
-Text('오류').bodySmall.onErrorContainer.underline
-Text('긴 문장').s14.maxLines(2).overflow(CoreTextOverflow.ellipsis)
-
-// ⚠️ 비권장: 직접 TextStyle 주입
-// `style:` 와 같은 직접 prop 은 다른 디자인 시스템과의 호환을 위해 유지
-// 되어 있지만, 양쪽 플랫폼의 동작 일치를 보장하기 어려운 케이스가 있어
-// 권장하지 않습니다. CoUI 표준 chain 으로 작성하세요.
-Text('안녕하세요', style: theme.typography.bodyMedium.copyWith(...))
+// 권하지 않습니다. myStyle 은 플랫폼의 TextStyle 입니다
+Text('안녕하세요', style: myStyle)
 ```
+
+`Text` 에는 입력, 선택 상태, 누름 콜백이 없습니다. Flutter 의 chain 은 SDK `Text` 를 감싸 `DefaultTextStyle` 로 스타일을 얹는 위젯(`WrappedText`)을 돌려줍니다. Web 의 chain 은 새 `Text` 를 돌려주고, 이 `Text` 는 클래스와 인라인 CSS 를 가진 `<span>` 하나를 그립니다.
 
 ### chain 이 주변 스타일과 합쳐지는 규칙
 
-chain 은 **이름을 댄 속성만** 덮고, 나머지는 둘러싼 텍스트 스타일(슬롯 기본값 · 부모가 깐 스타일)에서 이어받습니다. 양 플랫폼이 같습니다.
+아무것도 붙이지 않은 `Text` 는 둘러싼 글자 스타일을 따릅니다. 컴포넌트의 슬롯이나 부모가 정한 스타일이 그것입니다. 앱 루트(`CoUIApp` · `CoUIWeb`)가 `bodyMedium` 과 `onSurface` 를 깔아 두므로, 따로 정한 것이 없는 자리에서는 그 모양입니다.
 
-- **역할을 댄 chain** (`.titleMedium`, `.bodySmall` …) 은 그 역할로 크기·굵기·행간·자간을 새로 정합니다.
-- **역할 없이 굵기 · 색 · 크기만 준 chain** (`.semiBold`, `.onSurfaceVariant`, `.s14` …) 은 그 속성만 바꿉니다. 예를 들어 `titleMedium` 을 깔아 둔 카드 헤더에 `Text('제목').onSurfaceVariant` 를 넣으면 색만 바뀌고 크기와 굵기는 헤더의 `titleMedium` 그대로입니다.
+**역할 없는 chain**(굵기 · 크기 · 색 · 꾸밈 등)은 두 플랫폼 모두 이름 댄 속성만 바꾸고 나머지는 둘러싼 스타일에서 이어받습니다(`.opacity` 의 시작 색은 [꾸밈과 투명도](#꾸밈과-투명도) 참고). 예를 들어 `titleMedium` 이 깔린 카드 헤더에 `Text('제목').onSurfaceVariant` 를 넣으면 색만 바뀌고 크기와 굵기는 헤더의 값 그대로입니다.
 
-슬롯이 깐 스타일을 버리고 다른 역할로 시작하고 싶으면 역할을 적으세요 — `Text('제목').bodyMedium.onSurfaceVariant`.
+**역할 chain**(`.titleMedium` · `.bodySmall` 등)은 크기 · 굵기 · 행간 · 자간을 그 역할의 값으로 새로 정합니다. 색과 서체는 플랫폼에 따라 다릅니다.
 
-## Live Preview
+| 색 chain 없이 역할 chain 을 붙였을 때 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 색 | `onSurface` 로 돌아갑니다. 테마의 그 역할에 색이 있으면 그 색입니다 | 둘러싼 색을 그대로 물려받습니다 |
+| code 가 아닌 역할의 서체 | 역할의 서체를 씁니다. 기본 스케일에서는 Pretendard 입니다 | `typography` 가 그 역할에 서체를 정했으면 그 서체를 쓰고, 아니면(기본 스케일) 둘러싼 서체를 물려받습니다 |
+| code 역할의 서체 (기본 스케일) | 고정폭 | 고정폭 |
 
-<LivePreview component="text" />
+색이 정해진 슬롯에서 역할을 바꿀 때는 색도 함께 적습니다. 예를 들어 `primary` 버튼의 라벨에 `Text('저장').labelMedium` 만 쓰면 Flutter 에서는 라벨이 `onSurface` 로 칠해집니다. `Text('저장').labelMedium.onPrimary` 로 적으면 두 플랫폼의 색이 같습니다. 슬롯이 정한 스타일을 버리고 다른 역할로 시작할 때도 `Text('제목').bodyMedium.onSurfaceVariant` 처럼 역할과 색을 적습니다.
 
-### Per-facet variants
+이어 붙이는 순서는 두 플랫폼이 같습니다.
 
-<LivePreview component="text" variants="typography-display,typography-headline,typography-title,typography-body,typography-weight,typography-primitive,colors-brand,colors-status,colors-surface,modifiers,wrap,keep-all,textstyle,opacity,rich" />
+- chain 은 왼쪽부터 적용하고, 같은 속성은 뒤의 것이 덮습니다.
+- 역할은 앞에 적은 크기 · 굵기 · 행간 · 서체를 덮습니다. 색 · 기울임 · 자간 · 꾸밈 선은 남습니다. `Text('…').s20.codeSm` 은 12px 이므로 역할을 먼저 적습니다.
+- 역할 뒤에 적은 크기 · 굵기 · 행간은 그 속성만 바꿉니다. `.codeMd.s16` 은 16px 글자를 21px 줄에 그리고, 그 뒤의 `.h140` 같은 행간 chain 은 고정 줄 높이를 대신합니다.
 
-## 사용 시기 (When to Use)
+<a id="per-facet-variants"></a>
+<a id="chain-메서드"></a>
 
-**이 컴포넌트를 사용하세요:**
-- 시멘틱 typography (display / headline / title / body / label) 가 필요할 때
-- 토큰 기반 색상 / 굵기 / 기울임 등 chain 으로 스타일을 표현하고 싶을 때
-- light / dark 테마 변경에 자동 반응해야 할 때
+## 체인 메서드
 
-**대신 다른 컴포넌트를 사용하세요:**
-- `Badge`: 텍스트를 배지 형태로 강조할 때
-- `TextField`: 사용자 텍스트 입력이 필요할 때
-- `Link`: 클릭 가능한 링크 텍스트가 필요할 때
+이 절의 이름은 두 플랫폼에 모두 있습니다. Flutter 에만 있는 것은 [API](#flutter-에만-있는-chain)에 따로 적었습니다.
 
-## 기본 사용법 (Basic Usage)
+<a id="typography-시멘틱-22"></a>
 
-<Tabs groupId="platform">
-  <TabItem label="Flutter" value="flutter">
+### 타이포그래피 역할
 
-```dart
-// 기본 텍스트 — bodyMedium + onSurface 자동 적용
-Text('안녕하세요')
+역할은 22개입니다. Flutter 는 `theme.typography` 의 같은 이름 값을 읽고, Web 은 `text-{role}` 클래스 하나를 붙입니다. 역할 값을 바꿔 chain 에 반영하려면 Flutter 는 `ThemeData` 의 `typography` 를, Web 은 `ThemeConfig.from` 에 넘기는 `typography` 를 바꿉니다([타이포그래피의 쓰는 법](/guides/typography#쓰는-법)).
 
-// chain — 시멘틱 typography
-Text('헤딩').headlineLarge
-Text('본문').bodyMedium
-
-// chain — 색상
-Text('강조').onPrimaryContainer
-Text('에러 메시지').onErrorContainer
-
-// chain — 조합 (뒤가 override)
-Text('제목').headlineSmall.semiBold.onPrimaryContainer
-
-// TextStyle 직접 — CoUI 토큰 사용 (Flutter SDK 표준)
-Text(
-  '커스텀',
-  style: TextStyle(
-    color: cs.primary,
-    fontSize: CoreFontSize.s14,
-    fontWeight: CoreFontWeight.semiBold.weight,  // .weight: int → FontWeight
-  ),
-)
-```
-
-  </TabItem>
-  <TabItem label="Web" value="web">
-
-```dart
-// 기본 텍스트 — bodyMedium + onSurface 자동 적용
-Text('안녕하세요')
-
-// chain — 시멘틱 typography (Flutter 와 동일)
-Text('헤딩').headlineLarge
-Text('본문').bodyMedium
-
-// chain — 색상 (Flutter 와 동일)
-Text('강조').onPrimaryContainer
-Text('에러 메시지').onErrorContainer
-
-// chain — 조합 (뒤가 override)
-Text('제목').headlineSmall.semiBold.onPrimaryContainer
-
-// TextStyle 직접 — CoUI 토큰 사용 (Flutter 와 같은 파라미터 + 같은 토큰)
-Text(
-  '커스텀',
-  style: TextStyle(
-    color: cs.primary,
-    fontSize: CoreFontSize.s14,
-    fontWeight: CoreFontWeight.scale.semibold,   // .scale.semibold: String 토큰
-  ),
-)
-```
-
-  </TabItem>
-</Tabs>
-
-## Props / Parameters
-
-`Text` 는 양 플랫폼에서 같은 이름 `Text` 를 씁니다. Web 은 CoUI 가 소유한 `Text` 컴포넌트이고, Flutter 는 SDK `Text` 위젯을 그대로 쓰며 chain 이 그 위에 얹힙니다 — 따라서 아래 파라미터 이름은 양쪽 동일하고 타입만 플랫폼 native 로 갈립니다.
-
-| 속성 | 타입 (Flutter / Web) | 기본값 | 설명 |
-|------|------|--------|------|
-| `data` | `String` | 필수 (첫 positional 인자) | 표시할 텍스트 |
-| `style` | `TextStyle?` | `null` | 직접 스타일 주입 (chain 권장) |
-| `softWrap` | `bool?` | `null` (→ `true`) | 공백에서 줄바꿈 허용 |
-| `overflow` | `TextOverflow?` / `CoreTextOverflow?` | `null` | 넘칠 때 처리 (`ellipsis` 등) |
-| `maxLines` | `int?` | `null` | 최대 줄 수 클램프 |
-| `textAlign` | `TextAlign?` / `CoreTextAlign?` | `null` | 가로 정렬 |
-| `textDirection` | `TextDirection?` / `CoreTextDirection?` | `null` | 읽기 방향 (Web → `dir` 속성) |
-| `locale` | `Locale?` / `String?` (BCP 47) | `null` | 로케일 (Web → `lang` 속성) |
-| `semanticsLabel` | `String?` | `null` | 접근성 이름 override (Web → `aria-label`) |
-| `textScaler` | `TextScaler?` / `double?` | `null` | 텍스트 배율 |
-
-`Text.rich(InlineSpan)` 생성자는 `data` 대신 `textSpan` 을 받고 나머지 파라미터는 동일합니다.
-
-Web 전용 `styleBuilder: TextStyleBuilder?` 는 chain modifier 가 build 시점에 토큰을 읽도록 채우는 내부 슬롯입니다 — 직접 넘기는 대신 chain 을 쓰세요.
-
-## chain 메서드
-
-### Typography (시멘틱) — 22
-
-| chain | Tailwind 클래스 |
-|---|---|
+| chain | Web 의 Tailwind 클래스 |
+| --- | --- |
 | `.displayLarge` / `.displayMedium` / `.displaySmall` | `text-display-large` / `text-display-medium` / `text-display-small` |
 | `.headlineLarge` / `.headlineMedium` / `.headlineSmall` | `text-headline-large` / `text-headline-medium` / `text-headline-small` |
 | `.titleLarge` / `.titleMedium` / `.titleSmall` | `text-title-large` / `text-title-medium` / `text-title-small` |
@@ -154,27 +97,71 @@ Web 전용 `styleBuilder: TextStyleBuilder?` 는 chain modifier 가 build 시점
 | `.labelXl2` / `.labelXl` / `.labelLarge` / `.labelMedium` / `.labelSmall` / `.labelXs` | `text-label-xl2` / `text-label-xl` / `text-label-large` / `text-label-medium` / `text-label-small` / `text-label-xs` |
 | `.codeXs` / `.codeSm` / `.codeMd` | `text-code-xs` / `text-code-sm` / `text-code-md` |
 
-code 역할은 고정폭(`Geist Mono`)이고 줄 높이가 21px 로 고정입니다. Web 에서는 서체가 `text-code-*` 클래스 하나에 함께 실리므로 `font-mono` 를 따로 붙이지 않습니다. 역할별 값과 고르는 기준은 [타이포그래피](/guides/typography) 에 있습니다.
+code 역할은 기본 스케일에서 고정폭(`Geist Mono`)이고 줄 높이가 21px 로 고정입니다. Web 에서는 서체가 `text-code-*` 클래스 하나에 함께 실리므로 `font-mono` 를 따로 붙이지 않습니다. display · headline 여섯 역할은 화면 폭이 좁아지면 작아집니다. 역할별 값과 고르는 기준은 [타이포그래피](/guides/typography)에 있습니다.
 
-### Font size · line height (primitive) — 21 · 7
+<Preview demo="text/roles-heading" height="hug" />
 
-역할 없이 크기나 행간 하나만 바꿉니다. `CoreFontSize` · `CoreLineHeight` 와 1:1 입니다.
+<Preview demo="text/roles-body" height="hug" />
 
-- 크기: `.s10` `.s11` `.s12` `.s13` `.s14` `.s15` `.s16` `.s18` `.s20` `.s24` `.s28` `.s32` `.s36` `.s40` `.s44` `.s48` `.s52` `.s60` `.s72` `.s96` `.s128`
-- 행간: `.h100` `.h120` `.h140` `.h150` `.h160` `.h180` `.h200`
+<a id="font-size-line-height-primitive-21-7"></a>
 
-### Font weight (primitive) — 9
+### 크기 · 행간 · 자간
 
-`.thin` (100) / `.extraLight` (200) / `.light` (300) / `.regular` (400) / `.medium` (500) / `.semiBold` (600) / `.bold` (700) / `.extraBold` (800) / `.black` (900)
+역할 없이 한 가지만 바꿉니다. 이름은 `CoreFontSize` · `CoreLineHeight` · `CoreLetterSpacing` 의 값을 따릅니다.
 
-### 색상 (ColorScheme M3 토큰) — 39 + 7 alias
+- 크기(21개): `.s10` `.s11` `.s12` `.s13` `.s14` `.s15` `.s16` `.s18` `.s20` `.s24` `.s28` `.s32` `.s36` `.s40` `.s44` `.s48` `.s52` `.s60` `.s72` `.s96` `.s128`
+- 행간(7개, 글자 크기의 배수): `.h100` `.h120` `.h140` `.h150` `.h160` `.h180` `.h200`
+- 자간(6개, em): `.tighter` (-0.05) · `.tight` (-0.025) · `.normalSpacing` (0) · `.wide` (0.025) · `.wider` (0.05) · `.widest` (0.1)
 
-`theme.colorScheme.<token>` chain 으로 노출. **build 시점에 테마에서 값을 읽어** Theme override 자동 반영.
+<a id="font-weight-primitive-9"></a>
 
-**accent 7 종의 *채움(fill)* 은 텍스트 색에서 빠집니다** — Web 은 제거, Flutter 는 `@Deprecated`. 이유는 아래 "accent 를 텍스트 색으로 쓸 때".
+### 굵기와 서체
 
-| 카테고리 | chain |
-|---|---|
+굵기는 9개입니다. `.thin` (100) / `.extraLight` (200) / `.light` (300) / `.regular` (400) / `.medium` (500) / `.semiBold` (600) / `.bold` (700) / `.extraBold` (800) / `.black` (900)
+
+서체 chain 은 `.sans`(Pretendard) · `.serif` · `.mono`(Geist Mono, 한글은 Pretendard)입니다. CoUI 가 정한 명조 서체는 없습니다(`CoreFontFamily.serif` 는 빈 문자열). 그래서 `.serif` 는 두 플랫폼의 결과가 같지 않을 수 있습니다.
+
+<Preview demo="text/weights" height="hug" />
+
+크기 · 행간 · 자간 · 서체 chain 을 하나씩 건 모양입니다.
+
+<Preview demo="text/primitives" height="hug" />
+
+<a id="스타일-modifier-4"></a>
+
+### 꾸밈과 투명도
+
+`.italic` / `.underline` / `.lineThrough` / `.overline` 입니다. 꾸밈 선은 글자색을 따릅니다. 선 chain 을 둘 이어 붙이면 뒤의 것 하나만 남습니다.
+
+Flutter 에서는 예외가 있습니다. 글자색을 생성자의 `style:` 에 적고 선 chain 을 붙이면, 선은 그 색이 아니라 chain 이 정한 색으로 그립니다. 색 chain 도 역할 chain 도 없으면 둘러싼 글자색입니다. 이때는 색을 chain 으로 적거나 `style:` 에 `decorationColor` 를 함께 적습니다.
+
+`.opacity(value)` 는 글자색의 알파를 `value`(0~1)로 바꿉니다. 원래 알파에 곱하지 않습니다. 색 chain 뒤에 적고, 한 번만 적습니다. 뒤에 오는 색 chain 은 알파까지 새로 정합니다. 앞에 색 chain 이 없으면 Flutter 는 둘러싼 글자색에서, Web 은 `onSurface` 에서 시작합니다. `style:` 에 적은 색에는 `.opacity` 의 결과가 보이지 않습니다.
+
+<Preview demo="text/modifiers" height="hug" />
+
+### 값을 직접 넘기는 chain
+
+이름 있는 chain 에 없는 값은 아래 메서드로 넘깁니다. 가능하면 위의 이름 chain 이나 `CoreFontSize` 같은 토큰 값을 씁니다.
+
+| chain | 값 |
+| --- | --- |
+| `.fontSize(value)` | 글자 크기(논리 px) |
+| `.fontWeight(value)` | `CoreFontWeight` 의 정수(100~900). 목록에 없는 수는 400 입니다 |
+| `.lineHeight(value)` | 행간 배수 |
+| `.letterSpacing(value)` | 자간(em) |
+| `.decoration(value)` | `CoreTextDecoration` 하나 |
+| `.opacity(value)` | 글자색의 알파(0~1) |
+
+<a id="색상-colorscheme-m3-토큰-39-7-alias"></a>
+
+## 글자색
+
+색 chain 은 `theme.colorScheme` 의 같은 이름 색을 그릴 때 읽으므로 테마를 바꾸면 따라 바뀝니다. 이름 있는 색 chain 은 39개입니다.
+
+<Preview demo="text/colors" height="hug" />
+
+| 묶음 | chain |
+| --- | --- |
 | **Surface** (8) | `.surface` `.surfaceDim` `.surfaceBright` `.surfaceContainerLowest` `.surfaceContainerLow` `.surfaceContainer` `.surfaceContainerHigh` `.surfaceContainerHighest` |
 | **On surface + tint** (3) | `.onSurface` `.onSurfaceVariant` `.surfaceTint` |
 | **Primary** (3) | `.onPrimary` `.primaryContainer` `.onPrimaryContainer` |
@@ -187,229 +174,506 @@ code 역할은 고정폭(`Geist Mono`)이고 줄 높이가 21px 로 고정입니
 | **Outline** (2) | `.outline` `.outlineVariant` |
 | **Inverse** (3) | `.inverseSurface` `.inverseOnSurface` `.inversePrimary` |
 | **Misc** (2) | `.shadow` `.scrim` |
-| **Aliases** (7) | `.accent` (= `.tertiary`) / `.accentForeground` (= `.onTertiary`) / `.neutral` (= `.outline`) / `.neutralForeground` (= `.onSurfaceVariant`) / `.baseContent` (= `.onSurface`) / `.primaryForeground` (= `.onPrimary`) / `.secondaryForeground` (= `.onSecondary`) |
+
+다른 이름도 몇 개 있습니다. `.primaryForeground` 는 `.onPrimary`, `.secondaryForeground` 는 `.onSecondary` 와 같고 두 플랫폼에 있습니다. `.foreground` 는 `.onSurface` 와 같고 Flutter 에만 있습니다.
+
+이름이 있다고 어느 바탕에서나 읽히는 것은 아닙니다. `.surface…` 는 바탕에 쓰는 색이고, `…Container` 는 옅은 채움에 쓰는 색입니다. `.onPrimary` · `.onError` 처럼 채움에 짝이 되는 전경색은 그 채움 위에서 씁니다.
 
 ### accent 를 텍스트 색으로 쓸 때
 
-accent 토큰(`.primary` / `.secondary` / `.tertiary` / `.error` / `.success` / `.warning` / `.info`)은 **채움(fill)** 으로 설계됐고, 그 위에 얹을 전경이 `on*` 로 따로 있습니다. 그래서 **텍스트 색으로는 제공되지 않습니다** — 두 플랫폼 모두 getter 자체가 없어 아래 ❌ 는 컴파일되지 않습니다.
-
-**accent 색조의 텍스트가 필요하면 `.on{Role}Container` 를 쓰세요.**
+accent 색(`primary` · `secondary` · `tertiary` · `error` · `success` · `warning` · `info`)은 **채움**에 쓰는 색이고, 그 위에 얹는 전경색이 `on*` 로 따로 있습니다. 그래서 이 일곱 이름의 글자색 chain 은 두 플랫폼 모두 없습니다. 아래 ❌ 줄은 컴파일되지 않습니다.
 
 ```dart
-// ❌ 두 플랫폼 모두 없음 — 컴파일되지 않는다
+// ❌ 두 플랫폼 모두 없음
 Text('디스크 공간 부족').bodyMedium.warning
 Text('활성 사용자').bodyMedium.primary
 
-// ✅ 같은 색조, 페이지 위에서 읽히는 톤
+// ✅ 같은 계열의 글자색
 Text('디스크 공간 부족').bodyMedium.onWarningContainer
 Text('활성 사용자').bodyMedium.onPrimaryContainer
 ```
 
-#### 왜 통과하던 여섯까지 뺐나
+<a id="왜-통과하던-여섯까지-뺐나"></a>
 
-`.warning` 은 처음부터 불가능했습니다. warning 은 `onWarning` 이 백색이 아니라 **흑색**인 유일한 role 이고, 이는 그 fill 이 *설계상 밝다*는 말과 같습니다 — 경고색은 노랑이기 때문입니다. 페이지 위 텍스트로 그리면 1.82:1 이 나오고, fill 을 어둡게 해 고치면 그 위에 얹힌 흑색 전경이 깨집니다.
-
-나머지 여섯은 **통과했습니다** — 실측 4.63:1~7.04:1 로 WCAG 1.4.3 의 4.5:1 위입니다. 뺀 이유는 읽히지 않아서가 아니라 **여유가 그것뿐**이어서입니다. `check_contrast.dart` 가 이 쌍들을 감사한 이유 자체가 "팔레트를 조금만 조정해도 이 선을 넘는다" 였고, 브랜드 색 한 번 조정에 읽히지 않게 되는 표현 수단은 계속 제공할 만한 것이 아닙니다.
-
-그리고 대체 톤은 이미 있었습니다 — 예제들이 이미 `on{Role}Container` 를 쓰고 있었고, 그 톤은 페이지 위에서 감사됩니다.
+accent 계열의 글자가 필요하면 `.on{Role}Container` 를 씁니다. 옅은 채움 `{role}Container` 와 짝이 되는 색입니다. CoUI 기본 테마의 `primary` 계열은 무채색이라 `.onPrimaryContainer` 는 라이트에서는 검정에, 다크에서는 흰색에 가까운 색입니다. 브랜드 색이 있는 테마에서는 그 테마의 값을 따릅니다.
 
 #### fill 자체는 그대로입니다
 
-`Badge` / `Alert` / `Banner` 의 accent variant 는 채움 + 짝 전경을 계속 씁니다. 바뀐 건 **"채움을 텍스트 색으로 빌려 쓰는" 경로 하나**뿐입니다.
+`Badge` 의 `filled` 처럼 컴포넌트가 accent 색을 채움으로 쓰고 그 위에 짝 전경색을 얹는 것은 그대로입니다. 없는 것은 채움색을 글자색으로 빌려 쓰는 chain 입니다.
 
-`scripts/guards/tokens/check_accent_text_contrast.sh` 가 7 role 전부에 대해 이 상태를 지킵니다 — getter 가 되살아나면 실패합니다. 그게 없으면 `check_contrast.dart` 에서 그 쌍들을 뺀 것이 "고치기" 가 아니라 "발견을 지우기" 가 됩니다.
+## 줄바꿈과 넘침
 
-### 스타일 modifier — 4
+| chain | 하는 일 |
+| --- | --- |
+| `.lineLimit(n)` | 최대 `n` 줄까지 그립니다 |
+| `.ellipsis` | 넘친 글을 말줄임표로 줄입니다 |
+| `.fade` | Flutter 는 넘치는 끝을 흐리게 그립니다. Web 에는 흐림 효과가 없고 `overflow: hidden` 만 붙입니다 |
+| `.visible` | 넘친 글을 상자 밖까지 그립니다 |
+| `.keepAll` | 어절 사이에서 줄을 바꿉니다 |
 
-`.italic` / `.underline` / `.lineThrough` / `.overline`
+잘라내기(clip) chain 은 없습니다. 위젯을 자르는 `.clip` 확장과 이름이 겹치기 때문입니다. 필요하면 `overflow` 파라미터를 씁니다. `Text` 에 같은 이름의 필드가 있어 `maxLines` · `overflow` · `textAlign` · `softWrap` 이라는 이름의 chain 은 없습니다. 줄 수와 넘침은 위의 chain 이나 파라미터로, `textAlign` 과 `softWrap` 은 파라미터로 적습니다.
+
+<Preview demo="text/wrap" height="hug" />
+
+| 적은 것 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| `.lineLimit(2)` 만 | 두 줄에서 자르고 말줄임표를 붙이지 않습니다(둘러싼 스타일이 넘침 처리를 정하지 않았을 때) | 두 줄에서 자르고 말줄임표를 붙입니다 |
+| `.ellipsis` 만 | 처음 넘치는 줄 끝에 말줄임표를 붙이고 뒤의 줄은 버립니다. 긴 한 문단은 한 줄이 됩니다 | 줄을 바꾸지 않습니다. `<span>` 이 인라인이라, `Text` 가 상자 폭을 차지하는 자리(기본 정렬의 flex 열 자식 등)가 아니면 말줄임표 없이 상자 밖으로 나갑니다 |
+| `.lineLimit(1).ellipsis` | 한 줄과 말줄임표 | 한 줄과 말줄임표 |
+
+한 줄 말줄임을 두 플랫폼에서 함께 얻으려면 `.lineLimit(1).ellipsis` 로 적습니다. Web 에서 줄 수를 제한한 `Text` 는 `display` 가 `-webkit-box` 가 되어 자기 줄을 차지합니다. 이때 `overflow` 값을 바꿔도 넘친 줄은 숨겨집니다.
 
 ### 어절 단위 줄바꿈 — `.keepAll`
 
-한국어 글자는 기본 줄바꿈에서 **음절 사이에서도** 꺾입니다 — 폭이 모자라면 `리포머 심화 플로우와 회복 스트레` / `칭` 처럼 한 단어가 두 줄로 찢어집니다. `.keepAll` 을 붙이면 어절 사이에서만 줄을 바꿉니다(CSS `word-break: keep-all`). 위 Per-facet variants 의 `keep-all` 이 같은 제목을 같은 폭에 두고 둘을 비교합니다.
+한국어는 기본 줄바꿈에서 **음절 사이에서도** 줄이 바뀝니다. 폭이 모자라면 `리포머 심화 플로우와 회복 스트레` / `칭` 처럼 한 낱말이 두 줄로 갈립니다. `.keepAll` 을 붙이면 어절 사이에서 줄을 바꿉니다(CSS `word-break: keep-all`). 아래는 같은 제목을 같은 폭에 두고 비교한 것입니다.
 
-```dart
-// Flutter · Web 동일
+<Preview demo="text/keep-all" height="hug" />
+
+<Code language="dart" title="Flutter · Jaspr Web">
 Text('리포머 심화 플로우와 회복 스트레칭').titleMedium.keepAll
 Text('오늘 수업은 취소되었습니다.').bodyMedium.keepAll.lineLimit(2)
-```
+</Code>
 
-**언제 쓰나**: 한국어 제목, 카드 · 목록 행의 제목, 짧은 라벨처럼 한두 줄로 읽히고 단어가 찢어지면 읽기가 끊기는 글자. 긴 본문에도 쓸 수 있지만 줄 끝이 더 들쭉날쭉해집니다.
+**언제 쓰나**: 한국어 제목, 카드 · 목록 행의 제목, 짧은 라벨처럼 한두 줄로 읽고 낱말이 갈리면 읽기가 끊기는 글에 씁니다. 긴 본문에도 쓸 수 있지만 줄 끝이 더 들쭉날쭉해집니다.
 
-**기본값이 아닌 이유**: Flutter 에는 줄바꿈 방식을 고르는 API 가 없어서 체인은 자기가 감싼 `Text` 만 다시 그릴 수 있습니다. 기본으로 켜면 체인을 단 글자와 그냥 `Text` 가 한 화면에서 다르게 꺾이고, Web 은 CSS 상속으로 더 넓게 닿아 두 플랫폼이 갈립니다. 그래서 켜는 자리를 호출자가 정합니다.
+**기본값이 아닌 이유**: Flutter 에는 줄바꿈 방식을 고르는 API 가 없어 chain 은 자기가 감싼 `Text` 만 다시 그릴 수 있습니다. 기본으로 켜면 chain 을 단 글과 평범한 `Text` 가 다르게 꺾이고, Web 은 CSS 상속으로 더 넓게 닿아 두 플랫폼이 갈립니다. 그래서 켜는 자리를 직접 고릅니다.
 
-**두 플랫폼이 하는 일**
+| | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 방법 | 어절 안 글자 사이에 보이지 않는 `U+2060 WORD JOINER` 를 넣은 문자열로 그 `Text` 를 다시 그립니다 | 그 `Text` 요소에 `word-break: keep-all` 과 `overflow-wrap: anywhere` 를 붙입니다 |
+| 문자열 | 그릴 때만 바뀝니다. 스크린 리더에 알리는 이름과 선택 영역에서 복사되는 글은 원문입니다 | 바뀌지 않습니다 |
+| 한 줄보다 긴 어절 | 그 어절 안에서 줄을 바꿉니다 | 그 어절 안에서 줄을 바꿉니다 |
 
-| | Flutter | Web |
-|---|---|---|
-| 방법 | 어절 안 글자 사이에 보이지 않는 U+2060 WORD JOINER 를 넣은 문자열로 그 `Text` 를 다시 그림 | 그 `Text` 요소에 `word-break: keep-all` + `overflow-wrap: anywhere` |
-| 문자열 | 그리는 데만 바뀜 — 스크린 리더가 읽는 이름과 `SelectionArea` 안에서 복사되는 글자는 원문 | 바뀌지 않음 |
-| 한 줄보다 긴 어절 | 그 어절 안에서 꺾음 | 그 어절 안에서 꺾음 |
+어느 글자 쌍을 이을지는 `coui_core` 의 `CoreKeepAll` 규칙을 기준으로 합니다. Flutter 는 이 규칙을 직접 쓰고, 이 규칙은 Chrome 의 keep-all 을 따라 만든 것입니다. 띄어쓰기, 문장부호 뒤, 이모지 앞뒤에서는 줄이 바뀔 수 있고, 한글에 붙은 숫자와 라틴 글자는 한 어절로 묶입니다(`2개`, `iPhone케이스`).
 
-어느 글자 쌍을 잇는지는 두 플랫폼이 `coui_core` 의 `CoreKeepAll` 한 곳을 따릅니다 — 띄어쓰기 · 문장부호 뒤 · 이모지 앞뒤의 줄바꿈 기회는 그대로이고, 숫자와 라틴 글자는 붙어 있는 한글과 한 어절로 묶입니다(`2개`, `iPhone케이스`).
+**닿는 범위**
 
-**도달 범위 — 여기까지만 닿습니다**
+- `.keepAll` 을 붙인 `Text` 의 글에 닿습니다. `Text('…')` 의 문자열과 `Text.rich` 의 모든 `TextSpan` 글자입니다. span 경계에 걸친 어절도 하나로 잇습니다.
+- Flutter 에서는 `SelectableText` 와 입력 필드의 글, `.keepAll` 을 붙인 위젯 안의 다른 `Text`, `.then*` 으로 이은 글, `WidgetSpan` 안의 위젯에 닿지 않습니다.
+- 컴포넌트가 스스로 그리는 라벨에는 닿지 않습니다.
+- 한 줄보다 긴 어절이 같은 줄의 다른 글 뒤에서 시작하면, Web 은 그 어절을 새 줄로 넘긴 뒤 나누고 Flutter 는 그 줄에서부터 나눌 수 있습니다.
+- 기본 다국어 평면 밖의 글자(드문 확장 한자 등)는 Chrome 이 keep-all 에서 이어 주지 않아 그 앞뒤에서 줄이 바뀔 수 있고, Flutter 도 같게 맞춥니다.
+- Flutter 위젯 테스트에서 `.keepAll` 로 다시 그린 글은 `find.text('원문')` 에 맞지 않습니다. `find.bySemanticsLabel('원문')` 을 씁니다.
 
-- 닿는 곳: `.keepAll` 을 단 `Text` 의 글자 — `Text('…')` 의 문자열, `Text.rich` 의 모든 `TextSpan` 글자(span 경계에 걸친 어절도 하나로 잇습니다).
-- 닿지 않는 곳: `SelectableText` · 입력 필드처럼 선택 · 편집하는 글자, `.keepAll` 을 단 위젯 안에 들어 있는 다른 `Text`, `.then*` 으로 이은 글자, `WidgetSpan` 안의 위젯. 컴포넌트가 스스로 그리는 라벨에도 닿지 않습니다.
-- 한 줄보다 긴 어절이 같은 줄의 다른 글자 뒤에서 시작하면, Web 은 그 어절을 새 줄로 넘긴 뒤 나누고 Flutter 는 그 줄에서부터 나눌 수 있습니다.
-- 기본 다국어 평면 밖의 글자(드문 확장 한자 등)는 Chrome 이 글자로 보지 않아 keep-all 에서도 그 앞뒤에서 꺾이고, Flutter 도 같게 맞춥니다.
-- Flutter 위젯 테스트에서 `find.text('원문')` 은 그려진 문자열과 비교하므로 맞지 않습니다 — `find.bySemanticsLabel('원문')` 을 쓰세요.
+## 여러 조각으로 된 글
 
-## 스타일 시스템 (Style System)
+`Text.rich` 는 문자열 대신 `TextSpan` 트리를 받아 한 문단 안에서 조각마다 다른 모양을 줍니다. 바깥의 chain 은 문단 전체에, span 의 `style` 은 그 조각과 아래 조각에 적용됩니다. span 의 `style` 은 chain 이 아니라 `TextStyle` 이라서 색과 굵기를 적는 타입이 플랫폼마다 다릅니다.
 
-### TextStyle
+<Preview demo="text/rich" />
 
-#### Flutter
+<Split>
 
-Flutter SDK `TextStyle` 그대로 사용 — 모든 Flutter 표준 prop (`fontSize`, `fontWeight`, `color`, `decoration`, `shadows`, `foreground`, ...) 사용 가능.
+<Code language="dart" title="Flutter">
+final colors = Theme.of(context).colorScheme;
+
+Text.rich(
+  TextSpan(
+    text: '섞어 쓰기: ',
+    children: [
+      TextSpan(
+        text: '안내',
+        style: TextStyle(
+          color: colors.onInfoContainer.toValue(),
+          fontWeight: CoreFontWeight.semiBold.weight,
+        ),
+      ),
+    ],
+  ),
+).bodyMedium.onSurface
+</Code>
+
+<Code language="dart" title="Jaspr Web">
+final colors = context.colorScheme;
+
+Text.rich(
+  TextSpan(
+    text: '섞어 쓰기: ',
+    children: [
+      TextSpan(
+        text: '안내',
+        style: TextStyle(
+          color: '${colors.onInfoContainer}',
+          fontWeight: CoreFontWeight.scale.semibold,
+        ),
+      ),
+    ],
+  ),
+).bodyMedium.onSurface
+</Code>
+
+</Split>
+
+Flutter 는 `WidgetSpan` 과 `recognizer` 를 포함한 SDK 의 span 을 그대로 씁니다. Web 의 `InlineSpan` 은 `TextSpan` 뿐이며, span 의 `TextStyle` 에 적은 `role` 과 `wordBreakKeepAll` 은 적용하지 않습니다.
+
+문장 안의 링크는 `Link.inlineSpan` 을 씁니다. Flutter 는 `InlineSpan` 을 돌려줘 span 트리에 넣고, Web 은 컴포넌트를 돌려줘 `Text` 옆에 둡니다([문장 안의 링크](/components/link#문장-안의-링크)).
+
+### 뒤에 이어 붙이기 (Flutter)
+
+Flutter 에는 위젯 뒤에 span 을 붙이는 `.then(span)` · `.thenText(text)` · `.thenLink(href: …)` 가 있습니다. Web 에는 없습니다.
+
+<Code language="dart" title="Flutter — then 을 먼저, chain 을 뒤에">
+const Text('이용하기 전에 확인하세요. ')
+    .thenLink(href: '/terms', text: '약관 보기', onPressed: openTerms)
+    .bodyMedium
+</Code>
+
+`openTerms` 는 약관을 여는 앱의 함수입니다. Flutter 의 문장 속 링크는 `href` 를 스스로 열지 않으므로 여는 동작을 `onPressed` 에 적습니다. 이 링크는 `Tab` 으로 닿지 않습니다([키보드](#키보드)).
+
+- 맨 `Text` 에 `.then*` 을 먼저 붙이고 chain 을 뒤에 적으면 문단 전체에 스타일이 적용됩니다.
+- chain 을 먼저 건 뒤에 `.then*` 을 붙이면, 붙인 조각은 둘러싼 글자 스타일을 받지 않습니다. 뒤에 chain 을 더해도 같으므로, 이때는 span 에 `style` 을 직접 적습니다.
+- `.thenLink` 는 마지막에 한 번만 붙입니다. 그 뒤에 `.then*` 을 더 붙이면 붙인 조각이 둘러싼 글자 스타일을 받지 않습니다. 링크 뒤에 글이 이어지거나 링크가 둘 이상이면 `Text.rich` 와 `Link.inlineSpan` 을 씁니다.
+- `Text.rich` 에 바로 `.then*` 을 붙이면 원래의 span 트리가 그려지지 않습니다. 조각은 `Text.rich` 의 `children` 에 넣습니다.
+
+## 선택과 복사
+
+`Text` 에는 선택을 켜고 끄는 파라미터나 선택 콜백이 없습니다. 평범한 `Text` 를 선택할 수 있는지는 실행하는 곳을 따릅니다.
+
+| 실행하는 곳 | 평범한 `Text` |
+| --- | --- |
+| Flutter 모바일 · 데스크톱 | `SelectionArea` 같은 선택 영역 안이 아니면 선택되지 않습니다 |
+| `CoUIApp` 으로 만든 Flutter web | 기본으로 선택됩니다. `CoUIApp` 이 앱 내용을 선택 영역으로 감쌉니다(`enableWebTextSelection`, 기본 `true`) |
+| Jaspr Web | 브라우저의 선택 정책을 따릅니다. 부모가 `user-select: none` 이면 선택되지 않습니다 |
+
+주문 번호처럼 사용자가 꼭 선택해 가져가야 하는 값에는 [SelectableText](/components/selectable-text)를 씁니다.
+
+<a id="사용-시기-when-to-use"></a>
+<a id="사용-가이드라인-usage-guidelines"></a>
+
+## 사용 가이드
+
+### 이럴 때 씁니다
+
+- display · headline · title · body · label 처럼 정해진 글자 역할이 필요할 때
+- 본문보다 옅은 보조 글을 `.onSurfaceVariant` 로 그릴 때
+- 색 · 굵기 · 기울임을 토큰 이름의 chain 으로 정할 때
+- 라이트 · 다크 테마 전환을 따라가야 하는 글을 그릴 때
+
+### 다른 컴포넌트가 더 맞는 경우
+
+| 이런 경우에는 | 대신 쓸 것 |
+| --- | --- |
+| 글을 배지 모양으로 강조할 때 | [Badge](/components/badge) |
+| 사용자가 글을 입력할 때 | [TextField](/components/text-field) |
+| 눌러서 이동하는 글일 때 | [Link](/components/link) |
+| 선택과 복사를 보장해야 할 때 | [SelectableText](/components/selectable-text) |
+| 제목 · 문단 · 인용처럼 문서 속 역할에 맞는 요소로 적어야 할 때(제목 수준은 두 플랫폼 모두 접근성 정보에 담깁니다) | [TextBlock](/components/text-block) |
+
+<a id="do"></a>
+<a id="dont"></a>
+
+<Cards columns="2">
+<Card demo="text/do-role-order" tone="do" eyebrow="이렇게 하세요" title="역할을 먼저 적기">
+
+`.bodyMedium.s24` 는 본문 역할에서 크기만 24 로 바꿉니다.
+
+</Card>
+<Card demo="text/dont-role-order" tone="dont" eyebrow="이렇게 하지 마세요" title="크기 뒤에 역할 적기">
+
+`.s24.bodyMedium` 은 역할이 크기를 덮어 14 로 보입니다.
+
+</Card>
+<Card demo="text/do-error-color" tone="do" eyebrow="이렇게 하세요" title="글로 읽는 색 쓰기">
+
+`.onErrorContainer` 처럼 글자에 쓸 토큰을 고릅니다. 테마가 바뀌면 함께 바뀝니다.
+
+</Card>
+<Card demo="text/dont-faint-color" tone="dont" eyebrow="이렇게 하지 마세요" title="구분선 색을 글에 쓰기">
+
+`.outlineVariant` 는 옅은 구분선 색이라 흰 바탕의 글은 읽기 어렵습니다.
+
+</Card>
+<Card demo="text/do-keep-all" tone="do" eyebrow="이렇게 하세요" title="한국어 제목에 keepAll">
+
+좁은 자리의 제목은 `.keepAll` 로 낱말을 지킵니다.
+
+</Card>
+<Card demo="text/dont-split-word" tone="dont" eyebrow="이렇게 하지 마세요" title="낱말이 갈리게 두기">
+
+기본 줄바꿈은 낱말 가운데에서도 줄을 바꿉니다.
+
+</Card>
+</Cards>
+
+### style 에 고정 값을 적지 않기
 
 ```dart
-Text('안녕', style: theme.typography.bodyMedium.copyWith(
-  fontWeight: FontWeight.w600,
-  color: theme.colorScheme.error.toValue(),
-))
-```
-
-#### Web
-
-Web `TextStyle` 은 **Flutter SDK `TextStyle` 과 동일한 파라미터 이름** 을 사용합니다. 타입만 플랫폼별로 자연스럽게 다릅니다 — 색 · 굵기 · 폰트패밀리는 Tailwind 토큰 `String` (Flutter 는 `Color` / `FontWeight`) 이고, decoration 계열과 `fontStyle` 은 열거형입니다.
-
-```dart
-class TextStyle {
-  final String? color;                          // 'primary' (Tailwind color token)
-  final String? backgroundColor;                // 'surface-container'
-  final double? fontSize;                       // CoreFontSize.s14 등
-  final String? fontWeight;                     // 'semibold' (CoreFontWeight.scale.*)
-  final FontStyle? fontStyle;                   // FontStyle.italic / .normal (coui_web enum)
-  final String? fontFamily;                     // 'sans' / 'mono'
-  final double? letterSpacing;                  // em
-  final double? wordSpacing;                    // em
-  final double? height;                         // line-height multiplier
-  final CoreTextDecoration? decoration;         // .underline / .overline / .lineThrough / .none
-  final String? decorationColor;                // Tailwind color token
-  final CoreTextDecorationStyle? decorationStyle; // .solid / .double / .dotted / .dashed / .wavy
-  final double? decorationThickness;            // 입력은 px (rem 으로 내보냄)
-  final List<Shadow>? shadows;                  // Shadow(color: 'shadow', offset: (dx:, dy:), blurRadius:)
-}
-```
-
-build 시 token 필드는 Tailwind 클래스로 조립되고 (`text-${color}` · `bg-${backgroundColor}` · `font-${fontWeight}` · `font-${fontFamily}` · `italic` / `not-italic` · decoration utility · `decoration-${decorationColor}`), 수치 필드는 inline CSS 로 나갑니다 (`font-size` / `text-decoration-thickness` 는 `rem`, `line-height` 는 배수, `letter-spacing` / `word-spacing` 은 `em`, `shadows` 는 `text-shadow`). 이 패턴은 코드베이스의 다른 컴포넌트들(`'bg-${cs.primary}'` 등 string-token 보간) 과 일관됩니다.
-
-시멘틱 typography 적용은 chain 으로 (`Text('hi').bodyMedium`) — chain 이 내부적으로 `CoreTypography.coui` 의 토큰을 읽어 `TextStyle` 의 `fontSize`/`fontWeight`/`height`/`letterSpacing` 을 채워줍니다.
-
-<a id="chain-동작-메커니즘"></a>
-
-## 동작 스펙 (Behavior)
-
-체인은 왼쪽부터 적용하고 같은 속성은 뒤의 modifier가 덮습니다. 타이포 역할·색 토큰은 빌드 시점 테마에서 해석합니다. `softWrap`·`overflow`·`maxLines`는 줄바꿈과 넘침 표현을 정하고, `Text.rich`는 문자열 대신 span 트리를 렌더합니다. Text 자체에는 입력·선택 상태·클릭 콜백이 없습니다. 일반 Text의 선택은 Flutter의 주변 SelectionArea나 브라우저 정책에 따릅니다.
-
-```dart
-Text('안녕').bodyLarge.semiBold
-Text('안녕').headlineSmall.italic.onTertiaryContainer
-```
-
-Flutter chain은 WrappedText를 통해 SDK Text의 스타일을 합성하고 Web은 스타일 class와 inline CSS를 가진 `<span>`으로 렌더합니다. `textScaler`는 배율이며 Flutter의 비선형 TextScaler와 Web의 숫자 배율은 같은 타입이 아닙니다. 크기 primitive는 논리 px, Web raw letter/word spacing은 em, line-height는 배수입니다.
-
-## 사용 가이드라인 (Usage Guidelines)
-
-일반 라벨·짧은 텍스트의 시각 스타일에는 Text chain을 사용합니다. 제목·문단·인용의 구조 의미는 [TextBlock](/components/text-block), 명시적인 선택·복사 표면은 [SelectableText](/components/selectable-text), 클릭 가능한 링크는 [Link](/components/link)를 선택합니다.
-
-### ✅ Do
-
-<Callout type="tip">
-
-**시맨틱 typography / 색상은 chain 으로 적용**
-
-```dart
-Text('제목').headlineSmall.semiBold.onPrimaryContainer
-```
-
-이유: chain 은 build 시점에 `CoreTypography` / `theme.colorScheme` 토큰에서 값을 읽으므로 light/dark 테마 전환에 자동 반응하고, Flutter와 Web이 같은 토큰 이름을 참조해 두 플랫폼 렌더링이 어긋나지 않습니다.
-
-</Callout>
-
----
-
-### ❌ Don't
-
-<Callout type="warning">
-
-**`style:`에 raw 리터럴을 직접 박지 않기**
-
-```dart
-// ❌ 하드코딩된 값 — 테마와 무관하게 고정됨
+// ❌ 테마와 상관없이 고정되는 값 (Flutter)
 Text(
   '가격',
   style: TextStyle(fontSize: 14, color: Color(0xFF111111)),
 )
+
+// ✅ 토큰을 읽는 chain (두 플랫폼)
+Text('가격').bodyMedium.onSurface
 ```
 
-이유: `style:` 프로퍼티는 다른 디자인 시스템과의 호환을 위해 유지되지만, raw 값은 테마 토큰을 거치지 않아 다크모드 전환에 반응하지 않고 Web 쪽 동일 컴포넌트와 값이 갈릴 위험이 있습니다. CoUI 토큰(`CoreFontSize.*` / `cs.*`)을 참조하거나 chain 을 쓰세요.
+직접 적은 색과 크기는 테마 토큰을 거치지 않아 다크 모드에 따라 바뀌지 않고, 다른 플랫폼의 같은 화면과 값이 갈리기 쉽습니다. `style:` 을 써야 한다면 `CoreFontSize` 와 `colorScheme` 같은 CoUI 토큰을 적습니다.
 
-</Callout>
+<a id="스타일-시스템-style-system"></a>
 
-## 접근성 (Accessibility)
+## 테마와 스타일
+
+`Text` 에는 `textStyle` 같은 CoUI 스타일 슬롯이나 컴포넌트 테마가 없습니다. 한 곳의 모양은 chain 으로 바꿉니다. 앱 전체의 글자 크기 · 굵기 · 서체는 `typography` 로(Flutter 는 `ThemeData`, Web 은 `ThemeConfig.from` 에 넘깁니다), 색은 `colorScheme` 으로 바꿉니다. `typography` 를 넘기는 법은 [타이포그래피의 쓰는 법](/guides/typography#쓰는-법)에 있습니다.
+
+### 값이 정해지는 순서
+
+글자 모양은 아래 순서로 정해지며 뒤의 것이 이깁니다.
+
+| 순서 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 1 | 둘러싼 `DefaultTextStyle` (앱 루트, 컴포넌트의 슬롯) | 부모에게서 물려받는 CSS |
+| 2 | chain. 역할 chain 이 있으면 `bodyMedium` 과 `onSurface` 에서 시작해 chain 을 얹습니다 | chain 이 붙인 클래스와 인라인 CSS. 크기 · 행간 · 자간의 인라인 값은 역할 클래스를 이깁니다 |
+| 3 | 생성자의 `style:` 에 적은 속성 (`inherit` 이 기본값일 때) | 생성자의 `style:` 에 적은 필드 |
+| 4 | 시스템의 굵은 글자 설정이 켜져 있으면 굵기를 bold 로 바꿉니다 | 해당 없음 |
+
+줄 수와 넘침은 순서가 다릅니다. Flutter 는 생성자의 `maxLines` · `overflow` 가 `.lineLimit` · `.ellipsis` 보다 우선합니다. Web 은 뒤에 붙인 chain 이 생성자 값을 바꿉니다.
+
+### TextStyle
+
+`style:` 은 그 플랫폼의 `TextStyle` 을 받습니다. 파라미터 이름은 비슷하지만 값의 타입이 다릅니다.
+
+<Split>
+
+<Code language="dart" title="Flutter — 토큰으로 직접 적기">
+final colors = Theme.of(context).colorScheme;
+
+Text(
+  '커스텀',
+  style: TextStyle(
+    color: colors.onPrimaryContainer.toValue(),
+    fontSize: CoreFontSize.s14,
+    fontWeight: CoreFontWeight.semiBold.weight,
+  ),
+)
+</Code>
+
+<Code language="dart" title="Jaspr Web — 토큰으로 직접 적기">
+final colors = context.colorScheme;
+
+Text(
+  '커스텀',
+  style: TextStyle(
+    color: '${colors.onPrimaryContainer}',
+    fontSize: CoreFontSize.s14,
+    fontWeight: CoreFontWeight.scale.semibold,
+  ),
+)
+</Code>
+
+</Split>
+
+#### Flutter
+
+Flutter SDK 의 `TextStyle` 그대로입니다. `fontSize` · `fontWeight` · `color` · `decoration` · `shadows` · `foreground` 같은 표준 속성을 모두 쓸 수 있습니다. 테마의 역할 값은 `CoreTextStyle` 이므로, 거기서 시작할 때는 `toValue(theme: theme)` 로 바꾼 뒤 고칩니다.
+
+<Code language="dart" title="Flutter — 역할 값에서 시작하기">
+final theme = Theme.of(context);
+
+Text(
+  '안녕',
+  style: theme.typography.bodyMedium
+      .toValue(theme: theme)
+      .copyWith(
+        fontWeight: FontWeight.w600,
+        color: theme.colorScheme.onErrorContainer.toValue(),
+      ),
+)
+</Code>
+
+#### Web
+
+CoUI 의 `TextStyle` 이며 필드는 [API](#textstyle-jaspr-web)에 있습니다. 색 · 굵기 · 서체는 Tailwind 이름 문자열이고, 기울임과 꾸밈 선은 enum 입니다. 그릴 때 이름 필드는 클래스(`text-{color}` · `bg-{backgroundColor}` · `font-{fontWeight}` · `font-{fontFamily}` · `italic` / `not-italic` · 꾸밈 선 클래스 · `decoration-{decorationColor}`)가 되고, 숫자 필드는 인라인 CSS 가 됩니다. `fontSize` 와 `decorationThickness` 는 `rem`, `height` 는 행간 배수(줄 상자는 정수 px 로 맞춤), `letterSpacing` · `wordSpacing` 은 `em`, `decorationStyle` 은 `text-decoration-style` 입니다.
+
+<a id="접근성-accessibility"></a>
+
+## 접근성
 
 ### 역할
 
-**양 플랫폼 모두 `role` 을 내보내지 않습니다** — 이름은 표시되는 문자열 자체에서 나옵니다.
+`Text` 는 두 플랫폼 모두 역할을 따로 정하지 않습니다. 이름은 화면의 문자열에서 나옵니다. `.headlineLarge` 같은 역할 chain 은 보이는 모양만 정하고 제목 수준을 알리지 않습니다. 제목 구조가 필요하면 [TextBlock](/components/text-block)을 씁니다.
 
-Web `Text` 는 단일 `<span>` 이고, 내보내는 접근성 관련 속성은 `dir` · `lang` · `aria-label` 셋뿐입니다 (`text.dart:445-461`). `Text.rich` 의 각 `TextSpan` 도 자기 `lang` / `aria-label` 만 붙입니다 (`text.dart:499-502`).
-
-Flutter `Text` 는 SDK 위젯 그대로입니다 — 배럴이 `package:flutter/widgets.dart` 를 re-export 하면서 `Icon` 등은 hide 하지만 `Text` 는 그대로 통과시킵니다 (`coui_flutter.dart:25-35`). chain (`.bodyMedium` / `.onSurface` / …) 은 `DefaultTextStyle.merge` 로 스타일만 얹고 semantics 를 건드리지 않으므로 (`text.dart:1238-1246`), 텍스트 노드의 semantics 는 `RichText` / `RenderParagraph` 가 자동으로 만듭니다.
+Web 의 `Text` 는 `<span>` 하나이며, 접근성에 쓰이는 속성은 `dir` · `lang` · `aria-label` 입니다. `Text.rich` 의 `TextSpan` 은 자기 `lang` 과 `aria-label` 을 붙입니다. Flutter 의 `Text` 는 SDK 위젯 그대로이고, 스타일 chain 은 접근성 정보를 바꾸지 않습니다(`.semanticsLabel` chain 은 예외입니다).
 
 ### 키보드
 
-처리하는 키가 없습니다. Web `Text` 는 이벤트 핸들러 파라미터를 아예 노출하지 않고 (`text.dart:252-265`), Flutter SDK `Text` 도 제스처를 갖지 않습니다. 텍스트 선택이나 링크 동작이 필요하면 `SelectableText` / `Link` 를 쓰세요.
+처리하는 키가 없습니다. Web 의 `Text` 에는 이벤트 핸들러 파라미터가 없고, Flutter SDK 의 `Text` 에도 제스처 파라미터가 없습니다. 링크 동작은 [Link](/components/link), 선택은 [SelectableText](/components/selectable-text)를 씁니다.
+
+Flutter 의 `.thenLink` 나 `Link.inlineSpan` 으로 문장에 넣은 링크는 `Tab` 으로 닿지 않습니다. 키보드로 닿아야 하는 링크에는 위젯 `Link` 를 씁니다.
 
 ### 스크린 리더
 
-접근 가능한 이름의 출처는 **표시 문자열 자체**입니다 — 평문은 `data`, `Text.rich` 는 span 트리 전체. `semanticsLabel` 을 주면 그것이 이름이 됩니다 (Flutter 는 원문을 빼고 치환, Web 은 `aria-label` 로 얹음 — 아래 제약 참조).
-
-**시각적으로 잘려도 원문 전체가 읽힙니다.** 자르는 일이 양쪽 모두 그리기 단계에서만 일어나기 때문입니다 — Web 은 `maxLines` / `overflow` 를 CSS(`-webkit-line-clamp` 등)로만 적용해 DOM 텍스트를 그대로 두고 (`text.dart:442`), Flutter 는 두 값을 `RichText` 로 넘길 뿐입니다 (`text.dart:977-982`). 즉 말줄임된 문장도 스크린 리더에는 끝까지 안내됩니다.
-
-상태 통보는 없습니다 — live region 배선이 어느 쪽에도 없습니다.
-
-`locale` 의 도달 범위는 플랫폼마다 다릅니다. Web 은 `lang` 속성으로 내보내 보조기술이 언어별 음성으로 전환할 수 있지만 (`text.dart:447`), Flutter 는 그 값을 `RichText` 의 글꼴 선택 입력으로만 전달하므로 (`text.dart:983`) 발음에는 영향을 주지 않습니다. `textDirection` 은 양쪽 다 도달합니다 (Web `dir` `text.dart:446`, Flutter `RichText.textDirection` `text.dart:975`).
+- 이름은 표시하는 문자열입니다. `Text.rich` 는 span 트리의 글입니다.
+- 생성자의 `semanticsLabel` 을 주면 그 값을 이름으로 씁니다. Flutter 는 원문을 접근성 정보에서 빼고 이 값으로 바꾸며, Web 은 `aria-label` 을 붙입니다([알려진 제약](#알려진-제약)). Flutter 에서 이름을 바꿀 때는 chain 이 아니라 생성자의 `Text('…', semanticsLabel: '…')` 를 씁니다. Web 에서 이름이 꼭 필요하면 역할이 있는 바깥 요소에 붙입니다.
+- `maxLines` · `lineLimit` · 말줄임으로 화면에서 잘려도 접근성 정보에는 원문 전체가 남습니다. 자르는 일은 그릴 때만 일어납니다.
+- 글이 바뀌었을 때 스스로 알리는 live region 은 없습니다.
+- `locale` 은 Web 에서 `lang` 속성이 됩니다. Flutter 에서는 글꼴 선택에 쓰이고 접근성 정보의 언어 속성으로도 붙습니다. 읽는 음성이 실제로 바뀌는지는 플랫폼과 스크린 리더에 달려 있습니다.
+- `textDirection` 은 Web 에서 `dir` 속성, Flutter 에서 문단의 읽기 방향이 됩니다.
+- `.keepAll` 을 붙인 글도 원문으로 알립니다.
 
 ### 포커스 관리
 
-포커스 대상이 아닙니다. 양 플랫폼 모두 `FocusNode` / `Focus` / `tabindex` 가 없어 traversal 정지점이 되지 않습니다. 오버레이가 아니므로 진입·이탈·트랩 모두 해당 없습니다.
+없음. `Text` 는 포커스를 받지 않고 Tab 정지점이 되지 않습니다. 화면을 덮는 컴포넌트가 아니므로 포커스를 옮기거나 가두는 동작도 없습니다.
 
 ### 알려진 제약
 
-- **Flutter chain 의 `.semanticsLabel(...)` 은 원문을 대체하지 않습니다.** 이 chain 은 `Semantics(label: value, child: this)` 로 감싸기만 하고 `ExcludeSemantics` 를 두지 않습니다 (`text.dart:886`). 같은 파일의 합성 경로가 SDK 형태(`Semantics(label:) + ExcludeSemantics`)를 그대로 미러하는 것과 대비됩니다 (`text.dart:1004-1009`). 확실히 치환하려면 chain 대신 **생성자 파라미터** `Text('...', semanticsLabel: '...')` 를 쓰세요.
-- **Web `semanticsLabel` 은 role 없는 `<span>` 에만 얹힙니다.** `aria-label` 이 붙는 대상이 role 을 갖지 않는 제네릭 요소라 (`text.dart:448`, `:455-461`), 규격상 이름 지정이 허용되는 자리가 아니어서 브라우저·보조기술에 따라 무시될 수 있습니다. 게다가 Web `Text` 는 `UiComponent` 가 아니라 `StatelessComponent` 라 (`text.dart:250`) `attributes` / `id` 가 없어 **그 요소에 role 을 직접 실을 수도 없습니다** — 확실히 이름을 주려면 role 을 가진 조상 요소 쪽에 붙이세요.
-- **`.then*` 합성 텍스트는 OS 글자 크기 배율을 따르지 않습니다.** `Text('a').thenText('b')` 는 `textScaler` 를 명시하지 않으면 `TextScaler.noScaling` 으로 렌더되고 (`text.dart:981`), chain 을 거친 수신자에서 떨어지는 경로도 `RichText` 기본값이 같은 `noScaling` 입니다 (`text.dart:766-768`). 단독 `Text` 가 `MediaQuery.textScalerOf` 를 따르는 것과 달라, 시스템 글자 크기를 키운 사용자에게 합성 구간만 커지지 않습니다. Web 은 `rem` 기반이라 이 비대칭이 없습니다 (`text.dart:418-427`).
-- **"굵은 텍스트" 접근성 설정은 Flutter 에만 도달합니다.** Flutter 경로는 `MediaQuery.boldTextOf` 를 읽어 폰트 굵기를 올리지만 (`text.dart:960-964`), Web 쪽 `Text` 에는 대응하는 신호가 없습니다 — 플랫폼 기능 차이이며 우회 경로가 없습니다.
+- Flutter 의 `.semanticsLabel(...)` chain 은 원문을 대신하지 않습니다. `Semantics(label:)` 로 감쌀 뿐 원문을 접근성 정보에서 빼지 않습니다. 맨 `Text` 에는 같은 이름의 필드가 있어 다른 chain 뒤에서만 부를 수 있습니다.
+- Web 의 `semanticsLabel` 은 역할이 없는 `<span>` 에 `aria-label` 로 붙습니다. ARIA 는 이런 일반 요소에 이름 붙이기를 허용하지 않아 브라우저나 스크린 리더가 무시할 수 있습니다. `Text` 에는 `id` · `classes` · `attributes` 파라미터가 없어 그 `<span>` 에 역할을 줄 수도 없습니다. `TextSpan` 의 `semanticsLabel` 도 역할이 없는 `<span>` 의 `aria-label` 입니다.
+- Flutter 의 `.then*` 으로 붙인 조각은 시스템 글자 크기 배율을 따르지 않습니다. 맨 `Text` 에 바로 붙이면 문단 전체가 따르지 않으며, 그 `Text` 에 `textScaler` 를 주면 그 값을 씁니다. 평범한 `Text` 는 `MediaQuery` 의 배율을 따릅니다.
+- 시스템의 굵은 글자 설정은 Flutter 에만 반영됩니다. Web 의 `Text` 는 이런 설정을 읽지 않습니다.
 
-### 색상 대비
+#### 색상 대비
 
-- 본문 텍스트: 배경 대비 WCAG AA (4.5:1) 이상
-- 보조 텍스트 (`.neutralForeground`): 배경 대비 최소 3:1
-- light / dark 토글 시 CSS variable (`--coui-on-surface` 등) 자동 반응 — text 색이 테마에 맞게 자동 전환
+- 색 chain 은 바탕과의 대비를 검사하지 않습니다. 직접 고른 조합의 대비는 자동으로 보정되지 않습니다.
+- WCAG 1.4.3(AA)의 기준은 일반 글자가 바탕과 4.5:1 이상, 큰 글자(24px 이상, 또는 굵은 약 18.7px 이상)가 3:1 이상입니다.
+- 라이트 · 다크를 바꾸면 Web 은 `--coui-on-surface` 같은 CSS 변수가, Flutter 는 테마의 `colorScheme` 이 바뀌어 색 chain 이 함께 바뀝니다.
 
-모션 감소 · 고대비 · 최소 터치 타깃처럼 모든 컴포넌트에 공통으로 적용되는 축은 [전역 접근성 축](/accessibility) 에 정리되어 있습니다.
+모션 감소 · 고대비 · 최소 터치 타깃처럼 모든 컴포넌트에 공통인 내용은 [전역 접근성 축](/accessibility)에 있습니다.
 
-## 크로스 플랫폼 차이점 (Platform Differences)
+<a id="크로스-플랫폼-차이점-platform-differences"></a>
 
-**핵심**: 양쪽 모두 같은 CoUI 토큰 (`cs.primary` / `CoreFontWeight.scale.semibold` 등) 을 사용합니다. 단 ColorScheme/Typography 가 *반환하는 타입* 이 플랫폼 native API 에 맞춰 다릅니다.
+## 플랫폼 차이
 
-| prop | Flutter 반환 타입 | Web 반환 타입 |
-|---|---|---|
-| `cs.primary` | `Color` (dart:ui) — 위젯에 직접 주입 | `String` 'primary' — Tailwind 클래스 보간 |
-| `CoreFontWeight.scale.semibold` | (Flutter는 보통 `FontWeight.w600` 사용) | `String` 'semibold' — Tailwind 클래스 보간 |
-| `CoreFontSize.s14` / `CoreLineHeight.h160` | `double` | `double` ✅ (양쪽 동일) |
-| `decoration` | `TextDecoration` (combinable) | `CoreTextDecoration` enum (단일 값 — 조합 불가) |
-| `fontStyle` | Flutter SDK `FontStyle` enum | coui_web `FontStyle` enum (`.italic` / `.normal`) |
-| `shadows` | `List<Shadow>` (`Color` / `Offset`) | `List<Shadow>` (토큰 `String` / `(dx:, dy:)` 레코드) |
+[체인 메서드](#체인-메서드)와 [글자색](#글자색)에서 두 플랫폼에 있다고 적은 chain 은 이름이 같습니다. 두 플랫폼 모두 같은 CoUI 토큰을 쓰지만, `TextStyle` 에 넣는 타입과 일부 동작은 다릅니다.
 
-**파라미터 이름 양쪽 동일** + **토큰 이름 양쪽 동일** — `Text('hi', style: TextStyle(color: cs.primary, fontSize: ..., fontWeight: ...))` 형태로 사용자 코드가 같은 모양. 다른 컴포넌트들 (`Card(cardStyle: CoreCardStyle(backgroundColor: cs.surface))` 등) 과 동일한 토큰 패턴.
+### 타입
 
-**chain 표현 (`Text('hi').bodyMedium.onPrimaryContainer.semiBold`) 은 양쪽 100% 동일.**
+| 항목 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| `colorScheme` 의 색을 `TextStyle` 에 넣기 | `CoreColor` 를 `.toValue()` 로 `Color` 로 바꿉니다 | `CoreColor` 를 문자열에 넣어(`'${colors.onSurface}'`) Tailwind 색 이름으로 만듭니다 |
+| 굵기 | `FontWeight` (`FontWeight.w600` 또는 `CoreFontWeight.semiBold.weight`) | `String` (`CoreFontWeight.scale.semibold`) |
+| `CoreFontSize` · `CoreLineHeight` | `double` | `double` |
+| `decoration` | `TextDecoration` (`TextDecoration.combine` 으로 여러 선) | `CoreTextDecoration` 하나 |
+| `fontStyle` | Flutter 의 `FontStyle` | `coui_web` 의 `FontStyle` (`.italic` · `.normal`) |
+| `shadows` | `List<Shadow>` (`Color` · `Offset`) | `List<Shadow>` (색 이름 문자열 · `(dx:, dy:)` 레코드) |
+| `TextStyle` 의 `letterSpacing` · `wordSpacing` | 논리 px | em |
+| `textScaler` | `TextScaler` (비선형 배율 가능) | 숫자 배율 |
 
-## 관련 컴포넌트 (Related Components)
+### 동작
 
-- **[Link](/components/link)**: 클릭 가능한 링크 텍스트
-- **[Badge](/components/badge)**: 텍스트 배지 (상태/카운트 강조)
-- **[Tooltip](/components/tooltip)**: 호버 시 추가 설명 표시
+| 항목 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| chain 을 붙일 수 있는 대상 | 모든 위젯. 안쪽의 맨 `Text` 에 스타일이 내려갑니다 | `Text` 만 |
+| chain 결과의 타입 | `Text` 가 아닌 `Widget`(대부분 `TextModifier`) | `Text` |
+| 색 chain 없는 역할 chain 의 색 | `onSurface` (테마 역할에 색이 있으면 그 색) | 상속 |
+| code 가 아닌 역할 chain 의 서체 | 역할의 서체(정하지 않은 역할은 Pretendard) | 역할에 서체를 정했으면 그 서체, 아니면 상속 |
+| 색 chain 없는 `.opacity` | 둘러싼 글자색에서 시작 | `onSurface` 에서 시작 |
+| `.opacity` 두 번 | 뒤의 알파가 적용됩니다 | 색 클래스가 올바르게 만들어지지 않으므로 한 번만 씁니다 |
+| `.lineLimit` 만 · `.ellipsis` 만 | [줄바꿈과 넘침](#줄바꿈과-넘침)의 표 | [줄바꿈과 넘침](#줄바꿈과-넘침)의 표 |
+| `textAlign` | `Text` 가 받은 폭 안에서 정렬합니다 | `<span>` 이 인라인이라 상자 폭을 차지하는 자리(기본 정렬의 flex 열 자식 등)나 줄 수를 제한한 때에 보입니다 |
+| 생성자의 `maxLines` · `overflow` 와 chain | 생성자 값이 우선 | 뒤의 chain 이 우선 |
+| `textScaler` 와 `TextSpan` | 문단 전체에 적용 | span 의 `TextStyle` 에 직접 적은 `fontSize` 에는 곱하지 않습니다 |
+| `TextSpan` 의 종류 | SDK 의 span (`WidgetSpan`, `recognizer` 등) | `TextSpan` 만 |
+| 평범한 `Text` 의 선택 | [선택과 복사](#선택과-복사)의 표 | [선택과 복사](#선택과-복사)의 표 |
+| 시스템의 굵은 글자 설정 | 반영 | 반영하지 않음 |
+| Flutter 에만 있는 chain | [목록](#flutter-에만-있는-chain) | 없음 |
+
+<a id="props-parameters"></a>
+
+## API
+
+### 생성자
+
+`Text(data, …)` 는 문자열을, `Text.rich(textSpan, …)` 는 `InlineSpan` 을 첫 위치 인자로 받습니다. `data` 와 `styleBuilder` 를 뺀 아래 파라미터는 두 플랫폼의 두 생성자에 모두 있습니다. 타입이 다른 것은 Flutter / Web 순서로 적었습니다.
+
+| 이름/속성 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `data` | `String` | 필수 | 표시할 글. `Text.rich` 에는 없고 대신 `textSpan` 을 받습니다 |
+| `style` | `TextStyle?` | `null` | 직접 적는 스타일. chain 보다 우선합니다 |
+| `softWrap` | `bool?` | `null` | `false` 면 줄을 바꾸지 않습니다. `null` 이면 둘러싼 설정을 따르며 보통 줄을 바꿉니다 |
+| `overflow` | `TextOverflow?` / `CoreTextOverflow?` | `null` | 넘친 글의 처리 |
+| `maxLines` | `int?` | `null` | 최대 줄 수 |
+| `textAlign` | `TextAlign?` / `CoreTextAlign?` | `null` | 가로 정렬 |
+| `textDirection` | `TextDirection?` / `CoreTextDirection?` | `null` | 읽기 방향. Web 은 `dir` 속성 |
+| `locale` | `Locale?` / `String?` (BCP 47) | `null` | 언어. Web 은 `lang` 속성 |
+| `semanticsLabel` | `String?` | `null` | 접근성 이름. Web 은 `aria-label` |
+| `textScaler` | `TextScaler?` / `double?` | `null` | 글자 배율. `null` 이면 Flutter 는 `MediaQuery` 의 배율을 따르고, Web 은 배율을 따로 곱하지 않습니다 |
+| `styleBuilder` | `TextStyleBuilder?` (Web 만) | `null` | chain 이 채우는 자리. 직접 넘기지 말고 chain 을 씁니다 |
+
+Flutter SDK 의 `Text` 는 이 밖에도 `strutStyle` · `textWidthBasis` · `textHeightBehavior` · `selectionColor` · `semanticsIdentifier` 같은 SDK 파라미터와 사용 중단된 `textScaleFactor` 를 받습니다. Web 의 `Text` 에는 이 이름들이 없습니다.
+
+### TextSpan
+
+| 이름/속성 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `text` | `String?` | `null` | 이 조각의 글 |
+| `children` | `List<InlineSpan>?` | `null` | `text` 뒤에 이어지는 조각 |
+| `style` | `TextStyle?` | `null` | 이 조각과 아래 조각의 스타일 |
+| `semanticsLabel` | `String?` | `null` | 이 조각의 접근성 이름 |
+| `locale` | `Locale?` / `String?` | `null` | 이 조각의 언어 |
+
+Flutter 의 `TextSpan` 에는 `recognizer` · `mouseCursor` · `onEnter` · `onExit` · `semanticsIdentifier` · `spellOut` 도 있습니다.
+
+### TextStyle (Jaspr Web)
+
+모든 필드는 선택이고 기본값은 `null` 입니다. `null` 인 필드는 둘러싼 스타일을 따릅니다. `copyWith` · `merge` · `withRole` 로 새 값을 만들 수 있고, `merge` 는 넘긴 쪽의 `null` 이 아닌 필드가 이깁니다.
+
+| 이름/속성 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `color` | `String?` | `null` | Tailwind 글자색 이름 |
+| `backgroundColor` | `String?` | `null` | Tailwind 배경색 이름 |
+| `fontSize` | `double?` | `null` | 글자 크기(px 값, `rem` 으로 바꿔 씀) |
+| `fontWeight` | `String?` | `null` | 굵기 이름 (`CoreFontWeight.scale`) |
+| `fontStyle` | `FontStyle?` | `null` | `.italic` · `.normal` |
+| `fontFamily` | `String?` | `null` | 서체 이름 (`CoreFontFamily.scale`) |
+| `letterSpacing` | `double?` | `null` | 자간(em) |
+| `wordSpacing` | `double?` | `null` | 낱말 간격(em) |
+| `height` | `double?` | `null` | 행간 배수 |
+| `decoration` | `CoreTextDecoration?` | `null` | 꾸밈 선 |
+| `decorationColor` | `String?` | `null` | 꾸밈 선의 Tailwind 색 이름 |
+| `decorationStyle` | `CoreTextDecorationStyle?` | `null` | `.solid` · `.double` · `.dotted` · `.dashed` · `.wavy` |
+| `decorationThickness` | `double?` | `null` | 꾸밈 선 두께(px 값) |
+| `shadows` | `List<Shadow>?` | `null` | 글자 그림자 |
+| `role` | `String?` | `null` | 글자 역할 이름(`body-medium` 등). 보통은 역할 chain 을 씁니다. span 에서는 적용하지 않습니다 |
+| `wordBreakKeepAll` | `bool?` | `null` | 어절 단위 줄바꿈. 보통은 `.keepAll` 을 씁니다. span 에서는 적용하지 않습니다 |
+
+### Shadow (Jaspr Web)
+
+| 이름/속성 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `color` | `String?` | `null` | 색 토큰 이름(`'shadow'` 처럼). `null` 이면 글자색을 따릅니다 |
+| `offset` | `({double dx, double dy})` | `(dx: 0, dy: 0)` | 그림자 위치(CSS px) |
+| `blurRadius` | `double` | `0` | 흐림 반경(CSS px) |
+
+### Flutter 에만 있는 chain
+
+| chain | 설명 |
+| --- | --- |
+| `.color(CoreColor value)` | `colorScheme` 에서 값을 찾아 글자색으로 칠합니다. 대비는 직접 확인합니다 |
+| `.decorationColor(CoreColor value)` | 꾸밈 선의 색 |
+| `.semanticsLabel(String value)` | 접근성 라벨을 더합니다([알려진 제약](#알려진-제약)) |
+| `.foreground` | `.onSurface` 와 같은 색 |
+| `.then(InlineSpan span)` · `.thenText(String text)` | 뒤에 조각을 붙입니다([뒤에 이어 붙이기](#뒤에-이어-붙이기-flutter)) |
+| `.thenLink(...)` | 뒤에 글 속 링크를 붙입니다. `href`(필수) · `text` · `children` · `onPressed` · `external`(기본 `false`) · `variant`(기본 `defaultVariant`) · `linkStyle` 을 받습니다 |
+| `(...)` 호출 | `Text('안녕').bodyMedium(letterSpacing: 0.5)` 처럼 `TextStyle` 속성을 chain 위에 얹습니다. 이름 chain 에 없는 값을 넣는 방법이며, 결과 타입이 `TextModifier` 인 chain 뒤에서 부릅니다. `.fontSize(value)` 처럼 `Widget` 을 돌려주는 메서드 바로 뒤에서는 부를 수 없습니다 |
+
+<a id="관련-컴포넌트-related-components"></a>
+
+## 관련 컴포넌트
+
+<Cards columns="2">
+<Card demo="text/related-link" title="Link">
+
+눌러서 이동하는 글에 씁니다. [Link 보기](/components/link)
+
+</Card>
+<Card demo="text/related-selectable-text" title="SelectableText">
+
+선택해서 복사해야 하는 글에 씁니다. [SelectableText 보기](/components/selectable-text)
+
+</Card>
+<Card demo="text/related-text-block" title="TextBlock">
+
+제목 · 문단 · 인용처럼 문서의 구조를 나타냅니다. [TextBlock 보기](/components/text-block)
+
+</Card>
+<Card demo="text/related-badge" title="Badge">
+
+상태 · 개수 · 분류를 짧은 라벨로 강조합니다. [Badge 보기](/components/badge)
+
+</Card>
+<Card title="Tooltip">
+
+글이나 컨트롤에 짧은 설명을 덧붙입니다. [Tooltip 보기](/components/tooltip)
+
+</Card>
+</Cards>

@@ -13,6 +13,7 @@ import 'badge/badge_web.dart' as badge;
 import 'banner/banner_web.dart' as banner;
 import 'breadcrumb/breadcrumb_web.dart' as breadcrumb;
 import 'button/button_web.dart' as button;
+import 'card_image/card_image_web.dart' as card_image;
 import 'checkbox/checkbox_web.dart' as checkbox;
 import 'chip/chip_web.dart' as chip;
 import 'chip_group/chip_group_web.dart' as chip_group;
@@ -77,6 +78,7 @@ import 'radio_group/radio_group_web.dart' as radio_group;
 import 'range/range_web.dart' as range;
 import 'refresh_trigger/refresh_trigger_web.dart' as refresh_trigger;
 import 'rich_editor/rich_editor_web.dart' as rich_editor;
+import 'scroll_area/scroll_area_web.dart' as scroll_area;
 import 'scrollbar/scrollbar_web.dart' as scrollbar;
 import 'select/select_web.dart' as select;
 import 'selectable_text/selectable_text_web.dart' as selectable_text;
@@ -87,12 +89,14 @@ import 'sortable/sortable_web.dart' as sortable;
 import 'star_rating/star_rating_web.dart' as star_rating;
 import 'stat/stat_web.dart' as stat;
 import 'status/status_web.dart' as status;
+import 'swap/swap_web.dart' as swap;
 import 'swiper/swiper_web.dart' as swiper;
 import 'switch_field/switch_field_web.dart' as switch_field;
 import 'switcher/switcher_web.dart' as switcher;
 import 'tab_pane/tab_pane_web.dart' as tab_pane;
 import 'tabs/tabs_web.dart' as tabs;
 import 'tag/tag_web.dart' as tag;
+import 'text/text_web.dart' as text;
 import 'text_area/text_area_web.dart' as text_area;
 import 'text_block/text_block_web.dart' as text_block;
 import 'text_field/text_field_web.dart' as text_field;
@@ -109,6 +113,7 @@ import 'trend_chart/trend_chart_web.dart' as trend_chart;
 import 'validated/validated_web.dart' as validated;
 import 'validation_badge/validation_badge_web.dart' as validation_badge;
 import 'validator_hint/validator_hint_web.dart' as validator_hint;
+import 'window/window_web.dart' as window;
 
 /// 문서 슬러그 → 속성 빌더.
 final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
@@ -120,6 +125,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (banner.propPreview case final builder?) 'banner': builder,
   if (breadcrumb.propPreview case final builder?) 'breadcrumb': builder,
   if (button.propPreview case final builder?) 'button': builder,
+  if (card_image.propPreview case final builder?) 'card-image': builder,
   if (checkbox.propPreview case final builder?) 'checkbox': builder,
   if (chip.propPreview case final builder?) 'chip': builder,
   if (chip_group.propPreview case final builder?) 'chip-group': builder,
@@ -184,6 +190,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (range.propPreview case final builder?) 'range': builder,
   if (refresh_trigger.propPreview case final builder?) 'refresh-trigger': builder,
   if (rich_editor.propPreview case final builder?) 'rich-editor': builder,
+  if (scroll_area.propPreview case final builder?) 'scroll-area': builder,
   if (scrollbar.propPreview case final builder?) 'scrollbar': builder,
   if (select.propPreview case final builder?) 'select': builder,
   if (selectable_text.propPreview case final builder?) 'selectable-text': builder,
@@ -194,12 +201,14 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (star_rating.propPreview case final builder?) 'star-rating': builder,
   if (stat.propPreview case final builder?) 'stat': builder,
   if (status.propPreview case final builder?) 'status': builder,
+  if (swap.propPreview case final builder?) 'swap': builder,
   if (swiper.propPreview case final builder?) 'swiper': builder,
   if (switch_field.propPreview case final builder?) 'switch-field': builder,
   if (switcher.propPreview case final builder?) 'switcher': builder,
   if (tab_pane.propPreview case final builder?) 'tab-pane': builder,
   if (tabs.propPreview case final builder?) 'tabs': builder,
   if (tag.propPreview case final builder?) 'tag': builder,
+  if (text.propPreview case final builder?) 'text': builder,
   if (text_area.propPreview case final builder?) 'text-area': builder,
   if (text_block.propPreview case final builder?) 'text-block': builder,
   if (text_field.propPreview case final builder?) 'text-field': builder,
@@ -216,6 +225,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (validated.propPreview case final builder?) 'validated': builder,
   if (validation_badge.propPreview case final builder?) 'validation-badge': builder,
   if (validator_hint.propPreview case final builder?) 'validator-hint': builder,
+  if (window.propPreview case final builder?) 'window': builder,
 };
 
 /// 장면 이름 → 장면.
@@ -228,6 +238,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...banner.demos,
   ...breadcrumb.demos,
   ...button.demos,
+  ...card_image.demos,
   ...checkbox.demos,
   ...chip.demos,
   ...chip_group.demos,
@@ -292,6 +303,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...range.demos,
   ...refresh_trigger.demos,
   ...rich_editor.demos,
+  ...scroll_area.demos,
   ...scrollbar.demos,
   ...select.demos,
   ...selectable_text.demos,
@@ -302,12 +314,14 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...star_rating.demos,
   ...stat.demos,
   ...status.demos,
+  ...swap.demos,
   ...swiper.demos,
   ...switch_field.demos,
   ...switcher.demos,
   ...tab_pane.demos,
   ...tabs.demos,
   ...tag.demos,
+  ...text.demos,
   ...text_area.demos,
   ...text_block.demos,
   ...text_field.demos,
@@ -324,4 +338,5 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...validated.demos,
   ...validation_badge.demos,
   ...validator_hint.demos,
+  ...window.demos,
 };
