@@ -1,5 +1,3 @@
-library;
-
 import 'package:coui_flutter/coui_flutter.dart';
 
 // ═══════════════════════════════════════════════════
@@ -188,8 +186,8 @@ ResolvedCard resolveCard(
   // accepts `CoreClipBehavior`. Map between the two — media presence
   // upgrades `none` to `antiAlias` so images respect the rounded
   // corner.
-  final CoreClipBehavior effectiveClip = clipMode == .none && mediaPresent
-      ? .antiAlias
+  final effectiveClip = clipMode == .none && mediaPresent
+      ? CoreClipBehavior.antiAlias
       : clipMode.toClipBehavior();
 
   final containerStyle = CoreOutlinedContainerStyle(
@@ -344,8 +342,15 @@ ResolvedCard resolveCard(
   // ─── Paint-ready dimensional locals (scaling applied here, not in the
   //     return literal — chaining position gate: return = bare mapping +
   //     `* scaling` only on these dimensional locals).
+  // Logical insets need the caller's reading direction. Physical insets keep
+  // their existing conversion and do not require a Directionality ancestor.
   final slotLayoutPadding =
-      coreCardPadding.toValue(geometry: theme.geometry) * scaling;
+      (coreCardPadding.isDirectional
+          ? coreCardPadding
+                .toGeometry(geometry: theme.geometry)
+                .resolve(Directionality.of(context))
+          : coreCardPadding.toValue(geometry: theme.geometry)) *
+      scaling;
   final overlayInset =
       (merged.overlayInset ?? CoreCardStyle.defaultOverlayInset) * scaling;
 
