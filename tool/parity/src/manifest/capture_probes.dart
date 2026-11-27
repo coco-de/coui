@@ -64,6 +64,10 @@ void requireCaptureProbes({
                 BoxObservationSourceSpec.showcaseAllocationHost.logicalUnitId ||
             source?.logicalUnitId ==
                 BoxObservationSourceSpec
+                    .bottomActionBarContentInset
+                    .logicalUnitId ||
+            source?.logicalUnitId ==
+                BoxObservationSourceSpec
                     .breakpointShowcaseContentInset
                     .logicalUnitId ||
             BoxObservationSourceSpec.documentationBubbleFrames.contains(
@@ -178,6 +182,12 @@ BoxObservationSourceSpec? _componentBoxSource(
   ('draggable-panel', 'default' || 'outside') ||
   ('scrollable-client', 'default') ||
   ('table', 'scrollable') => BoxObservationSourceSpec.showcaseAllocationHost,
+  ('bottom-action-bar', 'default') ||
+  ('bottom-action-bar', 'horizontal') ||
+  (
+    'bottom-action-bar',
+    'summary-compact',
+  ) => BoxObservationSourceSpec.bottomActionBarContentInset,
   ('mockup-foldable', 'angle' || 'default') ||
   ('scaffold', 'default') ||
   ('bottom-action-bar', 'scaffold') ||

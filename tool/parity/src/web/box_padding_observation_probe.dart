@@ -4,6 +4,7 @@ import 'package:coui_web/src/util/web_constants.dart'
     show kWebLocalSurfaceMarker, kWebSurfaceMarker;
 
 import '../model/box_observation_source_spec.dart';
+import 'bottom_action_bar_ssr_source.dart';
 import 'box_padding_chat_bubble_units_probe.dart';
 import 'box_padding_collection_layout_host_units_probe.dart';
 import 'box_padding_component_units_probe.dart';
@@ -56,6 +57,7 @@ String get boxPaddingObservationScript =>
       BoxObservationSourceSpec.docsSizePreview.toJson(),
       BoxObservationSourceSpec.docsPlayground.toJson(),
       BoxObservationSourceSpec.textShowcaseOuterPadding.toJson(),
+      BoxObservationSourceSpec.bottomActionBarContentInset.toJson(),
       BoxObservationSourceSpec.showcaseAllocationHost.toJson(),
       BoxObservationSourceSpec.breakpointShowcaseContentInset.toJson(),
       ...BoxObservationSourceSpec.componentFrames.map((source) => source.toJson()),
@@ -111,6 +113,21 @@ String get boxPaddingObservationScript =>
     return {raw:receipt.currentRaw};
   };
   switch(source.webAdapterId) {
+    case 'bottom-action-bar-owned-content-inset-v1': {
+      const binding = ($bottomActionBarRequestBindingScript)(request);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (!binding.applied || binding.registryResultElement !== layoutRoot ||
+          binding.fieldUnitElement !== layoutRoot || binding.paddingSource !== layoutRoot ||
+          binding.frameSource !== layoutRoot || binding.registryIsLayoutRoot !== true ||
+          typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('BOTTOM_ACTION_BAR_FIELD_UNIT_CHANGED'));
+      currentBoxBindingFailure = 'BOTTOM_ACTION_BAR_BINDING_CHANGED_DURING_CSS_READ';
+      owner = layoutRoot;
+      sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true;
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      break;
+    }
     case 'classic-compound-showcase-allocation-host-v1': {
       const binding = ($showcaseAllocationRequestBindingScript)(request);
       if (binding.error) return JSON.stringify(incomplete(binding.error));

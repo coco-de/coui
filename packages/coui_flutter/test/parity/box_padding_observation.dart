@@ -25,6 +25,7 @@ void requireConcreteBoxSourceType(Widget widget, Type auditedType) {
 /// The current renderer's parameter and its source allocation are distinct.
 enum PaddingQuantityKind {
   frameworkOwnParameter,
+  frameworkOwnedPaddingComposition,
   declaredOuterEdgeInsetWithinBorder,
   declaredNoOwnPadding,
 }
@@ -176,6 +177,49 @@ class BoxPaddingObservation {
     'sameOwnerDecorationAllocation': _four(allocatedDecorationInsets),
     'excludedMargin': _four(excludedMargin),
     'generatedSlots': generatedSlots,
+  };
+}
+
+/// Two consecutive current framework-owned parameters, after source closure.
+/// This record does not pretend the aggregate belongs to one RenderPadding.
+class BoxPaddingCompositionObservation {
+  BoxPaddingCompositionObservation({
+    required List<EdgeInsets> contributions,
+    required this.sourceIdentity,
+    required this.declaringProducer,
+    required this.frame,
+  }) : contributions = List.unmodifiable(contributions) {
+    if (contributions.length != 2) {
+      throw const BoxObservationError(
+        'INVALID_PADDING_COMPOSITION',
+        'Exactly two proven sources are required.',
+      );
+    }
+  }
+  final List<EdgeInsets> contributions;
+  final Map<String, Object?> sourceIdentity;
+  final Element declaringProducer;
+  final Element frame;
+  EdgeInsets get value => contributions[0] + contributions[1];
+
+  Map<String, Object?> toJson() => {
+    'status': 'measured',
+    'quantityKind': PaddingQuantityKind.frameworkOwnedPaddingComposition.name,
+    'value': _four(value),
+    'sourceIdentity': sourceIdentity,
+    'measurement': {
+      'contributors': [
+        for (final (i, padding) in contributions.indexed)
+          {'ordinal': i, 'paddingPx': _four(padding)},
+      ],
+      'paddingPx': _four(value),
+    },
+    'declaringProducerElement': identityHashCode(declaringProducer),
+    'declaringProducerWidgetType': declaringProducer.widget.runtimeType
+        .toString(),
+    'frameSourceOwnerElement': identityHashCode(frame),
+    'frameSourceStatus': 'bound-configured-frame',
+    'paintPresenceInferred': false,
   };
 }
 

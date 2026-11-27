@@ -948,6 +948,25 @@ void main() {
           ),
           throwsFormatException,
         );
+      } else if (recipe == ('bottom-action-bar', 'default')) {
+        expect(probe.boxObservationSource?.toJson(), {
+          'schemaVersion': 1,
+          'logicalUnitId': 'bottom-action-bar-owned-content-inset',
+          'quantityId': 'inside-frame-own-content-inset-v1',
+          'nativeAdapterId': 'bottom-action-bar-owned-content-inset-v1',
+          'webAdapterId': 'bottom-action-bar-owned-content-inset-v1',
+        });
+        expect(
+          () => requireCaptureProbes(
+            component: recipe.$1,
+            variant: recipe.$2,
+            roles: ['root'],
+            boxObservationSources: [
+              BoxObservationSourceSpec.showcaseAllocationHost,
+            ],
+          ),
+          throwsFormatException,
+        );
       } else {
         expect(probe.boxObservationSource, isNull);
       }
