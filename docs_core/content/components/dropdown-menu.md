@@ -124,9 +124,9 @@ DropdownMenu(
 
 `controller` 에 `PopoverController` 를 넘기면 `show()` · `close()` · `toggle()` 로 열고 닫고, `isOpen` 과 `addListener` 로 상태를 읽습니다. [Popover](/components/popover) 와 같은 타입입니다. 직접 만든 컨트롤러는 직접 `dispose()` 합니다.
 
-Flutter 에서는 키보드로 트리거를 눌러도 메뉴가 열리지 않습니다. 스크린 리더로 활성화할 때도 열리지 않을 수 있습니다. 이 경우를 지원하려면 트리거 버튼의 `onPressed` 에 `show` 를 연결합니다. `toggle` 을 연결하면 마우스로 눌렀을 때 상태가 두 번 뒤집혀 열리자마자 닫힐 수 있습니다. Jaspr Web 에는 이 연결을 넣지 않습니다 — 누름이 이미 메뉴를 열고 닫으므로, `show` 를 더하면 열렸다가 바로 닫힐 수 있습니다.
+Flutter 의 포커스 가능한 CoUI `Button` · `Clickable` 트리거는 `Enter` · `Space` 또는 접근성 `tap` 동작으로 메뉴를 엽니다. 원래 누름 콜백도 한 번 실행됩니다. 일반 텍스트 트리거에도 기본 접근성 `tap` 동작을 제공합니다. 기존처럼 `onPressed` 에 `show` 를 명시적으로 연결해도 됩니다. CoUI 의 활성화 경로를 쓰지 않고 별도 semantics 경계를 가진 커스텀 트리거의 동작은 그대로 두므로, 메뉴를 열려면 자체 콜백에 `show` 를 연결합니다. `toggle` 을 연결하면 마우스로 눌렀을 때 상태가 두 번 뒤집혀 열리자마자 닫힐 수 있습니다. Jaspr Web 에는 이 연결을 넣지 않습니다 — 누름이 이미 메뉴를 열고 닫으므로, `show` 를 더하면 열렸다가 바로 닫힐 수 있습니다.
 
-<Code language="dart" title="Flutter — 키보드로도 열리게">
+<Code language="dart" title="Flutter — 명시적으로 열기">
 // State 의 필드로 두고, dispose() 에서 menuController.dispose() 를 부릅니다.
 final menuController = PopoverController();
 // build 안에서
@@ -411,7 +411,7 @@ CoreMenuStyle 의 기본값 (패널 상자와 행의 나머지 값은 CorePopupS
 
 | 키 | Flutter | Jaspr Web |
 | --- | --- | --- |
-| 트리거에서 `Enter` · `Space` | 메뉴는 열리지 않고 트리거의 `onPressed` 만 부릅니다. | 트리거가 `Button` 처럼 키보드로 누르면 클릭 이벤트가 생기는 요소이면 엽니다. `Clickable` 로 만든 트리거는 키보드로 열리지 않습니다. `CoUIWeb` 아래에서는 열린 동안 트리거가 `inert` 가 되므로, 닫을 때는 `Escape` 를 누릅니다. |
+| 트리거에서 `Enter` · `Space` | 포커스 가능한 CoUI `Button` · `Clickable` 트리거에서 메뉴를 열고, 기존 `onPressed` 도 한 번 부릅니다. | 트리거가 `Button` 처럼 키보드로 누르면 클릭 이벤트가 생기는 요소이면 엽니다. `Clickable` 로 만든 트리거는 키보드로 열리지 않습니다. `CoUIWeb` 아래에서는 열린 동안 트리거가 `inert` 가 되므로, 닫을 때는 `Escape` 를 누릅니다. |
 | `Tab` · `Shift+Tab` | 패널 안의 행 사이를 돕니다. | 메뉴 전체가 `Tab` 한 칸입니다. `submenu` 마다 한 칸이 더 생깁니다. |
 | `↓` · `↑` | 메뉴만의 처리는 없습니다. 웹이 아닌 Flutter 앱에서는 Flutter 의 기본 방향키 이동이 동작할 수 있습니다. | 다음 · 이전 행으로 옮기고, 끝에서 반대쪽으로 돕니다. |
 | `Home` · `End` | 메뉴만의 처리는 없습니다. | 첫 · 마지막 행 |
@@ -443,8 +443,8 @@ Jaspr Web 의 행 이동은 패널 안의 [Menu](/components/menu) 가 맡습니
 
 | 플랫폼 | 내용 |
 | --- | --- |
-| Flutter | 키보드로 트리거를 열 수 없습니다. [코드에서 열고 닫기](#코드에서-열고-닫기)처럼 `controller` 를 연결합니다. 방향키 · `Home` · `End` · 글자 키로 행을 옮기는 메뉴만의 처리도 없습니다. |
-| Flutter | 스크린 리더로 트리거를 활성화해도 열리지 않을 수 있습니다. 같은 연결을 두면 트리거의 `onPressed` 가 메뉴를 엽니다. |
+| Flutter | 키보드로 열려면 포커스 가능한 트리거를 사용합니다. 일반 위젯에 키보드 포커스를 자동으로 추가하지는 않습니다. 방향키 · `Home` · `End` · 글자 키로 행을 옮기는 메뉴만의 처리도 없습니다. |
+| Flutter | CoUI 의 활성화 경로를 쓰지 않고 별도 semantics 경계를 가진 커스텀 트리거의 접근성 동작은 메뉴 열기와 연결되지 않습니다. [코드에서 열고 닫기](#코드에서-열고-닫기)처럼 해당 트리거의 콜백에 `controller.show` 를 연결합니다. |
 | Flutter | 비활성인 `Button` 을 트리거로 써도 포인터로 누르면 메뉴가 열릴 수 있습니다. DropdownMenu 에는 비활성 속성이 없으므로, 열지 않아야 할 때는 DropdownMenu 없이 버튼만 그립니다. |
 | Flutter | 열려 있는 동안 뒤 화면을 끌거나 휠로 굴리면 화면은 움직이고 패널은 제자리에 남을 수 있습니다. |
 | Flutter | 뒤 화면의 다른 DropdownMenu · Popover 트리거처럼 포인터를 직접 읽는 요소는 누름에 반응해, 이 메뉴가 닫히면서 그쪽이 열릴 수 있습니다. 마우스를 올리면 뒤 화면에 hover 모양이 보일 수도 있습니다. |
@@ -470,7 +470,7 @@ Jaspr Web 의 행 이동은 패널 안의 [Menu](/components/menu) 가 맡습니
 | 항목 | Flutter | Jaspr Web |
 | --- | --- | --- |
 | 패널이 그려지는 곳 | 앱의 루트 `Overlay` | `CoUIWeb`(`OverlayHost`)의 메뉴 층. 호스트가 없으면 트리거 옆에 그립니다. |
-| 키보드로 열기 | 열리지 않습니다. `controller` 를 연결합니다. | 트리거가 `Button` 처럼 키보드로 누르면 클릭 이벤트가 생기는 요소이면 열립니다. |
+| 키보드로 열기 | 포커스 가능한 CoUI `Button` · `Clickable` 트리거에서 `Enter` · `Space` 로 엽니다. | 트리거가 `Button` 처럼 키보드로 누르면 클릭 이벤트가 생기는 요소이면 열립니다. |
 | 메뉴 안 이동 | `Tab` 으로 행 사이를 옮깁니다. 웹이 아닌 앱에서는 Flutter 의 기본 방향키 이동이 동작할 수 있습니다. | 방향키 · `Home` · `End` · 글자 키. 메뉴 전체가 `Tab` 한 칸입니다. |
 | 오른쪽 자리가 모자랄 때 | 패널의 오른쪽 끝을 트리거의 오른쪽 끝에 맞춥니다. | 화면 안에 들어올 만큼 왼쪽으로 밉니다. |
 | 위아래 어느 쪽에도 다 들어가지 않을 때 | 화면 안으로 밀어 놓아 트리거를 덮을 수 있습니다. | 일부가 화면 밖으로 나갈 수 있습니다. |
