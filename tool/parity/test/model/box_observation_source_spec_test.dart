@@ -971,6 +971,26 @@ void main() {
           ),
           throwsFormatException,
         );
+      } else if (recipe.$1 == 'stepper' &&
+          const ['default', 'disabled'].contains(recipe.$2)) {
+        expect(probe.boxObservationSource?.toJson(), {
+          'schemaVersion': 1,
+          'logicalUnitId': 'stepper-horizontal-generated-layout-host',
+          'quantityId': 'inside-frame-own-content-inset-v1',
+          'nativeAdapterId': 'stepper-normal-horizontal-generated-host-v1',
+          'webAdapterId': 'stepper-normal-horizontal-generated-host-v1',
+        });
+        expect(
+          () => requireCaptureProbes(
+            component: recipe.$1,
+            variant: recipe.$2,
+            roles: ['root'],
+            boxObservationSources: [
+              BoxObservationSourceSpec.showcaseAllocationHost,
+            ],
+          ),
+          throwsFormatException,
+        );
       } else if (recipe == ('bottom-action-bar', 'default')) {
         expect(probe.boxObservationSource?.toJson(), {
           'schemaVersion': 1,

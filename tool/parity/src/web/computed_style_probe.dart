@@ -10,6 +10,7 @@ import 'public_wrapper_ssr_source.dart';
 import 'scope_allocation_binding.dart';
 import 'showcase_allocation_ssr_source.dart';
 import 'stage_callback_binding.dart';
+import 'stepper_horizontal_binding.dart';
 import 'text_showcase_ssr_source.dart';
 
 /// The canonical raw probe shared by browser transports.
@@ -22,6 +23,9 @@ String get computedStyleProbeScript =>
 String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
     '''
 (request) => {
+  const stepper = ($stepperHorizontalRequestBindingScript)(request);
+  if (stepper.error) throw new Error(stepper.error);
+  if (stepper.applied && !stepper.validateCurrentBinding()) throw new Error('STEPPER_HORIZONTAL_CURRENT_BINDING_CHANGED');
   const stage = ($stageCallbackRequestBindingScript)(request);
   if (stage.error) throw new Error(stage.error);
   if (stage.applied && !stage.validateCurrentBinding()) throw new Error('STAGE_CALLBACK_CURRENT_BINDING_CHANGED');
@@ -59,7 +63,9 @@ String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
   if (wrapper.applied && !wrapper.validateCurrentBinding()) throw new Error('PUBLIC_WRAPPER_BINDING_CHANGED_DURING_LEGACY_READ');
   if (surfaceFrame.applied && !surfaceFrame.validateCurrentBinding()) throw new Error('SURFACE_FRAME_BINDING_CHANGED_DURING_LEGACY_READ');
+  if (stepper.applied && !stepper.validateCurrentBinding()) throw new Error('STEPPER_HORIZONTAL_BINDING_CHANGED_DURING_LEGACY_READ');
   const box = JSON.parse(($boxSamplerScript)(request));
+  if (stepper.applied && !stepper.validateCurrentBinding()) throw new Error('STEPPER_HORIZONTAL_BINDING_CHANGED_DURING_BOX_READ');
   if (stage.applied && !stage.validateCurrentBinding()) throw new Error('STAGE_CALLBACK_BINDING_CHANGED_DURING_BOX_READ');
   if (wrapper.applied && !wrapper.validateCurrentBinding()) throw new Error('PUBLIC_WRAPPER_BINDING_CHANGED_DURING_BOX_READ');
   if (bottom.applied && !bottom.validateCurrentBinding()) throw new Error('BOTTOM_ACTION_BAR_BINDING_CHANGED_DURING_BOX_READ');

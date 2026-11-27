@@ -999,6 +999,15 @@ class BoxObservationSourceSpec {
     webAdapterId: 'stage-current-callback-content-inset-v1',
   );
 
+  /// Exact public normal horizontal Stepper factory and generated columns.
+  static const stepperHorizontalHost = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'stepper-horizontal-generated-layout-host',
+    quantityId: quantity,
+    nativeAdapterId: 'stepper-normal-horizontal-generated-host-v1',
+    webAdapterId: 'stepper-normal-horizontal-generated-host-v1',
+  );
+
   /// Exact original public scope forwarding and its owned allocation prefix.
   static const scopeAllocationHost = BoxObservationSourceSpec(
     schemaVersion: 1,
@@ -1066,6 +1075,7 @@ class BoxObservationSourceSpec {
       bottomActionBarContentInset,
       stageCallbackContentInset,
       ...cardAccordionSurfaceFrames,
+      stepperHorizontalHost,
       scopeAllocationHost,
       breakpointShowcaseContentInset,
     ]) {

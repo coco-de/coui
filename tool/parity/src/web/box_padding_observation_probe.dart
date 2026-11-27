@@ -40,6 +40,7 @@ import 'public_wrapper_ssr_source.dart';
 import 'scope_allocation_binding.dart';
 import 'showcase_allocation_ssr_source.dart';
 import 'stage_callback_binding.dart';
+import 'stepper_horizontal_binding.dart';
 import 'text_showcase_ssr_source.dart';
 
 /// Current CSS padding of a declared box, independent of painted chrome.
@@ -66,6 +67,7 @@ String get boxPaddingObservationScript =>
       BoxObservationSourceSpec.showcaseAllocationHost.toJson(),
       BoxObservationSourceSpec.scopeAllocationHost.toJson(),
       BoxObservationSourceSpec.stageCallbackContentInset.toJson(),
+      BoxObservationSourceSpec.stepperHorizontalHost.toJson(),
       BoxObservationSourceSpec.breakpointShowcaseContentInset.toJson(),
       ...BoxObservationSourceSpec.componentFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.extendedComponentFrames.map((source) => source.toJson()),
@@ -121,6 +123,20 @@ String get boxPaddingObservationScript =>
     return {raw:receipt.currentRaw};
   };
   switch(source.webAdapterId) {
+    case 'stepper-normal-horizontal-generated-host-v1': {
+      const binding = ($stepperHorizontalRequestBindingScript)(request);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (!binding.applied || binding.registryResultElement !== layoutRoot ||
+          binding.fieldUnitElement !== layoutRoot || binding.paddingSource !== layoutRoot ||
+          binding.frameSource !== layoutRoot || binding.registryIsLayoutRoot !== true ||
+          typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('STEPPER_ORIGINAL_GENERATED_ROOT_CHANGED'));
+      owner = layoutRoot; sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true;
+      currentBoxBindingFailure = 'STEPPER_HORIZONTAL_BINDING_CHANGED_DURING_CSS_READ';
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      break;
+    }
     case 'stage-current-callback-content-inset-v1': {
       const binding = ($stageCallbackRequestBindingScript)(request);
       if (binding.error) return JSON.stringify(incomplete(binding.error));

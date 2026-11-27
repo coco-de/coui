@@ -67,6 +67,8 @@ void requireCaptureProbes({
                     .stageCallbackContentInset
                     .logicalUnitId ||
             source?.logicalUnitId ==
+                BoxObservationSourceSpec.stepperHorizontalHost.logicalUnitId ||
+            source?.logicalUnitId ==
                 BoxObservationSourceSpec.scopeAllocationHost.logicalUnitId ||
             source?.logicalUnitId ==
                 BoxObservationSourceSpec.showcaseAllocationHost.logicalUnitId ||
@@ -189,6 +191,8 @@ BoxObservationSourceSpec? _componentBoxSource(
   ('subfocus', 'default') => BoxObservationSourceSpec.scopeAllocationHost,
   ('stage-container', 'default') =>
     BoxObservationSourceSpec.stageCallbackContentInset,
+  ('stepper', 'default' || 'disabled') =>
+    BoxObservationSourceSpec.stepperHorizontalHost,
   ('number-ticker', 'default') =>
     BoxObservationSourceSpec.numberTickerTextLayoutHost,
   ('card-image', 'default') ||

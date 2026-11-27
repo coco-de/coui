@@ -36,6 +36,7 @@ import 'box_padding_showcase_allocation_units.dart';
 import 'box_padding_solid_layout_units.dart';
 import 'box_padding_source_bindings.dart';
 import 'box_padding_stage_callback_source.dart';
+import 'box_padding_stepper_horizontal_source.dart';
 import 'box_padding_structured_root_units.dart';
 import 'box_padding_surface_component_units.dart';
 import 'box_padding_text_showcase_units.dart';
@@ -111,6 +112,39 @@ Map<String, Object?> _observe(
       'the actual registry construction result',
     );
 
+    if (source == BoxObservationSourceSpec.stepperHorizontalHost) {
+      final declared = probe.boxObservationSource!;
+      final expected = source.toJson();
+      if (declared.length != expected.length ||
+          expected.entries.any((e) => declared[e.key] != e.value)) {
+        throw const BoxObservationError(
+          'STEPPER_HORIZONTAL_SOURCE_CHANGED',
+          'The complete exact Stepper source tuple is required.',
+        );
+      }
+      final binding = bindStepperHorizontalEntry(
+        captureRoot: captureRoot,
+        registryResult: registryResult,
+        source: source,
+      );
+      final identity = binding.sourceIdentity;
+      final observed = binding.readDeclaredAbsence();
+      binding.validateCurrentBinding();
+      return {
+        ...observed.toJson(),
+        'sourceIdentity': identity,
+        'status': 'source-complete',
+        'sourceUnitValidated': true,
+        'source': source.toJson(),
+        'layoutRootElement': identityHashCode(resultElement),
+        'fieldUnitElement': identityHashCode(binding.frameSource),
+        'sourceReaderId': binding.readerId,
+        'sourceBindingAuthority': binding.authority,
+        'legacyRoleEligible': !legacyRootOmitted,
+        'paintRequired': false,
+        'canonicalComparisonEligible': false,
+      };
+    }
     if (source == BoxObservationSourceSpec.stageCallbackContentInset) {
       final declared = probe.boxObservationSource!;
       final expected = source.toJson();
