@@ -269,26 +269,13 @@ class Card extends UiComponent implements CoreCardContract<Component> {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreCardStyle.merge` right-side-wins semantics).
 ///
-/// The getters below are shorter sugar for the same [withStyle] call.
-/// Each one is a direct 1:1 alias for a `CoreRadius` / `CoreColors`
-/// primitive — the getter *name* is the token name, so `.radius4`
-/// always means `CoreRadius.radius4` and `.primary` always means
-/// `CoreColors.primary`, no matter which component it's called on.
-/// That fixed name-to-value mapping is what makes a short getter safe
-/// to reuse across components — a curated nickname (`.rounded`,
-/// `.compact`) would silently map to a different value per component,
-/// but a primitive-token getter cannot.
-///
-/// These are intentionally primitive (not semantic) for now: `.radius4`
-/// sets [CoreCardStyle.borderRadius] and `.primary` sets
-/// [CoreCardStyle.backgroundColor]. A semantic layer that names these
-/// after component-specific intent (decided together with design) is
-/// a follow-up once more components adopt this pattern.
-///
-/// ```dart
-/// Card(header: Text('Title')).radius4.surface
-/// ```
+/// `.outline` selects component options.
+/// Use `backgroundColor(.primary)` to set the background explicitly.
 extension CardStyleChain on Card {
+  /// Sets the background paint and preserves the other style fields.
+  Card backgroundColor(CoreColor value) =>
+      withStyle(CoreCardStyle(backgroundColor: value));
+
   /// Returns a copy of this [Card] with [patch] merged into
   /// [cardStyle] (patch fields win on conflict).
   Card withStyle(CoreCardStyle patch) =>
@@ -468,10 +455,8 @@ extension CardStyleChain on Card {
     const CoreCardStyle(backgroundColor: CoreColor.token(CoreColors.info)),
   );
 
-  /// `backgroundColor: CoreColor.token(CoreColors.outline)`.
-  Card get outline => withStyle(
-    const CoreCardStyle(backgroundColor: CoreColor.token(CoreColors.outline)),
-  );
+  /// Selects `variant: .outlined` using the component theme.
+  Card get outline => copyWith(variant: .outlined);
 
   /// `backgroundColor: CoreColor.transparent`.
   Card get transparent =>

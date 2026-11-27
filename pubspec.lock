@@ -1723,4 +1723,4 @@ packages:
     version: "2.2.4"
 sdks:
   dart: ">=3.13.0 <3.15.0-z"
-  flutter: ">=3.50.0"
+  flutter: ">=3.50.1"

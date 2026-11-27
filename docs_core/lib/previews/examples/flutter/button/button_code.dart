@@ -12,12 +12,12 @@ class ButtonChainExample extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         Button(
           variant: CoreButtonVariant.primary,
           onPressed: () {},
           child: Text('기본').lineLimit(1).ellipsis,
-        ).radius16.primary,
+        ).radius16.backgroundColor(.primary),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(padding)까지 한 번에.
         Button(
@@ -26,7 +26,7 @@ class ButtonChainExample extends StatelessWidget {
           child: Text('직접 지정').lineLimit(1).ellipsis,
         ).withStyle(
           const CoreButtonStyle(
-            backgroundColor: CoreColor.token(CoreColors.tertiary),
+            backgroundColor: .tertiary,
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             padding: CoreEdgeInsets.symmetric(
               horizontal: CoreSpace.space24,

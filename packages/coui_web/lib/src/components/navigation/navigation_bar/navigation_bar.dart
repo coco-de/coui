@@ -244,6 +244,10 @@ class NavigationBar extends UiStatefulComponent
 /// NavigationBar(items: items).surface
 /// ```
 extension NavigationBarStyleChain on NavigationBar {
+  /// Sets the background paint and preserves the other style fields.
+  NavigationBar backgroundColor(CoreColor value) =>
+      withStyle(CoreNavigationBarStyle(backgroundColor: value));
+
   /// Returns a copy of this [NavigationBar] with [patch] merged into
   /// [navigationBarStyle] (patch fields win on conflict).
   NavigationBar withStyle(CoreNavigationBarStyle patch) => copyWith(

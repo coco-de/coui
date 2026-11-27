@@ -17,10 +17,10 @@ class _ProgressChainExampleState extends State<ProgressChainExample> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         SizedBox(
           width: double.infinity,
-          child: const Progress(value: 0.65).radius16.primary,
+          child: const Progress(value: 0.65).radius16.fillColor(.primary),
         ),
         const Gap.space12(),
         // withStyle full-control — getter 가 없는 필드(minHeight)까지 한 번에.
@@ -28,7 +28,7 @@ class _ProgressChainExampleState extends State<ProgressChainExample> {
           width: double.infinity,
           child: const Progress(value: 0.65).withStyle(
             const CoreProgressStyle(
-              color: CoreColor.token(CoreColors.tertiary),
+              color: .tertiary,
               borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
               minHeight: CoreSpace.space16,
             ),

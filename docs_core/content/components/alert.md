@@ -125,6 +125,10 @@ neutral을 뺀 네 톤에는 이름 있는 생성자가 있습니다: `Alert.inf
 
 채움은 톤의 불투명한 컨테이너 색(`infoContainer` 등)이고, 아이콘과 제목은 그 위의 `on{Tone}Container`입니다. 그래서 아이콘을 끈 알림도 제목만으로 톤이 읽힙니다. neutral은 제목 색이 따로 없어 레이아웃의 색(stacked는 `onSurface`, inline은 `onSurfaceVariant`)을 쓰고, 설명은 모든 톤에서 `onSurfaceVariant`입니다. 글자 대비는 페이지가 아니라 패널 자기 색에 대해 정해지며, 톤 제목은 약 8:1로 본문 기준(4.5:1)을 넉넉히 넘습니다.
 
+### 의미 체인
+
+알림의 `.info`, `.success`, `.warning`은 같은 이름의 `variant`를 선택합니다. 예를 들어 `Alert(title: '저장 완료').success`는 성공 알림의 테마를 따릅니다.
+
 <a id="레이아웃-layout"></a>
 <a id="inline-한-줄-상태-띠"></a>
 
@@ -387,7 +391,7 @@ ThemeData.fromCore(
 
 ### 빠른 덮어쓰기
 
-이미 만든 Alert에 `.withStyle(CoreAlertStyle(...))`를 이어 붙이면 그 값이 `alertStyle` 위에 합쳐지고, 뒤에 붙인 것이 이깁니다. `.radius4`처럼 토큰 이름과 같은 짧은 getter도 있어 이름이 곧 값입니다(`.radius16`은 `CoreRadius.radius16`). 모서리 getter는 `borderRadius`를, 색 getter는 `backgroundColor`를 바꿉니다.
+이미 만든 Alert에 `.withStyle(CoreAlertStyle(...))`를 이어 붙이면 그 값이 `alertStyle` 위에 합쳐지고, 뒤에 붙인 것이 이깁니다. `.radius4`처럼 토큰 이름과 같은 짧은 getter도 있어 이름이 곧 값입니다(`.radius16`은 `CoreRadius.radius16`). 모서리 getter는 `borderRadius`를 바꿉니다.
 
 <Note>
 
@@ -417,13 +421,13 @@ class _AlertChainExampleState extends State<AlertChainExample> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         if (_showCombo)
           Alert(
             title: '확인이 필요해요',
             description: '결제 수단을 다시 확인해 주세요.',
             onDismiss: () => setState(() => _showCombo = false),
-          ).radius16.primary
+          ).radius16.backgroundColor(.primary)
         else
           Button(
             variant: CoreButtonVariant.outline,
@@ -439,10 +443,8 @@ class _AlertChainExampleState extends State<AlertChainExample> {
             onDismiss: () => setState(() => _showFull = false),
           ).withStyle(
             const CoreAlertStyle(
-              backgroundColor: CoreColor.token(CoreColors.tertiaryContainer),
-              foregroundColor: CoreColor.token(
-                CoreColors.onTertiaryContainer,
-              ),
+              backgroundColor: .tertiaryContainer,
+              foregroundColor: .onTertiaryContainer,
               borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
               padding: CoreEdgeInsets.symmetric(
                 horizontal: CoreSpace.space24,
@@ -481,13 +483,13 @@ class _AlertChainExampleState extends State<AlertChainExample> {
   Component build(BuildContext context) {
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         if (_showCombo)
           Alert(
             title: '확인이 필요해요',
             description: '결제 수단을 다시 확인해 주세요.',
             onDismiss: () => setState(() => _showCombo = false),
-          ).radius16.primary
+          ).radius16.backgroundColor(.primary)
         else
           Button(
             variant: CoreButtonVariant.outline,
@@ -503,10 +505,8 @@ class _AlertChainExampleState extends State<AlertChainExample> {
             onDismiss: () => setState(() => _showFull = false),
           ).withStyle(
             const CoreAlertStyle(
-              backgroundColor: CoreColor.token(CoreColors.tertiaryContainer),
-              foregroundColor: CoreColor.token(
-                CoreColors.onTertiaryContainer,
-              ),
+              backgroundColor: .tertiaryContainer,
+              foregroundColor: .onTertiaryContainer,
               borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
               padding: CoreEdgeInsets.symmetric(
                 horizontal: CoreSpace.space24,

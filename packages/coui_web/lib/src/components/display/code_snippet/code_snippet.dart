@@ -157,6 +157,10 @@ class CodeSnippet extends UiStatefulComponent
 /// CodeSnippet(code: '...', mode: 'dart').radius4.primary
 /// ```
 extension CodeSnippetStyleChain on CodeSnippet {
+  /// Sets the background paint and preserves the other style fields.
+  CodeSnippet backgroundColor(CoreColor value) =>
+      withStyle(CoreCodeSnippetStyle(backgroundColor: value));
+
   /// Returns a copy of this [CodeSnippet] with [patch] merged into
   /// [codeSnippetStyle] (patch fields win on conflict).
   CodeSnippet withStyle(CoreCodeSnippetStyle patch) => copyWith(

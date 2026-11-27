@@ -180,6 +180,10 @@ class StarRating extends StatefulWidget implements CoreStarRatingContract {
 /// StarRating(value: 3).primary
 /// ```
 extension StarRatingStyleChain on StarRating {
+  /// Sets the background paint and preserves the other style fields.
+  StarRating backgroundColor(CoreColor value) =>
+      withStyle(CoreStarRatingStyle(backgroundColor: value));
+
   /// Returns a copy of this [StarRating] with [patch] merged into
   /// [starRatingStyle] (patch fields win on conflict).
   StarRating withStyle(CoreStarRatingStyle patch) => copyWith(
@@ -715,6 +719,10 @@ class StarRatingController extends ValueNotifier<double>
 /// ControlledStarRating(initialValue: 3).primary
 /// ```
 extension ControlledStarRatingStyleChain on ControlledStarRating {
+  /// Sets the background paint and preserves the other style fields.
+  ControlledStarRating backgroundColor(CoreColor value) =>
+      withStyle(CoreStarRatingStyle(backgroundColor: value));
+
   /// Returns a copy of this [ControlledStarRating] with [patch] merged
   /// into [starRatingStyle] (patch fields win on conflict).
   ControlledStarRating withStyle(CoreStarRatingStyle patch) => .new(

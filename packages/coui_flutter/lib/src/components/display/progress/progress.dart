@@ -362,37 +362,17 @@ class _SegmentCell extends StatelessWidget {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreProgressStyle.merge` right-side-wins semantics).
 ///
-/// The getters below are shorter sugar for the same [withStyle] call.
-/// Each one is a direct 1:1 alias for a `CoreRadius` / `CoreColors`
-/// primitive — the getter *name* is the token name, so `.radius4`
-/// always means `CoreRadius.radius4` and `.primary` always means
-/// `CoreColors.primary`, no matter which component it's called on.
-/// That fixed name-to-value mapping is what makes a short getter safe
-/// to reuse across components — a curated nickname (`.rounded`,
-/// `.compact`) would silently map to a different value per component,
-/// but a primitive-token getter cannot.
-///
-/// These are intentionally primitive (not semantic) for now: `.radius4`
-/// sets [CoreProgressStyle.borderRadius], and a palette getter such as
-/// `.primary` sets [CoreProgressStyle.color] — the fill, the colour that
-/// says how far along the bar is. The track is not patched, so it stays the
-/// neutral [CoreProgressStyle.defaultBackgroundColor]; pin it with
-/// `withStyle(CoreProgressStyle(backgroundColor: …))`. `.transparent`
-/// sets [CoreProgressStyle.backgroundColor] instead: it clears the
-/// surface behind the fill, as it does on every component, where a
-/// transparent fill would leave nothing to see. A semantic layer that
-/// names these after component-specific intent (decided together with
-/// design) is a follow-up once more components adopt this pattern.
-///
-/// A palette getter states a colour, and a stated colour wins over
-/// [Progress.tone]. To say what the fill means — a quota close to its
-/// limit, a failed upload — set `tone`; the getters are for a colour the
-/// tones do not name.
-///
-/// ```dart
-/// Progress(value: 0.5).radius4.surface
-/// ```
+/// `.primary`, `.success`, `.warning` select component options.
+/// Use `backgroundColor(.primary)` to set the background explicitly.
 extension ProgressStyleChain on Progress {
+  /// Sets the background paint and preserves the other style fields.
+  Progress backgroundColor(CoreColor value) =>
+      withStyle(CoreProgressStyle(backgroundColor: value));
+
+  /// Sets the fill of the progress bar.
+  Progress fillColor(CoreColor value) =>
+      withStyle(CoreProgressStyle(color: value));
+
   /// Returns a copy of this [Progress] with [patch] merged into
   /// [progressStyle] (patch fields win on conflict).
   Progress withStyle(CoreProgressStyle patch) => copyWith(
@@ -538,12 +518,8 @@ extension ProgressStyleChain on Progress {
   // paint a full bar of the token under the default `primary` fill,
   // so `.success` would not read as a success bar.
 
-  /// `color: CoreColor.token(CoreColors.primary)`.
-  Progress get primary => withStyle(
-    const CoreProgressStyle(
-      color: CoreColor.token(CoreColors.primary),
-    ),
-  );
+  /// Selects `tone: .primary` using the component theme.
+  Progress get primary => copyWith(tone: .primary);
 
   /// `color: CoreColor.token(CoreColors.secondary)`.
   Progress get secondary => withStyle(
@@ -578,19 +554,11 @@ extension ProgressStyleChain on Progress {
     const CoreProgressStyle(color: CoreColor.token(CoreColors.error)),
   );
 
-  /// `color: CoreColor.token(CoreColors.success)`.
-  Progress get success => withStyle(
-    const CoreProgressStyle(
-      color: CoreColor.token(CoreColors.success),
-    ),
-  );
+  /// Selects `tone: .success` using the component theme.
+  Progress get success => copyWith(tone: .success);
 
-  /// `color: CoreColor.token(CoreColors.warning)`.
-  Progress get warning => withStyle(
-    const CoreProgressStyle(
-      color: CoreColor.token(CoreColors.warning),
-    ),
-  );
+  /// Selects `tone: .warning` using the component theme.
+  Progress get warning => copyWith(tone: .warning);
 
   /// `color: CoreColor.token(CoreColors.info)`.
   Progress get info => withStyle(

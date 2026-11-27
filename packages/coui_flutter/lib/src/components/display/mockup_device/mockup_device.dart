@@ -568,6 +568,10 @@ class _GlyphPainter extends CustomPainter {
 /// MockupDevice(child: screenshot).radius4.primary
 /// ```
 extension MockupDeviceStyleChain on MockupDevice {
+  /// Sets the background paint and preserves the other style fields.
+  MockupDevice backgroundColor(CoreColor value) =>
+      withStyle(CoreMockupDeviceStyle(backgroundColor: value));
+
   /// Returns a copy of this [MockupDevice] with [patch] merged into
   /// [mockupDeviceStyle] (patch fields win on conflict).
   MockupDevice withStyle(CoreMockupDeviceStyle patch) => copyWith(

@@ -47,8 +47,8 @@ real files and explains the separate Figma-to-code review/export paths.
 - Repository access and Git. If cloning the private repository fails, request
   access from a maintainer.
 - Flutter with its bundled Dart SDK. The current root
-  [pubspec.yaml](pubspec.yaml) requires **Flutter ≥3.47.0** and **Dart ≥3.11.0,
-  <4.0.0**; [CI](.github/workflows/ci.yaml) pins the tested Flutter version.
+  [pubspec.yaml](pubspec.yaml) requires **Flutter ≥3.50.1** and **Dart ≥3.11.0,
+  <4.0.0**; [CI](.github/workflows/public-ci.yml) pins the tested Flutter version.
 - Melos for workspace commands; CI currently uses **7.1.1**.
 - For Web previews: the matching Jaspr CLI; see [first run](docs/contributing/getting-started.md).
 - For plugin work: Node.js/npm, Figma Desktop, and the static Pretendard fonts.

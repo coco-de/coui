@@ -18,13 +18,13 @@ class _AlertChainExampleState extends State<AlertChainExample> {
   Component build(BuildContext context) {
     return div(
       [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         if (_showCombo)
           Alert(
             title: '확인이 필요해요',
             description: '결제 수단을 다시 확인해 주세요.',
             onDismiss: () => setState(() => _showCombo = false),
-          ).radius16.primary
+          ).radius16.backgroundColor(.primary)
         else
           Button(
             variant: CoreButtonVariant.outline,
@@ -40,10 +40,8 @@ class _AlertChainExampleState extends State<AlertChainExample> {
             onDismiss: () => setState(() => _showFull = false),
           ).withStyle(
             const CoreAlertStyle(
-              backgroundColor: CoreColor.token(CoreColors.tertiaryContainer),
-              foregroundColor: CoreColor.token(
-                CoreColors.onTertiaryContainer,
-              ),
+              backgroundColor: .tertiaryContainer,
+              foregroundColor: .onTertiaryContainer,
               borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
               padding: CoreEdgeInsets.symmetric(
                 horizontal: CoreSpace.space24,

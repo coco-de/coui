@@ -191,6 +191,10 @@ class CommandSearch extends UiComponent
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreCommandSearchStyle.merge` right-side-wins semantics).
 extension CommandSearchStyleChain on CommandSearch {
+  /// Sets the background paint and preserves the other style fields.
+  CommandSearch backgroundColor(CoreColor value) =>
+      withStyle(CoreCommandSearchStyle(backgroundColor: value));
+
   /// Returns a copy of this [CommandSearch] with [patch] merged into
   /// [commandSearchStyle] (patch fields win on conflict).
   CommandSearch withStyle(CoreCommandSearchStyle patch) => copyWith(

@@ -33,7 +33,7 @@ class _ProgressChainPermutationState extends State<_ProgressChainPermutationView
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         SizedBox(
           width: double.infinity,
           child: const Progress(value: 0.65).chainPermuted(widget.permutation),
@@ -44,7 +44,7 @@ class _ProgressChainPermutationState extends State<_ProgressChainPermutationView
           width: double.infinity,
           child: const Progress(value: 0.65).withStyle(
             const CoreProgressStyle(
-              color: CoreColor.token(CoreColors.tertiary),
+              color: .tertiary,
               borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
               minHeight: CoreSpace.space16,
             ),
@@ -83,18 +83,18 @@ extension _ProgressChainPermutations on Progress {
       _ => radius16,
     };
     return switch (kChainColorGetters[permutation.colorIndex]) {
-      'primary' => radiused.primary,
-      'secondary' => radiused.secondary,
-      'tertiary' => radiused.tertiary,
-      'surface' => radiused.surface,
-      'surfaceContainer' => radiused.surfaceContainer,
-      'error' => radiused.error,
-      'success' => radiused.success,
-      'warning' => radiused.warning,
-      'info' => radiused.info,
-      'outline' => radiused.outline,
-      'transparent' => radiused.transparent,
-      _ => radiused.primary,
+      'primary' => radiused.fillColor(.primary),
+      'secondary' => radiused.fillColor(.secondary),
+      'tertiary' => radiused.fillColor(.tertiary),
+      'surface' => radiused.fillColor(.surface),
+      'surfaceContainer' => radiused.fillColor(.surfaceContainer),
+      'error' => radiused.fillColor(.error),
+      'success' => radiused.fillColor(.success),
+      'warning' => radiused.fillColor(.warning),
+      'info' => radiused.fillColor(.info),
+      'outline' => radiused.fillColor(.outline),
+      'transparent' => radiused.backgroundColor(.transparent),
+      _ => radiused.fillColor(.primary),
     };
   }
 }

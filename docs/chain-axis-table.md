@@ -15,26 +15,26 @@
 | 컴포넌트 | 티어 | primary | Flutter | Web | chain 예제 | 비고 |
 |---|---|---|---|---|---|---|
 | `accordion` | T1 | `Accordion` | r19·c11 | r19·c11 | 양쪽 |  |
-| `alert` | T1 | `Alert` | r19·c11 | r19·c11 | 양쪽 |  |
+| `alert` | T1 | `Alert` | r19·c8 | r19·c8 | 양쪽 |  |
 | `app-bar` | T2(색) | `AppBar` | r0·c11 | r0·c11 | 양쪽 |  |
 | `autocomplete` | T3 | `Autocomplete` | r0·c0 | r0·c0 | 양쪽 |  |
 | `avatar` | T1 | `Avatar` | r19·c11 | r19·c11 | 양쪽 |  |
-| `badge` | T1 | `Badge` | r19·c11 | r19·c11 | 양쪽 |  |
-| `banner` | T1 | `Banner` | r19·c11 | r19·c11 | 양쪽 |  |
+| `badge` | T1 | `Badge` | r19·c6 | r19·c6 | 양쪽 |  |
+| `banner` | T1 | `Banner` | r19·c8 | r19·c8 | 양쪽 |  |
 | `basic` | T3 | `Basic` | r0·c0 | r0·c0 | 양쪽 |  |
 | `bottom-action-bar` | T3 | `BottomActionBar` | r0·c0 | r0·c0 | 양쪽 |  |
 | `bottom-sheet` | T3 | `BottomSheet` | r0·c0 | r0·c0 | 양쪽 |  |
 | `breadcrumb` | T3 | `Breadcrumb` | r0·c0 | r0·c0 | 양쪽 |  |
-| `button` | T1 | `Button` | r19·c11 | r19·c11 | 양쪽 |  |
+| `button` | T1 | `Button` | r19·c8 | r19·c8 | 양쪽 |  |
 | `calendar` | T3 | `Calendar` | r0·c0 | r0·c0 | 양쪽 |  |
-| `card` | T1 | `Card` | r19·c11 | r19·c11 | 양쪽 |  |
+| `card` | T1 | `Card` | r19·c10 | r19·c10 | 양쪽 |  |
 | `card-image` | T1 | `CardImage` | r19·c11 | r19·c11 | 양쪽 |  |
 | `carousel` | T2(radius) | `Carousel` | r19·c0 | r19·c0 | 양쪽 |  |
 | `carousel-banner` | T3 | `CarouselBanner` | r0·c0 | r0·c0 | 양쪽 |  |
 | `category-breakdown` | T3 | `CategoryBreakdown` | r0·c0 | r0·c0 | 양쪽 |  |
 | `chat` | T3 | `Chat` | r0·c0 | r0·c0 | 양쪽 |  |
 | `checkbox` | T3 | `Checkbox` | r0·c0 | r0·c0 | 양쪽 |  |
-| `chip` | T1 | `Chip` | r19·c11 | r19·c11 | 양쪽 |  |
+| `chip` | T1 | `Chip` | r19·c9 | r19·c9 | 양쪽 |  |
 | `chip-group` | T3 | `ChipGroup` | r0·c0 | r0·c0 | 양쪽 |  |
 | `chip-input` | T1 | `ChipInput` | r19·c11 | r19·c11 | 양쪽 |  |
 | `clickable` | T2(radius) | `Clickable` | r19·c0 | r19·c0 | 양쪽 |  |
@@ -48,7 +48,7 @@
 | `countdown` | T3 | `Countdown` | r0·c0 | r0·c0 | 양쪽 |  |
 | `date-picker` | T3 | `DatePicker` | r0·c0 | r0·c0 | 양쪽 | `ControlledDatePicker` Flutter 전용 target |
 | `definition-list` | T3 | `DefinitionList` | r0·c0 | r0·c0 | 양쪽 |  |
-| `description-card` | T1 | `DescriptionCard` | r19·c11 | r19·c11 | 양쪽 |  |
+| `description-card` | T1 | `DescriptionCard` | r19·c10 | r19·c10 | 양쪽 |  |
 | `dialog` | T3 | `Dialog` | r0·c0 | r0·c0 | 양쪽 |  |
 | `diff` | T2(radius) | `Diff` | r19·c0 | r19·c0 | 양쪽 |  |
 | `disclosure` | T3 | `Disclosure` | r0·c0 | r0·c0 | 양쪽 |  |
@@ -62,7 +62,7 @@
 | `empty-state` | T3 | `EmptyState` | r0·c0 | r0·c0 | 양쪽 |  |
 | `fab` | T3 | `Fab` | r0·c0 | r0·c0 | 양쪽 |  |
 | `fade-scroll` | T3 | `FadeScroll` | r0·c0 | r0·c0 | 양쪽 |  |
-| `fieldset` | T1 | `Fieldset` | r19·c11 | r19·c11 | 양쪽 |  |
+| `fieldset` | T1 | `Fieldset` | r19·c10 | r19·c10 | 양쪽 |  |
 | `file-input` | T1 | `FileInput` | r19·c11 | r19·c11 | 양쪽 |  |
 | `filter` | T1 | `Filter` | r19·c11 | r19·c11 | 양쪽 |  |
 | `focus-outline` | T2(radius) | `FocusOutline` | r19·c0 | r19·c0 | 양쪽 |  |
@@ -112,7 +112,7 @@
 | `phone-input` | T1 | `PhoneInput` | r19·c11 | r19·c11 | 양쪽 |  |
 | `popover` | T3 | `Popover` | r0·c0 | r0·c0 | 양쪽 |  |
 | `popup` | T1 | `Popup` | r19·c11 | r19·c11 | 양쪽 |  |
-| `progress` | T1 | `Progress` | r19·c11 | r19·c11 | 양쪽 |  |
+| `progress` | T1 | `Progress` | r19·c8 | r19·c8 | 양쪽 |  |
 | `radio-group` | T3 | `RadioGroup` | r0·c0 | r0·c0 | 양쪽 |  |
 | `range` | T2(radius) | `Range` | r19·c0 | r19·c0 | 양쪽 |  |
 | `refresh-trigger` | T3 | `RefreshTrigger` | r0·c0 | r0·c0 | 양쪽 |  |
@@ -138,7 +138,7 @@
 | `sortable` | T3 | `Sortable` | r0·c0 | r0·c0 | 양쪽 |  |
 | `stage-container` | T3 | `StageContainer` | r0·c0 | r0·c0 | 양쪽 |  |
 | `star-rating` | T2(색) | `StarRating` | r0·c11 | r0·c11 | 양쪽 | `ControlledStarRating` Flutter 전용 target |
-| `stat` | T1 | `Stat` | r19·c11 | r19·c11 | 양쪽 |  |
+| `stat` | T1 | `Stat` | r19·c10 | r19·c10 | 양쪽 |  |
 | `status` | T2(radius) | `Status` | r19·c0 | r19·c0 | 양쪽 |  |
 | `step-item` | T3 | `StepItem` | r0·c0 | r0·c0 | 양쪽 |  |
 | `stepper` | T3 | `Stepper` | r0·c0 | r0·c0 | 양쪽 |  |
@@ -149,13 +149,13 @@
 | `swiper` | T3 | `Swiper` | r0·c0 | r0·c0 | 양쪽 |  |
 | `switch-field` | T3 | `SwitchField` | r0·c0 | r0·c0 | 양쪽 |  |
 | `switcher` | T3 | `Switcher` | r0·c0 | r0·c0 | 양쪽 |  |
-| `tab-pane` | T1 | `TabPane` | r19·c11 | r19·c11 | 양쪽 | `TabPane` 미분류 getter: editorStrip→variant · `TabPane` 미분류 getter: editorStrip→variant |
+| `tab-pane` | T1 | `TabPane` | r19·c11 | r19·c11 | 양쪽 |  |
 | `table` | T1 | `Table` | r19·c11 | r19·c11 | 양쪽 |  |
 | `tabs` | T2(색) | `Tabs` | r0·c11 | r0·c11 | 양쪽 |  |
 | `tag` | T3 | `Tag` | r0·c0 | r0·c0 | 양쪽 |  |
-| `text-area` | T1 | `TextArea` | r19·c11 | r19·c11 | 양쪽 |  |
+| `text-area` | T1 | `TextArea` | r19·c10 | r19·c10 | 양쪽 |  |
 | `text-block` | T3 | `TextBlock` | r0·c0 | r0·c0 | 양쪽 |  |
-| `text-field` | T1 | `TextField` | r19·c11 | r19·c11 | 양쪽 |  |
+| `text-field` | T1 | `TextField` | r19·c10 | r19·c10 | 양쪽 |  |
 | `theme-controller` | T3 | `ThemeController` | r0·c0 | r0·c0 | 양쪽 |  |
 | `time-picker` | T3 | `TimePicker` | r0·c0 | r0·c0 | 양쪽 |  |
 | `timeline` | T3 | `Timeline` | r0·c0 | r0·c0 | 양쪽 |  |

@@ -314,6 +314,10 @@ class FormattedInput extends UiStatefulComponent
 /// FormattedInput.phone().radius4.surface
 /// ```
 extension FormattedInputStyleChain on FormattedInput {
+  /// Sets the background paint and preserves the other style fields.
+  FormattedInput backgroundColor(CoreColor value) =>
+      withStyle(CoreFormattedInputStyle(backgroundColor: value));
+
   /// Returns a copy of this [FormattedInput] with [patch] merged into
   /// [formattedInputStyle] (patch fields win on conflict).
   FormattedInput withStyle(CoreFormattedInputStyle patch) => copyWith(

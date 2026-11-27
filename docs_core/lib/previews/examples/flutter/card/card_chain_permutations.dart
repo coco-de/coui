@@ -27,7 +27,7 @@ class _CardChainPermutationView extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         Card(
           header: const Text('프로젝트 요약'),
           body: const Text('이번 주 진행 상황을 확인해 보세요.'),
@@ -52,10 +52,8 @@ class _CardChainPermutationView extends StatelessWidget {
             padding: CoreEdgeInsets.all(CoreSpace.space24),
             borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
             borderWidth: CoreStrokeWidth.stroke2,
-            backgroundColor: CoreColor.token(
-              CoreColors.surfaceContainerHighest,
-            ),
-            borderColor: CoreColor.token(CoreColors.tertiary),
+            backgroundColor: .surfaceContainerHighest,
+            borderColor: .tertiary,
           ),
         ),
       ],
@@ -91,18 +89,18 @@ extension _CardChainPermutations on Card {
       _ => radius16,
     };
     return switch (kChainColorGetters[permutation.colorIndex]) {
-      'primary' => radiused.primary,
-      'secondary' => radiused.secondary,
-      'tertiary' => radiused.tertiary,
-      'surface' => radiused.surface,
-      'surfaceContainer' => radiused.surfaceContainer,
-      'error' => radiused.error,
-      'success' => radiused.success,
-      'warning' => radiused.warning,
-      'info' => radiused.info,
-      'outline' => radiused.outline,
-      'transparent' => radiused.transparent,
-      _ => radiused.primary,
+      'primary' => radiused.backgroundColor(.primary),
+      'secondary' => radiused.backgroundColor(.secondary),
+      'tertiary' => radiused.backgroundColor(.tertiary),
+      'surface' => radiused.backgroundColor(.surface),
+      'surfaceContainer' => radiused.backgroundColor(.surfaceContainer),
+      'error' => radiused.backgroundColor(.error),
+      'success' => radiused.backgroundColor(.success),
+      'warning' => radiused.backgroundColor(.warning),
+      'info' => radiused.backgroundColor(.info),
+      'outline' => radiused.backgroundColor(.outline),
+      'transparent' => radiused.backgroundColor(.transparent),
+      _ => radiused.backgroundColor(.primary),
     };
   }
 }

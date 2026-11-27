@@ -35,7 +35,7 @@ class _AlertChainPermutationState extends State<_AlertChainPermutationView> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // 토큰-정확 getter combo — 이름이 곧 값 (getter 이름 = Core 토큰 상수 1:1).
+        // 팔레트 미리보기에서는 색을 직접 지정한다.
         if (_showCombo)
           Alert(
             title: '확인이 필요해요',
@@ -57,10 +57,8 @@ class _AlertChainPermutationState extends State<_AlertChainPermutationView> {
             onDismiss: () => setState(() => _showFull = false),
           ).withStyle(
             const CoreAlertStyle(
-              backgroundColor: CoreColor.token(CoreColors.tertiaryContainer),
-              foregroundColor: CoreColor.token(
-                CoreColors.onTertiaryContainer,
-              ),
+              backgroundColor: .tertiaryContainer,
+              foregroundColor: .onTertiaryContainer,
               borderRadius: CoreBorderRadius.all(CoreRadius.radius24),
               padding: CoreEdgeInsets.symmetric(
                 horizontal: CoreSpace.space24,
@@ -107,18 +105,18 @@ extension _AlertChainPermutations on Alert {
       _ => radius16,
     };
     return switch (kChainColorGetters[permutation.colorIndex]) {
-      'primary' => radiused.primary,
-      'secondary' => radiused.secondary,
-      'tertiary' => radiused.tertiary,
-      'surface' => radiused.surface,
-      'surfaceContainer' => radiused.surfaceContainer,
-      'error' => radiused.error,
-      'success' => radiused.success,
-      'warning' => radiused.warning,
-      'info' => radiused.info,
-      'outline' => radiused.outline,
-      'transparent' => radiused.transparent,
-      _ => radiused.primary,
+      'primary' => radiused.backgroundColor(.primary),
+      'secondary' => radiused.backgroundColor(.secondary),
+      'tertiary' => radiused.backgroundColor(.tertiary),
+      'surface' => radiused.backgroundColor(.surface),
+      'surfaceContainer' => radiused.backgroundColor(.surfaceContainer),
+      'error' => radiused.backgroundColor(.error),
+      'success' => radiused.backgroundColor(.success),
+      'warning' => radiused.backgroundColor(.warning),
+      'info' => radiused.backgroundColor(.info),
+      'outline' => radiused.backgroundColor(.outline),
+      'transparent' => radiused.backgroundColor(.transparent),
+      _ => radiused.backgroundColor(.primary),
     };
   }
 }

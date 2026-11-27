@@ -3,6 +3,16 @@ import 'package:test/test.dart';
 
 void main() {
   group('CoreColor', () {
+    test('typed color shorthand keeps the canonical theme token', () {
+      const style = CoreCardStyle(
+        backgroundColor: .primary,
+        borderColor: .outline,
+      );
+      expect(style.backgroundColor?.token, same(CoreColors.primary));
+      expect(style.borderColor?.token, CoreColors.outline);
+      expect(style.backgroundColor?.isResolved, isFalse);
+    });
+
     test('fromARGB creates correct value', () {
       const color = CoreColor.fromARGB(255, 128, 64, 32);
       expect(color.alpha, equals(255));

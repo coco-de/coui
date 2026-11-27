@@ -196,6 +196,10 @@ class CarouselBanner extends UiComponent
 /// field. Mirrors the Flutter extension so both platforms read
 /// identically.
 extension CarouselBannerStyleChain on CarouselBanner {
+  /// Sets the background paint and preserves the other style fields.
+  CarouselBanner backgroundColor(CoreColor value) =>
+      withStyle(CoreCarouselBannerStyle(backgroundColor: value));
+
   /// Returns a copy with [patch] merged over the existing chrome slot.
   CarouselBanner withStyle(CoreCarouselBannerStyle patch) => copyWith(
     carouselBannerStyle:

@@ -630,6 +630,10 @@ class _FileInputState extends State<FileInput> {
 /// FileInput(onFilesSelected: onFiles).radius4.surface
 /// ```
 extension FileInputStyleChain on FileInput {
+  /// Sets the background paint and preserves the other style fields.
+  FileInput backgroundColor(CoreColor value) =>
+      withStyle(CoreFileInputStyle(backgroundColor: value));
+
   /// Returns a copy of this [FileInput] with [patch] merged into
   /// [fileInputStyle] (patch fields win on conflict).
   FileInput withStyle(CoreFileInputStyle patch) => copyWith(

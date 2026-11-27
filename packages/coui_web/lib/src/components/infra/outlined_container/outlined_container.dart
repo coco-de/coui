@@ -168,6 +168,10 @@ class OutlinedContainer extends UiComponent
 /// OutlinedContainer(child: text('Card body')).radius4.primary
 /// ```
 extension OutlinedContainerStyleChain on OutlinedContainer {
+  /// Sets the background paint and preserves the other style fields.
+  OutlinedContainer backgroundColor(CoreColor value) =>
+      withStyle(CoreOutlinedContainerStyle(backgroundColor: value));
+
   /// Returns a copy of this [OutlinedContainer] with [patch] merged into
   /// [containerStyle] (patch fields win on conflict).
   OutlinedContainer withStyle(CoreOutlinedContainerStyle patch) => copyWith(

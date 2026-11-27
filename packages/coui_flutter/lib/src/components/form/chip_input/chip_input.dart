@@ -398,6 +398,10 @@ class _ChipInputState extends State<ChipInput> {
 /// ChipInput(chips: tags).radius4.surface
 /// ```
 extension ChipInputStyleChain on ChipInput {
+  /// Sets the background paint and preserves the other style fields.
+  ChipInput backgroundColor(CoreColor value) =>
+      withStyle(CoreChipInputStyle(backgroundColor: value));
+
   /// Returns a copy of this [ChipInput] with [patch] merged into
   /// [chipInputStyle] (patch fields win on conflict).
   ChipInput withStyle(CoreChipInputStyle patch) => copyWith(
