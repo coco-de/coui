@@ -1,42 +1,23 @@
-// Exercises actual normal SSR output and held guards in the Node harness.
+// Protocol controls only. Real typed client provenance is tested on Root Ego.
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:html/dom.dart' as dom;
-import 'package:html/parser.dart' as html;
 import 'package:test/test.dart';
-
 import '../../src/manifest/capture_probes.dart';
 import '../../src/model/matrix_entry.dart';
 import '../../src/web/box_padding_observation_probe.dart';
+import '../../src/web/client_box_source_protocol.dart';
 import '../../src/web/computed_style_probe.dart';
-import '../../src/web/web_capture_backend.dart';
 
-typedef _Actual = ({
-  MatrixEntry entry,
-  Map<String, Object?> receipt,
-  Map<String, Object?> capture,
-});
-final _cache = <String, Future<_Actual>>{};
-Map<String, Object?> _tree(dom.Node n) => n is dom.Element
-    ? {
-        'nodeType': n.nodeType,
-        'namespaceURI': n.namespaceUri,
-        'localName': n.localName,
-        'attributes': {
-          for (final a in n.attributes.entries) a.key.toString(): a.value,
-        },
-        'childNodes': n.nodes.map(_tree).toList(),
-      }
-    : {
-        'nodeType': n.nodeType,
-        'data': n is dom.Text
-            ? n.data
-            : n is dom.Comment
-            ? n.data
-            : '',
-      };
-Future<_Actual> _actual(String theme) => _cache.putIfAbsent(theme, () async {
+typedef _Actual = ({MatrixEntry entry, Map<String, Object?> capture});
+Map<String, Object?> _div(Map<String, String> attrs, List<Object?> children) =>
+    {
+      'nodeType': 1,
+      'namespaceURI': 'http://www.w3.org/1999/xhtml',
+      'localName': 'div',
+      'attributes': attrs,
+      'childNodes': children,
+    };
+_Actual _actual(String theme) {
   final key = 'stage-container-default-$theme-defaultStyle';
   final entry = MatrixEntry.fromJson({
     'component': 'stage-container',
@@ -51,22 +32,31 @@ Future<_Actual> _actual(String theme) => _cache.putIfAbsent(theme, () async {
       flutterClassName: 'StageContainer',
     ).map((p) => p.toJson()).toList(),
   });
-  final receipts = <Map<String, Object?>>[];
-  final body = await renderCaptureBodyHtml(
-    entry,
-    onCurrentBoxSource: receipts.add,
+  return (
+    entry: entry,
+    capture: _div(
+      {'data-parity-key': key},
+      [
+        _div(
+          {'id': 'actual-stage', 'class': 'w-full'},
+          [
+            _div(
+              {'class': 'w-full'},
+              [
+                _div(
+                  {'class': 'opaque'},
+                  [
+                    {'nodeType': 3, 'data': 'foreign callback content'},
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    ),
   );
-  final parsed = html.parseFragment(body);
-  final capture = parsed.querySelectorAll('[data-parity-key]').single;
-  final root = parsed.querySelectorAll(entry.probes.single.webSelector).single;
-  expect(root.parent, same(capture));
-  expect(root.children, hasLength(1));
-  expect(root.children.single.children, hasLength(1));
-  expect(receipts, hasLength(1));
-  expect(receipts.single.containsKey('error'), false, reason: '$receipts');
-  expect(receipts.single['kind'], 'canonical-ssr-stage-callback-v1');
-  return (entry: entry, receipt: receipts.single, capture: _tree(capture));
-});
+}
 
 const _kRuntime = r'''
 
@@ -81,7 +71,7 @@ const from=(data,parent=null)=>{
  node.childNodes=data.childNodes.map(child=>from(child,node));
  node.cloneNode=()=>from(data,node.parentElement);
  Object.defineProperty(node,'children',{get:()=>node.childNodes.filter(child=>child.nodeType===1)});
- Object.defineProperty(node,'attributes',{get:()=>Object.entries(attrs).map(([name,value])=>({name,value}))});
+ Object.defineProperty(node,'attributes',{configurable:true,get:()=>Object.entries(attrs).map(([name,value])=>({name,value}))});
  Object.defineProperty(node,'classList',{get:()=>{
   const names=(attrs.class||'').split(/[\t\n\f\r ]+/).filter(Boolean);
   names.contains=name=>names.includes(name);return names;
@@ -114,38 +104,56 @@ Future<Map<String, Object?>> _sample(
   bool combined = false,
   bool legacyOnly = false,
   String mutation = '',
-  String? boxScript,
+  String phase = '',
 }) async {
   final selector = actual.entry.probes.single.webSelector;
-  final receipt = {
-    ...actual.receipt,
-    'harnessURL': 'file:///owned/stage-callback-source.html',
-  };
+  final descriptor = clientBoxSourceDescriptor(
+    actual.entry,
+    additiveBoxObservations: true,
+  )!;
+  final actualBox =
+      '(request) => { ownPhase=true; '
+      'return ($boxPaddingObservationScript)(request); }';
+  final sampler = legacyOnly
+      ? '(request) => ($computedStyleProbeScript)(request.selector)'
+      : combined
+      ? sourceValidatedComputedStyleAndBoxScript(actualBox)
+      : boxPaddingObservationScript;
   final program =
       '''
 $_kRuntime
-const capture=from(${jsonEncode(actual.capture)}),root=capture.children[0],padding=root.children[0];
+const capture=from(${jsonEncode(actual.capture)}),root=capture.children[0],padding=root.children[0],body=padding.children[0];
 const selector=${jsonEncode(selector)};
-global.document={querySelector:sel=>sel===selector?root:null,
- querySelectorAll:sel=>sel===selector?[root]:[],
+global.CustomEvent=class {constructor(type,options){this.type=type;this.detail=options.detail;}};
+global.document={querySelector:sel=>sel===selector?root:null,querySelectorAll:sel=>sel===selector?[root]:[],
  createTreeWalker:node=>{const queue=[];const visit=n=>{for(const c of n.childNodes){if(c.nodeType===3)queue.push(c);else if(c.nodeType===1)visit(c);}};visit(node);return {nextNode:()=>queue.shift()||null};}};
 const request={requested:true,selector,layoutSelector:selector,
  source:${jsonEncode(actual.entry.probes.single.boxObservationSource!.toJson())},
- currentSsrSource:${jsonEncode(receipt)},requiredCurrentSsrKind:'canonical-ssr-stage-callback-v1'};
-$mutation
+ currentClientBoxSource:${jsonEncode(descriptor)}};
+const own=node=>({namespaceURI:node.namespaceURI,localName:node.localName,
+ attributes:Object.fromEntries(Array.from(node.attributes).map(a=>[a.name,a.value]))});
+const receipt={...request.currentClientBoxSource,currentRaw:{kind:'current-client-stage-callback-padding-v1',
+ quantityBoundary:'original-stage-frame-to-opaque-callback-content',callbackReexecuted:false,bodyInteriorIsSourceAuthority:false,
+ capture:own(capture),frame:own(root),paddingOwner:own(padding),opaqueRoot:{namespaceURI:body.namespaceURI,localName:body.localName},
+ ownedNodeOrder:['capture','frame','paddingOwner','opaqueRoot']},completeRawSlotCount:1,rawOrderFromPublicProducerLists:true,harnessURL:location.href};
+let typedOK=true,eventRequests=0,typedReads=0,ownPhase=false,respond=true;
+let reply={receipt,capture,layoutRoot:root,paddingOwner:padding,opaqueRoot:body,
+ validateCurrentBinding:observed=>{typedReads++;return typedOK&&observed===originalReply&&originalReply.receipt===receipt;}};
+const originalReply=reply;
+capture.dispatchEvent=event=>{eventRequests++;if(respond)event.detail.response=reply;};
+const originalCSS=getComputedStyle;let fired=false;
+const mutate=()=>{$mutation};
+const phase=${jsonEncode(phase)};
+if(phase){global.getComputedStyle=node=>{
+ if(!fired&&((phase==='legacy'&&!ownPhase)||(phase==='own'&&ownPhase&&node===padding))){fired=true;mutate();}
+ return originalCSS(node);};}else{mutate();}
 let observed,error;
-try{observed=JSON.parse((${legacyOnly
-          ? '(request) => ($computedStyleProbeScript)(request.selector)'
-          : combined
-          ? boxScript == null
-                ? computedStyleAndBoxObservationScript
-                : sourceValidatedComputedStyleAndBoxScript(boxScript)
-          : boxPaddingObservationScript})(request));}
-catch(e){error=String(e);}
-console.log(JSON.stringify({observed,error,cssReads,
- heldOriginalRootAttached:root.isConnected&&capture.isConnected&&root.parentElement===capture&&capture.children[0]===root}));
+try{observed=JSON.parse(($sampler)(request));}catch(e){error=String(e);}
+console.log(JSON.stringify({observed,error,cssReads,eventRequests,typedReads,mutationFired:fired}));
 ''';
-  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  final directory = await Directory.systemTemp.createTemp(
+    'coui-parity-stage-client-node-',
+  );
   try {
     final file = File('${directory.path}/probe.cjs');
     await file.writeAsString(program);
@@ -163,52 +171,49 @@ console.log(JSON.stringify({observed,error,cssReads,
 void main() {
   for (final theme in ['light', 'dark']) {
     test(
-      'Stage actual normal SSR $theme uses inner padding and outer frame',
+      'Stage client protocol $theme preserves frame and reads only inner CSS',
       () async {
-        final actual = await _actual(theme);
-        final one = await _sample(actual);
-        expect(one['error'], isNull);
-        final row = one['observed']! as Map;
-        expect(row['status'], 'source-complete');
-        expect(row['value'], [2, 3, 5, 7]);
-        expect(row['ownerIsLayoutRoot'], false);
+        final actual = _actual(theme);
         final legacy = await _sample(actual, legacyOnly: true);
-        final combined = await _sample(actual, combined: true);
-        expect(combined['error'], isNull);
-        final both = combined['observed']! as Map;
-        expect(both['legacy'], legacy['observed']);
-        expect((both['box']! as Map)['value'], [2, 3, 5, 7]);
+        final current = await _sample(actual, combined: true);
+        expect(current['error'], isNull);
+        final row = current['observed']! as Map;
+        expect(row['legacy'], legacy['observed']);
+        expect((row['box']! as Map)['status'], 'source-complete');
+        expect((row['box']! as Map)['value'], [2, 3, 5, 7]);
+        expect((row['box']! as Map)['ownerIsLayoutRoot'], false);
+        expect((row['box']! as Map)['clientDomWholeTreeValidated'], false);
+        expect((row['box']! as Map)['clientOwnedPrefixValidated'], true);
+        expect(current['eventRequests'], 2);
+        expect(current['typedReads']! as int, greaterThanOrEqualTo(3));
       },
     );
   }
-  final before = <String, String>{
-    'missing passive receipt': 'request.currentSsrSource=null;',
-    'foreign required kind': 'request.requiredCurrentSsrKind="foreign";',
-    'wrong complete tuple': 'request.source.nativeAdapterId="foreign";',
+  final initial = <String, String>{
+    'missing client descriptor': 'delete request.currentClientBoxSource;',
+    'wrong client kind': 'request.currentClientBoxSource.kind="foreign";',
+    'SSR fallback forbidden':
+        'request.requiredCurrentSsrKind="canonical-ssr-stage-callback-v1";',
+    'missing typed responder': 'respond=false;',
+    'false typed authority': 'typedOK=false;',
+    'initial cloned reply rejected': 'reply={...reply};',
+    'wrong source tuple': 'request.source.webAdapterId="foreign";',
     'extra source field': 'request.source.extra=true;',
-    'wrong raw body slot count':
-        'request.currentSsrSource.completeRawSlotCount=2;',
-    'missing inner owner record':
-        'delete request.currentSsrSource.currentRaw.paddingOwner;',
-    'unrecorded ASCII formatter':
+    'receipt wrong kind': 'receipt.kind="foreign";',
+    'receipt missing own record': 'delete receipt.currentRaw.paddingOwner;',
+    'receipt wrong quantity': 'receipt.currentRaw.quantityBoundary="foreign";',
+    'receipt incomplete raw roster': 'receipt.completeRawSlotCount=0;',
+    'response stale frame': 'reply.layoutRoot=root.cloneNode();',
+    'unrecorded formatter text':
         'capture.childNodes.unshift(from({nodeType:3,data:" "},capture));',
-    'unrecorded NBSP': [
-      'capture.childNodes.unshift(from({nodeType:3,data:Str',
-      'ing.fromCharCode(160)},capture));',
-    ].join(),
-    'unrecorded comment':
-        'capture.childNodes.unshift(from({nodeType:8,data:"x"},capture));',
-    'duplicate canonical root':
-        'document.querySelectorAll=()=>[root,root.cloneNode(true)];',
-    'foreign canonical root clone':
-        'document.querySelectorAll=()=>[root.cloneNode(true)];',
-    'inner paint attrs changed': 'padding.setAttribute("data-changed","true");',
-    'no convenient inner selector': 'document.querySelectorAll=()=>[padding];',
+    'duplicate frame selector': 'document.querySelectorAll=()=>[root,root];',
+    'convenient inner selector': 'document.querySelectorAll=()=>[padding];',
+    'own attrs mismatch': 'padding.setAttribute("data-changed","yes");',
   };
-  for (final c in before.entries) {
-    test('Stage rejects before CSS ${c.key}', () async {
+  for (final c in initial.entries) {
+    test('Stage client rejects before CSS ${c.key}', () async {
       final row = await _sample(
-        await _actual('light'),
+        _actual('light'),
         combined: true,
         mutation: c.value,
       );
@@ -216,106 +221,53 @@ void main() {
       expect(row['cssReads'], 0);
     });
   }
-  for (final phase in ['legacy', 'box', 'after-box']) {
-    final changes = <String, String>{
-      'same-value entire receipt clone': [
-        'request.currentSsrSource=JSON.parse(JSON.stringify(r',
-        'equest.currentSsrSource));',
-      ].join(),
-      'same-value nested raw clone': [
-        'request.currentSsrSource.currentRaw={...request.curr',
-        'entSsrSource.currentRaw};',
-      ].join(),
-      'same-value declared node array clone': [
-        'request.currentSsrSource.currentRaw.frameNodes=[...r',
-        'equest.currentSsrSource.currentRaw.frameNodes];',
-      ].join(),
-      'request selector replacement': 'request.selector="different";',
-      'layout selector replacement': 'request.layoutSelector="different";',
-      'actual owned formatter text mutation': [
-        'const text=from({nodeType:3,data:" "},root);root.chi',
-        'ldNodes.push(text);',
-      ].join(),
-      'same-shape padding owner replacement': [
-        'const fresh=padding.cloneNode(true);root.childNodes[',
-        'root.childNodes.indexOf(padding)]=fresh;',
-      ].join(),
-      'held whole body detached': 'padding.childNodes=[];',
-    };
-    for (final c in changes.entries) {
-      test('Stage three-phase held $phase ${c.key}', () async {
-        final change = c.value;
-        final String mutation;
-        final String? sampler;
-        if (phase == 'after-box') {
-          mutation = '';
-          sampler = [
-            '(request)=>{const result=(',
-            '$boxPaddingObservationScript)(request);$change retur',
-            'n result;}',
-          ].join();
-        } else if (phase == 'box') {
-          mutation = '';
-          sampler = [
-            '(request)=>{const css=getComputedStyle;let changed=false;',
-            'global.getComputedStyle=node=>{const value=css(node);if(',
-            '!changed){changed=true;$change}return value;};',
-            'try{return ($boxPaddingObservationScript)(request);}',
-            'finally{global.getComputedStyle=css;}}',
-          ].join();
-        } else {
-          mutation = [
-            [
-              'const css=getComputedStyle;let changed=false;global.',
-              'getComputedStyle=node=>{',
-            ].join(),
-            [
-              'const value=css(node);if(!changed){changed=true;',
-              '$change}return value;};',
-            ].join(),
-          ].join();
-          sampler = null;
-        }
+  final held = <String, String>{
+    'typed rebuild with same DOM': 'typedOK=false;',
+    'receipt source clone': 'receipt.source={...receipt.source};',
+    'nested owned record clone':
+        'receipt.currentRaw.frame={...receipt.currentRaw.frame};',
+    'descriptor clone':
+        'request.currentClientBoxSource={...request.currentClientBoxSource};',
+    'source clone': 'request.source={...request.source};',
+    'selector mutation': 'request.selector="foreign";',
+    'owned attr mutation': 'padding.setAttribute("data-changed","yes");',
+    'opaque root detached': 'body.isConnected=false;',
+    'typed validator replacement': 'reply.validateCurrentBinding=()=>true;',
+  };
+  for (final phase in ['legacy', 'own']) {
+    for (final c in held.entries) {
+      test('Stage client holds ${c.key} during real $phase CSS', () async {
+        final health = await _sample(_actual('light'), combined: true);
+        expect(health['error'], isNull);
         final row = await _sample(
-          await _actual('light'),
+          _actual('light'),
           combined: true,
-          mutation: mutation,
-          boxScript: sampler,
+          mutation: c.value,
+          phase: phase,
         );
-        expect(row['error'], isNotNull);
-        expect(row['heldOriginalRootAttached'], true);
+        expect(row['mutationFired'], true);
+        expect(
+          row['error'],
+          contains(
+            phase == 'legacy'
+                ? 'STAGE_CALLBACK_BINDING_CHANGED_DURING_LEGACY_READ'
+                : 'STAGE_CALLBACK_BINDING_CHANGED_DURING_BOX_READ',
+          ),
+        );
       });
     }
   }
-  for (final phase in ['before', 'during-css']) {
-    test('Stage foreign callback interior is opaque $phase', () async {
-      final change = [
-        'const foreign=padding.children[0];foreign.setAttribu',
-        'te("data-foreign","updated");foreign.childNodes=[fro',
-        'm({nodeType:1,namespaceURI:"http://www.w3.org/1999/x',
-        'html",localName:"span",attributes:{style:"padding:99',
-        '9px"},childNodes:[{nodeType:3,data:"foreign changed"',
-        '}]},foreign)];',
-      ].join();
-      final mutation = phase == 'before'
-          ? change
-          : [
-              [
-                'const css=getComputedStyle;let changed=false;global.',
-                'getComputedStyle=node=>{',
-              ].join(),
-              [
-                'const value=css(node);if(!changed){changed=true;',
-                '$change}return value;};',
-              ].join(),
-            ].join();
-      final row = await _sample(
-        await _actual('light'),
-        combined: true,
-        mutation: mutation,
-      );
-      expect(row['error'], isNull);
-      expect(((row['observed']! as Map)['box']! as Map)['value'], [2, 3, 5, 7]);
-    });
-  }
+  test('Stage client ignores the entire opaque root interior', () async {
+    final row = await _sample(
+      _actual('light'),
+      mutation: '''
+Object.defineProperty(body,'attributes',{get:()=>{throw new Error('foreign attrs read');}});
+Object.defineProperty(body,'childNodes',{get:()=>{throw new Error('foreign children read');}});
+Object.defineProperty(body,'textContent',{get:()=>{throw new Error('foreign text read');}});
+Object.defineProperty(body,'outerHTML',{get:()=>{throw new Error('foreign serialization');}});
+''',
+    );
+    expect(row['error'], isNull);
+    expect((row['observed']! as Map)['status'], 'source-complete');
+  });
 }

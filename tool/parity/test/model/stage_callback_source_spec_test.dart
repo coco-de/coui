@@ -4,7 +4,7 @@ import '../../src/manifest/capture_probes.dart';
 import '../../src/model/box_observation_source_spec.dart';
 import '../../src/model/matrix_entry.dart';
 import '../../src/model/probe_spec.dart';
-import '../../src/web/stage_callback_ssr_source.dart';
+import '../../src/web/client_box_source_protocol.dart';
 
 const _kLiteral = <String, Object?>{
   'schemaVersion': 1,
@@ -68,7 +68,15 @@ void main() {
           'tier': 't2',
           'probes': probes.map((p) => p.toJson()).toList(),
         });
-        expect(StageCallbackSsrSource.forEntry(entry), isNotNull);
+        expect(
+          clientBoxSourceDescriptor(entry, additiveBoxObservations: true),
+          {
+            'kind': 'canonical-client-stage-callback-v1',
+            'entryKey': key,
+            'source': _kLiteral,
+            'renderPhase': 'client-settled',
+          },
+        );
       },
     );
   }

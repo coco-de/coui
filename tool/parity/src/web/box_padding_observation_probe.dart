@@ -150,6 +150,8 @@ String get boxPaddingObservationScript =>
       owner = binding.paddingSource;
       sourceBindingAuthority = binding.authority;
       registryIsLayoutRoot = true;
+      currentClientWitness = binding.currentClientSource;
+      currentClientEvidence = binding.clientEvidence;
       currentBoxBindingFailure = 'STAGE_CALLBACK_BINDING_CHANGED_DURING_CSS_READ';
       validateCurrentBoxBinding = binding.validateCurrentBinding;
       break;
@@ -618,7 +620,8 @@ String get boxPaddingObservationScript =>
     sourceBindingAuthority, registryIsLayoutRoot,
     ...(currentClientWitness ? {currentClientSource:currentClientWitness,
       clientEvidence:currentClientEvidence,
-      clientDomIdentityValidated:true,clientDomWholeTreeValidated:true,
+      clientDomIdentityValidated:true,clientDomWholeTreeValidated:source.webAdapterId!=='stage-current-callback-content-inset-v1',
+      ...(source.webAdapterId==='stage-current-callback-content-inset-v1' ? {clientOwnedPrefixValidated:true,foreignInteriorUsedForAuthority:false} : {}),
       clientObservationPhase:currentClientWitness.renderPhase} : {}),
     canonicalComparisonEligible:false});
 }

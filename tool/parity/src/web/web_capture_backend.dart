@@ -43,7 +43,6 @@ import 'runtime_capture.dart';
 import 'scope_allocation_ssr_source.dart';
 import 'showcase_allocation_ssr_source.dart';
 import 'ssr_render.dart';
-import 'stage_callback_ssr_source.dart';
 import 'stepper_horizontal_ssr_source.dart';
 import 'text_showcase_ssr_source.dart';
 import 'visual_value_ssr_source.dart';
@@ -250,7 +249,6 @@ Future<String> renderCaptureBodyHtml(
             CardAccordionFrameSsrSource.forEntry(entry) ??
             BottomActionBarSsrSource.forEntry(entry) ??
             StepperHorizontalSsrSource.forEntry(entry) ??
-            StageCallbackSsrSource.forEntry(entry) ??
             ScopeAllocationSsrSource.forEntry(entry) ??
             ShowcaseAllocationSsrSource.forEntry(entry) ??
             BreakpointShowcaseSsrSource.forEntry(entry) ??
@@ -307,14 +305,6 @@ Future<String> renderCaptureBodyHtml(
   var witness = sourceWitness;
   if (sourceRecorder is StepperHorizontalSsrSource &&
       witness?['stepperAwaitingExactNormalSerializedBody'] == true) {
-    try {
-      witness = sourceRecorder.completeWithSerializedBody(html);
-    } on Object catch (error) {
-      witness = {'error': '$error'};
-    }
-  }
-  if (sourceRecorder is StageCallbackSsrSource &&
-      witness?['stageAwaitingExactNormalSerializedBody'] == true) {
     try {
       witness = sourceRecorder.completeWithSerializedBody(html);
     } on Object catch (error) {
@@ -501,7 +491,6 @@ Future<WebCaptureResult> captureWebEntry({
   );
   final requiredCurrentSsrKind = additiveBoxObservations
       ? requiredStepperHorizontalSsrKind(entry) ??
-            requiredStageCallbackSsrKind(entry) ??
             requiredPublicWrapperSsrKind(entry) ??
             requiredCardAccordionFrameSsrKind(entry) ??
             requiredScopeAllocationSsrKind(entry) ??
