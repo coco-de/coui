@@ -366,6 +366,22 @@ class Alert extends StatelessWidget implements CoreAlertContract<Widget> {
 /// `.info`, `.success`, `.warning` select component options.
 /// Use `backgroundColor(.primary)` to set the background explicitly.
 extension AlertStyleChain on Alert {
+  /// Sets the content padding.
+  Alert contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreAlertStyle(padding: value));
+
+  /// Sets the border color.
+  Alert borderColor(CoreColor value) =>
+      withStyle(CoreAlertStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Alert borderWidth(double value) =>
+      withStyle(CoreAlertStyle(borderWidth: value));
+
+  /// Sets the content foreground color.
+  Alert foregroundColor(CoreColor value) =>
+      withStyle(CoreAlertStyle(foregroundColor: value));
+
   /// Sets the background paint and preserves the other style fields.
   Alert backgroundColor(CoreColor value) =>
       withStyle(CoreAlertStyle(backgroundColor: value));

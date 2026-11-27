@@ -17,7 +17,7 @@ typedef _Actual = ({
   Map<String, Object?> receipt,
   Map<String, Object?> capture,
 });
-const _recipes = <(String, String), (String, int)>{
+const _kRecipes = <(String, String), (String, int)>{
   ('drag', 'default'): ('DragScope', 2),
   ('drag', 'board'): ('DragScope', 2),
   ('drag', 'overlay'): ('DragScope', 2),
@@ -44,7 +44,7 @@ Map<String, Object?> _tree(dom.Node n) => n is dom.Element
       };
 Future<_Actual> _actual(String component, String variant, String theme) =>
     _cache.putIfAbsent('$component/$variant/$theme', () async {
-      final recipe = _recipes[(component, variant)]!;
+      final recipe = _kRecipes[(component, variant)]!;
       final key = '$component-$variant-$theme-defaultStyle';
       final entry = MatrixEntry.fromJson({
         'component': component,
@@ -183,7 +183,7 @@ console.log(JSON.stringify({observed,error,cssReads,
 }
 
 void main() {
-  for (final recipe in _recipes.keys) {
+  for (final recipe in _kRecipes.keys) {
     for (final theme in ['light', 'dark']) {
       test(
         'actual scope original SSR $recipe/$theme accepts single and combined',

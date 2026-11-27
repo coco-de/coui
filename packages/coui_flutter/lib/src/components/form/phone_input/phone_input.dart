@@ -160,6 +160,18 @@ class PhoneInput extends StatefulWidget
 /// PhoneInput().radius4.surface
 /// ```
 extension PhoneInputStyleChain on PhoneInput {
+  /// Sets the content padding.
+  PhoneInput contentPadding(CoreEdgeInsets value) =>
+      withStyle(CorePhoneInputStyle(padding: value));
+
+  /// Sets the border color.
+  PhoneInput borderColor(CoreColor value) =>
+      withStyle(CorePhoneInputStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  PhoneInput borderWidth(double value) =>
+      withStyle(CorePhoneInputStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   PhoneInput backgroundColor(CoreColor value) =>
       withStyle(CorePhoneInputStyle(backgroundColor: value));

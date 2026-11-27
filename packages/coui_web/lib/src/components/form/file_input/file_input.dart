@@ -630,6 +630,18 @@ class _FileInputState extends State<FileInput> {
 /// FileInput(onFilesSelected: onFiles).radius4.surface
 /// ```
 extension FileInputStyleChain on FileInput {
+  /// Sets the content padding.
+  FileInput contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreFileInputStyle(padding: value));
+
+  /// Sets the border color.
+  FileInput borderColor(CoreColor value) =>
+      withStyle(CoreFileInputStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  FileInput borderWidth(double value) =>
+      withStyle(CoreFileInputStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   FileInput backgroundColor(CoreColor value) =>
       withStyle(CoreFileInputStyle(backgroundColor: value));

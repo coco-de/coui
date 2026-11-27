@@ -12,6 +12,11 @@ import '../../src/web/ego_capture_backend.dart';
 import '../../src/web/element_capture.dart';
 import '../../src/web/web_capture_backend.dart';
 
+const _kPendingOperationTimeout = Duration(seconds: 5);
+const _kPendingOperationPollInterval = Duration(milliseconds: 5);
+const _kFastCleanupGrace = Duration(milliseconds: 100);
+const _kCooperativeCleanupGrace = Duration(seconds: 3);
+
 MatrixEntry entry({bool stage = false}) => MatrixEntry.fromJson({
   'component': 'test',
   'variant': 'default',
@@ -214,7 +219,7 @@ await fs.writeFile(${jsonEncode(calls.path)},JSON.stringify({calls:mockCalls,bef
           'navigation-stall' => ('Page.navigate', 'begin'),
           _ => ('Fetch.disable', 'cleanup-begin'),
         };
-        final until = DateTime.now().add(const Duration(seconds: 5));
+        final until = DateTime.now().add(_kPendingOperationTimeout);
         var entered = false;
         while (!entered && DateTime.now().isBefore(until)) {
           if (journal.existsSync()) {
@@ -224,7 +229,7 @@ await fs.writeFile(${jsonEncode(calls.path)},JSON.stringify({calls:mockCalls,bef
                   row['phase'] == expected.$2;
             });
           }
-          await Future<void>.delayed(const Duration(milliseconds: 5));
+          await Future<void>.delayed(_kPendingOperationPollInterval);
         }
         expect(entered, isTrue, reason: 'Fake operation must be pending');
         final receipt = File('${directory.path}/parent-control.json');
@@ -237,7 +242,7 @@ await fs.writeFile(${jsonEncode(calls.path)},JSON.stringify({calls:mockCalls,bef
           cleanup: cleanup,
           receipt: receipt,
           softDeadline: DateTime.now(),
-          cleanupGrace: const Duration(milliseconds: 100),
+          cleanupGrace: _kFastCleanupGrace,
         );
         exit = result.exitCode;
         parent = (jsonDecode(receipt.readAsStringSync()) as Map)
@@ -744,8 +749,8 @@ Future<void> main() async {
         receipt: receipt,
         softDeadline: DateTime.now(),
         cleanupGrace: cooperative
-            ? const Duration(seconds: 3)
-            : const Duration(milliseconds: 100),
+            ? _kCooperativeCleanupGrace
+            : _kFastCleanupGrace,
       );
       await Future.wait([output, errors]);
       final recorded = jsonDecode(receipt.readAsStringSync()) as Map;

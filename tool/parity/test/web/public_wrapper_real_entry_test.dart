@@ -8,7 +8,7 @@ import '../../src/model/probe_spec.dart';
 import '../../src/web/public_wrapper_ssr_source.dart';
 import '../../src/web/web_capture_backend.dart';
 
-const _recipes = <(String, String, Map<String, Object?>)>[
+const _kRecipes = <(String, String, Map<String, Object?>)>[
   (
     'tree',
     'trailing',
@@ -47,7 +47,7 @@ void main() {
   test(
     'source factory agrees with declaration for every actual surface enum',
     () {
-      for (final recipe in _recipes) {
+      for (final recipe in _kRecipes) {
         for (final style in CoreSurfaceStyleId.values) {
           final entry = MatrixEntry.fromJson({
             'component': recipe.$1,
@@ -70,7 +70,7 @@ void main() {
       }
     },
   );
-  for (final recipe in _recipes) {
+  for (final recipe in _kRecipes) {
     for (final theme in ['light', 'dark']) {
       test(
         'Public wrapper original Web ${recipe.$1}/${recipe.$2}/$theme',

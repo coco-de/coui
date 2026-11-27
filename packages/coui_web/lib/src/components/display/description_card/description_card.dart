@@ -498,6 +498,18 @@ class DescriptionCard extends UiComponent
 /// `.outline` selects component options.
 /// Use `backgroundColor(.primary)` to set the background explicitly.
 extension DescriptionCardStyleChain on DescriptionCard {
+  /// Sets the content padding.
+  DescriptionCard contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreDescriptionCardStyle(padding: value));
+
+  /// Sets the border color.
+  DescriptionCard borderColor(CoreColor value) =>
+      withStyle(CoreDescriptionCardStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  DescriptionCard borderWidth(double value) =>
+      withStyle(CoreDescriptionCardStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   DescriptionCard backgroundColor(CoreColor value) =>
       withStyle(CoreDescriptionCardStyle(backgroundColor: value));

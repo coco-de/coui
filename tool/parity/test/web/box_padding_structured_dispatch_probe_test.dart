@@ -10,7 +10,7 @@ import '../../src/model/matrix_entry.dart';
 import '../../src/web/box_padding_observation_probe.dart';
 import '../../src/web/web_capture_backend.dart';
 
-const _recipes = <(String, String, BoxObservationSourceSpec)>[
+const _kRecipes = <(String, String, BoxObservationSourceSpec)>[
   ('basic', 'default', BoxObservationSourceSpec.basicContentInset),
   (
     'disclosure-badge',
@@ -148,7 +148,7 @@ console.log(JSON.stringify({result,cssReads}));
 }
 
 void main() {
-  for (final recipe in _recipes) {
+  for (final recipe in _kRecipes) {
     for (final theme in ['light', 'dark']) {
       test(
         '${recipe.$1 == 'tree' ? 'missing SSR rejects' : 'full source dispatch'} ${recipe.$1}/${recipe.$2}/$theme',
@@ -184,7 +184,7 @@ void main() {
   ]) {
     test('invalid dispatch reads no CSS: $mutation', () async {
       final readback = await _observe(
-        _recipes.first,
+        _kRecipes.first,
         'light',
         mutation: mutation,
       );

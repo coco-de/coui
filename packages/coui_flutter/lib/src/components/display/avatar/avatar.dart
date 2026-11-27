@@ -723,6 +723,14 @@ class AvatarBadge extends StatelessWidget
 /// AvatarBadge().success
 /// ```
 extension AvatarBadgeStyleChain on AvatarBadge {
+  /// Sets the border color.
+  AvatarBadge borderColor(CoreColor value) =>
+      withStyle(CoreAvatarBadgeStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  AvatarBadge borderWidth(double value) =>
+      withStyle(CoreAvatarBadgeStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   AvatarBadge backgroundColor(CoreColor value) =>
       withStyle(CoreAvatarBadgeStyle(backgroundColor: value));
@@ -935,6 +943,14 @@ class AvatarGroup extends StatelessWidget
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreAvatarGroupStyle.merge` right-side-wins semantics).
 extension AvatarGroupStyleChain on AvatarGroup {
+  /// Sets the border color.
+  AvatarGroup borderColor(CoreColor value) =>
+      withStyle(CoreAvatarGroupStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  AvatarGroup borderWidth(double value) =>
+      withStyle(CoreAvatarGroupStyle(borderWidth: value));
+
   /// Returns a copy of this [AvatarGroup] with [patch] merged into
   /// [avatarGroupStyle] (patch fields win on conflict).
   AvatarGroup withStyle(CoreAvatarGroupStyle patch) => copyWith(

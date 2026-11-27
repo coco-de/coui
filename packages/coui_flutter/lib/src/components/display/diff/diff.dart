@@ -557,6 +557,14 @@ class _DiffState extends State<Diff> {
 /// Diff(before: ..., after: ...).radius4
 /// ```
 extension DiffStyleChain on Diff {
+  /// Sets the border color.
+  Diff borderColor(CoreColor value) =>
+      withStyle(CoreDiffStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Diff borderWidth(double value) =>
+      withStyle(CoreDiffStyle(borderWidth: value));
+
   /// Returns a copy of this [Diff] with [patch] merged into
   /// [diffStyle] (patch fields win on conflict).
   Diff withStyle(CoreDiffStyle patch) =>

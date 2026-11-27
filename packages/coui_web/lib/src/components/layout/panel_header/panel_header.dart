@@ -124,6 +124,10 @@ class PanelHeader extends UiComponent
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CorePanelHeaderStyle.merge` right-side-wins semantics).
 extension PanelHeaderStyleChain on PanelHeader {
+  /// Sets the content padding.
+  PanelHeader contentPadding(CoreEdgeInsets value) =>
+      withStyle(CorePanelHeaderStyle(padding: value));
+
   /// Returns a copy of this [PanelHeader] with [patch] merged into
   /// [panelHeaderStyle] (patch fields win on conflict).
   PanelHeader withStyle(CorePanelHeaderStyle patch) => copyWith(

@@ -170,6 +170,21 @@ class Tag extends StatelessWidget implements CoreTagContract<Widget> {
 /// )
 /// ```
 extension TagStyleChain on Tag {
+  /// Sets the content padding.
+  Tag contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreTagStyle(padding: value));
+
+  /// Sets the border color.
+  Tag borderColor(CoreColor value) =>
+      withStyle(CoreTagStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  Tag borderWidth(double value) => withStyle(CoreTagStyle(borderWidth: value));
+
+  /// Sets the content foreground color.
+  Tag foregroundColor(CoreColor value) =>
+      withStyle(CoreTagStyle(foregroundColor: value));
+
   /// Sets the background paint and preserves the other style fields.
   Tag backgroundColor(CoreColor value) =>
       withStyle(CoreTagStyle(backgroundColor: value));

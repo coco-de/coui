@@ -404,6 +404,18 @@ class _DashedRectPainter extends CustomPainter {
 /// OutlinedContainer(child: const Text('Card body')).radius4.primary
 /// ```
 extension OutlinedContainerStyleChain on OutlinedContainer {
+  /// Sets the content padding.
+  OutlinedContainer contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreOutlinedContainerStyle(padding: value));
+
+  /// Sets the border color.
+  OutlinedContainer borderColor(CoreColor value) =>
+      withStyle(CoreOutlinedContainerStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  OutlinedContainer borderWidth(double value) =>
+      withStyle(CoreOutlinedContainerStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   OutlinedContainer backgroundColor(CoreColor value) =>
       withStyle(CoreOutlinedContainerStyle(backgroundColor: value));

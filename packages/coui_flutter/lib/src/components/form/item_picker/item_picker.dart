@@ -141,6 +141,14 @@ class ItemPicker extends StatefulWidget
 /// ItemPicker(items: const ['Apple']).radius4.surface
 /// ```
 extension ItemPickerStyleChain on ItemPicker {
+  /// Sets the border color.
+  ItemPicker borderColor(CoreColor value) =>
+      withStyle(CoreItemPickerStyle(borderColor: value));
+
+  /// Sets the border width in logical pixels.
+  ItemPicker borderWidth(double value) =>
+      withStyle(CoreItemPickerStyle(borderWidth: value));
+
   /// Sets the background paint and preserves the other style fields.
   ItemPicker backgroundColor(CoreColor value) =>
       withStyle(CoreItemPickerStyle(backgroundColor: value));

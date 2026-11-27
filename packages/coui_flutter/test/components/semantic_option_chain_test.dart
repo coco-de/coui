@@ -2,11 +2,73 @@ import 'package:coui_flutter/coui_flutter.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  test('Tag style chains compose with the category color and emphasis', () {
+    const base = Tag(color: CoreCategoryColor.blue, child: Text('Design'));
+    const insets = CoreEdgeInsets.symmetric(horizontal: CoreSpace.space8);
+    final styled = base
+        .borderWidth(CoreStrokeWidth.stroke2)
+        .contentPadding(insets)
+        .borderColor(.outline)
+        .foregroundColor(.onSurface)
+        .borderColor(.primary);
+    expect(
+      styled.tagStyle,
+      const CoreTagStyle(
+        padding: insets,
+        borderWidth: CoreStrokeWidth.stroke2,
+        borderColor: .primary,
+        foregroundColor: .onSurface,
+      ),
+    );
+    expect(styled.color, base.color);
+    expect(styled.emphasis, base.emphasis);
+    expect(styled.child, same(base.child));
+    expect(base.tagStyle, isNull);
+  });
+
+  test(
+    'Filter content padding merges into the track and keeps item padding',
+    () {
+      const itemPadding = CoreEdgeInsets.all(CoreSpace.space4);
+      const trackPadding = CoreEdgeInsets.all(CoreSpace.space12);
+      final filter = Filter<String>(
+        groupValue: 'open',
+        items: const [CoreFilterItem(value: 'open', label: 'Open')],
+        onValueChanged: (_) {},
+        filterStyle: const CoreFilterStyle(
+          toggleGroupStyle: CoreToggleGroupStyle(itemPadding: itemPadding),
+        ),
+      );
+      final styled = filter.contentPadding(trackPadding);
+      final track = styled.filterStyle!.toggleGroupStyle!;
+      expect(track.padding, trackPadding);
+      expect(track.itemPadding, itemPadding);
+      expect(styled.items, same(filter.items));
+      expect(styled.onValueChanged, same(filter.onValueChanged));
+    },
+  );
+
   test('Button option getters compose with explicit style', () {
     const style = CoreButtonStyle(
       backgroundColor: .tertiary,
     );
     const base = Button(buttonStyle: style, child: Text('Save'));
+    const insets = CoreEdgeInsets.symmetric(horizontal: CoreSpace.space16);
+    final styled = base.outline
+        .contentPadding(insets)
+        .borderColor(.outline)
+        .borderWidth(CoreStrokeWidth.stroke2)
+        .foregroundColor(.onSurface);
+    expect(styled.variant, base.outline.variant);
+    expect(styled.buttonStyle?.padding, insets);
+    expect(styled.buttonStyle?.borderColor, CoreColor.outline);
+    expect(styled.buttonStyle?.borderWidth, CoreStrokeWidth.stroke2);
+    expect(styled.buttonStyle?.backgroundColor, style.backgroundColor);
+    expect(
+      styled.borderColor(.primary).buttonStyle?.borderColor,
+      CoreColor.primary,
+    );
+    expect(styled.buttonStyle?.foregroundColor, CoreColor.onSurface);
     final painted = base.primary.radius16.backgroundColor(.secondary);
     expect(painted.variant, CoreButtonVariant.primary);
     expect(painted.buttonStyle?.backgroundColor, CoreColor.secondary);
@@ -30,6 +92,22 @@ void main() {
       backgroundColor: .tertiary,
     );
     const base = Badge(badgeStyle: style, child: Text('Saved'));
+    const insets = CoreEdgeInsets.symmetric(horizontal: CoreSpace.space16);
+    final styled = base.outline
+        .contentPadding(insets)
+        .borderColor(.outline)
+        .borderWidth(CoreStrokeWidth.stroke2)
+        .foregroundColor(.onSurface);
+    expect(styled.variant, base.outline.variant);
+    expect(styled.badgeStyle?.padding, insets);
+    expect(styled.badgeStyle?.borderColor, CoreColor.outline);
+    expect(styled.badgeStyle?.borderWidth, CoreStrokeWidth.stroke2);
+    expect(styled.badgeStyle?.backgroundColor, style.backgroundColor);
+    expect(
+      styled.borderColor(.primary).badgeStyle?.borderColor,
+      CoreColor.primary,
+    );
+    expect(styled.badgeStyle?.foregroundColor, CoreColor.onSurface);
     expect(base.primary.tone, CoreBadgeTone.primary);
     expect(base.primary.badgeStyle, same(style));
     expect(base.info.tone, CoreBadgeTone.info);
@@ -126,6 +204,20 @@ void main() {
       backgroundColor: .tertiary,
     );
     const base = Card(cardStyle: style);
+    const insets = CoreEdgeInsets.symmetric(horizontal: CoreSpace.space16);
+    final styled = base.outline
+        .contentPadding(insets)
+        .borderColor(.outline)
+        .borderWidth(CoreStrokeWidth.stroke2);
+    expect(styled.variant, base.outline.variant);
+    expect(styled.cardStyle?.padding, insets);
+    expect(styled.cardStyle?.borderColor, CoreColor.outline);
+    expect(styled.cardStyle?.borderWidth, CoreStrokeWidth.stroke2);
+    expect(styled.cardStyle?.backgroundColor, style.backgroundColor);
+    expect(
+      styled.borderColor(.primary).cardStyle?.borderColor,
+      CoreColor.primary,
+    );
     expect(base.outline.variant, CoreCardVariant.outlined);
     expect(base.outline.cardStyle, same(style));
   });

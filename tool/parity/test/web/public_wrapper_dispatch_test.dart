@@ -181,7 +181,7 @@ console.log(JSON.stringify({observed,error,cssReads,
   }
 }
 
-const _recipes = [
+const _kRecipes = [
   ('tree', 'default'),
   ('tree', 'selected'),
   ('tree', 'trailing'),
@@ -189,7 +189,7 @@ const _recipes = [
   ('swipe-actions', 'default'),
 ];
 void main() {
-  for (final (component, variant) in _recipes) {
+  for (final (component, variant) in _kRecipes) {
     for (final theme in ['light', 'dark']) {
       test(
         '$component/$variant/$theme actual root CSS and legacy invariant',

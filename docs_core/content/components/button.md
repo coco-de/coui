@@ -107,6 +107,14 @@ menu, menubar, fixed는 Menu 컴포넌트 안에서만 쓰는 내부용 variant�
 
 버튼의 `.primary`, `.secondary`, `.outline`은 같은 이름의 `variant`를 선택합니다. 예를 들어 `Button(onPressed: save, child: const Text('저장')).secondary`는 `variant: .secondary`의 테마와 상태별 색을 사용합니다. 기본 버튼은 이미 primary입니다. 앱에서 배경을 따로 정할 때만 `.primary.backgroundColor(.secondary)`처럼 덧붙입니다. 괄호 안의 `.secondary`는 테마의 색상 토큰입니다.
 
+사각 버튼의 안쪽 여백은 `.contentPadding(...)`으로 조절합니다. 테두리 두께는 `.borderWidth(CoreStrokeWidth.stroke2)`처럼 지정합니다.
+
+```dart
+Button(child: const Text('편집')).outline
+    .foregroundColor(.primary)
+    .borderColor(.primary)
+```
+
 ## 크기
 
 높이 24부터 64까지 6단계입니다. 여백, 아이콘, 글자 크기가 높이에 맞춰 함께 바뀝니다.

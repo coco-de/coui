@@ -15,14 +15,14 @@ final _source = BoxObservationSourceSpec.fromJson(const {
   'webAdapterId': 'classic-scope-showcase-allocation-host-v1',
 });
 
-const _cases = <(String, String), (String, int)>{
+const _kCases = <(String, String), (String, int)>{
   ('drag', 'default'): ('DragScope', 2),
   ('drag', 'board'): ('DragScope', 2),
   ('drag', 'overlay'): ('DragScope', 2),
   ('subfocus', 'default'): ('SubfocusScope', 3),
 };
 void main() {
-  for (final row in _cases.entries) {
+  for (final row in _kCases.entries) {
     for (final theme in ['light', 'dark']) {
       test('scope original normal Web ${row.key}/$theme', () async {
         final (component, variant) = row.key;

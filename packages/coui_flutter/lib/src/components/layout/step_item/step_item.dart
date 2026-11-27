@@ -116,6 +116,10 @@ class StepItem extends StatelessWidget implements CoreStepItemContract {
 /// Later `.withStyle(...)` calls in a chain win on conflicting fields
 /// (matches `CoreStepItemStyle.merge` right-side-wins semantics).
 extension StepItemStyleChain on StepItem {
+  /// Sets the content padding.
+  StepItem contentPadding(CoreEdgeInsets value) =>
+      withStyle(CoreStepItemStyle(padding: value));
+
   /// Returns a copy of this [StepItem] with [patch] merged into
   /// [stepItemStyle] (patch fields win on conflict).
   StepItem withStyle(CoreStepItemStyle patch) => copyWith(
