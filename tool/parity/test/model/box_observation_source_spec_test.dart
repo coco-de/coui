@@ -1,3 +1,4 @@
+import 'package:coui_web/coui_web.dart' show CoreSurfaceStyleId;
 import 'package:docs_core/internal/preview/scenes.dart';
 import 'package:test/test.dart';
 
@@ -7,6 +8,7 @@ import '../../src/model/box_observation_source_spec.dart';
 import '../../src/model/probe_spec.dart';
 
 void main() {
+  _showcaseAllocationTests();
   const breakpointSource =
       BoxObservationSourceSpec.breakpointShowcaseContentInset;
   test('only classic Breakpoint/default maps its separate content inset', () {
@@ -919,7 +921,35 @@ void main() {
         variant: recipe.$2,
         flutterClassName: 'sanity-only',
       ).firstWhere((probe) => probe.role == 'root');
-      expect(probe.boxObservationSource, isNull);
+      const allocations = {
+        ('chat', 'default'),
+        ('chat', 'plain'),
+        ('chat', 'tail-corner'),
+        ('chat', 'tail-top'),
+        ('skeleton', 'default'),
+      };
+      if (allocations.contains(recipe)) {
+        expect(probe.boxObservationSource?.toJson(), {
+          'schemaVersion': 1,
+          'logicalUnitId': 'classic-compound-showcase-allocation-host',
+          'quantityId': 'inside-frame-own-content-inset-v1',
+          'nativeAdapterId': 'classic-compound-showcase-allocation-host-v1',
+          'webAdapterId': 'classic-compound-showcase-allocation-host-v1',
+        });
+        expect(
+          () => requireCaptureProbes(
+            component: recipe.$1,
+            variant: recipe.$2,
+            roles: ['root'],
+            boxObservationSources: [
+              BoxObservationSourceSpec.responsiveFlexLayoutHost,
+            ],
+          ),
+          throwsFormatException,
+        );
+      } else {
+        expect(probe.boxObservationSource, isNull);
+      }
       expect(probe.fields, isNotEmpty);
       expect(probe.flutterFinder, 'byType:sanity-only');
     });
@@ -1194,4 +1224,104 @@ void main() {
       );
     }
   });
+}
+
+const _kRecipes = <(String, String)>[
+  ('progress', 'tone'),
+  ('chat', 'default'),
+  ('chat', 'plain'),
+  ('chat', 'tail-corner'),
+  ('chat', 'tail-top'),
+  ('chip', 'selected'),
+  ('chip', 'variant'),
+  ('chip', 'shape'),
+  ('chip', 'cast-motion'),
+  ('chip', 'prefix'),
+  ('skeleton', 'default'),
+  ('step-item', 'default'),
+];
+
+const _kLiteralSource = <String, Object?>{
+  'schemaVersion': 1,
+  'logicalUnitId': 'classic-compound-showcase-allocation-host',
+  'quantityId': 'inside-frame-own-content-inset-v1',
+  'nativeAdapterId': 'classic-compound-showcase-allocation-host-v1',
+  'webAdapterId': 'classic-compound-showcase-allocation-host-v1',
+};
+
+void _showcaseAllocationTests() {
+  test('compound showcase allocation has the independent literal tuple', () {
+    const source = BoxObservationSourceSpec.showcaseAllocationHost;
+    expect(source.toJson(), _kLiteralSource);
+    expect(source.validationError, isNull);
+  });
+  for (final recipe in _kRecipes) {
+    for (final style in CoreSurfaceStyleId.values) {
+      test('$recipe/${style.name} declaration stays exact', () {
+        final probes = captureProbes(
+          key: '${recipe.$1}-${recipe.$2}-light-${style.name}',
+          component: recipe.$1,
+          variant: recipe.$2,
+          flutterClassName: 'actual-canonical',
+        );
+        expect(probes, hasLength(1));
+        expect(probes.single.boxObservationSource?.toJson(), _kLiteralSource);
+        expect(
+          () => requireCaptureProbes(
+            component: recipe.$1,
+            variant: recipe.$2,
+            roles: const ['root'],
+            boxObservationSources: [probes.single.boxObservationSource],
+          ),
+          returnsNormally,
+        );
+      });
+    }
+  }
+  test('remaining twelve nullable/product roots remain undeclared', () {
+    for (final recipe in [
+      ('progress', 'default'),
+      ('progress', 'labelled'),
+      ('progress', 'segments'),
+      ('progress', 'indeterminate'),
+      ('progress', 'radial'),
+      ('accordion', 'default'),
+    ]) {
+      final probe = captureProbes(
+        key: 'held',
+        component: recipe.$1,
+        variant: recipe.$2,
+        flutterClassName: 'held',
+      ).single;
+      expect(probe.boxObservationSource, isNull);
+      expect(
+        () => requireCaptureProbes(
+          component: recipe.$1,
+          variant: recipe.$2,
+          roles: const ['root'],
+          boxObservationSources: [
+            BoxObservationSourceSpec.showcaseAllocationHost,
+          ],
+        ),
+        throwsFormatException,
+      );
+    }
+  });
+  for (final field in [
+    'schemaVersion',
+    'quantityId',
+    'nativeAdapterId',
+    'webAdapterId',
+  ]) {
+    test('allocation rejects malformed $field', () {
+      final wire = {
+        ..._kLiteralSource,
+        field: field == 'schemaVersion' ? 2 : 'foreign',
+      };
+      expect(
+        BoxObservationSourceSpec.fromJson(wire).validationError,
+        isNotNull,
+      );
+    });
+  }
 }

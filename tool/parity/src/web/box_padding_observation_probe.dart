@@ -34,6 +34,7 @@ import 'box_padding_visual_value_units_probe.dart';
 import 'breakpoint_showcase_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
+import 'showcase_allocation_ssr_source.dart';
 import 'text_showcase_ssr_source.dart';
 
 /// Current CSS padding of a declared box, independent of painted chrome.
@@ -55,6 +56,7 @@ String get boxPaddingObservationScript =>
       BoxObservationSourceSpec.docsSizePreview.toJson(),
       BoxObservationSourceSpec.docsPlayground.toJson(),
       BoxObservationSourceSpec.textShowcaseOuterPadding.toJson(),
+      BoxObservationSourceSpec.showcaseAllocationHost.toJson(),
       BoxObservationSourceSpec.breakpointShowcaseContentInset.toJson(),
       ...BoxObservationSourceSpec.componentFrames.map((source) => source.toJson()),
       ...BoxObservationSourceSpec.extendedComponentFrames.map((source) => source.toJson()),
@@ -109,6 +111,21 @@ String get boxPaddingObservationScript =>
     return {raw:receipt.currentRaw};
   };
   switch(source.webAdapterId) {
+    case 'classic-compound-showcase-allocation-host-v1': {
+      const binding = ($showcaseAllocationRequestBindingScript)(request);
+      if (binding.error) return JSON.stringify(incomplete(binding.error));
+      if (!binding.applied || binding.registryResultElement !== layoutRoot ||
+          binding.fieldUnitElement !== layoutRoot || binding.paddingSource !== layoutRoot ||
+          binding.frameSource !== layoutRoot || binding.registryIsLayoutRoot !== true ||
+          typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('SHOWCASE_ALLOCATION_FIELD_UNIT_CHANGED'));
+      currentBoxBindingFailure = 'SHOWCASE_ALLOCATION_BINDING_CHANGED_DURING_CSS_READ';
+      owner = layoutRoot;
+      sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true;
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      break;
+    }
     case 'classic-breakpoint-showcase-content-inset-v1': {
       const binding = ($breakpointShowcaseRequestBindingScript)(request);
       if (binding.error) return JSON.stringify(incomplete(binding.error));

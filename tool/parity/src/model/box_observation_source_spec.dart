@@ -941,6 +941,15 @@ class BoxObservationSourceSpec {
     webAdapterId: 'classic-text-showcase-outer-padding-v1',
   );
 
+  /// The classic compound showcase allocation, not any contained product.
+  static const showcaseAllocationHost = BoxObservationSourceSpec(
+    schemaVersion: 1,
+    logicalUnitId: 'classic-compound-showcase-allocation-host',
+    quantityId: quantity,
+    nativeAdapterId: 'classic-compound-showcase-allocation-host-v1',
+    webAdapterId: 'classic-compound-showcase-allocation-host-v1',
+  );
+
   /// Exact classic Breakpoint showcase Container/DIV content allocation.
   /// The viewport readout remains an opaque child, not a source authority.
   static const breakpointShowcaseContentInset = BoxObservationSourceSpec(
@@ -985,6 +994,7 @@ class BoxObservationSourceSpec {
       ...visualValueFrames,
       ...framedCollectionFrames,
       textShowcaseOuterPadding,
+      showcaseAllocationHost,
       breakpointShowcaseContentInset,
     ]) {
       if (logicalUnitId == supported.logicalUnitId &&

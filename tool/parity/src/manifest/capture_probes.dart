@@ -61,6 +61,8 @@ void requireCaptureProbes({
                     .textShowcaseOuterPadding
                     .logicalUnitId ||
             source?.logicalUnitId ==
+                BoxObservationSourceSpec.showcaseAllocationHost.logicalUnitId ||
+            source?.logicalUnitId ==
                 BoxObservationSourceSpec
                     .breakpointShowcaseContentInset
                     .logicalUnitId ||
@@ -170,6 +172,13 @@ BoxObservationSourceSpec? _componentBoxSource(
     BoxObservationSourceSpec.iconVisualFrame,
   ('number-ticker', 'default') =>
     BoxObservationSourceSpec.numberTickerTextLayoutHost,
+  ('chat', 'default' || 'plain' || 'tail-corner' || 'tail-top') =>
+    BoxObservationSourceSpec.showcaseAllocationHost,
+  ('chip', 'selected' || 'variant' || 'shape' || 'cast-motion' || 'prefix') =>
+    BoxObservationSourceSpec.showcaseAllocationHost,
+  ('skeleton', 'default') => BoxObservationSourceSpec.showcaseAllocationHost,
+  ('step-item', 'default') => BoxObservationSourceSpec.showcaseAllocationHost,
+  ('progress', 'tone') => BoxObservationSourceSpec.showcaseAllocationHost,
   ('skeleton', 'text') => BoxObservationSourceSpec.skeletonTextLinesLayoutHost,
   ('countdown', 'default') => BoxObservationSourceSpec.countdownValueLayoutHost,
   ('mockup', 'phone' || 'tablet' || 'landscape') ||

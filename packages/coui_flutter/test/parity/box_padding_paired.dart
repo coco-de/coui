@@ -28,6 +28,7 @@ import 'box_padding_responsive_layout_units.dart';
 import 'box_padding_scene_units.dart';
 import 'box_padding_section_layout_units.dart';
 import 'box_padding_sequence_layout_units.dart';
+import 'box_padding_showcase_allocation_units.dart';
 import 'box_padding_solid_layout_units.dart';
 import 'box_padding_source_bindings.dart';
 import 'box_padding_structured_root_units.dart';
@@ -107,6 +108,54 @@ Map<String, Object?> _observe(
     final BoxPaddingObservation observation;
     var sourceBindingProvenance = <String, Object?>{};
     switch (source.nativeAdapterId) {
+      case 'classic-compound-showcase-allocation-host-v1':
+        final declared = probe.boxObservationSource!;
+        final expected = BoxObservationSourceSpec.showcaseAllocationHost
+            .toJson();
+        if (declared.length != expected.length ||
+            expected.entries.any(
+              (entry) => declared[entry.key] != entry.value,
+            )) {
+          throw const BoxObservationError(
+            'SHOWCASE_ALLOCATION_SOURCE_CHANGED',
+            'The complete declared allocation tuple must match exactly.',
+          );
+        }
+        final binding = bindShowcaseAllocationBoxSource(
+          captureRoot: captureRoot,
+          registryResult: registryResult,
+          source: source,
+        );
+        if (binding == null ||
+            !identical(binding.registryResultElement, resultElement) ||
+            !identical(binding.scope.producer, resultElement) ||
+            binding.readerId !=
+                'showcase-allocation-current-framework-host-v1') {
+          throw const BoxObservationError(
+            'SHOWCASE_ALLOCATION_SOURCE_CHANGED',
+            'The original current showcase allocation is required.',
+          );
+        }
+        observation = binding.readDeclaredAbsence();
+        if (!identical(observation.producer, resultElement) ||
+            !identical(observation.owner, binding.fieldUnitElement) ||
+            !identical(observation.frameOwner, binding.frameSource) ||
+            observation.paddingElement != null ||
+            observation.quantity != PaddingQuantityKind.declaredNoOwnPadding) {
+          throw const BoxObservationError(
+            'SHOWCASE_ALLOCATION_SOURCE_CHANGED',
+            'Keep the actual allocation owner and structural quantity.',
+          );
+        }
+        sourceBindingProvenance = {
+          'sourceBindingAuthority': binding.authority,
+          'fieldUnitElement': identityHashCode(binding.fieldUnitElement),
+          'declaredPaddingSourceElement': identityHashCode(
+            binding.paddingSource,
+          ),
+          'declaredFrameSourceElement': identityHashCode(binding.frameSource),
+          'sourceReaderId': binding.readerId,
+        };
       case 'classic-breakpoint-showcase-content-inset-v1':
         final declared = probe.boxObservationSource!;
         final expected = kBreakpointShowcaseContentInsetSource.toJson();
