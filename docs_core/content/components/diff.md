@@ -1,44 +1,436 @@
 ---
 title: Diff
-description: 두 컨텐츠를 좌/우로 비교하는 split-view 컴포넌트 (이미지 / 텍스트 / 임의 위젯)
+description: 두 콘텐츠를 한 프레임에 겹쳐 놓고, 분할선을 좌우로 옮기며 비교합니다.
 category: display
 platforms: [flutter, web]
-related: [code-diff]
+related: [code-diff, carousel, hover-gallery]
 tags: [comparison, before-after, slider]
+template: v2
+source: display/diff
 ---
 
 # Diff
 
-두 개의 컨텐츠를 한 프레임 안에 겹쳐 놓고, 분할선 위의 둥근 손잡이를 끌거나
-프레임을 눌러 좌/우 비율을 조절하면서 비교하는 viewer 입니다. daisyUI 의 `diff`
-컴포넌트와 동일한 사용 의도이며, 이미지·텍스트·임의 위젯을 슬롯으로 받습니다.
+<a id="live-preview"></a>
 
-어느 쪽이 무엇인지는 프레임 위쪽 모서리의 이름표(`beforeLabel` · `afterLabel`)로
-알립니다. 분할선은 떠 있는 선과 손잡이로 그려져서, 비교하는 콘텐츠가 어떤
-그림이든 눈에 띕니다.
+## 플레이그라운드
 
-> 코드 변경 사항을 라인 단위로 비교하려면 [`CodeDiff`](/components/code-diff)
-> 를 사용하세요.
+속성을 바꾼 뒤 미리보기의 손잡이를 끌거나 프레임을 눌러 보세요. `조작 끄기`를 켜면 분할선이 움직이지 않습니다.
 
-## Live Preview
+<Playground component="diff" />
 
-<LivePreview component="diff" variants="default,text" />
+코드의 `originalPhoto` · `editedPhoto`는 비교할 두 콘텐츠를 넣는 자리의 이름입니다. 코드를 복사한 뒤 이 두 자리에 실제 콘텐츠를 넣습니다. 미리보기의 풍경은 문서에서 색 토큰으로 그린 그림입니다. `initialPosition`을 바꾸면 문서가 미리보기를 새로 만들어 그 위치에서 시작합니다.
 
-## 사용 시기 (When to Use)
+## 구조
 
-**이 컴포넌트를 사용하세요:**
-- 이미지 before/after 비교 (보정 전/후, 라이트/다크, 디자인 시안 비교)
-- 어느 쪽이 전이고 후인지 이름표로 알려야 하는 비교
-- 폰트나 디자인 토큰 두 가지를 동일한 텍스트로 비교
-- 어떤 두 컨텐츠든 좌/우 분할선으로 비율을 조절하며 보고 싶을 때
+프레임 하나에 두 층을 겹칩니다. 분할선 왼쪽에는 `before`, 오른쪽에는 `after`가 보입니다. 두 콘텐츠의 차이를 계산하지 않고, 위에 놓은 `before` 층을 분할 위치까지만 보이도록 잘라 냅니다.
 
-**대신 다른 컴포넌트를 사용하세요:**
-- **[CodeDiff](/components/code-diff)**: 코드 변경 사항을 라인 단위로 표시할 때
-- **[Carousel](/components/carousel)**: 두 층의 경계 조절 대신 여러 콘텐츠를 순차적으로 넘겨 볼 때
+<Anatomy demo="diff/anatomy">
+<AnatomyItem part="container" name="Frame">
 
-### 빠른 오버라이드 (Chain)
+두 콘텐츠를 담는 상자입니다. 폭을 채우고 `aspectRatio`(기본 16:9)로 높이를 정하며, 모서리는 16입니다.
 
-이미 만든 `Diff` 인스턴스에 스타일을 빠르게 덧붙이고 싶다면 `withStyle` 체인을 쓸 수 있습니다. 생성자의 style 슬롯 인자와 동일하게 동작하지만, 이미 구성된 위젯 위에서 바로 이어 쓸 수 있습니다. `.radius9999`처럼 Core 토큰 상수 이름과 똑같은 이름의 getter도 있습니다 — `withStyle`을 한 번 더 줄인 sugar로, 이름이 곧 값이라(radius9999 == `CoreRadius.radius9999`) 어느 컴포넌트에서 써도 뜻이 갈리지 않습니다.
+</AnatomyItem>
+<AnatomyItem select="[data-docs-part=diff-before]" side="top" name="before">
+
+분할선 왼쪽에 보이는 콘텐츠입니다.
+
+</AnatomyItem>
+<AnatomyItem select="[data-docs-part=diff-after]" side="top" name="after">
+
+분할선 오른쪽에 보이는 콘텐츠입니다. 프레임 전체에 깔리고 그 위에 `before`가 놓입니다.
+
+</AnatomyItem>
+<AnatomyItem select=".coui-diff-handle-strip" side="top" name="분할선">
+
+두 콘텐츠의 경계를 보이는 폭 2의 선입니다. 조작할 수 있을 때는 이 선을 따라 손잡이를 잡는 영역이 놓입니다.
+
+</AnatomyItem>
+<AnatomyItem select=".coui-diff-handle-disc" side="right" name="손잡이">
+
+분할선 가운데의 지름 40 원입니다. 좌우 화살표 아이콘이 들어가며 아이콘 모양을 바꾸는 속성은 없습니다. `interactive: false`면 그리지 않습니다.
+
+</AnatomyItem>
+<AnatomyItem select="[data-docs-part=diff-label]" side="top" name="beforeLabel · afterLabel">
+
+프레임 위쪽 두 모서리의 이름표입니다. 넘긴 콘텐츠를 작은(`sm`) [Badge](/components/badge)로 감싸 모서리에서 12만큼 안쪽에 그립니다. 넘기지 않으면 그리지 않습니다.
+
+</AnatomyItem>
+</Anatomy>
+
+### 프레임의 가장자리
+
+프레임 둘레에는 `outlineSubtle` 색의 폭 1 선이 안쪽에 그려집니다. 프레임 크기는 그대로이고 콘텐츠의 가장자리를 그만큼 덮습니다. 비교하는 그림이 페이지 바탕과 같은 색이어도 경계를 알 수 있도록 둔 선입니다. `diffStyle`의 `borderWidth`를 `0`으로 주면 그리지 않습니다.
+
+두 콘텐츠 · 분할선 · 이름표 · 가장자리 선은 프레임의 둥근 모양에 맞춰 잘립니다. 손잡이는 잘리는 층 바깥에 있어, 분할선이 맨 끝에 있어도 프레임 모서리에 잘리지 않습니다.
+
+## 콘텐츠 채우기
+
+`before`와 `after`에는 Flutter의 `Widget`, Web의 Jaspr `Component`를 넣습니다. 사진, 글, 직접 만든 화면을 모두 넣을 수 있습니다. 두 콘텐츠를 같은 크기와 구도로 만들면 분할선에서 자연스럽게 이어집니다.
+
+| 플랫폼 | 콘텐츠 크기 |
+| --- | --- |
+| Flutter | Diff가 두 콘텐츠를 프레임 크기로 채워 줍니다. |
+| Jaspr Web | 콘텐츠를 담는 층만 프레임 크기입니다. 콘텐츠의 가장 바깥 요소에 `w-full h-full`을 줍니다. |
+
+Flutter에서 배경 없는 콘텐츠를 넣을 때는 [인터랙션](#인터랙션)의 누름 조건도 확인합니다.
+
+### 사진 비교
+
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+```dart
+Diff(
+  ariaLabel: '보정 전과 보정 후 사진 비교',
+  before: Image.asset('assets/original.jpg', fit: BoxFit.cover),
+  after: Image.asset('assets/edited.jpg', fit: BoxFit.cover),
+)
+```
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+```dart
+Diff(
+  ariaLabel: '보정 전과 보정 후 사진 비교',
+  before: img(src: '/images/original.jpg', alt: '', classes: 'w-full h-full object-cover'),
+  after: img(src: '/images/edited.jpg', alt: '', classes: 'w-full h-full object-cover'),
+)
+```
+
+  </TabItem>
+</Tabs>
+
+### 글자 비교
+
+같은 글을 두 면에 같은 자리로 놓으면 색이나 글꼴의 차이를 비교할 수 있습니다. 가운데에는 손잡이가 놓이므로 이 예는 글을 아래쪽에 둡니다.
+
+<Preview demo="diff/content-text" />
+
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+```dart
+final colors = Theme.of(context).colorScheme;
+
+Diff(
+  ariaLabel: '채운 배경과 표면 배경 글자 비교',
+  before: ColoredBox(
+    color: colors.primary.toValue(),
+    child: Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: CoreSpace.space16),
+        child: Text('CoUI').displaySmall.onPrimary,
+      ),
+    ),
+  ),
+  after: ColoredBox(
+    color: colors.surfaceContainer.toValue(),
+    child: Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: CoreSpace.space16),
+        child: Text('CoUI').displaySmall.onSurface,
+      ),
+    ),
+  ),
+)
+```
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+```dart
+final colors = context.colorScheme;
+
+Diff(
+  ariaLabel: '채운 배경과 표면 배경 글자 비교',
+  before: div(
+    classes: 'w-full h-full flex items-end justify-center bg-${colors.primary}',
+    [
+      div(
+        styles: Styles(raw: {'padding-bottom': 'var(--coui-space-16)'}),
+        [Text('CoUI').displaySmall.onPrimary],
+      ),
+    ],
+  ),
+  after: div(
+    classes: 'w-full h-full flex items-end justify-center bg-${colors.surfaceContainer}',
+    [
+      div(
+        styles: Styles(raw: {'padding-bottom': 'var(--coui-space-16)'}),
+        [Text('CoUI').displaySmall.onSurface],
+      ),
+    ],
+  ),
+)
+```
+
+  </TabItem>
+</Tabs>
+
+<a id="동작-스펙-behavior"></a>
+
+## 상태
+
+Diff가 기억하는 값은 분할 위치입니다. 손잡이는 마우스를 올렸는지, 잡고 있는지, 키보드 포커스를 보일지에 따라 모양이 바뀝니다.
+
+### 분할 위치
+
+<Preview demo="diff/positions" />
+
+위치는 `0`~`1`의 비율이며 프레임의 왼쪽 끝이 `0`입니다. 값은 왼쪽에 보이는 `before`의 폭 비율과 같습니다. `0`이면 `after`만, `1`이면 `before`만 보입니다.
+
+- 시작 위치는 `diffStyle`의 `initialPosition`(기본 `0.5`)입니다. `0`~`1`을 벗어난 값은 가까운 끝으로 맞춥니다.
+- 위치는 Diff가 스스로 기억합니다. 바깥에서 현재 위치를 정하는 속성은 없습니다.
+- 조작으로 위치가 정해지기 전에는 `initialPosition`을 바꾸면 분할선도 따라갑니다. 한 번 옮긴 뒤에는 그 위치가 남으며, `before` · `after`를 바꿔도 시작 위치로 돌아가지 않습니다. 시작 위치에서 다시 시작하려면 `key`를 바꿉니다.
+- `onPositionChanged`는 끌기 · 누르기 · 키보드로 위치를 옮길 때 같은 `0`~`1` 값을 전달합니다. 직전에 전달한 값과 같으면 다시 부르지 않습니다.
+
+<Code language="dart" title="Flutter · Web">
+Diff(
+  key: ValueKey(photoId),
+  ariaLabel: '보정 전과 보정 후 사진 비교',
+  before: originalPhoto,
+  after: editedPhoto,
+  onPositionChanged: (position) => saveSplit(position),
+)
+</Code>
+
+### 인터랙션
+
+손잡이를 중심으로 폭이 `handleHitSize`(기본 44)인 보이지 않는 띠가 프레임 높이 전체에 놓입니다. 이 띠가 분할선을 잡는 영역이라 손잡이를 정확히 겨냥하지 않아도 됩니다.
+
+| 입력 | 동작 |
+| --- | --- |
+| 마우스로 잡는 영역 끌기 | 분할선이 따라 움직입니다. 잡은 자리와 분할선 사이의 거리를 유지해, 누르는 순간에는 분할선이 포인터 쪽으로 옮겨 가지 않습니다. |
+| 마우스로 그 밖을 누르기 | 누른 자리로 옮깁니다. 누른 채 끌면 이어서 움직입니다. |
+| 터치 · 펜으로 짧게 누르기 | 누른 자리로 옮깁니다. 잡는 영역 밖을 눌러도 됩니다. |
+| 터치 · 펜으로 잡는 영역을 좌우로 끌기 | 분할선이 따라 움직입니다. |
+| 터치 · 펜으로 영역 밖에서 끌기 | 분할선은 움직이지 않습니다. 세로로 끌어 페이지를 스크롤할 수 있습니다. |
+| 키보드 | [키보드](#키보드) 표를 따릅니다. |
+
+- 마우스 포인터가 잡는 영역 위에 있으면 커서가 좌우 크기 조절 모양으로 바뀝니다.
+- 마우스는 주 버튼(보통 왼쪽 버튼)으로만 분할선을 움직입니다.
+- 마우스로 끄는 동안에는 포인터가 프레임 밖으로 나가도 이어지며, 위치는 양 끝에서 멈춥니다.
+- Flutter에서는 잡는 영역 밖을 누를 때, 누른 자리의 콘텐츠가 누름을 받아야 Diff도 알아차립니다. 사진이나 `ColoredBox`처럼 영역 전체가 누름을 받는 콘텐츠는 어디를 눌러도 됩니다. `after`에 글만 놓고 배경을 두지 않으면, 잡는 영역 밖의 빈 곳을 눌러도 분할선이 옮겨 가지 않을 수 있습니다. 이때는 `after`를 `ColoredBox`로 감쌉니다. Web은 콘텐츠를 담는 층이 누름을 받으므로 빈 곳을 눌러도 옮겨 갑니다.
+
+### 손잡이의 모양
+
+손잡이는 상태에 따라 그림자와 크기가 바뀝니다.
+
+| 상태 | 손잡이 |
+| --- | --- |
+| 기본 | 그림자 `handleShadow`(기본 `sm`) |
+| 마우스 올림 | 잡는 영역에 올리면 그림자가 `handleHoverShadow`(기본 `md`)로 바뀝니다. 올려 두는 입력이 없는 터치 기기에서는 나타나지 않습니다. |
+| 잡는 중 | `handlePressedScale`(기본 `0.94`)로 줄고 그림자가 `handlePressedShadow`(기본 `xs`)로 바뀝니다. 터치로 끌 때와 마우스로 프레임을 눌러 분할선을 옮길 때도 같습니다. |
+| 키보드 포커스 | 손잡이 둘레에 포커스 링(`focusOutlineStyle`)이 나타납니다. [포커스 관리](#포커스-관리)를 따릅니다. |
+
+크기와 그림자는 `handleTransitionDuration`(기본 150ms)에 걸쳐 바뀝니다. 동작 줄이기 설정에서는 이 시간이 500ms 이하이면 `0`이 됩니다. 분할선이 자리를 옮길 때는 전환 애니메이션이 없습니다.
+
+### 조작 끄기
+
+`interactive: false`면 손잡이와 잡는 영역 없이 분할선만 그립니다. 누르기 · 끌기 · 키보드로 위치가 바뀌지 않고, `Tab` 정지점도 아닙니다(Flutter의 방향 탐색 모드는 [알려진 제약](#알려진-제약)을 봅니다). 흐리게 표시하는 비활성 모양은 없습니다.
+
+<Cards columns="2">
+<Card demo="diff/state-interactive" title="interactive: true">
+
+손잡이를 그리고 분할선을 옮길 수 있습니다. 기본값입니다.
+
+</Card>
+<Card demo="diff/state-static" title="interactive: false">
+
+분할선만 그립니다. 처음부터 조작을 끈 Diff의 분할선은 `initialPosition`에 머뭅니다.
+
+</Card>
+</Cards>
+
+<a id="사용-시기-when-to-use"></a>
+<a id="사용-가이드라인-usage-guidelines"></a>
+
+## 사용 가이드
+
+### 이럴 때 씁니다
+
+- 보정 전과 후, 라이트와 다크, 두 디자인 시안처럼 같은 구도의 이미지를 비교할 때
+- 어느 쪽이 전이고 후인지 이름표로 알려야 할 때
+- 같은 글에 적용한 두 글꼴이나 색 토큰을 비교할 때
+- 두 콘텐츠를 같은 자리에 겹치고 경계를 옮겨 가며 보여 주고 싶을 때
+
+### 다른 컴포넌트가 더 맞는 경우
+
+| 이런 경우에는 | 대신 쓸 컴포넌트 |
+| --- | --- |
+| 코드 변경 사항을 줄 단위로 보여 줄 때 | [CodeDiff](/components/code-diff) |
+| 셋 이상의 콘텐츠를 차례로 넘겨 볼 때. Diff의 자리는 `before` · `after` 둘뿐입니다. | [Carousel](/components/carousel) |
+
+<a id="do"></a>
+<a id="dont"></a>
+
+### 이름과 이름표
+
+`ariaLabel`에는 무엇과 무엇을 비교하는지 적습니다. 기본값이 `null`이라 넘기지 않으면 Diff가 붙이는 접근성 이름이 없습니다. 이름표는 화면에 보이는 표시이므로 이름표를 두어도 `ariaLabel`은 따로 지정합니다.
+
+<Code language="dart" title="Flutter · Web">
+Diff(
+  ariaLabel: '보정 전과 보정 후 풍경 비교',
+  beforeLabel: Text('전'),
+  afterLabel: Text('후'),
+  before: originalPhoto,
+  after: editedPhoto,
+)
+</Code>
+
+<Cards columns="2">
+<Card demo="diff/do-labels" tone="do" eyebrow="이렇게 하세요">
+
+이름표는 한두 단어로 씁니다. 콘텐츠를 가리는 면적이 작습니다.
+
+</Card>
+<Card demo="diff/dont-long-labels" tone="dont" eyebrow="이렇게 하지 마세요">
+
+긴 문장을 넣지 않습니다. 콘텐츠를 많이 가리고, 좁은 프레임에서는 두 이름표가 겹칩니다.
+
+</Card>
+</Cards>
+
+이름표는 포인터를 받지 않습니다. 버튼을 넣어도 마우스나 터치로 눌리지 않고, 그 자리를 누르면 조작 가능한 Diff의 분할선이 옮겨 갑니다.
+
+### 콘텐츠는 보여 주기만 하는 것으로
+
+조작할 수 있는 Diff의 `before` · `after`에는 버튼 · 입력창 같은 조작 요소를 넣지 않습니다.
+
+- 마우스로 안의 요소를 눌러도 Diff가 그 누름을 함께 받아 분할선을 옮기거나 잡습니다.
+- 안의 요소에 포커스가 있을 때 누른 [키보드](#키보드) 표의 키를 Diff가 받아 분할선을 옮길 수 있습니다. Web은 이때 그 키의 브라우저 기본 동작도 막습니다.
+- Web은 마우스 누름의 브라우저 기본 동작을 막고 포커스를 프레임으로 가져옵니다.
+
+## 배치
+
+### 폭과 높이
+
+높이를 직접 정하는 속성은 없습니다. 폭이 정해지면 `폭 ÷ aspectRatio`(기본 16:9)가 높이입니다.
+
+| 상황 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 부모 폭이 정해짐 | 그 폭을 채웁니다. | 그 폭을 채웁니다(`width: 100%`). |
+| 부모의 높이 제한 | 부모가 높이를 고정했거나 높이의 상한이 `폭 ÷ aspectRatio`보다 작으면 부모의 제한을 따릅니다. 이때는 비율이 유지되지 않습니다. | 높이를 따로 두지 않고 CSS `aspect-ratio`를 씁니다. 보통의 블록 배치에서는 부모 높이와 상관없이 폭에서 높이가 나옵니다. |
+| 폭의 한계가 없음 | 높이의 한계가 있으면 높이에서 폭을 계산합니다. 둘 다 없으면 레이아웃 오류가 납니다. | 아래 설명을 봅니다. |
+
+Web의 Diff는 안의 층이 모두 절대 위치라 내용에서 나오는 폭이 없습니다. 내용에 맞춰 폭을 정하는 상자(`w-fit` 상자, 가로 flex 안의 폭 없는 `div`) 안에서는 폭이 0이 될 수 있으므로, 폭을 정한 상자에 둡니다.
+
+Flutter의 Diff는 `LayoutBuilder`를 씁니다. `IntrinsicWidth` · `IntrinsicHeight`처럼 자식의 크기를 미리 재는 부모 안에서는 debug 빌드에서 오류가 납니다. 기본 설정의 `Card`도 부모가 폭을 하나로 고정해 주지 않으면 안의 폭을 먼저 잽니다. 이런 곳에서는 폭과 높이를 모두 정한 `SizedBox`로 감쌉니다.
+
+### 고정 비율 끄기
+
+`aspectRatio`를 `0` 이하로 주면 고정 비율을 쓰지 않습니다. Flutter는 부모가 허용하는 폭과 높이를 채우므로 둘 다 한계가 있어야 합니다. Web은 안의 층에서 높이가 나오지 않으므로 `css`로 높이를 정합니다.
+
+### 끝 위치의 손잡이
+
+분할선이 맨 끝에 있으면 손잡이의 절반(기본 20)이 프레임 밖으로 나가고, 포커스 링은 그보다 더 나갑니다. 바깥 요소가 넘친 부분을 자르면 손잡이와 링이 잘리므로 양옆에 여유를 둡니다. Flutter에서는 프레임 밖으로 나간 부분을 누를 수 없습니다.
+
+### 글자 방향
+
+오른쪽에서 왼쪽으로 쓰는 화면에서도 `before`는 왼쪽, `after`는 오른쪽입니다. 이름표의 모서리와 방향키의 방향도 바뀌지 않습니다.
+
+<a id="스타일-시스템-style-system"></a>
+
+## 테마와 스타일
+
+겉모습(색 · 크기 · 간격)과 프레임 비율 · 시작 위치 · 키보드 이동 폭은 `diffStyle` 하나로 바꿉니다.
+
+| 대상 | 필드 |
+| --- | --- |
+| 프레임 | `borderRadius` · `borderColor` · `borderWidth` · `aspectRatio` · `initialPosition` |
+| 분할선 | `resizerColor` · `resizerWidth` · `resizerShadow` |
+| 손잡이 | `handleSize` · `handleHitSize` · `handleColor` · `handleBorderColor` · `handleBorderWidth` · `handleIconStyle` |
+| 손잡이 상태 | `handleShadow` · `handleHoverShadow` · `handlePressedShadow` · `handlePressedScale` · `handleTransitionDuration` |
+| 이름표 | `labelInset` · `labelBadgeStyle` |
+| 포커스 링 | `focusOutlineStyle` |
+| 키보드 | `keyboardStep` · `keyboardPageStep` |
+
+### 기본값
+
+| 필드 | 기본값 |
+| --- | --- |
+| `borderRadius` | 네 모서리 16 |
+| `borderColor` · `borderWidth` | `outlineSubtle` · 1 |
+| `resizerColor` · `resizerWidth` | `surfaceRaised` · 2 |
+| `resizerShadow` | `CoreShadow.sm` |
+| `handleSize` · `handleHitSize` | 40 · 44 |
+| `handleColor` | `surfaceRaised` |
+| `handleBorderColor` · `handleBorderWidth` | `outlineVariant` · 1 |
+| `handleShadow` | `CoreShadow.sm` |
+| `handleHoverShadow` | `CoreShadow.md` |
+| `handlePressedShadow` | `CoreShadow.xs` |
+| `handlePressedScale` | 0.94 |
+| `handleTransitionDuration` | 150ms |
+| `handleIconStyle` | 크기 16 · `onSurface` |
+| `labelInset` | 네 방향 12 |
+| `labelBadgeStyle` | 채움 `surfaceRaised` · 글자 `onSurface` |
+| `focusOutlineStyle` | 알약 모양 링, 링과 손잡이 사이에 `surface` 색 띠 |
+| `aspectRatio` · `initialPosition` | 16/9 · 0.5 |
+| `keyboardStep` · `keyboardPageStep` | 0.05 · 0.1 |
+
+### 바꾸는 방법
+
+<Preview demo="diff/theme-style" />
+
+<Split>
+
+<Code language="dart" title="Diff 하나만 바꾸기">
+Diff(
+  ariaLabel: '보정 전과 보정 후 풍경 비교',
+  before: originalPhoto,
+  after: editedPhoto,
+  diffStyle: const CoreDiffStyle(
+    aspectRatio: 4 / 3,
+    resizerColor: CoreColor.token(CoreColors.primary),
+    resizerWidth: CoreStrokeWidth.stroke4,
+    handleSize: CoreSpace.space48,
+    handleHitSize: CoreSpace.space56,
+  ),
+)
+</Code>
+
+<Code language="dart" title="앱 전체 기본값 바꾸기">
+ThemeData.fromCore(
+  CoreThemePresets.light,
+  coreComponentTheme: const CoreComponentTheme(
+    diff: CoreDiffTheme(
+      style: CoreDiffStyle(
+        borderRadius: CoreBorderRadius.all(CoreRadius.radius8),
+        keyboardStep: 0.02,
+      ),
+    ),
+  ),
+)
+</Code>
+
+</Split>
+
+두 예제 모두 Flutter와 Web의 코드가 같습니다. `handleSize`를 키울 때는 `handleHitSize`도 그 이상으로 둡니다. 이유는 [플랫폼 차이](#플랫폼-차이)에 있습니다.
+
+<a id="resolve-chain"></a>
+
+### 값이 정해지는 순서
+
+```text
+CoreDiffStyle.defaultX              // 디자인 시스템 기본값
+  → CoreComponentTheme.diff.style   // 앱 전체
+  → diffStyle                       // 인스턴스별
+```
+
+- 뒤의 값이 앞의 값을 필드마다 덮어씁니다.
+- `handleIconStyle` · `labelBadgeStyle` · `focusOutlineStyle`은 그 안의 필드끼리 합칩니다. 적지 않은 필드에는 Diff의 기본값이 남습니다.
+- `labelInset`과 그림자 목록은 값 전체가 바뀝니다.
+- 이름표는 `Badge`이므로 Badge의 테마도 받습니다. 겹치는 필드는 `labelBadgeStyle`(Diff의 기본값 포함)이 이깁니다.
+
+<a id="빠른-오버라이드-chain"></a>
+
+### 빠른 덮어쓰기
+
+이미 만든 `Diff`에 `withStyle`을 이어 스타일을 덧붙일 수 있습니다. 생성자에서 받은 `diffStyle`에 합친 사본을 돌려주며, 겹치는 필드는 뒤에 붙인 값이 이깁니다. `.radius0`부터 `.radius9999`까지의 getter는 `borderRadius`를 이름이 같은 `CoreRadius` 값으로 바꾸는 줄임 표기입니다. `borderColor(color)` · `borderWidth(width)` 메서드는 `borderColor`와 `borderWidth`를 각각 바꿉니다. 아래 예는 4:3 프레임에 `tertiary` 색의 폭 4 분할선을 두고 모서리를 16으로 정합니다.
 
 <!-- CHAIN_SNIPPET:BEGIN — auto-generated by `dart run tool/generate_chain_artifacts.dart` (write mode). Do not hand-edit between these markers; edit the chain example sources (`*_chain_example.dart` / `*_code.dart`) and regenerate. -->
 <Tabs groupId="platform">
@@ -194,35 +586,138 @@ class _Landscape extends StatelessComponent {
 </Tabs>
 <!-- CHAIN_SNIPPET:END -->
 
-## Props / Parameters
+<a id="접근성-accessibility"></a>
 
-`W` 는 Flutter의 `Widget`, Web의 Jaspr `Component` 입니다.
+## 접근성
 
-| 속성 | 타입 | 기본값 | 설명 |
-|------|------|--------|------|
-| `before` | `W` | 필수 | 좌측 (`before`) 슬롯 |
-| `after` | `W` | 필수 | 우측 (`after`) 슬롯 |
-| `beforeLabel` | `W?` | `null` | 프레임 왼쪽 위 모서리에서 `diffStyle.labelInset`(기본 12)만큼 안쪽에 그리는 이름표. 글자 같은 내용만 넘기면 `Badge` 알약으로 감싸 그립니다. `null` 이면 그리지 않습니다 |
-| `afterLabel` | `W?` | `null` | 프레임 오른쪽 위 모서리의 이름표. 생김새와 규칙은 `beforeLabel` 과 같습니다 |
-| `onPositionChanged` | `void Function(double)?` | `null` | 분할 위치 변경 콜백 — 끌기 · 누르기 · 키보드 모두 같은 콜백으로 알립니다 |
-| `interactive` | `bool` | `true` | 손잡이와 마우스 · 터치 · 키보드 조작을 켭니다. `false` 면 분할선만 그리고 위치는 움직이지 않습니다 |
-| `ariaLabel` | `String?` | `null` | 스크린 리더 라벨 |
-| `diffStyle` | `CoreDiffStyle?` | `null` | 겉모습(색 · 크기 · 간격)을 바꾸는 값 묶음 (아래 표 참고) |
+`interactive`가 `true`면 분할 위치를 `0`~`100`의 슬라이더 값으로 전달합니다. `false`면 값이 없는 묶음이 됩니다. 전역으로 적용되는 항목은 [전역 접근성 축](/accessibility)에 있습니다.
 
-## 스타일 시스템 (Style System)
+### 역할
 
-겉모습 · 크기 · 배치는 전부 `diffStyle` 슬롯 하나로 바꿉니다. 필드는 바꾸려는
-대상별로 이름이 묶여 있습니다.
+| 상태 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 조작 가능 | `Semantics`의 slider 표시와 `value` · `minValue` `0` · `maxValue` `100`, 이름은 `label` | 루트의 `role="slider"` · `aria-valuemin="0"` · `aria-valuemax="100"` · `aria-valuenow` · `aria-valuetext` |
+| 조작 끔 | 역할과 값 없이 `label`만 받는 컨테이너 | `role="group"`, 값 속성 없음 |
 
-| 대상 | 필드 |
-|------|------|
-| 프레임 | `borderRadius` · `borderColor` · `borderWidth` · `aspectRatio` · `initialPosition` |
-| 분할선 | `resizerColor` · `resizerWidth` · `resizerShadow` |
-| 손잡이 | `handleSize` · `handleHitSize` · `handleColor` · `handleBorderColor` · `handleBorderWidth` · `handleIconStyle` |
-| 손잡이 상태별 모양 | `handleShadow` · `handleHoverShadow` · `handlePressedShadow` · `handlePressedScale` · `handleTransitionDuration` |
-| 이름표 | `labelInset` · `labelBadgeStyle` |
-| 포커스 링 | `focusOutlineStyle` |
-| 키보드 | `keyboardStep` · `keyboardPageStep` |
+- 슬라이더의 역할과 값은 프레임에 붙습니다. 손잡이와 잡는 영역에는 역할과 이름을 붙이지 않으며, 손잡이의 화살표 아이콘은 두 플랫폼 모두 보조 기술에서 숨깁니다.
+- Web은 `attributes`를 먼저 합칩니다. 그 뒤에 `role`을, 조작 가능할 때는 `aria-value*`와 `tabindex`도 Diff의 값으로 덮어씁니다. `aria-label`은 `ariaLabel`을 넘기면 덮고, `null`이면 `attributes`의 값이 남습니다.
+
+### 키보드
+
+프레임에 포커스가 있을 때 동작합니다. 위치는 `0`~`1` 사이라 끝을 넘는 키는 끝에서 멈춥니다.
+
+| 키 | 동작 |
+| --- | --- |
+| `←` | `keyboardStep`(기본 `0.05`)만큼 왼쪽으로 |
+| `→` | `keyboardStep`만큼 오른쪽으로 |
+| `PageDown` | `keyboardPageStep`(기본 `0.1`)만큼 왼쪽으로 |
+| `PageUp` | `keyboardPageStep`만큼 오른쪽으로 |
+| `Home` | 맨 왼쪽(`0`)으로. `after`만 보입니다. |
+| `End` | 맨 오른쪽(`1`)으로. `before`만 보입니다. |
+
+- 이동 폭은 프레임 폭에 대한 비율입니다. 기본값 `0.05`는 5%, `0.1`은 10%입니다.
+- `↑` · `↓`는 처리하지 않습니다.
+- 방향은 글자 방향이 아니라 화면의 왼쪽과 오른쪽입니다.
+- Flutter는 `Shift` · `Ctrl` · `Alt` · `Meta`를 함께 누른 조합을 처리하지 않습니다. Web은 이 키들을 구분하지 않고 위 표대로 처리합니다.
+- 조작을 끄면 Flutter는 키를 연결하지 않고, Web은 Diff의 키 처리를 붙이지 않습니다.
+
+### 스크린 리더
+
+값을 읽는 문장은 지역화 문자열 `diffPositionLabel(percent)`에서 나옵니다. `percent`는 분할 위치에 100을 곱해 반올림한 정수로, 왼쪽에 보이는 `before`의 폭 비율입니다. 한국어는 `분할 지점 40%`이고, 지역화 설정이 없으면 영어 `Split at 40%`입니다. Web의 `aria-valuenow`에도 같은 정수가 들어갑니다.
+
+| 플랫폼 | 이름 |
+| --- | --- |
+| Flutter | `ariaLabel`이 `label`이 됩니다. `before` · `after` · 이름표 안의 글자는 의미 트리에서 빼지 않으므로 슬라이더의 이름에 함께 합쳐질 수 있습니다. |
+| Jaspr Web | Diff가 이름으로 붙이는 속성은 `aria-label`(`ariaLabel`) 하나입니다. |
+
+비교하는 두 쪽이 무엇인지는 `ariaLabel`에 적습니다. 값이 바뀔 때 Diff는 슬라이더의 값을 갱신하며, 별도의 라이브 영역이나 알림 호출은 두지 않습니다.
+
+### 포커스 관리
+
+Diff는 포커스를 가두거나 다른 곳으로 되돌리지 않으며, 처음 화면에서 스스로 포커스를 가져가지 않습니다.
+
+- 조작할 수 있을 때 `Tab`으로 도달합니다. Flutter는 `FocusableActionDetector`가 켜지고 Web은 루트에 `tabindex="0"`이 붙습니다. 포커스를 받는 것은 프레임 전체입니다.
+- 마우스로 누르면 두 플랫폼 모두 프레임으로 포커스를 옮깁니다. Flutter는 터치로 짧게 누르거나 잡는 영역을 끌어도 옮깁니다. Web에서 터치로 눌렀을 때의 포커스는 브라우저의 기본 동작을 따릅니다.
+- 포커스 링은 프레임이 아니라 손잡이 둘레에 그립니다. 키보드로 도달하면 나타나고, 마우스로 눌러 생긴 포커스에는 나타나지 않습니다. Flutter는 터치로 생긴 포커스에도 링을 보이지 않습니다. 이때도 키는 바로 동작하며, [키보드](#키보드) 표의 키를 누르면 링이 나타납니다. Flutter에서 키보드로 돌아와도 링이 바로 보이지 않는 경우는 [알려진 제약](#알려진-제약)에 있습니다.
+- 링이 보이는 상태에서 마우스로 프레임을 누르면 링이 사라집니다.
+- 링을 보일지는 Flutter는 포커스 강조 모드와 포인터로 생긴 포커스인지를 함께 보고 정합니다. Web은 포커스를 받는 순간의 `:focus-visible` 판정과 마우스 누름인지를 함께 봅니다. Web 루트에는 `outline-none` 클래스가 있어, 평소에는 브라우저 윤곽선 대신 손잡이의 링이 포커스를 알립니다.
+
+### 알려진 제약
+
+| 플랫폼 | 내용 |
+| --- | --- |
+| 공통 | `ariaLabel`의 기본값이 `null`이라 넘기지 않으면 Diff가 붙이는 이름이 없습니다. 항상 넘깁니다. |
+| 공통 | `↑` · `↓`로는 값을 바꿀 수 없습니다. |
+| 공통 | 오른쪽에서 왼쪽으로 쓰는 화면에서도 `before`의 자리와 방향키의 방향을 뒤집지 않습니다. |
+| 공통 | `interactive: false`는 비활성이나 읽기 전용 슬라이더가 아닙니다. 값이 없는 묶음이 되며 `aria-disabled` 같은 상태를 알리지 않습니다. |
+| 공통 | CoUI 다크 테마에서는 분할선과 손잡이의 `surfaceRaised`가 어두운 색이라 어두운 그림 위에서 흐리게 보일 수 있습니다. 손잡이 테두리(`outlineVariant`)도 채움과 같은 색입니다. 필요하면 `resizerColor` · `handleColor` · `handleBorderColor`를 바꿉니다. |
+| Flutter | 의미 트리에 값 올리기 · 내리기 동작(`onIncrease` · `onDecrease`)이 없습니다. 보조 기술의 값 조절 동작으로는 위치를 바꿀 수 없습니다. |
+| Flutter | 방향 탐색 모드(`NavigationMode.directional`)에서는 `interactive: false`인 Diff도 포커스를 받을 수 있습니다. 키로 위치는 바뀌지 않습니다. |
+| Flutter | 터치로 Diff를 누른 뒤 키를 쓰지 않고 포커스가 다른 곳으로 옮겨 가면, 나중에 `Tab`으로 돌아와도 [키보드](#키보드) 표의 키를 누르기 전까지 링이 보이지 않을 수 있습니다. |
+| Flutter | 분할선이 맨 끝에 있으면 잡는 영역 가운데 프레임 안쪽 절반(기본 22)만 누를 수 있습니다. |
+| Jaspr Web | 조작 가능한 Diff에 포커스가 있으면 [키보드](#키보드) 표의 키는 `Alt` 같은 키를 함께 눌러도 분할선을 옮기고 브라우저의 기본 동작을 막습니다. 같은 키를 쓰는 브라우저 단축키가 동작하지 않을 수 있습니다. |
+| Jaspr Web | 조작 가능한 Diff에서는 `onKeyDown`과 `eventHandlers`의 `keydown` · `pointerdown` · `focus` · `blur`가 불리지 않습니다. Diff의 처리가 같은 이름의 이벤트를 덮어씁니다. |
+
+<a id="크로스-플랫폼-차이점-platform-differences"></a>
+
+## 플랫폼 차이
+
+생성자의 주요 속성과 기본값은 같고, 그리는 방식과 입력을 받는 방식이 다릅니다.
+
+- **층 자르기** — Flutter: `ClipRect`와 분할 위치까지 자르는 clipper. Jaspr Web: `before` 층의 CSS `clip-path`.
+- **마우스** — Flutter: 프레임을 감싼 `Listener`가 누름 · 이동 · 뗌을 받습니다. Jaspr Web: 루트의 `pointerdown`에서 시작하고 이동 · 뗌은 문서의 리스너가 받습니다.
+- **터치 끌기** — Flutter: 잡는 영역에 가로 끌기 인식기가 있습니다. Jaspr Web: 잡는 영역에 `touch-action: pan-y`를 두고 포인터 이벤트를 받습니다.
+- **탭 판정** — Flutter: 프레임워크의 탭 인식 기준. Jaspr Web: 누른 자리에서 가로 · 세로 10px 안에 머물다 떼면 탭입니다. 벗어나거나 `pointercancel`이 오면 탭이 아닙니다.
+- **빈 곳 누르기** — Flutter: 잡는 영역 밖에서는 누른 자리의 콘텐츠가 누름을 받아야 분할선이 옮겨 갑니다. Jaspr Web: 콘텐츠를 담는 층이 누름을 받습니다.
+- **터치 눌림 모양** — Flutter: 가로 끌기로 인식한 뒤부터 보입니다. Jaspr Web: 잡는 영역에 손가락이 닿으면 바로 보입니다.
+- **올림 모양** — Flutter: `MouseRegion`의 들어옴 · 나감. Jaspr Web: `:hover`(`hover: hover`인 환경).
+- **잡는 중 모양** — Flutter: 위젯의 상태가 크기와 그림자를 바꿉니다. Jaspr Web: 잡고 있는 동안 루트에 `data-coui-dragging` 속성이 붙고 CSS가 크기와 그림자를 바꿉니다.
+- **포커스 링 판정** — Flutter: 포커스 강조 모드. Jaspr Web: `:focus-visible`.
+- **보조 키 조합** — Flutter: 처리하지 않습니다. Jaspr Web: 보조 키를 구분하지 않고 처리합니다.
+- **콘텐츠 크기** — Flutter: 프레임 크기로 채워 줍니다. Jaspr Web: `w-full h-full`을 직접 줍니다.
+- **부모의 높이 제한** — Flutter: 높이를 고정했거나 상한이 모자라면 비율보다 앞섭니다. Jaspr Web: 블록 배치에서는 `aspect-ratio`에 따라 폭에서 높이가 나옵니다.
+- **프레임 밖 손잡이** — Flutter: 밖으로 나간 부분은 누를 수 없습니다. Jaspr Web: 밖으로 나간 부분도 누를 수 있습니다.
+- **큰 손잡이** — Flutter: `handleSize`를 `handleHitSize`보다 크게 주어도 보이는 원의 지름은 `handleHitSize`를 넘지 않습니다. Jaspr Web: `handleSize`대로 그립니다. 잡는 영역의 폭은 `handleHitSize` 그대로입니다.
+- **테두리 `0`** — Flutter: `handleBorderWidth: 0`이어도 1 물리 픽셀의 가는 선이 남습니다. 선을 숨기려면 `handleBorderColor`를 투명하게 줍니다. Jaspr Web: `handleBorderWidth: 0`이면 선이 없습니다.
+- **손잡이 · 선 크기** — Flutter: logical px에 테마의 크기 배율(`scaling`)을 곱합니다. Jaspr Web: `rem`으로 그립니다.
+
+<a id="props-parameters"></a>
+
+## API
+
+`W`는 Flutter의 `Widget`, Web의 Jaspr `Component`입니다.
+
+### 생성자
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `before` | `W` | 필수 | 분할선 왼쪽에 보이는 콘텐츠 |
+| `after` | `W` | 필수 | 분할선 오른쪽에 보이는 콘텐츠 |
+| `beforeLabel` | `W?` | `null` | 왼쪽 위 이름표의 내용. `Badge`로 감싸 그립니다. |
+| `afterLabel` | `W?` | `null` | 오른쪽 위 이름표의 내용 |
+| `onPositionChanged` | `void Function(double position)?` | `null` | 조작으로 위치가 바뀔 때 `0`~`1` 값을 받습니다. |
+| `interactive` | `bool` | `true` | 손잡이를 그리고 마우스 · 터치 · 펜 · 키보드 조작을 받습니다. |
+| `ariaLabel` | `String?` | `null` | 접근성 이름 |
+| `diffStyle` | `CoreDiffStyle?` | `null` | 겉모습 · 비율 · 시작 위치 · 키보드 이동 폭 |
+
+두 플랫폼 모두 `key`를 받습니다. Web은 루트에 붙는 `id` · `classes` · `css` · `attributes` · `eventHandlers`와 공통 이벤트 콜백도 받습니다. 조작 가능할 때 불리지 않는 이벤트는 [알려진 제약](#알려진-제약)에 있습니다.
+
+### 메서드와 getter
+
+| 이름 | 설명 |
+| --- | --- |
+| `withStyle(CoreDiffStyle patch)` | `diffStyle`에 `patch`를 합친 사본을 돌려줍니다. 겹치는 필드는 `patch`가 이깁니다. |
+| `.radius0` … `.radius9999` | `borderRadius`만 해당 `CoreRadius` 값으로 합칩니다. |
+| `borderColor(CoreColor value)` | `borderColor`만 합칩니다. |
+| `borderWidth(double value)` | `borderWidth`만 합칩니다. |
+| `copyWith(...)` | 넘긴 값만 바꾼 사본을 만듭니다. `null`을 넘기면 지금 값이 남습니다. |
+
+### 테마
+
+| 이름 | 타입 | 설명 |
+| --- | --- | --- |
+| `CoreComponentTheme.diff` | `CoreDiffTheme?` | 앱 전체의 Diff 테마 |
+| `CoreDiffTheme.style` | `CoreDiffStyle?` | 모든 Diff에 적용하는 스타일 |
 
 <!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
 
@@ -257,233 +752,33 @@ class _Landscape extends StatelessComponent {
 
 <!-- STYLE_TABLE:END -->
 
-<a id="resolve-chain"></a>
+<Note>
 
-### 값이 정해지는 순서
+- 표는 `labelInset`을 기본값 위에 덮는다고(Laid over) 적지만, 실제로는 방향별로 합치지 않고 값 전체를 바꿉니다. `CoreEdgeInsets.only(top: CoreSpace.space8)`을 넘기면 `left` · `right`는 `0`이 됩니다. 방향은 `left` · `right`로 적습니다. Flutter는 `CoreEdgeInsets.directional` 값을 받으면 오류를 냅니다.
+- `initialPosition`은 처음 그릴 때만 읽는 값이 아닙니다. 조작으로 위치가 정해지기 전에는 바뀐 값이 반영됩니다.
+- `aspectRatio`가 `0` 이하면 고정 비율을 쓰지 않습니다([고정 비율 끄기](#고정-비율-끄기)).
+- 설명의 `pre-scaling`은 Flutter가 이 값에 크기 배율을 곱한다는 뜻입니다. Web은 배율을 곱하지 않고 `rem`으로 그립니다.
 
-```text
-CoreDiffStyle.defaultX (design system default)
-  → CoreDiffTheme.style                           // 프로젝트 공통
-  → widget.diffStyle                              // 인스턴스별
-```
+</Note>
 
-## 동작 스펙 (Behavior)
+<a id="관련-컴포넌트-related-components"></a>
 
-### 인터랙션
+## 관련 컴포넌트
 
-분할선 한가운데의 둥근 손잡이가 잡는 곳입니다. 손잡이 둘레로 폭 `diffStyle.handleHitSize`
-(기본 44) 의 띠가 프레임 높이 전체에 걸쳐 잡는 영역이 되므로, 손잡이를 정확히
-겨냥하지 않아도 분할선을 잡을 수 있습니다. 이 띠는 눈에 보이지 않습니다.
+<Cards columns="2">
+<Card demo="diff/related-code-diff" title="CodeDiff">
 
-| 입력 | 동작 |
-|------|------|
-| 마우스로 잡는 영역을 누르고 끌기 | 분할선이 따라 움직입니다. 손잡이 한가운데가 아닌 곳을 잡아도 분할선이 포인터 쪽으로 튀지 않고, 잡은 거리를 유지합니다. 커서는 `resizeColumn` 으로 바뀝니다 |
-| 마우스로 프레임의 다른 곳을 누르기 | 분할선이 그 자리로 옮겨 가고, 누른 채 끌면 이어서 움직입니다 |
-| 터치(펜 포함)로 프레임 아무 곳이나 짧게 누르기 | 분할선이 그 자리로 옮겨 갑니다 |
-| 터치로 잡는 영역에서 좌우로 끌기 | 분할선이 따라 움직입니다 |
-| 터치로 잡는 영역 밖에서 끌기 | 분할선은 움직이지 않습니다. 세로로 끌면 페이지가 그대로 스크롤됩니다 — 세로 스크롤이 막히지 않습니다 |
-| 키보드 | 프레임에 포커스가 있을 때 `←` `→` 는 `diffStyle.keyboardStep`(기본 5%), `PageUp` `PageDown` 은 `diffStyle.keyboardPageStep`(기본 10%)만큼, `Home` `End` 는 맨 왼쪽(0%)과 맨 오른쪽(100%)으로 옮깁니다 |
+코드 변경 사항을 줄 단위로 보여 줍니다. [CodeDiff 문서](/components/code-diff)
 
-- 마우스는 주 버튼(왼쪽)만 분할선을 움직입니다.
-- `interactive: false` 면 손잡이가 없고 분할선만 그려집니다. 누르기 · 탭 · 키보드 모두 위치를 바꾸지 않고, 탭으로 도달하는 지점도 아닙니다.
-- 위치는 `0.0`~`1.0` 의 단위 없는 비율로 클램핑하며 내부 값이 바뀌면 `onPositionChanged` 로 같은 비율을 전달합니다. `keyboardStep` 기본 `0.05` 는 5 **퍼센트포인트** 이동입니다.
-- `diffStyle.initialPosition` 은 아직 사용자가 위치를 바꾸지 않았을 때의 기준이며, before·after를 바꿔도 내부 분할 위치를 자동 초기화하지 않습니다. 두 콘텐츠의 차이를 계산하지 않고 겹친 두 층을 클립합니다.
-- 분할선이 맨 끝(0% · 100%)에 있어도 손잡이는 프레임의 둥근 모서리에 잘리지 않고 온전히 그려집니다.
+</Card>
+<Card demo="diff/related-carousel" title="Carousel">
 
-### 손잡이의 모양
+여러 콘텐츠를 차례로 넘겨 봅니다. [Carousel 문서](/components/carousel)
 
-손잡이는 상태에 따라 그림자와 크기가 바뀝니다. 색이 아니라 그림자로 말하므로 어떤
-그림 위에서도 같은 모양으로 읽힙니다. 바뀌는 시간은 `diffStyle.handleTransitionDuration`
-(기본 `fast`) 하나가 정합니다.
+</Card>
+<Card demo="diff/related-hover-gallery" title="HoverGallery">
 
-| 상태 | 손잡이 모양 |
-|------|------|
-| 기본 | 그림자 `handleShadow`(기본 `sm`) |
-| 마우스가 잡는 영역 위 | 그림자가 한 단계 올라갑니다 — `handleHoverShadow`(기본 `md`). 마우스처럼 올려 두는 입력이 없는 터치에서는 나타나지 않습니다 |
-| 잡고 있는 동안 | `handlePressedScale`(기본 94%)로 줄어들고 그림자가 `handlePressedShadow`(기본 `xs`)로 내려갑니다. 터치로 끌 때와, 마우스로 프레임을 눌러 분할선을 옮길 때도 같습니다 |
-| 키보드 포커스 | 손잡이 둘레에 포커스 링이 나타납니다 — `focusOutlineStyle`. 마우스나 탭으로 생긴 포커스에는 링을 그리지 않고, 그 뒤 키를 누르면 나타납니다 |
+포인터가 놓인 위치에 맞는 항목 하나를 보여 줍니다. [HoverGallery 문서](/components/hover-gallery)
 
-### 프레임의 가장자리
-
-프레임 둘레에 `outlineSubtle` 색의 1px 선(`diffStyle.borderColor` · `borderWidth`)이
-안쪽으로 그려집니다. 프레임 크기는 그대로이고 콘텐츠의 가장자리를 1px 덮을 뿐입니다.
-비교하는 그림이 페이지 배경과 같은 색이어도 프레임의 경계가 보이게 하려는 선입니다.
-`borderWidth: 0` 이면 그리지 않습니다.
-
-## 사용 가이드라인 (Usage Guidelines)
-
-### ✅ Do
-
-<Callout type="tip">
-
-**항상 `ariaLabel` 지정**
-
-```dart
-Diff(
-  ariaLabel: '채운 배경과 표면 배경 글자 비교',
-  before: before,
-  after: after,
-)
-```
-
-기본값이 `null`이라 지정하지 않으면 인터랙티브 상태에서 값(`aria-valuenow`)만 있고 이름은 없는 슬라이더가 됩니다.
-
-</Callout>
-
-<Callout type="tip">
-
-**두 쪽의 이름표는 짧은 단어로**
-
-```dart
-Diff(
-  ariaLabel: '보정 전과 보정 후 풍경 비교',
-  beforeLabel: Text('전'),
-  afterLabel: Text('후'),
-  before: before,
-  after: after,
-)
-```
-
-이름표는 프레임 위쪽 모서리에 떠서 콘텐츠 일부를 가립니다. 한두 단어면 충분합니다. 이름표는 화면에 보이는 표시일 뿐 접근성 이름이 되지 않으니, `ariaLabel` 은 그대로 지정하세요.
-
-</Callout>
-
----
-
-### ❌ Don't
-
-<Callout type="warning">
-
-**셋 이상의 콘텐츠를 순차적으로 넘겨보는 용도로 사용하지 않기**
-
-```dart
-// ❌ Diff 하나로 여러 이미지를 순회하려는 시도
-Diff(before: image1, after: image2) // image3, image4는 넣을 슬롯이 없음
-```
-
-`Diff`는 정확히 두 콘텐츠(`before` / `after`)만 좌우로 비교하는 컴포넌트입니다 — 여러 콘텐츠를 순차적으로 넘겨봐야 한다면 `Carousel`을 사용하세요.
-
-</Callout>
-
-<Callout type="warning">
-
-**이름표에 긴 문장이나 버튼을 넣지 않기**
-
-이름표는 포인터를 받지 않는 표시 전용 알약입니다. 눌러야 하는 컨트롤이나 문장을 넣으면 콘텐츠를 가리고, 눌러도 아무 일이 일어나지 않습니다.
-
-</Callout>
-
-## 접근성 (Accessibility)
-
-`Diff` 의 핵심 인터랙션은 0.0 ~ 1.0 사이의 분할 위치이고, `interactive` 일 때 그
-값이 **양 플랫폼 모두에서 슬라이더 값으로 노출**됩니다. `interactive: false` 면 값
-없는 그룹/컨테이너로 남습니다 — 움직이지 않는 슬라이더는 없는 컨트롤을 있다고
-알리는 셈이기 때문입니다.
-
-### 역할
-
-`interactive` 여부로 갈립니다. 손잡이와 이름표는 역할이 없습니다 — 값을 나르는 것은
-바깥 컨테이너 노드 하나입니다.
-
-- **Flutter (`interactive: true`)**: `CoUISemantics(role: CoreSemanticRole.slider,
-  value: …, minValue: '0', maxValue: '100', container: true)`. Flutter 에는 네이티브
-  slider role 이 없어 `Semantics(slider: true)` 플래그로 표현됩니다.
-- **Flutter (`interactive: false`)**: 역할 없는 컨테이너 노드(`container: true` +
-  `label`)이고 값 관련 필드는 전부 넘기지 않습니다.
-- **Web (`interactive: true`)**: `role="slider"` + `aria-valuemin="0"` /
-  `aria-valuemax="100"` / `aria-valuenow` / `aria-valuetext`.
-- **Web (`interactive: false`)**: `role="group"`, 값 속성 없음.
-
-값 단위는 **분할 위치를 0 ~ 100 백분율로 반올림한 정수**입니다 (`aria-valuenow`,
-Flutter `value` 둘 다 같은 수). 읽히는 문장은 `diffPositionLabel(percent)` 로케일
-멤버에서 오며 두 쪽을 함께 말합니다 — 예: `이전 40%, 이후 60%`.
-
-Web 은 호출자 `attributes` 를 **먼저** 병합하므로 하드코딩된 `role` /
-`aria-value*` 가 호출자가 넘긴 같은 키를 덮습니다. `aria-label` 은 `ariaLabel` 이
-`null` 이면 키 자체를 쓰지 않아 호출자 `attributes` 의 `aria-label` 이 남습니다.
-
-### 키보드
-
-프레임에 포커스가 있을 때 동작합니다. 위치는 `0` ~ `1` 사이로 클램핑되어, 끝을 넘는
-키는 끝에서 멈춥니다.
-
-| 키 | 동작 |
-|----|------|
-| `←` | 분할선을 `diffStyle.keyboardStep`(기본 `0.05`)만큼 왼쪽으로 |
-| `→` | 분할선을 `diffStyle.keyboardStep`(기본 `0.05`)만큼 오른쪽으로 |
-| `PageDown` | 분할선을 `diffStyle.keyboardPageStep`(기본 `0.1`)만큼 왼쪽으로 |
-| `PageUp` | 분할선을 `diffStyle.keyboardPageStep`(기본 `0.1`)만큼 오른쪽으로 |
-| `Home` | 분할선을 맨 왼쪽(0%)으로 — 오른쪽 콘텐츠만 보입니다 |
-| `End` | 분할선을 맨 오른쪽(100%)으로 — 왼쪽 콘텐츠만 보입니다 |
-
-방향은 글자 방향이 아니라 화면의 왼쪽·오른쪽입니다. `interactive: false` 면 Flutter 는
-키 이벤트를 무시하고, Web 은 키 핸들러 자체를 붙이지 않습니다.
-
-### 포커스 관리
-
-- **탭 정지점**: `interactive` 일 때만 탭으로 도달합니다 — Flutter 는 `FocusableActionDetector`
-  가 켜질 때, Web 은 `tabindex="0"` 이 붙을 때입니다. 포커스를 받는 것은 프레임 전체(슬라이더
-  노드)입니다.
-- **포커스 링**: 링은 프레임이 아니라 손잡이 둘레에 그려집니다. 키보드로 도달했을 때와
-  포커스가 있는 채로 키를 눌렀을 때만 나타나고, 마우스나 탭으로 프레임을 눌러 생긴
-  포커스에서는 나타나지 않습니다(그래도 곧바로 키가 동작합니다). Web 은 브라우저 자신의
-  포커스 윤곽선을 꺼 두고 손잡이의 링만 보여 줍니다.
-- 프레임을 누르면 포커스가 프레임으로 옵니다 — 눌러서 위치를 옮긴 뒤 바로 방향키로
-  다듬을 수 있습니다.
-- 트랩·복원·autofocus 는 없습니다.
-
-### 스크린 리더
-
-인터랙티브 `Diff` 는 슬라이더로 읽히고 현재 분할 위치가 값으로 함께 읽힙니다
-(이름은 `ariaLabel` 을 넘겼을 때만). 비인터랙티브 `Diff` 는 Web 에서 "group",
-Flutter 에서 역할 없는 컨테이너로 읽히고 값은 없습니다.
-
-`beforeLabel` · `afterLabel` 의 글자는 이름이 되지 않습니다 — 슬라이더의 이름은
-`ariaLabel` 하나이므로, "전"·"후" 가 무엇을 가리키는지는 `ariaLabel` 에 문장으로
-적으세요.
-
-값 갱신은 **포커스된 슬라이더 노드의 값 속성이 매 변경마다 다시 그려지는 것**에
-의존합니다 — 별도 live region 이나 명시적 announce 호출은 없습니다. 그래서 포커스가
-`Diff` 에 없는 상태(예: 다른 요소에 포커스를 둔 채 드래그)에서 일어난 변경은
-안내되지 않습니다.
-
-### 알려진 제약
-
-- **Flutter 에 증가/감소 semantics action 이 없습니다** — `onIncrease` /
-  `onDecrease` 를 노출하지 않으므로 터치 스크린 리더의 슬라이더 조정 제스처로는 값이
-  바뀌지 않습니다. 실제 이동 경로는 물리 방향키, 누르기, 끌기입니다.
-- **기본 상태에서는 이름이 없습니다.** `ariaLabel` 이 유일한 이름 경로이고 기본값이
-  `null` 이라, 그대로 쓰면 값만 있고 이름이 없는 슬라이더가 됩니다 — 예제처럼
-  `ariaLabel` 을 항상 넘기는 것을 권장합니다.
-- 손잡이와 잡는 영역은 역할도 이름도 없는 요소이고 보조 기술에서는 숨겨집니다.
-  값을 나르는 것은 바깥 컨테이너 노드이고, 손잡이는 포인터 조작 지점일 뿐입니다.
-- `interactive` 는 키 입력·탭 정지점·역할 선택만 제어할 뿐 `aria-disabled` /
-  readonly 로 노출되지 않습니다 — 비인터랙티브 `Diff` 는 "비활성 슬라이더"가 아니라
-  그냥 그룹/컨테이너가 됩니다.
-- 방향키가 화면 기준이라, 오른쪽에서 왼쪽으로 쓰는 로케일에서도 `←` 는 분할선을
-  화면 왼쪽으로 옮깁니다. 프레임 안에서 before 가 왼쪽에 놓이는 배치도 글자 방향을
-  따라 뒤집히지 않습니다.
-- 방향키만으로 화면을 옮겨 다니는 입력 환경(TV 리모컨 같은 Flutter 의 방향 탐색
-  모드)에서는 Flutter 의 비인터랙티브 `Diff` 도 포커스를 받습니다. 키는 여전히
-  무시합니다.
-- 마우스는 주 버튼(왼쪽)만 분할선을 움직입니다. 오른쪽 버튼 누름은 무시합니다.
-
-전역으로 적용되는 축(동작 줄이기·고대비·색 강제 모드·최소 터치 타겟)은
-[전역 접근성 축](/accessibility)에 있습니다.
-
-## 크로스 플랫폼 차이점 (Platform Differences)
-
-| 항목 | Flutter | Web |
-|------|---------|-----|
-| 층 클립 | `ClipRect` / `_SplitClipper` | CSS before·after 층 |
-| 마우스 조작 | 프레임 전체를 감싼 `Listener` 가 누름·이동·뗌을 받습니다 | 루트의 `pointerdown` 이 시작하고, 이동·뗌은 문서 수준 리스너가 받습니다 |
-| 터치로 끌기 | 잡는 영역에만 가로 드래그 인식기가 있습니다 — 영역 밖에는 인식기가 없어 스크롤이 그대로 동작합니다 | 잡는 영역의 `touch-action: pan-y` — 세로 스와이프는 브라우저가 스크롤하고, 가로 이동만 포인터 이벤트로 옵니다 |
-| 탭 판정 | 프레임워크의 탭 인식 — 탭으로 인정하는 이동 거리는 프레임워크 기준을 따릅니다. | 누른 자리에서 10px 안에서 떼었을 때만 탭입니다. 그 밖으로 움직이거나 브라우저가 스크롤을 시작하면(`pointercancel`) 탭이 아닙니다 |
-| 손잡이의 올림 · 잡음 모양 | 위젯 상태(`MouseRegion` 의 들어옴·나감, 잡고 있는 동안의 값)가 크기와 그림자를 바꿉니다 | CSS 가 바꿉니다 — 올림은 `:hover`(올려 두는 입력이 있는 기기에서만), 잡음은 잡고 있는 동안 루트에 붙는 표시 속성입니다 |
-| 포커스 링 표시 | 포커스 강조 모드와 "마우스로 생긴 포커스" 구분이 정합니다 | 브라우저의 `:focus-visible` 판정을 포커스 때 읽어 정합니다 |
-| 비활성 | 탭 정지점에서 빠지고 키를 무시합니다 | `tabindex` 와 조작 이벤트를 붙이지 않습니다 |
-| 위치 의미 | slider 시맨틱과 로케일 value 문자열 | role=slider · aria-value 0~100 |
-
-## 관련 컴포넌트 (Related Components)
-
-- **[CodeDiff](/components/code-diff)**: 라인 단위 코드 diff
+</Card>
+</Cards>

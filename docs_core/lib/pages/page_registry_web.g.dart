@@ -18,10 +18,13 @@ import 'card_image/card_image_web.dart' as card_image;
 import 'carousel/carousel_web.dart' as carousel;
 import 'carousel_banner/carousel_banner_web.dart' as carousel_banner;
 import 'category_breakdown/category_breakdown_web.dart' as category_breakdown;
+import 'chat/chat_web.dart' as chat;
 import 'checkbox/checkbox_web.dart' as checkbox;
 import 'chip/chip_web.dart' as chip;
 import 'chip_group/chip_group_web.dart' as chip_group;
 import 'chip_input/chip_input_web.dart' as chip_input;
+import 'code_diff/code_diff_web.dart' as code_diff;
+import 'code_snippet/code_snippet_web.dart' as code_snippet;
 import 'color_picker/color_picker_web.dart' as color_picker;
 import 'command/command_web.dart' as command;
 import 'command_search/command_search_web.dart' as command_search;
@@ -31,6 +34,7 @@ import 'date_picker/date_picker_web.dart' as date_picker;
 import 'definition_list/definition_list_web.dart' as definition_list;
 import 'description_card/description_card_web.dart' as description_card;
 import 'dialog/dialog_web.dart' as dialog;
+import 'diff/diff_web.dart' as diff;
 import 'disclosure_badge/disclosure_badge_web.dart' as disclosure_badge;
 import 'divider/divider_web.dart' as divider;
 import 'dot_indicator/dot_indicator_web.dart' as dot_indicator;
@@ -140,10 +144,13 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (carousel.propPreview case final builder?) 'carousel': builder,
   if (carousel_banner.propPreview case final builder?) 'carousel-banner': builder,
   if (category_breakdown.propPreview case final builder?) 'category-breakdown': builder,
+  if (chat.propPreview case final builder?) 'chat': builder,
   if (checkbox.propPreview case final builder?) 'checkbox': builder,
   if (chip.propPreview case final builder?) 'chip': builder,
   if (chip_group.propPreview case final builder?) 'chip-group': builder,
   if (chip_input.propPreview case final builder?) 'chip-input': builder,
+  if (code_diff.propPreview case final builder?) 'code-diff': builder,
+  if (code_snippet.propPreview case final builder?) 'code-snippet': builder,
   if (color_picker.propPreview case final builder?) 'color-picker': builder,
   if (command.propPreview case final builder?) 'command': builder,
   if (command_search.propPreview case final builder?) 'command-search': builder,
@@ -153,6 +160,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (definition_list.propPreview case final builder?) 'definition-list': builder,
   if (description_card.propPreview case final builder?) 'description-card': builder,
   if (dialog.propPreview case final builder?) 'dialog': builder,
+  if (diff.propPreview case final builder?) 'diff': builder,
   if (disclosure_badge.propPreview case final builder?) 'disclosure-badge': builder,
   if (divider.propPreview case final builder?) 'divider': builder,
   if (dot_indicator.propPreview case final builder?) 'dot-indicator': builder,
@@ -263,10 +271,13 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...carousel.demos,
   ...carousel_banner.demos,
   ...category_breakdown.demos,
+  ...chat.demos,
   ...checkbox.demos,
   ...chip.demos,
   ...chip_group.demos,
   ...chip_input.demos,
+  ...code_diff.demos,
+  ...code_snippet.demos,
   ...color_picker.demos,
   ...command.demos,
   ...command_search.demos,
@@ -276,6 +287,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...definition_list.demos,
   ...description_card.demos,
   ...dialog.demos,
+  ...diff.demos,
   ...disclosure_badge.demos,
   ...divider.demos,
   ...dot_indicator.demos,

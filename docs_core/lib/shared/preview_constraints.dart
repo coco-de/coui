@@ -264,6 +264,8 @@ const kDocsPreviewConstraints = <String, DocsPreviewConstraints>{
   'time-picker': kDocsExtraTallConstraints,
   'color-picker': kDocsExtraTallConstraints,
   'chat': kDocsExtraTallConstraints,
+  // The playground shows one message; its tallest option needs 99.
+  'chat/playground': kDocsMediumConstraints,
   'table': kDocsTallConstraints,
   'scrollable-client': kDocsTallConstraints,
   'stack-layout': kDocsMediumConstraints,
@@ -522,6 +524,8 @@ const kDocsPreviewConstraints = <String, DocsPreviewConstraints>{
   // caps at 1280px, so the frame tops out around 720px tall — give it
   // room to grow to that (both panes) instead of clipping the bottom.
   'diff': DocsPreviewConstraints(minHeight: 200, maxHeight: 800),
+  // The playground frame is 320 wide, so its tallest (1:1) option needs 336.
+  'diff/playground': kDocsTallConstraints,
   'scroll-area': kDocsMediumConstraints,
   // A fixed-height scroll area plus the insets is 208 — the medium stage
   // squeezed it by 8px.
