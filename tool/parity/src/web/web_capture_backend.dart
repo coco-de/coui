@@ -34,6 +34,7 @@ import 'card_accordion_frame_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'data_overlay_ssr_source.dart';
+import 'docs_size_ssr_source.dart';
 import 'element_capture.dart';
 import 'framed_collection_ssr_source.dart';
 import 'navigation_trigger_ssr_source.dart';
@@ -245,7 +246,8 @@ Future<String> renderCaptureBodyHtml(
 }) async {
   final sourceRecorder = onCurrentBoxSource == null
       ? null
-      : PublicWrapperSsrSource.forEntry(entry) ??
+      : DocsSizeSsrSource.forEntry(entry) ??
+            PublicWrapperSsrSource.forEntry(entry) ??
             CardAccordionFrameSsrSource.forEntry(entry) ??
             BottomActionBarSsrSource.forEntry(entry) ??
             StepperHorizontalSsrSource.forEntry(entry) ??
@@ -271,6 +273,7 @@ Future<String> renderCaptureBodyHtml(
     final scene = entry.variant.startsWith(docsScenePrefix)
         ? resolveDocsScene(entry.component, entry.variant)
         : null;
+    if (sourceRecorder is DocsSizeSsrSource) sourceRecorder.recordScene(scene);
     final content = builder(context, variant);
     final capture = div(
       [
@@ -303,6 +306,14 @@ Future<String> renderCaptureBodyHtml(
     ),
   );
   var witness = sourceWitness;
+  if (sourceRecorder is DocsSizeSsrSource &&
+      witness?['docsSizeAwaitingExactNormalBody'] == true) {
+    try {
+      witness = sourceRecorder.completeWithSerializedBody(html);
+    } on Object catch (error) {
+      witness = {'error': '$error'};
+    }
+  }
   if (sourceRecorder is StepperHorizontalSsrSource &&
       witness?['stepperAwaitingExactNormalSerializedBody'] == true) {
     try {
@@ -490,7 +501,8 @@ Future<WebCaptureResult> captureWebEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredStepperHorizontalSsrKind(entry) ??
+      ? requiredDocsSizeSsrKind(entry) ??
+            requiredStepperHorizontalSsrKind(entry) ??
             requiredPublicWrapperSsrKind(entry) ??
             requiredCardAccordionFrameSsrKind(entry) ??
             requiredScopeAllocationSsrKind(entry) ??

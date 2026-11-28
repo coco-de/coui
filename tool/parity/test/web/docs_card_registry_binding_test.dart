@@ -88,6 +88,76 @@ console.log(JSON.stringify({applied:result.applied,error:result.error,initially,
 }
 
 void main() {
+  final svgScene = readDocsScenes('avatar').singleWhere(
+    (s) => s.reference == 'docs-v2-63b2a10b59591e46f2d0201badbf8d67',
+  );
+  test('original SVG frontier binds without inspecting its interior', () async {
+    final actual = await fixture.renderDocsFrameFixture('avatar', svgScene);
+    final sampled = await _sample(actual);
+    expect(sampled['error'], isNull);
+    expect(sampled['initially'], true);
+    expect(sampled['after'], true);
+    expect(sampled['cssReads'], 0);
+  });
+
+  for (final control in ['wrong SVG namespace', 'non-svg as SVG']) {
+    test('closed namespace rejects $control before selector/CSS', () async {
+      final actual = await fixture.renderDocsFrameFixture('avatar', svgScene);
+      final mutation = control == 'wrong SVG namespace'
+          ? '''
+request.currentSsrSource.currentRaw.opaqueFrontiers[0].nodes[0].namespaceURI='http://www.w3.org/1999/xhtml';
+'''
+          : '''
+const foreign=firstOpaque(capture,request.currentSsrSource.currentRaw.capture);
+foreign.localName='div';
+request.currentSsrSource.currentRaw.opaqueFrontiers[0].nodes[0].localName='div';
+''';
+      final sampled = await _sample(
+        actual,
+        before:
+            '''
+$mutation
+document.querySelectorAll=()=>{throw Error('NAMESPACE_REJECTION_MUST_PRECEDE_SELECTOR');};
+''',
+      );
+      expect(sampled['error'], 'DOCS_FRAME_OPAQUE_ROSTER_CHANGED');
+      expect(sampled['cssReads'], 0);
+    });
+  }
+
+  test('SVG outer replacement invalidates the held binding', () async {
+    final actual = await fixture.renderDocsFrameFixture('avatar', svgScene);
+    final sampled = await _sample(
+      actual,
+      after: '''
+const foreign=firstOpaque(capture,request.currentSsrSource.currentRaw.capture);
+if(foreign.localName!=='svg'||foreign.namespaceURI!=='http://www.w3.org/2000/svg')throw Error('SVG_CONTROL_REQUIRED');
+const parent=foreign.parentNode;parent.childNodes[parent.childNodes.indexOf(foreign)]={...foreign};
+''',
+    );
+    expect(sampled['error'], isNull);
+    expect(sampled['initially'], true);
+    expect(sampled['after'], false);
+    expect(sampled['cssReads'], 0);
+  });
+
+  test('SVG attributes and interior remain opaque', () async {
+    final actual = await fixture.renderDocsFrameFixture('avatar', svgScene);
+    final sampled = await _sample(
+      actual,
+      after: '''
+const foreign=firstOpaque(capture,request.currentSsrSource.currentRaw.capture);
+if(foreign.localName!=='svg'||foreign.namespaceURI!=='http://www.w3.org/2000/svg')throw Error('SVG_CONTROL_REQUIRED');
+foreign.setAttribute('data-unrelated','opaque-svg');
+Object.defineProperty(foreign,'childNodes',{get:()=>{throw Error('OPAQUE_SVG_INTERIOR_READ');}});
+''',
+    );
+    expect(sampled['error'], isNull);
+    expect(sampled['initially'], true);
+    expect(sampled['after'], true);
+    expect(sampled['cssReads'], 0);
+  });
+
   test(
     'strict false returns before any source receipt or route getter',
     () async {

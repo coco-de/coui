@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:coui_web/coui_web.dart' as coui;
 import 'package:docs_core/internal/preview/scene_file.dart';
 import 'package:docs_core/internal/preview/scenes.dart';
@@ -141,6 +144,43 @@ List<(String, DocsScene)> documentationBranchFixtures() {
 }
 
 void main() {
+  for (final theme in ['light', 'dark']) {
+    test('original Avatar SVG frontier / $theme', () async {
+      final scene = readDocsScenes('avatar').singleWhere(
+        (s) => s.reference == 'docs-v2-63b2a10b59591e46f2d0201badbf8d67',
+      );
+      final actual = await renderDocsFrameFixture(
+        'avatar',
+        scene,
+        theme: theme,
+      );
+      final raw = actual.receipt!['currentRaw']! as Map;
+      final frontiers = raw['opaqueFrontiers']! as List;
+      final preview = (frontiers.first as Map)['nodes']! as List;
+      expect(preview, [
+        {
+          'nodeType': 1,
+          'namespaceURI': 'http://www.w3.org/2000/svg',
+          'localName': 'svg',
+        },
+      ]);
+      final svg = actual.owner.querySelector('.docs-stage > svg')!;
+      expect(svg.namespaceUri, 'http://www.w3.org/2000/svg');
+      expect(actual.builds, 1);
+      expect(actual.observations, 1);
+      final retain = Platform.environment['PARITY_DOCS_FRAME_FIXTURE_OUT'];
+      if (retain != null) {
+        final directory = Directory(retain)..createSync(recursive: true);
+        File(
+          '${directory.path}/${actual.entry.key}.normal-body.html',
+        ).writeAsStringSync(actual.body);
+        File(
+          '${directory.path}/${actual.entry.key}.source-receipt.json',
+        ).writeAsStringSync(jsonEncode(actual.receipt));
+      }
+    });
+  }
+
   test('closed declaration keeps Anatomy explicitly unproved', () {
     final scene = readDocsScenes(
       'button',

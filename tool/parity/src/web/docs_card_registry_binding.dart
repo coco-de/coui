@@ -97,7 +97,8 @@ String get docsCardRegistryRequestBindingScript =>
  Array.from(n.attributes).every(x=>typeof a[x.name]==='string'&&a[x.name]===x.value);
  const shape=(n,s)=>n?.nodeType===s.nodeType&&(s.nodeType!==1||n.namespaceURI===s.namespaceURI&&n.localName===s.localName);
  const shapeValid=s=>exact(s,s?.nodeType===1?['nodeType','namespaceURI','localName']:['nodeType'])&&
- (s.nodeType===3||s.nodeType===1&&s.namespaceURI==='http://www.w3.org/1999/xhtml'&&typeof s.localName==='string');
+ (s.nodeType===3||s.nodeType===1&&typeof s.localName==='string'&&
+ s.namespaceURI===(s.localName==='svg'?'http://www.w3.org/2000/svg':'http://www.w3.org/1999/xhtml'));
  for(let i=0;i<raw.opaqueFrontiers.length;i++){
   const f=raw.opaqueFrontiers[i];
   if(!exact(f,['index','purpose','nodes'])||f.index!==i||!['preview','eyebrow-label','title-label','markdown-body','more-label','arrow-label'].includes(f.purpose)||

@@ -12,6 +12,7 @@ import 'ssr_source_identity.dart';
 
 const kDocsCardRegistrySsrKind = 'canonical-ssr-documentation-frame-v1';
 const _kNamespace = 'http://www.w3.org/1999/xhtml';
+const _kSvgNamespace = 'http://www.w3.org/2000/svg';
 final _formatter = RegExp(r'^[\t\n\f\r ]*$');
 
 /// The scene is the object already resolved by the ordinary capture build.
@@ -594,7 +595,10 @@ class _Reader {
       nodes.add(switch (render) {
         MarkupRenderElement(:final tag) => {
           'nodeType': 1,
-          'namespaceURI': _kNamespace,
+          // Every opaque root here is inserted under a verified owned HTML
+          // element. The pinned normal HTML parser enters SVG only for this
+          // public root tag; no opaque attribute or descendant is inspected.
+          'namespaceURI': tag == 'svg' ? _kSvgNamespace : _kNamespace,
           'localName': tag,
         },
         MarkupRenderText(rawHtml: false) => {'nodeType': 3},
