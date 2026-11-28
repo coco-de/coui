@@ -98,9 +98,8 @@ Future<Map<String, Object?>> _observe(
       root.querySelectorAll('.overflow-y-auto,.overflow-x-auto').single,
     _ => root,
   };
-  final result = await Process.run('node', [
-    '-e',
-    '''
+  final nodeProgram =
+      '''
 const observe=($boxPaddingObservationScript);
 const node=(data,parent=null)=>{
   const attrs=data.attrs;
@@ -129,8 +128,16 @@ const source=${jsonEncode(recipe.$3.toJson())};
 $mutation
 const result=JSON.parse(observe({requested:true,selector:'#root',layoutSelector:'#root',source}));
 console.log(JSON.stringify({result,cssReads}));
-''',
-  ]);
+''';
+  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  late final ProcessResult result;
+  try {
+    final file = File('${directory.path}/probe.cjs');
+    await file.writeAsString(nodeProgram);
+    result = await Process.run('node', [file.path]);
+  } finally {
+    await directory.delete(recursive: true);
+  }
   expect(result.exitCode, 0, reason: result.stderr.toString());
   return (jsonDecode(result.stdout.toString()) as Map).cast<String, Object?>();
 }

@@ -153,7 +153,15 @@ output.sharedReads=reads;
 '''}
 console.log(JSON.stringify(output));
 ''';
-  final result = await Process.run('node', ['-e', program]);
+  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  late final ProcessResult result;
+  try {
+    final file = File('${directory.path}/probe.cjs');
+    await file.writeAsString(program);
+    result = await Process.run('node', [file.path]);
+  } finally {
+    await directory.delete(recursive: true);
+  }
   expect(result.exitCode, 0, reason: result.stderr.toString());
   return (jsonDecode(result.stdout.toString()) as Map).cast<String, Object?>();
 }

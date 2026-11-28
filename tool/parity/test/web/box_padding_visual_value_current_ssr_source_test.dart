@@ -96,9 +96,8 @@ Future<Map<String, Object?>> _sample(
 }) async {
   const url = 'file:///owned/current-source.html';
   final receipt = {...actual.witness, 'harnessURL': url};
-  final result = await Process.run('node', [
-    '-e',
-    '''
+  final nodeProgram =
+      '''
 const from = raw => {
   if(raw.nodeType!==1)return {nodeType:raw.nodeType,data:raw.data,
     parentElement:null,parentNode:null,isConnected:true};
@@ -130,8 +129,16 @@ const request={requested:true,selector:'#current',layoutSelector:'#current',
 $mutation
 const observed=JSON.parse(($boxPaddingObservationScript)(request));
 console.log(JSON.stringify({observed,cssReads}));
-''',
-  ]);
+''';
+  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  late final ProcessResult result;
+  try {
+    final file = File('${directory.path}/probe.cjs');
+    await file.writeAsString(nodeProgram);
+    result = await Process.run('node', [file.path]);
+  } finally {
+    await directory.delete(recursive: true);
+  }
   expect(result.exitCode, 0, reason: '${result.stderr}');
   return (jsonDecode(result.stdout as String) as Map).cast<String, Object?>();
 }

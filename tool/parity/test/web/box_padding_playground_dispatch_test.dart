@@ -42,9 +42,8 @@ Future<Map<String, Object?>> _observe(String setup) async {
       navigationURL: url,
       actualRuntimePayload: payload,
     );
-    final result = await Process.run('node', [
-      '-e',
-      '''
+    final nodeProgram =
+        '''
 const observe=($boxPaddingObservationScript);
 const node=(classes,children=[],attrs={})=>{
   const names=[...classes];names.contains=name=>names.includes(name);
@@ -73,8 +72,18 @@ global.getComputedStyle=owner=>{if(owner!==stage)throw Error('Foreign CSS read')
 $setup
 const actual=JSON.parse(observe({requested:true,selector:'#stage',layoutSelector:'#stage',source:${jsonEncode(BoxObservationSourceSpec.docsPlayground.toJson())},runtimeOperationReceipt:receipt}));
 console.log(JSON.stringify({actual,cssReads}));
-''',
-    ]);
+''';
+    final directory = await Directory.systemTemp.createTemp(
+      'coui-parity-node-',
+    );
+    late final ProcessResult result;
+    try {
+      final file = File('${directory.path}/probe.cjs');
+      await file.writeAsString(nodeProgram);
+      result = await Process.run('node', [file.path]);
+    } finally {
+      await directory.delete(recursive: true);
+    }
     expect(result.exitCode, 0, reason: '${result.stderr}');
     return (jsonDecode(result.stdout.toString()) as Map)
         .cast<String, Object?>();
