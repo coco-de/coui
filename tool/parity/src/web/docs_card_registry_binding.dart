@@ -59,38 +59,10 @@ String get docsCardRegistryRequestBindingScript =>
  !Array.isArray(input.selections)||input.selections.length!==1||(!Object.hasOwn(a,'component')&&!Object.hasOwn(a,'demo'))||
  (card&&(input.captureUnit!=='whole-card'||input.cardIndex!==0||!Array.isArray(input.cardBody)||input.cardBody.length===0||
  a.value!=null||a.badge!=null)))return fail('ORIGINAL_BRANCH_CHANGED');
- const semantic=t=>Array.isArray(t?.children)?t.children.filter(c=>!Object.hasOwn(c,'ownedText')):[];
+ const semantic=t=>Array.isArray(t?.children)?t.children.filter(c=>!c||typeof c!=='object'||!Object.hasOwn(c,'ownedText')):[];
  const element=(t,name,classes)=>t?.nodeType===1&&t.namespaceURI==='http://www.w3.org/1999/xhtml'&&t.localName===name&&
  (classes===null||t.attributes?.class===classes);
  const one=(t,name,classes)=>{const c=semantic(t);return c.length===1&&element(c[0],name,classes)?c[0]:null;};
- const cap=raw.capture,host=one(cap,'div','docs manual'),section=one(host,'section','content');
- if(!element(cap,'div',null)||cap.attributes?.['data-parity-key']!==receipt.entryKey||!host||host.attributes?.id!=='docs-shell'||
- host.attributes?.['data-docs-scene']!==raw.sceneReference||!section)return fail('OWNED_CAPTURE_ROUTE_CHANGED');
- const height=['140','240','340','hug'].includes(a.height)?' docs-stage--'+a.height:'';
- const stageClass=compact=>'docs-stage'+(compact?' docs-stage--compact':'')+height+' not-content';
- let ownerTree,registryTree;
- if(card){
-  registryTree=one(section,'div','docs-cards not-content');
-  const roots=semantic(registryTree);ownerTree=roots.length===1?roots[0]:null;
-  const tone=['do','dont'].includes(a.tone)?' docs-card--'+a.tone:'';
-  if(!registryTree||registryTree.attributes?.['data-docs-reveal']!==''||
-  !element(ownerTree,a.href==null?'div':'a','docs-card'+tone+' docs-card--preview'+(a.href==null?'':' site-box-link'))||
-  (a.href==null?Object.hasOwn(ownerTree.attributes,'href'):ownerTree.attributes?.href!==a.href))return fail('WHOLE_CARD_BRANCH_CHANGED');
-  const parts=semantic(ownerTree);let i=0;
-  if(!element(parts[i++],'div',stageClass(false)))return fail('CARD_STAGE_CHANGED');
-  if(a.eyebrow!=null&&!element(parts[i++],'span','docs-card-eyebrow'))return fail('CARD_EYEBROW_CHANGED');
-  if(a.title!=null&&!element(parts[i++],'div','docs-card-head'))return fail('CARD_HEAD_CHANGED');
-  if(!element(parts[i++],'div','docs-card-body'))return fail('CARD_BODY_CHANGED');
-  if(a.href!=null&&a.more!=null){
-   const more=parts[i++],m=semantic(more);
-   if(!element(more,'span','docs-card-more')||m.length!==2||!element(m[1],'span','site-arrow')||
-   m[1].attributes?.['aria-hidden']!=='true')return fail('CARD_MORE_CHANGED');
-  }
-  if(i!==parts.length)return fail('EXTRA_CARD_PART');
- }else{
-  ownerTree=one(section,'div',stageClass(tag==='VariantRow'));registryTree=ownerTree;
-  if(!ownerTree)return fail('REGISTRY_STAGE_CHANGED');
- }
  const same=(a,b)=>a.length===b.length&&a.every((v,i)=>v===b[i]);
  const attrs=n=>JSON.stringify(Array.from(n.attributes).map(a=>[a.name,a.value]));
  const attrsMatch=(n,a)=>a&&typeof a==='object'&&!Array.isArray(a)&&Array.from(n.attributes).length===Object.keys(a).length&&
@@ -107,6 +79,73 @@ String get docsCardRegistryRequestBindingScript =>
  const purposes=card?['preview',...(a.eyebrow!=null?['eyebrow-label']:[]),...(a.title!=null?['title-label']:[]),'markdown-body',
  ...(a.href!=null&&a.more!=null?['more-label','arrow-label']:[])]:['preview'];
  if(!same(raw.opaqueFrontiers.map(f=>f.purpose),purposes))return fail('COMPLETE_OPAQUE_PURPOSES_CHANGED');
+ // Reconstruct only the publisher's direct owned edges. A frontier can have
+ // zero or several top nodes; none can be relocated under a new owned node.
+ const formatter=t=>exact(t,['ownedText'])&&typeof t.ownedText==='string'&&
+ Array.from(t.ownedText).every(c=>[9,10,12,13,32].includes(c.charCodeAt(0)));
+ const direct=(t,expected)=>{
+  if(!Array.isArray(t?.children))return false;
+  let at=0;
+  const formatting=()=>{
+   while(at<t.children.length&&t.children[at]&&Object.hasOwn(t.children[at],'ownedText')){
+    if(!formatter(t.children[at++]))return false;
+   }return true;
+  };
+  for(const child of expected){
+   if(!child||typeof child!=='object')return false;
+   if(Object.hasOwn(child,'frontierIndex')){
+    const f=raw.opaqueFrontiers[child.frontierIndex];
+    for(let j=0;j<f.nodes.length;j++){
+     if(f.nodes[j].nodeType!==3&&!formatting())return false;
+     const actual=t.children[at++];
+     if(!exact(actual,['opaqueNode','frontierNode'])||actual.opaqueNode!==f.index||actual.frontierNode!==j)return false;
+    }
+   }else if(!formatting()||t.children[at++]!==child)return false;
+  }
+  return formatting()&&at===t.children.length;
+ };
+ const fixed=(t,name,attributes,children)=>exact(t,['nodeType','namespaceURI','localName','attributes','children'])&&
+ element(t,name,null)&&t.attributes&&attributes&&typeof t.attributes==='object'&&!Array.isArray(t.attributes)&&
+ Object.keys(t.attributes).length===Object.keys(attributes).length&&Object.keys(attributes).every(k=>
+ Object.hasOwn(t.attributes,k)&&typeof attributes[k]==='string'&&t.attributes[k]===attributes[k])&&direct(t,children);
+ const frontier=purpose=>({frontierIndex:purposes.indexOf(purpose)});
+ const cap=raw.capture,host=one(cap,'div','docs manual'),section=one(host,'section','content');
+ if(!element(cap,'div',null)||cap.attributes?.['data-parity-key']!==receipt.entryKey||!host||host.attributes?.id!=='docs-shell'||
+ host.attributes?.['data-docs-scene']!==raw.sceneReference||!section)return fail('OWNED_CAPTURE_ROUTE_CHANGED');
+ const height=['140','240','340','hug'].includes(a.height)?' docs-stage--'+a.height:'';
+ const stageClass=compact=>'docs-stage'+(compact?' docs-stage--compact':'')+height+' not-content';
+ const stage=t=>fixed(t,'div',{class:stageClass(tag==='VariantRow')},[frontier('preview')]);
+ const plain=(t,name,classes,purpose)=>fixed(t,name,{class:classes},[frontier(purpose)]);
+ let ownerTree,registryTree,grammar;
+ if(card){
+  registryTree=one(section,'div','docs-cards not-content');
+  const roots=semantic(registryTree);ownerTree=roots.length===1?roots[0]:null;
+  const tone=['do','dont'].includes(a.tone)?' docs-card--'+a.tone:'';
+  const ownerClass='docs-card'+tone+' docs-card--preview'+(a.href==null?'':' site-box-link');
+  if(!registryTree||!element(ownerTree,a.href==null?'div':'a',ownerClass))return fail('WHOLE_CARD_BRANCH_CHANGED');
+  const parts=semantic(ownerTree);let i=0;
+  grammar=stage(parts[i++]);
+  if(a.eyebrow!=null)grammar=plain(parts[i++],'span','docs-card-eyebrow','eyebrow-label')&&grammar;
+  if(a.title!=null)grammar=plain(parts[i++],'div','docs-card-head','title-label')&&grammar;
+  grammar=plain(parts[i++],'div','docs-card-body','markdown-body')&&grammar;
+  if(a.href!=null&&a.more!=null){
+   const more=parts[i++],m=semantic(more),arrow=m.at(-1);
+   grammar=fixed(arrow,'span',{class:'site-arrow','aria-hidden':'true'},[frontier('arrow-label')])&&
+   fixed(more,'span',{class:'docs-card-more'},[frontier('more-label'),arrow])&&grammar;
+  }
+  grammar=i===parts.length&&fixed(ownerTree,a.href==null?'div':'a',
+   {class:ownerClass,style:'--i: 0',...(a.href==null?{}:{href:a.href})},parts)&&
+   fixed(registryTree,'div',{class:'docs-cards not-content',style:'--docs-cards-columns: 1','data-docs-reveal':''},[ownerTree])&&grammar;
+ }else{
+  ownerTree=one(section,'div',stageClass(tag==='VariantRow'));registryTree=ownerTree;
+  grammar=stage(ownerTree);
+ }
+ // Capture display/width remain the actual caller's data-only declaration,
+ // held against the real DOM below. They are not a frame-inset premise.
+ grammar=fixed(cap,'div',cap.attributes,[host])&&
+ fixed(host,'div',{id:'docs-shell',class:'docs manual',style:'width: 100%; min-width: 0','data-docs-scene':raw.sceneReference},[section])&&
+ fixed(section,'section',{class:'content'},[registryTree])&&grammar;
+ if(!grammar)return fail('EXACT_FACTORY_OWNED_GRAMMAR_CHANGED');
  let fields,roots;
  try{fields=Array.from(document.querySelectorAll(request.selector));roots=Array.from(document.querySelectorAll(request.layoutSelector));}
  catch(e){return fail('INVALID_SELECTOR');}
@@ -123,7 +162,7 @@ String get docsCardRegistryRequestBindingScript =>
   for(let i=0;i<t.children.length;i++){
    const s=t.children[i],n=children[i];
    if(exact(s,['ownedText'])){
-    if(typeof s.ownedText!=='string'||n.nodeType!==3||n.data!==s.ownedText)return false;
+    if(!formatter(s)||n.nodeType!==3||n.data!==s.ownedText)return false;
     literal.push({node:n,parent:node,data:n.data});
    }else if(exact(s,['opaqueNode','frontierNode'])){
     if(!Number.isInteger(s.opaqueNode)||!Number.isInteger(s.frontierNode)||s.opaqueNode<0||s.frontierNode<0)return false;

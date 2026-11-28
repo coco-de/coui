@@ -61,7 +61,8 @@ const ownerTree=${jsonEncode(_tree(actual.owner))};
 const find=n=>n.nodeType===1&&JSON.stringify(Array.from(n.attributes).map(a=>[a.name,a.value]))===JSON.stringify(Object.entries(ownerTree.attributes))?n:
  n.nodeType===1?n.childNodes.map(find).find(Boolean):null;
 const owner=find(capture),selector=${jsonEncode(actual.entry.probes.single.webSelector)};
-global.document={querySelectorAll:s=>s===selector?[owner]:[]};
+let selectorReads=0;
+global.document={querySelectorAll:s=>{selectorReads++;return s===selector?[owner]:[];}};
 const request={requested:true,selector,layoutSelector:selector,source:${jsonEncode(source)},
  documentationSceneTag:${jsonEncode(actual.scene.tag)},documentationSceneRoute:${jsonEncode(route)},
  requiredCurrentSsrKind:${jsonEncode(requiredDocsCardRegistrySsrKind(actual.entry, actual.scene))},currentSsrSource:${jsonEncode(receipt)}};
@@ -70,7 +71,7 @@ const result=($docsCardRegistryRequestBindingScript)(request);
 const initially=result.validateCurrentBinding?.()??null;
 $after
 console.log(JSON.stringify({applied:result.applied,error:result.error,initially,after:result.validateCurrentBinding?.()??null,cssReads,
- fieldIsOwner:result.fieldUnitElement===owner,paddingIsOwner:result.paddingSource===owner}));
+ fieldIsOwner:result.fieldUnitElement===owner,paddingIsOwner:result.paddingSource===owner,selectorReads}));
 ''';
   final directory = Directory.systemTemp.createTempSync('docs-source-binding-');
   try {
@@ -87,10 +88,151 @@ console.log(JSON.stringify({applied:result.applied,error:result.error,initially,
   }
 }
 
+const _kOwnedPair = '''
+const raw=request.currentSsrSource.currentRaw;
+const pairFor=classes=>{
+ const visit=(node,t)=>{
+  if(t.attributes?.class===classes||(classes==='docs-stage not-content'&&t.attributes?.class?.startsWith('docs-stage ')))return {node,tree:t};
+  for(let i=0;i<t.children.length;i++){
+   if(t.children[i].nodeType===1){const found=visit(node.childNodes[i],t.children[i]);if(found)return found;}
+  }return null;
+ };return visit(capture,raw.capture);
+};
+''';
+
 void main() {
   final svgScene = readDocsScenes('avatar').singleWhere(
     (s) => s.reference == 'docs-v2-63b2a10b59591e46f2d0201badbf8d67',
   );
+  final moreScene = readDocsScenes('kbd').singleWhere(
+    (s) => s.reference == 'docs-v2-49fefef3cd11b31e6724e311026e5e94',
+  );
+  final jointForgeries = <String, String>{
+    'owned wrapper around stage preview': '''
+const stage=pairFor('docs-stage not-content'),i=stage.tree.children.findIndex(c=>Object.hasOwn(c,'opaqueNode'));
+if(i<0)throw Error('ACTUAL_PREVIEW_FRONTIER_REQUIRED');
+const original=stage.node.childNodes[i],source=stage.tree.children[i];
+const wrapper=from({nodeType:1,namespaceURI:'http://www.w3.org/1999/xhtml',localName:'div',attributes:{},childNodes:[]},stage.node);
+wrapper.childNodes=[original];original.parentNode=wrapper;original.parentElement=wrapper;
+stage.node.childNodes[i]=wrapper;
+stage.tree.children[i]={nodeType:1,namespaceURI:'http://www.w3.org/1999/xhtml',localName:'div',attributes:{},children:[source]};
+''',
+    'title frontier moved into body with global order preserved': '''
+const head=pairFor('docs-card-head'),body=pairFor('docs-card-body'),indices=[];
+for(let i=0;i<head.tree.children.length;i++)if(Object.hasOwn(head.tree.children[i],'opaqueNode'))indices.push(i);
+if(indices.length!==1)throw Error('ACTUAL_TITLE_FRONTIER_REQUIRED');
+const i=indices[0],source=head.tree.children.splice(i,1)[0],node=head.node.childNodes.splice(i,1)[0];
+body.tree.children.unshift(source);body.node.childNodes.unshift(node);node.parentNode=body.node;node.parentElement=body.node;
+''',
+    'nonformatter owned text': '''
+const stage=pairFor('docs-stage not-content');
+stage.tree.children.push({ownedText:'forged owned text'});
+stage.node.childNodes.push(from({nodeType:3,data:'forged owned text'},stage.node));
+''',
+    'owned frame style in both DOM and receipt': '''
+owner.setAttribute('style','padding: 91px');
+const stage=pairFor('docs-stage not-content');stage.tree.attributes.style='padding: 91px';
+''',
+  };
+  for (final control in jointForgeries.entries) {
+    test('closed factory rejects joint forgery: ${control.key}', () async {
+      final actual = control.key == 'owned frame style in both DOM and receipt'
+          ? await fixture.renderDocsFrameFixture(
+              'button',
+              readDocsScenes('button').firstWhere((s) => s.tag == 'Preview'),
+            )
+          : await fixture.renderDocsFrameFixture('avatar', svgScene);
+      final sampled = await _sample(
+        actual,
+        before: '$_kOwnedPair\n${control.value}',
+      );
+      printOnFailure('JOINT_FORGERY ${control.key}: ${jsonEncode(sampled)}');
+      expect(sampled['cssReads'], 0);
+      expect(
+        sampled['error'],
+        'DOCS_FRAME_EXACT_FACTORY_OWNED_GRAMMAR_CHANGED',
+      );
+      expect(sampled['selectorReads'], 0);
+    });
+  }
+
+  for (final (component, scene) in fixture.documentationBranchFixtures()) {
+    test('closed factory accepts original ${scene.reference}', () async {
+      final actual = await fixture.renderDocsFrameFixture(component, scene);
+      final sampled = await _sample(actual);
+      expect(sampled['error'], isNull);
+      expect(sampled['initially'], true);
+      expect(sampled['after'], true);
+      expect(sampled['cssReads'], 0);
+    });
+  }
+
+  test(
+    'closed factory accepts original eligible more and arrow branch',
+    () async {
+      final actual = await fixture.renderDocsFrameFixture('kbd', moreScene);
+      final raw = actual.receipt!['currentRaw']! as Map;
+      final frontiers = raw['opaqueFrontiers']! as List;
+      expect(
+        frontiers.map((f) => (f as Map)['purpose']),
+        containsAllInOrder(['more-label', 'arrow-label']),
+      );
+      final sampled = await _sample(actual);
+      expect(sampled['error'], isNull);
+      expect(sampled['initially'], true);
+      expect(sampled['after'], true);
+      expect(sampled['cssReads'], 0);
+    },
+  );
+
+  for (final classes in [
+    'docs manual',
+    'content',
+    'docs-cards not-content',
+    'docs-card docs-card--preview',
+    'docs-stage not-content',
+    'docs-card-eyebrow',
+    'docs-card-head',
+    'docs-card-body',
+    'docs-card-more',
+    'site-arrow',
+  ]) {
+    test('closed factory rejects extra owned attribute on $classes', () async {
+      final scene = switch (classes) {
+        'docs-card-eyebrow' => readDocsScenes('button').firstWhere(
+          (s) => s.tag == 'Card' && s.attributes['eyebrow'] != null,
+        ),
+        'docs-card-more' || 'site-arrow' => moreScene,
+        _ => svgScene,
+      };
+      final actual = await fixture.renderDocsFrameFixture(
+        scene == svgScene
+            ? 'avatar'
+            : classes == 'docs-card-more' || classes == 'site-arrow'
+            ? 'kbd'
+            : 'button',
+        scene,
+      );
+      final sampled = await _sample(
+        actual,
+        before:
+            '''
+$_kOwnedPair
+const target=pairFor(${jsonEncode(classes)});
+if(!target)throw Error('ACTUAL_OWNED_FACTORY_NODE_REQUIRED');
+target.tree.attributes['data-forged-own']='forged';
+target.node.setAttribute('data-forged-own','forged');
+''',
+      );
+      expect(
+        sampled['error'],
+        'DOCS_FRAME_EXACT_FACTORY_OWNED_GRAMMAR_CHANGED',
+      );
+      expect(sampled['selectorReads'], 0);
+      expect(sampled['cssReads'], 0);
+    });
+  }
+
   test('original SVG frontier binds without inspecting its interior', () async {
     final actual = await fixture.renderDocsFrameFixture('avatar', svgScene);
     final sampled = await _sample(actual);
