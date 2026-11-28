@@ -31,6 +31,35 @@ Earlier releases are available in the [changelog archive](https://github.com/coc
 - Preserve TextField placeholder typography independently of its value, including body hints over code values (#6275).
 - Keep Toast content beside its icon, let Accordion follow parent width constraints, and restore the icon-only navigation rail's Core minimum width (#6274, #6276, #6277).
 
+## [0.193.0](https://github.com/coco-de/coui/compare/coui_web-v0.192.1...coui_web-v0.193.0) (2026-11-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **components:** Existing paint getters on 12 components now select their variant, tone or chip color. Use backgroundColor or the linear progress fillColor method to override paint explicitly.
+
+### 기능
+
+* **components:** add content padding, border and foreground chains ([#64](https://github.com/coco-de/coui/issues/64)) ([b8e13b8](https://github.com/coco-de/coui/commit/b8e13b825dd57963c79dab1ed85f45b4c292c4ae))
+* **components:** extend typed style chains to 63 more components ([#65](https://github.com/coco-de/coui/issues/65)) ([499a39a](https://github.com/coco-de/coui/commit/499a39abb57aa6b368f24bf28e938f5a154483aa))
+* **components:** 의미 체인과 색상 토큰을 지원하고 Flutter 3.50.1로 검증 ([#58](https://github.com/coco-de/coui/issues/58)) ([79bf0df](https://github.com/coco-de/coui/commit/79bf0df9e856de5511b1f6d3fd4a27ba8e692cd8))
+* **fab:** size the action menu with the FAB ([#29](https://github.com/coco-de/coui/issues/29)) ([64a7f56](https://github.com/coco-de/coui/commit/64a7f563b9dc6ab0af49d8bcaf21d46788417dbb))
+
+
+### 버그 수정
+
+* **card:** respect directional content padding ([b80d620](https://github.com/coco-de/coui/commit/b80d62029884de46efa18a62dc05636b22255c35))
+* **card:** respect directional content padding ([c6f5fb5](https://github.com/coco-de/coui/commit/c6f5fb5f9b61557ddb84b282127bba43ad4113ad))
+* honor disabled form scope in input actions ([#32](https://github.com/coco-de/coui/issues/32)) ([4056c63](https://github.com/coco-de/coui/commit/4056c6383d3e3a4da786ff843c91241e68987c34))
+* **mockup-code:** prevent inherited frame padding ([1c98679](https://github.com/coco-de/coui/commit/1c986799d693c207d3bd71b8621ed3afa6f0ef65))
+* **mockup-code:** prevent inherited frame padding ([bf8ef20](https://github.com/coco-de/coui/commit/bf8ef203d3b19571df4d7f923d46d90f6277af92))
+* **parity:** bind Tree, MediaQuery and SwipeActions sources ([266993a](https://github.com/coco-de/coui/commit/266993ab4f735c7257822acc7dd53640ad9d8399))
+
+
+### 문서
+
+* rewrite CoUI readmes around the design site ([#30](https://github.com/coco-de/coui/issues/30)) ([07ed754](https://github.com/coco-de/coui/commit/07ed7548318358cd4357605436e1f5815b1ed07b))
+
 ## [0.192.1](https://github.com/coco-de/coui/compare/coui_web-v0.192.0...coui_web-v0.192.1) (2026-11-26)
 
 

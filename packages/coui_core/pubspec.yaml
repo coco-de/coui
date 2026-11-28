@@ -2,7 +2,7 @@ name: coui_core
 description: >
   Platform-independent design tokens and component contracts for CoUI.
   Supports CoUI Web, M3 Expressive, and Liquid Glass design systems.
-version: 0.192.1
+version: 0.193.0
 homepage: https://coui.cocode.im/
 repository: https://github.com/coco-de/coui/tree/main/packages/coui_core
 issue_tracker: https://github.com/coco-de/coui/issues
