@@ -123,6 +123,7 @@ class _DocsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => buildNativeDocsCardView(
+    context: context,
     attributes: tag.attributes,
     rawBody: tag.innerMarkdown,
     nested: nested,
@@ -273,7 +274,7 @@ class _DocsCodeTag extends StatelessWidget {
           title,
           style: const CoreTextStyle.token(
             CoreTextStyles.codeSm,
-            color: CoreColor.token(CoreColors.onSurfaceSubtle),
+            color: CoreColor.onSurfaceSubtle,
           ).toValue(theme: Theme.of(context)),
         ),
       CodeSnippet(code: source, mode: language ?? 'text'),

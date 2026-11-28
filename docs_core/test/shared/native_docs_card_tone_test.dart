@@ -40,22 +40,25 @@ Future<void> _mount(
           width: 400,
           child: RepaintBoundary(
             key: _boundary,
-            child:
-                child ??
-                buildNativeDocsCardView(
-                  attributes: {
-                    if (preview) 'component': 'button',
-                    'label': 'Action',
-                    'tone': ?tone,
-                    'height': ?height,
-                    'eyebrow': 'Eyebrow',
-                    'title': 'Caption',
-                    ...extraAttributes,
-                  },
-                  rawBody: 'Body',
-                  nested: (value) => Text(value),
-                  onInternalLink: onInternalLink,
-                ),
+            child: Builder(
+              builder: (context) =>
+                  child ??
+                  buildNativeDocsCardView(
+                    context: context,
+                    attributes: {
+                      if (preview) 'component': 'button',
+                      'label': 'Action',
+                      'tone': ?tone,
+                      'height': ?height,
+                      'eyebrow': 'Eyebrow',
+                      'title': 'Caption',
+                      ...extraAttributes,
+                    },
+                    rawBody: 'Body',
+                    nested: (value) => Text(value),
+                    onInternalLink: onInternalLink,
+                  ),
+            ),
           ),
         ),
       ),
@@ -332,11 +335,14 @@ void main() {
     for (final tone in ['do', 'dont']) {
       await _mount(
         tester,
-        child: buildNativeDocsCardView(
-          attributes: {'component': 'button', 'tone': tone},
-          rawBody: '  ',
-          nested: (_) => throw StateError('empty body must not render'),
-          onInternalLink: null,
+        child: Builder(
+          builder: (context) => buildNativeDocsCardView(
+            context: context,
+            attributes: {'component': 'button', 'tone': tone},
+            rawBody: '  ',
+            nested: (_) => throw StateError('empty body must not render'),
+            onInternalLink: null,
+          ),
         ),
       );
       final card = tester.getRect(find.byType(Card));
@@ -354,12 +360,15 @@ void main() {
     Future<(Rect, Rect, BoxDecoration)> mountShape({String? group, String? own, String? value}) async {
       await _mount(
         tester,
-        child: buildNativeDocsCardView(
-          attributes: {'eyebrow': 'Eyebrow', 'title': 'Caption', 'variant': ?own, 'value': ?value},
-          rawBody: 'Body',
-          nested: (value) => Text(value),
-          onInternalLink: null,
-          variant: group,
+        child: Builder(
+          builder: (context) => buildNativeDocsCardView(
+            context: context,
+            attributes: {'eyebrow': 'Eyebrow', 'title': 'Caption', 'variant': ?own, 'value': ?value},
+            rawBody: 'Body',
+            nested: (value) => Text(value),
+            onInternalLink: null,
+            variant: group,
+          ),
         ),
       );
       final decoration = _decoration(tester, find.byType(Card), outerBorder: true).decoration as BoxDecoration;
