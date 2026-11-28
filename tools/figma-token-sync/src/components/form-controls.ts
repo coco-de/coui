@@ -2282,6 +2282,37 @@ const kFabExampleRows = [
   { label: '글쓰기', icon: 'pencil' },
 ] as const;
 
+/** A `MenuItem` row's leading seat redrawn at `side`.
+ *
+ *  A side stated by a main component survives every change made to the nested
+ *  layer: on the library file `swapComponent` kept it, `resize` was ignored and
+ *  `rescale` refused. Writing the row's `Leading` property is what redraws the
+ *  seat. Restating the property's default — the library file's is `Icon`
+ *  `Size=20`, the side the smaller menus ask for — rebuilds the layer as a
+ *  fresh member at that side, under the member's own layer name and glyph, so
+ *  the name is written back here and the glyph by the caller. A seat the main
+ *  never resized (a fresh document) takes the new member's side. Any other
+ *  default keeps the old side, which the check refuses rather than draw it. */
+function redrawRowSeat(page: PageNode, row: InstanceNode, seat: InstanceNode, side: number): InstanceNode {
+  const target = iconVariantById(iconMainIdAt(page, side));
+  if (target == null) throw new Error(`Fab: no Icon variant for ${side}.`);
+  const at = row.children.findIndex((child) => child.id === seat.id);
+  const key = Object.keys(row.componentProperties).find(
+    (name) => name.split('#')[0] === 'Leading' && row.componentProperties[name].type === 'INSTANCE_SWAP',
+  );
+  if (at < 0 || key == null) throw new Error('Fab: the row exposes no `Leading` seat to redraw.');
+  row.setProperties({ [key]: target.id });
+  const drawn = row.children[at];
+  if (drawn.type !== 'INSTANCE' || Math.abs(drawn.width - side) > kSizeEpsilon) {
+    throw new Error(
+      `Fab: the row's leading seat is ${drawn.width} wide, want ${side} — ` +
+        `MenuItem's \`Leading\` default is not the ${side} member.`,
+    );
+  }
+  drawn.name = 'leading';
+  return drawn;
+}
+
 async function buildFab(page: PageNode, lk: VarLookup): Promise<ComponentSetNode> {
   const primary = COMPONENTS.button.variants.defaultsByVariant.primary;
   const popupStyle = FAB.fields.popupStyle;
@@ -2410,18 +2441,14 @@ async function buildFab(page: PageNode, lk: VarLookup): Promise<ComponentSetNode
           (n) => n.type === 'INSTANCE' && n.name === 'leading',
         );
         if (leadingIcon && leadingIcon.type === 'INSTANCE') {
-          // The size row's glyph. Figma refuses a size override inside an
-          // instance, so the slot is swapped to the `Icon` member of that side
-          // — `Chip`'s close glyph does the same.
+          // The size row's glyph. The seat's side is one `MenuItem`'s main
+          // states, and the nested layer cannot change it — the seat is redrawn
+          // through the row's own property instead (`redrawRowSeat`).
           const side = dimVal(rowStyle.leadingIconStyle.size);
           const resized = Math.abs(leadingIcon.width - side) > kSizeEpsilon;
-          if (resized) {
-            const target = iconVariantById(iconMainIdAt(page, side));
-            if (target == null) throw new Error(`Fab: no Icon variant for ${side}.`);
-            leadingIcon.swapComponent(target);
-          }
-          setIconGlyph(leadingIcon, icon, kPreserveGlyphPaint);
-          if (resized) alignSlotIconMode(leadingIcon, side, 1);
+          const seat = resized ? redrawRowSeat(page, row, leadingIcon, side) : leadingIcon;
+          setIconGlyph(seat, icon, kPreserveGlyphPaint);
+          if (resized) alignSlotIconMode(seat, side, 1);
         }
         // The rest of the size row, over the `lg` member the row is drawn
         // from: inset, icon-label gap, height floor and label role.

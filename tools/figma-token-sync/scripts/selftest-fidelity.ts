@@ -94,6 +94,9 @@ const membersOfSet = (root: Node): Node[] => {
 };
 
 let seq = 0;
+/** Every node by id — what an `INSTANCE_SWAP` value names. */
+const nodesById = new Map<string, Node>();
+
 const mk = (type: string, name = ''): Node => {
   seq += 1;
   const node: Node = {
@@ -367,6 +370,21 @@ const mk = (type: string, name = ''): Node => {
         for (const k of Object.keys(patch)) {
           if (!(k in props)) throw new Error(`setProperties: no such property ${k}`);
           props[k].value = patch[k];
+          // An `Icon` seat a swap property drives takes the written member. This
+          // drive is a fresh document, where no main resized the seat, so it
+          // takes the member's side too (the library file's held default is
+          // modelled in `selftest-registry-runtime`).
+          if (props[k].type === 'INSTANCE_SWAP' && typeof patch[k] === 'string') {
+            const target = nodesById.get(patch[k] as string);
+            const seats = (n: Node) => {
+              for (const kid of (n.children ?? []) as Node[]) {
+                if (kid.type === 'INSTANCE' && kid.componentPropertyReferences?.mainComponent === k) {
+                  if (target && /^Size=/.test(target.name as string)) kid.swapComponent(target);
+                } else seats(kid);
+              }
+            };
+            seats(inst);
+          }
           if (typeof patch[k] !== 'boolean') continue;
           const apply = (n: Node) => {
             const ref = n.componentPropertyReferences;
@@ -395,6 +413,7 @@ const mk = (type: string, name = ''): Node => {
     },
   };
   const self = wrap(node);
+  nodesById.set(self.id as string, self);
   return self;
 };
 

@@ -114,6 +114,7 @@ import {
   glyphPaint,
   kPreserveGlyphPaint,
   iconMainId,
+  iconMainIdAt,
   makeIcon,
   setIconGlyph,
   setSlotIcon,
@@ -1009,6 +1010,44 @@ function rangeFontsOf(node: FakeNode): FontName[] {
   return node.rangeFonts as FontName[];
 }
 
+/** The COMPONENT an instance draws, followed through nested copies. */
+function fakeMainOf(node: FakeNode): FakeNode | undefined {
+  let at = (node.mainComponent ?? node.mainSource) as FakeNode | undefined;
+  while (at && at.type !== 'COMPONENT') {
+    at = (at.mainComponent ?? at.mainSource) as FakeNode | undefined;
+  }
+  return at;
+}
+
+/** What an instance swap does to an instance node. A nested layer whose side the
+ *  HOST MAIN drew keeps that side — measured on the library file: a swap to any
+ *  member leaves it, `resize` is ignored and `rescale` is refused. */
+function fakeSwapMain(node: FakeNode, target: FakeNode): void {
+  let host = node.parent as FakeNode | null | undefined;
+  while (host && host.type !== 'INSTANCE') host = host.parent as FakeNode | null | undefined;
+  const keepsHostSide = node.sizedByHostMain === true && !!host;
+  const kid = node.children[0];
+  const natural = target.children[0];
+  if (!keepsHostSide) {
+    node.width = target.width;
+    node.height = target.height;
+  }
+  if (kid && natural) {
+    if (!keepsHostSide) {
+      kid.width = natural.width;
+      kid.height = natural.height;
+    }
+    if (typeof natural.strokeWeight === 'number') kid.strokeWeight = natural.strokeWeight;
+  }
+  node.mainComponent = target;
+  node.getMainComponentAsync = () => Promise.resolve(target);
+}
+
+const isFakeIconStep = (n: FakeNode | undefined): boolean => {
+  const owner = n?.parent as FakeNode | null | undefined;
+  return !!n && /^Size=/.test(n.name) && owner?.type === 'COMPONENT_SET' && owner.name === 'Icon';
+};
+
 function makeNode(type: string): FakeNode {
   nodeSeq += 1;
   // Backing store for the validated `effects` accessor installed below.
@@ -1384,6 +1423,15 @@ function makeNode(type: string): FakeNode {
           // The main, held where a synchronous reader can reach it: the modes pinned
           // on a component's root apply to its instances (`modeInForceAt`).
           copy.mainSource = src;
+          // A nested instance the host main drew at another side than its own
+          // component's. Measured on the library file: that side then survives
+          // every change made to the nested layer (see `swapComponent`).
+          if (src.type === 'INSTANCE') {
+            const drawn = fakeMainOf(src);
+            copy.sizedByHostMain =
+              src.sizedByHostMain === true ||
+              (drawn !== undefined && (drawn.width !== src.width || drawn.height !== src.height));
+          }
         }
         copy.name = src.name;
         copy.visible = src.visible;
@@ -1489,6 +1537,35 @@ function makeNode(type: string): FakeNode {
       };
       const instance = clone(node);
       instance.mainComponent = node;
+      // The `Icon` seats a swap property drives, as measured on the library file:
+      // restating the property's default on a seat still drawing that default
+      // rebuilds it as a fresh member (its own side, default name and glyph);
+      // any other value swaps the nested layer, which keeps a host-drawn side.
+      const writeIconSeats = (at: FakeNode, key: string, targetId: string, restates: boolean): void => {
+        at.children.forEach((child, index) => {
+          const refs = child.componentPropertyReferences as Record<string, string> | undefined;
+          if (child.type !== 'INSTANCE' || refs?.mainComponent !== key) {
+            writeIconSeats(child, key, targetId, restates);
+            return;
+          }
+          const current = fakeMainOf(child);
+          const target = fakeNodeById.get(targetId)?.deref();
+          if (!target || !isFakeIconStep(current) || !isFakeIconStep(target)) return;
+          if (current!.id !== targetId) {
+            fakeSwapMain(child, target);
+            return;
+          }
+          if (!restates) return;
+          const fresh = (target.createInstance as () => FakeNode)();
+          fresh.name = (target.parent as FakeNode).name;
+          fresh.visible = child.visible;
+          fresh.getMainComponentAsync = () => Promise.resolve(target);
+          fresh.mainSource = target;
+          (fresh.seedPropertyReferences as (v: unknown) => void)(refs);
+          at.children[index] = fresh;
+          fresh.parent = at;
+        });
+      };
       // An instance exposes its main component's properties as
       // `componentProperties`, keyed the same way, and `setProperties` writes
       // through them. Without this the double had no such member at all, so
@@ -1525,6 +1602,11 @@ function makeNode(type: string): FakeNode {
           }
           // `makeIcon`'s own write lands here — the path `Label` died on.
           assertSwapTargetLoaded(props[key].type, patch[key]);
+          if (props[key].type === 'INSTANCE_SWAP') {
+            const restatesDefault =
+              props[key].value === patch[key] && defs[key]?.defaultValue === patch[key];
+            writeIconSeats(instance, key, String(patch[key]), restatesDefault);
+          }
           props[key].value = patch[key];
           if (props[key].type === 'BOOLEAN') propagateBooleanToBound(instance, key, patch[key]);
         }
@@ -1555,17 +1637,7 @@ function makeNode(type: string): FakeNode {
       if (target == null || target.type !== 'COMPONENT') {
         throw new BindingAccessError('swapComponent', target, 'the target is not a COMPONENT');
       }
-      node.width = target.width;
-      node.height = target.height;
-      const kid = node.children[0];
-      const natural = target.children[0];
-      if (kid && natural) {
-        kid.width = natural.width;
-        kid.height = natural.height;
-        if (typeof natural.strokeWeight === 'number') kid.strokeWeight = natural.strokeWeight;
-      }
-      node.mainComponent = target;
-      node.getMainComponentAsync = () => Promise.resolve(target);
+      fakeSwapMain(node, target);
     },
     rescale(factor: number) {
       record('Node.rescale');
@@ -6398,51 +6470,90 @@ if (processArgvHas('--audit-layout')) {
   // of `fab.sizes.defaultsBySize` — a builder reading the flat entries instead
   // draws three menus alike, which no other check here can tell apart.
   const ladder = COMPONENTS.fab.sizes.defaultsBySize;
-  const ladderSizes = new Set<string>();
-  let ladderRows = 0;
-  for (const variant of fab.children) {
-    const fabMenu = variant.children.find((k) => k.name === 'menu') as FakeNode | undefined;
-    if (!fabMenu) continue;
-    const size = parseVariantKey(String(variant.name))['Size'];
-    const want = ladder[size as keyof typeof ladder];
-    const row = want.actionItemStyle;
-    const expect = (what: string, got: unknown, wanted: unknown): void => {
-      if (got !== wanted) {
-        console.error(`✗ Fab menu ladder: Fab / ${variant.name} ${what} is ${String(got)}, want ${String(wanted)}`);
-        process.exit(1);
-      }
-    };
-    const minWidth = ((fabMenu.boundVariables ?? {}) as Record<string, { arg?: unknown } | undefined>).minWidth;
-    expect('gap to the circle', (variant as unknown as FakeNode).itemSpacing, want.spacing.v);
-    expect('menu inset', fabMenu.paddingLeft, want.popupStyle.padding.l.v);
-    expect('menu floor', minWidth?.arg, want.popupStyle.minWidth.v);
-    const rows = (fabMenu.children ?? []).filter((k) => k.type === 'INSTANCE' && k.name !== 'Popup');
-    expect('has action rows', rows.length > 0, true);
-    for (const item of rows) {
-      const parts: FakeNode[] = [];
-      const collect = (n: FakeNode): void => {
-        parts.push(n);
-        for (const k of n.children ?? []) collect(k);
+  const assertFabLadder = (fabSet: FakeNode, seeded: string): string => {
+    const ladderSizes = new Set<string>();
+    let ladderRows = 0;
+    for (const variant of fabSet.children) {
+      const fabMenu = variant.children.find((k) => k.name === 'menu') as FakeNode | undefined;
+      if (!fabMenu) continue;
+      const size = parseVariantKey(String(variant.name))['Size'];
+      const want = ladder[size as keyof typeof ladder];
+      const row = want.actionItemStyle;
+      const expect = (what: string, got: unknown, wanted: unknown): void => {
+        if (got !== wanted) {
+          console.error(`✗ Fab menu ladder${seeded}: Fab / ${variant.name} ${what} is ${String(got)}, want ${String(wanted)}`);
+          process.exit(1);
+        }
       };
-      collect(item as FakeNode);
-      expect('row inset', item.paddingLeft, row.padding.l.v);
-      expect('row icon-label gap', item.itemSpacing, row.contentGapStyle.size.v);
-      expect('row icon', parts.find((n) => n.name === 'leading')?.width, row.leadingIconStyle.size.v);
-      expect(
-        'row label size',
-        parts.find((n) => n.type === 'TEXT' && n.name === 'label')?.fontSize,
-        textStyleData(row.labelStyle).fontSize,
-      );
-      if ('minHeight' in row) expect('row floor', item.minHeight, (row.minHeight as { v: number }).v);
-      ladderRows += 1;
+      const minWidth = ((fabMenu.boundVariables ?? {}) as Record<string, { arg?: unknown } | undefined>).minWidth;
+      expect('gap to the circle', (variant as unknown as FakeNode).itemSpacing, want.spacing.v);
+      expect('menu inset', fabMenu.paddingLeft, want.popupStyle.padding.l.v);
+      expect('menu floor', minWidth?.arg, want.popupStyle.minWidth.v);
+      const rows = (fabMenu.children ?? []).filter((k) => k.type === 'INSTANCE' && k.name !== 'Popup');
+      expect('has action rows', rows.length > 0, true);
+      for (const item of rows) {
+        const parts: FakeNode[] = [];
+        const collect = (n: FakeNode): void => {
+          parts.push(n);
+          for (const k of n.children ?? []) collect(k);
+        };
+        collect(item as FakeNode);
+        expect('row inset', item.paddingLeft, row.padding.l.v);
+        expect('row icon-label gap', item.itemSpacing, row.contentGapStyle.size.v);
+        expect('row icon', parts.find((n) => n.name === 'leading')?.width, row.leadingIconStyle.size.v);
+        expect(
+          'row label size',
+          parts.find((n) => n.type === 'TEXT' && n.name === 'label')?.fontSize,
+          textStyleData(row.labelStyle).fontSize,
+        );
+        if ('minHeight' in row) expect('row floor', item.minHeight, (row.minHeight as { v: number }).v);
+        ladderRows += 1;
+      }
+      ladderSizes.add(size);
     }
-    ladderSizes.add(size);
+    if (ladderSizes.size !== Object.keys(ladder).length) {
+      console.error(`✗ Fab menu ladder${seeded}: open menus seen for ${[...ladderSizes].join(', ')} only`);
+      process.exit(1);
+    }
+    return `Fab menu ladder${seeded}: ${ladderRows} action row(s) across ${ladderSizes.size} sizes draw their size row.`;
+  };
+  console.log(assertFabLadder(fab, ''));
+  // The library file holds an older `Leading` default on `MenuItem` than a fresh
+  // document gets: every row size draws its seat from `Icon` `Size=20` and
+  // resizes it. A fresh drive never sees that, so seed it, redraw `Fab`, and
+  // put `MenuItem` back.
+  {
+    const menuItem = builtByName.get('MenuItem');
+    const fabEntry = REGISTRY.find((e) => e.name === 'Fab');
+    const defs = menuItem?.componentPropertyDefinitions as
+      | Record<string, { type: string; defaultValue: unknown }>
+      | undefined;
+    const key = Object.keys(defs ?? {}).find(
+      (k) => k.split('#')[0] === 'Leading' && defs![k].type === 'INSTANCE_SWAP',
+    );
+    if (!menuItem || !fabEntry || !defs || !key) {
+      console.error('✗ Fab menu ladder: MenuItem / Fab / the `Leading` property are not in the drive');
+      process.exit(1);
+    }
+    const step20 = fakeNodeById.get(iconMainIdAt(page as unknown as PageNode, 20))!.deref()!;
+    const redraw = async (): Promise<FakeNode> =>
+      (await fabEntry.build(page as unknown as PageNode, new FakeVarLookup() as unknown as VarLookup)) as unknown as FakeNode;
+    const heldDefault = defs[key].defaultValue;
+    const seats = menuItem.children.map((member) => member.children.find((k) => k.name === 'leading')!);
+    const mains = seats.map((seat) => ({ main: seat.mainComponent, source: seat.mainSource }));
+    defs[key].defaultValue = step20.id;
+    for (const seat of seats) {
+      seat.mainComponent = step20;
+      seat.mainSource = step20;
+    }
+    console.log(assertFabLadder(await redraw(), ' (library default Size=20)'));
+    defs[key].defaultValue = heldDefault;
+    seats.forEach((seat, i) => {
+      seat.mainComponent = mains[i].main;
+      seat.mainSource = mains[i].source;
+    });
+    builtByName.set('Fab', await redraw());
   }
-  if (ladderSizes.size !== Object.keys(ladder).length) {
-    console.error(`✗ Fab menu ladder: open menus seen for ${[...ladderSizes].join(', ')} only`);
-    process.exit(1);
-  }
-  console.log(`Fab menu ladder: ${ladderRows} action row(s) across ${ladderSizes.size} sizes draw their size row.`);
   // The main circle's paint is its `material` layer, not the instance root:
   // the layer has to take the 9999 the root took, or the circle paints Button
   // md's corner under a round shadow.
