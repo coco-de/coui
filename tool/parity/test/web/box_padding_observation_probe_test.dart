@@ -97,7 +97,7 @@ void main() {
       source: BoxObservationSourceSpec.docsStage,
     );
     final actual = readback['result']! as Map;
-    expect(actual['error'], 'DOCS_STAGE_SOURCE_CHANGED');
+    expect(actual['error'], 'DOCS_FRAME_SAME_NORMAL_SCENE_ROUTE_REQUIRED');
     expect(actual.containsKey('value'), isFalse);
     expect(readback['cssReads'], 0);
   });

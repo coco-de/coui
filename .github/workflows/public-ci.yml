@@ -130,6 +130,7 @@ jobs:
           tool/parity/test/web/card_accordion_frame_dispatch_test.dart
           tool/parity/test/web/docs_card_registry_real_entry_test.dart
           tool/parity/test/web/docs_card_registry_binding_test.dart
+          tool/parity/test/web/docs_card_registry_integration_test.dart
           tool/parity/test/manifest/parity_manifest_test.dart
           tool/parity/test/web/breakpoint_showcase_ssr_source_test.dart
           tool/parity/test/web/breakpoint_showcase_dispatch_test.dart

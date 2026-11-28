@@ -183,7 +183,7 @@ try {
   let shots=stages.length===0?await captureShots(state):null;
   for(const probe of input.probes){
     if(input.additiveBoxObservations){
-      const observed=JSON.parse(await evaluate(expression(input.scripts.probeAndBox,{selector:probe.webSelector,layoutSelector:probe.webSelector,requested:probe.fields.includes('paddingPx'),source:probe.boxObservationSource || null,runtimeOperationReceipt:input.runtimeOperationReceipt || null,...(input.requiredCurrentSsrKind?{requiredCurrentSsrKind:input.requiredCurrentSsrKind}:{}),currentSsrSource:input.currentSsrSource || null,...(input.currentClientBoxSource?{currentClientBoxSource:input.currentClientBoxSource}:{})})));
+      const observed=JSON.parse(await evaluate(expression(input.scripts.probeAndBox,{selector:probe.webSelector,layoutSelector:probe.webSelector,requested:probe.fields.includes('paddingPx'),source:probe.boxObservationSource || null,runtimeOperationReceipt:input.runtimeOperationReceipt || null,...(input.requiredCurrentSsrKind?{requiredCurrentSsrKind:input.requiredCurrentSsrKind}:{}),currentSsrSource:input.currentSsrSource || null,...(input.documentationSceneRoute?{documentationSceneTag:input.documentationSceneTag,documentationSceneRoute:input.documentationSceneRoute}:{}),...(input.currentClientBoxSource?{currentClientBoxSource:input.currentClientBoxSource}:{})})));
       byRole[probe.role]=observed.legacy;boxPaddingByRole[probe.role]=observed.box;
     }else{
       byRole[probe.role]=JSON.parse(await evaluate(expression(input.scripts.probe,probe.webSelector)));

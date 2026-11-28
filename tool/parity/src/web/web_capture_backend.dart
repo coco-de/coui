@@ -20,6 +20,7 @@ import 'package:puppeteer/protocol/network.dart' show ResourceType;
 import 'package:puppeteer/puppeteer.dart' show Browser, DeviceViewport;
 
 import '../manifest/capture_probes.dart';
+import '../model/box_observation_source_spec.dart';
 import '../model/capture_body.dart';
 import '../model/capture_clock.dart';
 import '../model/capture_motion.dart';
@@ -34,6 +35,7 @@ import 'card_accordion_frame_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'data_overlay_ssr_source.dart';
+import 'docs_card_registry_ssr_source.dart';
 import 'docs_size_ssr_source.dart';
 import 'element_capture.dart';
 import 'framed_collection_ssr_source.dart';
@@ -243,8 +245,10 @@ Future<String> renderCaptureBodyHtml(
   MatrixEntry entry, {
   int availableWidthPx = kCaptureAvailableWidthPx,
   void Function(Map<String, Object?>)? onCurrentBoxSource,
+  void Function(Map<String, String> route, String? requiredKind)?
+  onDocumentationSceneRoute,
 }) async {
-  final sourceRecorder = onCurrentBoxSource == null
+  var sourceRecorder = onCurrentBoxSource == null
       ? null
       : DocsSizeSsrSource.forEntry(entry) ??
             PublicWrapperSsrSource.forEntry(entry) ??
@@ -259,6 +263,14 @@ Future<String> renderCaptureBodyHtml(
             NavigationTriggerSsrSource.forEntry(entry) ??
             DataOverlaySsrSource.forEntry(entry) ??
             VisualValueSsrSource.forEntry(entry);
+  final docsCandidate =
+      onCurrentBoxSource != null &&
+      entry.probes.any(
+        (probe) =>
+            probe.boxObservationSource ==
+                BoxObservationSourceSpec.wholeDocCard ||
+            probe.boxObservationSource == BoxObservationSourceSpec.docsStage,
+      );
   Map<String, Object?>? sourceWitness;
   final builder = kWebPreviewRegistry[entry.component];
   if (builder == null) {
@@ -273,7 +285,24 @@ Future<String> renderCaptureBodyHtml(
     final scene = entry.variant.startsWith(docsScenePrefix)
         ? resolveDocsScene(entry.component, entry.variant)
         : null;
-    if (sourceRecorder is DocsSizeSsrSource) sourceRecorder.recordScene(scene);
+    if (docsCandidate) {
+      final docs = DocsCardRegistrySsrSource.forEntry(entry, scene);
+      if (docs != null) {
+        if (sourceRecorder != null) {
+          throw StateError('Conflicting documentation source recorders.');
+        }
+        sourceRecorder = docs;
+      }
+      final route = docsCardRegistrySceneRoute(entry, scene);
+      if (route != null) {
+        onDocumentationSceneRoute?.call(
+          route,
+          docs == null ? null : kDocsCardRegistrySsrKind,
+        );
+      }
+    }
+    final recorder = sourceRecorder;
+    if (recorder is DocsSizeSsrSource) recorder.recordScene(scene);
     final content = builder(context, variant);
     final capture = div(
       [
@@ -284,7 +313,7 @@ Future<String> renderCaptureBodyHtml(
       ),
       attributes: {'data-parity-key': entry.key},
     );
-    sourceRecorder?.recordBuild(content, capture);
+    recorder?.recordBuild(content, capture);
     return capture;
   }
 
@@ -294,54 +323,65 @@ Future<String> renderCaptureBodyHtml(
     Clock.fixed(kCaptureNow),
     () => renderComponentBodyHtml(
       _BuildContextlessWrapper(innerBuilder: build),
-      onMountedRoot: sourceRecorder == null
+      onMountedRoot: sourceRecorder == null && !docsCandidate
           ? null
           : (root) {
+              final recorder = sourceRecorder;
+              if (recorder == null) return;
               try {
-                sourceWitness = sourceRecorder.observe(root);
+                sourceWitness = recorder.observe(root);
               } on Object catch (error) {
                 sourceWitness = {'error': '$error'};
               }
             },
     ),
   );
+  final recorder = sourceRecorder;
   var witness = sourceWitness;
-  if (sourceRecorder is DocsSizeSsrSource &&
+  if (recorder is DocsCardRegistrySsrSource &&
+      witness?['docsCardRegistryAwaitingActualNormalBody'] == true) {
+    try {
+      witness = recorder.completeWithSerializedBody(html);
+    } on Object catch (error) {
+      witness = {'error': '$error'};
+    }
+  }
+  if (recorder is DocsSizeSsrSource &&
       witness?['docsSizeAwaitingExactNormalBody'] == true) {
     try {
-      witness = sourceRecorder.completeWithSerializedBody(html);
+      witness = recorder.completeWithSerializedBody(html);
     } on Object catch (error) {
       witness = {'error': '$error'};
     }
   }
-  if (sourceRecorder is StepperHorizontalSsrSource &&
+  if (recorder is StepperHorizontalSsrSource &&
       witness?['stepperAwaitingExactNormalSerializedBody'] == true) {
     try {
-      witness = sourceRecorder.completeWithSerializedBody(html);
+      witness = recorder.completeWithSerializedBody(html);
     } on Object catch (error) {
       witness = {'error': '$error'};
     }
   }
-  if (sourceRecorder is PublicWrapperSsrSource &&
+  if (recorder is PublicWrapperSsrSource &&
       witness?['publicWrapperSourceAwaitingExactSerializedBody'] == true) {
     try {
-      witness = sourceRecorder.completeWithSerializedBody(html);
+      witness = recorder.completeWithSerializedBody(html);
     } on Object catch (error) {
       witness = {'error': '$error'};
     }
   }
-  if (sourceRecorder is CardAccordionFrameSsrSource &&
+  if (recorder is CardAccordionFrameSsrSource &&
       witness?['surfaceFrameAwaitingExactNormalBody'] == true) {
     try {
-      witness = sourceRecorder.completeWithSerializedBody(html);
+      witness = recorder.completeWithSerializedBody(html);
     } on Object catch (error) {
       witness = {'error': '$error'};
     }
   }
-  if (sourceRecorder is ScopeAllocationSsrSource &&
+  if (recorder is ScopeAllocationSsrSource &&
       witness?['scopeSourceAwaitingExactSerializedBody'] == true) {
     try {
-      witness = sourceRecorder.completeWithSerializedBody(html);
+      witness = recorder.completeWithSerializedBody(html);
     } on Object catch (error) {
       witness = {'error': '$error'};
     }
@@ -442,6 +482,8 @@ Future<File> prepareWebCaptureHarness({
   required Directory harnessDir,
   int availableWidthPx = kCaptureAvailableWidthPx,
   void Function(Map<String, Object?>)? onCurrentBoxSource,
+  void Function(Map<String, String> route, String? requiredKind)?
+  onDocumentationSceneRoute,
 }) async {
   requireCaptureProbes(
     component: entry.component,
@@ -458,6 +500,7 @@ Future<File> prepareWebCaptureHarness({
           entry,
           availableWidthPx: availableWidthPx,
           onCurrentBoxSource: onCurrentBoxSource,
+          onDocumentationSceneRoute: onDocumentationSceneRoute,
         )
       : '';
   final bodyHtml = clientCapture
@@ -500,7 +543,7 @@ Future<WebCaptureResult> captureWebEntry({
     entry,
     additiveBoxObservations: additiveBoxObservations,
   );
-  final requiredCurrentSsrKind = additiveBoxObservations
+  var requiredCurrentSsrKind = additiveBoxObservations
       ? requiredDocsSizeSsrKind(entry) ??
             requiredStepperHorizontalSsrKind(entry) ??
             requiredPublicWrapperSsrKind(entry) ??
@@ -513,6 +556,7 @@ Future<WebCaptureResult> captureWebEntry({
             requiredFramedCollectionSsrKind(entry)
       : null;
   Map<String, Object?>? currentSsrSource;
+  Map<String, String>? documentationSceneRoute;
   final harnessFile = await prepareWebCaptureHarness(
     entry: entry,
     themeConfig: themeConfig,
@@ -523,6 +567,12 @@ Future<WebCaptureResult> captureWebEntry({
     availableWidthPx: availableWidthPx,
     onCurrentBoxSource: additiveBoxObservations && !clientCapture
         ? (witness) => currentSsrSource = witness
+        : null,
+    onDocumentationSceneRoute: additiveBoxObservations && !clientCapture
+        ? (route, kind) {
+            documentationSceneRoute = route;
+            requiredCurrentSsrKind = kind;
+          }
         : null,
   );
 
@@ -706,6 +756,10 @@ Future<WebCaptureResult> captureWebEntry({
                 'currentClientBoxSource': ?currentClientBoxSource,
                 'source': probe.boxObservationSource?.toJson(),
                 'requiredCurrentSsrKind': ?requiredCurrentSsrKind,
+                if (documentationSceneRoute != null) ...{
+                  'documentationSceneTag': documentationSceneRoute!['sceneTag'],
+                  'documentationSceneRoute': documentationSceneRoute,
+                },
                 'currentSsrSource': currentSsrSource == null
                     ? null
                     : {
