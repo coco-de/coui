@@ -1,74 +1,208 @@
 ---
 title: Hidden
-description: 자식을 fade + collapse 애니메이션으로 토글하는 래퍼
+description: hidden 값 하나로 자식을 흐리게 지우면서 한 축으로 접거나, 다시 펼치는 감싸는 컴포넌트입니다.
 category: layout
 platforms: [flutter, web]
 related: [collapsible, swap]
 tags: [hidden, toggle, collapse, animation]
+template: v2
+source: layout/hidden
 ---
 
 # Hidden
 
-`hidden` bool 하나로 자식을 **opacity + 축소 애니메이션**과 함께 토글합니다. 접히는 축을 `direction` (`vertical`/`horizontal`)으로 지정하고, 공간을 유지하려면 `keepSpace: true`, 역방향 접힘은 `reverse: true`.
+<a id="live-preview"></a>
+<a id="기본-사용법-basic-usage"></a>
 
-## Live Preview
+## 플레이그라운드
 
-<LivePreview component="hidden" />
+`hidden`을 켜고 끄며 전환을 보고, 만들어진 코드를 그대로 복사하세요.
 
-## 사용 시기 (When to Use)
+<Playground component="hidden" />
 
-**이 컴포넌트를 사용하세요:**
-- 단일 영역을 부드럽게 보였다 숨겼다 해야 할 때 (알림·오류 메시지, 확장 드로어)
-- 접힘 애니메이션이 필요하지만 헤더/트리거가 없는 경우
+## 상태
 
-**대신 다른 컴포넌트를 사용하세요:**
-- **[Collapsible](/components/collapsible)**: 트리거(헤더)도 함께 소유하는 접힘 영역이 필요할 때
-- **[Swap](/components/swap)**: 콘텐츠 하나의 숨김 대신 두 콘텐츠를 교차 전환할 때
+`hidden: true`면 불투명도가 0이 되고, 접는 축의 크기가 0으로 줄어듭니다. 아래 장면에서 숨긴 쪽은 앞뒤 내용만 남습니다.
 
-## 기본 사용법 (Basic Usage)
+<Preview demo="hidden/states" />
+
+| `hidden` | 화면 | 누르기 |
+| --- | --- | --- |
+| `false` | 자식이 그대로 보입니다. | 자식이 받습니다. |
+| `true` | 자식이 보이지 않고, `keepSpace`가 아니면 접는 축의 크기가 0이 됩니다. | 값을 바꾸는 순간부터 자식이 받지 않습니다. 흐려지며 아직 보이는 동안에도 같습니다. |
+
+자식은 숨긴 동안에도 트리에 남습니다. 그래서 입력한 값 같은 자식의 상태는 그대로입니다.
+
+## 접는 축과 자리
+
+`direction`은 접는 축입니다. `vertical`(기본)은 높이를, `horizontal`은 폭을 줄입니다. 부모가 접는 축의 크기를 정해 둔 자리(늘려 맞추는 `Column`에서의 `horizontal`, 크기가 고정된 상자 등)에서는 Flutter의 크기가 줄지 않습니다.
+
+Web에서 `horizontal`로 접으면 좁아지는 폭에 맞춰 자식의 글자가 줄 바꿈해 높이가 늘어납니다. 글자 배지 하나가 몇 줄 높이가 됩니다. Web의 가로 접기는 아이콘처럼 줄 바꿈이 없는 자식에 쓰세요.
+
+<Preview demo="hidden/direction" />
+
+`keepSpace: true`면 크기를 줄이지 않고 불투명도만 바꿉니다. 주변이 움직이면 안 되는 자리에 씁니다.
+
+<Preview demo="hidden/keep-space" />
+
+`reverse: true`는 접히면서 남는 쪽을 뒤쪽 가장자리(세로는 아래, 가로는 오른쪽)로 바꾸려는 값입니다. Flutter에서만 화면에 나타납니다. Web은 이 값을 받지만 접히는 모양이 바뀌지 않습니다.
+
+<a id="동작-스펙-behavior"></a>
+
+## 전환
+
+전환 시간은 200ms, 곡선은 `CoreEasing.move`입니다. `duration`과 `curve`로 하나만 바꾸고, 앱 전체는 `CoreHiddenTheme`으로 바꿉니다.
+
+`curve`는 cubic-bezier 제어점 네 개(`CoreCubicBezier`, 예: `CoreEasing.*`)를 받습니다. Flutter는 이 값을 `Curve`로, Web은 같은 제어점의 `cubic-bezier(…)`로 바꾸므로 값 하나가 두 플랫폼의 곡선을 정합니다. Flutter의 `Curves.*`는 넘길 수 없습니다.
+
+| 플랫폼 | 크기가 바뀌는 방식 |
+| --- | --- |
+| Flutter | 자식 크기에서 0까지 시간에 따라 줄어듭니다. 줄어드는 동안 자식을 자르지 않아, 흐려지는 자식이 이웃 위에 겹쳐 보일 수 있습니다. |
+| Jaspr Web | `max-height`(가로는 `max-width`)를 아주 큰 상한과 0 사이에서 바꿉니다. 그래서 내용이 낮을수록 크기 변화가 접을 때는 전환의 끝에, 펼칠 때는 처음에 몰립니다. |
+
+동작 줄이기를 켰을 때는 두 플랫폼이 다릅니다.
+
+| 플랫폼 | 동작 줄이기 |
+| --- | --- |
+| Flutter | 500ms 이하의 크기 전환은 바로 바뀝니다. 흐려지는 전환은 Flutter 프레임워크의 애니메이션 끄기 설정에서만 짧아집니다. |
+| Jaspr Web | 크기와 흐림 전환 모두 설정과 관계없이 같은 시간이 걸립니다. |
+
+<a id="사용-시기-when-to-use"></a>
+<a id="사용-가이드라인-usage-guidelines"></a>
+<a id="do"></a>
+<a id="dont"></a>
+
+## 사용 가이드
+
+머리 줄 없이 한 영역을 부드럽게 숨기거나 보여야 할 때 씁니다. 저장 결과처럼 잠깐 나타나는 안내가 그런 경우입니다. 여닫는 트리거 · 상태 콜백 · 타이머는 없으니 코드에서 `hidden`을 바꿉니다.
+
+### 다른 컴포넌트가 더 맞는 경우
+
+| 이런 경우에는 | 대신 쓸 것 |
+| --- | --- |
+| 누르는 머리 줄까지 필요할 때 | [Collapsible](/components/collapsible) |
+| 두 내용을 바꿔 보여 줄 때 | [Swap](/components/swap) |
+| 숨긴 동안 자식이 아예 없어야 할 때 | 조건에 따라 위젯 · 컴포넌트를 만들지 않습니다. |
+
+### 누를 수 있는 것은 조건으로 빼기
+
+<Split>
+
+<Code language="dart" title="이렇게 하세요">
+// 누를 수 있는 것은 숨길 때 아예 만들지 않습니다.
+if (canSubmit) Button(onPressed: submit, child: Text('제출'))
+</Code>
+
+<Code language="dart" title="이렇게 하지 마세요">
+// 숨긴 버튼에 Tab으로 포커스가 갑니다.
+Hidden(
+  hidden: !canSubmit,
+  child: Button(onPressed: submit, child: Text('제출')),
+)
+</Code>
+
+</Split>
+
+<a id="스타일-시스템-style-system"></a>
+
+## 테마와 스타일
+
+Hidden에는 인스턴스에 주는 스타일 파라미터가 없습니다. 앱 전체의 값은 `CoreComponentTheme.hidden`(`CoreHiddenTheme`)에 둡니다.
 
 ```dart
-bool _hidden = false;
-
-Hidden(
-  hidden: _hidden,
-  direction: CoreHiddenDirection.vertical,
-  child: Text('켜고 끌 수 있는 내용'),
+ThemeData.fromCore(
+  CoreThemePresets.light,
+  coreComponentTheme: CoreComponentTheme(
+    hidden: CoreHiddenTheme(
+      style: CoreHiddenStyle(
+        transitionDuration: Duration(milliseconds: CoreDuration.moderate),
+      ),
+    ),
+  ),
 )
 ```
 
-## Props / Parameters
+`CoreHiddenTheme`은 `direction` · `duration` · `curve` · `keepSpace` · `reverse`도 직접 받습니다. 값은 위젯 파라미터, 테마의 직접 필드, 테마의 `style`, 디자인 시스템 기본값 순서로 먼저 있는 것을 씁니다. `style`에는 전환 시간과 곡선만 있습니다.
 
-### `Hidden`
+<a id="접근성-accessibility"></a>
 
-| 속성 | 타입 | 기본값 | 설명 |
-|------|------|--------|------|
-| `child` | `W` | 필수 | 토글되는 콘텐츠 |
-| `hidden` | `bool` | 필수 | `true`면 opacity 0 + 축소, `false`면 원상태 |
-| `direction` | `CoreHiddenDirection?` | `vertical` | `vertical` (height 접힘) / `horizontal` (width 접힘) |
+## 접근성
+
+`Hidden`은 보이는 모습과 누르기를 다루는 컴포넌트입니다. 보조 기술과 키보드에서의 숨김은 두 플랫폼이 다르고, 어느 쪽도 완전하지 않습니다.
+
+### 역할
+
+| 플랫폼 | 역할 |
+| --- | --- |
+| Flutter | 없습니다. `semanticLabel`을 주면 그 이름의 컨테이너 노드가 하나 생깁니다. |
+| Jaspr Web | 없습니다. 바깥 `<div>`에 `aria-hidden`이 `hidden` 값 그대로(`"true"` · `"false"`) 붙고 `data-state`(`hidden` · `visible`)도 함께 붙습니다. `semanticLabel`은 `aria-label`이 됩니다. 역할이 없는 `<div>`의 이름은 스크린 리더가 읽지 않을 수 있습니다. |
+
+### 키보드
+
+처리하는 키가 없습니다.
+
+### 스크린 리더
+
+| 플랫폼 | 숨긴 동안 |
+| --- | --- |
+| Flutter | 전환이 끝나 불투명도가 0이 되면 자식이 접근성 트리에서 빠집니다. `semanticLabel`의 노드는 `keepSpace: true`로 자리를 남긴 때에만 남고, 크기가 0으로 접히면 함께 빠집니다. |
+| Jaspr Web | 전환을 시작하는 순간 `aria-hidden="true"`로 자식이 접근성 트리에서 빠집니다. |
+
+### 포커스 관리
+
+두 플랫폼 모두 포커스를 관리하지 않습니다. 숨긴 자식 안의 버튼 · 입력은 Tab 순서에 남아 있어, 보이지 않는 곳에 포커스가 갈 수 있습니다.
+
+### 알려진 제약
+
+| 플랫폼 | 내용 |
+| --- | --- |
+| 공통 | 숨긴 동안에도 자식에 Tab으로 포커스를 줄 수 있고, 포커스를 받은 버튼은 키보드로 눌립니다. 누를 수 있는 것이 있으면 숨길 때 아예 만들지 않거나, 감싸는 쪽에서 포커스와 보조 기술에서 함께 빼야 합니다. |
+| Jaspr Web | 포커스를 받을 수 있는 자식이 `aria-hidden="true"` 안에 남습니다. |
+| Jaspr Web | 동작 줄이기 설정이 전환에 닿지 않습니다. |
+| Jaspr Web | `horizontal`로 접으면 자식의 글자가 줄 바꿈해 높이가 늘어납니다. |
+
+> 동작 줄이기 · 고대비 · 색 강제 모드 · 최소 터치 영역처럼 모든 컴포넌트에 걸리는 내용은 [접근성](/accessibility) 페이지가 다룹니다.
+
+<a id="크로스-플랫폼-차이점-platform-differences"></a>
+
+## 플랫폼 차이
+
+| 항목 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 크기 전환 | 자식 크기에 비례해 줄어듭니다. | `max-height` · `max-width` 전환 |
+| 줄어드는 동안 | 자식을 자르지 않습니다. | 숨기는 쪽으로 바꾸는 순간부터 자릅니다. |
+| `reverse` | 뒤쪽 가장자리를 남기며 접습니다. | 화면에 나타나지 않습니다. |
+| 누르기 막기 | `IgnorePointer` | `pointer-events: none` |
+| 숨긴 자식과 보조 기술 | 전환이 끝나면 빠집니다. | 바로 빠집니다. |
+| 동작 줄이기 | 500ms 이하의 크기 전환은 따르고, 흐려지는 전환은 Flutter의 애니메이션 끄기 설정만 따릅니다. | 따르지 않습니다. |
+| 가로로 접을 때 | 자식의 높이를 유지합니다. | 글자가 줄 바꿈해 높이가 늘 수 있습니다. |
+| 부모가 접는 축 크기를 정한 자리 | 크기가 줄지 않습니다. | `max-height` · `max-width`를 0으로 정합니다. |
+| 웹 전용 속성 | — | `id` · `classes` · `css` · `attributes` · `eventHandlers` |
+
+<a id="props-parameters"></a>
+
+## API
+
+`W`는 Flutter에서는 `Widget`, Jaspr Web에서는 `Component`입니다.
+
+### Hidden
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `child` | `W` | 필수 | 숨기거나 보일 내용 |
+| `hidden` | `bool` | 필수 | `true`면 숨깁니다. |
+| `direction` | `CoreHiddenDirection?` | `vertical` | 접는 축(`vertical` · `horizontal`) |
+| `keepSpace` | `bool?` | `false` | 자리를 남기고 불투명도만 바꿉니다. |
+| `reverse` | `bool?` | `false` | 뒤쪽 가장자리를 남기며 접습니다(Flutter). |
 | `duration` | `Duration?` | 200ms | 전환 시간 |
-| `keepSpace` | `bool?` | false | `true`면 크기 유지, opacity만 애니메이션 |
-| `reverse` | `bool?` | false | `true`면 trailing edge(right/bottom)부터 접힘 |
-| `curve` | `CoreCubicBezier?` | `CoreEasing.move` | 전환 easing. 양 플랫폼이 같은 토큰을 읽습니다 |
-| `semanticLabel` | `String?` | null | 스크린리더 라벨 |
+| `curve` | `CoreCubicBezier?` | `CoreEasing.move` | 전환 곡선 |
+| `semanticLabel` | `String?` | `null` | 보조 기술에 알릴 이름 |
 
-`curve` 는 플랫폼 중립인 cubic-bezier 제어점 4개(`CoreEasing.*`)를 받습니다 —
-Flutter 는 이것을 `Curve` 로, Web 은 같은 제어점을 `cubic-bezier(...)`
-timing function 으로 변환하므로 한 토큰이 양쪽 곡선을 정합니다. Flutter
-`Curves.*` 를 직접 넘길 수는 없습니다 (Web 이 미러할 수 없는 타입입니다).
+`direction` · `keepSpace` · `reverse` · `duration` · `curve`를 비우면 테마 값을, 테마에도 없으면 표의 기본값을 씁니다.
 
-전환 시간과 easing 의 디자인 시스템 기본값은 `CoreHiddenStyle`
-(`defaultTransitionDuration` / `defaultTransitionCurve`) 에 있고,
-프로젝트 단위로는 `CoreHiddenTheme.style` 로 덮습니다.
+### 그 밖의 멤버
 
-```text
-CoreHiddenStyle.defaultTransitionCurve      // 디자인 시스템 기본값
-  → CoreHiddenTheme.style.transitionCurve    // 프로젝트 공통
-  → CoreHiddenTheme.curve                    // 프로젝트 fast-path
-  → widget.curve                             // 인스턴스별
-```
-
-## 스타일 시스템 (Style System)
+- Web은 `copyWith(…)`와 `id`(HTML id) · `classes` · `css` · `attributes` · `eventHandlers` 같은 HTML 속성도 받습니다.
 
 <!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
 
@@ -81,99 +215,19 @@ CoreHiddenStyle.defaultTransitionCurve      // 디자인 시스템 기본값
 
 <!-- STYLE_TABLE:END -->
 
-## 동작 스펙 (Behavior)
+<a id="관련-컴포넌트-related-components"></a>
 
-- hidden을 호출부가 바꾸면 opacity와 선택한 축의 크기를 전환합니다. duration은 Duration(ms), curve는 CoreCubicBezier입니다. keepSpace가 참이면 크기를 유지하고 opacity만 바꿉니다.
-- child를 트리에서 제거하지 않고 유지합니다. pointer 입력은 hidden이 참이 되는 즉시 차단하지만 이것이 모든 후손의 키보드 포커스까지 제외한다는 뜻은 아닙니다. 아래 접근성 제약을 확인하세요.
-- 트리거·상태 변경 콜백·타이머를 소유하지 않습니다. 트리거가 필요한 접힘 영역이면 **[Collapsible](/components/collapsible)**, 서로 다른 두 콘텐츠 전환이면 **[Swap](/components/swap)** 입니다.
+## 관련 컴포넌트
 
-## 사용 가이드라인 (Usage Guidelines)
+<Cards columns="2">
+<Card demo="hidden/related-collapsible" title="Collapsible">
 
-### ✅ Do
+누르는 머리 줄이 있는 접기 · 펼치기입니다.
 
-<Callout type="tip">
+</Card>
+<Card demo="hidden/related-swap" title="Swap">
 
-**주변 레이아웃이 움직이면 안 될 때 `keepSpace: true`**
+두 내용 가운데 하나를 바꿔 보여 줍니다.
 
-```dart
-Hidden(
-  hidden: _hidden,
-  keepSpace: true,
-  child: errorMessage,
-)
-```
-
-기본값(`keepSpace: false`)은 opacity뿐 아니라 공간까지 접어서(축소) 주변 레이아웃을 움직입니다. 인라인 알림처럼 자리를 고정해야 하면 `keepSpace: true`로 opacity만 애니메이션하세요.
-
-</Callout>
-
----
-
-### ❌ Don't
-
-<Callout type="warning">
-
-**숨긴 콘텐츠 안의 인터랙티브 요소가 안전하게 차단될 거라 기대하지 않기**
-
-```dart
-// ❌ 숨겨진 버튼이 탭/리더에서 제외될 거라 가정
-Hidden(
-  hidden: true,
-  child: Button(onPressed: submit, child: const Text('제출')),
-)
-```
-
-`Hidden`은 시각적으로만 숨길 뿐 `inert`/`ExcludeFocus`를 적용하지 않습니다 — 숨겨진 버튼도 Tab으로 포커스되고(Flutter는) 스크린리더에 계속 읽힙니다. 키보드/스크린리더 접근을 실제로 차단하려면 별도 처리가 필요합니다.
-
-</Callout>
-
-## 접근성 (Accessibility)
-
-`Hidden` 은 **시각적으로만** 숨기는 래퍼입니다. 접근성 관점의 숨김(리더에서 제거 + 포커스에서 제외)은 두 플랫폼 모두 완결되어 있지 않으므로, 아래 제약을 읽고 필요한 부분은 직접 채워야 합니다.
-
-### 역할
-
-- **Flutter**: `role` 을 내보내지 않습니다. `semanticLabel` 을 준 경우에만 `Semantics(container: true, label: ...)` 로 라벨이 붙은 컨테이너 노드 하나가 추가되고, 기본값(`null`)에서는 아무 노드도 추가되지 않습니다.
-- **Web**: 루트 `<div>` 에 `role` 을 설정하지 않습니다. `aria-hidden` 은 `hidden` 값을 그대로 따라 항상 `"true"` 또는 `"false"` 로 나가고, `data-state` 도 함께 나갑니다. `semanticLabel` 은 `aria-label` 로 나가지만 role 이 없는 generic `<div>` 위에 얹히므로 대부분의 리더가 무시합니다.
-
-### 키보드
-
-없습니다. 이 컴포넌트는 어떤 키도 처리하지 않습니다.
-
-### 포커스 관리
-
-포커스를 전혀 관리하지 않으며, 숨김 상태에서도 마찬가지입니다.
-
-- **Flutter**: `IgnorePointer(ignoring: hidden)` 로 **포인터 입력만** 차단합니다. `ExcludeFocus` / `ExcludeSemantics` / `BlockSemantics` 가 없어, `hidden: true` 인 동안에도 자식은 포커스 traversal 안에 남아 있습니다.
-- **Web**: 숨김 상태는 `opacity: 0`, `pointer-events: none`, (`keepSpace` 가 아니면) `max-height`/`max-width: 0` + `overflow: hidden` 으로만 표현됩니다. `display: none`, `visibility: hidden`, `inert`, `tabindex="-1"` 중 어느 것도 적용되지 않아 포커스 가능한 자손은 계속 tab 으로 들어갑니다.
-
-### 스크린 리더
-
-- **Web**: 숨김 동안 `aria-hidden="true"` 가 서브트리를 접근성 트리에서 제거하고, 보이는 동안에는 `aria-hidden="false"` 를 명시적으로 내보냅니다.
-- **Flutter**: 숨김은 순수하게 시각 처리라, 투명해지고 접힌 콘텐츠도 **계속 읽힙니다**.
-
-즉 같은 `hidden: true` 가 Web 에서는 "사라짐", Flutter 에서는 "여전히 읽힘"으로 갈립니다.
-
-### 알려진 제약
-
-- **Flutter — 숨긴 콘텐츠가 읽히고 tab 으로 들어갑니다.** 키보드 사용자가 보이지 않는 높이 0 영역에 포커스하게 됩니다.
-- **Web — `aria-hidden="true"` 조상 안에 포커스 가능한 자손이 남습니다.** 포커스는 이동했는데 리더는 아무것도 보고하지 않는 전형적인 focusable-in-hidden-subtree 위반입니다.
-- 두 플랫폼 모두 `inert` / `ExcludeFocus` 에스케이프 해치도, 그것을 켜는 파라미터도 제공하지 않습니다. 숨기는 동안 접근성까지 함께 숨겨야 한다면 호출자가 직접 감싸야 합니다.
-- `semanticLabel` 이 만드는 Web `aria-label` 은 role 없는 `<div>` 위라 사실상 동작하지 않습니다.
-- `aria-hidden` 은 전환이 시작되는 프레임에 곧바로 뒤집히므로, 페이드가 끝나기 전에 서브트리가 접근성 트리에서 빠집니다.
-
-## 크로스 플랫폼 차이점 (Platform Differences)
-
-| 항목 | Flutter | Web |
-|------|---------|-----|
-| 클래스명 | `Hidden` | `Hidden` |
-| child 타입 | `Widget` | `Component` |
-| 렌더링 | `AnimatedOpacity + _HiddenLayout` (custom RenderBox) | CSS `transition: opacity, max-height, max-width` |
-| pointer 차단 | `IgnorePointer(ignoring: hidden)` | `pointer-events: none` |
-| reverse | layout offset 이동 | CSS `transform-origin` (`bottom`/`right`) |
-| curve | `CoreCubicBezier` → `Cubic` | 같은 제어점 → `cubic-bezier(...)` timing function |
-
-## 관련 컴포넌트 (Related Components)
-
-- **[Collapsible](/components/collapsible)**: 트리거가 있는 접기/펼치기
-- **[Swap](/components/swap)**: 두 콘텐츠 전환
+</Card>
+</Cards>

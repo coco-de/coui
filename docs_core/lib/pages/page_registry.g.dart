@@ -4,6 +4,7 @@
 
 import '../shared/playground_spec.dart';
 import '../shared/size_spec.dart';
+import 'accordion/accordion_page.dart' as accordion;
 import 'alert/alert_page.dart' as alert;
 import 'aspect_ratio_box/aspect_ratio_box_page.dart' as aspect_ratio_box;
 import 'autocomplete/autocomplete_page.dart' as autocomplete;
@@ -13,6 +14,7 @@ import 'banner/banner_page.dart' as banner;
 import 'breadcrumb/breadcrumb_page.dart' as breadcrumb;
 import 'button/button_page.dart' as button;
 import 'calendar/calendar_page.dart' as calendar;
+import 'card/card_page.dart' as card;
 import 'card_image/card_image_page.dart' as card_image;
 import 'carousel/carousel_page.dart' as carousel;
 import 'carousel_banner/carousel_banner_page.dart' as carousel_banner;
@@ -24,6 +26,7 @@ import 'chip_group/chip_group_page.dart' as chip_group;
 import 'chip_input/chip_input_page.dart' as chip_input;
 import 'code_diff/code_diff_page.dart' as code_diff;
 import 'code_snippet/code_snippet_page.dart' as code_snippet;
+import 'collapsible/collapsible_page.dart' as collapsible;
 import 'color_picker/color_picker_page.dart' as color_picker;
 import 'command/command_page.dart' as command;
 import 'command_search/command_search_page.dart' as command_search;
@@ -34,6 +37,7 @@ import 'definition_list/definition_list_page.dart' as definition_list;
 import 'description_card/description_card_page.dart' as description_card;
 import 'dialog/dialog_page.dart' as dialog;
 import 'diff/diff_page.dart' as diff;
+import 'disclosure/disclosure_page.dart' as disclosure;
 import 'disclosure_badge/disclosure_badge_page.dart' as disclosure_badge;
 import 'divider/divider_page.dart' as divider;
 import 'dot_indicator/dot_indicator_page.dart' as dot_indicator;
@@ -51,6 +55,7 @@ import 'form_label/form_label_page.dart' as form_label;
 import 'formatted_input/formatted_input_page.dart' as formatted_input;
 import 'formatter/formatter_page.dart' as formatter;
 import 'gap/gap_page.dart' as gap;
+import 'hidden/hidden_page.dart' as hidden;
 import 'hover/hover_page.dart' as hover;
 import 'hover_card/hover_card_page.dart' as hover_card;
 import 'hover_gallery/hover_gallery_page.dart' as hover_gallery;
@@ -130,6 +135,7 @@ import 'window/window_page.dart' as window;
 
 /// 문서 슬러그 → 플레이그라운드.
 final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
+  if (accordion.playground case final spec?) accordion.slug: spec,
   if (alert.playground case final spec?) alert.slug: spec,
   if (aspect_ratio_box.playground case final spec?) aspect_ratio_box.slug: spec,
   if (autocomplete.playground case final spec?) autocomplete.slug: spec,
@@ -139,6 +145,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (breadcrumb.playground case final spec?) breadcrumb.slug: spec,
   if (button.playground case final spec?) button.slug: spec,
   if (calendar.playground case final spec?) calendar.slug: spec,
+  if (card.playground case final spec?) card.slug: spec,
   if (card_image.playground case final spec?) card_image.slug: spec,
   if (carousel.playground case final spec?) carousel.slug: spec,
   if (carousel_banner.playground case final spec?) carousel_banner.slug: spec,
@@ -150,6 +157,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (chip_input.playground case final spec?) chip_input.slug: spec,
   if (code_diff.playground case final spec?) code_diff.slug: spec,
   if (code_snippet.playground case final spec?) code_snippet.slug: spec,
+  if (collapsible.playground case final spec?) collapsible.slug: spec,
   if (color_picker.playground case final spec?) color_picker.slug: spec,
   if (command.playground case final spec?) command.slug: spec,
   if (command_search.playground case final spec?) command_search.slug: spec,
@@ -160,6 +168,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (description_card.playground case final spec?) description_card.slug: spec,
   if (dialog.playground case final spec?) dialog.slug: spec,
   if (diff.playground case final spec?) diff.slug: spec,
+  if (disclosure.playground case final spec?) disclosure.slug: spec,
   if (disclosure_badge.playground case final spec?) disclosure_badge.slug: spec,
   if (divider.playground case final spec?) divider.slug: spec,
   if (dot_indicator.playground case final spec?) dot_indicator.slug: spec,
@@ -177,6 +186,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (formatted_input.playground case final spec?) formatted_input.slug: spec,
   if (formatter.playground case final spec?) formatter.slug: spec,
   if (gap.playground case final spec?) gap.slug: spec,
+  if (hidden.playground case final spec?) hidden.slug: spec,
   if (hover.playground case final spec?) hover.slug: spec,
   if (hover_card.playground case final spec?) hover_card.slug: spec,
   if (hover_gallery.playground case final spec?) hover_gallery.slug: spec,
@@ -257,6 +267,7 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
 
 /// 문서 슬러그 → 크기 표.
 final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
+  if (accordion.sizeSpec case final spec?) accordion.slug: spec,
   if (alert.sizeSpec case final spec?) alert.slug: spec,
   if (aspect_ratio_box.sizeSpec case final spec?) aspect_ratio_box.slug: spec,
   if (autocomplete.sizeSpec case final spec?) autocomplete.slug: spec,
@@ -266,6 +277,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (breadcrumb.sizeSpec case final spec?) breadcrumb.slug: spec,
   if (button.sizeSpec case final spec?) button.slug: spec,
   if (calendar.sizeSpec case final spec?) calendar.slug: spec,
+  if (card.sizeSpec case final spec?) card.slug: spec,
   if (card_image.sizeSpec case final spec?) card_image.slug: spec,
   if (carousel.sizeSpec case final spec?) carousel.slug: spec,
   if (carousel_banner.sizeSpec case final spec?) carousel_banner.slug: spec,
@@ -277,6 +289,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (chip_input.sizeSpec case final spec?) chip_input.slug: spec,
   if (code_diff.sizeSpec case final spec?) code_diff.slug: spec,
   if (code_snippet.sizeSpec case final spec?) code_snippet.slug: spec,
+  if (collapsible.sizeSpec case final spec?) collapsible.slug: spec,
   if (color_picker.sizeSpec case final spec?) color_picker.slug: spec,
   if (command.sizeSpec case final spec?) command.slug: spec,
   if (command_search.sizeSpec case final spec?) command_search.slug: spec,
@@ -287,6 +300,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (description_card.sizeSpec case final spec?) description_card.slug: spec,
   if (dialog.sizeSpec case final spec?) dialog.slug: spec,
   if (diff.sizeSpec case final spec?) diff.slug: spec,
+  if (disclosure.sizeSpec case final spec?) disclosure.slug: spec,
   if (disclosure_badge.sizeSpec case final spec?) disclosure_badge.slug: spec,
   if (divider.sizeSpec case final spec?) divider.slug: spec,
   if (dot_indicator.sizeSpec case final spec?) dot_indicator.slug: spec,
@@ -304,6 +318,7 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (formatted_input.sizeSpec case final spec?) formatted_input.slug: spec,
   if (formatter.sizeSpec case final spec?) formatter.slug: spec,
   if (gap.sizeSpec case final spec?) gap.slug: spec,
+  if (hidden.sizeSpec case final spec?) hidden.slug: spec,
   if (hover.sizeSpec case final spec?) hover.slug: spec,
   if (hover_card.sizeSpec case final spec?) hover_card.slug: spec,
   if (hover_gallery.sizeSpec case final spec?) hover_gallery.slug: spec,

@@ -5,6 +5,7 @@
 import 'package:coui_flutter/coui_flutter.dart' show Widget;
 
 import '../previews/props/flutter_prop_previews.dart';
+import 'accordion/accordion_flutter.dart' as accordion;
 import 'alert/alert_flutter.dart' as alert;
 import 'aspect_ratio_box/aspect_ratio_box_flutter.dart' as aspect_ratio_box;
 import 'autocomplete/autocomplete_flutter.dart' as autocomplete;
@@ -14,6 +15,7 @@ import 'banner/banner_flutter.dart' as banner;
 import 'breadcrumb/breadcrumb_flutter.dart' as breadcrumb;
 import 'button/button_flutter.dart' as button;
 import 'calendar/calendar_flutter.dart' as calendar;
+import 'card/card_flutter.dart' as card;
 import 'card_image/card_image_flutter.dart' as card_image;
 import 'carousel/carousel_flutter.dart' as carousel;
 import 'carousel_banner/carousel_banner_flutter.dart' as carousel_banner;
@@ -25,6 +27,7 @@ import 'chip_group/chip_group_flutter.dart' as chip_group;
 import 'chip_input/chip_input_flutter.dart' as chip_input;
 import 'code_diff/code_diff_flutter.dart' as code_diff;
 import 'code_snippet/code_snippet_flutter.dart' as code_snippet;
+import 'collapsible/collapsible_flutter.dart' as collapsible;
 import 'color_picker/color_picker_flutter.dart' as color_picker;
 import 'command/command_flutter.dart' as command;
 import 'command_search/command_search_flutter.dart' as command_search;
@@ -35,6 +38,7 @@ import 'definition_list/definition_list_flutter.dart' as definition_list;
 import 'description_card/description_card_flutter.dart' as description_card;
 import 'dialog/dialog_flutter.dart' as dialog;
 import 'diff/diff_flutter.dart' as diff;
+import 'disclosure/disclosure_flutter.dart' as disclosure;
 import 'disclosure_badge/disclosure_badge_flutter.dart' as disclosure_badge;
 import 'divider/divider_flutter.dart' as divider;
 import 'dot_indicator/dot_indicator_flutter.dart' as dot_indicator;
@@ -52,6 +56,7 @@ import 'form_label/form_label_flutter.dart' as form_label;
 import 'formatted_input/formatted_input_flutter.dart' as formatted_input;
 import 'formatter/formatter_flutter.dart' as formatter;
 import 'gap/gap_flutter.dart' as gap;
+import 'hidden/hidden_flutter.dart' as hidden;
 import 'hover/hover_flutter.dart' as hover;
 import 'hover_card/hover_card_flutter.dart' as hover_card;
 import 'hover_gallery/hover_gallery_flutter.dart' as hover_gallery;
@@ -131,6 +136,7 @@ import 'window/window_flutter.dart' as window;
 
 /// 문서 슬러그 → 속성 빌더.
 final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
+  if (accordion.propPreview case final builder?) 'accordion': builder,
   if (alert.propPreview case final builder?) 'alert': builder,
   if (aspect_ratio_box.propPreview case final builder?) 'aspect-ratio-box': builder,
   if (autocomplete.propPreview case final builder?) 'autocomplete': builder,
@@ -140,6 +146,7 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (breadcrumb.propPreview case final builder?) 'breadcrumb': builder,
   if (button.propPreview case final builder?) 'button': builder,
   if (calendar.propPreview case final builder?) 'calendar': builder,
+  if (card.propPreview case final builder?) 'card': builder,
   if (card_image.propPreview case final builder?) 'card-image': builder,
   if (carousel.propPreview case final builder?) 'carousel': builder,
   if (carousel_banner.propPreview case final builder?) 'carousel-banner': builder,
@@ -151,6 +158,7 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (chip_input.propPreview case final builder?) 'chip-input': builder,
   if (code_diff.propPreview case final builder?) 'code-diff': builder,
   if (code_snippet.propPreview case final builder?) 'code-snippet': builder,
+  if (collapsible.propPreview case final builder?) 'collapsible': builder,
   if (color_picker.propPreview case final builder?) 'color-picker': builder,
   if (command.propPreview case final builder?) 'command': builder,
   if (command_search.propPreview case final builder?) 'command-search': builder,
@@ -161,6 +169,7 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (description_card.propPreview case final builder?) 'description-card': builder,
   if (dialog.propPreview case final builder?) 'dialog': builder,
   if (diff.propPreview case final builder?) 'diff': builder,
+  if (disclosure.propPreview case final builder?) 'disclosure': builder,
   if (disclosure_badge.propPreview case final builder?) 'disclosure-badge': builder,
   if (divider.propPreview case final builder?) 'divider': builder,
   if (dot_indicator.propPreview case final builder?) 'dot-indicator': builder,
@@ -178,6 +187,7 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (formatted_input.propPreview case final builder?) 'formatted-input': builder,
   if (formatter.propPreview case final builder?) 'formatter': builder,
   if (gap.propPreview case final builder?) 'gap': builder,
+  if (hidden.propPreview case final builder?) 'hidden': builder,
   if (hover.propPreview case final builder?) 'hover': builder,
   if (hover_card.propPreview case final builder?) 'hover-card': builder,
   if (hover_gallery.propPreview case final builder?) 'hover-gallery': builder,
@@ -258,6 +268,7 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
 
 /// 장면 이름 → 장면.
 final Map<String, Widget Function()> kFlutterDocDemos = {
+  ...accordion.demos,
   ...alert.demos,
   ...aspect_ratio_box.demos,
   ...autocomplete.demos,
@@ -267,6 +278,7 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...breadcrumb.demos,
   ...button.demos,
   ...calendar.demos,
+  ...card.demos,
   ...card_image.demos,
   ...carousel.demos,
   ...carousel_banner.demos,
@@ -278,6 +290,7 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...chip_input.demos,
   ...code_diff.demos,
   ...code_snippet.demos,
+  ...collapsible.demos,
   ...color_picker.demos,
   ...command.demos,
   ...command_search.demos,
@@ -288,6 +301,7 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...description_card.demos,
   ...dialog.demos,
   ...diff.demos,
+  ...disclosure.demos,
   ...disclosure_badge.demos,
   ...divider.demos,
   ...dot_indicator.demos,
@@ -305,6 +319,7 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...formatted_input.demos,
   ...formatter.demos,
   ...gap.demos,
+  ...hidden.demos,
   ...hover.demos,
   ...hover_card.demos,
   ...hover_gallery.demos,

@@ -5,6 +5,7 @@
 import 'package:coui_web/coui_web.dart' show Component;
 
 import '../previews/props/web_prop_previews.dart';
+import 'accordion/accordion_web.dart' as accordion;
 import 'alert/alert_web.dart' as alert;
 import 'aspect_ratio_box/aspect_ratio_box_web.dart' as aspect_ratio_box;
 import 'autocomplete/autocomplete_web.dart' as autocomplete;
@@ -14,6 +15,7 @@ import 'banner/banner_web.dart' as banner;
 import 'breadcrumb/breadcrumb_web.dart' as breadcrumb;
 import 'button/button_web.dart' as button;
 import 'calendar/calendar_web.dart' as calendar;
+import 'card/card_web.dart' as card;
 import 'card_image/card_image_web.dart' as card_image;
 import 'carousel/carousel_web.dart' as carousel;
 import 'carousel_banner/carousel_banner_web.dart' as carousel_banner;
@@ -25,6 +27,7 @@ import 'chip_group/chip_group_web.dart' as chip_group;
 import 'chip_input/chip_input_web.dart' as chip_input;
 import 'code_diff/code_diff_web.dart' as code_diff;
 import 'code_snippet/code_snippet_web.dart' as code_snippet;
+import 'collapsible/collapsible_web.dart' as collapsible;
 import 'color_picker/color_picker_web.dart' as color_picker;
 import 'command/command_web.dart' as command;
 import 'command_search/command_search_web.dart' as command_search;
@@ -35,6 +38,7 @@ import 'definition_list/definition_list_web.dart' as definition_list;
 import 'description_card/description_card_web.dart' as description_card;
 import 'dialog/dialog_web.dart' as dialog;
 import 'diff/diff_web.dart' as diff;
+import 'disclosure/disclosure_web.dart' as disclosure;
 import 'disclosure_badge/disclosure_badge_web.dart' as disclosure_badge;
 import 'divider/divider_web.dart' as divider;
 import 'dot_indicator/dot_indicator_web.dart' as dot_indicator;
@@ -52,6 +56,7 @@ import 'form_label/form_label_web.dart' as form_label;
 import 'formatted_input/formatted_input_web.dart' as formatted_input;
 import 'formatter/formatter_web.dart' as formatter;
 import 'gap/gap_web.dart' as gap;
+import 'hidden/hidden_web.dart' as hidden;
 import 'hover/hover_web.dart' as hover;
 import 'hover_card/hover_card_web.dart' as hover_card;
 import 'hover_gallery/hover_gallery_web.dart' as hover_gallery;
@@ -131,6 +136,7 @@ import 'window/window_web.dart' as window;
 
 /// 문서 슬러그 → 속성 빌더.
 final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
+  if (accordion.propPreview case final builder?) 'accordion': builder,
   if (alert.propPreview case final builder?) 'alert': builder,
   if (aspect_ratio_box.propPreview case final builder?) 'aspect-ratio-box': builder,
   if (autocomplete.propPreview case final builder?) 'autocomplete': builder,
@@ -140,6 +146,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (breadcrumb.propPreview case final builder?) 'breadcrumb': builder,
   if (button.propPreview case final builder?) 'button': builder,
   if (calendar.propPreview case final builder?) 'calendar': builder,
+  if (card.propPreview case final builder?) 'card': builder,
   if (card_image.propPreview case final builder?) 'card-image': builder,
   if (carousel.propPreview case final builder?) 'carousel': builder,
   if (carousel_banner.propPreview case final builder?) 'carousel-banner': builder,
@@ -151,6 +158,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (chip_input.propPreview case final builder?) 'chip-input': builder,
   if (code_diff.propPreview case final builder?) 'code-diff': builder,
   if (code_snippet.propPreview case final builder?) 'code-snippet': builder,
+  if (collapsible.propPreview case final builder?) 'collapsible': builder,
   if (color_picker.propPreview case final builder?) 'color-picker': builder,
   if (command.propPreview case final builder?) 'command': builder,
   if (command_search.propPreview case final builder?) 'command-search': builder,
@@ -161,6 +169,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (description_card.propPreview case final builder?) 'description-card': builder,
   if (dialog.propPreview case final builder?) 'dialog': builder,
   if (diff.propPreview case final builder?) 'diff': builder,
+  if (disclosure.propPreview case final builder?) 'disclosure': builder,
   if (disclosure_badge.propPreview case final builder?) 'disclosure-badge': builder,
   if (divider.propPreview case final builder?) 'divider': builder,
   if (dot_indicator.propPreview case final builder?) 'dot-indicator': builder,
@@ -178,6 +187,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
   if (formatted_input.propPreview case final builder?) 'formatted-input': builder,
   if (formatter.propPreview case final builder?) 'formatter': builder,
   if (gap.propPreview case final builder?) 'gap': builder,
+  if (hidden.propPreview case final builder?) 'hidden': builder,
   if (hover.propPreview case final builder?) 'hover': builder,
   if (hover_card.propPreview case final builder?) 'hover-card': builder,
   if (hover_gallery.propPreview case final builder?) 'hover-gallery': builder,
@@ -258,6 +268,7 @@ final Map<String, WebPropPreviewBuilder> kWebPropPreviews = {
 
 /// 장면 이름 → 장면.
 final Map<String, Component Function()> kWebDocDemos = {
+  ...accordion.demos,
   ...alert.demos,
   ...aspect_ratio_box.demos,
   ...autocomplete.demos,
@@ -267,6 +278,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...breadcrumb.demos,
   ...button.demos,
   ...calendar.demos,
+  ...card.demos,
   ...card_image.demos,
   ...carousel.demos,
   ...carousel_banner.demos,
@@ -278,6 +290,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...chip_input.demos,
   ...code_diff.demos,
   ...code_snippet.demos,
+  ...collapsible.demos,
   ...color_picker.demos,
   ...command.demos,
   ...command_search.demos,
@@ -288,6 +301,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...description_card.demos,
   ...dialog.demos,
   ...diff.demos,
+  ...disclosure.demos,
   ...disclosure_badge.demos,
   ...divider.demos,
   ...dot_indicator.demos,
@@ -305,6 +319,7 @@ final Map<String, Component Function()> kWebDocDemos = {
   ...formatted_input.demos,
   ...formatter.demos,
   ...gap.demos,
+  ...hidden.demos,
   ...hover.demos,
   ...hover_card.demos,
   ...hover_gallery.demos,

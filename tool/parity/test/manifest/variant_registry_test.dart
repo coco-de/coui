@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:docs_core/internal/preview/scenes.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
@@ -78,15 +79,48 @@ Some prose.
   });
 
   group('variantsForSlug against real content', () {
-    test('a known multi-variant component picks up every declared variant', () {
-      // Proves the wiring is data-driven, not a manifest-side per-component
-      // table — #3604's completion definition: "새 variant 가 docs 예제에
-      // 등록되면 매트릭스 편집 없이 다음 실행에 포함됨".
-      final variants = variantsForSlug(
-        'card',
-        contentDir: 'docs_core/content/components',
-      );
-      expect(variants, containsAll(['default', 'filled', 'elevated']));
-    });
+    test(
+      'a v2 page yields exactly the preview scenes its content declares',
+      () {
+        // Proves the wiring is data-driven, not a manifest-side per-component
+        // table: a preview added to the docs page is part of the next run
+        // without editing the matrix.
+        const contentDir = 'docs_core/content/components';
+        final path = p.join(contentDir, 'card.md');
+        final source = File(path).readAsStringSync();
+        final scenes = visibleDocsScenes(source, sourcePath: path);
+
+        final variants = variantsForSlug('card', contentDir: contentDir);
+        expect(
+          variants,
+          orderedEquals(scenes.map((scene) => scene.reference)),
+        );
+        expect(variants.length, greaterThan(1));
+
+        // Read from the raw markdown, apart from the parser: no scene the page
+        // names is left out.
+        final named = RegExp(
+          'demo="(card/[^"]+)"',
+        ).allMatches(source).map((match) => match.group(1)!).toSet();
+        expect(named, isNotEmpty);
+        expect(
+          scenes.map((scene) => scene.attributes['demo']).toSet(),
+          containsAll(named),
+        );
+
+        // One more preview in a copy of the page is one more variant.
+        final copy = Directory.systemTemp.createTempSync(
+          'parity-variant-registry-',
+        );
+        addTearDown(() => copy.deleteSync(recursive: true));
+        File(p.join(copy.path, 'card.md')).writeAsStringSync(
+          '$source\n<Preview component="card" props="variant=outlined" '
+          'label="added by the test" />\n',
+        );
+        final grown = variantsForSlug('card', contentDir: copy.path);
+        expect(grown, hasLength(variants.length + 1));
+        expect(grown, containsAll(variants));
+      },
+    );
   });
 }
