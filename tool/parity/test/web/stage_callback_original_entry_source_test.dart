@@ -98,6 +98,8 @@ void main() {
           await dir.delete(recursive: true);
         }
       },
+      // The first harness compiles the real client entry before assertions.
+      timeout: const Timeout(Duration(minutes: 2)),
     );
   }
   test('Stage source-unrequested keeps original descriptor absence', () {
