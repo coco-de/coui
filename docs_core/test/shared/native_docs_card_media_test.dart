@@ -16,11 +16,14 @@ Widget _card({
   Map<String, String> attributes = const {'component': 'button', 'title': 'Caption'},
   String? body,
   void Function(String)? onInternalLink,
-}) => buildNativeDocsCardView(
-  attributes: attributes,
-  rawBody: body,
-  nested: (markdown) => SizedBox(key: _bodyKey, width: 52, height: 18, child: Text(markdown)),
-  onInternalLink: onInternalLink,
+}) => Builder(
+  builder: (context) => buildNativeDocsCardView(
+    context: context,
+    attributes: attributes,
+    rawBody: body,
+    nested: (markdown) => SizedBox(key: _bodyKey, width: 52, height: 18, child: Text(markdown)),
+    onInternalLink: onInternalLink,
+  ),
 );
 
 Future<void> _mount(
@@ -236,11 +239,14 @@ void main() {
     final links = <String>[];
     await _mount(
       tester,
-      buildNativeDocsCardView(
-        attributes: const {'component': 'button', 'title': 'Caption', 'href': '/outer'},
-        rawBody: '[Nested](/nested)',
-        nested: (markdown) => FlutterDocsParagraphBody(markdown: markdown, onInternalLink: links.add),
-        onInternalLink: links.add,
+      Builder(
+        builder: (context) => buildNativeDocsCardView(
+          context: context,
+          attributes: const {'component': 'button', 'title': 'Caption', 'href': '/outer'},
+          rawBody: '[Nested](/nested)',
+          nested: (markdown) => FlutterDocsParagraphBody(markdown: markdown, onInternalLink: links.add),
+          onInternalLink: links.add,
+        ),
       ),
     );
     await tester.tap(find.text('Nested', findRichText: true));

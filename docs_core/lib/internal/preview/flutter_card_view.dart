@@ -52,6 +52,7 @@ class FlutterDocsCardsLayout extends StatelessWidget {
 /// `demo`). [variant] 는 묶음(`<Cards variant>`)이 정한 모양이고 카드가 자기
 /// `variant` 를 적으면 그것이 이긴다.
 Widget buildNativeDocsCardView({
+  required BuildContext context,
   required Map<String, String> attributes,
   required String? rawBody,
   required Widget Function(String markdown) nested,
@@ -74,11 +75,16 @@ Widget buildNativeDocsCardView({
 
   // 권장 · 금지는 미리보기 카드에서만 테두리가 거든다 — 문서 페이지의
   // 카드는 이름표의 색이 거든다(사이트와 같다).
+  final cardTheme = Theme.of(context).coreComponentTheme?.card;
+  // The docs site line is a fallback; explicit Card theme colors keep their
+  // normal precedence. Inspect raw nullability, never the resolved color.
+  final hasThemedBorder =
+      cardTheme?.style?.borderColor != null || cardTheme?.variantStyles?[CoreCardVariant.outlined]?.borderColor != null;
   final cardStyle = hasPreview
       ? switch (tone) {
           'do' => const CoreCardStyle(borderColor: CoreColor.token(CoreColors.successContainer)),
           'dont' => const CoreCardStyle(borderColor: CoreColor.token(CoreColors.errorContainer)),
-          _ => null,
+          _ => hasThemedBorder ? null : _kPreviewCardStyle,
         }
       : shape == 'outlined'
       ? _kOutlinedCardStyle
@@ -168,6 +174,9 @@ Widget _tinted(String text, CoreTextStyle role, CoreColorToken token) => Builder
   ),
 );
 
+/// Preview frame: the site line, without changing the kit Card defaults.
+const CoreCardStyle _kPreviewCardStyle = CoreCardStyle(borderColor: CoreColor.token(CoreColors.outlineSubtle));
+
 /// 면 카드 — 면 위에 가는 선을 하나 두르고 모서리가 넉넉하다(Figma 개요 · 색상 원칙).
 const CoreCardStyle _kFilledCardStyle = CoreCardStyle(
   padding: CoreEdgeInsets.all(CoreSpace.space24),
@@ -195,6 +204,7 @@ class FlutterDocsCardView extends StatelessWidget {
   Widget build(BuildContext context) => FlutterDocsCardsLayout(
     cards: [
       buildNativeDocsCardView(
+        context: context,
         attributes: attributes,
         rawBody: rawBody,
         nested: (markdown) => FlutterDocsParagraphBody(markdown: markdown),
