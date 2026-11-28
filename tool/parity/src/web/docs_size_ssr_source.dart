@@ -88,7 +88,7 @@ class DocsSizeSsrSource implements CurrentSsrBoxSource {
     if (root == null || live == null || _completed) {
       throw _changed('one actual normal body completion');
     }
-    final current = _read(root);
+    final current = _read(root, afterSerialization: true);
     if (!_same(live.held, current.held) ||
         jsonEncode(live.graph) != jsonEncode(current.graph)) {
       throw _changed('source retained through ordinary serialization');
@@ -125,8 +125,9 @@ class DocsSizeSsrSource implements CurrentSsrBoxSource {
   }
 
   ({List<Object?> held, Map<String, Object?> graph, int rows}) _read(
-    Element root,
-  ) {
+    Element root, {
+    bool afterSerialization = false,
+  }) {
     final scene = _scene;
     final registry = _registry;
     final capture = _capture;
@@ -222,7 +223,13 @@ class DocsSizeSsrSource implements CurrentSsrBoxSource {
     const roles = ['capture', 'host', 'content'];
     for (var i = 2; i >= 0; i--) {
       if (i == 1) {
-        _contentBody(prefix[i], prefix[i + 1], registry, held);
+        _contentBody(
+          prefix[i],
+          prefix[i + 1],
+          registry,
+          held,
+          afterSerialization: afterSerialization,
+        );
         graph = _owned(prefix[i], roles[i], [graph]);
         continue;
       }
@@ -246,8 +253,9 @@ void _contentBody(
   Element host,
   Element body,
   Component registry,
-  List<Object?> held,
-) {
+  List<Object?> held, {
+  required bool afterSerialization,
+}) {
   final hostChildren = _declared(host, held);
   if (hostChildren.length != 1 ||
       hostChildren.single is! InheritedElement ||
@@ -274,7 +282,6 @@ void _contentBody(
       .toList();
   if (declared.length != 2 ||
       children.length != 2 ||
-      renders.length != 2 ||
       declared[0].runtimeType != const Document.head().runtimeType ||
       declared[1].runtimeType != section ||
       (declared[1] as section).classes != 'content' ||
@@ -282,13 +289,29 @@ void _contentBody(
       !identical((declared[1] as section).children.single, registry)) {
     throw _changed('exact normal Document.head then original content section');
   }
+  final headRender = _slotRender(children[0]);
+  final bodyRender = _slotRender(children[1]);
   for (var i = 0; i < 2; i++) {
     if (!identical(children[i].component, declared[i]) ||
         !identical(children[i].parent, fragment) ||
-        !identical(_slotRender(children[i]), renders[i]) ||
-        !identical(renders[i].parent, fragment.renderObject)) {
-      throw _changed('current normal Content fragment order/identity');
+        !identical(_slotRender(children[i]).parent, fragment.renderObject)) {
+      throw _changed('current normal Content fragment source identity');
     }
+  }
+  // The pinned ordinary Document server adapter detaches the head output group
+  // and inserts its existing output into the document head. ChildList location
+  // changes without changing the public logical render parent or source slots.
+  // Authenticate only body exclusion here, not an invented live head location.
+  if (afterSerialization) {
+    if (renders.length != 1 ||
+        !identical(renders.single, bodyRender) ||
+        renders.any((r) => identical(r, headRender))) {
+      throw _changed('normal completed body excludes original head output');
+    }
+  } else if (renders.length != 2 ||
+      !identical(renders[0], headRender) ||
+      !identical(renders[1], bodyRender)) {
+    throw _changed('normal mounted head then body render order');
   }
   if (!identical(_dom(children[1], held), body)) {
     throw _changed('actual normal body section projection');
