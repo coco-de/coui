@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'packages/**'
+      - 'docs_core/**'
+      - 'app/docs_app/**'
       - 'tool/parity/**'
       - '**/pubspec.yaml'
       - 'pubspec.lock'
@@ -13,6 +15,8 @@ on:
     branches: [main]
     paths:
       - 'packages/**'
+      - 'docs_core/**'
+      - 'app/docs_app/**'
       - 'tool/parity/**'
       - '**/pubspec.yaml'
       - 'pubspec.lock'
@@ -89,6 +93,14 @@ jobs:
           test/parity/card_accordion_original_entry_source_test.dart
           test/parity/box_padding_observation_test.dart
           test/parity/box_padding_paired_test.dart
+
+      - name: Test Native documentation Card rendering
+        working-directory: docs_core
+        run: >-
+          flutter test --no-pub
+          test/shared/native_docs_card_border_test.dart
+          test/shared/native_docs_card_tone_test.dart
+          test/shared/native_docs_card_media_test.dart
 
       - name: Test parity source contracts
         run: >-
