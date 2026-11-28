@@ -1,5 +1,49 @@
 Earlier releases are available in the [changelog archive](https://github.com/coco-de/coui/blob/main/docs/changelog/coui_flutter.md).
 
+## [0.197.0](https://github.com/coco-de/coui/compare/coui_flutter-v0.196.1...coui_flutter-v0.197.0) (2026-11-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **components:** Existing paint getters on 12 components now select their variant, tone or chip color. Use backgroundColor or the linear progress fillColor method to override paint explicitly.
+
+### 기능
+
+* **components:** add content padding, border and foreground chains ([#64](https://github.com/coco-de/coui/issues/64)) ([b8e13b8](https://github.com/coco-de/coui/commit/b8e13b825dd57963c79dab1ed85f45b4c292c4ae))
+* **components:** extend typed style chains to 63 more components ([#65](https://github.com/coco-de/coui/issues/65)) ([499a39a](https://github.com/coco-de/coui/commit/499a39abb57aa6b368f24bf28e938f5a154483aa))
+* **components:** 의미 체인과 색상 토큰을 지원하고 Flutter 3.50.1로 검증 ([#58](https://github.com/coco-de/coui/issues/58)) ([79bf0df](https://github.com/coco-de/coui/commit/79bf0df9e856de5511b1f6d3fd4a27ba8e692cd8))
+* **fab:** size the action menu with the FAB ([#29](https://github.com/coco-de/coui/issues/29)) ([64a7f56](https://github.com/coco-de/coui/commit/64a7f563b9dc6ab0af49d8bcaf21d46788417dbb))
+* **parity:** observe normal horizontal Stepper source ([d2b73c1](https://github.com/coco-de/coui/commit/d2b73c1d6126801a0e254323e3fcf34554706738))
+* **parity:** observe Stage and Stepper owned content ([12bef7a](https://github.com/coco-de/coui/commit/12bef7a3757cc8d9002d4220ea8241ff3dfcfb04))
+* **parity:** observe Stage callback content padding ([b1b2191](https://github.com/coco-de/coui/commit/b1b2191baf89bac6c9a3805cfc85dc253f237aed))
+
+
+### 버그 수정
+
+* **card:** respect directional content padding ([b80d620](https://github.com/coco-de/coui/commit/b80d62029884de46efa18a62dc05636b22255c35))
+* **card:** respect directional content padding ([c6f5fb5](https://github.com/coco-de/coui/commit/c6f5fb5f9b61557ddb84b282127bba43ad4113ad))
+* **flutter:** honor Button pressed chrome ([#14](https://github.com/coco-de/coui/issues/14)) ([#36](https://github.com/coco-de/coui/issues/36)) ([01ac0ad](https://github.com/coco-de/coui/commit/01ac0ad74be2325cb539f6c402289436399997be))
+* **flutter:** open dropdown menus from keyboard and semantics ([b328046](https://github.com/coco-de/coui/commit/b3280469069ca511f9a4fc784cba07e62cd709d8))
+* **flutter:** open dropdown triggers from keyboard and semantic activation ([#40](https://github.com/coco-de/coui/issues/40)) ([4f054f7](https://github.com/coco-de/coui/commit/4f054f7cb6a0fc18bc93b1895cd4a48453293ec8))
+* **flutter:** open DropdownMenu from keyboard and semantics ([4f054f7](https://github.com/coco-de/coui/commit/4f054f7cb6a0fc18bc93b1895cd4a48453293ec8))
+* **flutter:** remove popovers closed before first frame ([#39](https://github.com/coco-de/coui/issues/39)) ([5e65858](https://github.com/coco-de/coui/commit/5e65858e8741ce85ee5b58fec13ca4a9ae96b881))
+* **flutter:** remove popovers closed before their first frame ([da8c4a4](https://github.com/coco-de/coui/commit/da8c4a4b7cc439695f025e434d91b7294e0e5273))
+* **flutter:** remove popovers closed before their first frame ([#41](https://github.com/coco-de/coui/issues/41)) ([da8c4a4](https://github.com/coco-de/coui/commit/da8c4a4b7cc439695f025e434d91b7294e0e5273))
+* honor disabled form scope in input actions ([#32](https://github.com/coco-de/coui/issues/32)) ([4056c63](https://github.com/coco-de/coui/commit/4056c6383d3e3a4da786ff843c91241e68987c34))
+* **mockup-code:** prevent inherited frame padding ([1c98679](https://github.com/coco-de/coui/commit/1c986799d693c207d3bd71b8621ed3afa6f0ef65))
+* **mockup-code:** prevent inherited frame padding ([bf8ef20](https://github.com/coco-de/coui/commit/bf8ef203d3b19571df4d7f923d46d90f6277af92))
+* **parity:** bind Breakpoint padding and retain selector owners ([378222e](https://github.com/coco-de/coui/commit/378222e0b7c737e53f47e6861c1a6dff57e12198))
+* **parity:** bind Breakpoint showcase padding to its current source ([c8da310](https://github.com/coco-de/coui/commit/c8da310b26ce399995dea69c6a08f531e54780e3))
+* **parity:** bind classic Text showcase padding to its current source ([#37](https://github.com/coco-de/coui/issues/37)) ([9613393](https://github.com/coco-de/coui/commit/96133936a2c8928ed266e4531a759ab1469adcf0))
+* **parity:** bind public Tree and wrapper padding sources ([a91b641](https://github.com/coco-de/coui/commit/a91b641da0ee41db3033de34fbd0ec855cf27def))
+* **parity:** bind Tree, MediaQuery and SwipeActions sources ([266993a](https://github.com/coco-de/coui/commit/266993ab4f735c7257822acc7dd53640ad9d8399))
+* **parity:** provide canonical Native capture localizations ([#34](https://github.com/coco-de/coui/issues/34)) ([a711401](https://github.com/coco-de/coui/commit/a7114018f192128c7dad9b1b8298e406c24a2949))
+
+
+### 문서
+
+* rewrite CoUI readmes around the design site ([#30](https://github.com/coco-de/coui/issues/30)) ([07ed754](https://github.com/coco-de/coui/commit/07ed7548318358cd4357605436e1f5815b1ed07b))
+
 ## [0.196.1](https://github.com/coco-de/coui/compare/coui_flutter-v0.196.0...coui_flutter-v0.196.1) (2026-11-26)
 
 

@@ -15,6 +15,23 @@ Earlier releases are available in the [changelog archive](https://github.com/coc
 - Add `CoreStrokeWidth.hairlineAt` and `CoreSurfaceGeometryConstraint.hairline` / `atDevicePixelRatio`: the hairline step draws one pixel wide below a 2x screen on both platforms, as the Web's `--coui-stroke-width-0_5` already did (#6131).
 - Add the optional `NumberInput.errorText` contract so validation messages are distinct from normal descriptions.
 
+## [0.193.0](https://github.com/coco-de/coui/compare/coui_core-v0.192.1...coui_core-v0.193.0) (2026-11-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **components:** Existing paint getters on 12 components now select their variant, tone or chip color. Use backgroundColor or the linear progress fillColor method to override paint explicitly.
+
+### 기능
+
+* **components:** 의미 체인과 색상 토큰을 지원하고 Flutter 3.50.1로 검증 ([#58](https://github.com/coco-de/coui/issues/58)) ([79bf0df](https://github.com/coco-de/coui/commit/79bf0df9e856de5511b1f6d3fd4a27ba8e692cd8))
+* **fab:** size the action menu with the FAB ([#29](https://github.com/coco-de/coui/issues/29)) ([64a7f56](https://github.com/coco-de/coui/commit/64a7f563b9dc6ab0af49d8bcaf21d46788417dbb))
+
+
+### 문서
+
+* rewrite CoUI readmes around the design site ([#30](https://github.com/coco-de/coui/issues/30)) ([07ed754](https://github.com/coco-de/coui/commit/07ed7548318358cd4357605436e1f5815b1ed07b))
+
 ## [0.192.1](https://github.com/coco-de/coui/compare/coui_core-v0.192.0...coui_core-v0.192.1) (2026-11-26)
 
 
