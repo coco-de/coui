@@ -13,9 +13,11 @@ import 'badge/badge_flutter.dart' as badge;
 import 'banner/banner_flutter.dart' as banner;
 import 'breadcrumb/breadcrumb_flutter.dart' as breadcrumb;
 import 'button/button_flutter.dart' as button;
+import 'calendar/calendar_flutter.dart' as calendar;
 import 'card_image/card_image_flutter.dart' as card_image;
 import 'carousel/carousel_flutter.dart' as carousel;
 import 'carousel_banner/carousel_banner_flutter.dart' as carousel_banner;
+import 'category_breakdown/category_breakdown_flutter.dart' as category_breakdown;
 import 'checkbox/checkbox_flutter.dart' as checkbox;
 import 'chip/chip_flutter.dart' as chip;
 import 'chip_group/chip_group_flutter.dart' as chip_group;
@@ -24,7 +26,10 @@ import 'color_picker/color_picker_flutter.dart' as color_picker;
 import 'command/command_flutter.dart' as command;
 import 'command_search/command_search_flutter.dart' as command_search;
 import 'context_menu/context_menu_flutter.dart' as context_menu;
+import 'countdown/countdown_flutter.dart' as countdown;
 import 'date_picker/date_picker_flutter.dart' as date_picker;
+import 'definition_list/definition_list_flutter.dart' as definition_list;
+import 'description_card/description_card_flutter.dart' as description_card;
 import 'dialog/dialog_flutter.dart' as dialog;
 import 'disclosure_badge/disclosure_badge_flutter.dart' as disclosure_badge;
 import 'divider/divider_flutter.dart' as divider;
@@ -130,9 +135,11 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (banner.propPreview case final builder?) 'banner': builder,
   if (breadcrumb.propPreview case final builder?) 'breadcrumb': builder,
   if (button.propPreview case final builder?) 'button': builder,
+  if (calendar.propPreview case final builder?) 'calendar': builder,
   if (card_image.propPreview case final builder?) 'card-image': builder,
   if (carousel.propPreview case final builder?) 'carousel': builder,
   if (carousel_banner.propPreview case final builder?) 'carousel-banner': builder,
+  if (category_breakdown.propPreview case final builder?) 'category-breakdown': builder,
   if (checkbox.propPreview case final builder?) 'checkbox': builder,
   if (chip.propPreview case final builder?) 'chip': builder,
   if (chip_group.propPreview case final builder?) 'chip-group': builder,
@@ -141,7 +148,10 @@ final Map<String, FlutterPropPreviewBuilder> kFlutterPropPreviews = {
   if (command.propPreview case final builder?) 'command': builder,
   if (command_search.propPreview case final builder?) 'command-search': builder,
   if (context_menu.propPreview case final builder?) 'context-menu': builder,
+  if (countdown.propPreview case final builder?) 'countdown': builder,
   if (date_picker.propPreview case final builder?) 'date-picker': builder,
+  if (definition_list.propPreview case final builder?) 'definition-list': builder,
+  if (description_card.propPreview case final builder?) 'description-card': builder,
   if (dialog.propPreview case final builder?) 'dialog': builder,
   if (disclosure_badge.propPreview case final builder?) 'disclosure-badge': builder,
   if (divider.propPreview case final builder?) 'divider': builder,
@@ -248,9 +258,11 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...banner.demos,
   ...breadcrumb.demos,
   ...button.demos,
+  ...calendar.demos,
   ...card_image.demos,
   ...carousel.demos,
   ...carousel_banner.demos,
+  ...category_breakdown.demos,
   ...checkbox.demos,
   ...chip.demos,
   ...chip_group.demos,
@@ -259,7 +271,10 @@ final Map<String, Widget Function()> kFlutterDocDemos = {
   ...command.demos,
   ...command_search.demos,
   ...context_menu.demos,
+  ...countdown.demos,
   ...date_picker.demos,
+  ...definition_list.demos,
+  ...description_card.demos,
   ...dialog.demos,
   ...disclosure_badge.demos,
   ...divider.demos,

@@ -513,6 +513,9 @@ const kDocsPreviewConstraints = <String, DocsPreviewConstraints>{
     minHeight: 150,
     maxHeight: 1200,
   ),
+  // The playground's tallest option needs 469 (filled, xl, vertical, with a
+  // title and a bottom action); 1200 would leave its Flutter pane mostly empty.
+  'description-card/playground': kDocsExtraTallConstraints,
   'chip-group': kDocsMediumConstraints,
   'code-diff': kDocsTallConstraints,
   // The before/after frame fills width at 16/9. The docs content column

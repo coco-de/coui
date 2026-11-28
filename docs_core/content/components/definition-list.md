@@ -1,65 +1,164 @@
 ---
 title: DefinitionList
-description: 용어와 설명을 한 쌍으로 묶어 읽는 순서까지 문서에 남기는 정의 목록 컴포넌트
+description: 용어와 설명을 한 쌍씩 묶어 보여 주는 정의 목록입니다. 위아래 · 두 열 · 한 줄 흐름 가운데 하나로 놓습니다.
 category: display
 platforms: [flutter, web]
 related: [text-block, table, description-card]
 tags: [text, semantic, accessibility, metadata]
+template: v2
+source: text/definition_list
 ---
 
 # DefinitionList
 
-용어(term)와 그 설명(description)을 한 쌍으로 묶어 나열하는 컴포넌트입니다. 값만 놓고는 뜻이 서지 않는 정보 — 사업자등록번호, 식별자, 날짜, 금액, 스펙 항목 — 에 각자의 라벨을 붙여, 쌍 관계가 시각 배치가 아니라 문서 구조에 남습니다.
+<a id="live-preview"></a>
+<a id="기본-사용법-basic-usage"></a>
 
-## Live Preview
+## 플레이그라운드
 
-<LivePreview component="definition-list" variants="default,columns,inline" />
+용어(term)와 설명(description)을 한 쌍씩 묶어 나열합니다. 사업자등록번호 · 주문번호 · 날짜 · 금액처럼 값만 놓고는 뜻이 서지 않는 정보에 씁니다. 속성을 바꿔 보고 만들어진 코드를 복사하세요. 코드는 Flutter와 Web이 같습니다.
 
-## 사용 시기 (When to Use)
+<Playground component="definition-list" />
 
-**이 컴포넌트를 사용하세요:**
-- 푸터의 사업자 정보(상호 · 대표 · 사업자등록번호 · 통신판매업신고번호)처럼 라벨 없이는 읽히지 않는 값을 나열할 때
-- 주문 상세, 배송 정보, 결제 내역처럼 "항목명 → 값" 구조가 반복될 때
-- 제품 스펙 시트나 메타데이터 패널처럼 키·값 쌍이 목록을 이룰 때
-- 값이 숫자라서 자릿수가 세로로 맞아야 할 때 (`layout: columns` + `numeric: true`)
+아무 값도 주지 않으면 `layout` 은 `stacked` 이고 `numeric` · `mono` 는 꺼져 있습니다.
 
-**대신 다른 컴포넌트를 사용하세요:**
-- **[Table](/components/table)**: 행이 여러 열의 값을 갖는 2차원 데이터일 때. 정의 목록은 항상 한 용어에 한 설명입니다.
-- **[DescriptionCard](/components/description-card)**: 같은 라벨·값 목록에 카드 표면·제목·행 강조·하단 액션까지 필요할 때. 표면 없이 용어/설명 관계만 나열하면 `DefinitionList` 입니다.
-- **[Stat](/components/stat)**: 하나의 지표를 크게 강조해 보여줄 때.
-- **[TextBlock](/components/text-block)**: 라벨 없는 산문 문단일 때.
+## 구조
 
-## 기본 사용법 (Basic Usage)
+목록은 용어와 설명의 쌍을 차례로 놓습니다. 목록 자체는 배경 · 테두리 · 안쪽 여백을 그리지 않습니다.
+
+<Anatomy demo="definition-list/anatomy">
+<AnatomyItem part="container" name="list">
+
+목록 전체입니다. `layout` 이 쌍을 놓는 방식을 정합니다. Web에서는 `<dl>` 입니다.
+
+</AnatomyItem>
+<AnatomyItem select="dt" side="top" name="term">
+
+값의 이름(`term`)입니다. 흐린 글자색(`onSurfaceSubtle`)으로 그립니다. Web에서는 `<dt>` 입니다.
+
+</AnatomyItem>
+<AnatomyItem select="dd" side="top" name="description">
+
+용어에 답하는 값입니다. 문자열 설명은 기본 글자색(`onSurface`)으로 그립니다. Web에서는 `<dd>` 입니다.
+
+</AnatomyItem>
+</Anatomy>
+
+### 항목 타입 — `CoreDefinitionEntry`
+
+`items` 의 항목 하나가 용어와 설명 한 쌍입니다. `term` 은 언제나 `String` 이라 위젯이나 아이콘은 용어 자리에 넣을 수 없습니다. 빈 문자열까지 막지는 않습니다. 설명의 모양은 생성자로 고릅니다. 어느 생성자를 써도 설명은 하나입니다.
+
+| 생성자 | 설명(`description`)의 타입 |
+| --- | --- |
+| `CoreDefinitionEntry` | `String`. 대부분 이쪽입니다. |
+| `CoreDefinitionEntry.rich` | Flutter `Widget`, Web `Component`. 링크 · 여러 줄 주소처럼 글자 한 줄이 아닌 값에 씁니다. |
+
+```dart
+const CoreDefinitionEntry(term: '상호', description: '예시상사')
+```
+
+<a id="변형-variants"></a>
+
+## 레이아웃
+
+`layout`(`CoreDefinitionLayout`)은 용어를 설명의 어디에 놓을지 정합니다. 세 값은 같은 항목을 같은 순서로 그립니다. 놓는 자리와 기본 간격 · 글자 역할이 달라집니다.
+
+| 값 | 놓는 방식 | 쌍 안 | 쌍 사이 |
+| --- | --- | --- | --- |
+| `stacked` (기본) | 용어 위, 설명 아래 | 2 | 14 |
+| `columns` | 용어 열과 설명 열 | 8 | 24 |
+| `inline` | 한 줄에 이어 놓기 | 8 | 16 |
+
+- **쌍 안**(`pairSpacing`)은 용어와 자기 설명 사이, **쌍 사이**(`entrySpacing`)는 한 쌍과 다음 쌍 사이입니다. 두 간격이 가로인지 세로인지는 배치마다 달라서 이름이 관계를 가리킵니다. `stacked` 에서는 두 거리가 모두 세로입니다.
+- `inline` 의 쌍 사이 값은 줄이 넘어갔을 때의 줄 간격에도 쓰입니다.
+- 첫 쌍 앞에는 쌍 사이 간격이 붙지 않습니다.
+- 기본값은 세 배치 모두 쌍 안이 더 좁아 용어가 자기 설명에 붙어 보입니다. 값을 바꿀 때도 이 순서를 지키세요. 코드가 강제하지는 않습니다.
+
+<a id="default-stacked"></a>
+
+### 위아래 (`stacked`)
+
+<Preview demo="definition-list/stacked" />
+
+기본값입니다. 용어와 설명을 위아래로 놓아 긴 용어가 설명의 폭을 빼앗지 않습니다. 한글 문장처럼 줄을 나눌 수 있는 긴 용어는 목록 폭 안에서 줄바꿈합니다. 용어가 길거나 화면 폭을 미리 알 수 없으면 이 배치를 고릅니다.
+
+<a id="columns"></a>
+
+### 두 열 (`columns`)
+
+<Preview component="definition-list" example="columns" />
+
+설명이 모두 같은 가로 위치에서 시작합니다. 용어가 한 줄에 들어가는 폭에서는 용어 열이 가장 긴 용어에 맞춰지고, 설명 열이 남은 폭을 씁니다. `termWidth` 를 주면 용어 열을 그 폭으로 정합니다.
+
+용어와 설명은 글자 기준선을 맞춥니다. 그래서 21px 줄을 쓰는 `mono` 설명처럼 용어와 줄 높이가 달라도 글자의 밑선이 맞습니다.
+
+<a id="inline"></a>
+
+### 한 줄 흐름 (`inline`)
+
+<Preview demo="definition-list/inline" />
+
+용어와 설명을 한 줄에 이어 놓고, 폭이 모자라면 다음 줄로 넘깁니다. 푸터처럼 짧은 값이 이어지는 곳에 씁니다.
+
+<Note>
+
+줄이 넘어가는 단위가 플랫폼마다 다릅니다. Flutter는 용어와 설명 한 쌍이 한 덩어리로 넘어갑니다. Web은 용어와 설명이 따로 넘어가므로, 용어가 줄 끝에 남고 설명이 다음 줄에서 시작할 수 있습니다. Web에서 넘어간 줄의 첫머리에는 앞 간격이 남아 들여 쓴 것처럼 보입니다. 용어로 시작하는 줄은 쌍 사이 간격만큼, 설명으로 시작하는 줄은 쌍 안 간격만큼입니다. 한 쌍이 갈라지면 안 되는 Web 화면에서는 `stacked` 나 `columns` 를 쓰세요.
+
+</Note>
+
+## 타이포그래피
+
+용어는 흐린 글자색(`onSurfaceSubtle`), 문자열 설명은 기본 글자색(`onSurface`)입니다. 글자 역할은 배치를 따릅니다. 표의 숫자는 CoUI 기본 타이포그래피의 크기(px)와 굵기입니다.
+
+| 배치 | 용어 | 설명 |
+| --- | --- | --- |
+| `stacked` | `label-small` 12 / 500 | `label-medium` 13 / 500 |
+| `columns` · `inline` | `label-medium` 13 / 500 | `label-medium` 13 / 500 |
+
+`mono: true` 면 배치와 상관없이 설명이 `code-sm`(12 / 400, 21px 줄)이 됩니다. 용어는 그대로입니다.
+
+<Preview demo="definition-list/typography" />
+
+### 고정폭 숫자 (`numeric`)
+
+`numeric: true` 는 설명에 글꼴의 고정폭 숫자(tabular figures)를 켭니다. 글꼴이 이 기능을 지원하면 숫자마다 폭이 같아져, 날짜처럼 글자 수와 구두점 위치가 같은 값이 세로로 맞습니다. 글자와 접근성 정보는 바꾸지 않고, 용어에는 적용하지 않습니다.
+
+목록에는 설명의 정렬을 바꾸는 속성이 없고, 기본 정렬에서 설명은 줄의 시작 쪽에 붙습니다. 그래서 `1,111,000원` 과 `8,000원` 처럼 길이가 다른 금액은 `numeric` 을 켜도 일 · 십 · 백의 자리가 서로 맞지 않습니다.
+
+### 코드 값 (`mono`)
+
+`mono: true` 는 식별자 · 해시 · 코드 값에 쓰는 코드 글자 역할로 설명을 그립니다. 서체는 Geist Mono입니다. Geist Mono에 없는 한글은 글꼴 목록에서 그다음인 Pretendard로 그리며, Pretendard는 앱이나 페이지에서 쓸 수 있어야 합니다. `numeric` 과 함께 켤 수 있습니다.
+
+<Note>
+
+Flutter는 `coui_flutter` 에 Geist Mono가 들어 있어 따로 설정하지 않아도 됩니다. `coui_web` 에는 글꼴 파일이 없습니다. 페이지에서 Geist Mono를 쓸 수 없으면 Pretendard, 그것도 없으면 브라우저의 `monospace` 글꼴로 그립니다. Pretendard로 그려지면 고정폭으로 보이지 않으므로, Web 앱에서는 Geist Mono를 함께 불러오세요.
+
+</Note>
+
+<a id="동작-스펙-behavior"></a>
+<a id="인터랙션"></a>
+
+## 링크가 든 설명
+
+목록 자체는 표시 전용입니다. 누르기 · hover · 포커스 상태도, 애니메이션도 없습니다. Web에서는 서버가 그린 마크업에 내용이 그대로 담깁니다. 링크나 버튼처럼 동작이 필요한 값은 `CoreDefinitionEntry.rich` 로 넣습니다. 넣은 위젯은 자기 동작을 그대로 가집니다.
+
+<Preview demo="definition-list/rich" />
+
+설명의 글자 스타일은 `rich` 값에도 이어집니다. 글자 스타일을 따로 정하지 않은 `Text` 는 문자열 설명과 같게 보이고, `Link` 처럼 자기 글자 스타일이 있는 컴포넌트는 자기 스타일로 그립니다.
 
 <Tabs groupId="platform">
   <TabItem label="Flutter" value="flutter">
 
 ```dart
-// 기본 — 용어 위, 설명 아래 (stacked)
-DefinitionList(
-  items: const [
-    CoreDefinitionEntry(term: '상호', description: '주식회사 코코드'),
-    CoreDefinitionEntry(term: '대표', description: '한동우'),
-    CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000'),
-  ],
-)
-
-// 두 열로 — 설명이 같은 모서리에서 시작하고 자릿수가 맞는다
-DefinitionList(
-  items: const [
-    CoreDefinitionEntry(term: '공급가액', description: '1,200,000'),
-    CoreDefinitionEntry(term: '부가세', description: '120,000'),
-  ],
-  layout: CoreDefinitionLayout.columns,
-  numeric: true,
-)
-
-// 설명이 링크·주소 블록처럼 텍스트 한 줄이 아닐 때
 DefinitionList(
   items: [
     CoreDefinitionEntry.rich(
-      term: '이메일',
-      description: Link(href: 'mailto:cody@cocode.im', child: Text('cody@cocode.im')),
+      term: '영수증',
+      description: Link(
+        href: 'https://example.com/receipts/1048',
+        onPressed: openReceipt,
+        child: Text('영수증 보기'),
+      ),
     ),
   ],
 )
@@ -69,31 +168,14 @@ DefinitionList(
   <TabItem label="Web" value="web">
 
 ```dart
-// 기본 — 용어 위, 설명 아래 (stacked)
-DefinitionList(
-  items: const [
-    CoreDefinitionEntry(term: '상호', description: '주식회사 코코드'),
-    CoreDefinitionEntry(term: '대표', description: '한동우'),
-    CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000'),
-  ],
-)
-
-// 두 열로 — 설명이 같은 모서리에서 시작하고 자릿수가 맞는다
-DefinitionList(
-  items: const [
-    CoreDefinitionEntry(term: '공급가액', description: '1,200,000'),
-    CoreDefinitionEntry(term: '부가세', description: '120,000'),
-  ],
-  layout: CoreDefinitionLayout.columns,
-  numeric: true,
-)
-
-// 설명이 링크·주소 블록처럼 텍스트 한 줄이 아닐 때
 DefinitionList(
   items: [
     CoreDefinitionEntry.rich(
-      term: '이메일',
-      description: Link(href: 'mailto:cody@cocode.im', child: Text('cody@cocode.im')),
+      term: '영수증',
+      description: Link(
+        href: 'https://example.com/receipts/1048',
+        child: Text('영수증 보기'),
+      ),
     ),
   ],
 )
@@ -102,47 +184,297 @@ DefinitionList(
   </TabItem>
 </Tabs>
 
-## Props / Parameters
+Flutter의 `Link` 는 `href` 를 스스로 열지 않으므로 `onPressed` 에서 직접 엽니다. 위 코드의 `openReceipt` 는 앱에서 만드는 함수입니다. Web의 `Link` 는 `onPressed` 가 없으면 `<a href>` 를 그려 브라우저가 이동합니다.
 
-| 속성 | 타입 | 기본값 | 설명 |
-|------|------|--------|------|
-| `items` | `List<CoreDefinitionEntry<W>>` | 필수 | 읽는 순서대로 나열할 용어 / 설명 쌍. `W` 는 Flutter `Widget`, Web `Component` |
-| `layout` | `CoreDefinitionLayout` | `stacked` | 용어를 설명에 대해 어떻게 배치할지 (`inline` / `stacked` / `columns`). 시각 전용 — 읽히는 순서는 세 값 모두 같다 |
-| `numeric` | `bool` | `false` | 설명을 고정폭 숫자(tabular figures)로 그린다. 자릿수가 세로로 맞아야 하는 등록번호·금액·날짜용. 글자도 의미도 바꾸지 않는 순수 타이포그래피 설정 |
-| `mono` | `bool` | `false` | 설명을 Geist Mono(`code-sm`, 12px · 21px 줄 상자)로 그린다. 식별자·해시·코드용. `numeric` 과 함께 쓸 수 있다 |
-| `definitionListStyle` | `CoreDefinitionListStyle?` | `null` | 간격·타이포그래피·용어 열 폭을 모두 이 값 묶음 하나로 바꾼다 (아래 표 참고) |
+<a id="사용-시기-when-to-use"></a>
+<a id="사용-가이드라인-usage-guidelines"></a>
 
-### 항목 타입 — `CoreDefinitionEntry`
+## 사용 가이드
 
-`term` 은 언제나 `String` 입니다. 스크린 리더가 값보다 먼저 읽는 라벨이고, 임의 마크업을 허용하면 텍스트가 없는 아이콘도 용어가 될 수 있어 타입 자체가 그 경우를 거절합니다.
+### 이럴 때 씁니다
 
-| 생성자 | 설명 |
-|--------|------|
-| `CoreDefinitionEntry(term:, description:)` | `description` 이 평범한 `String` 인 경우. 대부분 이쪽 |
-| `CoreDefinitionEntry.rich(term:, description:)` | `description` 이 링크·주소 블록처럼 위젯 / 컴포넌트인 경우 |
+- 푸터의 사업자 정보(상호 · 대표 · 사업자등록번호 · 통신판매업신고번호)처럼 라벨 없이는 읽히지 않는 값을 나열할 때
+- 주문 상세 · 배송 정보 · 결제 내역처럼 "항목 이름과 값" 이 반복될 때
+- 제품 사양이나 부가 정보처럼 이름과 값의 쌍이 목록을 이룰 때
+- 날짜처럼 모양이 같은 값을 세로로 맞춰 보여 줄 때(`columns` + `numeric: true`)
 
-## 스타일 시스템 (Style System)
+### 다른 컴포넌트가 더 맞는 경우
 
-<!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
+| 이런 경우에는 | 대신 쓸 것 |
+| --- | --- |
+| 한 행이 여러 열의 값을 갖는 2차원 데이터 | [Table](/components/table). 정의 목록의 항목은 용어 하나에 설명 하나입니다. |
+| 같은 이름 · 값 목록에 카드 표면 · 제목 · 행 강조 · 하단 액션이 필요할 때 | [DescriptionCard](/components/description-card). 표면 없이 용어와 설명만 나열하면 `DefinitionList` 로 충분합니다. |
+| 지표 하나를 크게 보여 줄 때 | [Stat](/components/stat) |
+| 라벨이 없는 문단 | [TextBlock](/components/text-block) |
 
-### `CoreDefinitionListStyle` 필드
+<a id="do"></a>
+<a id="dont"></a>
 
-| 필드 | 타입 | 설명 |
-|------|------|------|
-| `entrySpacing` | `double?` | Distance between one term / description pair and the next, in logical pixels. |
-| `pairSpacing` | `double?` | Distance between a term and its own description, in logical pixels. |
-| `termTextStyle` | `CoreTextStyle?` | `<dt>` typography override. Layered over the layout row of [defaultsByLayout] — a caller who sets only `fontWeight` keeps the default role and colour. The default differs per layout (`label-small` stacked, `label-medium` in columns and inline), so there is no single scalar default. |
-| `descriptionTextStyle` | `CoreTextStyle?` | `<dd>` typography override. Layered over the layout row of [defaultsByLayout] (or [defaultMonoDescriptionTextStyle] when the list is `mono`) on the same terms as [termTextStyle]. |
-| `monoDescriptionTextStyle` | `CoreTextStyle?` | `<dd>` typography override that applies only when the list is `mono`. Layered over [defaultMonoDescriptionTextStyle] and then over any [descriptionTextStyle], so a theme can recolour every description while a mono list alone changes its code weight. |
-| `termWidth` | `double?` | Fixed width of the term column, in logical pixels — only `CoreDefinitionLayout.columns` reads it; `stacked` and `inline` ignore it. |
+### 용어와 값
 
-<!-- STYLE_TABLE:END -->
+<Cards columns="2">
+<Card demo="definition-list/do-term" tone="do" eyebrow="이렇게 하세요">
 
-두 간격이 축 이름(`row-gap` / `column-gap`)이 아니라 **관계 이름**을 갖는 이유는 어느 축에 얹히는지가 `layout` 마다 다르기 때문입니다. `stacked` 에서는 용어와 자기 설명도 세로로 쌓이고 이웃한 두 쌍도 세로로 쌓이므로, 축으로 이름 지으면 두 거리를 구별할 수 없습니다. `entrySpacing` 은 쌍과 쌍 사이, `pairSpacing` 은 용어와 자기 설명 사이이며 — 묶여 보이는 근거가 근접성이라 `pairSpacing` 이 언제나 더 작아야 합니다.
+값마다 그 값을 설명하는 용어를 붙입니다. 번호 두 개를 라벨 없이 늘어놓으면 어느 번호가 무엇인지 알 수 없습니다.
 
-### 빠른 오버라이드 (Chain)
+</Card>
+<Card demo="definition-list/dont-one-line" tone="dont" eyebrow="이렇게 하지 마세요">
 
-이미 만든 `DefinitionList` 인스턴스에 스타일을 빠르게 덧붙이고 싶다면 `withStyle` 체인을 쓸 수 있습니다. 생성자의 style 슬롯 인자와 동일하게 동작하지만, 이미 구성된 위젯 위에서 바로 이어 쓸 수 있습니다.
+용어와 값을 한 문자열에 이어 붙이지 않습니다. 글자 한 덩어리가 되어, 어느 값이 어느 용어의 것인지가 구조로 남지 않습니다.
+
+</Card>
+</Cards>
+
+<Split>
+
+<Code language="dart" title="이렇게 하세요">
+DefinitionList(
+  items: const [
+    CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000'),
+    CoreDefinitionEntry(term: '법인등록번호', description: '000000-0000000'),
+  ],
+)
+</Code>
+
+<Code language="dart" title="이렇게 하지 마세요">
+// 용어와 값의 관계가 남지 않는 한 줄의 글입니다.
+Text('사업자등록번호 000-00-00000 · 법인등록번호 000000-0000000')
+</Code>
+
+</Split>
+
+### 긴 용어
+
+<Cards columns="2">
+<Card demo="definition-list/do-long-term" tone="do" eyebrow="이렇게 하세요">
+
+용어가 길거나 폭이 좁으면 `stacked` 를 씁니다.
+
+</Card>
+<Card demo="definition-list/dont-long-term" tone="dont" eyebrow="이렇게 하지 마세요">
+
+긴 용어에 `columns` 를 쓰면 설명 열이 좁아집니다. 더 좁은 화면의 동작은 배치 섹션을 보세요.
+
+</Card>
+</Cards>
+
+### 숫자 비교
+
+<Cards columns="2">
+<Card demo="definition-list/do-numeric" tone="do" eyebrow="이렇게 하세요">
+
+날짜처럼 모양이 같은 값은 `columns` 와 `numeric: true` 를 함께 써서 세로로 맞춥니다.
+
+</Card>
+<Card demo="definition-list/dont-amount" tone="dont" eyebrow="이렇게 하지 마세요">
+
+길이가 다른 금액의 자릿값을 `numeric` 으로 맞추려 하지 않습니다. 설명이 시작 쪽에 붙어 자리가 어긋납니다.
+
+</Card>
+</Cards>
+
+```dart
+DefinitionList(
+  items: const [
+    CoreDefinitionEntry(term: '주문일', description: '2026-11-11'),
+    CoreDefinitionEntry(term: '발송일', description: '2026-11-18'),
+  ],
+  layout: CoreDefinitionLayout.columns,
+  numeric: true,
+)
+```
+
+## 배치
+
+### 목록의 폭
+
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+- `columns` 는 부모가 허락하는 폭을 채우고, 용어 열을 뺀 나머지를 설명 열이 씁니다.
+- `stacked` · `inline` 은 폭을 채우라는 제약이 없으면 내용만큼만 차지합니다.
+- `columns` 를 폭 제한이 없는 부모(`Row` 의 직계 자식, 가로 스크롤)에 그대로 놓으면 설명 열의 폭이 0이 됩니다. `Row` 안에서는 `Expanded` 로 감싸거나 폭을 정해 주세요.
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+- 블록 부모와, 자식을 늘이는 세로 flex 부모(flex의 기본 정렬)에서는 `<dl>` 이 폭을 채웁니다.
+- 가로 flex 부모나 `items-center` · `items-start` 처럼 자식을 늘이지 않는 부모에서는 내용 폭이 됩니다. 이때 `columns` 의 설명 열은 남는 폭 없이 글자 폭이 됩니다.
+- 채워야 하면 `classes: 'w-full'` 을 줍니다.
+
+```dart
+DefinitionList(
+  items: const [CoreDefinitionEntry(term: '상호', description: '예시상사')],
+  layout: CoreDefinitionLayout.columns,
+  classes: 'w-full',
+)
+```
+
+  </TabItem>
+</Tabs>
+
+### 좁은 폭의 긴 용어
+
+`columns` 에서 가장 긴 용어가 목록 폭에 한 줄로 들어가지 않으면 두 플랫폼이 다르게 놓습니다. `termWidth` 를 주지 않은 경우입니다.
+
+| 플랫폼 | 결과 |
+| --- | --- |
+| Flutter | 줄을 나눌 수 있는 용어는 목록 폭 안에서 줄바꿈하고, 설명 열에는 폭이 남지 않습니다. |
+| Web | 용어는 줄바꿈하지 않고, 열이 목록의 폭을 넘칩니다. |
+
+`inline` 의 용어는 Flutter에서 줄바꿈하지 않아, 용어 하나가 목록 폭보다 길면 넘칩니다. 폭을 미리 알 수 없는 긴 용어에는 `stacked` 를 쓰세요.
+
+### 여러 목록의 설명 맞추기
+
+`columns` 목록마다 용어 길이가 다르면 설명이 시작하는 위치도 달라집니다. 목록들에 같은 `termWidth` 를 주면 설명이 같은 위치에서 시작합니다. 한글처럼 줄을 나눌 수 있는 용어가 정한 폭보다 길면 열 안에서 줄바꿈합니다. `stacked` 와 `inline` 은 `termWidth` 를 읽지 않습니다.
+
+<Preview demo="definition-list/term-width" />
+
+```dart
+const columnStyle = CoreDefinitionListStyle(termWidth: CoreSpace.space120);
+
+DefinitionList(
+  items: const [CoreDefinitionEntry(term: '상호', description: '예시상사')],
+  layout: CoreDefinitionLayout.columns,
+  definitionListStyle: columnStyle,
+)
+
+DefinitionList(
+  items: const [CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000')],
+  layout: CoreDefinitionLayout.columns,
+  definitionListStyle: columnStyle,
+)
+```
+
+### 조합 예제
+
+푸터의 사업자 정보처럼 구분선 아래에 목록 하나를 둡니다.
+
+<Tabs groupId="platform">
+  <TabItem label="Flutter" value="flutter">
+
+```dart
+Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    const Divider(),
+    const Gap.space16(),
+    DefinitionList(
+      items: const [
+        CoreDefinitionEntry(term: '상호', description: '예시상사'),
+        CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000'),
+        CoreDefinitionEntry(term: '통신판매업신고번호', description: '2026-예시-00000'),
+      ],
+      layout: CoreDefinitionLayout.columns,
+      numeric: true,
+    ),
+  ],
+)
+```
+
+  </TabItem>
+  <TabItem label="Web" value="web">
+
+```dart
+div(classes: 'flex flex-col', [
+  const Divider(),
+  const Gap.space16(),
+  DefinitionList(
+    items: const [
+      CoreDefinitionEntry(term: '상호', description: '예시상사'),
+      CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000'),
+      CoreDefinitionEntry(term: '통신판매업신고번호', description: '2026-예시-00000'),
+    ],
+    layout: CoreDefinitionLayout.columns,
+    numeric: true,
+  ),
+])
+```
+
+  </TabItem>
+</Tabs>
+
+<a id="스타일-시스템-style-system"></a>
+
+## 테마와 스타일
+
+간격 · 글자 · 용어 열 폭은 `definitionListStyle`(`CoreDefinitionListStyle`) 하나로 바꿉니다. 필드는 `entrySpacing` · `pairSpacing` · `termTextStyle` · `descriptionTextStyle` · `monoDescriptionTextStyle` · `termWidth` 이고, 뜻은 API의 필드 표에 있습니다. `layout` · `numeric` · `mono` 는 스타일이 아니라 위젯 파라미터입니다.
+
+### 값이 정해지는 순서
+
+뒤로 갈수록 우선합니다.
+
+```text
+CoreDefinitionListStyle.defaultsByLayout[layout]   // 디자인 시스템 기본값 (배치마다 한 벌)
+  → CoreComponentTheme.definitionList.style        // 앱 전체
+  → definitionListStyle                            // 목록 하나
+```
+
+- 비워 둔 필드는 앞 단계의 값이 남습니다. 글자 스타일도 필드 단위로 합치므로, `fontWeight` 만 주면 기본 글자 역할과 색은 그대로입니다.
+- `termWidth` 는 디자인 시스템 기본값이 없습니다. 비우면 용어 길이에 맞춥니다.
+
+`mono: true` 인 목록의 설명 글자는 다음 순서로 겹칩니다.
+
+```text
+CoreDefinitionListStyle.defaultMonoDescriptionTextStyle   // 배치의 설명 기본값을 대신합니다
+  → descriptionTextStyle         // 테마와 목록의 값을 합친 것
+  → monoDescriptionTextStyle     // 테마와 목록의 값을 합친 것
+```
+
+- 그래서 `mono` 목록에서는 테마의 `monoDescriptionTextStyle` 이 목록 하나에 준 `descriptionTextStyle` 보다도 뒤에 겹칩니다.
+- `monoDescriptionTextStyle` 에 `code-sm` 이 아닌 글자 역할을 주고, `descriptionTextStyle` 에는 역할 없이 크기나 줄 높이를 주면 두 플랫폼의 결과가 다릅니다. Flutter는 새 역할의 크기와 줄 높이로 그리고, Web은 `descriptionTextStyle` 에 준 값을 남깁니다. 두 플랫폼을 맞추려면 `monoDescriptionTextStyle` 의 글자 역할에 `copyWith` 로 크기와 줄 높이까지 적으세요.
+- `descriptionTextStyle` 에 다른 글자 역할(`CoreTextStyle.token`)을 주면 `mono` 목록에서도 그 역할이 `code-sm` 자리를 대신합니다. 크기 · 줄 높이 · 서체가 그 역할을 따르므로, 본문 역할을 주면 코드 서체가 사라집니다. 모든 설명의 색만 바꿀 때는 역할 없이 `CoreTextStyle(color: ...)` 를 주세요.
+- `numeric` 의 고정폭 숫자는 글자 스타일을 모두 합친 뒤에 켜집니다.
+
+### 간격과 밀도
+
+- 앱의 밀도가 `compact` 나 `spacious` 면 기본 간격과 `CoreSpace` 단계로 적은 `entrySpacing` · `pairSpacing` 이 4px 격자의 다음 칸으로 움직입니다. 4 이하는 움직이지 않으므로 `stacked` 의 쌍 안 간격 2는 그대로입니다. 단계 밖의 값은 두 플랫폼이 다르게 다룹니다(플랫폼 차이).
+- Flutter는 두 간격과 `termWidth` 에 테마의 크기 배율을 곱합니다.
+- `termWidth` 는 밀도의 영향을 받지 않습니다.
+
+### 사용 예
+
+<Split>
+
+<Code language="dart" title="목록 하나만 바꾸기">
+DefinitionList(
+  items: const [
+    CoreDefinitionEntry(term: '상품 금액', description: '1,111,000원'),
+    CoreDefinitionEntry(term: '합계', description: '1,119,000원'),
+  ],
+  layout: CoreDefinitionLayout.columns,
+  definitionListStyle: const CoreDefinitionListStyle(
+    entrySpacing: CoreSpace.space12,
+    termWidth: CoreSpace.space96,
+    descriptionTextStyle: CoreTextStyle(fontWeight: CoreFontWeight.semiBold),
+  ),
+)
+</Code>
+
+<Code language="dart" title="앱 전체 기본값 바꾸기">
+ThemeData.fromCore(
+  CoreThemePresets.light,
+  coreComponentTheme: CoreComponentTheme(
+    definitionList: CoreDefinitionListTheme(
+      style: CoreDefinitionListStyle(
+        descriptionTextStyle: CoreTextStyle(
+          color: CoreColor.token(CoreColors.onSurfaceVariant),
+        ),
+      ),
+    ),
+  ),
+)
+</Code>
+
+</Split>
+
+두 예제 모두 Flutter와 Web 코드가 같습니다.
+
+<a id="빠른-오버라이드-chain"></a>
+
+### 빠른 덮어쓰기
+
+이미 만든 `DefinitionList` 에 `withStyle` 을 이어 `definitionListStyle` 을 덧붙일 수 있습니다. 지금 스타일에 합치며, 겹치는 값은 나중에 붙인 것이 이깁니다. 아래 예제는 `columns` 목록의 쌍 안 간격을 16으로 넓히고, 용어 색을 `primary` 로, 설명 글자를 `body-large` 로 바꿉니다.
 
 <!-- CHAIN_SNIPPET:BEGIN — auto-generated by `dart run tool/generate_chain_artifacts.dart` (write mode). Do not hand-edit between these markers; edit the chain example sources (`*_chain_example.dart` / `*_code.dart`) and regenerate. -->
 <Tabs groupId="platform">
@@ -219,241 +551,170 @@ class DefinitionListChainExample extends StatelessComponent {
 </Tabs>
 <!-- CHAIN_SNIPPET:END -->
 
-## 변형 (Variants)
+<a id="접근성-accessibility"></a>
 
-### Default (stacked)
+## 접근성
 
-용어 위, 설명 아래. 어떤 폭에서도 넘치지 않는 유일한 배치라서 기본값입니다 — 긴 용어는 열을 넓히는 대신 본문 폭 안에서 줄바꿈합니다.
-
-```dart
-DefinitionList(
-  items: const [
-    CoreDefinitionEntry(term: '상호', description: '주식회사 코코드'),
-    CoreDefinitionEntry(term: '대표', description: '한동우'),
-    CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000'),
-  ],
-)
-```
-
-### Columns
-
-두 열(`max-content` / 나머지 전부). 모든 설명이 같은 모서리에서 시작하므로 두 번째 열에 쌓인 숫자가 세로로 정렬됩니다 — 자릿수까지 맞추려면 `numeric: true` 를 함께 씁니다.
-
-용어 열은 기본이 `max-content` 라 줄어들지 않습니다. 긴 용어는 줄바꿈하는 대신 설명 열을 좁히므로, 용어가 길거나 컨테이너가 좁으면 `stacked` 를 쓰세요. `termWidth` 를 주면 용어 열이 그 폭(px)에 고정되어, 용어가 다른 여러 목록의 설명이 같은 모서리에서 시작합니다.
-
-```dart
-DefinitionList(
-  items: const [
-    CoreDefinitionEntry(term: '상호', description: '주식회사 코코드'),
-    CoreDefinitionEntry(term: '대표', description: '한동우'),
-    CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000'),
-  ],
-  layout: CoreDefinitionLayout.columns,
-  numeric: true,
-)
-```
-
-### Inline
-
-용어와 설명이 한 줄에 이어 붙고, 폭이 모자라면 쌍 단위로 다음 줄에 넘어갑니다. 짧은 값이 짧게 이어지는 푸터 한 줄 같은 곳에 씁니다.
-
-한 쌍이 통째로 하나의 wrap 항목이라, 용어만 줄 끝에 남고 값이 다음 줄로 떨어지는 일은 생기지 않습니다.
-
-```dart
-DefinitionList(
-  items: const [
-    CoreDefinitionEntry(term: '상호', description: '주식회사 코코드'),
-    CoreDefinitionEntry(term: '대표', description: '한동우'),
-    CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000'),
-  ],
-  layout: CoreDefinitionLayout.inline,
-)
-```
-
-## 동작 스펙 (Behavior)
-
-### 인터랙션
-
-- 표시 전용입니다. 제스처도 컨트롤러도 상태도 없습니다 — 정적 렌더링에서 그대로 읽혀야 하는 내용이기 때문입니다.
-- 인터랙션이 필요한 값(링크·버튼)은 `CoreDefinitionEntry.rich` 로 넣습니다. 그 서브트리가 자기 동작을 그대로 유지합니다.
-
-### 레이아웃
-
-- `layout` 은 상자만 옮깁니다. 세 값 모두 같은 쌍 구조를 내보내므로 스크린 리더가 읽는 순서는 바뀌지 않습니다.
-- 쌍 사이 간격(`entrySpacing`)은 첫 쌍에는 붙지 않습니다 — 첫 쌍은 목록을 여는 것이지 무언가를 뒤따르는 것이 아니라서, 목록 맨 위에 아무도 요청하지 않은 빈 띠가 생기지 않습니다.
-- `columns` 에서 용어와 설명은 baseline 으로 정렬됩니다. `mono` 설명은 `code-sm` 의 21px 줄 상자를 쓰고 용어는 `label-medium` 의 줄 상자를 쓰므로(18.2px), 다른 정렬은 그 차이만큼 어긋납니다.
-
-### 타이포그래피
-
-- `stacked` 의 용어는 설명보다 한 단 작습니다 — 용어는 `label-small` 12/500, 설명은 `label-medium` 13/500 입니다. `columns` · `inline` 은 둘 다 `label-medium` 13/500 이고, 나란히 선 위치(열 · 앞뒤 순서)가 둘을 가르며 용어의 흐린 색이 그 구분을 보강합니다.
-- 간격도 배치마다 다릅니다 — 쌍 안은 `stacked` 2 · `columns` / `inline` 8, 쌍 사이는 `stacked` 14 · `columns` 24 · `inline` 16 입니다.
-- `numeric: true` 는 고정폭 숫자만 켭니다. 글자도 의미도 바꾸지 않습니다.
-
-## 사용 가이드라인 (Usage Guidelines)
-
-### ✅ Do
-
-<Callout type="tip">
-
-**값에는 항상 그 값을 설명하는 용어를 붙인다**
-
-```dart
-DefinitionList(
-  items: const [
-    CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000'),
-    CoreDefinitionEntry(term: '통신판매업신고번호', description: '2019-서울강남-01234'),
-  ],
-)
-```
-
-두 번호를 라벨 없이 나열하면 듣는 사람은 숫자만 듣고 어느 대장에서 조회해야 하는지 알 수 없습니다.
-
-</Callout>
-
----
-
-### ❌ Don't
-
-<Callout type="warning">
-
-**용어와 값을 한 문자열에 밀어 넣지 않는다**
-
-```dart
-// ❌ 쌍 관계가 문서에 남지 않는다 — 한 줄의 텍스트일 뿐
-Text('사업자등록번호 000-00-00000 · 법인등록번호 000000-0000000')
-```
-
-가운뎃점으로 나눈 한 줄은 스크린 리더에게 끊기지 않는 숫자 나열로 읽힙니다. 바로 이 상황을 없애려고 있는 컴포넌트입니다.
-
-</Callout>
-
-### ✅ Do
-
-<Callout type="tip">
-
-**숫자를 세로로 비교해야 하면 `columns` + `numeric`**
-
-```dart
-DefinitionList(
-  items: const [
-    CoreDefinitionEntry(term: '공급가액', description: '1,200,000'),
-    CoreDefinitionEntry(term: '부가세', description: '120,000'),
-    CoreDefinitionEntry(term: '합계', description: '1,320,000'),
-  ],
-  layout: CoreDefinitionLayout.columns,
-  numeric: true,
-)
-```
-
-`columns` 가 설명의 시작 모서리를 맞추고, `numeric` 이 자릿수를 맞춥니다. 둘은 짝입니다 — 한쪽만 쓰면 눈이 자릿수를 세야 합니다.
-
-</Callout>
-
----
-
-### ❌ Don't
-
-<Callout type="warning">
-
-**긴 용어에 `columns` 를 쓰지 않는다**
-
-```dart
-// ❌ 용어 열이 줄어들지 않아 설명 열이 짓눌린다
-DefinitionList(
-  items: const [
-    CoreDefinitionEntry(
-      term: '전자상거래 등에서의 소비자보호에 관한 법률에 따른 통신판매업신고번호',
-      description: '2019-서울강남-01234',
-    ),
-  ],
-  layout: CoreDefinitionLayout.columns,
-)
-```
-
-용어 열은 기본이 `max-content` 라 줄어들지 않습니다. 용어가 길거나 컨테이너가 좁으면 `stacked` 를 쓰세요 — 어떤 폭에서도 넘치지 않는 유일한 배치입니다.
-
-</Callout>
-
-## 접근성 (Accessibility)
-
-이 컴포넌트가 존재하는 이유가 접근성입니다. 라벨 없는 값의 나열("000-00-00000", "000000-0000000")은 붙일 데 없는 숫자로 읽히고, 각 쌍이 자기 라벨을 들고 있으면 그렇지 않습니다.
+값마다 자기 용어가 따라붙게 하는 것이 이 컴포넌트의 목적입니다. Web은 문서 구조로, Flutter는 접근성 정보로 그 관계를 남깁니다.
 
 ### 역할
 
-Web 은 네이티브 `<dl>` / `<dt>` / `<dd>` 구조를 씁니다. Flutter 는 설명 노드에
-용어·값을 실어 쌍 관계를 전달합니다. 표시 목록 자체는 버튼이나 선택 컨트롤이 아닙니다.
+| 플랫폼 | 역할 |
+| --- | --- |
+| Flutter | 목록이나 정의 목록 역할을 붙이지 않습니다. 문자열 설명의 쌍은 한 노드의 이름(`label`)과 값(`value`)으로 전합니다. `columns` 는 Flutter의 `Table` 로 놓기 때문에 접근성 트리에 표 · 행 · 칸 역할이 생깁니다. |
+| Jaspr Web | 네이티브 `<dl>` · `<dt>` · `<dd>` 입니다. 컴포넌트가 따로 붙이는 `role` · `aria-*` 는 없습니다. |
+
+목록과 문자열 설명은 버튼이나 선택 컨트롤이 아닙니다.
 
 ### 키보드
 
-목록 자신이 처리하는 키나 tab stop 은 없습니다. `CoreDefinitionEntry.rich` 로
-넣은 링크·버튼은 자기 키보드 동작을 그대로 유지합니다.
+없음. 표시 전용이라 목록이 처리하는 키도, `Tab` 이 멈추는 자리도 없습니다. `rich` 로 넣은 링크 · 버튼은 자기 키보드 동작을 그대로 가집니다.
 
 ### 스크린 리더
 
-- **Web**: 루트가 언제나 `<dl>` 이고 직계 자식은 `<dt>` / `<dd>` 뿐입니다 — 사이에 래퍼 `<div>` 를 두지 않습니다. 스펙은 `<div>` 그룹핑을 허용하지만 그 `<div>` 를 따라가다 멈추는 보조기술이 실제로 있고, 이 컴포넌트는 바로 그 독자를 위해 존재합니다. 세 레이아웃 모두 래퍼가 아니라 `<dl>` 자신의 grid / flex 로 만들어집니다.
-- **Flutter**: `<dl>` 에 해당하는 위젯이 없으므로 쌍 관계를 접근성 API 로 진술합니다. 용어는 `ExcludeSemantics` 안에서 그려져 자기 노드를 만들지 않고, 설명의 노드가 용어를 `label` 로, 값을 `value` 로 싣습니다. 그래서 한 쌍당 한 번 — "사업자등록번호, 000-00-00000" — 으로 읽히며 용어가 두 번 발음되지 않습니다.
-- **`rich` 설명**: 링크·주소 블록처럼 자기 동작을 가진 서브트리는 시맨틱을 그대로 유지합니다. 노드가 하나면 용어가 그 노드에 이름으로 붙어 "이메일 cody@cocode.im, 버튼" 처럼 한 번에 읽히고, 여러 개면 용어가 이름인 그룹 아래 각자 남습니다 — 두 동작이 하나로 뭉개지지 않습니다.
+- **Web** — 루트는 `<dl>` 이고 바로 아래 자식은 `<dt>` 와 `<dd>` 뿐입니다. 쌍을 감싸는 `<div>` 를 두지 않으며, 세 배치 모두 `<dl>` 자신의 grid · flex로 놓습니다. 각 `<dt>` 바로 뒤에 그 용어의 `<dd>` 가 옵니다.
+- **Flutter, 문자열 설명** — 한 쌍이 접근성 트리의 한 노드가 됩니다. `label` 이 용어, `value` 가 설명입니다. 화면에 그린 용어와 설명 텍스트는 노드를 따로 만들지 않아 같은 글이 두 번 담기지 않습니다.
+- **Flutter, `rich` 설명** — 넣은 위젯의 접근성 정보와 동작을 버리지 않습니다. 누를 수 있는 위젯 하나만 넣으면 용어와 그 위젯의 글이 한 노드의 이름이 되고, 누르는 동작도 남습니다. 누를 수 있는 위젯을 여럿 넣으면 용어를 이름으로 가진 상위 노드 아래에 각각 따로 남습니다.
+- **Flutter, `columns`** — 항목마다 표의 행이 하나씩 생기고, 위의 노드는 그 행의 칸 안에 놓입니다. 화면의 용어 열은 따로 칸을 만들지 않습니다.
 
-### 읽는 순서
+화면 낭독기가 실제로 읽는 말과 탐색 방식은 낭독기 · 브라우저 · 기기에 따라 다릅니다.
 
-`layout` 은 상자만 옮깁니다. `inline` · `stacked` · `columns` 세 값 모두 같은 쌍 구조를 내보내므로 발음되는 순서는 동일합니다.
+#### 읽는 순서
 
-### 대비
-
-용어와 설명은 크기(`stacked`) 또는 위치(`columns` · `inline`)로 먼저 구분되고 색은 그 구분을 보강할 뿐입니다 (WCAG 1.4.1). 용어 색을 바꿀 때도 이 구분은 남겨 두세요.
+`layout` 을 바꿔도 읽는 순서는 같습니다. 세 값 모두 Web은 같은 `<dt>` · `<dd>` 순서를, Flutter의 문자열 설명은 같은 순서의 `label` · `value` 를 갖습니다. Flutter의 `columns` 에는 그 둘레에 표 구조가 더해집니다.
 
 ### 포커스 관리
 
-포커스 이동·복귀·트랩은 없습니다. 레이아웃을 바꿔도 자식의 선언 순서와 포커스
-동작을 유지합니다.
+없음. 목록은 포커스를 받거나 옮기거나 가두지 않습니다. `rich` 로 넣은 위젯은 어느 `layout` 에서도 항목을 적은 순서로 놓입니다.
 
 ### 알려진 제약
 
-Flutter 에는 네이티브 정의 목록 역할이 없어 Web 의 `<dl>` 구조와 같은 역할
-어휘로 읽히지는 않습니다. `rich` 콘텐츠의 이름과 동작은 호출자가 제공해야 합니다.
-자동 live region 이 아니므로 외부에서 값이 바뀐 사실을 별도로 통보하지 않습니다.
+| 대상 | 내용 |
+| --- | --- |
+| 공통 | 라이브 영역이 아니므로 값이 바뀌어도 따로 알리지 않습니다. |
+| 공통 | `rich` 설명 안의 이름 · 역할 · 동작은 넣은 위젯이 정합니다. |
+| Flutter | 정의 목록 구조를 알려 주는 정보를 붙이지 않습니다. `columns` 에 생기는 표 역할은 정의 목록이 아니라 표를 뜻합니다. |
+| Flutter | 글자를 키우거나 폭이 좁아지면 `inline` 의 긴 용어는 넘칠 수 있고, `columns` 는 설명 열의 폭이 남지 않을 수 있습니다. 이런 화면에는 `stacked` 를 고릅니다. |
+| Jaspr Web | `columns` 의 용어는 줄바꿈하지 않아(`termWidth` 가 없을 때) 좁은 화면이나 큰 글자에서 넘칠 수 있습니다. `inline` 은 용어와 설명이 서로 다른 줄로 갈라질 수 있습니다. |
 
-## 크로스 플랫폼 차이점 (Platform Differences)
+#### 대비
 
-| 항목 | Flutter | Web |
-|------|---------|-----|
-| 클래스명 | `DefinitionList` | `DefinitionList` |
-| 루트 | `Column` / `Table` / `Wrap` (레이아웃별) | 언제나 `<dl>` |
-| 쌍 관계 | `ExcludeSemantics` (용어) + `Semantics(label:, value:)` (설명) | `<dt>` / `<dd>` 요소 자체 |
-| `stacked` | `Column(spacing: entrySpacing)` 안의 `Column(spacing: pairSpacing)` | `<dl>` 이 `flex-col`, 간격은 `<dt>` / `<dd>` 의 leading margin |
-| `columns` | `Table` (`IntrinsicColumnWidth` 또는 `termWidth` 의 `FixedColumnWidth` / `FlexColumnWidth`, baseline 정렬) | `<dl>` 이 `grid-template-columns: max-content 1fr` (`termWidth` 가 있으면 `<rem> 1fr`) + `row-gap` / `column-gap` |
-| `inline` | `Wrap` 안의 `Row` (한 쌍 = wrap 항목 하나) | `<dl>` 이 `flex-wrap`, 간격은 논리 축(`margin-inline-start`)이라 rtl 에서 뒤집힌다 |
-| `numeric` | `FontFeature.tabularFigures()` | `tabular-nums` (`font-variant-numeric`) |
-| `mono` | `code-sm` 역할의 설명 글자 | `<dd>` 의 `text-code-sm` 클래스 |
-| 브라우저 기본값 | 해당 없음 | `<dd>` 의 UA `margin-inline-start: 40px` 를 리셋한다 — grid / flex 에서도 살아남아 열 정렬을 무너뜨리기 때문 |
-| 폭 (`columns`) | `Table` 이 받은 폭을 채운다 — 설명 열이 "나머지"를 얻는다 | `<dl>` grid 라서 블록 부모에서는 채우고, flex 부모에서는 내용 폭이라 설명 열이 "나머지" 없이 글자 폭이 된다. 채우려면 호출자가 `classes: 'w-full'` 을 적는다 |
+`columns` · `inline` 의 용어와 문자열 설명은 글자 역할이 같고(`mono` 가 아닐 때), 놓인 순서와 색으로 구분됩니다. `stacked` 는 위아래 위치에 더해 글자 크기(12와 13)가 다릅니다. `mono` 를 켠 `stacked` 는 크기가 둘 다 12라서 위치와 굵기가 구분을 맡습니다. 용어 색을 바꾸더라도 색 하나로만 구분되게 만들지 마세요(WCAG 1.4.1).
 
-## 관련 컴포넌트 (Related Components)
+<a id="크로스-플랫폼-차이점-platform-differences"></a>
 
-- **[Table](/components/table)**: 행이 여러 열의 값을 갖는 2차원 데이터용. 정의 목록은 한 용어에 한 설명입니다.
-- **[DescriptionCard](/components/description-card)**: 제목·본문·액션을 갖춘 카드 표면이 필요할 때.
-- **[TextBlock](/components/text-block)**: 라벨 없는 산문 문단.
-- **[Stat](/components/stat)**: 하나의 지표를 크게 강조할 때.
+## 플랫폼 차이
 
-### 조합 예제
+클래스 이름(`DefinitionList`)과 두 플랫폼이 함께 갖는 속성 이름은 같고, 설명 타입과 그리는 방식은 각 플랫폼을 따릅니다.
 
-```dart
-// 푸터의 사업자 정보 — Divider 아래 DefinitionList 한 벌
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: [
-    Divider(),
-    Gap(size: CoreSpace.space16),
-    DefinitionList(
-      items: const [
-        CoreDefinitionEntry(term: '상호', description: '주식회사 코코드'),
-        CoreDefinitionEntry(term: '대표', description: '한동우'),
-        CoreDefinitionEntry(term: '사업자등록번호', description: '000-00-00000'),
-        CoreDefinitionEntry(term: '통신판매업신고번호', description: '2019-서울강남-01234'),
-      ],
-      layout: CoreDefinitionLayout.columns,
-      numeric: true,
-    ),
-  ],
-)
-```
+| 항목 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 설명 타입 | `Widget` | `Component` |
+| 루트 | `Column` · `Table` · `Wrap` (배치별) | 언제나 `<dl>` |
+| 쌍 관계 | 용어는 `ExcludeSemantics`, 설명 노드의 `Semantics` 가 용어를 `label` 로 가짐 | `<dt>` · `<dd>` 요소 |
+| 표 역할 | `columns` 에서만 `Table` 의 표 · 행 · 칸 역할이 생김 | 세 배치 모두 `<dl>` · `<dt>` · `<dd>` 마크업 |
+| `stacked` | `Column` 안에 쌍마다 `Column`. 간격은 각 `spacing` | 세로 flex `<dl>`. 간격은 `<dt>` · `<dd>` 의 위 margin |
+| `columns` | `Table`. 용어 열은 `IntrinsicColumnWidth`(`termWidth` 가 있으면 `FixedColumnWidth`), 설명 열은 `FlexColumnWidth`, 기준선 정렬 | grid `max-content 1fr`(`termWidth` 가 있으면 `<rem> 1fr`) + `row-gap` · `column-gap`, 기준선 정렬 |
+| `inline` | `Wrap` 안에 쌍마다 `Row` 하나. 쌍이 갈라지지 않음 | `<dl>` 의 flex-wrap. `<dt>` 와 `<dd>` 가 따로 줄을 넘김 |
+| 넘어간 `inline` 줄 | 줄 첫머리에 간격이 없음 | 첫 요소의 앞 간격이 남음 |
+| RTL 방향 | 간격과 열이 읽기 방향을 따름 | 간격이 논리 축(`margin-inline-start`)이라 방향을 따름 |
+| `columns` 의 폭 | 받은 폭을 채움. 폭 제한이 없으면 설명 열이 0 | 블록 · 늘이는 세로 flex 부모에서는 채움. 늘이지 않는 flex 부모에서는 내용 폭 |
+| 긴 용어(`columns`) | `termWidth` 가 없고 한 줄에 안 들어가면 줄바꿈하고, 설명 열에 폭이 남지 않음 | `termWidth` 가 없으면 줄바꿈 없이 넘침 |
+| `numeric` | `FontFeature.tabularFigures()` | `tabular-nums` 클래스(`font-variant-numeric`) |
+| `mono` 글꼴 | `code-sm` 역할. 패키지에 Geist Mono가 들어 있음 | `<dd>` 의 `text-code-sm` 클래스. 페이지에서 쓸 수 있는 Geist Mono, 없으면 Pretendard, `monospace` 순서 |
+| `mono` 덮어쓰기 | `code-sm` 위에 `descriptionTextStyle`, `monoDescriptionTextStyle` 을 차례로 겹침 | 두 값을 먼저 합친 뒤 `code-sm` 위에 겹침. 결과가 달라지는 경우는 [값이 정해지는 순서](#값이-정해지는-순서) 참고 |
+| 단계 밖 간격 | `compact` · `spacious` 에서 4보다 크고 간격 척도 범위 안이면 다음 칸으로 옮겨짐 | 밀도와 상관없이 적은 값 그대로 |
+| 크기 단위 | 간격과 `termWidth` 에 테마의 크기 배율을 곱함 | 간격과 `termWidth` 는 `rem` 단위라 루트 글자 크기를 따름 |
+| 브라우저 기본값 | 해당 없음 | `<dl>` 의 위아래 margin과 `<dd>` 의 40px 시작 쪽 들여쓰기를 지움 |
+| 웹 전용 속성 | — | `id` · `classes` · `css` · `attributes` · `eventHandlers` |
+
+<a id="props-parameters"></a>
+
+## API
+
+Flutter와 Jaspr Web이 같은 이름을 씁니다. 표의 `W` 는 Flutter의 `Widget`, Web의 `Component` 입니다. 항목이 하나도 없으면 두 플랫폼 모두 빈 목록을 그립니다.
+
+### 목록
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `items` | `List<CoreDefinitionEntry<W>>` | 필수 | 놓는 순서대로 적은 용어 · 설명 쌍 |
+| `layout` | `CoreDefinitionLayout` | `stacked` | 용어와 설명을 놓는 방식 — `inline` · `stacked` · `columns` |
+| `numeric` | `bool` | `false` | 설명에 고정폭 숫자를 켭니다. |
+| `mono` | `bool` | `false` | 설명을 코드 글자 역할(`code-sm`, Geist Mono)로 그립니다. `numeric` 과 함께 쓸 수 있습니다. |
+| `definitionListStyle` | `CoreDefinitionListStyle?` | `null` | 간격 · 글자 · 용어 열 폭 덮어쓰기 |
+| `key` | `Key?` | `null` | 위젯 · 컴포넌트의 키 |
+
+### 웹 전용
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `id` · `classes` · `css` | `String?` · `String?` · `Styles?` | `null` | 루트 `<dl>` 의 id, 더할 클래스, 인라인 스타일. 목록의 인라인 값과 겹치는 CSS 속성은 `css` 가 이깁니다. |
+| `attributes` | `Map<String, String>?` | `null` | 루트 `<dl>` 의 HTML 속성 |
+| `eventHandlers` | `Map<String, List<UiEventHandler>>?` | `null` | 루트의 DOM 이벤트 |
+
+### 항목 필드
+
+`CoreDefinitionEntry<W>` 가 갖는 필드입니다. 두 생성자 모두 `description` 이라는 이름으로 값을 받고, 생성자에 따라 담기는 필드가 다릅니다.
+
+| 이름 | 타입 | 설명 |
+| --- | --- | --- |
+| `term` | `String` | 값의 이름. 두 생성자 모두 필수입니다. |
+| `descriptionText` | `String?` | 기본 생성자에 넘긴 문자열. `.rich` 항목은 `null` 입니다. |
+| `description` | `W?` | `.rich` 에 넘긴 위젯 · 컴포넌트. 문자열 항목은 `null` 입니다. |
+
+### 멤버
+
+| 이름 | 설명 |
+| --- | --- |
+| `withStyle(CoreDefinitionListStyle patch)` | `definitionListStyle` 에 `patch` 를 합친 사본을 돌려줍니다. |
+| `copyWith({...})` | 바꾼 값으로 사본을 만듭니다. `null` 이나 생략한 값은 지금 값이 남습니다. 웹은 웹 전용 속성도 받고, `classes` 는 지금 클래스에 더합니다. |
+
+### 테마
+
+| 이름 | 타입 | 설명 |
+| --- | --- | --- |
+| `CoreComponentTheme.definitionList` | `CoreDefinitionListTheme?` | 앱 전체의 DefinitionList 설정 |
+| `CoreDefinitionListTheme.style` | `CoreDefinitionListStyle?` | 모든 목록에 적용할 스타일 |
+
+<!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
+
+### `CoreDefinitionListStyle` 필드
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| `entrySpacing` | `double?` | Distance between one term / description pair and the next, in logical pixels. |
+| `pairSpacing` | `double?` | Distance between a term and its own description, in logical pixels. |
+| `termTextStyle` | `CoreTextStyle?` | `<dt>` typography override. Layered over the layout row of [defaultsByLayout] — a caller who sets only `fontWeight` keeps the default role and colour. The default differs per layout (`label-small` stacked, `label-medium` in columns and inline), so there is no single scalar default. |
+| `descriptionTextStyle` | `CoreTextStyle?` | `<dd>` typography override. Layered over the layout row of [defaultsByLayout] (or [defaultMonoDescriptionTextStyle] when the list is `mono`) on the same terms as [termTextStyle]. |
+| `monoDescriptionTextStyle` | `CoreTextStyle?` | `<dd>` typography override that applies only when the list is `mono`. Layered over [defaultMonoDescriptionTextStyle] and then over any [descriptionTextStyle], so a theme can recolour every description while a mono list alone changes its code weight. |
+| `termWidth` | `double?` | Fixed width of the term column, in logical pixels — only `CoreDefinitionLayout.columns` reads it; `stacked` and `inline` ignore it. |
+
+<!-- STYLE_TABLE:END -->
+
+<a id="관련-컴포넌트-related-components"></a>
+
+## 관련 컴포넌트
+
+<Cards columns="2">
+<Card demo="definition-list/related-table" title="Table">
+
+한 행이 여러 열의 값을 갖는 2차원 데이터를 보여 줍니다.
+
+</Card>
+<Card demo="definition-list/related-description-card" title="DescriptionCard">
+
+이름 · 값 목록에 카드 표면, 제목, 행 강조, 하단 액션을 함께 둡니다.
+
+</Card>
+<Card demo="definition-list/related-text-block" title="TextBlock">
+
+라벨이 없는 문단을 씁니다.
+
+</Card>
+<Card demo="definition-list/related-stat" title="Stat">
+
+지표 하나를 크게 보여 줍니다.
+
+</Card>
+</Cards>
