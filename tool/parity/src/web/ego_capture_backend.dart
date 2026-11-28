@@ -348,7 +348,7 @@ Future<WebCaptureResult> captureEgoEntry({
     entry,
     additiveBoxObservations: additiveBoxObservations,
   );
-  final requiredCurrentSsrKind = additiveBoxObservations
+  var requiredCurrentSsrKind = additiveBoxObservations
       ? requiredDocsSizeSsrKind(entry) ??
             requiredStepperHorizontalSsrKind(entry) ??
             requiredPublicWrapperSsrKind(entry) ??
@@ -361,6 +361,7 @@ Future<WebCaptureResult> captureEgoEntry({
             requiredFramedCollectionSsrKind(entry)
       : null;
   Map<String, Object?>? currentSsrSource;
+  Map<String, String>? documentationSceneRoute;
   final file = await prepareWebCaptureHarness(
     entry: entry,
     themeConfig: themeConfig,
@@ -371,6 +372,12 @@ Future<WebCaptureResult> captureEgoEntry({
     availableWidthPx: availableWidthPx,
     onCurrentBoxSource: additiveBoxObservations && !client
         ? (witness) => currentSsrSource = witness
+        : null,
+    onDocumentationSceneRoute: additiveBoxObservations && !client
+        ? (route, kind) {
+            documentationSceneRoute = route;
+            requiredCurrentSsrKind = kind;
+          }
         : null,
   );
   final runtimePayload = client
@@ -439,6 +446,10 @@ Future<WebCaptureResult> captureEgoEntry({
         'currentClientBoxSource': ?currentClientBoxSource,
         'runtimeOperationReceipt': ?runtimeOperationReceipt,
         'requiredCurrentSsrKind': ?requiredCurrentSsrKind,
+        if (documentationSceneRoute != null) ...{
+          'documentationSceneTag': documentationSceneRoute!['sceneTag'],
+          'documentationSceneRoute': documentationSceneRoute,
+        },
         if (currentSsrSource != null)
           'currentSsrSource': {
             ...currentSsrSource!,

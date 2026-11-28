@@ -140,6 +140,7 @@ jobs:
           tool/parity/test/web/box_padding_component_dispatch_test.dart
           tool/parity/test/web/box_padding_form_collection_units_probe_test.dart
           tool/parity/test/web/box_padding_section_layout_units_probe_test.dart
+          tool/parity/test/web/docs_card_registry_integration_test.dart
           tool/parity/test/manifest/parity_manifest_test.dart
           tool/parity/test/web/breakpoint_showcase_ssr_source_test.dart
           tool/parity/test/web/breakpoint_showcase_dispatch_test.dart

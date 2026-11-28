@@ -37,11 +37,23 @@ String get docsSizeRequestBindingScript =>
     JSON.stringify(raw.headProjection.orderedChildren)!==JSON.stringify(['document-head','content-section'])||
     !Number.isSafeInteger(raw.rowCount)||raw.rowCount<0)
     return fail('DOCS_SIZE_COMPLETE_NORMAL_GRAPH_REQUIRED');
+  // The canonical capture caller's complete attrs remain held data. Its
+  // configurable display/width never establishes this preview's inset owner.
+  const literalAttrs={
+    host:{id:'docs-shell',class:'docs manual',style:'width: 100%; min-width: 0',
+      'data-docs-scene':raw.sceneReference},
+    content:{class:'content'},result:{class:'docs-size-spec'},
+    preview:{class:'docs-stage docs-stage--hug docs-stage--row'},
+    figure:{class:'docs-size-item'},caption:{},code:{},
+  };
+  const ownAttrs=(a,role)=>role==='capture'||Object.hasOwn(literalAttrs,role)&&
+    exact(a,Object.keys(literalAttrs[role]))&&
+    Object.entries(literalAttrs[role]).every(([k,v])=>a[k]===v);
   const owned=(n,role,tag)=>n&&n.kind==='owned'&&n.role===role&&n.nodeType===1&&
     n.namespaceURI==='http://www.w3.org/1999/xhtml'&&n.localName===tag&&
     exact(n,['kind','role','nodeType','namespaceURI','localName','attributes','children'])&&
     n.attributes&&typeof n.attributes==='object'&&!Array.isArray(n.attributes)&&
-    Object.values(n.attributes).every(v=>typeof v==='string')&&Array.isArray(n.children);
+    Object.values(n.attributes).every(v=>typeof v==='string')&&ownAttrs(n.attributes,role)&&Array.isArray(n.children);
   const formatter=n=>exact(n,['kind','nodeType','text'])&&n.kind==='formatter-text'&&n.nodeType===3&&
     typeof n.text==='string'&&Array.from(n.text).every(c=>[9,10,12,13,32].includes(c.charCodeAt(0)));
   const meaningful=n=>n.children.filter(c=>!formatter(c));

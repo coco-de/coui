@@ -58,7 +58,10 @@ Map<String, Object?> box(
 
 // Executes the real transport with a fake native Page and real owned files.
 // This tests restoration/error protocol, not a browser screenshot or paint.
-Future<Map<String, Object?>> transportProtocol(String mode) async {
+Future<Map<String, Object?>> transportProtocol(
+  String mode, {
+  Map<String, Object?>? sourceFields,
+}) async {
   final directory = Directory.systemTemp.createTempSync('ego-native-protocol-');
   try {
     final input = File('${directory.path}/instructions.json');
@@ -86,8 +89,16 @@ Future<Map<String, Object?>> transportProtocol(String mode) async {
         'networkImageBase64': 'AA==',
         'runtimeReady': null,
         'fixedTime': false,
+        if (sourceFields != null) ...{
+          ...sourceFields,
+          'additiveBoxObservations': true,
+        },
         'probes': [
-          {'role': 'root', 'webSelector': '#root', 'fields': <String>[]},
+          {
+            'role': 'root',
+            'webSelector': '#root',
+            'fields': <String>[if (sourceFields != null) 'paddingPx'],
+          },
         ],
         'scripts': {
           'iconify': '()=>true',
@@ -97,6 +108,10 @@ Future<Map<String, Object?>> transportProtocol(String mode) async {
           'context': '()=>JSON.stringify({mockContext:true})',
           'box': 'selector=>({mockBox:selector})',
           'probe': 'selector=>JSON.stringify({mockProbe:selector})',
+          if (sourceFields != null)
+            'probeAndBox':
+                'request=>JSON.stringify({legacy:{forwardedRequest:request},'
+                'box:{status:"transport-protocol-only"}})',
         },
         'geometryPath': '${directory.path}/geometry.json',
         'clipsPath': clips.path,
@@ -147,6 +162,7 @@ const mockPage={
         if(mockMode==='clear-settled-then-drift' && mockSettled && !mockPendingRestoration && ++mockRestorationReads>4)mockEnvironment.screen.availHeight=1000;
         value=mockCopy(mockEnvironment);
       }
+      else if(code.includes('forwardedRequest'))value=await eval(code);
       else if(code==='navigator.onLine')value=!mockEnvironment.offline;
       else if(code==='navigator.userAgent')value='Mock protocol only';
       else if(code.includes('mockContext')||code.includes('mockProbe'))value='{}';
@@ -260,6 +276,9 @@ await fs.writeFile(${jsonEncode(calls.path)},JSON.stringify({calls:mockCalls,bef
     }
     return {
       'exit': exit,
+      'result': File('${directory.path}/result.json').existsSync()
+          ? jsonDecode(File('${directory.path}/result.json').readAsStringSync())
+          : null,
       'cleanup': cleanup.existsSync()
           ? jsonDecode(cleanup.readAsStringSync())
           : null,
