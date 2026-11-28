@@ -158,9 +158,8 @@ Future<Map<String, Object?>> _sample(
       rootProbe.boxObservationSource ==
       BoxObservationSourceSpec.mockupBrowserFrame;
   final device = !browser && component != 'join' && component != 'table';
-  final result = await Process.run('node', [
-    '-e',
-    '''
+  final nodeProgram =
+      '''
 const from=(data,parent=null)=>{
  const attrs={...data.attributes},names=(attrs.class||'').split(/[\\t\\n\\f\\r ]+/).filter(Boolean);
  names.contains=name=>names.includes(name);
@@ -204,8 +203,16 @@ const request={requested:${probe.fields.contains(PropertyField.paddingPx)},
 $mutation
 const observed=JSON.parse(($boxPaddingObservationScript)(request));
 console.log(JSON.stringify({observed,cssReads}));
-''',
-  ]);
+''';
+  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  late final ProcessResult result;
+  try {
+    final file = File('${directory.path}/probe.cjs');
+    await file.writeAsString(nodeProgram);
+    result = await Process.run('node', [file.path]);
+  } finally {
+    await directory.delete(recursive: true);
+  }
   expect(result.exitCode, 0, reason: '${result.stderr}');
   return (jsonDecode(result.stdout as String) as Map).cast<String, Object?>();
 }

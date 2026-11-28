@@ -94,9 +94,8 @@ void main() {
             expect(captures.single.children, hasLength(1));
             // The real sampler consumes actual SSR references. This CSS shim
             // only identifies the DOM owner read, not browser paint.
-            final result = await Process.run('node', [
-              '-e',
-              '''
+            final nodeProgram =
+                '''
 const observe=($boxPaddingObservationScript);
 const node=(data,parent=null)=>{
   const attrs=data.attributes,names=(attrs.class??'').split(/\\s+/);names.contains=name=>names.includes(name);
@@ -111,8 +110,18 @@ global.document={querySelectorAll:()=>[root]};
 global.getComputedStyle=owner=>{cssOwners.push(owner.path);return {display:'block',paddingTop:'1px',paddingRight:'2px',paddingBottom:'3px',paddingLeft:'4px'};};
 const actual=JSON.parse(observe({requested:true,selector:${jsonEncode(probe.webSelector)},layoutSelector:${jsonEncode(probe.webSelector)},source:${jsonEncode(probe.boxObservationSource!.toJson())}}));
 console.log(JSON.stringify({actual,cssOwners}));
-''',
-            ]);
+''';
+            final directory = await Directory.systemTemp.createTemp(
+              'coui-parity-node-',
+            );
+            late final ProcessResult result;
+            try {
+              final file = File('${directory.path}/probe.cjs');
+              await file.writeAsString(nodeProgram);
+              result = await Process.run('node', [file.path]);
+            } finally {
+              await directory.delete(recursive: true);
+            }
             expect(result.exitCode, 0, reason: '${result.stderr}');
             final output = jsonDecode(result.stdout.toString()) as Map;
             final actual = output['actual']! as Map;

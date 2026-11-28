@@ -51,9 +51,8 @@ Future<Map<String, Object?>> _sample({
     _entry(),
     additiveBoxObservations: true,
   )!;
-  final result = await Process.run('node', [
-    '-e',
-    '''
+  final nodeProgram =
+      '''
 const node=(tag,children=[])=>{
   const n={nodeType:1,namespaceURI:'http://www.w3.org/1999/xhtml',
     tagName:tag.toUpperCase(),localName:tag,isConnected:true,classList:[],
@@ -96,8 +95,16 @@ const request={requested:true,selector:'#current',layoutSelector:'#current',
 $mutation
 const observed=JSON.parse(($boxPaddingObservationScript)(request));
 console.log(JSON.stringify({observed,cssReads,handlerCalls}));
-''',
-  ]);
+''';
+  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  late final ProcessResult result;
+  try {
+    final file = File('${directory.path}/probe.cjs');
+    await file.writeAsString(nodeProgram);
+    result = await Process.run('node', [file.path]);
+  } finally {
+    await directory.delete(recursive: true);
+  }
   expect(result.exitCode, 0, reason: '${result.stderr}');
   return (jsonDecode(result.stdout as String) as Map).cast<String, Object?>();
 }

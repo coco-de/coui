@@ -130,6 +130,16 @@ jobs:
           tool/parity/test/web/card_accordion_frame_dispatch_test.dart
           tool/parity/test/web/docs_card_registry_real_entry_test.dart
           tool/parity/test/web/docs_card_registry_binding_test.dart
+          tool/parity/test/web/box_padding_current_ssr_source_test.dart
+          tool/parity/test/web/box_padding_playground_dispatch_test.dart
+          tool/parity/test/web/client_box_source_protocol_test.dart
+          tool/parity/test/web/box_padding_validation_dispatch_probe_test.dart
+          tool/parity/test/web/box_padding_visual_value_current_ssr_source_test.dart
+          tool/parity/test/web/box_padding_extended_dispatch_test.dart
+          tool/parity/test/web/box_padding_framed_collection_dispatch_test.dart
+          tool/parity/test/web/box_padding_component_dispatch_test.dart
+          tool/parity/test/web/box_padding_form_collection_units_probe_test.dart
+          tool/parity/test/web/box_padding_section_layout_units_probe_test.dart
           tool/parity/test/manifest/parity_manifest_test.dart
           tool/parity/test/web/breakpoint_showcase_ssr_source_test.dart
           tool/parity/test/web/breakpoint_showcase_dispatch_test.dart

@@ -69,9 +69,8 @@ void main() {
           // Actual emitted DOM structure is consumed by the real pure sampler.
           // The CSS shim only records which reference is read; this is not a
           // browser/computed-style or paint assertion.
-          final result = await Process.run('node', [
-            '-e',
-            '''
+          final nodeProgram =
+              '''
 const observe = ($boxPaddingObservationScript);
 const node = (data,parent=null) => {
   const attrs=data.attributes, names=(attrs.class ?? '').split(/\\s+/);
@@ -88,8 +87,18 @@ global.document={querySelectorAll:selector=>selector===${jsonEncode(probe.webSel
 global.getComputedStyle=owner=>{cssOwners.push(owner.path);return {display:'block',paddingTop:'1px',paddingRight:'2px',paddingBottom:'3px',paddingLeft:'4px'};};
 const actual=JSON.parse(observe({requested:true,selector:${jsonEncode(probe.webSelector)},layoutSelector:${jsonEncode(probe.webSelector)},source:${jsonEncode(probe.boxObservationSource!.toJson())}}));
 console.log(JSON.stringify({actual,cssOwners}));
-''',
-          ]);
+''';
+          final directory = await Directory.systemTemp.createTemp(
+            'coui-parity-node-',
+          );
+          late final ProcessResult result;
+          try {
+            final file = File('${directory.path}/probe.cjs');
+            await file.writeAsString(nodeProgram);
+            result = await Process.run('node', [file.path]);
+          } finally {
+            await directory.delete(recursive: true);
+          }
           expect(result.exitCode, 0, reason: result.stderr.toString());
           final data = jsonDecode(result.stdout.toString()) as Map;
           final actual = data['actual']! as Map;

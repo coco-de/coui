@@ -54,7 +54,15 @@ Map<String, Object?> _tree(dom.Element element, List<int> path) => {
 };
 
 Future<Map<String, Object?>> _run(String script) async {
-  final process = await Process.run('node', ['-e', script]);
+  final directory = await Directory.systemTemp.createTemp('coui-parity-node-');
+  late final ProcessResult process;
+  try {
+    final file = File('${directory.path}/probe.cjs');
+    await file.writeAsString(script);
+    process = await Process.run('node', [file.path]);
+  } finally {
+    await directory.delete(recursive: true);
+  }
   expect(process.exitCode, 0, reason: process.stderr.toString());
   return (jsonDecode(process.stdout.toString()) as Map).cast<String, Object?>();
 }
