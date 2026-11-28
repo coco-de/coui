@@ -67,6 +67,21 @@
 /// use — every disclosure of a group open, an accordion's longest answer.
 /// They are drawn a second time after the taps that reach that state.
 ///
+/// **v2 scenes.** Of the v2 blocks (`<Playground>`, `<Preview>`,
+/// `<VariantRow>`, `<SizeSpec>`, `<Anatomy>`, `<Card>`), only registered
+/// examples are collected above. The docs site draws these blocks with Jaspr,
+/// except the playground's Flutter pane; the native docs app draws them with
+/// Flutter. Every scene of every v2 page is therefore drawn once more, under
+/// every density, in the page body the app leaves in a window
+/// [_kAppWindowWidth] wide — where CoUI's tablet tier starts. The app keeps
+/// its sidebar at every width and has no phone layout, so narrower windows are
+/// not checked. A scene's stage grows with its content, so only signal 1
+/// applies. The playground is drawn with its initial properties.
+///
+/// A scene that already overflows is listed in [_kKnownSceneOverflows]. Each
+/// page's case compares its overflowing scenes with that list, so a new
+/// overflow and a fixed entry both fail it.
+///
 /// Shares the traps `menubar_preview_overflow_test.dart` documents: each
 /// draw mounts a fresh tree (an overflow is reported once per render
 /// object), and the view is sized rather than a box, because the embed
@@ -79,10 +94,13 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:coui_flutter/coui_flutter.dart';
+import 'package:docs_core/internal/preview/flutter_scene.dart';
+import 'package:docs_core/internal/preview/scene_file.dart';
 import 'package:docs_core/markdown/repo_root.dart';
 import 'package:docs_core/previews/flutter_chain_registry.dart';
 import 'package:docs_core/previews/flutter_registry.dart';
 import 'package:docs_core/shared/chain_permutations.dart';
+import 'package:docs_core/shared/playground_spec.dart';
 import 'package:docs_core/shared/preview_constraints.dart';
 import 'package:docs_core/shared/preview_layout.dart';
 import 'package:docs_core/shared/preview_variants.dart';
@@ -134,6 +152,22 @@ const double _kTallView = 4000;
 
 /// Layout lands on fractional pixels; a difference under this is not one.
 const double _kEpsilon = 0.5;
+
+/// The narrowest docs app window the v2 scenes are checked for.
+const double _kAppWindowWidth = 768;
+
+/// The page body in that window: less the sidebar (`kDocsSidebarWidth` in
+/// `app/docs_app`) and `DocsPageFrame`'s 40px on each side. The window is too
+/// narrow for the table of contents.
+const double _kAppBodyWidth = _kAppWindowWidth - CoreSpace.space256 - 2 * CoreSpace.space40;
+
+/// v2 scenes that overflow that body today — component → scene.
+const Map<String, Set<String>> _kKnownSceneOverflows = {
+  // Under spacious density, on the right.
+  'mockup-browser': {'Anatomy mockup-browser/anatomy'},
+  'mockup-device': {'Card mockup-device/related-mockup-browser'},
+  'tabs': {'Anatomy tabs/anatomy'},
+};
 
 const ValueKey<String> _kProbe = ValueKey('docs-preview-probe');
 
@@ -407,6 +441,48 @@ Future<List<String>> _failuresOf(
   return failures;
 }
 
+/// Draws [child] as the docs app stacks it in a page body [_kAppBodyWidth]
+/// wide, and returns the overflows it reported.
+Future<List<String>> _drawInAppBody(
+  WidgetTester tester,
+  Widget child,
+  CoreDensity density,
+) async {
+  await tester.pumpWidget(const SizedBox.shrink());
+  await tester.pump();
+  tester.view
+    ..devicePixelRatio = 1
+    ..physicalSize = const Size(_kAppBodyWidth, 2400);
+
+  final overflows = <String>[];
+  final previousOnError = FlutterError.onError;
+  FlutterError.onError = (details) {
+    final text = details.exception.toString();
+    if (text.contains('overflowed')) {
+      overflows.add(text.split('\n').first);
+    } else {
+      previousOnError?.call(details);
+    }
+  };
+  try {
+    await tester.pumpWidget(
+      CoUIApp(
+        theme: _kPreviewTheme,
+        density: density,
+        scaling: const AdaptiveScaling(),
+        debugShowCheckedModeBanner: false,
+        disableBrowserContextMenu: false,
+        enableThemeAnimation: false,
+        home: SingleChildScrollView(child: child),
+      ),
+    );
+    await _settle(tester);
+  } finally {
+    FlutterError.onError = previousOnError;
+  }
+  return overflows;
+}
+
 /// Runs [body] with network images served [png] — set and unset inside
 /// the test body, because flutter_test checks the painting globals the
 /// moment a body returns.
@@ -467,6 +543,66 @@ void main() {
       }
     });
   }
+
+  group('v2 scenes in the docs app', () {
+    final pages = kDocsPlaygrounds.keys.toList()..sort();
+
+    test('every v2 page declares scenes to draw', () {
+      // A collector that went blind would leave the cases below empty.
+      expect(pages, isNotEmpty);
+      for (final component in pages) {
+        expect(readDocsScenes(component), isNotEmpty, reason: component);
+      }
+      expect(pages, containsAll(_kKnownSceneOverflows.keys));
+    });
+
+    for (final component in pages) {
+      testWidgets('$component scenes on a ${_kAppBodyWidth}px body', (tester) async {
+        addTearDown(tester.view.reset);
+        final overflowing = <String>{};
+        final details = <String>[];
+        await _withStubbedImages(png, () async {
+          for (final scene in readDocsScenes(component)) {
+            final attributes = scene.attributes;
+            final input = attributes['demo'] ?? attributes['props'] ?? attributes['example'];
+            final name = input == null ? scene.tag : '${scene.tag} $input';
+            for (final density in CoreDensity.values) {
+              final overflows = await _drawInAppBody(
+                tester,
+                KeyedSubtree(key: ValueKey(scene.reference), child: renderFlutterScene(scene)),
+                density,
+              );
+              if (overflows.isEmpty) continue;
+              overflowing.add(name);
+              details.addAll([
+                for (final overflow in overflows) '$name ${density.name}: $overflow',
+              ]);
+            }
+          }
+        });
+
+        expect(
+          overflowing,
+          _kKnownSceneOverflows[component] ?? <String>{},
+          reason:
+              'overflowing scenes of $component differ from '
+              '_kKnownSceneOverflows\n${details.join('\n')}',
+        );
+      });
+    }
+
+    testWidgets('the detector sees a scene wider than the body', (tester) async {
+      addTearDown(tester.view.reset);
+      // Negative control for the cases above.
+      final overflows = await _drawInAppBody(
+        tester,
+        const Row(children: [SizedBox(width: _kAppBodyWidth + 100, height: 10)]),
+        CoreDensity.standard,
+      );
+
+      expect(overflows, contains(contains('overflowed')));
+    });
+  });
 
   group('known defects', () {
     for (final MapEntry(key: key, value: issue) in _kKnownDefects.entries) {
