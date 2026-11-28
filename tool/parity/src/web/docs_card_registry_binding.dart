@@ -1,11 +1,21 @@
 import 'dart:convert';
 
 import '../model/box_observation_source_spec.dart';
+import 'docs_anatomy_binding.dart';
 import 'docs_card_registry_ssr_source.dart';
 
 /// Source references only. The coordinator invokes validateCurrentBinding
 /// around every legacy and own-CSS phase; this script samples no styles.
 String get docsCardRegistryRequestBindingScript =>
+    '''
+(request) => {
+ if(request.requested===true&&request.documentationSceneTag==='Anatomy'&&
+ (request.requiredCurrentSsrKind!=null||request.currentSsrSource!=null))return ($docsAnatomyRequestBindingScript)(request);
+ return ($_kExistingDocsCardRegistryRequestBindingScript)(request);
+}
+''';
+
+String get _kExistingDocsCardRegistryRequestBindingScript =>
     '''
 (request) => {
  if(request.requested===false)return {applied:false};

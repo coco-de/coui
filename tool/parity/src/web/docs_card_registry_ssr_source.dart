@@ -16,14 +16,14 @@ const _kSvgNamespace = 'http://www.w3.org/2000/svg';
 final _formatter = RegExp(r'^[\t\n\f\r ]*$');
 
 /// The scene is the object already resolved by the ordinary capture build.
-/// In particular, the registry tuple alone does not opt Anatomy into this path.
+/// The exact original scene and closed Anatomy declarations are required too.
 String? requiredDocsCardRegistrySsrKind(MatrixEntry entry, DocsScene? scene) =>
     DocsCardRegistrySsrSource.forEntry(entry, scene) == null
     ? null
     : kDocsCardRegistrySsrKind;
 
 /// Classification from the same original normal resolve, separate from the
-/// optional quantity receipt. Anatomy receives route metadata, no source proof.
+/// optional quantity receipt; neither the tag nor the route is ownership proof.
 Map<String, String>? docsCardRegistrySceneRoute(
   MatrixEntry entry,
   DocsScene? scene,
@@ -76,7 +76,14 @@ class DocsCardRegistrySsrSource implements CurrentSsrBoxSource {
     if (entry.probes.single.boxObservationSource != source) {
       throw _changed('exact original documentation tuple');
     }
-    if (scene.tag == 'Anatomy') return null;
+    if (scene.tag == 'Anatomy') {
+      if (scene.selections.length != 1 ||
+          scene.attributes.length != 1 ||
+          scene.attributes['demo'] == null) {
+        throw _changed('closed original Anatomy demo declaration');
+      }
+      return DocsCardRegistrySsrSource._(entry, scene, source);
+    }
     if (!const {'Card', 'Preview', 'VariantRow'}.contains(scene.tag) ||
         scene.selections.length != 1 ||
         (scene.attributes['component'] == null &&
@@ -250,7 +257,9 @@ class DocsCardRegistrySsrSource implements CurrentSsrBoxSource {
       throw _changed('same original registry result occurrence');
     }
     late final Map<String, Object?> registryTree;
-    if (scene.tag == 'Card') {
+    if (scene.tag == 'Anatomy') {
+      registryTree = _anatomy(reader, registryElement);
+    } else if (scene.tag == 'Card') {
       registryTree = _card(reader, registryElement);
     } else {
       registryTree = _stage(
@@ -267,6 +276,7 @@ class DocsCardRegistrySsrSource implements CurrentSsrBoxSource {
       'family': scene.tag == 'Card' ? 'whole-card' : 'registry-scene',
       'sceneTag': scene.tag,
       'sceneReference': scene.reference,
+      if (scene.tag == 'Anatomy') 'entryComponent': entry.component,
       // Data-only labels/body/selection inputs bind the original cohort. Their
       // container alias identities are not an inset quantity obligation.
       'originalSceneInput': scene.toJson(),
@@ -275,6 +285,53 @@ class DocsCardRegistrySsrSource implements CurrentSsrBoxSource {
       'opaqueFrontiers': frontiers,
       'capture': captureTree,
     });
+  }
+
+  /// Only normal public owned declarations are read. The demo and legend
+  /// remain whole slot-target opaque frontiers. Runtime markers do not exist
+  /// in this server mount and are never fabricated into its completed body.
+  Map<String, Object?> _anatomy(_Reader reader, Element element) {
+    final outer = reader.owned(element, 'div');
+    final outerInput = element.component as div;
+    if (outerInput.classes != 'docs-anatomy not-content' ||
+        outerInput.id != null ||
+        outerInput.styles != null ||
+        outerInput.attributes != null ||
+        outerInput.events != null ||
+        outer.children.length != 2) {
+      throw _changed('complete original Anatomy outer declaration');
+    }
+    final stageElement = outer.children.first;
+    final stage = reader.owned(stageElement, 'div');
+    final stageInput = stageElement.component as div;
+    if (stageInput.classes != 'docs-stage docs-stage--240 docs-anatomy-stage' ||
+        stageInput.id != null ||
+        stageInput.styles != null ||
+        !_mapEquals(stageInput.attributes, {
+          'data-docs-anatomy': scene.anatomyParts.join(';'),
+        }) ||
+        stageInput.events != null ||
+        stage.children.length != 1) {
+      throw _changed('complete original Anatomy stage declaration');
+    }
+    final targetElement = stage.children.single;
+    final target = reader.owned(targetElement, 'div');
+    final targetInput = targetElement.component as div;
+    if (targetInput.classes != 'docs-anatomy-target' ||
+        targetInput.id != null ||
+        targetInput.styles != null ||
+        targetInput.attributes != null ||
+        targetInput.events != null ||
+        target.children.length != 1) {
+      throw _changed('required original owned Anatomy target');
+    }
+    final targetTree = reader.tree(target, [
+      reader.opaque(target, 0, 'preview'),
+    ]);
+    return reader.tree(outer, [
+      reader.tree(stage, [targetTree]),
+      reader.opaque(outer, 1, 'anatomy-legend'),
+    ]);
   }
 
   Map<String, Object?> _stage(

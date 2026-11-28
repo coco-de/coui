@@ -109,6 +109,7 @@ String get boxPaddingObservationScript =>
   if (matches[0] !== layoutRoot) return JSON.stringify(incomplete('UNDECLARED_FIELD_OWNER'));
   let owner;
   let sourceBindingAuthority = null;
+  let currentAnatomyEvidence = null;
   let registryIsLayoutRoot = null;
   let currentClientWitness = null;
   let currentClientEvidence = null;
@@ -294,6 +295,11 @@ String get boxPaddingObservationScript =>
       registryIsLayoutRoot = binding.registryIsLayoutRoot;
       validateCurrentBoxBinding = binding.validateCurrentBinding;
       currentBoxBindingFailure = 'DOCS_FRAME_BINDING_CHANGED_DURING_BOX_READ';
+      if (request.documentationSceneTag === 'Anatomy') {
+        if (!binding.currentAnatomyEvidence)
+          return JSON.stringify(incomplete('DOCS_ANATOMY_CURRENT_ROSTER_REQUIRED'));
+        currentAnatomyEvidence = binding.currentAnatomyEvidence;
+      }
       break;
     }
     case 'declared-layout-root-v1':
@@ -638,6 +644,7 @@ String get boxPaddingObservationScript =>
       clientDomIdentityValidated:true,clientDomWholeTreeValidated:source.webAdapterId!=='stage-current-callback-content-inset-v1',
       ...(source.webAdapterId==='stage-current-callback-content-inset-v1' ? {clientOwnedPrefixValidated:true,foreignInteriorUsedForAuthority:false} : {}),
       clientObservationPhase:currentClientWitness.renderPhase} : {}),
+    ...(currentAnatomyEvidence ? {currentAnatomyEvidence} : {}),
     canonicalComparisonEligible:false});
 }
 ''';
