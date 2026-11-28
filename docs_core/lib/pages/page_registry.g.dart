@@ -12,9 +12,11 @@ import 'badge/badge_page.dart' as badge;
 import 'banner/banner_page.dart' as banner;
 import 'breadcrumb/breadcrumb_page.dart' as breadcrumb;
 import 'button/button_page.dart' as button;
+import 'calendar/calendar_page.dart' as calendar;
 import 'card_image/card_image_page.dart' as card_image;
 import 'carousel/carousel_page.dart' as carousel;
 import 'carousel_banner/carousel_banner_page.dart' as carousel_banner;
+import 'category_breakdown/category_breakdown_page.dart' as category_breakdown;
 import 'checkbox/checkbox_page.dart' as checkbox;
 import 'chip/chip_page.dart' as chip;
 import 'chip_group/chip_group_page.dart' as chip_group;
@@ -23,7 +25,10 @@ import 'color_picker/color_picker_page.dart' as color_picker;
 import 'command/command_page.dart' as command;
 import 'command_search/command_search_page.dart' as command_search;
 import 'context_menu/context_menu_page.dart' as context_menu;
+import 'countdown/countdown_page.dart' as countdown;
 import 'date_picker/date_picker_page.dart' as date_picker;
+import 'definition_list/definition_list_page.dart' as definition_list;
+import 'description_card/description_card_page.dart' as description_card;
 import 'dialog/dialog_page.dart' as dialog;
 import 'disclosure_badge/disclosure_badge_page.dart' as disclosure_badge;
 import 'divider/divider_page.dart' as divider;
@@ -129,9 +134,11 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (banner.playground case final spec?) banner.slug: spec,
   if (breadcrumb.playground case final spec?) breadcrumb.slug: spec,
   if (button.playground case final spec?) button.slug: spec,
+  if (calendar.playground case final spec?) calendar.slug: spec,
   if (card_image.playground case final spec?) card_image.slug: spec,
   if (carousel.playground case final spec?) carousel.slug: spec,
   if (carousel_banner.playground case final spec?) carousel_banner.slug: spec,
+  if (category_breakdown.playground case final spec?) category_breakdown.slug: spec,
   if (checkbox.playground case final spec?) checkbox.slug: spec,
   if (chip.playground case final spec?) chip.slug: spec,
   if (chip_group.playground case final spec?) chip_group.slug: spec,
@@ -140,7 +147,10 @@ final Map<String, DocsPlaygroundSpec> kDocsPlaygrounds = {
   if (command.playground case final spec?) command.slug: spec,
   if (command_search.playground case final spec?) command_search.slug: spec,
   if (context_menu.playground case final spec?) context_menu.slug: spec,
+  if (countdown.playground case final spec?) countdown.slug: spec,
   if (date_picker.playground case final spec?) date_picker.slug: spec,
+  if (definition_list.playground case final spec?) definition_list.slug: spec,
+  if (description_card.playground case final spec?) description_card.slug: spec,
   if (dialog.playground case final spec?) dialog.slug: spec,
   if (disclosure_badge.playground case final spec?) disclosure_badge.slug: spec,
   if (divider.playground case final spec?) divider.slug: spec,
@@ -247,9 +257,11 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (banner.sizeSpec case final spec?) banner.slug: spec,
   if (breadcrumb.sizeSpec case final spec?) breadcrumb.slug: spec,
   if (button.sizeSpec case final spec?) button.slug: spec,
+  if (calendar.sizeSpec case final spec?) calendar.slug: spec,
   if (card_image.sizeSpec case final spec?) card_image.slug: spec,
   if (carousel.sizeSpec case final spec?) carousel.slug: spec,
   if (carousel_banner.sizeSpec case final spec?) carousel_banner.slug: spec,
+  if (category_breakdown.sizeSpec case final spec?) category_breakdown.slug: spec,
   if (checkbox.sizeSpec case final spec?) checkbox.slug: spec,
   if (chip.sizeSpec case final spec?) chip.slug: spec,
   if (chip_group.sizeSpec case final spec?) chip_group.slug: spec,
@@ -258,7 +270,10 @@ final Map<String, DocsSizeSpec Function()> kDocsSizeSpecs = {
   if (command.sizeSpec case final spec?) command.slug: spec,
   if (command_search.sizeSpec case final spec?) command_search.slug: spec,
   if (context_menu.sizeSpec case final spec?) context_menu.slug: spec,
+  if (countdown.sizeSpec case final spec?) countdown.slug: spec,
   if (date_picker.sizeSpec case final spec?) date_picker.slug: spec,
+  if (definition_list.sizeSpec case final spec?) definition_list.slug: spec,
+  if (description_card.sizeSpec case final spec?) description_card.slug: spec,
   if (dialog.sizeSpec case final spec?) dialog.slug: spec,
   if (disclosure_badge.sizeSpec case final spec?) disclosure_badge.slug: spec,
   if (divider.sizeSpec case final spec?) divider.slug: spec,
