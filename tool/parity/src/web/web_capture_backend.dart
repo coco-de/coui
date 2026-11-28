@@ -36,6 +36,7 @@ import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'data_overlay_ssr_source.dart';
 import 'docs_card_registry_ssr_source.dart';
+import 'docs_chat_single_bubble_ssr_source.dart';
 import 'docs_size_ssr_source.dart';
 import 'element_capture.dart';
 import 'framed_collection_ssr_source.dart';
@@ -250,7 +251,8 @@ Future<String> renderCaptureBodyHtml(
 }) async {
   var sourceRecorder = onCurrentBoxSource == null
       ? null
-      : DocsSizeSsrSource.forEntry(entry) ??
+      : DocsChatSingleBubbleSsrSource.forEntry(entry) ??
+            DocsSizeSsrSource.forEntry(entry) ??
             PublicWrapperSsrSource.forEntry(entry) ??
             CardAccordionFrameSsrSource.forEntry(entry) ??
             BottomActionBarSsrSource.forEntry(entry) ??
@@ -340,6 +342,14 @@ Future<String> renderCaptureBodyHtml(
   var witness = sourceWitness;
   if (recorder is DocsCardRegistrySsrSource &&
       witness?['docsCardRegistryAwaitingActualNormalBody'] == true) {
+    try {
+      witness = recorder.completeWithSerializedBody(html);
+    } on Object catch (error) {
+      witness = {'error': '$error'};
+    }
+  }
+  if (recorder is DocsChatSingleBubbleSsrSource &&
+      witness?['docsChatAwaitingActualNormalBody'] == true) {
     try {
       witness = recorder.completeWithSerializedBody(html);
     } on Object catch (error) {
@@ -544,7 +554,10 @@ Future<WebCaptureResult> captureWebEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   var requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredDocsSizeSsrKind(entry) ??
+      ? (DocsChatSingleBubbleSsrSource.forEntry(entry) == null
+                ? null
+                : kDocsChatSingleBubbleSsrKind) ??
+            requiredDocsSizeSsrKind(entry) ??
             requiredStepperHorizontalSsrKind(entry) ??
             requiredPublicWrapperSsrKind(entry) ??
             requiredCardAccordionFrameSsrKind(entry) ??

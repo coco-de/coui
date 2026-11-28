@@ -7,6 +7,7 @@ import 'breakpoint_showcase_ssr_source.dart';
 import 'card_accordion_frame_binding.dart';
 import 'device_paint_source_probe.dart';
 import 'docs_card_registry_binding.dart';
+import 'docs_chat_single_bubble_binding.dart';
 import 'docs_size_binding.dart';
 import 'public_wrapper_ssr_source.dart';
 import 'scope_allocation_binding.dart';
@@ -25,6 +26,10 @@ String get computedStyleProbeScript =>
 String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
     '''
 (request) => {
+  const docsChat = request.requested === false ? {applied:false}
+    : ($docsChatSingleBubbleRequestBindingScript)(request);
+  if (docsChat.error) throw new Error(docsChat.error);
+  if (docsChat.applied && !docsChat.validateCurrentBinding()) throw new Error('DOCS_CHAT_CURRENT_BINDING_CHANGED');
   const docsFrame = ($docsCardRegistryRequestBindingScript)(request);
   if (docsFrame.error) throw new Error(docsFrame.error);
   if (docsFrame.applied && !docsFrame.validateCurrentBinding()) throw new Error('DOCS_FRAME_CURRENT_BINDING_CHANGED');
@@ -62,6 +67,7 @@ String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
   if (paint.error) throw new Error(paint.error);
   if (paint.applied && !paint.validateCurrentBinding()) throw new Error('DEVICE_PAINT_SOURCE_STALE');
   const legacy = JSON.parse(($_kComputedStyleJs)(request.selector,paint.applied ? paint.sourcePaintElement : null));
+  if (docsChat.applied && !docsChat.validateCurrentBinding()) throw new Error('DOCS_CHAT_BINDING_CHANGED_DURING_LEGACY_READ');
   if (docsFrame.applied && !docsFrame.validateCurrentBinding()) throw new Error('DOCS_FRAME_BINDING_CHANGED_DURING_LEGACY_READ');
   if (docsSize.applied && !docsSize.validateCurrentBinding()) throw new Error('DOCS_SIZE_BINDING_CHANGED_DURING_LEGACY_READ');
   if (stage.applied && !stage.validateCurrentBinding()) throw new Error('STAGE_CALLBACK_BINDING_CHANGED_DURING_LEGACY_READ');
@@ -75,6 +81,7 @@ String sourceValidatedComputedStyleAndBoxScript(String boxSamplerScript) =>
   if (surfaceFrame.applied && !surfaceFrame.validateCurrentBinding()) throw new Error('SURFACE_FRAME_BINDING_CHANGED_DURING_LEGACY_READ');
   if (stepper.applied && !stepper.validateCurrentBinding()) throw new Error('STEPPER_HORIZONTAL_BINDING_CHANGED_DURING_LEGACY_READ');
   const box = JSON.parse(($boxSamplerScript)(request));
+  if (docsChat.applied && !docsChat.validateCurrentBinding()) throw new Error('DOCS_CHAT_BINDING_CHANGED_DURING_BOX_READ');
   if (docsFrame.applied && !docsFrame.validateCurrentBinding()) throw new Error('DOCS_FRAME_BINDING_CHANGED_DURING_BOX_READ');
   if (docsSize.applied && !docsSize.validateCurrentBinding()) throw new Error('DOCS_SIZE_BINDING_CHANGED_DURING_BOX_READ');
   if (stepper.applied && !stepper.validateCurrentBinding()) throw new Error('STEPPER_HORIZONTAL_BINDING_CHANGED_DURING_BOX_READ');

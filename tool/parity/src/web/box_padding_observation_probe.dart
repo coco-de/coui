@@ -36,6 +36,7 @@ import 'card_accordion_frame_binding.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
 import 'docs_card_registry_binding.dart';
+import 'docs_chat_single_bubble_binding.dart';
 import 'docs_size_binding.dart';
 import 'public_wrapper_ssr_source.dart';
 import 'scope_allocation_binding.dart';
@@ -50,6 +51,9 @@ String get boxPaddingObservationScript =>
     '''
 (request) => {
   const incomplete = error => ({status:'incomplete', error});
+  if (request.requested === false) return JSON.stringify({status:'not-requested'});
+  const currentDocsChatBinding = ($docsChatSingleBubbleRequestBindingScript)(request);
+  if (currentDocsChatBinding.error) return JSON.stringify(incomplete(currentDocsChatBinding.error));
   if (!request.requested) return JSON.stringify({status:'not-requested'});
   const source = request.source;
   if (!source) return JSON.stringify(incomplete('MISSING_PAIRED_BOX_SOURCE'));
@@ -124,6 +128,25 @@ String get boxPaddingObservationScript =>
     return {raw:receipt.currentRaw};
   };
   switch(source.webAdapterId) {
+    case 'docs-chat-single-bubble-frame-v1': {
+      const binding = currentDocsChatBinding;
+      if (!binding.applied || binding.registryResultElement !== layoutRoot ||
+          binding.registryIsLayoutRoot !== true || layoutRoot.children.length !== 1 ||
+          layoutRoot.children[0].children.length !== 1 ||
+          layoutRoot.children[0].children[0] !== binding.fieldUnitElement ||
+          binding.paddingSource !== binding.fieldUnitElement ||
+          binding.frameSource !== binding.fieldUnitElement ||
+          typeof binding.authority !== 'string' || !binding.authority ||
+          typeof binding.validateCurrentBinding !== 'function' ||
+          !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('DOCS_CHAT_ORIGINAL_BODY_RELATION_CHANGED'));
+      owner = binding.paddingSource;
+      sourceBindingAuthority = binding.authority;
+      registryIsLayoutRoot = true;
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      currentBoxBindingFailure = 'DOCS_CHAT_BINDING_CHANGED_DURING_BOX_READ';
+      break;
+    }
     case 'stepper-normal-horizontal-generated-host-v1': {
       const binding = ($stepperHorizontalRequestBindingScript)(request);
       if (binding.error) return JSON.stringify(incomplete(binding.error));
@@ -473,7 +496,6 @@ String get boxPaddingObservationScript =>
     case 'mask-generated-clip-host-v1':
     case 'hover-generated-effect-host-v1':
     case 'indicator-generated-overlay-host-v1':
-    case 'docs-chat-single-bubble-frame-v1':
     case 'steps-generated-sequence-host-v1':
     case 'stepper-vertical-sequence-host-v1':
     case 'aspect-ratio-generated-layout-host-v1':
