@@ -1,43 +1,28 @@
 ---
 title: CodeSnippet
-description: 코드를 구문 강조와 함께 표시하는 코드 블록 컴포넌트
+description: 코드를 구문 강조와 함께 보여 주고 클립보드에 복사할 수 있는 코드 블록입니다. 줄 번호와 줄 톤 띠를 켤 수 있습니다.
 category: display
 platforms: [flutter, web]
-related: [kbd, text]
+related: [code-diff, mockup-code, kbd, text]
 tags: [code, syntax-highlighting, developer]
+template: v2
+source: display/code_snippet
 ---
 
 # CodeSnippet
 
-코드를 구문 강조(syntax highlighting)와 함께 표시하는 컴포넌트입니다. 줄 번호 표시, 줄 톤 띠, 복사 버튼, 다양한 테마를 지원합니다.
+<a id="live-preview"></a>
+<a id="기본-사용법-basic-usage"></a>
 
-Flutter와 Web 모두 순수 Dart 패키지 `syntax_highlight_lite`를 사용하고, 내장 Dart 문법에 같은 JSON·YAML·SQL 문법을 추가로 등록합니다.
-어느 `mode` 가 어느 문법으로 칠해지는지는 Core 의 표 하나(`CoreCodeSnippetContract.grammarOf`)가 정하고 두 플랫폼이 그것을 읽습니다.
-Flutter 는 강조 결과를 `TextSpan` 으로, Web 은 `<span>` 으로 그립니다. 복사 기능은 Flutter 기본 `Clipboard`를 사용합니다.
+## 플레이그라운드
 
-## Live Preview
+`code` 에 보여 줄 코드를, `mode` 에 언어 이름을 넘깁니다. 두 값은 꼭 있어야 하고, 다른 값을 더하지 않으면 줄 번호 없이 복사 버튼이 있는 코드 블록이 됩니다. 속성을 바꿔 보며 확인하고, 만들어진 코드를 그대로 복사하세요.
 
-<LivePreview component="code-snippet" />
+<Playground component="code-snippet" />
 
-## 사용 시기 (When to Use)
-
-**이 컴포넌트를 사용하세요:**
-- 문서, 튜토리얼, 도움말 페이지에서 코드 예시를 보여줄 때
-- API 응답이나 설정 파일 내용을 사용자에게 표시할 때
-- 코드 복사 기능이 필요한 개발자 도구나 대시보드를 구현할 때
-
-**대신 다른 컴포넌트를 사용하세요:**
-- **[Kbd](/components/kbd)**: 코드 블록 대신 키보드 키 조합의 힌트를 표시할 때
-- **[CodeDiff](/components/code-diff)**: 줄마다 추가·삭제·유지 데이터가 있어 변경 표시가 필요할 때
-- **[Text](/components/text)**: 단순 텍스트 정보를 표시할 때 (코드가 아닌 경우)
-
-## 기본 사용법 (Basic Usage)
-
-<Tabs groupId="platform">
-  <TabItem label="Flutter" value="flutter">
+가장 짧은 모양은 아래와 같습니다. Flutter와 Web 코드가 같습니다.
 
 ```dart
-// 기본 코드 블록
 CodeSnippet(
   code: '''
 void main() {
@@ -45,58 +30,360 @@ void main() {
 }''',
   mode: 'dart',
 )
-
-// 줄 번호와 복사 버튼 포함
-CodeSnippet(
-  code: '''
-import 'package:flutter/material.dart';
-
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text('Hello');
-  }
-}''',
-  mode: 'dart',
-  showLineNumbers: true,
-  showCopyButton: true,
-)
 ```
 
-  </TabItem>
-  <TabItem label="Web" value="web">
+## 구조
+
+코드 블록은 바깥 상자 안에 코드 영역을 두고, 오른쪽 위에 액션과 복사 버튼을 겹쳐 놓습니다.
+
+<Anatomy demo="code-snippet/anatomy">
+<AnatomyItem part="container" name="Container">
+
+배경과 모서리, 테두리를 가진 바깥 상자입니다. 기본은 `surfaceContainerLow` 면에 모서리 8이고 테두리는 없습니다.
+
+</AnatomyItem>
+<AnatomyItem select="pre" side="top" name="code">
+
+`code` 를 그리는 영역입니다. 글자는 `codeSm` 역할(고정폭 12px, 줄 높이 21px)이고, 안쪽 여백은 위아래 10 · 좌우 12입니다. 긴 줄은 줄바꿈하지 않고 이 영역 안에서 가로로 스크롤합니다.
+
+</AnatomyItem>
+<AnatomyItem select="code span" side="top" name="showLineNumbers">
+
+1부터 매기는 줄 번호입니다. 오른쪽에 맞추고 코드와 12를 띄웁니다.
+
+</AnatomyItem>
+<AnatomyItem select="[data-docs-part=actions]" side="top" name="actions">
+
+복사 버튼 앞에 놓는 위젯 목록입니다. 그림에서는 언어를 적은 Badge 하나를 넣었습니다.
+
+</AnatomyItem>
+<AnatomyItem select="button[aria-label]" side="right" name="showCopyButton">
+
+`code` 를 클립보드에 쓰는 28 × 28 버튼입니다. 아이콘은 16이고, 상자의 위와 오른쪽에서 6씩 떨어져 있습니다.
+
+</AnatomyItem>
+</Anatomy>
+
+<Note>
+
+문서 사이트에서 본문의 그림은 서버가 그린 정적인 미리보기라 복사 버튼이 동작하지 않습니다. 복사 동작은 위 플레이그라운드에서 확인합니다.
+
+</Note>
+
+## 언어와 구문 강조
+
+`mode` 는 어느 문법으로 칠할지 고르는 문자열입니다. 대소문자를 구분합니다.
+
+| `mode` 값 | 칠하는 문법 |
+| --- | --- |
+| `dart` · `javascript` · `js` · `ts` | Dart |
+| `json` | JSON |
+| `yaml` · `yml` | YAML |
+| `sql` | SQL |
+| 그 밖의 값 (`bash` · `SQL` 등) | 없음 — 한 가지 색 |
+
+어느 값이 어느 문법을 쓰는지는 `CoreCodeSnippetContract.grammarOf` 가 정하고 두 플랫폼이 함께 읽습니다. 문법이 없으면 이 함수는 `null` 을 돌려줍니다. 다른 언어의 문법을 빌려 칠하면 틀린 색이 나올 수 있습니다. 예를 들어 Dart 문법은 YAML 에 적은 URL 의 `//` 뒤를 주석으로 읽습니다. JavaScript 와 TypeScript 만 전용 문법 없이 Dart 문법으로 읽습니다.
+
+<Preview demo="code-snippet/languages" />
+
+두 플랫폼 모두 순수 Dart 패키지 `syntax_highlight_lite` 로 칠합니다. Dart 문법은 그 패키지에 들어 있고, JSON · YAML · SQL 문법은 CoUI 패키지가 함께 싣습니다. 색은 조각의 종류마다 테마의 색 토큰을 씁니다.
+
+| 조각 | 색 |
+| --- | --- |
+| 키워드, `true` · `false` · `null` 같은 언어 상수 | `syntaxKeyword` |
+| 타입 · 클래스 이름, 숫자 | `syntaxType` |
+| 함수 · 메서드 이름, JSON · YAML 의 키 | `syntaxFunction` |
+| 문자열 | `syntaxString` |
+| 구두점 · 연산자 · 괄호, 주석 | `onSurfaceVariant` |
+| 문법이 오류로 표시한 글 | `onErrorContainer` |
+| 그 밖의 글 | 코드 색 (`codeTextStyle.color`, 기본 `onSurface`) |
+
+표는 CoUI 가 정한 대응입니다. 어떤 글이 어느 종류가 되는지는 문법이 나누는 대로입니다. 한 가지 예외로, JSON 문법이 '구분자가 와야 할 자리'라고 오류로 표시한 글은 `syntaxType` 으로 칠합니다. 함께 싣는 JSON 문법은 객체 · 배열 안의 숫자에도 이 표시를 붙이기 때문입니다. 그래서 JSON 에서 이 표시가 붙은 잘못된 글은 오류 색으로 드러나지 않습니다.
+
+### 면과 구문 강조
+
+구문 색은 정해진 면 위에서만 씁니다. 면(`backgroundColor`)은 아래 세 가지로 나뉘고, 강조는 강조 톤에서만 켜집니다. 다른 두 가지에서는 코드 전체가 코드 색 하나로 나옵니다.
+
+- **강조 톤** — 불투명한 `surface` · `surfaceContainerLow`(기본) · `surfaceContainer` · `surfaceContainerHigh` · `errorContainer` · `successContainer` · `warningContainer` · `infoContainer`
+- **솔리드 역할 면** — 불투명한 `primary` · `secondary` · `tertiary` · `error` · `success` · `warning` · `info` · `outline`
+- **그 밖의 면** — `surfaceContainerHighest` · `primaryContainer` 같은 다른 토큰, 반투명한 토큰, 직접 적은 색, 투명
+
+<Preview demo="code-snippet/faces" />
+
+| 면 | 구문 강조 | 줄 번호와 복사 글리프 |
+| --- | --- | --- |
+| 강조 톤 | 켜짐 | 번호는 `onSurfaceVariant`, 글리프는 복사 버튼의 글자색 |
+| 솔리드 역할 면 | 꺼짐 | 면의 짝 색 — `primary` 면이면 `onPrimary`, `outline` 면은 `surface` |
+| 그 밖의 면 | 꺼짐 | 번호는 `onSurfaceVariant`, 글리프는 복사 버튼의 글자색 |
+
+- 판단은 배경의 토큰 이름과 투명도만 보며, 두 플랫폼이 같은 함수(`CoreSyntaxFaces.admits`)를 씁니다.
+- 네 가지 구문 색(`syntaxKeyword` · `syntaxType` · `syntaxFunction` · `syntaxString`)은 CoUI 기본 색에서 강조 톤 여덟 면 위의 대비 4.5 : 1 을 기준으로 검사하는 색입니다. 화면에 그릴 때 대비를 재지는 않으므로, 브랜드 색을 쓰면 같은 면에서도 글자가 읽히는지 직접 확인합니다.
+- `.primary` 같은 색 getter 는 배경과 코드 색을 함께 정합니다. 마지막에 적은 색 getter 가 둘을 정합니다.
+- `backgroundColor` 만 바꾸면 코드 색은 기본 `onSurface` 그대로입니다. 솔리드 역할 면이나 직접 적은 색을 배경으로 쓰면 `codeTextStyle.color` 를 함께 정합니다.
+- 솔리드 역할 면의 줄 번호 · 복사 글리프 · 복사 버튼의 포커스 링 색은 면을 getter, `withStyle`, 앱 테마 중 어디서 골라도 같게 따라옵니다. `.primary.surface` 는 기본 색으로 돌아오고 `.surface.primary` 는 `onPrimary` 가 됩니다.
+- `lineNumberTextStyle.color`, `copyIconStyle.color`, `copyButtonStyle.focusOutlineStyle` 에 직접 적은 색은 짝 색보다 우선합니다.
+- `.transparent` 는 배경을 비우고 코드 색을 `onSurface` 로 정합니다. 뒤에 무엇이 있는지 알 수 없으므로 강조는 꺼집니다.
+
+<a id="줄-톤-line-tones"></a>
+
+## 줄 톤
+
+바뀐 줄이나 오류가 난 줄을 띠로 가리킵니다. `lineTones` 에 줄 번호(1부터)와 톤을 적습니다. 줄은 `code` 를 줄바꿈 문자로 나눠 세고, 코드에 없는 번호는 무시합니다.
+
+<Preview demo="code-snippet/line-tones" />
 
 ```dart
-// 기본 코드 블록
 CodeSnippet(
-  code: '''
-void main() {
-  print('Hello, CoUI!');
-}''',
-  mode: 'dart',
-)
-
-// 줄 번호 표시
-CodeSnippet(
-  code: '''
-import 'package:jaspr/jaspr.dart';
-
-void main() {
-  runApp(App());
-}''',
+  code: "void main() {\n  final greeting = 'Hello, CoUI!';\n  print(greting);\n}",
   mode: 'dart',
   showLineNumbers: true,
+  lineTones: {2: CoreCodeLineTone.success, 3: CoreCodeLineTone.error},
 )
 ```
 
-  </TabItem>
-</Tabs>
+Flutter와 Web 코드가 같습니다.
 
-### 빠른 오버라이드 (Chain)
+| 톤 | 띠의 기본 색 | 바꾸는 필드 |
+| --- | --- | --- |
+| `success` | `successContainer` | `successLineColor` |
+| `warning` | `warningContainer` | `warningLineColor` |
+| `error` | `errorContainer` | `errorLineColor` |
+| 그 밖 | 띠를 그리지 않음 (`neutral` · `muted` · `link`) | 없음 |
 
-이미 만든 `CodeSnippet` 인스턴스에 스타일을 빠르게 덧붙이고 싶다면 `withStyle` 체인을 쓸 수 있습니다. 생성자의 style 슬롯 인자와 동일하게 동작하지만, 이미 구성된 위젯 위에서 바로 이어 쓸 수 있습니다. `.radius8`처럼 Core 토큰 상수 이름과 똑같은 이름의 getter도 있습니다 — `withStyle`을 한 번 더 줄인 sugar로, 이름이 곧 값이라(radius8 == `CoreRadius.radius8`) 어느 컴포넌트에서 써도 뜻이 갈리지 않습니다.
+- 띠의 높이는 그 줄의 높이이고, 줄 번호 · 코드 · 양옆 안쪽 여백 아래에 깔립니다. 긴 줄이 있으면 띠도 그 줄 끝까지 이어지고, 가로로 스크롤하면 줄과 함께 움직입니다.
+- 띠 위의 코드와 줄 번호는 원래 색을 유지합니다.
+- `success` · `error` 의 기본 띠 색은 [CodeDiff](/components/code-diff) 가 추가 · 삭제한 줄에 까는 것과 같은 토큰입니다.
+- 띠는 색이라서 보조 기술에는 톤을 말로 함께 전합니다(접근성 섹션).
+
+<Note>
+
+솔리드 역할 면에서도 띠는 같은 컨테이너 색이고, 줄 번호와 색 getter 가 정한 코드 색은 면의 짝 색입니다. 그래서 띠 위의 글자가 거의 보이지 않을 수 있습니다. `.primary` 면은 CoUI 기본 라이트 · 다크 색으로 계산하면 `success` · `error` 띠 위의 대비가 1.3 : 1 아래입니다. 줄 톤은 구문 강조가 켜지는 면에서 쓰거나, 띠 색 필드를 면에 맞게 직접 정합니다.
+
+</Note>
+
+줄마다 추가 · 삭제 데이터가 있고 `+` · `-` 표시까지 필요하면 [CodeDiff](/components/code-diff) 를 씁니다. 줄 톤은 보통의 코드에서 몇 줄을 가리킬 때 씁니다.
+
+<a id="동작-스펙-behavior"></a>
+
+## 상태
+
+코드 블록에는 선택 · 비활성 · 오류 같은 상태를 정하는 파라미터가 없습니다. 누를 때 달라지는 것은 복사 버튼입니다.
+
+### 인터랙션
+
+| 상황 | 동작 |
+| --- | --- |
+| 복사 | `code` 문자열을 그대로 클립보드에 씁니다. 줄 번호, 줄 톤의 설명 글, 색은 들어가지 않습니다. |
+| 복사 직후 | 아이콘이 체크 표시로 바뀌고 `CoreCodeSnippetContract.copiedFeedbackDuration`(2초) 뒤에 돌아옵니다. 그 사이에 다시 복사하면 시간을 새로 셉니다. |
+| 복사 결과 | 체크 표시는 쓰기가 끝나기를 기다리지 않고 바로 바뀝니다. 실패를 알리는 표시는 없습니다. |
+| 추가 동작 | `onCopy` 를 부릅니다. 부르는 시점은 플랫폼마다 다릅니다(플랫폼 차이). 토스트는 저절로 뜨지 않습니다. |
+| Hover | 글리프가 `onSurfaceVariant` 에서 `onSurface` 로 바뀝니다. 솔리드 역할 면이거나 `copyIconStyle.color` 를 정하면 글리프 색은 바뀌지 않습니다. |
+| 비활성 | 복사 버튼은 비활성이 되지 않습니다. 필요 없으면 `showCopyButton: false` 로 숨깁니다. |
+
+복사한 뒤에 안내를 띄우려면 `onCopy` 에 직접 연결합니다.
+
+```dart
+CodeSnippet(
+  code: 'flutter pub get',
+  mode: 'bash',
+  onCopy: showCopiedMessage,
+)
+```
+
+<a id="사용-시기-when-to-use"></a>
+<a id="사용-가이드라인-usage-guidelines"></a>
+
+## 사용 가이드
+
+### 이럴 때 씁니다
+
+- 문서 · 튜토리얼 · 도움말에서 코드 예시를 보여 줄 때
+- API 응답이나 설정 파일의 내용을 보여 줄 때
+- 사용자가 코드나 명령을 복사해 가야 할 때
+
+### 다른 컴포넌트가 더 맞는 경우
+
+| 이런 경우에는 | 대신 쓸 컴포넌트 |
+| --- | --- |
+| 키 하나나 키 조합을 안내할 때 | [Kbd](/components/kbd) |
+| 줄마다 추가 · 삭제 · 유지 데이터가 있을 때 | [CodeDiff](/components/code-diff) |
+| 코드 편집기 모양의 틀에 줄마다 뜻에 맞는 글자색을 줄 때 | [MockupCode](/components/mockup-code) |
+| 코드가 아닌 글을 선택할 수 있게 보여 줄 때 | [SelectableText](/components/selectable-text) |
+| 코드가 아닌 일반 글 | [Text](/components/text) |
+
+<a id="do"></a>
+
+### 언어 이름과 코드 다듬기
+
+<Cards columns="2">
+<Card demo="code-snippet/do-mode" tone="do" eyebrow="이렇게 하세요">
+
+`mode` 는 표에 있는 이름 그대로 소문자로 적습니다. 언어를 맞게 적으면 그 문법으로 칠합니다.
+
+</Card>
+<Card demo="code-snippet/dont-mode" tone="dont" eyebrow="이렇게 하지 마세요">
+
+`'SQL'` 처럼 표에 없는 값은 색 없이 그립니다.
+
+</Card>
+<Card demo="code-snippet/do-trim" tone="do" eyebrow="이렇게 하세요">
+
+`code` 앞뒤의 불필요한 빈 줄은 지우고 넘깁니다.
+
+</Card>
+<Card demo="code-snippet/dont-trim" tone="dont" eyebrow="이렇게 하지 마세요">
+
+끝의 줄바꿈도 한 줄로 셉니다. 내용 없이 번호만 있는 줄이 아래에 하나 더 생깁니다.
+
+</Card>
+</Cards>
+
+```dart
+CodeSnippet(
+  code: 'SELECT * FROM users WHERE active = true;',
+  mode: 'sql',
+)
+```
+
+<a id="dont"></a>
+
+### 긴 코드
+
+파일 전체처럼 긴 코드를 그대로 두면 페이지가 그만큼 길어집니다. 높이를 정해 두려면 `maxHeight` 를 씁니다. 두 플랫폼 모두 그 높이를 넘는 부분을 안에서 세로로 스크롤합니다. 다만 컴포넌트가 코드 영역에 키보드 정지점을 두지 않으므로(접근성 섹션), 키보드 사용자가 모든 줄을 꼭 읽어야 하면 높이를 제한하지 않습니다.
+
+```dart
+CodeSnippet(
+  code: fileContent,
+  mode: 'dart',
+  codeSnippetStyle: CoreCodeSnippetStyle(maxHeight: 300),
+)
+```
+
+## 배치
+
+### 긴 줄과 좁은 너비
+
+두 플랫폼 모두 긴 줄을 줄바꿈하지 않고 코드 영역 안에서 가로로 스크롤합니다. 복사 버튼과 액션은 스크롤을 따라 움직이지 않고 오른쪽 위에 남습니다.
+
+<Preview demo="code-snippet/long-line" />
+
+Web 루트에는 `min-width: 0` 이 있어 flex 칸에 바로 놓으면 칸 폭에 맞춰 줄어듭니다. 스니펫을 감싼 상자가 flex 칸이면 그 상자에도 `min-width: 0` 을 주고, grid 라면 열을 `minmax(0, 1fr)` 로 둡니다. 그러지 않으면 긴 줄만큼 칸이 넓어져 페이지가 가로로 넘칠 수 있습니다.
+
+### 높이 제한
+
+<Preview demo="code-snippet/max-height" />
+
+`minWidth` · `maxWidth` · `minHeight` · `maxHeight` 는 코드 영역의 크기를 제한합니다. 기본값은 없어서, 정하지 않으면 스타일로 거는 제한이 없습니다.
+
+### 액션과 복사 버튼
+
+`actions` 에 넣은 위젯은 복사 버튼 앞에 받은 순서대로 놓이고, 사이 간격은 `actionGapStyle`(기본 4)입니다. `showCopyButton: false` 여도 액션은 보입니다.
+
+```dart
+CodeSnippet(
+  code: source,
+  mode: 'dart',
+  actions: [Badge(child: Text('Dart'))],
+)
+```
+
+이 묶음은 코드 위에 겹쳐 놓입니다. 코드 영역에 버튼 자리를 따로 비워 두지 않고, 복사 버튼은 배경이 투명해 아래의 글자와 겹쳐 보입니다.
+
+- **첫 줄이 긴 코드** — 첫 줄이 버튼 아래로 지나갑니다.
+- **상자가 코드 폭일 때** (Flutter 의 기본 모양, Web 에서 폭이 내용에 맞춰지는 자리) — 첫 줄이 가장 긴 줄이면 그 끝이 복사 버튼과 겹칩니다. 한 줄짜리 코드가 늘 여기에 해당합니다.
+
+짧은 한 줄 코드는 오른쪽 여백을 늘려 버튼 자리를 만듭니다. 첫 줄이 긴 코드는 같은 방법으로 위쪽 여백(`top`)을 `CoreSpace.space40` 으로 늘려 코드를 버튼 아래로 내립니다. 액션을 더했다면 그 크기만큼 더 비웁니다.
+
+```dart
+CodeSnippet(
+  code: 'flutter pub get',
+  mode: 'bash',
+  codeSnippetStyle: CoreCodeSnippetStyle(
+    padding: CoreEdgeInsets.only(
+      left: CoreSpace.space12,
+      top: CoreSpace.space10,
+      right: CoreSpace.space40,
+      bottom: CoreSpace.space10,
+    ),
+  ),
+)
+```
+
+### Flutter 에서 폭 정하기
+
+Web 의 루트는 블록 상자라 블록 부모의 폭을 채웁니다. Flutter 의 배경 상자는 코드 폭을 따르고, 줄 톤 띠를 그릴 때는 받을 수 있는 최대 폭을 채웁니다. 그래서 놓는 자리에 따라 두 가지를 확인합니다.
+
+- **폭을 강제하는 부모** (`ListView`, `Column(crossAxisAlignment: CrossAxisAlignment.stretch)`, `SizedBox(width: …)`) — 띠가 없고 코드가 그 폭보다 좁으면, 배경 상자는 코드 폭에 머무는데 복사 버튼과 액션은 강제된 폭의 오른쪽 끝에 놓여 상자 밖으로 떨어집니다. `Align` 으로 감싸면 버튼이 상자 안에 놓입니다.
+- **폭이 정해지지 않는 부모** — 띠를 그리는 스니펫은 `Row` 의 일반 자식처럼 폭의 상한이 없는 자리에서 레이아웃 오류가 납니다. `IntrinsicWidth` · `IntrinsicHeight` 아래에서도 오류가 납니다. 기본 크기 방식의 CoUI `Card` 는 폭이 강제되지 않으면 안에서 `IntrinsicWidth` 를 씁니다. `Row` 에서는 `Expanded` 로 감싸고, `Card` 는 `cardStyle: CoreCardStyle(sizing: CoreCardSizing.expand)` 로 바꿉니다.
+
+<Code language="dart" title="Flutter">
+Align(
+  alignment: Alignment.topLeft,
+  child: CodeSnippet(code: source, mode: 'dart'),
+)
+</Code>
+
+## 테마와 스타일
+
+코드, 언어, 줄 번호, 줄 톤, 버튼 표시처럼 무엇을 보여 줄지는 위젯 파라미터로 넘깁니다. 색 · 여백 · 글자처럼 보이는 값과 안쪽 부품의 스타일은 `codeSnippetStyle`(`CoreCodeSnippetStyle`) 하나로 덮어씁니다. 앱 전체의 기본값은 `CoreComponentTheme` 의 `codeSnippet`(`CoreCodeSnippetTheme`)에 둡니다.
+
+### 값이 정해지는 순서
+
+```text
+CoreCodeSnippetStyle 의 default 값               // 디자인 시스템 기본값
+  → 솔리드 역할 면의 짝 색                        // 줄 번호 · 복사 글리프 · 포커스 링 색만
+  → CoreCodeSnippetTheme.style                    // 앱 전체
+  → codeSnippetStyle (withStyle · getter 포함)    // 인스턴스별
+```
+
+- 뒤에 있는 값이 앞의 값을 필드마다 덮습니다. 안쪽 글자 · 버튼 · 아이콘 · 간격 스타일도 그 안의 필드끼리 합칩니다.
+- 짝 색은 테마와 인스턴스를 합친 뒤의 배경을 보고 고릅니다.
+- 복사 버튼은 `defaultCopyButtonStyle` 에 `copyButtonStyle` 을 합친 값을 Button 의 인스턴스 스타일로 받습니다. 그래서 여기에 값이 있는 필드는 Button 테마보다 우선합니다.
+- 복사 아이콘은 `defaultCopyIconStyle` 에 `copyIconStyle` 을, 액션 간격은 `defaultActionGapStyle` 에 `actionGapStyle` 을 합칩니다.
+- 코드의 글자 역할은 `codeTypography` 로 바꾸고, 크기 · 굵기 · 글꼴 · 색을 따로 얹을 때는 `codeTextStyle` 을 씁니다. 코드 색은 `codeTextStyle.color` 로 정합니다.
+- 테두리는 `borderColor` 와 `borderWidth` 를 함께 정해야 보입니다. 기본 선 색은 투명이라 너비만 주면 선이 없고, 기본 너비는 0이라 색만 주어도 선이 없습니다.
+- `padding` 은 `CoreEdgeInsets.all` · `symmetric` · `only` · `fromLTRB` 로 적습니다. 읽기 방향을 따르는 `CoreEdgeInsets.directional` 을 넣으면 두 플랫폼 모두 `ArgumentError` 가 납니다.
+
+### 사용 예
+
+<Split>
+
+<Code language="dart" title="스니펫 하나만 바꾸기">
+CodeSnippet(
+  code: source,
+  mode: 'dart',
+  codeSnippetStyle: CoreCodeSnippetStyle(
+    padding: CoreEdgeInsets.all(CoreSpace.space24),
+    borderRadius: CoreBorderRadius.all(CoreRadius.radius12),
+    borderColor: CoreColor.token(CoreColors.outlineVariant),
+    borderWidth: CoreStrokeWidth.stroke1,
+  ),
+)
+</Code>
+
+<Code language="dart" title="앱 전체 기본값 바꾸기">
+ThemeData.fromCore(
+  CoreThemePresets.light,
+  coreComponentTheme: CoreComponentTheme(
+    codeSnippet: CoreCodeSnippetTheme(
+      style: CoreCodeSnippetStyle(
+        borderColor: CoreColor.token(CoreColors.outlineVariant),
+        borderWidth: CoreStrokeWidth.stroke1,
+      ),
+    ),
+  ),
+)
+</Code>
+
+</Split>
+
+두 예제 모두 Flutter와 Web 코드가 같습니다. 다크 테마를 따로 넘기는 앱은 그 테마에도 같은 `coreComponentTheme` 를 넘깁니다.
+
+<a id="빠른-오버라이드-chain"></a>
+
+### 빠른 덮어쓰기
+
+`withStyle` 을 이어 이미 만든 `CodeSnippet` 에 `codeSnippetStyle` 을 덧붙일 수 있습니다. 같은 필드는 나중에 적은 값이 이깁니다. `.radius16` 같은 getter 는 이름이 같은 `CoreRadius` 값을 정합니다. 색 getter(`.primary` · `.secondary` · `.tertiary` · `.surface` · `.surfaceContainer` · `.error` · `.success` · `.warning` · `.info` · `.outline` · `.transparent`)는 배경과 코드 색을 함께 정합니다. `backgroundColor` · `borderColor` · `borderWidth` · `contentPadding` 메서드로는 바탕색, 테두리 색과 폭, 안쪽 여백을 값으로 줍니다. `backgroundColor(color)` 는 색 getter 와 달리 코드 색을 정하지 않습니다. 코드 색은 앞서 정한 값이나 테마의 값이 없으면 `onSurface` 로 남으므로, 솔리드 역할 면을 고를 때는 색 getter 를 쓰거나 `codeTextStyle` 의 색을 함께 정해 대비를 확인하세요. 아래 예제의 두 번째 스니펫은 `borderWidth` 를 적지만 `borderColor` 가 없어 선은 보이지 않습니다.
 
 <!-- CHAIN_SNIPPET:BEGIN — auto-generated by `dart run tool/generate_chain_artifacts.dart` (write mode). Do not hand-edit between these markers; edit the chain example sources (`*_chain_example.dart` / `*_code.dart`) and regenerate. -->
 <Tabs groupId="platform">
@@ -206,57 +493,139 @@ class _CodeSnippetChainExampleState extends State<CodeSnippetChainExample> {
 </Tabs>
 <!-- CHAIN_SNIPPET:END -->
 
-### 줄 톤 (Line Tones)
+<a id="토큰-기반-스타일링"></a>
 
-바뀐 줄 · 경고가 난 줄 · 오류가 난 줄을 띠로 가리킵니다. `lineTones` 에 줄 번호(1부터)와 톤을 적으면 `success` · `warning` · `error` 는 그 줄 뒤에 띠를 깔고, 나머지 톤(`neutral` · `muted` · `link`)은 아무것도 그리지 않습니다. 코드 밖의 줄 번호도 그리지 않습니다.
+### 기본값이 있는 곳
 
-<LivePreview component="code-snippet" variant="line-tones" chain="off" />
+기본값은 `coui_core` 의 `CoreCodeSnippetStyle` 에 있고, Flutter와 Web이 같은 값을 읽습니다.
 
-띠는 그 줄의 줄 상자 높이이고, 스니펫 폭 전체 — 줄 번호 · 코드 · 양옆 패딩 아래 — 를 덮습니다. 긴 줄이 있으면 띠도 그 줄 끝까지 이어지고, 가로로 스크롤하면 줄과 함께 움직입니다. 색은 `successLineColor` · `warningLineColor` · `errorLineColor` 가 정하며 기본값은 `successContainer` · `warningContainer` · `errorContainer` 입니다 — [CodeDiff](/components/code-diff) 가 추가 · 삭제된 줄에 까는 것과 같은 톤입니다.
+| 이름 | 값 |
+| --- | --- |
+| `defaultBackgroundColor` | `surfaceContainerLow` |
+| `defaultBorderColor` | 투명 |
+| `defaultBorderWidth` | 0 |
+| `defaultBorderRadius` | 8 |
+| `defaultPadding` | 위아래 10 · 좌우 12 |
+| `defaultCodeTypography` | `codeSm` 역할 |
+| `defaultCodeTextStyle` | 색 `onSurface` |
+| `defaultLineNumberTextStyle` | 색 `onSurfaceVariant` |
+| `defaultLineNumberMargin` | 12 |
+| `defaultPreMargin` | 0 |
+| `defaultCopyButtonOffset` | 6 |
+| `defaultCopyButtonStyle` | 28 × 28, 모서리 8, 안쪽 여백 0, 전환 150ms |
+| `defaultCopyIconStyle` | 아이콘 16 |
+| `defaultActionGapStyle` | 4 |
+| `defaultSuccessLineColor` | `successContainer` |
+| `defaultWarningLineColor` | `warningContainer` |
+| `defaultErrorLineColor` | `errorContainer` |
 
-<Tabs groupId="platform">
-  <TabItem label="Flutter" value="flutter">
+<a id="접근성-accessibility"></a>
 
-```dart
-CodeSnippet(
-  code: "void main() {\n  final greeting = 'Hello, CoUI!';\n  print(greting);\n}",
-  mode: 'dart',
-  showLineNumbers: true,
-  lineTones: {2: CoreCodeLineTone.success, 3: CoreCodeLineTone.error},
-)
-```
+## 접근성
 
-  </TabItem>
-  <TabItem label="Web" value="web">
+복사 버튼에는 번역되는 이름이 붙고, 줄 톤은 색과 함께 말로도 전합니다. 코드 영역에는 이름이나 키보드 정지점을 따로 두지 않습니다.
 
-```dart
-CodeSnippet(
-  code: "void main() {\n  final greeting = 'Hello, CoUI!';\n  print(greting);\n}",
-  mode: 'dart',
-  showLineNumbers: true,
-  lineTones: {2: CoreCodeLineTone.success, 3: CoreCodeLineTone.error},
-)
-```
+### 역할
 
-  </TabItem>
-</Tabs>
+| 부분 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 바깥 | 이름 없는 `Semantics(container: true)` 경계 | role · ARIA 속성을 붙이지 않은 `<div>`. `attributes` 로 넘긴 것만 붙습니다. |
+| 코드 | `SelectableText`. 접근성 정보에서는 읽기 전용 텍스트 필드입니다. | `<pre><code>` |
+| 복사 버튼 | CoUI `Button` 을 `Semantics(button: true, label: …)` 로 감쌉니다. | `aria-label` 을 가진 `<button type="button">` |
 
-줄마다 추가 · 삭제 데이터가 있고 `+` / `-` 표시까지 필요하면 [CodeDiff](/components/code-diff) 를 씁니다. 줄 톤은 보통의 코드에서 몇 줄을 가리킬 때 씁니다.
+### 키보드
 
-## Props / Parameters
+| 키 | 동작 |
+| --- | --- |
+| `Tab` · `Shift+Tab` | 복사 버튼과, `actions` 에 넣은 포커스를 받는 컨트롤로 이동합니다. 액션이 복사 버튼보다 앞에 놓입니다. |
+| `Enter` · `Space` | 포커스가 복사 버튼에 있으면 복사합니다. Flutter 는 `Button` 이 쓰는 `Clickable` 의 단축키가, Web 은 네이티브 `<button>` 이 처리합니다. |
 
-`W` 는 Flutter의 `Widget`, Web의 Jaspr `Component` 입니다. `List<W>` 는 콘텐츠 목록입니다.
+코드 영역을 위한 키 처리는 없습니다. Web 은 `<pre>` 에 `tabindex` 를 주지 않습니다. Flutter 의 `SelectableText` 는 포커스 순회에서 건너뛰는(`skipTraversal`) 초점 노드를 써서 `Tab` 이 멈추지 않습니다.
 
-| 속성 | 타입 | 기본값 | 설명 |
-|------|------|--------|------|
-| `code` | `String` | **필수** | 표시할 코드 문자열 |
-| `mode` | `String` | **필수** | 구문 강조 언어 — `dart` · `json` · `yaml`(`yml`) · `sql`, 그리고 Dart 문법으로 읽는 `js` · `ts` · `javascript`. 그 밖의 값은 색 없이 그립니다 |
-| `showLineNumbers` | `bool` | `false` | 줄 번호 표시 여부 |
-| `lineTones` | `Map<int, CoreCodeLineTone>` | `{}` | 줄 번호(1부터)별 톤 — `success` · `warning` · `error` 는 그 줄 뒤에 띠를 깝니다. [줄 톤](#줄-톤-line-tones) 참고 |
-| `showCopyButton` | `bool` | `true` | 복사 버튼 표시 여부 |
-| `actions` | `List<W>` | `[]` | 추가 액션 위젯 |
-| `onCopy` | `VoidCallback?` / `CoreVoidCallback?` | `null` | 복사 후 추가 콜백 |
-| `codeSnippetStyle` | `CoreCodeSnippetStyle?` | `null` | 겉모습과 안쪽 부품의 스타일을 바꾸는 값 묶음 (아래 표 참고) |
+### 스크린 리더
+
+- **복사 버튼** — 두 플랫폼 모두 CoUI 번역 문자열 `codeSnippetCopyLabel` 을 이름으로 씁니다(영어 `Copy code`, 한국어 `코드 복사`).
+- **코드** — Web 은 `<code>` 안의 글이, Flutter 는 `SelectableText` 의 글이 접근성 정보에 담깁니다.
+- **줄 톤** — 띠마다 줄 번호와 톤을 말로 붙입니다(영어 `Line 2: success`, 한국어 `2번째 줄: 성공`). Web 은 띠 안의 화면에 보이지 않는(`sr-only`) 글이고 마크업에서 코드보다 앞에 놓입니다. Flutter 는 띠 자리의 시맨틱 노드이고, 순서 값을 주어 코드보다 앞에 오게 합니다. 띠를 그려도 Flutter 의 줄 번호와 코드는 띠가 없을 때처럼 각자의 노드로 남습니다.
+- **복사 완료** — 따로 알리지 않습니다. 아이콘만 바뀌고 버튼의 이름은 그대로이며, 라이브 영역이 없습니다. 알려야 하면 `onCopy` 에서 안내를 띄웁니다.
+
+### 포커스 관리
+
+코드 블록은 화면에 나타날 때 포커스를 옮기지 않고, 포커스를 가두지도 않습니다. 복사할 때도 포커스를 옮기는 코드는 없고 버튼의 아이콘만 바뀝니다.
+
+복사 버튼은 `Button` 의 포커스 링을 씁니다. 기본값은 두께 2의 링을 버튼에서 2 띄우고 그 사이는 칠하지 않으며, 링 색은 `focusRing` 입니다. 솔리드 역할 면에서는 링 색만 줄 번호 · 복사 글리프와 같은 면의 짝 색이 되고, 두께와 간격은 그대로입니다. CoUI 기본 색의 라이트 · 다크 · 고대비 라이트 · 고대비 다크에서 이 짝 색과 면의 대비는 4.5 : 1 이상입니다. 브랜드 색에서는 직접 확인합니다.
+
+`copyButtonStyle.focusOutlineStyle` 이나 `CoreCodeSnippetTheme` 에 링 색을 적으면 그 색이 이깁니다. 반면 앱의 Button 테마에 적은 링 색은 솔리드 역할 면에서 짝 색에 집니다.
+
+### 알려진 제약
+
+- **코드 블록에 이름이 없습니다.** 영역 이름이 필요하면 Web 은 `attributes: {'role': 'region', 'aria-label': '예제 코드'}` 를 넘기고, Flutter 는 `Semantics(container: true, label: '예제 코드', child: …)` 로 감쌉니다.
+- **눈으로는 줄 톤을 색으로만 구분합니다.** 줄 앞에 기호를 그리지 않습니다. 색을 구분하기 어려운 사용자를 위해 톤의 뜻을 코드 주석이나 바깥의 문장으로 함께 적거나, `+` · `-` 표시가 있는 [CodeDiff](/components/code-diff) 를 씁니다.
+- **솔리드 역할 면과 줄 톤을 함께 쓰면 띠 위의 글자가 거의 보이지 않을 수 있습니다.** 줄 톤 섹션의 안내를 따릅니다.
+- **줄 번호를 접근성 정보에서 빼지 않습니다.** 번호를 숨기는 설정이 코드에 없어 보조 기술이 숫자를 읽을 수 있습니다. 스크린 리더 사용자가 주 독자라면 `showLineNumbers: false`(기본값)를 씁니다.
+- **Web 에서 줄 번호나 줄 톤을 켜면 `<code>` 의 글에 번호와 띠의 숨긴 글도 들어갑니다.** `<code>` 의 글을 통째로 읽는 스크립트를 따로 만들면 그 글까지 가져갑니다. 컴포넌트의 복사 버튼은 `code` 값만 씁니다.
+- **넘친 코드를 키보드로 옮겨 보는 것을 보장하지 않습니다.** 코드 영역에 컴포넌트가 두는 정지점과 키 처리가 없습니다. Web 의 `attributes` 는 바깥 `<div>` 에 닿으므로, 거기에 `tabindex` 를 줘도 스크롤하는 `<pre>` 에는 정지점이 생기지 않습니다. 긴 코드는 `maxHeight` 없이 펼치고, 줄은 짧게 나눕니다.
+- **언어 이름은 전달되지 않습니다.** `mode` 는 색을 고르는 데만 쓰고, `<code>` 의 속성이나 Flutter 의 시맨틱으로 내보내지 않습니다. 언어를 알려야 하면 코드 블록 곁에 글로 적습니다.
+- **복사 버튼과 액션이 코드와 겹칠 수 있습니다.** 첫 줄이 길거나, 상자가 코드 폭인데 첫 줄이 가장 긴 줄일 때입니다. 배치 섹션의 여백 방법을 씁니다.
+
+동작 줄이기 · 고대비처럼 모든 컴포넌트에 함께 적용되는 기준은 [전역 접근성 축](/accessibility) 페이지에 있습니다.
+
+<a id="크로스-플랫폼-차이점-platform-differences"></a>
+
+## 플랫폼 차이
+
+공통 파라미터의 이름과 기본값은 두 플랫폼이 같고, Web 에는 HTML 속성을 넘기는 파라미터가 더 있습니다.
+
+| 항목 | Flutter | Jaspr Web |
+| --- | --- | --- |
+| 타입 | `Widget`, `VoidCallback?` | `Component`, `CoreVoidCallback?` |
+| 코드 그리기 | `SelectableText` 의 `TextSpan` | `<pre><code>` 안의 `<span>` |
+| 색 | 지금 테마의 색 값으로 계산합니다. | CSS 변수를 가리켜, 변수 값이 바뀌면 브라우저가 다시 칠합니다. |
+| 추가 문법 | JSON · YAML · SQL 문법을 패키지 자산에서 비동기로 읽습니다. | 패키지 코드에 함께 컴파일되어 있습니다. |
+| 첫 화면 | 강조기를 준비하는 동안에는 구문 색 · 줄 번호 · 띠 없이 코드만 그리고, 긴 줄은 줄바꿈합니다. 준비되면 완성된 모양이 됩니다. `mode` 를 바꿀 때도 다시 준비합니다. | 서버가 그린 마크업부터 색 · 줄 번호 · 띠가 있습니다. |
+| 복사 | `Clipboard.setData` 가 끝난 뒤 `onCopy` 를 부릅니다. | `navigator.clipboard.writeText` 를 부르고 결과를 기다리지 않은 채 `onCopy` 를 부릅니다. 이 API 가 없는 환경을 따로 처리하지 않습니다. 브라우저에서 실행되지 않는 정적인 마크업에서는 버튼을 눌러도 복사되지 않습니다. |
+| 상자 폭 | 코드 폭. 띠가 있으면 받을 수 있는 최대 폭 (배치 섹션) | 블록 부모의 폭 |
+| 가로 스크롤 | 가로 `SingleChildScrollView` | `<pre>` 의 `overflow-x: auto` |
+| 크기 제한 | `BoxConstraints`. 높이를 넘으면 세로 `SingleChildScrollView` | CSS `min-*` · `max-*`. `maxHeight` 를 주면 `overflow-y: auto` |
+| `preMargin` | 적용하지 않습니다. | `<pre>` 의 바깥 여백이 됩니다. |
+| 역할 토큰 | `codeTextStyle` · `lineNumberTextStyle` 의 토큰도 읽습니다. | 두 슬롯의 역할 토큰은 읽지 않습니다. 코드의 역할은 `codeTypography` 로 바꿉니다. |
+| 줄 톤 띠 | 코드 뒤를 `CustomPaint` 로 칠합니다. 줄마다 높이를 잽니다. | 코드 뒤에 `1lh` 높이의 행을 쌓습니다. |
+| HTML 속성 | 없음 | `id` · `classes` · `css` · `attributes` · `eventHandlers` 가 루트 `<div>` 에 닿습니다. |
+
+<a id="props-parameters"></a>
+
+## API
+
+Flutter와 Jaspr Web이 같은 속성을 씁니다. 표의 `W` 는 Flutter 의 `Widget`, Web 의 Jaspr `Component` 입니다.
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `code` | `String` | 필수 | 보여 주고 복사하는 코드 |
+| `mode` | `String` | 필수 | 구문 강조의 언어 이름. 언어와 구문 강조 섹션의 표를 따릅니다. |
+| `showLineNumbers` | `bool` | `false` | 줄 번호를 보일지 정합니다. |
+| `lineTones` | `Map<int, CoreCodeLineTone>` | `const {}` | 1부터 센 줄 번호마다의 톤. `success` · `warning` · `error` 만 띠를 그립니다. |
+| `showCopyButton` | `bool` | `true` | 복사 버튼을 보일지 정합니다. |
+| `actions` | `List<W>` | `const []` | 오른쪽 위, 복사 버튼 앞에 놓는 위젯 |
+| `onCopy` | `VoidCallback?` (Flutter) · `CoreVoidCallback?` (Web) | `null` | 복사할 때 함께 부르는 함수 |
+| `codeSnippetStyle` | `CoreCodeSnippetStyle?` | `null` | 보이는 값과 안쪽 부품의 스타일 |
+
+`copyWith` 는 같은 파라미터를 바꾼 새 인스턴스를 만들고, `withStyle` 은 `codeSnippetStyle` 에 값을 합친 인스턴스를 만듭니다.
+
+### 웹 전용
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `id` | `String?` | `null` | 루트의 id |
+| `classes` | `String?` | `null` | 루트에 더하는 클래스 |
+| `css` | `Styles?` | `null` | 루트에 더하는 인라인 스타일 |
+| `attributes` | `Map<String, String>?` | `null` | 루트의 HTML 속성 |
+| `eventHandlers` | `Map<String, List<UiEventHandler>>?` | `null` | 루트의 이벤트 처리 |
+
+### 테마 — `CoreCodeSnippetTheme`
+
+| 이름 | 타입 | 기본값 | 설명 |
+| --- | --- | --- | --- |
+| `style` | `CoreCodeSnippetStyle?` | `null` | 모든 `CodeSnippet` 에 적용하는 스타일. 인스턴스의 `codeSnippetStyle` 이 그 위를 덮습니다. |
 
 <!-- STYLE_TABLE:BEGIN — auto-generated by `dart run tool/generate_style_tables.dart` (write mode). Do not hand-edit between these markers; edit the CoreXxxStyle source and regenerate. -->
 
@@ -289,155 +658,41 @@ CodeSnippet(
 
 <!-- STYLE_TABLE:END -->
 
-## 동작 스펙 (Behavior)
+<Note>
 
-### 인터랙션
+표의 설명과 지금 동작이 다른 곳이 있습니다. `preMargin` 은 Web 에만 적용되고 Flutter 의 그림은 바뀌지 않습니다. `codeTextStyle` · `lineNumberTextStyle` 에 넣은 역할 토큰은 Web 이 읽지 않습니다.
 
-- **복사 버튼 클릭**: 양쪽 모두 클립보드에 `code` 를 쓰고 체크 표시를 `CoreCodeSnippetContract.copiedFeedbackDuration` 동안 보여줍니다. 다시 복사하면 타이머를 다시 시작합니다. 자동 토스트는 없습니다
-- **스크롤**: 코드 영역 내에서 수직/수평 스크롤 가능
-- **호버 (복사 버튼)**: 글리프가 `onSurfaceVariant` 에서 `onSurface` 로 바뀝니다. 글리프는 자기 색을 갖지 않고 복사 버튼(`Button` 의 `plain` 변형)의 전경색을 그대로 받기 때문입니다. 솔리드 역할 면(`.primary` 등)에서는 글리프가 면의 짝 색에 고정되어 호버로 변하지 않고, `copyIconStyle.color` 를 직접 지정해도 같습니다. 복사 버튼은 비활성이 되지 않습니다
+</Note>
 
-### 토큰 기반 스타일링
+<a id="레거시-vs-통일-비교-migration-notes"></a>
 
-겉모습의 기본값은 모두 `coui_core` 의 `CoreCodeSnippetStyle` 안 `static const default*`
-한 곳에서 나오고, Flutter 와 Web 이 같은 값을 읽습니다. 인스턴스별로 바꿀 때는
-`codeSnippetStyle` 슬롯에 필요한 필드만 넘깁니다 (위 필드 표 참고).
+## 이전 이름에서 옮기기
 
-```dart
-CodeSnippet(
-  code: "print('hi');",
-  mode: 'dart',
-  codeSnippetStyle: CoreCodeSnippetStyle(
-    padding: CoreEdgeInsets.all(CoreSpace.space24),
-    borderRadius: CoreBorderRadius.all(CoreRadius.radius8),
-  ),
-)
-```
+웹에서 `CodeBlock` 이라는 이름으로 찾고 있었다면 `CodeSnippet` 입니다. CoUI 는 Flutter 쪽 이름을 따라 두 플랫폼 모두 `CodeSnippet` 을 쓰며, 지금 패키지에는 `CodeBlock` 클래스가 없습니다. 옛 코드를 옮길 때는 파라미터를 위 API 표와 대조합니다.
 
-프로젝트 전체 기본값은 `CoreCodeSnippetTheme.style` 로 주입합니다.
+<a id="관련-컴포넌트-related-components"></a>
 
-### 면과 구문 강조
+## 관련 컴포넌트
 
-구문 강조 색(`syntaxKeyword`·`syntaxType`·`syntaxFunction`·`syntaxString`, 그리고 구두점·주석의 `onSurfaceVariant`, 오류의 `onErrorContainer`)은 절대 슬롯입니다. 명암 감사가 4.5:1 을 보증하는 면 — `surface`, `surfaceContainerLow`, `surfaceContainer`, `surfaceContainerHigh`, 네 상태 컨테이너 — 위에서만 읽히고, 솔리드 역할 면 위에서는 1.0~3.4:1 이 나옵니다. 그래서 면이 이 여덟 토큰 중 하나이고 불투명하면(`CoreSyntaxFaces.admits`) 강조가 켜지고, 그 밖의 면에서는 모든 span 이 코드 색(`codeTextStyle.color`) 하나로 나옵니다. 판정은 면의 토큰 이름만 보고 내려지므로 테마를 읽지 않고, Flutter 와 Web 이 같은 함수를 부릅니다. 감사의 기준은 CoUI 자체 색 소스입니다 — 표준 매핑 위의 브랜드는 자기 팔레트를 가져오고, 감사 baseline 에는 그 팔레트의 일부 슬롯이 이 톤 위에서 4.5:1 아래로 남아 있습니다. 토큰 이름으로 내리는 판정은 그것을 볼 수 없어 같은 톤에서 강조를 켭니다.
+<Cards columns="2">
+<Card demo="code-snippet/related-code-diff" title="CodeDiff">
 
-| 면 | 구문 강조 | 코드 | 줄 번호 | 복사 글리프 |
-|---|---|---|---|---|
-| 기본 면 (`surfaceContainerLow`), `.surface`, `.surfaceContainer`, 위 여덟 토큰을 직접 지정한 면 | 켜짐 | `onSurface` | `onSurfaceVariant` | 복사 버튼 전경색 (호버 시 `onSurface`) |
-| 솔리드 역할 면 — `.primary` … `.outline` 여덟 getter, 또는 `backgroundColor` 로 같은 토큰을 불투명하게 지정한 면 | 꺼짐 | getter 가 적은 짝 색 (`onPrimary` … `surface`), `withStyle` 로 면만 고르면 호출자가 적은 색 (기본 `onSurface`) | 면의 짝 색 | 면의 짝 색, 호버로 변하지 않음 |
-| 그 밖의 면 — 위 여덟 톤 밖의 토큰 (`surfaceContainerHighest`, `surfaceDim`, `inverseSurface`, `primaryContainer` 등), 투명도 1 미만인 토큰, `CoreColor.transparent` 를 포함한 원색 | 꺼짐 | `onSurface` | `onSurfaceVariant` | 복사 버튼 전경색 |
+줄마다 추가 · 삭제 · 유지를 표시합니다. 변경 내용을 보일 때 씁니다.
 
-줄 번호와 글리프의 짝 색은 getter 가 적는 값이 아니라, 스타일을 계산할 때 면에서 읽는 값입니다(`CoreCodeSnippetStyle.inkOnFace`). 그래서 면을 어떻게 골랐는지 — getter, `withStyle(backgroundColor: …)`, 프로젝트 테마 — 와 getter 를 이어 쓰는 순서에 상관없이 마지막에 남은 면에 맞습니다. `.primary.surface` 는 줄 번호와 글리프가 기본값으로 돌아오고 `.surface.primary` 는 둘 다 `onPrimary` 가 됩니다. 호출자가 `lineNumberTextStyle`·`copyIconStyle` 의 `color` 를 직접 적으면 그 색이 짝 색을 이깁니다.
+</Card>
+<Card demo="code-snippet/related-mockup-code" title="MockupCode">
 
-코드 색은 다릅니다. getter 는 면과 코드 색을 한 패치로 적고, 마지막 getter 가 둘을 함께 정합니다. `withStyle` 로 솔리드 면만 고르면 코드는 기본 `onSurface` 로 남으므로 짝 색(`codeTextStyle.color`)을 호출자가 적습니다. 원색 면 위에서 코드 색이 읽히는지는 컴포넌트가 알 수 없으므로 호출자의 몫입니다.
+코드 편집기 모양의 틀입니다. 구문 강조와 복사 버튼은 없습니다.
 
-## 사용 가이드라인 (Usage Guidelines)
+</Card>
+<Card demo="code-snippet/related-kbd" title="Kbd">
 
-### Do
+키보드 키와 키 조합을 키캡으로 보여 줍니다.
 
-<Callout type="tip">
+</Card>
+<Card demo="code-snippet/related-text" title="Text">
 
-**언어 명시로 구문 강조 최적화**
+코드가 아닌 일반 글에 씁니다.
 
-```dart
-CodeSnippet(
-  code: 'SELECT * FROM users WHERE active = true;',
-  mode: 'sql',
-  showCopyButton: true,
-)
-```
-
-언어를 명시하면 코드를 더 쉽게 읽을 수 있고, 사용자가 코드의 종류를 즉시 파악할 수 있습니다.
-
-</Callout>
-
----
-
-### Don't
-
-<Callout type="warning">
-
-**지나치게 긴 코드를 제한 없이 표시 금지**
-
-```dart
-// 높이 제약은 Style 슬롯으로 — 양 플랫폼 동일
-CodeSnippet(
-  code: entireFileContent,
-  mode: 'dart',
-  codeSnippetStyle: CoreCodeSnippetStyle(maxHeight: 300),
-)
-```
-
-긴 코드는 높이를 제한하여 스크롤 가능하게 해야 페이지 레이아웃이 유지됩니다.
-
-</Callout>
-
-## 접근성 (Accessibility)
-
-### 역할
-
-- **Flutter**: 스니펫 전체를 이름 없는 `Semantics(container: true)` 경계로 감쌉니다. 복사 버튼은 `Semantics(button: true, label: CoUILocalizations.of(context).codeSnippetCopyLabel)` 로 이름을 받습니다 — 아이콘 자식인 `Icon` 은 시맨틱을 내지 않습니다.
-- **Web**: 루트 `<div>` 에는 호출자가 넘긴 `attributes` 외에 아무 role/aria 도 붙지 않습니다 (루트 `<div>` 는 `component.componentAttributes` 만 받습니다). 코드 본문은 `<pre><code>` 네이티브 구조로 나가고, 복사 버튼은 네이티브 `<button type="button">` 에 `aria-label` 로 같은 로컬라이즈 문자열을 답니다.
-
-### 키보드
-
-| 키 | Flutter | Web |
-|----|---------|-----|
-| `Tab` | 액션·복사 버튼으로 포커스 — `Button` → `Clickable` 의 `FocusableActionDetector` | 액션·복사 버튼으로 포커스 — 네이티브 `<button>` |
-| `Enter` / `Space` | 복사 실행 — `Clickable` 의 `SingleActivator(.enter)` / `(.space)` | 복사 실행 — 네이티브 `<button>` 활성화 |
-
-코드 영역 자체를 위한 키는 없습니다. 두 파일 어디에도 키 핸들러가 없고, 컴포넌트가 코드 영역에 만드는 Tab 정지점도 없습니다 — Web 의 `<pre>` 에는 `tabindex` 가 없고, Flutter 의 코드 본문은 `m.SelectableText` 라 그 내부 `FocusNode` 가 `skipTraversal: true` 입니다.
-
-### 스크린 리더
-
-같은 로컬라이즈 문자열(`codeSnippetCopyLabel` — 영문 `"Copy code"`, 한국어 `"코드 복사"`)이 양쪽 모두 복사 버튼의 이름입니다.
-
-코드 내용은 양쪽 모두 그대로 읽힙니다 — Web 은 `<code>`, Flutter 는 `m.SelectableText` 의 텍스트입니다.
-
-줄 톤은 색으로만 전하지 않습니다. 띠마다 그 줄과 톤을 말로 붙입니다 — `codeSnippetSuccessLineLabel` · `codeSnippetWarningLineLabel` · `codeSnippetErrorLineLabel`(영문 `"Line 2: success"`, 한국어 `"2번째 줄: 성공"`). Web 은 띠 안의 `sr-only` 텍스트, Flutter 는 띠 자리에 놓인 시맨틱 노드이고, 두 플랫폼 모두 줄 순서대로 코드보다 먼저 읽힙니다. 띠를 그려도 Flutter 의 줄 번호 · 코드 노드는 띠가 없을 때와 같습니다.
-
-복사 성공은 통보되지 않습니다. 피드백은 `_copied` 상태에 따른 아이콘 글리프 교체뿐이고, 버튼의 이름이나 live region 은 바뀌지 않습니다.
-
-### 포커스 관리
-
-오버레이가 아니므로 **진입·이탈 시 포커스 이동이 없고 트랩도 없습니다**. 복사 후에도 포커스는 복사 버튼에 그대로 남습니다 — 두 `handleCopy` 모두 `setState` 로 글리프만 바꿉니다.
-
-복사 버튼의 포커스 링은 표준 링입니다 — 링과 버튼 사이 2px 간격은 투명이고 밴드를 칠하지 않습니다. 기본 면과 다른 컨테이너 톤에서는 링 색(`focusRing`)이 면 위에서 읽히기 때문에 `CoreCodeSnippetStyle.defaultCopyButtonStyle` 은 링을 따로 지정하지 않습니다. 솔리드 역할 면은 그 톤이 아닙니다 — `focusRing` 은 `.primary`·`.tertiary` 에서 면과 같은 색이고 나머지 솔리드 면에서도 3:1 에 못 미칩니다. 그래서 솔리드 면에서는 링 색이 줄 번호·복사 글리프와 같은 면의 짝 색(`onPrimary` 등, `.outline` 은 `surface`)이 됩니다(`CoreCodeSnippetStyle.inkOnFace`). CoUI 프리셋의 네 모드에서 모두 4.65:1 이상입니다(브랜드 팔레트는 재지 않았습니다). 링의 굵기·간격·투명 밴드는 그대로이고, `copyButtonStyle.focusOutlineStyle` 에 색을 적으면 그 색이 이깁니다. 복사 버튼 스타일은 Button 에 인스턴스 스타일로 넘어가므로, 프로젝트 Button 테마(`variantStyles[plain]`)에 적은 링 색은 솔리드 면에서 짝 색에 집니다 — 솔리드 면의 링 색을 바꾸려면 CodeSnippet 의 `copyButtonStyle`(또는 CodeSnippet 테마)에 적습니다.
-
-### 알려진 제약
-
-- **스니펫 영역에는 이름이 없습니다** — 양쪽 모두 영역 이름을 따로 붙이지 않습니다. 대안: Web 은 `attributes` 가 열려 있어 루트에 `attributes: {'role': 'region', 'aria-label': '예제 코드'}` 로 영역 이름을 줄 수 있습니다. Flutter 는 호출부가 `Semantics(label: …)` 로 감쌉니다.
-- **보는 사람에게 줄 톤은 띠의 색으로만 구분됩니다** — 줄 앞 표시(글리프)를 그리지 않습니다. 보조기술에는 톤이 말로 전해지지만, 색을 구분하기 어려운 사용자에게는 성공 띠와 오류 띠가 비슷해 보일 수 있습니다. 대안: 톤의 의미를 코드 주석이나 스니펫 밖의 문장으로 함께 적거나, `+` / `-` 표시가 필요하면 [CodeDiff](/components/code-diff) 를 씁니다.
-- **`showLineNumbers: true` 면 줄 번호가 함께 읽힙니다** — 번호 노드가 접근성 트리에서 제외되지 않습니다. Web 은 `<span>` 에 `aria-hidden` 이 없고, Flutter 는 `Text('$i')` 를 `ExcludeSemantics` 없이 쌓습니다. 코드 앞뒤로 숫자 나열이 그대로 낭독됩니다. 대안: 스크린 리더 사용자가 주 독자인 문서에서는 `showLineNumbers: false`(기본값)를 유지합니다.
-- **스크롤되는 코드 영역에 컴포넌트가 만드는 키보드 경로가 없습니다** — `codeSnippetStyle.maxHeight` 를 주면 Web 은 `overflow-y: auto` 를 켜고 Flutter 는 세로·가로 `SingleChildScrollView` 를 중첩합니다. 그런데 어느 쪽에도 그 스크롤러에 도달할 Tab 정지점이 없어, 잘린 코드 뒷부분이 키보드만 쓰는 사용자에게 닿지 않을 수 있습니다. 대안: Web 루트에 `tabindex` 를 얹어도 실제 스크롤러는 자손인 `<pre>` 라 소용이 없습니다. 긴 코드는 `maxHeight` 를 두지 않고 전부 펼치는 것이 확실한 회피입니다.
-- **`mode`(언어)가 접근성 트리에 노출되지 않습니다** — `<code>` 에 `lang` 이나 `data-language` 를 붙이지 않고, Flutter 도 언어를 시맨틱으로 내보내지 않습니다. 어떤 언어의 코드인지가 시각적 구문 강조로만 전달됩니다. 대안: 코드 블록 앞에 언어를 밝히는 텍스트를 호출부가 배치합니다.
-
-이 컴포넌트가 직접 다루지 않는 대비·모션 등 전역 축은 [전역 접근성 축](/accessibility) 에서 한 곳으로 관리됩니다.
-
-## 크로스 플랫폼 차이점 (Platform Differences)
-
-| 항목 | Flutter | Web |
-|------|---------|-----|
-| 구문 강조 | `mode` 의 문법으로 칠해 `SelectableText` 의 `TextSpan` 으로 그립니다. JSON · YAML · SQL 문법은 패키지 자산에서 읽습니다 | 같은 문법으로 칠해 `<code>` 안의 `<span>` 으로 그립니다. 같은 문법 파일이 패키지에 컴파일되어 있습니다 |
-| 클립보드 복사 | `Clipboard.setData` 완료 뒤 `onCopy` | 브라우저 쓰기 요청 직후 `onCopy` |
-| 수평 스크롤 | `SingleChildScrollView` | CSS `overflow-x: auto` |
-| 크기 제약 | `codeSnippetStyle` 의 min/max 필드 → `BoxConstraints` | 같은 필드 → CSS `min-*` / `max-*` |
-| 줄 톤 띠 | 코드 뒤 `CustomPaint` — 코드와 같은 글꼴 · 줄 높이로 줄 상자를 재서 그 자리에 칠합니다 | 코드 뒤 `1lh` 높이 행의 열 — 행마다 한 줄이고 띠 줄만 색을 받습니다 |
-| 줄 톤 낭독 | 띠 자리의 시맨틱 노드 (순서 키로 코드 앞) | 띠 행 안의 `sr-only` 텍스트 (마크업 순서로 코드 앞) |
-
-두 플랫폼은 같은 표로 `mode` 를 문법에 잇고 같은 문법 파일로 칠합니다. 표에 없는 `mode`(`bash` 류)는 어느 쪽에서도 색 없이 한 색의 글자로 그립니다 — 다른 언어의 문법을 빌려 칠하지 않습니다. YAML 의 URL 에 든 `//` 가 Dart 문법에서는 주석으로 읽히는 식으로, 덜 칠해지는 것이 아니라 틀리게 칠해지기 때문입니다. 빌려 읽는 것은 `js` · `ts` · `javascript` 하나뿐이고, Dart 문법으로 읽습니다.
-
-## 레거시 vs 통일 비교 (Migration Notes)
-
-이전 버전의 Web CoUI 를 참조하는 코드에는 이 컴포넌트가 `CodeBlock` 이라는 이름이었을 수 있습니다. Flutter 쪽 이름(`CodeSnippet`)에 맞춰 Web 도 `CodeSnippet` 으로 개명되었습니다.
-
-| 항목 | 레거시 (구 Web `CodeBlock`) | 통일 `CodeSnippet` |
-|------|--------------------------------|-----------------------|
-| API | 동일 named properties | 동일 named properties |
-| 이름만 변경 | — | Flutter 와 동일 이름으로 통일 |
-
-**마이그레이션**: `CodeBlock(...)` → `CodeSnippet(...)` — 파라미터는 그대로이므로 클래스명만 바꾸면 됩니다.
-
-## 관련 컴포넌트 (Related Components)
-
-- **[Kbd](/components/kbd)**: 인라인 키보드 단축키 표시에 사용
-- **[Text](/components/text)**: 코드가 아닌 일반 텍스트 표시에 사용
+</Card>
+</Cards>
