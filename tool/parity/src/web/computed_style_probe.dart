@@ -393,11 +393,85 @@ function findTextSource(el) {
 /// rest-state ring and an unpainted rounded flex wrapper would otherwise
 /// pin the walk to the layout node Flutter never reports.
 const String _kFindChromeJs = r'''
-function isTransparentColor(c) {
-  if (!c || c === 'transparent') return true;
-  const m = /^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*[,/]\s*([\d.]+))?\s*\)$/.exec(c);
-  if (!m) return false;
-  return m[4] !== undefined && parseFloat(m[4]) === 0;
+function isTransparentColor(c, shadowColor = false) {
+  if (!shadowColor) {
+    // Keep the existing fill predicate unchanged.
+    if (!c || c === 'transparent') return true;
+    const m = /^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*[,/]\s*([\d.]+))?\s*\)$/.exec(c);
+    if (!m) return false;
+    return m[4] !== undefined && parseFloat(m[4]) === 0;
+  }
+  // Same exact-alpha contract as cssColorIsFullyTransparent. Unsupported
+  // syntax is not evidence of absence; no channel conversion or rounding.
+  const value = c.trim().toLowerCase();
+  if (value === 'transparent') return true;
+  const fn = /^([a-z]+)\(([^()]*)\)$/.exec(value);
+  if (!fn || !['rgb','rgba','hsl','hsla','hwb','lab','lch','oklab','oklch','color'].includes(fn[1])) return false;
+  const name = fn[1], body = fn[2], legacy = body.includes(',');
+  const number = '[+-]?(?:\\d+(?:\\.\\d+)?|\\.\\d+)(?:e[+-]?\\d+)?';
+  const numberOrPercent = new RegExp('^' + number + '%?$');
+  const hue = new RegExp('^' + number + '(?:deg|grad|rad|turn)?$');
+  let channels, alpha;
+  if (legacy) {
+    if (!['rgb','rgba','hsl','hsla'].includes(name) || body.includes('/')) return false;
+    const parts = body.split(',').map(part => part.trim());
+    if (parts.length !== 3 && parts.length !== 4) return false;
+    channels = parts.slice(0,3); alpha = parts[3];
+  } else {
+    const parts = body.split('/');
+    if (parts.length > 2) return false;
+    channels = parts[0].trim().split(/\s+/); alpha = parts[1]?.trim();
+    if (name === 'color') {
+      if (channels.length !== 4 || !['srgb','srgb-linear','display-p3','display-p3-linear','a98-rgb','prophoto-rgb','rec2020','xyz','xyz-d50','xyz-d65'].includes(channels[0])) return false;
+      channels = channels.slice(1);
+    }
+  }
+  if (channels.length !== 3) return false;
+  const hueIndex = ['hsl','hsla','hwb'].includes(name) ? 0 : ['lch','oklch'].includes(name) ? 2 : -1;
+  if (channels.some((channel,index) => !(!legacy && channel === 'none') && !(index === hueIndex ? hue : numberOrPercent).test(channel))) return false;
+  if (legacy && (name === 'rgb' || name === 'rgba') && channels.some(channel => channel.endsWith('%') !== channels[0].endsWith('%'))) return false;
+  if (legacy && (name === 'hsl' || name === 'hsla') && (!channels[1].endsWith('%') || !channels[2].endsWith('%'))) return false;
+  if (alpha === undefined) return false;
+  if (!legacy && alpha === 'none') return true;
+  if (!numberOrPercent.test(alpha)) return false;
+  // Inspect the coefficient: a positive exponent must not underflow to zero.
+  return alpha.startsWith('-') || !/[1-9]/.test(alpha.split('e')[0]);
+}
+
+function splitShadowParts(value, layers) {
+  const parts = []; let depth = 0, part = '';
+  for (const char of value) {
+    if (char === '(') depth++;
+    if (char === ')' && --depth < 0) return null;
+    if (depth === 0 && (layers ? char === ',' : /\s/.test(char))) {
+      if (part.trim()) parts.push(part.trim());
+      else if (layers) return null;
+      part = '';
+    } else part += char;
+  }
+  if (depth !== 0 || (layers && !part.trim())) return null;
+  if (part.trim()) parts.push(part.trim());
+  return parts;
+}
+
+function hasPaintedShadow(value) {
+  if (!value || value === 'none') return false;
+  const layers = splitShadowParts(value, true);
+  if (!layers) return true;
+  const length = /^[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:e[+-]?\d+)?px$/i;
+  return !layers.every(layer => {
+    const tokens = splitShadowParts(layer, false);
+    if (!tokens) return false;
+    let color = false, inset = false; const lengths = [];
+    for (const token of tokens) {
+      if (token === 'inset' && !inset) inset = true;
+      else if (token === '0' || length.test(token)) lengths.push(token);
+      else if (!color && isTransparentColor(token, true)) color = true;
+      else return false;
+    }
+    return color && lengths.length >= 2 && lengths.length <= 4 &&
+      (lengths.length < 3 || !lengths[2].startsWith('-'));
+  });
 }
 
 function isPaintedChrome(node) {
@@ -410,7 +484,7 @@ function isPaintedChrome(node) {
     parseFloat(s.borderRightWidth) > 0 ||
     parseFloat(s.borderBottomWidth) > 0 ||
     parseFloat(s.borderLeftWidth) > 0;
-  const hasShadow = s.boxShadow && s.boxShadow !== 'none';
+  const hasShadow = hasPaintedShadow(s.boxShadow);
   return hasFill || hasBorder || hasShadow;
 }
 
