@@ -23,7 +23,6 @@ import 'box_padding_navigation_trigger_units_probe.dart';
 import 'box_padding_playground_units_probe.dart';
 import 'box_padding_proxy_host_units_probe.dart';
 import 'box_padding_responsive_layout_units_probe.dart';
-import 'box_padding_scene_units_probe.dart';
 import 'box_padding_section_layout_units_probe.dart';
 import 'box_padding_sequence_layout_units_probe.dart';
 import 'box_padding_solid_layout_units_probe.dart';
@@ -36,6 +35,7 @@ import 'breakpoint_showcase_ssr_source.dart';
 import 'card_accordion_frame_binding.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
+import 'docs_card_registry_binding.dart';
 import 'docs_size_binding.dart';
 import 'public_wrapper_ssr_source.dart';
 import 'scope_allocation_binding.dart';
@@ -278,19 +278,22 @@ String get boxPaddingObservationScript =>
     }
     case 'matched-docs-stage-v1':
     case 'whole-doc-card-frame-v1': {
-      const binding = ($documentationBoxSourceResolverScript)(layoutRoot, source);
+      const binding = ($docsCardRegistryRequestBindingScript)(request);
       if (binding.error) return JSON.stringify(incomplete(binding.error));
-      if (typeof binding.authority !== 'string' || !binding.authority || !binding.fieldUnitElement || binding.paddingSource !== binding.fieldUnitElement || binding.frameSource !== binding.fieldUnitElement) return JSON.stringify(incomplete('DOCUMENTATION_FIELD_UNIT_CHANGED'));
-      if (source.webAdapterId === 'docs-size-preview-frame-v1') {
-        // Only this source-declared preview is a descendant field unit;
-        // the capture/layout root still includes its generated table.
-        if (binding.registryResultElement !== layoutRoot || binding.fieldUnitElement === layoutRoot || !layoutRoot.contains(binding.fieldUnitElement)) return JSON.stringify(incomplete('DOCUMENTATION_FIELD_UNIT_CHANGED'));
-      } else if (binding.fieldUnitElement !== layoutRoot) return JSON.stringify(incomplete('DOCUMENTATION_FIELD_UNIT_CHANGED'));
-      const registry = binding.registryResultElement;
-      if (!registry || !registry.isConnected || !(registry === layoutRoot || registry.contains(layoutRoot))) return JSON.stringify(incomplete('DOCUMENTATION_REGISTRY_SOURCE_CHANGED'));
-      owner = binding.paddingSource;
+      if (!binding.applied && request.documentationSceneTag === 'Anatomy')
+        return JSON.stringify(incomplete('DOCS_ANATOMY_CURRENT_RUNTIME_WITNESS_UNPROVED'));
+      const card = source.webAdapterId === 'whole-doc-card-frame-v1';
+      if (!binding.applied || binding.fieldUnitElement !== layoutRoot ||
+          binding.paddingSource !== layoutRoot || binding.frameSource !== layoutRoot ||
+          binding.registryResultElement !== (card ? layoutRoot.parentElement : layoutRoot) ||
+          binding.registryIsLayoutRoot !== !card ||
+          typeof binding.validateCurrentBinding !== 'function' || !binding.validateCurrentBinding())
+        return JSON.stringify(incomplete('DOCS_FRAME_ACTUAL_NORMAL_SOURCE_REQUIRED'));
+      owner = layoutRoot;
       sourceBindingAuthority = binding.authority;
-      registryIsLayoutRoot = registry === layoutRoot;
+      registryIsLayoutRoot = binding.registryIsLayoutRoot;
+      validateCurrentBoxBinding = binding.validateCurrentBinding;
+      currentBoxBindingFailure = 'DOCS_FRAME_BINDING_CHANGED_DURING_BOX_READ';
       break;
     }
     case 'declared-layout-root-v1':

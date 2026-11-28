@@ -115,6 +115,9 @@ global.getComputedStyle=node=>{cssReads++;return {
 
 ''';
 
+// Shared test-only Node DOM/CSS environment; the runtime literal is unchanged.
+String get docsSourceTestRuntime => _kRuntime;
+
 Future<Map<String, Object?>> _sample(
   _Actual actual, {
   bool combined = true,
@@ -176,6 +179,48 @@ console.log(JSON.stringify({observed,error,cssReads,changed,
 }
 
 void main() {
+  for (final control in [
+    'preview padding',
+    'caption id',
+    'result padding',
+    'figure id',
+    'content padding',
+    'host extra',
+    'code id',
+  ]) {
+    test('Size joint raw+DOM $control rejects before CSS', () async {
+      final actual = await _actual('light');
+      final health = await _sample(actual);
+      expect(health['error'], isNull);
+      final observed = (health['observed']! as Map).cast<String, Object?>();
+      expect((observed['box']! as Map)['status'], 'source-complete');
+      final role = control.split(' ').first;
+      final field = switch (control.split(' ').last) {
+        'padding' => 'style',
+        'extra' => 'data-forged',
+        _ => 'id',
+      };
+      final mutation = [
+        'const ownedRole=(g,r)=>g.role===r?g:',
+        "g.kind==='owned'?g.children.map(c=>ownedRole(c,r))",
+        '.find(Boolean):null;',
+        'const role=${jsonEncode(role)},field=${jsonEncode(field)};',
+        "const value=field==='style'?'padding: 99px':'forged-source';",
+        'ownedRole(request.currentSsrSource.currentRaw.normalTree,role)',
+        '.attributes[field]=value;',
+        'const actualByRole={preview:padding,caption,result:root,figure,code,',
+        'content:root.parentElement,host:root.parentElement.parentElement};',
+        'actualByRole[role].setAttribute(field,value);',
+      ].join();
+      final changed = await _sample(actual, mutation: mutation);
+      expect(
+        changed['error'],
+        isNotNull,
+        reason: 'SIZE_JOINT_OWN_ATTR_SOURCE_RED',
+      );
+      expect(changed['cssReads'], 0);
+    });
+  }
   for (final theme in ['light', 'dark']) {
     test(
       'Size actual normal $theme selects preview and preserves legacy payload',
