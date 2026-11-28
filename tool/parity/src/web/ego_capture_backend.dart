@@ -21,6 +21,7 @@ import 'breakpoint_showcase_ssr_source.dart';
 import 'card_accordion_frame_ssr_source.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
+import 'docs_size_ssr_source.dart';
 import 'element_capture.dart';
 import 'framed_collection_ssr_source.dart';
 import 'public_wrapper_ssr_source.dart';
@@ -348,7 +349,8 @@ Future<WebCaptureResult> captureEgoEntry({
     additiveBoxObservations: additiveBoxObservations,
   );
   final requiredCurrentSsrKind = additiveBoxObservations
-      ? requiredStepperHorizontalSsrKind(entry) ??
+      ? requiredDocsSizeSsrKind(entry) ??
+            requiredStepperHorizontalSsrKind(entry) ??
             requiredPublicWrapperSsrKind(entry) ??
             requiredCardAccordionFrameSsrKind(entry) ??
             requiredScopeAllocationSsrKind(entry) ??

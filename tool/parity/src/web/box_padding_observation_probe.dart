@@ -36,6 +36,7 @@ import 'breakpoint_showcase_ssr_source.dart';
 import 'card_accordion_frame_binding.dart';
 import 'client_box_source_protocol.dart';
 import 'computed_style_probe.dart';
+import 'docs_size_binding.dart';
 import 'public_wrapper_ssr_source.dart';
 import 'scope_allocation_binding.dart';
 import 'showcase_allocation_ssr_source.dart';
@@ -263,9 +264,20 @@ String get boxPaddingObservationScript =>
       if (!${jsonEncode([kWebSurfaceMarker, kWebLocalSurfaceMarker])}.some(name => layoutRoot.classList.contains(name))) return JSON.stringify(incomplete('OUTLINED_ROOT_SOURCE_CHANGED'));
       owner = layoutRoot;
       break;
-    case 'matched-docs-stage-v1':
-    case 'whole-doc-card-frame-v1':
     case 'docs-size-preview-frame-v1': {
+      const binding = ($docsSizeRequestBindingScript)(request);
+      if(binding.error)return JSON.stringify(incomplete(binding.error));
+      if(!binding.applied||binding.registryResultElement!==layoutRoot||
+        binding.fieldUnitElement!==layoutRoot.children[0]||
+        binding.paddingSource!==binding.fieldUnitElement||binding.frameSource!==binding.fieldUnitElement||
+        !binding.validateCurrentBinding())return JSON.stringify(incomplete('DOCS_SIZE_CURRENT_FRAME_REQUIRED'));
+      owner=binding.paddingSource;sourceBindingAuthority=binding.authority;registryIsLayoutRoot=true;
+      validateCurrentBoxBinding=binding.validateCurrentBinding;
+      currentBoxBindingFailure='DOCS_SIZE_BINDING_CHANGED_DURING_BOX_READ';
+      break;
+    }
+    case 'matched-docs-stage-v1':
+    case 'whole-doc-card-frame-v1': {
       const binding = ($documentationBoxSourceResolverScript)(layoutRoot, source);
       if (binding.error) return JSON.stringify(incomplete(binding.error));
       if (typeof binding.authority !== 'string' || !binding.authority || !binding.fieldUnitElement || binding.paddingSource !== binding.fieldUnitElement || binding.frameSource !== binding.fieldUnitElement) return JSON.stringify(incomplete('DOCUMENTATION_FIELD_UNIT_CHANGED'));

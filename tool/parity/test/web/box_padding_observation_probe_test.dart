@@ -11,9 +11,8 @@ Future<Map<String, Object?>> _observe(
   String setup, {
   BoxObservationSourceSpec source = BoxObservationSourceSpec.docsSizePreview,
 }) async {
-  final result = await Process.run('node', [
-    '-e',
-    '''
+  final program =
+      '''
 const observe = ($boxPaddingObservationScript);
 const node = (tagName, classes, children = []) => {
   const names = [...classes]; names.contains = name => names.includes(name);
@@ -37,24 +36,33 @@ global.getComputedStyle = owner => {
 $setup
 const result = JSON.parse(observe({requested:true,selector:'#root',layoutSelector:'#root',source:${jsonEncode(source.toJson())}}));
 console.log(JSON.stringify({result,cssReads}));
-''',
-  ]);
+''';
+  final directory = Directory.systemTemp.createTempSync('docs-size-old-shape-');
+  late ProcessResult result;
+  try {
+    final file = File('${directory.path}/probe.cjs')
+      ..writeAsStringSync(program);
+    result = await Process.run('node', [file.path]);
+  } finally {
+    directory.deleteSync(recursive: true);
+  }
   expect(result.exitCode, 0, reason: '${result.stderr}');
   return (jsonDecode(result.stdout as String) as Map).cast<String, Object?>();
 }
 
 void main() {
   test(
-    'SizeSpec reads only the declared preview and retains its layout root',
+    [
+      'SizeSpec matching classes without its normal receipt ',
+      'cannot claim ownership',
+    ].join(),
     () async {
       final readback = await _observe('');
       final actual = (readback['result']! as Map).cast<String, Object?>();
-      expect(actual['status'], 'source-complete');
-      expect(actual['value'], [16, 16, 16, 16]);
-      expect(actual['ownerIsLayoutRoot'], isFalse);
-      expect(actual['registryIsLayoutRoot'], isTrue);
-      expect(actual['canonicalComparisonEligible'], isFalse);
-      expect(readback['cssReads'], 1);
+      expect(actual['status'], 'incomplete');
+      expect(actual['error'], 'DOCS_SIZE_ACTUAL_NORMAL_SSR_REQUIRED');
+      expect(actual.containsKey('value'), false);
+      expect(readback['cssReads'], 0);
     },
   );
   for (final control in <(String, String, String)>[
@@ -63,9 +71,13 @@ void main() {
     (
       'uncontained',
       'root.contains=()=>false;',
-      'DOCUMENTATION_FIELD_UNIT_CHANGED',
+      'DOCS_SIZE_ACTUAL_NORMAL_SSR_REQUIRED',
     ),
-    ('table source', 'root.children.pop();', 'DOCS_SIZE_SPEC_SOURCE_CHANGED'),
+    (
+      'table source',
+      'root.children.pop();',
+      'DOCS_SIZE_ACTUAL_NORMAL_SSR_REQUIRED',
+    ),
   ]) {
     test(
       '${control.$1} source fails without reading or returning a value',

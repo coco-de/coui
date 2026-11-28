@@ -112,6 +112,10 @@ jobs:
           tool/parity/test/model/public_wrapper_source_spec_test.dart
           tool/parity/test/model/box_observation_structured_source_spec_test.dart
           tool/parity/test/web/public_wrapper_real_entry_test.dart
+          tool/parity/test/web/docs_size_original_entry_source_test.dart
+          tool/parity/test/web/docs_size_binding_test.dart
+          tool/parity/test/web/box_padding_observation_probe_test.dart
+          tool/parity/test/web/box_padding_scene_units_probe_test.dart
           tool/parity/test/web/public_wrapper_dispatch_test.dart
           tool/parity/test/web/box_padding_structured_dispatch_probe_test.dart
           tool/parity/test/web/bottom_action_bar_real_entry_test.dart
